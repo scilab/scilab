@@ -55,6 +55,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.html.HTMLDocument;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -378,10 +379,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     public void exec(String path) {
         String cmd = "exec('" + path + "', -1)";
         try {
-            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, true, false);
-        } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
-        }
+            ScilabInterpreterManagement.asynchronousScilabExec(null, cmd);
+        } catch (Exception e) { }
     }
 
     /**
@@ -392,10 +391,8 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     public void exec(String command, String path) {
         String cmd = command + "('" + path + "')";
         try {
-            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, false, false);
-        } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
-        }
+            ScilabInterpreterManagement.asynchronousScilabExec(null, cmd);
+        } catch (Exception e) { }
     }
 
     /**

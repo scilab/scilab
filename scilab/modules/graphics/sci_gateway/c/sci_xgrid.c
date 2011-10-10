@@ -34,7 +34,7 @@ int sci_xgrid(char *fname,unsigned long fname_len)
     style = (int)  *stk(l1);
   }
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+  C2F(putlhsvar)();
 
   status = sciSetGridStyle( sciGetCurrentSubWin(), style, style, style ) ;
   if ( status == 0 )

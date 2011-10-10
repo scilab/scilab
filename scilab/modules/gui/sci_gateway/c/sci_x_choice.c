@@ -135,7 +135,7 @@ int sci_x_choice(char *fname,unsigned long fname_len)
   FREE(defaultValuesInt);
 
   LhsVar(1) = Rhs+1;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

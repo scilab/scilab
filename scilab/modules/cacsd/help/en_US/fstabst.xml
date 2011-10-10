@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>fstabst</refname>
-    <refpurpose> Youla's parametrization</refpurpose>
+    <refpurpose>Youla's parametrization of continuous time linear dynmaical systems</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[J]=fstabst(P,r)</synopsis>
+    <synopsis>J = fstabst(P,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> <literal>syslin</literal> list (linear system)</para>
+          <para>a continuous time linear dynamical system.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para> <literal>syslin</literal> list (linear system in state-space representation)</para>
+          <para> a continuous time linear dynamical system (with same representation as <literal>P</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>

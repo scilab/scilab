@@ -129,7 +129,6 @@
     <None Include="..\..\completion.iss" />
     <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc">

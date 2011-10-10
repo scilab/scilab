@@ -140,7 +140,6 @@ scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc
-pvm3
 *.class
 *.dia
 
@@ -149,10 +148,6 @@ pvm3
 #
 .svn
 
-#
-# pvm configuration file
-#
-.pvmd.conf
 
 # atoms generated files
 .atoms
@@ -170,3 +165,5 @@ modules/types/src/jni/sci_types_wrap.c
 
 # clang / scan-build generated temporary files
 modules/*/*.plist
+
+modules/pvm/

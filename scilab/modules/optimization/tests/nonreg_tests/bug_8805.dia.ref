@@ -67,20 +67,21 @@ nm = neldermead_search(nm);
 =================================
 Initialization
 Iteration #0, Feval #5, Fval = 24.2, x = -1.2 1, Size = 1
-Iteration #10, Feval #24, Fval = 17.739544, x = -1.306133 1.3535448, Size = 0.4232797
-Iteration #20, Feval #39, Fval = 3.1084555, x = -0.7605391 0.5878842, Size = 0.5279715
-Iteration #30, Feval #54, Fval = 2.8595067, x = -0.5902157 0.2908462, Size = 0.2124624
-Iteration #40, Feval #67, Fval = 1.8482026, x = -0.3567710 0.1186976, Size = 0.1320536
-Iteration #50, Feval #80, Fval = 1.2135961, x = -0.0967633 -0.0009840, Size = 0.1553767
-Iteration #60, Feval #95, Fval = 0.8071251, x = 0.1021266 0.0073502, Size = 0.0867644
-Iteration #70, Feval #109, Fval = 0.3862336, x = 0.3785234 0.1432114, Size = 0.0830308
-Iteration #80, Feval #123, Fval = 0.1657288, x = 0.6215871 0.3713597, Size = 0.1261381
-Iteration #90, Feval #138, Fval = 0.0560209, x = 0.7683165 0.5854691, Size = 0.0913569
-Iteration #100, Feval #152, Fval = 0.0118572, x = 0.9236613 0.8453851, Size = 0.1200287
-Iteration #110, Feval #169, Fval = 0.0035297, x = 0.9490188 0.8975862, Size = 0.0479899
-Iteration #120, Feval #184, Fval = 0.0000838, x = 1.0072619 1.0151336, Size = 0.0504394
+Iteration #10, Feval #21, Fval = 7.9162551, x = -1.0888039 0.9969959, Size = 0.4763039
+Iteration #20, Feval #38, Fval = 3.5785663, x = -0.7469755 0.4854023, Size = 0.3143594
+Iteration #30, Feval #58, Fval = 2.8441192, x = -0.6293793 0.4396203, Size = 0.0448992
+Iteration #40, Feval #68, Fval = 1.4592158, x = -0.2023866 0.0293490, Size = 0.1593684
+Iteration #50, Feval #87, Fval = 1.4248557, x = -0.1760318 0.0105409, Size = 0.0139912
+Iteration #60, Feval #97, Fval = 1.2862472, x = -0.1287556 0.0055517, Size = 0.0280765
+Iteration #70, Feval #110, Fval = 0.9998833, x = 0.0380809 -0.0258619, Size = 0.0603288
+Iteration #80, Feval #123, Fval = 0.5295656, x = 0.2750716 0.0693048, Size = 0.1059773
+Iteration #90, Feval #137, Fval = 0.3227594, x = 0.4479052 0.1872210, Size = 0.0543941
+Iteration #100, Feval #151, Fval = 0.2460534, x = 0.5394682 0.2725966, Size = 0.0972132
+Iteration #110, Feval #164, Fval = 0.0712614, x = 0.7533294 0.5572998, Size = 0.1683063
+Iteration #120, Feval #178, Fval = 0.0241643, x = 0.8601955 0.7331400, Size = 0.1201279
+Iteration #130, Feval #194, Fval = 0.0006215, x = 0.9932147 0.9888743, Size = 0.0910561
 =================================
 End of Optimization
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal(xopt,[1;1],1.d-2);
+assert_checkalmostequal(xopt,[1;1],1.d-1);
 nm = neldermead_destroy(nm);

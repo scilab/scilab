@@ -87,23 +87,19 @@ lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build special_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n special_functions_f.dll %%f &gt;nul
-copy *.def special_functions_f.def &gt;nul
-copy special_functions_f.def ..\special_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy special_functions_f_header.def+special_functions_f.vcdef special_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -113,9 +109,6 @@ copy special_functions_f_header.def+special_functions_f.vcdef special_functions_
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -136,23 +129,19 @@ lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build special_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n special_functions_f.dll %%f &gt;nul
-copy *.def special_functions_f.def &gt;nul
-copy special_functions_f.def ..\special_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy special_functions_f_header.def+special_functions_f.vcdef special_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -162,9 +151,6 @@ copy special_functions_f_header.def+special_functions_f.vcdef special_functions_
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -183,22 +169,19 @@ lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build special_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n special_functions_f.dll %%f &gt;nul
-copy *.def special_functions_f.def &gt;nul
-copy special_functions_f.def ..\special_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy special_functions_f_header.def+special_functions_f.vcdef special_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -210,11 +193,6 @@ copy special_functions_f_header.def+special_functions_f.vcdef special_functions_
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -236,22 +214,19 @@ lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build special_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n special_functions_f.dll %%f &gt;nul
-copy *.def special_functions_f.def &gt;nul
-copy special_functions_f.def ..\special_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy special_functions_f_header.def+special_functions_f.vcdef special_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -263,11 +238,6 @@ copy special_functions_f_header.def+special_functions_f.vcdef special_functions_
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -278,15 +248,32 @@ copy special_functions_f_header.def+special_functions_f.vcdef special_functions_
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dlgamma.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gamma.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lgamma.c" />
+    <ClCompile Include="dbesig.c" />
+    <ClCompile Include="dbesjg.c" />
+    <ClCompile Include="dbeskg.c" />
+    <ClCompile Include="dbesyg.c" />
+    <ClCompile Include="zbesig.c" />
+    <ClCompile Include="zbesjg.c" />
+    <ClCompile Include="zbeskg.c" />
+    <ClCompile Include="zbesyg.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_calerf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dlgamma.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gamma.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lgamma.f" />
+    <f2c_rule Include="dbesig.f" />
+    <f2c_rule Include="dbesjg.f" />
+    <f2c_rule Include="dbeskg.f" />
+    <f2c_rule Include="dbesyg.f" />
+    <f2c_rule Include="zbesig.f" />
+    <f2c_rule Include="zbesjg.f" />
+    <f2c_rule Include="zbeskg.f" />
+    <f2c_rule Include="zbesyg.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LibScilab_Import.def" />
+    <None Include="output_stream_Import.def" />
     <None Include="special_functions_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />

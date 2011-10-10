@@ -1,5 +1,0 @@
-//exec('sysrep.1.ex')
-//Illustrate use of ss2tf and tf2ss
-   h1=iir(3,'lp','butt',[.25 0],[0 0])
-   h1=syslin('d',h1);
-   s1=tf2ss(h1)

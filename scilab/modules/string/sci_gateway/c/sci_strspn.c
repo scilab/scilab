@@ -78,7 +78,7 @@ int sci_strspn(char *fname,unsigned long fname_len)
 				if (wcParam2) { FREE(wcParam2); wcParam2 = NULL;}
 			}
 			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{

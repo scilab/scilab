@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU 
- * 
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,7 @@
  * to be easily integrate into a SWIG wrapper.
  */
 
-#ifndef ENABLE_HELPERS 
+#ifndef ENABLE_HELPERS
 #error "This file cannot be used directly"
 #endif
 #include "BOOL.h"
@@ -316,5 +316,19 @@ char ** getString(char* variableName, int *nbRow, int *nbCol);
  */
 int putString(char* variableName, char **variable, int nbRow, int nbCol);
 
+/**
+ * Chek if a variable exists in Context
+ *
+ * @param variableName The name of the variable
+ * @return TRUE if the given variable exists, FALSE otherwise
+ */
+BOOL isExistingVariable(char* variableName);
 
+/**
+ * Chek if a variable is complex.
+ *
+ * @param variableName The name of the variable
+ * @return TRUE if the given variable is complex, FALSE otherwise
+ */
+BOOL isComplexVar(char *variableName);
 #endif /* __JAVASCI2_HELPER_H__ */

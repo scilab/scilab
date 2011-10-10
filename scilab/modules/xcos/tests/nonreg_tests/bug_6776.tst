@@ -17,7 +17,7 @@
 // the non-empty block.doc field was not cleared on loading.
 //
 
-loadScicosLibs;
+loadXcosLibs();
 
 // Check that importScicosDiagram perform block.doc clearing
 scs_m = importScicosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");

@@ -58,14 +58,15 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
     /* call the implementation */
 	Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
 
-	LhsVar(1) = 0;
-	PutLhsVar();
-
 	for (i=0; i<pathLength; i++) {
 		FREE(path[i]);
 	}
 	FREE(path);
 	freeAllocatedSingleString(msg);
+
+    LhsVar(1) = 0;
+    PutLhsVar();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

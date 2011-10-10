@@ -24,8 +24,8 @@ defaultlibs = ["Branching",
                "Sinks",
                "Threshold"];
 defaultlibs  = defaultlibs + "lib";
-notTested = ["SUPER_f" "TEXT_f" "PAL_f", ..         // Specific blocks-
-             "CBLOCK4" "CBLOCK"];                   // buggy blocks #7363
+notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f", ..    // Specific blocks
+            "CBLOCK" "CBLOCK4" "c_block" ];             // native blocks
 funcprot(0);
 ilib_verbose(0);
 // Stubbing the x_mdialog method
@@ -76,6 +76,7 @@ alreadyran = %f;
 // If the following block display something, the test is failed.
 for i = 1:size(defaultlibs,"*")
     [macros, path] = libraryinfo(defaultlibs(i));
+    macros = gsort(macros);
     for j = 1:size(macros,"*")
         interfunction = macros(j);
         // Not tested blocks (Xcos customs)
@@ -112,60 +113,72 @@ for i = 1:size(defaultlibs,"*")
 end
 SCI/modules/scicos_blocks/blocks/SWITCH2.h5 not found.
 SCI/modules/scicos_blocks/blocks/SELECT_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/SCALAR2VECTOR.h5 not found.
+SCI/modules/scicos_blocks/blocks/MUX_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/ISELECT_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/DEMUX_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/MOTOR.h5 not found.
-vanne_draw_ports is not a valid block descriptor.
-bache_draw_ports is not a valid block descriptor.
 vanne_outputs is not a valid block descriptor.
-bache_inputs is not a valid block descriptor.
-source_draw_ports is not a valid block descriptor.
-source_inputs is not a valid block descriptor.
-puit_inputs is not a valid block descriptor.
-bache_outputs is not a valid block descriptor.
 vanne_inputs is not a valid block descriptor.
-SCI/modules/scicos_blocks/blocks/Flowmeter.h5 not found.
+vanne_draw_ports is not a valid block descriptor.
+source_inputs is not a valid block descriptor.
+source_draw_ports is not a valid block descriptor.
+puit_inputs is not a valid block descriptor.
 puit_draw_ports is not a valid block descriptor.
-SCI/modules/scicos_blocks/blocks/DLR_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/DOLLAR.h5 not found.
+bache_outputs is not a valid block descriptor.
+bache_inputs is not a valid block descriptor.
+bache_draw_ports is not a valid block descriptor.
+SCI/modules/scicos_blocks/blocks/Flowmeter.h5 not found.
 SCI/modules/scicos_blocks/blocks/TCLSS_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/DIFF_c.h5 not found.
-SCI/modules/scicos_blocks/blocks/CLSS_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/SAMPHOLD.h5 not found.
-SCI/modules/scicos_blocks/blocks/INTEGRAL.h5 not found.
 SCI/modules/scicos_blocks/blocks/SOM_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/SAMPLEHOLD_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/SAMPHOLD.h5 not found.
 SCI/modules/scicos_blocks/blocks/REGISTER_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/DLSS_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/CLR_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/INTEGRAL.h5 not found.
 SCI/modules/scicos_blocks/blocks/GAIN_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/STEP.h5 not found.
-SCI/modules/scicos_blocks/blocks/PULSE_SC.h5 not found.
-SCI/modules/scicos_blocks/blocks/RFILE.h5 not found.
-SCI/modules/scicos_blocks/blocks/SLIDER_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/CONST.h5 not found.
-SCI/modules/scicos_blocks/blocks/CURVE_c.h5 not found.
-SCI/modules/scicos_blocks/blocks/CONST_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/CLKIN_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/GAINBLK.h5 not found.
+SCI/modules/scicos_blocks/blocks/DOLLAR_m.h5 not found.
+SCI/modules/scicos_blocks/blocks/DOLLAR.h5 not found.
+SCI/modules/scicos_blocks/blocks/DLSS_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/DLR_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/DIFF_c.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLSS_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLR_f.h5 not found.
 tkscaleblk is not a valid block descriptor.
+SCI/modules/scicos_blocks/blocks/STEP.h5 not found.
+SCI/modules/scicos_blocks/blocks/RAND_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/PULSE_SC.h5 not found.
 SCI/modules/scicos_blocks/blocks/Ground_g.h5 not found.
 SCI/modules/scicos_blocks/blocks/GEN_SQR.h5 not found.
-SCI/modules/scicos_blocks/blocks/func_block.h5 not found.
-anim_pen is not a valid block descriptor.
-SCI/modules/scicos_blocks/blocks/DSUPER.h5 not found.
-SCI/modules/scicos_blocks/blocks/CONSTRAINT2_c.h5 not found.
-SCI/modules/scicos_blocks/blocks/generic_block2.h5 not found.
-SCI/modules/scicos_blocks/blocks/CONSTRAINT_c.h5 not found.
-SCI/modules/scicos_blocks/blocks/IMPSPLIT_f.h5 not found.
-bplatform2 is not a valid block descriptor.
-SCI/modules/scicos_blocks/blocks/PENDULUM_ANIM.h5 not found.
+SCI/modules/scicos_blocks/blocks/FROMWS_c.h5 not found.
+SCI/modules/scicos_blocks/blocks/CURVE_c.h5 not found.
+SCI/modules/scicos_blocks/blocks/CONST_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CONST.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLOCK_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLKIN_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/scifunc_block.h5 not found.
-SCI/modules/scicos_blocks/blocks/MPBLOCK.h5 not found.
 m_sin is not a valid block descriptor.
+SCI/modules/scicos_blocks/blocks/generic_block2.h5 not found.
+SCI/modules/scicos_blocks/blocks/generic_block.h5 not found.
+SCI/modules/scicos_blocks/blocks/func_block.h5 not found.
+bplatform2 is not a valid block descriptor.
+anim_pen is not a valid block descriptor.
+SCI/modules/scicos_blocks/blocks/SPLIT_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/PENDULUM_ANIM.h5 not found.
+SCI/modules/scicos_blocks/blocks/MPBLOCK.h5 not found.
+SCI/modules/scicos_blocks/blocks/MEMORY_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/IMPSPLIT_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/EDGETRIGGER.h5 not found.
+SCI/modules/scicos_blocks/blocks/CONSTRAINT2_c.h5 not found.
 SCI/modules/scicos_blocks/blocks/VirtualCLK0.h5 not found.
+SCI/modules/scicos_blocks/blocks/EVTDLY_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLKSPLIT_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLKSOM_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/SAT_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/LOOKUP_c.h5 not found.
-SCI/modules/scicos_blocks/blocks/EXPBLK_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/LOOKUP2D.h5 not found.
-SCI/modules/scicos_blocks/blocks/FSV_f.h5 not found.
 SCI/modules/scicos_blocks/blocks/INVBLK_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/AFFICH_f.h5 not found.
-SCI/modules/scicos_blocks/blocks/WFILE.h5 not found.
+SCI/modules/scicos_blocks/blocks/FSV_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/EXPBLK_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/ABSBLK_f.h5 not found.
+SCI/modules/scicos_blocks/blocks/CLKOUT_f.h5 not found.

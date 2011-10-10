@@ -63,9 +63,10 @@ DIST_COMMON = $(libmex_la_include_HEADERS) $(srcdir)/Makefile.am \
 subdir = modules/mexlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -73,10 +74,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -109,21 +110,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libmex_la_rootdir)" \
 	"$(DESTDIR)$(libmex_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libmat_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmat_la_DEPENDENCIES =
 am__objects_1 = libmat_la-mexlib.lo libmat_la-sci_gateway.lo
 am_libmat_la_OBJECTS = $(am__objects_1)
 libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
 libmat_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmat_la_CFLAGS) \
 	$(CFLAGS) $(libmat_la_LDFLAGS) $(LDFLAGS) -o $@
-libmex_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmex_la_DEPENDENCIES =
 am__objects_2 = libmex_la-mexlib.lo libmex_la-sci_gateway.lo
 am_libmex_la_OBJECTS = $(am__objects_2)
 libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
 libmex_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmex_la_CFLAGS) \
 	$(CFLAGS) $(libmex_la_LDFLAGS) $(LDFLAGS) -o $@
-libmx_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmx_la_DEPENDENCIES =
 am__objects_3 = libmx_la-mexlib.lo libmx_la-sci_gateway.lo
 am_libmx_la_OBJECTS = $(am__objects_3)
 libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
@@ -300,11 +301,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -413,12 +409,6 @@ MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/string/includes
-MEXLIB_DEP = \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
-
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)
@@ -994,6 +984,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

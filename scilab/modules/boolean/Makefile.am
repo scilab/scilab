@@ -38,9 +38,7 @@ libsciboolean_algo_la_CFLAGS = $(libsciboolean_la_CFLAGS)
 CHECK_SRC= $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciboolean_la_CFLAGS)
 
-libsciboolean_la_LIBADD = libsciboolean-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libsciboolean_la_LIBADD = libsciboolean-algo.la
 
 modulename=boolean
 

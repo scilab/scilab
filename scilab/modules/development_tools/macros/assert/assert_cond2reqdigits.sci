@@ -128,15 +128,15 @@ function d = assert_cond2reqdigits ( varargin )
     //
     // Check types of variables
     if ( typeof(condition) <> "constant" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_cond2reqdigits" , 1 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_cond2reqdigits" , 1 )
         error(errmsg)
     end
     if ( typeof(offset) <> "constant" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_cond2reqdigits" , 2 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_cond2reqdigits" , 2 )
         error(errmsg)
     end
     if ( typeof(b) <> "constant" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_cond2reqdigits" , 3 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_cond2reqdigits" , 3 )
         error(errmsg)
     end
     //

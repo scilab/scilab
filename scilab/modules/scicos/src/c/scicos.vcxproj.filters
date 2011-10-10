@@ -113,9 +113,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_permutobj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_phase_simulation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -273,7 +270,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos.iss" />
     <None Include="..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="..\..\version.xml" />
+    <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">

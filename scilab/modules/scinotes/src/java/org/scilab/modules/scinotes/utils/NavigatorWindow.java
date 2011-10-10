@@ -749,7 +749,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
             if (node.isLeaf() && node.getUserObject() instanceof ScilabDocument.ScilabLeafElement) {
                 ScilabEditorPane sep = (ScilabEditorPane) ((DefaultMutableTreeNode) node.getParent().getParent()).getUserObject();
-                int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
+                int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStartOffset();
                 if (pos != -1) {
                     sep.getEditor().getTabPane().setSelectedComponent(sep.getEditorComponent());
                     sep.scrollTextToPos(pos);
@@ -785,7 +785,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                 }
 
                 if (node.isLeaf() && node.getUserObject() instanceof ScilabDocument.ScilabLeafElement) {
-                    int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
+                    int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStartOffset();
                     if (pos != -1) {
                         updatePaneDoc(node);
                         line += doc.getDefaultRootElement().getElementIndex(pos);

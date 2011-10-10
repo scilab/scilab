@@ -152,7 +152,7 @@ int sci_link(char *fname,unsigned long fname_len)
 			CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &n, &n,&l);
 			*istk(l) = (int)returnedID;
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -186,11 +186,10 @@ static int linkNoRhs(void)
 		m1 = sizeFunctionsList;
 		n1 = 1;
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &n1, &m1, FunctionsList);
+        freeArrayOfString(FunctionsList,sizeFunctionsList);
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
-
-		freeArrayOfString(FunctionsList,sizeFunctionsList);
+		PutLhsVar();
 	}
 	else
 	{
@@ -199,7 +198,7 @@ static int linkNoRhs(void)
 		l1=0;
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return retval;
 }
@@ -228,7 +227,7 @@ static int linkOneRhsShow(void)
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 	}
 	LhsVar(1)=Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

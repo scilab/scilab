@@ -267,7 +267,7 @@
       In this case <literal>myfun</literal>, the first element in the list, must be a function and must
       have the header:
       <screen>
-        f = myfun ( x )
+        f = myfun ( x, a1, a2, ...)
       </screen>
       where the input arguments <literal>a1, a2, ...</literal>
       are automatically appended at the end of the calling sequence.

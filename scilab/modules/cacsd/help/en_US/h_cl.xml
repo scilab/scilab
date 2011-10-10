@@ -29,19 +29,19 @@
       <varlistentry>
         <term>P, P22</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list), augmented plant or nominal plant respectively</para>
+          <para>continuous time linear dynamical systems: augmented plant or nominal plant respectively</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 row vector, dimensions of 2,2 part of <literal>P</literal> (<literal>r=[rows,cols]=size(P22)</literal>)</para>
+          <para>a two elements vector, dimensions of 2,2 part of <literal>P</literal> (<literal>r=[rows,cols]=size(P22)</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list), controller</para>
+          <para>a continuous time linear dynamical system: the controller</para>
         </listitem>
       </varlistentry>
       <varlistentry>

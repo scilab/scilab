@@ -49,10 +49,7 @@ CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 
 libsciinterpolation_la_LIBADD = \
-	libsciinterpolation-algo.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-    $(top_builddir)/modules/string/libscistring.la
-
+	libsciinterpolation-algo.la
 
 #### Target ######
 modulename=interpolation

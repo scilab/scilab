@@ -6,6 +6,7 @@
 FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
+	src/c/isScilabFunction.c \
 	src/c/searchmacroinlibraries.c
 
 FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
@@ -49,11 +50,7 @@ CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
 
 libscifunctions_la_LIBADD =   \
-	libscifunctions-algo.la \
-$(top_builddir)/modules/string/libscistring.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la
+	libscifunctions-algo.la
 
 #### Target ######
 modulename=functions

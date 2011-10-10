@@ -45,7 +45,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		char filename[PATH_MAX];
 
 		char *pathextended = NULL;
-		int out_n = 0;
+
 
 		splitpath(somechars,pathname,filename);
 

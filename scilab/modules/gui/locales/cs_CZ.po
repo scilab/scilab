@@ -1,0 +1,1631 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2011-09-02 15:15+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota pro vstupní argument #%d: očekáván '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být >= %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo reálné číslo.\n"
+
+#, c-format
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: Funkce není dostupná v režimu NWNI.\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: Číslo obrazce musí být určeno když nejste v režimu  '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván Reálný Skalár nebo "
+"obslužná rutina  'Figure'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván Reálný Skalár nebo obslužná "
+"rutina 'Figure'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a string vector "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo řetězcový "
+"vektor.\n"
+
+msgid "Scilab Message"
+msgstr "Zpráva Scilab"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězce.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána grafická obslužná "
+"rutina.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a string "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina "
+"nebo řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' expected.\n"
+msgstr "%s: Chybné vstupní argumenty: Očekáván '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
+msgstr "%s: Chybné vstupní argumenty: Očekávány '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
+"exist.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: 'Grafické Okno Číslo %d' "
+"neexistuje.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: tato obslužná rutina "
+"neexistuje.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo obslužná "
+"rutina Obrazce.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo obslužná "
+"rutina Obrazce.\n"
+
+#, c-format
+msgid "%s: Could not set property '%s'.\n"
+msgstr "%s: Nelze nastavit vlastnost '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s', '%s' "
+"nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina '%s' "
+"nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Unknown property: %s for '%s' handles.\n"
+msgstr "%s: Neznámá vlastnost: %s pro obslužné rutiny '%s'.\n"
+
+#, c-format
+msgid "%s: Could not create 'Uicontrol' handle.\n"
+msgstr "%s: Nelze vytvořit obslužnou rutinu 'Uicontrol'.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor reálného řádku "
+"1 x %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo "
+"řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor reálného řádku 1 x "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána platná obslužná rutina "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: Chybné vstupní argumenty: Očekávány '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný nebo komplexní "
+"vektor.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězců.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Požadavek Volby Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor řetězců.\n"
+
+msgid "Scilab Choose Message"
+msgstr "Výběr Zprávy Scilab"
+
+msgid "Scilab Input Value Request"
+msgstr "Požadavek Vstupní Hodnoty Scilab"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Požadavek Více Hodnot Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"argument #%d.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Musí mít stejné rozměry jako "
+"argument #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: Chybná velikost vstupního argumentu #%d: Očekávána matice řetězců %d x "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: A Java exception arisen:\n"
+"%s"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: Vyskytla se chyba: %s.\n"
+
+msgid "Impossible to get current look and feel"
+msgstr "Nelze získat současný vzhled"
+
+#, c-format
+msgid ""
+"%s: An exception occurred: %s\n"
+"%s\n"
+msgstr ""
+"%s: Vyskytla se výjimka: %s\n"
+"%s\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Soubor %s neexistuje.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána kladná celá čísla\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno kladné celé číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole 1 krát n nebo m "
+"krát 1.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána hodnota 'pos' nebo "
+"'gdi'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána řetězcová matice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána řetězcová matice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána booleovská matice.\n"
+
+msgid "&File"
+msgstr "&Soubor"
+
+msgid "&New figure..."
+msgstr "&Nový obrazec..."
+
+msgid "&Load..."
+msgstr "&Načíst..."
+
+msgid "&Save..."
+msgstr "&Uložit..."
+
+msgid "&Export to..."
+msgstr "&Exportovat do..."
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&GIF"
+msgstr "&GIF"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Vectorial export"
+msgstr "&Export vektoru"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Copy to clipboard"
+msgstr "&Kopírovat do schránky"
+
+msgid "P&age setup..."
+msgstr "&Vzhled stránky..."
+
+msgid "&Print..."
+msgstr "&Tisk..."
+
+msgid "C&lose"
+msgstr "&Zavřít"
+
+msgid "&Tools"
+msgstr "&Nástroje"
+
+msgid "Show/Hide &Toolbar"
+msgstr "Zobrazit/Skrýt &Panel Nástrojů"
+
+msgid "&Zoom"
+msgstr "&Přiblížit"
+
+msgid "&UnZoom"
+msgstr "&Vzdálit"
+
+msgid "2D/3D &Rotation"
+msgstr "2D/3D &Otáčení"
+
+msgid "&Edit"
+msgstr "&Upravit"
+
+msgid "&Select as current figure"
+msgstr "&Vybrat jako současný obrazec"
+
+msgid "&Redraw figure"
+msgstr "&Znovu nakreslit obrazec"
+
+msgid "&Clear figure"
+msgstr "&Vyčistit obrazec"
+
+msgid "&Figure properties"
+msgstr "&Vlastnosti obrazce"
+
+msgid "&Axes properties"
+msgstr "&Vlastnosti os"
+
+msgid "&Start entity picker"
+msgstr "&Spustit výběr objektu"
+
+msgid "S&top entity picker"
+msgstr "&Zastavit výběr objektu"
+
+msgid "&Start datatip manager"
+msgstr "&Spustit správce datových popisků"
+
+msgid "Stop datatip manager"
+msgstr "Zastavit správce datových popisků"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Scilab Help"
+msgstr "&Nápověda Scilab"
+
+msgid "&About Scilab..."
+msgstr "&O Scilabu..."
+
+msgid "&Close"
+msgstr "&Zavřít"
+
+msgid "&Incremental Search"
+msgstr "&Inkrementální Hledání"
+
+msgid "In&crease font size"
+msgstr "&Zvětšit velikost písma"
+
+msgid "&Decrease font size"
+msgstr "&Zmenšit velikost písma"
+
+msgid "&Execute..."
+msgstr "&Spustit..."
+
+msgid "&Open a file..."
+msgstr "&Otevřít soubor..."
+
+msgid "&Load environment..."
+msgstr "&Načíst prostředí..."
+
+msgid "&Save environment..."
+msgstr "&Uložit prostředí..."
+
+msgid "&Change current directory..."
+msgstr "Změnit &současný adresář..."
+
+msgid "&Display current directory"
+msgstr "&Zobrazit současný adresář"
+
+msgid "&Quit"
+msgstr "&Ukončit"
+
+msgid "C&ut"
+msgstr "&Vyjmout"
+
+msgid "&Copy"
+msgstr "&Kopírovat"
+
+msgid "&Paste"
+msgstr "&Vložit"
+
+msgid "&Empty clipboard"
+msgstr "&Vyprázdnit schránku"
+
+msgid "&Select all"
+msgstr "&Vybrat vše"
+
+msgid "&Preferences"
+msgstr "&Nastavení"
+
+msgid "&Colors"
+msgstr "&Barvy"
+
+msgid "Console &Background..."
+msgstr "P&ozadí Konzole"
+
+msgid "Console &Font..."
+msgstr "&Písmo Konzole..."
+
+msgid "&Font..."
+msgstr "&Písmo..."
+
+msgid "Clear &History"
+msgstr "Vyčistit &Historii"
+
+msgid "Clear C&onsole"
+msgstr "Vyčistit &Konzoli"
+
+msgid "&Control"
+msgstr "&Ovládání"
+
+msgid "&Resume"
+msgstr "&Pokračovat"
+
+msgid "&Abort"
+msgstr "&Přerušit"
+
+msgid "&Interrupt"
+msgstr "&Přerušit"
+
+msgid "&Applications"
+msgstr "&Aplikace"
+
+msgid "&SciNotes"
+msgstr "&SciNotes"
+
+msgid "&Xcos"
+msgstr "&Xcos"
+
+msgid "&Matlab to Scilab translator"
+msgstr "&Překladač Matlab na Scilab"
+
+msgid "M&odule manager - ATOMS"
+msgstr "&Správce Modulů - ATOMS"
+
+msgid "&Variable Browser"
+msgstr "&Průzkumník Proměnných"
+
+msgid "&Command History"
+msgstr "&Historie Příkazů"
+
+msgid "Scilab &Help"
+msgstr "&Nápověda Scilab"
+
+msgid "Scilab &Demonstrations"
+msgstr "&Ukázky Scilab"
+
+msgid "&Links"
+msgstr "&Propojení"
+
+msgid "Scilab &Web Site"
+msgstr "&Internetová Stránka Scilab"
+
+msgid "Scilab &Online Help"
+msgstr "&Online nápověda Scilab"
+
+msgid "Scilab &Wiki"
+msgstr "Scilab &Wiki"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Internetová Stránka Scilab &ATOMS"
+
+msgid "&File Exchange"
+msgstr "&Výměna souboru"
+
+msgid "&Mailing lists"
+msgstr "&Poštovní adresáře"
+
+msgid "&Forge"
+msgstr "&Kovárna"
+
+msgid "&Bugs And Requests"
+msgstr "&Chyba a Žádosti"
+
+msgid "Rotate"
+msgstr "Otočit"
+
+msgid "Zoom Area"
+msgstr "Oblast Přiblížení"
+
+msgid "Original View"
+msgstr "Původní Pohled"
+
+msgid "toggle datatip mode"
+msgstr "přepnout režim datových popisků"
+
+msgid "Help Browser"
+msgstr "Průzkumník nápovědy"
+
+msgid "Launch SciNotes"
+msgstr "Spustit SciNotes"
+
+msgid "Open a file"
+msgstr "Otevřít soubor"
+
+msgid "Cut"
+msgstr "Vyjmout"
+
+msgid "Copy"
+msgstr "Kopirovat"
+
+msgid "Paste"
+msgstr "Vložit"
+
+msgid "Change Current Directory"
+msgstr "Změnit Současný Adresář"
+
+msgid "Choose Font..."
+msgstr "Zvolit písmo..."
+
+msgid "Print..."
+msgstr "Tisk…"
+
+msgid "Module manager - ATOMS"
+msgstr "Správce Modulů - ATOMS"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Scilab Demonstrations"
+msgstr "Ukázky Scilab"
+
+#, c-format
+msgid "%s: Could not create uicontrol of type %s."
+msgstr "%s: Nelze vytvořit uicontrol typu %s."
+
+#, c-format
+msgid "%s: Could not destroy this object.\n"
+msgstr "%s: Nelze zrušit tento objekt.\n"
+
+#, c-format
+msgid "No '%s' property for this object.\n"
+msgstr "Žádná vlastnost '%s' pro tento objekt.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáváno 'light', 'normal', 'demi' nebo "
+"'bold'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
+msgstr "%s: Špatný typ nadřazeného: Očekávána obslužná rutina nebo uimenu.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáván reálný vektor 1 x 3 nebo řetězec "
+"'R|G|B'.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáván reálný vektor 1 x 3 nebo řetězec "
+"'R|G|B'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekávána čísla mezi 0 a 1.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáván reálný vektor 1 x 3 nebo řetězec "
+"'R|G|B'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A string expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáván řetězec.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A string expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáván řetězec.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A real expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A real expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid ""
+"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
+"property value.\n"
+msgstr ""
+"Varování: Vlastnost 'Value' '%s' by se měla rovnat buď hodnotě vlastnosti "
+"'%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A graphic handle expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekávána grafická obslužná rutina.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekávána obslužná rutina '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "No '%s' property for uicontrols of style: %s.\n"
+msgstr "Žádná vlastnost '%s' pro uicontrols stylu: %s.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáván řetězec nebo reálný vektor řádku 1 "
+"x %d.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáván řetězec nebo reálný vektor řádku 1 "
+"x %d.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáván řetězec nebo reálný vektor řádku 1 x "
+"%d.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáván reálný řádkový vektor 1 x %d.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgstr ""
+"Špatná velikost vlastnosti '%s': Očekáván řetězec nebo vektor řetězců.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real row vector expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáván reálný řádkový vektor.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáván řetězec obsahující číselnou "
+"hodnotu\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáván reálný řádkový vektor nebo řetězec.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: a 2-item list expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáván 2-položkový seznam.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A string expected.\n"
+msgstr "Špatná hodnota vlastnosti '%s': Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
+"or pixels expected.\n"
+msgstr ""
+"%s: Špatná hodnota vlastnosti '%s': Očekávány body, palce, normalizované, "
+"centimetry nebo pixely.\n"
+
+msgid "Console Font..."
+msgstr "Písmo Konzole..."
+
+msgid "Console Background..."
+msgstr "Pozadí Konzole..."
+
+msgid "No print service found."
+msgstr "Žádná služba tisku nenalezena."
+
+msgid ""
+"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
+"mode where mixing uicontrols and graphics is not available. Type \"\"help "
+"usecanvas\"\" for more information.\")"
+msgstr ""
+"disp(\"VAROVÁNÍ: Kvůli omezením Vašeho nastavení byl Scilab přepnut do "
+"režimu kde míchání kontroly rozhraní a grafiky není možné. Zadejte \"\"help "
+"usecanvas\"\" pro více informací.\")"
+
+msgid ""
+"disp(\"WARNING: Due to your video card drivers limitations, that are not "
+"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
+"update your driver.\")"
+msgstr ""
+"disp(\"VAROVÁNÍ: Kvůli omezením Vaší grafické karty, která nepodporuje "
+"OpenGL, nebude Scilab schopen vykreslovat žádnou grafiku. Aktualizuje, "
+"prosím, Vaše ovladače.\")"
+
+msgid ""
+"disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
+"with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+"information.\")"
+msgstr ""
+"disp(\"VAROVÁNÍ: I přes naše předchozí varování jste zvolili Scilab používat "
+"s pokročilými grafickými možnostmi. Zadejte \"\"help usecanvas\"\" pro více "
+"informací.\")"
+
+msgid "Clear History"
+msgstr "Vyčistit Historii"
+
+msgid "Clear Console"
+msgstr "Vyčistit Konzoli"
+
+msgid "Select All"
+msgstr "Vybrat Vše"
+
+msgid "Help on a selected keyword"
+msgstr "Nápověda o vybraném klíčovém slově"
+
+msgid "Help about a selected text"
+msgstr "Nápověda o vybraném textu"
+
+msgid "Help about '"
+msgstr "Nápověda o '"
+
+msgid "Evaluate selection with echo"
+msgstr "Vyhodnotit výběr s ozvěnou"
+
+msgid "Evaluate selection with no echo"
+msgstr "Vyhodnotit výběr bez ozvěny"
+
+msgid "Windows BMP image"
+msgstr "Obrázek Windows BMP"
+
+msgid "GIF image"
+msgstr "Obrázek GIF"
+
+msgid "JPEG image"
+msgstr "Obrázek JPEG"
+
+msgid "PNG image"
+msgstr "Obrázek PNG"
+
+msgid "PPM image"
+msgstr "Obrázek PPM"
+
+msgid "Enhanced Metafile image (EMF)"
+msgstr "Vylepšený obrázek Metasouboru (EMF)"
+
+msgid "Encapsulated PostScript image (EPS)"
+msgstr "Zapouzdřený obrázek PostScript (EPS)"
+
+msgid "FIG image"
+msgstr "Obrázek FIG"
+
+msgid "PDF image"
+msgstr "Obrázek PDF"
+
+msgid "SVG image"
+msgstr "Obrázek SVG"
+
+msgid "All files"
+msgstr "Všechny soubory"
+
+msgid "Export"
+msgstr "Exportovat"
+
+msgid "Untitled-export"
+msgstr "Bez názvu-export"
+
+msgid "Preview"
+msgstr "Náhled"
+
+msgid "Replace existing file?"
+msgstr "Nahradit existující soubor?"
+
+msgid "File already exists"
+msgstr "Soubor již existuje"
+
+msgid "Please specify a file format"
+msgstr "Zadejte prosím formát souboru"
+
+msgid "Error on export"
+msgstr "Chyba při exportu"
+
+msgid "Unrecognized extension '"
+msgstr "Nerozpoznaná přípona '"
+
+msgid ""
+"'.\n"
+" Please specify a valid file format."
+msgstr ""
+"'.\n"
+" Určete, prosím, platný formát."
+
+msgid "Font Chooser"
+msgstr "Výběr Písma"
+
+msgid "Font"
+msgstr "Písmo"
+
+msgid "Attributes"
+msgstr "Atributy"
+
+msgid "Bold"
+msgstr "Tučné"
+
+msgid "Italic"
+msgstr "Kurzíva"
+
+msgid "Monospaced"
+msgstr "Pevná šířka"
+
+msgid "SciNotes compatible"
+msgstr "Kompatibilní se SciNotes"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Loading help browser..."
+msgstr "Načítám průzkumníka nápovědy"
+
+msgid "Feature not available in this mode..."
+msgstr "Funkce není v tomto režimu dostupná..."
+
+msgid "No text selected"
+msgstr "Žádný text nevybrán"
+
+msgid "Execute into Scilab"
+msgstr "Spustit ve Scilab"
+
+msgid "Edit in the Scilab Text Editor"
+msgstr "Upravit v Textovém Editoru Scilab"
+
+msgid "Back"
+msgstr "Zpět"
+
+msgid "Forward"
+msgstr "Další"
+
+msgid "Tree Overview"
+msgstr "Stromový Přehled"
+
+msgid ""
+"Left click to start selection of the zooming area. Right click to cancel."
+msgstr ""
+"Levým kliknutím zahájíte výběr oblasti přiblížení. Pravým kliknutím zrušíte."
+
+msgid "Left click to terminate selection. Right click to cancel."
+msgstr "Levým kliknutím ukončíte výběr. Pravým kliknutím zrušíte."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "Save and execute"
+msgstr "Uložit a spustit"
+
+msgid "An error occured: "
+msgstr "Nastala chyba: "
+
+msgid "Scilab SCI files"
+msgstr "Scilab soubory SCI"
+
+msgid "Scilab SCE files"
+msgstr "Scilab soubory SCE"
+
+msgid "Scilab binary files"
+msgstr "Binární soubory Scilab"
+
+msgid "All Scilab files"
+msgstr "Všechny soubory Scilab"
+
+msgid "Xcos files"
+msgstr "Soubory Xcos"
+
+msgid "Scicos files"
+msgstr "Soubory Scicos"
+
+msgid "Test files"
+msgstr "Zkouškové soubory"
+
+msgid "Scilab Start files"
+msgstr "Scilab Soubory spuštění"
+
+msgid "Scilab Quit files"
+msgstr "Scilab soubory Ukončení"
+
+msgid "Scilab Demo files"
+msgstr "Ukázkové Soubory Scilab"
+
+msgid "All PDF files"
+msgstr "Všechny soubory PDF"
+
+msgid "All Postscript files"
+msgstr "Všechny soubory Postscript"
+
+msgid "All Encapsulated PS files"
+msgstr "Všechny Zapouzdřené soubory PS"
+
+msgid "All PNG image files"
+msgstr "Všechny soubory obrázku PNG"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
+
+msgid "All %s files"
+msgstr "Všechny soubory %s"
+
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Konsorcium Scilab (DIGITEO)"
+
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr "Všechna práva vyhrazena (c) 1989-2011 (INRIA)"
+
+msgid "Copyright (c) 1989-2007 (ENPC)"
+msgstr "Všechna práva vyhrazena (c) 1989-2007 (ENPC)"
+
+msgid "CeCILL License"
+msgstr "Licence CeCILL"
+
+msgid "About Scilab..."
+msgstr "O aplikaci..."
+
+msgid "Acknowledgements"
+msgstr "Poděkování"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Could not open: "
+msgstr "Nelze otevřít: "
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Modul Scilabu '%s' není nainstalován.\n"
+
+#, c-format
+msgid "%s: Only available under 'STANDARD' mode.\n"
+msgstr "%s: Dostupné pouze v režimu 'STANDARD'.\n"
+
+msgid "Error. A signal has been caught.\n"
+msgstr "Chyba. Byl zachycen signál.\n"
+
+msgid "Select a file to load"
+msgstr "Vyberte soubor k načtení"
+
+msgid "Figure loaded.\n"
+msgstr "Obrazec načten.\n"
+
+msgid "Select a file to write"
+msgstr "Vyberte soubor k zápisu"
+
+msgid "Figure saved.\n"
+msgstr "Obrazec uložen.\n"
+
+msgid "Select a file name"
+msgstr "Vyberte jméno souboru"
+
+msgid "Select a file to execute"
+msgstr "Vyberte soubor ke spuštění"
+
+msgid "Execution done.\n"
+msgstr "Spuštění hotovo.\n"
+
+msgid "Select a file to open with SciNotes"
+msgstr "Vyberte soubor k otevení pomocí SciNotes"
+
+msgid "Environment loaded.\n"
+msgstr "Prostředí načteno.\n"
+
+msgid "Environment saved.\n"
+msgstr "Prostředí uloženo.\n"
+
+msgid "Select a directory"
+msgstr "Vyberte adresář"
+
+msgid "Control Plot3d"
+msgstr "Kontrola Plot3d"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "SNECMA EDTEX Processing platform"
+msgstr ""
+
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Dialogs"
+msgstr "Dialogová okna"
+
+msgid "Uicontrols 1"
+msgstr "Ovládání rozhraní 1"
+
+msgid "Uicontrols 2"
+msgstr "Ovládání rozhraní 2"
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr "Ovládání rozhraní s LaTeX/MathML"
+
+msgid "<Enter color name here>"
+msgstr "<Zde zadejte jméno barvy>"
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Please enter a color name first."
+msgstr "Nejdříve prosím zadejte jméno barvy."
+
+msgid "No color selected."
+msgstr "Žádná barva není vybrána"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "Vybrané barvy jsou: %s."
+
+msgid "Selected colors"
+msgstr "Vybrané barvy"
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "Klikli jste na menu '%s'"
+
+msgid "Selected menu"
+msgstr "Vybrané menu"
+
+msgid "checked"
+msgstr "zaškrtnuto"
+
+msgid "unchecked"
+msgstr "nezaškrtnuto"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "Menu '%s' je %s"
+
+msgid "Menu status"
+msgstr "Stav menu"
+
+msgid "Slider value: "
+msgstr "Hodnota jezdce: "
+
+#, c-format
+msgid "You selected '%s'."
+msgstr "Vybrali jste '%s'."
+
+msgid "Popupmenu selection"
+msgstr "Výběr vyskakujícího menu"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Opravdu chcete ukončit Scilab?"
+
+msgid "Quit Scilab"
+msgstr "Ukončit Scilab"
+
+msgid "Uicontrols demo"
+msgstr "Ukázka ovládání rozhraní"
+
+msgid "Application"
+msgstr "Aplikace"
+
+msgid "Exit figure"
+msgstr "Výstupní číslo"
+
+msgid "Scilab Graphics"
+msgstr "Grafika Scilab"
+
+msgid "Launch plot3d"
+msgstr "Spustit plot3d"
+
+msgid "Launch plot2d"
+msgstr "Spustit plot2d"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Sub-menu 1"
+msgstr "Podmenu 1"
+
+msgid "Sub-menu 2"
+msgstr "Podmenu 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Podmenu 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Podmenu 2-2"
+
+msgid "Colors list edition"
+msgstr "Úprava seznamu barev"
+
+msgid "Add color in listbox"
+msgstr "Přidat barvu do rozevíracího seznamu"
+
+msgid "blue"
+msgstr "modrá"
+
+msgid "green"
+msgstr "zelená"
+
+msgid "red"
+msgstr "červená"
+
+msgid "yellow"
+msgstr "žlutá"
+
+msgid "Display selection"
+msgstr "Výběr zobrazení"
+
+msgid "Slider demo"
+msgstr "Ukázka jezdce"
+
+msgid "item1|item2|item3|item4"
+msgstr "položka1|položka2|položka3|položka4"
+
+msgid "Quit demonstration"
+msgstr "Ukončit ukázku"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Ukázka ovládání rozhraní s LaTeX"
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: nelze přidat menu v tomto režimu: %s.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: nelze přidat menu v konzole v tomto režimu: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván seznam s dvěma položkami.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: Špatné vstupní argumenty: Očekáváno %s nebo %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: Špatné vstupní argumenty: Očekáváno %s. %s. nebo %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr "%s: Špatná hodnota vlastnosti '%s': Očekáváno %d, %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr "%s: Špatný typ vlastnosti '%s': Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: funkce není dostupná v režimu NWNI.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina "
+"nebo reálné číslo.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: nalezeno prázdné kaskádové menu"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
+"'Čísla' nebo reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: Typ %s není zaveden.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Předaná odpověď pro %s \n"
+" má nesprávný rozměr: \n"
+" čekám na rozměr %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Předaná odpověď pro %s \n"
+" má nesprávný typ %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"Předaná odpověď pro %s \n"
+" je nesprávná: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Strom.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů z #%d: Očekáván Strom.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Strom.\n"
+
+#, c-format
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s: Neplatná uzel '%s'.\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s: #%d shodujících se uzlů.\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: Neplatný uzel.\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: Žádný shodující se uzel.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván strom nebo Řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: musí být 'label, 'icon' nebo "
+"'callback'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d nebo #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr "%s: Nebyly nalezeny žádné výsledky.\n"
+
+#, c-format
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr ""
+"%s: Pro vlastnost '%s' a hodnotu '%s' nebyly nalezeny žádné výsledky.\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s: #%d shodujících se nadřazených uzlů.\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: Neplatný nadřazený uzel.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: Špatný typ %s: Očekáván seznam.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: Špatný typ %s: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: Špatný typ %s: Očekáván řádkový vektor řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr "%s: Špatná velikost %s: Očekáván řádkový vektor řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid ""
+#~ "Authors:\n"
+#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Autoři:\n"
+#~ "Konsorcium Scilab / INRIA / ENPC / Přispěvatelé\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
+#~ "license.\n"
+#~ msgstr ""
+#~ "Scilab 5.0 a budoucí verze jsou vydávány pod podmínkami licence CeCILL.\n"
+
+#~ msgid "Scilab Contributors..."
+#~ msgstr "Přispěvatelé Scilabu..."
+
+#~ msgid ""
+#~ "Some Scilab modules are released under the GPLv2 license.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Některé moduly Scilab jsou vydávány pod licencí GPLv2.\n"
+#~ "\n"
+
+#, c-format
+#~ msgid ""
+#~ "Version %s (%s)\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Verze %s (%s)\n"
+#~ "\n"
+
+#~ msgid "http://www.scilab.org/"
+#~ msgstr "http://www.scilab.org/"

@@ -32,7 +32,7 @@ int sci_show_pixmap(char *fname, unsigned long fname_len )
   showPixmap(sciGetCurrentFigure());
 
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

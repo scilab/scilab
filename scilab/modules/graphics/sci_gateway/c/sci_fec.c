@@ -60,7 +60,7 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if ( get_optionals(fname,opts) == 0) 
   {
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0;
   }
 
@@ -86,7 +86,7 @@ int sci_fec(char *fname,unsigned long fname_len)
   if (m1 * n1 == 0 || m3 == 0) 
   { 
 	  LhsVar(1) = 0;
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0;
   } 
 
@@ -121,7 +121,7 @@ int sci_fec(char *fname,unsigned long fname_len)
   Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
 
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }

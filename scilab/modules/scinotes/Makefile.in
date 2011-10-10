@@ -69,9 +69,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/scinotes
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -79,10 +80,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -119,8 +120,7 @@ libsciscinotes_algo_la_LIBADD =
 am__objects_1 = libsciscinotes_algo_la-ScilabKeywords.lo
 am__objects_2 = libsciscinotes_algo_la-ScilabKeywords_wrap.lo
 am__objects_3 = libsciscinotes_algo_la-SciNotes.lo \
-	libsciscinotes_algo_la-callscinotes.lo \
-	libsciscinotes_algo_la-GiwsException.lo
+	libsciscinotes_algo_la-callscinotes.lo
 am_libsciscinotes_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libsciscinotes_algo_la_OBJECTS = $(am_libsciscinotes_algo_la_OBJECTS)
@@ -134,10 +134,7 @@ libsciscinotes_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciscinotes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la
 am__objects_5 = libsciscinotes_la-gw_scinotes.lo
 am__objects_6 = libsciscinotes_la-sci_scinotes.lo \
 	libsciscinotes_la-sci_closeSciNotesFromScilab.lo
@@ -328,11 +325,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -515,8 +507,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 SCINOTES_CPP_SOURCES = src/jni/SciNotes.cpp \
-    src/cpp/callscinotes.cpp \
-    src/jni/GiwsException.cpp
+    src/cpp/callscinotes.cpp
 
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
@@ -541,6 +532,7 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/fileio/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/localization/includes \
@@ -568,16 +560,12 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/jvm/libscijvm.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
-@GUI_TRUE@USEANT = 1
+@BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -666,7 +654,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_algo_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_algo_la-SciNotes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscinotes_algo_la-ScilabKeywords_wrap.Plo@am__quote@
@@ -759,13 +746,6 @@ libsciscinotes_algo_la-callscinotes.lo: src/cpp/callscinotes.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callscinotes.cpp' object='libsciscinotes_algo_la-callscinotes.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscinotes_algo_la-callscinotes.lo `test -f 'src/cpp/callscinotes.cpp' || echo '$(srcdir)/'`src/cpp/callscinotes.cpp
-
-libsciscinotes_algo_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscinotes_algo_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_algo_la-GiwsException.Tpo -c -o libsciscinotes_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscinotes_algo_la-GiwsException.Tpo $(DEPDIR)/libsciscinotes_algo_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libsciscinotes_algo_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscinotes_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 libsciscinotes_la-sci_scinotes.lo: sci_gateway/cpp/sci_scinotes.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscinotes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscinotes_la-sci_scinotes.lo -MD -MP -MF $(DEPDIR)/libsciscinotes_la-sci_scinotes.Tpo -c -o libsciscinotes_la-sci_scinotes.lo `test -f 'sci_gateway/cpp/sci_scinotes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_scinotes.cpp
@@ -1119,6 +1099,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

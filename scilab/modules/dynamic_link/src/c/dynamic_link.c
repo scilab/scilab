@@ -76,7 +76,7 @@ typedef struct
 {
     int ok;
     char tmp_file[TMPL];
-    unsigned long  shl;
+    unsigned long long  shl;
 } Hd;
 
 static Hd  hd[ENTRYMAX]; /* shared libs handler */
@@ -85,9 +85,9 @@ static int NEpoints = 0; /* Number of Linked names */
 static Epoints EP[ENTRYMAX];  /* entryPoints */
 /*---------------------------------------------------------------------------*/
 int scilabLink(int idsharedlibrary,
-               char *filename,
-               char **subnamesarray,int sizesubnamesarray,
-               BOOL fflag,int *ierr)
+    char *filename,
+    char **subnamesarray,int sizesubnamesarray,
+    BOOL fflag,int *ierr)
 {
     int IdSharedLib = -1; 
 
@@ -374,7 +374,6 @@ int Sci_dlopen( char *loaded_file)
     static DynLibHandle  hd1 = NULL;
     int i = 0;
 
-    BOOL bConvert = FALSE;
 
 #ifdef _MSC_VER
     {
@@ -396,13 +395,7 @@ int Sci_dlopen( char *loaded_file)
     {
         if ( hd[i].ok == FALSE) 
         {
-            /* Warning x64 windows */
-#ifdef _MSC_VER
-            hd[i].shl =  PtrToUlong(hd1);
-#else
-            hd[i].shl = (unsigned long)hd1;
-#endif
-
+            hd[i].shl =  (unsigned long long)hd1;
             hd[i].ok = TRUE;
             return(i);
         }
@@ -413,12 +406,8 @@ int Sci_dlopen( char *loaded_file)
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("Cannot open shared files max entry %d reached.\n"),ENTRYMAX);
         return(FALSE);
     }
-    /* Warning x64 windows */
-#ifdef _MSC_VER
-    hd[Nshared].shl =   PtrToUlong(hd1);
-#else
-    hd[Nshared].shl = (unsigned long)hd1;
-#endif
+
+    hd[Nshared].shl = (unsigned long long)hd1;
     hd[Nshared].ok = TRUE;
     Nshared ++;
 
@@ -451,12 +440,7 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
     }
     else
     {
-        /* Warning x64 windows */
-#ifdef _MSC_VER
-        hd1 = (DynLibHandle)  ULongToHandle(hd[ish].shl);
-#else
-        hd1 = (DynLibHandle)  hd[ish].shl;
-#endif
+        hd1 = (DynLibHandle)hd[ish].shl;
         EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
         if ( EP[NEpoints].epoint == NULL )
         {
@@ -495,12 +479,7 @@ void Sci_Delsym(int ishared)
     }
     if ( hd[ish].ok != FALSE)
     {
-        /* Warning x64 windows */
-#ifdef _MSC_VER
-        FreeDynLibrary ((DynLibHandle) ULongToHandle(hd[ish].shl));
-#else
-        FreeDynLibrary ((DynLibHandle) hd[ish].shl);
-#endif
+        FreeDynLibrary ((DynLibHandle)hd[ish].shl);
         hd[ish].ok = FALSE;
     }
 }

@@ -79,7 +79,6 @@ sci_gateway/c/sci_getscicosvars.c \
 sci_gateway/c/sci_haltscicos.c \
 sci_gateway/c/sci_loadScicos.c \
 sci_gateway/c/sci_model2blk.c \
-sci_gateway/c/sci_permutobj.c \
 sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
 sci_gateway/c/sci_scicos_debug.c \
@@ -132,27 +131,18 @@ libsciscicos_algo_la_CFLAGS = $(libsciscicos_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 
-libsciscicos_la_LIBADD = libsciscicos-algo.la $(top_builddir)/modules/string/libscistring.la \
-$(top_builddir)/modules/mexlib/libmat.la \
-$(top_builddir)/modules/mexlib/libmx.la \
-$(top_builddir)/modules/intersci/libsciintersci.la \
-$(top_builddir)/modules/graphics/libscigraphics.la \
-$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-$(top_builddir)/modules/time/libscitime.la \
-$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-$(top_builddir)/modules/scicos/libscisundials.la \
-$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-$(top_builddir)/modules/mexlib/libmex.la \
- \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
+libsciscicos_la_LIBADD = libsciscicos-algo.la libscisundials.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la 
+
+if GUI
+libsciscicos_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la 
+endif
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA =  license.txt 
+libsciscicos_la_root_DATA =  license.txt
 
 
 #### scicos : init scripts ####
@@ -192,7 +182,6 @@ palettes/Threshold.cosf
 
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \
-macros/scicos_menus \
 macros/scicos_scicos \
 macros/scicos_utils
 

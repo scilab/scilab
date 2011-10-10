@@ -71,7 +71,7 @@ int sci_curblockc(char *fname,unsigned long fname_len)
 
 	/* return the value stored at Top address to lhs variable */
 	LhsVar(1) = 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	/* return 0 as default value */
 	return 0;

@@ -88,11 +88,11 @@ opt = optimbase_configure ( opt , "-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.8429636 ]');
 opt = optimbase_checkx0 ( opt );
-Function Evaluation #1 at [14.095001 0.8429636]
+Function Evaluation #1, index=5, x= [14.095001 0.8429636]
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.0 ]');
 instr = "opt = optimbase_checkx0 ( opt )";
 lclmsg = gettext("%s: Initial guess is not feasible.");
 assert_checkerror(instr,lclmsg,[],"optimbase_checkx0" );
-Function Evaluation #2 at [14.095001 0]
+Function Evaluation #2, index=5, x= [14.095001 0]
 Inequality constraint #3/4 is not satisfied for x
 opt = optimbase_destroy(opt);

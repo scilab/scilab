@@ -23,26 +23,29 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-void destroyRendererString(char * string)
+void destroyRendererString(char *string)
 {
-  delete[] string;
+    delete[]string;
 }
+
 /*--------------------------------------------------------------------------*/
 /* It must be moved in SCI_GATEWAY directory */
 /* NOT in renderer in GRAPHICS */
 void callFunctionFromGatewayWithExceptions(gw_generic_table * tab, int sizetab)
 {
-	try
-	{
-		// Exception might be generated in the renderer module.
-		callFunctionFromGateway(tab,sizetab);
-	}
-	catch (std::exception & e)
-	{
-		// Tell the user that somthing wrong occured
-		sciprint(const_cast<char*>(_("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n")), "Unknown exception");
-		// print the exception in the error output
-		std::cerr << e.what() << std::endl;
-	}
+    try
+    {
+        // Exception might be generated in the renderer module.
+        callFunctionFromGateway(tab, sizetab);
+    }
+    catch(std::exception & e)
+    {
+        // Tell the user that somthing wrong occured
+        sciprint(const_cast < char *>(_("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n")),
+                 "Unknown exception");
+        // print the exception in the error output
+        std::cerr << e.what() << std::endl;
+    }
 }
+
 /*--------------------------------------------------------------------------*/

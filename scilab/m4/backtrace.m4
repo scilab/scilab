@@ -20,9 +20,10 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[#if defined(__GNUC__)
 AC_MSG_RESULT($have_glibc_backtrace)
 
 if test "x$have_glibc_backtrace" = "xyes"; then
-  CFLAGS="$CFLAGS -rdynamic"
-  CPPFLAGS="$CPPFLAGS -rdynamic"
-  FFLAGS="$FFLAGS -rdynamic"
+  CHECK_COMPILER_ARG(C,"-rdynamic",CFLAGS)
+  CHECK_COMPILER_ARG(C++,"-rdynamic",CXXFLAGS)
+  CHECK_COMPILER_ARG(Fortran 77,"-rdynamic",FFLAGS)
+  
   AC_DEFINE(HAVE_GLIBC_BACKTRACE, 1, HAVE_GLIBC_BACKTRACE)
 fi
 
@@ -38,10 +39,11 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <demangle.h>]],
 AC_MSG_RESULT($have_cplus_demangle)
 
 if test "x$have_cplus_demangle" = "xyes"; then
-  CFLAGS="$CFLAGS -rdynamic"
-  CPPFLAGS="$CPPFLAGS -rdynamic"
-  FFLAGS="$FFLAGS -rdynamic"
 
+  CHECK_COMPILER_ARG(C,"-rdynamic",CFLAGS)
+  CHECK_COMPILER_ARG(C++,"-rdynamic",CXXFLAGS)
+  CHECK_COMPILER_ARG(Fortran 77,"-rdynamic",FFLAGS)
+  
   AC_DEFINE(HAVE_CPLUS_DEMANGLE, 1, HAVE_CPLUS_DEMANGLE)
 fi
 ])

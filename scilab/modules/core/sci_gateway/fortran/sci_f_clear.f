@@ -14,13 +14,12 @@ c
       integer top0,id(nsiz)
       logical getsmat,checkval,checklhs
       integer iadr
-      integer a, blank,percen,helps(nsiz),scspal(nsiz)
+      integer a, blank,percen,helps(nsiz)
 
 
       data a/10/,blank/40/,percen/56/
       data helps /353243448,673717273,nz2*673720360/
-      data scspal/202509340,421796888,673715466,nz3*673720360/
-
+      
       iadr(l)=l+l-1
 
 c
@@ -43,33 +42,21 @@ c     .     clear within a macro, an exec or a pause
  01      continue
 c     .  clear all variable
 
-c     .  preserve %help and scicos_pal variables
+c     .  preserve %help variable
          i1=bbot
          fin=-1
          call stackg(helps)
          if(err.gt.0) return
          if (fin.gt.0) i1=min(fin,i1)
 
-         fin=-1
-         call stackg(scspal)
-         if(err.gt.0) return
-         if (fin.gt.0) i1=min(fin,i1)
-         bot = i1
-         if(bot.eq.bbot) goto 02
-         
          fin=0
          call stackg(helps)
          if(err.gt.0) return
          ih=fin
+
          fin=0
-         call stackg(scspal)
-         if(err.gt.0) return
          is=fin
          bot = bbot 
-         if(is.eq.-1) then
-            call stackp(scspal,0)
-            if(err.gt.0) return
-         endif
          if(ih.eq.-1) then
             call stackp(helps,0)
             if(err.gt.0) return

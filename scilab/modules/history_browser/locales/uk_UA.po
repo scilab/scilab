@@ -7,30 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2011-03-19 08:27+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: uk\n"
 
-msgid "?"
-msgstr "Довідка"
+msgid "Command History"
+msgstr "Журнал команд"
 
-msgid "Cannot delete current session beginning line."
-msgstr "Не вдалося вилучити початковий рядок поточного сеансу."
-
-msgid "Clear history"
-msgstr "Спорожнити журнал"
+msgid "File"
+msgstr "Файл"
 
 msgid "Close"
 msgstr "Закрити"
 
-msgid "Command History"
-msgstr "Журнал команд"
+msgid "Edit"
+msgstr "Зміни"
 
 msgid "Copy"
 msgstr "Копіювати"
@@ -41,8 +38,17 @@ msgstr "Вирізати"
 msgid "Delete"
 msgstr "Вилучити"
 
-msgid "Edit"
-msgstr "Зміни"
+msgid "Clear history"
+msgstr "Спорожнити журнал"
+
+msgid "?"
+msgstr "Довідка"
+
+msgid "Scilab Help"
+msgstr "Довідка зі Scilab"
+
+msgid "Evaluate Selection"
+msgstr "Обчислити позначене"
 
 msgid "Edit in SciNotes"
 msgstr "Редагувати у SciNotes"
@@ -50,11 +56,5 @@ msgstr "Редагувати у SciNotes"
 msgid "Error"
 msgstr "Помилка"
 
-msgid "Evaluate Selection"
-msgstr "Обчислити позначене"
-
-msgid "File"
-msgstr "Файл"
-
-msgid "Scilab Help"
-msgstr "Довідка зі Scilab"
+msgid "Cannot delete current session beginning line."
+msgstr "Не вдалося вилучити початковий рядок поточного сеансу."

@@ -158,16 +158,15 @@ call ant clean
       <Project>{b2911268-79e2-4fe5-ad59-2c3cb7cb794e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\java\commons-JAVA.vcxproj">
+      <Project>{9188fa91-e039-485d-af1d-781cea92f541}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\gui\src\java\gui-JAVA.vcxproj">
       <Project>{f01c26e3-e409-4e74-ba84-c7c4a71a7fdc}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
       <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\shell\src\java\shell-JAVA.vcxproj">
-      <Project>{2ea61e81-0f0c-4006-985c-12785093cd2f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\java\types-JAVA.vcxproj">

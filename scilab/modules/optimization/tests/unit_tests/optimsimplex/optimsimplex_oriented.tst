@@ -76,7 +76,7 @@ expected = [...
 93.2 -1.2 0.5
 ];
 assert_checkalmostequal ( computed , expected , %eps );
-assert_checkequal ( myobj.nb , 2 );
+assert_checkequal ( myobj.nb , 3 );
 s1 = optimsimplex_destroy(s1);
 s2 = optimsimplex_destroy(s2);
 

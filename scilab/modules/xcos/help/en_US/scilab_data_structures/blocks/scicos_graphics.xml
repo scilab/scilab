@@ -223,6 +223,46 @@ Size : nul or number of regular output ports.
 Type : column vector of strings.
 </para>
       </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">in_style</emphasis>
+        </para>
+        <para> A vector of strings including JGraphX key values style properties.</para>
+        <para>These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port</para>
+        <para> 
+Size : nul or number of regular output ports.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">out_style</emphasis>
+        </para>
+        <para> A vector of strings including JGraphX key values style properties.</para>
+        <para>These style can be used to place text or to change port aspect (eg. round, green port). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=green"</literal> for a round and green port</para>
+        <para> 
+Size : nul or number of regular output ports.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">style</emphasis>
+        </para>
+        <para> A string.</para>
+        <para> A vector of strings including JGraphX key values style properties.</para>
+        <para>These style can be used to place text or to change block aspect (eg. shape, image, text). This is set in semicolon separated key=value set. For exemple <literal>"shape=ellipse;fillColor=red"</literal> for a round and green block</para>
+        <para> 
+Size : nul or 1.
+</para>
+        <para>
+Type : a string.
+</para>
+      </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Filecontent_scicos_graphics">

@@ -35,7 +35,7 @@ int C2F(sci_getmodules) (char *fname,unsigned long fname_len)
 
     CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, Modules->ModuleList);
     LhsVar(1)=Rhs+1;
-    C2F(putlhsvar)();
+    PutLhsVar();
 
     /* I do not free Modules on purpose in order to speed the next call
     * to call to getmodule.

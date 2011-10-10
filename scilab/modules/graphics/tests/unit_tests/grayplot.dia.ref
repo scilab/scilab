@@ -1,0 +1,58 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test matplot object
+// Check each default property
+x = -10:10;
+y = -10:10;
+z = rand(21,21);
+grayplot(x,y,z);
+e = gce();
+assert_checkequal(e.type, "Grayplot")
+ ans  =
+ 
+  T  
+assert_checkequal(e.parent.type, "Axes")
+ ans  =
+ 
+  T  
+assert_checkequal(e.children, [])
+ ans  =
+ 
+  T  
+assert_checkequal(e.visible, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(e.data.x, x')
+ ans  =
+ 
+  T  
+assert_checkequal(e.data.y, y')
+ ans  =
+ 
+  T  
+assert_checkequal(e.data.z, z)
+ ans  =
+ 
+  T  
+assert_checkequal(e.data_mapping, "scaled")
+ ans  =
+ 
+  T  
+assert_checkequal(e.clip_state, "clipgrf")
+ ans  =
+ 
+  T  
+assert_checkequal(e.clip_box, [])
+ ans  =
+ 
+  T  
+assert_checkequal(e.user_data, [])
+ ans  =
+ 
+  T  

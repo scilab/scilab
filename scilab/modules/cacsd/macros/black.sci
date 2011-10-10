@@ -36,13 +36,13 @@ function black(varargin)
 //%Example
 //  s=poly(0,'s")
 //  h=syslin("c",(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01))
-//  abaque();
+//  nicholschart();
 //  black(h,0.01,100,"(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01)")
 //  //
 //  h1=h*syslin("c",(s**2+2*0.1*15.1*s+228.01)/(s**2+2*0.9*15*s+225))
 //  black([h1;h],0.01,100,["h1";"h"])
 //See also:
-//  bode nyquist  abaque freq repfreq
+//  bode nyquist nicholschart freq repfreq
 //!
   rhs=size(varargin)
   if type(varargin($))==10 then

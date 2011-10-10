@@ -59,7 +59,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
     int iRows						= 0;
     int iCols						= 0;
     int iLen						= 0;
-    int iType						= 0;
+
     int* piAddr					= NULL;
     char *pstVarName		= NULL;
     bool bImport				= false;
@@ -844,7 +844,6 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
     int iRet						= 0;
-    int i								= 0;
     int	iRows						= 0;
     int iCols						= 0;
     int iComplex				= 0;
@@ -940,7 +939,6 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
     int iRet						= 0;
-    int i								= 0;
     int	iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;

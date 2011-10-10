@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
@@ -27,130 +27,73 @@ function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
 //  fr     :Frequency grid
 //!
 wft=[];wfm=[];fr=[]
-//check arguments of macro call
- 
+
+FT=["lp","hp","bp","sb"]
+
 [lhs,rhs]=argn(0);
- 
-//if macro called with no arguments query user for values
- 
+
 if rhs<=0 then,
- 
-  //Query user for filter type and filter length
-  nc=x_choose([gettext('low pass');
-               gettext('high pass');
-	       gettext('band pass');
-	       gettext('stop band')],gettext('Choose type of filter to be designed'))
-  //Select filter type and Query user for cut-off frequencies
-  flag=0;
-  select nc
-  case 1 then //low pass
-    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
-                    [gettext('cut-off frequency (0.<frequ<.5):');
-		     gettext('filter length')],..
-		    list('vec',1,'vec',1),[' ';' '])
-    ftype='lp'
-    fh=0;
-  case 2 then //high pass
-    [ok,fl,forder]=getvalue(gettext('Input filter characteristics'),..
-                    [gettext('cut-off frequency (0.<frequ<.5):');
-		     gettext('filter length (odd value)')],..
-		    list('vec',1,'vec',1),[' ';' '])
-    fh=0;
-    flag=1;
-    ftype='hp'
-  case 3 then //band pass
-    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
-                    [gettext('low cut-off frequency (0.<flow<.5):');
-		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
-		     gettext('filter length')],..
-		    list('vec',1,'vec',1,'vec',1),[' ';' ';' '])
-    ftype='bp'	
-  case 4 then //stop band
-    [ok,fl,fh,forder]=getvalue(gettext('Input filter characteristics'),..
-                    [gettext('low cut-off frequency (0.<flow<.5):');
-		     gettext('high cut-off frequency (0.<flow<fhi<.5):');
-		     gettext('filter length (odd value)')],..
-		    list('vec',1,'vec',1,'vec',1),[' ';' ';' '])
-    flag=1;
-    ftype='sb'	
-  else
-    return
-  end
-  
-  if flag==1 then
-    if forder-2*int(forder/2)==0 then
-      messagebox([gettext('Even length high pass and stop band filters not allowed');
-	    gettext('---Filter order is being incremented by 1')],"modal","error");
-      forder=forder+1;
-    end
-  end
- 
-  //Query user for window type and window parameters
-  nc=x_choose([gettext('Kaiser');
-             gettext('Chebyshev');
-	     gettext('Rectangular');
-	     gettext('Triangular');
-	     gettext('Hamming') ],gettext('Input window type'))
-  select nc
-  case 1 then
-    wtype='kr'
-    [ok,Beta]=getvalue(gettext('Input window characteristics'),..
-                     ['beta>0'],list('vec',1),' ')
-    fpar(1)=Beta
-    fpar(2)=0;
-  case 2 then
-    wtype='ch' 
-    [ok,name,value]=getvalue([gettext('Input window characteristics:');
-             ' ';
-	     gettext('dp (dp>0)   : the maximum value of the window side-lobe height');
-	     gettext('df (0<df<.5): the width of the window main lobe')
-	     ' ';
-	     gettext('only one of this two values is to be defined,')
-	     gettext('the other one is automatically deduced')],..
-	     [gettext('name of specified value');
-	     gettext('value')],list('str',-1,'vec',1),['dp';'0.3'])
-    if part(name,1:2)=='dp' then
-      fpar=[value,-1]
-    elseif part(name,1:2)=='df' then
-      fpar=[-1,value]
-    else
-      messagebox(gettext('Incorrect parameter name entered'),"modal","error");
-      return
-    end
-  case 3 then
-    wtype='re'
-    fpar=[0 0];
-  case 4 then
-    wtype='tr'
-    fpar=[0 0];
-  case  5 then
-    wtype='hm'
-    fpar=[0 0];
-  case  6 then
-    wtype='hn'
-    fpar=[0 0];
-  else
-    return
-  end
+    //if macro called with no arguments query user for values
+    [ftype,forder,cfreq,wtype,fpar]=wfir_gui()
+    if ftype==[] then return,end //canceled by user
+    fl=cfreq(1);
+    fh=cfreq(2);
 else
-  fl=cfreq(1);
-  fh=cfreq(2);
-end,
- 
+    //check arguments of macro call
+    if and(ftype<>FT) then
+        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"wfir",1,strcat(FT,",")))
+    end
+    if type(forder)<>1|size(forder,'*')<>1|~isreal(forder)|size(forder,'*')<>1|int(forder)<>forder|forder<1 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"wfir",2))
+    end
+    if or(ftype==["hp" "sb"]) then
+        if 2*int(forder/2)<>forder then
+            error(msprintf(_("%s:  Wrong value for input argument #%d: Must be odd.\n"),"wfir",2))
+        end
+    end
+
+    if type(cfreq)<>1|~isreal(cfreq) then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A %d-by-%d real vector expected.\n"),"wfir",3,1,2))
+    end
+    if or(ftype==["hp" "lp"]) then
+        if size(cfreq,'*')==0| size(cfreq,'*')>2 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"),"wfir",3,1,2))
+        end
+        if cfreq(1)<0|cfreq(1)>0.5 then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"wfir",3,"]0,0.5["))
+        end
+        fl=cfreq(1);fh=[]
+    else
+        if size(cfreq,'*')<>2 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"),"wfir",3,1,2))
+        end
+        if or(cfreq<0|cfreq>0.5) then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"wfir",3,"]1,0.5["))
+        end
+        if cfreq(1)>=cfreq(2) then
+            error(msprintf(_("%s: Elements of %dth argument must be in increasing order.\n"),"wfir",3))
+        end
+        fl=cfreq(1);
+        fh=cfreq(2);
+    end
+end
+
+
 //Calculate window coefficients
- 
-   [win_l,cwp]=window(wtype,forder,fpar);
-   [dummy,forder]=size(win_l);
- 
+
+[win_l,cwp]=window(wtype,forder,fpar);
+[dummy,forder]=size(win_l);
+
 //Get forder samples of the appropriate filter type
- 
-   hfilt=ffilt(ftype,forder,fl,fh);
- 
+
+hfilt=ffilt(ftype,forder,fl,fh);
+
 //Multiply window with sinc function
- 
-   wft=win_l.*hfilt;
- 
+
+wft=win_l.*hfilt;
+
 //Calculate frequency response of the windowed filter
- 
-   [wfm,fr]=frmag(wft,256);
+
+[wfm,fr]=frmag(wft,256);
 endfunction
+

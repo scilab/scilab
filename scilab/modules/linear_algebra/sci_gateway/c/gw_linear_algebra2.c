@@ -39,7 +39,7 @@ int gw_linear_algebra2(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
+	if (Err <= 0 && C2F(errgst).err1 <= 0) PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

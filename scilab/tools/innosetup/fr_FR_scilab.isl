@@ -69,7 +69,6 @@ fr_FR.DescriptionFortran2sci =Boite à outils Scilab vers Fortran
 fr_FR.DescriptionTclTK =TCL/TK pour Scilab
 fr_FR.DescriptionScipad =Scipad Editeur pour Scilab
 fr_FR.DescriptionSpreadsheet =Boite à outils Feuille de Calculs
-fr_FR.DescriptionPvm =Boite à outils PVM Calcul Parallele
 fr_FR.DescriptionJVM =Java Runtime
 fr_FR.DescriptionAtlas =Librairie Atlas 3.8.0 optimisée selon le CPU
 fr_FR.DescriptionFftwModule = Interface avec la librairie FFTW3 pour Scilab
@@ -133,11 +132,17 @@ fr_FR.DownloadMKLDescription =Merci de patienter durant le telechargement de fic
 ;
 fr_FR.DownloadMKLFFTWLabel =Telechargement de la librairie FFTW3 optimisée par Intel Math Kernel Library.
 ;
+fr_FR.DownloadCHMLabel =Telechargement des fichiers d'aide au format CHM.
+fr_FR.DownloadCHMDescription =Merci de patienter durant le telechargement de fichiers.
+fr_FR.DoTasksJustAfterInstallMsg4 =Fichiers CHM non installés.
+fr_FR.DescriptionCHM=Telecharger les fichiers d'aide au format CHM
+;
 fr_FR.DoTasksJustAfterInstallMsg2 =Les bibliothèques de référence BLAS, LAPACK seront installées et utilisées.
 fr_FR.DoTasksJustAfterInstallMsg3 =La bibliothèque de référence FFTW3 sera installée et utilisée.
 ;
 fr_FR.NextButtonClickwpReadyMsg1 =Il a été impossible de télécharger la bibliothèque Intel Math Kernel pour Scilab (La bibliothèque par défaut sera utilisée).
 fr_FR.NextButtonClickwpReadyMsg2 =Il a été impossible de télécharger la bibliothèque FFTW3 optimisée par Intel Math Kernel Library (La bibliothèque par défaut sera utilisée).
+fr_FR.NextButtonClickwpReadyMsg3 =Il a été impossible de télécharger les fichiers d'aide au format CHM (Ils ne seront pas utilisés).
 ;
 fr_FR.DescriptionAtoms =ATOMS
 ;

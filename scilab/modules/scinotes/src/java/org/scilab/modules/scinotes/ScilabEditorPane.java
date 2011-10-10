@@ -57,6 +57,7 @@ import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
+import org.scilab.modules.scinotes.utils.ScilabScrollPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -1392,13 +1393,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             int pos = text.indexOf(word, 0);
             int len = word.length();
             Highlighter highlighter = getHighlighter();
+            List<Rectangle> marks = new ArrayList<Rectangle>();
             while (pos != -1) {
                 try {
                     highlightedWords.add(highlighter.addHighlight(pos, pos + len, HIGHLIGHTER));
                     highlightedWordsBegin.add(pos);
+                    Rectangle r = modelToView(pos);
+                    if (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y) {
+                        marks.add(r);
+                    }
                 } catch (BadLocationException e) { }
                 pos = text.indexOf(word, pos + len);
             }
+            ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
         }
     }
 
@@ -1415,15 +1422,23 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             Matcher matcher = pattern.matcher(text);
 
             Highlighter highlighter = getHighlighter();
+            List<Rectangle> marks = new ArrayList<Rectangle>();
             while (matcher.find()) {
                 if (first == -1) {
                     first = matcher.start();
                 }
                 try {
-                    highlightedWords.add(highlighter.addHighlight(matcher.start(), matcher.end(), HIGHLIGHTER));
-                    highlightedWordsBegin.add(matcher.start());
+                    int start = matcher.start();
+                    highlightedWords.add(highlighter.addHighlight(start, matcher.end(), HIGHLIGHTER));
+                    highlightedWordsBegin.add(start);
+                    Rectangle r = modelToView(start);
+                    if (marks.size() == 0 || marks.get(marks.size() - 1).y != r.y) {
+                        marks.add(r);
+                    }
                 } catch (BadLocationException e) { }
             }
+
+            ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
 
             if (centered && first != -1) {
                 scrollTextToPos(first, false, true);
@@ -1441,6 +1456,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         highlightedWords.clear();
         highlightedWordsBegin.clear();
+        ((ScilabScrollPane) edComponent.getScrollPane()).removeMarks();
     }
 
     /**

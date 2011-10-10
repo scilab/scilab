@@ -68,14 +68,14 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
                            handleRow * handleCol,
                            (unsigned long) *hstk( parentStkIndex ) ) != 0 )
   {
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0 ;
   }
   FREE( handleArray ) ;
   CreateVar( Rhs + 1,GRAPHICAL_HANDLE_DATATYPE, &handleCol, &handleRow, &outIndex );
   *hstk(outIndex) = *hstk(handleStkIndex) ;
   LhsVar(1) = Rhs + 1 ;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0 ;
 
 }

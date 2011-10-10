@@ -93,7 +93,7 @@ int sci_libraryinfo(char *fname,unsigned long fname_len)
 
                     if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
 
-                    C2F(putlhsvar)();
+                    PutLhsVar();
                 }
                 else
                 {

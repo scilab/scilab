@@ -739,9 +739,14 @@ AC_ARG_WITH(modelica,
     AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
 
 
+if test "$with_gui" = no; then
+   AC_MSG_WARN([GUI is disabled. Disabling then xcos])
+   with_xcos=no
+fi
+
 XCOS_ENABLE=no
 
-if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+if test "$with_xcos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_XCOS], [], [With XCOS])
 
    save_LIBS="$LIBS"
@@ -1326,22 +1331,6 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 #AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
-## PVM
-#################
-
-AC_ARG_WITH(pvm,
-    AC_HELP_STRING([--without-pvm],[Disable the interface to the PVM library]))
-
-PVM_ENABLE=no
-if test "$with_pvm" != no; then
-   AC_PVM()
-   PVM_ENABLE=yes
-fi
-AC_SUBST(PVM_ENABLE)
-
-AM_CONDITIONAL(PVM, test "$with_pvm" != no)
-
-#################
 ## OpenMP
 #################
 
@@ -1378,8 +1367,8 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
-ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1731,14 +1720,12 @@ libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
 modules/helptools/Makefile
-modules/helptools/macros/xmlfiletohtml.sci
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
 modules/elementary_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
-modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile
@@ -1768,7 +1755,6 @@ modules/graphic_export/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
-modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
@@ -1805,6 +1791,7 @@ modules/graph/Makefile
 modules/parallel/Makefile
 modules/modules_manager/Makefile
 modules/history_browser/Makefile
+modules/xml/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1909,9 +1896,6 @@ echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"
-echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
-echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
-echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -1962,16 +1946,6 @@ if test $OPENMP_ENABLE = yes; then
    echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
 else
    echo "Not using OpenMP"
-fi
-
-echo ""
-if test $PVM_ENABLE = yes; then
-   echo "PVM Configuration:"
-   echo "  PVM Architecture ... = $PVM_ARCH"
-   echo "  PVM INCLUDE ........ = $PVM_INCLUDE"
-   echo "  PVM LIBS ........... = $PVM_LIB"
-else
-   echo "Not using PVM"
 fi
 
 echo ""

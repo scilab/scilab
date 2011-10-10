@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_REGISTER">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_REGISTER">Interfacing function</xref>
             </para>
           </listitem>
@@ -185,6 +190,26 @@ register is shifted one step.
         </para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_REGISTER">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
   </refsection>
   <refsection id="Interfacingfunction_REGISTER">
     <title>Interfacing function</title>

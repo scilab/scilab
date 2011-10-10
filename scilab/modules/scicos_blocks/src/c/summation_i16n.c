@@ -33,7 +33,6 @@ SCICOS_BLOCKS_IMPEXP void summation_i16n(scicos_block *block,int flag)
 		int nu = GetInPortRows(block,1);
 		int mu = GetInPortCols(block,1);
 		int *ipar=GetIparPtrs(block);
-		double *rpar=GetRparPtrs(block);
 		int nin = GetNin(block);
 
 		if (nin==1)

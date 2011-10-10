@@ -68,6 +68,7 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/commons/src/jni \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes
@@ -98,11 +99,7 @@ libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
 
-libsciui_data_la_LIBADD =  \
-libsciui_data-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciui_data_la_LIBADD = libsciui_data-algo.la
 
 
 #### ui_data : gateway declaration ####

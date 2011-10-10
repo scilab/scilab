@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +17,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Iterator;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -28,6 +32,8 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -42,11 +48,14 @@ public final class OpenAction extends DefaultAction {
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_O;
 	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+			.getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
-	 * @param scilabGraph associated Scilab Graph
+	 * 
+	 * @param scilabGraph
+	 *            associated Scilab Graph
 	 */
 	public OpenAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
@@ -54,7 +63,9 @@ public final class OpenAction extends DefaultAction {
 
 	/**
 	 * Create a menu to add in Scilab Graph menu bar
-	 * @param scilabGraph associated Scilab Graph
+	 * 
+	 * @param scilabGraph
+	 *            associated Scilab Graph
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
@@ -63,7 +74,9 @@ public final class OpenAction extends DefaultAction {
 
 	/**
 	 * Create a button to add in Scilab Graph tool bar
-	 * @param scilabGraph associated Scilab Graph
+	 * 
+	 * @param scilabGraph
+	 *            associated Scilab Graph
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
@@ -71,38 +84,50 @@ public final class OpenAction extends DefaultAction {
 	}
 
 	/**
-	 * @param e parameter
+	 * @param e
+	 *            parameter
 	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+		SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser
+				.createFileChooser().getAsSimpleFileChooser());
 
 		fc.setTitle(XcosMessages.OPEN);
-	    fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
-	    fc.setMultipleSelection(true);
-	    
-	    /* Standard files */
-	    fc.setAcceptAllFileFilterUsed(true);
-	    final FileFilter[] filters = XcosFileType.getValidFilters();
-	    for (FileFilter fileFilter : filters) {
-	    	fc.addChoosableFileFilter(fileFilter);
-		}
-	    fc.setFileFilter(filters[0]);
+		fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
+		fc.setMultipleSelection(true);
 
-	    int status = fc.showOpenDialog(getGraph(e).getAsComponent());
-	    if (status != JFileChooser.APPROVE_OPTION) {
-	    	return;
-	    }
+		/* Configure the file chooser */
+		configureFileFilters(fc);
+		ConfigurationManager.configureCurrentDirectory(fc);
 
-	    final File onlySelected = fc.getSelectedFile();
-	    if (onlySelected != null) {
-	    	Xcos.getInstance().open(onlySelected);
-	    }
-	    
-	    final File[] multiSelected = fc.getSelectedFiles();
-	    for (File file : multiSelected) {
-	    	Xcos.getInstance().open(file);
+		int status = fc.showOpenDialog(getGraph(e).getAsComponent());
+		if (status != JFileChooser.APPROVE_OPTION) {
+			return;
 		}
+
+		final File onlySelected = fc.getSelectedFile();
+		if (onlySelected != null) {
+			Xcos.getInstance().open(onlySelected);
+		}
+
+		final File[] multiSelected = fc.getSelectedFiles();
+		for (File file : multiSelected) {
+			Xcos.getInstance().open(file);
+		}
+	}
+
+	/*
+	 * Helpers functions to configure file chooser
+	 */
+
+	private static void configureFileFilters(JFileChooser fc) {
+		fc.setAcceptAllFileFilterUsed(true);
+
+		final FileFilter[] filters = XcosFileType.getValidFilters();
+		for (FileFilter fileFilter : filters) {
+			fc.addChoosableFileFilter(fileFilter);
+		}
+		fc.setFileFilter(filters[0]);
 	}
 }

@@ -1,8 +1,0 @@
- 
- 
- 
- 
--->mprintf('hello world\n');
-hello world
- 
--->diary(0);

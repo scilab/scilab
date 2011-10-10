@@ -26,4 +26,5 @@ Name: "ca_ES"; MessagesFile: "compiler:Languages\Catalan.isl"; LicenseFile: {#Bi
 Name: "de_DE"; MessagesFile: "compiler:Languages\German.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 Name: "fr_FR"; MessagesFile: "compiler:Languages\French.isl"; LicenseFile: {#BinariesSourcePath}\COPYING-FR
+Name: "cs_CZ"; MessagesFile: "compiler:Languages\Czech.isl"; LicenseFile: {#BinariesSourcePath}\COPYING
 ;-------------------------------------------------------------------------------

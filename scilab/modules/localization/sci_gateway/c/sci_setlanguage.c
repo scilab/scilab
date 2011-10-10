@@ -58,7 +58,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 			if (newlanguage) { FREE(newlanguage); newlanguage = NULL; }
 
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 
@@ -97,7 +97,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 			*istk(l1)=(int)(FALSE);
 		}
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

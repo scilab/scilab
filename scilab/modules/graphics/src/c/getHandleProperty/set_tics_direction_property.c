@@ -57,7 +57,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
       Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'top'", "'bottom'");
       return SET_PROPERTY_ERROR ;
     }
-    return SET_PROPERTY_SUCCEED ;
+
   } 
   else
   {
@@ -74,8 +74,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
       Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'left'", "'right'");
       return SET_PROPERTY_ERROR ;
     }
-    return SET_PROPERTY_SUCCEED ;
   }
-  return SET_PROPERTY_ERROR ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

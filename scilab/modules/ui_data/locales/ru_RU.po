@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ru\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: Переменная «ans» не может быть изменена.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Переменная %s не определена.\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -25,25 +49,11 @@ msgstr "%s: Проблема с памятью в Java, не удалось из
 msgid "%s: Type not handle yet"
 msgstr "%s: Данный тип ещё не поддерживается"
 
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Переменная %s не определена.\n"
+msgid "&File"
+msgstr "&Файл"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: Переменная «ans» не может быть изменена.\n"
+msgid "&Close"
+msgstr "&Закрыть"
 
 msgid "&?"
 msgstr "&Справка"
@@ -51,94 +61,38 @@ msgstr "&Справка"
 msgid "&About Scilab..."
 msgstr "&О Scilab"
 
-msgid "&Close"
-msgstr "&Закрыть"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "Boolean"
-msgstr "Логические значения"
-
-msgid "Bytes"
-msgstr "Байт"
-
-msgid "Close"
-msgstr "Закрыть"
-
-msgid "Compiled function"
-msgstr "Скомпилированные функции"
-
-msgid "Copy"
-msgstr "Копировать"
-
-msgid "Cut"
-msgstr "Вырезать"
-
-msgid "Double"
-msgstr "Числа с двойной точностью"
-
-msgid "File"
-msgstr "Файл"
-
-msgid "Filter"
-msgstr "Фильтр"
-
-msgid "Function library"
-msgstr "Библиотеки функций"
-
-msgid "Global variables can not be edited."
-msgstr "Глобальные переменные не могут быть изменены."
-
-msgid "Graphic handles"
-msgstr "Графические дескрипторы"
-
 msgid "Icon"
 msgstr "Значок"
-
-msgid "Implicit polynomial"
-msgstr "Неявные полиномы"
-
-msgid "Integer"
-msgstr "Целые числа"
-
-msgid "Intrinsic function"
-msgstr "Внутренние функции"
-
-msgid "List"
-msgstr "Простые списки"
-
-msgid "Matlab sparse"
-msgstr "Разряженные матрицы Matlab"
-
-msgid "Mlist"
-msgstr "Матричные типизированные списки"
 
 msgid "Name"
 msgstr "Имя"
 
-msgid "Paste"
-msgstr "Вставить"
+msgid "Bytes"
+msgstr "Байт"
 
-msgid "Pointer"
-msgstr "Указатели"
+msgid "Type"
+msgstr "Тип"
+
+msgid "Visibility"
+msgstr "Видимость"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Double"
+msgstr "Числа с двойной точностью"
 
 msgid "Polynomial"
 msgstr "Полиномы"
 
-msgid "Redo"
-msgstr "Повторить"
-
-msgid "Refresh the variable "
-msgstr "Обновить список переменных "
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Модуль «%s» не установлен.\n"
+msgid "Boolean"
+msgstr "Логические значения"
 
 msgid "Sparse"
 msgstr "Разряженные матрицы"
@@ -146,26 +100,72 @@ msgstr "Разряженные матрицы"
 msgid "Sparse boolean"
 msgstr "Разряженные логические матрицы"
 
+msgid "Integer"
+msgstr "Целые числа"
+
+msgid "Graphic handles"
+msgstr "Графические дескрипторы"
+
 msgid "String"
 msgstr "Строки"
-
-msgid "Tlist"
-msgstr "Типизированные списки"
-
-msgid "Type"
-msgstr "Тип"
 
 msgid "Un-compiled function"
 msgstr "Нескомпилированные функции"
 
-msgid "Undo"
-msgstr "Отменить"
+msgid "Compiled function"
+msgstr "Скомпилированные функции"
 
-msgid "Variable Browser"
-msgstr "Обозреватель переменных"
+msgid "Function library"
+msgstr "Библиотеки функций"
+
+msgid "List"
+msgstr "Простые списки"
+
+msgid "Tlist"
+msgstr "Типизированные списки"
+
+msgid "Mlist"
+msgstr "Матричные типизированные списки"
+
+msgid "Pointer"
+msgstr "Указатели"
+
+msgid "Intrinsic function"
+msgstr "Внутренние функции"
+
+msgid "Matlab sparse"
+msgstr "Разряженные матрицы Matlab"
+
+msgid "Implicit polynomial"
+msgstr "Неявные полиномы"
 
 msgid "Variable Editor"
 msgstr "Редактор переменных"
 
-msgid "Visibility"
-msgstr "Видимость"
+msgid "Variable Browser"
+msgstr "Обозреватель переменных"
+
+msgid "Global variables can not be edited."
+msgstr "Глобальные переменные не могут быть изменены."
+
+msgid "Refresh the variable "
+msgstr "Обновить список переменных "
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Redo"
+msgstr "Повторить"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"

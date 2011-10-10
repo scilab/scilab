@@ -21,7 +21,7 @@ expected = [
     0.  -0.2    1.  
     0.  -1.2    2.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test with function only
@@ -33,7 +33,7 @@ expected = [
     93.6  -0.2    1.  
     36.2  -1.2    2.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test with a scalar length
@@ -45,7 +45,7 @@ expected = [
     13.      0.8    1.  
     248.2  -1.2    3.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test with a vector length
@@ -57,7 +57,7 @@ expected = [
 93.6 -0.2 1.
 248.2 -1.2 3.
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test with a scalar length and an additionnal object
@@ -75,17 +75,20 @@ expected = [
 93.6 -0.2 1.0
 36.2 -1.2 2.0
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 assert_checkequal ( myobj.nb , 3 );
 nbve = optimsimplex_getnbve ( s1 );
 assert_checkequal ( nbve , 3 );
 s1 = optimsimplex_destroy ( s1 );
 // Test with a unconsistent x0 and len
 cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2] , rosenbrock , [1 2 3] )";
-assert_checkerror(cmd, "%s: The len vector is not consistent with the x0 point. Current shape of x0 is %d x %d while current shape of len is %d x %d.", [],"optimsimplex_axes", 1, 2, 1, 3);
+instr = "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n";
+assert_checkerror(cmd, instr, [],"optimsimplex_new", 4, 1, 2);
 // Test with a unconsistent x0
 cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2;3 4] , rosenbrock )";
-assert_checkerror(cmd,"%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d.",[],"optimsimplex_axes",2,2);
+instr = "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n";
+assert_checkerror(cmd,instr,[],"optimsimplex_new",2,1,2);
 // Test with a unconsistent len
 cmd = "newobj = optimsimplex_new ( ""axes"" , [1 2] , rosenbrock , ""foo"" )";
-assert_checkerror(cmd,"%s: Expected real variable for variable %s at input #%d, but got %s instead.",[],"assert_typereal", "len" , 1 , "string" );
+instr = "%s: Expected real variable for variable %s at input #%d, but got %s instead.";
+assert_checkerror(cmd,instr,[],"assert_typereal", "len" , 1 , "string" );

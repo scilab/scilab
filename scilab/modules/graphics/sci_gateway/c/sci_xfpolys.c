@@ -45,7 +45,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   mn2 = m2 * n2;
   if ( mn2 == 0 ) {
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	} 
 
@@ -106,7 +106,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   sciDrawObjIfRequired(sciGetCurrentObj ());
  
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;  
 } 
 

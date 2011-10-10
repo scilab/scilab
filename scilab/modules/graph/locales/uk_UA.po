@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: uk\n"
 
 msgid "Copy"
@@ -23,14 +23,11 @@ msgstr "Копіювати"
 msgid "Cut"
 msgstr "Вирізати"
 
-msgid "Delete"
-msgstr "Вилучити"
-
 msgid "Group"
 msgstr "Групувати"
 
-msgid "Invert selection"
-msgstr "Інвертувати вибір"
+msgid "UnGroup"
+msgstr "Розгрупувати"
 
 msgid "Paste"
 msgstr "Вставити"
@@ -38,20 +35,23 @@ msgstr "Вставити"
 msgid "Redo"
 msgstr "Повторити"
 
-msgid "Select all"
-msgstr "Вибрати все"
-
-msgid "UnGroup"
-msgstr "Розгрупувати"
-
 msgid "Undo"
 msgstr "Вернути"
-
-msgid "Untitled"
-msgstr "Без назви"
 
 msgid "Zoom In"
 msgstr "Збільшити"
 
 msgid "Zoom Out"
 msgstr "Зменшити"
+
+msgid "Delete"
+msgstr "Вилучити"
+
+msgid "Select all"
+msgstr "Вибрати все"
+
+msgid "Invert selection"
+msgstr "Інвертувати вибір"
+
+msgid "Untitled"
+msgstr "Без назви"

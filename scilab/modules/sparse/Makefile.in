@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/sparse
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -72,10 +73,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -121,27 +122,20 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	lsosp.lo blkfc1.lo wspxsp.lo lspful.lo blkfct.lo symfct.lo \
 	dspt.lo wspos.lo dful2sp.lo sputil.lo lspt.lo dspxs.lo \
 	sp2col.lo dcompa.lo sz2ptr.lo spt.lo lcompa.lo wspmat.lo \
-	iperm.lo mycmatptr.lo wspful.lo spif1b.lo spextr.lo lful2sp.lo \
-	dspos.lo dspasp.lo inpnv.lo spreshape.lo spsort.lo wperm.lo \
-	dij2sp.lo dspcsp.lo spcho2.lo lspos.lo wspe2.lo spif.lo \
-	lspasp.lo dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo \
-	dspmsp.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo \
-	wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo \
-	wcompa.lo lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo \
-	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
-	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
-	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
-	writebuf.lo ta2lpd.lo
+	iperm.lo wspful.lo spif1b.lo spextr.lo lful2sp.lo dspos.lo \
+	dspasp.lo inpnv.lo spreshape.lo spsort.lo wperm.lo dij2sp.lo \
+	dspcsp.lo spcho2.lo lspos.lo wspe2.lo spif.lo lspasp.lo \
+	dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo dspmsp.lo \
+	dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo wsosp.lo \
+	dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo wcompa.lo \
+	lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo wspasp.lo \
+	wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo dspis.lo \
+	wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo spord.lo \
+	dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo writebuf.lo \
+	ta2lpd.lo
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
-libscisparse_la_DEPENDENCIES = libscisparse-algo.la \
-	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscisparse_la_DEPENDENCIES = libscisparse-algo.la
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -344,11 +338,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -490,7 +479,6 @@ src/fortran/spt.f \
 src/fortran/lcompa.f \
 src/fortran/wspmat.f \
 src/fortran/iperm.f \
-src/fortran/mycmatptr.f \
 src/fortran/wspful.f \
 src/fortran/spif1b.f \
 src/fortran/spextr.f \
@@ -619,7 +607,7 @@ libscisparse_algo_la_CFLAGS = $(libscisparse_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisparse_la_CFLAGS)
-libscisparse_la_LIBADD = libscisparse-algo.la $(top_builddir)/modules/io/libsciio.la   $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscisparse_la_LIBADD = libscisparse-algo.la
 
 #### Target ######
 modulename = sparse
@@ -1175,9 +1163,6 @@ wspmat.lo: src/fortran/wspmat.f
 
 iperm.lo: src/fortran/iperm.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o iperm.lo `test -f 'src/fortran/iperm.f' || echo '$(srcdir)/'`src/fortran/iperm.f
-
-mycmatptr.lo: src/fortran/mycmatptr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mycmatptr.lo `test -f 'src/fortran/mycmatptr.f' || echo '$(srcdir)/'`src/fortran/mycmatptr.f
 
 wspful.lo: src/fortran/wspful.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wspful.lo `test -f 'src/fortran/wspful.f' || echo '$(srcdir)/'`src/fortran/wspful.f
@@ -1762,6 +1747,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

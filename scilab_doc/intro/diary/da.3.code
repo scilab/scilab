@@ -1,4 +1,0 @@
-exec('da.1.code');
-exec('da.2.code');
-bloc2ss(syst);
-ss2tf(ans)

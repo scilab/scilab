@@ -318,6 +318,12 @@
     <ClCompile Include="src\c\sendtorecyclebin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\createtempfilename.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_tempname.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h">
@@ -471,6 +477,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\sendtorecyclebin.h">
+      <Filter>Header Files</Filter>    
+    </ClInclude>
+    <ClInclude Include="includes\createtempfilename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -498,5 +507,8 @@
     <None Include="fileio.iss" />
     <None Include="sci_gateway\fileio_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="Console_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

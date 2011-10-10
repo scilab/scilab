@@ -49,7 +49,7 @@ int sci_createGUID(char *fname,unsigned long l)
 					freeArrayOfString(GUIDs,mOutput*nOutput);
 
 					LhsVar(1) = Rhs+1 ;
-					C2F(putlhsvar)();
+					PutLhsVar();
 				}
 				else
 				{

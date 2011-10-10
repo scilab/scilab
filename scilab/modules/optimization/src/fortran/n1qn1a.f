@@ -183,12 +183,12 @@ c               initialisation du pas
       if (dff.gt.0.0d+0) step=min(step,(dff+dff)/(-dga))
 
       if (iprint.ge.2) then
-         write (bufstr,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+         write (bufstr,'(A,I4,A,I4,A,G11.4)') ' iter num ',itr,
      $                ', nb calls=',nfun,', f=',fa
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          
          if (iprint.ge.3) then
-            write (bufstr,'(A,G10.4)')
+            write (bufstr,'(A,G11.4)')
      $            ' linear search: initial derivative=',dga/dnrm2(n,d,1)
             call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          endif
@@ -219,7 +219,7 @@ c              test sur indic
       ial=1
       step=step/10.0d+0
       if (iprint.ge.3) then
-         write (bufstr,'(A,G10.4,A,I2)') 
+         write (bufstr,'(A,G11.4,A,I2)') 
      $   '                step length=',c,', indic=',indic
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -252,7 +252,7 @@ c               calcul de la derivee directionnelle
       s=fb-fa
 * a small change (Bruno): to give a better indication about
 *  the directionnal derivative I scale it by || d ||
-      write (bufstr,'(A,G10.4,A,G10.4,A,G10.4)')
+      write (bufstr,'(A,G11.4,A,G11.4,A,G11.4)')
      $  '                step length=',c,
      $  ', df=',s,', derivative=',dgb/dnrm2(n,d,1)
      
@@ -265,7 +265,7 @@ c               iteration terminee si le pas est minimum
   240 if (isfv.ge.2) go to 110
 c               ici, tout est termine
   250 if (iprint.gt.0) then
-         write (bufstr,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+         write (bufstr,'(A,I4,A,I4,A,G11.4)') ' iter num ',itr,
      $                ', nb calls=',nfun,', f=',f
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif

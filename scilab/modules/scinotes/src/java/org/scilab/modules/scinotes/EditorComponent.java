@@ -14,12 +14,12 @@ package org.scilab.modules.scinotes;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+
+import org.scilab.modules.scinotes.utils.ScilabScrollPane;
 
 /**
  * @author Calixte DENIZET
@@ -40,14 +40,7 @@ public class EditorComponent extends JPanel {
     public EditorComponent(ScilabEditorPane editor) {
         super(new BorderLayout());
         this.editor = editor;
-        scroll = new JScrollPane(editor);
-        scroll.getViewport().addFocusListener(new FocusListener() {
-                public void focusGained(FocusEvent e) {
-                    EditorComponent.this.editor.requestFocus();
-                }
-
-                public void focusLost(FocusEvent e) { }
-            });
+        scroll = new ScilabScrollPane(editor);
         add(scroll);
     }
 

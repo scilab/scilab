@@ -1,9 +1,0 @@
-//exec('fir1.code')
- xinit('fir1.ps')
- [wft,wfm,fr]=wfir('lp',33,[.2 0],'re',[0 0]);
- hdes=ones(1:102);
- hdes(103:256)=0*ones(1:154);
- plot(fr,wfm)
- plot2d(fr',hdes',[1],"000")
-
-          

@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -72,10 +73,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -166,24 +167,22 @@ am__objects_5 = psi.lo wasum.lo dexpm1.lo wwdiv.lo wdotcr.lo iset.lo \
 	franck.lo dwpowe.lo rcsort.lo wddiv.lo lnblnk.lo entier.lo \
 	round.lo cortr.lo simple.lo split.lo wdrdiv.lo imcopy.lo \
 	cbal.lo cuproi.lo dsum.lo urand.lo intp.lo watan.lo wipowe.lo \
-	wacos.lo wdpow1.lo zbesjg.lo dmsum.lo dlgama.lo exch.lo \
-	wsign.lo kronr.lo wrscal.lo pythag.lo dbeskg.lo dmmul1.lo \
-	dwpow.lo wmmul.lo dsearch.lo ddif.lo wdiv.lo wtan.lo ccopy.lo \
-	ddpow.lo magic.lo wcerr.lo ivimp.lo cupro.lo dadd.lo calerf.lo \
-	isort.lo hilber.lo wdpowe.lo wmprod.lo wscal.lo dlblks.lo \
-	kronc.lo ddrdiv.lo dipow.lo wshrsl.lo wwrdiv.lo zbeshg.lo \
-	coshin.lo iwamax.lo dipowe.lo getorient.lo cusum.lo dbesig.lo \
-	d1mach.lo wbdiag.lo ddpow1.lo vpythag.lo isova0.lo wswap.lo \
-	wwpow1.lo getdimfromvar.lo gdcp2i.lo drdiv.lo wmsum.lo \
-	dbesyg.lo corth.lo mtran.lo wwpow.lo zbeskg.lo dvmul.lo \
-	wclmat.lo dsort.lo cerr.lo rcopy.lo wdpow.lo orthes.lo \
-	waxpy.lo coef.lo dwdiv.lo arcosh.lo wasin.lo wexpm1.lo \
-	ddpowe.lo nearfloat.lo dmprod.lo wwpowe.lo wdotci.lo dmcopy.lo \
-	wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo infinity.lo \
-	dwpow1.lo zbesig.lo wmul.lo dad.lo dbesjg.lo dset.lo dtild.lo \
-	i1mach.lo zbesyg.lo dclmat.lo ortran.lo bdiag.lo wvmul.lo \
-	dmmul.lo wsqrt.lo israt.lo rat.lo ribesl.lo rjbesl.lo \
-	rkbesl.lo rybesl.lo sdot.lo
+	wacos.lo wdpow1.lo dmsum.lo dlgama.lo exch.lo wsign.lo \
+	kronr.lo wrscal.lo pythag.lo dmmul1.lo dwpow.lo wmmul.lo \
+	dsearch.lo ddif.lo wdiv.lo wtan.lo ccopy.lo ddpow.lo magic.lo \
+	wcerr.lo ivimp.lo cupro.lo dadd.lo calerf.lo isort.lo \
+	hilber.lo wdpowe.lo wmprod.lo wscal.lo dlblks.lo kronc.lo \
+	ddrdiv.lo dipow.lo wshrsl.lo wwrdiv.lo coshin.lo iwamax.lo \
+	dipowe.lo getorient.lo cusum.lo d1mach.lo wbdiag.lo ddpow1.lo \
+	vpythag.lo isova0.lo wswap.lo wwpow1.lo getdimfromvar.lo \
+	gdcp2i.lo drdiv.lo wmsum.lo corth.lo mtran.lo wwpow.lo \
+	dvmul.lo wclmat.lo dsort.lo cerr.lo rcopy.lo wdpow.lo \
+	orthes.lo waxpy.lo coef.lo dwdiv.lo arcosh.lo wasin.lo \
+	wexpm1.lo ddpowe.lo nearfloat.lo dmprod.lo wwpowe.lo wdotci.lo \
+	dmcopy.lo wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo \
+	infinity.lo dwpow1.lo wmul.lo dad.lo dset.lo dtild.lo \
+	i1mach.lo dclmat.lo ortran.lo bdiag.lo wvmul.lo dmmul.lo \
+	wsqrt.lo israt.lo rat.lo sdot.lo
 am__objects_6 =
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -478,11 +477,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -743,7 +737,6 @@ src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/wdpow1.f \
-src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
 src/fortran/dlgama.f \
 src/fortran/exch.f \
@@ -751,7 +744,6 @@ src/fortran/wsign.f \
 src/fortran/kronr.f \
 src/fortran/wrscal.f \
 src/fortran/pythag.f \
-src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
 src/fortran/wmmul.f \
@@ -778,13 +770,11 @@ src/fortran/ddrdiv.f \
 src/fortran/dipow.f \
 src/fortran/wshrsl.f \
 src/fortran/wwrdiv.f \
-src/fortran/zbeshg.f \
 src/fortran/coshin.f \
 src/fortran/iwamax.f \
 src/fortran/dipowe.f \
 src/fortran/getorient.f \
 src/fortran/cusum.f \
-src/fortran/dbesig.f \
 src/fortran/d1mach.f \
 src/fortran/wbdiag.f \
 src/fortran/ddpow1.f \
@@ -796,11 +786,9 @@ src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \
 src/fortran/drdiv.f \
 src/fortran/wmsum.f \
-src/fortran/dbesyg.f \
 src/fortran/corth.f \
 src/fortran/mtran.f \
 src/fortran/wwpow.f \
-src/fortran/zbeskg.f \
 src/fortran/dvmul.f \
 src/fortran/wclmat.f \
 src/fortran/dsort.f \
@@ -827,14 +815,11 @@ src/fortran/wipow.f \
 src/fortran/wlog.f \
 src/fortran/infinity.f \
 src/fortran/dwpow1.f \
-src/fortran/zbesig.f \
 src/fortran/wmul.f \
 src/fortran/dad.f \
-src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
 src/fortran/i1mach.f \
-src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
 src/fortran/ortran.f \
 src/fortran/bdiag.f \
@@ -843,10 +828,6 @@ src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
 src/fortran/rat.f \
-src/fortran/ribesl.f \
-src/fortran/rjbesl.f \
-src/fortran/rkbesl.f \
-src/fortran/rybesl.f \
 src/fortran/sdot.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
@@ -2159,9 +2140,6 @@ wacos.lo: src/fortran/wacos.f
 wdpow1.lo: src/fortran/wdpow1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wdpow1.lo `test -f 'src/fortran/wdpow1.f' || echo '$(srcdir)/'`src/fortran/wdpow1.f
 
-zbesjg.lo: src/fortran/zbesjg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbesjg.lo `test -f 'src/fortran/zbesjg.f' || echo '$(srcdir)/'`src/fortran/zbesjg.f
-
 dmsum.lo: src/fortran/dmsum.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmsum.lo `test -f 'src/fortran/dmsum.f' || echo '$(srcdir)/'`src/fortran/dmsum.f
 
@@ -2182,9 +2160,6 @@ wrscal.lo: src/fortran/wrscal.f
 
 pythag.lo: src/fortran/pythag.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o pythag.lo `test -f 'src/fortran/pythag.f' || echo '$(srcdir)/'`src/fortran/pythag.f
-
-dbeskg.lo: src/fortran/dbeskg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbeskg.lo `test -f 'src/fortran/dbeskg.f' || echo '$(srcdir)/'`src/fortran/dbeskg.f
 
 dmmul1.lo: src/fortran/dmmul1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmmul1.lo `test -f 'src/fortran/dmmul1.f' || echo '$(srcdir)/'`src/fortran/dmmul1.f
@@ -2264,9 +2239,6 @@ wshrsl.lo: src/fortran/wshrsl.f
 wwrdiv.lo: src/fortran/wwrdiv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wwrdiv.lo `test -f 'src/fortran/wwrdiv.f' || echo '$(srcdir)/'`src/fortran/wwrdiv.f
 
-zbeshg.lo: src/fortran/zbeshg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbeshg.lo `test -f 'src/fortran/zbeshg.f' || echo '$(srcdir)/'`src/fortran/zbeshg.f
-
 coshin.lo: src/fortran/coshin.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o coshin.lo `test -f 'src/fortran/coshin.f' || echo '$(srcdir)/'`src/fortran/coshin.f
 
@@ -2281,9 +2253,6 @@ getorient.lo: src/fortran/getorient.f
 
 cusum.lo: src/fortran/cusum.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cusum.lo `test -f 'src/fortran/cusum.f' || echo '$(srcdir)/'`src/fortran/cusum.f
-
-dbesig.lo: src/fortran/dbesig.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesig.lo `test -f 'src/fortran/dbesig.f' || echo '$(srcdir)/'`src/fortran/dbesig.f
 
 d1mach.lo: src/fortran/d1mach.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o d1mach.lo `test -f 'src/fortran/d1mach.f' || echo '$(srcdir)/'`src/fortran/d1mach.f
@@ -2318,9 +2287,6 @@ drdiv.lo: src/fortran/drdiv.f
 wmsum.lo: src/fortran/wmsum.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmsum.lo `test -f 'src/fortran/wmsum.f' || echo '$(srcdir)/'`src/fortran/wmsum.f
 
-dbesyg.lo: src/fortran/dbesyg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesyg.lo `test -f 'src/fortran/dbesyg.f' || echo '$(srcdir)/'`src/fortran/dbesyg.f
-
 corth.lo: src/fortran/corth.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o corth.lo `test -f 'src/fortran/corth.f' || echo '$(srcdir)/'`src/fortran/corth.f
 
@@ -2329,9 +2295,6 @@ mtran.lo: src/fortran/mtran.f
 
 wwpow.lo: src/fortran/wwpow.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wwpow.lo `test -f 'src/fortran/wwpow.f' || echo '$(srcdir)/'`src/fortran/wwpow.f
-
-zbeskg.lo: src/fortran/zbeskg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbeskg.lo `test -f 'src/fortran/zbeskg.f' || echo '$(srcdir)/'`src/fortran/zbeskg.f
 
 dvmul.lo: src/fortran/dvmul.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dvmul.lo `test -f 'src/fortran/dvmul.f' || echo '$(srcdir)/'`src/fortran/dvmul.f
@@ -2411,17 +2374,11 @@ infinity.lo: src/fortran/infinity.f
 dwpow1.lo: src/fortran/dwpow1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dwpow1.lo `test -f 'src/fortran/dwpow1.f' || echo '$(srcdir)/'`src/fortran/dwpow1.f
 
-zbesig.lo: src/fortran/zbesig.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbesig.lo `test -f 'src/fortran/zbesig.f' || echo '$(srcdir)/'`src/fortran/zbesig.f
-
 wmul.lo: src/fortran/wmul.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmul.lo `test -f 'src/fortran/wmul.f' || echo '$(srcdir)/'`src/fortran/wmul.f
 
 dad.lo: src/fortran/dad.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dad.lo `test -f 'src/fortran/dad.f' || echo '$(srcdir)/'`src/fortran/dad.f
-
-dbesjg.lo: src/fortran/dbesjg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbesjg.lo `test -f 'src/fortran/dbesjg.f' || echo '$(srcdir)/'`src/fortran/dbesjg.f
 
 dset.lo: src/fortran/dset.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dset.lo `test -f 'src/fortran/dset.f' || echo '$(srcdir)/'`src/fortran/dset.f
@@ -2431,9 +2388,6 @@ dtild.lo: src/fortran/dtild.f
 
 i1mach.lo: src/fortran/i1mach.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i1mach.lo `test -f 'src/fortran/i1mach.f' || echo '$(srcdir)/'`src/fortran/i1mach.f
-
-zbesyg.lo: src/fortran/zbesyg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbesyg.lo `test -f 'src/fortran/zbesyg.f' || echo '$(srcdir)/'`src/fortran/zbesyg.f
 
 dclmat.lo: src/fortran/dclmat.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dclmat.lo `test -f 'src/fortran/dclmat.f' || echo '$(srcdir)/'`src/fortran/dclmat.f
@@ -2458,18 +2412,6 @@ israt.lo: src/fortran/israt.f
 
 rat.lo: src/fortran/rat.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
-
-ribesl.lo: src/fortran/ribesl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ribesl.lo `test -f 'src/fortran/ribesl.f' || echo '$(srcdir)/'`src/fortran/ribesl.f
-
-rjbesl.lo: src/fortran/rjbesl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rjbesl.lo `test -f 'src/fortran/rjbesl.f' || echo '$(srcdir)/'`src/fortran/rjbesl.f
-
-rkbesl.lo: src/fortran/rkbesl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rkbesl.lo `test -f 'src/fortran/rkbesl.f' || echo '$(srcdir)/'`src/fortran/rkbesl.f
-
-rybesl.lo: src/fortran/rybesl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
 
 sdot.lo: src/fortran/sdot.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sdot.lo `test -f 'src/fortran/sdot.f' || echo '$(srcdir)/'`src/fortran/sdot.f
@@ -2899,9 +2841,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
-# Commented because it is one of the first module to be compiled
-#libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
-
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
 
@@ -2969,6 +2908,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

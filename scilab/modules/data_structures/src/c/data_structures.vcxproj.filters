@@ -71,6 +71,9 @@
     <ClCompile Include="stcreate.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strpos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_data_structures.h">
@@ -102,7 +105,6 @@
     <None Include="..\..\data_structures.iss" />
     <None Include="..\..\sci_gateway\data_structures_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="data_structures.rc">

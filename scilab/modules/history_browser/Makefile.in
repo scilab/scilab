@@ -69,9 +69,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/history_browser
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -79,10 +80,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -125,16 +126,12 @@ libscihistory_browser_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscihistory_browser_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscihistory_browser_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscihistory_browser_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscihistory_browser_la_LIBADD =
 am__libscihistory_browser_la_SOURCES_DIST =  \
 	src/nohistory_browser/CommandHistory_Wrap_Fake.c \
-	src/jni/CommandHistory.cpp src/jni/GiwsException.cpp \
-	src/cpp/CommandHistory_Wrap.cpp
+	src/jni/CommandHistory.cpp src/cpp/CommandHistory_Wrap.cpp
 @GUI_FALSE@am__objects_2 = libscihistory_browser_la-CommandHistory_Wrap_Fake.lo
-@GUI_TRUE@am__objects_3 = libscihistory_browser_la-CommandHistory.lo \
-@GUI_TRUE@	libscihistory_browser_la-GiwsException.lo
+@GUI_TRUE@am__objects_3 = libscihistory_browser_la-CommandHistory.lo
 @GUI_TRUE@am__objects_4 =  \
 @GUI_TRUE@	libscihistory_browser_la-CommandHistory_Wrap.lo
 am_libscihistory_browser_la_OBJECTS = $(am__objects_2) \
@@ -326,11 +323,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -509,9 +501,7 @@ HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 # List of the JNI files
-@GUI_TRUE@HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
-
+@GUI_TRUE@HISTORY_BROWSER_JNI_SOURCES = src/jni/CommandHistory.cpp
 @GUI_TRUE@HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
 @GUI_TRUE@GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
 @GUI_FALSE@HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
@@ -522,7 +512,8 @@ libscihistory_browser_la_CFLAGS =
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/jvm/includes/
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/commons/src/jni/
 
 
 # Without the history_browser module 
@@ -540,10 +531,6 @@ INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = 
-libscihistory_browser_la_LIBADD = \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
 
 #### history_browser : gateway declaration ####
 libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -630,7 +617,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_browser_la-GiwsException.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -694,13 +680,6 @@ libscihistory_browser_la-CommandHistory.lo: src/jni/CommandHistory.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CommandHistory.cpp' object='libscihistory_browser_la-CommandHistory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_browser_la-CommandHistory.lo `test -f 'src/jni/CommandHistory.cpp' || echo '$(srcdir)/'`src/jni/CommandHistory.cpp
-
-libscihistory_browser_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_browser_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-GiwsException.Tpo -c -o libscihistory_browser_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_browser_la-GiwsException.Tpo $(DEPDIR)/libscihistory_browser_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihistory_browser_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_browser_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 libscihistory_browser_la-CommandHistory_Wrap.lo: src/cpp/CommandHistory_Wrap.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_browser_la-CommandHistory_Wrap.lo -MD -MP -MF $(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Tpo -c -o libscihistory_browser_la-CommandHistory_Wrap.lo `test -f 'src/cpp/CommandHistory_Wrap.cpp' || echo '$(srcdir)/'`src/cpp/CommandHistory_Wrap.cpp
@@ -1048,6 +1027,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

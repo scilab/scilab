@@ -185,7 +185,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
   *stk( stackPointer + 7 )  = corners[2][1] ;
 
   LhsVar( 1 ) = Rhs + 1 ;
-	C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 

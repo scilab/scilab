@@ -69,7 +69,7 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
 
         <listitem>
           <para>a vector of string 
-          :<literal>[compiler, architecture,[ pvm, tk, modelicac, atlas,] release_mode, release_date, release_time]</literal></para>
+          :<literal>[compiler, architecture,[tk, modelicac, atlas,] release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,14 +80,12 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
 
     <para>return in <literal>version</literal> the Scilab version name and in
     <literal>opts</literal> build options which can be used to determine if
-    scilab has been build with pvm, tk , atlas or modelicac and give release date and time.</para>
-    <para> [ pvm, tk, modelicac, atlas,] are optional. </para>
+    scilab has been build with tk or modelicac and give release date and time.</para>
+    <para> [tk, modelicac,] are optional. </para>
     <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
     <para> archicteture: 'x86' or 'x64'.</para>
-    <para> pvm: 'pvm' if pvm is enabled.</para>
     <para> tk: 'tk' if tcl/tk is enabled.</para>
     <para> modelicac: 'modelicac' if modelica compiler is ditributed with scilab/xcos.</para>
-    <para> atlas: 'atlas' if scilab was built with atlas (or MKL).</para>
   </refsection>
 
   <refsection>
@@ -100,9 +98,7 @@ getversion()
 COMPILER = opts(1)
 ARCH = opts(2)
 or(opts == 'modelicac')
-or(opts == 'pvm')
 or(opts == 'tk')
-or(opts == 'atlas')
 RELEASE_MODE = opts($-2)
 RELEASE_DATE = opts($-1)
 RELEASE_TIME = opts($)

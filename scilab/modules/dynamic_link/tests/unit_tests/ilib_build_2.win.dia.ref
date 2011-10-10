@@ -72,11 +72,12 @@ files=['c_sub.c','sci_csub.c','c_sum.c','sci_csum.c'];
 ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
    Running the makefile
    Compilation of c_sub.c
-   Compilation of sci_csub.c
    Compilation of c_sum.c
+   Compilation of foo.c
+   Compilation of sci_csub.c
    Compilation of sci_csum.c
    Building shared library (be patient)
    Generate a cleaner file

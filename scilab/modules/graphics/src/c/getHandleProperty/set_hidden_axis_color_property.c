@@ -52,7 +52,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int
   else
   {
     Scierror(999, _("Wrong value for '%s' property: Must be a valid color index.\n"), "hidden_axis_color");
-    return SET_PROPERTY_ERROR ;
+
   }
 
   return SET_PROPERTY_ERROR ;

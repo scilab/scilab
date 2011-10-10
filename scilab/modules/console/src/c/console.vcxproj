@@ -79,43 +79,30 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../commons/src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../output_stream/includes;../../../completion/includes;../../../history_manager/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libshell.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;LibScilab.lib;libjvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -123,178 +110,137 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../commons/src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../output_stream/includes;../../../completion/includes;../../../history_manager/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libshell.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>LibScilab.lib;libjvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../commons/src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../output_stream/includes;../../../completion/includes;../../../history_manager/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libshell.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;LibScilab.lib;libjvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../fileio/includes;../../../localization/includes;../../../windows_tools/includes;../../../commons/src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../output_stream/includes;../../../completion/includes;../../../history_manager/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libjvm.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)libshell.lib" 1&gt;NUL 2&gt;NUL
+
 </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>LibScilab.lib;libjvm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\gw_console.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_clc.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_iswaitingforinput.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_lines.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_prompt.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_tohome.c" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
     <ClCompile Include="..\cpp\ClearConsole.cpp" />
     <ClCompile Include="..\cpp\ClearConsolePart.cpp" />
     <ClCompile Include="..\cpp\ConsoleIsWaitingForInput.cpp" />
     <ClCompile Include="..\cpp\ConsolePrintf.cpp" />
     <ClCompile Include="..\cpp\ConsoleRead.cpp" />
+    <ClCompile Include="clc.c" />
     <ClCompile Include="DllmainConsole.c" />
     <ClCompile Include="dropFiles.c" />
     <ClCompile Include="..\jni\DropFiles_wrap.c" />
     <ClCompile Include="..\cpp\GetCharWithoutOutput.cpp" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
+    <ClCompile Include="GetCommandLine.c" />
     <ClCompile Include="GuiManagement.c" />
     <ClCompile Include="..\jni\GuiManagement_wrap.c" />
     <ClCompile Include="InitializeConsole.c" />
     <ClCompile Include="..\cpp\PromptToHome.cpp" />
     <ClCompile Include="..\cpp\ScilabLinesUpdate.cpp" />
     <ClCompile Include="..\cpp\SetConsolePrompt.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\includes\ClearConsole.h" />
-    <ClInclude Include="..\cpp\ClearConsole.hxx" />
-    <ClInclude Include="..\..\includes\ClearConsolePart.h" />
-    <ClInclude Include="..\cpp\ClearConsolePart.hxx" />
-    <ClInclude Include="..\..\includes\ConsoleIsWaitingForInput.h" />
-    <ClInclude Include="..\cpp\ConsoleIsWaitingForInput.hxx" />
-    <ClInclude Include="..\..\includes\ConsolePrintf.h" />
-    <ClInclude Include="..\cpp\ConsolePrintf.hxx" />
-    <ClInclude Include="..\..\includes\ConsoleRead.h" />
-    <ClInclude Include="..\cpp\ConsoleRead.hxx" />
-    <ClInclude Include="..\..\includes\dynlib_console.h" />
-    <ClInclude Include="..\..\includes\GetCharWithoutOutput.h" />
-    <ClInclude Include="..\cpp\GetCharWithoutOutput.hxx" />
-    <ClInclude Include="..\..\includes\InitializeConsole.h" />
-    <ClInclude Include="..\..\includes\PromptToHome.h" />
-    <ClInclude Include="..\cpp\PromptToHome.hxx" />
-    <ClInclude Include="..\..\includes\ScilabLinesUpdate.h" />
-    <ClInclude Include="..\cpp\ScilabLinesUpdate.hxx" />
-    <ClInclude Include="..\..\includes\SetConsolePrompt.h" />
-    <ClInclude Include="..\cpp\SetConsolePrompt.hxx" />
+    <ClCompile Include="more.c" />
+    <ClCompile Include="prompt.c" />
+    <ClCompile Include="promptecho.c" />
+    <ClCompile Include="scilines.c" />
+    <ClCompile Include="tohome.c" />
+    <ClCompile Include="windows\clrscrPart_nw.c" />
+    <ClCompile Include="windows\clrscr_nw.c" />
+    <ClCompile Include="windows\TermCommand.c" />
+    <ClCompile Include="windows\TermCompletion.c" />
+    <ClCompile Include="windows\TermConsole.c" />
+    <ClCompile Include="windows\TermLine.c" />
+    <ClCompile Include="windows\TermPosition.c" />
+    <ClCompile Include="windows\TermPrintf.c" />
+    <ClCompile Include="windows\TermReadAndProcess.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\en_US\console.pot" />
@@ -302,7 +248,6 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="..\jni\GuiManagement.i" />
     <None Include="libjvm_Import.def" />
     <None Include="LibScilab_Import.def" />
-    <None Include="libshell_Import.def" />
     <None Include="..\..\console.iss" />
     <None Include="..\..\console.xml" />
     <None Include="..\..\Makefile.am" />
@@ -319,6 +264,15 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\completion\src\c\completion.vcxproj">
+      <Project>{ccce1ead-8e62-4dc0-ab17-972c06ef0c89}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -326,6 +280,9 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ProjectReference Include="..\..\..\gui\src\c\gui.vcxproj">
       <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\history_manager\src\c\history_manager.vcxproj">
+      <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
@@ -335,14 +292,50 @@ lib /DEF:"$(ProjectDir)libshell_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\shell\src\c\shell.vcxproj">
-      <Project>{805aa73f-ef7b-4177-bf46-200b72d8f83a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ui_data\src\c\ui_data.vcxproj">
+      <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\cpp\ClearConsole.hxx" />
+    <ClInclude Include="..\cpp\ClearConsolePart.hxx" />
+    <ClInclude Include="..\cpp\ConsoleIsWaitingForInput.hxx" />
+    <ClInclude Include="..\cpp\ConsolePrintf.hxx" />
+    <ClInclude Include="..\cpp\ConsoleRead.hxx" />
+    <ClInclude Include="..\cpp\GetCharWithoutOutput.hxx" />
+    <ClInclude Include="..\cpp\PromptToHome.hxx" />
+    <ClInclude Include="..\cpp\ScilabLinesUpdate.hxx" />
+    <ClInclude Include="..\cpp\SetConsolePrompt.hxx" />
+    <ClInclude Include="clc.h" />
+    <ClInclude Include="ClearConsole.h" />
+    <ClInclude Include="ClearConsolePart.h" />
+    <ClInclude Include="ConsoleIsWaitingForInput.h" />
+    <ClInclude Include="ConsoleRead.h" />
+    <ClInclude Include="dropFiles.h" />
+    <ClInclude Include="GetCharWithoutOutput.h" />
+    <ClInclude Include="GuiManagement.h" />
+    <ClInclude Include="promptecho.h" />
+    <ClInclude Include="PromptToHome.h" />
+    <ClInclude Include="PutChar.h" />
+    <ClInclude Include="ScilabLinesUpdate.h" />
+    <ClInclude Include="SetConsolePrompt.h" />
+    <ClInclude Include="TermReadAndProcess.h" />
+    <ClInclude Include="tohome.h" />
+    <ClInclude Include="windows\clrscrPart_nw.h" />
+    <ClInclude Include="windows\clrscr_nw.h" />
+    <ClInclude Include="windows\TermCommand.h" />
+    <ClInclude Include="windows\TermCompletion.h" />
+    <ClInclude Include="windows\TermConsole.h" />
+    <ClInclude Include="windows\TermLine.h" />
+    <ClInclude Include="windows\TermPosition.h" />
+    <ClInclude Include="windows\TermPrintf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

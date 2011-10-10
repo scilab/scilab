@@ -344,7 +344,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       if(propertiesValuesIndices[10]==NOT_FOUND)
         {
           /* See SetUicontrolPosition for the use of -1 as stackPointer */
-          SetUicontrolPosition(sciGetPointerFromHandle(GraphicHandle), -1, 0, 0, 0);
+          SetUicontrolPosition(sciGetPointerFromHandle(GraphicHandle), (size_t)(-1), 0, 0, 0);
         }
 
       /* Read and set all properties */
@@ -409,7 +409,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   LhsVar(1)=Rhs+1;
 
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return TRUE;
 }

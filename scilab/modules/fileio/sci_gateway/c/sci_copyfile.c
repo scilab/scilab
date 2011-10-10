@@ -385,7 +385,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname)
         sciError = NULL;
     }
 
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -8,24 +8,29 @@
 
 
 function cmap = graycolormap(varargin)
-//graycmap   linear gray-scale color map.
-//r=g=b
+    //graycmap   linear gray-scale color map.
+    //r=g=b
 
-  // Check number of input argument
-  if size(varargin)<>1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "graycolormap", 1));
-  end
-  n=varargin(1);
+    // Check number of input argument
+    if size(varargin)<>1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "graycolormap", 1));
+    end
+    n=varargin(1);
 
-  // Check size of input argument
-	if size(n,'*')<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"graycolormap",1));
-	end
+    // Check type of input argument
+    if typeof(n)<>"constant" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
+    end
 
-  // Check value of input argument
-	if n<3 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"graycolormap",1,3));
-	end
+    // Check if input argument is real
+    if ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
+    end
 
-cmap=((0:n-1)'/(n-1))*[1 1 1];
+    // Check size of input argument
+    if size(n,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"), "graycolormap", 1));
+    end
+
+    cmap=((0:n-1)'/max(n-1,1))*[1 1 1];
 endfunction

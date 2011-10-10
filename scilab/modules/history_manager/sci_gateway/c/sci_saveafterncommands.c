@@ -58,7 +58,7 @@ int sci_saveafterncommands(char *fname,unsigned long fname_len)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

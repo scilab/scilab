@@ -91,6 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -128,6 +129,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -166,6 +168,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -210,6 +213,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -237,6 +241,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\CommonFileUtils_wrap.c" />
+    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="DllmainCommons.c" />
     <ClCompile Include="..\jni\ScilabCommons_wrap.c" />
     <ClCompile Include="fileutils.c" />
@@ -244,6 +249,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h" />
     <ClInclude Include="..\..\includes\fileutils.h" />
+    <ClInclude Include="..\jni\GiwsException.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="commons_f_Import.def" />
@@ -264,6 +270,9 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ProjectReference Include="..\..\..\..\Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj">
       <Project>{dd8a0506-8d31-4cf8-856a-c10ece9c13a4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>

@@ -92,7 +92,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
   else
   {
     Scierror(999, _("Wrong size for '%s' property: At most %d elements expected.\n"), "axes_visible", 3);
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 }
