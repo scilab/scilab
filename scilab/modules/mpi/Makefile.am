@@ -51,24 +51,20 @@ check-am:
 	mpirun -c 2 mpitest_scilab_data
 	mpirun -c 2 mpitest_scilab_pack
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/sci_mpi_init.c \
-sci_gateway/c/sci_mpi_finalize.c \
-sci_gateway/c/sci_mpi_comm_size.c \
-sci_gateway/c/sci_mpi_comm_rank.c \
-sci_gateway/c/gw_mpi.c \
-sci_gateway/c/sci_mpi_recv.c \
-sci_gateway/c/sci_mpi_send.c \
-sci_gateway/c/sci_mpi_serialize.c \
-sci_gateway/c/sci_mpi_unserialize.c \
-src/c/build_buff_type.c \
-src/c/pre_send_recv_metadata.c \
-src/c/s_mpi_recv.c \
-src/c/s_mpi_send.c
-
-#sci_gateway/c/sci_mpi_isend.c \
-#sci_gateway/c/sci_mpi_irecv.c \
-#sci_gateway/c/sci_mpi_comm_rank.c \
-#sci_gateway/c/sci_mpi_comm_size.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_mpi_init.c \
+    sci_gateway/c/sci_mpi_finalize.c \
+    sci_gateway/c/sci_mpi_comm_size.c \
+    sci_gateway/c/sci_mpi_comm_rank.c \
+    sci_gateway/c/gw_mpi.c \
+    sci_gateway/c/sci_mpi_recv.c \
+    sci_gateway/c/sci_mpi_send.c \
+    sci_gateway/c/sci_mpi_serialize.c \
+    sci_gateway/c/sci_mpi_unserialize.c \
+    src/c/build_buff_type.c \
+    src/c/pre_send_recv_metadata.c \
+    src/c/s_mpi_recv.c \
+    src/c/s_mpi_send.c
 
 
 # Includes need for the compilation

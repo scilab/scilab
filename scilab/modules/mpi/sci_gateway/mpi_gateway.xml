@@ -31,8 +31,6 @@
 
 <PRIMITIVE gatewayId="69" primitiveId="5" primitiveName="MPI_Recv" />
 <PRIMITIVE gatewayId="69" primitiveId="6" primitiveName="MPI_Send" />
-
 <PRIMITIVE gatewayId="69" primitiveId="7" primitiveName="MPI_serialize" />
 <PRIMITIVE gatewayId="69" primitiveId="8" primitiveName="MPI_unserialize" />
-
 </GATEWAY>

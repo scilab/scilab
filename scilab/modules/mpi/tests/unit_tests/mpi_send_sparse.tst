@@ -22,25 +22,29 @@ Master = ~ SLV;			// slaves are all other
 if Master
 	disp("MASTER: We have "+string(sizeNodes) + " processors")
 	for slaveId = 1:sizeNodes-1
-        value = rand(100,100) + rand(100,100) * %i;
+        value = sprand(100, 100, 0.01) + sprand(100, 100, 0.01) * %i;
 		MPI_Send(value, slaveId)
 	end
 
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		valueBack=MPI_Recv(slaveId, tag);
-		if valueBack <> value + 1 then disp("Failed (expected value + 1: "+string(valueBack));
+        [ij,v,mn]=spget(value);
+        value = sparse(ij,v+1+%i,mn);
+		if valueBack <> value then disp("Failed (expected value + 1: "+string(valueBack));
            pause
         else
             disp("Node " + string(slaveId) + ": OK")
         end
 	end
+
 else
 	disp("SLAVE: Processor "+string(rnk))
 	rankSource=0;
 	tag=0;
     value=MPI_Recv(rankSource, tag)
-	value=value+1;
+    [ij,v,mn]=spget(value);
+    value = sparse(ij,v+1+%i,mn);
 	// Send back to the master
 	MPI_Send(value,0)
 

@@ -10,6 +10,7 @@
 // it adds +1 to each element
 // and send it back to the master
 // 
+
 MPI_Init();
 rnk =	MPI_Comm_rank();
 sizeNodes =	MPI_Comm_size();
@@ -20,16 +21,17 @@ SLV = rnk;				// handy shortcuts, master is rank 0
 Master = ~ SLV;			// slaves are all other
 
 if Master
-	disp("MASTER: We have "+string(sizeNodes) + " processors")
+
+	disp("MASTER: We have " + string(sizeNodes) + " processors")
 	for slaveId = 1:sizeNodes-1
-        value = rand(100,100) + rand(100,100) * %i;
+        value = rand(100,100) > 0.5;
 		MPI_Send(value, slaveId)
 	end
 
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		valueBack=MPI_Recv(slaveId, tag);
-		if valueBack <> value + 1 then disp("Failed (expected value + 1: "+string(valueBack));
+		if valueBack <> ~value then disp("Failed (expected scalar string): " + valueBack);
            pause
         else
             disp("Node " + string(slaveId) + ": OK")
@@ -40,11 +42,11 @@ else
 	rankSource=0;
 	tag=0;
     value=MPI_Recv(rankSource, tag)
-	value=value+1;
+    value = ~value;
 	// Send back to the master
 	MPI_Send(value,0)
 
 end
 
 MPI_Finalize()
-exit();
+exit;
