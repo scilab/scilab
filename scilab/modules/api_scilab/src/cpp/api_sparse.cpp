@@ -356,11 +356,11 @@ SciErr readCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iCom
 		return sciErr;
 	}
 
-	C2F(dcopy)(_piNbItem, _pdblReal, &iOne, pdblReal, &iOne);
+	C2F(dcopy)(_piNbItem, pdblReal, &iOne, _pdblReal, &iOne);
 
 	if(_iComplex && _pdblImg)
 	{
-		C2F(dcopy)(_piNbItem, _pdblImg, &iOne, pdblImg, &iOne);
+		C2F(dcopy)(_piNbItem, pdblImg, &iOne, _pdblImg, &iOne);
 	}
 
 	return sciErr;
@@ -406,19 +406,19 @@ static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iC
 		return sciErr.iErr;
 	}
 
-	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+	*_piNbItemRow = (int*)MALLOC(sizeof(int) * *_piRows);
 	memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
 
-	*_piColPos		= (int*)MALLOC(sizeof(int) * *_piNbItem);
+	*_piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
 	memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
 
-	*_pdblReal		= (double*)MALLOC(sizeof(double) * *_piNbItem);
-	C2F(dcopy)(_piNbItem, *_pdblReal, &iOne, pdblReal, &iOne);
+	*_pdblReal = (double*)MALLOC(sizeof(double) * *_piNbItem);
+	C2F(dcopy)(_piNbItem, pdblReal, &iOne, *_pdblReal, &iOne);
 
 	if(_iComplex)
 	{
-		*_pdblImg	= (double*)MALLOC(sizeof(double) * *_piNbItem);
-		C2F(dcopy)(_piNbItem, *_pdblImg, &iOne, pdblImg, &iOne);
+		*_pdblImg = (double*)MALLOC(sizeof(double) * *_piNbItem);
+		C2F(dcopy)(_piNbItem, pdblImg, &iOne, *_pdblImg, &iOne);
 	}
 
 	return 0;
