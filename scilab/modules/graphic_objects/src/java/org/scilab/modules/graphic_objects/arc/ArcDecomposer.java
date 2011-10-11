@@ -254,9 +254,9 @@ public class ArcDecomposer {
                 Double startAngle = (Double) GraphicController.getController().getProperty(id, __GO_START_ANGLE__);
                 Double endAngle = (Double) GraphicController.getController().getProperty(id, __GO_END_ANGLE__);
 
-                if (Utils.isValid(leftUpperPoint[0], leftUpperPoint[1], leftUpperPoint[2]) &&
-                    Utils.isValid(width) && Utils.isValid(height) &&
-                    Utils.isValid(startAngle) && Utils.isValid(endAngle)) {
+                if (Utils.isValid(leftUpperPoint[0], leftUpperPoint[1], leftUpperPoint[2])
+                    && Utils.isValid(width) && Utils.isValid(height)
+                    && Utils.isValid(startAngle) && Utils.isValid(endAngle)) {
                         valid = true;
                 }
 

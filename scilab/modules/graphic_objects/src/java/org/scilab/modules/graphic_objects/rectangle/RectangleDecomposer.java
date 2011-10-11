@@ -166,8 +166,8 @@ public class RectangleDecomposer {
                 Double height = (Double) GraphicController.getController().getProperty(id, __GO_HEIGHT__);
 
                 /* Indices are output only if all the rectangle's values are valid. */
-                if (Utils.isValid(upperLeftPoint[0], upperLeftPoint[1], upperLeftPoint[2]) &&
-                        Utils.isValid(width) && Utils.isValid(height)) {
+                if (Utils.isValid(upperLeftPoint[0], upperLeftPoint[1], upperLeftPoint[2])
+                        && Utils.isValid(width) && Utils.isValid(height)) {
                         valid = true;
                 }
 
@@ -202,8 +202,8 @@ public class RectangleDecomposer {
                 Double height = (Double) GraphicController.getController().getProperty(id, __GO_HEIGHT__);
 
                 /* Segment indices are output only if all the rectangle's values are valid. */
-                if (Utils.isValid(upperLeftPoint[0], upperLeftPoint[1], upperLeftPoint[2]) &&
-                        Utils.isValid(width) && Utils.isValid(height)) {
+                if (Utils.isValid(upperLeftPoint[0], upperLeftPoint[1], upperLeftPoint[2])
+                        && Utils.isValid(width) && Utils.isValid(height)) {
                         valid = true;
                 }
 
