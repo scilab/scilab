@@ -54,13 +54,13 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument %i: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);

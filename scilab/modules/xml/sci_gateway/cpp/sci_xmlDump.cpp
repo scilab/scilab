@@ -53,14 +53,14 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    type = isXMLObject(addr);
+    type = isXMLObject(addr, pvApiCtx);
     if (!type)
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XML object");
         return 0;
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
