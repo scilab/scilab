@@ -162,6 +162,8 @@ Localization:
 
 * Czech localization by Zbyněk Schwarz
 
+* bug 10032 fixed - Force the unset of the environnement variable LANGUAGE to
+                    tackle some issues.
 
 File input/output:
 ==================
