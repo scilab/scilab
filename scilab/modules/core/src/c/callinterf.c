@@ -35,7 +35,7 @@ jmp_buf jmp_env;
  ** @TODO : Make this less crappy...
  **/
 
-#define INTERFACES_MAX 68
+#define INTERFACES_MAX 69
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
     /* 02  */ {gw_linear_algebra},
