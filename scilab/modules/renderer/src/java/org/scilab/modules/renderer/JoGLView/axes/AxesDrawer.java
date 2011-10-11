@@ -122,10 +122,11 @@ public class AxesDrawer {
                 new Vector4d(0, 0, -1, +bounds[5])
         };
 
+        Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
         for (int i = 0 ; i < 6 ; i++) {
             ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
+            plane.setTransformation(currentTransformation);
             plane.setEquation(equations[i]);
-            plane.setTransformation(drawingTools.getTransformationManager().getTransformation());
             plane.setEnable(true);
         }
 
@@ -146,7 +147,7 @@ public class AxesDrawer {
      * Draw the axes background.
      * @param axes the {@see Axes}
      * @param drawingTools the {@see DrawingTools} to use.
-     * @param colorMap the curent {@see ColorMap}
+     * @param colorMap the current {@see ColorMap}
      */
     private void drawBackground(Axes axes, DrawingTools drawingTools, ColorMap colorMap) {
         if (axes.getFilled()) {
