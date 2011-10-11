@@ -56,7 +56,7 @@ int set_alignment_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   else
   {
     Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "alignment", "left, center, right");
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 

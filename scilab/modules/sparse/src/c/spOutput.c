@@ -134,12 +134,12 @@
 void spPrint(char *eMatrix,int PrintReordered,int Data,int Header )
 {
 register  int  J = 0;
-int I, Row, Col, Size, Top_, StartCol = 1, StopCol, Columns, ElementCount = 0;
-double  Magnitude, SmallestDiag, SmallestElement;
+int I = 0, Row = 0, Col = 0, Size = 0, Top_ = 0, StartCol = 1, StopCol = 0, Columns = 0, ElementCount = 0;
+double  Magnitude = 0., SmallestDiag = 0., SmallestElement = 0.;
 double  LargestElement = 0.0, LargestDiag = 0.0;
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-ElementPtr  pElement, pImagElements[PRINTER_WIDTH/10+1];
-int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
+ElementPtr  pElement = NULL, pImagElements[PRINTER_WIDTH/10+1];
+int  *PrintOrdToIntRowMap = NULL, *PrintOrdToIntColMap = NULL;
 
 /* Begin `spPrint'. */
     ASSERT( IS_SPARSE( Matrix ) );
@@ -397,10 +397,10 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 int spFileMatrix(char * eMatrix,char * File,char * Label,int  Reordered,int Data,int Header )
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-register  int  I, Size;
-register  ElementPtr  pElement;
-int  Row, Col, Err;
-FILE  *pMatrixFile;
+register  int  I = 0, Size = 0;
+register  ElementPtr  pElement = NULL;
+int  Row = 0, Col = 0, Err = 0;
+FILE  *pMatrixFile = NULL;
 
 /* Begin `spFileMatrix'. */
     ASSERT( IS_SPARSE( Matrix ) );

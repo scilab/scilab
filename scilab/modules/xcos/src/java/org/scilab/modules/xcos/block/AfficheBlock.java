@@ -125,13 +125,13 @@ public final class AfficheBlock extends BasicBlock {
 			/*
 			 * Update and refresh the values
 			 */
-			block.setValue(blockResult.toString());
+			String value = blockResult.toString();
 			
-			final mxGraphView view = block.getParentDiagram().getView();
-			final mxCellState parentState = view.getState(block.getParent());
+			block.setValue(value);
 			
-			view.validateBounds(parentState, block);
-			block.getParentDiagram().repaint(view.validatePoints(parentState, block));
+			final mxCellState state = graph.getView().getState(block);
+			state.setLabel(value);
+			graph.getAsComponent().redraw(state);
 			
 			if (LOG.isTraceEnabled()) {
 				LOG.trace(blockResult.toString());

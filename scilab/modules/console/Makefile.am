@@ -27,8 +27,7 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration
 
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
-src/jni/GiwsException.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 
 CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
@@ -146,7 +145,7 @@ libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
+libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes -I$(top_srcdir)/modules/commons/src/jni/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -185,12 +184,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
-
-## Libraries necessary
-## Change to include other Scilab modules/lib
-libsciconsole_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la \
-			$(top_builddir)/libs/MALLOC/libscimalloc.la 
-# java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### console : gateway declaration ####
 libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway

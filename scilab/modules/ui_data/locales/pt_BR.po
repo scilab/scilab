@@ -14,8 +14,35 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Variável indefinida %s.\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -25,28 +52,11 @@ msgstr "%s: Problema de memória no Java: não pode editar %s\n"
 msgid "%s: Type not handle yet"
 msgstr "%s: O tipo ainda não pode ser manipulado"
 
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Variável indefinida %s.\n"
+msgid "&File"
+msgstr "&Arquivo"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr ""
+msgid "&Close"
+msgstr "Fe&char"
 
 msgid "&?"
 msgstr "&?"
@@ -54,94 +64,38 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "Sobre o Scil&ab..."
 
-msgid "&Close"
-msgstr "Fe&char"
-
-msgid "&File"
-msgstr "&Arquivo"
-
-msgid "Boolean"
-msgstr "Boleano"
-
-msgid "Bytes"
-msgstr "Bytes"
-
-msgid "Close"
-msgstr "Fechar"
-
-msgid "Compiled function"
-msgstr "Função compilada"
-
-msgid "Copy"
-msgstr "Copiar"
-
-msgid "Cut"
-msgstr "Recortar"
-
-msgid "Double"
-msgstr ""
-
-msgid "File"
-msgstr "Arquivo"
-
-msgid "Filter"
-msgstr ""
-
-msgid "Function library"
-msgstr "Biblioteca de funções"
-
-msgid "Global variables can not be edited."
-msgstr "Variáveis globais não podem ser editadas."
-
-msgid "Graphic handles"
-msgstr "Manipuladores de gráficos"
-
 msgid "Icon"
 msgstr "Ícone"
-
-msgid "Implicit polynomial"
-msgstr ""
-
-msgid "Integer"
-msgstr "Número Inteiro"
-
-msgid "Intrinsic function"
-msgstr "Função intrínseca"
-
-msgid "List"
-msgstr "Lista"
-
-msgid "Matlab sparse"
-msgstr ""
-
-msgid "Mlist"
-msgstr ""
 
 msgid "Name"
 msgstr "Nome"
 
-msgid "Paste"
-msgstr "Colar"
+msgid "Bytes"
+msgstr "Bytes"
 
-msgid "Pointer"
-msgstr "Ponteiro"
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Visibility"
+msgstr "Visibilidade"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Filter"
+msgstr ""
+
+msgid "Double"
+msgstr ""
 
 msgid "Polynomial"
 msgstr ""
 
-msgid "Redo"
-msgstr "Refazer"
-
-msgid "Refresh the variable "
-msgstr "Atualizar a variável "
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo \"%s\" do Scilab não está instalado.\n"
+msgid "Boolean"
+msgstr "Boleano"
 
 msgid "Sparse"
 msgstr ""
@@ -149,26 +103,72 @@ msgstr ""
 msgid "Sparse boolean"
 msgstr ""
 
+msgid "Integer"
+msgstr "Número Inteiro"
+
+msgid "Graphic handles"
+msgstr "Manipuladores de gráficos"
+
 msgid "String"
 msgstr "Texto"
-
-msgid "Tlist"
-msgstr ""
-
-msgid "Type"
-msgstr "Tipo"
 
 msgid "Un-compiled function"
 msgstr ""
 
-msgid "Undo"
-msgstr "Desfazer"
+msgid "Compiled function"
+msgstr "Função compilada"
 
-msgid "Variable Browser"
-msgstr "Navegador de variáveis"
+msgid "Function library"
+msgstr "Biblioteca de funções"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Pointer"
+msgstr "Ponteiro"
+
+msgid "Intrinsic function"
+msgstr "Função intrínseca"
+
+msgid "Matlab sparse"
+msgstr ""
+
+msgid "Implicit polynomial"
+msgstr ""
 
 msgid "Variable Editor"
 msgstr "Editor de variáveis"
 
-msgid "Visibility"
-msgstr "Visibilidade"
+msgid "Variable Browser"
+msgstr "Navegador de variáveis"
+
+msgid "Global variables can not be edited."
+msgstr "Variáveis globais não podem ser editadas."
+
+msgid "Refresh the variable "
+msgstr "Atualizar a variável "
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Paste"
+msgstr "Colar"
+
+msgid "Cut"
+msgstr "Recortar"
+
+msgid "Undo"
+msgstr "Desfazer"
+
+msgid "Redo"
+msgstr "Refazer"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "O módulo \"%s\" do Scilab não está instalado.\n"

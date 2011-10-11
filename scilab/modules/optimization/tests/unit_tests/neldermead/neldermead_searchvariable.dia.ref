@@ -81,11 +81,11 @@ nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
-Function Evaluation #1 at [-1.2 1]
-Function Evaluation #2 at [-1.2 1]
-Function Evaluation #3 at [-1.2 1]
-Function Evaluation #4 at [-0.2 1]
-Function Evaluation #5 at [-1.2 2]
+Function Evaluation #1, index=1, x= [-1.2 1]
+Function Evaluation #2, index=2, x= [-1.2 1]
+Function Evaluation #3, index=2, x= [-1.2 1]
+Function Evaluation #4, index=2, x= [-0.2 1]
+Function Evaluation #5, index=2, x= [-1.2 2]
 Step #1 : order
 =================================================================
 Iteration #1 (total = 1)
@@ -103,10 +103,10 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=-1.2 1.5
-Function Evaluation #6 at [-2.2 2]
+Function Evaluation #6, index=2, x= [-2.2 2]
 xr=[-2.2 2], f(xr)=816.800000
 Contract - inside
-Function Evaluation #7 at [-0.7 1.25]
+Function Evaluation #7, index=2, x= [-0.7 1.25]
 xc=-0.7 1.25, f(xc)=60.650000
   > Perform Inside Contraction
 Sort
@@ -133,10 +133,10 @@ fv: 3-by-1 matrix
   > Terminate = F, status = continue
 Reflect
 xbar=-1.2 1.5
-Function Evaluation #8 at [-1.7 1.75]
+Function Evaluation #8, index=2, x= [-1.7 1.75]
 xr=[-1.7 1.75], f(xr)=137.250000
 Contract - inside
-Function Evaluation #9 at [-0.95 1.375]
+Function Evaluation #9, index=2, x= [-0.95 1.375]
 xc=-0.95 1.375, f(xc)=26.128125
   > Perform Inside Contraction
 Sort
@@ -163,10 +163,10 @@ fv: 3-by-1 matrix
   > Terminate = F, status = continue
 Reflect
 xbar=-1.075 1.1875
-Function Evaluation #10 at [-0.95 0.375]
+Function Evaluation #10, index=2, x= [-0.95 0.375]
 xr=[-0.95 0.375], f(xr)=31.628125
 Contract - outside
-Function Evaluation #11 at [-1.0125 0.78125]
+Function Evaluation #11, index=2, x= [-1.0125 0.78125]
 xc=-1.0125 0.78125, f(xc)=9.999182
   > Perform Outside Contraction
 Sort
@@ -193,10 +193,10 @@ fv: 3-by-1 matrix
   > Terminate = F, status = continue
 Reflect
 xbar=-1.10625 0.890625
-Function Evaluation #12 at [-1.2625 0.40625]
+Function Evaluation #12, index=2, x= [-1.2625 0.40625]
 xr=[-1.2625 0.40625], f(xr)=146.171643
 Contract - inside
-Function Evaluation #13 at [-1.028125 1.1328125]
+Function Evaluation #13, index=2, x= [-1.028125 1.1328125]
 xc=-1.028125 1.1328125, f(xc)=4.687423
   > Perform Inside Contraction
 Sort

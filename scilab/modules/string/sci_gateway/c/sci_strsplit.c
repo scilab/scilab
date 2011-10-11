@@ -231,7 +231,6 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 			if ( (m2 == 1) || (n2 == 1) ) 
 			{
-				int i = 0;
 				int m_out = 0, n_out = 0;
 				strsplit_error ierr = STRSPLIT_NO_ERROR;
 

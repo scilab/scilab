@@ -112,10 +112,8 @@ function ilib_build(ilib_name, ..
     mprintf(_("   Generate a Makefile\n"));  
   end
 
-  if getos() <> "Windows" then // Needs to copy the libfoo.c which contains important stuff
-    files = files(:)';
-    files = [files, ilib_name + ".c"];
-  end
+  files = files(:)';
+  files = unique([files, file_gw_name]);
 
   ilib_gen_Make(ilib_name, table, files, libs, makename, %t, ldflags, cflags, fflags, cc);
 

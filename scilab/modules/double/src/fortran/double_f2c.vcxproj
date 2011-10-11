@@ -87,24 +87,19 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -113,11 +108,9 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
       <ModuleDefinitionFile>double_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,24 +128,19 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -161,11 +149,9 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
       <ModuleDefinitionFile>double_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -181,22 +167,19 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -207,13 +190,9 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -232,22 +211,19 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -258,13 +234,9 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

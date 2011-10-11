@@ -19,6 +19,7 @@ BLOCKS_C = [..
 "absolute_value", ..
 "acos_blk", ..
 "acosh_blk", ..
+"affich2", ..
 "andlog", ..
 "asin_blk", ..
 "asinh_blk", ..
@@ -329,7 +330,6 @@ BLOCKS_C = [..
 ];
 
 BLOCKS_FORTRAN = [
-"affich", ..
 "csslti", ..
 "cstblk", ..
 "delay", ..

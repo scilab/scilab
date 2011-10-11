@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -112,16 +113,13 @@ libscifunctions_algo_la_LIBADD =
 am__objects_1 = libscifunctions_algo_la-getmacroslist.lo \
 	libscifunctions_algo_la-librarieslist.lo \
 	libscifunctions_algo_la-libraryinfo.lo \
+	libscifunctions_algo_la-isScilabFunction.lo \
 	libscifunctions_algo_la-searchmacroinlibraries.lo
 am__objects_2 = whereis.lo
 am_libscifunctions_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscifunctions_algo_la_OBJECTS =  \
 	$(am_libscifunctions_algo_la_OBJECTS)
-libscifunctions_la_DEPENDENCIES = libscifunctions-algo.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libscifunctions_la_DEPENDENCIES = libscifunctions-algo.la
 am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
 	libscifunctions_la-sci_execstr.lo \
@@ -415,6 +413,7 @@ top_srcdir = @top_srcdir@
 FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
+	src/c/isScilabFunction.c \
 	src/c/searchmacroinlibraries.c
 
 FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
@@ -454,11 +453,7 @@ libscifunctions_algo_la_CFLAGS = $(libscifunctions_la_CFLAGS)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
 libscifunctions_la_LIBADD = \
-	libscifunctions-algo.la \
-$(top_builddir)/modules/string/libscistring.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la
+	libscifunctions-algo.la
 
 
 #### Target ######
@@ -624,6 +619,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-getmacroslist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-isScilabFunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-librarieslist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-libraryinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-searchmacroinlibraries.Plo@am__quote@
@@ -677,6 +673,13 @@ libscifunctions_algo_la-libraryinfo.lo: src/c/libraryinfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/libraryinfo.c' object='libscifunctions_algo_la-libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_algo_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_algo_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
+
+libscifunctions_algo_la-isScilabFunction.lo: src/c/isScilabFunction.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_algo_la_CFLAGS) $(CFLAGS) -MT libscifunctions_algo_la-isScilabFunction.lo -MD -MP -MF $(DEPDIR)/libscifunctions_algo_la-isScilabFunction.Tpo -c -o libscifunctions_algo_la-isScilabFunction.lo `test -f 'src/c/isScilabFunction.c' || echo '$(srcdir)/'`src/c/isScilabFunction.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_algo_la-isScilabFunction.Tpo $(DEPDIR)/libscifunctions_algo_la-isScilabFunction.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isScilabFunction.c' object='libscifunctions_algo_la-isScilabFunction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_algo_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_algo_la-isScilabFunction.lo `test -f 'src/c/isScilabFunction.c' || echo '$(srcdir)/'`src/c/isScilabFunction.c
 
 libscifunctions_algo_la-searchmacroinlibraries.lo: src/c/searchmacroinlibraries.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_algo_la_CFLAGS) $(CFLAGS) -MT libscifunctions_algo_la-searchmacroinlibraries.lo -MD -MP -MF $(DEPDIR)/libscifunctions_algo_la-searchmacroinlibraries.Tpo -c -o libscifunctions_algo_la-searchmacroinlibraries.lo `test -f 'src/c/searchmacroinlibraries.c' || echo '$(srcdir)/'`src/c/searchmacroinlibraries.c
@@ -1100,6 +1103,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

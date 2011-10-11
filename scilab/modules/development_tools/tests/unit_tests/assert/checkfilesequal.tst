@@ -274,11 +274,11 @@ function areequal = mycompfun2 ( ctxt , etxt , pattern )
 endfunction
 //
 // A test which pass
-mycompfun2 = list ( mycompfun2 , pattern );
-[flag,errmsg] = assert_checkfilesequal ( filecomp3 , fileref2 , mycompfun2 );
+mycompfun3 = list ( mycompfun2 , pattern );
+[flag,errmsg] = assert_checkfilesequal ( filecomp3 , fileref2 , mycompfun3 );
 checkassert ( flag , errmsg , "success" );
 //
 // A test which fails
-[flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun2 );
+[flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun3 );
 checkassert ( flag , errmsg , "failure" );
 

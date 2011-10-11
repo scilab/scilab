@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - 
+*  Copyright (C) INRIA -
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -113,43 +113,25 @@ ScicosImport* getscicosimportptr(void)
  return &scicos_imp;
 }
 /*--------------------------------------------------------------------------*/
-void C2F(makescicosimport)(x,nx,xptr,zcptr,z,nz,zptr,
-                           noz,oz,ozsz,oztyp,ozptr,
-                           g,ng,mod,nmod,modptr,iz,izptr,
-                           inpptr,inplnk,outptr,outlnk,
-                           outtbptr,outtbsz,outtbtyp,
-                           outtb_elem,nelem,
-                           nlnk,rpar,rpptr,ipar,ipptr,
-                           opar,oparsz,opartyp,opptr,
-                           nblk,subs,nsubs,
-                           tevts,evtspt,nevts,pointi,
-                           iord,niord,oord,noord,zord,nzord,
-                           funptr,funtyp,ztyp,
-                           cord,ncord,ordclk,nordclk,clkptr,
-                           ordptr,nordptr,critev,iwa,blocks,
-                           t0,tf,Atol,rtol,ttol,deltat,hmax,
-                           xprop,xd)
-
-double  *x ,*z,*rpar,*tevts,*g;
-int *xptr,*zcptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk;
-void    **outtbptr;
-void    **oz;
-void    **opar;
-int *outtbsz,*outtbtyp;
-int *ozsz,*oztyp;
-int *oparsz,*opartyp;
-outtb_el *outtb_elem;
-int *nelem;
-int *nx,*nz,*ng,*nlnk,*rpptr,*ipar,*ipptr,*nblk,*subs,*nsubs;
-int *noz,*ozptr,*opptr;
-int *evtspt,*nevts,*pointi,*iord,*niord,*oord,*noord,*zord,*nzord;
-int *funptr,*funtyp,*ztyp,*cord,*ncord,*ordclk;
-int *clkptr,*ordptr,*nordptr,*nordclk,*critev, *iwa, *mod,*nmod,*modptr;
-double  *t0,*tf,*Atol,*rtol,*ttol,*deltat,*hmax;
-scicos_block *blocks;
-int *xprop;
-double *xd;
-
+void C2F(makescicosimport)(double *x, int *nx,
+    int *xptr, int *zcptr,
+    double *z, int *nz, int *zptr,
+    int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr,
+    double *g, int *ng,
+    int *mod, int *nmod, int *modptr,
+    int *iz, int *izptr, int *inpptr, int *inplnk,
+    int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp,
+    outtb_el *outtb_elem, int *nelem,
+    int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr,
+    void **opar, int *oparsz, int *opartyp, int *opptr,
+    int *nblk, int *subs, int *nsubs,
+    double *tevts, int *evtspt, int *nevts, int *pointi,
+    int *iord, int *niord, int *oord, int *noord, int *zord, int *nzord,
+    int *funptr, int *funtyp, int *ztyp,
+    int *cord, int *ncord, int *ordclk, int *nordclk,int *clkptr,
+    int *ordptr, int *nordptr, int *critev,  int *iwa, scicos_block *blocks,
+    double *t0, double *tf, double *Atol, double *rtol, double *ttol, double *deltat, double *hmax,
+    int *xprop, double *xd)
 {
     scicos_imp.x=x;
     scicos_imp.nx=nx;
@@ -881,7 +863,7 @@ int C2F(getscilabel)(int *kfun, int label[], int *n)
 	u=(int *)&(scicos_imp.iz[scicos_imp.izptr[k-1]-1]);
 	y=label;
 	for (i=0;i<*n;i++)
-	    *(y++)=*(u++);  
+	    *(y++)=*(u++);
 	}
     return(0);
 }

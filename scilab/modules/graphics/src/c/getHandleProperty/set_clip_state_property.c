@@ -59,7 +59,7 @@ int set_clip_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   else
   {
     Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "clip_state", "on, off, clipgrf");
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 }

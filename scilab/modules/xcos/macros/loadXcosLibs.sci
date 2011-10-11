@@ -63,8 +63,18 @@ function loadXcosLibs()
   
   resumedBlocks = removed';
 
+  [modelica_libs, scicos_pal_libs, ..
+   %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+   
+  resumedVars = [
+"modelica_libs"
+"scicos_pal_libs"
+"%scicos_with_grid"
+"%scs_wgrid"]';
+
+
   // put all resumed symbols into the parent scope
   prot = funcprot();
-  execstr("funcprot(0); [" + strcat([resumedLibs resumedBlocks], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks], ", ") + "); funcprot(" + string(prot) + ");");
+  execstr("funcprot(0); [" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "); funcprot(" + string(prot) + ");");
 endfunction
 

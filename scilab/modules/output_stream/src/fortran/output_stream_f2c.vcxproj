@@ -92,23 +92,19 @@ lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build output_stream_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n output_stream_f.dll %%f &gt;nul
-copy *.def output_stream_f.def &gt;nul
-copy output_stream_f.def ..\output_stream_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -117,12 +113,10 @@ copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nu
       <ModuleDefinitionFile>output_stream_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,23 +139,19 @@ lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build output_stream_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n output_stream_f.dll %%f &gt;nul
-copy *.def output_stream_f.def &gt;nul
-copy output_stream_f.def ..\output_stream_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -170,12 +160,10 @@ copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nu
       <ModuleDefinitionFile>output_stream_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -196,22 +184,19 @@ lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
       <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build output_stream_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n output_stream_f.dll %%f &gt;nul
-copy *.def output_stream_f.def &gt;nul
-copy output_stream_f.def ..\output_stream_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -222,14 +207,10 @@ copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nu
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -253,22 +234,19 @@ lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
       <AdditionalIncludeDirectories>../../../../libs/f2c;../../../core/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build output_stream_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n output_stream_f.dll %%f &gt;nul
-copy *.def output_stream_f.def &gt;nul
-copy output_stream_f.def ..\output_stream_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -279,14 +257,10 @@ copy output_stream_f_header.def+output_stream_f.vcdef output_stream_f.def &gt;nu
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -39,7 +39,6 @@ int sci_tempname(char *fname,unsigned long fname_len)
     if (Rhs == 1)
     {
         int *piAddressVarOne = NULL;
-        int m1 = 0, n1 = 0;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if(sciErr.iErr)

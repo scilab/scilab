@@ -29,13 +29,13 @@ value = winqueryreg('rootkey', 'subkey')</synopsis>
     défaut" de la clef rootkey\subkey.</para>
     <para><literal>Note</literal>Les arguments 'name' et 'rootkey' sont
     "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</para>
+    <para>Les clefs racine supportées sont: 'HKEY_CLASSES_ROOT', 'HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE', 'HKEY_USERS', 'HKEY_DYN_DATA' and 'HKEY_CURRENT_CONFIG'.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 if getos() == 'Windows' then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
-  lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
   len=size(mousechar);
   for k=1:len(1)
@@ -44,6 +44,7 @@ if getos() == 'Windows' then
     str = sprintf('%s = %s', mousechar(k), string(setting));
     disp(str);
   end
+  winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')
 end
  ]]></programlisting>
   </refsection>

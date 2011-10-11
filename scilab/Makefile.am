@@ -167,16 +167,14 @@ javadoc:
 	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
 	org.scilab.modules.javasci org.scilab.modules.types
 
-LANGDOC=en_US fr_FR pt_BR ja_JP
-
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		for l in $(LANGDOC); do \
+		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -ex \"$$COMMAND\"";\
 			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
@@ -190,7 +188,7 @@ doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		for l in $(LANGDOC); do \
+		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
 			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
@@ -210,7 +208,7 @@ endif
 
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		for l in $(LANGDOC); do \
+		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Checking documentation ($$l) --"; \
 			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e \"$$COMMAND\"";\
@@ -235,9 +233,11 @@ if CODE_COVERAGE
 	@if test ! -d $(top_builddir)/coverage/; then \
 		mkdir $(top_builddir)/coverage/; \
 	fi; \
+	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
 	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
-	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"
+	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
+	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 else
 	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
@@ -260,9 +260,9 @@ clean-macros:
 clean-doc: clean-help
 
 clean-help:
-	@if test -x $(top_builddir)/scilab-cli-bin; then \
+	-@if test -x $(top_builddir)/scilab-cli-bin; then \
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
-		for l in $(LANGDOC); do \
+		for l in $(ALL_LINGUAS_DOC); do \
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
 			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1; \
 		done; \
@@ -318,7 +318,7 @@ check-java:
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
-	MASK="modules/*/locales*/"; \
+	MASK="modules/*/locales/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	EXTENSION="*.po"; \
@@ -345,7 +345,7 @@ localization-status:
 			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
-		echo "Building $$LOCALE"; \
+		echo "Building status for $$LOCALE"; \
 		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
 		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 	done; 

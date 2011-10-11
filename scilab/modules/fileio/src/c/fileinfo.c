@@ -48,7 +48,6 @@ double * fileinfo(char *filename, int *ierr)
 {
 	char *expandedpath = NULL;
 	double *FILEINFO_ARRAY = NULL;
-	int out_n = 0;
 
 	if (filename == NULL)
 	{

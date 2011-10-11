@@ -12,9 +12,10 @@
 
 #include "gw_boolean.h"
 /*--------------------------------------------------------------------------*/
+extern int C2F(intsbool2s)();
+/*--------------------------------------------------------------------------*/
 int C2F(sci_bool2s)(char *fname,unsigned long fname_len)
 {
-	extern int C2F(intsbool2s)();
 	C2F(intsbool2s)();
 	return 0;
 }

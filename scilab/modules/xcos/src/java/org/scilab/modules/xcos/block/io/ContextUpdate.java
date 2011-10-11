@@ -415,12 +415,12 @@ public abstract class ContextUpdate extends BasicBlock {
 		
 		LOG_LOCAL.trace("Update the I/O value from the context");
 		
-		File tempOutput;
-		File tempInput;
-		File tempContext;
+		String tempOutput;
+		String tempInput;
+		String tempContext;
 		try {
 			tempInput = FileUtils.createTempFile();
-			tempInput.deleteOnExit();
+			new File(tempInput).deleteOnExit();
 
 			// Write scs_m
 			tempOutput = exportBlockStruct();
@@ -428,8 +428,8 @@ public abstract class ContextUpdate extends BasicBlock {
 			tempContext = exportContext(context);
 
 			String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval",
-					tempOutput.getAbsolutePath(), tempInput.getAbsolutePath(),
-					getInterfaceFunctionName().toCharArray(), tempContext.getAbsolutePath());
+					tempOutput, tempInput,
+					getInterfaceFunctionName().toCharArray(), tempContext);
 
 			try {
 				ScilabInterpreterManagement.synchronousScilabExec(cmd);

@@ -264,8 +264,14 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfPoly");
+        return sciErr;
+    }
+
 	C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -360,9 +366,6 @@ static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iCom
 	int iRows	= 0;
 	int iCols	= 0;
 
-	double* pdblReal = NULL;
-	double* pdblImg	 = NULL;
-
 	if(isScalar(_pvCtx, _piAddress) == 0)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SINGLE_POLY, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _iComplex ? "getAllocatedSingleComplexPoly" : "getAllocatedSinglePoly", getRhsFromAddress(_pvCtx, _piAddress));
@@ -455,9 +458,6 @@ static int getCommonAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iC
 {
 	SciErr sciErr;
 
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
-
 	sciErr = getCommonMatrixOfPoly(_pvCtx, _piAddress, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
 	if(sciErr.iErr)
 	{
@@ -515,12 +515,7 @@ int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, const char* _pstName, int
 static int getCommonAllocatedNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg)
 {
 	SciErr sciErr;
-	int iRows	= 0;
 	int iCols	= 0;
-
-	double* pdblReal = NULL;
-	double* pdblImg	 = NULL;
-
 
 	sciErr = readCommonNamedMatrixOfPoly(_pvCtx, _pstName, _iComplex, _piRows, _piCols, NULL, NULL, NULL);
 	if(sciErr.iErr)

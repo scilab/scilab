@@ -65,7 +65,7 @@
 //roots(p)
 //
 //
-//Jean-Marc Sac-EpÃ©e on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
+//Jean-Marc Sac-Epée on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
 //France  September 27, 2000 at 9:18:17
 
 // 
@@ -92,7 +92,7 @@ endfunction
 //   compfun : the comparison function
 //   data : an optionnal data to pass to the comparison function
 // Bruno Pincon
-// "quelques tests de rapidit�e entre diff�erents logiciels matriciels"
+// "quelques tests de rapidité entre différents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
@@ -164,7 +164,7 @@ t=poly(0,"t");
 p=t^14 - 15*t^12 - t^11 + 89*t^10 + 12*t^9 - 263*t^8 - 53*t^7 + 397*t^6 + 103*t^5 - 275*t^4 - 78*t^3 + 62*t^2 + 8*t - 7;
 myroots=roots(p);
 //computedroots = sort(myroots);
-computed = sort_merge ( myroots , compare_complexrealimag , [%eps,0] );
+computed = sort_merge ( myroots , mycomparison , [%eps,0] );
 expected  = [ 
 - 1.9914144710587742270747  
 - 1.89588904429592775003 
@@ -182,7 +182,4 @@ expected  = [
 1.9767819021883872299128 + 0.0347589196932355307124*%i  
 ];
 // Precision measured with experiments
-assert_checkalmostequal ( computed , expected , 10^5*%eps );
-
-
-
+assert_checkalmostequal ( computed , expected , 10^6*%eps );

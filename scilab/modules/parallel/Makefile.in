@@ -70,9 +70,10 @@ DIST_COMMON = $(libsciparallel_la_include_HEADERS) \
 subdir = modules/parallel
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -436,17 +437,10 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libsciparallel.la
-#noinst_LTLIBRARIES = libsciparallel-algo.la
 libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
-#libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
-#libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
 @OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 @OPENMP_FALSE@src/noparallel/noparallel.c
 
-
-#libsciparallel_la_LIBADD = libsciparallel-algo.la
-
-#libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
 @OPENMP_TRUE@libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
@@ -1042,6 +1036,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

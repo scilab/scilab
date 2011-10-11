@@ -33,8 +33,6 @@ int sci_basename(char *fname,unsigned long fname_len)
 
 	wchar_t **pStResult = NULL;
 
-	int i = 0;
-
 	/* Check Input & Output parameters */
 	CheckRhs(1,3);
 	CheckLhs(1,1);

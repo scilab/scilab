@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA 2007 - Cong WU
  * Copyright (C) INRIA 2008 - Allan CORNET
- * Copyright (C) DIGITEO 2009-2010 - Allan CORNET
+ * Copyright (C) DIGITEO 2009-2011 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,12 +36,14 @@ length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+#include "isScilabFunction.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
 static int lengthStrings(int *piAddressVar);
 static int lengthOthers(char *fname);
 static int lengthDefault(int *piAddressVar);
 static int lengthList(int *piAddressVar);
+static int lengthMList(const char *fname, int *piAddressVar);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
 static int lengthSparse(int *piAddressVar);
 /*----------------------------------------------------------------------------*/
@@ -77,9 +79,13 @@ int sci_length(char *fname,unsigned long fname_len)
         }
     case sci_list :
     case sci_tlist :
-    case sci_mlist :
         {
             return lengthList(piAddressVarOne);
+        }
+        break;
+    case sci_mlist :
+        {
+            return lengthMList(fname, piAddressVarOne);
         }
         break;
 
@@ -103,11 +109,8 @@ static int lengthStrings(int *piAddressVar)
     int *lenStVarOne = NULL;
 
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
     int i = 0;
-
-    int ierr = 0;
 
     sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
     if(sciErr.iErr)
@@ -279,7 +282,6 @@ static int lengthOthers(char *fname)
 static int lengthSparse(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int m = 0, n = 0;
@@ -314,10 +316,66 @@ static int lengthSparse(int *piAddressVar)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+static int lengthMList(const char *fname, int *piAddressVar)
+{
+    int nbItem = 0;
+    int* piAddrChild    = NULL;
+
+    SciErr sciErr = getListItemNumber(pvApiCtx, piAddressVar, &nbItem);
+    if ((sciErr.iErr) || (nbItem < 1))
+    {
+        return lengthList(piAddressVar);
+    }
+
+    sciErr = getListItemAddress(pvApiCtx, piAddressVar, 1, &piAddrChild);
+    if (sciErr.iErr)
+    {
+        return lengthList(piAddressVar);
+    }
+
+    if (isStringType(pvApiCtx, piAddrChild))
+    {
+        int m = 0, n = 0;
+        char **pstrData = NULL;
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrChild, &m, &n, &pstrData) == 0)
+        {
+            char overloadFunctionName[nlgh];
+            int lengthOverloadFunctionName = (int)(strlen("%") + strlen(pstrData[0]) + strlen("_") + strlen(fname) + 1);            
+            if (lengthOverloadFunctionName > nlgh) // length of function name in S5
+            {
+                freeAllocatedMatrixOfString(m, n, pstrData);
+                pstrData = NULL;
+                return lengthList(piAddressVar);
+            }
+            else
+            {
+                strcpy(overloadFunctionName, "%");
+                strcat(overloadFunctionName, pstrData[0]);
+                freeAllocatedMatrixOfString(m, n, pstrData);
+                pstrData = NULL;
+
+                strcat(overloadFunctionName, "_");
+                strcat(overloadFunctionName, fname);
+
+                if (isScilabFunction(overloadFunctionName))
+                {
+                    int lw = 1 + Top - Rhs;
+                    C2F(overload)(&lw, (char*)fname, strlen(fname));
+                    return 0;
+                }
+                else
+                {
+                    return lengthList(piAddressVar);
+                }
+            }
+        }
+    }
+    return lengthList(piAddressVar);
+}
+/*--------------------------------------------------------------------------*/
 static int lengthList(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int nbItem = 0;
@@ -349,14 +407,13 @@ static int lengthList(int *piAddressVar)
 
     LhsVar(1) = Rhs + 1; 
     PutLhsVar();
-    
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int lengthDefault(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int m = 0, n = 0;

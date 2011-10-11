@@ -99,7 +99,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc">

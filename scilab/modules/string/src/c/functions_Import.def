@@ -1,0 +1,9 @@
+LIBRARY    functions.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; functions
+; --------------------------------------- 
+isScilabFunction
+

@@ -67,6 +67,8 @@ define("REV_NOTRANS",  6); // file without translation
 define("REV_CREDIT",   7); // only used in translators list
 define("REV_WIP",      8); // only used in translators list
 
+$gitOptions="--no-color -n 1";
+
 // Colors used to mark files by status (colors for the above types)
 $CSS = array(
   REV_UPTODATE => "act",
@@ -95,10 +97,6 @@ function init_files_by_maint($persons) {
 
 $file_sizes_by_mark = $files_by_mark = init_revisions();
 
-// Option for the link to svn.php.net:
-define('SVN_OPT', '&amp;view=patch');
-define('SVN_OPT_NOWS', '');
-
 // Initializing variables from parameters
 $LANG = $argv[1];
 $MAINT = "";
@@ -125,12 +123,21 @@ if (!is_dir($DOCDIR)) {
 // Functions to get revision info and credits from a file
 // =========================================================================
 function get_last_commit_from_git($file) {
-    return exec("cd `dirname $file` > /dev/null; git log -n 1 $file|head -1|cut -d' ' -f2; cd - > /dev/null");
+    global $gitOptions;
+    $cmd="cd `dirname $file` > /dev/null; git log $gitOptions $file|head -1|cut -d' ' -f2; cd - > /dev/null";
+    $lastcommit=exec($cmd);
+    if (!$lastcommit) {
+        die("Error: Could not retrieve the last commit from git: ".$cmd);
+    }
+    return $lastcommit;
 }
 
 function get_last_revision_from_git($file) {
     global $DOCDIR;
     $commit=get_last_commit_from_git($file);
+    if (!$commit) {
+        die("Error: empty commit");
+    }
     $tempFile="/tmp/git_rev-list.txt";
     if (!is_file($tempFile)) {
         exec("cd `dirname $DOCDIR` > /dev/null; git rev-list --reverse HEAD > $tempFile; cd - > /dev/null");
@@ -139,7 +146,8 @@ function get_last_revision_from_git($file) {
 }
 
 function get_author_from_git($file) {
-    return ucwords(strtolower(exec("cd `dirname $file` > /dev/null; git log -n 1 $file|head -2|grep 'Author:'|sed -e 's|Author: \(.*\) <.*|\\1|g'; cd - > /dev/null")));
+    global $gitOptions;
+    return ucwords(strtolower(exec("cd `dirname $file` > /dev/null; git log $gitOptions $file|head -2|grep 'Author:'|sed -e 's|Author: \(.*\) <.*|\\1|g'; cd - > /dev/null")));
 
 }
 
@@ -151,7 +159,6 @@ function get_tags($file, $val = "en-rev") {
   $fp = @fopen($file, "r") or die ("Unable to read $file.");
   $line = fread($fp, 500);
   fclose($fp);
-  // Check for English SVN revision tag (. is for $ in the preg!),
   // Return if this was needed (it should be there)
   if ($val == "en-rev") {
       return get_last_revision_from_git($file);
@@ -207,7 +214,8 @@ function get_tags($file, $val = "en-rev") {
 } // get_tags() function end
 
 function detect_date_from_git($file) {
-    $en_date=strtotime(trim(exec("cd `dirname $file` > /dev/null; git log -n 1   --date=iso $file|grep Date:|sed -e \"s|Date:||g\"; cd - > /dev/null")));
+    global $gitOptions;
+    $en_date=strtotime(trim(exec("cd `dirname $file` > /dev/null; git log $gitOptions --date=iso $file|grep Date:|sed -e \"s|Date:||g\"; cd - > /dev/null")));
     return $en_date;
 }
 
@@ -387,12 +395,14 @@ function get_dir_status($dir,$lang) {
     || $file == 'rsusi.txt'
     || $file == 'missing-ids.xml'
     || $file == 'license.xml'
+    || $file == 'master_help.xml'
+    || preg_grep("/scilab_.*_help/",Array($dir))
     || $file == 'versions.xml'
     ) {
       continue;
     }
 
-    if ($file != '.' && $file != '..' && $file != '.svn' && $dir != '/functions') {
+    if ($file != '.' && $file != '..' && $dir != '/functions') {
       if (is_dir($dir.'/' .$file)) {
           $directories[] = $file;
       } elseif (is_file($dir.'/' .$file)) {
@@ -466,7 +476,6 @@ function get_old_files($dir) {
     // If we found a file with one or two point as a name,
     // a SVN directory, or an editor backup file skip the file
     if (preg_match("/^\.{1,2}/", $file)
-        || $file == '.svn'
         || substr($file, -1) == '~' // Emacs backup file
         || substr($file, -4) == '.new'
        ) {
@@ -913,16 +922,10 @@ END_OF_MULTILINE;
     }
 
     // If we have a 'numeric' revision diff and it is not zero,
-    // make a link to the SVN repository's diff script
+    // make a link to the git repository's diff script
     if ($file["revision"][2] != "n/a" && $file["revision"][2] !== 0) {
         $url="http://cgit.scilab.org/scilab/diff/?id="
             .$file['commit'][0]."d2=".$file['commit'][1];
-/*      $url = 'http://svn.php.net/viewvc/' .
-             preg_replace( "'^".$DOCDIR."en/'", 'phpdoc/en/trunk/', $file['full_name']) .
-             '?r1=' . $file['revision'][1] . '&amp;r2=' . $file['revision'][0];
-      $url_ws = $url . SVN_OPT_NOWS;
-      $url   .= SVN_OPT;
-*/
         $file['short_name'] = '<a href="' . $url . '">'. $file["short_name"] . '</a> ';
 //                            '<a href="' . $url_ws . '">[NoWS]</a>';--
     }

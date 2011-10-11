@@ -78,9 +78,7 @@
       </HeaderFileName>
     </Midl>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -90,9 +88,7 @@
       </HeaderFileName>
     </Midl>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -101,9 +97,7 @@
       </HeaderFileName>
     </Midl>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -113,9 +107,7 @@
       </HeaderFileName>
     </Midl>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
+      </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <rename_vc_extension_files Include="..\..\etc\logging.properties.vc" />

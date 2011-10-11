@@ -48,6 +48,7 @@ ilib_build('foo',['scifun1','intfun1'],files,[]);
    Generate a loader file
    Generate a Makefile
    Running the makefile
+   Compilation of foo.c
    Compilation of fun1.c
    Compilation of fun2.c
    Compilation of intfun1.c
@@ -85,7 +86,7 @@ end
  
 //
  
-list_functions = [                   'scifun1';
+list_functions = [ 'scifun1';
 ];
  
 addinter(foo_path + filesep() + 'foo' + getdynlibext(), 'foo', list_functions);

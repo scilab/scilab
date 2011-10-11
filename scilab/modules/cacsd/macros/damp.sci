@@ -79,7 +79,7 @@ function [wn,z,p] = damp(R,dt1)
   z=-ones(p);
   im=ieee();ieee(2);//to allow inf and nan's
   if dt>0 then // Discrete  time case
-    ind=find(abs(p-1)>10*%eps)
+    ind=find(p<>1)
     s=p(ind);
     s=log(s)/dt;
   else //continuous time case

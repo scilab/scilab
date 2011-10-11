@@ -23,7 +23,6 @@ int sci_getdrives(char *fname,unsigned long l)
 	static int l1=0,n1=0,m1=0;
 	char **Drives=NULL;
 	int nbDrives=0;
-	int i=0;
 
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0);

@@ -69,9 +69,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/ui_data
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -134,10 +135,7 @@ libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la
 am__objects_5 = libsciui_data_la-gw_ui_data.lo
 am__objects_6 = libsciui_data_la-sci_editvar.lo \
 	libsciui_data_la-sci_browsevar.lo
@@ -536,6 +534,7 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/commons/src/jni \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
@@ -558,12 +557,7 @@ libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
-libsciui_data_la_LIBADD = \
-libsciui_data-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciui_data_la_LIBADD = libsciui_data-algo.la
 
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -1135,6 +1129,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

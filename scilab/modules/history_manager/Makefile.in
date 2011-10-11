@@ -67,9 +67,10 @@ DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 subdir = modules/history_manager
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -131,10 +132,7 @@ am_libscihistory_manager_algo_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3)
 libscihistory_manager_algo_la_OBJECTS =  \
 	$(am_libscihistory_manager_algo_la_OBJECTS)
-libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la
 am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_addhistory.lo \
 	libscihistory_manager_la-sci_displayhistory.lo \
@@ -510,7 +508,7 @@ libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
-libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la
 modulename = history_manager
 
 #### history_manager : Conf files ####
@@ -1251,6 +1249,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

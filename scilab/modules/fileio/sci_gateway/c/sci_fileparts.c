@@ -79,7 +79,6 @@ int sci_fileparts(char *fname, unsigned long fname_len)
 
     if (Rhs == 2)
     {
-        int m2 = 0, n2 = 0;
         int *piAddressVarTwo = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);

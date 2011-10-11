@@ -300,7 +300,6 @@
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc">

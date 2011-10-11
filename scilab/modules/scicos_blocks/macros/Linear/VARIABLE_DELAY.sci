@@ -73,7 +73,7 @@ case 'define' then
   model.rpar=[T,init];
   model.ipar=N
   model.blocktype='d'
-  model.dep_ut=[%f %t %f]
+  model.dep_ut=[%f %f]
 
   exprs=[string(T);string(init);string(N)];
   gr_i=['txt=[''Variable'';''delay''];';

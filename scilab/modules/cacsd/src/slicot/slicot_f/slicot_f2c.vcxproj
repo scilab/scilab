@@ -86,23 +86,19 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build slicot_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
-copy *.def slicot_f.def &gt;nul
-copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -112,12 +108,10 @@ copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
       <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,23 +128,19 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build slicot_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
-copy *.def slicot_f.def &gt;nul
-copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -160,12 +150,10 @@ copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
       <ModuleDefinitionFile>slicot_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -180,22 +168,19 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build slicot_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
-copy *.def slicot_f.def &gt;nul
-copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -207,14 +192,10 @@ copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -232,22 +213,19 @@ lib /DEF:"$(ProjectDir)libscilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLICOT_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build slicot_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slicot_f.dll %%f &gt;nul
-copy *.def slicot_f.def &gt;nul
-copy slicot_f.def ..\slicot_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -259,14 +237,10 @@ copy slicot_f_header.def+slicot_f.vcdef slicot_f.def &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

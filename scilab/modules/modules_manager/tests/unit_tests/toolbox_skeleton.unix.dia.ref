@@ -1,0 +1,89 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- NO CHECK ERROR OUTPUT -->
+// <-- ENGLISH IMPOSED -->
+// Test the toolbox skeleton in SCI/contrib/
+//  - Building/Compilation
+//  - Loading
+// Scilab external module skeleton
+status = copyfile(SCI + "/contrib/toolbox_skeleton/", TMPDIR + "/toolbox_skeleton/");
+assert_checkequal(status, 1);
+exec("TMPDIR/toolbox_skeleton/builder.sce");
+Building macros...
+-- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_sum.sci
+genlib: Regenerate names and lib
+Building sources...
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy fsum.f to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
+   Generate a cleaner file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy csum.c to TMPDIR
+   ilib_gen_Make: Copy csub.c to TMPDIR
+   ilib_gen_Make: Copy multiplybypi.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
+   Generate a cleaner file
+Building gateway...
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy libskeleton_fortran.c to TMPDIR
+   ilib_gen_Make: Copy sci_fsum.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy libskeleton_c.c to TMPDIR
+   ilib_gen_Make: Copy sci_csub.c to TMPDIR
+   ilib_gen_Make: Copy sci_csum.c to TMPDIR
+   ilib_gen_Make: Copy sci_multiplybypi.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy libskeleton_cpp.c to TMPDIR
+   ilib_gen_Make: Copy sci_cpp_find.cxx to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+Generating loader_gateway.sce...
+Generating cleaner_gateway.sce...
+Building help...
+
+Building the master document:
+	TMPDIR/toolbox_skeleton/help/en_US
+
+Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/en_US.
+
+Building the master document:
+	TMPDIR/toolbox_skeleton/help/fr_FR
+
+Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
+Generating loader.sce...
+Generating cleaner.sce...
+exec("TMPDIR/toolbox_skeleton/loader.sce");
+Start Toolbox skeleton
+	Load macros
+	Load gateways
+	Load help
+	Load demos

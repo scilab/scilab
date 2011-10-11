@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos.graph;
 
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
+
 import java.awt.Color;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -1518,8 +1520,8 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @param fileName HDF5 filename
      */
-    public void dumpToHdf5File(final File fileName) {
-    	File writeFile = fileName;
+    public void dumpToHdf5File(final String fileName) {
+    	String writeFile = fileName;
 	if (fileName == null) {
 	    final FileChooser fc = ScilabFileChooser.createFileChooser();
 	    if (getSavedFile() != null) {
@@ -1535,7 +1537,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
 		return;
 	    }
-	    writeFile = new File(fc.getSelection()[0]);
+	    writeFile = fc.getSelection()[0];
 	}
 	
 	new H5RWHandler(writeFile).writeDiagram(this);
@@ -1813,6 +1815,7 @@ public class XcosDiagram extends ScilabGraph {
 	    	if (title != null) {
 	    		fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
 	    	}
+	    	ConfigurationManager.configureCurrentDirectory(fc);
 	    }
 
 	    int status = fc.showSaveDialog(this.getAsComponent());
@@ -1953,7 +1956,6 @@ public class XcosDiagram extends ScilabGraph {
 		
 		if (getParentTab() != null) {
 			getParentTab().setName(tabTitle);
-			getParentTab().draw();
 		}
 	}
     
@@ -2019,7 +2021,11 @@ public class XcosDiagram extends ScilabGraph {
 		info(XcosMessages.LOADING_DIAGRAM);
 
 		if (diagram.exists()) {
-			transformAndLoadFile(diagram, false);
+			try {
+				transformAndLoadFile(diagram.getCanonicalPath(), false);
+			} catch (IOException e) {
+				LogFactory.getLog(XcosDiagram.class).error(e);
+			}
 		} else {
 			AnswerOption answer;
 			try {
@@ -2052,12 +2058,12 @@ public class XcosDiagram extends ScilabGraph {
      * @param wait wait end transform
      * @return the status of the operation
      */
-    protected boolean transformAndLoadFile(final File theFile, final boolean wait) {
-	final File fileToLoad = theFile;
+    protected boolean transformAndLoadFile(final String theFile, final boolean wait) {
+	final String fileToLoad = theFile;
 	final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
 	boolean result = false;
 
-	if (!fileToLoad.exists() || filetype == null) {
+	if (!exists(fileToLoad) || filetype == null) {
 		XcosDialogs.couldNotLoadFile(this);
 		return false;
 	}
@@ -2066,14 +2072,14 @@ public class XcosDiagram extends ScilabGraph {
 	case COSF:
 	case COS:
 	    if (wait) {
-		File newFile;
+		String newFile;
 		newFile = filetype.exportToHdf5(fileToLoad);
 		result = transformAndLoadFile(newFile, wait);
 	    } else {
 		final Thread transformAction = new Thread() {
 			@Override
 		    public void run() {
-			File newFile;
+			String newFile;
 			newFile = filetype.exportToHdf5(fileToLoad);
 			transformAndLoadFile(newFile, false);
 		    }
@@ -2085,15 +2091,16 @@ public class XcosDiagram extends ScilabGraph {
 
 	case XCOS:
 		try {
+			File f = new File(theFile);
 			if (getModel().getChildCount(getDefaultParent()) == 0) {
-		    	load(theFile);
-		    	postLoad(theFile);
+		    	load(f);
+		    	postLoad(f);
 		    	setVisible(true);
 		    } else {
 		    	info(XcosMessages.LOADING_DIAGRAM);
 		    	final XcosDiagram xcosDiagram = new XcosDiagram();
-				xcosDiagram.load(theFile);
-				xcosDiagram.postLoad(theFile);
+				xcosDiagram.load(f);
+				xcosDiagram.postLoad(f);
 				new XcosTab(xcosDiagram).setVisible(true);
 				info(XcosMessages.EMPTY_INFO);
 		    }
@@ -2270,11 +2277,11 @@ public class XcosDiagram extends ScilabGraph {
 			}
 			str.append(']');
 				
-			final File temp = FileUtils.createTempFile();
+			final String temp = FileUtils.createTempFile();
 			
 			ScilabInterpreterManagement.synchronousScilabExec(
 						  "vars = script2var(" + str.toString() + ", struct());"
-						+ "export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
+						+ "export_to_hdf5('" + temp + "', 'vars');");
 			
 			result = new H5RWHandler(temp).readContext();
 		} catch (final IOException e) {

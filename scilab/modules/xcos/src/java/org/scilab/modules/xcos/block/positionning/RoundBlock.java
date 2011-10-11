@@ -28,7 +28,11 @@ public class RoundBlock extends BasicBlock {
 	 * Default constructor
 	 */
 	public RoundBlock() {
-		super();
+		/*
+		 * Default value of the round block, for more informations refers to
+		 * BlockFactory instantiation order.
+		 */
+		this("CLKSOMV_f");
 	}
 
 	/**
@@ -36,6 +40,7 @@ public class RoundBlock extends BasicBlock {
 	 * @param interFunction the interfunction (label) string
 	 */
 	public RoundBlock(String interFunction) {
+		super();
 		setInterfaceFunctionName(interFunction);
 	}
 

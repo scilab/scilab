@@ -70,9 +70,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/graphic_export
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -127,8 +128,7 @@ am__objects_2 = libscigraphic_export_algo_la-exportToFile.lo \
 	libscigraphic_export_algo_la-GL2PSWrapping.lo \
 	libscigraphic_export_algo_la-JoGLInterface.lo \
 	libscigraphic_export_algo_la-GL2PSToJOGL.lo \
-	libscigraphic_export_algo_la-JOGLConstant.lo \
-	libscigraphic_export_algo_la-GiwsException.lo
+	libscigraphic_export_algo_la-JOGLConstant.lo
 am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscigraphic_export_algo_la_OBJECTS =  \
@@ -139,8 +139,7 @@ am_libscigraphic_export_disable_la_OBJECTS =  \
 	libscigraphic_export_disable_la-nographic_export.lo
 libscigraphic_export_disable_la_OBJECTS =  \
 	$(am_libscigraphic_export_disable_la_OBJECTS)
-libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la
 am__objects_3 = libscigraphic_export_la-gw_graphic_export.lo \
 	libscigraphic_export_la-sci_xs2bmp.lo \
 	libscigraphic_export_la-sci_xs2gif.lo \
@@ -459,8 +458,7 @@ src/cpp/GL2PSConstant.cpp \
 src/cpp/GL2PSWrapping.cpp \
 src/cpp/JoGLInterface.cpp  \
 src/jni/GL2PSToJOGL.cpp \
-src/jni/JOGLConstant.cpp \
-src/jni/GiwsException.cpp
+src/jni/JOGLConstant.cpp
 
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 src/jni/GL2PSConstant_wrap.c \
@@ -493,6 +491,7 @@ libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 
@@ -505,7 +504,7 @@ libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
-libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml
@@ -695,7 +694,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSToJOGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GL2PSWrapping_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JoGLInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-exportToFile.Plo@am__quote@
@@ -908,13 +906,6 @@ libscigraphic_export_algo_la-JOGLConstant.lo: src/jni/JOGLConstant.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/JOGLConstant.cpp' object='libscigraphic_export_algo_la-JOGLConstant.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-JOGLConstant.lo `test -f 'src/jni/JOGLConstant.cpp' || echo '$(srcdir)/'`src/jni/JOGLConstant.cpp
-
-libscigraphic_export_algo_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_export_algo_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-GiwsException.Tpo -c -o libscigraphic_export_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-GiwsException.Tpo $(DEPDIR)/libscigraphic_export_algo_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscigraphic_export_algo_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_export_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1255,6 +1246,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

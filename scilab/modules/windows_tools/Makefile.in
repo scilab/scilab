@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/windows_tools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -108,8 +109,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_rootdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciwindows_tools_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciwindows_tools_la_LIBADD =
 am__objects_1 = libsciwindows_tools_la-nowindows_tools.lo
 am_libsciwindows_tools_la_OBJECTS = $(am__objects_1)
 libsciwindows_tools_la_OBJECTS = $(am_libsciwindows_tools_la_OBJECTS)
@@ -405,7 +405,7 @@ libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
-libsciwindows_tools_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 #### Name of the module and the path ######
 modulename = windows_tools
 
@@ -923,6 +923,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -42,8 +42,8 @@ char writerr[] = "Error writing sample file.  You are probably out of disk space
 unsigned short rlshort(ft_t ft)
 {
   unsigned char uc, uc2;
-  uc  = getc(ft->fp);
-  uc2 = getc(ft->fp);
+  uc  = (unsigned char)getc(ft->fp);
+  uc2 = (unsigned char)getc(ft->fp);
   return (uc2 << 8) | uc;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -51,8 +51,8 @@ unsigned short rlshort(ft_t ft)
 unsigned short rbshort(ft_t ft)
 {
   unsigned char uc, uc2;
-  uc2 = getc(ft->fp);
-  uc  = getc(ft->fp);
+  uc2 = (unsigned char)getc(ft->fp);
+  uc  = (unsigned char)getc(ft->fp);
   return (uc2 << 8) | uc;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -84,10 +84,10 @@ void wbshort(ft_t ft, short unsigned int us)
 unsigned long rllong(ft_t ft)
 {
   unsigned char uc, uc2, uc3, uc4;
-  uc  = getc(ft->fp);
-  uc2 = getc(ft->fp);
-  uc3 = getc(ft->fp);
-  uc4 = getc(ft->fp);
+  uc  = (unsigned char)getc(ft->fp);
+  uc2 = (unsigned char)getc(ft->fp);
+  uc3 = (unsigned char)getc(ft->fp);
+  uc4 = (unsigned char)getc(ft->fp);
   return ((long)uc4 << 24) | ((long)uc3 << 16) | ((long)uc2 << 8) | (long)uc;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -95,10 +95,10 @@ unsigned long rllong(ft_t ft)
 unsigned long rblong(ft_t ft)
 {
   unsigned char uc, uc2, uc3, uc4;
-  uc  = getc(ft->fp);
-  uc2 = getc(ft->fp);
-  uc3 = getc(ft->fp);
-  uc4 = getc(ft->fp);
+  uc  = (unsigned char)getc(ft->fp);
+  uc2 = (unsigned char)getc(ft->fp);
+  uc3 = (unsigned char)getc(ft->fp);
+  uc4 = (unsigned char)getc(ft->fp);
   return ((long)uc << 24) | ((long)uc2 << 16) | ((long)uc3 << 8) | (long)uc4;
 }
 /*-----------------------------------------------------------------------------------*/

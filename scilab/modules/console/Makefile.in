@@ -78,9 +78,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/console
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -175,9 +176,7 @@ libsciconsole_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciconsole_disable_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libsciconsole_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libsciconsole_la_LIBADD =
 am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/c/InitializeConsole.c \
 	src/c/GuiManagement.c src/c/dropFiles.c src/c/clc.c \
@@ -190,10 +189,9 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
 	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
 	src/c/cmdLine/reader.c src/c/others/initMacOSXEnv.c \
-	src/jni/CallScilabBridge.cpp src/jni/GiwsException.cpp \
-	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
-	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
-	src/cpp/ConsoleIsWaitingForInput.cpp \
+	src/jni/CallScilabBridge.cpp src/cpp/ClearConsole.cpp \
+	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
+	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
 	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
 	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
 	sci_gateway/c/gw_console.c sci_gateway/c/sci_clc.c \
@@ -217,8 +215,7 @@ am__objects_4 = libsciconsole_la-InitializeConsole.lo \
 	libsciconsole_la-goto_func.lo libsciconsole_la-history.lo \
 	libsciconsole_la-init_tc_shell.lo libsciconsole_la-reader.lo \
 	$(am__objects_3)
-am__objects_5 = libsciconsole_la-CallScilabBridge.lo \
-	libsciconsole_la-GiwsException.lo
+am__objects_5 = libsciconsole_la-CallScilabBridge.lo
 am__objects_6 = libsciconsole_la-ClearConsole.lo \
 	libsciconsole_la-ClearConsolePart.lo \
 	libsciconsole_la-ConsolePrintf.lo \
@@ -531,9 +528,7 @@ libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
-src/jni/GiwsException.cpp
-
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
 src/cpp/ClearConsolePart.cpp \
 src/cpp/ConsolePrintf.cpp \
@@ -604,7 +599,7 @@ libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
+libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes -I$(top_srcdir)/modules/commons/src/jni/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
@@ -633,10 +628,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 # For the code check (splint)
 CHECK_SRC = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
-libsciconsole_la_LIBADD = $(top_builddir)/modules/fileio/libscifileio.la \
-			$(top_builddir)/libs/MALLOC/libscimalloc.la 
-
-# java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### console : gateway declaration ####
 libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -827,7 +818,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCommandLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InitializeConsole.Plo@am__quote@
@@ -1331,13 +1321,6 @@ libsciconsole_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
 
-libsciconsole_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GiwsException.Tpo -c -o libsciconsole_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-GiwsException.Tpo $(DEPDIR)/libsciconsole_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libsciconsole_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-
 libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo $(DEPDIR)/libsciconsole_la-ClearConsole.Plo
@@ -1738,6 +1721,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
