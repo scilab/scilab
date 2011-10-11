@@ -251,7 +251,6 @@
     <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\getGraphicObjectProperty.cpp" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_graphic_objects.c" />
     <ClCompile Include="..\cpp\NgonData.cpp" />
     <ClCompile Include="..\cpp\NgonGeneralData.cpp" />
@@ -307,6 +306,9 @@
     <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
     </ProjectReference>
