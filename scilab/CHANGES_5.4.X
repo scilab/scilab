@@ -392,6 +392,8 @@ Compilation:
 
 * Enforce a minimal version of JRosetta (1.0.4).
 
+* Enforce a minimal version of GIWS (1.3.0).
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
