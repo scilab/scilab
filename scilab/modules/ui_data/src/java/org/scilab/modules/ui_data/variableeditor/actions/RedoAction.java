@@ -12,12 +12,16 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
@@ -29,7 +33,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  */
 public final class RedoAction extends CallBack {
 
-    private static final String KEY = "ctrl Y";
+    private static final String KEY = "OSSCKEY Y";
     private static final String REDO = "Redo";
 
     private SwingScilabVariableEditor editor;
@@ -50,7 +54,7 @@ public final class RedoAction extends CallBack {
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
         table.getActionMap().put(REDO, new RedoAction(editor, REDO));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), REDO);
+        table.getInputMap().put(ScilabKeyStroke.getKeyStroke(KEY), REDO);
     }
 
     /**
@@ -75,5 +79,30 @@ public final class RedoAction extends CallBack {
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
+    }
+
+    /**
+     * Create a menu item
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static MenuItem createMenuItem(SwingScilabVariableEditor editor, String title) {
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setCallback(new RedoAction(editor, title));
+        menu.setText(title);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
+
+        return menu;
+    }
+
+    /**
+     * Create a menu item as a SwingScilabMenuItem
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabVariableEditor editor, String title) {
+        return (SwingScilabMenuItem) createMenuItem(editor, title).getAsSimpleMenuItem();
     }
 }

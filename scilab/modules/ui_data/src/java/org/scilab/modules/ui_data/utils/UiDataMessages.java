@@ -59,6 +59,7 @@ public final class UiDataMessages {
 
     public static final String GLOBAL_NOT_EDITABLE = Messages.gettext("Global variables can not be edited.");
 
+    public static final String EDITION = Messages.gettext("Edition");
     public static final String REFRESH = Messages.gettext("Refresh the variable ");
     public static final String COPY = Messages.gettext("Copy");
     public static final String PASTE = Messages.gettext("Paste");
@@ -66,6 +67,35 @@ public final class UiDataMessages {
     public static final String CLEAR = Messages.gettext("Clear");
     public static final String UNDO = Messages.gettext("Undo");
     public static final String REDO = Messages.gettext("Redo");
+    public static final String FIT = Messages.gettext("Size columns to fit");
+    public static final String COPYASSCILABCOM = Messages.gettext("Copy as Scilab command");
+    public static final String COPYASSCILABMAT = Messages.gettext("Copy as Scilab matrix");
+    public static final String COPYASSCILABMATWITHCR = Messages.gettext("Copy as Scilab matrix with CR");
+
+    public static final String SHORT = Messages.gettext("Short format");
+    public static final String SHORTE = Messages.gettext("ShortE format");
+    public static final String LONG = Messages.gettext("Long format");
+    public static final String LONGE = Messages.gettext("LongE format");
+
+    public static final String CREATE = Messages.gettext("Create variable from selection");
+
+    public static final String INSERTR = Messages.gettext("Insert a row");
+    public static final String REMOVER = Messages.gettext("Remove rows");
+    public static final String INSERTC = Messages.gettext("Insert a column");
+    public static final String REMOVEC = Messages.gettext("Remove columns");
+
+    public static final String PLOTSELECTION = Messages.gettext("Plot the selection");
+    public static final String PLOTALL = Messages.gettext("Plot the matrix");
+
+    public static final String CANCEL = Messages.gettext("Cancel");
+    public static final String OK = Messages.gettext("Ok");
+    public static final String CREATEVAR = Messages.gettext("Create variable from selection");
+    public static final String VARNAME = Messages.gettext("Variable name");
+    public static final String CREATENEWVAR = Messages.gettext("Create new variable");
+    public static final String DUPLICATE = Messages.gettext("Duplicate the variable");
+    public static final String NUMROWS = Messages.gettext("Rows number");
+    public static final String NUMCOLS = Messages.gettext("Columns number");
+    public static final String FILLWITH = Messages.gettext("Fill with");
 
     public static final String FILE_BROWSER = Messages.gettext("File Browser");
     public static final String NAME_COLUMN = Messages.gettext("Name");
@@ -97,9 +127,9 @@ public final class UiDataMessages {
 
 
 
- // CSON: JavadocVariable
- // CSON: LineLength
- // CSON: MultipleStringLiterals
+    // CSON: JavadocVariable
+    // CSON: LineLength
+    // CSON: MultipleStringLiterals
 
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
@@ -107,10 +137,9 @@ public final class UiDataMessages {
      * @param e Click event
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
-        public static boolean isMacOsPopupTrigger(MouseEvent e) {
-                return (SwingUtilities.isLeftMouseButton(e)
-                                && e.isControlDown()
-                                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-                                .getProperty("java.specification.version").equals("1.5")));
-        }
+    public static boolean isMacOsPopupTrigger(MouseEvent e) {
+        return (SwingUtilities.isLeftMouseButton(e)
+                && e.isControlDown()
+                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
+    }
 }
