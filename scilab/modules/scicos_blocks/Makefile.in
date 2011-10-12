@@ -1447,6 +1447,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/AUTOMAT.h5 \
 @XCOS_TRUE@blocks/Bache.h5 \
 @XCOS_TRUE@blocks/BACKLASH.h5 \
+@XCOS_TRUE@blocks/BARXY.h5 \
 @XCOS_TRUE@blocks/BIGSOM_f.h5 \
 @XCOS_TRUE@blocks/BITCLEAR.h5 \
 @XCOS_TRUE@blocks/BITSET.h5 \

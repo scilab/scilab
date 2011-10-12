@@ -25,11 +25,11 @@
 /*--------------------------------------------------------------------------*/
 int sci_javaclasspath(char *fname, int* _piKey)
 {
-    //Rhs = Max(Rhs,0);
     int *piAddressVarOne = NULL;
     int iType = 0;
     SciErr sciErr;
 
+    //Rhs = Max(Rhs,0);
     CheckRhs(0,1);
     CheckLhs(0,1);
 

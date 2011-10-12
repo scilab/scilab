@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>savematfile</refname>
-    <refpurpose>Matlab MATファイル (バイナリまたは ASCII)を書き込みます</refpurpose>
+    <refpurpose>Matlab MATファイル (バイナリまたは ASCII)を書き込む</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>

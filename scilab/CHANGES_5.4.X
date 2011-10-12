@@ -162,6 +162,11 @@ Localization:
 
 * Czech localization by Zbyněk Schwarz
 
+* bug 10032 fixed - Force the unset of the environnement variable LANGUAGE to
+                    tackle some issues.
+
+* bug 10032 fixed - Mac OS X locale detection did not take in account 
+                    the LANG variable. 
 
 File input/output:
 ==================
@@ -384,6 +389,10 @@ Compilation:
 * Under GNU/Linux and Mac OS X, for each module, get ride of the list of
   the explicit dependencies on the other libraries. Use libscilab-cli.so or
   libscilab.so to link against Scilab.
+
+* Enforce a minimal version of JRosetta (1.0.4).
+
+* Enforce a minimal version of GIWS (1.3.0).
 
 * Force the Java class version target to version 6 (or 1.6).
 
@@ -700,4 +709,6 @@ Bug fixes:
 
 * bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
 
+* bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
+                    Icons renamed from XPM to PNG.
 
