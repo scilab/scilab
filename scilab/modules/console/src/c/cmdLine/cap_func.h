@@ -45,7 +45,6 @@ void capStr(const char *str);
  * @param column where cursor will move
  * @param line where cursor will move
  */
-
 void capGoto(int col, int li);
 
 /* Note: Can be consider as x,y coordinates. */

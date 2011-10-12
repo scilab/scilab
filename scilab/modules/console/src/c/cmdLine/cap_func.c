@@ -20,27 +20,27 @@
 /* Simplify termcap activation */
 void capStr(const char *capacity)
 {
-    char *stringCapStr;
+    char *stringCap;
 
-    stringCapStr = tgetstr(capacity, NULL);
-    if (stringCapStr != NULL)
+    stringCap = tgetstr(capacity, NULL);
+    if (stringCap != NULL)
     {
-        tputs(stringCapStr, 1, putchar);
+        tputs(stringCap, 1, putchar);
     }
 }
 
 /* Move cursor to the column _col and the line _li */
 void capGoto(int col, int li)
 {
-    char *stringCapStr;
+    char *stringCap;
 
-    stringCapStr = tgetstr("cm", NULL);
-    if (stringCapStr != NULL)
+    stringCap = tgetstr("cm", NULL);
+    if (stringCap != NULL)
     {
-        stringCapStr = tgoto(stringCapStr, col, li);
+        stringCap = tgoto(stringCap, col, li);
     }
-    if (stringCapStr != NULL)
+    if (stringCap != NULL)
     {
-        stringCapStr = tputs(stringCapStr, 1, putchar);
+        tputs(stringCap, 1, putchar);
     }
 }

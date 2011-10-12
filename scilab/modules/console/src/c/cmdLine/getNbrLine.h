@@ -9,14 +9,16 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef		GET_SIGNAL_H_
-#define	GET_SIGNAL_H_
+#ifndef _GETNBRLINE_H
+#define _GETNBRLINE_H
+
+#include <wchar.h>
 
 /**
- * Clear screen and get new terminfo,
- * This is a sighandler_t used when SIGWINCH is caught
- * @param signal caught.
+ * Get how may lines the string take in the window.
+ * @param string whose number of line will be counted
+ * @return number of line used by the string.
  */
-void getNewTerm(int signum);
+int getNbrLine(wchar_t * str);
 
-#endif /* !SIGNAL_H_ */
+#endif /* !_GETNBRLINE_H */

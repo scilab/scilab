@@ -20,7 +20,7 @@
  * @param user Input
  * @return user Input
  */
-int gotoRight(t_list_cmd ** cmd, int key);
+int gotoRight(t_list_cmd ** cmd, int cursorLocation);
 
 /**
  * Move the cursor to the left.
@@ -28,7 +28,7 @@ int gotoRight(t_list_cmd ** cmd, int key);
  * @param user Input
  * @return user Input
  */
-int gotoLeft(t_list_cmd ** cmd, int key);
+int gotoLeft(t_list_cmd ** cmd, int cursorLocation);
 
 /**
  * Move the cursor to the end of the current edited line.
@@ -36,7 +36,7 @@ int gotoLeft(t_list_cmd ** cmd, int key);
  * @param user Input
  * @return user Input
  */
-int endLine(t_list_cmd ** cmd, int key);
+int endLine(t_list_cmd ** cmd, int cursorLocation);
 
 /**
  * Move the cursor to the beginning of the current edited line.
@@ -44,7 +44,7 @@ int endLine(t_list_cmd ** cmd, int key);
  * @param user Input
  * @return user Input
  */
-int begLine(t_list_cmd ** cmd, int key);
+int begLine(t_list_cmd ** cmd, int cursorLocation);
 
 /**
  * Move cursor to the beginning of the next word or to the end of the string if none were found.
@@ -52,7 +52,7 @@ int begLine(t_list_cmd ** cmd, int key);
  * @param user Input
  * @return user Input
  */
-int nextWord(t_list_cmd ** cmd, int key);
+int nextWord(t_list_cmd ** cmd, int cursorLocation);
 
 /**
  * Move cursor to the beginning of the previous word or to the beginning of the string if none were found.
@@ -60,6 +60,6 @@ int nextWord(t_list_cmd ** cmd, int key);
  * @param user Input
  * @return user Input
  */
-int previousWord(t_list_cmd ** cmd, int key);
+int previousWord(t_list_cmd ** cmd, int cursorLocation);
 
 #endif /* !GOTO_FUNC_H_ */

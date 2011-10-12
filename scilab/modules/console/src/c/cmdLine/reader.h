@@ -20,12 +20,9 @@ typedef struct s_list_cmd t_list_cmd;
 #define SCI_PRINT_WCHAR "%lc"
 
 /* TODO: remove and use ./libs/doublylinkedlist/includes/DoublyLinkedList.h instead */
-
 struct s_list_cmd
 {
     int index;
-    int line;
-    int nbr_line;
     int bin;
     wchar_t *cmd;
     struct s_list_cmd *next;

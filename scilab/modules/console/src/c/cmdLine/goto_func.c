@@ -13,22 +13,25 @@
 #include	<curses.h>
 #include	<term.h>
 #include	<string.h>
+#include	<wchar.h>
+#include	<wctype.h>
 #include	"reader.h"
 #include	"cap_func.h"
 #include	"aff_prompt.h"
 #include	"goto_func.h"
 
 /* Move cursor to the right */
-int gotoRight(t_list_cmd ** cmd, int key)
+int gotoRight(t_list_cmd ** cmd, int cursorLocation)
 {
     int nbrCol;
+
     int promptSize;
 
     promptSize = getPrompt(NOWRT_PRT);
-    key = 0;
+    cursorLocation = 0;
     nbrCol = tgetnum("co");
     /* if the cursor is not at the end of the command line */
-    if ((*cmd)->index != (*cmd)->line)
+    if ((*cmd)->index != wcslen((*cmd)->cmd))
     {
         /* If the cursor is on the last column... */
         if (!(((*cmd)->index + promptSize + 1) % nbrCol))
@@ -48,7 +51,7 @@ int gotoRight(t_list_cmd ** cmd, int key)
     {
         capStr("do");
     }
-    return (key);
+    return (cursorLocation);
 }
 
 /* go to the last column of the current line */
@@ -70,10 +73,12 @@ static void findEndLine(int i, int promptSize, int nbrCol)
 }
 
 /* Move cursor to the left */
-int gotoLeft(t_list_cmd ** cmd, int key)
+int gotoLeft(t_list_cmd ** cmd, int cursorLocation)
 {
     int nbrCol;
+
     int promptSize;
+
     int i = 0;
 
     if (cmd != NULL)
@@ -81,7 +86,7 @@ int gotoLeft(t_list_cmd ** cmd, int key)
         i = (*cmd)->index;
     }
     promptSize = getPrompt(NOWRT_PRT);
-    key = 0;
+    cursorLocation = 0;
     nbrCol = tgetnum("co");
     if (i)
     {
@@ -91,66 +96,69 @@ int gotoLeft(t_list_cmd ** cmd, int key)
     if (cmd != NULL)
     {
         (*cmd)->index = i;
-        return (key);
+        return (cursorLocation);
     }
     return (i);
 }
 
 /* Move cursor to the beginning of a line */
-int begLine(t_list_cmd ** cmd, int key)
+int begLine(t_list_cmd ** cmd, int cursorLocation)
 {
-    key = 0;
+    cursorLocation = 0;
 /* While the index is not zero (meaning it's the beginning of th line) */
     while ((*cmd)->index)
     {
-        gotoLeft(cmd, key);
+        gotoLeft(cmd, cursorLocation);
     }
-    return (key);
+    return (cursorLocation);
 }
 
 /* Move cursor to the end of a line */
-int endLine(t_list_cmd ** cmd, int key)
+int endLine(t_list_cmd ** cmd, int cursorLocation)
 {
-    key = 0;
+    int sizeOfCmd = 0;
+
+    sizeOfCmd = wcslen((*cmd)->cmd);
+    cursorLocation = 0;
 /* While the index is different of the size of the line */
-    while ((*cmd)->line - ((*cmd)->index))
+    while (sizeOfCmd - ((*cmd)->index))
     {
-        gotoRight(cmd, key);
+        gotoRight(cmd, cursorLocation);
     }
-    return (key);
+    return (cursorLocation);
 }
 
-int nextWord(t_list_cmd ** cmd, int key)
+int nextWord(t_list_cmd ** cmd, int cursorLocation)
 {
     /* Factorize (*cmd)->cmd[(*cmd)->index] */
     /* Passing current word... */
     while ((*cmd)->cmd[(*cmd)->index] && (*cmd)->cmd[(*cmd)->index] != L' ')
     {
-        gotoRight(cmd, key);
+        gotoRight(cmd, cursorLocation);
     }
     /* ... then passing through spaces */
     while ((*cmd)->cmd[(*cmd)->index] && (*cmd)->cmd[(*cmd)->index] == L' ')
     {
-        gotoRight(cmd, key);
+        gotoRight(cmd, cursorLocation);
     }
     /* what is the point of the two declaration ? */
-    key = 0;
-    return (key);
+    cursorLocation = 0;
+    return (cursorLocation);
 }
 
-int previousWord(t_list_cmd ** cmd, int key)
+int previousWord(t_list_cmd ** cmd, int cursorLocation)
 {
     /* Passing through spaces... */
     while ((*cmd)->index && (*cmd)->cmd[(*cmd)->index - 1] == L' ')
     {
-        gotoLeft(cmd, key);
+        gotoLeft(cmd, cursorLocation);
     }
     /* ... then going to the beginning of the word */
     while ((*cmd)->index && (*cmd)->cmd[(*cmd)->index - 1] != L' ')
     {
-        gotoLeft(cmd, key);
+        gotoLeft(cmd, cursorLocation);
     }
-    key = 0;
+    cursorLocation = 0;
     /* what is the point of the two declaration ? */
-    return (key);
+    return (cursorLocation);
 }

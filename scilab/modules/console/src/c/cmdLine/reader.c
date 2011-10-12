@@ -35,15 +35,12 @@ wchar_t *cmdDup(t_list_cmd * cmd, wchar_t * wcs)
 {
     wchar_t *dupCmd;
 
+    int sizeOfCmd;
+
     /* TODO: Document */
-    dupCmd = MALLOC(sizeof(*dupCmd) * (cmd->line + 1));
-    dupCmd[cmd->line] = L'\0';
-    /*
-     * Get the number of line the command line has:
-     * Add the size of the prompt and the size of the command line
-     * then divid it by the number of column in the windows.
-     */
-    cmd->nbr_line = 1 + (cmd->line + getPrompt(NOWRT_PRT)) / tgetnum("co");
+    sizeOfCmd = wcslen(cmd->cmd);
+    dupCmd = MALLOC(sizeof(*dupCmd) * (sizeOfCmd + 1));
+    dupCmd[sizeOfCmd] = L'\0';
     if (wcs != NULL)
     {
         wcscpy(dupCmd, wcs);
@@ -65,8 +62,6 @@ t_list_cmd *getNewHist(t_list_cmd * cmd)
     {
         lastCmd = lastCmd->next;
     }
-    lastCmd->line = cmd->line;
-    lastCmd->nbr_line = cmd->nbr_line;
     lastCmd->cmd = cmdDup(cmd, NULL);
     return (lastCmd);
 }
@@ -78,6 +73,7 @@ t_list_cmd *getNewHist(t_list_cmd * cmd)
 void *cleanVoidCharInCmd(t_list_cmd * cmd)
 {
     int i;
+
     wchar_t *dupCmd;
 
     i = 0;
@@ -87,7 +83,6 @@ void *cleanVoidCharInCmd(t_list_cmd * cmd)
         i++;
     }
     /* ... then create the new command line. */
-    cmd->line = wcslen(&cmd->cmd[i]);
     dupCmd = cmdDup(cmd, &cmd->cmd[i]);
     free(cmd->cmd);
     cmd->cmd = dupCmd;
@@ -100,21 +95,16 @@ void *cleanVoidCharInCmd(t_list_cmd * cmd)
  */
 t_list_cmd *initUsrInput(t_list_cmd * listCmd)
 {
-    int key;
     int ret;
 
     listCmd = getNewCmd(listCmd);
     getPrompt(WRT_PRT);
-    key = 0;
-    listCmd->line = 0;
 /* Hardcoded value */
     listCmd->cmd = MALLOC(sizeof(*listCmd->cmd) * 1024);
     listCmd->cmd[0] = L'\0';
     ret = 0;
 /* please comment */
-    getCmd(&listCmd, &key);
-    if (key == CTRL_D)
-        return (NULL);
+    getCmd(&listCmd);
     cleanVoidCharInCmd(listCmd);
     if (listCmd->bin)
     {

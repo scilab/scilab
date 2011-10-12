@@ -26,7 +26,7 @@ t_list_cmd *getNewCmd(t_list_cmd * lastCmd);
  * @param list of all commands.
  * @param input stored.
  */
-void getCmd(t_list_cmd ** listCmd, int *key);
+void getCmd(t_list_cmd ** listCmd);
 
 /**
  * Free allocated links.

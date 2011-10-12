@@ -136,6 +136,7 @@ static int getKey(t_list_cmd ** listCmd)
 void memCmd(t_list_cmd ** cmd)
 {
     static t_list_cmd **memList;
+
     static int i;
 
     if (cmd != NULL)
@@ -147,7 +148,7 @@ void memCmd(t_list_cmd ** cmd)
     {
 /* TODO comment */
         i = (*memList)->index;
-        (*memList)->index = (*memList)->line;
+        (*memList)->index = wcslen((*memList)->cmd);
         printf(SCI_PRINT_WSTRING, (*memList)->cmd);
 /* TODO probably useless. We are doing a buffering word by word */
         fflush(stdout);
@@ -170,18 +171,15 @@ t_list_cmd *getNewCmd(t_list_cmd * lastCmd)
     }
     newCmd->previous = lastCmd;
     newCmd->next = NULL;
-    newCmd->line = 0;
     newCmd->bin = 0;
-    newCmd->nbr_line = 0;
     return (newCmd);
 }
 
-void getCmd(t_list_cmd ** listCmd, int *key)
+void getCmd(t_list_cmd ** listCmd)
 {
     int bin;
 
     (*listCmd)->index = 0;
-    *key = 0;
     bin = 1;
     while (bin)
     {
