@@ -78,8 +78,12 @@ int sci_unglue(char *fname,unsigned long fname_len)
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
             hstk(outindex)[i] = getHandle(pstChildrenUID[i]);
-            // Register Child to it's new parent.
-            setGraphicObjectRelationship(pstParentUID, pstChildrenUID[i]);
+            /*
+             * Register Child to its new parent.
+             * Children are added from the last to the first to obtain the same ordering
+             * as the previous one (insertion is done at the head of the list).
+             */
+            setGraphicObjectRelationship(pstParentUID, pstChildrenUID[iChildrenCount-i-1]);
         }
 
         deleteGraphicObject(pobjUID);
