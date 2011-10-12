@@ -31,12 +31,15 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  // paths to updatable parameters or states
-  if arg1.model.rpar.objs(1)==mlist('Deleted') then
-    path = 2  //compatibility with translated blocks
-  else
-    path = 1
+  // look for the clock block
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "MFCLCK_f" then
+      path = i;
+      break;
+    end
   end
+
   newpar=list();
   spath=list('model','rpar','objs',path)
   xx=arg1(spath)// get the block

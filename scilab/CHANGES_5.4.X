@@ -154,6 +154,9 @@ Xcos:
 * bug 10003 fixed - The MAXMIN block did not update its display according to
                     the settings.
 
+* bug 10048 fixed - Superblock based blocks index sub-blocks 
+                    parameters instead of looking for them.
+
 * bug 10069 fixed - AFFICH_m block did not update its display at 
                     re-initialization.
 
