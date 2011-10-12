@@ -75,7 +75,7 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 
 		if (TCL_ArrayExist(TCLinterpreter,VarName))
 		{
-			int i=0,j=0, one=1;
+			int j = 0;
 			int nb_lines=0, nb_columns=0;
 			char **index_list = TCL_ArrayDim(TCLinterpreter,VarName, &nb_lines, &nb_columns);
 
@@ -91,10 +91,10 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 
 					CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nb_lines, &nb_columns, ReturnArrayString);
 					LhsVar(1) = Rhs+1;
-					C2F(putlhsvar)();
-
+					
 					freeArrayOfString(ReturnArrayString,nb_lines * nb_columns);
 					freeArrayOfString(index_list,nb_lines * nb_columns);
+                    PutLhsVar();
 				}
 				else
 				{
@@ -120,11 +120,9 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 
 				n1=1;
 				CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
-
+                if (output) {FREE(output);output=NULL;}
 				LhsVar(1) = Rhs+1;
-				C2F(putlhsvar)();
-
-				if (output) {FREE(output);output=NULL;}
+				PutLhsVar();
 			}
 			else
 			{

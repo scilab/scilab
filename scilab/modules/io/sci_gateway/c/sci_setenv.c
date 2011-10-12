@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -38,7 +38,6 @@ int sci_setenv(char *fname, int* _piKey)
 	int lenStVarTwo = 0;
 
 	int m_out1 = 0, n_out1 = 0;
-	int *pbAddressOut1 = NULL;
 
 	int result = 0;
 
@@ -92,7 +91,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if ( (m1 != n1) && (n1 != 1) ) 
+	if ( (m1 != n1) && (n1 != 1) )
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
@@ -105,7 +104,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if ( (m2 != n2) && (n2 != 1) ) 
+	if ( (m2 != n2) && (n2 != 1) )
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 		return 0;
@@ -159,9 +158,9 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	LhsVar(1) = Rhs + 1; 
+	LhsVar(1) = Rhs + 1;
 
-    PutLhsVar();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

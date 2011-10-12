@@ -73,7 +73,7 @@ libscispecial_functions_algo_la_CFLAGS = $(libscispecial_functions_la_CFLAGS)
 CHECK_SRC= $(SPECIAL_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscispecial_functions_la_CFLAGS)
 
-libscispecial_functions_la_LIBADD = libscispecial_functions-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la 
+libscispecial_functions_la_LIBADD = libscispecial_functions-algo.la
 
 #### Target ######
 modulename=special_functions

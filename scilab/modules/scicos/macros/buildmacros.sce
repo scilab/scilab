@@ -11,7 +11,7 @@
 
 //lines(0);
 CurrentDirScicos = get_absolute_file_path("buildmacros.sce");
-macrosdirs       = ["scicos_auto","scicos_utils","scicos_scicos","scicos_menus"];
+macrosdirs       = ["scicos_auto","scicos_utils","scicos_scicos"];
 
 for i=1:size(macrosdirs,"*") do
   exec(CurrentDirScicos+"/"+macrosdirs(i)+"/buildmacros.sce");

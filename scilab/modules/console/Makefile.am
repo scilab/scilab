@@ -6,7 +6,7 @@
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2011 - Allan CORNET
 # Copyright (C) DIGITEO - 2011 - Antoine ELIAS
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -20,7 +20,7 @@ modulename=console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA =  license.txt 
+libsciconsole_la_root_DATA =  license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -28,21 +28,18 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration
 
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = \
-    src/jni/CallScilabBridge.cpp \
-    src/jni/GiwsException.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 
-CONSOLE_CPP_SOURCES =  \
-    src/cpp/ClearConsole.cpp \
-    src/cpp/ClearConsolePart.cpp \
-    src/cpp/ConsolePrintf.cpp \
-    src/cpp/ConsoleRead.cpp \
-    src/cpp/ConsoleIsWaitingForInput.cpp \
-    src/cpp/GetCharWithoutOutput.cpp \
-    src/cpp/PromptToHome.cpp \
-    src/cpp/ScilabLinesUpdate.cpp \
-    src/cpp/SetConsolePrompt.cpp \
-    src/cpp/scilabRead.cpp
+CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
+src/cpp/ClearConsolePart.cpp \
+src/cpp/ConsolePrintf.cpp \
+src/cpp/ConsoleRead.cpp \
+src/cpp/ConsoleIsWaitingForInput.cpp \
+src/cpp/GetCharWithoutOutput.cpp \
+src/cpp/PromptToHome.cpp \
+src/cpp/ScilabLinesUpdate.cpp \
+src/cpp/SetConsolePrompt.cpp \
+src/cpp/scilabRead.cpp
 
 #### console : List of the c files ####
 CONSOLE_C_JNI_SOURCES = \
@@ -76,7 +73,7 @@ CONSOLE_GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_lines.cpp \
     sci_gateway/cpp/sci_prompt.cpp \
     sci_gateway/cpp/sci_tohome.cpp
-    
+
 
 # List of the gateway c files
 CONSOLE_GATEWAY_C_SOURCES = \
@@ -165,7 +162,9 @@ libsciconsole_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/string/includes
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/commons/src/jni
+
 
 
 # Includes need for the compilation
@@ -190,7 +189,8 @@ libsciconsole_disable_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/string/includes
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/commons/src/jni/
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS= \
@@ -234,13 +234,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
-
-## Libraries necessary
-## Change to include other Scilab modules/lib
-libsciconsole_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la \
-			$(top_builddir)/libs/MALLOC/libscimalloc.la 
-
-# java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### console : gateway declaration ####
 libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway

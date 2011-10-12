@@ -99,9 +99,7 @@
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="..\..\locales\randlib.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\randlib.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="randlib.rc">

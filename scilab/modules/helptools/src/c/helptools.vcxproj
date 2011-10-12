@@ -77,7 +77,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -113,7 +113,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -150,7 +150,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -194,7 +194,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../../libs/MALLOC/includes;../../../../libs/hashtable;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../../libs/doublylinkedlist/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -232,7 +232,6 @@
   <ItemGroup>
     <ClCompile Include="..\jni\BuildDocObject.cpp" />
     <ClCompile Include="DllmainHelptools.c" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\helptools_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDoc.cpp" />
@@ -242,7 +241,6 @@
   <ItemGroup>
     <ClInclude Include="..\jni\BuildDocObject.hxx" />
     <ClInclude Include="..\..\includes\dynlib_helptools.h" />
-    <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\gw_helptools.h" />
     <ClInclude Include="..\..\includes\helptools_gw.hxx" />
     <ClInclude Include="..\jni\SciDocMain.hxx" />
@@ -269,6 +267,9 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>

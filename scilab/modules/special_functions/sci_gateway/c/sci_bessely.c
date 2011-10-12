@@ -53,7 +53,7 @@ int sci_bessely(char *fname,unsigned long fname_len)
     { 
         /*bessely([],x) */
         LhsVar(1) = 1;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
 
@@ -61,7 +61,7 @@ int sci_bessely(char *fname,unsigned long fname_len)
     { 
         /*bessely(alpha,[]) */
         LhsVar(1) = 2;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
     /* determine if the result is real or complex */
@@ -225,7 +225,7 @@ int sci_bessely(char *fname,unsigned long fname_len)
             C2F(msgs)(&ierr,&un);
         }
     }
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }  
 /*--------------------------------------------------------------------------*/

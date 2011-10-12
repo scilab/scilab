@@ -389,7 +389,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
         sciError = NULL;
     }
 
-   PutLhsVar();
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

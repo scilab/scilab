@@ -199,20 +199,34 @@ This compiled super-block implements a discretized delay It is build with a shif
     <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_en_US.xcos">
-          Open this example in Xcos
-        </link>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_diagram_en_US.png" align="center"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_scope_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
     <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_diagram_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_scope_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
   </refsection>
   <refsection id="Interfacingfunction_DELAY_f">
     <title>Interfacing function</title>

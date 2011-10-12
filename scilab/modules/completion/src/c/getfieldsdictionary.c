@@ -31,7 +31,6 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     int *piAddr = NULL;
     int *piLen = NULL;
     int piType = 0;
-    int nbItem = 0;
     int rows = 0;
     int cols = 0;
     int rc = 0;

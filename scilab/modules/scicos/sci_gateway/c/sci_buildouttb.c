@@ -126,7 +126,7 @@ int sci_buildouttb(char *fname,unsigned long fname_len)
 			ptr_i[1] = 0;
 			ptr_i[2] = 1;
 			LhsVar(1) = 1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 		else
@@ -470,10 +470,9 @@ int sci_buildouttb(char *fname,unsigned long fname_len)
 	}
 
 	LhsVar(1) = 3;
-	C2F(putlhsvar)();
-
 	FREE(lnksz);
 	FREE(lnktyp);
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

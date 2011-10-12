@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <errno.h>
-#endif 
+#endif
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -27,7 +27,7 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename);
-static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey);
+static int returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
 int sci_movefile(char *fname, int* _piKey)
 {
@@ -75,7 +75,7 @@ int sci_movefile(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if ( (m1 != n1) && (n1 != 1) ) 
+	if ( (m1 != n1) && (n1 != 1) )
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
@@ -96,7 +96,7 @@ int sci_movefile(char *fname, int* _piKey)
 		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
-	
+
 	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(sciErr.iErr)
 	{
@@ -132,7 +132,7 @@ int sci_movefile(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if ( (m2 != n2) && (n2 != 1) ) 
+	if ( (m2 != n2) && (n2 != 1) )
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
@@ -154,7 +154,7 @@ int sci_movefile(char *fname, int* _piKey)
 		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}
-	
+
 	sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	if(sciErr.iErr)
 	{
@@ -173,7 +173,7 @@ int sci_movefile(char *fname, int* _piKey)
 		}
 		else if (FileExistW(pStVarOne))
 		{
-			if (isdirW(pStVarTwo)) 
+			if (isdirW(pStVarTwo))
 			{
 				/* move file into a existing directory */
 				/* copy file into a existing directory */
@@ -184,7 +184,7 @@ int sci_movefile(char *fname, int* _piKey)
 					wchar_t* destFullFilename = NULL;
 
 					/* remove last file separator if it exists */
-					if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || 
+					if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') ||
 						(pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
 					{
 						pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
@@ -262,7 +262,7 @@ static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename)
 	return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
+static int returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 {
 	double dError = 0.;
 	wchar_t **sciError = NULL;
@@ -272,18 +272,18 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 	if (sciError == NULL)
 	{
 		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-		return;
+		return 0;
 	}
 
 #ifdef _MSC_VER
 	if (ierr)
 	{
 		#define BUFFER_SIZE 1024
-		DWORD dw = GetLastError(); 
+		DWORD dw = GetLastError();
 		wchar_t buffer[BUFFER_SIZE];
 
-		if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, 
-			dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),buffer, BUFFER_SIZE, NULL) == 0) 
+		if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
+			dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),buffer, BUFFER_SIZE, NULL) == 0)
 		{
 			wcscpy(buffer, L"Unknown Error");
 		}
@@ -296,7 +296,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 
 		wcscpy(sciError[0], buffer);
@@ -308,7 +308,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 		wcscpy(sciError[0], L"");
 	}
@@ -323,7 +323,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 	}
 	else
@@ -333,7 +333,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 		wcscpy(sciError[0], L"");
 	}
@@ -350,7 +350,8 @@ static void returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey)
 
 	freeArrayOfWideString(sciError, 1);
 
-	C2F(putlhsvar)();
+	PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

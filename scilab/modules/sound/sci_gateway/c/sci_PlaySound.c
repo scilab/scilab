@@ -102,7 +102,7 @@ int sci_Playsound (char *fname, int* _piKey)
 		}
 		
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 #else
 	{

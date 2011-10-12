@@ -63,9 +63,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/console
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -73,10 +74,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -144,9 +145,7 @@ am_libsciconsole_disable_la_OBJECTS =  \
 	libsciconsole_disable_la-promptecho.lo $(am__objects_1)
 libsciconsole_disable_la_OBJECTS =  \
 	$(am_libsciconsole_disable_la_OBJECTS)
-libsciconsole_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la
+libsciconsole_la_LIBADD =
 am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/c/InitializeConsole.c \
 	src/c/GuiManagement.c src/c/dropFiles.c src/c/clc.c \
@@ -154,10 +153,9 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/c/GetCommandLine.c src/c/others/zzledt.c \
 	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
 	src/c/prompt.c src/c/promptecho.c src/c/others/initMacOSXEnv.c \
-	src/jni/CallScilabBridge.cpp src/jni/GiwsException.cpp \
-	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
-	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
-	src/cpp/ConsoleIsWaitingForInput.cpp \
+	src/jni/CallScilabBridge.cpp src/cpp/ClearConsole.cpp \
+	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
+	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
 	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
 	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
 	src/cpp/scilabRead.cpp sci_gateway/c/gw_console.c \
@@ -177,8 +175,7 @@ am__objects_4 = libsciconsole_la-InitializeConsole.lo \
 	libsciconsole_la-gotoxy_nw.lo libsciconsole_la-clrscr_nw.lo \
 	libsciconsole_la-prompt.lo libsciconsole_la-promptecho.lo \
 	$(am__objects_3)
-am__objects_5 = libsciconsole_la-CallScilabBridge.lo \
-	libsciconsole_la-GiwsException.lo
+am__objects_5 = libsciconsole_la-CallScilabBridge.lo
 am__objects_6 = libsciconsole_la-ClearConsole.lo \
 	libsciconsole_la-ClearConsolePart.lo \
 	libsciconsole_la-ConsolePrintf.lo \
@@ -385,11 +382,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -499,7 +491,7 @@ yacc_present = @yacc_present@
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2011 - Allan CORNET
 # Copyright (C) DIGITEO - 2011 - Antoine ELIAS
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -512,28 +504,24 @@ modulename = console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA = license.txt 
+libsciconsole_la_root_DATA = license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = \
-    src/jni/CallScilabBridge.cpp \
-    src/jni/GiwsException.cpp
-
-CONSOLE_CPP_SOURCES = \
-    src/cpp/ClearConsole.cpp \
-    src/cpp/ClearConsolePart.cpp \
-    src/cpp/ConsolePrintf.cpp \
-    src/cpp/ConsoleRead.cpp \
-    src/cpp/ConsoleIsWaitingForInput.cpp \
-    src/cpp/GetCharWithoutOutput.cpp \
-    src/cpp/PromptToHome.cpp \
-    src/cpp/ScilabLinesUpdate.cpp \
-    src/cpp/SetConsolePrompt.cpp \
-    src/cpp/scilabRead.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
+CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
+src/cpp/ClearConsolePart.cpp \
+src/cpp/ConsolePrintf.cpp \
+src/cpp/ConsoleRead.cpp \
+src/cpp/ConsoleIsWaitingForInput.cpp \
+src/cpp/GetCharWithoutOutput.cpp \
+src/cpp/PromptToHome.cpp \
+src/cpp/ScilabLinesUpdate.cpp \
+src/cpp/SetConsolePrompt.cpp \
+src/cpp/scilabRead.cpp
 
 
 #### console : List of the c files ####
@@ -619,7 +607,8 @@ libsciconsole_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/string/includes
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/commons/src/jni
 
 
 # Includes need for the compilation
@@ -644,7 +633,8 @@ libsciconsole_disable_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/string/includes
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/commons/src/jni/
 
 
 # Includes need for the compilation
@@ -665,11 +655,6 @@ libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSO
 # For the code check (splint)
 CHECK_SRC = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
 INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
-libsciconsole_la_LIBADD = $(top_builddir)/modules/fileio/libscifileio.la \
-			$(top_builddir)/libs/MALLOC/libscimalloc.la 
-
-
-# java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### console : gateway declaration ####
 libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -852,7 +837,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCharWithoutOutput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GetCommandLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-InitializeConsole.Plo@am__quote@
@@ -1186,13 +1170,6 @@ libsciconsole_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CallScilabBridge.cpp' object='libsciconsole_la-CallScilabBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
-
-libsciconsole_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GiwsException.Tpo -c -o libsciconsole_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-GiwsException.Tpo $(DEPDIR)/libsciconsole_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libsciconsole_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciconsole_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 libsciconsole_la-ClearConsole.lo: src/cpp/ClearConsole.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciconsole_la-ClearConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-ClearConsole.Tpo -c -o libsciconsole_la-ClearConsole.lo `test -f 'src/cpp/ClearConsole.cpp' || echo '$(srcdir)/'`src/cpp/ClearConsole.cpp
@@ -1657,6 +1634,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

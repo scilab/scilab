@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2006 - INRIA - Pierre MARECHAL
+// Copyright (C) 2011 - DIGITEO - Pierre MARECHAL
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -28,39 +29,44 @@
 // Check length of given string ( must be 47 bits or less )
 // =============================================================================
 
-function y=bin2dec(str)
+function y = bin2dec(str)
 
-	if type(str)<>10
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"bin2dec",1));
-	end
-	
-	// delete all spaces included in the str
-	str = strsubst(str,' ','');
-	
-	// check the str characters are only '0' or '1', and convert the binary str to corresponing decimal number
-	for i=1:prod(size(str))
-		
-		ind1=strindex(str(i),'1')
-		ind0=strindex(str(i),'0')
-		
-		if length(str(i)) <> sum([prod(size(ind0)) prod(size(ind1))]) then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: Matrix of strings made of zeros and ones expected.\n"),"bin2dec",1));
-		end
-		
-		if length(str(i)) > 54 then
-			error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"),"bin2dec",1,54));
-		end
-		
-		if ~isempty(ind1)
-			ind1   = length(str(i))-ind1($:-1:1);
-			y($+1) = sum(2^ind1);
-		elseif ~isempty(ind0)
-			y($+1) = 0;
-		else
-			y($+1) = [];
-		end
-	end
-	
-	y=matrix(y,size(str));
-	
+  rhs = argn(2);
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bin2dec", 1));
+  end
+
+  if type(str)<>10
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"bin2dec",1));
+  end
+
+  // delete all spaces included in the str
+  str = strsubst(str,' ','');
+
+  // check the str characters are only '0' or '1', and convert the binary str to corresponing decimal number
+  for i=1:prod(size(str))
+
+    ind1=strindex(str(i),'1')
+    ind0=strindex(str(i),'0')
+
+    if length(str(i)) <> sum([prod(size(ind0)) prod(size(ind1))]) then
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Matrix of strings made of zeros and ones expected.\n"),"bin2dec",1));
+    end
+
+    if length(str(i)) > 54 then
+      error(msprintf(gettext("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"),"bin2dec",1,54));
+    end
+
+    if ~isempty(ind1)
+      ind1   = length(str(i))-ind1($:-1:1);
+      y($+1) = sum(2^ind1);
+    elseif ~isempty(ind0)
+      y($+1) = 0;
+    else
+      y($+1) = [];
+    end
+  end
+
+  y = matrix(y, size(str));
+
 endfunction

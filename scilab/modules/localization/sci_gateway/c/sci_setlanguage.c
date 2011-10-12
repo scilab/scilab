@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007/2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -43,7 +43,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 	//	{
 	//		if (getWarningMode())
 	//		{
-	//			if (newlanguage == NULL) 
+	//			if (newlanguage == NULL)
 	//			{
 	//				sciprint(_("%s: Unsupported language '%s'.\n"),fname,param);
 	//			}
@@ -58,7 +58,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 	//		if (newlanguage) { FREE(newlanguage); newlanguage = NULL; }
 
 	//		LhsVar(1)=Rhs+1;
-	//		C2F(putlhsvar)();
+	//		PutLhsVar)();
 	//		return 0;
 	//	}
 
@@ -89,7 +89,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 	//		if (getWarningMode())
 	//		{
 	//			sciprint(_("Unsupported language '%s'.\n"),param);
-	//			sciprint(_("Switching to default language : '%s'.\n"),SCILABDEFAULTLANGUAGE);	
+	//			sciprint(_("Switching to default language : '%s'.\n"),SCILABDEFAULTLANGUAGE);
 	//		}
 	//		setlanguage(SCILABDEFAULTLANGUAGE);
 
@@ -97,7 +97,7 @@ int sci_setlanguage(char *fname,unsigned long fname_len)
 	//		*istk(l1)=(int)(FALSE);
 	//	}
 	//	LhsVar(1)=Rhs+1;
-	//	C2F(putlhsvar)();
+	//	PutLhsVar();
 	//}
 	//else
 	//{

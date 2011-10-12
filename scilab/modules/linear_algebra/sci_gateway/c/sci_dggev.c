@@ -57,7 +57,6 @@ int sci_dggev(char *fname, unsigned long fname_len)
 	int iRowsB = 0;
 	int iColsB = 0;
 	int ONE = 1;
-	int ZERO = 0;
 	int iWorkSize;
 	int INFO;
 

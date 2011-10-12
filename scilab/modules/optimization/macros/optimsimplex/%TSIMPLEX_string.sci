@@ -12,34 +12,27 @@
 //   Returns the string containing the Optim Simplex component.
 //
 function str = %TSIMPLEX_string ( this )
-  str = []
-  k = 1
-  str(k) = sprintf("Optim Simplex Object:\n")
-  k = k + 1
-  str(k) = sprintf("=====================")
-  if this.n == 0 then
+    function str = mysize(x)
+        [n,m]=size(x)
+        if ( n==0 & m==0 ) then
+            str = sprintf("[] matrix");
+        else
+            str = sprintf("%d-by-%d matrix\n",n,m);
+        end
+    endfunction
+
+    str = []
+    k = 1
+    str(k) = sprintf("Optim Simplex Object:\n")
     k = k + 1
-    str(k) = sprintf("Empty simplex (zero dimension)\n");
-  elseif this.nbve == 0 then
+    str(k) = sprintf("=====================")
     k = k + 1
-    str(k) = sprintf("Empty simplex (zero vertices)\n");
-  elseif this.x == [] then
+    str(k) = sprintf("nbve: %d\n",this.nbve);
     k = k + 1
-    str(k) = sprintf("Empty simplex (zero coordinates)\n");
-  elseif this.fv == [] then
+    str(k) = sprintf("n: %d\n",this.n);
     k = k + 1
-    str(k) = sprintf("Empty simplex (zero function values)\n");
-  else
-    for ive = 1:this.nbve
-      // Compute a string for x
-      ss = sprintf("%s", string(this.x(ive,1)));
-      for i = 2:this.n
-        ss = ss + " " + sprintf("%s", string(this.x(ive,i)));
-      end
-      k = k + 1
-      str(k) = sprintf("Vertex #%d/%d : fv=%s, x=%s\n" , ..
-          ive , this.nbve , string(this.fv(ive)), ss );
-    end
-  end
+    str(k) = sprintf("x: %s\n",mysize(this.x));
+    k = k + 1
+    str(k) = sprintf("fv: %s\n",mysize(this.fv));
 endfunction
 

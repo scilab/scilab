@@ -20,12 +20,12 @@ function comet3d(varargin)
 //       function z=traj(x,y),z=1.5*sin(x^2)*cos(y),endfunction
 //       clf();comet3d(cos(t),sin(t),traj)
 //
-    nv=size(varargin)
-  if varargin(nv-1)=='colors' then
+  nv=size(varargin)
+  if nv>=3&varargin(nv-1)=='colors' then
     c=round(varargin(nv))
     if type(c)<>1|~isreal(c) then
-    error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet3d",nv))
-  end
+      error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet3d",nv))
+    end
     varargin=list(varargin(1:$-2))
   else
     c=[]
@@ -49,19 +49,19 @@ function comet3d(varargin)
   else
     error(msprintf(_("%s: Wrong number of input arguments: %d or %d to %d expected.\n"),"comet3d",1,3,4))
   end
-    
- 
+
+
   if type(x)<>1|~isreal(x) then
     error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet3d",1))
   end
   if type(y)<>1|~isreal(x) then
     error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet3d",1))
   end
-  
+
   if (type(z)<>1|~isreal(z))&and(type(z)<>[11 13]) then
     error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet3d",3))
   end
- 
+
 
   if or(type(z)==[11 13]) then
     x=x(:);y=y(:)
@@ -109,28 +109,28 @@ function comet3d(varargin)
 
     end
   end
- 
+
 
   if type(p)<>1|~isreal(p)|size(p,'*')>1 then
     error(msprintf(_("%s: Wrong type for argument %d: Real scalar expected.\n"),"comet3d",3))
   end
   if p<0|p>=1 then
-     error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"comet3d",3,"[0 1["))
+    error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"comet3d",3,"[0 1["))
   end
   fig=gcf();
   if c==[] then
     c=1:m
   else
-    if size(c,'*')<>m then 
+    if size(c,'*')<>m then
       error(msprintf(_("%s: Wrong size for argument %d: %d expected.\n"),"comet",nv,m))
     end
     if min(c)<1|max(c)>size(fig.color_map,1) then
-       error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))
+      error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))
     end
   end
   axes=gca();
   axes.view='3d'
-  
+
 
   if axes.children==[] then
     axes.data_bounds=[min(x) min(y) min(z);max(x) max(y) max(z)];
@@ -171,19 +171,19 @@ function comet3d(varargin)
           tail(l).data=[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
         end
       end
-      if modulo(i,step)==0 then 
+      if modulo(i,step)==0 then
         fig.immediate_drawing = "on"
         fig.immediate_drawing = "off"
       end
     end
     drawnow(),drawlater()
-   
+
     for i=n:n+k
       for l=1:m
         body(l).data= body(l).data(2:$,:);
         tail(l).data=[ tail(l).data;[x(i-k,l),y(i-k,l),z(i-k,l)]];
       end
-      if modulo(i,step)==0 then 
+      if modulo(i,step)==0 then
         //draw(axes),
         fig.immediate_drawing = "on"
         fig.immediate_drawing = "off"
@@ -193,6 +193,6 @@ function comet3d(varargin)
     drawnow()
   endfunction
   //not to generate an error message if the window is closed
-  //exec(anim,-1,'errcatch')
-  exec(anim,-1)
+  exec(anim,-1,'errcatch')
+  //exec(anim,-1)
 endfunction

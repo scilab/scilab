@@ -37,7 +37,7 @@ int sci_newest(char *fname,unsigned long fname_len)
 		int m1 = 0,n1 = 0,l1 = 0;
 		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{
@@ -54,7 +54,7 @@ int sci_newest(char *fname,unsigned long fname_len)
 					m1 = 0;n1 = 0;l1 = 0;
 					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 					LhsVar(1)=Rhs+1;
-					C2F(putlhsvar)();
+					PutLhsVar();
 					return 0;
 				}
 				else
@@ -119,9 +119,10 @@ int sci_newest(char *fname,unsigned long fname_len)
 			n1 = 1;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
 
-			if (paramoutINT){FREE(paramoutINT); paramoutINT=NULL;}
+            if (paramoutINT){FREE(paramoutINT); paramoutINT=NULL;}
+
+			PutLhsVar();
 		}
 		else
 		{
@@ -131,7 +132,7 @@ int sci_newest(char *fname,unsigned long fname_len)
 
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 	}
 	return 0;

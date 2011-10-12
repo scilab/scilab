@@ -66,15 +66,15 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@GUI_TRUE@am__append_2 = libscitypes.la
 check_PROGRAMS = testTypes$(EXEEXT)
 TESTS = testTypes$(EXEEXT)
 subdir = modules/types
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -82,10 +82,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -135,18 +135,8 @@ am__objects_1 = libscitypes_algo_la-types_gw.lo \
 	libscitypes_algo_la-sci_getfield.lo
 am_libscitypes_algo_la_OBJECTS = $(am__objects_1)
 libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
-@GUI_TRUE@am_libscitypes_algo_la_rpath =
-libscitypes_disable_la_LIBADD =
+libscitypes_la_DEPENDENCIES = libscitypes-algo.la
 am__objects_2 =
-am_libscitypes_disable_la_OBJECTS = $(am__objects_2)
-libscitypes_disable_la_OBJECTS = $(am_libscitypes_disable_la_OBJECTS)
-libscitypes_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscitypes_disable_la_CFLAGS) $(CFLAGS) \
-	$(libscitypes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscitypes_la_DEPENDENCIES = libscitypes-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_3 = libscitypes_la-types.lo libscitypes_la-string.lo \
 	libscitypes_la-double.lo libscitypes_la-bool.lo \
 	libscitypes_la-float.lo libscitypes_la-implicitlist.lo \
@@ -170,7 +160,6 @@ libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
 libscitypes_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscitypes_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@am_libscitypes_la_rpath = -rpath $(pkglibdir)
 am_testTypes_OBJECTS = testTypes-test-types.$(OBJEXT)
 testTypes_OBJECTS = $(am_testTypes_OBJECTS)
 testTypes_DEPENDENCIES =  \
@@ -189,21 +178,10 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
-SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_disable_la_SOURCES) $(libscitypes_la_SOURCES) \
+SOURCES = $(libscitypes_algo_la_SOURCES) $(libscitypes_la_SOURCES) \
 	$(testTypes_SOURCES)
 DIST_SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_disable_la_SOURCES) $(libscitypes_la_SOURCES) \
-	$(testTypes_SOURCES)
+	$(libscitypes_la_SOURCES) $(testTypes_SOURCES)
 DATA = $(libscitypes_la_etc_DATA) $(libscitypes_la_root_DATA) \
 	$(libscitypes_la_sci_gateway_DATA)
 ETAGS = etags
@@ -362,11 +340,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -619,14 +592,9 @@ libscitypes_la_CPPFLAGS = -Iincludes/ \
 				-I src/cpp
 
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
-
-# Without the types module
-libscitypes_disable_la_CFLAGS = 
-TYPES_DISABLE_C_SOURCES = 
-libscitypes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscitypes-disable.la $(am__append_2)
-@GUI_TRUE@noinst_LTLIBRARIES = libscitypes-algo.la
+pkglib_LTLIBRARIES = libscitypes.la
+noinst_LTLIBRARIES = libscitypes-algo.la
+libscitypes_la_LIBADD = libscitypes-algo.la
 libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
 libscitypes_algo_la_SOURCES = $(GATEWAY_CPP_SOURCES) #$(GATEWAY_C_SOURCES)
@@ -637,11 +605,6 @@ INCLUDE_FLAGS = $(libscitypes_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/sci_types.i
-libscitypes_la_LIBADD = \
-libscitypes-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
 
 #### types : gateway declaration ####
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -735,11 +698,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscitypes-algo.la: $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_DEPENDENCIES) 
-	$(CXXLINK) $(am_libscitypes_algo_la_rpath) $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_LIBADD) $(LIBS)
-libscitypes-disable.la: $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_DEPENDENCIES) 
-	$(libscitypes_disable_la_LINK) -rpath $(pkglibdir) $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_LIBADD) $(LIBS)
+	$(CXXLINK)  $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_LIBADD) $(LIBS)
 libscitypes.la: $(libscitypes_la_OBJECTS) $(libscitypes_la_DEPENDENCIES) 
-	$(libscitypes_la_LINK) $(am_libscitypes_la_rpath) $(libscitypes_la_OBJECTS) $(libscitypes_la_LIBADD) $(LIBS)
+	$(libscitypes_la_LINK) -rpath $(pkglibdir) $(libscitypes_la_OBJECTS) $(libscitypes_la_LIBADD) $(LIBS)
 
 clean-checkPROGRAMS:
 	@list='$(check_PROGRAMS)'; test -n "$$list" || exit 0; \
@@ -1610,6 +1571,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -28,7 +28,7 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
     int iLevel  = _iLevel;
 
     return H5P_DEFAULT;
-
+/*
   if(iLevel < 0)
     {
         iLevel = 0;
@@ -76,6 +76,7 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
         iRet = H5Pcopy(H5P_DEFAULT);
     }
     return iRet;
+*/
 }
 
 static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _iVal)
@@ -546,7 +547,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         space = H5Screate_simple (1, dims, NULL);
         if(space < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
     
         //Create the dataset and write the array data to it.
@@ -554,26 +555,26 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         dset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
         if(dset < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, &dblZero);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         //Add attribute SCILAB_Class = double to dataset
         status = addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         status = addAttribute(dset, g_SCILAB_CLASS_EMPTY, "true");
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
     }
     else
@@ -583,7 +584,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         space = H5Screate_simple (1, dims, NULL);
         if(space < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         //Create the dataset and write the array data to it.
@@ -591,41 +592,41 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         dset = H5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, iCompress);
         if(dset < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblData);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         //Add attribute SCILAB_Class = double to dataset
         status = addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         //Add attribute SCILAB_Class_rows = double to dataset
         status = addIntAttribute(dset, g_SCILAB_CLASS_ROWS, _iRows);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         //Add attribute SCILAB_Class_cols = double to dataset
         status = addIntAttribute(dset, g_SCILAB_CLASS_COLS, _iCols);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
 
         // create the ref
         status = H5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
         if(status < 0)
         {
-            return -1;
+            return (hobj_ref_t)(-1);
         }
     }
 
@@ -634,13 +635,13 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
     status = H5Dclose (dset);
     if(status < 0)
     {
-        return -1;
+        return (hobj_ref_t)(-1);
     }
 
     status = H5Sclose (space);
     if(status < 0)
     {
-        return -1;
+        return (hobj_ref_t)(-1);
     }
 
     FREE(pstPathName);
@@ -846,8 +847,6 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
     hid_t iSpace;
     hid_t    iCompress;
     hid_t iDataset;
-    int    i                            = 0;
-    int j                            = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
     iSpace = H5Screate_simple (1, piDims, NULL);
@@ -920,7 +919,6 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 
     char* pstName       = NULL;
     char* pstPathName   = NULL;
-    char* pstSlash      = NULL;
 
     char* pstGroupName  = NULL;
 
@@ -1628,9 +1626,6 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatas
 
 int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-    int iRet                = 0;
-    int i                   = 0;
-    int j                   = 0;
     hsize_t dims[1]         = {3};
     herr_t status           = 0;
     hid_t space             = 0;

@@ -50,11 +50,10 @@ int sci_xpause(char *fname, int* _piKey)
 	  Scierror(999,_("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),fname,1);
 	  return 0;
 	}
-
 #ifdef _MSC_VER
       {
-	int ms = (sec)/1000; /** time is specified in milliseconds in scilab**/
-	if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */
+          int ms = (sec)/1000; /** time is specified in milliseconds in scilab**/
+          if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */
       }
 #else
       {
@@ -76,5 +75,6 @@ int sci_xpause(char *fname, int* _piKey)
   PutLhsVar();
 
   return 0;
+
 }
 /*--------------------------------------------------------------------------*/

@@ -151,12 +151,11 @@ int sci_matfile_open(char *fname, int *_piKey)
   /* Return the index */
   createScalarDouble(_piKey, Rhs+1, (double)fileIndex);
   
-  LhsVar(1) = Rhs+1;
-  
-  PutLhsVar();
-  
   freeAllocatedSingleString(filename);
   freeAllocatedSingleString(optionStr);
+
+  LhsVar(1) = Rhs+1;
+  PutLhsVar();
   
   return 0;
 }

@@ -87,9 +87,7 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\special_functions.iss" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />
-    <None Include="..\..\locales\special_functions.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\special_functions.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="special_functions.rc">

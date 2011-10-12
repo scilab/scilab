@@ -2,15 +2,9 @@ LIBRARY    functions_f.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; functions_f
-; --------------------------------------- 
+; ---------------------------------------
 intlib_
 whereismacro_
-<<<<<<< HEAD
 intdeff_
-intexec_
-intexecstr_
-=======
-intdeff_
->>>>>>> ffa30c4... YaSp VS 2010

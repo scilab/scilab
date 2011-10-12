@@ -15,7 +15,10 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a representation on the Scilab Integer datatype
+ * This class provides a representation on the Scilab Integer datatype<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -27,13 +30,13 @@ import java.util.Arrays;
 public class ScilabInteger implements ScilabType {
 
 	private static final long serialVersionUID = 1759633801332932450L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_ints;
 
 	private long[][] longData = null;
 	private short[][] shortData = null;
 	private int[][] intData = null;
 	private byte[][] byteData = null;
 	private ScilabIntegerTypeEnum precision;
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_ints;
 
 	/**
 	 * Default constructor
@@ -186,12 +189,13 @@ public class ScilabInteger implements ScilabType {
 		}
 	}
 
-    /** 
-     * Return the type of Scilab 
+    /**
+     * Return the type of Scilab
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 
@@ -421,6 +425,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @return true, if there is no values; false otherwise.
 	 */
+	@Override
 	public boolean isEmpty() {
 		if (this.getPrec() == null) {
 			return true;
@@ -446,6 +451,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabInteger) {
 			return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());

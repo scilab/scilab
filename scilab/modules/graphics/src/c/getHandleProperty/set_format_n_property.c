@@ -68,7 +68,7 @@ int set_format_n_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   else
   {
     Scierror(999, _("%s: No more memory.\n"),"set_format_n_property");
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_SUCCEED ;
 }

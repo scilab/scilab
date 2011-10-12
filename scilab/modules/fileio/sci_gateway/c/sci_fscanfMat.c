@@ -265,7 +265,9 @@ int sci_fscanfMat(char *fname, int* _piKey)
                     }
                 }
 
-                C2F(putlhsvar)();
+                if (filename) {FREE(filename); filename = NULL;}
+
+                PutLhsVar();
             }
             break;
         case FSCANFMAT_MOPEN_ERROR:
@@ -302,7 +304,6 @@ int sci_fscanfMat(char *fname, int* _piKey)
     }
 
     if (filename) {FREE(filename); filename = NULL;}
-
 
     return 0;
 }

@@ -151,7 +151,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 			break;
 		case 0:
 				LhsVar(1) = 0; 
-				C2F(putlhsvar)();
+				PutLhsVar();
 				break;
 			break;
 
@@ -219,7 +219,7 @@ int sci_typename_no_rhs(char *fname, int* _piKey)
 		if (TypesNames) freeArrayOfString(TypesNames,numberOfTypes);
 		LhsVar(2) = Rhs + 2; 
 	}
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

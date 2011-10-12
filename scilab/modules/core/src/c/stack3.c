@@ -1850,7 +1850,6 @@ int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalE
 	int iAddrColByRow	= 0;
 	int iAddElemByRow	= 0;
 	int iAddrRealData	= 0;
-	int iAddrImgData	= 0;
 	int iIndex			= 0;
 
 	*_piRows			= *istk(_iAddr + 1);
@@ -2182,7 +2181,6 @@ int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int 
 	int *piItemPos		= istk(iAddrBase + 2); // size == iItemNumber
 	int iStart			= 0;
 	int iIndex			= 0;
-	int iAddrData		= 0;
 
 	if(iType != sci_list && iType != sci_tlist && iType != sci_mlist)
 		return 1;

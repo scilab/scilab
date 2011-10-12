@@ -163,7 +163,7 @@ int sci_qp_solve(char *fname,unsigned long fname_len)
 	if (ierr == 0) 
 	{
 		for (k=0;k<Lhs;k++) LhsVar(1+k) = next+1+k;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else if (ierr == 1)
 	{

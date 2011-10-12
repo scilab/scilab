@@ -221,9 +221,7 @@ CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
 
 
-# cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscicacsd_la_LIBADD = libscicacsd-algo.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscicacsd_la_LIBADD = libscicacsd-algo.la
 
 #### Target ######
 modulename=cacsd
@@ -231,7 +229,7 @@ modulename=cacsd
 
 #### cacsd : Conf files ####
 libscicacsd_la_rootdir = $(mydatadir)
-libscicacsd_la_root_DATA =  license.txt 
+libscicacsd_la_root_DATA =  license.txt
 
 ####�cacsd : init scripts ####
 libscicacsd_la_etcdir = $(mydatadir)/etc

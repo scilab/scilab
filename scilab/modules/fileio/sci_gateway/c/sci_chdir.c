@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -77,7 +77,7 @@ int sci_chdir(char *fname ,int* _piKey)
 			return 0;
 		}
 
-		if ( (m1 != n1) && (n1 != 1) ) 
+		if ( (m1 != n1) && (n1 != 1) )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
@@ -139,13 +139,13 @@ int sci_chdir(char *fname ,int* _piKey)
 		}
 
 		if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
-		{	
+		{
 			BOOL *bOutput = (BOOL*)MALLOC(sizeof(BOOL));
 
 			int ierr = scichdirW(expandedPath);
 
 			if (ierr) bOutput[0] = FALSE;
-			else bOutput[0] = TRUE; 
+			else bOutput[0] = TRUE;
 
 			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, bOutput);
 			if(sciErr.iErr)
@@ -155,9 +155,10 @@ int sci_chdir(char *fname ,int* _piKey)
 			}
 
 			LhsVar(1) = Rhs + 1;
+
+            if (bOutput) {FREE(bOutput); bOutput=NULL;}
+
 			PutLhsVar();
-			
-			if (bOutput) {FREE(bOutput); bOutput=NULL;}
 		}
 		else /* cd output string current path */
 		{
@@ -182,9 +183,9 @@ int sci_chdir(char *fname ,int* _piKey)
 				}
 
 				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
 
 				if (currentDir) {FREE(currentDir); currentDir = NULL;}
+                PutLhsVar();
 			}
 			else
 			{

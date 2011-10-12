@@ -51,13 +51,16 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
     if test "$LOC" = "it"; then LOC="it_IT"; fi
     if test "$LOC" = "uk"; then LOC="uk_UA"; fi
     if test "$LOC" = "pl"; then LOC="pl_PL"; fi
+    if test "$LOC" = "cs"; then LOC="cs_CZ"; fi
 
     # check that it is the right format
     echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY
 
     if test $? -eq 0; then
         MODULE=`echo $file|sed -e "s|macros-||"|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"` # Get the module name (for example signal_processing)
-
+        if test "$MODULE" = "pvm" -o "$MODULE" = "shell"; then
+            continue
+        fi
         echo $file|grep "macros-" > /dev/null
         IS_MACRO=$?
         if test "$IS_MACRO" -eq 0; then

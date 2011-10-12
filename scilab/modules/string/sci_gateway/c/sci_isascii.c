@@ -111,14 +111,14 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 				return 0;
 			}
 
-			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();
-
 			if (bOutputMatrix)
 			{
 				FREE(bOutputMatrix);
 				bOutputMatrix = NULL;
 			}
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
 		}
 		else
 		{
@@ -140,7 +140,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 		}
 
 		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }
@@ -252,9 +252,6 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 				return 0;
 			}
 
-			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();
-
 			if (lenStVarOne)
 			{
 				FREE(lenStVarOne);
@@ -266,6 +263,9 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 				FREE(bOutputMatrix);
 				bOutputMatrix = NULL;
 			}
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
 		}
 		else
 		{

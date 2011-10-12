@@ -70,9 +70,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -80,10 +81,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -441,18 +442,7 @@ libscigraphics_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscigraphics_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscigraphics_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscigraphics_la_DEPENDENCIES = libscigraphics-algo.la \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/renderer/libscirenderer.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/gui/libscigui.la \
-	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+libscigraphics_la_DEPENDENCIES = libscigraphics-algo.la
 am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_grayplot.lo \
 	libscigraphics_la-sci_matplot1.lo \
@@ -690,11 +680,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -1227,7 +1212,7 @@ libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
-libscigraphics_la_LIBADD = libscigraphics-algo.la $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/jvm/libscijvm.la
+libscigraphics_la_LIBADD = libscigraphics-algo.la
 
 #### graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -4823,6 +4808,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

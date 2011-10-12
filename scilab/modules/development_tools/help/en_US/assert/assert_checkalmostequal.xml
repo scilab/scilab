@@ -71,7 +71,7 @@
       <varlistentry>
         <term>comptype :</term>
         <listitem>
-          <para> a 1-by-1 matrix of strings, "matrix" or "element" (default comptype="matrix"). The comparison type.</para>
+          <para> a 1-by-1 matrix of strings, "matrix" or "element" (default comptype="element"). The comparison type.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -113,6 +113,16 @@
       almost equal if all the conditions are true.
     </para>
     <para>
+      The default value comptype="matrix" option performs the comparison for the matrices as a whole,
+      the norm of the difference of the matrices is used.
+      The comptype="element" option performs the comparison elementwise, i.e.
+      all the elements of the matrices must be almost equal. 
+      Choosing between these two comparison types must be done with care. 
+      For example, if we are checking the elementwise output of an elementary function, 
+      we should choose the "element" comparison type, since we must compare the 
+      matrix elements one after the other. 
+    </para>
+    <para>
       If the IEEE values %inf, -%inf or %nan values are in the matrices,
       then they are almost equal only if the IEEE values are
       at the same indices in the matrices.
@@ -147,10 +157,10 @@
       Then, the non-nan, non-infinity values are actually compared.
     </para>
     <para>
-      The default value comptype="matrix" option performs the comparison for the matrices as a whole,
-      the norm of the difference of the matrices is used.
-      The comptype="element" option performs the comparison elementwise, i.e.
+      The default comptype="element" option performs the comparison elementwise, i.e.
       all the elements of the matrices must be almost equal.
+      The comptype="matrix" option performs the comparison for the matrices as a whole,
+      the norm of the difference of the matrices is used.
     </para>
     <para>
       In general, the relative tolerance should be
@@ -248,11 +258,11 @@ assert_computedigits(computed, expected)
 // The following test pass.
 assert_checkalmostequal(computed,expected,1.e5*%eps);
 
-// The following test pass.
-assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 )
-// We see that 1 is not almost equal to 2: we must use the elementwise comparison.
+// The following examples show the difference between comptype="element" and "matrix".
 // The following test does not pass.
-assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 , [] , "element" )
+assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 )
+// The following test pass with the matrix-based comparison.
+assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 , [] , "matrix" )
 
 // The following test pass.
 // It is non-trivial to take into account for IEEE values.

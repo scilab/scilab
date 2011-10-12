@@ -245,8 +245,7 @@
       <ModuleDefinitionFile>..\LibScilab.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(Configuration)/LibScilab.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>

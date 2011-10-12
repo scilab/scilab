@@ -82,7 +82,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
     C2F(xsetg)(cstk(l1),cstk(l2),m1,m2);
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
     return 0;
   }
 
@@ -359,7 +359,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   }
    
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

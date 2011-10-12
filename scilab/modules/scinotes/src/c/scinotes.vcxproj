@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCINOTES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -117,7 +117,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCINOTES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -155,7 +155,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCINOTES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -199,7 +199,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../ast/includes;../../../types/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCINOTES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -238,7 +238,6 @@
   <ItemGroup>
     <ClCompile Include="..\cpp\callscinotes.cpp" />
     <ClCompile Include="DllmainSCINOTES.c" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_scinotes.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_closeSciNotesFromScilab.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scinotes.cpp" />
@@ -251,7 +250,6 @@
     <ClInclude Include="..\..\includes\callscinotes.h" />
     <ClInclude Include="..\..\includes\dynlib_scinotes.h" />
     <ClInclude Include="..\..\includes\scinotes_gw.hxx" />
-    <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\gw_scinotes.h" />
     <ClInclude Include="ScilabKeywords.h" />
     <ClInclude Include="..\jni\SciNotes.hxx" />
@@ -283,6 +281,9 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

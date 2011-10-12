@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/data_structures
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -72,10 +73,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -110,19 +111,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscidata_structures_algo_la_LIBADD =
 am__objects_1 = libscidata_structures_algo_la-stcreate.lo \
-	libscidata_structures_algo_la-hmops.lo
+	libscidata_structures_algo_la-hmops.lo \
+	libscidata_structures_algo_la-strpos.lo
 am__objects_2 = extractfields.lo forcerhs.lo lsstyp.lo udptr.lo \
 	rattyp.lo gratyp.lo mlist.lo insertfield.lo
 am_libscidata_structures_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscidata_structures_algo_la_OBJECTS =  \
 	$(am_libscidata_structures_algo_la_OBJECTS)
-libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la
 am__objects_3 = libscidata_structures_la-sci_lsslist.lo \
 	libscidata_structures_la-sci_glist.lo \
 	libscidata_structures_la-sci_mlist.lo \
@@ -327,11 +324,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -436,7 +428,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
-src/c/hmops.c
+src/c/hmops.c \
+src/c/strpos.c
 
 DATA_STRUCTURES_FORTRAN_SOURCES = src/fortran/extractfields.f \
 src/fortran/forcerhs.f \
@@ -483,9 +476,7 @@ libscidata_structures_algo_la_CFLAGS = $(libscidata_structures_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
-
-# cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscidata_structures_la_LIBADD = libscidata_structures-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidata_structures_la_LIBADD = libscidata_structures-algo.la
 
 #### Target ######
 modulename = data_structures
@@ -651,6 +642,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-hmops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-stcreate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-strpos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-gw_data_structures1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-gw_data_structures2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_definedfields.Plo@am__quote@
@@ -699,6 +691,13 @@ libscidata_structures_algo_la-hmops.lo: src/c/hmops.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hmops.c' object='libscidata_structures_algo_la-hmops.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_algo_la-hmops.lo `test -f 'src/c/hmops.c' || echo '$(srcdir)/'`src/c/hmops.c
+
+libscidata_structures_algo_la-strpos.lo: src/c/strpos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_algo_la-strpos.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_algo_la-strpos.Tpo -c -o libscidata_structures_algo_la-strpos.lo `test -f 'src/c/strpos.c' || echo '$(srcdir)/'`src/c/strpos.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidata_structures_algo_la-strpos.Tpo $(DEPDIR)/libscidata_structures_algo_la-strpos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strpos.c' object='libscidata_structures_algo_la-strpos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_algo_la-strpos.lo `test -f 'src/c/strpos.c' || echo '$(srcdir)/'`src/c/strpos.c
 
 libscidata_structures_la-sci_lsslist.lo: sci_gateway/c/sci_lsslist.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_lsslist.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_lsslist.Tpo -c -o libscidata_structures_la-sci_lsslist.lo `test -f 'sci_gateway/c/sci_lsslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsslist.c
@@ -1172,6 +1171,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

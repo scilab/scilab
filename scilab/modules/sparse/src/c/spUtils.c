@@ -67,7 +67,7 @@
 #include "spmatrix.h"
 #include "spDefs.h"
 #include "spmalloc.h"
-
+#include "spBuild.h"
 
 static int CountTwins(MatrixPtr Matrix, int Col, ElementPtr *ppTwin1, ElementPtr *ppTwin2 );
 
@@ -357,7 +357,7 @@ int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
  *      The scale factor being used on the current row or column.
  */
 
-extern void spcLinkRows(MatrixPtr Matrix);
+
 
 
 void spScale(char *eMatrix,register  RealVector  RHS_ScaleFactors,register RealVector SolutionScaleFactors )
@@ -1156,7 +1156,7 @@ void spDeleteRowAndCol( char *eMatrix, int Row, int Col )
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement, *ppElement, pLastElement;
 int  Size, ExtRow, ExtCol;
-ElementPtr  spcFindElementInCol();
+
 
 /* Begin `spDeleteRowAndCol'. */
 

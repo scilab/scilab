@@ -2005,7 +2005,6 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
   int    ione = 1;
   double done = 1.0;
   double dminusone = -1.0;
-  double dzero = 0.0;
   double* xdense;
   double* bdense;
   double  flops;
@@ -2250,7 +2249,7 @@ taucs_supernodal_factor_to_ccs(void* vL)
 int taucs_get_nnz_from_supernodal_factor(void* vL)
 {
   supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
-  int n,nnz;
+  int nnz;
   int jp,sn;
 
   nnz = 0;

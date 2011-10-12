@@ -2073,9 +2073,9 @@ static int CVInitialSetup(CVodeMem cv_mem)
 
 static int CVHin(CVodeMem cv_mem, realtype tout)
 {
-  int retval, sign, count1, count2;
-  realtype tdiff, tdist, tround, hlb, hub;
-  realtype hg, hgs, hs, hnew, hrat, h0, yddnrm;
+  int retval = 0, sign = 0, count1 = 0, count2 = 0;
+  realtype tdiff = 0., tdist = 0., tround = 0., hlb = 0., hub = 0.;
+  realtype hg = 0., hgs = 0., hs = 0., hnew = 0., hrat = 0., h0 = 0., yddnrm = 0.;
   booleantype hgOK, hnewOK;
 
   /* If tout is too close to tn, give up */

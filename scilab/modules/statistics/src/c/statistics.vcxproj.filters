@@ -93,11 +93,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />
+    <None Include="..\..\locales\statistics.pot" />
     <None Include="dcd_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\..\locales\statistics.pot">
-      <Filter>localization</Filter>
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

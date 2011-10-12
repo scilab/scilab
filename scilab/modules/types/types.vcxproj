@@ -92,6 +92,7 @@
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
@@ -119,6 +120,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
@@ -143,6 +145,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>
@@ -170,6 +173,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>scilocalization.lib</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL</Command>

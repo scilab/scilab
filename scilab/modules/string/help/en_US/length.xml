@@ -71,6 +71,9 @@
 
     <para>The length of a list is the number of elements in the list (also
     given by <literal>size</literal>).</para>
+    
+    <para>The length of a mlist is by default the number of elements in the mlist, 
+    but you can overload it (see example).</para>
 
     <para><literal>length('123')</literal> is <literal>3</literal>.
     <literal>length([1,2;3,4])</literal> is <literal>4</literal>.</para>
@@ -88,7 +91,23 @@
     <programlisting role="example"><![CDATA[ 
 length([123 ; 456 ])
 length(['hello world',SCI])
+
  ]]></programlisting>
+ 
+<programlisting role="example"><![CDATA[  
+
+a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
+length(a) 
+// returns 3 default behaviour if length not overloaded for MList
+
+// we create a overload function for MList of type myMlistT
+function r = %myMlistT_length(M)
+  r = length(M.field1)
+endfunction
+
+length(a) 
+// returns 8 result of length(a.field1) 
+  ]]></programlisting>
   </refsection>
 
   <refsection role="see also">

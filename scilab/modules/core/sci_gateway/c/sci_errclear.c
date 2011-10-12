@@ -83,7 +83,7 @@ int sci_errclear(char *fname, int *_piKey)
         //clearLastError();
     }
     LhsVar(1) = 0;
-    C2F(putlhsvar)();
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

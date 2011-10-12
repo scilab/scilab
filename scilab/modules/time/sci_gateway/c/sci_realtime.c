@@ -17,7 +17,7 @@
 #include "api_double.h"
 #include "api_oldstack.h"
 #include "stack-c.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int sci_realtimeinit(char *fname, int* _piKey)
 {
 	SciErr sciErr;
@@ -39,12 +39,11 @@ int sci_realtimeinit(char *fname, int* _piKey)
   /* cross variable size checking */
   C2F(realtimeinit)(&zer,pDblReal);
 
-  LhsVar(1) = 0;
-  PutLhsVar();
-
-  return 0;
+	LhsVar(1) = 0;
+	PutLhsVar();
+	return 0;
 }
-/*--------------------------------------------------------------------------*/  
+/*--------------------------------------------------------------------------*/
 int sci_realtime(char *fname, int* _piKey)
 {
 	SciErr sciErr;

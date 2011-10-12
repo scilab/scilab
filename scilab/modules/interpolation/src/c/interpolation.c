@@ -133,9 +133,9 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
 static int equal_scistring_and_string(int length, int *scistr,  char *str)
 {
   /* compare a scistring with a classic C string */
-  int i, res;
+  int i = 0, res = 0;
 
-  if ( strlen(str) != length )
+  if ( (int)strlen(str) != length )
     return 0;
 
   res = 1; i = 0;

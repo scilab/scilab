@@ -34,8 +34,7 @@ SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 
 SCINOTES_CPP_SOURCES = src/jni/SciNotes.cpp \
-    src/cpp/callscinotes.cpp \
-    src/jni/GiwsException.cpp
+    src/cpp/callscinotes.cpp
 
 
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
@@ -70,6 +69,7 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/fileio/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/localization/includes \
@@ -117,16 +117,14 @@ if SWIG
     BUILT_SOURCES=swig
 endif
 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/jvm/libscijvm.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
 
 if GUI
+if BUILD_HELP
     USEANT=1
+endif
 endif

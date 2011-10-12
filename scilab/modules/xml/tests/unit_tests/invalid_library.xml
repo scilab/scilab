@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+ 
+<library>
+    <book title="Ulysses">
+        <author>James Joyce</author>
+        <hero>Leopold Bloom</hero>
+    </book>
+    <book title="Don Quichotte">
+        <author>Miguel de Cervantes</author>
+        <hero>Don Quichotte de la Mancha</hero>
+    </book><a/>
+</library>

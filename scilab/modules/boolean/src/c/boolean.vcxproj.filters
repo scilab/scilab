@@ -68,9 +68,7 @@
     </None>
     <None Include="..\..\boolean.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\boolean.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\boolean.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="boolean.rc">

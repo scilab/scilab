@@ -23,6 +23,19 @@
 #include "os_wcsdup.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
+#define TCLSCI_MODULE_NAME "tclsci"
+#define TCLTK_OPTION_STRING "tk"
+#define MODELICAC_OPTION_STRING "modelicac"
+#define X86_STRING "x86"
+#define X64_STRING "x64"
+#define ICC_STRING "ICC"
+#define VC_STRING "VC++"
+#define GCC_STRING "GCC"
+#define PGI_STRING "PGI"
+#define SUN_STRING "SUN"
+#define UNKNOW_STRING "UKN"
+#define RELEASE_STRING "release"
+#define DEBUG_STRING "debug"
 #define DEFAULT_VERSION_ARRAY_SIZE 4
 
 /*wide char*/
@@ -160,20 +173,6 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
 		options[0] = getCompilerUsedToBuildScilab();
 		options[1] = getCompilerArchitecture();
 
-		if (with_pvm())
-		{
-			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
-			if (options)
-			{
-				options[nbOptions] = os_wcsdup(PVM_OPTION_STRING);
-				nbOptions++;
-			}
-			else
-			{
-				return NULL;
-			}
-		}
-
 		if (with_tk())
 		{
 			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
@@ -299,11 +298,6 @@ wchar_t* getCompilerArchitecture(void)
 			return os_wcsdup(X86_STRING);
 		#endif
 	#endif
-}
-/*--------------------------------------------------------------------------*/
-BOOL with_pvm(void)
-{
-	return with_module(PVM_MODULE_NAME);
 }
 /*--------------------------------------------------------------------------*/
 BOOL with_modelica_compiler(void)

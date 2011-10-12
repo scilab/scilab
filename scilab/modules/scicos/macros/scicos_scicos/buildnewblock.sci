@@ -123,17 +123,12 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
       cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/"; 
     end
   else
-    cflags = cflags + " -I""" + SCI + "/modules/scicos/includes/"""; 
-    cflags = cflags + " -I""" + SCI + "/modules/scicos_blocks/includes/"""; 
-    cflags = cflags + " -I""" + SCI + "/modules/dynamic_link/includes/"""; 
-    
-    // ldflags for Visual studio
-    if findmsvccompiler() <> "unknown" & haveacompiler() then
-      ldflags = ldflags + " """ + SCI + "/bin/scicos.lib""";
-      ldflags = ldflags + " """ + SCI + "/bin/scicos_f.lib""";
-      ldflags = ldflags + " """ + SCI + "/bin/scicos_blocks.lib""";
-      ldflags = ldflags + " """ + SCI + "/bin/scicos_blocks_f.lib""";
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
     end
+    cflags = cflags + strcat(" -I""" + dlwGetXcosIncludes() + """");
+    ldflags = ldflags + strcat(" """ + dlwGetLibrariesPath() + dlwGetXcosLibraries() + """");
   end
  
   if (rpat == "" | rpat == []) & isdir(filesint) then

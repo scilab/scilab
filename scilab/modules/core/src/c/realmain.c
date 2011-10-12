@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +21,7 @@
 #include "sci_tmpdir.h"
 #include "inisci-c.h"
 #include "PATH_MAX.h"
+#include "FindFileExtension.h"
 /*--------------------------------------------------------------------------*/
 extern void sci_clear_and_exit(int n);
 extern void sci_usr1_signal(int n);
@@ -90,7 +92,24 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
             switch ( initial_script_type )
             {
                 case SCILAB_SCRIPT :
-                    snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID),initial_script);
+                    {
+                        char *ext = FindFileExtension(initial_script);
+                        if ((ext) && (strcmp(ext, ".xcos") == 0))
+                        {
+                            snprintf(startup,PATH_MAX,"%s;xcos('%s')",get_sci_data_strings(STARTUP_ID), initial_script);
+                        }
+                        else
+                        {
+                            snprintf(startup,PATH_MAX,"%s;exec('%s',-1)",get_sci_data_strings(STARTUP_ID), initial_script);
+                        }
+
+                        if (ext) 
+                        {
+                            FREE(ext);
+                            ext = NULL;
+                        }
+                    }
+                    
                     break;
                 case SCILAB_CODE :
                     snprintf(startup,PATH_MAX,"%s;%s;",get_sci_data_strings(STARTUP_ID),initial_script);

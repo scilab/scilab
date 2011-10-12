@@ -141,9 +141,7 @@
     <None Include="..\..\differential_equations.iss" />
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\differential_equations.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\differential_equations.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="differential_equations.rc">

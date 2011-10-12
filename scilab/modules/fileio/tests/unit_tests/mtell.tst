@@ -4,8 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- ENGLISH IMPOSED -->
-
+//
+// <-- JVM NOT MANDATORY -->
+//
 testFile=TMPDIR + '/testFile.bin';
 fd = mopen(testFile,'wb');
 

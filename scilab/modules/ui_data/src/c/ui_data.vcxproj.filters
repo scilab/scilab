@@ -32,9 +32,6 @@
     <ClCompile Include="..\jni\EditVar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_ui_data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\EditVar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_ui_data.h">

@@ -18,8 +18,8 @@ void TermSetPosition(int x, int y)
 {
 	COORD pt;
 
-	pt.X = x;
-	pt.Y = y;
+	pt.X = (SHORT)x;
+	pt.Y = (SHORT)y;
 	SetConsoleCursorPosition (GetStdHandle(STD_OUTPUT_HANDLE), pt);
 }
 /*--------------------------------------------------------------------------*/

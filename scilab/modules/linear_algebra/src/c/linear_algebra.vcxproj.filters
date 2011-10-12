@@ -135,14 +135,9 @@
     <None Include="..\..\linear_algebra.iss" />
     <None Include="..\..\sci_gateway\linear_algebra_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\linear_algebra.pot" />
     <None Include="elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="slicot_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\..\locales\linear_algebra.pot">
-      <Filter>localization</Filter>
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

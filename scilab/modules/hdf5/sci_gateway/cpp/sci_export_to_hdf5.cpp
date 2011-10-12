@@ -428,7 +428,6 @@ static bool export_boolean_sparse(int _iH5File, types::InternalType* pIT,wchar_t
     int iRows						= 0;InternalType::Real
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
 
@@ -458,7 +457,6 @@ static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
     int iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
     double* pdblReal		= NULL;

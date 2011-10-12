@@ -31,10 +31,10 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-int
-sci_scinotes(char * fname, int *_piKey)
+int sci_scinotes(char * fname, int *_piKey)
 {
     SciErr sciErr;
+
     CheckRhs(0, 3);
     CheckLhs(0, 1);
 
@@ -44,14 +44,13 @@ sci_scinotes(char * fname, int *_piKey)
         {
             callSciNotesW(NULL, 0);
         }
-        catch (GiwsException::JniCallMethodException exception)
+        catch(GiwsException::JniCallMethodException exception)
         {
-            Scierror(999, "%s: %s\n", fname,
-                    exception.getJavaDescription().c_str());
+            Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         }
-        catch (GiwsException::JniException exception)
+        catch(GiwsException::JniException exception)
         {
-            Scierror(999, "%s: %s\n", fname, exception.what());
+            Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         }
     }
     else
@@ -80,23 +79,19 @@ sci_scinotes(char * fname, int *_piKey)
 
         if (iType1 != sci_strings)
         {
-            Scierror(
-                    999,
-                    _("%s: Wrong type for argument %d: String matrix expected.\n"),
-                    fname, 1);
+            Scierror(999, _("%s: Wrong type for argument %d: String matrix expected.\n"), fname, 1);
             return 0;
         }
 
         /* get dimensions */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1,
-                lenStVarOne, NULL);
+        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
-        lenStVarOne = (int*) MALLOC(sizeof(int) * (m1 * n1));
+        lenStVarOne = (int *)MALLOC(sizeof(int) * (m1 * n1));
         if (lenStVarOne == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -104,8 +99,7 @@ sci_scinotes(char * fname, int *_piKey)
         }
 
         /* get lengths */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1,
-                lenStVarOne, pStVarOne);
+        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -123,8 +117,7 @@ sci_scinotes(char * fname, int *_piKey)
 
         for (i = 0; i < m1 * n1; i++)
         {
-            pStVarOne[i] = (wchar_t *) MALLOC(sizeof(wchar_t) * (lenStVarOne[i]
-                    + 1));
+            pStVarOne[i] = (wchar_t *) MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
             if (pStVarOne[i] == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
@@ -138,8 +131,7 @@ sci_scinotes(char * fname, int *_piKey)
         }
 
         /* get strings */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1,
-                lenStVarOne, pStVarOne);
+        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -148,11 +140,11 @@ sci_scinotes(char * fname, int *_piKey)
             return 0;
         }
 
-        if (Rhs >= 2) //get line numbers
+        if (Rhs >= 2)           //get line numbers
         {
-            int* piAddressVarTwo = NULL;
+            int *piAddressVarTwo = NULL;
             int m2 = 0, n2 = 0;
-            double* pdblVarTwo = NULL;
+            double *pdblVarTwo = NULL;
             int iType2 = 0;
 
             sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
@@ -175,10 +167,7 @@ sci_scinotes(char * fname, int *_piKey)
 
             if (iType2 != sci_matrix && iType2 != sci_strings)
             {
-                Scierror(
-                        999,
-                        _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"),
-                        fname, 2);
+                Scierror(999, _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -190,8 +179,7 @@ sci_scinotes(char * fname, int *_piKey)
                 wchar_t **pStVarTwo = NULL;
                 int *lenStVarTwo = NULL;
 
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2,
-                        &n2, lenStVarTwo, NULL);
+                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -202,16 +190,13 @@ sci_scinotes(char * fname, int *_piKey)
 
                 if (m2 != 1 || n2 != 1)
                 {
-                    Scierror(
-                            999,
-                            _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"),
-                            fname, 2);
+                    Scierror(999, _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
 
-                lenStVarTwo = (int*) MALLOC(sizeof(int));
+                lenStVarTwo = (int *)MALLOC(sizeof(int));
                 if (lenStVarTwo == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
@@ -221,8 +206,7 @@ sci_scinotes(char * fname, int *_piKey)
                 }
 
                 /* get lengths */
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2,
-                        &n2, lenStVarTwo, pStVarTwo);
+                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -242,8 +226,7 @@ sci_scinotes(char * fname, int *_piKey)
                     return 0;
                 }
 
-                pStVarTwo[0] = (wchar_t *) MALLOC(sizeof(wchar_t)
-                        * (lenStVarTwo[0] + 1));
+                pStVarTwo[0] = (wchar_t *) MALLOC(sizeof(wchar_t) * (lenStVarTwo[0] + 1));
                 if (pStVarTwo[0] == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
@@ -255,8 +238,7 @@ sci_scinotes(char * fname, int *_piKey)
                 }
 
                 /* get strings */
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2,
-                        &n2, lenStVarTwo, pStVarTwo);
+                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -271,19 +253,18 @@ sci_scinotes(char * fname, int *_piKey)
                 {
                     callSciNotesWWithOption(pStVarOne, pStVarTwo, m1 * n1);
                 }
-                catch (GiwsException::JniCallMethodException exception)
+                catch(GiwsException::JniCallMethodException exception)
                 {
-                    Scierror(999, "%s: %s\n", fname,
-                            exception.getJavaDescription().c_str());
+                    Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                     FREE(pStVarTwo);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
-                catch (GiwsException::JniException exception)
+                catch(GiwsException::JniException exception)
                 {
-                    Scierror(999, "%s: %s\n", fname, exception.what());
+                    Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                     FREE(pStVarTwo);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -297,17 +278,13 @@ sci_scinotes(char * fname, int *_piKey)
             {
                 if (isVarComplex(_piKey, piAddressVarTwo) == 1)
                 {
-                    Scierror(
-                            999,
-                            _("%s: Wrong type for argument %d: Real matrix expected.\n"),
-                            fname, 2);
+                    Scierror(999, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
 
-                sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2,
-                        &pdblVarTwo);
+                sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2, &pdblVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -318,10 +295,7 @@ sci_scinotes(char * fname, int *_piKey)
 
                 if (m2 * n2 != m1 * n1)
                 {
-                    Scierror(
-                            999,
-                            _("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"),
-                            fname, 1, 2);
+                    Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"), fname, 1, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -340,22 +314,17 @@ sci_scinotes(char * fname, int *_piKey)
 
                     if (!isStringType(_piKey, piAddressVarThree))
                     {
-                        Scierror(
-                                 999,
-                                 _("%s: Wrong type for argument %d: A single string.\n"),
-                                 fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument %d: A single string.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
                     }
 
                     int ret = getAllocatedSingleString(_piKey, piAddressVarThree, &functionName);
+
                     if (ret)
                     {
-                        Scierror(
-                                 999,
-                                 _("%s: Wrong type for argument %d: A single string.\n"),
-                                 fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument %d: A single string.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
@@ -366,13 +335,13 @@ sci_scinotes(char * fname, int *_piKey)
                 {
                     callSciNotesWWithLineNumberAndFunction(pStVarOne, pdblVarTwo, functionName, m1 * n1);
                 }
-                catch (GiwsException::JniCallMethodException exception)
+                catch(GiwsException::JniCallMethodException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                 }
-                catch (GiwsException::JniException exception)
+                catch(GiwsException::JniException exception)
                 {
-                    Scierror(999, "%s: %s\n", fname, exception.what());
+                    Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                 }
             }
         }
@@ -382,13 +351,13 @@ sci_scinotes(char * fname, int *_piKey)
             {
                 callSciNotesW(pStVarOne, m1 * n1);
             }
-            catch (GiwsException::JniCallMethodException exception)
+            catch(GiwsException::JniCallMethodException exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
             }
-            catch (GiwsException::JniException exception)
+            catch(GiwsException::JniException exception)
             {
-                Scierror(999, "%s: %s\n", fname, exception.what());
+                Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
             }
         }
 
@@ -404,4 +373,5 @@ sci_scinotes(char * fname, int *_piKey)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -29,9 +29,15 @@
     <ClCompile Include="..\jni\ScilabCommons_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\GiwsException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -46,7 +52,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\commons.iss" />
-    <None Include="..\..\sci_gateway\commons_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

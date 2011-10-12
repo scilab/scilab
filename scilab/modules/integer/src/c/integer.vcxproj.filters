@@ -320,8 +320,6 @@
     <None Include="..\..\integer.iss" />
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\integer.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\integer.pot" />
   </ItemGroup>
 </Project>

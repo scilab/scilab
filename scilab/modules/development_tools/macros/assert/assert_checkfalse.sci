@@ -18,7 +18,7 @@ function [flag,errmsg] = assert_checkfalse ( condition )
   //
   // Check types of variables
   if ( typeof(condition) <> "boolean" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Boolean matrix expected.\n") , "assert_checkfalse" , 1 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Boolean matrix expected.\n") , "assert_checkfalse" , 1 )
     error(errmsg)
   end
   //

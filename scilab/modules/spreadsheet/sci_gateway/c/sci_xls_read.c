@@ -93,7 +93,7 @@ int sci_xls_read(char *fname,unsigned long fname_len)
 	}
 	LhsVar(1)= Rhs+1;
 	LhsVar(2)= Rhs+2;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

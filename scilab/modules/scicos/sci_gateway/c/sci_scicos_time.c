@@ -36,7 +36,7 @@ int sci_scicos_time(char *fname,unsigned long fname_len)
 	*stk(l1) = get_scicos_time();
 
 	LhsVar(1) = 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

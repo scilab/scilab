@@ -33,8 +33,8 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //mscanf *
 	{NULL, ""}, //mfscanf *
 	{NULL, ""}, //msscanf *
-	{NULL,""}, //fscanfMat
-	{NULL,""}, //fprintfMat
+	{NULL,"" }, //fscanfMat
+	{NULL,"" }, //fprintfMat
 	{NULL, ""}, //merror
 	{NULL, ""}, //findfiles
 	{NULL, ""}, //maxfiles => deprecated (Scilab 5.4)
@@ -61,8 +61,11 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //movefile
 	{NULL, ""}, //basename
 	{NULL, ""}, //pathconvert
-	{NULL, ""}  //cd
-	};
+	{NULL, ""}, //cd
+    {NULL, ""}, //mgetl
+    {NULL, ""}, //mputl
+    {NULL, ""} //tempname
+};
 /*--------------------------------------------------------------------------*/
 int gw_fileio(void)
 {

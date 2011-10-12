@@ -112,9 +112,10 @@ int sci_get_absolute_file_path(char *fname,unsigned long fname_len)
 				n1=1;
 				CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(absolute_file_path), &m1),&n1,&absolute_file_path);
 				LhsVar(1)=Rhs+1;
-				C2F(putlhsvar)();
-
+				
 				if (absolute_file_path){FREE(absolute_file_path);absolute_file_path=NULL;}
+
+                PutLhsVar();
 			}
 		}
 		else

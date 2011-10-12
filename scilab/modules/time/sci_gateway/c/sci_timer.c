@@ -40,13 +40,13 @@ int sci_timer(char *fname,int* _piKey)
 
       *pDblReal = (double)timerval;
 
-      LhsVar(1) = Rhs+1;
-      PutLhsVar();
-    }
-  else
-    {
-      Scierror(999,_("%s: An error occurred.\n"), fname);
-    }
+		LhsVar(1) = Rhs+1;
+		PutLhsVar();
+	}
+	else
+	{
+		Scierror(999,_("%s: An error occurred.\n"), fname);
+	}
 
   return 0;
 }

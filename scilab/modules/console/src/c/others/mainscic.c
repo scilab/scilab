@@ -166,7 +166,7 @@ fpsetmask(0);
 #ifndef WITH_GUI
   if(getScilabMode() != SCILAB_NWNI)
   {
-    fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab with the -nwni option.\n");
+    fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or us the -nwni option.\n");
     exit(1);
   }
 #endif

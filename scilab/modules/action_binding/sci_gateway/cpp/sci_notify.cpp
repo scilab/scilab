@@ -15,6 +15,8 @@
 #include "action_binding_GiwsExports.hxx"
 #include "action_binding_gw.hxx"
 #include "string.hxx"
+#include "Signal.hxx"
+#include "GiwsException.hxx"
 
 extern "C"
 {
@@ -50,9 +52,19 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
     wcsInput = pString->get(0);
 
     char* strInput = wide_string_to_UTF8(wcsInput);
-    Signal_notify(getScilabJavaVM(), strInput);
+    try
+    {
+        org_scilab_modules_action_binding_utils::Signal::notify(getScilabJavaVM(), strInput);
+    }
+    catch(const GiwsException::JniException & e)
+    {
+        ScierrorW(999, _W("%ls: A Java exception arisen:\n%s"), L"notify", e.whatStr().c_str());
+        FREE(strInput);
+        return types::Function::Error;
+    }
     FREE(strInput);
 
     return types::Function::OK;
 }
+
 /*--------------------------------------------------------------------------*/

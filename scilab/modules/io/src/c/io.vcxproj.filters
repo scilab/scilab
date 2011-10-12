@@ -123,9 +123,7 @@
     <None Include="..\..\io.iss" />
     <None Include="..\..\sci_gateway\io_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\io.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\io.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="io.rc">

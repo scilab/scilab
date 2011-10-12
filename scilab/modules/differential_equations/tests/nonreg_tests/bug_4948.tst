@@ -21,7 +21,7 @@
 
 
 clear;
-clc;
+
 funcprot(0);
 
 

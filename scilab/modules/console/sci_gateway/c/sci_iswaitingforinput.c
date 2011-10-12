@@ -42,7 +42,7 @@ int sci_iswaitingforinput(char *fname,unsigned long fname_len)
 	*istk(outIndex) = res;
 	
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

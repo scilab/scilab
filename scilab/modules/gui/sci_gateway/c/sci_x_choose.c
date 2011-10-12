@@ -99,7 +99,7 @@ int sci_x_choose(char *fname,unsigned long fname_len)
   *stk(userValueAdr) = userValue;
 
   LhsVar(1) = Rhs+1;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

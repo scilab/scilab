@@ -28,7 +28,6 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
     wchar_t *convertedPath = NULL;
     if (wcpath)
     {
-        BOOL bOK = FALSE;
         BOOL bConvCyg = FALSE;
         wchar_t *expandedPath = NULL;
         PathConvertType PTypelocal = PType;

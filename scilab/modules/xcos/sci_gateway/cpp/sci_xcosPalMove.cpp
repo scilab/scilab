@@ -28,16 +28,15 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int
-sci_xcosPalMove(char *fname, int* _piKey)
+int sci_xcosPalMove(char *fname, int* _piKey)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    char** source = NULL;
+    char **source = NULL;
     int sourceLength = 0;
 
-    char** target = NULL;
+    char **target = NULL;
     int targetLength = 0;
 
     /* source setup */
@@ -55,17 +54,16 @@ sci_xcosPalMove(char *fname, int* _piKey)
     /* Call the java implementation */
     try
     {
-        Palette::move(getScilabJavaVM(), source, sourceLength, target,
-                targetLength);
+        Palette::move(getScilabJavaVM(), source, sourceLength, target, targetLength);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.what());
+        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 

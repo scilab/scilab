@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\exportToFile.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
@@ -138,9 +135,6 @@
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\JOGLConstant.hxx">
-      <Filter>Header Files\hxx</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\GiwsException.hxx">
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
   </ItemGroup>

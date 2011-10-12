@@ -24,7 +24,7 @@ FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_chdir);
 FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_copyfile);
 FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_movefile);
 FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_fscanfMat);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE( sci_fprintfMat);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_fprintfMat);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */

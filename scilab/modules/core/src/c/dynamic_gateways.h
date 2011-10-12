@@ -33,13 +33,6 @@ int gw_dynamic_special_functions(void);
 int gw_dynamic_ui_data(void);
 
 /**
-* pvm gateway
-* pvm is loaded dynamically at runtime
-* load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
-*/
-int gw_dynamic_pvm(void);
-
-/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
@@ -174,6 +167,14 @@ int gw_dynamic_graphic_export(void);
 * load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
 */
 int gw_dynamic_action_binding(void);
+
+/**
+* action_binding gateway
+* action_binding is loaded dynamically at runtime
+* load gw_action_binding in SCI/modules/xml/sci_gateway/gw_xml.c
+*/
+int gw_dynamic_xml(void);
+
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

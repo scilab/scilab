@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -618,5 +618,4 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 	}
 	return sciErr;
 }
-
 /*--------------------------------------------------------------------------*/

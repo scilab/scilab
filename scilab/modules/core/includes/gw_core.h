@@ -30,7 +30,7 @@ int C2F(sci_isdef)(char *fname,unsigned long fname_len);
 int C2F(sci_errcatch)(char *fname,unsigned long fname_len);
 int C2F(sci_errclear)(char *fname,unsigned long fname_len);
 int C2F(sci_iserror)(char *fname,unsigned long fname_len);
-int C2F(sci_predef)(char *fname,unsigned long fname_len);
+C_GATEWAY_PROTOTYPE(C2F(sci_predef));
 int C2F(sci_clearfun)(char *fname,unsigned long fname_len);
 int C2F(sci_funptr)(char *fname,unsigned long fname_len);
 int C2F(sci_macr2lst)(char *fname,unsigned long fname_len);

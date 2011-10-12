@@ -108,19 +108,11 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
 
-# Without the types module
-libscitypes_disable_la_CFLAGS =
+pkglib_LTLIBRARIES = libscitypes.la
 
-TYPES_DISABLE_C_SOURCES =
-libscitypes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
-
-pkglib_LTLIBRARIES = libscitypes-disable.la
-
-if GUI
-pkglib_LTLIBRARIES += libscitypes.la
 noinst_LTLIBRARIES = libscitypes-algo.la
-endif
+
+libscitypes_la_LIBADD = libscitypes-algo.la
 
 libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
@@ -139,11 +131,6 @@ SWIG_WRAPPERS = src/jni/sci_types.i
 if SWIG
 BUILT_SOURCES=swig
 endif
-
-libscitypes_la_LIBADD =  \
-libscitypes-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### types : gateway declaration ####

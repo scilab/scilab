@@ -137,7 +137,7 @@ libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FO
 libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscioptimization_algo_la_CFLAGS = $(libscioptimization_la_CFLAGS)
 
-libscioptimization_la_LIBADD = libscioptimization-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscioptimization_la_LIBADD = libscioptimization-algo.la
 
 
 #### Target ######
@@ -146,7 +146,7 @@ modulename=optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA =  license.txt 
+libscioptimization_la_root_DATA =  license.txt
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/neldermead \

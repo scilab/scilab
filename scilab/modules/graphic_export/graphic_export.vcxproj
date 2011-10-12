@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -121,7 +121,7 @@ cd $(IntDir) &gt;nul
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -161,7 +161,7 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -208,7 +208,7 @@ cd $(IntDir) &gt;nul
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes;../system_env/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -246,7 +246,6 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\jni\GiwsException.cpp" />
     <ClCompile Include="src\cpp\exportToFile.cpp" />
     <ClCompile Include="src\jni\FileExporter.cpp" />
     <ClCompile Include="src\cpp\GL2PSConstant.cpp" />
@@ -271,7 +270,6 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\xs2file.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\jni\GiwsException.hxx" />
     <ClInclude Include="includes\dynlib_graphic_export.h" />
     <ClInclude Include="src\c\gl2ps\gl2ps.h" />
     <ClInclude Include="includes\gw_graphic_export.h" />
@@ -303,6 +301,9 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

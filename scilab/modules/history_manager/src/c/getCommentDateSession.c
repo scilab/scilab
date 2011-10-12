@@ -59,7 +59,6 @@ char *getCommentDateSession(void)
 /*------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
-    int i = 0;
     char **wday_name = getDays();
     char **mon_name = getMonths();
     char *result = NULL;

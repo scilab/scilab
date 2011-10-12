@@ -34,7 +34,7 @@ int sci_gethistoryfile(char *fname,unsigned long fname_len)
 		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(filename), &m1),&n1,&filename);
 		if (filename) {FREE(filename);filename=NULL;}
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

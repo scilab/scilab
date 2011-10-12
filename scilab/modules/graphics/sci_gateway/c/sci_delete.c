@@ -37,11 +37,11 @@
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
-    int m1,n1,l1,m2,n2,l2,num, lw;
-    unsigned long hdl;
-    int nb_handles = 0, i, dont_overload = 0;
-    sciPointObj * pobj;
-    sciPointObj * parentFigure;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,num = 0, lw = 0;
+    unsigned long hdl = 0;
+    int nb_handles = 0, i = 0, dont_overload = 0;
+    sciPointObj * pobj = NULL;
+    sciPointObj * parentFigure = NULL;
 
     CheckRhs(0,1);
     CheckLhs(0,1);
@@ -175,7 +175,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     else
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
 
     return 0;

@@ -20,6 +20,7 @@
 %{
 #include "../../../system_env/includes/sci_home.h"
 #include "../../../system_env/includes/sci_tmpdir.h"
+#include "../../../fileio/includes/createtempfilename.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
@@ -101,3 +102,17 @@ char* getSCIHOME();
    */
 public";
 char *getTMPDIR(void);
+
+
+/* JavaDoc */
+%javamethodmodifiers createTempFileName() "
+ /**
+  * Create file with unique file name in TMPDIR
+  * TMPDIR/PREFIX[XXXXXXX]
+  * @param prefix the file prefix
+  * @param bShortFormat set 1 for a 8.5 filename, 0 otherwise
+  * @return a unique filename
+  */
+public";
+char *createtempfilename(const char* prefix, int bShortFormat);
+

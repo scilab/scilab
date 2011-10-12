@@ -689,13 +689,6 @@ OPENMP_LIBS
 OPENMP_CXXFLAGS
 OPENMP_CFLAGS
 OPENMP_ENABLE
-PVM_FALSE
-PVM_TRUE
-PVM_ENABLE
-PVM_INCLUDE
-PVM_LIB
-PVM_ARCH
-PVMGETARCH
 FFTW_FALSE
 FFTW_TRUE
 FFTW_ENABLE
@@ -973,9 +966,6 @@ with_libintl_prefix
 with_fftw
 with_fftw_include
 with_fftw_library
-with_pvm
-with_pvm_include
-with_pvm_library
 with_openmp
 with_libxml2
 enable_build_localization
@@ -1717,9 +1707,6 @@ Optional Packages:
   --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
-  --without-pvm           Disable the interface to the PVM library
-  --with-pvm-include=DIR  Set the path to the PVM headers
-  --with-pvm-library=DIR  Set the path to the PVM library directory
   --without-openmp        Disable the usage of OpenMP (parallelization of some
                           algoritms)
   --with-libxml2=PREFIX   Set the path to your libxml2 installation
@@ -10034,9 +10021,15 @@ fi
 
 
 
+if test "$with_gui" = no; then
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: GUI is disabled. Disabling then xcos" >&5
+$as_echo "$as_me: WARNING: GUI is disabled. Disabling then xcos" >&2;}
+   with_xcos=no
+fi
+
 XCOS_ENABLE=no
 
-if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+if test "$with_xcos" != no -a "$with_gui" != no; then
 
 $as_echo "#define WITH_XCOS /**/" >>confdefs.h
 
@@ -10594,7 +10587,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 10597 "configure"
+// #line 10590 "configure"
 
 
 public class conftest {
@@ -10660,7 +10653,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10663 "configure"
+// #line 10656 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10722,9 +10715,8 @@ $as_echo_n "checking java API version... " >&6; }
 
     # The class java.nio.charset.Charset is new to 1.4
 
-
     cat << \EOF > conftest.java
-// #line 10727 "configure"
+// #line 10719 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10767,9 +10759,8 @@ EOF
 
     # The class java.lang.StringBuilder is new to 1.5
 
-
     cat << \EOF > conftest.java
-// #line 10772 "configure"
+// #line 10763 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -10812,9 +10803,8 @@ EOF
 
     # The class java.util.ArrayDeque is new to 1.6
 
-
     cat << \EOF > conftest.java
-// #line 10817 "configure"
+// #line 10807 "configure"
 import java.util.ArrayDeque;
 
 public class conftest {
@@ -10836,6 +10826,50 @@ EOF
               if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
                echo "yes" >&5
                   ac_java_jvm_version=1.6
+            else
+                echo "configure: failed program was:" >&5
+                cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+                echo "configure: CLASSPATH was $CLASSPATH" >&5
+                            fi
+        fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+            fi
+
+
+    # The class java.nio.file.Path is new to 1.7
+
+    cat << \EOF > conftest.java
+// #line 10851 "configure"
+import java.nio.file.Path;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+              ac_java_jvm_version=1.7
+       else
+              cmd="$JAVA conftest"
+              if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+               echo "yes" >&5
+                  ac_java_jvm_version=1.7
             else
                 echo "configure: failed program was:" >&5
                 cat conftest.java >&5
@@ -10990,16 +11024,19 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
           machine=sparc
           ;;
         powerpc|ppc64)
-            machine=ppc
+          machine=ppc
           ;;
-          armv*)
+        armv*)
           machine=arm
           ;;
-          s390x) # s390 arch can also returns s390x
+        s390x) # s390 arch can also returns s390x
           machine=s390
           ;;
         sh*)
             machine=sh
+          ;;
+        mips64)
+            machine=mips
           ;;
     esac
 
@@ -11044,8 +11081,10 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
-                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                if test -d $D; then
+                  ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                fi
             fi
         fi
 
@@ -11175,8 +11214,10 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
-                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                if test -d $D; then
+                  ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                fi
             fi
         fi
 
@@ -12162,7 +12203,7 @@ $as_echo_n "checking jgraphx... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgraphx.jar" "$jardir/libjgraphx.jar" "$jardir/libjgraphx-java.jar" "$jardir/jgraphx*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12176,7 +12217,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12179 "configure"
+// #line 12220 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -12270,7 +12311,7 @@ $as_echo_n "checking minimal version (1.7.0.6) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12273 "configure"
+// #line 12314 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12321,7 +12362,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12324 "configure"
+// #line 12365 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12384,7 +12425,7 @@ $as_echo_n "checking jhdf5... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12398,7 +12439,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12401 "configure"
+// #line 12442 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12551,7 +12592,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12554 "configure"
+// #line 12595 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12606,7 +12647,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12609 "configure"
+// #line 12650 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12676,7 +12717,7 @@ $as_echo_n "checking flexdock... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/flexdock.jar" "$jardir/libflexdock.jar" "$jardir/libflexdock-java.jar" "$jardir/flexdock*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12690,7 +12731,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12693 "configure"
+// #line 12734 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12784,7 +12825,7 @@ $as_echo_n "checking minimal version (0.5.2) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12787 "configure"
+// #line 12828 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12835,7 +12876,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12838 "configure"
+// #line 12879 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12894,7 +12935,7 @@ $as_echo_n "checking looks... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/looks.jar" "$jardir/liblooks.jar" "$jardir/liblooks-java.jar" "$jardir/looks*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -12908,7 +12949,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12911 "configure"
+// #line 12952 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13001,7 +13042,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgoodies-looks.jar" "$jardir/libjgoodies-looks.jar" "$jardir/libjgoodies-looks-java.jar" "$jardir/jgoodies-looks*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13015,7 +13056,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13018 "configure"
+// #line 13059 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13109,7 +13150,7 @@ $as_echo_n "checking skinlf... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/skinlf.jar" "$jardir/libskinlf.jar" "$jardir/libskinlf-java.jar" "$jardir/skinlf*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13123,7 +13164,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13126 "configure"
+// #line 13167 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13216,7 +13257,7 @@ $as_echo_n "checking jogl... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13230,7 +13271,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13233 "configure"
+// #line 13274 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13430,7 +13471,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13444,7 +13485,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13447 "configure"
+// #line 13488 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13593,7 +13634,7 @@ $as_echo_n "checking jhall... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhall.jar" "$jardir/libjhall.jar" "$jardir/libjhall-java.jar" "$jardir/jhall*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13607,7 +13648,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13610 "configure"
+// #line 13651 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13700,7 +13741,7 @@ $as_echo_n "checking javahelp2... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/javahelp2.jar" "$jardir/libjavahelp2.jar" "$jardir/libjavahelp2-java.jar" "$jardir/javahelp2*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13714,7 +13755,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13717 "configure"
+// #line 13758 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13808,7 +13849,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-API.jar" "$jardir/libjrosetta-API.jar" "$jardir/libjrosetta-API-java.jar" "$jardir/jrosetta-API*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13822,7 +13863,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13825 "configure"
+// #line 13866 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13915,7 +13956,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-engine.jar" "$jardir/libjrosetta-engine.jar" "$jardir/libjrosetta-engine-java.jar" "$jardir/jrosetta-engine*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -13929,7 +13970,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13932 "configure"
+// #line 13973 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -14024,7 +14065,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jeuclid-core.jar" "$jardir/libjeuclid-core.jar" "$jardir/libjeuclid-core-java.jar" "$jardir/jeuclid-core*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14038,7 +14079,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14041 "configure"
+// #line 14082 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -14133,7 +14174,7 @@ $as_echo_n "checking fop... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14147,7 +14188,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14150 "configure"
+// #line 14191 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -14240,7 +14281,7 @@ $as_echo_n "checking batik-all... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14254,7 +14295,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14257 "configure"
+// #line 14298 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14347,7 +14388,7 @@ $as_echo_n "checking batik... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14361,7 +14402,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14364 "configure"
+// #line 14405 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14455,7 +14496,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14458 "configure"
+// #line 14499 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14506,7 +14547,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14509 "configure"
+// #line 14550 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14565,7 +14606,7 @@ $as_echo_n "checking commons-io... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14579,7 +14620,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14582 "configure"
+// #line 14623 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -14672,7 +14713,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14686,7 +14727,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14689 "configure"
+// #line 14730 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -14779,7 +14820,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14793,7 +14834,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14796 "configure"
+// #line 14837 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -14886,7 +14927,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -14900,7 +14941,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14903 "configure"
+// #line 14944 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14993,7 +15034,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15007,7 +15048,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15010 "configure"
+// #line 15051 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15104,7 +15145,7 @@ $as_echo_n "checking commons-logging... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-logging.jar" "$jardir/libcommons-logging.jar" "$jardir/libcommons-logging-java.jar" "$jardir/commons-logging*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15118,7 +15159,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15121 "configure"
+// #line 15162 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15211,7 +15252,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath.jar" "$jardir/libjlatexmath.jar" "$jardir/libjlatexmath-java.jar" "$jardir/jlatexmath*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15225,7 +15266,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15228 "configure"
+// #line 15269 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15319,7 +15360,7 @@ $as_echo_n "checking minimal version (0.9.4) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15322 "configure"
+// #line 15363 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15370,7 +15411,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15373 "configure"
+// #line 15414 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15435,7 +15476,7 @@ $as_echo_n "checking checkstyle... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/checkstyle.jar" "$jardir/libcheckstyle.jar" "$jardir/libcheckstyle-java.jar" "$jardir/checkstyle*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15449,7 +15490,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15452 "configure"
+// #line 15493 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -15542,7 +15583,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-beanutils.jar" "$jardir/libcommons-beanutils.jar" "$jardir/libcommons-beanutils-java.jar" "$jardir/commons-beanutils*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15556,7 +15597,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15559 "configure"
+// #line 15600 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -15649,7 +15690,7 @@ $as_echo_n "checking antlr... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/antlr.jar" "$jardir/libantlr.jar" "$jardir/libantlr-java.jar" "$jardir/antlr*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15663,7 +15704,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15666 "configure"
+// #line 15707 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -15756,7 +15797,7 @@ $as_echo_n "checking testng... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15770,7 +15811,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15773 "configure"
+// #line 15814 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -15863,7 +15904,7 @@ $as_echo_n "checking qdox... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15877,7 +15918,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15880 "configure"
+// #line 15921 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -15970,7 +16011,7 @@ $as_echo_n "checking bsh... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -15984,7 +16025,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15987 "configure"
+// #line 16028 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -16077,7 +16118,7 @@ $as_echo_n "checking junit... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -16091,7 +16132,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16094 "configure"
+// #line 16135 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -19977,519 +20018,6 @@ fi
 #AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
-## PVM
-#################
-
-
-# Check whether --with-pvm was given.
-if test "${with_pvm+set}" = set; then :
-  withval=$with_pvm;
-fi
-
-
-PVM_ENABLE=no
-if test "$with_pvm" != no; then
-
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if PVM_ROOT has been set" >&5
-$as_echo_n "checking if PVM_ROOT has been set... " >&6; }
-    if test "x$PVM_ROOT" = "x"; then
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: no.  I will try to guess a value for it" >&5
-$as_echo "no.  I will try to guess a value for it" >&6; }
-        _pvm_path="${PATH}"
-        # this variable will be used later to see if the user specified
-        # PVM_ROOT or if we guessed at it based on the location of the
-        # header
-        _pvm_root_specified=no
-    else
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes ($PVM_ROOT)" >&5
-$as_echo "yes ($PVM_ROOT)" >&6; }
-
-        _pvm_root_specified=yes
-        # PVM_ROOT is set, make sure the directory exists
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the specified PVM_ROOT directory exists" >&5
-$as_echo_n "checking if the specified PVM_ROOT directory exists... " >&6; }
-        if test -d "$PVM_ROOT" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-        else
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-            as_fn_error $? "The directory specified by PVM_ROOT does not exist.
-The value of PVM_ROOT must either be left unspecified (empty or not defined)
-or set to a valid directory that is the root of a pvm3 installation.
-" "$LINENO" 5
-        fi
-
-        # PVM_ROOT is set and the directory exists.  Now make sure it looks
-        # like a pvm installation!
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the specified PVM_ROOT contains a pvm installation" >&5
-$as_echo_n "checking if the specified PVM_ROOT contains a pvm installation... " >&6; }
-        if test -r "${PVM_ROOT}/include/pvm3.h" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-        else
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-            as_fn_error $? "The directory specified by PVM_ROOT does not appear
-to be a valid pvm installation directory.  This is based on PVM_ROOT/include/pvm3.h
-not existing.  The value of PVM_ROOT must either be left unspecified (empty or
-not defined) or set to a valid directory that is the root of a pvm3 installation." "$LINENO" 5
-        fi
-
-	# If we made it this far then it means PVM_ROOT is set and appears to
-	# be valid.
-        # we'll use this path for looking for pvmgetarch.
-        _pvm_path="${PVM_ROOT}/lib:${PATH}"
-    fi
-
-    # check for pvmgetarch.  If specified then PVM_ROOT/lib is placed at the
-    # beginning of the search path.  The user can force this by
-    # simply setting PVMGETARCH on the configure command line like
-    # PVMGETARCH=/path/to/pvmgetarch if they need to force a particular value.
-    # Extract the first word of "pvmgetarch", so it can be a program name with args.
-set dummy pvmgetarch; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_path_PVMGETARCH+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  case $PVMGETARCH in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PVMGETARCH="$PVMGETARCH" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $_pvm_path
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_PVMGETARCH="$as_dir/$ac_word$ac_exec_ext"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_PVMGETARCH" && ac_cv_path_PVMGETARCH="no"
-  ;;
-esac
-fi
-PVMGETARCH=$ac_cv_path_PVMGETARCH
-if test -n "$PVMGETARCH"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PVMGETARCH" >&5
-$as_echo "$PVMGETARCH" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-
-    if test "$PVMGETARCH" = "no" ; then
-        as_fn_error $? "Unable to find pvmgetarch in PVM_ROOT/lib or PATH" "$LINENO" 5
-     fi
-
-
-    # FIXME -- if we ever wish to cross compile scilab with pvm support in place
-    # then the user will need o specify PVM_ARCH correctly.  See pvm_intro(1PVM) for
-    # more details on the supported environment variables.
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for PVM architecture" >&5
-$as_echo_n "checking for PVM architecture... " >&6; }
-if ${PVM_ARCH+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  PVM_ARCH=`$PVMGETARCH`
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $PVM_ARCH" >&5
-$as_echo "$PVM_ARCH" >&6; }
-	if test "x$PVM_ARCH" = "xUNKNOWN"; then
-		as_fn_error $? "PVM is unable to recognise the architecture.  This means that
-pvmgetarch ($PVMGETARCH) is broken on your system.
-" "$LINENO" 5
-	fi
-
-
-    # now we start looking for the pvm3.h header.
-    USER_PVMINCLUDE=""
-
-# Check whether --with-pvm-include was given.
-if test "${with_pvm_include+set}" = set; then :
-  withval=$with_pvm_include;   USER_PVMINCLUDE=$withval
-
-fi
-
-
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking PVM header files" >&5
-$as_echo_n "checking PVM header files... " >&6; }
-	USER_PVMINCLUDE="$USER_PVMINCLUDE"
-
-    _pvm_header=pvm3.h
-    # if the user has given a --with-pvm-include configure option but the specified
-    # directory does not exist, then error out.  We don't keep searching in this case
-    # because the user has explicitly told us where to look and that location didn't
-    # exist.
-    if test "x$USER_PVMINCLUDE" != "x" -a ! -d "$USER_PVMINCLUDE" ; then
-        as_fn_error $? "The specified PVM include directory, $USER_PVMINCLUDE, does not exist." "$LINENO" 5
-    fi
-
-    if test "x$USER_PVMINCLUDE" != "x" ; then
-        # if the user has given a --with-pvm-include configure option but there is no pvm3.h
-        # there then error out.  We don't keep searching in this case because the user has
-        # explicitly told us where to look but we didn't find what we needed there.
-        if test -f "$USER_PVMINCLUDE/${_pvm_header}" ; then
-            PVM_INCLUDE_DIR="$USER_PVMINCLUDE"
-	    else
-            as_fn_error $? "Cannot find PVM header (${_pvm_header})  in the specified directory ($USER_PVMINCLUDE)." "$LINENO" 5
-		fi
-    else
-        # we have not been given a --with-pvm-include option, so we have to go looking
-        # for the pvm header
-        incpath=""
-
-        # if PVM_ROOT is set, then look there first
-        if test "x$PVM_ROOT" != "x" ; then
-            incpath="$PVM_ROOT/include $incpath"
-        else
-            # PVM_ROOT is not set so lets take a guess at what it may be.
-            # pvmgetarch is supposed to be installed as PVM_ROOT/lib/pvmgetarch
-            # so dirname $PVMGETARCH should give PVM_ROOT/lib
-            # and dirname again should give a guess at PVM_ROOT
-            tmp=`dirname $PVMGETARCH`
-            tmp=`dirname $tmp`
-            incpath="${tmp}/include $incpath"
-        fi
-
-        # add a bunch of other paths
-        incpath="$incpath /usr/include /usr/share /usr/share/include /usr/array/PVM /usr/local /usr/local/include /usr/local/src"
-        PVM_INCLUDE=""
-		for INC_PATH in $incpath; do
-		    F="$INC_PATH/${_pvm_header}"
-			if test -f "$F"; then
-		         PVM_INCLUDE_DIR="${INC_PATH}"
-				 break 1;
-			fi
-		done
-		if test -z "$PVM_INCLUDE_DIR"; then
-	   	     as_fn_error $? "Could not locate PVM include file (${_pvm_header})" "$LINENO" 5
-		fi
-	fi
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: PVM header found in $PVM_INCLUDE_DIR" >&5
-$as_echo "PVM header found in $PVM_INCLUDE_DIR" >&6; }
-
-    ac_save_CPPFLAGS="$CPPFLAGS"
-    ac_save_CFLAGS="$CFLAGS"
-
-    CPPFLAGS="-I$PVM_INCLUDE_DIR $CPPFLAGS"
-    CFLAGS="-I$PVM_INCLUDE_DIR $CFLAGS"
-
-    ac_fn_c_check_header_mongrel "$LINENO" "pvm3.h" "ac_cv_header_pvm3_h" "$ac_includes_default"
-if test "x$ac_cv_header_pvm3_h" = xyes; then :
-
-else
-  as_fn_error $? "check for PVM headers failed" "$LINENO" 5
-fi
-
-
-
-    CPPFLAGS=$ac_save_CPPFLAGS
-    CFLAGS=$ac_save_CFLAGS
-    PVM_INCLUDE="-I${PVM_INCLUDE_DIR}"
-
-
-
-$as_echo "#define WITH_PVM /**/" >>confdefs.h
-
-
-    if test "x$PVM_ROOT" = "x" ; then
-        # PVM_ROOT was not set so try to guess it from the header location.
-        # Since if we made it this far, we must have found the pvm3.h header
-        # somewhere and that somewhere is in $PVM_INCLUDE_DIR.
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a reasonable guess at PVM_ROOT since PVM_ROOT was not set" >&5
-$as_echo_n "checking for a reasonable guess at PVM_ROOT since PVM_ROOT was not set... " >&6; }
-        PVM_ROOT="`dirname $PVM_INCLUDE_DIR`"
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PVM_ROOT" >&5
-$as_echo "$PVM_ROOT" >&6; }
-    fi
-
-    PVMLIBDIR=$PVM_ROOT/lib/$PVM_ARCH
-    USER_PVMLIBDIR=""
-
-# Check whether --with-pvm-library was given.
-if test "${with_pvm_library+set}" = set; then :
-  withval=$with_pvm_library;   USER_PVMLIBDIR=$withval
-
-fi
-
-
-    USER_PVMLIBDIR="$USER_PVMLIBDIR"
-
-    # if the user has given a --with-pvm-library configure option but the specified
-    # directory does not exist, then error out.  We don't keep searching in this case
-    # because the user has explicitly told us where to look and that location did not
-    # exist.
-    if test "x$USER_PVMLIBDIR" != "x" ; then
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the specified PVM library directory ($USER_PVMLIBDIR) exists" >&5
-$as_echo_n "checking if the specified PVM library directory ($USER_PVMLIBDIR) exists... " >&6; }
-        if test -d "$USER_PVMLIBDIR" ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-        else
-            as_fn_error $? "The specified PVM library directory ($USER_PVMLIBDIR) does not exist.
-When specifying a PVM library directory with --with-pvm-libraries, the directory must
-exist and contain PVM libraries" "$LINENO" 5
-        fi
-    fi
-
-
-    dirs="$USER_PVMLIBDIR $PVMLIBDIR /lib /usr/lib /usr/lib/pvm3 /shlib /shlib/pvm3 /usr/shlib /usr/shlib/pvm3 /usr/local/lib /usr/local/lib/pvm3 /usr/local/shlib /usr/local/pvm3 /usr/pvm3 /usr/local/pvm3/lib /sw/lib/ /usr/share/pvm3 ."
-    libnames="pvm3 pvm"
-
-
-    # if the user has given a --with-pvm-library configure option, only look there.
-    if test "x$USER_PVMLIBDIR" != "x" ; then
-        dirs="$USER_PVMLIBDIR"
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for PVM libraries in $USER_PVMLIBDIR" >&5
-$as_echo_n "checking for PVM libraries in $USER_PVMLIBDIR... " >&6; }
-    elif test "$_pvm_root_specified" = "yes" ; then
-        # otherwise, if the user has specified PVM_ROOT (as opposed to configure
-        # having guessed it), then only look in PVMLIBDIR (derived from PVM_ROOT
-        # and PVMGETARCH output
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for PVM libraries in $PVMLIBDIR" >&5
-$as_echo_n "checking for PVM libraries in $PVMLIBDIR... " >&6; }
-        dirs="$PVMLIBDIR"
-    else
-        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for PVM libraries" >&5
-$as_echo_n "checking for PVM libraries... " >&6; }
-    fi
-
-    # put the path loop on the outside because we always want to look in
-    # the user specified directory and the PVM_ROOT directory first for all possible
-    # names instead of accidentally picking up something from a different directory
-    for PATH_LIB_PVM in $dirs; do
-        for NAME_LIB_PVM in $libnames; do
-            m=lib${NAME_LIB_PVM}
-            # note that the * is outside the quotes to allow the shell to expand it.
-            # The rest is quoted in case we have spaces or anything weird in the path.
-            ls "${PATH_LIB_PVM}/${m}."* >/dev/null 2>/dev/null
-            rc=$?
-            if test $rc -eq 0 ; then
-                # we found a candidate directory
-                # so check it out and see if it works
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: found $m in $PATH_LIB_PVM" >&5
-$as_echo "found $m in $PATH_LIB_PVM" >&6; }
-                saved_cflags="$CFLAGS"
-                saved_ldflags="$LDFLAGS"
-                saved_cppflags="$CPPFLAGS"
-                saved_libs="$LIBS"
-                CFLAGS="$PVM_INCLUDE $CFLAGS"
-                CPPFLAGS="$PVM_INCLUDE $CPPFLAGS"
-                LDFLAGS="$LDFLAGS -L$PATH_LIB_PVM"
-
-                # pvm_spawn() is a basic pvm3 function and should be in libpvm3
-                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing pvm_spawn" >&5
-$as_echo_n "checking for library containing pvm_spawn... " >&6; }
-if ${ac_cv_search_pvm_spawn+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_func_search_save_LIBS=$LIBS
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char pvm_spawn ();
-int
-main ()
-{
-return pvm_spawn ();
-  ;
-  return 0;
-}
-_ACEOF
-for ac_lib in '' pvm3 pvm; do
-  if test -z "$ac_lib"; then
-    ac_res="none required"
-  else
-    ac_res=-l$ac_lib
-    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
-  fi
-  if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_search_pvm_spawn=$ac_res
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext
-  if ${ac_cv_search_pvm_spawn+:} false; then :
-  break
-fi
-done
-if ${ac_cv_search_pvm_spawn+:} false; then :
-
-else
-  ac_cv_search_pvm_spawn=no
-fi
-rm conftest.$ac_ext
-LIBS=$ac_func_search_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_pvm_spawn" >&5
-$as_echo "$ac_cv_search_pvm_spawn" >&6; }
-ac_res=$ac_cv_search_pvm_spawn
-if test "$ac_res" != no; then :
-  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
-  PVM_SPAWN=$ac_res
-else
-  as_fn_error $? "Could not find the library with pvm_spawn().  Check that your PVM installation is not broken" "$LINENO" 5
-
-fi
-
-
-                if test "$PVM_SPAWN" = "none required" ; then
-		    PVM_SPAWN=""
-		fi
-
-                # pvm_barrier() is one of the group functions and should be in libgpvm3
-                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing pvm_barrier" >&5
-$as_echo_n "checking for library containing pvm_barrier... " >&6; }
-if ${ac_cv_search_pvm_barrier+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_func_search_save_LIBS=$LIBS
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char pvm_barrier ();
-int
-main ()
-{
-return pvm_barrier ();
-  ;
-  return 0;
-}
-_ACEOF
-for ac_lib in '' pvm3 gpvm3; do
-  if test -z "$ac_lib"; then
-    ac_res="none required"
-  else
-    ac_res=-l$ac_lib
-    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
-  fi
-  if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_search_pvm_barrier=$ac_res
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext
-  if ${ac_cv_search_pvm_barrier+:} false; then :
-  break
-fi
-done
-if ${ac_cv_search_pvm_barrier+:} false; then :
-
-else
-  ac_cv_search_pvm_barrier=no
-fi
-rm conftest.$ac_ext
-LIBS=$ac_func_search_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_pvm_barrier" >&5
-$as_echo "$ac_cv_search_pvm_barrier" >&6; }
-ac_res=$ac_cv_search_pvm_barrier
-if test "$ac_res" != no; then :
-  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
-  PVM_BARRIER=$ac_res
-else
-  as_fn_error $? "Could not find the library with pvm_barrier().  Check that your PVM installation is not broken" "$LINENO" 5
-
-fi
-
-
-                if test "$PVM_BARRIER" = "none required" ; then
-		    PVM_BARRIER=""
-		fi
-
-                PVMLIBS="$PVM_SPAWN $PVM_BARRIER"
-		PVM_LIB_OK=1
-
-                CFLAGS="$saved_cflags"
-                CPPFLAGS="$saved_cppflags"
-                LDFLAGS="$saved_ldflags"
-                LIBS="$saved_libs"
-
-                if test $PVM_LIB_OK = 1; then
-                    PVM_LIB="-L$PATH_LIB_PVM $PVMLIBS"
-                    break 2;
-                fi
-            fi
-        done # end of libname loop
-    done # end of directory loop
-
-
-# if we didn't find the PVM library, then spit out an error message
-# about it.  The error message is customized based on if the user
-# has specified PVM_ROOT or --with-pvm-libraries
-if test -z "$PVM_LIB"; then
-
-    if test "x$USER_PVMLIBDIR" != "x" ; then
-
-        as_fn_error $? "could not locate PVM libraries in the directory
-specified by --with-pvm-libraries ($USER_PVMLIBDIR)" "$LINENO" 5
-
-    elif test "$_pvm_root_specified" = "yes" ; then
-
-        as_fn_error $? "could not locate PVM libraries by way of
-PVM_ROOT/lib/<PVM_ARCH> ($PVMLIBDIR).  Either correct your PVM
-installation, PVM_ROOT, or use the --with-pvm-libraries configure
-option if your pvm libraries are installed in a non-standard
-location." "$LINENO" 5
-
-    else
-
-    	as_fn_error $? "check for PVM library failed.  You may wish
-to try setting PVM_ROOT to the root of your PVM installation or use
-the --with-pvm-libraries option to specify the directory containing
-the PVM library." "$LINENO" 5
-    fi
-fi
-
-
-
-
-    if test ! -z "$PVM_INCLUDE" -a ! -z "$PVM_LIB"; then
-	    PVM_OK=1
-    else
-        as_fn_error $? "Cannot find headers (pvm3.h) or PVM library. Please install the dev package for pvm3." "$LINENO" 5
-    fi
-
-
-
-
-   PVM_ENABLE=yes
-fi
-
-
- if test "$with_pvm" != no; then
-  PVM_TRUE=
-  PVM_FALSE='#'
-else
-  PVM_TRUE='#'
-  PVM_FALSE=
-fi
-
-
-#################
 ## OpenMP
 #################
 
@@ -20710,8 +20238,8 @@ _ACEOF
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
-ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
 
 # Check whether --enable-build-localization was given.
 if test "${enable_build_localization+set}" = set; then :
@@ -22345,6 +21873,10 @@ fi
 
 fi
 
+if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
+BLAS_LIBS="$BLAS_LIBS -L$with_blas_library"
+fi
+
 
 
 LIBS="$acx_blas_save_LIBS"
@@ -22526,6 +22058,10 @@ fi
 done
 
 LDFLAGS="$saved_ldflags"
+
+if test "$with_lapack_library" != no -a "$with_lapack_library" != ""; then
+LAPACK_LIBS="$LAPACK_LIBS -L$with_lapack_library"
+fi
 
 
 
@@ -24130,7 +23666,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24133 "configure"
+#line 23669 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24440,7 +23976,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24443 "configure"
+#line 23979 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24990,7 +24526,7 @@ else
 fi
 
 
-	for dir in $with_docbook $SCI_SRCDIR_FULL/thirdparty/docbook/ /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets; do
+	for dir in $with_docbook $SCI_SRCDIR_FULL/thirdparty/docbook/ /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets /usr/share/sgml/docbook/xsl-ns-stylesheets-*/; do
 		if test -r "$dir/javahelp/javahelp.xsl" -a "$DOCBOOK_ROOT" = ""; then
 			DOCBOOK_ROOT=$dir
         fi
@@ -25007,7 +24543,7 @@ $as_echo_n "checking saxon... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/saxon.jar" "$jardir/libsaxon.jar" "$jardir/libsaxon-java.jar" "$jardir/saxon*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -25021,7 +24557,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25024 "configure"
+// #line 24560 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -25114,7 +24650,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
     PACKAGE_JAR_FILE=
     found_jar=no
     saved_ac_java_classpath=$ac_java_classpath
-    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath-fop.jar" "$jardir/libjlatexmath-fop.jar" "$jardir/libjlatexmath-fop-java.jar" "$jardir/jlatexmath-fop*.jar"; do
 #    jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -25128,7 +24664,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25131 "configure"
+// #line 24667 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -31435,7 +30971,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31438 "configure"
+#line 30974 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31541,7 +31077,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31544 "configure"
+#line 31080 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -37535,9 +37071,142 @@ rm -f core conftest.err conftest.$ac_objext \
 $as_echo "$have_glibc_backtrace" >&6; }
 
 if test "x$have_glibc_backtrace" = "xyes"; then
-  CFLAGS="$CFLAGS -rdynamic"
-  CPPFLAGS="$CPPFLAGS -rdynamic"
-  FFLAGS="$FFLAGS -rdynamic"
+
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the C compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_CFLAGS="$CFLAGS"
+    CFLAGS="$CFLAGS -rdynamic"
+
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       CFLAGS="$ac_save_CFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
+
+    ac_ext=cpp
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the C++ compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_CXXFLAGS="$CXXFLAGS"
+    CXXFLAGS="$CXXFLAGS -rdynamic"
+
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       CXXFLAGS="$ac_save_CXXFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
+
+    ac_ext=f
+ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
+ac_link='$F77 -o conftest$ac_exeext $FFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_f77_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the Fortran 77 compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the Fortran 77 compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_FFLAGS="$FFLAGS"
+    FFLAGS="$FFLAGS -rdynamic"
+
+    cat > conftest.$ac_ext <<_ACEOF
+      program main
+
+      end
+_ACEOF
+if ac_fn_f77_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       FFLAGS="$ac_save_FFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
+
 
 $as_echo "#define HAVE_GLIBC_BACKTRACE 1" >>confdefs.h
 
@@ -37579,9 +37248,142 @@ rm -f core conftest.err conftest.$ac_objext \
 $as_echo "$have_cplus_demangle" >&6; }
 
 if test "x$have_cplus_demangle" = "xyes"; then
-  CFLAGS="$CFLAGS -rdynamic"
-  CPPFLAGS="$CPPFLAGS -rdynamic"
-  FFLAGS="$FFLAGS -rdynamic"
+
+
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the C compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_CFLAGS="$CFLAGS"
+    CFLAGS="$CFLAGS -rdynamic"
+
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       CFLAGS="$ac_save_CFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
+
+    ac_ext=cpp
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the C++ compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_CXXFLAGS="$CXXFLAGS"
+    CXXFLAGS="$CXXFLAGS -rdynamic"
+
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       CXXFLAGS="$ac_save_CXXFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
+
+    ac_ext=f
+ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
+ac_link='$F77 -o conftest$ac_exeext $FFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_f77_compiler_gnu
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the Fortran 77 compiler accepts \"-rdynamic\"" >&5
+$as_echo_n "checking if the Fortran 77 compiler accepts \"-rdynamic\"... " >&6; }
+    ac_save_FFLAGS="$FFLAGS"
+    FFLAGS="$FFLAGS -rdynamic"
+
+    cat > conftest.$ac_ext <<_ACEOF
+      program main
+
+      end
+_ACEOF
+if ac_fn_f77_try_compile "$LINENO"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+       FFLAGS="$ac_save_FFLAGS"
+
+
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+
 
 
 $as_echo "#define HAVE_CPLUS_DEMANGLE 1" >>confdefs.h
@@ -37673,7 +37475,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/threads/Makefile modules/ast/Makefile modules/parse/Makefile modules/symbol/Makefile modules/functions_manager/Makefile modules/system_env/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/commons/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/Info.plist etc/logging.properties scilab.properties scilab-lib.properties scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml modules/core/includes/version.h"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/threads/Makefile modules/ast/Makefile modules/parse/Makefile modules/symbol/Makefile modules/functions_manager/Makefile modules/system_env/Makefile modules/helptools/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/commons/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/xml/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/Info.plist etc/logging.properties scilab.properties scilab-lib.properties scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml modules/core/includes/version.h"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -37916,10 +37718,6 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${FFTW_TRUE}" && test -z "${FFTW_FALSE}"; then
   as_fn_error $? "conditional \"FFTW\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${PVM_TRUE}" && test -z "${PVM_FALSE}"; then
-  as_fn_error $? "conditional \"PVM\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${OPENMP_TRUE}" && test -z "${OPENMP_FALSE}"; then
@@ -39038,7 +38836,6 @@ do
     "modules/functions_manager/Makefile") CONFIG_FILES="$CONFIG_FILES modules/functions_manager/Makefile" ;;
     "modules/system_env/Makefile") CONFIG_FILES="$CONFIG_FILES modules/system_env/Makefile" ;;
     "modules/helptools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/helptools/Makefile" ;;
-    "modules/helptools/macros/xmlfiletohtml.sci") CONFIG_FILES="$CONFIG_FILES modules/helptools/macros/xmlfiletohtml.sci" ;;
     "modules/data_structures/Makefile") CONFIG_FILES="$CONFIG_FILES modules/data_structures/Makefile" ;;
     "modules/differential_equations/Makefile") CONFIG_FILES="$CONFIG_FILES modules/differential_equations/Makefile" ;;
     "modules/optimization/Makefile") CONFIG_FILES="$CONFIG_FILES modules/optimization/Makefile" ;;
@@ -39074,7 +38871,6 @@ do
     "modules/renderer/Makefile") CONFIG_FILES="$CONFIG_FILES modules/renderer/Makefile" ;;
     "modules/action_binding/Makefile") CONFIG_FILES="$CONFIG_FILES modules/action_binding/Makefile" ;;
     "modules/gui/Makefile") CONFIG_FILES="$CONFIG_FILES modules/gui/Makefile" ;;
-    "modules/pvm/Makefile") CONFIG_FILES="$CONFIG_FILES modules/pvm/Makefile" ;;
     "modules/randlib/Makefile") CONFIG_FILES="$CONFIG_FILES modules/randlib/Makefile" ;;
     "modules/tclsci/Makefile") CONFIG_FILES="$CONFIG_FILES modules/tclsci/Makefile" ;;
     "modules/windows_tools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/windows_tools/Makefile" ;;
@@ -39112,6 +38908,7 @@ do
     "modules/parallel/Makefile") CONFIG_FILES="$CONFIG_FILES modules/parallel/Makefile" ;;
     "modules/modules_manager/Makefile") CONFIG_FILES="$CONFIG_FILES modules/modules_manager/Makefile" ;;
     "modules/history_browser/Makefile") CONFIG_FILES="$CONFIG_FILES modules/history_browser/Makefile" ;;
+    "modules/xml/Makefile") CONFIG_FILES="$CONFIG_FILES modules/xml/Makefile" ;;
     "modules/Makefile") CONFIG_FILES="$CONFIG_FILES modules/Makefile" ;;
     "libs/Makefile") CONFIG_FILES="$CONFIG_FILES libs/Makefile" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
@@ -40987,9 +40784,6 @@ echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"
-echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
-echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
-echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -41040,16 +40834,6 @@ if test $OPENMP_ENABLE = yes; then
    echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
 else
    echo "Not using OpenMP"
-fi
-
-echo ""
-if test $PVM_ENABLE = yes; then
-   echo "PVM Configuration:"
-   echo "  PVM Architecture ... = $PVM_ARCH"
-   echo "  PVM INCLUDE ........ = $PVM_INCLUDE"
-   echo "  PVM LIBS ........... = $PVM_LIB"
-else
-   echo "Not using PVM"
 fi
 
 echo ""

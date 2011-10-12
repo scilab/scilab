@@ -53,9 +53,7 @@
     </None>
     <None Include="..\..\double.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\double.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\double.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="double.rc">

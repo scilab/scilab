@@ -79,9 +79,7 @@
     <None Include="..\localization.iss" />
     <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
-    <None Include="..\locales\localization.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\locales\localization.pot" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\charEncoding.c">

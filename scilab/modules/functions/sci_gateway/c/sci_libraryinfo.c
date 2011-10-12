@@ -94,7 +94,7 @@ int sci_libraryinfo(char *fname, int *_piKey)
 
                     if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
 
-                    C2F(putlhsvar)();
+                    PutLhsVar();
                 }
                 else
                 {

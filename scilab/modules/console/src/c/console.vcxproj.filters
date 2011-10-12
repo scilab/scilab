@@ -53,9 +53,6 @@
     <ClCompile Include="..\cpp\GetCharWithoutOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GuiManagement.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -128,11 +125,6 @@
     <ClCompile Include="..\cpp\scilabRead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="console.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\DropFiles.i">
@@ -249,14 +241,14 @@
     <ClInclude Include="..\cpp\SetConsolePrompt.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\SetConsolePrompt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scilabRead.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="console.rc" />
   </ItemGroup>
 </Project>

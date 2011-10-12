@@ -138,7 +138,6 @@ src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
-src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
@@ -237,6 +236,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
@@ -291,8 +291,7 @@ libscigui_algo_la_CPPFLAGS = $(libscigui_la_CPPFLAGS)
 CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
-#  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
-libscigui_la_LIBADD = libscigui-algo.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigui_la_LIBADD = libscigui-algo.la
 
 
 #### gui : gateway declaration ####

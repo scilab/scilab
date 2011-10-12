@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -122,7 +122,7 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -163,7 +163,7 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -266,7 +266,6 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="dropFiles.c" />
     <ClCompile Include="..\jni\DropFiles_wrap.c" />
     <ClCompile Include="..\cpp\GetCharWithoutOutput.cpp" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="GetCommandLine.c" />
     <ClCompile Include="GuiManagement.c" />
     <ClCompile Include="..\jni\GuiManagement_wrap.c" />
@@ -313,6 +312,9 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\completion\src\c\completion.vcxproj">
       <Project>{ccce1ead-8e62-4dc0-ab17-972c06ef0c89}</Project>
@@ -375,7 +377,6 @@ lib /DEF:"$(ProjectDir)libjvm_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\cpp\PromptToHome.hxx" />
     <ClInclude Include="..\cpp\ScilabLinesUpdate.hxx" />
     <ClInclude Include="..\cpp\SetConsolePrompt.hxx" />
-    <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="clc.h" />
     <ClInclude Include="ClearConsole.h" />
     <ClInclude Include="ClearConsolePart.h" />

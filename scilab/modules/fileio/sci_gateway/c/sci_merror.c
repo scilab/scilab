@@ -66,7 +66,7 @@ int sci_merror(char *fname,unsigned long fname_len)
 			}
 		}
 
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -111,7 +111,7 @@ int sci_merror(char *fname,unsigned long fname_len)
 							errmsg = NULL;
 						}
 					}
-					C2F(putlhsvar)();
+					PutLhsVar();
 				}
 				else
 				{

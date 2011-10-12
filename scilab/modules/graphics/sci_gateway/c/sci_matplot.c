@@ -53,7 +53,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
 
   if ( get_optionals(fname,opts) == 0 ) 
   {
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0 ; 
   }
   if ( FirstOpt() < 2)
@@ -66,7 +66,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
   if (m1 * n1 == 0) 
   {  
 	  LhsVar(1) = 0;
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0;
   }
 
@@ -103,7 +103,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
 
   /* NG end */
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

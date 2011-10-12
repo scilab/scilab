@@ -41,7 +41,8 @@ src/c/copyfile_others.c \
 src/c/getFullFilename.c \
 src/c/os_wfopen.c \
 src/c/fscanfMat.c \
-src/c/fprintfMat.c
+src/c/fprintfMat.c \
+src/c/createtempfilename.c
 
 
 GATEWAY_C_SOURCES = \
@@ -51,6 +52,7 @@ sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_copyfile.c \
+sci_gateway/c/sci_tempname.c \
 sci_gateway/c/sci_movefile.c
 
 GATEWAY_CPP_SOURCES = \
@@ -154,19 +156,15 @@ CHECK_SRC= $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATE
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/console/libsciconsole.la
-libscifileio_la_LIBADD = libscifileio-algo.la \
-				$(top_builddir)/modules/string/libscistring.la \
-				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD = libscifileio-algo.la
+
 #### Target ######
 modulename=fileio
 
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA =  license.txt 
+libscifileio_la_root_DATA =  license.txt
 
 
 #### fileio : init scripts ####

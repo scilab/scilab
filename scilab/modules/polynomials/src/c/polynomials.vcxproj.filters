@@ -96,9 +96,7 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
-    <None Include="..\..\locales\polynomials.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\polynomials.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc">

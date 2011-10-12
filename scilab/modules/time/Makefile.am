@@ -47,8 +47,7 @@ libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
 CHECK_SRC= $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
 
-libscitime_la_LIBADD = libscitime-algo.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscitime_la_LIBADD = libscitime-algo.la
 
 
 

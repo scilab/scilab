@@ -8,59 +8,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:29+0100\n"
+"Revision-Date: 2011-10-03 10:34+0100\n"
 
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 120
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 80
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 99
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 113
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 117
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
+
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 230
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 838
 #, c-format
-msgid "%s: Invalid HDF5 Scilab format.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 857
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 851
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 89
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 852
 #, c-format
 msgid "%s: Type: %dx%d\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 112
 #, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr ""
+
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 83
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 230
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr ""
-#
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 856
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 89
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 843
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-#
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 116
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr ""
-#
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 102
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 21
 # File: sci_gateway/cpp/sci_no_hdf5.cpp, line: 27

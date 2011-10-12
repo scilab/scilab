@@ -9,8 +9,7 @@ if BUILD_HELP
 USEANT=1
 
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
-	src/jni/SciDocMain.cpp \
-	src/jni/GiwsException.cpp
+	src/jni/SciDocMain.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
@@ -21,8 +20,13 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = libscihelptools-algo.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+libscihelptools_la_LIBADD = libscihelptools-algo.la
+libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
+libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+noinst_LTLIBRARIES = libscihelptools-algo.la
+
+HELPTOOLS_DISABLE_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
 
 if GIWS
 BUILT_SOURCES=giws
@@ -36,10 +40,7 @@ else
 GATEWAY_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
 endif
 
-HELPTOOLS_DISABLE_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
-
 pkglib_LTLIBRARIES = libscihelptools.la libscihelptools-disable.la
-noinst_LTLIBRARIES = libscihelptools-algo.la
 
 libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -56,15 +57,12 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/
-
+				-I$(top_srcdir)/modules/ast/includes/ \
+				-I$(top_srcdir)/modules/commons/src/jni
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
-libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 
 
 libscihelptools_disable_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
@@ -81,7 +79,7 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA =  license.txt 
+libscihelptools_la_root_DATA =  license.txt
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc

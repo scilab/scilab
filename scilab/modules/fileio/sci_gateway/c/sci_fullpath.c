@@ -33,7 +33,6 @@ int sci_fullpath(char *fname,unsigned long fname_len)
 		static int l1,n1,m1;
 		char *relPath = NULL;
 		char fullpath[PATH_MAX*4];
-		char *returnedPath = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
@@ -46,9 +45,10 @@ int sci_fullpath(char *fname,unsigned long fname_len)
 			n1=1;
 			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(1) = Rhs+1;
-			C2F(putlhsvar)();	
-
+			
 			if (Output) {FREE(Output);Output=NULL;}
+
+            PutLhsVar();	
 		}
 		else
 		{

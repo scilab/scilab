@@ -81,7 +81,6 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
     int lencurrentline = 0;
     int lenstringToAdd = 0;
 
-    int i = 0;
     int iposInsert = 0;
 
     if (currentline == NULL) 

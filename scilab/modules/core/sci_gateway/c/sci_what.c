@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -22,7 +22,6 @@
 #include "os_strdup.h"
 #include "freeArrayOfString.h"
 #include "getfunctionslist.h"
-
 /*--------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
@@ -32,8 +31,6 @@ static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
 static int cmpfunctionnames( const void *a ,const void *b);
-/*--------------------------------------------------------------------------*/
-//extern char **GetFunctionsList(int *sizeList);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_what)(char *fname,unsigned long fname_len)
 {
@@ -55,7 +52,7 @@ int C2F(sci_what)(char *fname,unsigned long fname_len)
 	}
 	else /* Lhs == 2 */
 	{
-		int ncol=1;	
+		int ncol=1;
 		int nrowFunctions=SizeLocalFunctionsTab;
 		int nrowCommands=sizecommandwords;
 
@@ -70,7 +67,7 @@ int C2F(sci_what)(char *fname,unsigned long fname_len)
 
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -148,7 +145,7 @@ static int CreateLocalFunctionsTab(void)
 
 		LocalFunctionsTab=(char **)MALLOC(sizeof(char**)*MaxSizeWithoutCommands);
 
-		if (LocalFunctionsTab == NULL) 
+		if (LocalFunctionsTab == NULL)
 		{
 			SizeLocalFunctionsTab = 0;
 			return FALSE;
@@ -157,7 +154,7 @@ static int CreateLocalFunctionsTab(void)
 		j=0;
 		for (i=0;i<SizeTab;i++)
 		{
-			if ( !IsACommand(LocalFunctionsTabTmp[i]) ) 
+			if ( !IsACommand(LocalFunctionsTabTmp[i]) )
 			{
 				LocalFunctionsTab[j] = os_strdup(LocalFunctionsTabTmp[i]);
 				j++;

@@ -319,7 +319,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 DispVariables(GVstruct,_("Your global variables are:"),GlenStructArray,gmemused,gmemtotal,gvarused,gvartotal);
 
 	 LhsVar(1) = 0;
-	 C2F(putlhsvar)();
+	 PutLhsVar();
 	 return 0;
  }
 /*--------------------------------------------------------------------------*/
@@ -351,10 +351,10 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 CreateVarFromPtr(Rhs+2,MATRIX_OF_INTEGER_DATATYPE, &m, &n, &Size);
 	 LhsVar(2) = Rhs+2;
 
-	 C2F(putlhsvar)();
-
 	 freeArrayOfString(Tab, lenStructArray);
 	 if (Size) {FREE(Size);Size=NULL;}
+
+     PutLhsVar();
 	 return 0;
  }
  /*--------------------------------------------------------------------------*/
@@ -384,7 +384,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 LhsVar(1)=Rhs+1;
 
 	 freeArrayOfString(LocalTab, lenStructArray);
-	 C2F(putlhsvar)();
+	 PutLhsVar();
 	 return 0;
  }
 /*--------------------------------------------------------------------------*/

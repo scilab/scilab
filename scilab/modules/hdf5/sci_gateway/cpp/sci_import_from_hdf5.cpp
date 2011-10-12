@@ -589,7 +589,6 @@ static types::InternalType* import_poly(int _iDatasetId)
 static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
 {
     int iRet						= 0;
-    int i								= 0;
     int	iRows						= 0;
     int iCols						= 0;
     int iComplex				= 0;
@@ -685,7 +684,6 @@ static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
 static types::InternalType* import_boolean_sparse(int* _piKey, int _iDatasetId)
 {
     int iRet						= 0;
-    int i								= 0;
     int	iRows						= 0;
     int iCols						= 0;
     int     types::Polynom* pPoly = NULL;iNbItem					= 0;

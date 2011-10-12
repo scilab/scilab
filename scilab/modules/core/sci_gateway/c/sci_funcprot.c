@@ -39,7 +39,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 		}
 
 		LhsVar(1) = Rhs + 1; 
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else if (Rhs == 1)
 	{
@@ -102,7 +102,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 		else
 		{
 			LhsVar(1) = 0; 
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 	}
 	return 0;

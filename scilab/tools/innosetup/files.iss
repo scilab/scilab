@@ -62,7 +62,6 @@
 #include BinariesSourcePath + "\modules\texmacs\texmacs.iss"
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"
-#include BinariesSourcePath + "\modules\pvm\pvm.iss"
 #include BinariesSourcePath + "\modules\javasci\javasci.iss"
 #include BinariesSourcePath + "\modules\intersci\intersci.iss"
 #include BinariesSourcePath + "\modules\mexlib\mexlib.iss"
@@ -95,5 +94,6 @@
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"
 #include BinariesSourcePath + "\modules\threads\threads.iss"
+#include BinariesSourcePath + "\modules\xml\xml.iss"
 ;-------------------------------------------------------------------------------
 ;

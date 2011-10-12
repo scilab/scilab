@@ -162,7 +162,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     if ( check_xy(fname,dir,3,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
 	{
-	  C2F(putlhsvar)();
+	  PutLhsVar();
       return 0;
 	}
     break;
@@ -170,7 +170,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     if ( check_xy(fname,dir,4,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
 	{
-	  C2F(putlhsvar)();
+	  PutLhsVar();
       return 0;
 	}
     break;
@@ -178,7 +178,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     if ( check_xy(fname,dir,-1,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
 	{
-	  C2F(putlhsvar)();
+	  PutLhsVar();
       return 0;
 	}
     break;
@@ -198,7 +198,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 
 
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 

@@ -48,8 +48,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/operations/includes
-				
+				-I$(top_srcdir)/modules/operations/
+
 libscicompletion_la_CPPFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -64,7 +64,7 @@ libscicompletion_la_CPPFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/operations/includes				
+				-I$(top_srcdir)/modules/operations/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -84,15 +84,14 @@ CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS) $(libscicompletion_la_CPPFLAGS)
 
 ## Libraries necessary
-## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD = libscicompletion-algo.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-#$(top_builddir)/modules/graphics/libscigraphics.la
+libscicompletion_la_LIBADD = libscicompletion-algo.la
+
 #### Name of the module and the path ######
 modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt 
+libscicompletion_la_root_DATA =  license.txt
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
@@ -116,6 +115,7 @@ libscicompletion_la_testutilitiesdir = $(mydatadir)/tests/utilities
 libscicompletion_la_testutilities_DATA = tests/utilities/build_primitives.sce \
 tests/utilities/sci_completeline.c \
 tests/utilities/sci_getcommonpart.c \
+tests/utilities/sci_getfields.c \
 tests/utilities/sci_getfilepartlevel.c \
 tests/utilities/sci_getpartlevel.c
 

@@ -1,16 +1,16 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <Windows.h>
 #include <wchar.h>
@@ -22,18 +22,18 @@
 #include "version.h"
 #include "MALLOC.h"
 #include "GetWindowsVersion.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #define HKCU_LANGUAGE_FORMAT L"SOFTWARE\\Scilab\\%s\\Settings" /* r/w registry */
 #define HKCM_LANGUAGE_FORMAT L"SOFTWARE\\Scilab\\%s" /* only read registry */
 #define LANGUAGE_ENTRY L"LANGUAGE"
 #define DEFAULT_LANGUAGE_VALUE L"en_US"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *languageFromCommandLine = NULL;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *getLanguagePreferencesCurrentUser(void);
 static wchar_t *getLanguagePreferencesAllUsers(void);
 static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyString);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL isValidLanguage(wchar_t *lang)
 {
     if (lang)
@@ -55,7 +55,7 @@ BOOL isValidLanguage(wchar_t *lang)
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL setLanguageFromCommandLine(wchar_t *lang)
 {
     if (lang)
@@ -72,7 +72,7 @@ BOOL setLanguageFromCommandLine(wchar_t *lang)
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 wchar_t *getLanguagePreferences(void)
 {
     wchar_t *LanguageUser = NULL;
@@ -96,30 +96,16 @@ wchar_t *getLanguagePreferences(void)
         }
         else
         {
-            if (isValidLanguage(LanguageAllUsers))
-            {
-                return LanguageAllUsers;
-            }
-            else
-            {
-                return os_wcsdup(L"");
-            }
+            if (isValidLanguage(LanguageAllUsers)) return LanguageAllUsers;
         }
     }
     else
     {
-        if (isValidLanguage(LanguageUser))
-        {
-            return LanguageUser;
-        }
-        else
-        {
-            return os_wcsdup(L"");
-        }
+        if (isValidLanguage(LanguageUser)) return LanguageUser;
     }
     return os_wcsdup(L"");
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
 {
 #define LENGTH_LANGUAGE_REGISTRY 64
@@ -134,7 +120,6 @@ static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
 
         DWORD OpensKeyOptions = 0;
         HKEY hKey;
-        DWORD result = 0;
         int length = LENGTH_LANGUAGE_REGISTRY;
         wsprintfW(keyString, keyStringFormat, SCI_VERSION_WIDE_STRING);
 #ifdef _WIN64 /* Scilab x64 on x64 windows */
@@ -168,17 +153,17 @@ static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
     }
     return os_wcsdup(LANGUAGE_REGISTRY);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *getLanguagePreferencesCurrentUser(void)
 {
     return readRegistryLanguage(HKEY_CURRENT_USER, HKCU_LANGUAGE_FORMAT);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *getLanguagePreferencesAllUsers(void)
 {
     return readRegistryLanguage(HKEY_LOCAL_MACHINE, HKCM_LANGUAGE_FORMAT);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL setLanguagePreferences(void)
 {
     char *LANGUAGE = wide_string_to_UTF8(getlanguage());
@@ -228,4 +213,4 @@ BOOL setLanguagePreferences(void)
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

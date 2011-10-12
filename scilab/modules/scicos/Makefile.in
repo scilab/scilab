@@ -85,12 +85,14 @@ DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 
 ########## COMMON
 @OCAML_TRUE@@XCOS_TRUE@am__append_2 = .ml .mli .mll .mly .cmo .cmi .cmx
+@GUI_TRUE@@XCOS_TRUE@am__append_3 = $(top_builddir)/modules/graphics/libscigraphics.la
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -98,10 +100,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -176,21 +178,9 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 libsciscicos_algo_la_OBJECTS = $(am_libsciscicos_algo_la_OBJECTS)
 @XCOS_TRUE@am_libsciscicos_algo_la_rpath =
 @XCOS_TRUE@libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@XCOS_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
-@XCOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@XCOS_TRUE@	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-@XCOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
+@XCOS_TRUE@	libscisundials.la \
 @XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@XCOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
+@XCOS_TRUE@	$(am__append_3)
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/gw_scicos.c sci_gateway/c/sci_buildouttb.c \
 	sci_gateway/c/sci_callblk.c sci_gateway/c/sci_coserror.c \
@@ -552,11 +542,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -947,22 +932,10 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 # For the code check (splint)
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 @XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
-@XCOS_TRUE@libsciscicos_la_LIBADD = libsciscicos-algo.la $(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
-@XCOS_TRUE@$(top_builddir)/modules/mexlib/libmx.la \
-@XCOS_TRUE@$(top_builddir)/modules/intersci/libsciintersci.la \
-@XCOS_TRUE@$(top_builddir)/modules/graphics/libscigraphics.la \
-@XCOS_TRUE@$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@$(top_builddir)/modules/time/libscitime.la \
-@XCOS_TRUE@$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-@XCOS_TRUE@$(top_builddir)/modules/scicos/libscisundials.la \
-@XCOS_TRUE@$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-@XCOS_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@XCOS_TRUE@$(top_builddir)/modules/core/libscicore.la \
-@XCOS_TRUE@$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la
-
+@XCOS_TRUE@libsciscicos_la_LIBADD = libsciscicos-algo.la \
+@XCOS_TRUE@	libscisundials.la \
+@XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+@XCOS_TRUE@	$(am__append_3)
 
 #### scicos : Conf files ####
 @XCOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
@@ -1014,7 +987,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### scicos : MACROS ####
 @XCOS_TRUE@MACROSDIRSEXT = macros/scicos_auto \
-@XCOS_TRUE@macros/scicos_menus \
 @XCOS_TRUE@macros/scicos_scicos \
 @XCOS_TRUE@macros/scicos_utils
 
@@ -2248,6 +2220,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

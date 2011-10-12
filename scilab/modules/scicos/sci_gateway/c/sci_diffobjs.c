@@ -48,7 +48,7 @@ int sci_diffobjs(char *fname,unsigned long fname_len)
 	if (size1 != size2) 
 	{
 		*stk(l3)=1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -57,12 +57,12 @@ int sci_diffobjs(char *fname,unsigned long fname_len)
 		if (header1[k] != header2[k]) 
 		{
 			*stk(l3)=1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 		*stk(l3)=0;
 	}
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

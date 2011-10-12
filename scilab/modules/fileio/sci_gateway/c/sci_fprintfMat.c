@@ -347,7 +347,8 @@ int sci_fprintfMat(char *fname, int *_piKey)
     case FPRINTFMAT_NO_ERROR:
         {
             LhsVar(1) = 0;
-            C2F(putlhsvar)();
+            if (filename) {FREE(filename); filename = NULL;}
+            PutLhsVar();
         }
         break;
     case FPRINTFMAT_FOPEN_ERROR:

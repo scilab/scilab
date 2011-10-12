@@ -51,12 +51,12 @@ function [s]=stdevf(x,fre,o)
   elseif o=='c'|o==2,
     y=x - meanf(x,fre,o)*ones(1,size(x,o))
   else 
-	error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d expected.\n"),"stdevf",3,"*","r","c",1,2)),
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),...
+                   "stdevf",3,"""*"",""r"",""c"",1,2")),
   end
-  if size(x,1)==1 then
+  if size(x,o)==1 then
     s=0*sum((y.^2).*fre,o)
   else
     s=sqrt(sum((y.^2).*fre,o)./(sum(fre,o)-1));
   end
- 
 endfunction

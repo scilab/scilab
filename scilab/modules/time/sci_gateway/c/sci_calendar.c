@@ -113,9 +113,10 @@ int sci_calendar(char *fname, int* _piKey)
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();
 
-  if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
+    if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 
-  return 0;
+	PutLhsVar();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int isBissextile (unsigned year)

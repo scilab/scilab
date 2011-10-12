@@ -16,7 +16,7 @@ modulename=renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA =  license.txt 
+libscirenderer_la_root_DATA =  license.txt
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -276,7 +276,6 @@ src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-src/jni/GiwsException.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
@@ -288,6 +287,7 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -308,11 +308,6 @@ SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
-
-## Libraries necessary
-## Change to include other Scilab modules/lib
-# cyclic $(top_builddir)/modules/graphics/libscigraphics.la
-libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 

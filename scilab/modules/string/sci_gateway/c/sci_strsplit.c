@@ -232,7 +232,6 @@ int sci_strsplit(char *fname, int* _piKey)
 
 			if ( (m2 == 1) || (n2 == 1) )
 			{
-				int i = 0;
 				int m_out = 0, n_out = 0;
 				strsplit_error ierr = STRSPLIT_NO_ERROR;
 
@@ -252,10 +251,9 @@ int sci_strsplit(char *fname, int* _piKey)
 							return 0;
 						}
 
-						LhsVar(1) = Rhs + 1;
-                        PutLhsVar();
-
 						freeArrayOfWideString(results, m_out);
+                        LhsVar(1) = Rhs + 1;
+                        PutLhsVar();
 					}
 					break;
 				case STRSPLIT_INCORRECT_VALUE_ERROR:

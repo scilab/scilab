@@ -76,7 +76,7 @@ libscilocalization_algo_la_CFLAGS = $(libscilocalization_la_CFLAGS)
 CHECK_SRC= $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
 
-libscilocalization_la_LIBADD = libscilocalization-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libscilocalization_la_LIBADD = libscilocalization-algo.la
 
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######

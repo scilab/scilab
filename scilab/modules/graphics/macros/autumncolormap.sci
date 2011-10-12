@@ -8,27 +8,32 @@
 
 //autumncolormap : Orange to yellow.
 function cmap = autumncolormap(varargin)
-	
-  // Check number of input argument
-  if size(varargin)<>1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "autumncolormap", 1));
-  end
-  n=varargin(1);
 
-  // Check size of input argument
-	if size(n,'*')<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"autumncolormap",1));
-	end
+    // Check number of input argument
+    if size(varargin)<>1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "autumncolormap", 1));
+    end
+    n=varargin(1);
 
-  // Check value of input argument
-	if n<3 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"autumncolormap",1,3));
-	end
-	
-	red    = ones(n,1);
-	green  = (0:n-1)'/max(n-1,1);
-	blue   = zeros(n,1);
-	
-	cmap = [red green blue];
-	
+    // Check type of input argument
+    if typeof(n)<>"constant" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "autumncolormap", 1));
+    end
+
+    // Check if input argument is real
+    if ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "autumncolormap", 1));
+    end
+
+    // Check size of input argument
+    if size(n,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"), "autumncolormap", 1));
+    end
+
+    red    = ones(n,1);
+    green  = (0:n-1)'/max(n-1,1);
+    blue   = zeros(n,1);
+
+    cmap = [red green blue];
+
 endfunction

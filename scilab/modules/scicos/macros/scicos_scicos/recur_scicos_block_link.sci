@@ -18,10 +18,9 @@
 //
 // See the file ../license.txt
 //
-function [model,ok,libsvector]=recur_scicos_block_link(o,flag)
+function [model,ok]=recur_scicos_block_link(o,flag)
 // Copyright INRIA
 model=o.model;ok=%t;
-if ~exists('libsvector') then libsvector=%scicos_libs; end
 if or(o.model.sim(1)==['super','csuper','asuper']) then
   obj=o.model.rpar;
   for i=1:size(obj.objs)
@@ -29,7 +28,7 @@ if or(o.model.sim(1)==['super','csuper','asuper']) then
     if typeof(o1)=='Block'
 
       if (or(o1.model.sim(1)==['super','csuper','asuper'])) then
-	[model,ok,libsvector]=recur_scicos_block_link(o1,flag)
+	[model,ok]=recur_scicos_block_link(o1,flag)
 	if ~ok then return; end
       elseif type(o1.model.sim)==15 
 	if or(int(o1.model.sim(2)/1000)==[1,2]) then
@@ -38,8 +37,7 @@ if or(o.model.sim(1)==['super','csuper','asuper']) then
 	  if ~c_link(funam) then
 	    tt=o1.graphics.exprs(2)
 	    mputl(tt,TMPDIR+'/'+funam+'.c')
-	    ok=buildnewblock(funam,funam,'','',%scicos_libs,TMPDIR,'','')
-	    //ok=scicos_block_link(funam,tt,flag,libss)
+	    ok=buildnewblock(funam,funam,'','','',TMPDIR,'','')
 	    if ~ok then return; end
 	  end
 	end
@@ -56,21 +54,16 @@ if or(o.model.sim(1)==['super','csuper','asuper']) then
 	  if ~c_link(intern_funam) then
 	    tt=o.graphics.exprs(4)(1);
 	    mputl(tt,TMPDIR+'/'+intern_funam+'.'+flag)
-	    ok=buildnewblock(intern_funam,intern_funam,'','',%scicos_libs,TMPDIR,'','')
+	    ok=buildnewblock(intern_funam,intern_funam,'','','',TMPDIR,'','')
 	    if ~ok then return; end
-	    //ok=scicos_block_link(intern_funam,tt,flag,libsvector)
 	  end
-	  libsvector=[];
 	end
       end
       tt=o.graphics.exprs(2)
       mputl(tt,TMPDIR+'/'+funam+'.c')
-      ok=buildnewblock(funam,funam,'','',%scicos_libs,TMPDIR,'','')
-      //ok=scicos_block_link(funam,tt,flag,libsvector)
+      ok=buildnewblock(funam,funam,'','','',TMPDIR,'','')
       if ~ok then return; end
-      // ok=scicos_block_link(funam,tt,flag,libsvector)
     end
-    libsvector=[]
   end 
 elseif or(int(o.model.sim(2)/1000)==[1,2]) then
   model=o.model
@@ -78,8 +71,7 @@ elseif or(int(o.model.sim(2)/1000)==[1,2]) then
   if ~c_link(funam) then
     tt=o.graphics.exprs(2)
     mputl(tt,TMPDIR+'/'+funam+'.c')
-    ok=buildnewblock(funam,funam,'','',%scicos_libs,TMPDIR,'','')
-    //ok=scicos_block_link(funam,tt,flag,libss)
+    ok=buildnewblock(funam,funam,'','','',TMPDIR,'','')
     if ~ok then return; end
   end
 end

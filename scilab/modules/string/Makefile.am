@@ -36,7 +36,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_strsplit.c \
     sci_gateway/c/sci_isdigit.c \
     sci_gateway/c/sci_isalphanum.c \
-    sci_gateway/c/sci_isascii.c 
+    sci_gateway/c/sci_isascii.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_stripblanks.cpp \
@@ -63,7 +63,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_strcspn.cpp \
     sci_gateway/cpp/sci_strtok.cpp \
     sci_gateway/cpp/sci_strspn.cpp
-    
+
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_string.f \
 sci_gateway/fortran/strops.f
 
@@ -72,6 +72,7 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/functions/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
@@ -110,15 +111,15 @@ CHECK_SRC= $(STRING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistring_la_CFLAGS)
 
 # commented since it is the first module to be processed
-#  $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscistring_la_LIBADD = libscistring-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscistring_la_LIBADD = libscistring-algo.la
+
 #### Target ######
 modulename=string
 
 
 #### string : Conf files ####
 libscistring_la_rootdir = $(mydatadir)
-libscistring_la_root_DATA =  license.txt 
+libscistring_la_root_DATA =  license.txt
 
 #### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc

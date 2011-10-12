@@ -49,7 +49,8 @@ instr = "assert_checkfalse ( [%f %t] )";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 errmsg = lasterror();
-MY_assert_equal ( errmsg , "assert_checkfalse: Assertion failed: found false entry in condition = [F ...]" );
+refmsg = msprintf( gettext ( "%s: Assertion failed: found false entry in condition = %s" ) , "assert_checkfalse", "[F ...]");
+MY_assert_equal ( errmsg , refmsg );
 //
 [flag,errmsg] = assert_checkfalse ( %f );
 checkassert ( flag , errmsg , "success" );

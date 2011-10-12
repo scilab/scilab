@@ -26,15 +26,14 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "os_strdup.h"
 
-    double C2F (sciround) (double *x);
-    SCICOS_BLOCKS_IMPEXP void
-    affich2(scicos_block * block, int flag);
+    double C2F(sciround) (double *x);
+    SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag);
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos_block;
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void
-affich2(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
 {
     int i;
     int j;
@@ -51,7 +50,7 @@ affich2(scicos_block * block, int flag)
     if (type == SCSREAL_N)
     {
         // getting the current block hashcode (linked to the AfficheBlock#getObjectsParameters() method).
-        blockHashCode = (int) *(double *) GetOparPtrs(block, 1);
+        blockHashCode = (int)*(double *)GetOparPtrs(block, 1);
     }
     else
     {
@@ -62,14 +61,15 @@ affich2(scicos_block * block, int flag)
     iRowsIn = GetInPortRows(block, 1);
     iColsIn = GetInPortCols(block, 1);
 
-    pdblReal = (double *) GetInPortPtrs(block, 1);
+    pdblReal = (double *)GetInPortPtrs(block, 1);
 
     //functions
     switch (flag)
-        {
-    case StateUpdate: //state evolution
+    {
+    case StateUpdate:          //state evolution
+    case ReInitialization:
         // Getting the allocated area
-        pstValue = (char ***) block->work[0];
+        pstValue = (char ***)block->work[0];
 
         for (i = 0; i < iRowsIn; i++)
         {
@@ -77,16 +77,16 @@ affich2(scicos_block * block, int flag)
             {
                 int iDigit = GetIparPtrs(block)[3];
                 int iPrec = GetIparPtrs(block)[4];
-                
-                double dblScale = pow((double) 10, iPrec);
+
+                double dblScale = pow((double)10, iPrec);
                 double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
-                double dblValue = C2F(sciround)(&dblTemp) / dblScale;
+                double dblValue = C2F(sciround) (&dblTemp) / dblScale;
                 char pstFormat[10];
 
 #if _MSC_VER
                 //"%0.2f"
-                sprintf_s (pstFormat, 10, "%%%d.%df", iDigit, iPrec);
-                sprintf_s (pstConv, 128, pstFormat, dblValue);
+                sprintf_s(pstFormat, 10, "%%%d.%df", iDigit, iPrec);
+                sprintf_s(pstConv, 128, pstFormat, dblValue);
 #else
                 sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
                 sprintf(pstConv, pstFormat, dblValue);
@@ -97,29 +97,28 @@ affich2(scicos_block * block, int flag)
 
         try
         {
-            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
-                    iRowsIn, iColsIn);
+            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue, iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniException & exception)
+        catch(const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
              */
-            Coserror(exception.what());
+            Coserror(exception.whatStr().c_str());
         }
         break;
 
-    case Initialization: //init
-        pstValue = (char ***) MALLOC(sizeof(char **) * iRowsIn);
+    case Initialization:       //init
+        pstValue = (char ***)MALLOC(sizeof(char **) * iRowsIn);
 
         for (i = 0; i < iRowsIn; i++)
         {
-            pstValue[i] = (char **) MALLOC(sizeof(char *) * iColsIn);
+            pstValue[i] = (char **)MALLOC(sizeof(char *) * iColsIn);
 
             for (j = 0; j < iColsIn; j++)
             {
 #if _MSC_VER
-                sprintf_s (pstConv, 128, "%0.2f", 0.0);
+                sprintf_s(pstConv, 128, "%0.2f", 0.0);
 #else
                 sprintf(pstConv, "%0.2f", 0.0);
 #endif
@@ -129,15 +128,14 @@ affich2(scicos_block * block, int flag)
 
         try
         {
-            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
-                    iRowsIn, iColsIn);
+            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue, iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniException & exception)
+        catch(const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
              */
-            Coserror(exception.what());
+            Coserror(exception.whatStr().c_str());
         }
 
         // storing the allocated area on the block work field.
@@ -146,7 +144,7 @@ affich2(scicos_block * block, int flag)
 
     case Ending:
         // Getting the allocated area
-        pstValue = (char ***) block->work[0];
+        pstValue = (char ***)block->work[0];
 
         for (i = 0; i < iRowsIn; i++)
         {
@@ -157,7 +155,7 @@ affich2(scicos_block * block, int flag)
 
     default:
         break;
-        }
+    }
 }
 
 //      

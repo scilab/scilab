@@ -53,6 +53,9 @@
     <ClCompile Include="searchmacroinlibraries.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="isScilabFunction.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_functions.h">
@@ -73,6 +76,9 @@
     <ClInclude Include="searchmacroinlibraries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\isScilabFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="functions_f_Import.def">
@@ -84,9 +90,7 @@
     <None Include="..\..\functions.iss" />
     <None Include="..\..\sci_gateway\functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\functions.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\functions.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="functions.rc">

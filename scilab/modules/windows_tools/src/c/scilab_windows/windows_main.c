@@ -51,11 +51,9 @@ extern int sci_show_banner ;
 /*--------------------------------------------------------------------------*/ 
 int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
 {
-    int iExitCode = 0;
     BOOL ShortCircuitExec = FALSE;
     BOOL LaunchAFile = FALSE;
     char *ScilabDirectory = NULL;
-    wchar_t *pwcFullCmdLineTmp = NULL;
     LPWSTR *szArglist = NULL;
     char FileName[PATH_MAX * 2];
     int nArgs = 0;

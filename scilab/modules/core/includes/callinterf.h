@@ -63,7 +63,7 @@
 /* 39 */						#include "dynamic_gateways.h" /* special_functions */
 /* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
-/* 42 */						#include "dynamic_gateways.h" /* pvm */
+/* 42 gw_user(); FREE */
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 /* 45 */						#include "dynamic_gateways.h" /* scicos */
@@ -89,6 +89,7 @@
 /* 65 */						#include "dynamic_gateways.h" /* action_binding */
 /* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
+/* 68 */                        #include "dynamic_gateways.h" /* xml */
 
 
 

@@ -12,7 +12,6 @@
 
 mode(-1);  // silent execution mode
 
-%pvm = with_module("pvm");
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
 
 // Default Obsolete Warning policy  ===================================

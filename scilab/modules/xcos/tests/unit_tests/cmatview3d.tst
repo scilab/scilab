@@ -8,7 +8,7 @@
 // <-- TEST WITH XCOS -->
 // <-- TEST WITH GRAPHIC -->
 
-// test scope values 
+// test scope values
 
 loadXcosLibs();
 
@@ -19,7 +19,6 @@ f=gcf();
 a=f.children(1);
 g=a.children(1);
 
-assert_checkequal(f.figure_id, 20012);
 assert_checkequal(a.data_bounds, [0 0 -100; 81 81 100]);
 
 assert_checkequal(a.x_label.text, "x");

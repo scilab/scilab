@@ -75,17 +75,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -105,16 +100,12 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;$(SolutionDir)bin\elementary_functions_f.lib;$(SolutionDir)bin\polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,15 +114,11 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -151,35 +138,25 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;$(SolutionDir)bin\elementary_functions_f.lib;$(SolutionDir)bin\polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -198,20 +175,14 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;$(SolutionDir)bin\elementary_functions_f.lib;$(SolutionDir)bin\polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -219,20 +190,15 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../../libs/hashtable;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../windows_tools/includes;../../../jvm/includes;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../fileio/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -251,20 +217,14 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <AdditionalDependencies>LibScilab.lib;scicos_blocks_f.lib;scicos.lib;output_stream.lib;string.lib;fileio.lib;linear_algebra_f.lib;scirenderer.lib;graphics.lib;slicot_f.lib;$(SolutionDir)bin\elementary_functions_f.lib;$(SolutionDir)bin\polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -404,7 +364,6 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="gainblk_ui8e.c" />
     <ClCompile Include="gainblk_ui8n.c" />
     <ClCompile Include="gainblk_ui8s.c" />
-    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="hystheresis.c" />
     <ClCompile Include="integral_func.c" />
     <ClCompile Include="integralz_func.c" />
@@ -594,7 +553,6 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <ClInclude Include="..\jni\AfficheBlock.hxx" />
     <ClInclude Include="..\..\includes\blocks.h" />
-    <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\scicos_block.h" />
     <ClInclude Include="..\..\includes\scicos_block4.h" />
     <ClInclude Include="..\..\includes\scoBase.h" />
@@ -635,9 +593,8 @@ lib /DEF:"$(ProjectDir)Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
-      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

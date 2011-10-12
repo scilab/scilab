@@ -57,7 +57,7 @@ int sci_TCL_GetVersion(char *fname,unsigned long l)
 		if (output) {FREE(output);output=NULL;}
 
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{
@@ -81,9 +81,10 @@ int sci_TCL_GetVersion(char *fname,unsigned long l)
 				m1=1;
 				n1=4;
 				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&VERSIONMATRIX);
+                if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
 				LhsVar(1)=Rhs+1;
 				PutLhsVar();
-				if (VERSIONMATRIX){	FREE(VERSIONMATRIX); VERSIONMATRIX=NULL;}
+				
 			}
 			else
 			{

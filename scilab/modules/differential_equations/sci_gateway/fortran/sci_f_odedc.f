@@ -777,8 +777,8 @@ c
      $        'i3,'' ml = '',i3,'' mu = '',i3)') itask,meth,jactyp,ml
      $        ,mu
          call basout(io,wte,tmpbuf(1:80))
-      write(tmpbuf, '(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
-     $       'e9.4,'' hmin = '',e9.4)')
+      write(tmpbuf, '(''tcrit= '',e11.4,'' h0= '',e11.4, '' hmax= '','//
+     $       'e11.4,'' hmin = '',e11.4)')
      $    tcrit,stk(lc+4),stk(lc+5),stk(lc+6)
          call basout(io,wte,tmpbuf(1:80)) 
       endif

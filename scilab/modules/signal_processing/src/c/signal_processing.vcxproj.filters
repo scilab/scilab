@@ -57,9 +57,7 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\signal_processing.iss" />
     <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
-    <None Include="..\..\locales\signal_processing.pot">
-      <Filter>localization</Filter>
-    </None>
+    <None Include="..\..\locales\signal_processing.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="signal_processing.rc">

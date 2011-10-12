@@ -151,7 +151,7 @@ libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_
 CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
 
-libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la
 
 
 #### Target ######
@@ -160,7 +160,7 @@ modulename=differential_equations
 
 #### differential_equations : Conf files ####
 libscidifferential_equations_la_rootdir = $(mydatadir)
-libscidifferential_equations_la_root_DATA =  license.txt 
+libscidifferential_equations_la_root_DATA =  license.txt
 
 #### differential_equations : init scripts ####
 libscidifferential_equations_la_etcdir = $(mydatadir)/etc

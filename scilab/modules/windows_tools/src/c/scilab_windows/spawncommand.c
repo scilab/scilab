@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -86,12 +86,12 @@ int spawncommand(char *command, BOOL DetachProcess)
     CreatePipe(&pipeSpawnOut.pipe, &h, &sa, 0);
 
     /* dupe the write side, make it inheritible, and close the original. */
-    DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput, 
+    DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput,
         0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* Same as above, but for the error side. */
     CreatePipe(&pipeSpawnErr.pipe, &h, &sa, 0);
-    DuplicateHandle(hProcess, h, hProcess, &si.hStdError, 
+    DuplicateHandle(hProcess, h, hProcess, &si.hStdError,
         0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* base command line */
@@ -120,7 +120,7 @@ int spawncommand(char *command, BOOL DetachProcess)
 
         if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
-        lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) + 
+        lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) +
             strlen(FileTMPDir));
         CmdLine = (char*)MALLOC((lenCmdLine + 1)*sizeof(char));
         sprintf(CmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
@@ -196,19 +196,19 @@ DWORD WINAPI ReadFromPipe (LPVOID args)
     pi->OutputBuffer = (unsigned char*) MALLOC(BUFSIZE);
     op = pi->OutputBuffer;
 
-    while (moreOutput) 
+    while (moreOutput)
     {
         BOOL bres = ReadFile( pi->pipe, op, BUFSIZE-1, &dwRead, NULL);
 
         moreOutput = bres || (dwRead != 0);
 
-        if (moreOutput) 
+        if (moreOutput)
         {
             readSoFar += dwRead;
             pi->OutputBuffer  = (unsigned char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
             op = pi->OutputBuffer + readSoFar;
         }
-    } 
+    }
     *op = '\0';
     return 0;
 }
@@ -347,7 +347,7 @@ char *convertLine(char *_string, BOOL DetachProcess)
         }
         else
         {
-            // in -nw mode 
+            // in -nw mode
             // chcp 65001 (to switch cmd to UNICODE)
             // and change font to Lucida (TrueType)
             if ( (DetachProcess) && (!IsValidUTF8(_string)) )
@@ -372,9 +372,9 @@ int CallWindowsShell(char *command)
     wchar_t * wcommand = NULL;
     size_t iCmdSize = 0;
 
-    PROCESS_INFORMATION piProcInfo; 
+    PROCESS_INFORMATION piProcInfo;
     STARTUPINFOW siStartInfo;
-    SECURITY_ATTRIBUTES saAttr; 
+    SECURITY_ATTRIBUTES saAttr;
 
     DWORD ExitCode = 0;
 
@@ -387,14 +387,14 @@ int CallWindowsShell(char *command)
         return 1;
     }
 
-    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
-    saAttr.bInheritHandle = TRUE; 
-    saAttr.lpSecurityDescriptor = NULL; 
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
 
     ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
 
     ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
-    siStartInfo.cb = sizeof(STARTUPINFO); 
+    siStartInfo.cb = sizeof(STARTUPINFO);
     siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
     siStartInfo.wShowWindow  = SW_HIDE;
     siStartInfo.hStdInput = NULL;
@@ -445,9 +445,9 @@ int CallWindowsShellW(wchar_t* _pstCommand)
     wchar_t *CmdLine = NULL;
     size_t iCmdSize = 0;
 
-    PROCESS_INFORMATION piProcInfo; 
+    PROCESS_INFORMATION piProcInfo;
     STARTUPINFOW siStartInfo;
-    SECURITY_ATTRIBUTES saAttr; 
+    SECURITY_ATTRIBUTES saAttr;
 
     DWORD ExitCode = 0;
 
@@ -460,14 +460,14 @@ int CallWindowsShellW(wchar_t* _pstCommand)
         return 1;
     }
 
-    saAttr.nLength              = sizeof(SECURITY_ATTRIBUTES); 
-    saAttr.bInheritHandle       = TRUE; 
-    saAttr.lpSecurityDescriptor = NULL; 
+    saAttr.nLength              = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle       = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
 
     ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
 
     ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
-    siStartInfo.cb              = sizeof(STARTUPINFO); 
+    siStartInfo.cb              = sizeof(STARTUPINFO);
     siStartInfo.dwFlags         = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
     siStartInfo.wShowWindow     = SW_HIDE;
     siStartInfo.hStdInput       = NULL;
@@ -501,7 +501,7 @@ int CallWindowsShellW(wchar_t* _pstCommand)
 
         if(CmdLine)
         {
-            FREE(CmdLine); 
+            FREE(CmdLine);
             CmdLine = NULL;
         }
 

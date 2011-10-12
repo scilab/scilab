@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -43,7 +43,7 @@ int sci_dos(char *fname, int* _piKey)
 	char **Output = NULL;
 	int numberoflines = 0;
 	BOOL ECHOMODE = FALSE;
-	
+
 	CheckRhs(1,2);
 	CheckLhs(1,3);
 
@@ -82,7 +82,7 @@ int sci_dos(char *fname, int* _piKey)
 			return 0;
 		}
 
-		if ( (m2 != n2) && (n2 != 1) ) 
+		if ( (m2 != n2) && (n2 != 1) )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 			return 0;
@@ -143,7 +143,7 @@ int sci_dos(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if ( (m1 != n1) && (n1 != 1) ) 
+	if ( (m1 != n1) && (n1 != 1) )
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
@@ -171,7 +171,7 @@ int sci_dos(char *fname, int* _piKey)
 
 		if (DetachProcessOption)
 		{
-			if ( strlen(pipeSpawnErr.OutputBuffer) )
+			if ( strlen((const char *)(pipeSpawnErr.OutputBuffer)) )
 			{
 				/* StdErr will be "Output" */
 				*StatusExit = FALSE;
@@ -269,7 +269,7 @@ int sci_dos(char *fname, int* _piKey)
 		if (Lhs > 2)
 		{
 			int m_out3 = 1, n_out3 = 1;
-			sciErr = createMatrixOfDouble(_piKey, Rhs + 3, m_out3, n_out3, &exitCode); 
+			sciErr = createMatrixOfDouble(_piKey, Rhs + 3, m_out3, n_out3, &exitCode);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -279,20 +279,19 @@ int sci_dos(char *fname, int* _piKey)
 			LhsVar(3) = Rhs + 3;
 		}
 
-		PutLhsVar();
-
 		if (StatusExit) {FREE(StatusExit); StatusExit = NULL;}
 		freeArrayOfString(Output, numberoflines);
 
 		ClosePipeInfo (pipeSpawnOut);
 		ClosePipeInfo (pipeSpawnErr);
 
+        PutLhsVar();
 	}
 	else
 	{
 		Scierror(999,_("%s: No more memory.\n"),fname);
 	}
-	
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -301,7 +300,7 @@ static int PrintOuput(char **ouput,int nbrlines)
 	if (ouput)
 	{
 		int i = 0;
-		for(i = 0;i<nbrlines;i++) 
+		for(i = 0;i<nbrlines;i++)
 		{
 			if (ouput[i])
 			{
