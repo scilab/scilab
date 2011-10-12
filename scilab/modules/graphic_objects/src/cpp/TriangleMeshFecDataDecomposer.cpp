@@ -46,9 +46,9 @@ void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bu
 
     for (i = 0; i < numVertices; i++)
     {
-        buffer[elementsSize*i] = coordinates[3*i];
-        buffer[elementsSize*i +1] = coordinates[3*i+1];
-        buffer[elementsSize*i +2] = coordinates[3*i+2];
+        buffer[elementsSize*i] = (float)coordinates[3*i];
+        buffer[elementsSize*i +1] = (float)coordinates[3*i+1];
+        buffer[elementsSize*i +2] = (float)coordinates[3*i+2];
 
         if (elementsSize == 4)
         {

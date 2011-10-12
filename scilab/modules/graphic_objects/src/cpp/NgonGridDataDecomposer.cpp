@@ -183,19 +183,19 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
             {
                 if (coordinateMask & 0x1)
                 {
-                    buffer[bufferOffset] = xcoords[k] * scale[0] + translation[0];
+                    buffer[bufferOffset] = (float)(xcoords[k] * scale[0] + translation[0]);
                 }
 
                 if (coordinateMask  & 0x2)
                 {
-                    buffer[bufferOffset +1] = ycoords[k] * scale[1] + translation[1];
+                    buffer[bufferOffset +1] = (float)(ycoords[k] * scale[1] + translation[1]);
                 }
 
                 if (coordinateMask & 0x4)
                 {
                     zij = getZCoordinate(z, numX, numY, xindices[k], yindices[k], logMask & 0x4);
 
-                    buffer[bufferOffset +2] = zij * scale[2] + translation[2];
+                    buffer[bufferOffset +2] = (float)(zij * scale[2] + translation[2]);
                 }
 
                 if (elementsSize == 4 && (coordinateMask & 0x8))

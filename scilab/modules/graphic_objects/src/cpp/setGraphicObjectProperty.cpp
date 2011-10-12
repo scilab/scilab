@@ -41,7 +41,7 @@ BOOL setGraphicObjectProperty(char *_pstID, char *_pstName, void *_pvValue, _Ret
     // Special Case for data, no need to go through Java.
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
     {
-        result = DataController::setGraphicObjectProperty(_pstID, _pstName, _pvValue, numElements);
+        result = BOOLtobool(DataController::setGraphicObjectProperty(_pstID, _pstName, _pvValue, numElements));
         CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, __GO_DATA_MODEL__, (char *)_pstID);
         return booltoBOOL(result);
     }

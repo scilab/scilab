@@ -330,7 +330,7 @@ void TriangleMeshData::setDataX(double* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
-        for (int i = 0 ; i < numElements ; i++)
+        for (unsigned int i = 0 ; i < numElements ; i++)
         {
             vertices[3*i] = data[i];
         }
@@ -341,7 +341,7 @@ void TriangleMeshData::setDataY(double* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
-        for (int i = 0 ; i < numElements ; i++)
+        for (unsigned int i = 0 ; i < numElements ; i++)
         {
             vertices[3*i + 1] = data[i];
         }
@@ -352,7 +352,7 @@ void TriangleMeshData::setDataZ(double* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
-        for (int i = 0; i < numElements; i++)
+        for (unsigned int i = 0; i < numElements; i++)
         {
             vertices[3*i + 2] = data[i];
         }
@@ -379,7 +379,7 @@ unsigned int TriangleMeshData::scilabIndexToIndex(unsigned int scilabIndex)
 
 void TriangleMeshData::resetCoordinates(void)
 {
-    for (int i = 0; i < numberVertices; i++)
+    for (unsigned int i = 0; i < numberVertices; i++)
     {
         vertices[3*i] = 0.0;
         vertices[3*i+1] = 0.0;

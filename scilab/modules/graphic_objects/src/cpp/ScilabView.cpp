@@ -26,6 +26,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
+
 /**
  * C Wrapping functions
  * \{

@@ -45,9 +45,6 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
     int dataMapping = 0;
     int* piDataMapping = &dataMapping;
 
-    int i;
-    int j;
-
     int bufferOffset = 0;
 
     NgonGridGrayplotDataDecomposer* decomposer = get();

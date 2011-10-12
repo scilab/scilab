@@ -46,9 +46,9 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
             index = colormapSize - 1;
         }
 
-        returnedColor[0] = colormap[index];
-        returnedColor[1] = colormap[colormapSize+index];
-        returnedColor[2] = colormap[2*colormapSize+index];
+        returnedColor[0] = (float)colormap[index];
+        returnedColor[1] = (float)colormap[colormapSize+index];
+        returnedColor[2] = (float)colormap[2*colormapSize+index];
     }
 }
 
@@ -79,9 +79,9 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
             index = maxIndex;
         }
 
-        returnedColor[0] = colormap[index];
-        returnedColor[1] = colormap[colormapSize+index];
-        returnedColor[2] = colormap[2*colormapSize+index];
+        returnedColor[0] = (float)colormap[index];
+        returnedColor[1] = (float)colormap[colormapSize+index];
+        returnedColor[2] = (float)colormap[2*colormapSize+index];
     }
 }
 
@@ -112,9 +112,9 @@ void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize,
 
         index = (int) s;
 
-        returnedColor[0] = colormap[index];
-        returnedColor[1] = colormap[colormapSize+index];
-        returnedColor[2] = colormap[2*colormapSize+index];
+        returnedColor[0] = (float)colormap[index];
+        returnedColor[1] = (float)colormap[colormapSize+index];
+        returnedColor[2] = (float)colormap[2*colormapSize+index];
     }
 }
 
@@ -143,9 +143,9 @@ void ColorComputer::getClampedDirectColor(double s, double* colormap, int colorm
 
         index = (int) s;
 
-        returnedColor[0] = colormap[index];
-        returnedColor[1] = colormap[colormapSize+index];
-        returnedColor[2] = colormap[2*colormapSize+index];
+        returnedColor[0] = (float)colormap[index];
+        returnedColor[1] = (float)colormap[colormapSize+index];
+        returnedColor[2] = (float)colormap[2*colormapSize+index];
     }
 }
 

@@ -82,10 +82,6 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     double* z;
     double* colormap;
 
-    double zMin;
-    double zMax;
-    double zRange;
-    double minDoubleValue;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -94,8 +90,6 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     int colormapSize = 0;
     int* piColormapSize = &colormapSize;
 
-    int i;
-    int j;
 
     int bufferOffset = 0;
 

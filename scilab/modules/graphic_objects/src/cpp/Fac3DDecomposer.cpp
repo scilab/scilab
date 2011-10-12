@@ -64,17 +64,17 @@ void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, in
     {
         if (coordinateMask & 0x1)
         {
-            buffer[bufferOffset] = x[i] * scale[0] + translation[0];
+            buffer[bufferOffset] = (float)(x[i] * scale[0] + translation[0]);
         }
 
         if (coordinateMask & 0x2)
         {
-            buffer[bufferOffset +1] = y[i] * scale[1] + translation[1];
+            buffer[bufferOffset +1] = (float)(y[i] * scale[1] + translation[1]);
         }
 
         if (coordinateMask & 0x4)
         {
-            buffer[bufferOffset +2] = z[i] * scale[2] + translation[2];
+            buffer[bufferOffset +2] = (float)(z[i] * scale[2] + translation[2]);
         }
 
         if (elementsSize == 4 && (coordinateMask & 0x8))

@@ -185,7 +185,7 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
 
 void TriangleMeshFecData::setFecTriangles(double* data, int numElements)
 {
-    if (numElements > numberTriangles)
+    if ((unsigned int)numElements > numberTriangles)
     {
         return;
     }
