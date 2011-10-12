@@ -231,7 +231,8 @@
     <None Include="..\..\graphic_objects.iss" />
     <None Include="..\..\sci_gateway\graphic_objects_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
-    <None Include="..\jni\ScilabNativeView.i" />
+    <None Include="..\jni\ScilabNativeView.i">
+      <Filter>Swig Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
