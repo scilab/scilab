@@ -133,11 +133,11 @@ $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
 iconsdir=$(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
-$(top_srcdir)/desktop/puffin_128.xpm \
-$(top_srcdir)/desktop/puffin_256.xpm \
-$(top_srcdir)/desktop/puffin_32.xpm \
-$(top_srcdir)/desktop/puffin_48.xpm \
+icons_DATA = $(top_srcdir)/desktop/scilab.png \
+$(top_srcdir)/desktop/puffin_128.png \
+$(top_srcdir)/desktop/puffin_256.png \
+$(top_srcdir)/desktop/puffin_32.png \
+$(top_srcdir)/desktop/puffin_48.png \
 $(top_srcdir)/desktop/puffin.png \
 $(top_srcdir)/desktop/puffin.icns \
 $(top_srcdir)/desktop/scilab.icns

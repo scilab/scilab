@@ -709,4 +709,6 @@ Bug fixes:
 
 * bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
 
+* bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
+                    Icons renamed from XPM to PNG.
 
