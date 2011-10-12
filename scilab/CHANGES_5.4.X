@@ -165,6 +165,9 @@ Localization:
 * bug 10032 fixed - Force the unset of the environnement variable LANGUAGE to
                     tackle some issues.
 
+* bug 10032 fixed - Mac OS X locale detection did not take in account 
+                    the LANG variable. 
+
 File input/output:
 ==================
 
