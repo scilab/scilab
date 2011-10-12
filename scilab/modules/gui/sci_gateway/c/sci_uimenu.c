@@ -1,24 +1,24 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan Cornet
-* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
-* Copyright (C) 2006 - INRIA - Fabrice Leray
-* Copyright (C) 2011 - DIGITEO - Allan CORNET
-* desc : interface for sci_uimenu routine
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan Cornet
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
+ * desc : interface for sci_uimenu routine
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "MALLOC.h" /* MALLOC */
+#include "MALLOC.h"             /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "gw_gui.h"
@@ -32,12 +32,12 @@
 #include "Scierror.h"
 #include "stricmp.h"
 #include "CreateUimenu.h"
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_uimenu( char *fname,unsigned long fname_len )
+int sci_uimenu(char *fname, unsigned long fname_len)
 {
-    abort();
-    // ???
-#if 0
     int nbRow = 0, nbCol = 0, stkAdr = 0;
 
     int setStatus = SET_PROPERTY_SUCCEED;
@@ -46,66 +46,84 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
     char *propertyName = NULL;
 
-    sciPointObj *pParent = NULL;
+    char *pParentUID = NULL;
 
     unsigned long GraphicHandle = 0;
 
     int parentDefined = FALSE;
 
+    char *pstCurrentFigure = NULL;
+
+    char *parentType = NULL;
+
     /* Create a new menu */
-    GraphicHandle = sciGetHandle(CreateUimenu());
+    GraphicHandle = getHandle(CreateUimenu());
 
     /* If no Rhs -> current figure is the parent (Ascendant compatibility) */
     if (Rhs == 0)
     {
         // Set the parent property
-        setMenuParent(sciGetPointerFromHandle(GraphicHandle), (size_t)(-1), sci_handles, nbRow, nbCol);
+        pstCurrentFigure = getCurrentFigure();
+        if (pstCurrentFigure == NULL)
+        {
+            pstCurrentFigure = createNewFigureWithAxes();
+        }
+        setGraphicObjectRelationship(pstCurrentFigure, getObjectFromHandle(GraphicHandle));
     }
 
     /**
-    * Odd number of input arguments
-    * First input is the parent ID
-    * All event inputs are property names
-    * All odd (except first) inputs are property values
-    */
+     * Odd number of input arguments
+     * First input is the parent ID
+     * All event inputs are property names
+     * All odd (except first) inputs are property values
+     */
     if (Rhs % 2 == 1)
     {
         if (VarType(1) != sci_handles)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A graphic handle expected.\n"),fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
-        else /* Get parent ID */
+        else                    /* Get parent ID */
         {
-            GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
-                Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return FALSE;
             }
-            pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
-            if ( (sciGetEntityType (pParent) != SCI_FIGURE) && (sciGetEntityType (pParent) != SCI_UIMENU) )
+            pParentUID = getObjectFromHandle((long)*hstk(stkAdr));
+            if (pParentUID != NULL)
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, &parentType);
+                if ((strcmp(parentType, __GO_FIGURE__) != 0) && (strcmp(parentType, __GO_UIMENU__) != 0))
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
+                    return FALSE;
+                }
+
+                // Set the parent property
+                callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, "parent");
+
+                // Set the flag to avoid setting the parent two times
+                parentDefined = TRUE;
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
                 return FALSE;
             }
 
-            // Set the parent property
-            callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, "parent");
-
-            // Set the flag to avoid setting the parent two times
-            parentDefined = TRUE;
+            // First input parameter which is a property name
+            beginIndex = 2;
         }
-
-        // First input parameter which is a property name
-        beginIndex = 2;
     }
     /**
-    * Even number of input arguments
-    * All odd inputs are property names
-    * All even inputs are property values
-    */
+     * Even number of input arguments
+     * All odd inputs are property names
+     * All even inputs are property values
+     */
     else
     {
         // First input parameter which is a property name
@@ -113,7 +131,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     }
 
     /* Read and set all properties */
-    for(inputIndex = beginIndex; inputIndex<Rhs; inputIndex = inputIndex+2)
+    for (inputIndex = beginIndex; inputIndex < Rhs; inputIndex = inputIndex + 2)
     {
         int isUserDataProperty = 0;
         int iPropertyValuePositionIndex = inputIndex + 1;
@@ -138,14 +156,14 @@ int sci_uimenu( char *fname,unsigned long fname_len )
             isUserDataProperty = (stricmp(propertyName, "user_data") == 0) || (stricmp(propertyName, "userdata") == 0);
         }
 
-
         /* Read property value */
         switch (VarType(iPropertyValuePositionIndex))
         {
         case sci_matrix:
             if (isUserDataProperty)
             {
-                nbRow = -1; nbCol = -1;
+                nbRow = -1;
+                nbCol = -1;
                 posStackOrAdr = iPropertyValuePositionIndex;
             }
             else
@@ -153,12 +171,13 @@ int sci_uimenu( char *fname,unsigned long fname_len )
                 GetRhsVar(iPropertyValuePositionIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                 posStackOrAdr = stkAdr;
             }
-            setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), posStackOrAdr, sci_matrix, nbRow, nbCol, propertyName);
+            setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_matrix, nbRow, nbCol, propertyName);
             break;
         case sci_strings:
             if (isUserDataProperty)
             {
-                nbRow = -1; nbCol = -1;
+                nbRow = -1;
+                nbCol = -1;
                 posStackOrAdr = iPropertyValuePositionIndex;
             }
             else
@@ -166,12 +185,13 @@ int sci_uimenu( char *fname,unsigned long fname_len )
                 GetRhsVar(iPropertyValuePositionIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
                 posStackOrAdr = stkAdr;
             }
-            setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), posStackOrAdr, sci_strings, nbRow, nbCol, propertyName);
+            setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_strings, nbRow, nbCol, propertyName);
             break;
         case sci_handles:
             if (isUserDataProperty)
             {
-                nbRow = -1; nbCol = -1;
+                nbRow = -1;
+                nbCol = -1;
                 posStackOrAdr = iPropertyValuePositionIndex;
             }
             else
@@ -179,12 +199,13 @@ int sci_uimenu( char *fname,unsigned long fname_len )
                 GetRhsVar(iPropertyValuePositionIndex, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
                 posStackOrAdr = stkAdr;
             }
-            setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), posStackOrAdr, sci_handles, nbRow, nbCol, propertyName);
+            setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_handles, nbRow, nbCol, propertyName);
             break;
         case sci_list:
             if (isUserDataProperty)
             {
-                nbRow = -1; nbCol = -1;
+                nbRow = -1;
+                nbCol = -1;
                 posStackOrAdr = iPropertyValuePositionIndex;
             }
             else
@@ -192,7 +213,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
                 GetRhsVar(iPropertyValuePositionIndex, LIST_DATATYPE, &nbRow, &nbCol, &stkAdr);
                 posStackOrAdr = iPropertyValuePositionIndex;
             }
-            setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), posStackOrAdr, sci_list, nbRow, nbCol, propertyName);
+            setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_list, nbRow, nbCol, propertyName);
             break;
         default:
             setStatus = SET_PROPERTY_ERROR;
@@ -209,19 +230,25 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     if (!parentDefined && (Rhs != 0))
     {
         // Set the parent property
-        setMenuParent(sciGetPointerFromHandle(GraphicHandle), (size_t)(-1), sci_handles, nbRow, nbCol);
+        pstCurrentFigure = getCurrentFigure();
+        if (pstCurrentFigure == NULL)
+        {
+            pstCurrentFigure = createNewFigureWithAxes();
+        }
+        setGraphicObjectRelationship(pstCurrentFigure, getObjectFromHandle(GraphicHandle));
     }
 
     /* Create return variable */
     nbRow = 1;
     nbCol = 1;
-    CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
     *hstk(stkAdr) = GraphicHandle;
 
-    LhsVar(1)=Rhs+1;
+    LhsVar(1) = Rhs + 1;
 
     PutLhsVar();
-#endif
+
     return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/

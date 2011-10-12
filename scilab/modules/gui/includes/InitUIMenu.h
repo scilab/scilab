@@ -24,7 +24,7 @@
  *
  * @param sciObj Scilab object for this Menu    
  */
-GUI_IMPEXP void InitUIMenu(sciPointObj* sciObj);
+GUI_IMPEXP void InitUIMenu(sciPointObj * sciObj);
 
 /**
  * Set the parent of a Menu
@@ -36,7 +36,7 @@ GUI_IMPEXP void InitUIMenu(sciPointObj* sciObj);
  * @param nbCol number of columns of the parent
  * @return execution status
  */
-GUI_IMPEXP int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int setMenuParent(char *sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 /**
  * Disable/Enable a menu attached to the console

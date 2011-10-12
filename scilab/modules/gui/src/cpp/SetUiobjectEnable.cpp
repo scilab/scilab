@@ -2,7 +2,6 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- * Set the callback of an uicontrol or uimenu
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,18 +13,20 @@
 
 #include "SetUiobjectEnable.hxx"
 
+/* Set the enable property of an uicontrol or uimenu */
 int SetUiobjectEnable(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status;
 
-    b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, const_cast<char*>("Enable"));
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, const_cast < char *>("Enable"));
+
     if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_ENABLE__), &b, jni_bool, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast < char *>(__GO_UI_ENABLE__), &b, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -33,8 +34,8 @@ int SetUiobjectEnable(char *sciObjUID, size_t stackPointer, int valueType, int n
     }
     else
     {
-        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Enable");
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "Enable");
+
         return SET_PROPERTY_ERROR;
     }
 }
-

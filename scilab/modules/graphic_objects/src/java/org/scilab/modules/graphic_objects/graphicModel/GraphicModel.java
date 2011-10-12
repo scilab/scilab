@@ -43,6 +43,7 @@ import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
+import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 
@@ -159,75 +160,104 @@ public final class GraphicModel {
      * @return the created typed object
      */
     private GraphicObject createTypedObject(Type type) {
-        try {
+        GraphicObject createdObject = null;
             switch (type) {
-
             case ARC:
-                return new Arc();
+                createdObject = new Arc();
+                break;
             case AXES:
-                return new Axes();
+                createdObject = new Axes();
+                break;
             case AXIS:
-                return new Axis();
+                createdObject = new Axis();
+                break;
             case CHAMP:
-                return new Champ();
+                createdObject = new Champ();
+                break;
             case COMPOUND:
-                return new Compound();
+                createdObject = new Compound();
+                break;
             case FAC3D:
-                return new Fac3d();
+                createdObject = new Fac3d();
+                break;
             case FEC:
-                return new Fec();
+                createdObject = new Fec();
+                break;
             case FIGURE:
-                return new Figure();
+                createdObject = new Figure();
+                break;
             case GRAYPLOT:
-                return new Grayplot();
+                createdObject = new Grayplot();
+                break;
             case LABEL:
-                return new Label();
+                createdObject = new Label();
+                break;
             case LEGEND:
-                return new Legend();
+                createdObject = new Legend();
+                break;
             case MATPLOT:
-                return new Matplot();
+                createdObject = new Matplot();
+                break;
             case PLOT3D:
-                return new Plot3d();
+                createdObject = new Plot3d();
+                break;
             case POLYLINE:
-                return new Polyline();
+                createdObject = new Polyline();
+                break;
             case RECTANGLE:
-                return new Rectangle();
+                createdObject = new Rectangle();
+                break;
             case SEGS:
-                return new Segs();
+                createdObject = new Segs();
+                break;
             case TEXT:
-                return new Text();
+                createdObject = new Text();
+                break;
             /* UICONTROLS */
             case CHECKBOX:
-                return new CheckBox();
+                createdObject = new CheckBox();
+                break;
             case EDIT:
-                return new Edit();
+                createdObject = new Edit();
+                break;
             case FRAME:
-                return new Frame();
+                createdObject = new Frame();
+                break;
             case IMAGERENDERER:
-                return new ImageRenderer();
+                createdObject = new ImageRenderer();
+                break;
             case LISTBOX:
-                return new ListBox();
+                createdObject = new ListBox();
+                break;
             case POPUPMENU:
-                return new PopupMenu();
+                createdObject = new PopupMenu();
+                break;
             case PUSHBUTTON:
-                return new PushButton();
+                createdObject = new PushButton();
+                break;
             case RADIOBUTTON:
-                return new RadioButton();
+                createdObject = new RadioButton();
+                break;
             case SLIDER:
-                return new Slider();
+                createdObject = new Slider();
+                break;
             case TABLE:
-                return new Table();
+                createdObject = new Table();
+                break;
             case UITEXT:
-                return new UiText();
+                createdObject = new UiText();
+                break;
+            /* UIMENU */
+            case UIMENU:
+                createdObject = new Uimenu();
+                break;
             case UNKNOWNOBJECT:
-                return null;
+                createdObject = null;
+                break;
             default:
-                return null;
+                createdObject = null;
             }
-        } catch (Throwable t) {
-            t.printStackTrace();
-            return null;
-        }
+        return createdObject;
     }
 
     /**

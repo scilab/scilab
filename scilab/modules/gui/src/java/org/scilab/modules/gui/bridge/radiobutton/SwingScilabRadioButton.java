@@ -15,7 +15,7 @@ package org.scilab.modules.gui.bridge.radiobutton;
 
 import javax.swing.JRadioButton;
 
-import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -243,6 +243,6 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * @param value property value
      */
     public void update(String property, Object value) {
-        SwingScilabWidget.update(this, property, value);
+        SwingViewWidget.update(this, property, value);
     }
 }

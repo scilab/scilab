@@ -15,7 +15,7 @@ package org.scilab.modules.gui.bridge.frame;
 
 import javax.swing.JPanel;
 
-import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;

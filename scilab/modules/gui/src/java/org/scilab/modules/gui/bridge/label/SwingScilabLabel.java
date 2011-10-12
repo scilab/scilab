@@ -33,7 +33,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
@@ -458,7 +458,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param value property value
      */
     public void update(String property, Object value) {
-        SwingScilabWidget.update(this, property, value);
+        SwingViewWidget.update(this, property, value);
     }
 
     /**

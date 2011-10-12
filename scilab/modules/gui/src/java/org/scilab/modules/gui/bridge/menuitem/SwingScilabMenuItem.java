@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import org.scilab.modules.gui.SwingViewMenu;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -45,7 +47,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
+public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, SimpleMenuItem {
 
     private static final long serialVersionUID = 1L;
     private CommonCallBack callback;
@@ -54,6 +56,8 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
     private boolean checkedState;
     private boolean autoCheckedMode = true;
     private String text = "";
+    
+    private String uid;
 
     /**
      * Constructor
@@ -251,6 +255,32 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
             meAsAMenu.add(childMenuItem);
         }
     }
+    
+    /**
+     * Add a MenuItem to this MenuItem
+     * @param childMenuItem the MenuItem we want to add
+     */
+    public void add(SwingScilabMenuItem childMenuItem) {
+        System.out.println("SwingScilabMenuItem.add(SwingScilabMenuItem childMenuItem)");
+        if (meAsAMenu == null) {
+            meAsAMenu = ScilabMenu.createMenu();
+            meAsAMenu.setText(getText());
+            ((SwingScilabMenu) meAsAMenu.getAsSimpleMenu()).add(childMenuItem);
+            if (meAsACheckBoxMenuItem == null) {
+                Container parent = getParent();
+                int index = parent.getComponentZOrder(this);
+                parent.remove(this.getComponent());
+                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            } else {
+                Container parent = ((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getParent();
+                int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
+                parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
+                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            }
+        } else {
+            ((SwingScilabMenu) meAsAMenu.getAsSimpleMenu()).add(childMenuItem);
+        }
+    }
 
     /**
      * Destroy the MenuItem
@@ -393,4 +423,28 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
         }
     }
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingViewMenu.update(this, property, value);
+    }
 }

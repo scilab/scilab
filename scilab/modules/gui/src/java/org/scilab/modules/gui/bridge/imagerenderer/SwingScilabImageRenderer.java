@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
@@ -370,6 +370,6 @@ public class SwingScilabImageRenderer extends JScrollPane implements SwingViewOb
 	 * @param value property value
 	 */
 	public void update(String property, Object value) {
-		SwingScilabWidget.update(this, property, value);
+		SwingViewWidget.update(this, property, value);
 	}
 }

@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
@@ -504,6 +504,6 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(String property, Object value) {
-        SwingScilabWidget.update(this, property, value);
+        SwingViewWidget.update(this, property, value);
     }
 }

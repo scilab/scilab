@@ -66,7 +66,7 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  */
-public final class SwingScilabWidget {
+public final class SwingViewWidget {
 
     private static final String OBLIQUEFONT = "oblique";
     private static final String ITALICFONT = "italic";
@@ -80,7 +80,7 @@ public final class SwingScilabWidget {
     /**
      * Constructor
      */
-    private SwingScilabWidget() {
+    private SwingViewWidget() {
         throw new UnsupportedOperationException();
     }
 
@@ -311,7 +311,7 @@ public final class SwingScilabWidget {
             uiControl.setVisible(((Boolean) value).booleanValue());
         } else if (property.equals(__GO_PARENT__)) {
             /* Update position */
-            SwingScilabWidget.update(uiControl, __GO_POSITION__,
+            SwingViewWidget.update(uiControl, __GO_POSITION__,
                     (Double[]) GraphicController.getController()
                     .getProperty(uid, __GO_POSITION__));
         } else {
