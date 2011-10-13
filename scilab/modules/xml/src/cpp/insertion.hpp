@@ -161,7 +161,7 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
  * @param fname_len the function name length
  */
 template<class T, class U>
-int sci_insertion(char * fname, unsigned long fname_len)
+int sci_insertion(char * fname, void* pvApiCtx)
 {
     T * a;
     U * b;
@@ -204,7 +204,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
     }
 
     getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
-    lhsid = getXMLObjectId(lhsaddr);
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
 
     a = XMLObject::getFromId<T>(lhsid);
     if (!a)
@@ -214,7 +214,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    success = XMLRhsValue::get(fname, rhsaddr, &b);
+    success = XMLRhsValue::get(fname, rhsaddr, &b, pvApiCtx);
     if (!success)
     {
         freeAllocatedSingleString(field);
@@ -230,7 +230,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
         delete b;
     }
 
-    if (a->createOnStack(Rhs + 1))
+    if (a->createOnStack(Rhs + 1, pvApiCtx))
     {
         LhsVar(1) = Rhs + 1;
     }

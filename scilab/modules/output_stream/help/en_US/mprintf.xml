@@ -28,6 +28,10 @@
     window</refpurpose>
   </refnamediv>
 
+  <refnamediv xml:id="printf">
+    <refname>printf</refname>
+  </refnamediv>
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 

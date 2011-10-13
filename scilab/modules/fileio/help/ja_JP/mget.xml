@@ -54,7 +54,7 @@ x=mgeti([n,type,fd])</synopsis>
         <term>n</term>
 
         <listitem>
-          <para>正のスカラー: The number of items to be read.</para>
+          <para>正のスカラー: 読み込むデータの数.</para>
         </listitem>
       </varlistentry>
 
@@ -105,11 +105,12 @@ x=mgeti([n,type,fd])</synopsis>
     <para><literal>type</literal> パラメータは変換指定子で,
 	以下のフラグ文字のどれか (デフォルト値は "l")を設定できます:</para>
 
-    <para>Windowsでは,デフォルトの動作は
-	スキップバイト 13 (0x0D)です.
-	mopen は `b`オプションを指定してコールする必要があります.
-	例えば, 例外なく全てのバイトを読み込むには,
-	fd1=mopen(file1,'rb') , とします.</para>
+    <para><emphasis role="bold">注 </emphasis>, 
+    Windows環境では、デフォルトでCRを表すバイト(0x0D)をスキップします.
+    このため, mopenは `b`オプションを指定してコールする必要があります.
+    例えば, 例外なく全てのバイトを読み込むには,
+    fd1=mopen(file1,'rb') , とします.
+    </para>
 
     <para>データ型:</para>
 

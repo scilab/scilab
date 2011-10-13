@@ -47,12 +47,12 @@ int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len)
 
     for (std::list<org_modules_xml::XMLDocument *>::const_iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
     {
-        createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId());
+        createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId(), pvApiCtx);
     }
 
     for (std::list<org_modules_xml::XMLValidation *>::const_iterator i = openValidationFiles.begin(); i != openValidationFiles.end(); i++, j++)
     {
-        createXMLObjectAtPosInList(addr, Rhs + 1, XMLVALID, j, (*i)->getId());
+        createXMLObjectAtPosInList(addr, Rhs + 1, XMLVALID, j, (*i)->getId(), pvApiCtx);
     }
 
     LhsVar(1) = Rhs + 1;

@@ -45,15 +45,15 @@ b = 0*ones(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
-printf('\ntemps nécessaire à la résolution du système avec umfpack: %.3f\n',toc());
+mprintf('\ntemps nécessaire à la résolution du système avec umfpack: %.3f\n',toc());
 
 tic();
 res = linsolve(A,b);
-printf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n',toc());
+mprintf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n',toc());
 
 tic();
 res = A\b;
-printf('\ntemps nécessaire à la résolution du système avec l''opérateur backslash: %.3f\n',toc());
+mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur backslash: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

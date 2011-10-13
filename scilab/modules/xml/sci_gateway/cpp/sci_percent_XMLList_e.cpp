@@ -85,7 +85,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
                 return 0;
             }
 
-            id = getXMLObjectId(mlistaddr);
+            id = getXMLObjectId(mlistaddr, pvApiCtx);
             list = XMLObject::getFromId<XMLList>(id);
             if (!list)
             {
@@ -135,7 +135,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
     list = XMLObject::getFromId<XMLList>(id);
     if (!list)
     {
@@ -151,7 +151,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!elem->createOnStack(Rhs + 1))
+    if (!elem->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

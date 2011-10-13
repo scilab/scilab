@@ -48,13 +48,13 @@ int sci_xmlNs(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLElem(addr))
+    if (!isXMLElem(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
 
-    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr));
+    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
         Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
@@ -86,7 +86,7 @@ int sci_xmlNs(char * fname, unsigned long fname_len)
         freeAllocatedSingleString(*(vars[i]));
     }
 
-    if (!ns->createOnStack(Rhs + 1))
+    if (!ns->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

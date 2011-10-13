@@ -614,11 +614,7 @@ cd "$LOCALOLDPWD"
 #export DISPLAY
 
 
-#
-# Scilab will not work on some Mac OSX version
-# Check version number and ask user if he wants to go on.
-#
-check_macosx_version()
+detect_macosx_version()
 {
     macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
     if test "${macosxVersion}" = ""; then
@@ -632,30 +628,63 @@ check_macosx_version()
         echo "Found MacOSX Version: $macosxVersion"
     fi
 
+}
+
+set_macox_specific_path()
+{
+
+    PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
+    PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                6)
+		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                 5)
+                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+            esac
+            ;;
+    esac
+
+}
+
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
+
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
                 7)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request
-
-                   # We remove if it exists with 10.7
-		               rm -rf $BINPATH/../lib/thirdparty/libiconv.2.4.0.dylib
                    ;;
 
                 6)
+
                     if test $macosxBuildVersion -le 4; then
                         # Version <= 10.6.4
                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
                     fi
                     ;;
-# Does not work under 10.5 binary for now. Fail by default
-#                 5)
-#                     if test $macosxBuildVersion -ge 8; then
-#                         # Version <= 10.5.8
-#                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
-#                         fi
-#                    ;;
+                 5)
+                     if test $macosxBuildVersion -le 7; then
+                         # Version <= 10.5.8
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
+                         fi
+                    ;;
                 *)
                     osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
                     ;;
@@ -692,6 +721,10 @@ case $OS in
         # display a standard window
         BINPATH=$(dirname $0)
         # Do not perform the check with Scilab is started in CLI mode
+
+        detect_macosx_version
+        set_macox_specific_path
+
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
@@ -708,6 +741,10 @@ if test $SCIVERBOSE -ne 0; then
 fi
 export LD_LIBRARY_PATH
 export PATH
+
+# Scilab does not support the LANGUAGE variable.
+# Unset to avoid some weird issue. CF bug #10032
+unset LANGUAGE
 
 if test $IS_SCILAB_BINARY -ne 1; then
 # We are not using the Scilab binary, find out where docbook is.
@@ -878,8 +915,8 @@ if test "$rest" = "yes"; then
                 fi
                 ;;
             -psn_*)
-        # Under Mac OS X, .app is adding the arg -psn_0_xxxx
-        # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+            # Under Mac OS X, .app is adding the arg -psn_0_xxxx
+            # (psn = ProcessSerialNumber). It is not used (but could be in the future)
                 ;;
             -display|-f|-l|-e|-d|-mem)
                 prevarg=1

@@ -154,14 +154,23 @@ Xcos:
 * bug 10003 fixed - The MAXMIN block did not update its display according to
                     the settings.
 
+* bug 10048 fixed - Superblock based blocks index sub-blocks
+                    parameters instead of looking for them.
+
 * bug 10069 fixed - AFFICH_m block did not update its display at
                     re-initialization.
+
 
 Localization:
 =============
 
 * Czech localization by Zbyněk Schwarz
 
+* bug 10032 fixed - Force the unset of the environnement variable LANGUAGE to
+                    tackle some issues.
+
+* bug 10032 fixed - Mac OS X locale detection did not take in account
+                    the LANG variable.
 
 File input/output:
 ==================
@@ -169,6 +178,19 @@ File input/output:
 * mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
 
 * tempname function added (SEP 68).
+
+
+Graphics:
+=========
+
+* datatips tool improved on several aspects:
+  - It is now possible to manage directional arrows as well as
+    square marks markers.
+  - The automatic label placement has been improved to avoid avoid the
+    overlapping with the curve.
+  - It is now possible to have  painted box or box free labels.
+  - Markers can now be selected and moved using the arrow keys
+    or deleted with the "Del" key.
 
 
 New functions
@@ -385,6 +407,10 @@ Compilation:
   the explicit dependencies on the other libraries. Use libscilab-cli.so or
   libscilab.so to link against Scilab.
 
+* Enforce a minimal version of JRosetta (1.0.4).
+
+* Enforce a minimal version of GIWS (1.3.0).
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
@@ -521,6 +547,10 @@ Misc:
   atomsInstall('PVM')
 
 * SEP #69: predef('names') returns names of protected variables by predef.
+
+* printf moved as alias on mprintf function.
+
+* sprintf moved as alias on msprintf function.
 
 
 Bug fixes:
@@ -722,4 +752,5 @@ Bug fixes:
 
 * bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
 
-
+* bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
+                    Icons renamed from XPM to PNG.

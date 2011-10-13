@@ -104,7 +104,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    lhsid = getXMLObjectId(lhsaddr);
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
     a = XMLObject::getFromId<XMLAttr>(lhsid);
     if (!a)
     {
@@ -147,7 +147,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     }
     freeAllocatedSingleString(value);
 
-    a->createOnStack(Rhs + 1);
+    a->createOnStack(Rhs + 1, pvApiCtx);
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
