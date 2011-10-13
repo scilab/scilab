@@ -597,7 +597,10 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-case "$F77" in
+    CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    FFLAGS="$FFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
                MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
