@@ -131,8 +131,8 @@ Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: full;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
-Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: full;
+Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: full;
 ;
 #ifndef SCILAB_F2C
 Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: full;

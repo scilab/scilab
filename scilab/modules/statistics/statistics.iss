@@ -18,6 +18,7 @@
 ;
 #define STATISTICS "statistics"
 
+Source: bin\{#STATISTICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 Source: bin\{#STATISTICS}.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 Source: bin\dcd_f.dll; DestDir: {app}\bin; Components: {#COMPN_STATS}
 ;
