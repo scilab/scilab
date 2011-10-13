@@ -22,8 +22,8 @@
 #include "ObjectStructure.h"
 
 /*------------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP int sciZoom2D(sciPointObj * subwin, const double zoomRect[4]);
-GRAPHICS_IMPEXP int sciZoom3D(sciPointObj * subwin, const double zoomBox[6]);
+GRAPHICS_IMPEXP int sciZoom2D(char * subwinUID, const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciZoom3D(char * subwinUID, const double zoomBox[6]);
 GRAPHICS_IMPEXP int sciZoomRect(sciPointObj * pObj, const double zoomRect[4]);
 GRAPHICS_IMPEXP int sciDefaultZoom2D(const double zoomRect[4]);
 GRAPHICS_IMPEXP int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4]);
@@ -60,7 +60,7 @@ GRAPHICS_IMPEXP void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, i
  */
 GRAPHICS_IMPEXP void unzoomSubwin(sciPointObj * pSubwin);
 /*------------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
+GRAPHICS_IMPEXP BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);
 /*------------------------------------------------------------------------------*/
 

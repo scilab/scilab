@@ -43,75 +43,67 @@ static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int
 /*------------------------------------------------------------------------------*/
 /**
  * Specify new zoom box for a subwin object.
- * @param zoomRect vector [xMin, yMin, xMax, yMax]
+ * @param subwinUID the subwin's identifier.
+ * @param zoomRect vector [xMin, yMin, xMax, yMax].
  */
-int sciZoom2D(sciPointObj * subwin, const double zoomRect[4])
+int sciZoom2D(char * subwinUID, const double zoomRect[4])
 {
-  double* zoomBox;
+    double* zoomBox;
 
-  // add Z scale to data bounds.
+    // add Z scale to data bounds.
+    getGraphicObjectProperty(subwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &zoomBox);
 
-  getGraphicObjectProperty(subwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &zoomBox);
+    zoomBox[0] = zoomRect[0];
+    zoomBox[1] = zoomRect[1];
+    zoomBox[2] = zoomRect[2];
+    zoomBox[3] = zoomRect[3];
 
-#if 0
-  sciGetDataBounds(subwin, zoomBox);
-#endif
-
-  zoomBox[0] = zoomRect[0];
-  zoomBox[1] = zoomRect[1];
-  zoomBox[2] = zoomRect[2];
-  zoomBox[3] = zoomRect[3];
-
-  return sciZoom3D(subwin, zoomBox);
+    return sciZoom3D(subwinUID, zoomBox);
 }
 /*------------------------------------------------------------------------------*/
 /**
  * Specify a new zoom box for a subwin object
+ * @param subwinUID the subwin's identifier.
  * @param zoomBox vector [xMin, yMin, xMax, yMax, zMin, zMax].
  */
-int sciZoom3D(sciPointObj * subwin, const double zoomBox[6])
+int sciZoom3D(char * subwinUID, const double zoomBox[6])
 {
-  BOOL status;
-  int zoomEnabled = 1;
+    BOOL status;
+    int zoomEnabled = 1;
 
-  // convert zoomBox to [xMin, xMax, yMin, yMax, zMin, zMax]
-  double zoomBox3D[6];
-  zoomBox3D[0] = zoomBox[0];
-  zoomBox3D[1] = zoomBox[2];
-  zoomBox3D[2] = zoomBox[1];
-  zoomBox3D[3] = zoomBox[3];
-  zoomBox3D[4] = zoomBox[4];
-  zoomBox3D[5] = zoomBox[5];
+    // convert zoomBox to [xMin, xMax, yMin, yMax, zMin, zMax]
+    double zoomBox3D[6];
+    zoomBox3D[0] = zoomBox[0];
+    zoomBox3D[1] = zoomBox[2];
+    zoomBox3D[2] = zoomBox[1];
+    zoomBox3D[3] = zoomBox[3];
+    zoomBox3D[4] = zoomBox[4];
+    zoomBox3D[5] = zoomBox[5];
 
-  if (!checkDataBounds(subwin, zoomBox3D[0], zoomBox3D[1], zoomBox3D[2],
-                       zoomBox3D[3], zoomBox3D[4], zoomBox3D[5]))
-  {
-    return SET_PROPERTY_ERROR;
-  }
+    if (!checkDataBounds(subwinUID, zoomBox3D[0], zoomBox3D[1], zoomBox3D[2],
+                         zoomBox3D[3], zoomBox3D[4], zoomBox3D[5]))
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-  status = setGraphicObjectProperty(subwin->UID, __GO_ZOOM_BOX__, zoomBox3D, jni_double_vector, 6);
+    status = setGraphicObjectProperty(subwinUID, __GO_ZOOM_BOX__, zoomBox3D, jni_double_vector, 6);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status != TRUE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        return SET_PROPERTY_ERROR;
+    }
 
-  status = setGraphicObjectProperty(subwin->UID, __GO_ZOOM_ENABLED__, &zoomEnabled, jni_bool, 1);
+    status = setGraphicObjectProperty(subwinUID, __GO_ZOOM_ENABLED__, &zoomEnabled, jni_bool, 1);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    return SET_PROPERTY_ERROR;
-  }
-
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
 }
 /*------------------------------------------------------------------------------*/
@@ -274,44 +266,51 @@ void sciDefaultInteractiveZoom(void)
 }
 /*------------------------------------------------------------------------------*/
 /**
- * Check if the follawing data bounds can be used as new data bounds for the subwin object
+ * Check if the following data bounds can be used as new data bounds for the subwin object
+ * @param subwinUID the subwin's identifier.
+ * @param the lower x bound.
+ * @param the upper x bound.
+ * @param the lower y bound.
+ * @param the upper y bound.
+ * @param the lower z bound.
+ * @param the upper z bound.
  * @return TRUE if values can be used, false otherwise
  */
-BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
+BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax)
 {
-  char logFlags[3];
+    char logFlags[3];
 
-  sciGetLogFlags(pObj, logFlags);
+    sciGetLogFlags(subwinUID, logFlags);
 
-  /* check if there is not an inf within the values */
-  /* since this has not any meaning */
-  if (    !finite(xMin) || !finite(xMax)
-       || !finite(yMin) || !finite(yMax)
-       || !finite(zMin) || !finite(zMax) )
-  {
-    Scierror(999, "Error : data bounds values must be finite.");
-    return FALSE ;
-  }
+    /* check if there is not an inf within the values */
+    /* since this has not any meaning */
+    if (    !finite(xMin) || !finite(xMax)
+         || !finite(yMin) || !finite(yMax)
+         || !finite(zMin) || !finite(zMax) )
+    {
+        Scierror(999, "Error : data bounds values must be finite.");
+        return FALSE;
+    }
 
-  /* check if the bounds are corrects */
-  /* allows equality with bounds since it is working */
-  if ( xMin > xMax || yMin > yMax || zMin > zMax )
-  {
-    Scierror(999, "Error : Min and Max values for one axis do not verify Min <= Max.\n");
-    return FALSE ;
-  }
+    /* check if the bounds are correct */
+    /* allows equality with bounds since it is working */
+    if ( xMin > xMax || yMin > yMax || zMin > zMax )
+    {
+        Scierror(999, "Error : Min and Max values for one axis do not verify Min <= Max.\n");
+        return FALSE;
+    }
 
-  /* check for logflags that values are greater than 0 */
-  if (   ( logFlags[0] == 'l' && xMin <= 0.0 )
-      || ( logFlags[1] == 'l' && yMin <= 0.0 )
-      || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
-  {
-    Scierror(999, "Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" ) ;
-    return FALSE ;
-  }
+    /* check for logflags that values are greater than 0 */
+    if (   ( logFlags[0] == 'l' && xMin <= 0.0 )
+        || ( logFlags[1] == 'l' && yMin <= 0.0 )
+        || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
+    {
+        Scierror(999, "Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" );
+        return FALSE;
+    }
 
-  return TRUE;
+    return TRUE;
 }
 /*------------------------------------------------------------------------------*/
 /**
