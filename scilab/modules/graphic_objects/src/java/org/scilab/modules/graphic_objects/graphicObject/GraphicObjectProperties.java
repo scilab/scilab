@@ -346,7 +346,12 @@ public static final String __GO_UI_GROOVE_RELIEF__ =       "groove";
 public static final String __GO_UI_RIDGE_RELIEF__ =        "ridge";
 public static final String __GO_UI_SOLID_RELIEF__ =        "solid";
 
+public static final String __GO_UIPARENTMENU__ =           "UIParentMenu";
+public static final String __GO_UICHILDMENU__ =            "UIChildMenu";
+public static final String __GO_UICHECKEDMENU__ =          "UICheckedMenu";
 public static final String __GO_UI_CHECKED__ =             "UIChecked";
 public static final String __GO_UI_LABEL__ =               "UILabel";
+
+public static final String __GO_CONSOLE__ =                "Console";
 
 }

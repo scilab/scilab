@@ -137,6 +137,7 @@ am__objects_4 = libscigraphic_objects_la-gw_graphic_objects.lo
 am__objects_5 = libscigraphic_objects_la-sci_graphicfunction.lo
 am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-getGraphicObjectProperty.lo \
+	libscigraphic_objects_la-getConsoleIdentifier.lo \
 	libscigraphic_objects_la-setGraphicObjectProperty.lo \
 	libscigraphic_objects_la-deleteGraphicObject.lo \
 	libscigraphic_objects_la-dataModel.lo \
@@ -544,6 +545,7 @@ GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 
 GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
+								src/cpp/getConsoleIdentifier.cpp \
 								src/cpp/setGraphicObjectProperty.cpp \
 								src/cpp/deleteGraphicObject.cpp \
 								src/cpp/dataModel.cpp \
@@ -735,6 +737,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-dataModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-deleteGraphicObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-getConsoleIdentifier.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-getGraphicObjectProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-gw_graphic_objects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-sci_graphicfunction.Plo@am__quote@
@@ -837,6 +840,13 @@ libscigraphic_objects_la-getGraphicObjectProperty.lo: src/cpp/getGraphicObjectPr
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getGraphicObjectProperty.cpp' object='libscigraphic_objects_la-getGraphicObjectProperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-getGraphicObjectProperty.lo `test -f 'src/cpp/getGraphicObjectProperty.cpp' || echo '$(srcdir)/'`src/cpp/getGraphicObjectProperty.cpp
+
+libscigraphic_objects_la-getConsoleIdentifier.lo: src/cpp/getConsoleIdentifier.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-getConsoleIdentifier.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-getConsoleIdentifier.Tpo -c -o libscigraphic_objects_la-getConsoleIdentifier.lo `test -f 'src/cpp/getConsoleIdentifier.cpp' || echo '$(srcdir)/'`src/cpp/getConsoleIdentifier.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-getConsoleIdentifier.Tpo $(DEPDIR)/libscigraphic_objects_la-getConsoleIdentifier.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getConsoleIdentifier.cpp' object='libscigraphic_objects_la-getConsoleIdentifier.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-getConsoleIdentifier.lo `test -f 'src/cpp/getConsoleIdentifier.cpp' || echo '$(srcdir)/'`src/cpp/getConsoleIdentifier.cpp
 
 libscigraphic_objects_la-setGraphicObjectProperty.lo: src/cpp/setGraphicObjectProperty.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-setGraphicObjectProperty.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-setGraphicObjectProperty.Tpo -c -o libscigraphic_objects_la-setGraphicObjectProperty.lo `test -f 'src/cpp/setGraphicObjectProperty.cpp' || echo '$(srcdir)/'`src/cpp/setGraphicObjectProperty.cpp

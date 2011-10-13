@@ -12,9 +12,17 @@
 package org.scilab.modules.graphic_objects.graphicView;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
+    public ScilabView()
+    {
+        // Register console
+        GraphicController.getController().askObject(GraphicObject.Type.CONSOLE);
+    }
+    
     public void createObject(String id) {
         ScilabNativeView__createObject(id);
     }

@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.graphicView;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 
 public class LogView implements GraphicView {
 
@@ -28,7 +30,8 @@ public class LogView implements GraphicView {
     }
     
     public void createObject(String id) {
-       System.out.println("+++"+id+" Object Created.");
+       String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+       System.out.println("+++"+id+" Object Created type is "+objectType+".");
     }
 
     public void deleteObject(String id) {
@@ -37,7 +40,7 @@ public class LogView implements GraphicView {
     }
 
     public void updateObject(String id, String property) {
-        System.out.println("==="+id+" Object Property " + property + " Updated.");
+        //System.out.println("==="+id+" Object Property " + property + " Updated.");
     }
 
 }

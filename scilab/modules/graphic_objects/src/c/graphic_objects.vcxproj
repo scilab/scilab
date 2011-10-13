@@ -243,6 +243,7 @@
     <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
+    <ClCompile Include="..\cpp\getConsoleIdentifier.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
@@ -278,8 +279,13 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
     <ClInclude Include="..\..\includes\FigureList.h" />
+    <ClInclude Include="..\..\includes\getConsoleIdentifier.h" />
+    <ClInclude Include="..\..\includes\getGraphicObjectProperty.h" />
+    <ClInclude Include="..\..\includes\graphicObjectProperties.h" />
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx" />
+    <ClInclude Include="..\..\includes\returnType.h" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />
+    <ClInclude Include="..\..\includes\setGraphicObjectProperty.h" />
     <ClInclude Include="..\jni\CallGraphicController.hxx" />
     <ClInclude Include="..\..\includes\createGraphicObject.h" />
     <ClInclude Include="..\..\includes\Data3D.hxx" />

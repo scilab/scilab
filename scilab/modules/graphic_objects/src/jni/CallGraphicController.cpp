@@ -126,6 +126,7 @@ jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_Stringjb
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanID=NULL;
 voidregisterScilabViewID=NULL;
+jstringgetConsoleIdentifierID=NULL;
 
 
 }
@@ -170,6 +171,7 @@ jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_Stringjb
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanID=NULL;
 voidregisterScilabViewID=NULL;
+jstringgetConsoleIdentifierID=NULL;
 
 
 }
@@ -1087,6 +1089,36 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "registerScilabView");
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+char * CallGraphicController::getConsoleIdentifier (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jstringgetConsoleIdentifierID = curEnv->GetStaticMethodID(cls, "getConsoleIdentifier", "()Ljava/lang/String;" ) ;
+if (jstringgetConsoleIdentifierID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getConsoleIdentifier");
+}
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetConsoleIdentifierID ));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+
 }
 
 }

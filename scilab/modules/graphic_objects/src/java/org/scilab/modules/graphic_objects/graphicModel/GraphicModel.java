@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -250,6 +251,10 @@ public final class GraphicModel {
             /* UIMENU */
             case UIMENU:
                 createdObject = new Uimenu();
+                break;
+            /* Create Scilab console object */
+            case CONSOLE:
+                createdObject = Console.getConsole();
                 break;
             case UNKNOWNOBJECT:
                 createdObject = null;

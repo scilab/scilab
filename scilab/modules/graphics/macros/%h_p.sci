@@ -901,7 +901,9 @@ function %h_p(h)
             "ColumnNames = "+sci2exp(h.columnnames)
             "TableData = "+fmtuser_data(h.columnnames)
             ]
-
+        else
+            t=[t;
+               "UID = "+sci2exp(h.UID)]
         end
     end
     write(%io(2),t)

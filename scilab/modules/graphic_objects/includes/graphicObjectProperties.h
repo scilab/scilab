@@ -344,7 +344,12 @@
 #define __GO_UI_RIDGE_RELIEF__             "ridge"
 #define __GO_UI_SOLID_RELIEF__             "solid"
 
+#define __GO_UIPARENTMENU__                "UIParentMenu";
+#define __GO_UICHILDMENU__                 "UIChildMenu";
+#define __GO_UICHECKEDMENU__               "UICheckedMenu";
 #define __GO_UI_CHECKED__                  "UIChecked"
 #define __GO_UI_LABEL__                    "UILabel"
+
+#define __GO_CONSOLE__                     "Console"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
