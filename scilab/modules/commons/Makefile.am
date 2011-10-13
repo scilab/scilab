@@ -25,7 +25,9 @@ libscicommons_la_etc_DATA = etc/commons.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
-COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c
+COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
+		     src/jni/CommonFileUtils_wrap.c \
+		     src/c/fileutils.c
 
 COMMONS_CPP_SOURCES = 
 if NEED_JAVA
@@ -34,7 +36,9 @@ endif
 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
-libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE)
+libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
+			-I$(srcdir)/includes/
+
 libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) -Isrc/jni/
 
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
