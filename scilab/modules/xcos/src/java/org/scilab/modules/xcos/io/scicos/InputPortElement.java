@@ -236,12 +236,11 @@ public class InputPortElement extends AbstractElement<InputPort> {
 
         final ScilabString styles = (ScilabString) graphics
                 .get(GRAPHICS_INSTYLE_INDEX);
-        if (styles.getData() != null
-                && alreadyDecodedCount < styles.getHeight()
-                && 0 < styles.getWidth()) {
+        if (styles.getData() != null && 0 < styles.getHeight()
+                && alreadyDecodedCount < styles.getWidth()) {
             final String style;
 
-            style = styles.getData()[alreadyDecodedCount][0];
+            style = styles.getData()[0][alreadyDecodedCount];
             port.setStyle(new StyleMap(port.getStyle()).putAll(style)
                     .toString());
         }
