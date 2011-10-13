@@ -28,7 +28,7 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-0.5.3.jar"/>
+<path value="$SCILAB/thirdparty/flexdock-0.5.4.jar"/>
 <path value="$SCILAB/thirdparty/jrosetta-API.jar" disableUnderMode="NW"/>
 <path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
