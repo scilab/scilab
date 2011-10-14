@@ -1078,7 +1078,6 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         setInfoBar(null);
         setTitlebar(null);
         removeAll();
-        setActive(false);
 
         scrolling = null;
         contentPane = null;
