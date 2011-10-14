@@ -80,6 +80,7 @@ namespace types
 			m_pdblCoef = new Double(1, _iRank, &pR);
 		}
 
+        m_pdblCoef->IncreaseRef();
 		m_pdblCoef->setZeros();
 		if(_pdblCoefR != NULL)
 		{
@@ -146,8 +147,15 @@ namespace types
 				setComplex(m_pdblCoef->isComplex());
 				pCoef->set(0,0,0);
 			}
-			delete m_pdblCoef;
+
+            m_pdblCoef->DecreaseRef();
+            if(m_pdblCoef->isDeletable())
+            {
+			    delete m_pdblCoef;
+            }
+
 			m_pdblCoef = pCoef;
+            m_pdblCoef->IncreaseRef();
 			return true;
 		}
 		return false;

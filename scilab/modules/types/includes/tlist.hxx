@@ -24,7 +24,7 @@ namespace types
     {
     public :
                                         TList();
-
+                                        ~TList();
     private :
                                         TList(TList *_oTListCopyMe);
 

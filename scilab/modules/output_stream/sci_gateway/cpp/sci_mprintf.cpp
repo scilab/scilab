@@ -131,6 +131,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         FREE(pwstOutput[i]);
     }
     FREE(pwstOutput);
+    delete[] pArgs;
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

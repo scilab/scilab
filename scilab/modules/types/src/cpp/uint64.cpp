@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     UInt64::UInt64(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]           = {_iRows, _iCols};
         unsigned long long *pullVal  = NULL;
         create(piDims, 2, &pullVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt64::UInt64(unsigned long long _ullVal)
@@ -42,18 +48,27 @@ namespace types
         unsigned long long *pullVal  = NULL;
         create(piDims, 2, &pullVal, NULL);
         pullVal[0] = _ullVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt64::UInt64(int _iRows, int _iCols, unsigned long long** _pullVal)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _pullVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt64::UInt64(int _iDims, int* _piDims)
     {
         unsigned long long *pullVal    = NULL;
         create(_piDims, _iDims, &pullVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* UInt64::clone()

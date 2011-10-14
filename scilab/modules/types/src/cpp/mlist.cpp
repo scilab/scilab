@@ -13,6 +13,10 @@
 #include <sstream>
 #include "mlist.hxx"
 
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
+
 namespace types
 {
     /**
@@ -20,5 +24,15 @@ namespace types
     */
     MList::MList() : List()
     {
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
+    }
+
+    MList::~MList()
+    {
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 }

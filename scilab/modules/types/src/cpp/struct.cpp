@@ -21,6 +21,9 @@ namespace types
         SingleStruct** pIT  = NULL;
         int piDims[2] = {0, 0};
 		create(piDims, 2, &pIT, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Struct::Struct(int _iRows, int _iCols)
@@ -35,6 +38,9 @@ namespace types
             set(i, p);
         }
         delete p;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Struct::Struct(int _iDims, int* _piDims)
@@ -48,6 +54,9 @@ namespace types
             set(i, p);
             delete p;
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Struct::~Struct()
@@ -72,6 +81,9 @@ namespace types
                 }
             }
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     Struct::Struct(Struct *_oStructCopyMe)
@@ -88,6 +100,9 @@ namespace types
         {
             pIT[i] = _oStructCopyMe->get(i)->clone();
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* Struct::clone()

@@ -26,7 +26,9 @@ extern "C"
 namespace types
 {
 
-    ThreadId::~ThreadId() { }
+    ThreadId::~ThreadId()
+    {
+    }
 
     ThreadId::ThreadId(__threadId _id, __threadKey _key)
     {

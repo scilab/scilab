@@ -23,11 +23,15 @@
 #include "uint32.hxx"
 #include "uint64.hxx"
 
-#include "core_math.h"
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
+
 #include "tostring_common.hxx"
 
 extern "C"
 {
+    #include "core_math.h"
     #include "elem_common.h"
 }
 
@@ -69,11 +73,17 @@ namespace types
                 }
             }
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     ImplicitList::ImplicitList()
     {
         m_bComputed = false;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd)
@@ -84,6 +94,9 @@ namespace types
         setStep(_poStep);
         setEnd(_poEnd);
         compute();
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* ImplicitList::clone()
@@ -427,6 +440,11 @@ namespace types
             {
                 pIT = Double::Empty();
             }
+            else if(m_eOutType == RealDouble)
+            {
+                pIT = new Double(1, m_iSize);
+                extractFullMatrix(pIT->getAs<Double>()->get());
+            }
             else if(m_eOutType == RealInt8)
             {
                 pIT	= new Int8(1, m_iSize);
@@ -467,12 +485,6 @@ namespace types
                 pIT	= new UInt64(1, m_iSize);
                 extractFullMatrix(pIT->getAs<UInt64>()->get());
             }
-            else //RealDouble
-            {
-                pIT = new Double(1, m_iSize);
-                extractFullMatrix(pIT->getAs<Double>()->get());
-            }
-
         }
         return pIT;
     }

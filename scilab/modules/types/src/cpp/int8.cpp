@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     Int8::Int8(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]   = {_iRows, _iCols};
         char *pcInt     = NULL;
         create(piDims, 2, &pcInt, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int8::Int8(char _cVal)
@@ -42,18 +48,27 @@ namespace types
         char *pcInt     = NULL;
         create(piDims, 2, &pcInt, NULL);
         pcInt[0] = _cVal;
-    }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
+   }
 
     Int8::Int8(int _iRows, int _iCols, char** _pcData)
     {
         int piDims[2] = {_iRows, _iCols};
         create(piDims, 2, _pcData, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int8::Int8(int _iDims, int* _piDims)
     {
         char *pcInt     = NULL;
         create(_piDims, _iDims, &pcInt, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* Int8::clone()

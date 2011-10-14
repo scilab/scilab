@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     Int16::Int16(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]   = {_iRows, _iCols};
         short* psVal    = NULL;
         create(piDims, 2, &psVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int16::Int16(short _sVal)
@@ -42,18 +48,27 @@ namespace types
         short* psVal    = NULL;
         create(piDims, 2, &psVal, NULL);
         psVal[0] = _sVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int16::Int16(int _iRows, int _iCols, short** _psVal)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _psVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int16::Int16(int _iDims, int* _piDims)
     {
         short* psVal    = NULL;
         create(_piDims, _iDims, &psVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* Int16::clone()

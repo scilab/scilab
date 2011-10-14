@@ -22,6 +22,7 @@
 #include "types.hxx"
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
+#include "inspector.hxx"
 
 extern "C"
 {

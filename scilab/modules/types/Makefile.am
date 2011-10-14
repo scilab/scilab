@@ -67,6 +67,10 @@ TYPES_CPP_SOURCES = \
 			src/cpp/uint64.cpp \
             src/cpp/types_tools.cpp
 
+if ENABLE_DEBUG
+TYPES_CPP_SOURCES += src/cpp/inspector.cpp
+endif
+
 GIWS_WRAPPERS =
 
 if GIWS
@@ -76,35 +80,48 @@ endif
 
 #GATEWAY_C_SOURCES =
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
-			sci_gateway/cpp/sci_list.cpp \
-			sci_gateway/cpp/sci_struct.cpp \
-			sci_gateway/cpp/sci_insert.cpp \
-			sci_gateway/cpp/sci_null.cpp \
-			sci_gateway/cpp/sci_cell.cpp \
-			sci_gateway/cpp/sci_makecell.cpp \
-			sci_gateway/cpp/sci_usertype.cpp \
-			sci_gateway/cpp/sci_typeof.cpp \
-			sci_gateway/cpp/sci_tlist.cpp \
-			sci_gateway/cpp/sci_mlist.cpp \
-			sci_gateway/cpp/sci_isfield.cpp \
-			sci_gateway/cpp/sci_fieldnames.cpp \
-			sci_gateway/cpp/sci_getfield.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/types_gw.cpp \
+	sci_gateway/cpp/sci_list.cpp \
+	sci_gateway/cpp/sci_struct.cpp \
+	sci_gateway/cpp/sci_insert.cpp \
+	sci_gateway/cpp/sci_null.cpp \
+	sci_gateway/cpp/sci_cell.cpp \
+	sci_gateway/cpp/sci_makecell.cpp \
+	sci_gateway/cpp/sci_usertype.cpp \
+	sci_gateway/cpp/sci_typeof.cpp \
+	sci_gateway/cpp/sci_tlist.cpp \
+	sci_gateway/cpp/sci_mlist.cpp \
+	sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_fieldnames.cpp \
+	sci_gateway/cpp/sci_getfield.cpp
+
+if ENABLE_DEBUG
+GATEWAY_CPP_SOURCES += \
+    sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
+	sci_gateway/cpp/sci_inspectorGetItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
+	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+endif
 
 libscitypes_la_CFLAGS=
 
-libscitypes_la_CPPFLAGS = 	-Iincludes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/symbol/includes \
-				-I$(top_srcdir)/modules/ast/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/parse/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/functions_manager/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/threads/includes \
-				-I src/cpp
+libscitypes_la_CPPFLAGS = \
+    -Iincludes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/parse/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/threads/includes \
+	-I src/cpp
 
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
 

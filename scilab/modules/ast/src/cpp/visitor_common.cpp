@@ -631,7 +631,16 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
 
             *_pMain = pMain;
             *_pCurrent = pCurrent;
-            return true;
+
+            //clean pReturnedArgs return by GetArgumentList
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
         }
         else
         {
@@ -726,17 +735,6 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 
                 SingleStruct* pSS = pStr->get(0);
 
-                /*
-                pStepStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
-                pStepStr->setCloneInCopyValue(false);
-                SingleStruct* pSS = pStepStr->get(0);
-                pStr = pSS->get(pVar->name_get().name_get())->getAs<Struct>();
-                //we can delete pStepStr without deleted its fields
-                pSS->IncreaseRef();
-                delete pStepStr;
-                pSS->DecreaseRef();
-                */
-
                 //check if field already exists
                 if(pStr->exists(pFieldName))
                 {
@@ -763,8 +761,17 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                     pSS->IncreaseRef();
                     delete pStr;
                     pSS->DecreaseRef();
-                }
 
+                    //clean pReturnedArgs return by GetArgumentList
+                    for(int iArg = 0 ; iArg < pReturnedArgs->size() ; iArg++)
+                    {
+                        if((*pReturnedArgs)[iArg]->isDeletable())
+                        {
+                            delete (*pReturnedArgs)[iArg];
+                        }
+                    }
+                    delete pReturnedArgs;
+                }
             }
             else
             {

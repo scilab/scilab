@@ -144,6 +144,14 @@ void visitprivate(const AssignExp  &e)
             }
 //            delete piMaxDim;
 //            delete[] piDimSize;
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
         }
         else if(pCall)
         {//x(?) = ?
@@ -553,6 +561,14 @@ void visitprivate(const AssignExp  &e)
             }
             //delete piMaxDim;
             //delete[] piDimSize;
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
         }
         else if(pVar)
         {// x = ?

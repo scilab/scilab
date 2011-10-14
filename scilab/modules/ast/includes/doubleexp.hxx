@@ -38,6 +38,18 @@ namespace ast
         ** Delete size et init (exp) (see constructor). */
         virtual ~DoubleExp ()
         {
+            if(_bigDouble)
+            {
+                _bigDouble->DecreaseRef();
+                if(_bigDouble->isDeletable())
+                {
+                    delete _bigDouble;
+                }
+                else
+                {
+                    std::wcout << L"fallait pas le delete celui la !" << std::endl;
+                }
+            }
         }
         /** \} */
 
@@ -81,7 +93,16 @@ namespace ast
 
         void setBigDouble(types::Double *pdbl)
         {
+            if(_bigDouble && _bigDouble->isRef())
+            {
+                _bigDouble->DecreaseRef();
+                if(_bigDouble->isDeletable())
+                {
+                    delete _bigDouble;
+                }
+            }
             _bigDouble = pdbl;
+            _bigDouble->IncreaseRef();
         }
 
     protected:

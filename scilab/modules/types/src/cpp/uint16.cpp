@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     UInt16::UInt16(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]           = {_iRows, _iCols};
         unsigned short *pusVal  = NULL;
         create(piDims, 2, &pusVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt16::UInt16(unsigned short _usVal)
@@ -42,18 +48,27 @@ namespace types
         unsigned short *pusVal  = NULL;
         create(piDims, 2, &pusVal, NULL);
         pusVal[0] = _usVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt16::UInt16(int _iRows, int _iCols, unsigned short** _pusVal)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _pusVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt16::UInt16(int _iDims, int* _piDims)
     {
         unsigned short *pusVal    = NULL;
         create(_piDims, _iDims, &pusVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* UInt16::clone()

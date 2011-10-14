@@ -373,6 +373,16 @@ void visitprivate(const CallExp &e)
             default :
                 break;
             }
+
+            //clean pArgs return by GetArgumentList
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
         }
 
         //List extraction can return multiple items
@@ -462,6 +472,16 @@ void visitprivate(const CellCallExp &e)
             {
                 result_set(pList);
             }
+
+            //clean pArgs return by GetArgumentList
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
         }
     }
     else

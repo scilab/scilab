@@ -49,6 +49,9 @@ namespace types
 		{
 			deleteAll();
 		}
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
 	}
 
 	Double::Double(int _iRows, int _iCols, bool _bComplex)
@@ -64,6 +67,9 @@ namespace types
 		{
 			create(piDims, 2, &pReal, &pImg);
 		}
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	Double::Double(double _dblReal)
@@ -72,6 +78,9 @@ namespace types
 		double *pdblVal;
 		create(piDims, 2, &pdblVal, NULL);
 		pdblVal[0] = _dblReal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	Double::Double(double _dblReal, double _dblImg)
@@ -82,18 +91,27 @@ namespace types
 		create(piDims, 2, &pdblR, &pdblI);
 		pdblR[0] = _dblReal;
 		pdblI[0] = _dblImg;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	Double::Double(int _iRows, int _iCols, double **_pdblReal)
 	{
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, _pdblReal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
 	{
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, _pdblReal, _pdblImg);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	Double::Double(int _iDims, int* _piDims, bool _bComplex)
@@ -108,6 +126,9 @@ namespace types
 		{
 			create(_piDims, _iDims, &pReal, &pImg);
 		}
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
 	double*	Double::getReal() const

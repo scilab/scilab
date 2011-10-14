@@ -40,5 +40,14 @@ CPP_GATEWAY_PROTOTYPE(sci_mlist);
 CPP_GATEWAY_PROTOTYPE(sci_isfield);
 CPP_GATEWAY_PROTOTYPE(sci_getfield);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
+#ifndef NDEBUG
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorDeleteUnreferencedItems);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetFunctionList);
+#endif
 
 #endif /* !__TYPES_GW_HXX__ */

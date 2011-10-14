@@ -189,6 +189,7 @@
     <ClCompile Include="src\cpp\float.cpp" />
     <ClCompile Include="src\cpp\function.cpp" />
     <ClCompile Include="src\cpp\ImplicitList.cpp" />
+    <ClCompile Include="src\cpp\inspector.cpp" />
     <ClCompile Include="src\cpp\int16.cpp" />
     <ClCompile Include="src\cpp\int32.cpp" />
     <ClCompile Include="src\cpp\int64.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="includes\float.hxx" />
     <ClInclude Include="includes\function.hxx" />
     <ClInclude Include="includes\implicitlist.hxx" />
+    <ClInclude Include="includes\inspector.hxx" />
     <ClInclude Include="includes\int.hxx" />
     <ClInclude Include="includes\int16.hxx" />
     <ClInclude Include="includes\int32.hxx" />

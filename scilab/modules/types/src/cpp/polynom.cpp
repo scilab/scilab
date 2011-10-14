@@ -22,6 +22,9 @@ namespace types
 {
     Polynom::Polynom()
     {
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols, int *_piRank)
@@ -36,6 +39,9 @@ namespace types
             double* pReal = NULL;
             m_pRealData[i] = new SinglePoly(&pReal, _piRank[i]);
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols, const int *_piRank)
@@ -51,6 +57,9 @@ namespace types
             double* pReal = NULL;
             m_pRealData[i] = new SinglePoly(&pReal, _piRank[i]);
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Polynom::Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank)
@@ -76,7 +85,10 @@ namespace types
                 m_pRealData[i] = new SinglePoly(&pReal, 0);
             }
         }
-    }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
+   }
 
     Polynom::~Polynom()
     {
@@ -84,6 +96,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     bool Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)

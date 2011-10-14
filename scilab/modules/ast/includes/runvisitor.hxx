@@ -330,7 +330,6 @@ namespace ast
             if(e.getBigDouble() == NULL)
             {
                 Double *pdbl = new Double(e.value_get());
-                pdbl->IncreaseRef();
                 (const_cast<DoubleExp *>(&e))->setBigDouble(pdbl);
 
             }
@@ -703,25 +702,20 @@ namespace ast
                 symbol::Symbol varName = e.vardec_get().name_get();
                 //symbol::Context::getInstance()->put(varName, *pIT);
 
-                Double *pDouble = pIT->getAs<Double>();
+                
                 for(int i = 0 ; i < pVar->getSize() ; i++)
                 {
                     bool bNew = false;
                     if(pIT->isRef(1))
                     {
-                        //decrease reference to pIT
-                        //this variable does not push in context
-                        //so increase and decrease ref are not "automaticly" manage
-                        //std::wcout << varName.name_get() << " : " << pIT->getRef() << std::endl;
-                        //pIT->DecreaseRef();
                         pIT = pIT->clone();
-                        pDouble = pIT->getAs<Double>();
-                        bNew = true;
+                        pIT->IncreaseRef();
                     }
 
                     if(pIT->isDouble())
                     {
-                        pDouble->get()[0] = pVar->extractValueInDouble(i);
+                        Double *pDouble = pIT->getAs<Double>();
+                        pDouble->set(0, pVar->extractValueInDouble(i));
                     }
                     else if(pIT->isInt())
                     {

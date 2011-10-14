@@ -18,6 +18,10 @@
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
 
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
+
 extern "C"
 {
 #include "localization.h"
@@ -32,6 +36,9 @@ namespace types
     List::List() : Container()
     {
         m_plData = new std::vector<InternalType *>();
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     List::~List()
@@ -45,6 +52,9 @@ namespace types
             }
             delete m_plData;
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     /**
@@ -62,6 +72,9 @@ namespace types
         }
 
         m_iSize = static_cast<int>(m_plData->size());
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     std::vector<InternalType *> *List::getData()
@@ -162,6 +175,13 @@ namespace types
             outList.push_back(pIT);
         }
 
+        for(int iArg = 0 ; iArg < pArg.size() ; iArg++)
+        {
+            if(pArg[iArg]->isDeletable())
+            {
+                delete pArg[iArg];
+            }
+        }
         return outList;
     }
 

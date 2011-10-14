@@ -34,12 +34,18 @@ namespace types
 		{
 			deleteAll();
 		}
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
 	}
 
     String::String(int _iDims, int* _piDims)
     {
         wchar_t** pwsData = NULL;
 		create(_piDims, _iDims, &pwsData, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     String::String(const wchar_t* _pwstData)
@@ -48,6 +54,9 @@ namespace types
         int piDims[] = {1,1};
 		create(piDims, 2, &pwsData, NULL);
 		set(0,0, _pwstData);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	String::String(const char *_pstData)
@@ -56,6 +65,9 @@ namespace types
         int piDims[] = {1,1};
 		create(piDims, 2, &pwsData, NULL);
 		set(0,0, to_wide_string(const_cast<char*>(_pstData)));
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
 	String::String(int _iRows, int _iCols)
@@ -63,6 +75,9 @@ namespace types
         wchar_t** pwsData = NULL;
         int piDims[] = {_iRows, _iCols};
 		create(piDims, 2, &pwsData, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
 	}
 
     String::String(int _iRows, int _iCols, wchar_t** _pstData)
@@ -74,6 +89,9 @@ namespace types
         {
             set(i, os_wcsdup(_pstData[i]));
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
 	InternalType* String::clone()

@@ -72,6 +72,9 @@ namespace types
                 }
             }
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     /**
@@ -90,6 +93,9 @@ namespace types
         {
             set(i, _oCellCopyMe->get(i)->clone());
         }
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)

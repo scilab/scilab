@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     UInt8::UInt8(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]           = {_iRows, _iCols};
         unsigned char *pucInt   = NULL;
         create(piDims, 2, &pucInt, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt8::UInt8(unsigned char _ucVal)
@@ -42,18 +48,27 @@ namespace types
         unsigned char *pucInt    = NULL;
         create(piDims, 2, &pucInt, NULL);
         pucInt[0] = _ucVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt8::UInt8(int _iRows, int _iCols, unsigned char** _pucData)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _pucData, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     UInt8::UInt8(int _iDims, int* _piDims)
     {
         unsigned char *pucInt    = NULL;
         create(_piDims, _iDims, &pucInt, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* UInt8::clone()

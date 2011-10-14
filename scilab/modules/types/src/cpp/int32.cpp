@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     Int32::Int32(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]   = {_iRows, _iCols};
         int* piVal    = NULL;
         create(piDims, 2, &piVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int32::Int32(int _iVal)
@@ -42,18 +48,27 @@ namespace types
         int* piVal    = NULL;
         create(piDims, 2, &piVal, NULL);
         piVal[0] = _iVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int32::Int32(int _iRows, int _iCols, int** _piVal)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _piVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int32::Int32(int _iDims, int* _piDims)
     {
         int* piVal    = NULL;
         create(_piDims, _iDims, &piVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* Int32::clone()

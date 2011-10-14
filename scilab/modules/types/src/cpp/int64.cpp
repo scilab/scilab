@@ -27,6 +27,9 @@ namespace types
         {
             deleteAll();
         }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
     }
 
     Int64::Int64(int _iRows, int _iCols)
@@ -34,6 +37,9 @@ namespace types
         int piDims[2]   = {_iRows, _iCols};
         long long* pllVal    = NULL;
         create(piDims, 2, &pllVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int64::Int64(long long _llVal)
@@ -42,18 +48,27 @@ namespace types
         long long* pllVal    = NULL;
         create(piDims, 2, &pllVal, NULL);
         pllVal[0] = _llVal;
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int64::Int64(int _iRows, int _iCols, long long** _pllVal)
     {
         int piDims[2]   = {_iRows, _iCols};
         create(piDims, 2, _pllVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     Int64::Int64(int _iDims, int* _piDims)
     {
         long long* pllVal    = NULL;
         create(_piDims, _iDims, &pllVal, NULL);
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     InternalType* Int64::clone()

@@ -17,6 +17,10 @@
 #include "tlist.hxx"
 #include "listundefined.hxx"
 
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
+
 namespace types
 {
     /**
@@ -24,8 +28,17 @@ namespace types
     */
     TList::TList() : List()
     {
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
+    TList::~TList()
+    {
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
+    }
     /**
     ** Private Copy Constructor and data Access
     */
@@ -41,6 +54,9 @@ namespace types
         }
 
         m_iSize = static_cast<int>(m_plData->size());
+#ifndef NDEBUG
+        Inspector::addItem(this);
+#endif
     }
 
     /**

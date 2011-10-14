@@ -679,6 +679,7 @@ if test "$enable_code_coverage" = yes; then
    LDFLAGS="$LDFLAGS -coverage"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
+AM_CONDITIONAL(ENABLE_DEBUG, test "$enable_debug" = yes)
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
