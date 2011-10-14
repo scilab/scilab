@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../fileio/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -102,7 +102,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../fileio/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -126,7 +126,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../fileio/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -157,7 +157,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../fileio/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -219,6 +219,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\completion\src\c\completion.vcxproj">
       <Project>{ccce1ead-8e62-4dc0-ab17-972c06ef0c89}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\history_manager\src\c\history_manager.vcxproj">
       <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
