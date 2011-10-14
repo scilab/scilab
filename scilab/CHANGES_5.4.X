@@ -757,3 +757,5 @@ Bug fixes:
 
 * bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
                     Icons renamed from XPM to PNG.
+
+* bug 10105 fixed - Focus was not given to the prompt when outputview had it.

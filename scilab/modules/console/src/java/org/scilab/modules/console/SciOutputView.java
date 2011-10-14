@@ -20,6 +20,8 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.Writer;
@@ -100,7 +102,7 @@ public class SciOutputView extends JEditorPane implements OutputView {
         activeStyle = StyleContext.DEFAULT_STYLE;
         bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
         styleQueue = new LinkedList<String>();
-        
+
         /**
          * Default caret for output view (to handle paste actions using middle button)
          * @author Vincent COUVERT
@@ -162,6 +164,12 @@ public class SciOutputView extends JEditorPane implements OutputView {
         setCaret(new FixedCaret());
         // Selection is forced to be visible because the component is not editable
         getCaret().setSelectionVisible(true);
+
+        addFocusListener(new FocusAdapter() {
+                public void focusGained(FocusEvent e) {
+                    ((JTextPane) getConsole().getConfiguration().getInputCommandView()).requestFocus();
+                }
+            });
     }
 
     /**
