@@ -82,7 +82,8 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         for (InputPort port : ports) {
             final double gain;
 
-            if (data.isEmpty()) {
+            if (data.isEmpty()
+                    || data.getRealPart().length < port.getOrdering()) {
                 gain = 1;
             } else {
                 gain = data.getRealPart()[port.getOrdering() - 1][0];
@@ -94,18 +95,7 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         /**
          * Check if all the values are equals to the default one.
          */
-        boolean allPortIsDefaultLabel = true;
-        for (InputPort port : ports) {
-            if (port.getValue() instanceof String) {
-                String current = port.getValue().toString();
-                if (!NOT_PRINTED_LABEL.equals(current)) {
-                    allPortIsDefaultLabel = false;
-                    break;
-                }
-            }
-        }
-
-        if (!allPortIsDefaultLabel) {
+        if (!hasDefaultValue(ports)) {
             return;
         }
 
@@ -117,6 +107,27 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         for (InputPort port : ports) {
             port.setValue("");
         }
+    }
+
+    /**
+     * Has all the ports have the default value ?
+     * 
+     * @param ports
+     *            the ports list
+     * @return true if they all have the default values
+     */
+    private boolean hasDefaultValue(final List<InputPort> ports) {
+        boolean allPortIsDefaultLabel = true;
+        for (InputPort port : ports) {
+            if (port.getValue() instanceof String) {
+                String current = port.getValue().toString();
+                if (!NOT_PRINTED_LABEL.equals(current)) {
+                    allPortIsDefaultLabel = false;
+                    break;
+                }
+            }
+        }
+        return allPortIsDefaultLabel;
     }
 
     /**

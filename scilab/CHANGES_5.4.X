@@ -183,6 +183,8 @@ Xcos:
 * bug 10069 fixed - AFFICH_m block did not update its display at
                     re-initialization.
 
+* bug 10096 fixed - Set [1;-1;] on a product block thrown an exception.
+
 
 Localization:
 =============

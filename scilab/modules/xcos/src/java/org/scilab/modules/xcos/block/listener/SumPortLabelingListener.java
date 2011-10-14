@@ -25,7 +25,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import com.mxgraph.model.mxICell;
 
 /**
- * Change the port label on ipar change.
+ * Change the port label on rpar change.
  * 
  * This listener must be installed on "integerParameters" property.
  */
@@ -110,7 +110,7 @@ public class SumPortLabelingListener implements PropertyChangeListener,
     }
 
     /**
-     * Has all the ports have the defualt value ?
+     * Has all the ports have the default value ?
      * 
      * @param ports
      *            the ports list
