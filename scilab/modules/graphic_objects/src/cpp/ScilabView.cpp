@@ -134,6 +134,7 @@ void ScilabView::deleteObject(char* pstId)
             else
             {
                 setCurrentFigure(NULL);
+                setCurrentSubWin(NULL);
             }
         }
     }
