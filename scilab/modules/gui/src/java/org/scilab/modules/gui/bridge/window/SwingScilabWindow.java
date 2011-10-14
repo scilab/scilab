@@ -358,8 +358,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public void removeTabs(SwingScilabTab[] tabs) {
         for (SwingScilabTab tab : tabs) {
             DockingManager.unregisterDockable((Dockable) tab);
-            DockingManager.close(tab);
             tab.close();
+            DockingManager.close(tab);
         }
         if (getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars

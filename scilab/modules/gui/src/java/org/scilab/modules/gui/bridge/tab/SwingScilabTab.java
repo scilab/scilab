@@ -138,7 +138,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
-	setCallback(null);
+        setCallback(null);
     }
 
     /**
@@ -168,7 +168,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
-	setCallback(null);
+        setCallback(null);
     }
 
     /**
@@ -180,22 +180,22 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     }
 
     public static void removeActions(SwingScilabTab tab) {
-	tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
-	tab.setActionBlocked(UNDOCK, true);
-	tab.getTitlebar().revalidate();
+        tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+        tab.setActionBlocked(UNDOCK, true);
+        tab.getTitlebar().revalidate();
     }
 
     public static void addActions(SwingScilabTab tab) {
-	tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
-	tab.setActionBlocked(UNDOCK, false);
-	tab.getTitlebar().revalidate();
+        tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
+        tab.setActionBlocked(UNDOCK, false);
+        tab.getTitlebar().revalidate();
     }
 
     /**
      * @param e the FocusEvent
      */
     public void focusGained(FocusEvent e) {
-	//ActiveDockableTracker.requestDockableActivation(this);
+        //ActiveDockableTracker.requestDockableActivation(this);
         if (contentPane != null) {
             contentPane.requestFocus();
         } else if (getContentPane() != null) {
@@ -250,7 +250,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
                 }
             }
         } else {
-	    removeActions(this);
+            removeActions(this);
         }
     }
 
@@ -916,13 +916,13 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         }
 
         action.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
-	((Titlebar) getTitlePane()).removeAction(DockingConstants.CLOSE_ACTION);
+        ((Titlebar) getTitlePane()).removeAction(DockingConstants.CLOSE_ACTION);
         addAction(action);
 
         /* Undock button */
         SciUndockingAction undockAction = new SciUndockingAction(this);
         undockAction.putValue(Action.NAME, UNDOCK);
-	((Titlebar) getTitlePane()).removeAction(UNDOCK);
+        ((Titlebar) getTitlePane()).removeAction(UNDOCK);
         addAction(undockAction);
     }
 
@@ -1078,6 +1078,7 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         setInfoBar(null);
         setTitlebar(null);
         removeAll();
+        setActive(false);
 
         scrolling = null;
         contentPane = null;
