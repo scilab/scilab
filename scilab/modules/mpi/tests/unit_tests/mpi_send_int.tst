@@ -6,9 +6,6 @@
 // =============================================================================
 //
 // <-- MPI TEST -->
-// This test sends a matrix of double [42,41] and, on each slave,
-// it adds +1 to each element
-// and send it back to the master
 // 
 
 MPI_Init();
@@ -22,7 +19,6 @@ Master = ~ SLV;			// slaves are all other
 
 if Master
 
-	disp("MASTER: We have " + string(sizeNodes) + " processors")
 	for slaveId = 1:sizeNodes-1
         value = int8(rand(100,100) * 100);
 		MPI_Send(value, slaveId)
@@ -31,14 +27,9 @@ if Master
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		valueBack=MPI_Recv(slaveId, tag);
-		if valueBack <> value + 1 then disp("Failed (expected scalar string): " + valueBack);
-           pause
-        else
-            disp("Node " + string(slaveId) + ": OK")
-        end
+        assert_checkequal(valueBack, value + 1);
 	end
 else
-	disp("SLAVE: Processor "+string(rnk))
 	rankSource=0;
 	tag=0;
     value=MPI_Recv(rankSource, tag)
@@ -49,4 +40,4 @@ else
 end
 
 MPI_Finalize()
-exit;
+

@@ -22,7 +22,6 @@ Master = ~ SLV;			// slaves are all other
 
 if Master
 
-	disp("MASTER: We have " + string(sizeNodes) + " processors")
 	for slaveId = 1:sizeNodes-1
         value = rand(100,100) > 0.5;
 		MPI_Send(value, slaveId)
@@ -31,14 +30,9 @@ if Master
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		valueBack=MPI_Recv(slaveId, tag);
-		if valueBack <> ~value then disp("Failed (expected scalar string): " + valueBack);
-           pause
-        else
-            disp("Node " + string(slaveId) + ": OK")
-        end
+        assert_checkequal(valueBack, ~value);
 	end
 else
-	disp("SLAVE: Processor "+string(rnk))
 	rankSource=0;
 	tag=0;
     value=MPI_Recv(rankSource, tag)
@@ -49,4 +43,4 @@ else
 end
 
 MPI_Finalize()
-exit;
+

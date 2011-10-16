@@ -16,17 +16,15 @@
 #endif
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/
-static MPITable Tab[]=
-{
-	{sci_mpi_init,"MPI_Init"},
-	{sci_mpi_finalize,"MPI_Finalize"},
-	{sci_mpi_comm_size,"MPI_Comm_size"},
-	{sci_mpi_comm_rank,"MPI_Comm_rank"},
-	{sci_mpi_recv,"MPI_Recv"},
-	{sci_mpi_send,"MPI_Send"},
-	{sci_mpi_serialize,"MPI_serialize"},
-	{sci_mpi_unserialize,"MPI_unserialize"}
+static MPITable Tab[] = {
+    {sci_mpi_init, "MPI_Init"},
+    {sci_mpi_finalize, "MPI_Finalize"},
+    {sci_mpi_comm_size, "MPI_Comm_size"},
+    {sci_mpi_comm_rank, "MPI_Comm_rank"},
+    {sci_mpi_recv, "MPI_Recv"},
+    {sci_mpi_send, "MPI_Send"}
 };
+
 /*static MPITable Tab[]=
 {
 	{intsmpi_send,"mpi_send"},
@@ -40,26 +38,26 @@ static MPITable Tab[]=
 };*/
 /*-----------------------------------------------------------------------------------*/
 int gw_mpi(void)
-{  
-	Rhs = Max(0, Rhs);
+{
+    Rhs = Max(0, Rhs);
 
 #ifdef _MSC_VER
-	#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{	
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
+#ifndef _DEBUG
+    _try
+    {
+        (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
+    }
+    _except(EXCEPTION_EXECUTE_HANDLER)
+    {
+        ExceptionMessage(GetExceptionCode(), Tab[Fin - 1].name);
+    }
 #else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+    (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
 #endif
-	return 0;
+#else
+    (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
+#endif
+    return 0;
 }
-/*-----------------------------------------------------------------------------------*/
 
+/*-----------------------------------------------------------------------------------*/

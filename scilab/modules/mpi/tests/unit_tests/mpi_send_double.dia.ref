@@ -1,67 +1,61 @@
+rnk =    MPI_Comm_rank();
 // =============================================================================
+sizeNodes =    MPI_Comm_size();
+if MPI_Comm_size() <> 2 then bugmes();quit;end
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+SLV = rnk;                // handy shortcuts, master is rank 0
 // Copyright (C) 2010-2010 - DIGITEO - Sylvestre LEDRU
+Master = ~ SLV;            // slaves are all other
+if Master
+    for slaveId = 1:sizeNodes-1
 //
+        value = rand(100,100) + rand(100,100) * %i;
+        MPI_Send(value, slaveId);
 //  This file is distributed under the same license as the Scilab package.
+    end
+    for slaveId = 1:sizeNodes-1
+        tag=0;
 // =============================================================================
+        valueBack=MPI_Recv(slaveId, tag);
+        assert_checkequal(valueBack,value + 1);
+    end
 //
+else
+    rankSource=0;
 // <-- MPI TEST -->
+    tag=0;
+    value=MPI_Recv(rankSource, tag);
 // This test sends a matrix of double [42,41] and, on each slave,
 // it adds +1 to each element
 // and send it back to the master
 // 
 MPI_Init();
-rnk =	MPI_Comm_rank();
-sizeNodes =	MPI_Comm_size();
+rnk =    MPI_Comm_rank();
+sizeNodes =    MPI_Comm_size();
 if MPI_Comm_size() <> 2 then bugmes();quit;end
-SLV = rnk;				// handy shortcuts, master is rank 0
-Master = ~ SLV;			// slaves are all other
+SLV = rnk;                // handy shortcuts, master is rank 0
+Master = ~ SLV;            // slaves are all other
 if Master
-	disp("MASTER: We have "+string(sizeNodes) + " processors")
- 
- MASTER: We have 2 processors   
-	for slaveId = 1:sizeNodes-1
-		MPI_Send([42,41],slaveId)
-		disp("MASTER: ICI after mpi_send");
-	end
- ans  =
- 
-    0.  
- value  =
- 
- 
- MASTER: ICI after mpi_send   
-	for slaveId = 1:sizeNodes-1
-    42.    41.  
-		tag=0
-	disp("SLAVE:"+string(value));
-		disp("MASTER: mpi_recv")
-	    valueBack=MPI_Recv(slaveId, tag);
-		if valueBack(1) <> 43 & valueBack(2) <> 42 then bugmes();quit;end
-	end
- tag  =
- 
- 
-!SLAVE:42  SLAVE:41  !
-    0.  
-	value=value+1;
- 
- MASTER: mpi_recv   
-	// Send back to the master
-	MPI_Send(value,0)
- ans  =
- 
+    for slaveId = 1:sizeNodes-1
+        value = rand(100,100) + rand(100,100) * %i;
+        MPI_Send(value, slaveId);
+    end
+    value=value+1;
+    for slaveId = 1:sizeNodes-1
+    // Send back to the master
+        tag=0;
+    MPI_Send(value,0);
+        valueBack=MPI_Recv(slaveId, tag);
+        assert_checkequal(valueBack,value + 1);
+    end
+end
+MPI_Finalize();
 else
-    0.  
-	disp("SLAVE: Processor "+string(rnk))
+    rankSource=0;
+    tag=0;
+    value=MPI_Recv(rankSource, tag);
+    value=value+1;
+    // Send back to the master
+    MPI_Send(value,0);
 end
-	rankSource=0;
-MPI_Finalize()
-	tag=0;
-    value=MPI_Recv(rankSource, tag)
-	disp("SLAVE:"+string(value));
-	value=value+1;
-	// Send back to the master
-	MPI_Send(value,0)
-end
-MPI_Finalize()
+MPI_Finalize();

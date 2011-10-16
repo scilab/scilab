@@ -6,45 +6,39 @@
 // =============================================================================
 //
 // <-- MPI TEST -->
-// This test sends a matrix of double [42,41] and, on each slave,
+//
+// This test sends a rand matrix of double complex and, on each slave,
 // it adds +1 to each element
 // and send it back to the master
 // 
 MPI_Init();
-rnk =	MPI_Comm_rank();
-sizeNodes =	MPI_Comm_size();
+rnk =    MPI_Comm_rank();
+sizeNodes =    MPI_Comm_size();
 
 if MPI_Comm_size() <> 2 then pause, end
 
-SLV = rnk;				// handy shortcuts, master is rank 0
-Master = ~ SLV;			// slaves are all other
+SLV = rnk;                // handy shortcuts, master is rank 0
+Master = ~ SLV;            // slaves are all other
 
 if Master
-	disp("MASTER: We have "+string(sizeNodes) + " processors")
-	for slaveId = 1:sizeNodes-1
+    for slaveId = 1:sizeNodes-1
         value = rand(100,100) + rand(100,100) * %i;
-		MPI_Send(value, slaveId)
-	end
+        MPI_Send(value, slaveId);
+    end
 
-	for slaveId = 1:sizeNodes-1
-		tag=0
-		valueBack=MPI_Recv(slaveId, tag);
-		if valueBack <> value + 1 then disp("Failed (expected value + 1: "+string(valueBack));
-           pause
-        else
-            disp("Node " + string(slaveId) + ": OK")
-        end
-	end
+    for slaveId = 1:sizeNodes-1
+        tag=0;
+        valueBack=MPI_Recv(slaveId, tag);
+        assert_checkequal(valueBack,value + 1);
+    end
 else
-	disp("SLAVE: Processor "+string(rnk))
-	rankSource=0;
-	tag=0;
-    value=MPI_Recv(rankSource, tag)
-	value=value+1;
-	// Send back to the master
-	MPI_Send(value,0)
+    rankSource=0;
+    tag=0;
+    value=MPI_Recv(rankSource, tag);
+    value=value+1;
+    // Send back to the master
+    MPI_Send(value,0);
 
 end
 
-MPI_Finalize()
-exit();
+MPI_Finalize();

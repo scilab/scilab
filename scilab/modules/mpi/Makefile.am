@@ -42,7 +42,8 @@ MPI_PI_SOURCES = src/c/mpi_pi_send.c src/c/dboard.c
 mpi_pi_SOURCES = $(MPI_PI_SOURCES)
 mpi_pi_LDFLAGS = $(OPENMPI_LIBS)
 
-MPI_C_SOURCES = src/c/mappingScilabMPI.c
+MPI_C_SOURCES =     src/c/serialization.c \
+    src/c/deserialization.c
 mpitest_contiguous_SOURCES = src/c/mpitest_contiguous.c
 
 check-am:
@@ -58,14 +59,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_comm_rank.c \
     sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
-    sci_gateway/c/sci_mpi_send.c \
-    sci_gateway/c/sci_mpi_serialize.c \
-    sci_gateway/c/sci_mpi_unserialize.c \
-    src/c/build_buff_type.c \
-    src/c/pre_send_recv_metadata.c \
-    src/c/s_mpi_recv.c \
-    src/c/s_mpi_send.c
-
+    sci_gateway/c/sci_mpi_send.c
 
 # Includes need for the compilation
 # MPI code needs to be compile with the openmpi 'compiler' (it is a wrapper)

@@ -1,14 +1,11 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010-2010 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- MPI TEST -->
-// This test sends a matrix of double [42,41] and, on each slave,
-// it adds +1 to each element
-// and send it back to the master
 // 
 
 MPI_Init();
@@ -31,11 +28,8 @@ if Master
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		valueBack=MPI_Recv(slaveId, tag);
-		if size(valueBack) <> [1,1] | valueBack <> strcat(value) then disp("Failed (expected scalar string): " + valueBack);
-           pause
-        else
-            disp("Node " + string(slaveId) + ": OK")
-        end
+        assert_checkequal(size(valueBack), [1,1]);
+   		assert_checkequal(valueBack, strcat(value))
 	end
 else
 	disp("SLAVE: Processor "+string(rnk))
@@ -50,4 +44,4 @@ else
 end
 
 MPI_Finalize()
-exit;
+
