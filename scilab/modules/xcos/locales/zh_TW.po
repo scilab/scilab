@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -547,15 +547,6 @@ msgstr ""
 msgid "No block selected"
 msgstr "未選擇任何區塊"
 
-msgid "Export to XML"
-msgstr "匯出至 XML 檔案"
-
-msgid "Export in progress"
-msgstr ""
-
-msgid "Import from XML"
-msgstr "從 XML 檔案匯入"
-
 msgid "Add to"
 msgstr "加入到"
 
@@ -693,12 +684,20 @@ msgstr "轉 SuperBlock 成 C 程式碼"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "SuperBlock 必須選定來產生代碼"
 
-msgid "Simulation in progress"
-msgstr "模擬處理中"
+msgid "Export in progress"
+msgstr ""
 
 msgid ""
-"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "編譯執行中, 結果將存在 'scicos_cpr' 變數"
+"Import in progress, results will be stored through the 'scs_m' variable"
+msgstr ""
+
+#, c-format
+msgid ""
+"Compilation in progress, results will be stored through the '%cpr' variable"
+msgstr ""
+
+msgid "Simulation in progress"
+msgstr "模擬處理中"
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -788,14 +787,6 @@ msgstr ""
 
 msgid "Modelica initialize"
 msgstr ""
-
-#, c-format
-msgid "From %s"
-msgstr "寄件者 %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Goto %s"
 
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
@@ -1160,7 +1151,7 @@ msgstr "Scicos 函式庫沒載入"
 msgid "Unable to simulate %s"
 msgstr "無法模擬 %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format
@@ -1176,3 +1167,19 @@ msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
+
+#~ msgid "Export to XML"
+#~ msgstr "匯出至 XML 檔案"
+
+#~ msgid "Import from XML"
+#~ msgstr "從 XML 檔案匯入"
+
+#~ msgid "From %s"
+#~ msgstr "寄件者 %s"
+
+#~ msgid ""
+#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+#~ msgstr "編譯執行中, 結果將存在 'scicos_cpr' 變數"
+
+#~ msgid "Goto %s"
+#~ msgstr "Goto %s"

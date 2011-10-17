@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: ja\n"
 
 #, c-format
@@ -61,20 +61,29 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "Scilabバージョン情報(&A)..."
 
-msgid "Icon"
-msgstr "アイコン"
-
 msgid "Name"
 msgstr "名前"
 
-msgid "Bytes"
-msgstr "バイト数"
+msgid "Dimension"
+msgstr ""
 
 msgid "Type"
 msgstr "型"
 
 msgid "Visibility"
 msgstr "可視性"
+
+msgid "Bytes"
+msgstr "バイト数"
+
+msgid "User"
+msgstr ""
+
+msgid "Type int value"
+msgstr ""
+
+msgid "Feature not available in this mode..."
+msgstr ""
 
 msgid "File"
 msgstr "ファイル"
@@ -84,6 +93,9 @@ msgstr "閉じる"
 
 msgid "Filter"
 msgstr "フィルタ"
+
+msgid "Hide Scilab variables"
+msgstr ""
 
 msgid "Double"
 msgstr "二重化"
@@ -160,12 +172,87 @@ msgstr "貼り付け"
 msgid "Cut"
 msgstr "切り取る"
 
+msgid "Clear"
+msgstr ""
+
 msgid "Undo"
 msgstr "元に戻す"
 
 msgid "Redo"
 msgstr "やり直す"
 
+msgid "File Browser"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Last modified"
+msgstr ""
+
+msgid "Directory"
+msgstr ""
+
+#, c-format
+msgid "%s File"
+msgstr ""
+
+msgid "File/directory filter"
+msgstr ""
+
+msgid "Enter your working folder"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Select a directory"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Scilab"
+msgstr ""
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr ""
+
+msgid "Open with SciNotes"
+msgstr ""
+
+msgid "Execute in Scilab"
+msgstr ""
+
+msgid "Open with Xcos"
+msgstr ""
+
+msgid "Load in Scilab"
+msgstr ""
+
+msgid "Edit with default application"
+msgstr ""
+
+msgid "Open with default application"
+msgstr ""
+
+msgid "Scilab type:"
+msgstr ""
+
+msgid "Bytes:"
+msgstr ""
+
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
+
+#~ msgid "Icon"
+#~ msgstr "アイコン"

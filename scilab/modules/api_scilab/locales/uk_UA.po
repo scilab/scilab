@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-05 04:30+0000\n"
+"PO-Revision-Date: 2011-10-03 14:36+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -38,7 +38,7 @@ msgstr "%s: не вдалося створити змінну у пам’яті
 
 #, c-format
 msgid "%s: Invalid variable name."
-msgstr ""
+msgstr "%s: некоректна назва змінної."
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -271,4 +271,4 @@ msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Invalid variable name.\n"
-msgstr ""
+msgstr "%s: : некоректна назва змінної.\n"

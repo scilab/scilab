@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: it\n"
 
 #, c-format
@@ -569,15 +569,6 @@ msgstr "Impossibile eliminare "
 msgid "No block selected"
 msgstr "Nessun blocco selezionato"
 
-msgid "Export to XML"
-msgstr "Esporta in XML"
-
-msgid "Export in progress"
-msgstr "Esportazione in corso"
-
-msgid "Import from XML"
-msgstr "Importa da XML"
-
 msgid "Add to"
 msgstr "Aggiungi a"
 
@@ -725,14 +716,20 @@ msgstr "Generazione di codice C per SuperBlock"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "Occorre selezionare un SuperBlock per generare del codice"
 
-msgid "Simulation in progress"
-msgstr "Simulazione in corso"
+msgid "Export in progress"
+msgstr "Esportazione in corso"
 
 msgid ""
-"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+"Import in progress, results will be stored through the 'scs_m' variable"
 msgstr ""
-"Compilazione in corso, i risultati saranno depositati nella variabile "
-"'scicos_cpr'"
+
+#, c-format
+msgid ""
+"Compilation in progress, results will be stored through the '%cpr' variable"
+msgstr ""
+
+msgid "Simulation in progress"
+msgstr "Simulazione in corso"
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -828,14 +825,6 @@ msgstr ""
 
 msgid "Modelica initialize"
 msgstr "Inizializza modelica"
-
-#, c-format
-msgid "From %s"
-msgstr "Da %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Vai a %s"
 
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
@@ -1244,7 +1233,7 @@ msgstr "Le librerie di Scicos non sono caricate"
 msgid "Unable to simulate %s"
 msgstr "Impossibile simulare %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format
@@ -1260,3 +1249,21 @@ msgstr "Problema di simulazione"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
+
+#~ msgid "Import from XML"
+#~ msgstr "Importa da XML"
+
+#~ msgid "From %s"
+#~ msgstr "Da %s"
+
+#~ msgid "Goto %s"
+#~ msgstr "Vai a %s"
+
+#~ msgid "Export to XML"
+#~ msgstr "Esporta in XML"
+
+#~ msgid ""
+#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+#~ msgstr ""
+#~ "Compilazione in corso, i risultati saranno depositati nella variabile "
+#~ "'scicos_cpr'"

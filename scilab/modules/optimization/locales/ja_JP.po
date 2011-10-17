@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:36+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-05 14:12+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -895,12 +895,12 @@ msgstr "%s: 問題には拘束条件がありませんが, Boxアルゴリズム
 msgid ""
 "%s: The initial simplex method %s is not compatible with the restart simplex "
 "method %s"
-msgstr ""
+msgstr "%s: 初期シンプレックス法 %s はリスタートシンプレックス法 %sと互換性がありません."
 
 #, c-format
 msgid ""
 "%s: Randomized bounds restart simplex is not available without bounds."
-msgstr ""
+msgstr "%s: ランダム化された境界リスタートシンプレックスは境界を指定しない場合は使用できません."
 
 #, c-format
 msgid "%s: Unknown restart simplex method %s"
@@ -965,7 +965,7 @@ msgstr "%s: x0が空のコスト関数を調べることができません"
 
 #, c-format
 msgid "%s: Cannot evaluate cost function with %s: %s"
-msgstr ""
+msgstr "%s: %sを指定して評価関数を評価できません: %s"
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
@@ -1152,17 +1152,13 @@ msgstr "%s: 除外添字ベクトルが 1行ではなく %d 行となってい�
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 負でない整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-#~ msgid "%s: Cannot evaluate cost function with %s."
-#~ msgstr "%s: %s を指定して評価関数を評価することができません."
+msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
