@@ -655,6 +655,7 @@ $(top_srcdir)/desktop/puffin_32.png \
 $(top_srcdir)/desktop/puffin_48.png \
 $(top_srcdir)/desktop/puffin.png \
 $(top_srcdir)/desktop/puffin.icns \
+$(top_srcdir)/desktop/scilab.xml \
 $(top_srcdir)/desktop/scilab.icns
 
 valgrinddir = $(pkgdatadir)/tools/profiling
