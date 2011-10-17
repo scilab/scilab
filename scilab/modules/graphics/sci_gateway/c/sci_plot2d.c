@@ -25,7 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 
-#include "CurrentFigure.h"
+#include "BuildObjects.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
@@ -290,7 +290,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   }
 
   // open a figure if none already exists
-  getCurrentFigure();
+  getOrCreateDefaultSubwin();
   Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
 
   LhsVar(1) = 0;
