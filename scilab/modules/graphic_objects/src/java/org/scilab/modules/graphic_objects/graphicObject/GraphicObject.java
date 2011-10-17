@@ -33,7 +33,7 @@ public abstract class GraphicObject implements Cloneable {
     public static final int USER_DATA_DEFAULT_SIZE = 0;
 
     /** Graphic objects types */
-    public enum Type { ARC, AXES, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, GRAYPLOT,
+    public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, FIGUREMODEL, GRAYPLOT,
         LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
         IMAGERENDERER, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UNKNOWNOBJECT 
     };
@@ -140,6 +140,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.ARC;
         } else if (typeName.equals(__GO_AXES__)) {
             return Type.AXES;
+        } else if (typeName.equals(__GO_AXESMODEL__)) {
+            return Type.AXESMODEL;
         } else if (typeName.equals(__GO_AXIS__)) {
             return Type.AXIS;
         } else if (typeName.equals(__GO_CHAMP__)) {
@@ -152,6 +154,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.FEC;
         } else if (typeName.equals(__GO_FIGURE__)) {
             return Type.FIGURE;
+        } else if (typeName.equals(__GO_FIGUREMODEL__)) {
+            return Type.FIGUREMODEL;
         } else if (typeName.equals(__GO_GRAYPLOT__)) {
             return Type.GRAYPLOT;
         } else if (typeName.equals(__GO_LABEL__)) {
@@ -260,6 +264,8 @@ public abstract class GraphicObject implements Cloneable {
             return getChildren();
         } else if (property == GraphicObjectPropertyType.CHILDREN_COUNT) {
             return getChildren().length;
+        } else if (property == GraphicObjectPropertyType.VALID) {
+            return isValid();
         } else if (property == GraphicObjectPropertyType.VISIBLE) {
             return getVisible();
         } else if (property == GraphicObjectPropertyType.USERDATA) {
@@ -304,6 +310,8 @@ public abstract class GraphicObject implements Cloneable {
             setParent((String) value);
         } else if (property == GraphicObjectPropertyType.CHILDREN) {
             setChildren((List<String>) value);
+        } else if (property == GraphicObjectPropertyType.VALID) {
+            setValid((Boolean) value);
         } else if (property == GraphicObjectPropertyType.VISIBLE) {
             setVisible((Boolean) value);
         } else if (property == GraphicObjectPropertyType.USERDATA) {

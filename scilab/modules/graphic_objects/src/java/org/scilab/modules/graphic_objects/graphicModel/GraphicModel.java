@@ -169,6 +169,10 @@ public final class GraphicModel {
             case AXES:
                 createdObject = new Axes();
                 break;
+            case AXESMODEL:
+                createdObject = new Axes();
+                createdObject.setValid(false);
+                break;
             case AXIS:
                 createdObject = new Axis();
                 break;
@@ -186,6 +190,10 @@ public final class GraphicModel {
                 break;
             case FIGURE:
                 createdObject = new Figure();
+                break;
+            case FIGUREMODEL:
+                createdObject = new Figure();
+                createdObject.setValid(false);
                 break;
             case GRAYPLOT:
                 createdObject = new Grayplot();

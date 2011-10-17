@@ -22,12 +22,14 @@ public class GraphicObjectProperties {
 
 public static final String __GO_ARC__   =                  "Arc";
 public static final String __GO_AXES__   =                 "Axes";
+public static final String __GO_AXESMODEL__   =            "AxesModel";
 public static final String __GO_AXIS__   =                 "Axis";
 public static final String __GO_CHAMP__  =                 "Champ";
 public static final String __GO_COMPOUND__ =               "Compound";
 public static final String __GO_FAC3D__ =                  "Fac3d";
 public static final String __GO_FEC__ =                    "Fec";
 public static final String __GO_FIGURE__ =                 "Figure";
+public static final String __GO_FIGUREMODEL__ =            "FigureModel";
 public static final String __GO_GRAYPLOT__ =               "Grayplot";
 public static final String __GO_LABEL__ =                  "Label";
 public static final String __GO_LEGEND__ =                 "Legend";

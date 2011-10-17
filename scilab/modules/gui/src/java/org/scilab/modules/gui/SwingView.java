@@ -52,6 +52,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
@@ -112,6 +113,8 @@ public final class SwingView implements GraphicView {
     private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 
     private static SwingView me;
+
+    private Map<String, TypedObject> allObjects;
 
     /**
      * Constructor
@@ -197,10 +200,13 @@ public final class SwingView implements GraphicView {
         }
     };
 
-    private Map<String, TypedObject> allObjects;
-
     @Override
     public void createObject(String id) {
+
+        boolean isValid = (Boolean) GraphicController.getController().getProperty(id, __GO_VALID__);
+        if (!isValid) {
+            return;
+        }
 
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
         DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
