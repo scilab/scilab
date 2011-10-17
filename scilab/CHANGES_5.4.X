@@ -181,6 +181,8 @@ File input/output:
 
 * tempname function added (SEP 68).
 
+* bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
+
 
 New functions
 =============

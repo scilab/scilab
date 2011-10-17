@@ -128,8 +128,15 @@ int sci_mputl(char *fname, unsigned long fname_len)
                 break;
             case MOPEN_INVALID_FILENAME:
                 {
-                    Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
-                    freeAllocatedSingleString(filename);
+                    if (filename)
+                    {
+                        Scierror(999, _("%s: invalid filename %s.\n"), fname, filename);
+                    }
+                    else
+                    {
+                        freeAllocatedSingleString(filename);
+                        Scierror(999, _("%s: invalid filename.\n"), fname);
+                    }
                     return 0;
                 }
                 break;
