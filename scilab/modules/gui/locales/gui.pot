@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2011-10-17 10:07+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 71
 #, c-format
@@ -59,14 +59,14 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 183
 # File: sci_gateway/c/sci_x_choose.c, line: 84
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 89
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 104
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 66
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 89
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 161
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 185
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 225
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 118
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 142
+# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 113
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 67
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 98
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 162
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 186
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 226
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 119
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 143
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -82,21 +82,21 @@ msgstr ""
 # File: sci_gateway/c/sci_ClipBoard.c, line: 181
 # File: sci_gateway/c/sci_uicontrol.c, line: 150
 # File: sci_gateway/c/sci_uicontrol.c, line: 250
-# File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 73
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 65
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 62
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 99
+# File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 74
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 71
+# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 66
+# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 108
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 238
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 259
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 274
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 296
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 113
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 297
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 335
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 70
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 230
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 264
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 67
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 114
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 299
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 339
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 71
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 232
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 268
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 68
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -122,14 +122,14 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 89
 # File: sci_gateway/c/sci_waitbar.c, line: 109
 # File: sci_gateway/c/sci_waitbar.c, line: 167
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 47
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 275
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 76
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 78
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
@@ -142,7 +142,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 302
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 88
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 90
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr ""
@@ -174,8 +174,8 @@ msgstr ""
 # File: sci_gateway/c/sci_unsetmenu.c, line: 52
 # File: sci_gateway/c/sci_x_choose.c, line: 78
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 83
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 56
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 81
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 57
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 86
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr ""
 # File: sci_gateway/c/sci_unsetmenu.c, line: 109
 # File: sci_gateway/c/sci_unsetmenu.c, line: 136
 # File: sci_gateway/c/sci_waitbar.c, line: 173
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 82
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 84
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
@@ -232,7 +232,7 @@ msgstr ""
 # File: sci_gateway/c/sci_helpbrowser.c, line: 150
 # File: sci_gateway/c/sci_uigetfont.c, line: 93
 # File: sci_gateway/c/sci_uigetfont.c, line: 115
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 49
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 50
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -241,7 +241,7 @@ msgstr ""
 # File: sci_gateway/c/sci_helpbrowser.c, line: 159
 # File: sci_gateway/c/sci_uigetfont.c, line: 101
 # File: sci_gateway/c/sci_uigetfont.c, line: 123
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 41
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 42
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -263,8 +263,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_messagebox.c, line: 173
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 71
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 83
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 74
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 86
 msgid "Scilab Message"
 msgstr ""
 
@@ -526,20 +526,20 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_about.cpp, line: 38
-# File: sci_gateway/cpp/sci_displaytree.cpp, line: 150
+# File: sci_gateway/cpp/sci_about.cpp, line: 39
+# File: sci_gateway/cpp/sci_displaytree.cpp, line: 152
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 37
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 38
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 62
-# File: sci_gateway/cpp/sci_printsetupbox.cpp, line: 44
-# File: sci_gateway/cpp/sci_raise_window.cpp, line: 43
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 37
+# File: sci_gateway/cpp/sci_printfigure.cpp, line: 64
+# File: sci_gateway/cpp/sci_printsetupbox.cpp, line: 45
+# File: sci_gateway/cpp/sci_raise_window.cpp, line: 44
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 41
-# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 80
-# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 120
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 266
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 200
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 59
-# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 77
+# File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 84
+# File: sci_gateway/cpp/sci_uigetdir.cpp, line: 133
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 267
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 201
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 60
+# File: sci_gateway/cpp/sci_usecanvas.cpp, line: 78
 #, c-format
 msgid ""
 "%s: A Java exception arisen:\n"
@@ -547,13 +547,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 60
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 66
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 60
+# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 66
 msgid "Impossible to get current look and feel"
 msgstr ""
 
@@ -638,30 +638,30 @@ msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 123
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 80
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 124
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 148
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 105
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 106
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 170
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 194
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 127
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 151
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 171
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 195
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 128
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 152
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 234
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 235
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
@@ -851,7 +851,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 36
 # File: scilab_fake_localization_file.c, line: 45
-# File: scilab_fake_localization_file.c, line: 82
+# File: scilab_fake_localization_file.c, line: 83
 msgid "&?"
 msgstr ""
 
@@ -863,7 +863,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 38
 # File: scilab_fake_localization_file.c, line: 46
-# File: scilab_fake_localization_file.c, line: 94
+# File: scilab_fake_localization_file.c, line: 95
 msgid "&About Scilab..."
 msgstr ""
 
@@ -1038,119 +1038,119 @@ msgid "&Command History"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 83
-msgid "Scilab &Help"
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&File Browser"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 84
-msgid "Scilab &Demonstrations"
+msgid "Scilab &Help"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 85
-msgid "&Links"
+msgid "Scilab &Demonstrations"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 86
-msgid "Scilab &Web Site"
+msgid "&Links"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 87
-msgid "Scilab &Online Help"
+msgid "Scilab &Web Site"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 88
-msgid "Scilab &Wiki"
+msgid "Scilab &Online Help"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 89
-msgid "Scilab &ATOMS Web Site"
+msgid "Scilab &Wiki"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 90
-msgid "&File Exchange"
+msgid "Scilab &ATOMS Web Site"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 91
-msgid "&Mailing lists"
+msgid "&File Exchange"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 92
-msgid "&Forge"
+msgid "&Mailing lists"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 93
+msgid "&Forge"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 94
 msgid "&Bugs And Requests"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 95
+# File: scilab_fake_localization_file.c, line: 96
 msgid "Rotate"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 96
+# File: scilab_fake_localization_file.c, line: 97
 msgid "Zoom Area"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 97
+# File: scilab_fake_localization_file.c, line: 98
 msgid "Original View"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 98
+# File: scilab_fake_localization_file.c, line: 99
 msgid "toggle datatip mode"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 99
+# File: scilab_fake_localization_file.c, line: 100
 # File: scilab_fake_localization_file.c, line: 111
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 89
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 91
 msgid "Help Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 100
+# File: scilab_fake_localization_file.c, line: 101
 msgid "Launch SciNotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 101
+# File: scilab_fake_localization_file.c, line: 102
 msgid "Open a file"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 102
+# File: scilab_fake_localization_file.c, line: 103
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 72
 msgid "Cut"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 103
+# File: scilab_fake_localization_file.c, line: 104
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 79
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 569
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 592
 msgid "Copy"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 104
+# File: scilab_fake_localization_file.c, line: 105
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 86
 msgid "Paste"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 105
-msgid "Change Current Directory"
 msgstr ""
 
 #
@@ -1588,17 +1588,17 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2339
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2314
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2358
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2333
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2493
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2468
 msgid "No print service found."
 msgstr ""
 
@@ -1639,7 +1639,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 107
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 579
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 602
 msgid "Select All"
 msgstr ""
 
@@ -1650,13 +1650,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 124
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 600
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 623
 msgid "Help about a selected text"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 130
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 606
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 629
 msgid "Help about '"
 msgstr ""
 
@@ -1820,47 +1820,47 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 215
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 184
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 190
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 193
 msgid "Cancel"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 98
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 82
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 99
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 154
 msgid "Loading help browser..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 294
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 304
 msgid "Feature not available in this mode..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 499
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 518
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 590
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 522
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 541
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 613
 msgid "No text selected"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 505
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 528
 msgid "Execute into Scilab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 525
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 548
 msgid "Edit in the Scilab Text Editor"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 547
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 570
 msgid "Back"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 562
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 585
 msgid "Forward"
 msgstr ""
 
@@ -1881,26 +1881,56 @@ msgid "Left click to terminate selection. Right click to cancel."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 165
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 181
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 184
 msgid "OK"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 187
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 190
 msgid "No"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 187
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 190
 msgid "Yes"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
+# File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 193
 msgid "Save and execute"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 38
+msgid "Empty tab"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
+#, c-format
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 42
+#, c-format
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 43
+#, c-format
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 44
+msgid "Exit"
 msgstr ""
 
 #
@@ -1986,6 +2016,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
+#, c-format
 msgid "All %s files"
 msgstr ""
 
@@ -2050,7 +2081,6 @@ msgstr ""
 
 #
 # File: etc/graphics_menubar.xml, line: 15
-# File: etc/main_menubar.xml, line: 35
 msgid "Select a file to load"
 msgstr ""
 
@@ -2061,7 +2091,6 @@ msgstr ""
 
 #
 # File: etc/graphics_menubar.xml, line: 26
-# File: etc/main_menubar.xml, line: 46
 msgid "Select a file to write"
 msgstr ""
 
@@ -2085,35 +2114,8 @@ msgid "Select a file name"
 msgstr ""
 
 #
-# File: etc/main_menubar.xml, line: 13
-msgid "Select a file to execute"
-msgstr ""
-
-#
-# File: etc/main_menubar.xml, line: 16
-msgid "Execution done.\n"
-msgstr ""
-
-#
-# File: etc/main_menubar.xml, line: 25
 # File: etc/main_toolbar.xml, line: 11
 msgid "Select a file to open with SciNotes"
-msgstr ""
-
-#
-# File: etc/main_menubar.xml, line: 38
-msgid "Environment loaded.\n"
-msgstr ""
-
-#
-# File: etc/main_menubar.xml, line: 52
-msgid "Environment saved.\n"
-msgstr ""
-
-#
-# File: etc/main_menubar.xml, line: 61
-# File: etc/main_toolbar.xml, line: 38
-msgid "Select a directory"
 msgstr ""
 
 #
@@ -2123,13 +2125,7 @@ msgstr ""
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 72
-# File: demos/cb_uicontrol_snecma.dem.sci, line: 72
 msgid "File"
-msgstr ""
-
-#
-# File: demos/cb_uicontrol_snecma.dem.sci, line: 67
-msgid "SNECMA EDTEX Processing platform"
 msgstr ""
 
 #

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2011-10-17 10:07+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -234,25 +234,25 @@ msgid "Entry point %s in shared library %d.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 412
+# File: src/c/dynamic_link.c, line: 406
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 448
+# File: src/c/dynamic_link.c, line: 438
 #, c-format
 msgid "Entry name %s.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 462
+# File: src/c/dynamic_link.c, line: 447
 #, c-format
 msgid "%s is not an entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 468
+# File: src/c/dynamic_link.c, line: 453
 #, c-format
 msgid "Linking %s.\n"
 msgstr ""
