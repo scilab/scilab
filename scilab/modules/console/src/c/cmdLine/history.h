@@ -21,7 +21,7 @@
  * @param user input
  * @return user input
  */
-int previousCmd(t_list_cmd ** cmd, int cursorLocation);
+int previousCmd(t_list_cmd ** cmd, unsigned int *cursorLocation);
 
 /**
  * Change current editing line to next editing line
@@ -29,6 +29,6 @@ int previousCmd(t_list_cmd ** cmd, int cursorLocation);
  * @param user input
  * @return user input
  */
-int nextCmd(t_list_cmd ** cmd, int cursorLocation);
+int nextCmd(t_list_cmd ** cmd, unsigned int *cursorLocation);
 
 #endif /* !HISTORY_H_ */

@@ -46,6 +46,6 @@ void deleteHistory(t_list_cmd * cmd, int limit);
  * Save a command if listCmd is not NULL, else, display it.
  * @param list of command.
  */
-void memCmd(t_list_cmd ** listCmd);
+void memCmd(t_list_cmd * listCmd, int cursorLocation);
 
 #endif /* !CMD_FUNC_H_ */

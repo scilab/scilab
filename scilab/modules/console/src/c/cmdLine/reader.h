@@ -22,7 +22,6 @@ typedef struct s_list_cmd t_list_cmd;
 /* TODO: remove and use ./libs/doublylinkedlist/includes/DoublyLinkedList.h instead */
 struct s_list_cmd
 {
-    int index;
     int bin;
     wchar_t *cmd;
     struct s_list_cmd *next;

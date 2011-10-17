@@ -16,14 +16,15 @@
 #include                "MALLOC.h"
 
 /* Concatenate 2 wide char string then return it */
-wchar_t *catStr(wchar_t * _wcs1, wchar_t * _wcs2)
+wchar_t *catStr(wchar_t * wcs1, wchar_t * wcs2)
 {
     wchar_t *catWcs = NULL;
-    int sizeOfCatWcs = (1 + wcslen(_wcs1) + wcslen(_wcs2));
+
+    int sizeOfCatWcs = (1 + wcslen(wcs1) + wcslen(wcs2));
 
     catWcs = MALLOC(sizeof(*catWcs) * sizeOfCatWcs);
-    catWcs = wcscpy(catWcs, _wcs1);
-    catWcs = wcscat(catWcs, _wcs2);
+    catWcs = wcscpy(catWcs, wcs1);
+    catWcs = wcscat(catWcs, wcs2);
     catWcs[sizeOfCatWcs] = L'\0';
-    return (catWcs);
+    return catWcs;
 }

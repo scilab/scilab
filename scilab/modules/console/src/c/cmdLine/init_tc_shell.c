@@ -40,7 +40,7 @@ int setAttr(int bin)
     if (tcgetattr(0, &t) == -1)
     {
         fprintf(stderr, "Cannot access to the term attributes.");
-        return (-1);
+        return -1;
     }
     if (bin == CANON)
         canonicMode(&t);
@@ -49,9 +49,9 @@ int setAttr(int bin)
     if (tcsetattr(0, 0, &t) == -1)
     {
         fprintf(stderr, "Cannot change the term attributes.");
-        return (-1);
+        return -1;
     }
-    return (0);
+    return 0;
 }
 
 /* Initialise console mode */
@@ -61,13 +61,13 @@ int initConsoleMode(int bin)
 /* What about kfreebsd, bsd, mac os ? */
     {
         fprintf(stderr, "Cannot init termcaps");
-        return (-1);
+        return -1;
     }
     if (setlocale(LC_CTYPE, "") == NULL)
     {
 /* Please use fprintf(stderr) */
         fprintf(stderr, "Cannot set wide char.");
-        return (-1);
+        return -1;
     }
 
     return setAttr(bin);

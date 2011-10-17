@@ -52,12 +52,12 @@ int getPrompt(int token)
     prompt = setPrompt(NULL);
     if (prompt == NULL)
     {
-        prompt = setPrompt(WSCIPROMPT);
+        prompt = setPrompt((wchar_t *) WSCIPROMPT);
     }
     if (token == WRT_PRT)
     {
         printf(SCI_PRINT_WSTRING, prompt);
         fflush(stdout);
     }
-    return (wcslen(prompt));
+    return wcslen(prompt);
 }

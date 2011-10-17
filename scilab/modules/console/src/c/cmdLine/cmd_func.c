@@ -27,69 +27,80 @@
 #include		"cmd_func.h"
 #include		"MALLOC.h"
 
-static int caseHomeOrEndKey(t_list_cmd ** listCmd)
+/* Remplacer "\a" par define */
+
+static int caseHomeOrEndKey(t_list_cmd * listCmd, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'H':
-        return (begLine(listCmd, 0));
+        begLine(listCmd, cursorLocation);
+        return 0;
     case L'F':
-        return (endLine(listCmd, 0));
+        endLine(listCmd, cursorLocation);
+        return 0;
     default:
         printf("\a");
         fflush(stdout);
-        return (0);
+        return 0;
     }
 }
 
 /*
  * If second key was L'['
- * It mean this an arrow key or delete key.
+ * It mean this could be an arrow key or delete key.
  */
 
-static int caseDelOrArrowKey(t_list_cmd ** listCmd)
+static int caseDelOrArrowKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'A':
-        return (previousCmd(listCmd, 0));
+        previousCmd(listCmd, cursorLocation);
+        return 0;
     case L'B':
-        return (nextCmd(listCmd, 0));
+        nextCmd(listCmd, cursorLocation);
+        return 0;
     case L'C':
-        return (gotoRight(listCmd, 0));
+        gotoRight(*listCmd, cursorLocation);
+        return 0;
     case L'D':
-        return (gotoLeft(listCmd, 0));
+        gotoLeft(*listCmd, cursorLocation);
+        return 0;
     case L'3':
         if (getwchar() == L'~')
-            return (rmChar(listCmd, SCI_DELETE));
+        {
+            rmChar(*listCmd, SCI_DELETE, cursorLocation);
+            return 0;
+        }
     default:
         printf("\a");
         fflush(stdout);
-        return (0);
+        return 0;
     }
 }
 
 /*
  * If last key was Meta...
  */
-static int caseMetaKey(t_list_cmd ** listCmd)
+static int caseMetaKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'f':
     case L'F':
-        return (nextWord(listCmd, 0));
+        nextWord(*listCmd, cursorLocation);
+        return 0;
     case L'b':
     case L'B':
-        return (previousWord(listCmd, 0));
+        previousWord(*listCmd, cursorLocation);
+        return 0;
     case L'[':
-        return (caseDelOrArrowKey(listCmd));
+        return caseDelOrArrowKey(listCmd, cursorLocation);
     case L'O':
-        return (caseHomeOrEndKey(listCmd));
+        return caseHomeOrEndKey(*listCmd, cursorLocation);
     default:
-        printf("\a");
-        fflush(stdout);
-        return (0);
+        return 0;
     }
 }
 
@@ -97,7 +108,7 @@ static int caseMetaKey(t_list_cmd ** listCmd)
  * Read keyboard a first time.
  */
 
-static int getKey(t_list_cmd ** listCmd)
+static int getKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
 {
     int key;
 
@@ -105,27 +116,36 @@ static int getKey(t_list_cmd ** listCmd)
     switch (key)
     {
     case CTRL_A:
-        return (begLine(listCmd, key));
+        begLine(*listCmd, cursorLocation);
+        return 0;
     case CTRL_B:
-        return (gotoLeft(listCmd, key));
+        gotoLeft(*listCmd, cursorLocation);
+        return 0;
     case CTRL_E:
-        return (endLine(listCmd, key));
+        endLine(*listCmd, cursorLocation);
+        return 0;
     case CTRL_F:
-        return (gotoRight(listCmd, key));
+        gotoRight(*listCmd, cursorLocation);
+        return 0;
     case CTRL_K:
-        return (deleteLineFromCurs(listCmd, key));
+        deleteLineFromCurs(*listCmd, cursorLocation);
+        return 0;
     case CTRL_N:
-        return (nextCmd(listCmd, key));
+        nextCmd(listCmd, cursorLocation);
+        return 0;
     case CTRL_P:
-        return (previousCmd(listCmd, key));
+        previousCmd(listCmd, cursorLocation);
+        return 0;
     case ESCAPE:
-        return (caseMetaKey(listCmd));
+        return caseMetaKey(listCmd, cursorLocation);
     case SCI_BACKSPACE:
-        return (rmChar(listCmd, SCI_BACKSPACE));
+        rmChar(*listCmd, SCI_BACKSPACE, cursorLocation);
+        return 0;
     default:
         if (key == L'\n')
-            return ('\n');
-        return (addChar(listCmd, key));
+            return '\n';
+        addChar(*listCmd, key, cursorLocation);
+        return 0;
     }
 }
 
@@ -133,26 +153,26 @@ static int getKey(t_list_cmd ** listCmd)
  * If there is a string the function save it.
  * else The function write the saved string.
  */
-void memCmd(t_list_cmd ** cmd)
+void memCmd(t_list_cmd * cmd, int cursorLocation)
 {
-    static t_list_cmd **memList;
+    static t_list_cmd *memList;
 
     static int i;
 
     if (cmd != NULL)
     {
         memList = cmd;
-        i = (*cmd)->index;
+        i = cursorLocation;
     }
     else
     {
 /* TODO comment */
-        i = (*memList)->index;
-        (*memList)->index = wcslen((*memList)->cmd);
-        printf(SCI_PRINT_WSTRING, (*memList)->cmd);
+        i = cursorLocation;
+        cursorLocation = wcslen(memList->cmd);
+        printf(SCI_PRINT_WSTRING, memList->cmd);
 /* TODO probably useless. We are doing a buffering word by word */
         fflush(stdout);
-        while ((*memList)->index != i)
+        while (cursorLocation != i)
         {
             gotoLeft(memList, 0);
         }
@@ -172,19 +192,20 @@ t_list_cmd *getNewCmd(t_list_cmd * lastCmd)
     newCmd->previous = lastCmd;
     newCmd->next = NULL;
     newCmd->bin = 0;
-    return (newCmd);
+    return newCmd;
 }
 
 void getCmd(t_list_cmd ** listCmd)
 {
     int bin;
 
-    (*listCmd)->index = 0;
+    int cursorLocation = 0;
+
     bin = 1;
     while (bin)
     {
-        memCmd(listCmd);
-        if (getKey(listCmd) == '\n')
+        memCmd(*listCmd, cursorLocation);
+        if (getKey(listCmd, &cursorLocation) == '\n')
         {
             putchar('\n');
             bin = 0;
@@ -202,7 +223,7 @@ t_list_cmd *freeCmd(t_list_cmd ** cmd)
     free(save);
     if (*cmd)
         (*cmd)->next = NULL;
-    return (*cmd);
+    return *cmd;
 }
 
 void deleteHistory(t_list_cmd * cmd, int limit)

@@ -20,7 +20,7 @@
  * @param user input.
  * @return user input.
  */
-int addChar(t_list_cmd ** cmd, int key);
+int addChar(t_list_cmd * cmd, int key, unsigned int *cursorLocation);
 
 /**
  * Remove a character in the command line at the cursor position if SCI_DELETE is passed as key.
@@ -29,7 +29,7 @@ int addChar(t_list_cmd ** cmd, int key);
  * @param user input.
  * @return user input.
  */
-int rmChar(t_list_cmd ** cmd, int key);
+int rmChar(t_list_cmd * cmd, int key, unsigned int *cursorLocation);
 
 /**
  * Add a character in the command line at the cursor position.
@@ -37,6 +37,6 @@ int rmChar(t_list_cmd ** cmd, int key);
  * @param user input.
  * @return user input.
  */
-int deleteLineFromCurs(t_list_cmd ** cmd, int key);
+int deleteLineFromCurs(t_list_cmd * cmd, unsigned int *cursorLocation);
 
 #endif /* !CHAR_CTL_H_ */

@@ -49,7 +49,7 @@ wchar_t *cmdDup(t_list_cmd * cmd, wchar_t * wcs)
     {
         wcscpy(dupCmd, cmd->cmd);
     }
-    return (dupCmd);
+    return dupCmd;
 }
 
 /* Create a new link for the history. */
@@ -63,7 +63,7 @@ t_list_cmd *getNewHist(t_list_cmd * cmd)
         lastCmd = lastCmd->next;
     }
     lastCmd->cmd = cmdDup(cmd, NULL);
-    return (lastCmd);
+    return lastCmd;
 }
 
 /*
@@ -86,7 +86,7 @@ void *cleanVoidCharInCmd(t_list_cmd * cmd)
     dupCmd = cmdDup(cmd, &cmd->cmd[i]);
     free(cmd->cmd);
     cmd->cmd = dupCmd;
-    return (dupCmd);
+    return dupCmd;
 }
 
 /*
@@ -111,7 +111,7 @@ t_list_cmd *initUsrInput(t_list_cmd * listCmd)
         listCmd = getNewHist(listCmd);
     }
     deleteHistory(listCmd, 200);
-    return (listCmd);
+    return listCmd;
 }
 
 /*
@@ -127,8 +127,8 @@ char *getCmdLine(t_list_cmd ** history)
     *history = initUsrInput(*history);
     if (*history == NULL)
     {
-        return (NULL);
+        return NULL;
     }
     dest = wide_string_to_UTF8((*history)->cmd);
-    return (dest);
+    return dest;
 }
