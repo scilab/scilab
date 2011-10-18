@@ -2,6 +2,30 @@
             =================================================
 
 
+Scilab Desktop:
+===============
+
+* Thanks to this new feature, Scilab confirms its usuability and its strong
+user-oriented approach. Scilab Desktop is the new concept behind Scilab
+window management taking advantage of advanced Flexdock features.
+Out of the box, Scilab is now able to save all windows layouts including the 
+help browser, the variable browser, the command history, Scinotes and Xcos.
+Through this major improvement, position and size of all the windows will 
+be preserved from a session to an other.
+
+In this context, a file browser component has been developped and fully
+integrated in Scilab Desktop and all other components have been improved
+to provide the best user experience for Scilab's users.
+
+Scilab Desktop provides various predefined layouts:
+ - Simple      The standard Scilab console
+               => Scilab 5.3.3 (and previous versions) defaults.
+ - Integrated  The variable browser, the history browser and the file browser
+               the console are opened by default and combined around Scilab's
+               Console to provide an ergonomic working environment
+               => Scilab 5.4.0 defaults
+
+
 XML features:
 =============
 
@@ -197,6 +221,7 @@ New functions
 * The damp function in CACSD modules computes the natural pulsation
   and damping factor of linear dynamical systems.
 
+
 Optimization:
 =============
 
@@ -314,6 +339,7 @@ Statistics:
 * bug 9357 fixed - stdevf returned zero for row vector arguments.
 
 * bug 9846 fixed - stdevf() gives zero result when a single row matrix is evaluated.
+
 
 Linear Algebra:
 ==============
