@@ -1,6 +1,5 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU
+# Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -8,49 +7,9 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-# List of the c files
-#MPI_C_SOURCES = src/c/s_mpi_irecv.c \
-#src/c/build_buff_type.c \
-#src/c/s_mpi_recv.c \
-#src/c/s_mpi_send.c \
-#src/c/s_mpi_isend.c
-
-
-# List of the fortran files
-#MPI_FORTRAN_SOURCES = src/fortran/intsmpi_isend.f \
-#src/fortran/intmpi.f \
-#src/fortran/intsmpi_send.f \
-#src/fortran/intsmpi_recv.f \
-#src/fortran/intsmpi_comm_rank.f \
-#src/fortran/intsmpi_irecv.f \
-#src/fortran/intsmpi_init.f \
-#src/fortran/intsmpi_finalize.f \
-#src/fortran/intsmpi_comm_size.f
-#src/fortran/mpi_init.f
-
-MPI_TEST_EXE_SOURCES = src/c/mpitest.c 
-bin_PROGRAMS = mpitest mpi_pi mpitest_scilab_data mpitest_contiguous mpitest_scilab_pack
-mpitest_SOURCES = $(MPI_TEST_EXE_SOURCES)
-mpitest_LDFLAGS = $(OPENMPI_LIBS)
-
-mpitest_scilab_pack_SOURCES = src/c/mpitest_scilab_pack.c
-
-mpitest_scilab_data_SOURCES = src/c/mpitest_scilab_data.c
-mpitest_scilab_data_LDFLAGS = $(OPENMPI_LIBS)
-
-MPI_PI_SOURCES = src/c/mpi_pi_send.c src/c/dboard.c
-mpi_pi_SOURCES = $(MPI_PI_SOURCES)
-mpi_pi_LDFLAGS = $(OPENMPI_LIBS)
-
 MPI_C_SOURCES =     src/c/serialization.c \
     src/c/deserialization.c
-mpitest_contiguous_SOURCES = src/c/mpitest_contiguous.c
 
-check-am:
-	mpirun -c 4 mpitest_contiguous
-	mpirun -c 2 mpi_pi
-	mpirun -c 2 mpitest_scilab_data
-	mpirun -c 2 mpitest_scilab_pack
 # List of the gateway c files
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_init.c \
