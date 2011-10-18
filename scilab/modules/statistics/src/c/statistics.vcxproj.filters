@@ -93,7 +93,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="statistics.rc">

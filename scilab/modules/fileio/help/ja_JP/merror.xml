@@ -100,7 +100,7 @@
 fd = mopen(TMPDIR +'/filetxt.txt','wt');
 [err,msg] = merror(fd)
 if (err <> 0) then 
-  printf('Problem\n');
+  mprintf('Problem\n');
 end
 mclose(fd);
  ]]></programlisting>

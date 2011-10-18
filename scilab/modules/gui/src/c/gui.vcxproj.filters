@@ -53,9 +53,6 @@
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\CallMainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\CallMessageBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -434,9 +431,6 @@
     <ClCompile Include="..\cpp\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TerminateGui.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\Toolbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -450,6 +444,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\Widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\ScilabTermination_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScilabTermination.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -494,9 +494,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CallJxgetmouse.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\CallMainWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CallMainWindow.hxx">
@@ -982,6 +979,9 @@
     <ClInclude Include="..\cpp\Widget.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScilabTermination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\en_US\gui.pot">
@@ -993,7 +993,6 @@
     <None Include="..\..\gui.iss" />
     <None Include="..\..\sci_gateway\gui_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gui.rc">

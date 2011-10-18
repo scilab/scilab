@@ -18,7 +18,7 @@ function assert_generror ( varargin )
     //
     // Check types of variables
     if ( typeof(errormsg) <> "string" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_generror" , 1 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_generror" , 1 )
         error(errmsg)
     end
     if ( size(errormsg,"*") <> 1 ) then
@@ -35,7 +35,7 @@ function assert_generror ( varargin )
             error(errmsg)
         end
         if ( typeof(errornb) <> "constant" ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_generror" , 2 )
+            errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_generror" , 2 )
             error(errmsg)
         end
         if ( errornb < 0 ) then

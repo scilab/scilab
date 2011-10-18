@@ -51,7 +51,7 @@ if getos() == 'Windows' then
   for k=1:len(1)
      setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
      if (mousechar(k)=='') then mousechar(k)='default';,end
-     str = sprintf('%s = %s', mousechar(k), string(setting));
+     str = msprintf('%s = %s', mousechar(k), string(setting));
      disp(str);
   end
   winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')

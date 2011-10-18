@@ -38,11 +38,11 @@ namespace org_modules_xml
         return scope->getVariableFromId(id);
     }
 
-    int XMLObject::createOnStack(int pos) const
+    int XMLObject::createOnStack(int pos, void* pvApiCtx) const
     {
         if (scilabType != -1)
         {
-            return createXMLObjectAtPos(scilabType, pos, id);
+            return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
         }
 
         return 0;

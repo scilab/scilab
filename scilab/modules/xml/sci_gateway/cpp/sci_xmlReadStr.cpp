@@ -53,7 +53,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!XMLRhsValue::get(fname, addr, &code))
+    if (!XMLRhsValue::get(fname, addr, &code, pvApiCtx))
     {
         return 0;
     }
@@ -89,7 +89,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

@@ -25,23 +25,23 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
   //
   // Check types of variables
   if ( typeof(computed) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
     error(errmsg)
   end
   if ( typeof(expected) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
     error(errmsg)
   end
   if ( typeof(reltol) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 3 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 3 )
     error(errmsg)
   end  
   if ( typeof(abstol) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 4 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 4 )
     error(errmsg)
   end  
   if ( typeof(comptype) <> "string" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkalmostequal" , 5 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkalmostequal" , 5 )
     error(errmsg)
   end  
   //

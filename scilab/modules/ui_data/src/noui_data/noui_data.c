@@ -14,6 +14,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "UpdateBrowseVar.h"
+#include "FileBrowserChDir.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
@@ -23,6 +24,11 @@ int gw_ui_data(void)
 }
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL b)
+{
+        return;
+}
+/*--------------------------------------------------------------------------*/
+void FileBrowserChDir(char * baseDir)
 {
         return;
 }

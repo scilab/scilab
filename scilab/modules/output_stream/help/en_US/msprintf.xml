@@ -27,6 +27,11 @@
 
     <refpurpose>converts, formats, and writes data in a string</refpurpose>
   </refnamediv>
+  
+  <refnamediv xml:id="sprintf">
+    <refname>sprintf</refname>
+  </refnamediv>
+  
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>

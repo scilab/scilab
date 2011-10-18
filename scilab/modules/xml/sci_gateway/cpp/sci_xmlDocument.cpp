@@ -64,7 +64,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
         freeAllocatedSingleString(*(vars[i]));
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

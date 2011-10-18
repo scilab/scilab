@@ -27,12 +27,14 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 /**
  * Contains the current Scicos engine status.
  */
-public class CompilationEngineStatus implements mxIEventListener, PropertyChangeListener {
-	private static final Log LOG = LogFactory.getLog(CompilationEngineStatus.class);
-	
+public class CompilationEngineStatus implements mxIEventListener,
+		PropertyChangeListener {
+	private static final Log LOG = LogFactory
+			.getLog(CompilationEngineStatus.class);
+
 	private boolean compilationNeeded;
 	private File compilationData;
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -47,7 +49,7 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 */
 	public void setCompilationNeeded(boolean status) {
 		// compilationNeeded = status;
-		
+
 		compilationNeeded = true;
 	}
 
@@ -55,15 +57,16 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 * @return always true as we don't use scicos internal modification checking
 	 */
 	public boolean isCompilationNeeded() {
-		return compilationNeeded;
+		return true;
 	}
 
 	/**
-	 * @param compilationData the source and compiled diagram data
+	 * @param compilationData
+	 *            the source and compiled diagram data
 	 */
 	public void setCompilationData(File compilationData) {
 		this.compilationData = compilationData;
-		
+
 		/*
 		 * When the compiled data change, we remove the previous stored data.
 		 */
@@ -81,14 +84,15 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	public File getCompilationData() {
 		return compilationData;
 	}
-	
+
 	/**
 	 * Get the command used to store the simulated data out of the stack.
+	 * 
 	 * @return the scilab command
 	 */
 	public String getStoreSimulationDataCommand() {
 		final StringBuilder command = new StringBuilder();
-		
+
 		/*
 		 * Create a data file if needed
 		 */
@@ -97,61 +101,67 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 				setCompilationData(new File(FileUtils.createTempFile()));
 			} catch (IOException e) {
 				LOG.warn(e);
-				
+
 				/*
 				 * Restart compilation next time
 				 */
 				setCompilationNeeded(true);
 			}
 		}
-		
+
 		/*
 		 * Create the commands
 		 */
-		command.append("path='" + getCompilationData().getAbsolutePath() + "'; ");
+		command.append("path='" + getCompilationData().getAbsolutePath()
+				+ "'; ");
 		command.append("if and([exists('%cpr') exists('scs_m')]) <> %t then ");
 		command.append("  deletefile(path);");
 		command.append("else ");
 		command.append("  export_to_hdf5(path, '%cpr', 'scs_m'); ");
 		command.append("end ");
-		
+
 		return command.toString();
 	}
-	
+
 	/**
 	 * Get the command used to load the simulated data into the stack.
-	 * @return a Scilab command
-	 * throws IllegalStateException when the file cannot be loaded.
+	 * 
+	 * @return a Scilab command throws IllegalStateException when the file
+	 *         cannot be loaded.
 	 */
 	public String getLoadSimulationDataCommand() {
 		final StringBuilder command = new StringBuilder();
-		
+
 		/*
 		 * Check state
 		 */
 		if (getCompilationData() == null || !getCompilationData().exists()) {
 			throw new IllegalStateException("compilation data doesn't exist.");
 		}
-		
+
 		/*
 		 * Create the commands
 		 */
-		command.append("path = '" + getCompilationData().getAbsolutePath() + "' ; ");
+		command.append("path = '" + getCompilationData().getAbsolutePath()
+				+ "' ; ");
 		command.append("import_from_hdf5(path); ");
-		
+
 		return command.toString();
 	}
 
 	/*
 	 * Property change listener
 	 */
-	
+
 	/**
-	 * Listener used for any interesting diagram change. 
+	 * Listener used for any interesting diagram change.
 	 * 
-	 * @param sender the associated diagram
-	 * @param evt the current event.
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+	 * @param sender
+	 *            the associated diagram
+	 * @param evt
+	 *            the current event.
+	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+	 *      com.mxgraph.util.mxEventObject)
 	 */
 	@Override
 	public void invoke(Object sender, mxEventObject evt) {
@@ -162,14 +172,15 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 * Property change listener used to update compilation status when the
 	 * context has changed.
 	 * 
-	 * @param evt the current event
+	 * @param evt
+	 *            the current event
 	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
 	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		setCompilationNeeded(true);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

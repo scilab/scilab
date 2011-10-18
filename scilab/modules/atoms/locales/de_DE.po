@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 15:52+0000\n"
+"PO-Revision-Date: 2011-10-05 14:36+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: de\n"
 
 #, c-format
@@ -653,11 +653,11 @@ msgid "%s: Error: Createfile.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Error: Invalid File size\n"
+msgid "%s: Error: Invalid File size.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Error: Internet Read file\n"
+msgid "%s: Error: Internet Read file.\n"
 msgstr ""
 
 #, c-format
@@ -878,15 +878,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - URL: '%s'\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - Datei : '%s'\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - Quelle: '%s'\n"

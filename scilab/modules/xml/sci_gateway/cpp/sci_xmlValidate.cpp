@@ -58,9 +58,9 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     {
         getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &path);
     }
-    else if (isXMLDoc(addr))
+    else if (isXMLDoc(addr, pvApiCtx))
     {
-        id = getXMLObjectId(addr);
+        id = getXMLObjectId(addr, pvApiCtx);
         doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
         if (!doc)
         {
@@ -83,13 +83,13 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isXMLValid(addr))
+        if (!isXMLValid(addr, pvApiCtx))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLValid");
             return 0;
         }
 
-        id = getXMLObjectId(addr);
+        id = getXMLObjectId(addr, pvApiCtx);
         validation = XMLObject::getFromId<XMLValidation>(id);
         if (!validation)
         {

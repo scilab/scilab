@@ -55,7 +55,7 @@ write(%io(2),a)
         <link linkend="format">format</link>
       </member>
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
         <link linkend="disp">disp</link>

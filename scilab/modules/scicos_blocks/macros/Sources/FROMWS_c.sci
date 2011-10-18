@@ -43,17 +43,17 @@ case 'set' then
        list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if ~(Method==0 | Method==1| Method==2| Method==3) then 
-      x_message('Interpolation method should be chosen in [0,1,2,3]');
+      message('Interpolation method should be chosen in [0,1,2,3]');
       ok=%f;
     end
 
     if ~(ZC==0 | ZC==1) then 
-      x_message('Zero crossing should be either 0 or 1');
+      message('Zero crossing should be either 0 or 1');
       ok=%f;
     end
 
     if ~(OutEnd==0 | OutEnd==1| OutEnd==2) then 
-      x_message('Output at end option should be either 0 or 1');
+      message('Output at end option should be either 0 or 1');
       ok=%f;
     end
 

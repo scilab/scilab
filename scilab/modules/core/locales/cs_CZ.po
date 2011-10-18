@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-05 10:41+0000\n"
+"PO-Revision-Date: 2011-10-03 16:44+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -964,6 +964,14 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "Informace o Verzi Scilab."
 
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+
+msgid "Empty tab"
+msgstr ""
+
 msgid "Scilab Console"
 msgstr "Konzole Scilabu"
 
@@ -1091,7 +1099,7 @@ msgstr "Proměnné uživatele jsou:"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "Používám %s prvků z %s"
 
 msgid " by "
 msgstr " od "
@@ -1107,13 +1115,3 @@ msgstr "Velikost"
 
 msgid "Bytes"
 msgstr "Bajty"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr ""
-#~ "%s: Špatný vstupní argument #%d: Očekávána cesta k souboru skriptu scilab.\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "Používám %s prvků z %s"

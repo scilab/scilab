@@ -16,9 +16,15 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.ui_data.BrowseVar;
+import org.scilab.modules.ui_data.tabfactory.VariableBrowserTab;
+import org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -27,25 +33,32 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Implements a ScilabWindow containing Variable Browser (JTable)
  *
  */
-public final class ScilabVariableBrowser extends ScilabWindow implements VariableBrowser {
+public final class ScilabVariableBrowser implements VariableBrowser {
 
     private static VariableBrowser instance;
-
     private static SimpleVariableBrowser browserTab;
+
+    static {
+        ScilabTabFactory.getInstance().addTabFactory(VariableBrowserTabFactory.getInstance());
+    }
 
     /**
      * Constructor
      * @param columnNames the columns title.
      */
-    private ScilabVariableBrowser(String[] columnNames) {
-        super();
-        browserTab = new SwingScilabVariableBrowser(columnNames);
-        browserTab.setCallback(ScilabCallBack
-                               .createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
-
+    private ScilabVariableBrowser() {
         TextBox infobar = ScilabTextBox.createTextBox();
+        browserTab = new SwingScilabVariableBrowser(BrowseVar.COLUMNNAMES);
         browserTab.addInfoBar(infobar);
-        addTab(browserTab);
+        ((SwingScilabVariableBrowser) browserTab).setTitle(UiDataMessages.VARIABLE_BROWSER);
+    }
+
+    public static SwingScilabVariableBrowser createVarBrowserTab() {
+        if (instance == null) {
+            instance = new ScilabVariableBrowser();
+        }
+
+        return (SwingScilabVariableBrowser) browserTab;
     }
 
     /**
@@ -61,8 +74,8 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * @param data : data from scilab (type, name, size, ...)
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, String[] columnNames, Object[][] data) {
-        VariableBrowser variableBrowser = getVariableBrowser(update, columnNames);
+    public static VariableBrowser getVariableBrowser(boolean update, Object[][] data) {
+        VariableBrowser variableBrowser = getVariableBrowser(update);
         variableBrowser.setData(data);
         return variableBrowser;
     }
@@ -80,10 +93,17 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * @param columnNames : the columns title
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, String[] columnNames) {
+    public static VariableBrowser getVariableBrowser(boolean update) {
         if (instance == null) {
-            instance = new ScilabVariableBrowser(columnNames);
-            instance.setVisible(true);
+            boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabVariableBrowser.VARBROWSERUUID);
+            if (!success) {
+                VariableBrowserTab.getVariableBrowserInstance();
+                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                window.addTab(browserTab);
+                window.setLocation(0, 0);
+                window.setSize(500, 500);
+                window.setVisible(true);
+            }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableBrowser) browserTab);
             if (!update) {
@@ -91,28 +111,24 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
                 window.toFront();
             }
         }
-        browserTab.setName(UiDataMessages.VARIABLE_BROWSER);
+
         return instance;
     }
 
     /**
      * Close Variable Browser
      */
-    public void close() {
-        ScilabWindow editvarWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(browserTab.getParentWindowId());
-        editvarWindow.removeTab(browserTab);
-        browserTab.setVisible(false);
-        browserTab.close();
-        instance = null;
+    public static void closeVariableBrowser() {
+	if (instance != null) {
+	    instance.close();
+	}
     }
 
     /**
-     * Set columns title.
-     * @param columnNames : columns Title
+     * Close Variable Browser
      */
-    public void setColumnNames(String[] columnNames) {
-        browserTab.setColumnNames(columnNames);
-
+    public void close() {
+        instance = null;
     }
 
     /**
@@ -132,7 +148,7 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * {@inheritDoc}
      */
     public void setVisible(boolean status) {
-        super.setVisible(status);
+        //super.setVisible(status);
         browserTab.setVisible(status);
     }
 }

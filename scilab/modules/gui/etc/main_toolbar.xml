@@ -31,20 +31,6 @@
 
     <separator/>
 
-    <!-- Change current directory -->
-    <button icon="folder.png" tooltiptext="Change Current Directory">
-        <callback 
-        instruction='
-          %newDir = uigetdir(pwd(), gettext("Select a directory"));
-          if ~(%newDir == "") then 
-            cd(%newDir);
-          end
-          clear("%newDir");'
-        type="0"/>
-    </button> 
-
-    <separator/>
-
     <!-- Change font -->
     <button icon="format-text-bold.png" tooltiptext="Choose Font...">
         <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleFont' type="3"/>

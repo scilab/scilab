@@ -91,7 +91,7 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
     attr = XMLObject::getFromId<XMLAttr>(id);
 
     if (!attr)

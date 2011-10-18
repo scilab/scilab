@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-05 04:39+0000\n"
+"PO-Revision-Date: 2011-10-03 19:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: uk\n"
 
 #, c-format
@@ -350,6 +350,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s: сталося виключення Java:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -659,6 +661,9 @@ msgstr "Перегляд з&мінних"
 msgid "&Command History"
 msgstr "Журнал ко&манд"
 
+msgid "&File Browser"
+msgstr ""
+
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
 
@@ -721,9 +726,6 @@ msgstr "Копіювати"
 
 msgid "Paste"
 msgstr "Вставити"
-
-msgid "Change Current Directory"
-msgstr "Змінити поточний каталог"
 
 msgid "Choose Font..."
 msgstr "Вибрати шрифт…"
@@ -1227,6 +1229,26 @@ msgstr "Так"
 msgid "Save and execute"
 msgstr "Зберегти і виконати"
 
+msgid "Empty tab"
+msgstr ""
+
+#, c-format
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
 msgid "An error occured: "
 msgstr "Сталася помилка: "
 
@@ -1275,6 +1297,7 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
 
@@ -1328,32 +1351,14 @@ msgstr "Рисунок збережено.\n"
 msgid "Select a file name"
 msgstr "Вкажіть назву файла"
 
-msgid "Select a file to execute"
-msgstr "Вкажіть файл для виконання"
-
-msgid "Execution done.\n"
-msgstr "Виконання завершено.\n"
-
 msgid "Select a file to open with SciNotes"
 msgstr "Виберіть файл, який слід відкрити у SciNotes"
-
-msgid "Environment loaded.\n"
-msgstr "Середовище завантажено.\n"
-
-msgid "Environment saved.\n"
-msgstr "Середовище збережено.\n"
-
-msgid "Select a directory"
-msgstr "Вкажіть каталог"
 
 msgid "Control Plot3d"
 msgstr "Керування Plot3d"
 
 msgid "File"
 msgstr "Файл"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 msgid "GUI"
 msgstr "Інтерфейс"
@@ -1701,38 +1706,23 @@ msgstr "%s: помилковий тип для %s: слід використов
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
 
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Автори:\n"
-#~ "Консорціум Scilab / INRIA / ENPC / Учасники розробки\n"
-#~ "\n"
+#~ msgid "Change Current Directory"
+#~ msgstr "Змінити поточний каталог"
 
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr ""
-#~ "Scilab 5.0 та наступні версії випущено за умов дотримання ліцензії CeCILL.\n"
+#~ msgid "Environment loaded.\n"
+#~ msgstr "Середовище завантажено.\n"
 
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Учасники розробки Scilab…"
+#~ msgid "Environment saved.\n"
+#~ msgstr "Середовище збережено.\n"
 
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Деякі з модулів Scilab випущено за умов дотримання ліцензії GPLv2.\n"
-#~ "\n"
+#~ msgid "Execution done.\n"
+#~ msgstr "Виконання завершено.\n"
 
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Версія %s (%s)\n"
-#~ "\n"
+#~ msgid "Select a directory"
+#~ msgstr "Вкажіть каталог"
 
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"
+#~ msgid "Select a file to execute"
+#~ msgstr "Вкажіть файл для виконання"
+
+#~ msgid "SNECMA EDTEX Processing platform"
+#~ msgstr "Платформа обробки SNECMA EDTEX"

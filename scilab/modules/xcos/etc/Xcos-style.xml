@@ -516,6 +516,9 @@
   <add as="CFSCOPE" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
   </add>
+  <add as="BARXY" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BARXY.svg"/>
+  </add>
   <add as="CANIMXY" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg"/>
   </add>

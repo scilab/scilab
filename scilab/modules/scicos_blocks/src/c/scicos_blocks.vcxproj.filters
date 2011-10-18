@@ -1052,7 +1052,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos_blocks.iss" />
-    <None Include="..\..\version.xml" />
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>

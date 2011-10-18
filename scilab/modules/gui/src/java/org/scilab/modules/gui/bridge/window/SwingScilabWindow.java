@@ -16,18 +16,23 @@
 package org.scilab.modules.gui.bridge.window;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
@@ -35,8 +40,10 @@ import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.DockingStrategy;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
+import org.flexdock.docking.defaults.DefaultDockingStrategy;
 import org.flexdock.view.View;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
@@ -51,10 +58,12 @@ import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciDockingListener;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
@@ -74,20 +83,25 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private static final int DEFAULTWIDTH = 500;
     private static final int DEFAULTHEIGHT = 500;
 
+    static {
+        DefaultDockingStrategy.setDefaultResizeWeight(0.5);
+    }
+
     private DefaultDockingPort sciDockingPort;
     private SciDockingListener sciDockingListener;
     private SimpleMenuBar menuBar;
     private SimpleToolBar toolBar;
     private SimpleTextBox infoBar;
-
+    private String uuid;
     private int elementId; // the id of the Window which contains this SimpleWindow
-    boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
+    private boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
 
     /**
      * Constructor
      */
     public SwingScilabWindow() {
         super();
+        this.uuid = UUID.randomUUID().toString();
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -122,6 +136,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         sciDockingListener = new SciDockingListener();
         sciDockingPort.addDockingListener(sciDockingListener);
+
         /*
          * Prevent the background RootPane to catch Focus.
          * Causes trouble with Scicos use xclick & co.
@@ -133,15 +148,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
-                    Object[] dockArray = sciDockingPort.getDockables().toArray();
-                    for (int i = 0; i < dockArray.length; i++) {
-                        ((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
-                    }
-
-                    //if dock stay open, do not close main window
-                    if(dockArray.length == 0){
-                        removeWindowListener(this);
-                    }
+                    ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
                 }
             });
 
@@ -179,7 +186,19 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         InterpreterManagement.requestScilabExec("exit()");
     }
 
+    /**
+     * @return the UUID associated with this window
+     */
+    public String getUUID() {
+        return uuid;
+    }
 
+    /**
+     * @param uuid the UUID associated with this window
+     */
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
+    }
 
     /**
      * Creates a swing Scilab window
@@ -218,7 +237,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public void raise() {
         // blocking call. So graphic synchronization must be desactivated here.
         if (!SwingUtilities.isEventDispatchThread()) {
-        /* javasci bug: See bug 9544 why we are doing this check */
+            /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
@@ -250,7 +269,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
     public void setDims(Size newWindowSize) {
-
         // get the greatest size we can use
         int[] maxSize = RenderingCapabilities.getMaxWindowSize();
 
@@ -337,10 +355,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @param tab the Scilab tab to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void removeTab(Tab tab) {
-        DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
-        DockingManager.unregisterDockable((Dockable) ((SwingScilabTab) tab.getAsSimpleTab()));
-        ((SwingScilabTab) tab.getAsSimpleTab()).close();
+    public void removeTabs(SwingScilabTab[] tabs) {
+        for (SwingScilabTab tab : tabs) {
+            DockingManager.unregisterDockable((Dockable) tab);
+            tab.close();
+            DockingManager.close(tab);
+        }
         if (getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars
             if (toolBar != null) {
@@ -369,12 +389,20 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     }
 
     /**
+     * Remove a Scilab tab from a Scilab window
+     * @param tab the Scilab tab to remove from the Scilab window
+     * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
+     */
+    public void removeTab(Tab tab) {
+        removeTabs(new SwingScilabTab[]{(SwingScilabTab) tab.getAsSimpleTab()});
+    }
+
+    /**
      * Sets a Scilab MenuBar to a Scilab window
      * @param newMenuBar the Scilab MenuBar to add to the Scilab window
      * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
     public void addMenuBar(MenuBar newMenuBar) {
-
         if (newMenuBar == null) {
             if (this.menuBar != null) {
                 this.menuBar = null;
@@ -398,7 +426,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
     public void addToolBar(ToolBar newToolBar) {
-
         if (newToolBar == null) {
             if (this.toolBar != null) {
                 // Remove old InfoBar if already set
@@ -427,7 +454,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.window.Window#setInfoBar(org.scilab.modules.gui.textbox.TextBox)
      */
     public void addInfoBar(TextBox newInfoBar) {
-
         if (newInfoBar == null) {
             if (this.infoBar != null) {
                 // Remove old InfoBar if already set
@@ -479,7 +505,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @return number of objects (tabs) docked in this window
      */
     public int getNbDockedObjects() {
-        return sciDockingListener.getNbDockedObjects();
+        return sciDockingPort.getDockables().size();
     }
 
     /**

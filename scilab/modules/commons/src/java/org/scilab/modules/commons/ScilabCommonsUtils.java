@@ -12,6 +12,10 @@
 
 package org.scilab.modules.commons;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -22,6 +26,8 @@ import java.security.NoSuchAlgorithmException;
  * @author Calixte DENIZET
  */
 public final class ScilabCommonsUtils {
+
+    private static final int BUFFERSIZE = 8192;
 
     private static MessageDigest MD5;
     static {
@@ -45,6 +51,51 @@ public final class ScilabCommonsUtils {
 
         byte[] bytes = MD5.digest(str.getBytes());
         return new BigInteger(1, bytes).toString(16);
+    }
+
+    /**
+     * Copy a file
+     * @param inFile src file
+     * @param outFile dest file
+     * @return true if the operation succeeded
+     */
+    public static boolean copyFile(File inFile, File outFile) {
+        FileInputStream in = null;
+        FileOutputStream out = null;
+        boolean success = false;
+
+        try {
+            in = new FileInputStream(inFile);
+            out = new FileOutputStream(outFile);
+            byte[] buffer = new byte[BUFFERSIZE];
+            int n;
+
+            while ((n = in.read(buffer)) != -1) {
+                out.write(buffer, 0, n);
+            }
+            out.flush();
+            success = true;
+        } catch (IOException e) {
+            System.err.println("Error in copying file " + inFile.getAbsolutePath() + " to " + outFile.getAbsolutePath());
+            System.err.println(e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
+        }
+
+        return success;
     }
 
     /**

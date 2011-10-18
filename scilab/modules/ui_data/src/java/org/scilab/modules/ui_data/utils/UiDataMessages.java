@@ -33,6 +33,8 @@ public final class UiDataMessages {
     public static final String CLOSE = Messages.gettext("Close");
     public static final String FILTER = Messages.gettext("Filter");
 
+    public static final String SCILABVAR = Messages.gettext("Hide Scilab variables");
+
     public static final String DOUBLE = Messages.gettext("Double");
     public static final String POLYNOMIAL = Messages.gettext("Polynomial");
     public static final String BOOLEAN = Messages.gettext("Boolean");
@@ -61,8 +63,34 @@ public final class UiDataMessages {
     public static final String COPY = Messages.gettext("Copy");
     public static final String PASTE = Messages.gettext("Paste");
     public static final String CUT = Messages.gettext("Cut");
+    public static final String CLEAR = Messages.gettext("Clear");
     public static final String UNDO = Messages.gettext("Undo");
     public static final String REDO = Messages.gettext("Redo");
+
+    public static final String FILE_BROWSER = Messages.gettext("File Browser");
+    public static final String NAME_COLUMN = Messages.gettext("Name");
+    public static final String SIZE_COLUMN = Messages.gettext("Size");
+    public static final String TYPE_COLUMN = Messages.gettext("Type");
+    public static final String LASTMODIF_COLUMN = Messages.gettext("Last modified");
+    public static final String DIRECTORY = Messages.gettext("Directory");
+    public static final String FILETYPE = Messages.gettext("%s File");
+    public static final String FILEFILTER = Messages.gettext("File/directory filter");
+    public static final String CWD = Messages.gettext("Enter your working folder");
+    public static final String CASESENSITIVE = Messages.gettext("Case sensitive");
+    public static final String REGEXP = Messages.gettext("Regular expression");
+    public static final String SELECTADIR = Messages.gettext("Select a directory");
+    public static final String USERHOME = Messages.gettext("Home");
+    public static final String SCIFOLDER = Messages.gettext("Scilab");
+
+    public static final String CANNOTREAD = Messages.gettext("Cannot edit the file %s");
+    public static final String CANNOTOPEN = Messages.gettext("Cannot open the file %s");
+
+    public static final String OPENINSCINOTES = Messages.gettext("Open with SciNotes");
+    public static final String EXECINCONSOLE = Messages.gettext("Execute in Scilab");
+    public static final String OPENINXCOS = Messages.gettext("Open with Xcos");
+    public static final String LOADINSCILAB = Messages.gettext("Load in Scilab");
+    public static final String EDITWITHDEFAULT = Messages.gettext("Edit with default application");
+    public static final String OPENWITHDEFAULT = Messages.gettext("Open with default application");
 
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }

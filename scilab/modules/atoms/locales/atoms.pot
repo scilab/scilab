@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2011-10-17 10:07+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -1194,13 +1194,13 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 196
 #, c-format
-msgid "%s: Error: Invalid File size\n"
+msgid "%s: Error: Invalid File size.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 197
 #, c-format
-msgid "%s: Error: Internet Read file\n"
+msgid "%s: Error: Internet Read file.\n"
 msgstr ""
 
 #

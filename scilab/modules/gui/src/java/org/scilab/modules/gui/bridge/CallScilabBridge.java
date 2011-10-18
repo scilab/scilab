@@ -54,6 +54,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -121,7 +122,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -2131,7 +2131,6 @@ public class CallScilabBridge {
      * Close Scilab Help Browser
      */
     public static void closeHelpBrowser() {
-        CallScilabBridge.saveHelpWindowSettings();
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
@@ -2300,35 +2299,11 @@ public class CallScilabBridge {
     }
 
     /**
-     * Save the main Window size and position
+     * Unblock the console if it is in "Continue display..." mode
      */
-    public static void saveMainWindowSettings() {
+    public static void unblockConsole() {
         SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-        Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-        ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
-        ConfigManager.saveMainWindowSize(mainWindow.getDims());
-
-    }
-
-    /**
-     * Save the help Window size and position
-     */
-    public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null )  {
-            SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
-            if (sciHelpBrowser != null) {
-                SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
-                if (consoleTab != null) {
-                    Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-                    ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
-                    ConfigManager.saveHelpWindowSize(helpWindow.getDims());
-                }
-            }
-        }
-
+        sciConsole.unblock();
     }
 
     /**

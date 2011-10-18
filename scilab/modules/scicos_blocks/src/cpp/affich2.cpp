@@ -69,6 +69,7 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
     switch (flag)
     {
     case StateUpdate:          //state evolution
+    case ReInitialization:
         // Getting the allocated area
         pstValue = (char ***)block->work[0];
 

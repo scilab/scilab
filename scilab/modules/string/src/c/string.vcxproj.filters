@@ -279,7 +279,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
     <None Include="..\..\sci_gateway\string_gateway.xml" />
-    <None Include="..\..\version.xml" />
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

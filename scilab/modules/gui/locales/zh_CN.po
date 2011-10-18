@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: \n"
 
 #, c-format
@@ -554,6 +554,9 @@ msgstr ""
 msgid "&Command History"
 msgstr ""
 
+msgid "&File Browser"
+msgstr ""
+
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
 
@@ -616,9 +619,6 @@ msgstr "复制"
 
 msgid "Paste"
 msgstr "粘贴"
-
-msgid "Change Current Directory"
-msgstr "改变当前目录"
 
 msgid "Choose Font..."
 msgstr "选择字体..."
@@ -1035,6 +1035,26 @@ msgstr "是"
 msgid "Save and execute"
 msgstr "保存并执行"
 
+msgid "Empty tab"
+msgstr ""
+
+#, c-format
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
 msgid "An error occured: "
 msgstr ""
 
@@ -1083,6 +1103,7 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
+#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
@@ -1136,32 +1157,14 @@ msgstr "Figure已被保存\n"
 msgid "Select a file name"
 msgstr "选择文件名"
 
-msgid "Select a file to execute"
-msgstr "执行文件"
-
-msgid "Execution done.\n"
-msgstr "执行完毕\n"
-
 msgid "Select a file to open with SciNotes"
 msgstr ""
-
-msgid "Environment loaded.\n"
-msgstr "运行环境已被装载\n"
-
-msgid "Environment saved.\n"
-msgstr "运行环境已被保存\n"
-
-msgid "Select a directory"
-msgstr "选择目录"
 
 msgid "Control Plot3d"
 msgstr "控制Plot3d"
 
 msgid "File"
 msgstr "文件"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 msgid "GUI"
 msgstr "GUI"
@@ -1475,37 +1478,20 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
 
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "作者：\n"
-#~ "Scilab协会 / INRIA / ENPC / 其他贡献者\n"
-#~ "\n"
+#~ msgid "Environment loaded.\n"
+#~ msgstr "运行环境已被装载\n"
 
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr "Scilab 5.0 以及以后的版本以CeCILL协议发布。\n"
+#~ msgid "Select a file to execute"
+#~ msgstr "执行文件"
 
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Scilab贡献者..."
+#~ msgid "Execution done.\n"
+#~ msgstr "执行完毕\n"
 
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "某些Scilab模块以GPLv4协议发布。\n"
-#~ "\n"
+#~ msgid "Environment saved.\n"
+#~ msgstr "运行环境已被保存\n"
 
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "版本%s（%s）\n"
-#~ "\n"
+#~ msgid "Change Current Directory"
+#~ msgstr "改变当前目录"
 
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"
+#~ msgid "Select a directory"
+#~ msgstr "选择目录"

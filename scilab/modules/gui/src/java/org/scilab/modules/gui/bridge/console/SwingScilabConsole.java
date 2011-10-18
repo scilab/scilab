@@ -71,51 +71,51 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         SwingScilabMenuItem cutMenu = new SwingScilabMenuItem();
         cutMenu.setText(Messages.gettext("Cut"));
         cutMenu.setCallback(ScilabCallBack.createCallback(
-                                                          "org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
-                                                          ScilabCallBack.JAVA));
+                                "org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection",
+                                ScilabCallBack.JAVA));
         cutMenu.setMnemonic('U');
 
         SwingScilabMenuItem copyMenu = new SwingScilabMenuItem();
         copyMenu.setText(Messages.gettext("Copy"));
         copyMenu.setCallback(ScilabCallBack.createCallback(
-                                                           "org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
-                                                           ScilabCallBack.JAVA));
+                                 "org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection",
+                                 ScilabCallBack.JAVA));
         copyMenu.setMnemonic('C');
 
         SwingScilabMenuItem pasteMenu = new SwingScilabMenuItem();
         pasteMenu.setText(Messages.gettext("Paste"));
         pasteMenu.setCallback(ScilabCallBack.createCallback(
-                                                            "org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
-                                                            ScilabCallBack.JAVA));
+                                  "org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole",
+                                  ScilabCallBack.JAVA));
         pasteMenu.setMnemonic('P');
 
         SwingScilabMenuItem clearHistoryMenu = new SwingScilabMenuItem();
         clearHistoryMenu.setText(Messages.gettext("Clear History"));
         clearHistoryMenu.setCallback(ScilabCallBack.createCallback(
-                                                                   "org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory",
-                                                                   ScilabCallBack.JAVA));
+                                         "org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory",
+                                         ScilabCallBack.JAVA));
         clearHistoryMenu.setMnemonic('H');
 
         SwingScilabMenuItem clearMenu = new SwingScilabMenuItem();
         clearMenu.setText(Messages.gettext("Clear Console"));
         clearMenu.setCallback(ScilabCallBack.createCallback(
-                                                            "org.scilab.modules.gui.bridge.CallScilabBridge.clear",
-                                                            ScilabCallBack.JAVA));
+                                  "org.scilab.modules.gui.bridge.CallScilabBridge.clear",
+                                  ScilabCallBack.JAVA));
         clearMenu.setMnemonic('O');
 
         SwingScilabMenuItem selectMenu = new SwingScilabMenuItem();
         selectMenu.setText(Messages.gettext("Select All"));
         selectMenu.setCallback(ScilabCallBack.createCallback(
-                                                             "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents",
-                                                             ScilabCallBack.JAVA));
+                                   "org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents",
+                                   ScilabCallBack.JAVA));
         selectMenu.setMnemonic('S');
 
 
         final SwingScilabMenuItem helpMenu = new SwingScilabMenuItem();
         helpMenu.setText(Messages.gettext("Help on a selected keyword"));
         helpMenu.setCallback(ScilabCallBack.createCallback(
-                                                           "org.scilab.modules.gui.bridge.CallScilabBridge.helpOnTheKeyword",
-                                                           ScilabCallBack.JAVA));
+                                 "org.scilab.modules.gui.bridge.CallScilabBridge.helpOnTheKeyword",
+                                 ScilabCallBack.JAVA));
         helpMenu.setMnemonic('M');
         PropertyChangeListener listener = new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent arg0) {
@@ -235,6 +235,15 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         }
 
         updateScrollPosition();
+    }
+
+    /**
+     * Unblock the console if needed
+     */
+    public void unblock() {
+        if (getCanReadUserInputValue().availablePermits() == 0) {
+            setUserInputValue((int) 'n');
+        }
     }
 
     /**
