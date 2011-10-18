@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-// Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
+// Copyright (C) 2010-2011 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
@@ -182,6 +182,7 @@ function status = test_single(_module, _testPath, _testName)
   reopened    = %F;
   jvm       = %T;
   graphic     = %F;
+  mpi         = %F;
   execMode    = "";
   platform    = "all";
   language    = "any";
@@ -288,6 +289,13 @@ function status = test_single(_module, _testPath, _testName)
   if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
     jvm = %F;
     execMode = "NWNI";
+  end
+
+
+  if ~isempty(grep(sciFile, "<-- MPI TEST -->")) then
+    mpi = %t;
+    execMode = "NWNI";
+    reference = "skip";
   end
 
   if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
@@ -411,6 +419,12 @@ function status = test_single(_module, _testPath, _testName)
     end
   end
 
+  if mpi == %t then
+     prefix_bin="mpirun -c 2 -bynode"
+  else
+     prefix_bin=""
+  end
+
   //language
   if language == "any" then
     language_arg = "";
@@ -424,7 +438,7 @@ function status = test_single(_module, _testPath, _testName)
   if getos() == 'Windows' then
     test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
   else
-    test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+    test_cmd = "( " + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
   end
 
   //clean previous tmp files
