@@ -13,13 +13,22 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.ActionEvent;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.SwingWorker;
+
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.actions.workers.ScilabGraphWorker;
-import org.scilab.modules.xcos.actions.workers.ScilabGraphWorker.Action;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -37,9 +46,7 @@ public class CompileAction extends SimulationNotRunningAction {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param scilabGraph
-	 *            associated diagram
+	 * @param scilabGraph associated diagram
 	 */
 	public CompileAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
@@ -47,9 +54,7 @@ public class CompileAction extends SimulationNotRunningAction {
 
 	/**
 	 * Create associated menu
-	 * 
-	 * @param scilabGraph
-	 *            associated diagram
+	 * @param scilabGraph associated diagram
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
@@ -57,15 +62,53 @@ public class CompileAction extends SimulationNotRunningAction {
 	}
 
 	/**
-	 * @param e
-	 *            parameter
+	 * @param e parameter
 	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		final XcosDiagram diagram = ((XcosDiagram) getGraph(e))
-				.getRootDiagram();
+		((XcosDiagram) getGraph(null)).info(XcosMessages.EXPORT_IN_PROGRESS);
+		
+		final String temp;
+		try {
+			temp = FileUtils.createTempFile();
+		} catch (IOException e1) {
+			LogFactory.getLog(CompileAction.class).error(e1);
+			return;
+		}
+		
+		(new SwingWorker<Void, Void>() {
 
-		ScilabGraphWorker.start(diagram, Action.COMPILE);
+			@Override
+			protected Void doInBackground() throws Exception {
+				((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
+				((XcosDiagram) getGraph(null)).setReadOnly(true);
+				return null;
+			}
+			
+			@Override
+			protected void done() {
+				((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
+				
+				String cmd = buildCall("import_from_hdf5", temp) 
+				                     + "cpr = xcos_compile(scs_m);";
+				
+				final ActionListener action = new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						delete(temp);
+						((XcosDiagram) getGraph(null)).setReadOnly(false);
+						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+					}
+				};
+				
+				try {
+					ScilabInterpreterManagement.asynchronousScilabExec(action, cmd);
+				} catch (InterpreterException e) {
+					LogFactory.getLog(CompileAction.class).error(e);
+				}
+			}
+			
+		}).execute();
 	}
 }
