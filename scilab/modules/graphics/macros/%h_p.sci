@@ -841,11 +841,11 @@ function %h_p(h)
                 "Enable = "+sci2exp(h.enable)
                 "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
                 "Label = "+h.label
-                //"Handle_visible = "+sci2exp(h.handle_visible)
+                "Handle_Visible = "+sci2exp(h.handle_visible)
                 //"Position = "+sci2exp(h.position,0)
                 "Visible = "+sci2exp(h.visible)
                 "Callback = "+h.callback
-                "Callback_type = "+sci2exp(h.callback_type,0)
+                "Callback_Type = "+sci2exp(h.callback_type,0)
                 "Checked =  "+sci2exp(h.checked)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
@@ -858,9 +858,9 @@ function %h_p(h)
             t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
-		]
+                ]
 
-	// uicontrol
+        // uicontrol
         // =====================================================================
 
         case "uicontrol"
@@ -890,8 +890,8 @@ function %h_p(h)
             "VerticalAlignment = "+h.verticalalignment
             "Visible = "+sci2exp(h.visible)
             "Callback = "+h.callback
-            "CallbackType = "+sci2exp(h.callback_type,0)
-            //"Handle_visible = "+sci2exp(h.handle_visible)
+            "Callback_Type = "+sci2exp(h.callback_type,0)
+            "Handle_Visible = "+sci2exp(h.handle_visible)
             //"Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
             ""
@@ -901,6 +901,16 @@ function %h_p(h)
             "ColumnNames = "+sci2exp(h.columnnames)
             "TableData = "+fmtuser_data(h.columnnames)
             ]
+
+        // console
+        // =====================================================================
+
+        case "console"
+            t=[t;
+                "Children: "+fmtchildren(h.children)
+                "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+                "UID = "+sci2exp(h.UID)
+                ]
         else
             t=[t;
                "UID = "+sci2exp(h.UID)]

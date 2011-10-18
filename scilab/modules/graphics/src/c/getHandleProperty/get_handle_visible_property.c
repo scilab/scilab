@@ -19,30 +19,39 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "getHandleProperty.h"
-#include "GetProperty.h"
+#include <stdlib.h>
+
+#include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "getHandleProperty.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_handle_visible_property(char *pobjUID)
 {
-#if 0
-  if (sciGetEntityType (pobj) != SCI_UIMENU)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"handle_visible");
-    return -1;
-  }
-#endif
-  if (GetHandleVisibilityOnUimenu(pobjUID))
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else 
-  {
-    return sciReturnString( "off" ) ;
-  }
+    int handleVisible = 0;
+    int *piHandleVisible = &handleVisible;
 
+    getGraphicObjectProperty(pobjUID, __GO_HIDDEN__, jni_bool, &piHandleVisible);
+
+    if (piHandleVisible == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "handle_visible");
+        return FALSE;
+    }
+
+    if (1 - handleVisible)      /* Handle visible is equivalent to not hidden */
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        return sciReturnString("off");
+    }
 }
+
 /*------------------------------------------------------------------------*/

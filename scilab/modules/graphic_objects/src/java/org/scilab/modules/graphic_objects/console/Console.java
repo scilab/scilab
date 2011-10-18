@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.console;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SHOWHIDDENHANDLES__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
@@ -22,6 +23,13 @@ import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 public final class Console extends GraphicObject {
 
     private static Console me;
+
+    private boolean showHiddenHandles;
+
+    /** Console properties names */
+    private enum ConsoleProperty {
+        SHOWHIDDENHANDLES
+    };
 
     /**
      * Constructor
@@ -53,12 +61,68 @@ public final class Console extends GraphicObject {
     }
 
     /**
+     * Set the showHiddenHandles proeprty
+     * @param showHiddenHandles the new value to set
+     */
+    public void setShowHiddenHandles(boolean showHiddenHandles) {
+        this.showHiddenHandles = showHiddenHandles;
+    }
+
+    /**
+     * Get the showHiddenHandles proeprty
+     * @return showHiddenHandles
+     */
+    public boolean getShowHiddenHandles() {
+        return this.showHiddenHandles;
+    }
+
+    /**
      * Accept method
      * @param visitor the visitor
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#accept(org.scilab.modules.graphic_objects.graphicObject.IVisitor)
      */
     public void accept(IVisitor visitor) {
 
+    }
+    
+    /**
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(String propertyName) {
+        if (propertyName.equals(__GO_SHOWHIDDENHANDLES__)) {
+            return ConsoleProperty.SHOWHIDDENHANDLES;
+        } else {
+            return super.getPropertyFromName(propertyName);
+        }
+    }
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+        if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
+            return getShowHiddenHandles();
+        } else {
+            return super.getProperty(property);
+        }
+    }
+
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public boolean setProperty(Object property, Object value) {
+        if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
+            setShowHiddenHandles((Boolean) value);
+        } else {
+            return super.setProperty(property, value);
+        }
+        return true;
     }
 
 }

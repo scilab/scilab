@@ -39,7 +39,7 @@ public abstract class GraphicObject implements Cloneable {
     };
 
     /** GraphicObject properties */
-    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
+    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
         PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY 
     };
 
@@ -60,6 +60,9 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Specifies if the "handle" is valid, i.e included in a rendered object */
     private boolean valid;
+
+    /** Specifies if the "handle" is hidden, i.e not listed as children in Scilab view */
+    private boolean hidden;
 
     /** User data */
     private Object userData;
@@ -215,6 +218,8 @@ public abstract class GraphicObject implements Cloneable {
             return GraphicObjectPropertyType.CHILDREN;
         } else if (propertyName.equals(__GO_CHILDREN_COUNT__)) {
             return GraphicObjectPropertyType.CHILDREN_COUNT;
+        } else if (propertyName.equals(__GO_HIDDEN__)) {
+            return GraphicObjectPropertyType.HIDDEN;
         } else if (propertyName.equals(__GO_VISIBLE__)) {
             return GraphicObjectPropertyType.VISIBLE;
         } else if (propertyName.equals(__GO_USER_DATA__)) {
@@ -266,6 +271,8 @@ public abstract class GraphicObject implements Cloneable {
             return getChildren().length;
         } else if (property == GraphicObjectPropertyType.VALID) {
             return isValid();
+        } else if (property == GraphicObjectPropertyType.HIDDEN) {
+            return isHidden();
         } else if (property == GraphicObjectPropertyType.VISIBLE) {
             return getVisible();
         } else if (property == GraphicObjectPropertyType.USERDATA) {
@@ -312,6 +319,8 @@ public abstract class GraphicObject implements Cloneable {
             setChildren((List<String>) value);
         } else if (property == GraphicObjectPropertyType.VALID) {
             setValid((Boolean) value);
+        } else if (property == GraphicObjectPropertyType.HIDDEN) {
+            setHidden((Boolean) value);
         } else if (property == GraphicObjectPropertyType.VISIBLE) {
             setVisible((Boolean) value);
         } else if (property == GraphicObjectPropertyType.USERDATA) {
@@ -614,6 +623,22 @@ public abstract class GraphicObject implements Cloneable {
      */
     public Boolean isValid() {
         return valid;
+    }
+
+    /**
+     * Set hidden method
+     * @param hidden the value to set
+     */
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    /**
+     * isHidden method
+     * @return hidden
+     */
+    public Boolean isHidden() {
+        return hidden;
     }
 
     /**

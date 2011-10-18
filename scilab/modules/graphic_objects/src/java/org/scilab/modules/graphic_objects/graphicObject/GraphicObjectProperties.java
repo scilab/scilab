@@ -42,13 +42,13 @@ public static final String __GO_TEXT__ =                   "Text";
 public static final String __GO_UICONTROL__ =              "uicontrol";
 public static final String __GO_UIMENU__ =                 "uimenu";
 
-
 public static final String __GO_CHILDREN__ =               "Children";
 public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";
 public static final String __GO_PARENT__ =                 "Parent";
 public static final String __GO_USER_DATA__ =              "UserData";
 public static final String __GO_USER_DATA_SIZE__ =         "UserDataSize";
 public static final String __GO_VISIBLE__ =                "Visible";
+public static final String __GO_HIDDEN__ =                 "Hidden";
 public static final String __GO_TYPE__ =                   "Type";
 public static final String __GO_DATA_MODEL__ =             "DataModel";
 public static final String __GO_PARENT_FIGURE__ =          "ParentFigure";
@@ -354,6 +354,7 @@ public static final String __GO_UICHECKEDMENU__ =          "UICheckedMenu";
 public static final String __GO_UI_CHECKED__ =             "UIChecked";
 public static final String __GO_UI_LABEL__ =               "UILabel";
 
-public static final String __GO_CONSOLE__ =                "Console";
+public static final String __GO_CONSOLE__ =                "console";
+public static final String __GO_SHOWHIDDENHANDLES__ =      "ShowHiddenHandles";
 
 }

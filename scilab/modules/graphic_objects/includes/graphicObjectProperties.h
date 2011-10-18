@@ -47,6 +47,7 @@
 #define __GO_USER_DATA__                   "UserData"
 #define __GO_USER_DATA_SIZE__              "UserDataSize"
 #define __GO_VISIBLE__                     "Visible"
+#define __GO_HIDDEN__                      "Hidden"
 #define __GO_TYPE__                        "Type"
 #define __GO_DATA_MODEL__                  "DataModel"
 #define __GO_PARENT_FIGURE__               "ParentFigure"
@@ -352,6 +353,7 @@
 #define __GO_UI_CHECKED__                  "UIChecked"
 #define __GO_UI_LABEL__                    "UILabel"
 
-#define __GO_CONSOLE__                     "Console"
+#define __GO_CONSOLE__                     "console"
+#define __GO_SHOWHIDDENHANDLES__           "ShowHiddenHandles"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

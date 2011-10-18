@@ -87,3 +87,5 @@ GetUiobjectColumnNames
 GetUiobjectRowNames
 GetUiobjectShear
 GetUiobjectScale
+GetConsoleShowHiddenHandles
+SetConsoleShowHiddenHandles

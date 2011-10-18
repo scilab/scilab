@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,31 +20,40 @@
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
-#include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
+#include "BOOL.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_handle_visible_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_handle_visible_property(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-// FIXME
-    abort();
-#if 0
-	int b =  (int)FALSE;
-	if (sciGetEntityType (pobj) != SCI_UIMENU)
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"handle_visible") ;
-		return SET_PROPERTY_ERROR ;
-	}
+    int b = (int)FALSE;
+    BOOL status;
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "handle_visible");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "handle_visible");
+    if (b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-	pUIMENU_FEATURE(pobj)->handle_visible = b;
-#endif
-	return SET_PROPERTY_ERROR;
+    b = 1 - b;                  /* Handle visible is equivalent to not hidden */
+
+    status = setGraphicObjectProperty(pobjUID, __GO_HIDDEN__, &b, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "handle_visible");
+        return SET_PROPERTY_ERROR;
+    }
 }
+
 /*------------------------------------------------------------------------*/

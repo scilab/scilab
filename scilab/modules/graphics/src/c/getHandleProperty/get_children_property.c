@@ -26,7 +26,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-
+#include "getConsoleIdentifier.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -38,12 +38,18 @@ int get_children_property(char *pobjUID)
     int status = 0;
     long *plChildren = NULL;
     char **pstChildrenUID;
+    int iHidden = 0;
+    int *piHidden = &iHidden;
+    int iNotHiddenChildrenNumber = 0;
+    int iChildIndex = 0;
+    int iShowHiddenHandles = 0;
+    int *piShowHiddenHandles = &iShowHiddenHandles;
 
     // All Graphic Objects have __GO_CHILDREN__ & __GO_CHILDREN_COUNT__ properties.
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
-    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
 
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
 
     if (piChildrenCount[0] == 0)
     {
@@ -51,19 +57,48 @@ int get_children_property(char *pobjUID)
         return sciReturnEmptyMatrix();
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
 
-    plChildren = MALLOC(piChildrenCount[0] * sizeof(long));
+    getGraphicObjectProperty(getConsoleIdentifier(), __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
-    for (i = 0 ; i < piChildrenCount[0] ; ++i)
+    if (iShowHiddenHandles == 0)
     {
-        plChildren[i] = getHandle(pstChildrenUID[i]);
+        // Find number of not hidden children
+        for (i = 0; i < piChildrenCount[0]; ++i)
+        {
+            getGraphicObjectProperty(pstChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+            if (iHidden == 0)
+            {
+                iNotHiddenChildrenNumber++;
+            }
+        }
+
+        if (iNotHiddenChildrenNumber == 0)
+        {
+            // No Child
+            return sciReturnEmptyMatrix();
+        }
+    }
+    else
+    {
+        iNotHiddenChildrenNumber = piChildrenCount[0];
     }
 
-    status = sciReturnColHandleVector(plChildren, piChildrenCount[0]);
+    plChildren = MALLOC(iNotHiddenChildrenNumber * sizeof(long));
 
-    FREE( plChildren ) ;
+    for (i = 0; i < piChildrenCount[0]; ++i)
+    {
+        getGraphicObjectProperty(pstChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+        if (iHidden == 0 || iShowHiddenHandles == 1)
+        {
+            plChildren[iChildIndex++] = getHandle(pstChildrenUID[i]);
+        }
+    }
 
-    return status ;
+    status = sciReturnColHandleVector(plChildren, iNotHiddenChildrenNumber);
+    FREE(plChildren);
+
+    return status;
 }
+
 /*--------------------------------------------------------------------------*/
