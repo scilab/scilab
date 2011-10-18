@@ -598,6 +598,8 @@ Bug fixes:
 
 * bug 8245 fixed - gsort() did not allow overloading with not managed types.
 
+* bug 8420 fixed - 'lines' crashed scilab in some cases.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 
