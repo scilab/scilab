@@ -194,13 +194,30 @@
     <ClCompile Include="..\sci_fieldnames.cpp" />
     <ClCompile Include="..\sci_getfield.cpp" />
     <ClCompile Include="..\sci_insert.cpp" />
-    <ClCompile Include="..\sci_inspectorDeleteUnreferencedItems.cpp" />
-    <ClCompile Include="..\sci_inspectorGetFunctionList.cpp" />
-    <ClCompile Include="..\sci_inspectorGetItem.cpp" />
-    <ClCompile Include="..\sci_inspectorGetItemCount.cpp" />
-    <ClCompile Include="..\sci_inspectorGetUnreferencedItem.cpp" />
-    <ClCompile Include="..\sci_inspectorShowItem.cpp" />
-    <ClCompile Include="..\sci_inspectorShowUnreferencedItem.cpp" />
+    <ClCompile Include="..\sci_inspectorDeleteUnreferencedItems.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sci_inspectorGetItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sci_inspectorGetItemCount.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sci_inspectorGetUnreferencedItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sci_inspectorShowItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sci_inspectorShowUnreferencedItem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\sci_isfield.cpp" />
     <ClCompile Include="..\sci_list.cpp" />
     <ClCompile Include="..\sci_makecell.cpp" />
@@ -211,6 +228,10 @@
     <ClCompile Include="..\sci_typeof.cpp" />
     <ClCompile Include="..\sci_usertype.cpp" />
     <ClCompile Include="..\types_gw.cpp" />
+    <ClCompile Include="..\sci_inspectorGetFunctionList.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_types_gw.h" />
