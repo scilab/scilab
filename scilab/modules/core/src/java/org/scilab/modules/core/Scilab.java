@@ -23,6 +23,7 @@ import org.flexdock.docking.DockingConstants;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -102,6 +103,7 @@ public class Scilab {
          * they must be set before creating GUI
          */
         setJOGLFlags();
+        SwingView.registerSwingView();
 
         /*
          * if not API mode

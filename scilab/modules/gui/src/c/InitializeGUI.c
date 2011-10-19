@@ -20,34 +20,35 @@
 #include "WindowShow.h"
 #endif
 
-#include "callJoGLView.h"
 /*--------------------------------------------------------------------------*/
 BOOL InitializeGUI(void)
 {
-    createSwingView();
-
     if (getScilabMode() == SCILAB_STD)
-	{
-		char *title = NULL;
+    {
+        char *title = NULL;
+
         // TODO why this line since already done above
         // createSwingView();
-		#ifdef _MSC_VER
-			WindowShow();
-		#endif
+#ifdef _MSC_VER
+        WindowShow();
+#endif
 
-		title = buildMainWindowTitle();
-		if (title)
-		{
-			BOOL bOK = setMainWindowTitle(title);
-			FREE(title);
-			title = NULL;
-			return bOK;
-		}
+        title = buildMainWindowTitle();
+        if (title)
+        {
+            BOOL bOK = setMainWindowTitle(title);
 
+            FREE(title);
+            title = NULL;
+            return bOK;
+        }
+    }
+    else
+    {
+        return TRUE;
+    }
 
-	}
-	else return TRUE;
-
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/

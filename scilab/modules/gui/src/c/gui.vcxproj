@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -190,7 +190,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\callJoGLView.cpp" />
     <ClCompile Include="..\cpp\displayUiTree.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectColumnNames.cpp" />
@@ -208,7 +207,6 @@
     <ClCompile Include="..\cpp\SetUiobjectTabledata.cpp" />
     <ClCompile Include="..\cpp\UiDisplayTree.cpp" />
     <ClCompile Include="..\cpp\UiTable.cpp" />
-    <ClCompile Include="..\jni\CallGraphicJoGLView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
@@ -353,7 +351,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\CallClipboard.h" />
-    <ClInclude Include="..\..\includes\callJoGLView.h" />
     <ClInclude Include="..\..\includes\CallJuigetfile.h" />
     <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
     <ClInclude Include="..\..\includes\DestroyUicontrol.h" />

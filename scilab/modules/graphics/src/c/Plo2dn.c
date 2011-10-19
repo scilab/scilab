@@ -33,7 +33,7 @@
 #include "Scierror.h"
 #include "GraphicSynchronizerInterface.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "MALLOC.h"             /* MALLOC */
 #include "DrawingBridge.h"
 #include "scitokenize.h"
 #include "localization.h"
@@ -47,7 +47,6 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
-#include "callJoGLView.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -94,22 +93,24 @@
  * lstr* : unused ( but used by Fortran )
  *--------------------------------------------------------------------------*/
 
-int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2)
+int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, int *style, char *strflag, char *legend, double *brect, int *aaint,
+            BOOL flagNax, int lstr1, int lstr2)
 {
-    char* psubwinUID = NULL;
-    char* curFigureUID = NULL;
+    char *psubwinUID = NULL;
+    char *curFigureUID = NULL;
     int closeflag = 0;
     int jj = 0;
-    long long *tabofhandles = NULL ;
+    long long *tabofhandles = NULL;
     long hdl;
-    long *hdltab = NULL ;
-    int cmpt=0;
+    long *hdltab = NULL;
+    int cmpt = 0;
     int with_leg;
     double drect[6];
     char dataflag;
+
     /* To be removed */
 #if 0
-    sciSubWindow * ppsubwin = NULL;
+    sciSubWindow *ppsubwin = NULL;
 #endif
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;
@@ -118,8 +119,8 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     int clipState;
     int autoScale;
     int logFlags[3];
-    int iTmp =0;
-    int* piTmp = &iTmp;
+    int iTmp = 0;
+    int *piTmp = &iTmp;
     char textLogFlags[3];
     int firstPlot;
     int newFirstPlot;
@@ -156,12 +157,12 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     if (sciGetSurface(psubwin) == (sciPointObj *) NULL) /* F.Leray 18.05.04 */
     {
         ppsubwin->is3d = FALSE;
-        ppsubwin->project[2]= 0;
+        ppsubwin->project[2] = 0;
     }
     else
     {
-        ppsubwin->theta_kp=ppsubwin->theta;
-        ppsubwin->alpha_kp=ppsubwin->alpha;
+        ppsubwin->theta_kp = ppsubwin->theta;
+        ppsubwin->alpha_kp = ppsubwin->alpha;
     }
 #endif
 
@@ -195,17 +196,28 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     if (autoScale)
     {
         /* compute and merge new specified bounds with the data bounds */
-        switch (strflag[1])  {
+        switch (strflag[1])
+        {
         case '0':
             /* do not change data bounds */
             break;
-        case '1' : case '3' : case '5' : case '7':
+        case '1':
+        case '3':
+        case '5':
+        case '7':
             /* Force data bounds=brect */
             re_index_brect(brect, drect);
             break;
-        case '2' : case '4' : case '6' : case '8': case '9':
+        case '2':
+        case '4':
+        case '6':
+        case '8':
+        case '9':
             /* Force data bounds to the x and y bounds */
-            if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
+            if ((int)strlen(logflags) < 1)
+                dataflag = 'g';
+            else
+                dataflag = logflags[0];
 
             getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
             logFlags[0] = iTmp;
@@ -219,27 +231,27 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
             textLogFlags[1] = getTextLogFlag(logFlags[1]);
             textLogFlags[2] = getTextLogFlag(logFlags[2]);
 
-            compute_data_bounds2(0,dataflag,textLogFlags,x,y,*n1,*n2,drect);
+            compute_data_bounds2(0, dataflag, textLogFlags, x, y, *n1, *n2, drect);
 
             break;
         }
 
         /* merge data bounds and drect */
-        if ( !firstPlot &&
-             (strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
+        if (!firstPlot && (strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
-            double* dataBounds;
+            double *dataBounds;
+
             getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
-            drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
-            drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
-            drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
-            drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
+            drect[0] = Min(dataBounds[0], drect[0]);    /*xmin */
+            drect[2] = Min(dataBounds[2], drect[2]);    /*ymin */
+            drect[1] = Max(dataBounds[1], drect[1]);    /*xmax */
+            drect[3] = Max(dataBounds[3], drect[3]);    /*ymax */
         }
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwinUID, drect,2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
         }
     }
 
@@ -255,10 +267,10 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     newFirstPlot = 0;
     setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &newFirstPlot, jni_bool, 1);
 
-    with_leg= (strflag[0] == '1');
+    with_leg = (strflag[0] == '1');
 
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
-       u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+     * u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
 
     /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
     autoSubticks = !flagNax;
@@ -286,7 +298,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
              * To be implemented using the MVC framework
              */
 #if 0
-            CreatePrettyGradsFromNax(psubwin,aaint);
+            CreatePrettyGradsFromNax(psubwin, aaint);
 #endif
         }
         else
@@ -306,21 +318,25 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
      * To be removed.
      */
     /*if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      {
-
-      sciDrawObj(sciGetCurrentFigure());
-      }*/
+     * {
+     * 
+     * sciDrawObj(sciGetCurrentFigure());
+     * } */
 
     /*---- Drawing the curves and the legends ----*/
-    if ( *n1 != 0 ) {
-        if ((hdltab = MALLOC ((*n1+1) * sizeof (long))) == NULL) {
-            Scierror(999, _("%s: No more memory.\n"),"plot2d");
+    if (*n1 != 0)
+    {
+        if ((hdltab = MALLOC((*n1 + 1) * sizeof(long))) == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "plot2d");
             return -1;
         }
-        if (with_leg) {
+        if (with_leg)
+        {
             /* tabofhandles allocated for legends */
-            if ((tabofhandles = MALLOC((*n1)*sizeof(long long))) == NULL) {
-                Scierror(999, _("%s: No more memory.\n"),"plot2d");
+            if ((tabofhandles = MALLOC((*n1) * sizeof(long long))) == NULL)
+            {
+                Scierror(999, _("%s: No more memory.\n"), "plot2d");
                 FREE(hdltab);
                 return -1;
             }
@@ -331,28 +347,30 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
         startFigureDataWriting(curFigure);
 #endif
 
-
-        /*A.Djalel 3D axes*/
-        for (jj = 0;jj < *n1; jj++)
+        /*A.Djalel 3D axes */
+        for (jj = 0; jj < *n1; jj++)
         {
-            char * pobjUID = NULL;
+            char *pobjUID = NULL;
 
-            if (style[jj] > 0) {
+            if (style[jj] > 0)
+            {
                 BOOL isline = TRUE;
-                if (ptype==3)
+
+                if (ptype == 3)
                 {
-                    isline=FALSE;
+                    isline = FALSE;
                 }
-                pobjUID = ConstructPolyline(getCurrentSubWin(),&(x[jj*(*n2)]),
-                                            &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
-                                            &style[jj],NULL,NULL,NULL,NULL,
-                                            isline,FALSE,FALSE,FALSE);
+                pobjUID = ConstructPolyline(getCurrentSubWin(), &(x[jj * (*n2)]),
+                                            &(y[jj * (*n2)]), PD0, closeflag, *n2, ptype,
+                                            &style[jj], NULL, NULL, NULL, NULL, isline, FALSE, FALSE, FALSE);
             }
-            else {
+            else
+            {
                 int minusstyle = -style[jj];
-                pobjUID = ConstructPolyline(getCurrentSubWin(),&(x[jj*(*n2)]),
-                                            &(y[jj*(*n2)]),PD0,closeflag,*n2,ptype,
-                                            NULL,NULL,&minusstyle,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
+
+                pobjUID = ConstructPolyline(getCurrentSubWin(), &(x[jj * (*n2)]),
+                                            &(y[jj * (*n2)]), PD0, closeflag, *n2, ptype,
+                                            NULL, NULL, &minusstyle, NULL, NULL, FALSE, FALSE, TRUE, FALSE);
             }
             if (pobjUID == NULL)
             {
@@ -363,14 +381,14 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
             {
                 setCurrentObject(pobjUID);
 
-                /*sciDrawObjIfRequired(pobj);*/
-                hdl=getHandle(pobjUID);
+                /*sciDrawObjIfRequired(pobj); */
+                hdl = getHandle(pobjUID);
                 if (with_leg)
                 {
                     tabofhandles[cmpt] = hdl;
                 }
 
-                hdltab[cmpt]=hdl;
+                hdltab[cmpt] = hdl;
                 cmpt++;
             }
 
@@ -389,15 +407,17 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
         startFigureDataWriting(curFigure);
 #endif
 
-        if (with_leg) {
-            char* legUID;
-            char ** Str;
+        if (with_leg)
+        {
+            char *legUID;
+            char **Str;
             int nleg;
 
-            if (scitokenize(legend, &Str, &nleg)) {
+            if (scitokenize(legend, &Str, &nleg))
+            {
                 FREE(tabofhandles);
                 FREE(hdltab);
-                Scierror(999, _("%s: No more memory.\n"),"plot2d");
+                Scierror(999, _("%s: No more memory.\n"), "plot2d");
 
                 /* Deactivated (synchronization) */
 #if 0
@@ -406,7 +426,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
                 return 0;
             }
 
-            legUID = ConstructLegend(getCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
+            legUID = ConstructLegend(getCurrentSubWin(), Str, tabofhandles, Min(nleg, cmpt));
 
             if (legUID != NULL)
             {
@@ -422,7 +442,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
                 setGraphicObjectProperty(legUID, __GO_FILL_MODE__, &contourMode, jni_bool, 1);
                 setGraphicObjectProperty(legUID, __GO_LINE_MODE__, &contourMode, jni_bool, 1);
 
-                setCurrentObject (legUID);
+                setCurrentObject(legUID);
             }
 
             freeArrayOfString(Str, nleg);
@@ -433,7 +453,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
         /*---- construct Compound ----*/
         if (cmpt > 0)
         {
-            setCurrentObject(ConstructCompound (hdltab, cmpt));
+            setCurrentObject(ConstructCompound(hdltab, cmpt));
         }
         FREE(hdltab);
 
@@ -452,91 +472,112 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
 #if 0
     sciDrawObj(curFigure);
 #endif
-    return(0);
+    return (0);
 }
-
-
-
 
 /* Given two set of coordinates x and y this routine computes the corresponding
  *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] taking into account the logflag
  *  -> means we have to find among the data the min > 0.
  */
-void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, int n1,int n2, double *drect)
+void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, double *y, int n1, int n2, double *drect)
 {
-    int size_x,size_y;
+    int size_x, size_y;
     double xd[2];
     double *x1;
-    switch ( dataflag ) {
-    case 'e' :
-        xd[0] = 1.0; xd[1] = (double)n2;
-        x1 = xd;size_x = (n2 != 0) ? 2 : 0 ;
+
+    switch (dataflag)
+    {
+    case 'e':
+        xd[0] = 1.0;
+        xd[1] = (double)n2;
+        x1 = xd;
+        size_x = (n2 != 0) ? 2 : 0;
         break;
-    case 'o' :
-        x1 = x;size_x = n2;
+    case 'o':
+        x1 = x;
+        size_x = n2;
         break;
-    case 'g' :
-    default  :
-        x1 = x;size_x = (cflag == 1) ? n1 : (n1*n2) ;
+    case 'g':
+    default:
+        x1 = x;
+        size_x = (cflag == 1) ? n1 : (n1 * n2);
         break;
     }
 
-    if (size_x != 0) {
-        if(logflags[0] != 'l'){
-            drect[0] =  Mini(x1, size_x);
-            drect[1] =  Maxi(x1,size_x);
+    if (size_x != 0)
+    {
+        if (logflags[0] != 'l')
+        {
+            drect[0] = Mini(x1, size_x);
+            drect[1] = Maxi(x1, size_x);
         }
-        else { /* log. case */
-            drect[0] =  sciFindStPosMin(x1,size_x);
-            drect[1] =  Maxi(x1,size_x);
+        else
+        {                       /* log. case */
+            drect[0] = sciFindStPosMin(x1, size_x);
+            drect[1] = Maxi(x1, size_x);
         }
 
     }
-    else {
-        if(logflags[0] != 'l'){
+    else
+    {
+        if (logflags[0] != 'l')
+        {
             drect[0] = 0.0;
             drect[1] = 10.0;
         }
-        else{/* log. case */
+        else
+        {                       /* log. case */
             drect[0] = 1.0;
             drect[1] = 10.0;
         }
     }
 
-    size_y = (cflag == 1) ? n2 : (n1*n2) ;
-    if (size_y != 0) {
-        if(logflags[1] != 'l'){
-            drect[2] =  Mini(y, size_y);
-            drect[3] =  Maxi(y,size_y);
+    size_y = (cflag == 1) ? n2 : (n1 * n2);
+    if (size_y != 0)
+    {
+        if (logflags[1] != 'l')
+        {
+            drect[2] = Mini(y, size_y);
+            drect[3] = Maxi(y, size_y);
         }
-        else{/* log. case */
-            drect[2] =  sciFindStPosMin(y,size_y);
-            drect[3] =  Maxi(y,size_y);
+        else
+        {                       /* log. case */
+            drect[2] = sciFindStPosMin(y, size_y);
+            drect[3] = Maxi(y, size_y);
         }
 
     }
-    else {
-        if(logflags[1] != 'l'){
+    else
+    {
+        if (logflags[1] != 'l')
+        {
             drect[2] = 0.0;
             drect[3] = 10.0;
         }
-        else{/* log. case */
+        else
+        {                       /* log. case */
             drect[2] = 1.0;
             drect[3] = 10.0;
         }
     }
     /* back to default values for  x=[] and y = [] */
-    if ( drect[2] == LARGEST_REAL ) { drect[2] = 0.0; drect[3] = 10.0 ;}
-    if ( drect[0] == LARGEST_REAL ) { drect[0] = 0.0; drect[1] = 10.0 ;}
+    if (drect[2] == LARGEST_REAL)
+    {
+        drect[2] = 0.0;
+        drect[3] = 10.0;
+    }
+    if (drect[0] == LARGEST_REAL)
+    {
+        drect[0] = 0.0;
+        drect[1] = 10.0;
+    }
 
 }
 
-
-
-BOOL update_specification_bounds(char *psubwinUID,double rect[6],int flag)
+BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag)
 {
     BOOL haschanged = FALSE;
-    double* dataBounds;
+    double *dataBounds;
 
     /*
      * 2D: keep the existing zmin and zmax
@@ -553,7 +594,7 @@ BOOL update_specification_bounds(char *psubwinUID,double rect[6],int flag)
     setGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
 
     /* To be modified */
-    if(flag != 3)
+    if (flag != 3)
         haschanged = sci_update_frame_bounds_2d(psubwinUID);
     else
         haschanged = sci_update_frame_bounds_3d(psubwinUID);
@@ -561,13 +602,10 @@ BOOL update_specification_bounds(char *psubwinUID,double rect[6],int flag)
     return haschanged;
 }
 
-
-
-
 /* F.Leray */
 /* brect must have the same format as drect i.e.: [xmin,xmax,ymin,ymax] */
 /* brect = INPUT ; drect = OUTPUT (warning drect is dim 6) */
-int re_index_brect(double * brect, double * drect)
+int re_index_brect(double *brect, double *drect)
 {
     drect[0] = brect[0];
     drect[1] = brect[2];
@@ -576,13 +614,14 @@ int re_index_brect(double * brect, double * drect)
 
     return 0;
 }
+
 /* F.Leray 07.05.04 */
 /* Dispatch info contained in strflag to all the flag available in
    sciSubwin object (tight_limits, isoview, isaxes...) */
 /*
  * This function has been adapted to the MVC framework
  */
-BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
+BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
 {
     BOOL haschanged = FALSE;
     BOOL tightLimitsPrev;
@@ -603,8 +642,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
     int axesVisible[3];
 
     int iTmp = 0;
-    int* piTmp = &iTmp;
-
+    int *piTmp = &iTmp;
 
     getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, jni_bool, &piTmp);
     axesVisiblePrev[0] = iTmp;
@@ -621,27 +659,33 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
     getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOCATION__, jni_int, &piTmp);
     yLocationPrev = iTmp;
 
-
     getGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, jni_bool, &piTmp);
     tightLimitsPrev = iTmp;
     getGraphicObjectProperty(psubwinUID, __GO_ISOVIEW__, jni_bool, &piTmp);
     isoviewPrev = iTmp;
 
     /* F.Leray 07.05.04 */
-    /* strflag[1] Isoview & tight_limits flags management*/
-    switch (strflag[1])  {
-    case '0': case '9':
+    /* strflag[1] Isoview & tight_limits flags management */
+    switch (strflag[1])
+    {
+    case '0':
+    case '9':
         /* no changes */
         break;
-    case '1' : case '2' : case '7' : case '8' :
+    case '1':
+    case '2':
+    case '7':
+    case '8':
         tightLimits = 1;
         setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
         break;
-    case '3' : case '4' :
+    case '3':
+    case '4':
         isoview = 1;
         setGraphicObjectProperty(psubwinUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
         break;
-    case '5' : case '6' :
+    case '5':
+    case '6':
         /* pretty axes */
         tightLimits = 0;
         setGraphicObjectProperty(psubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
@@ -650,13 +694,14 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
 
     /* F.Leray 07.05.04 */
     /* strflag[2] */
-    switch (strflag[2])  {
+    switch (strflag[2])
+    {
 
     case '0':
         getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
         firstPlot = iTmp;
 
-        if(firstPlot)
+        if (firstPlot)
         {
             axisVisible = 0;
             /* 0: OFF */
@@ -670,7 +715,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         }
         /*else no changes : the isaxes properties is driven by the previous plot */
         break;
-    case '1' :
+    case '1':
         axisVisible = 1;
         /* 1: ON */
         boxType = 1;
@@ -684,7 +729,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         break;
-    case '2' :
+    case '2':
         axisVisible = 0;
         boxType = 1;
 
@@ -695,7 +740,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         break;
-    case '3' :
+    case '3':
         axisVisible = 1;
         boxType = 0;
         /* 5: RIGHT */
@@ -708,7 +753,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         break;
-    case '4' :
+    case '4':
         axisVisible = 1;
         /* 2: MIDDLE */
         xLocation = 2;
@@ -724,7 +769,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         break;
-    case '5' :
+    case '5':
         axisVisible = 1;
         xLocation = 2;
         yLocation = 2;
@@ -739,7 +784,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
         setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         break;
-    case '9' :
+    case '9':
         axisVisible = 1;
 
         setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
@@ -772,11 +817,7 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
     if (axesVisible[0] != axesVisiblePrev[0]
         || axesVisible[1] != axesVisiblePrev[1]
         || axesVisible[2] != axesVisiblePrev[2]
-        || xLocation != xLocationPrev
-        || yLocation != yLocationPrev
-        || boxType != boxPrev
-        || tightLimits != tightLimitsPrev
-        || isoview != isoviewPrev)
+        || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev || tightLimits != tightLimitsPrev || isoview != isoviewPrev)
     {
         haschanged = TRUE;
     }
@@ -787,4 +828,3 @@ BOOL strflag2axes_properties(char * psubwinUID, char * strflag)
 
     return haschanged;
 }
-
