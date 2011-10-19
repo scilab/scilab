@@ -98,9 +98,6 @@ Xcos:
 
 * Error reporting has been improved to print warnings on blocks into Xcos.
 
-* Diagram export / compilation / simulation phase are now visible on the status
-  bar before the operation.
-
 * The style of the block can be changed on the interface function.
 
 * BARXY Block added to help 2D Mechanics system visualization.
@@ -180,6 +177,8 @@ File input/output:
 * mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
 
 * tempname function added (SEP 68).
+
+* bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
 
 New functions
