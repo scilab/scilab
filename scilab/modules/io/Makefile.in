@@ -129,7 +129,7 @@ am__objects_4 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_read.lo libsciio_la-sci_getpid.lo \
 	libsciio_la-sci_write4b.lo libsciio_la-sci_save.lo
 am__objects_5 = intwrite4b.lo intwritb.lo intwrite.lo intread4b.lo \
-	intread.lo intreadb.lo intfile.lo
+	intreadb.lo intfile.lo
 am__objects_6 = libsciio_la-sci_genlib.lo libsciio_la-sci_load.lo \
 	libsciio_la-sci_file.lo libsciio_la-sci_host.lo \
 	libsciio_la-sci_unix.lo
@@ -463,7 +463,6 @@ GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \
-sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
@@ -939,9 +938,6 @@ intwrite.lo: sci_gateway/fortran/intwrite.f
 
 intread4b.lo: sci_gateway/fortran/intread4b.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intread4b.lo `test -f 'sci_gateway/fortran/intread4b.f' || echo '$(srcdir)/'`sci_gateway/fortran/intread4b.f
-
-intread.lo: sci_gateway/fortran/intread.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intread.lo `test -f 'sci_gateway/fortran/intread.f' || echo '$(srcdir)/'`sci_gateway/fortran/intread.f
 
 intreadb.lo: sci_gateway/fortran/intreadb.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intreadb.lo `test -f 'sci_gateway/fortran/intreadb.f' || echo '$(srcdir)/'`sci_gateway/fortran/intreadb.f

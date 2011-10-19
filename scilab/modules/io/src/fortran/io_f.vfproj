@@ -115,9 +115,6 @@ lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\io_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intread.f">
-			<FileConfiguration Name="Release|x64">
-				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
 		<File RelativePath="..\..\sci_gateway\fortran\intread4b.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intreadb.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intwritb.f"/>

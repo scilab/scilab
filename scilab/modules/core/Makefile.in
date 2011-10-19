@@ -181,16 +181,16 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
 	src/fortran/mklist.f src/fortran/sigbas.f src/fortran/indxg.f \
 	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/getfunction.f src/fortran/dbasin.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/getfunction.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
-	src/fortran/basin.f src/fortran/compcl.f src/fortran/termf.f \
-	src/fortran/expsum.f src/fortran/copyvar.f src/fortran/putid.f \
-	src/fortran/itosci.f src/fortran/stackr2d.f \
-	src/fortran/stacki2d.f src/fortran/stackc2i.f \
-	src/fortran/isinstring.f src/fortran/relocstack.f
+	src/fortran/compcl.f src/fortran/termf.f src/fortran/expsum.f \
+	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/stackr2d.f src/fortran/stacki2d.f \
+	src/fortran/stackc2i.f src/fortran/isinstring.f \
+	src/fortran/relocstack.f
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 =  \
 @USE_DYNAMIC_STACK_TRUE@	libscicore_algo_la-scimem64.lo
 am__objects_2 = libscicore_algo_la-inffic.lo \
@@ -261,11 +261,11 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo \
 	error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo \
 	defmat.lo mklist.lo sigbas.lo indxg.lo matz.lo istrue.lo \
-	inisci.lo getfunction.lo dbasin.lo extlarg.lo getstr.lo \
-	cvwm.lo storeglobal.lo lst2vars.lo basnms.lo matc.lo \
-	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo compcl.lo \
-	termf.lo expsum.lo copyvar.lo putid.lo itosci.lo stackr2d.lo \
-	stacki2d.lo stackc2i.lo isinstring.lo $(am__objects_4)
+	inisci.lo getfunction.lo extlarg.lo getstr.lo cvwm.lo \
+	storeglobal.lo lst2vars.lo basnms.lo matc.lo ptrback.lo \
+	getch.lo ftob.lo seteol.lo compcl.lo termf.lo expsum.lo \
+	copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
+	stackc2i.lo isinstring.lo $(am__objects_4)
 am_libscicore_algo_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
@@ -659,16 +659,16 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/whatln.f src/fortran/errmgr.f src/fortran/defmat.f \
 	src/fortran/mklist.f src/fortran/sigbas.f src/fortran/indxg.f \
 	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/getfunction.f src/fortran/dbasin.f \
-	src/fortran/extlarg.f src/fortran/getstr.f src/fortran/cvwm.f \
+	src/fortran/getfunction.f src/fortran/extlarg.f \
+	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
-	src/fortran/basin.f src/fortran/compcl.f src/fortran/termf.f \
-	src/fortran/expsum.f src/fortran/copyvar.f src/fortran/putid.f \
-	src/fortran/itosci.f src/fortran/stackr2d.f \
-	src/fortran/stacki2d.f src/fortran/stackc2i.f \
-	src/fortran/isinstring.f $(am__append_2)
+	src/fortran/compcl.f src/fortran/termf.f src/fortran/expsum.f \
+	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/stackr2d.f src/fortran/stacki2d.f \
+	src/fortran/stackc2i.f src/fortran/isinstring.f \
+	$(am__append_2)
 CORE_CPP_SOURCES = \
     src/cpp/core_gw.cpp \
     src/cpp/hashtable_core.cpp \
@@ -2298,9 +2298,6 @@ inisci.lo: src/fortran/inisci.f
 getfunction.lo: src/fortran/getfunction.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o getfunction.lo `test -f 'src/fortran/getfunction.f' || echo '$(srcdir)/'`src/fortran/getfunction.f
 
-dbasin.lo: src/fortran/dbasin.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbasin.lo `test -f 'src/fortran/dbasin.f' || echo '$(srcdir)/'`src/fortran/dbasin.f
-
 extlarg.lo: src/fortran/extlarg.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o extlarg.lo `test -f 'src/fortran/extlarg.f' || echo '$(srcdir)/'`src/fortran/extlarg.f
 
@@ -2333,9 +2330,6 @@ ftob.lo: src/fortran/ftob.f
 
 seteol.lo: src/fortran/seteol.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o seteol.lo `test -f 'src/fortran/seteol.f' || echo '$(srcdir)/'`src/fortran/seteol.f
-
-basin.lo: src/fortran/basin.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basin.lo `test -f 'src/fortran/basin.f' || echo '$(srcdir)/'`src/fortran/basin.f
 
 compcl.lo: src/fortran/compcl.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o compcl.lo `test -f 'src/fortran/compcl.f' || echo '$(srcdir)/'`src/fortran/compcl.f

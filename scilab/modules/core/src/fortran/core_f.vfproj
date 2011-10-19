@@ -75,7 +75,6 @@ cd .."/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="allowptr.f"/>
 		<File RelativePath="atome.f"/>
-		<File RelativePath="basin.f"/>
 		<File RelativePath="basnms.f"/>
 		<File RelativePath="bexec.f"/>
 		<File RelativePath="btof.f"/>
@@ -91,7 +90,6 @@ cd .."/>
 		<File RelativePath="cvdm.f"/>
 		<File RelativePath="cvname.f"/>
 		<File RelativePath="cvwm.f"/>
-		<File RelativePath="dbasin.f"/>
 		<File RelativePath="defmat.f"/>
 		<File RelativePath="dtosci.f"/>
 		<File RelativePath="errmgr.f"/>

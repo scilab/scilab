@@ -27,9 +27,6 @@
     <ClCompile Include="atome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="basnms.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,9 +76,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cvwm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dbasin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="defmat.c">
@@ -382,9 +376,6 @@
     <f2c_rule Include="atome.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="basin.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="basnms.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -434,9 +425,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="cvwm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dbasin.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="defmat.f">

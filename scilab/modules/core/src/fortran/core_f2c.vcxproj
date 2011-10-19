@@ -191,7 +191,6 @@ cd ..
     <ClCompile Include="allops.c" />
     <ClCompile Include="allowptr.c" />
     <ClCompile Include="atome.c" />
-    <ClCompile Include="basin.c" />
     <ClCompile Include="basnms.c" />
     <ClCompile Include="bexec.c" />
     <ClCompile Include="btof.c" />
@@ -209,7 +208,6 @@ cd ..
     <ClCompile Include="cvdm.c" />
     <ClCompile Include="cvname.c" />
     <ClCompile Include="cvwm.c" />
-    <ClCompile Include="dbasin.c" />
     <ClCompile Include="defmat.c" />
     <ClCompile Include="dtosci.c" />
     <ClCompile Include="errmgr.c" />
@@ -312,7 +310,6 @@ cd ..
     <f2c_rule Include="allops.f" />
     <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="atome.f" />
-    <f2c_rule Include="basin.f" />
     <f2c_rule Include="basnms.f" />
     <f2c_rule Include="bexec.f" />
     <f2c_rule Include="btof.f" />
@@ -330,7 +327,6 @@ cd ..
     <f2c_rule Include="cvdm.f" />
     <f2c_rule Include="cvname.f" />
     <f2c_rule Include="cvwm.f" />
-    <f2c_rule Include="dbasin.f" />
     <f2c_rule Include="defmat.f" />
     <f2c_rule Include="dtosci.f" />
     <f2c_rule Include="errmgr.f" />

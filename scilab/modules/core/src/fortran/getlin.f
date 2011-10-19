@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -15,7 +15,7 @@ c     characters read are stored in the lin array
 c
 c     job=1 : append read characters after the current end of lin lpt(6)
 c     job=0 : store read characters after the current position (lpt(1))
-c     job=2 : same as job=0 but if EOF occurs getlin returns with 
+c     job=2 : same as job=0 but if EOF occurs getlin returns with
 c     .       fin=-2  instead of fin=0
 c     job=-1: ???
 c     job=3 : used to reenter getlin when it was interrupted while
@@ -84,16 +84,16 @@ c     next line to preserve end-of-line marks (eol)
       if(macr.gt.0.and.fin.ne.2) then
          k=lpt(1)-(13+nsiz)
          il=lin(k+7)
-c        check if getlin is call in a macro or an exec 
+c        check if getlin is call in a macro or an exec
          if(il.gt.0) goto 80
       endif
       info=1
 
  11   continue
       call getfiletype(rio,ltype,info)
-      if(info.ne.0) goto 50 
+      if(info.ne.0) goto 50
       if(ltype.eq.1) then
-         call basin(ierr,rio,buf(1:lrecl),'*',menusflag)
+c         call basin(ierr,rio,buf(1:lrecl),'*',menusflag)
          if(ierr.lt.0) then
 c     .     interrupted line acquisition (callback)
             goto 90
@@ -109,7 +109,7 @@ c     .     end of file encountered
          if(info.eq.2) then
             call error(113)
 c     .     stop reading file
-            fin=-2 
+            fin=-2
             return
          endif
          n=n-1
@@ -286,7 +286,7 @@ c%%
       goto 45
  90   continue
 c     interrupted line acquisition (callbacks)
-c     l should be memorized for correct continuation line handling    
+c     l should be memorized for correct continuation line handling
       if (continued) then
           lpt(6) = l-1
        else

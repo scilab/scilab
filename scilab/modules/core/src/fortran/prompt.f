@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine prompt(pause,escape)
@@ -26,7 +26,7 @@ C     version with pause ( mode(7) )
          call setprlev(-1)
 c     .  accept immediate dynamic callback execution
          menusflag=1
- 10      call basin(ierr,rte,buf,'*',menusflag)
+c 10      call basin(ierr,rte,buf,'*',menusflag)
          if(buf(1:1).eq.'p') iflag=.true.
          if(ierr.eq.-1) then
 c     .     a callback requires to be executed

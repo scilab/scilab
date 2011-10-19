@@ -141,7 +141,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/istrue.f \
     src/fortran/inisci.f \
     src/fortran/getfunction.f \
-    src/fortran/dbasin.f \
     src/fortran/extlarg.f \
     src/fortran/getstr.f \
     src/fortran/cvwm.f \
@@ -153,7 +152,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/getch.f \
     src/fortran/ftob.f \
     src/fortran/seteol.f \
-    src/fortran/basin.f \
     src/fortran/compcl.f \
     src/fortran/termf.f \
     src/fortran/expsum.f \

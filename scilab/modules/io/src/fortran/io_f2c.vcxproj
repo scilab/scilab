@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -261,7 +261,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\intfile.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intread.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intread4b.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intreadb.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\intwritb.c" />
@@ -276,7 +275,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\intfile.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intread.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intread4b.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intreadb.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\intwritb.f" />

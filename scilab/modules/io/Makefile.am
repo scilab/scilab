@@ -33,7 +33,6 @@ GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \
-sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
