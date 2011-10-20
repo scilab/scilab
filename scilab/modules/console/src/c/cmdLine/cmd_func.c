@@ -9,153 +9,180 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include		<wchar.h>
-#include		<wctype.h>
-#include		<stdlib.h>
-#include		<stdio.h>
-#include		<unistd.h>
-#include		<curses.h>
-#include		<termios.h>
-#include		<term.h>
-#include		"history.h"
-#include		"reader.h"
-#include		"cap_func.h"
-#include		"goto_func.h"
-#include		"charctl.h"
-#include		"init_tc_shell.h"
-#include		"aff_prompt.h"
-#include		"cmd_func.h"
-#include		"MALLOC.h"
+#include <wchar.h>
+#include <wctype.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <curses.h>
+#include <termios.h>
+#include <term.h>
+#include "history.h"
+#include "reader.h"
+#include "cap_func.h"
+#include "goto_func.h"
+#include "charctl.h"
+#include "init_tc_shell.h"
+#include "aff_prompt.h"
+#include "cmd_func.h"
+#include "MALLOC.h"
+#include "HistoryManager.h"
+#include "charEncoding.h"
+#include "aff_prompt.h"
 
-/* Remplacer "\a" par define */
+void autoCompletionInConsoleMode(wchar_t * commandLine, int *cursorLocation);
 
-static int caseHomeOrEndKey(t_list_cmd * listCmd, unsigned int *cursorLocation)
+/*
+ * If last key was '1'
+ * it means this could be arrow key plus control key
+ */
+static void caseCtrlAndArrowKey(wchar_t * commandLine, unsigned int *cursorLocation)
+{
+    if (getwchar() == L';' && getwchar() == L'5')
+    {
+        switch (getwchar())
+        {
+        case L'C':
+            nextWord(commandLine, cursorLocation);
+            break;
+        case L'D':
+            previousWord(commandLine, cursorLocation);
+            break;
+        }
+    }
+}
+
+static void caseHomeOrEndKey(wchar_t * commandLine, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'H':
-        begLine(listCmd, cursorLocation);
-        return 0;
+        begLine(commandLine, cursorLocation);
+        break;
     case L'F':
-        endLine(listCmd, cursorLocation);
-        return 0;
-    default:
-        printf("\a");
-        fflush(stdout);
-        return 0;
+        endLine(commandLine, cursorLocation);
+        break;
     }
 }
 
 /*
  * If second key was L'['
- * It mean this could be an arrow key or delete key.
+ * It means this could be an arrow key or delete key.
  */
-
-static int caseDelOrArrowKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
+static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'A':
-        previousCmd(listCmd, cursorLocation);
-        return 0;
+        previousCmd(commandLine, cursorLocation);
+        break;
     case L'B':
-        nextCmd(listCmd, cursorLocation);
-        return 0;
+        nextCmd(commandLine, cursorLocation);
+        break;
     case L'C':
-        gotoRight(*listCmd, cursorLocation);
-        return 0;
+        gotoRight(*commandLine, cursorLocation);
+        break;
     case L'D':
-        gotoLeft(*listCmd, cursorLocation);
-        return 0;
+        gotoLeft(*commandLine, cursorLocation);
+        break;
+    case L'1':
+        caseCtrlAndArrowKey(*commandLine, cursorLocation);
+        break;
     case L'3':
         if (getwchar() == L'~')
         {
-            rmChar(*listCmd, SCI_DELETE, cursorLocation);
-            return 0;
+            rmChar(*commandLine, SCI_DELETE, cursorLocation);
+            break;
         }
-    default:
-        printf("\a");
-        fflush(stdout);
-        return 0;
     }
 }
 
 /*
  * If last key was Meta...
  */
-static int caseMetaKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
+static void caseMetaKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     switch (getwchar())
     {
     case L'f':
     case L'F':
-        nextWord(*listCmd, cursorLocation);
-        return 0;
+        nextWord(*commandLine, cursorLocation);
+        break;
     case L'b':
     case L'B':
-        previousWord(*listCmd, cursorLocation);
-        return 0;
+        previousWord(*commandLine, cursorLocation);
+        break;
     case L'[':
-        return caseDelOrArrowKey(listCmd, cursorLocation);
+        caseDelOrArrowKey(commandLine, cursorLocation);
+        break;
     case L'O':
-        return caseHomeOrEndKey(*listCmd, cursorLocation);
-    default:
-        return 0;
+        caseHomeOrEndKey(*commandLine, cursorLocation);
+        break;
     }
 }
 
 /*
  * Read keyboard a first time.
  */
-
-static int getKey(t_list_cmd ** listCmd, unsigned int *cursorLocation)
+static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     int key;
+
+    char *charString = NULL;
+
+    int cursorMax = 0;
 
     key = getwchar();
     switch (key)
     {
     case CTRL_A:
-        begLine(*listCmd, cursorLocation);
-        return 0;
+        begLine(*commandLine, cursorLocation);
+        break;
     case CTRL_B:
-        gotoLeft(*listCmd, cursorLocation);
-        return 0;
+        gotoLeft(*commandLine, cursorLocation);
+        break;
     case CTRL_E:
-        endLine(*listCmd, cursorLocation);
-        return 0;
+        endLine(*commandLine, cursorLocation);
+        break;
     case CTRL_F:
-        gotoRight(*listCmd, cursorLocation);
-        return 0;
+        gotoRight(*commandLine, cursorLocation);
+        break;
     case CTRL_K:
-        deleteLineFromCurs(*listCmd, cursorLocation);
-        return 0;
+        deleteLineFromCurs(*commandLine, cursorLocation);
+        break;
     case CTRL_N:
-        nextCmd(listCmd, cursorLocation);
-        return 0;
+        nextCmd(commandLine, cursorLocation);
+        break;
     case CTRL_P:
-        previousCmd(listCmd, cursorLocation);
-        return 0;
+        previousCmd(commandLine, cursorLocation);
+        break;
+    case '\t':
+        autoCompletionInConsoleMode(*commandLine, cursorLocation);
+        break;
     case ESCAPE:
-        return caseMetaKey(listCmd, cursorLocation);
+        caseMetaKey(commandLine, cursorLocation);
+        break;
     case SCI_BACKSPACE:
-        rmChar(*listCmd, SCI_BACKSPACE, cursorLocation);
-        return 0;
+        rmChar(*commandLine, SCI_BACKSPACE, cursorLocation);
+        break;
     default:
         if (key == L'\n')
-            return '\n';
-        addChar(*listCmd, key, cursorLocation);
-        return 0;
+        {
+            return 1;
+        }
+        addChar(*commandLine, key, cursorLocation);
+        break;
     }
+    return 0;
 }
 
 /*
  * If there is a string the function save it.
  * else The function write the saved string.
  */
-void memCmd(t_list_cmd * cmd, int cursorLocation)
+void memCmd(wchar_t * cmd, int cursorLocation)
 {
-    static t_list_cmd *memList;
+    static wchar_t *memList;
 
     static int i;
 
@@ -168,76 +195,40 @@ void memCmd(t_list_cmd * cmd, int cursorLocation)
     {
 /* TODO comment */
         i = cursorLocation;
-        cursorLocation = wcslen(memList->cmd);
-        printf(SCI_PRINT_WSTRING, memList->cmd);
-/* TODO probably useless. We are doing a buffering word by word */
-        fflush(stdout);
+        cursorLocation = wcslen(memList);
+        printf("%ls", memList);
         while (cursorLocation != i)
         {
-            gotoLeft(memList, 0);
+            gotoLeft(memList, &cursorLocation);
         }
     }
 }
 
-t_list_cmd *getNewCmd(t_list_cmd * lastCmd)
+char *getCmdLine(void)
 {
-    t_list_cmd *newCmd;
+    int bin = 1;
 
-    newCmd = MALLOC(sizeof(*newCmd));
-    if (lastCmd != NULL)
-    {
-        lastCmd->next = newCmd;
-        lastCmd->bin = 1;
-    }
-    newCmd->previous = lastCmd;
-    newCmd->next = NULL;
-    newCmd->bin = 0;
-    return newCmd;
-}
+    char *multiByteString = NULL;
 
-void getCmd(t_list_cmd ** listCmd)
-{
-    int bin;
+    unsigned int cursorLocation = 0;
 
-    int cursorLocation = 0;
+    wchar_t *wideString = NULL;
 
-    bin = 1;
+    wideString = MALLOC(1024 * sizeof(*wideString));
+    *wideString = L'\0';
+    getPrompt(WRT_PRT);
+    setSearchedTokenInScilabHistory(NULL);
     while (bin)
     {
-        memCmd(*listCmd, cursorLocation);
-        if (getKey(listCmd, &cursorLocation) == '\n')
+        memCmd(wideString, cursorLocation);
+        if (getKey(&wideString, &cursorLocation) == '\n')
         {
             putchar('\n');
             bin = 0;
         }
     }
-}
-
-t_list_cmd *freeCmd(t_list_cmd ** cmd)
-{
-    t_list_cmd *save;
-
-    save = *cmd;
-    *cmd = (*cmd)->previous;
-    free(save->cmd);
-    free(save);
-    if (*cmd)
-        (*cmd)->next = NULL;
-    return *cmd;
-}
-
-void deleteHistory(t_list_cmd * cmd, int limit)
-{
-    while (limit && cmd->previous)
-    {
-        cmd = cmd->previous;
-        limit--;
-    }
-    if (!limit)
-    {
-        cmd = cmd->next;
-        free(cmd->previous->cmd);
-        free(cmd->previous);
-        cmd->previous = NULL;
-    }
+    multiByteString = wide_string_to_UTF8(wideString);
+    appendLineToScilabHistory(multiByteString);
+    setSearchedTokenInScilabHistory(NULL);
+    return multiByteString;
 }

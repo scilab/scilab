@@ -9,18 +9,17 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include	<wchar.h>
-#include	<wctype.h>
-#include	<unistd.h>
-#include	<stdlib.h>
-#include	<stdio.h>
-#include	<wchar.h>
-#include	<wctype.h>
-#include	<curses.h>
-
-#include        "reader.h"
-#include	"aff_prompt.h"
-#include	"prompt.h"
+#include <wchar.h>
+#include <wctype.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <curses.h>
+#include "reader.h"
+#include "aff_prompt.h"
+#include "prompt.h"
 
 /*
  * If there's a string, the function save it.
@@ -56,7 +55,7 @@ int getPrompt(int token)
     }
     if (token == WRT_PRT)
     {
-        printf(SCI_PRINT_WSTRING, prompt);
+        printf("%ls", prompt);
         fflush(stdout);
     }
     return wcslen(prompt);

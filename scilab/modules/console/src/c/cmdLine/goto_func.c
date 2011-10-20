@@ -9,19 +9,19 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include	<termios.h>
-#include	<curses.h>
-#include	<term.h>
-#include	<string.h>
-#include	<wchar.h>
-#include	<wctype.h>
-#include	"reader.h"
-#include	"cap_func.h"
-#include	"aff_prompt.h"
-#include	"goto_func.h"
+#include <termios.h>
+#include <curses.h>
+#include <term.h>
+#include <string.h>
+#include <wchar.h>
+#include <wctype.h>
+#include "reader.h"
+#include "cap_func.h"
+#include "aff_prompt.h"
+#include "goto_func.h"
 
 /* Move cursor to the right */
-int gotoRight(t_list_cmd * cmd, unsigned int *cursorLocation)
+int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
     int nbrCol;
 
@@ -30,7 +30,7 @@ int gotoRight(t_list_cmd * cmd, unsigned int *cursorLocation)
     promptSize = getPrompt(NOWRT_PRT);
     nbrCol = tgetnum("co");
     /* if the cursor is not at the end of the command line */
-    if (*cursorLocation != wcslen(cmd->cmd))
+    if (*cursorLocation != wcslen(CommandLine))
     {
         /* If the cursor is on the last column... */
         if (!((*cursorLocation + promptSize + 1) % nbrCol))
@@ -72,7 +72,7 @@ static void findEndLine(int i, int promptSize, int nbrCol)
 }
 
 /* Move cursor to the left */
-int gotoLeft(t_list_cmd * cmd, unsigned int *cursorLocation)
+int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
     int nbrCol;
 
@@ -80,7 +80,7 @@ int gotoLeft(t_list_cmd * cmd, unsigned int *cursorLocation)
 
     int i = 0;
 
-    if (cmd != NULL)
+    if (CommandLine != NULL)
     {
         i = *cursorLocation;
     }
@@ -91,7 +91,7 @@ int gotoLeft(t_list_cmd * cmd, unsigned int *cursorLocation)
         findEndLine(i, promptSize, nbrCol);
         i--;
     }
-    if (cmd != NULL)
+    if (CommandLine != NULL)
     {
         *cursorLocation = i;
         return *cursorLocation;
@@ -100,59 +100,58 @@ int gotoLeft(t_list_cmd * cmd, unsigned int *cursorLocation)
 }
 
 /* Move cursor to the beginning of a line */
-int begLine(t_list_cmd * cmd, unsigned int *cursorLocation)
+int begLine(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
 /* While the index is not zero (meaning it's the beginning of th line) */
     while (*cursorLocation)
     {
-        gotoLeft(cmd, cursorLocation);
+        gotoLeft(CommandLine, cursorLocation);
     }
     return *cursorLocation;
 }
 
 /* Move cursor to the end of a line */
-int endLine(t_list_cmd * cmd, unsigned int *cursorLocation)
+int endLine(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
     int sizeOfCmd = 0;
 
-    sizeOfCmd = wcslen(cmd->cmd);
+    sizeOfCmd = wcslen(CommandLine);
 /* While the index is different of the size of the line */
     while (sizeOfCmd - (*cursorLocation))
     {
-        gotoRight(cmd, cursorLocation);
+        gotoRight(CommandLine, cursorLocation);
     }
     return *cursorLocation;
 }
 
-int nextWord(t_list_cmd * cmd, unsigned int *cursorLocation)
+int nextWord(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
-    /* Factorize cmd->cmd[*cursorLocation] */
+    /* Factorize CommandLine[*cursorLocation] */
     /* Passing current word... */
-    while (cmd->cmd[*cursorLocation] && cmd->cmd[*cursorLocation] != L' ')
+    while (CommandLine[*cursorLocation] && CommandLine[*cursorLocation] != L' ')
     {
-        gotoRight(cmd, cursorLocation);
+        gotoRight(CommandLine, cursorLocation);
     }
     /* ... then passing through spaces */
-    while (cmd->cmd[*cursorLocation] && cmd->cmd[*cursorLocation] == L' ')
+    while (CommandLine[*cursorLocation] && CommandLine[*cursorLocation] == L' ')
     {
-        gotoRight(cmd, cursorLocation);
+        gotoRight(CommandLine, cursorLocation);
     }
     /* what is the point of the two declaration ? */
     return *cursorLocation;
 }
 
-int previousWord(t_list_cmd * cmd, unsigned int *cursorLocation)
+int previousWord(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
     /* Passing through spaces... */
-    while (*cursorLocation && cmd->cmd[*cursorLocation - 1] == L' ')
+    while (*cursorLocation && CommandLine[*cursorLocation - 1] == L' ')
     {
-        gotoLeft(cmd, cursorLocation);
+        gotoLeft(CommandLine, cursorLocation);
     }
     /* ... then going to the beginning of the word */
-    while (*cursorLocation && cmd->cmd[*cursorLocation - 1] != L' ')
+    while (*cursorLocation && CommandLine[*cursorLocation - 1] != L' ')
     {
-        gotoLeft(cmd, cursorLocation);
+        gotoLeft(CommandLine, cursorLocation);
     }
-    /* what is the point of the two declaration ? */
     return *cursorLocation;
 }

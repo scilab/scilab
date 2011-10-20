@@ -9,8 +9,8 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef		AFF_PROMPT_H_
-#define	AFF_PROMPT_H_
+#ifndef AFF_PROMPT_H_
+#define AFF_PROMPT_H_
 
 #include    <wchar.h>
 

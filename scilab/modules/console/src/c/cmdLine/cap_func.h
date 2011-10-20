@@ -12,6 +12,8 @@
 #ifndef CAP_FUNC_H_
 #define CAP_FUNC_H_
 
+/* TODO: Check if it is really portable */
+
 /* Token used to differenciate DEL key from Backspace key for rmChar */
 
 /* When backspace is pressed */
@@ -36,17 +38,17 @@
 
 /**
  * Turn a capacity on, Useful to simplify termcap use.
+ * TODO: please rename for something more explicit (startTermcap ?)
  * @param capacity to activate.
  */
 void capStr(const char *str);
 
 /**
  * Move cursor using termcap, Useful to simplify termcap use.
+ * Note: Can be consider as x,y coordinates.
  * @param column where cursor will move
  * @param line where cursor will move
  */
 void capGoto(int col, int li);
-
-/* Note: Can be consider as x,y coordinates. */
 
 #endif /* !CAP_FUNC_H_ */

@@ -9,26 +9,25 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef		HISTORY_H_
-#define	HISTORY_H_
+#ifndef HISTORY_H_
+#define HISTORY_H_
 
-#include	"reader.h"
-#include	"history.h"
+#include <wchar.h>
 
 /**
- * Change current editing line to previous editing line
+ * Change current editing line to prev editing line
  * @param list of all command lines.
- * @param user input
+ * @param cursor location in the command line.
  * @return user input
  */
-int previousCmd(t_list_cmd ** cmd, unsigned int *cursorLocation);
+int previousCmd(wchar_t ** cmd, unsigned int *cursorLocation);
 
 /**
  * Change current editing line to next editing line
  * @param list of all command lines.
- * @param user input
+ * @param cursor location in the command line.
  * @return user input
  */
-int nextCmd(t_list_cmd ** cmd, unsigned int *cursorLocation);
+int nextCmd(wchar_t ** cmd, unsigned int *cursorLocation);
 
 #endif /* !HISTORY_H_ */

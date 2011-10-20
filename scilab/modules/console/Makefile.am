@@ -51,7 +51,6 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/prompt.c \
@@ -66,7 +65,7 @@ src/c/cmdLine/goto_func.c \
 src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \
 src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/reader.c
+src/c/cmdLine/autoCompletionCli.c
 
 
 if IS_MACOSX
@@ -107,7 +106,6 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/prompt.c \
@@ -122,7 +120,7 @@ src/c/cmdLine/goto_func.c \
 src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \
 src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/reader.c
+src/c/cmdLine/autoCompletionCli.c
 
 if IS_MACOSX
 libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c

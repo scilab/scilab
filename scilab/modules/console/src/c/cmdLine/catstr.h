@@ -12,7 +12,7 @@
 #ifndef	CATSTR_H_
 #define	CATSTR_H_
 
-#include	<wchar.h>
+#include <wchar.h>
 
 /**
  * Malloc and concatenate 2 wide char string.

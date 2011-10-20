@@ -9,15 +9,15 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include	<unistd.h>
-#include	<stdlib.h>
-#include	<signal.h>
-#include	<curses.h>
-#include	<term.h>
-#include	"cmd_func.h"
-#include	"cap_func.h"
-#include	"aff_prompt.h"
-#include	"get_signal.h"
+#include <unistd.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <curses.h>
+#include <term.h>
+#include "cmd_func.h"
+#include "cap_func.h"
+#include "aff_prompt.h"
+#include "get_signal.h"
 
 /*
  * Get new terminfo

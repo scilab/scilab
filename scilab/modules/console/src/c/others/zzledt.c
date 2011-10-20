@@ -19,7 +19,7 @@
 
 #include <errno.h>
 #include <string.h>
-#include <signal.h> /* for SIGINT */
+#include <signal.h>             /* for SIGINT */
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
@@ -42,7 +42,6 @@
 #endif
 #endif
 
-#include "../cmdLine/reader.h"
 #include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
@@ -98,7 +97,6 @@
 #define TERMCAP
 #endif
 
-
 #if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__) && !defined(__DragonFly__)
 #ifdef  __alpha
 #define B42UNIX
@@ -123,7 +121,9 @@
 #include <sys/file.h>
 #include <sgtty.h>
 static short save_sg_flags;
+
 static struct sgttyb arg;
+
 static struct tchars arg1;
 #endif
 
@@ -132,10 +132,12 @@ static struct tchars arg1;
 #ifdef HAVE_TERMIOS_H
 #include <termios.h>
 static struct termios save_term;
+
 static struct termios arg;
 #else
 #include <termio.h>
 static struct termio save_term;
+
 static struct termio arg;
 #endif
 #endif
@@ -147,28 +149,28 @@ static struct termio arg;
 #define RIGHT_ARROW           0x014d
 #define SEARCH_BACKWARD       0x015e
 #define SEARCH_FORWARD        0x0160
-#define CTRL_A                0x0001  /* control-A */
-#define CTRL_E                0x0005  /* control-E */
-#define CTRL_U                0x0015  /* control-U */
-#define INS                   0x0014  /* control-T */
+#define CTRL_A                0x0001    /* control-A */
+#define CTRL_E                0x0005    /* control-E */
+#define CTRL_U                0x0015    /* control-U */
+#define INS                   0x0014    /* control-T */
 #define DEL                   0x007f
-#define BS                    0x0008  /* control-H */
+#define BS                    0x0008    /* control-H */
 #define CR                    0x000d
 #define LF                    0x000a
 #define BEL                   0x0007
 #define TAB                   0x0009
-#define CTRL_B                0x0002  /* back a character */
-#define CTRL_C                0x0003  /* redo line */
-#define CTRL_D                0x0004  /* delete next char */
-#define CTRL_F                0x0006  /* forward a character */
-#define CTRL_K                0x000b  /* delete to end of line */
-#define CTRL_L                0x000c  /* delete to end of line */
-#define CTRL_N                0x000e  /* next line */
-#define CTRL_P                0x0010  /* previous line */
-#define CTRL_X                0x0018  /* Break scilab */
-#define CTRL_Y                0x0019  /* paste */
-#define CTRL_Z                0x0020  /* stop */
-#define CASE_PRINT            63      /* from x_VTparse.h */
+#define CTRL_B                0x0002    /* back a character */
+#define CTRL_C                0x0003    /* redo line */
+#define CTRL_D                0x0004    /* delete next char */
+#define CTRL_F                0x0006    /* forward a character */
+#define CTRL_K                0x000b    /* delete to end of line */
+#define CTRL_L                0x000c    /* delete to end of line */
+#define CTRL_N                0x000e    /* next line */
+#define CTRL_P                0x0010    /* previous line */
+#define CTRL_X                0x0018    /* Break scilab */
+#define CTRL_Y                0x0019    /* paste */
+#define CTRL_Z                0x0020    /* stop */
+#define CASE_PRINT            63    /* from x_VTparse.h */
 
 #define NUL '\0'
 #define TRUE 1
@@ -178,83 +180,114 @@ static struct termio arg;
 #define WK_BUF_SIZE 520
 #define SV_BUF_SIZE 5000
 
-#define N_SEQS       6      /* number of special sequences */
-#define MAX_SEQ_LEN  10     /* max chars in special termcap seqs */
+#define N_SEQS       6          /* number of special sequences */
+#define MAX_SEQ_LEN  10         /* max chars in special termcap seqs */
 #define ESC          0x01b
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[10];
+
 static char *tmpPrompt = NULL;
 
 /* declare and define initial sequences. They
 * may be overwritten by termcap entries */
 static char seqs[N_SEQS][MAX_SEQ_LEN] = {
-    { 0x1b, 0x5b, 0x41, 0x00 },   /* up arrow */
-    { 0x1b, 0x5b, 0x42, 0x00 },   /* down arrow */
-    { 0x1b, 0x5b, 0x44, 0x00 },   /* left arrow */
-    { 0x1b, 0x5b, 0x43, 0x00 },    /* right arrow */
-    { 0x1b, 0x3c, 0x00, 0x00 },   /* search backward*/
-    { 0x1b, 0x3e, 0x00, 0x00 }    /* search forward */
+    {0x1b, 0x5b, 0x41, 0x00},   /* up arrow */
+    {0x1b, 0x5b, 0x42, 0x00},   /* down arrow */
+    {0x1b, 0x5b, 0x44, 0x00},   /* left arrow */
+    {0x1b, 0x5b, 0x43, 0x00},   /* right arrow */
+    {0x1b, 0x3c, 0x00, 0x00},   /* search backward */
+    {0x1b, 0x3e, 0x00, 0x00}    /* search forward */
 };
-static int key_map[] = {UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, SEARCH_BACKWARD, SEARCH_FORWARD};
+static int key_map[] = { UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, SEARCH_BACKWARD, SEARCH_FORWARD };
 
-static char yank_buf[WK_BUF_SIZE + 1];/* yank buffer for copy/paste */
-static int insert_flag = 1; /*insertion mode */
+static char yank_buf[WK_BUF_SIZE + 1];  /* yank buffer for copy/paste */
+
+static int insert_flag = 1;     /*insertion mode */
+
 /* --- locally defined functions ---  */
 static void move_right(char *source, int max_chars);
+
 static void move_left(char *source);
+
 static void display_string(char *string);
+
 static void backspace(int n);
+
 static void doCompletion(char *, int *cursor, int *cursor_max);
+
 static void erase_nchar(int n);
+
 static int gchar_no_echo(void);
-static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max);
+
+static int CopyLineAtPrompt(char *wk_buf, char *line, int *cursor, int *cursor_max);
+
 static void strip_blank(char *source);
-static int  translate(int ichar);
+
+static int translate(int ichar);
+
 static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max);
+
 static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max);
 
 /* function for console mode */
 static void enable_keypad_mode(void);
+
 static void disable_keypad_mode(void);
+
 static void init_io(void);
+
 static void set_crmod(void);
+
 static void set_cbreak(void);
 
 /* --- extern functions ---  */
-extern void C2F(sigbas)(int *n);
+extern void C2F(sigbas) (int *n);
 
 /*  ---- interruption handling ---*/
 static char wk_buf_save[WK_BUF_SIZE + 1];
-static int cursor_save=0;
-static int cursor_max_save=0;
-static int interrupted=0;
+
+static int cursor_save = 0;
+
+static int cursor_max_save = 0;
+
+static int interrupted = 0;
+
 /*  ---- end of interruption handling ---*/
 
-static int sendprompt=1;
+static int sendprompt = 1;
 
 /*-------------- Declarations  specific for console mode    -----------------  */
 static int init_flag = TRUE;
+
 static int tty;
 
+static int cbreak_crmod = 1;    /* crmod on */
 
-static int cbreak_crmod = 1;/* crmod on */
-static int fd=0;            /* file number for standard in */
+static int fd = 0;              /* file number for standard in */
 
 #ifdef TERMCAP
 /* termcap capability string for arrow up,down, left, and right */
 static char *tc_capabilities[] = { "ku", "kd", "kl", "kr", "" };
-static char strings[128];   /* place to store output strings from termcap file */
-static char *KS=NULL;            /* enable keypad */
-static char *KE=NULL;            /* disable keypad */
-static char *CE=NULL;            /* clear to end of line */
-char *BC=NULL;            /* backspace */
-static char *IM=NULL;            /* start insert mode */
-static char *IC=NULL;            /* insert character */
-static char *EI=NULL;            /* end insert mode */
-static char *CL=NULL;            /* clear screen */
+
+static char strings[128];       /* place to store output strings from termcap file */
+
+static char *KS = NULL;         /* enable keypad */
+
+static char *KE = NULL;         /* disable keypad */
+
+static char *CE = NULL;         /* clear to end of line */
+
+char *BC = NULL;                /* backspace */
+
+static char *IM = NULL;         /* start insert mode */
+
+static char *IC = NULL;         /* insert character */
+
+static char *EI = NULL;         /* end insert mode */
+
+static char *CL = NULL;         /* clear screen */
 
 #endif
-
 
 //void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,  int *menusflag,int * modex,long int dummy1);
 
@@ -264,16 +297,18 @@ static void updateToken(char *linebuffer)
     if (linebuffer)
     {
         char *token = NULL;
-        token = (char*)MALLOC(sizeof(char)*(strlen(linebuffer)+1));
+
+        token = (char *)MALLOC(sizeof(char) * (strlen(linebuffer) + 1));
         if (token)
         {
-            strcpy(token,linebuffer);
+            strcpy(token, linebuffer);
             setSearchedTokenInScilabHistory(token);
             FREE(token);
             token = NULL;
         }
     }
 }
+
 /***********************************************************************
 * line editor
 **********************************************************************/
@@ -282,19 +317,23 @@ char *TermReadAndProcess(void)
 {
 
     int cursor_max = 0;
+
     int cursor = 0;
-    int yank_len,i;
+
+    int yank_len, i;
 
     int keystroke;
+
     int character_count;
+
     char wk_buf[WK_BUF_SIZE + 1];
 
     char *buffer = NULL;
 
-    tmpPrompt = GetTemporaryPrompt(); /* Input function has been used ? */
+    tmpPrompt = GetTemporaryPrompt();   /* Input function has been used ? */
     GetCurrentPrompt(Sci_Prompt);
 
-    if(init_flag)
+    if (init_flag)
     {
         init_io();
         init_flag = FALSE;
@@ -303,16 +342,16 @@ char *TermReadAndProcess(void)
     if (interrupted)
     {
         /* restore the state */
-        interrupted=0;
-        strcpy(wk_buf,wk_buf_save);
-        cursor=cursor_save;
-        cursor_save=0;
-        cursor_max=cursor_max_save;
-        cursor_max_save=0;
+        interrupted = 0;
+        strcpy(wk_buf, wk_buf_save);
+        cursor = cursor_save;
+        cursor_save = 0;
+        cursor_max = cursor_max_save;
+        cursor_max_save = 0;
     }
     else
     {
-        wk_buf[0] = NUL; /* initialize empty  buffer */
+        wk_buf[0] = NUL;        /* initialize empty  buffer */
     }
 
 #ifdef KEYPAD
@@ -321,65 +360,71 @@ char *TermReadAndProcess(void)
 #endif
 
     /* Display the Scilab prompt */
-    if(sendprompt)
+    if (sendprompt)
     {
-        if(tmpPrompt!=NULL)
+        if (tmpPrompt != NULL)
         {
-            printf("%s",tmpPrompt);
+            printf("%s", tmpPrompt);
         }
         else
         {
-            printf("%s",Sci_Prompt);/* write prompt */
+            printf("%s", Sci_Prompt);   /* write prompt */
         }
     }
 
-    sendprompt=1;
+    sendprompt = 1;
 
     setSearchedTokenInScilabHistory(NULL);
 
-    while(1)
+    while (1)
     {
         /* main loop to read keyboard input */
         /* get next keystroke (no echo) returns -1 if interrupted */
         keystroke = gchar_no_echo();
 
-        if ( (keystroke ==  CTRL_C) || (keystroke == CTRL_X) ) /* did not exist in old gtk version */
+        if ((keystroke == CTRL_C) || (keystroke == CTRL_X)) /* did not exist in old gtk version */
         {
             int j = SIGINT;
-            C2F(sigbas)(&j);
+
+            C2F(sigbas) (&j);
             keystroke = '\n';
         };
 
         /* check for ascii extended characters */
-        if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT) || keystroke > 0x0100 )
+        if ((iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT) || keystroke > 0x0100)
         {
             /* stroke is line editing command */
-            switch(keystroke)
+            switch (keystroke)
             {
-            case CTRL_P: case UP_ARROW: /* move one line up if any in history */
+            case CTRL_P:
+            case UP_ARROW:     /* move one line up if any in history */
                 {
                     char *line = getPreviousLineInScilabHistory();
+
                     if (line)
                     {
-                        CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+                        CopyLineAtPrompt(wk_buf, line, &cursor, &cursor_max);
                         FREE(line);
                     }
                 }
                 break;
 
-            case CTRL_N: case DOWN_ARROW:  /* move one line down if any in history */
+            case CTRL_N:
+            case DOWN_ARROW:   /* move one line down if any in history */
                 {
                     char *line = getNextLineInScilabHistory();
+
                     if (line)
                     {
-                        CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+                        CopyLineAtPrompt(wk_buf, line, &cursor, &cursor_max);
                         FREE(line);
                     }
                 }
                 break;
 
-            case CTRL_B: case LEFT_ARROW:/* move left*/
-                if(cursor > 0)
+            case CTRL_B:
+            case LEFT_ARROW:   /* move left */
+                if (cursor > 0)
                 {
                     /* is there room to move left */
                     cursor--;
@@ -391,23 +436,26 @@ char *TermReadAndProcess(void)
                 }
                 break;
 
-            case CTRL_F: case RIGHT_ARROW: /* move right*/
+            case CTRL_F:
+            case RIGHT_ARROW:  /* move right */
 
-                if(cursor < cursor_max) {/* is there room to move right */
+                if (cursor < cursor_max)
+                {               /* is there room to move right */
                     putchar(wk_buf[cursor++]);
                 }
-                else {
+                else
+                {
                     putchar(BEL);
                 }
                 break;
 
             case CTRL_A:
-                backspace(cursor); /* move to beginning of the line */
+                backspace(cursor);  /* move to beginning of the line */
                 cursor = 0;
                 break;
 
-            case CTRL_E:  /* move to end of line */
-                while(cursor < cursor_max)
+            case CTRL_E:       /* move to end of line */
+                while (cursor < cursor_max)
                 {
                     putchar(wk_buf[cursor++]);
                 }
@@ -417,19 +465,21 @@ char *TermReadAndProcess(void)
                 doCompletion(wk_buf, &cursor, &cursor_max);
 
                 break;
-            case INS: /* toggle insert/overwrite flag */
+            case INS:          /* toggle insert/overwrite flag */
                 insert_flag = !insert_flag;
                 break;
 
-            case CTRL_X: case CTRL_C: /** we never get there CTRL_C is explored above **/
+            case CTRL_X:
+            case CTRL_C:             /** we never get there CTRL_C is explored above **/
                 {
                     int j = SIGINT;
-                    C2F(sigbas)(&j);
+
+                    C2F(sigbas) (&j);
                 };
                 break;
 
-            case CTRL_D: /* delete next character*/
-                if(cursor == cursor_max)
+            case CTRL_D:       /* delete next character */
+                if (cursor == cursor_max)
                 {
                     /* reminder that backing up over edge */
                     putchar(BEL);
@@ -446,8 +496,9 @@ char *TermReadAndProcess(void)
                 //updateToken(wk_buf);
                 break;
 
-            case BS: case DEL: /* backspace with delete */
-                if(cursor == 0)
+            case BS:
+            case DEL:          /* backspace with delete */
+                if (cursor == 0)
                 {
                     /* reminder that backing up over edge */
                     putchar(BEL);
@@ -467,8 +518,8 @@ char *TermReadAndProcess(void)
                 //updateToken(wk_buf);
                 break;
 
-            case CTRL_K: /* delete to end of line */
-                if(cursor == cursor_max)
+            case CTRL_K:       /* delete to end of line */
+                if (cursor == cursor_max)
                 {
                     /* reminder that backing up over edge */
                     putchar(BEL);
@@ -476,35 +527,36 @@ char *TermReadAndProcess(void)
                 }
                 /* erase  character  at end. */
                 erase_nchar(cursor_max - cursor);
-                /* store cutted part in tyank buffer*/
-                strcpy(yank_buf,&wk_buf[cursor]);
+                /* store cutted part in tyank buffer */
+                strcpy(yank_buf, &wk_buf[cursor]);
                 /* backspace to proper cursor position */
                 wk_buf[cursor] = NUL;
                 cursor_max = cursor;
                 //updateToken(wk_buf);
                 break;
 
-            case CTRL_Y: /* Paste at the current point */
-                yank_len=strlen(yank_buf);
-                if(yank_len!=0 )
+            case CTRL_Y:       /* Paste at the current point */
+                yank_len = strlen(yank_buf);
+                if (yank_len != 0)
                 {
-                    if (cursor==cursor_max)
+                    if (cursor == cursor_max)
                     {
-                        strcpy(&wk_buf[cursor],yank_buf);
+                        strcpy(&wk_buf[cursor], yank_buf);
                         display_string(&wk_buf[cursor]);
                         cursor = cursor_max + yank_len;
                         cursor_max = cursor;
                     }
                     else
                     {
-                        for(i = 0; i <= cursor_max-cursor; i++) wk_buf[cursor_max+yank_len-i]=wk_buf[cursor_max-i];
-                        wk_buf[cursor_max+yank_len]=NUL;
-                        strncpy(&wk_buf[cursor],yank_buf,yank_len);
+                        for (i = 0; i <= cursor_max - cursor; i++)
+                            wk_buf[cursor_max + yank_len - i] = wk_buf[cursor_max - i];
+                        wk_buf[cursor_max + yank_len] = NUL;
+                        strncpy(&wk_buf[cursor], yank_buf, yank_len);
                         erase_nchar(cursor_max - cursor);
                         display_string(&wk_buf[cursor]);
-                        backspace(cursor_max-cursor);
-                        cursor_max=cursor_max+yank_len;
-                        cursor=cursor+yank_len;
+                        backspace(cursor_max - cursor);
+                        cursor_max = cursor_max + yank_len;
+                        cursor = cursor + yank_len;
                     }
                 }
                 //updateToken(wk_buf);
@@ -515,36 +567,39 @@ char *TermReadAndProcess(void)
 
             case CTRL_L:
 #ifdef TERMCAP
-                fputs(CL,stdout);
-                wk_buf[0]=NUL;
+                fputs(CL, stdout);
+                wk_buf[0] = NUL;
                 goto exit;
 #else
                 putchar(BEL);
 #endif
                 break;
 
-            case CTRL_U: /* clear line buffer */
+            case CTRL_U:       /* clear line buffer */
                 backspace(cursor);
                 erase_nchar(cursor_max);
                 wk_buf[0] = NUL;
                 cursor = cursor_max = 0;
                 break;
 
-            case LF: case CR: /* carrage return indicates line is ok;*/
-                strip_blank(wk_buf);/* first strip any trailing blanks */
-                if (wk_buf[0]==EXCL)
+            case LF:
+            case CR:           /* carrage return indicates line is ok; */
+                strip_blank(wk_buf);    /* first strip any trailing blanks */
+                if (wk_buf[0] == EXCL)
                 {
                     char *token = NULL;
-                    token = (char*)MALLOC(sizeof(char)*strlen(&wk_buf[1]));
+
+                    token = (char *)MALLOC(sizeof(char) * strlen(&wk_buf[1]));
                     if (token)
                     {
                         char *line = NULL;
-                        strcpy(token,&wk_buf[1]);
+
+                        strcpy(token, &wk_buf[1]);
                         setSearchedTokenInScilabHistory(token);
                         line = getNextLineInScilabHistory();
                         if (line)
                         {
-                            CopyLineAtPrompt(wk_buf,line,&cursor,&cursor_max);
+                            CopyLineAtPrompt(wk_buf, line, &cursor, &cursor_max);
                             FREE(line);
                             line = NULL;
                         }
@@ -555,7 +610,7 @@ char *TermReadAndProcess(void)
                 }
                 else
                 {
-                    if (strlen(wk_buf)>=0)
+                    if (strlen(wk_buf) >= 0)
                     {
                         appendLineToScilabHistory(wk_buf);
                         setSearchedTokenInScilabHistory(NULL);
@@ -578,35 +633,41 @@ char *TermReadAndProcess(void)
         else
         {
             /* alpha/numeric keystroke.
-            * substitute blank fill for tab char
-            */
-            if(keystroke == '\t')
+             * substitute blank fill for tab char
+             */
+            if (keystroke == '\t')
             {
                 keystroke = ' ';
-                character_count = TAB_SKIP - (cursor%TAB_SKIP);
-                if(character_count == 0) character_count = TAB_SKIP;
+                character_count = TAB_SKIP - (cursor % TAB_SKIP);
+                if (character_count == 0)
+                    character_count = TAB_SKIP;
             }
             else
             {
-                if(keystroke == EOF) {sciquit(); exit(0);}
-                else character_count = 1;
+                if (keystroke == EOF)
+                {
+                    sciquit();
+                    exit(0);
+                }
+                else
+                    character_count = 1;
             }
 
-            while(character_count--)
+            while (character_count--)
             {
-                if(insert_flag)
+                if (insert_flag)
                 {
                     /* insert mode, move rest of line right and
-                    * add character at cursor
-                    */
+                     * add character at cursor
+                     */
                     move_right(&wk_buf[cursor], WK_BUF_SIZE - cursor);
                     /* bump max cursor but not over buffer
-                    * size
-                    */
+                     * size
+                     */
                     cursor_max = (++cursor_max > WK_BUF_SIZE) ? WK_BUF_SIZE : cursor_max;
                     /* if cursor at end of line, backspace so
-                    * that new character overwrites last one */
-                    if(cursor == WK_BUF_SIZE)
+                     * that new character overwrites last one */
+                    if (cursor == WK_BUF_SIZE)
                     {
                         cursor--;
                         backspace(1);
@@ -619,14 +680,14 @@ char *TermReadAndProcess(void)
                 else
                 {
                     /* overstrike mode */
-                    if(cursor == WK_BUF_SIZE)
+                    if (cursor == WK_BUF_SIZE)
                     {
                         cursor--;
                         backspace(1);
                     }
                     wk_buf[cursor] = keystroke;
                     putchar(keystroke);
-                    if(cursor < WK_BUF_SIZE - 1)
+                    if (cursor < WK_BUF_SIZE - 1)
                     {
                         cursor++;
                         cursor_max = Max(cursor_max, cursor);
@@ -643,7 +704,7 @@ char *TermReadAndProcess(void)
 
 exit:
     /* copy to return buffer */
-    buffer=strdup(wk_buf);
+    buffer = strdup(wk_buf);
     putchar('\r');
     putchar('\n');
 #ifdef KEYPAD
@@ -661,12 +722,13 @@ static void move_right(char *source, int max_chars)
 {
     char *p;
 
-    p = source;              /* point to beginning */
-    while(max_chars-- && *p++) /* increment until max chars or string
-                               * end */
-                               ;
-    *p = NUL;                /* force new string end */
-    while(--p > source) {    /* move from rightmost edge to right */
+    p = source;                 /* point to beginning */
+    while (max_chars-- && *p++) /* increment until max chars or string
+                                 * end */
+        ;
+    *p = NUL;                   /* force new string end */
+    while (--p > source)
+    {                           /* move from rightmost edge to right */
         *p = *(p - 1);
     }
 }
@@ -677,9 +739,11 @@ static void move_right(char *source, int max_chars)
 
 static void move_left(char *source)
 {
-    do {                     /* move from left edge to left */
+    do
+    {                           /* move from left edge to left */
         *source = *(source + 1);
-    } while(*source++ != NUL);
+    }
+    while (*source++ != NUL);
 }
 
 /***********************************************************************
@@ -688,7 +752,8 @@ static void move_left(char *source)
 
 static void display_string(char *string)
 {
-    while(*string != NUL) {
+    while (*string != NUL)
+    {
         putchar(*string++);
     }
 }
@@ -698,24 +763,26 @@ static void display_string(char *string)
 **********************************************************************/
 static void displayPrompt(char *wk_buf)
 {
-    char msg[WK_BUF_SIZE]="";
-    if (tmpPrompt!=NULL)
+    char msg[WK_BUF_SIZE] = "";
+
+    if (tmpPrompt != NULL)
     {
-        sprintf(msg,"\r\n%s%s",tmpPrompt,wk_buf);
+        sprintf(msg, "\r\n%s%s", tmpPrompt, wk_buf);
     }
     else
     {
-        sprintf(msg,"\r\n%s%s",Sci_Prompt,wk_buf);
+        sprintf(msg, "\r\n%s%s", Sci_Prompt, wk_buf);
     }
     display_string(msg);
 }
 
-static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary)
+static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary)
 {
-#define MAX_LINE_SIZE 79 /* 80 - 1 the leading space */
+#define MAX_LINE_SIZE 79        /* 80 - 1 the leading space */
     if (dictionary)
     {
         int i = 0;
+
         int lenCurrentLine = 0;
 
         display_string("\r\n");
@@ -723,10 +790,11 @@ static void displayCompletionDictionary(char **dictionary,int sizedictionary, ch
         display_string(":");
         display_string("\r\n");
 
-        for(i = 0;i < sizedictionary;i++)
+        for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
-            if ( (lenCurrentLine + newlenLine) > MAX_LINE_SIZE )
+
+            if ((lenCurrentLine + newlenLine) > MAX_LINE_SIZE)
             {
                 display_string("\r\n");
                 lenCurrentLine = 0;
@@ -741,32 +809,59 @@ static void displayCompletionDictionary(char **dictionary,int sizedictionary, ch
         display_string("\r\n");
     }
 }
+
 /*--------------------------------------------------------------------------*/
-static char **concatenateStrings(int *sizearrayofstring, char *string1,
-                                 char *string2, char *string3,
-                                 char *string4, char *string5)
+static char **concatenateStrings(int *sizearrayofstring, char *string1, char *string2, char *string3, char *string4, char *string5)
 {
     int newsize = 0;
+
     char **arrayOfString = NULL;
+
     *sizearrayofstring = 0;
 
-    if (string1) newsize++;
-    if (string2) newsize++;
-    if (string3) newsize++;
-    if (string4) newsize++;
-    if (string5) newsize++;
+    if (string1)
+        newsize++;
+    if (string2)
+        newsize++;
+    if (string3)
+        newsize++;
+    if (string4)
+        newsize++;
+    if (string5)
+        newsize++;
 
     if (newsize > 0)
     {
-        arrayOfString = (char**)MALLOC(sizeof(char*) *(newsize));
+        arrayOfString = (char **)MALLOC(sizeof(char *) * (newsize));
         if (arrayOfString)
         {
             int i = 0;
-            if (string1) {arrayOfString[i] = string1; i++;}
-            if (string2) {arrayOfString[i] = string2; i++;}
-            if (string3) {arrayOfString[i] = string3; i++;}
-            if (string4) {arrayOfString[i] = string4; i++;}
-            if (string5) {arrayOfString[i] = string5; i++;}
+
+            if (string1)
+            {
+                arrayOfString[i] = string1;
+                i++;
+            }
+            if (string2)
+            {
+                arrayOfString[i] = string2;
+                i++;
+            }
+            if (string3)
+            {
+                arrayOfString[i] = string3;
+                i++;
+            }
+            if (string4)
+            {
+                arrayOfString[i] = string4;
+                i++;
+            }
+            if (string5)
+            {
+                arrayOfString[i] = string5;
+                i++;
+            }
             *sizearrayofstring = i;
         }
         else
@@ -776,6 +871,7 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1,
     }
     return arrayOfString;
 }
+
 /*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
@@ -785,11 +881,13 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
     {
         if (sizedictionaryFiles == 1)
         {
-            char *new_line = completeLine(lineBeforeCaret, dictionaryFiles[0],filePattern,defaultPattern,TRUE, lineAfterCaret);
+            char *new_line = completeLine(lineBeforeCaret, dictionaryFiles[0], filePattern, defaultPattern, TRUE, lineAfterCaret);
+
             if (new_line)
             {
                 char buflinetmp[WK_BUF_SIZE + 1];
-                strcpy(buflinetmp,new_line);
+
+                strcpy(buflinetmp, new_line);
                 FREE(new_line);
 
                 backspace(*cursor);
@@ -805,8 +903,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
         {
             char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
 
-            displayCompletionDictionary(dictionaryFiles,
-                sizedictionaryFiles, gettext("File or Directory"));
+            displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
 
             display_string("\r\n");
 
@@ -820,7 +917,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             if (defaultPattern[0] == 0)
             {
                 int lennewline = (int)strlen(lineBeforeCaret) + (int)strlen(lineAfterCaret);
-                char *new_line = (char*)MALLOC(sizeof(char) * (lennewline + 1));
+
+                char *new_line = (char *)MALLOC(sizeof(char) * (lennewline + 1));
 
                 if (new_line)
                 {
@@ -828,16 +926,19 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                     strcat(new_line, lineAfterCaret);
 
                     CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-                    FREE(new_line); new_line = NULL;
+                    FREE(new_line);
+                    new_line = NULL;
                 }
             }
             else if (common)
             {
-                char *new_line = completeLine(lineBeforeCaret,common,filePattern,defaultPattern,TRUE,lineAfterCaret);
+                char *new_line = completeLine(lineBeforeCaret, common, filePattern, defaultPattern, TRUE, lineAfterCaret);
+
                 if (new_line)
                 {
                     char buflinetmp[WK_BUF_SIZE + 1];
-                    strcpy(buflinetmp,new_line);
+
+                    strcpy(buflinetmp, new_line);
                     FREE(new_line);
 
                     CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
@@ -845,7 +946,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 else
                 {
                     int lennewline = (int)strlen(lineBeforeCaret) + (int)strlen(lineAfterCaret);
-                    new_line = (char*)MALLOC(sizeof(char) * (lennewline + 1));
+
+                    new_line = (char *)MALLOC(sizeof(char) * (lennewline + 1));
 
                     if (new_line)
                     {
@@ -853,38 +955,49 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                         strcat(new_line, lineAfterCaret);
 
                         CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-                        FREE(new_line); new_line = NULL;
+                        FREE(new_line);
+                        new_line = NULL;
                     }
                 }
             }
-            if (common) {FREE(common); common = NULL;}
+            if (common)
+            {
+                FREE(common);
+                common = NULL;
+            }
         }
     }
 }
+
 /*--------------------------------------------------------------------------*/
-static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern,
-                                char *wk_buf, int *cursor, int *cursor_max)
+static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, int *cursor, int *cursor_max)
 {
     if (defaultPattern)
     {
         int numberWordFound = 0;
 
         char **completionDictionaryFunctions = NULL;
+
         int sizecompletionDictionaryFunctions = 0;
 
         char **completionDictionaryCommandWords = NULL;
+
         int sizecompletionDictionaryCommandWords = 0;
 
         char **completionDictionaryMacros = NULL;
+
         int sizecompletionDictionaryMacros = 0;
 
         char **completionDictionaryVariables = NULL;
+
         int sizecompletionDictionaryVariables = 0;
 
         char **completionDictionaryHandleGraphicsProperties = NULL;
+
         int sizecompletionDictionaryHandleGraphicsProperties = 0;
 
         char **completionDictionaryFields = NULL;
+
         int sizecompletionDictionaryFields = 0;
 
         completionDictionaryFields = completionOnFields(lineBeforeCaret, defaultPattern, &sizecompletionDictionaryFields);
@@ -895,7 +1008,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
             completionDictionaryCommandWords = completionOnCommandWords(defaultPattern, &sizecompletionDictionaryCommandWords);
             completionDictionaryMacros = completionOnMacros(defaultPattern, &sizecompletionDictionaryMacros);
             completionDictionaryVariables = completionOnVariablesWithoutMacros(defaultPattern, &sizecompletionDictionaryVariables);
-            completionDictionaryHandleGraphicsProperties = completionOnHandleGraphicsProperties(defaultPattern, &sizecompletionDictionaryHandleGraphicsProperties);
+            completionDictionaryHandleGraphicsProperties =
+                completionOnHandleGraphicsProperties(defaultPattern, &sizecompletionDictionaryHandleGraphicsProperties);
         }
 
         numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
@@ -907,19 +1021,27 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
             if (numberWordFound == 1)
             {
                 char **completionDictionary = NULL;
+
                 char *new_line = NULL;
 
-                if (completionDictionaryFields) completionDictionary = completionDictionaryFields;
-                if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
-                if (completionDictionaryCommandWords) completionDictionary = completionDictionaryCommandWords;
-                if (completionDictionaryMacros) completionDictionary = completionDictionaryMacros;
-                if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
-                if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
+                if (completionDictionaryFields)
+                    completionDictionary = completionDictionaryFields;
+                if (completionDictionaryFunctions)
+                    completionDictionary = completionDictionaryFunctions;
+                if (completionDictionaryCommandWords)
+                    completionDictionary = completionDictionaryCommandWords;
+                if (completionDictionaryMacros)
+                    completionDictionary = completionDictionaryMacros;
+                if (completionDictionaryVariables)
+                    completionDictionary = completionDictionaryVariables;
+                if (completionDictionaryHandleGraphicsProperties)
+                    completionDictionary = completionDictionaryHandleGraphicsProperties;
 
                 new_line = completeLine(lineBeforeCaret, completionDictionary[0], NULL, defaultPattern, FALSE, lineAfterCaret);
                 if (new_line)
                 {
                     char buflinetmp[WK_BUF_SIZE + 1];
+
                     strcpy(buflinetmp, new_line);
                     FREE(new_line);
 
@@ -944,14 +1066,20 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 else
                 {
                     char *commonFunctions = getCommonPart(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
+
                     char *commonCommandWords = getCommonPart(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
+
                     char *commonMacros = getCommonPart(completionDictionaryMacros, sizecompletionDictionaryMacros);
+
                     char *commonVariables = getCommonPart(completionDictionaryVariables, sizecompletionDictionaryVariables);
-                    char *commonHandleGraphicsProperties = getCommonPart(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
+
+                    char *commonHandleGraphicsProperties =
+                        getCommonPart(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
 
                     int sizecommonsDictionary = 0;
+
                     char **commonsDictionary = concatenateStrings(&sizecommonsDictionary, commonFunctions,
-                        commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
+                                                                  commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
 
                     if (sizecommonsDictionary > 0)
                     {
@@ -966,11 +1094,12 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                         freeArrayOfString(commonsDictionary, sizecommonsDictionary);
                     }
 
-                    displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions,(char *)_("Scilab Function"));
-                    displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords,(char *)_("Scilab Command"));
-                    displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros,(char *)_("Scilab Macro"));
-                    displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables,(char *)_("Scilab Variable"));
-                    displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties, (char *)_("Graphics handle field"));
+                    displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
+                    displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
+                    displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros, (char *)_("Scilab Macro"));
+                    displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
+                    displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties,
+                                                (char *)_("Graphics handle field"));
                     freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
                     freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
                     freeArrayOfString(completionDictionaryMacros, sizecompletionDictionaryMacros);
@@ -995,7 +1124,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     if (new_line)
                     {
                         char buflinetmp[WK_BUF_SIZE + 1];
-                        strcpy(buflinetmp,new_line);
+
+                        strcpy(buflinetmp, new_line);
                         FREE(new_line);
 
                         CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
@@ -1008,36 +1138,57 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
         }
     }
 }
+
 /*--------------------------------------------------------------------------*/
-static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 {
     char *LineBeforeCaret = getLineBeforeCaret(wk_buf, cursor, cursor_max);
+
     char *LineAfterCaret = getLineAfterCaret(wk_buf, cursor, cursor_max);
+
     char *fileSearchedPattern = getFilePartLevel(LineBeforeCaret);
+
     char *SearchedPattern = getPartLevel(LineBeforeCaret);
+
     char **completionDictionaryFiles = NULL;
+
     int sizecompletionDictionaryFiles = 0;
 
     completionDictionaryFiles = completionOnFiles(fileSearchedPattern, &sizecompletionDictionaryFiles);
     if (completionDictionaryFiles)
     {
         TermCompletionOnFiles(completionDictionaryFiles, sizecompletionDictionaryFiles,
-            LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern,
-            wk_buf, cursor, cursor_max);
+                              LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern, wk_buf, cursor, cursor_max);
 
         freeArrayOfString(completionDictionaryFiles, sizecompletionDictionaryFiles);
     }
     else
     {
-        TermCompletionOnAll(LineBeforeCaret, LineAfterCaret, SearchedPattern,
-            wk_buf, cursor, cursor_max);
+        TermCompletionOnAll(LineBeforeCaret, LineAfterCaret, SearchedPattern, wk_buf, cursor, cursor_max);
     }
 
-    if (LineBeforeCaret) {FREE(LineBeforeCaret); LineBeforeCaret = NULL;}
-    if (LineAfterCaret) {FREE(LineAfterCaret); LineAfterCaret = NULL;}
-    if (fileSearchedPattern) {FREE(fileSearchedPattern); fileSearchedPattern = NULL;}
-    if (SearchedPattern) {FREE(SearchedPattern); SearchedPattern = NULL;}
+    if (LineBeforeCaret)
+    {
+        FREE(LineBeforeCaret);
+        LineBeforeCaret = NULL;
+    }
+    if (LineAfterCaret)
+    {
+        FREE(LineAfterCaret);
+        LineAfterCaret = NULL;
+    }
+    if (fileSearchedPattern)
+    {
+        FREE(fileSearchedPattern);
+        fileSearchedPattern = NULL;
+    }
+    if (SearchedPattern)
+    {
+        FREE(SearchedPattern);
+        SearchedPattern = NULL;
+    }
 }
+
 /*--------------------------------------------------------------------------*/
 static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
 {
@@ -1048,16 +1199,20 @@ static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
 
     return line;
 }
+
 /*--------------------------------------------------------------------------*/
 static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
 {
     char *line = NULL;
+
     if (wk_buf)
     {
         if (*cursor != *cursor_max)
         {
-            int len =  *cursor_max - *cursor;
+            int len = *cursor_max - *cursor;
+
             char aftercaret[WK_BUF_SIZE];
+
             strcpy(aftercaret, &wk_buf[*cursor]);
             aftercaret[len + 1] = '\0';
             return strdup(aftercaret);
@@ -1065,6 +1220,7 @@ static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
     }
     return strdup("");
 }
+
 /*--------------------------------------------------------------------------*/
 
 /***********************************************************************
@@ -1072,13 +1228,16 @@ static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
 **********************************************************************/
 static void backspace(int n)
 {
-    if(n < 1) return;
-    while(n--)
+    if (n < 1)
+        return;
+    while (n--)
 #ifdef TERMCAP
-        if(BC) {                 /* if control-H won-t work */
+        if (BC)
+        {                       /* if control-H won-t work */
             fputs(BC, stdout);
         }
-        else {                   /* otherwise just use a normal control-H */
+        else
+        {                       /* otherwise just use a normal control-H */
             putchar('\010');
         }
 #else
@@ -1093,11 +1252,13 @@ static void backspace(int n)
 
 static void erase_nchar(int n)
 {
-    int i;                   /* fill field with blanks */
-    for(i = 0; i < n; i++) {
+    int i;                      /* fill field with blanks */
+
+    for (i = 0; i < n; i++)
+    {
         putchar(' ');
     }
-    backspace(n);            /* and back up over blanks just written */
+    backspace(n);               /* and back up over blanks just written */
 }
 
 /***********************************************************************
@@ -1109,12 +1270,15 @@ static void strip_blank(char *source)
 
     p = source;
     /* look for end of string */
-    while(*p != NUL) {
+    while (*p != NUL)
+    {
         p++;
     }
-    while(p != source) {
+    while (p != source)
+    {
         p--;
-        if(*p != ' ') break;
+        if (*p != ' ')
+            break;
         *p = NUL;
     }
 }
@@ -1129,70 +1293,79 @@ static void strip_blank(char *source)
 static int gchar_no_echo(void)
 {
     int i;
+
     /* get next character, gotten in cbreak mode so no wait for <cr> */
     i = getchar();
 
     /* if more than one character */
-    if(i == ESC) {
+    if (i == ESC)
+    {
         /* translate control code sequences to codes over 100 hex */
         return translate(i);
     }
-    return(i);
+    return (i);
 }
+
 /***********************************************************************
 * translate escape sequences
 **********************************************************************/
 static int translate(int ichar)
 {
     int i, j, not_done;
-    char *pstr[N_SEQS];      /* points to each sequence as it progresses */
+
+    char *pstr[N_SEQS];         /* points to each sequence as it progresses */
 
     /* initialize pointer array */
-    for(i = 0; i < N_SEQS; i++)
+    for (i = 0; i < N_SEQS; i++)
         pstr[i] = &seqs[i][0];
     /* examine all pstrings one char at a time */
-    for(j=0; j++ < MAX_SEQ_LEN;) {
+    for (j = 0; j++ < MAX_SEQ_LEN;)
+    {
 
         not_done = 0;
-        for(i = 0; i < N_SEQS; i++) {
+        for (i = 0; i < N_SEQS; i++)
+        {
             /* if matches next character, this sequence */
-            if(ichar == *pstr[i]) {
+            if (ichar == *pstr[i])
+            {
                 /* if next character, this sequence, null */
-                if(!*(++pstr[i]))
+                if (!*(++pstr[i]))
                     /* return sequence mapped to int */
-                    return(key_map[i]);
+                    return (key_map[i]);
                 else
                     /* flag not done with this sequence yet */
                     not_done = 1;
             }
         }
         /* if any sequence not finished yet */
-        if(not_done) {
+        if (not_done)
+        {
             ichar = getchar();
         }
-        else {
+        else
+        {
             /* hopefully at first character */
             break;
         }
     }
 
-    return(ichar);
+    return (ichar);
 }
 
 /***********************************************************************
 * Copy a line to the screen
 **********************************************************************/
 
-static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
+static int CopyLineAtPrompt(char *wk_buf, char *line, int *cursor, int *cursor_max)
 {
-    if(line)
+    if (line)
     {
         //** Copy line to current command buffer, usefull in completion case.
-        strcpy (wk_buf,line);
-        backspace(*cursor);/* backspace to beginning of line */
-        display_string(wk_buf);/* copy to screen */
+        strcpy(wk_buf, line);
+        backspace(*cursor);     /* backspace to beginning of line */
+        display_string(wk_buf); /* copy to screen */
 
-        *cursor = strlen(wk_buf);/* cursor set at end of line */
+        *cursor = strlen(wk_buf);   /* cursor set at end of line */
 
         /* erase extra characters left over if any */
         erase_nchar(Max(0, (*cursor_max - *cursor)));
@@ -1208,7 +1381,7 @@ static int CopyLineAtPrompt(char *wk_buf,char *line,int *cursor,int *cursor_max)
 static void set_cbreak()
 {
     /* switch to CBREAK mode without flushing
-    * line buffer */
+     * line buffer */
 #ifdef B42UNIX
     arg.sg_flags |= CBREAK;
     arg.sg_flags &= ~ECHO;
@@ -1221,10 +1394,10 @@ static void set_cbreak()
     arg.c_lflag &= ~ECHO;
     /* arg.c_iflag &= ~ICRNL; */
     arg.c_oflag &= ~OPOST;
-    arg.c_cc [VMIN] = 1;
-    arg.c_cc [VTIME] = 0;
+    arg.c_cc[VMIN] = 1;
+    arg.c_cc[VTIME] = 0;
 #ifdef HAVE_TERMIOS_H
-    (void) tcsetattr (fd, TCSANOW, &arg);
+    (void)tcsetattr(fd, TCSANOW, &arg);
 #else
     ioctl(fd, TCSETAW, &arg);
 #endif
@@ -1248,7 +1421,7 @@ static void set_crmod()
 #endif
 #ifdef ATTUNIX
 #ifdef HAVE_TERMIOS_H
-    (void) tcsetattr (fd, TCSANOW, &save_term);
+    (void)tcsetattr(fd, TCSANOW, &save_term);
 #else
     ioctl(fd, TCSETAW, &save_term);
 #endif
@@ -1263,56 +1436,63 @@ static void set_crmod()
 
 static void init_io()
 {
-    char tc_buf[1024];       /* holds termcap buffer */
+    char tc_buf[1024];          /* holds termcap buffer */
+
     char *area;
+
     char erase_char;
+
     int i;
+
     /* check standard for interactive */
-    fd=fileno(stdin);
+    fd = fileno(stdin);
 
 #ifdef B42UNIX
-    ioctl(fd,TIOCGETP,&arg);
+    ioctl(fd, TIOCGETP, &arg);
     save_sg_flags = arg.sg_flags;
-    ioctl(fd,TIOCGETC,&arg1);
+    ioctl(fd, TIOCGETC, &arg1);
     erase_char = arg.sg_erase;
 #endif
 
     /* Get terminal mode */
 #ifdef ATTUNIX
 #ifdef HAVE_TERMIOS_H
-    (void) tcgetattr (fd, &arg);
-    (void) tcgetattr (fd, &save_term);
+    (void)tcgetattr(fd, &arg);
+    (void)tcgetattr(fd, &save_term);
 #else
     ioctl(fd, TCGETA, &arg);
     ioctl(fd, TCGETA, &save_term);
 #endif
-    erase_char = save_term.c_cc [VERASE];
+    erase_char = save_term.c_cc[VERASE];
 #endif
 
 #ifdef TERMCAP
     /* get termcap translations */
-    if(tgetent(tc_buf, getenv("TERM")) == 1) {
+    if (tgetent(tc_buf, getenv("TERM")) == 1)
+    {
         /* loop thru zero terminated list of input
-        * capabilities */
-        for(i = 0; *tc_capabilities[i]; i++) {
+         * capabilities */
+        for (i = 0; *tc_capabilities[i]; i++)
+        {
             area = &seqs[i][0];
             tgetstr(tc_capabilities[i], &area);
         }
-        area = strings;       /* point to place where strings are to
-                              * be stored */
-        KS = tgetstr("ks", &area); /* term_keypad_on */
-        KE = tgetstr("ke", &area); /* term_keypad_off */
-        CE = tgetstr("ce", &area); /* clear end of line */
-        BC = tgetstr("bc", &area); /* backspace */
-        IM = tgetstr("im", &area); /* Enter insert mode */
-        IC = tgetstr("ic", &area); /* Insert char */
-        EI = tgetstr("ei", &area); /* Leave insert mode */
-        CL = tgetstr("cl", &area); /* Clear scren */
+        area = strings;         /* point to place where strings are to
+                                 * be stored */
+        KS = tgetstr("ks", &area);  /* term_keypad_on */
+        KE = tgetstr("ke", &area);  /* term_keypad_off */
+        CE = tgetstr("ce", &area);  /* clear end of line */
+        BC = tgetstr("bc", &area);  /* backspace */
+        IM = tgetstr("im", &area);  /* Enter insert mode */
+        IC = tgetstr("ic", &area);  /* Insert char */
+        EI = tgetstr("ei", &area);  /* Leave insert mode */
+        CL = tgetstr("cl", &area);  /* Clear scren */
     }
 #endif
-    setvbuf(stdin, NULL, _IONBF, 0); /* ehrlich juin 2001 */
+    setvbuf(stdin, NULL, _IONBF, 0);    /* ehrlich juin 2001 */
 
 }
+
 #ifdef TERMCAP
 /************************************************************************
 * enable keypad mode if using termcap
@@ -1321,7 +1501,8 @@ static void init_io()
 static void enable_keypad_mode()
 {
     /* enable keypad transmit mode */
-    if(KS && *KS) fputs(KS, stdout);
+    if (KS && *KS)
+        fputs(KS, stdout);
 }
 
 /************************************************************************
@@ -1331,17 +1512,19 @@ static void enable_keypad_mode()
 static void disable_keypad_mode()
 {
     /* disable keypad transmit mode */
-    if(KE && *KE) fputs(KE, stdout);
+    if (KE && *KE)
+        fputs(KE, stdout);
 }
 #else
 /************************************************************************
 *we need references to thoses function if using KEYPAD but not Having TERMCAP
 ***********************************************************************/
 
-static void enable_keypad_mode(){}
-static void disable_keypad_mode(){}
+static void enable_keypad_mode()
+{
+}
+
+static void disable_keypad_mode()
+{
+}
 #endif
-
-
-
-

@@ -12,21 +12,7 @@
 #ifndef	READER_H_
 #define	READER_H_
 
-#include	<wchar.h>
-
-typedef struct s_list_cmd t_list_cmd;
-
-#define SCI_PRINT_WSTRING "%ls"
-#define SCI_PRINT_WCHAR "%lc"
-
-/* TODO: remove and use ./libs/doublylinkedlist/includes/DoublyLinkedList.h instead */
-struct s_list_cmd
-{
-    int bin;
-    wchar_t *cmd;
-    struct s_list_cmd *next;
-    struct s_list_cmd *previous;
-};
+#include <wchar.h>
 
 /**
  * Get the command line.
@@ -34,9 +20,6 @@ struct s_list_cmd
  * mean the value of the adress may change.
  * @return command line put by user.
  */
-char *getCmdLine(t_list_cmd **);
-
-/* TODO: document */
-t_list_cmd *initUserInput(t_list_cmd * listCmd);
+char *getCmdLine(void);
 
 #endif /* !READER_H_ */

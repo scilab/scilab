@@ -9,14 +9,14 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include		<term.h>
-#include		<curses.h>
-#include		<termios.h>
-#include		<stdio.h>
-#include		<stdlib.h>
-#include		<unistd.h>
-#include		<stdio.h>
-#include                "cap_func.h"
+#include <term.h>
+#include <curses.h>
+#include <termios.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "cap_func.h"
 /* Simplify termcap activation */
 void capStr(const char *capacity)
 {
