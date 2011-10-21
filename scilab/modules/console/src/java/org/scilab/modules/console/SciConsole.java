@@ -23,6 +23,8 @@ import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -100,6 +102,8 @@ public abstract class SciConsole extends JPanel {
      */
     private boolean workDone;
 
+    private boolean atBottom;
+
     /**
      * Constructor
      * @param configFilePath the configuration file to use
@@ -111,16 +115,16 @@ public abstract class SciConsole extends JPanel {
             config = ConfigurationBuilder.buildConfiguration(configFilePath);
             config.setActiveProfile("scilab");
             if (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
-                {
-                    ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
-                    configMac.setActiveProfile("macosx");
-                    for (KeyStroke key : config.getKeyMapping().keys()){
-                        config.getKeyMapping().put(key,"");
-                    }
-                    for (KeyStroke key : configMac.getKeyMapping().keys()){
-                        config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
-                    }
+            {
+                ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
+                configMac.setActiveProfile("macosx");
+                for (KeyStroke key : config.getKeyMapping().keys()){
+                    config.getKeyMapping().put(key,"");
                 }
+                for (KeyStroke key : configMac.getKeyMapping().keys()){
+                    config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
+                }
+            }
         } catch (IllegalArgumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -137,8 +141,33 @@ public abstract class SciConsole extends JPanel {
 
         sciConsole = ConsoleBuilder.buildConsole(config, this);
         jSP = new JScrollPane(sciConsole);
-        /* This option is a good compromise for speed and rendering (bad display when several lines with default SIMPLE_SCROLL_MODE) */
-        jSP.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
+
+        BoundedRangeModel model = jSP.getVerticalScrollBar().getModel();
+        jSP.getVerticalScrollBar().setModel(new DefaultBoundedRangeModel(model.getValue(), model.getExtent(), model.getMinimum(), model.getMaximum()) {
+                public void setRangeProperties(int newValue, int newExtent, int newMin, int newMax, boolean adjusting) {
+                    // This method is overriden to keep the knob at the bottom during viewport resize
+                    // and to keep the knob at an other place if the user decided it.
+                    if (newMax != getMaximum()) {
+                        if (!adjusting) {
+                            if (atBottom) {
+                                super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, false);
+                            } else {
+                                super.setRangeProperties(newValue, newExtent, newMin, newMax, false);
+                            }
+                        } else {
+                            double percent = (double) Math.abs(newMax - newValue - newExtent) / (double) newMax;
+                            if (atBottom && percent <= 0.03) {
+                                super.setRangeProperties(newMax - newExtent, newExtent, newMin, newMax, true);
+                            } else {
+                                super.setRangeProperties(newValue, newExtent, newMin, newMax, true);
+                                atBottom = percent <= 0.01;
+                            }
+                        }
+                    } else {
+                        super.setRangeProperties(newValue, newExtent, newMin, newMax, adjusting);
+                    }
+                }
+            });
 
         this.add(jSP, BorderLayout.CENTER);
 
@@ -247,19 +276,14 @@ public abstract class SciConsole extends JPanel {
      * Updates the scroll bars according to the contents
      */
     public void updateScrollPosition() {
-        SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-                }
-            });
-        //jSP.getVerticalScrollBar().setValue(jSP.getVerticalScrollBar().getMaximum());
-        //jSP.invalidate();
-        //jSP.getViewport().setViewPosition(new Point(0, sciConsole.getPreferredSize().height - jSP.getViewport().getExtentSize().height));
-        //jSP.revalidate();
-
         // Update the scrollbar properties
         jSP.getVerticalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().height);
         jSP.getHorizontalScrollBar().setBlockIncrement(jSP.getViewport().getExtentSize().width);
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    jSP.getVerticalScrollBar().getModel().setValue(jSP.getVerticalScrollBar().getModel().getMaximum() - jSP.getVerticalScrollBar().getModel().getExtent());
+                }
+            });
     }
 
     /**
@@ -387,6 +411,8 @@ public abstract class SciConsole extends JPanel {
         String[] linesToExec = textToExec.split(StringConstants.NEW_LINE);
         int nbStatements = 0;
 
+        atBottom = true;
+
         // Display Cursor to show Scilab is busy
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
@@ -404,6 +430,7 @@ public abstract class SciConsole extends JPanel {
 
             // Hide the prompt and command line
             config.getInputCommandView().setEditable(false);
+            ((SciInputCommandView) config.getInputCommandView()).getCaret().setVisible(false);
             config.getPromptView().setVisible(false);
 
             // Remove the prompt if present at the beginning of the text to execute

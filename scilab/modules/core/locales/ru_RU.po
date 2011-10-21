@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:48+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-12 16:29+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: ru\n"
 
 #, c-format
@@ -986,6 +986,14 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "О версии Scilab."
 
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+
+msgid "Empty tab"
+msgstr ""
+
 msgid "Scilab Console"
 msgstr "Командное окно"
 
@@ -1116,7 +1124,7 @@ msgstr "Пользовательские пременные:"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "Используется %s элементов из %s"
 
 msgid " by "
 msgstr " на "
@@ -1132,13 +1140,3 @@ msgstr "Размер"
 
 msgid "Bytes"
 msgstr "Байт"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный входной параметр №%d: ожидался путь к файлу сценария Scilab.\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "Используется %s элементов из %s"

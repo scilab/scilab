@@ -109,9 +109,6 @@ Xcos:
 
 * Error reporting has been improved to print warnings on blocks into Xcos.
 
-* Diagram export / compilation / simulation phase are now visible on the status
-  bar before the operation.
-
 * The style of the block can be changed on the interface function.
 
 * BARXY Block added to help 2D Mechanics system visualization.
@@ -154,6 +151,8 @@ Xcos:
 
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
+* bug 9927 fixed - Xcos crashed while executing 'XcosPalAdd' command.
+
 * bug 9947 fixed - VARIABLE_DELAY block could not be dragged to a diagram.
 
 * bug 9972 fixed - Error reporting with a wrong context produce an endless
@@ -165,14 +164,23 @@ Xcos:
 * bug 10003 fixed - The MAXMIN block did not update its display according to
                     the settings.
 
-* bug 10069 fixed - AFFICH_m block did not update its display at 
+* bug 10048 fixed - Superblock based blocks index sub-blocks
+                    parameters instead of looking for them.
+
+* bug 10069 fixed - AFFICH_m block did not update its display at
                     re-initialization.
+
 
 Localization:
 =============
 
 * Czech localization by Zbyněk Schwarz
 
+* bug 10032 fixed - Force the unset of the environnement variable LANGUAGE to
+                    tackle some issues.
+
+* bug 10032 fixed - Mac OS X locale detection did not take in account
+                    the LANG variable.
 
 File input/output:
 ==================
@@ -180,6 +188,8 @@ File input/output:
 * mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
 
 * tempname function added (SEP 68).
+
+* bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
 
 New functions
@@ -396,6 +406,10 @@ Compilation:
   the explicit dependencies on the other libraries. Use libscilab-cli.so or
   libscilab.so to link against Scilab.
 
+* Enforce a minimal version of JRosetta (1.0.4).
+
+* Enforce a minimal version of GIWS (1.3.0).
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
@@ -426,6 +440,26 @@ Dynamic link:
 * bug 9930 fixed - ilib_build did not display all filenames used.
 
 
+Variable browser:
+=================
+
+* Shows the dimension of the variable by default.
+
+* Automatically resize the variable browser table when docked.
+
+* A tooltip has been added on the type column to display the name of the type.
+
+* A tooltip has been added on the size column to display the size in Bytes
+  (like in previous version of Scilab).
+
+
+History:
+========
+
+* Default text in history for a starting session has been changed for:
+"Begin Session : Tue Jun 21 14:35:45 2011" to "21/05/2011 14:11:19"
+
+
 Graphics:
 =========
 
@@ -433,6 +467,22 @@ Graphics:
   0 and 1 are equivalent values for SOLID rendering.
   A warning message will be displayed if the user tries to set this property to 0.
   Setting this property to 0 will no more be supported in Scilab 5.4.1.
+
+* datatips tool improved on several aspects:
+  - It is now possible to manage directional arrows as well as
+    square marks markers.
+  - The automatic label placement has been improved to avoid avoid the
+    overlapping with the curve.
+  - It is now possible to have  painted box or box free labels.
+  - Markers can now be selected and moved using the arrow keys
+    or deleted with the "Del" key.
+
+* bug 7412 fixed - Better management of datatips activation/deactivation.
+
+* bug 7419 fixed - datatips(): customization is now available through a GUI.
+
+* bug 8239 fixed - Activation of datatips overwrote and destroyed any event_handler
+                   formerly defined.
 
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
@@ -518,6 +568,10 @@ Misc:
 
 * SEP #69: predef('names') returns names of protected variables by predef.
 
+* printf moved as alias on mprintf function.
+
+* sprintf moved as alias on msprintf function.
+
 
 Bug fixes:
 ==========
@@ -543,6 +597,8 @@ Bug fixes:
 
 * bug 7249 fixed - 'string' function did not work with a macro as input argument
                    as documented.
+
+* bug 7333 fixed - In BrowseVar, variables could have a weird type number.
 
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
@@ -716,4 +772,7 @@ Bug fixes:
 
 * bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
 
+* bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
+                    Icons renamed from XPM to PNG.
 
+* bug 10105 fixed - Focus was not given to the prompt when outputview had it.

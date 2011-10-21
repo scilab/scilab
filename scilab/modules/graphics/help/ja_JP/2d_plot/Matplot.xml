@@ -151,8 +151,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>y=5</term>
                     <listitem>
-                      <para>rect引数の設定値から見栄えが良くなるよう
-			軸を拡大</para>
+                      <para>rect引数の設定値から見栄えが良くなるよう軸を拡大</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -165,8 +164,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>y=7</term>
                     <listitem>
-                      <para>like y=1 but the previus plot(s) are redrawn to
-                      use the new scale</para>
+                      <para>y=1 と似ていますが, 前のプロットは新しいスケールを使用して
+		      再描画させます</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>

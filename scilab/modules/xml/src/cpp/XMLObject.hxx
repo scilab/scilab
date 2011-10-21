@@ -74,7 +74,7 @@ namespace org_modules_xml
          * @param pos the stack position
          * @return 1 if all is ok, else 0
          */
-        int createOnStack(int pos) const;
+        int createOnStack(int pos, void* pvApiCtx) const;
 
         /**
          * @param id the object id

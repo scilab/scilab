@@ -82,8 +82,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Example_VARIABLE_DELAY">VARIABLE_DELAY
-            Example</xref>
+              <xref linkend="Example_VARIABLE_DELAY">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -235,26 +234,27 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_VARIABLE_DELAY">
-    <title>VARIABLE_DELAY Example</title>
+    <title>Example</title>
     <para>In this example, the max time delay in the Block Parameters dialog
     box is set to 4. The input signal is a sine wave with amplitude 1 and
     frequency 0.2 Hz.</para>
     <para>The constant block is set to 2 to introduce a delay of 2 second. The
     input and output waveforms of the VARIABLE_DELAY block are shown
-    below:
-    <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
-        Open this example in Xcos</link></para>
+    below:</para>
     <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_diagram_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_plot_en_US.png" align="center"/>
-      </imageobject>
-    </mediaobject>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_diagram_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+      <para/>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_plot_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_VARIABLE_DELAY">
     <title>Interfacing function</title>

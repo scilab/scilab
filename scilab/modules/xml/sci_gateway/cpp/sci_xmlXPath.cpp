@@ -53,13 +53,13 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
     if (!doc)
     {
@@ -138,7 +138,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         {
             createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
-        set->createOnStack(Rhs + 1);
+        set->createOnStack(Rhs + 1, pvApiCtx);
         break;
     }
     case XPATH_BOOLEAN :

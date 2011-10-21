@@ -66,7 +66,6 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
-import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -597,7 +596,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
                                 line.setAnchor(anchor.toString());
                             }
-                            NavigatorWindow.updateNavigator();
+                            getEditor().getNavigator().update();
                             previousRegexp = "";
                             previousIndex = -1;
                             buttonReplace.setEnabled(false);

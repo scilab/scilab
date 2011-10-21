@@ -18,8 +18,6 @@ import java.awt.Point;
 import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.BadLocationException;
 

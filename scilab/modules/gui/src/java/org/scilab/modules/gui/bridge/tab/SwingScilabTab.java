@@ -46,6 +46,7 @@ import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
+import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -122,11 +123,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     private String parentWindowId;
-
+    private String appNameOnClose;
     private MenuBar menuBar;
-
     private ToolBar toolBar;
-
     private TextBox infoBar;
 
     /** Contains the canvas and widgets */
@@ -141,10 +140,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     /**
      * Constructor
-     * @param name the name of the tab (used to identify it)
+     * @param name the name of the tab
+     * @param uuid an uuid to identify the tab
      */
-    public SwingScilabTab(String name) {
-        super(name, name, name);
+    public SwingScilabTab(String name, String uuid) {
+        super(uuid, name, name);
         //This button is "overloaded" when we add a callback
         //this.addAction(DockingConstants.CLOSE_ACTION);
         // Removed because make JOGL crash when "Unpin"
@@ -159,6 +159,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+        setCallback(null);
     }
 
     /**
@@ -188,6 +189,27 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+        setCallback(null);
+    }
+
+    /**
+     * Constructor
+     * @param name the name of the tab (used to identify it)
+     */
+    public SwingScilabTab(String name) {
+        this(name, name);
+    }
+
+    public static void removeActions(SwingScilabTab tab) {
+        tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+        tab.setActionBlocked(UNDOCK, true);
+        tab.getTitlebar().revalidate();
+    }
+
+    public static void addActions(SwingScilabTab tab) {
+        tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
+        tab.setActionBlocked(UNDOCK, false);
+        tab.getTitlebar().revalidate();
     }
 
     public SwingScilabTab(String figureTitle, int figureId, Figure figure) {
@@ -196,7 +218,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
         setContentPane(canvas);
         canvas.setVisible(true);
-        
+
         /* Manage figure_position property */
         addHierarchyBoundsListener(new HierarchyBoundsListener() {
             public void ancestorResized(HierarchyEvent arg0) {
@@ -247,6 +269,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param e the FocusEvent
      */
     public void focusGained(FocusEvent e) {
+        //ActiveDockableTracker.requestDockableActivation(this);
         if (contentPane != null) {
             contentPane.requestFocus();
         } else if (getContentPane() != null) {
@@ -255,6 +278,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             SwingScilabTab.this.requestFocusInWindow();
         }
     }
+
+    /**
+     * Call when the tab restoration is ended.
+     */
+    public void endedRestoration() { }
 
     /**
      * @return the window icon associated with this tab
@@ -290,15 +318,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         if (port.getDockables().size() > 1) {
             while (iter.hasNext()) {
                 Object d = iter.next();
-                if (d instanceof View) {
-                    View view = (View) d;
-                    view.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
-                    view.setActionBlocked(UNDOCK, false);
+                if (d instanceof SwingScilabTab) {
+                    SwingScilabTab view = (SwingScilabTab) d;
+                    addActions(view);
                 }
             }
         } else {
-            setActionBlocked(UNDOCK, true);
-            setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+            removeActions(this);
         }
     }
 
@@ -309,9 +335,15 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     public void setName(String newTabName) {
         setTitle(newTabName, true);
-
         getTitlePane().repaint();
         SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this).setName(newTabName);
+    }
+
+    /**
+     * @return the UUID of the parent window
+     */
+    public String getParentWindowUUID() {
+        return ((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)).getUUID();
     }
 
     /**
@@ -933,7 +965,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         return contentPane.addWidget(member.getAsComponent());
     }
 
-
     /**
      * Add a Tree member (dockable element) to container and returns its index
      * @param member the member to add
@@ -959,9 +990,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private void removeMember(SwingScilabTree member) {
         contentPane.removeTree(member);
     }
-
-
-
 
     /**
      * Add a member (dockable element) to container and returns its index
@@ -1064,17 +1092,18 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         if (callback != null) {
             closeAction = new SciClosingAction(this, callback);
         } else {
-            this.addAction(DockingConstants.CLOSE_ACTION);
-            closeAction = new SciClosingAction(this, this.getTitlebar().getAction(DockingConstants.CLOSE_ACTION));
+            closeAction = new SciClosingAction(this);
         }
 
         closeAction.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
-        this.addAction(closeAction);
+        ((Titlebar) getTitlePane()).removeAction(DockingConstants.CLOSE_ACTION);
+        addAction(closeAction);
 
         /* Undock button */
         SciUndockingAction undockAction = new SciUndockingAction(this);
         undockAction.putValue(Action.NAME, UNDOCK);
-        this.addAction(undockAction);
+        ((Titlebar) getTitlePane()).removeAction(UNDOCK);
+        addAction(undockAction);
     }
 
     /**
@@ -1223,12 +1252,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Close the tab and disable it.
      */
     public void close() {
-        this.getContentPane().removeAll();
-        this.setMenuBar(null);
-        this.setToolBar(null);
-        this.setInfoBar(null);
-        this.setTitlebar(null);
-        this.removeAll();
+        getContentPane().removeAll();
+        setMenuBar(null);
+        setToolBar(null);
+        setInfoBar(null);
+        setTitlebar(null);
+        removeAll();
         setActive(false);
 
         scrolling = null;
@@ -1281,12 +1310,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
             /* Update callback */
             String closingCommand =
-                "if (get_figure_handle(" + figureId + ") <> []) then"
-                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                +      "  end;"
-                +      "  delete(get_figure_handle(" + figureId + "));"
-                +      "end;";
+                    "if (get_figure_handle(" + figureId + ") <> []) then"
+                            +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                            +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                            +      "  end;"
+                            +      "  delete(get_figure_handle(" + figureId + "));"
+                            +      "end;";
             setCallback(null);
             setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
         } else if (property.equals(__GO_SIZE__)) {

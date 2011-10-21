@@ -52,9 +52,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -127,7 +125,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
-
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -362,7 +359,7 @@ public class CallScilabBridge {
         setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
         return id;
     }
-  
+
     public static void newPushButton(String UID) {
         PushButton pushButton = ScilabPushButton.createPushButton();
         ((ScilabPushButton) pushButton).setIdentifier(UID);
@@ -678,24 +675,24 @@ public class CallScilabBridge {
         //   delete(get_figure_handle(fid));
         // end
         String closingCommand =
-            "if (get_figure_handle(" + figureIndex + ") <> []) then"
-            +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
-            +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
-            +      "  end;"
-            +      "  delete(get_figure_handle(" + figureIndex + "));"
-            +      "end;";
+                "if (get_figure_handle(" + figureIndex + ") <> []) then"
+                        +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
+                        +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
+                        +      "  end;"
+                        +      "  delete(get_figure_handle(" + figureIndex + "));"
+                        +      "end;";
         graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
         ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
+                + "/modules/gui/images/icons/graphic-window.png").getImage());
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
-//        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+        //        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
         //associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
-//        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
+        //        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
         // don't draw now, figure will show itself when all its parameters will be set
 
         return 0;
@@ -1133,7 +1130,7 @@ public class CallScilabBridge {
      */
     public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
         ((Widget) UIElementMapper.getCorrespondingUIElement(objID))
-            .setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
+        .setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
     /**
@@ -1161,7 +1158,7 @@ public class CallScilabBridge {
     public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
         if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
             Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
+                    getRendererProperties()).getParentTab();
 
             MenuBar figureMenuBar = parentTab.getMenuBar();
 
@@ -1179,7 +1176,7 @@ public class CallScilabBridge {
     public static void setFigureSubMenuEnabled(int figureID, String parentMenuName, int menuItemPosition, boolean status) {
         if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
             Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
+                    getRendererProperties()).getParentTab();
 
             MenuBar figureMenuBar = parentTab.getMenuBar();
 
@@ -1224,7 +1221,7 @@ public class CallScilabBridge {
     public static void removeFigureMenu(int figureID, String menuName) {
         if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
             Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                             getRendererProperties()).getParentTab();
+                    getRendererProperties()).getParentTab();
 
             MenuBar figureMenuBar = parentTab.getMenuBar();
 
@@ -2143,7 +2140,7 @@ public class CallScilabBridge {
             }
         } else {
             ((ScilabRendererProperties) FigureMapper
-             .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
+                    .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
         }
     }
 
@@ -2154,11 +2151,11 @@ public class CallScilabBridge {
      */
     public static boolean isToolbarVisible(int figNum) {
         if (figNum == -1) {
-           if (ScilabConsole.isExistingConsole()) {
-               return ScilabConsole.getConsole().getToolBar().isVisible();
-           } else {
-               return false;
-           }
+            if (ScilabConsole.isExistingConsole()) {
+                return ScilabConsole.getConsole().getToolBar().isVisible();
+            } else {
+                return false;
+            }
         } else {
             return ((ScilabRendererProperties) FigureMapper
                     .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
@@ -2271,7 +2268,6 @@ public class CallScilabBridge {
      * Close Scilab Help Browser
      */
     public static void closeHelpBrowser() {
-        CallScilabBridge.saveHelpWindowSettings();
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
@@ -2440,35 +2436,11 @@ public class CallScilabBridge {
     }
 
     /**
-     * Save the main Window size and position
+     * Unblock the console if it is in "Continue display..." mode
      */
-    public static void saveMainWindowSettings() {
+    public static void unblockConsole() {
         SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-        SwingScilabWindow mainWindow = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
-
-        ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
-        ConfigManager.saveMainWindowSize(mainWindow.getDims());
-
-    }
-
-    /**
-     * Save the help Window size and position
-     */
-    public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null) {
-            SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
-            if (sciHelpBrowser != null) {
-                SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
-                if (consoleTab != null) {
-                    SwingScilabWindow helpWindow = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
-
-                    ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
-                    ConfigManager.saveHelpWindowSize(helpWindow.getDims());
-                }
-            }
-        }
-
+        sciConsole.unblock();
     }
 
     /**
@@ -2606,12 +2578,12 @@ public class CallScilabBridge {
                     /** Export image to PostScript */
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
-                                                tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
+                                tmpPrinterFile + fileExtension,
+                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
                         FileExporter.fileExport(figureID,
-                                                tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
+                                tmpPrinterFile + fileExtension,
+                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */
@@ -3136,21 +3108,21 @@ public class CallScilabBridge {
      * Rotates an image by certain degrees
      */
     public static void setImageRendererRotate(int id, double[] indices) {
-	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
     }
 
     /**
      * Shears an image by x, y values
      */
     public static void setImageRendererShear(int id, double[] indices) {
-	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
+        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
     }
 
     /**
      * Scales an image by x, y values
      */
     public static void setImageRendererScale(int id, double[] indices) {
-	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
+        ((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
     }
 
     /******************/
@@ -3163,23 +3135,23 @@ public class CallScilabBridge {
      * Sets the column names for the uitable
      */
     public static void setUiTableColnames(int id, String text) {
-    	// TODO Remove this method
-    	//((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
+        // TODO Remove this method
+        //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
     }
 
     /**
      * Sets the row names for the uitable
      */
     public static void setUiTableRownames(int id, String text) {
-    	// TODO Remove this method
-    	//((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
+        // TODO Remove this method
+        //((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
     }
 
     /**
      * Sets the data for the uitable
      */
     public static void setUiTableData(int id, String text) {
-	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
+        ((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 
     /******************/

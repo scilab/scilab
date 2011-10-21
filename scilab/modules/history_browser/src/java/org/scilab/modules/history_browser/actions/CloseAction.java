@@ -20,6 +20,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 
@@ -106,6 +107,6 @@ public final class CloseAction extends CommonCallBack {
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
     public void callBack() {
-        CommandHistory.setVisible(false);
+	ClosingOperationsManager.startClosingOperation(CommandHistory.getBrowserTab());
     }
 }

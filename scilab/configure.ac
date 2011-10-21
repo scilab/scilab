@@ -597,7 +597,10 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-case "$F77" in
+    CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    FFLAGS="$FFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
                MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
@@ -866,7 +869,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.2],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.3],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -946,14 +949,19 @@ the the JNI libraries."])],
                 AC_SUBST(JHALL)
 
                 # Console API
-                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 JROSETTA_API=$PACKAGE_JAR_FILE
+		if test -z "$JROSETTA_API"; then
+	                AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+        	        JROSETTA_API=$PACKAGE_JAR_FILE
+		fi
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
                 AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
                 JROSETTA_ENGINE=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_ENGINE)
+                AC_JAVA_CHECK_VERSION_PACKAGE([jrosetta-engine],[import com.artenum.rosetta.util.ConfigurationBuilder;],$JROSETTA_ENGINE,[1.0.4],[ConfigurationBuilder.getVersion()])
 
 
                 # MathML rendering solution
@@ -1091,7 +1099,7 @@ the the JNI libraries."])],
     # Giws is the equivalent of Swig developped by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
-        AC_GIWS()
+        AC_GIWS([1.3.0])
     fi
 fi
 

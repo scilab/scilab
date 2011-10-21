@@ -17,7 +17,6 @@
 #include "scilabmode.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 /*static BOOL loadedDep = FALSE;*/
@@ -25,7 +24,8 @@
 static gw_generic_table Tab[]=
 {
     {sci_editvar, "editvar"},
-    {sci_browsevar, "browsevar"}
+    {sci_browsevar, "browsevar"},
+    {sci_filebrowser, "filebrowser"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)

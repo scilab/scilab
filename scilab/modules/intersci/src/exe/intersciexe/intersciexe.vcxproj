@@ -103,7 +103,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(Configuration)/intersci.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-<TargetMachine>MachineX86</TargetMachine>
+      <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -132,7 +133,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(Configuration)/intersci.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-<TargetMachine>MachineX64</TargetMachine>
+      <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -162,7 +164,8 @@
       <OutputFile>$(SolutionDir)modules\intersci\bin\intersci.exe</OutputFile>
       <ProgramDatabaseFile>$(Configuration)/intersci.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-<TargetMachine>MachineX86</TargetMachine>
+      <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -193,7 +196,8 @@
       <OutputFile>$(SolutionDir)modules\intersci\bin\intersci.exe</OutputFile>
       <ProgramDatabaseFile>$(Configuration)/intersci.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-<TargetMachine>MachineX64</TargetMachine>
+      <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

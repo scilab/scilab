@@ -98,12 +98,20 @@ public final class SciNotesGUI {
         // Set SciNotes Window position /size
         mainWindow.setPosition(ConfigSciNotesManager.getMainWindowPosition());
         mainWindow.setDims(ConfigSciNotesManager.getMainWindowSize());
+        mainWindow.setTitle(title);
+        mainWindow.setVisible(true);
 
+        init(editorInstance);
+    }
+
+    /**
+     * Initialize SciNotes
+     * @param editorInstance SciNotes
+     */
+    public static void init(SciNotes editorInstance) {
         editorInstance.setMenuBar(generateMenuBar(editorInstance));
         editorInstance.setToolBar(generateToolBar(editorInstance));
         editorInstance.setInfoBar(generateInfoBar(editorInstance));
-        mainWindow.setTitle(title);
-        mainWindow.setVisible(true);
     }
 
     /**

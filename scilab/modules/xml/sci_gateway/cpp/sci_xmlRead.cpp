@@ -88,7 +88,7 @@ int sci_xmlRead(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

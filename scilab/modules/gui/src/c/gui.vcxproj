@@ -99,6 +99,7 @@
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,6 +127,7 @@
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -155,6 +157,7 @@
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -187,6 +190,7 @@
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -207,6 +211,7 @@
     <ClCompile Include="..\cpp\SetUiobjectTabledata.cpp" />
     <ClCompile Include="..\cpp\UiDisplayTree.cpp" />
     <ClCompile Include="..\cpp\UiTable.cpp" />
+    <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
@@ -217,7 +222,6 @@
     <ClCompile Include="..\cpp\CallJuigetfile.cpp" />
     <ClCompile Include="..\cpp\CallJxclick.cpp" />
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp" />
-    <ClCompile Include="..\cpp\CallMainWindow.cpp" />
     <ClCompile Include="..\cpp\CallMessageBox.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
     <ClCompile Include="..\cpp\CallWaitBar.cpp" />
@@ -315,6 +319,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_x_dialog.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c" />
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp" />
+    <ClCompile Include="ScilabTermination.c" />
     <ClCompile Include="setMainWindowTitle.c" />
     <ClCompile Include="..\cpp\SetUicontrolBackgroundColor.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolFontAngle.cpp" />
@@ -342,7 +347,6 @@
     <ClCompile Include="..\cpp\SetUiobjectVisible.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
     <ClCompile Include="..\cpp\Slider.cpp" />
-    <ClCompile Include="TerminateGui.c" />
     <ClCompile Include="..\cpp\Toolbar.cpp" />
     <ClCompile Include="UicontrolStyleToString.c" />
     <ClCompile Include="..\jni\UIElementMapper.cpp" />
@@ -386,7 +390,6 @@
     <ClInclude Include="..\cpp\CallJxclick.hxx" />
     <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
     <ClInclude Include="..\cpp\CallJxgetmouse.hxx" />
-    <ClInclude Include="..\..\includes\CallMainWindow.h" />
     <ClInclude Include="..\cpp\CallMainWindow.hxx" />
     <ClInclude Include="..\..\includes\CallMessageBox.h" />
     <ClInclude Include="..\cpp\CallMessageBox.hxx" />
@@ -485,6 +488,7 @@
     <ClInclude Include="..\..\includes\RadioButton.h" />
     <ClInclude Include="..\cpp\RadioButton.hxx" />
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
+    <ClInclude Include="ScilabTermination.h" />
     <ClInclude Include="setMainWindowTitle.h" />
     <ClInclude Include="..\..\includes\SetUicontrolBackgroundColor.h" />
     <ClInclude Include="..\cpp\SetUicontrolBackgroundColor.hxx" />

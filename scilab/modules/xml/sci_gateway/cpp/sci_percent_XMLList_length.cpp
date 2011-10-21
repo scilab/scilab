@@ -44,14 +44,14 @@ int sci_percent_XMLList_length(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLList(addr) && !isXMLSet(addr))
+    if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLList or XMLSet expected.\n"), fname, 1);
         return 0;
 
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     list = XMLObject::getFromId<XMLList>(id);
     if (!list)
     {

@@ -12,6 +12,9 @@
  */
 package org.scilab.modules.gui.bridge.helpbrowser;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.DefaultFocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
@@ -284,6 +287,13 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     }
 
     /**
+     * @return the current URL as String being displayed
+     */
+    public String getCurrentURL() {
+        return x.getCurrentURL().toString();
+    }
+
+    /**
      * Execute the code in example
      * @param pre the preformatted Element containing Scilab's code
      */
@@ -420,8 +430,11 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             this.accessibleHtml = (javax.swing.JEditorPane) privateField.get(this);
             accessibleHtml.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
                     public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                        // Crappy workaround to avoid bad html display (the icons play and edit can be misplaced)
+                        // To improve... (it doesn't always work)
                         if (evt.getPropertyName().equals("document")) {
                             accessibleHtml.setVisible(false);
+                            accessibleHtml.validate();
                         }
                         if (evt.getPropertyName().equals("page")) {
                             if (!accessibleHtml.isVisible()) {
@@ -435,6 +448,16 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                         }
                     }
                 });
+
+            // The previous workaround hides the component accessibleHtml
+            // and consequently the focus is given to an other component.
+            // So we force the accessibleHtml to keep the focus.
+            accessibleHtml.setFocusTraversalPolicy(new DefaultFocusTraversalPolicy() {
+                    public Component getFirstComponent(Container aContainer) {
+                        return x;
+                    }
+                });
+            accessibleHtml.setFocusCycleRoot(true);
 
             String keyModifier = "alt ";
             if (isMac) {

@@ -79,7 +79,7 @@
 
     <programlisting role="example"><![CDATA[ 
 i = strspn("129th","1234567890");
-printf ("The length of initial number is %d.\n",i);
+mprintf ("The length of initial number is %d.\n",i);
 i = strspn(["129th","130th"],["1234567890","130t"])
  ]]>  </programlisting>
   </refsection>

@@ -72,9 +72,9 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
                 return 0;
             }
 
-            if (isXMLDoc(addr))
+            if (isXMLDoc(addr, pvApiCtx))
             {
-                id = getXMLObjectId(addr);
+                id = getXMLObjectId(addr, pvApiCtx);
                 doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
                 if (!doc)
                 {
@@ -83,9 +83,9 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
                 }
                 delete doc;
             }
-            else if (isXMLValid(addr))
+            else if (isXMLValid(addr, pvApiCtx))
             {
-                id = getXMLObjectId(addr);
+                id = getXMLObjectId(addr, pvApiCtx);
                 vf = XMLObject::getFromId<XMLValidation>(id);
                 if (!vf)
                 {

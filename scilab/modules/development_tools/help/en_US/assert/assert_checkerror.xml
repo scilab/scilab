@@ -156,12 +156,12 @@ function y = f(x)
   [lhs,rhs]=argn()
   if ( rhs <> 1 ) then
     lstr=gettext("%s: Wrong number of input argument: %d expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg)
   end
   if ( typeof(x) <> "constant" ) then
     lstr=gettext("%s: Wrong type for argument %d: Matrix expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg,123456789)
   end
   y = x
