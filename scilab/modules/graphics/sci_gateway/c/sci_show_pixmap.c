@@ -18,7 +18,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "DrawObjects.h"
-#include "HandleManagement.h"
+#include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_show_pixmap(char *fname, unsigned long fname_len )
@@ -29,7 +29,7 @@ int sci_show_pixmap(char *fname, unsigned long fname_len )
   CheckLhs(0,1);
 
   /* call show_pixmap function */
-  showPixmap(sciGetCurrentFigure());
+  showPixmap(getCurrentFigure());
 
   LhsVar(1) = 0;
   PutLhsVar();

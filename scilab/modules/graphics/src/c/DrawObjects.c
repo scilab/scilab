@@ -1066,8 +1066,9 @@ sciDrawObjIfRequired (sciPointObj * pobj)
   return 0;
 }
 /*---------------------------------------------------------------------------------*/
-void showPixmap(sciPointObj * pFigure)
+void showPixmap(char *pFigureUID)
 {
+#if 0
   /* Hack here. Pixmap has same action as drawlater() */
   /* So we just draw the figure here to make it appear */
   if (sciGetPixmapMode(pFigure))
@@ -1077,6 +1078,7 @@ void showPixmap(sciPointObj * pFigure)
     sciSetPixmapMode(pFigure, TRUE);
     sciDrawObj(pFigure);
   }
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void clearPixmap(sciPointObj * pFigure)

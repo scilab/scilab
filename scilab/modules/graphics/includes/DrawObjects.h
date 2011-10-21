@@ -65,7 +65,7 @@ GRAPHICS_IMPEXP void sciDrawFigure( int numFigure ) ;
 /**
  * Show the pixmap buffer of a figure
  */
-GRAPHICS_IMPEXP void showPixmap(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void showPixmap(char* pFigureUID);
 
 /**
  * Clear the pixmap buffer of a figure
