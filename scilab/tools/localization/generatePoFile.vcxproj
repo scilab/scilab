@@ -59,7 +59,7 @@
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\scilex.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
+"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -87,7 +87,7 @@
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\scilex.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
+"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
@@ -101,7 +101,7 @@
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)locale" rmdir /s /q  "$(SolutionDir)locale"
-"$(SolutionDir)bin\scilex.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
+"$(SolutionDir)bin\YaSp.exe" -nb -nwni -e exec(SCI+%27/tools/localization/generatePoFile.sce%27)%3bquit
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rmdir /s /q  "$(SolutionDir)locale"</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
