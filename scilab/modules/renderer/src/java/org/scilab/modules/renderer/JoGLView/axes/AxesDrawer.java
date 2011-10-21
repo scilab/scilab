@@ -20,6 +20,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.Geometry.FaceCullingMode;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
@@ -53,6 +54,15 @@ public class AxesDrawer {
     private FaceCullingMode backFaceCullingMode;
 
     /**
+     * The current reversed bounds. Used by the functions converting
+     * between object and box coordinates.
+     */
+    private double[] reversedBounds;
+
+    /** The current reversed bounds intervals. */
+    private double[] reversedBoundsIntervals;
+
+    /**
      * Default constructor.
      * @param visitor the parent {@see DrawerVisitor}.
      */
@@ -60,6 +70,9 @@ public class AxesDrawer {
         this.visitor = visitor;
         this.geometries = new Geometries(visitor.getCanvas());
         this.rulerDrawer = new AxesRulerDrawer(visitor.getCanvas());
+
+        reversedBounds = new double[6];
+        reversedBoundsIntervals = new double[3];
     }
 
 
@@ -101,6 +114,9 @@ public class AxesDrawer {
 
         // Ruler are drawn in box coordinate.
         rulerDrawer.drawRuler(axes, colorMap, drawingTools);
+
+        /* Compute reversed bounds. */
+        computeReversedBounds(axes);
 
         /**
          * Scale and translate for data fitting.
@@ -363,6 +379,63 @@ public class AxesDrawer {
         return transformation;
     }
 
+
+    /**
+     * Computes and sets the reversed bounds of the given Axes.
+     * @param axes the given {@see Axes}.
+     */
+    private void computeReversedBounds(Axes axes) {
+        Double[] currentBounds = getCurrentBounds(axes);
+
+        /* Reverse */
+        if (axes.getAxes()[0].getReverse()) {
+            reversedBounds[0] = currentBounds[1];
+            reversedBounds[1] = currentBounds[0];
+        } else {
+            reversedBounds[0] = currentBounds[0];
+            reversedBounds[1] = currentBounds[1];
+        }
+
+        if (axes.getAxes()[1].getReverse()) {
+            reversedBounds[2] = currentBounds[3];
+            reversedBounds[3] = currentBounds[2];
+        } else {
+            reversedBounds[2] = currentBounds[2];
+            reversedBounds[3] = currentBounds[3];
+        }
+
+        if (axes.getAxes()[2].getReverse()) {
+            reversedBounds[4] = currentBounds[5];
+            reversedBounds[5] = currentBounds[4];
+        } else {
+            reversedBounds[4] = currentBounds[4];
+            reversedBounds[5] = currentBounds[5];
+        }
+
+        /*
+         * Interval values are set to 1 when bounds are equal to avoid divides by 0
+         * in the object to box coordinates conversion function.
+         */
+        if (reversedBounds[1] == reversedBounds[0]) {
+            reversedBoundsIntervals[0] = 1.0;
+        } else {
+            reversedBoundsIntervals[0] = reversedBounds[1] - reversedBounds[0];
+        }
+
+        if (reversedBounds[3] == reversedBounds[2]) {
+            reversedBoundsIntervals[1] = 1.0;
+        } else {
+            reversedBoundsIntervals[1] = reversedBounds[3] - reversedBounds[2];
+        }
+
+        if (reversedBounds[5] == reversedBounds[4]) {
+            reversedBoundsIntervals[2] = 1.0;
+        } else {
+            reversedBoundsIntervals[2] = reversedBounds[5] - reversedBounds[4];
+        }
+
+    }
+
     /**
      * Computes the culling modes respectively corresponding to front and back faces
      * of the given Axes' child objects as a function of its {X,Y,Z} reverse properties.
@@ -379,6 +452,36 @@ public class AxesDrawer {
             this.frontFaceCullingMode = FaceCullingMode.CCW;
             this.backFaceCullingMode = FaceCullingMode.CW;
         }
+    }
+
+    /**
+     * Converts a point from object coordinates to box coordinates (used when drawing axis rulers).
+     * @param point the point in object coordinates.
+     * @return the point in box coordinates.
+     */
+    public Vector3d getBoxCoordinates(Vector3d point) {
+        double[] dataCoordinates = new double[3];
+
+        dataCoordinates[0] = 1 - 2.0*(point.getX()-reversedBounds[0])/reversedBoundsIntervals[0];
+        dataCoordinates[1] = 1 - 2.0*(point.getY()-reversedBounds[2])/reversedBoundsIntervals[1];
+        dataCoordinates[2] = 1 - 2.0*(point.getZ()-reversedBounds[4])/reversedBoundsIntervals[2];
+
+        return new Vector3d(dataCoordinates);
+    }
+
+    /**
+     * Converts a point from box coordinates (used when drawing axis rulers) to object coordinates.
+     * @param point the point in box coordinates.
+     * @return the point in object coordinates.
+     */
+    public Vector3d getObjectCoordinates(Vector3d point) {
+        double[] objectCoordinates = new double[3];
+
+        objectCoordinates[0] = 0.5*(1.0-point.getX())*(reversedBounds[1]-reversedBounds[0]) + reversedBounds[0];
+        objectCoordinates[1] = 0.5*(1.0-point.getY())*(reversedBounds[3]-reversedBounds[2]) + reversedBounds[2];
+        objectCoordinates[2] = 0.5*(1.0-point.getZ())*(reversedBounds[5]-reversedBounds[4]) + reversedBounds[4];
+
+        return new Vector3d(objectCoordinates);
     }
 
     /**
