@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function tbx_build_blocks(module, names)
+function tbx_build_blocks(module, names, macros_path)
     // Build a default block instance
     //
     // Calling Sequence
@@ -17,9 +17,13 @@ function tbx_build_blocks(module, names)
     // module: toolbox base directory
     // names: list of block names (sci file name without extension)
 
-    if argn(2) <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"tbx_build_blocks",2));
+    if argn(2) < 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"tbx_build_blocks",2));
     end
+    if argn(2) > 3 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"tbx_build_blocks",3));
+    end
+
 
     // checking module argument
     if type(module) <> 10 then
@@ -35,6 +39,20 @@ function tbx_build_blocks(module, names)
     // checking names argument
     if type(names) <> 10 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",2));
+    end
+
+    // checking optional macros_path argument
+    if ~exists("macros_path", 'l') then
+        macros_path = module + "/macros/";
+    end
+        if type(macros_path) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+    end
+    if size(macros_path,"*") <> 1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+    end
+    if ~isdir(macros_path) then
+        error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",macros_path));
     end
 
     mprintf(gettext("Building blocks...\n"));
@@ -56,7 +74,7 @@ function tbx_build_blocks(module, names)
         createdir(module + "/images/svg");
     end
 
-    sciFiles = pathconvert(module + "/macros/") + names + ".sci";
+    sciFiles = pathconvert(macros_path + "/") + names + ".sci";
     h5Files = pathconvert(module + "/images/h5/") + names + ".h5";
     gif_tlbx = pathconvert(module + "/images/gif");
     gifFiles = pathconvert(module + "/images/gif/") + names + ".gif";
