@@ -46,6 +46,7 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     */
     public Radiobutton(final Node peer) {
         super();
+        setOpaque(false);
         refresh(peer);
     }
 

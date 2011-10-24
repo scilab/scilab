@@ -50,69 +50,69 @@
 		</xsl:variable> 
 		<Title text="Syntax highlighting colors">
 			<Grid>
-					<Panel weightx="2" gridy="1" gridx="1" gridwidth="2" height="300" width="360">
-						<Table item="{$item}" mode="select" listener="TableListener" column="name">
-							<tableSelect choose="name">
-								<xsl:call-template name="context"/>
-							</tableSelect>
-							<tableCol title="Item"        attr="name"/>
-							<xsl:for-each select="item">
-								<tableRow name="{@name}"/>
-							</xsl:for-each>
-						</Table>
-					</Panel>
-					<PreviewCode gridy="1" gridx="3" gridheight="4" listener="ActionListener">
-						<actionPerformed choose="name">
+				<Panel width="200" height="250" weightx="2" gridy="1" gridx="1" gridwidth="2" >
+					<Table item="{$item}" width="50" height="150" mode="select" listener="TableListener" column="name">
+						<tableSelect choose="name">
 							<xsl:call-template name="context"/>
-						</actionPerformed>
+						</tableSelect>
+						<tableCol title="Item"        attr="name"/>
 						<xsl:for-each select="item">
-							<tableRow name="{@name}" color="{@color}"/>
+							<tableRow name="{@name}"/>
 						</xsl:for-each>
-					</PreviewCode>
-					<xsl:for-each select="item[ position()=$item]">
-						<HBox gridy="2" gridx="1">
-							<Color color="{@color}" listener="ActionListener">
-								<actionPerformed choose="color">
-									<xsl:call-template name="context"/>
-								</actionPerformed>
-							</Color>
-							<HSpace width="3"/>
-							Color
-							<Glue/>
-						</HBox>
-						<HBox gridy="3" gridx="1">
-							<HSpace width="30"/>
-							<xsl:call-template name="BooleanCheckBox">
-								<xsl:with-param name="attr-name" select="'bold'"/>
-							</xsl:call-template>
-							Bold
-							<Glue/>
-						</HBox>
-						<HBox gridy="3" gridx="2">
-
-							<xsl:call-template name="BooleanCheckBox">
-								<xsl:with-param name="attr-name" select="'italic'"/>
-							</xsl:call-template>
-							Italic
-							<Glue/>
-						</HBox>
-						<HBox gridy="2" gridx="2">
-							<xsl:call-template name="BooleanCheckBox">
-								<xsl:with-param name="attr-name" select="'underline'"/>
-							</xsl:call-template>
-							Underline
-							<Glue/>
-						</HBox>
-						<HBox gridy="4" gridx="1">
-							<HSpace width="30"/>
-							<xsl:call-template name="BooleanCheckBox">
-								<xsl:with-param name="attr-name" select="'strike-through'"/>
-							</xsl:call-template>
-							Strike Through
-							<Glue/>
-						</HBox>
+					</Table>
+				</Panel>
+				<PreviewCode gridy="1" gridx="3" gridheight="4" listener="ActionListener">
+					<actionPerformed choose="name">
+						<xsl:call-template name="context"/>
+					</actionPerformed>
+					<xsl:for-each select="item">
+						<tableRow name="{@name}" color="{@color}"/>
 					</xsl:for-each>
-					<Button gridy="4" gridx="2" text="Restore Default Settings"/>
+				</PreviewCode>
+				<xsl:for-each select="item[ position()=$item]">
+					<HBox gridy="2" gridx="1">
+						<Color color="{@color}" listener="ActionListener">
+							<actionPerformed choose="color">
+								<xsl:call-template name="context"/>
+							</actionPerformed>
+						</Color>
+						<HSpace width="3"/>
+						Color
+						<Glue/>
+					</HBox>
+					<HBox gridy="3" gridx="1">
+						<HSpace width="30"/>
+						<xsl:call-template name="BooleanCheckBox">
+							<xsl:with-param name="attr-name" select="'bold'"/>
+							<xsl:with-param name="text" select="'Bold'"/>
+						</xsl:call-template>
+						
+						<Glue/>
+					</HBox>
+					<HBox gridy="3" gridx="2">
+						<xsl:call-template name="BooleanCheckBox">
+							<xsl:with-param name="attr-name" select="'italic'"/>
+							<xsl:with-param name="text" select="'Italic'"/>
+						</xsl:call-template>
+						<Glue/>
+					</HBox>
+					<HBox gridy="2" gridx="2">
+						<xsl:call-template name="BooleanCheckBox">
+							<xsl:with-param name="attr-name" select="'underline'"/>
+							<xsl:with-param name="text" select="'Underline'"/>
+						</xsl:call-template>
+						<Glue/>
+					</HBox>
+					<HBox gridy="4" gridx="1">
+						<HSpace width="30"/>
+						<xsl:call-template name="BooleanCheckBox">
+							<xsl:with-param name="attr-name" select="'strike-through'"/>
+							<xsl:with-param name="text" select="'Strike Through'"/>
+						</xsl:call-template>
+						<Glue/>
+					</HBox>
+				</xsl:for-each>
+				<Button gridy="4" gridx="2" text="Restore Default Settings"/>
 			</Grid>
 		</Title>
 	</xsl:template>

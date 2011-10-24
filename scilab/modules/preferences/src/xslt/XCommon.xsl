@@ -8,9 +8,9 @@
 	  :: Any callback must be equipped with a 'context' attribute 
 	  :: indicating where the rewriting triggered by the event will
 	  :: occur 
-		::
+	  ::
 	  ::::> 'here' computes context value at execution point.
-		::
+	  ::
 	  ::::> 'context' is used as an attribute of a callback: 
 	  :: 
 	  ::  <{event-callback} {action}="{path}">
@@ -18,8 +18,8 @@
 	  ::     [...]
 	  ::  </{event-callback}>
 	  :: 
-		::::> org.scilab.modules.gui.utils.XCommonManager.getElementByContext
-		::
+	  ::::> org.scilab.modules.gui.utils.XCommonManager.getElementByContext
+	  ::
     -->
 
 	<xsl:template name="here">

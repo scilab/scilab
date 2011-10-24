@@ -20,13 +20,17 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -34,6 +38,7 @@ import org.w3c.dom.NodeList;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.preferences.ScilabPreferences.ToolboxInfos;
 
 /**
  * Extended management of the Console configuration file.
@@ -87,7 +92,7 @@ public final class XConfigManager extends XCommonManager {
         // AWT implies to set layout at construction time.
 
         // Set up DOM Side
-        readUserDocument();
+        readUserDocuments();
         updated = false;
         printTimeStamp("Model XML loaded");
 
@@ -98,6 +103,7 @@ public final class XConfigManager extends XCommonManager {
         if (refreshDisplay()) {
             dialog.setVisible(true);
         }
+
     }
 
     /**
@@ -135,13 +141,80 @@ public final class XConfigManager extends XCommonManager {
         xml.setText(view);
     }
 
-    /** Read the file to modify (and possibly create it).
+    /** Read files to modify (and possibly create it).
      */
-    private static void readUserDocument() {
+    private static void readUserDocuments() {
+        // Main file
         createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
         document = readDocument(USER_CONFIG_FILE);
+        NodeList toolboxes = document.getElementsByTagName("toolboxes");
+        if (toolboxes.getLength() != 1) {
+             System.err.println("Can't hook toolboxes [1]");
+             return;
+        }
+        
+        // Toolboxes files
+        Element toolbox          = (Element) toolboxes.item(0);
+        toolboxes                = toolbox.getChildNodes();
+        if (toolboxes.getLength()>0) {
+            System.err.println("Recover from inconsistent state...");
+            while (toolbox.hasChildNodes()) {
+                toolbox.removeChild(toolbox.getFirstChild());
+            }
+        }
+        
+        List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+        System.out.println(""+infos.size()+ " toolboxes loaded.");
+        for (int i=0; i<infos.size(); i++) {
+            ToolboxInfos info       = infos.get(i);
+            String UserToolboxToken = info.getName().replace(' ','_');
+            String UserToolboxFile  = ScilabCommons.getSCIHOME() + "/" 
+                + UserToolboxToken + ".xml";
+            createUserCopy(info.getPrefFile(), UserToolboxFile);
+            // Building document fragment
+            Element token             = document.createElement(UserToolboxToken);
+            DocumentFragment fragment = document.createDocumentFragment();
+            Document ToolboxDocument  = readDocument(UserToolboxFile);
+            Node transferred          = ToolboxDocument.getDocumentElement();
+            //-- System.out.println("-->" + transferred.getNodeName());
+            transferred               = document.importNode(transferred, true);
+            fragment.appendChild(transferred);
+            token.insertBefore(fragment, null);
+            toolbox.appendChild(token);
+        }
+
+        toolboxes                = toolbox.getChildNodes();
+        if (infos.size() != toolboxes.getLength()) {
+            System.err.println("Can't hook toolboxes [4]");
+            return;
+        }
+
     }
 
+    private static void WriteUserDocuments() {
+        // Toolboxes files
+        NodeList toolboxes       = document.getElementsByTagName("toolboxes");
+        Element toolbox          = (Element) toolboxes.item(0);
+        List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+        toolboxes                = toolbox.getChildNodes();
+        if (infos.size() != toolboxes.getLength()) {
+            System.err.println("Can't hook toolboxes [3]");
+            return;
+        }
+        for (int i=0; i<infos.size(); i++) {
+            Node ToolboxNode = toolboxes.item(i);
+            if (ToolboxNode != null) {
+                ToolboxInfos info = infos.get(i);
+                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" 
+                    + info.getName().replace(' ','_') + ".xml";
+                writeDocument(UserToolboxFile, ToolboxNode.getFirstChild());
+                //toolbox.removeChild(ToolboxNode);
+            }
+        }
+        // Main file
+        writeDocument(USER_CONFIG_FILE, document);
+    }
+    
     /** Interpret action.
      *
      * @param action : to be interpreted.
@@ -172,7 +245,7 @@ public final class XConfigManager extends XCommonManager {
             if (differential) {
                 System.out.println(": Ok.");
             }
-            writeDocument(USER_CONFIG_FILE);
+            WriteUserDocuments();
             dialog.dispose();
             updated = false;
             return true;
@@ -183,7 +256,7 @@ public final class XConfigManager extends XCommonManager {
             if (differential) {
                 System.out.println(": Apply.");
             }
-            writeDocument(USER_CONFIG_FILE);
+            WriteUserDocuments();
             return true;
         }
         if (callback.equals("Default")) {
@@ -191,9 +264,17 @@ public final class XConfigManager extends XCommonManager {
             if (differential) {
                 System.out.println(": Default.");
             }
+
             reloadTransformer(SCILAB_CONFIG_XSL);
             refreshUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
-            readUserDocument();
+            List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
+            for (int i=0; i<infos.size(); i++) {
+                ToolboxInfos info = infos.get(i);
+                String UserToolboxFile = ScilabCommons.getSCIHOME() + "/" 
+                    + info.getName().replace(' ','_') + ".xml";
+                refreshUserCopy(info.getPrefFile(), UserToolboxFile);    
+            }
+            readUserDocuments();
             printTimeStamp("XSL Reloaded");
             updated = false;
             refreshDisplay();
@@ -201,7 +282,7 @@ public final class XConfigManager extends XCommonManager {
         }
         if (callback.equals("Cancel")) {
             //System.err.println("User XML reloaded!");
-            readUserDocument();
+            readUserDocuments();
             /* TODO advertise it!
             if (updated) {
                 <<some advertising statement>>
@@ -322,8 +403,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveFont(final Font font) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -352,7 +434,7 @@ public final class XConfigManager extends XCommonManager {
             }
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -365,8 +447,9 @@ public final class XConfigManager extends XCommonManager {
     public static int getMaxOutputSize() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -390,8 +473,9 @@ public final class XConfigManager extends XCommonManager {
     public static int getHelpFontSize() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -415,8 +499,9 @@ public final class XConfigManager extends XCommonManager {
     public static void setHelpFontSize(final int size) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -431,7 +516,7 @@ public final class XConfigManager extends XCommonManager {
             }
 
             helpFontSize.setAttribute(VALUE, Integer.toString(size));
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
    /**
@@ -442,8 +527,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveConsoleForeground(final Color color) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -457,7 +543,7 @@ public final class XConfigManager extends XCommonManager {
             consoleForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -469,8 +555,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveConsoleBackground(final Color color) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -484,7 +571,7 @@ public final class XConfigManager extends XCommonManager {
             consoleBackground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -500,8 +587,9 @@ public final class XConfigManager extends XCommonManager {
     public static Position getMainWindowPosition() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -531,8 +619,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveMainWindowPosition(final Position position) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -552,7 +641,7 @@ public final class XConfigManager extends XCommonManager {
             mainWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -564,8 +653,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveMainWindowSize( final Size size) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -585,7 +675,7 @@ public final class XConfigManager extends XCommonManager {
             mainWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -597,8 +687,9 @@ public final class XConfigManager extends XCommonManager {
     public static Size getMainWindowSize() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -622,8 +713,9 @@ public final class XConfigManager extends XCommonManager {
     public static Position getHelpWindowPosition() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -653,8 +745,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveHelpWindowPosition(final Position position) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -674,7 +767,7 @@ public final class XConfigManager extends XCommonManager {
             helpWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -686,8 +779,9 @@ public final class XConfigManager extends XCommonManager {
     public static void saveHelpWindowSize(final Size size) {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -707,7 +801,7 @@ public final class XConfigManager extends XCommonManager {
             helpWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
 
             /* Save changes */
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -719,8 +813,9 @@ public final class XConfigManager extends XCommonManager {
     public static Size getHelpWindowSize() {
 
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -744,8 +839,9 @@ public final class XConfigManager extends XCommonManager {
 
     public static void saveLastOpenedDirectory(final String path ){
         /* Load file */
-        readUserDocument();
-
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
+        
         if (document != null) {
             Element racine = document.getDocumentElement();
 
@@ -757,7 +853,7 @@ public final class XConfigManager extends XCommonManager {
 
             lastOpenedDir.setAttribute(VALUE, path);
 
-            writeDocument(USER_CONFIG_FILE);
+            writeDocument(USER_CONFIG_FILE, document);
         }
     }
 
@@ -770,7 +866,8 @@ public final class XConfigManager extends XCommonManager {
     public static String getLastOpenedDirectory(){
         /* Load file */
         /*System.getProperty("user.dir") if no path*/
-        readUserDocument();
+        createUserCopy(SCILAB_CONFIG_FILE, USER_CONFIG_FILE);
+        document = readDocument(USER_CONFIG_FILE);
         String path = new String() ;
 
         if (document != null) {
@@ -797,7 +894,7 @@ public final class XConfigManager extends XCommonManager {
 
                 scilabProfile.appendChild(newLastOpenedDir);
 
-                writeDocument(USER_CONFIG_FILE);
+                writeDocument(USER_CONFIG_FILE, document);
             }
         }
         return path ;

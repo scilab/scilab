@@ -46,6 +46,7 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     */
     public Checkbox(final Node peer) {
         super();
+        setOpaque(false);
         refresh(peer);
     }
 

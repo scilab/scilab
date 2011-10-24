@@ -669,7 +669,7 @@ public abstract class XCommonManager {
     /**
      * Save the modifications
      */
-    protected static void writeDocument(String filename) {
+    protected static void writeDocument(String filename,  Node written) {
         Transformer transformer = null;
         try {
             transformer = ScilabTransformerFactory.newInstance().newTransformer();
@@ -681,7 +681,7 @@ public abstract class XCommonManager {
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
         StreamResult result = new StreamResult(new File(filename));
-        DOMSource source = new DOMSource(document);
+        DOMSource source = new DOMSource(written);
         try {
             transformer.transform(source, result);
         } catch (TransformerException e) {

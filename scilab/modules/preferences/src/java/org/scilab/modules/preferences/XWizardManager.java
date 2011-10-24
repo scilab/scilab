@@ -165,7 +165,7 @@ public final class XWizardManager extends XCommonManager {
                 CURRENT_WIZARD_FILE = selection[0];
             }
             if (CURRENT_WIZARD_FILE != NAV) {
-                writeDocument(CURRENT_WIZARD_FILE);
+                writeDocument(CURRENT_WIZARD_FILE, document);
                 dialog.setTitle("Scilab wizard - [" + CURRENT_WIZARD_FILE + "]");
             }
             return true;
@@ -185,7 +185,7 @@ public final class XWizardManager extends XCommonManager {
                 }
             }
             if (CURRENT_WIZARD_FILE != NAV) {
-                writeDocument(CURRENT_WIZARD_FILE);
+                writeDocument(CURRENT_WIZARD_FILE, document);
             }
             return true;
         }

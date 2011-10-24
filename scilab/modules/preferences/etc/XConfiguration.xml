@@ -1,169 +1,147 @@
-<?xml version='1.0' encoding='utf-8'?>
-<interface path="interface/fonts/">
-	<general>
-		<body maturity="B">
-			<environment 
-				floating-point-exception="Produces a warning" 
-				printing-format="long"
-				width="10"
-				/>
-			<java-heap-memory 
-				heap-size="128"
-				/>
-		</body>
-		<confirmation-dialogs>
-			<body maturity="B">
-				<tools order="ascending">
-					<tool state="checked"    name="Scinotes"        description="Prompt"/>
-					<tool state="unchecked"  name="Console"         description="Warn before clearing the Console"/>
-					<tool state="checked"    name="Command History" description="Warn before deleting Command History items"/>
-				</tools>		
-			</body>
-		</confirmation-dialogs>		
-		<shortcuts>
-			<body maturity="B">
-				<actions active="scilab" browse="--choose a file --" filter="">
-					<action-folder name="Console" state="open">
-						<action ctrl="E" description="Execute..."/>
-						<action ctrl="N" description="New..."/>
-						<action ctrl="O" description="Open a file"/>
-					</action-folder>
-					<action-folder name="Scinotes" state="close">
-						<action ctrl="A" description="Abort..."/>
-						<action ctrl="B" description="Battle"/>
-						<action ctrl="C" description="Copy"/>
-						<action ctrl="D" description="Delete"/>
-						<action ctrl="E" description="Erase..."/>
-						<action ctrl="F" description="Flush"/>
-						<action ctrl="G" description="Giggle..."/>
-						<action ctrl="H" description="Help"/>
-						<action ctrl="I" description="Ignite"/>
-					</action-folder>
-				</actions>		
-			</body>
-		</shortcuts>		
-	</general>
-	<fonts>
-		<body maturity="B">
-			<fonts  item="1"                system ="true"    font-family="Monospaced" font-face="plain" font-size="10">
-				<item name="Console"          desktop="false"   font-family="Monospaced" font-face="plain" font-size="10"/>
-				<item name="Command History"  desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
-				<item name="Variable Browser" desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
-				<item name="Help"             desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
-				<item name="Scinotes"         desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
-				<item name="Variables Editor" desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
-			</fonts>
-		</body>
-	</fonts>
-	<colors>
-		<body maturity="B">
-			<desktop-colors 
-				use-system-color="true" 
-				text="#000000"
-				background="#ffffff"
-				cursor="#000000"/>
-			<syntax-highlighting-colors name="Special">
-				<item name="Default"   color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Special"   color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Operator"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Primitive" color="#678345" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Macro"            color="#783456" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="MacroInFile"      color="#834567" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="String"           color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="ExternalVariable" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="InputOutputArgs"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Identifier"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Comment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Field"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="FunctionKwd"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Url"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Mail"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Number"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Control"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Structure"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Constantes"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="White"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="WhiteInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="WhiteInString"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Tabulation"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="TabulationInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="LaTeXInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="TabulationInString"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="OpenClose"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-			</syntax-highlighting-colors>
-		</body>
-	</colors>
-	<console>
-		<body maturity="B">
-			<display wrap-lines="true" lines-to-display="100" columns-to-display="100"
-				tab-size="4" scroll-size = "3000">
+<?xml version="1.0" encoding="utf-8"?>
+<interface path="1/">
+  <general>
+    <body maturity="B">
+      <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
+      <java-heap-memory heap-size="128"/>
+    </body>
+    <confirmation-dialogs>
+      <body maturity="B">
+        <tools order="ascending">
+          <tool state="checked" name="Scinotes" description="Prompt"/>
+          <tool state="unchecked" name="Console" description="Warn before clearing the Console"/>
+          <tool state="checked" name="Command History" description="Warn before deleting Command History items"/>
+        </tools>
+      </body>
+    </confirmation-dialogs>
+    <shortcuts>
+      <body maturity="B">
+        <actions active="scilab" browse="--choose a file --" filter="">
+          <action-folder name="Console" state="open">
+            <action ctrl="E" description="Execute..."/>
+            <action ctrl="N" description="New..."/>
+            <action ctrl="O" description="Open a file"/>
+          </action-folder>
+          <action-folder name="Scinotes" state="close">
+            <action ctrl="A" description="Abort..."/>
+            <action ctrl="B" description="Battle"/>
+            <action ctrl="C" description="Copy"/>
+            <action ctrl="D" description="Delete"/>
+            <action ctrl="E" description="Erase..."/>
+            <action ctrl="F" description="Flush"/>
+            <action ctrl="G" description="Giggle..."/>
+            <action ctrl="H" description="Help"/>
+            <action ctrl="I" description="Ignite"/>
+          </action-folder>
+        </actions>
+      </body>
+    </shortcuts>
+  </general>
+  <fonts>
+    <body maturity="B">
+      <fonts item="1" system="true" font-family="Monospaced" font-face="plain" font-size="10">
+        <item name="Console" desktop="false" font-family="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Command History" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Variable Browser" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Help" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Scinotes" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Variables Editor" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+      </fonts>
+    </body>
+  </fonts>
+  <colors>
+    <body maturity="B">
+      <desktop-colors use-system-color="true" text="#000000" background="#ffffff" cursor="#000000"/>
+      <syntax-highlighting-colors name="Special">
+        <item name="Default" color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Special" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Operator" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Primitive" color="#678345" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Macro" color="#783456" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="MacroInFile" color="#834567" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="String" color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="ExternalVariable" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="InputOutputArgs" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Identifier" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Comment" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Field" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="FunctionKwd" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Url" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Mail" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Number" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Control" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Structure" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Constantes" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="White" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="WhiteInComment" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="WhiteInString" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="Tabulation" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="TabulationInComment" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="LaTeXInComment" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="TabulationInString" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+        <item name="OpenClose" color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+      </syntax-highlighting-colors>
+    </body>
+  </colors>
+  <console>
+    <body maturity="B">
+      <display wrap-lines="true" lines-to-display="100" columns-to-display="100" tab-size="4" scroll-size="3000">
 			</display>
-			<accessibility/>
-		</body>
-	</console>
-	<command-history>
-		<body maturity="B">
-			<history-save kind="quit" after="1"/>
-			<history-settings history-file="" history-lines="1000"/>
-		</body>
-	</command-history>
-	<scinotes>
-		<body maturity="B">
-			<scinotes-preferences restart-reopen="true" reload-unedited="true" add-line-termination="true"
-				number-of-entries="5" encoding="utf-8" eol="Unix(LF)"/>
-		</body>
-		<display>
-			<body maturity="B">
-				<scinotes-display highlight-current-line="true" current-line-color="#facade" show-line-numbers="true" wrap-lines="true"/>
-			</body>
-		</display>		
-		<syntax>
-			<body maturity="B">
-				<scinotes-syntax highlight="true" hightlight-brackets="true"
-					tab-size="4" use-spaces="true" indent-size="4"
-					automatic-indent="true"/>
-			</body>
-		</syntax>		
-		<autosave>
-			<body maturity="B">
-				<scinotes-autosave enable="true" 
-					save-every="5" save-untitled="true" automatic-delete="true"
-					append-flag="true" append-with="~" replace-with="tmp"
-					source-flag="true" single-directory=""/>
-			</body>
-		</autosave>		
-	</scinotes>
-	<variables>
-		<body maturity="B">
-			<variable-browser maximum-array-size="500000"/>
-			<variable-editor default-array-format="short" move-selection-after-enter="true"
-				direction="Down" decimal-separator=","/>
-		</body>
-	</variables>
-	<xcos>
-		<body maturity="B">
-			<xcos/>
-		</body>
-	</xcos>
-	<toolbar>
-		<body maturity="I">
-			<toolbars select="scilab">
-				<toolbar title="scilab" position="1" selection="0">
-					<item title="Cut"/>
-					<separator/>
-					<item title="Paste"/>
-				</toolbar>
-				<toolbar title="scinotes" position="2" selection="2">
-					<item title="Cut"/>
-					<separator/>
-					<item title="Copy"/>
-				</toolbar>
-			</toolbars>
-		</body>
-	</toolbar>
-	<toolboxes>
-		<body maturity="I">
-			<TBD/>
-		</body>
-	</toolboxes>
+      <accessibility/>
+    </body>
+  </console>
+  <command-history>
+    <body maturity="B">
+      <history-save kind="quit" after="1"/>
+      <history-settings history-file="" history-lines="1000"/>
+    </body>
+  </command-history>
+  <scinotes>
+    <body maturity="B">
+      <scinotes-preferences restart-reopen="true" reload-unedited="true" add-line-termination="true" number-of-entries="5" encoding="utf-8" eol="Unix(LF)"/>
+    </body>
+    <display>
+      <body maturity="B">
+        <scinotes-display highlight-current-line="true" current-line-color="#facade" show-line-numbers="true" wrap-lines="true"/>
+      </body>
+    </display>
+    <syntax>
+      <body maturity="B">
+        <scinotes-syntax highlight="true" hightlight-brackets="true" tab-size="4" use-spaces="true" indent-size="4" automatic-indent="true"/>
+      </body>
+    </syntax>
+    <autosave>
+      <body maturity="B">
+        <scinotes-autosave enable="true" save-every="5" save-untitled="true" automatic-delete="true" append-flag="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
+      </body>
+    </autosave>
+  </scinotes>
+  <variables>
+    <body maturity="B">
+      <variable-browser maximum-array-size="500000"/>
+      <variable-editor default-array-format="short" move-selection-after-enter="true" direction="Down" decimal-separator=","/>
+    </body>
+  </variables>
+  <xcos>
+    <body maturity="B">
+      <xcos/>
+    </body>
+  </xcos>
+  <toolbar>
+    <body maturity="I">
+      <toolbars select="scilab">
+        <toolbar title="scilab" position="1" selection="0">
+          <item title="Cut"/>
+          <separator/>
+          <item title="Paste"/>
+        </toolbar>
+        <toolbar title="scinotes" position="2" selection="2">
+          <item title="Cut"/>
+          <separator/>
+          <item title="Copy"/>
+        </toolbar>
+      </toolbars>
+    </body>
+  </toolbar>
+  <toolboxes/>
 </interface>
