@@ -17,14 +17,12 @@
 /*--------------------------------------------------------------------------*/
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/
-
-//YaSp
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_pwd);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_chdir);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_copyfile);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_movefile);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_fscanfMat);
-FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_fprintfMat);
+C_GATEWAY_PROTOTYPE(sci_pwd);
+C_GATEWAY_PROTOTYPE(sci_chdir);
+C_GATEWAY_PROTOTYPE(sci_copyfile);
+C_GATEWAY_PROTOTYPE(sci_movefile);
+C_GATEWAY_PROTOTYPE(sci_fscanfMat);
+C_GATEWAY_PROTOTYPE(sci_fprintfMat);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */

@@ -15,18 +15,18 @@
 
 #include "dynlib_scinotes.h"
 
-class ScinotesModule
-{
-private :
-   ScinotesModule() {};
-   ~ScinotesModule() {};
-   
-   static bool loadedDep;
-   static void LoadDeps(void);
-
-public :
-   SCINOTES_IMPEXP static int Load();
-};
-
+//class ScinotesModule
+//{
+//private :
+//   ScinotesModule() {};
+//   ~ScinotesModule() {};
+//   
+//   static bool loadedDep;
+//   static void LoadDeps(void);
+//
+//public :
+//   SCINOTES_IMPEXP static int Load();
+//};
+//
 
 #endif /* !__SCINOTES_GW_HXX__ */

@@ -62,18 +62,6 @@
     <ClCompile Include="pcre_private.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isalphanum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isascii.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isdigit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_strsplit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scistrtostr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -212,6 +200,9 @@
     <None Include="..\..\sci_gateway\string_gateway.xml" />
     <None Include="..\..\locales\string.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

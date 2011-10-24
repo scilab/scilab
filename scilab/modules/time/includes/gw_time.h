@@ -15,22 +15,18 @@
 #define __GW_TIME_H__
 /*--------------------------------------------------------------------------*/ 
 #include "dynlib_time.h"
+#include "dynlib_time_gw.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/ 
-/* interface for the previous function Table */ 
-/*--------------------------------------------------------------------------*/ 
-
-//YaSp
-TIME_IMPEXP int sci_xpause(char *fname, int* _piKey);
-TIME_IMPEXP int sci_sleep(char *fname, int* _piKey);
-TIME_IMPEXP int sci_realtimeinit(char *fname, int* _piKey);
-TIME_IMPEXP int sci_realtime(char *fname, int* _piKey);
-TIME_IMPEXP int sci_getdate(char *fname, int* _piKey);
-TIME_IMPEXP int sci_calendar(char *fname, int* _piKey);
-TIME_IMPEXP int sci_timer(char *fname,int* _piKey);
-
+int sci_xpause(char *fname, int* _piKey);
+int sci_sleep(char *fname, int* _piKey);
+int sci_realtimeinit(char *fname, int* _piKey);
+int sci_realtime(char *fname, int* _piKey);
+int sci_getdate(char *fname, int* _piKey);
+int sci_calendar(char *fname, int* _piKey);
+int sci_timer(char *fname,int* _piKey);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

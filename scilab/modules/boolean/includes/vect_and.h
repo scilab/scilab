@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include "dynlib_boolean.h"
 
 /**
  * @TODO add comment
@@ -19,4 +20,4 @@
  * @param r 
  * @param opt   
  */
-void vect_or(int *v,int m,int n,int *r,int opt);
+BOOLEAN_IMPEXP void vect_and(int *v,int m, int n,int *r,int opt);

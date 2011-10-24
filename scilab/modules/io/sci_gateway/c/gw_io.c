@@ -23,53 +23,27 @@ static gw_generic_table Tab[] =
 {
 
 {NULL, ""}, //setenv
-{sci_read,"read"},
+{NULL,""}, //read
 {NULL, ""}, //getenv
-{sci_getio,"getio"},
+{NULL,""}, //getio
 {NULL,""},
 {NULL,""},
-{sci_write,"write"},
-{NULL,"rat"},
+{NULL,""}, //write
+{NULL,""}, //rat
 {NULL, ""}, //file
 {NULL ,""}, //host
 {NULL, ""}, //unix
-{sci_readb,"readb"},
-{sci_writb,"writb"},
-{sci_getpid,"getpid"},
-{sci_read4b,"read4b"},
-{sci_write4b,"write4b"},
-{sci_save,"save"},
+{NULL,""}, //readb
+{NULL,""}, //writb
+{NULL,""}, //getpid
+{NULL,""}, //read4b
+{NULL,""}, //write4b
+{NULL,""}, //save
 {NULL, ""} //load
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {
-    /* Recursion from a function */
-    if ( isRecursionCallToFunction() )
-    {
-        switch ( getRecursionFunctionToCall() )
-        {
-        case RECURSION_CALL_SAVE:
-            {
-                //C2F(intsave)();
-                return 0;
-            }
-            break;
-        case RECURSION_CALL_LOAD:
-            {
-                //sci_load("load",(unsigned long)strlen("load"));
-                return 0;
-            }
-            break;
-        default:
-            break;
-        }
-    }
-    else
-    {
-        Rhs = Max(0, Rhs);
-        callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

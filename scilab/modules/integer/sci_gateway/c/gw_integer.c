@@ -32,7 +32,7 @@ static gw_generic_table Tab[]=
   {NULL, ""}, //int32
   {NULL, ""}, //int16
   {NULL, ""}, //int8
-  {C2F(sciinttype),"inttype"},
+  {NULL, ""}, //inttype
   {NULL, ""}, //double
   {NULL, ""}, //uint32
   {NULL, ""}, //uint16

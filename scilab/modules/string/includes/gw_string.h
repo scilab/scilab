@@ -14,21 +14,16 @@
 #ifndef __GW_STRING__
 #define __GW_STRING__
 #include "dynlib_string.h"
+#include "dynlib_string_gw.h"
 #include "c_gateway_prototype.h"
 
 /*--------------------------------------------------------------------------*/
 STRING_IMPEXP int gw_string(void);
 /*--------------------------------------------------------------------------*/
-//STRING_IMPEXP int sci_length(char *fname,unsigned long fname_len); -> C++
-//STRING_IMPEXP int sci_string(char *fname,unsigned long fname_len); -> C++
-//STRING_IMPEXP int sci_convstr(char *fname,unsigned long fname_len); -> C++
-//STRING_IMPEXP int sci_NumTokens(char *fname,unsigned long fname_len);
-
-//YaSp
-STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_strsplit);
-STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isdigit);
-STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isalphanum);
-STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isascii);
+EXTERN_STRING_GW C_GATEWAY_PROTOTYPE(sci_strsplit);
+EXTERN_STRING_GW C_GATEWAY_PROTOTYPE(sci_isdigit);
+EXTERN_STRING_GW C_GATEWAY_PROTOTYPE(sci_isalphanum);
+EXTERN_STRING_GW C_GATEWAY_PROTOTYPE(sci_isascii);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_STRING__ */

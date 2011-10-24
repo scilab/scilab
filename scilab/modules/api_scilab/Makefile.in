@@ -407,46 +407,49 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 API_SCILAB_CPP_SOURCES = \
-src/cpp/api_boolean.cpp \
-src/cpp/api_boolean_sparse.cpp \
-src/cpp/api_common.cpp \
-src/cpp/api_double.cpp \
-src/cpp/api_int.cpp \
-src/cpp/api_list.cpp \
-src/cpp/api_poly.cpp \
-src/cpp/api_sparse.cpp \
-src/cpp/api_string.cpp \
-src/cpp/api_pointer.cpp \
-src/cpp/api_oldstack.cpp \
-src/cpp/api_error.cpp \
-src/cpp/overload.cpp
+    src/cpp/api_boolean.cpp \
+    src/cpp/api_boolean_sparse.cpp \
+    src/cpp/api_common.cpp \
+    src/cpp/api_double.cpp \
+    src/cpp/api_int.cpp \
+    src/cpp/api_list.cpp \
+    src/cpp/api_poly.cpp \
+    src/cpp/api_sparse.cpp \
+    src/cpp/api_string.cpp \
+    src/cpp/api_pointer.cpp \
+    src/cpp/api_oldstack.cpp \
+    src/cpp/api_error.cpp \
+    src/cpp/overload.cpp
 
-libsciapi_scilab_la_CFLAGS = -I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/core/includes \
--I$(top_srcdir)/modules/call_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/operations/includes
+libsciapi_scilab_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/call_scilab/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/operations/includes
 
-libsciapi_scilab_la_CPPFLAGS = -I$(srcdir)/includes/ \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/core/includes \
--I$(top_srcdir)/modules/call_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/string/includes
+libsciapi_scilab_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/call_scilab/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libsciapi_scilab.la
 libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)

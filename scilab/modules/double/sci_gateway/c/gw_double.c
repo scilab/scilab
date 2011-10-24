@@ -38,7 +38,7 @@ extern int C2F( matrc)();
 extern int C2F(mattr)();
 extern int C2F(matadd)();
 extern int C2F(matcmp)();
-extern int C2F(matlog)();
+//extern int C2F(matlog)();
 extern int C2F(mattrc)();
 extern int C2F(vecmul)();
 extern int C2F(matpow)();
@@ -241,7 +241,7 @@ int ChooseOtherOperation(int op)
 	}
 	if (op == et || op == ou || op == non)
 	{
-		C2F(matlog)();
+		//C2F(matlog)();
 		return 0;
 	}
 	if (op >= less)

@@ -12,7 +12,10 @@
 * 
 */
 /*--------------------------------------------------------------------------*/ 
-#include <hdf5.h>
+#include "dynhdf5.hxx"
+
+extern "C"
+{
 #include <string.h>
 #include "h5_fileManagement.h"
 #include "FileExist.h"
@@ -22,6 +25,7 @@
 #include "scicurdir.h"
 #include "MALLOC.h"
 #include "os_strdup.h"
+}
 /*--------------------------------------------------------------------------*/ 
 static char *getPathFilename(char *fullfilename);
 static char *getFilenameWithExtension(char *fullfilename);
@@ -29,7 +33,7 @@ static char *getFilenameWithExtension(char *fullfilename);
 int createHDF5File(char *name) 
 {
     hid_t       file;
-    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+    hid_t fapl = DynHDF5::dynH5Pcreate(H5P_FILE_ACCESS);
     char *pathdest = getPathFilename(name);
     char *currentpath = NULL;
     char *filename = getFilenameWithExtension(name);
@@ -64,8 +68,7 @@ int createHDF5File(char *name)
     /*
     * Create a new file using the default properties.
     */
-
-    file = H5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
+    file = DynHDF5::dynH5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
 
     scichdir(currentpath);
 
@@ -98,7 +101,7 @@ int openHDF5File(char *name)
         scichdir(pathdest);
     }
 
-    file = H5Fopen (filename, H5F_ACC_RDONLY, H5P_DEFAULT);
+    file = DynHDF5::dynH5Fopen(filename, H5F_ACC_RDONLY, H5P_DEFAULT);
 
     scichdir(currentpath);
 
@@ -114,11 +117,12 @@ void closeHDF5File(int file)
     herr_t status					= 0;
 
     //	H5Fflush(file, H5F_SCOPE_GLOBAL);
-    status = H5Fclose(file);
+    status =  DynHDF5::dynH5Fclose(file);
     if(status < 0)
     {
         fprintf(stderr, "%s", "failed to close file");
     }
+    DynHDF5::dynCLoseLib();
 }
 /*--------------------------------------------------------------------------*/ 
 static char *getPathFilename(char *fullfilename)

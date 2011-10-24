@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-
+#include "dynlib_matio.h"
 /*
  * Create a Scilab variable on stack from a Matlab variable
  * This function write nothing on stack but calls the function which 
@@ -33,7 +33,7 @@
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+MATIO_IMPEXP int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 
 /*

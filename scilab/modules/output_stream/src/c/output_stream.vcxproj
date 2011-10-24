@@ -296,12 +296,10 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\do_error_number.h" />
     <ClInclude Include="..\..\includes\do_xxprintf.h" />
     <ClInclude Include="..\..\includes\dynlib_output_stream.h" />
-    <ClInclude Include="..\..\includes\dynlib_output_stream_gw.h" />
     <ClInclude Include="..\..\includes\errmds.h" />
     <ClInclude Include="..\..\includes\erro.h" />
     <ClInclude Include="..\..\includes\gw_output_stream.h" />
     <ClInclude Include="..\..\includes\msgs.h" />
-    <ClInclude Include="..\..\includes\output_stream_gw.hxx" />
     <ClInclude Include="..\..\includes\Scierror.h" />
     <ClInclude Include="..\..\includes\scilabWrite.hxx" />
     <ClInclude Include="..\..\includes\scilab_sprintf.hxx" />

@@ -44,7 +44,8 @@ libscijvm_la_CPPFLAGS=-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/
+			-I$(top_srcdir)/modules/system_env/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscijvm-disable.la
 

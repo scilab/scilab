@@ -14,20 +14,13 @@
 #ifndef __ACTION_BINDING_GW_HXX__
 #define __ACTION_BINDING_GW_HXX__
 
-#include "dynlib_action_binding_gw.h"
-
 #include "cpp_gateway_prototype.hxx"
 
-class ActionBindingModule
+extern "C"
 {
-private :
-    ActionBindingModule() {};
-    ~ActionBindingModule() {};
+    #include "dynlib_action_binding_gw.h"
+}
 
-public :
-	ACTION_BINDING_GW_IMPEXP static int Load();
-};
-
-CPP_GATEWAY_PROTOTYPE(sci_notify);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_notify, ACTION_BINDING_GW_IMPEXP);
 
 #endif /* !__ACTION_BINDING_GW_HXX__ */

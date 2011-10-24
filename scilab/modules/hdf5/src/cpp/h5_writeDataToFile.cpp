@@ -12,7 +12,10 @@
 
 #define H5_USE_16_API
 
-#include <hdf5.h>
+#include "dynhdf5.hxx"
+
+extern "C"
+{
 #include <MALLOC.h>
 #include <math.h>
 #include <string.h>
@@ -20,7 +23,7 @@
 #include "core_math.h"
 #include "h5_writeDataToFile.h"
 #include "h5_attributeConstants.h"
-
+}
 
 static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
 {
@@ -41,7 +44,7 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
 
     if(iLevel)
     {
-        iRet = H5Pcreate(H5P_DATASET_CREATE);
+        iRet = DynHDF5::dynH5Pcreate(H5P_DATASET_CREATE);
         if(iRet < 0)
         {
             iRet = 0;
@@ -50,21 +53,21 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
         {
             if(H5Pset_layout(iRet,H5D_COMPACT)<0)
             {
-                H5Pclose(iRet);
+                DynHDF5::dynH5Pclose(iRet);
                 iRet = 0;
             }
             else
             {
                 if(H5Pset_chunk(iRet,_iRank, _piDims)<0)
                 {
-                    H5Pclose(iRet);
+                    DynHDF5::dynH5Pclose(iRet);
                     iRet = 0;
                 }
                 else
                 {
                     if(H5Pset_deflate(iRet,iLevel)<0)
                     {
-                        H5Pclose(iRet);
+                        DynHDF5::dynH5Pclose(iRet);
                         iRet = 0;
                     }
                 }
@@ -73,7 +76,7 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
     }
     else
     {
-        iRet = H5Pcopy(H5P_DEFAULT);
+        iRet = DynHDF5::dynH5Pcopy(H5P_DEFAULT);
     }
     return iRet;
 */
@@ -86,29 +89,29 @@ static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _
     herr_t status;
 
     //Create attribute dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    attributeSpace = H5Screate_simple (1, attributeDims, NULL);
+    attributeSpace = DynHDF5::dynH5Screate_simple (1, attributeDims, NULL);
 
     //Create the attribute and write it.
-    attributeTypeId = H5Acreate (_iDatasetId, _pstName, H5T_NATIVE_INT, attributeSpace, H5P_DEFAULT);
+    attributeTypeId = DynHDF5::dynH5Acreate (_iDatasetId, _pstName, H5T_NATIVE_INT, attributeSpace, H5P_DEFAULT);
     if(attributeTypeId < 0)
     {
         return -1;
     }
 
-    status = H5Awrite (attributeTypeId, H5T_NATIVE_INT, &_iVal);
+    status = DynHDF5::dynH5Awrite (attributeTypeId, H5T_NATIVE_INT, &_iVal);
     if(status < 0)
     {
         return -1;
     }
 
     //Close and release resources.
-    status = H5Aclose (attributeTypeId);
+    status = DynHDF5::dynH5Aclose (attributeTypeId);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (attributeSpace);
+    status = DynHDF5::dynH5Sclose (attributeSpace);
     if(status < 0)
     {
         return -1;
@@ -124,37 +127,37 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
     herr_t status;
 
     //Create attribute dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    attributeSpace = H5Screate_simple (1, attributeDims, NULL);
+    attributeSpace = DynHDF5::dynH5Screate_simple (1, attributeDims, NULL);
 
     //Create special attribute type
-    attributeTypeId = H5Tcopy(H5T_C_S1);
-    status = H5Tset_size(attributeTypeId, strlen(_pstValue));
+    attributeTypeId = DynHDF5::dynH5Tcopy(H5T_C_S1);
+    status = DynHDF5::dynH5Tset_size(attributeTypeId, strlen(_pstValue));
     if(status < 0)
     {
         return -1;
     }
 
     //Create the attribute and write it.
-    attr = H5Acreate (_iDatasetId, _pstName, attributeTypeId, attributeSpace, H5P_DEFAULT);
+    attr = DynHDF5::dynH5Acreate (_iDatasetId, _pstName, attributeTypeId, attributeSpace, H5P_DEFAULT);
     if(attr < 0)
     {
         return -1;
     }
 
-    status = H5Awrite (attr, attributeTypeId, _pstValue);
+    status = DynHDF5::dynH5Awrite (attr, attributeTypeId, _pstValue);
     if(status < 0)
     {
         return -1;
     }
 
     //Close and release resources.
-    status = H5Aclose (attr);
+    status = DynHDF5::dynH5Aclose (attr);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Tclose (attributeTypeId);
+    status = DynHDF5::dynH5Tclose (attributeTypeId);
     if(status < 0)
     {
         return -1;
@@ -171,17 +174,17 @@ static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
     hid_t iCompress;
 
     //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple (1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
     if(space < 0)
     {
         return -1;
     }
 
     //Create special string type
-    typeId = H5Tcopy(H5T_C_S1);
+    typeId = DynHDF5::dynH5Tcopy(H5T_C_S1);
     if(strlen(_pstData) > 0)
     {
-        status = H5Tset_size(typeId, strlen(_pstData));
+        status = DynHDF5::dynH5Tset_size(typeId, strlen(_pstData));
         if(status < 0)
         {
             return -1;
@@ -190,13 +193,13 @@ static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
 
     //Create the data set and write it.
     iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
+    dset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
     if(dset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
+    status = DynHDF5::dynH5Dwrite (dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
     if(status < 0)
     {
         return -1;
@@ -210,19 +213,19 @@ static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Tclose(typeId);
+    status = DynHDF5::dynH5Tclose(typeId);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -248,23 +251,23 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     }
 
     //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple (1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
     if(space < 0)
     {
         return -1;
     }
 
     //Create special string type
-    typeId = H5Tcopy(H5T_C_S1);
+    typeId = DynHDF5::dynH5Tcopy(H5T_C_S1);
 
     /* Bug 6474 */
     /* we allocate datas in fixed length string */
     /* workaround for memcpy in hdf5 with wrong size */
-    pstDataTemp = MALLOC(sizeof(char) * (iMaxLen + 1));
+    pstDataTemp = (char*)MALLOC(sizeof(char) * (iMaxLen + 1));
 
     if(iMaxLen > 0)
     {
-        status = H5Tset_size(typeId,iMaxLen);
+        status = DynHDF5::dynH5Tset_size(typeId,iMaxLen);
         if(status < 0)
         {
             FREE(pstDataTemp);
@@ -274,14 +277,14 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
     //Create the data set and write it.
     iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
+    dset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
     if(dset < 0)
     {
         FREE(pstDataTemp);
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         FREE(pstDataTemp);
@@ -292,19 +295,19 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
     for(i = 0 ; i < _iRows * _iCols ; i++)
     {
-        hssize_t start[1]={i};
+        hsize_t start[1]={i};
         hsize_t count[1]={1};
 
         strcpy(pstDataTemp, data[i]);
 
-        space = H5Dget_space(dset);
+        space = DynHDF5::dynH5Dget_space(dset);
         if(space < 0)
         {
             FREE(pstDataTemp);
             return -1;
         }
 
-        status = H5Sselect_hyperslab (space, H5S_SELECT_SET, start, NULL, count, NULL);
+        status = DynHDF5::dynH5Sselect_hyperslab (space, H5S_SELECT_SET, start, NULL, count, NULL);
         if(status < 0)
         {
             FREE(pstDataTemp);
@@ -312,14 +315,14 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
         }
 
         /*create sub space*/
-        memspace = H5Screate_simple(1, subdims, NULL);
+        memspace = DynHDF5::dynH5Screate_simple(1, subdims, NULL);
         if(memspace < 0)
         {
             FREE(pstDataTemp);
             return -1;
         }
 
-        status = H5Dwrite (dset, typeId, memspace, space, H5P_DEFAULT, pstDataTemp);
+        status = DynHDF5::dynH5Dwrite (dset, typeId, memspace, space, H5P_DEFAULT, pstDataTemp);
 
         if(status < 0)
         {
@@ -327,14 +330,14 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
             return -1;
         }
 
-        status=H5Sclose(space);
+        status=DynHDF5::dynH5Sclose(space);
         if(status < 0)
         {
             FREE(pstDataTemp);
             return -1;
         }
 
-        status=H5Sclose(memspace);
+        status=DynHDF5::dynH5Sclose(memspace);
         if(status < 0)
         {
             FREE(pstDataTemp);
@@ -368,14 +371,14 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         FREE(pstDataTemp);
         return -1;
     }
 
-    status = H5Tclose(typeId);
+    status = DynHDF5::dynH5Tclose(typeId);
     if(status < 0)
     {
         FREE(pstDataTemp);
@@ -427,20 +430,20 @@ int writeVoid(int _iFile, char* _pstDatasetName)
     char cData          = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
     }
     //Create the dataset and write the array data to it.
     iCompress    = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
     if(status < 0)
     {
         return -1;
@@ -454,13 +457,13 @@ int writeVoid(int _iFile, char* _pstDatasetName)
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -479,20 +482,20 @@ int writeUndefined(int _iFile, char* _pstDatasetName)
     char cData          = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
     }
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
     if(status < 0)
     {
         return -1;
@@ -506,13 +509,13 @@ int writeUndefined(int _iFile, char* _pstDatasetName)
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -544,7 +547,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         //size to be the current size.
         dims[0] = 1;
 
-        space = H5Screate_simple (1, dims, NULL);
+        space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
         if(space < 0)
         {
             return (hobj_ref_t)(-1);
@@ -552,13 +555,13 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
     
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
+        dset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
         if(dset < 0)
         {
             return (hobj_ref_t)(-1);
         }
 
-        status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, &dblZero);
+        status = DynHDF5::dynH5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, &dblZero);
         if(status < 0)
         {
             return (hobj_ref_t)(-1);
@@ -581,7 +584,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
     {
         //Create dataspace.  Setting maximum size to NULL sets the maximum
         //size to be the current size.
-        space = H5Screate_simple (1, dims, NULL);
+        space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
         if(space < 0)
         {
             return (hobj_ref_t)(-1);
@@ -589,13 +592,13 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
 
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, iCompress);
+        dset = DynHDF5::dynH5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, iCompress);
         if(dset < 0)
         {
             return (hobj_ref_t)(-1);
         }
 
-        status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblData);
+        status = DynHDF5::dynH5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblData);
         if(status < 0)
         {
             return (hobj_ref_t)(-1);
@@ -623,7 +626,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
         }
 
         // create the ref
-        status = H5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
+        status = DynHDF5::dynH5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
         if(status < 0)
         {
             return (hobj_ref_t)(-1);
@@ -632,13 +635,13 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstGroupName, char*
 
 
     //Close and release resources.
-    status = H5Dclose (dset);
+    status = DynHDF5::dynH5Dclose (dset);
     if(status < 0)
     {
         return (hobj_ref_t)(-1);
     }
 
-    status = H5Sclose (space);
+    status = DynHDF5::dynH5Sclose (space);
     if(status < 0)
     {
         return (hobj_ref_t)(-1);
@@ -665,8 +668,8 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     //create sub group only for non empty matrix
     if(_iRows * _iCols != 0)
     {
-        group   = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
-        status  = H5Gclose(group);
+        group   = DynHDF5::dynH5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+        status  = DynHDF5::dynH5Gclose(group);
         if(status < 0)
         {
             return -1;
@@ -687,7 +690,7 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     }
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple(1, dims, NULL);
     if(space < 0)
     {
         return -1;
@@ -695,13 +698,13 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
     //Create the dataset and write the array data to it.
     iCompress   = enableCompression(9, 1, dims);
-    dset        = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset        = DynHDF5::dynH5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
     if(dset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+    status = DynHDF5::dynH5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
     if(status < 0)
     {
         return -1;
@@ -729,13 +732,13 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -759,8 +762,8 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     hid_t group         = 0;
     char* pstGroupName  = NULL;
     pstGroupName        = createGroupName(_pstDatasetName);
-    group               = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
-    status              = H5Gclose(group);
+    group               = DynHDF5::dynH5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    status              = DynHDF5::dynH5Gclose(group);
 
     if(status < 0)
     {
@@ -775,7 +778,7 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     }
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple(1, dims, NULL);
     if(space < 0)
     {
         return -1;
@@ -783,13 +786,13 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 
     //Create the dataset and write the array data to it.
     iCompress   = enableCompression(9, 1, dims);
-    dset        = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset        = DynHDF5::dynH5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
     if(dset < 0)
     {
         printf("\nH5Dcreate\n");
         return -1;
     }
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+    status = DynHDF5::dynH5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
     if(status < 0)
     {
         printf("\nH5Dwrite\n");
@@ -824,13 +827,13 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -849,7 +852,7 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
     hid_t iDataset;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -857,13 +860,13 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 
     //Create the dataset and write the array data to it.
     iCompress    = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
     if(status < 0)
     {
         return -1;
@@ -891,13 +894,13 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -930,8 +933,8 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
-    status = H5Gclose(group);
+    group = DynHDF5::dynH5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    status = DynHDF5::dynH5Gclose(group);
 
     //Now create each String as a dedicated DataSet.
     for (i = 0 ; i < _iRows * _iCols; i++)
@@ -953,7 +956,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
             return -1;
         }
         // create the ref
-        status = H5Rcreate(&pData[i], _iFile, pstPathName, H5R_OBJECT, -1);
+        status = DynHDF5::dynH5Rcreate(&pData[i], _iFile, pstPathName, H5R_OBJECT, -1);
         if(status < 0)
         {
             return -1;
@@ -965,7 +968,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple(1, dims, NULL);
     if(status < 0)
     {
         return -1;
@@ -973,13 +976,13 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset = DynHDF5::dynH5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
     if(dset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
+    status = DynHDF5::dynH5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
     if(status < 0)
     {
         return -1;
@@ -1023,13 +1026,13 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -1060,20 +1063,20 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
     }
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pcData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pcData);
     if(status < 0)
     {
         return -1;
@@ -1107,13 +1110,13 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1131,19 +1134,19 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
     }
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _psData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _psData);
     if(status < 0)
     {
         return -1;
@@ -1177,13 +1180,13 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1201,7 +1204,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1209,13 +1212,13 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
     if(status < 0)
     {
         return -1;
@@ -1249,13 +1252,13 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1273,7 +1276,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1281,13 +1284,13 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pllData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pllData);
     if(status < 0)
     {
         return -1;
@@ -1321,13 +1324,13 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1345,7 +1348,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatase
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1353,13 +1356,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatase
     
     //Create the dataset and write the array data to it.
     iCompress    = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT8, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT8, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pucData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pucData);
     if(status < 0)
     {
         return -1;
@@ -1393,13 +1396,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger8Matrix(int _iFile, char* _pstDatase
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1417,7 +1420,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatas
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1425,13 +1428,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatas
 
     //Create the dataset and write the array data to it.
     iCompress    = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT16, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT16, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pusData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pusData);
     if(status < 0)
     {
         return -1;
@@ -1465,13 +1468,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger16Matrix(int _iFile, char* _pstDatas
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1489,7 +1492,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatas
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1497,13 +1500,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatas
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT32, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT32, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _puiData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _puiData);
     if(status < 0)
     {
         return -1;
@@ -1537,13 +1540,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger32Matrix(int _iFile, char* _pstDatas
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1561,7 +1564,7 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatas
     hid_t iCompress     = 0;
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    iSpace = H5Screate_simple (1, piDims, NULL);
+    iSpace = DynHDF5::dynH5Screate_simple (1, piDims, NULL);
     if(iSpace < 0)
     {
         return -1;
@@ -1569,13 +1572,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatas
     
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT64, iSpace, iCompress);
+    iDataset = DynHDF5::dynH5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_UINT64, iSpace, iCompress);
     if(iDataset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite (iDataset, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,    _pullData);
+    status = DynHDF5::dynH5Dwrite (iDataset, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,    _pullData);
     if(status < 0)
     {
         return -1;
@@ -1609,13 +1612,13 @@ HDF5_SCILAB_IMPEXP int writeUnsignedInterger64Matrix(int _iFile, char* _pstDatas
     }
 
     //Close and release resources.
-    status = H5Dclose (iDataset);
+    status = DynHDF5::dynH5Dclose (iDataset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (iSpace);
+    status = DynHDF5::dynH5Sclose (iSpace);
     if(status < 0)
     {
         return -1;
@@ -1648,8 +1651,8 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group   = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
-    status  = H5Gclose(group);
+    group   = DynHDF5::dynH5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    status  = DynHDF5::dynH5Gclose(group);
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);
@@ -1659,7 +1662,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
         return -1;
     }
 
-    status = H5Rcreate(&pDataRef[0], _iFile, pstRowPath, H5R_OBJECT, -1);
+    status = DynHDF5::dynH5Rcreate(&pDataRef[0], _iFile, pstRowPath, H5R_OBJECT, -1);
     if(status < 0)
     {
         return -1;
@@ -1672,7 +1675,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
         return -1;
     }
 
-    status = H5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
+    status = DynHDF5::dynH5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
     if(status < 0)
     {
         return -1;
@@ -1692,7 +1695,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
         return -1;
     }
 
-    status = H5Rcreate(&pDataRef[2], _iFile, pstDataPath, H5R_OBJECT, -1);
+    status = DynHDF5::dynH5Rcreate(&pDataRef[2], _iFile, pstDataPath, H5R_OBJECT, -1);
     if(status < 0)
     {
         return -1;
@@ -1704,7 +1707,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
     FREE(pstDataPath);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple(1, dims, NULL);
     if(space < 0)
     {
         return -1;
@@ -1712,13 +1715,13 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 
     //Create the dataset and write the array data to it.
     iCompress   = enableCompression(9, 1, dims);
-    dset        = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset        = DynHDF5::dynH5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
     if(dset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
+    status = DynHDF5::dynH5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
     if(status < 0)
     {
         return -1;
@@ -1760,13 +1763,13 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
     }
 
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -1811,8 +1814,8 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group   = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
-    status  = H5Gclose(group);
+    group   = DynHDF5::dynH5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    status  = DynHDF5::dynH5Gclose(group);
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);
@@ -1822,7 +1825,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
         return -1;
     }
 
-    status = H5Rcreate(&pDataRef[0], _iFile, pstRowPath, H5R_OBJECT, -1);
+    status = DynHDF5::dynH5Rcreate(&pDataRef[0], _iFile, pstRowPath, H5R_OBJECT, -1);
     if(status < 0)
     {
         return -1;
@@ -1835,7 +1838,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
         return -1;
     }
 
-    status = H5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
+    status = DynHDF5::dynH5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
     if(status < 0)
     {
         return -1;
@@ -1847,7 +1850,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
     FREE(pstColPath);
 
     //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-    space = H5Screate_simple(1, dims, NULL);
+    space = DynHDF5::dynH5Screate_simple(1, dims, NULL);
     if(space < 0)
     {
         return -1;
@@ -1855,13 +1858,13 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 
     //Create the dataset and write the array data to it.
     iCompress   = enableCompression(9, 1, dims);
-    dset        = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset        = DynHDF5::dynH5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
     if(dset < 0)
     {
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
+    status = DynHDF5::dynH5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
     if(status < 0)
     {
         return -1;
@@ -1892,13 +1895,13 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
         return -1;
     }
     //Close and release resources.
-    status = H5Dclose(dset);
+    status = DynHDF5::dynH5Dclose(dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose(space);
+    status = DynHDF5::dynH5Sclose(space);
     if(status < 0)
     {
         return -1;
@@ -1919,8 +1922,8 @@ void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
     hobj_ref_t* pobjArray   = NULL;
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
-    status = H5Gclose(group);
+    group = DynHDF5::dynH5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
+    status = DynHDF5::dynH5Gclose(group);
     if(status < 0)
     {
         return NULL;
@@ -1928,7 +1931,7 @@ void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 
     if(_iNbItem)
     {
-        pobjArray = MALLOC(sizeof(hobj_ref_t) * _iNbItem);
+        pobjArray = (hobj_ref_t*)MALLOC(sizeof(hobj_ref_t) * _iNbItem);
     }
 
     return pobjArray;
@@ -1937,7 +1940,7 @@ void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName)
 {
     hobj_ref_t* pobjArray = (hobj_ref_t*)_pvList;
-    return H5Rcreate(&pobjArray[_iPos], _iFile, _pstItemName, H5R_OBJECT, -1);
+    return DynHDF5::dynH5Rcreate(&pobjArray[_iPos], _iFile, _pstItemName, H5R_OBJECT, -1);
 }
 
 int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType)
@@ -1974,7 +1977,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
         //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 
         dims[0] = 1;
-        space = H5Screate_simple (1, dims, NULL);
+        space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
         if(space < 0)
         {
             return -1;
@@ -1982,13 +1985,13 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
+        dset = DynHDF5::dynH5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
         if(dset < 0)
         {
             return -1;
         }
 
-        status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, (hobj_ref_t*)pvList);
+        status = DynHDF5::dynH5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, (hobj_ref_t*)pvList);
         if(status < 0)
         {
             return -1;
@@ -2011,7 +2014,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
     else
     {
         //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
-        space = H5Screate_simple (1, dims, NULL);
+        space = DynHDF5::dynH5Screate_simple (1, dims, NULL);
         if(status < 0)
         {
             return -1;
@@ -2019,13 +2022,13 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
         
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
+        dset = DynHDF5::dynH5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
         if(dset < 0)
         {
             return -1;
         }
 
-        status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,(hobj_ref_t*)_pvList);
+        status = DynHDF5::dynH5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,(hobj_ref_t*)_pvList);
         if(status < 0)
         {
             return -1;
@@ -2047,13 +2050,13 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 
 
     //Close and release resources.
-    status = H5Dclose (dset);
+    status = DynHDF5::dynH5Dclose (dset);
     if(status < 0)
     {
         return -1;
     }
 
-    status = H5Sclose (space);
+    status = DynHDF5::dynH5Sclose (space);
     if(status < 0)
     {
         return -1;

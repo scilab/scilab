@@ -610,6 +610,7 @@ libscitypes_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
 	-I src/cpp
 
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)

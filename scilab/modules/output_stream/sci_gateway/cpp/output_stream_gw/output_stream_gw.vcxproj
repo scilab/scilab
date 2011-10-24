@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -100,7 +100,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -149,7 +149,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\symbol\includes;..\..\..\..\ast\includes;../../../../system_env/includes;../../../../localization/includes;../../../../../libs/intl;../../../../../libs/MALLOC/includes;../../../../string/includes;../../../src/cpp;../../../../api_scilab/includes;../../../../operations/includes;../../../../threads/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -175,10 +175,10 @@
     <ClCompile Include="..\sci_disp.cpp" />
     <ClCompile Include="..\sci_mprintf.cpp" />
     <ClCompile Include="..\sci_msprintf.cpp" />
-    <ClCompile Include="..\..\c\sci_print.c" />
     <ClCompile Include="..\..\..\src\cpp\scilab_sprintf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\includes\dynlib_output_stream_gw.h" />
     <ClInclude Include="..\..\..\includes\output_stream_gw.hxx" />
     <ClInclude Include="..\..\..\includes\scilab_sprintf.hxx" />
   </ItemGroup>

@@ -24,6 +24,7 @@ libscisymbol_la_CXXFLAGS	= -I includes/ \
 				-I $(top_builddir)/modules/elementary_functions/includes \
 				-I $(top_builddir)/modules/operations/includes \
 				-I $(top_builddir)/modules/ast/includes \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes \
 				-I src/cpp
 
 

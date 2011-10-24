@@ -45,6 +45,6 @@ namespace types
         static std::wstring showUnreferencedItem(int _iPos);
         static void deleteItems();
     };
-#endif __ENABLE_INSPECTOR__
+#endif
 }
 #endif /* !__INSPECTOR_HXX__ */

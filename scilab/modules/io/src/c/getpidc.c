@@ -18,8 +18,9 @@
 	#include <unistd.h>
 #endif
 #include "getpidc.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(getpidc)(int *id1)
+int getpidc(int *id1)
 {
 	#if _MSC_VER
 		*id1=GetCurrentProcessId();

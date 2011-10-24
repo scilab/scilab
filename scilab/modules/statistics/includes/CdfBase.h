@@ -13,6 +13,7 @@
 #ifndef __CDFBASE_H__
 #define __CDFBASE_H__
 
+#include "dynlib_statistics.h"
 /* see cdff.f line 97 */
 #define INFINITY_FOR_CDF 1.0e300
 #define ZERO_FOR_CDF 1.0e-300
@@ -53,7 +54,7 @@ struct cdf_descriptor {
  * @param[in] fname scilab caller function name
  * @param[in] cdf's description, @see struct cdf_descriptor
  */
-extern int cdf_generic(char *fname, int* _piKey, struct cdf_descriptor *cdf);
+STATISTICS_IMPEXP int cdf_generic(char *fname, int* _piKey, struct cdf_descriptor *cdf);
 
 
 /**

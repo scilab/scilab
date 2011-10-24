@@ -21,11 +21,11 @@
 #define sci_undefined   -1
 #define sci_void        0
 
+extern "C"
+{
 HDF5_SCILAB_IMPEXP int isComplexData(int _iDatasetId);
 
 HDF5_SCILAB_IMPEXP int getVariableNames(int _iFile, char **pstNameList);
-
-HDF5_SCILAB_IMPEXP int getDataSetId(int  _iFile);
 
 HDF5_SCILAB_IMPEXP int getDataSetIdFromName(int _iFile, char *_pstName);
 
@@ -72,4 +72,5 @@ HDF5_SCILAB_IMPEXP int getListItemDataset(int _iDatasetId, void* _piItemRef, int
 HDF5_SCILAB_IMPEXP int deleteListItemReferences(int _iDatasetId, void* _piItemRef);
 
 HDF5_SCILAB_IMPEXP  void reset_item_count();
+}
 #endif /* !__H5_READDATATOFILE_H__ */

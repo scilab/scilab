@@ -14,8 +14,7 @@ HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-	sci_gateway/cpp/sci_buildDocv2.cpp \
-	sci_gateway/cpp/helptools_gw.cpp
+	sci_gateway/cpp/sci_buildDocv2.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
@@ -58,7 +57,8 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
-				-I$(top_srcdir)/modules/commons/src/jni
+				-I$(top_srcdir)/modules/commons/src/jni \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

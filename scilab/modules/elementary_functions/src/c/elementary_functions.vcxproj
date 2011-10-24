@@ -85,17 +85,14 @@
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elem_func_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elem_func.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;elem_func.lib;sparse.lib;cacsd_f.lib;operations.lib;api_scilab.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;sparse.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -120,17 +117,14 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elem_func_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elem_func.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;elem_func.lib;sparse.lib;cacsd_f.lib;operations.lib;api_scilab.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;sparse.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -155,17 +149,14 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elem_func_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elem_func.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;elem_func.lib;sparse.lib;cacsd_f.lib;operations.lib;api_scilab.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;sparse.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -195,17 +186,14 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elem_func_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)elem_func.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)sparse_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sparse.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;elem_func.lib;sparse.lib;cacsd_f.lib;operations.lib;api_scilab.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LibScilab.lib;elementary_functions_f.lib;sparse.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -243,50 +231,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="qsort-string.c" />
     <ClCompile Include="qsort.c" />
     <ClCompile Include="rea2db.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_abs.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_acos.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_asin.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_atan.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ceil.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_chinesehat.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_clean.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_conj.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cos.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cumprod.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cumsum.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_diag.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_dsearch.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_exp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_expm.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_floor.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_frexp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gsort.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_imag.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_imult.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_int.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isequalbitwise.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isreal.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_kron.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_log.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_log1p.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_matrix.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_maxi.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_nearfloat.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_number_properties.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_prod.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_rat.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_real.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_round.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sign.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sin.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_spones.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sqrt.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sum.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_tan.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_testmatrix.c" />
     <ClCompile Include="sci_tools.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_tril.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_triu.c" />
     <ClCompile Include="scidcopy.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
@@ -321,12 +268,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />
-    <None Include="api_scilab_Import.def" />
     <None Include="cacsd_f_Import.def" />
-    <None Include="elem_func_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="LibScilab_Import.def" />
-    <None Include="Operations_Import.def" />
     <None Include="sparse_Import.def" />
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />

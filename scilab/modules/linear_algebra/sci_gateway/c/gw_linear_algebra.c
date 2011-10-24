@@ -27,7 +27,7 @@ static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
   {NULL, ""}, //schur
   {NULL, ""}, //spec
   {NULL, ""}, //bdiag
-  {C2F(intvoid),"xxxx"},
+  {NULL,""}, //xxxx
   {NULL, ""} //balanc
 };
 /*--------------------------------------------------------------------------*/ 

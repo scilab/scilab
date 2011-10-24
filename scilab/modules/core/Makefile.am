@@ -53,7 +53,6 @@ CORE_C_SOURCES = \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
-    src/c/callDynamicGateway.c \
     src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
     src/c/readGateway.c \
@@ -294,7 +293,8 @@ libscicore_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/modules/fileio/includes
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 # Used by sci_getdebuginfo:
 if TCLTK

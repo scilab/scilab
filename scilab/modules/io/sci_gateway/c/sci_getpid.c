@@ -23,7 +23,7 @@ int sci_getpid(char *fname,unsigned long fname_len)
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
-	C2F(getpidc)(&pid);
+	getpidc(&pid);
 	CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l1);
 	*istk(l1) = (int) pid;
 

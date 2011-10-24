@@ -11,7 +11,6 @@ BOOLEAN_CPP_SOURCES = \
 
 
 BOOLEAN_C_SOURCES = \
-    src/c/matboolean.c \
     src/c/vect_or.c \
     src/c/vect_and.c
 
@@ -24,14 +23,9 @@ GATEWAY_CPP_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_and.c \
-    sci_gateway/c/sci_or.c \
-    sci_gateway/c/sci_find.c \
-    sci_gateway/c/sci_bool2s.c \
-    sci_gateway/c/gw_boolean.c
+    sci_gateway/c/sci_or.c
 
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/sci_f_bool2s.f \
-    sci_gateway/fortran/sci_f_find.f
+GATEWAY_FORTRAN_SOURCES =
 
 libsciboolean_la_CFLAGS= \
     -I$(srcdir)/includes/ \
@@ -50,8 +44,8 @@ libsciboolean_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/api_scilab/includes
-
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 
 pkglib_LTLIBRARIES = libsciboolean.la

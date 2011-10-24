@@ -17,9 +17,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="callDynamicGateway.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="callFunctionFromGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -221,9 +218,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,9 +276,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_stacksize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_type.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_typename.c">

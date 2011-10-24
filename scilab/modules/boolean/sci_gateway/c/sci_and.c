@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "stack-c.h"
+#include "gw_boolean.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "vect_and.h"

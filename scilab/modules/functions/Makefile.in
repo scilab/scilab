@@ -125,8 +125,7 @@ am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_librarieslist.lo \
 	libscifunctions_la-sci_libraryinfo.lo
 am__objects_4 = intlib.lo intexecstr.lo intexec.lo
-am__objects_5 = libscifunctions_la-functions_gw.lo \
-	libscifunctions_la-sci_exec.lo \
+am__objects_5 = libscifunctions_la-sci_exec.lo \
 	libscifunctions_la-sci_functionlist.lo \
 	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_execstr.lo \
@@ -445,7 +444,6 @@ sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c
 
 GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/functions_gw.cpp \
 sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
 sci_gateway/cpp/sci_whereis.cpp \
@@ -487,7 +485,8 @@ libscifunctions_la_CPPFLAGS = \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/threads/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscifunctions.la
 noinst_LTLIBRARIES = libscifunctions-algo.la
@@ -670,7 +669,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-librarieslist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-libraryinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_algo_la-searchmacroinlibraries.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-functions_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-gw_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_deff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_exec.Plo@am__quote@
@@ -795,13 +793,6 @@ libscifunctions_la-sci_libraryinfo.lo: sci_gateway/c/sci_libraryinfo.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-libscifunctions_la-functions_gw.lo: sci_gateway/cpp/functions_gw.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_la-functions_gw.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-functions_gw.Tpo -c -o libscifunctions_la-functions_gw.lo `test -f 'sci_gateway/cpp/functions_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/functions_gw.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-functions_gw.Tpo $(DEPDIR)/libscifunctions_la-functions_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/functions_gw.cpp' object='libscifunctions_la-functions_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_la-functions_gw.lo `test -f 'sci_gateway/cpp/functions_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/functions_gw.cpp
 
 libscifunctions_la-sci_exec.lo: sci_gateway/cpp/sci_exec.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_la-sci_exec.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_exec.Tpo -c -o libscifunctions_la-sci_exec.lo `test -f 'sci_gateway/cpp/sci_exec.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_exec.cpp

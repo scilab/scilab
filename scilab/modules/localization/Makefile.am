@@ -56,7 +56,8 @@ libscilocalization_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/output_stream/includes
+	-I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
 noinst_LTLIBRARIES = libscilocalization-algo.la

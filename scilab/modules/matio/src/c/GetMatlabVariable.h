@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-
+#include "dynlib_matio.h"
 /*
  * Get a Matlab variable from a Scilab variable on stack
  * This function reads nothing on stack but calls the function which 
@@ -33,7 +33,7 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+MATIO_IMPEXP matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack

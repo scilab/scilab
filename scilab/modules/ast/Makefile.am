@@ -14,28 +14,28 @@
 pkglib_LTLIBRARIES 	= libsciast.la
 
 libsciast_la_SOURCES = \
-				src/cpp/libAst.cpp \
-				src/cpp/visitor_common.cpp \
-				src/cpp/printvisitor.cpp \
-				src/cpp/debugvisitor.cpp \
-				src/cpp/mutevisitor.cpp \
-				src/cpp/shortcutvisitor.cpp \
-				src/cpp/scilabexception.cpp
+	src/cpp/libAst.cpp \
+	src/cpp/visitor_common.cpp \
+	src/cpp/printvisitor.cpp \
+	src/cpp/debugvisitor.cpp \
+	src/cpp/mutevisitor.cpp \
+	src/cpp/shortcutvisitor.cpp \
+	src/cpp/scilabexception.cpp
 
 libsciast_la_CXXFLAGS = \
-	-I includes \
-	-I src/cpp \
-    -I $(top_srcdir)/modules/symbol/includes \
-	-I $(top_srcdir)/modules/types/includes \
-	-I $(top_srcdir)/modules/functions_manager/includes \
-	-I $(top_srcdir)/modules/elementary_functions/includes \
-	-I $(top_srcdir)/modules/operations/includes \
-	-I $(top_srcdir)/modules/output_stream/includes \
-	-I $(top_srcdir)/modules/system_env/includes \
-	-I $(top_srcdir)/modules/api_scilab/includes \
-	-I $(top_srcdir)/modules/string/includes \
-	-I $(top_srcdir)/modules/threads/includes
-
+	-Iincludes \
+	-Isrc/cpp \
+    -I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 
 libsciast_la_includedir=$(pkgincludedir)/ast
@@ -44,21 +44,25 @@ libsciast_la_include_HEADERS =
 ####################
 ## Automated test ##
 ####################
-check_INCLUDES 		= -I$(top_srcdir)/modules/symbol/includes \
-			-Iincludes/ \
-			-Isrc/cpp
+check_INCLUDES = \
+    -I$(top_srcdir)/modules/symbol/includes \
+	-Iincludes/ \
+	-Isrc/cpp
 
-check_LDADD		= $(top_builddir)/modules/symbol/libsciSymbol.la \
-			$(top_builddir)/modules/ast/libsciast.la \
-			$(top_builddir)/modules/types/libsciTypes.la
+check_LDADD	= \
+    $(top_builddir)/modules/symbol/libsciSymbol.la \
+	$(top_builddir)/modules/ast/libsciast.la \
+	$(top_builddir)/modules/types/libsciTypes.la
 
-check_PROGRAMS 		= 	testConstExp \
-											testVarExp \
+check_PROGRAMS = \
+    testConstExp \
+	testVarExp \
 											testControlExp
 
-TESTS			= 	testConstExp \
-							testVarExp \
-							testControlExp
+TESTS = \
+    testConstExp \
+	testVarExp \
+	testControlExp
 
 testConstExp_SOURCES 	= src/cpp/testConstExp.cpp
 testConstExp_CXXFLAGS 	= $(check_INCLUDES)

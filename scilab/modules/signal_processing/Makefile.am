@@ -71,7 +71,6 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/dfftmx.f
 
 GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/signal_gw.cpp \
     sci_gateway/cpp/sci_rpem.cpp \
     sci_gateway/cpp/sci_corr.cpp \
     sci_gateway/cpp/sci_delip.cpp \
@@ -103,7 +102,8 @@ libscisignal_processing_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/ast/includes \
     -I$(top_srcdir)/modules/functions_manager/includes \
     -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/symbol/includes
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 noinst_LTLIBRARIES = libscisignal_processing-algo.la

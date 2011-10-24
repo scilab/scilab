@@ -70,7 +70,8 @@ COMMON_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 						-I$(top_srcdir)/modules/string/includes/ \
 						-I$(top_srcdir)/modules/history_manager/includes/ \
 						-I$(top_srcdir)/modules/threads/includes/ \
-						-I$(top_srcdir)/modules/api_scilab/includes/
+						-I$(top_srcdir)/modules/api_scilab/includes/ \
+						-I$(top_srcdir)/libs/dynamiclibrary/includes/
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp

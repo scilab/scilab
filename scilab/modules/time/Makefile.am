@@ -26,13 +26,15 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
-libscitime_la_CPPFLAGS=  	-I$(srcdir)/includes/ \
-							-I$(top_srcdir)/modules/api_scilab/includes \
-							-I$(top_srcdir)/modules/operations/includes \
-							-I$(top_srcdir)/modules/functions_manager/includes \
-							-I$(top_srcdir)/modules/symbol/includes \
-							-I$(top_srcdir)/modules/types/includes \
-							-I$(top_srcdir)/modules/ast/includes
+libscitime_la_CPPFLAGS= \
+    -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscitime.la
 noinst_LTLIBRARIES = libscitime-algo.la

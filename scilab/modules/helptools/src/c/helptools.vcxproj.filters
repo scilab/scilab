@@ -32,9 +32,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\helptools_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

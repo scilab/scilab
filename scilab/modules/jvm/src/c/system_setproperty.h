@@ -15,13 +15,15 @@
 #ifndef __SYSTEM_SETPROPERTY_H__
 #define __SYSTEM_SETPROPERTY_H__
 
+#include "dynlib_jvm.h"
+
 /**
 * set a system property
 * @param property name
 * @param value
 * @return previous value or NULL
 */
-char * system_setproperty(char *property,char *value);
+JVM_IMPEXP char * system_setproperty(char *property,char *value);
 
 #endif /* __SYSTEM_SETPROPERTY_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -95,6 +95,7 @@ lib /DEF:&quot;$(InputDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Library Dependencies">
+		<File RelativePath=".\elementary_functions_gw_Import.def"/>
 		<File RelativePath=".\elementary_functions_Import.def"/>
 		<File RelativePath=".\Integer_Import.def"/>
 		<File RelativePath=".\LibScilab_Import.def"/>

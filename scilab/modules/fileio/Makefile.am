@@ -127,6 +127,7 @@ libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/shell/includes \
 				-I$(top_srcdir)/modules/threads/includes \
 				-I$(top_srcdir)/modules/console/includes \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes \
 				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \

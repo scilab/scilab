@@ -19,17 +19,8 @@ extern "C"
 {
     #include "dynlib_hdf5_scilab.h"
 }
-class Hdf5Module
-{
-private :
-    Hdf5Module() {};
-    ~Hdf5Module() {};
 
-public :
-	HDF5_SCILAB_IMPEXP static int Load();
-};
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_export_to_hdf5, HDF5_SCILAB_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_import_from_hdf5, HDF5_SCILAB_IMPEXP);
 
-CPP_GATEWAY_PROTOTYPE(sci_export_to_hdf5);
-CPP_GATEWAY_PROTOTYPE(sci_import_from_hdf5);
-
-#endif /* !__FILEIO_GW_HXX__ */
+#endif /* !__HDF5_GW_HXX__ */

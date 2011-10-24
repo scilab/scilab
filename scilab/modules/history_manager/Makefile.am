@@ -83,8 +83,8 @@ libscihistory_manager_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/types/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/string/includes/
-
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

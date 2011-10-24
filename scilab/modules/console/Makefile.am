@@ -138,7 +138,7 @@ libsciconsole_disable_la_CFLAGS = \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/threads/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/
+	-I$(top_srcdir)/modules/ui_data/includes/ 
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = \
@@ -163,8 +163,8 @@ libsciconsole_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/commons/src/jni
-
+	-I$(top_srcdir)/modules/commons/src/jni \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 
 # Includes need for the compilation
@@ -190,8 +190,9 @@ libsciconsole_disable_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/commons/src/jni/
-
+	-I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    
 # Includes need for the compilation
 libsciconsole_la_CFLAGS= \
     $(JAVA_JNI_INCLUDE) \

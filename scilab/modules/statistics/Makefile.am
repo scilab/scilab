@@ -87,8 +87,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfnbn.c \
 	sci_gateway/c/sci_cdfnor.c
 
-GATEWAY_CPP_SOURCES = \
-	sci_gateway/cpp/statistics_gw.cpp
+GATEWAY_CPP_SOURCES =
 
 libscistatistics_la_CFLAGS= \
 	-I$(srcdir)/includes/ \
@@ -104,7 +103,8 @@ libscistatistics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/types/includes \
     -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/operations/includes
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la

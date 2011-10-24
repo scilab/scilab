@@ -138,7 +138,8 @@ libsciinteger_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libsciinteger.la
 noinst_LTLIBRARIES = libsciinteger-algo.la

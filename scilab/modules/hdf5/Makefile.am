@@ -17,9 +17,6 @@ endif
 endif
 
 
-HDF5_SOURCES = src/c/h5_fileManagement.c \
-src/c/h5_writeDataToFile.c \
-src/c/h5_readDataFromFile.c
 
 if NEED_JAVA
 
@@ -37,8 +34,14 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_export_to_hdf5.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5.cpp \
-    sci_gateway/cpp/hdf5_gw.cpp
+    sci_gateway/cpp/sci_import_from_hdf5.cpp
+
+
+HDF5_CPP_SOURCES = \
+    src/cpp/h5_fileManagement.cpp \
+    src/cpp/h5_writeDataToFile.cpp \
+    src/cpp/dynhdf5.cpp \
+    src/cpp/h5_readDataFromFile.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
@@ -86,6 +89,7 @@ libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/functions_manager/includes \
 				-I$(top_srcdir)/modules/symbol/includes \
 				-I$(top_srcdir)/modules/ast/includes \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
@@ -124,13 +128,13 @@ endif
 
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_CPP_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
+CHECK_SRC= $(HDF5_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order

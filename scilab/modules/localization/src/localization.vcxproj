@@ -251,11 +251,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="c\LocaleNameToLCID_Windows.c" />
     <ClCompile Include="jni\LocaleToLCID_wrap.c" />
     <ClCompile Include="jni\Messages_wrap.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_setdefaultlanguage.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_setlanguage.c" />
     <ClCompile Include="c\setgetlanguage.c" />
   </ItemGroup>
   <ItemGroup>

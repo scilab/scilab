@@ -16,7 +16,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 		    sci_gateway/c/sci_matfile_varreadnext.c \
 		    sci_gateway/c/sci_matfile_varwrite.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/matio_gw.cpp
+GATEWAY_CPP_SOURCES = 
 
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
@@ -60,7 +60,8 @@ libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/
+			-I$(top_srcdir)/modules/ast/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la

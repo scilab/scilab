@@ -27,6 +27,7 @@
 extern "C"
 {
 #include "c_gateway_prototype.h"
+#include "dynamiclibrary.h"
 }
 
 #define MAX_OUTPUT_VARIABLE		64
@@ -36,22 +37,34 @@ namespace types
     class TYPES_IMPEXP Function : public Callable
     {
     public :
+        enum FunctionType
+        {
+            EntryPointC       = 0,
+            EntryPointCPP     = 1,
+            EntryPointMex     = 2
+        };
+
         typedef void (*LOAD_DEPS)(void);
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
+        typedef ReturnValue (*MODULE_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
 
                                 Function() : Callable() {};
-                                Function(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+                                Function(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
                                 ~Function();
 
         //FIXME : Should not return NULL
         InternalType*           clone();
 
-        static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
-        static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
-        static Function*        createFunction(std::wstring _szName, MEXGW_FUNC _pFunc, std::wstring _szModule);
-        static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
-        static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
-        static Function*        createFunction(std::wstring _szName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _wstName, GW_FUNC _pFunc, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+
+        /*dynamic gateways*/
+        static Function*        createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
+        static Function*        createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
 
         Function*               getAsFunction(void);
         RealType                getType(void) { return RealFunction; }
@@ -83,7 +96,7 @@ namespace types
     private :
                                 WrapFunction(WrapFunction* _pWrapFunction);
     public :
-                                WrapFunction(std::wstring _szName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+                                WrapFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
 
                                 Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         InternalType*           clone();
@@ -99,7 +112,7 @@ namespace types
     private :
                                 WrapMexFunction(WrapMexFunction* _pWrapFunction);
     public :
-                                WrapMexFunction(std::wstring _szName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+                                WrapMexFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
 
                                 Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         InternalType*           clone();
@@ -123,6 +136,32 @@ namespace types
                                 GatewayStruct(){};
                                 ~GatewayStruct(){};
     };
+
+    class DynamicFunction : public Function
+    {
+    private :
+                                DynamicFunction(DynamicFunction* _pDynamicFunction);
+    public :
+                                DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
+                                DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
+        Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    private :
+        Callable::ReturnValue   Init();
+        void                    Clear();
+
+        std::wstring            m_wstLibName;
+        std::wstring            m_wstEntryPoint;
+        std::wstring            m_wstLoadDepsName;
+        bool                    m_bCloseLibAfterCall;
+        bool                    m_bLoaded;
+        FunctionType            m_iType;
+        GW_FUNC                 m_pFunc;
+        OLDGW_FUNC              m_pOldFunc;
+        MEXGW_FUNC              m_pMexFunc;
+        Function*               m_pFunction;
+        DynLibHandle            m_hLib;
+    };
+
 }
 
 

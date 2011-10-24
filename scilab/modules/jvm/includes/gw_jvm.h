@@ -16,6 +16,7 @@
 #define __GW_JVM_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_jvm.h"
+#include "dynlib_jvm_gw.h"
 /*--------------------------------------------------------------------------*/
 JVM_IMPEXP int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
@@ -25,7 +26,7 @@ JVM_IMPEXP int sci_with_embedded_jre(char *fname,unsigned long fname_len);
 JVM_IMPEXP int sci_system_setproperty(char *fname,unsigned long fname_len);
 JVM_IMPEXP int sci_javalibrarypath(char *fname,unsigned long fname_len);
 //YaSp
-JVM_IMPEXP int sci_javaclasspath(char *fname, int* _piKey);
+JVM_GW_IMPEXP int sci_javaclasspath(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_JVM_H__ */

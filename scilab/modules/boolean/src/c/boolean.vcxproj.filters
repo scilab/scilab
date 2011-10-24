@@ -12,36 +12,12 @@
     <Filter Include="localization">
       <UniqueIdentifier>{8f6c9d89-6623-4ca0-82a0-1b3f216e71bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{db6b18f6-6ded-4b54-a08f-886668f69653}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{bdd1e514-ed54-45e6-9e38-146da92c1894}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{d3d6fc04-eeff-42c8-9ac1-f20fb74b6b26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainBoolean.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_boolean.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="matboolean.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_and.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_bool2s.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_find.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_or.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vect_and.c">
@@ -52,20 +28,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="vect_and.h">
+    <ClInclude Include="..\..\includes\vect_and.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vect_or.h">
+    <ClInclude Include="..\..\includes\vect_or.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_boolean.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="boolean_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\boolean.iss" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\boolean.pot" />

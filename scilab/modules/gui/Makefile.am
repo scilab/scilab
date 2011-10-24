@@ -255,7 +255,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/string/includes/
+			-I$(top_srcdir)/modules/string/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 # Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \

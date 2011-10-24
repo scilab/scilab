@@ -10,20 +10,3 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include "action_binding_gw.hxx"
-#include "context.hxx"
-#include "types.hxx"
-
-extern "C"
-{
-#include "dynlib_action_binding.h"
-}
-
-#define MODULE_NAME L"action_binding"
-
-int ActionBindingModule::Load()
-{
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"notify", &sci_notify, MODULE_NAME));
-    return 1;
-}

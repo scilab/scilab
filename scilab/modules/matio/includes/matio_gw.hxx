@@ -13,33 +13,17 @@
 #ifndef __MATIO_GW_HXX__
 #define __MATIO_GW_HXX__
 
-#include "function.hxx"
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
-#ifdef _MSC_VER
-#if MATIO_GW_EXPORTS
-#define EXTERN_MATIO_GW __declspec (dllexport)
-#else
-#define EXTERN_MATIO_GW __declspec (dllimport)
-#endif
-#else
-#define EXTERN_MATIO_GW
-#endif
-
-class MatioModule
+extern "C"
 {
-private :
-  MatioModule(){};
-  ~MatioModule(){};
-public :
-  EXTERN_MATIO_GW static int Load();
-};
+#include "dynlib_matio_gw.h"
+}
 
-types::Function::ReturnValue sci_matfile_open(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-types::Function::ReturnValue sci_matfile_close(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-types::Function::ReturnValue sci_matfile_listvar(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-types::Function::ReturnValue sci_matfile_varreadnext(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-types::Function::ReturnValue sci_matfile_varwrite(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_open, MATIO_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_close, MATIO_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_listvar, MATIO_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varreadnext, MATIO_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varwrite, MATIO_GW_IMPEXP);
 
 #endif /* __MATIO_GW_HXX__ */

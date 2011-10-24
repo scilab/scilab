@@ -15,16 +15,8 @@
 
 #include "funcmanager.hxx"
 #include "context.hxx"
-
-#ifdef _MSC_VER
-   #if TIME_GW_EXPORTS
-      #define EXTERN_TIME_GW __declspec (dllexport)
-   #else
-      #define EXTERN_TIME_GW __declspec (dllimport)
-   #endif
-#else
-   #define EXTERN_TIME_GW 
-#endif
+#include "cpp_gateway_prototype.hxx"
+#include "dynlib_time_gw.h"
 
 class TimeModule
 {
@@ -35,8 +27,8 @@ public :
    EXTERN_TIME_GW static int Load();
 };
 
-types::Function::ReturnValue sci_tic(types::typed_list &in, int _iRetCount, types::typed_list &out);
-types::Function::ReturnValue sci_toc(types::typed_list &in, int _iRetCount, types::typed_list &out);
+CPP_GATEWAY_PROTOTYPE(sci_tic);
+CPP_GATEWAY_PROTOTYPE(sci_toc);
 
 
 #endif /* !__TIME_GW_HXX__ */

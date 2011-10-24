@@ -40,20 +40,6 @@ int gw_dynamic_ui_data(void);
 int gw_dynamic_xcos(void);
 
 /**
-* scinotes gateway
-* functions is loaded dynamically at runtime
-* load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
-*/
-int gw_dynamic_scinotes(void);
-
-/**
-* functions gateway
-* functions is loaded dynamically at runtime
-* load gw_functions in SCI/modules/functions/sci_gateway/gw_functions.c
-*/
-int gw_dynamic_functions(void);
-
-/**
 * interpolation gateway
 * interpolation is loaded dynamically at runtime
 * load gw_interpolation in SCI/modules/interpolation/sci_gateway/gw_interpolation.c
@@ -61,42 +47,11 @@ int gw_dynamic_functions(void);
 int gw_dynamic_interpolation(void);
 
 /**
-* statistics gateway
-* statistics is loaded dynamically at runtime
-* load gw_statistics in SCI/modules/statistics/sci_gateway/gw_statistics.c
-*/
-int gw_dynamic_statistics(void);
-
-
-/**
-* signal_processing gateway
-* signal_processing is loaded dynamically at runtime
-* load gw_signal_processing in SCI/modules/signal_processing/sci_gateway/gw_signal_processing.c
-*/
-int gw_dynamic_signal_processing(void);
-
-
-/**
-* helptools gateway
-* helptools is loaded dynamically at runtime
-* load gw_helptools in SCI/modules/helptools/sci_gateway/gw_helptools.c
-*/
-int gw_dynamic_helptools(void);
-
-
-/**
 * optimization gateway
 * optimization is loaded dynamically at runtime
 * load gw_optimization in SCI/modules/optimization/sci_gateway/gw_optimization.c
 */
 int gw_dynamic_optimization(void);
-
-/**
-* matio gateway
-* matio is loaded dynamically at runtime
-* load gw_matio in SCI/modules/matio/sci_gateway/gw_matio.c
-*/
-int gw_dynamic_matio(void);
 
 /**
 * UMFPACK gateway
@@ -148,13 +103,6 @@ int gw_dynamic_arnoldi(void);
 int gw_dynamic_symbolic(void);
 
 /**
-* hdf5 gateway
-* hdf5 is loaded dynamically at runtime
-* load gw_hdf5 in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
-*/
-int gw_dynamic_hdf5(void);
-
-/**
 * graphic_export gateway
 * graphic_export is loaded dynamically at runtime
 * load gw_graphic_export in SCI/modules/graphic_export/sci_gateway/gw_graphic_export.c
@@ -162,16 +110,9 @@ int gw_dynamic_hdf5(void);
 int gw_dynamic_graphic_export(void);
 
 /**
-* action_binding gateway
-* action_binding is loaded dynamically at runtime
-* load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
-*/
-int gw_dynamic_action_binding(void);
-
-/**
-* action_binding gateway
-* action_binding is loaded dynamically at runtime
-* load gw_action_binding in SCI/modules/xml/sci_gateway/gw_xml.c
+* xml gateway
+* xml is loaded dynamically at runtime
+* load xml in SCI/modules/xml/sci_gateway/gw_xml.c
 */
 int gw_dynamic_xml(void);
 

@@ -112,21 +112,6 @@
     <ClCompile Include="jni\Messages_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_setdefaultlanguage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_setlanguage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="c\setgetlanguage.c">
       <Filter>Source Files</Filter>
     </ClCompile>

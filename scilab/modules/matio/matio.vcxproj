@@ -210,11 +210,6 @@ lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\GetStructVariable.c" />
     <ClCompile Include="sci_gateway\c\gw_matio.c" />
     <ClCompile Include="src\c\matfile_manager.c" />
-    <ClCompile Include="sci_gateway\c\sci_matfile_close.c" />
-    <ClCompile Include="sci_gateway\c\sci_matfile_listvar.c" />
-    <ClCompile Include="sci_gateway\c\sci_matfile_open.c" />
-    <ClCompile Include="sci_gateway\c\sci_matfile_varreadnext.c" />
-    <ClCompile Include="sci_gateway\c\sci_matfile_varwrite.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\CreateMatlabVariable.h" />

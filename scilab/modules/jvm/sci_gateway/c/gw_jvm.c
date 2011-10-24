@@ -21,11 +21,11 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table  Tab[]=
 {
-	{sci_with_embedded_jre,"with_embedded_jre"},
-	{sci_system_setproperty,"system_setproperty"},
+	{NULL, ""}, //with_embedded_jre
+	{NULL, ""}, //system_setproperty
 	{NULL, ""}, //system_getproperty
 	{NULL, ""}, //javaclasspath
-	{sci_javalibrarypath,"javalibrarypath"}
+	{NULL, ""} //javalibrarypath
 };
 /*--------------------------------------------------------------------------*/
 int gw_jvm(void)

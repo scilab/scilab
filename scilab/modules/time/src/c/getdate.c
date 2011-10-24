@@ -25,6 +25,8 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "machine.h"
+
 /*--------------------------------------------------------------------------*/
 #define YEAR_INDEX 0
 #define MONTH_INDEX 1
@@ -66,7 +68,7 @@ static int week_days (int yday, int wday);
 /*--------------------------------------------------------------------------*/
 static int ChronoFlag = 0;
 /*--------------------------------------------------------------------------*/
-void  C2F(scigetdate)(time_t *dt,int *ierr)
+void scigetdate(time_t *dt,int *ierr)
 {
   *ierr=0;
   if (time(dt) == (time_t) - 1)
@@ -82,7 +84,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
   #endif
 }
 /*--------------------------------------------------------------------------*/
-void C2F(convertdate)(time_t *dt,double datematrix[10])
+void convertdate(time_t *dt,double datematrix[10])
 {
 	// check that dt > 0 (and dt < _MAX__TIME64_T if _MSC_VER is defined)
 	#ifdef _MSC_VER

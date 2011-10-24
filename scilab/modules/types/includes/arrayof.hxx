@@ -91,8 +91,6 @@ namespace types
                 }
 
                 m_iSize = iTmpSize;
-
-
             }
 
             if(_pRealData)

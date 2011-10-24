@@ -30,6 +30,5 @@ static gw_generic_table Tab[] = {
 
 int gw_signal_processing(void)
 {  
-  callFunctionFromGateway(Tab, GWTABLE_LENGTH(Tab));
   return 0;
 }

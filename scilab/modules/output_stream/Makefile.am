@@ -93,8 +93,8 @@ libscioutput_stream_la_CPPFLAGS=  \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/console/includes
-
+	-I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la

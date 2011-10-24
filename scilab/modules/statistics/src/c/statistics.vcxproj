@@ -83,9 +83,8 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dcd_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -111,8 +110,8 @@ lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformS
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dcd_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -138,9 +137,8 @@ lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformS
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dcd_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -171,8 +169,8 @@ lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformS
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dcd_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -192,29 +190,16 @@ lib /DEF:"$(ProjectDir)dcd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformS
     <ClCompile Include="DllMainStatistics.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_statistics.c" />
     <ClCompile Include="ipmpar1.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfbet.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfbin.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfchi.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfchn.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdff.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdffnc.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfgam.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfnbn.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfnor.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdfpoi.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cdft.c" />
     <ClCompile Include="sci_string_matrix.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CdfBase.h" />
+    <ClInclude Include="..\..\includes\CdfBase.h" />
     <ClInclude Include="..\..\includes\dynlib_statistics.h" />
-    <ClInclude Include="..\..\includes\gw_statistics.h" />
     <ClInclude Include="..\..\includes\ipmpar1.h" />
+    <ClInclude Include="..\..\includes\sci_string_matrix.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\statistics.pot" />
-    <None Include="dcd_f_Import.def" />
-    <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />

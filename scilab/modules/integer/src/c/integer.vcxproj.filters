@@ -155,9 +155,6 @@
     <ClCompile Include="i_nextj.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tpconv.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -10,16 +10,21 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "elementary_functions.h"
-#include "double.h"
+//#include "double.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "api_oldstack.h"
 #include "msgs.h"
 #include "elem_common.h"
+#include "matrix_right_division.h"
+#include "matrix_left_division.h"
+#include "matrix_multiplication.h"
+#include "dynlib_elementary_functions_gw.h"
 
 #ifdef _MSC_VER
 /* BUG 3863 */
@@ -29,7 +34,7 @@ typedef struct {
 	int ndng;
 } DCOEFF_struct;
 
-__declspec(dllexport) DCOEFF_struct C2F(dcoeff);
+EXTERN_EF_GW DCOEFF_struct C2F(dcoeff);
 
 #endif
 

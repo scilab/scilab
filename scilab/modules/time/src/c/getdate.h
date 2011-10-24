@@ -23,13 +23,14 @@
 #include <sys/time.h> 
 #endif
 
-#include "machine.h"
+#include "dynlib_time.h"
+
 /**
  * get current date
  * @param[out] dt time_t struct  
  * @param[out] ierr != 0 (fails)
  */
-void C2F(scigetdate) (time_t *dt, int *ierr);
+TIME_IMPEXP void scigetdate(time_t *dt, int *ierr);
 
 
 /**
@@ -37,6 +38,6 @@ void C2F(scigetdate) (time_t *dt, int *ierr);
  * @param[in] dt time_t struct 
  * @param[out] datematrix date double matrix
  */
-void C2F(convertdate) (time_t *dt, double datematrix[]);
+TIME_IMPEXP void convertdate(time_t *dt, double datematrix[]);
 
 #endif /* __GETDATE_H__ */

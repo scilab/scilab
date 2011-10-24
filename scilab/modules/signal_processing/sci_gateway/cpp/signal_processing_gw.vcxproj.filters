@@ -26,9 +26,6 @@
     <ClCompile Include="sci_rpem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="signal_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_corr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,6 +36,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_syredi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_amell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_remez.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

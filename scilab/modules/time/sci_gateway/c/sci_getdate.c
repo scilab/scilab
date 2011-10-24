@@ -54,7 +54,7 @@ int sci_getdate(char *fname, int* _piKey)
     {
       time_t dt;
       int ierr=0;
-      C2F(scigetdate)(&dt,&ierr);
+      scigetdate(&dt,&ierr);
       if (ierr)
 	{
 	  Scierror(999,_("%s: An error occurred: %s\n"),fname,strerror(ierr));
@@ -62,7 +62,7 @@ int sci_getdate(char *fname, int* _piKey)
 	}
       else
 	{
-	  C2F(convertdate)(&dt,DATEMATRIX);
+	  convertdate(&dt,DATEMATRIX);
 	  m1=1;
 	  n1=10;
 	  sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEMATRIX);
@@ -86,7 +86,7 @@ int sci_getdate(char *fname, int* _piKey)
 	    {
 	      time_t dt;
 	      int ierr=0;
-	      C2F(scigetdate)(&dt,&ierr);
+	      scigetdate(&dt,&ierr);
 	      DATEMATRIX[0]=(int)dt;
 	      m1=1;
 	      n1=1;
@@ -123,7 +123,7 @@ int sci_getdate(char *fname, int* _piKey)
 		  int j=0;
 		  time_t paramtemp=(int)param[li];
 		  double millisecondes=param[li]-paramtemp;
-		  C2F(convertdate)(&paramtemp,DATEMATRIX);
+		  convertdate(&paramtemp,DATEMATRIX);
 		  for (j=0;j<10;j++)
 		    {
 		      DATEARRAY[(li*10)+j]=DATEMATRIX[j];

@@ -270,10 +270,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="partfunction.c" />
     <ClCompile Include="pcre_error.c" />
     <ClCompile Include="pcre_private.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isalphanum.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isascii.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isdigit.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strsplit.c" />
     <ClCompile Include="scistrtostr.c" />
     <ClCompile Include="setScilabCharactersCodes.c" />
     <ClCompile Include="StringConvert.c" />

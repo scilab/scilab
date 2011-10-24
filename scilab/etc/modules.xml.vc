@@ -33,7 +33,6 @@
     <module name="localization" activate="yes"/>
     <module name="windows_tools" activate="yes"/>
     <module name="jvm" activate="yes"/>
-    <module name="functions" activate="yes"/>
     <module name="helptools" activate="yes"/>
     <module name="hdf5" activate="yes"/>
     <!-- <module name="xcos" activate="yes"/> -->

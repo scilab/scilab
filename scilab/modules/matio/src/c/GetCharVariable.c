@@ -38,21 +38,20 @@ matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * pare
     int * item_addr = NULL;
     int var_type;
     int saveDim = 0; /* Used to save old dimension before restoring it */
-    SciErr sciErr;
     SciErr _SciErr;
 
     if (parent==NULL)
     {
-        sciErr = getVarAddressFromPosition(pvApiCtx, iVar, &piAddr);
+        _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &piAddr);
         MATIO_ERROR;
-        sciErr = getVarType(pvApiCtx, piAddr, &var_type);
+        _SciErr = getVarType(pvApiCtx, piAddr, &var_type);
         MATIO_ERROR;
     }
     else
     {
-        sciErr = getListItemAddress(pvApiCtx, parent, item_position, &item_addr);
+        _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &item_addr);
         MATIO_ERROR;
-        sciErr = getVarType(pvApiCtx, item_addr, &var_type);
+        _SciErr = getVarType(pvApiCtx, item_addr, &var_type);
         MATIO_ERROR;
     }
 
@@ -68,7 +67,7 @@ matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * pare
         if (parent==NULL)
         {
             getAllocatedSingleString(pvApiCtx, piAddr, &dataAdr);
-            sciErr = getVarDimension(pvApiCtx, piAddr, &dims[1], &dims[0]);
+            _SciErr = getVarDimension(pvApiCtx, piAddr, &dims[1], &dims[0]);
             MATIO_ERROR;
         }
         else

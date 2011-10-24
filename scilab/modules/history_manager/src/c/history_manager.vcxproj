@@ -217,19 +217,6 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\jni\HistoryManagement_wrap.c" />
     <ClCompile Include="..\cpp\HistoryManager.cpp" />
     <ClCompile Include="..\cpp\HistorySearch.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_addhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_displayhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gethistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gethistoryfile.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_historymanager.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_historysize.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_loadhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_removelinehistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_resethistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_saveafterncommands.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_saveconsecutivecommands.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_savehistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sethistoryfile.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\history_manager.pot" />

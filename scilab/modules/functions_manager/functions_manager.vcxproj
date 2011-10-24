@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -95,7 +95,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -116,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -139,7 +139,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -156,11 +156,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\callDynamicGateway.cpp" />
+    <ClCompile Include="src\cpp\dynamic_modules.cpp" />
     <ClCompile Include="src\cpp\funcmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\dynamic_modules.hxx" />
     <ClInclude Include="includes\funcmanager.hxx" />
     <ClInclude Include="includes\module_declaration.hxx" />
+    <ClInclude Include="src\cpp\callDynamicGateway.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -172,6 +176,9 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">
+      <Project>{77154919-8a20-4f35-b7c7-6b3b957bdca1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
       <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -254,6 +261,9 @@
     <ProjectReference Include="..\io\src\cpp\io_gw.vcxproj">
       <Project>{719ec179-3ad3-4c6b-bbd8-b44c96b1a204}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\jvm\libjvm.vcxproj">
+      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
     </ProjectReference>
     <ProjectReference Include="..\jvm\sci_gateway\cpp\libjvm_gw.vcxproj">
       <Project>{2d02dd0e-cbf5-493e-aa06-1e289ed24666}</Project>

@@ -19,7 +19,7 @@
 #include <wchar.h>
 
 #include "BOOL.h"
-
+#include "dynlib_string.h"
 /**
 * array elements that are digit between 0 and 9
 * @param[in] a wide string
@@ -27,7 +27,7 @@
 * @return BOOL array 
 */
 
-BOOL *IsDigitW(wchar_t *input_string, int *sizeReturnedArray);
+STRING_IMPEXP BOOL *IsDigitW(wchar_t *input_string, int *sizeReturnedArray);
 
 #endif /* __ISDIGIT_H__ */
 /*--------------------------------------------------------------------------*/

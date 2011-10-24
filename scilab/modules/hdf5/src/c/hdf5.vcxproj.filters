@@ -12,12 +12,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{57d3b4e3-2540-471e-9491-d727a7bf7ee2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{b5456610-0b43-414e-9315-9483a1fef6a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{711fa851-80f4-4499-a540-d305ac509459}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{a19b51b0-83ed-45b9-8088-e789e7577167}</UniqueIdentifier>
     </Filter>
@@ -32,18 +26,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_hdf5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="h5_fileManagement.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="h5_readDataFromFile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="h5_writeDataToFile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\hdf5_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\jhdf5load.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,6 +33,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\dynhdf5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\h5_fileManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\h5_readDataFromFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\h5_writeDataToFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -67,9 +61,6 @@
     <ClInclude Include="..\..\includes\h5_attributeConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\h5_fileManagement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\h5_readDataFromFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -79,11 +70,17 @@
     <ClInclude Include="..\jni\jhdf5load.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\hdf5_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\dynhdf5.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\h5_fileManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\hdf5.iss" />
     <None Include="..\..\sci_gateway\hdf5_gateway.xml" />
     <None Include="..\..\Makefile.am" />

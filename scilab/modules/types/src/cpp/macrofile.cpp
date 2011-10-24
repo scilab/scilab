@@ -138,7 +138,7 @@ namespace types
                             //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
                             //types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
 
-                            pMacro->m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
+                            pMacro->m_pMacro = new Macro(m_wstName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_wstModule);
                         }
                     }
                 }

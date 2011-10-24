@@ -53,12 +53,12 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 15  */ {gw_user}, /* free position may be used */
     /* 16  */ {gw_polynomials},
     /* 17  */ {gw_data_structures1},
-    /* 18  */ {gw_dynamic_signal_processing},
+    /* 18  */ {NULL}, //gw_dynamic_signal_processing
     /* 19  */ {gw_dynamic_interpolation},
     /* 20  */ {gw_cacsd3},
     /* 21  */ {gw_string},
     /* 22  */ {gw_dynamic_symbolic},
-    /* 23  */ {gw_boolean},
+    /* 23  */ {NULL}, //gw_boolean
     /* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */
     /* 25  */ {gw_gui},
     /* 26  */ {gw_differential_equations2},
@@ -66,19 +66,19 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 28  */ {gw_slicot},
     /* 29  */ {gw_differential_equations3},
     /* 30  */ {gw_differential_equations4},
-    /* 31  */ {gw_dynamic_functions},
+    /* 31  */ {NULL}, //gw_dynamic_functions
     /* 32  */ {gw_differential_equations6},
     /* 33  */ {gw_output_stream},
     /* 34  */ {gw_fileio},
     /* 35  */ {gw_dynamic_arnoldi},
     /* 36  */ {gw_user}, /* free position may be used */
-    /* 37  */ {gw_dynamic_statistics},
+    /* 37  */ {NULL}, //gw_dynamic_statistics
     /* 38  */ {gw_dynamic_randlib},
     /* 39  */ {gw_dynamic_special_functions},
     /* 40  */ {gw_dynamic_tclsci},
     /* 41  */ {gw_data_structures2},
     /* 42  */ {gw_user}, /* free position may be used */
-    /* 43  */ {gw_integer},
+    /* 43  */ {NULL}, //gw_integer
     /* 44  */ {gw_linear_algebra2},
     /* 45  */ {gw_dynamic_scicos},
     /* 46  */ {gw_dynamic_link},
@@ -94,13 +94,13 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 56  */ {gw_dynamic_spreadsheet},
     /* 57  */ {gw_dynamic_graphic_export},
     /* 58  */ {gw_dynamic_umfpack},
-    /* 59  */ {gw_dynamic_matio},
-    /* 60  */ {gw_dynamic_helptools},
+    /* 59  */ {NULL}, //gw_dynamic_matio
+    /* 60  */ {NULL}, //gw_dynamic_helptools
     /* 61  */ {gw_call_scilab},
-    /* 62  */ {gw_dynamic_hdf5},
-    /* 63  */ {gw_dynamic_scinotes},
+    /* 62  */ {NULL}, //gw_dynamic_hdf5
+    /* 63  */ {NULL}, //gw_dynamic_scinotes
     /* 64  */ {gw_dynamic_xcos},
-    /* 65  */ {gw_dynamic_action_binding},
+    /* 65  */ {NULL}, //gw_dynamic_action_binding
     /* 66  */ {gw_dynamic_parallel},
     /* 67  */ {gw_dynamic_ui_data},
     /* 68  */ {gw_dynamic_xml}

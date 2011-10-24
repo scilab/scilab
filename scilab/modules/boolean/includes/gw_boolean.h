@@ -16,14 +16,9 @@
 #include "machine.h"
 #include "api_scilab.h"
 #include "c_gateway_prototype.h"
+#include "dynlib_boolean.h"
+#include "dynlib_boolean_gw.h"
 /*--------------------------------------------------------------------------*/
-int gw_boolean(void);
-/*--------------------------------------------------------------------------*/
-int C2F(intand)(char *fname,unsigned long fname_len);
-int C2F(sci_find)(char *fname,unsigned long fname_len);
-int C2F(sci_bool2s)(char *fname,unsigned long fname_len);
-
-//YaSp
 C_GATEWAY_PROTOTYPE(sci_or);
 C_GATEWAY_PROTOTYPE(sci_and);
 /*--------------------------------------------------------------------------*/

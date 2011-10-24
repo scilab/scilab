@@ -11,6 +11,7 @@
  */
 
 #include "matio.h" /* mat_t */
+#include "dynlib_matio.h"
 
 #define MATFILEMANAGER_ADDFILE  0
 #define MATFILEMANAGER_DELFILE  1
@@ -24,5 +25,5 @@
  * @param fileIndex the file index in the table of files openend
  * @param matfile a pointer to the matfile entity to close
  */
-void matfile_manager(int action, int *fileIndex, mat_t **matfile);
+MATIO_IMPEXP void matfile_manager(int action, int *fileIndex, mat_t **matfile);
 

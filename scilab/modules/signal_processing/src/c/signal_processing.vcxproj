@@ -190,11 +190,9 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\c\sci_remez.c" />
     <ClCompile Include="corrtable.c" />
     <ClCompile Include="DllmainSignal_processing.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_signal.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_amell.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h" />

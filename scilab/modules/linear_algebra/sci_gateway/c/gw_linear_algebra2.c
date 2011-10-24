@@ -27,8 +27,8 @@ static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
 	{NULL, ""}, //rcond
 	{NULL, ""}, //chol
 	{NULL, ""}, //lu
-	{C2F(intslash),"slash"},
-	{C2F(intbackslash),"backslash"},
+	{NULL, ""}, //slash
+	{NULL, ""}, //backslash
 	{NULL, ""}, //schur
 	{NULL, ""}, //hess
 	{NULL, ""}, //det
@@ -37,9 +37,6 @@ static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
 /*--------------------------------------------------------------------------*/ 
 int gw_linear_algebra2(void)
 {  
-	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	if (Err <= 0 && C2F(errgst).err1 <= 0) PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

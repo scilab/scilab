@@ -153,7 +153,7 @@ am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
 	sci_gateway/c/sci_matfile_listvar.c \
 	sci_gateway/c/sci_matfile_varreadnext.c \
 	sci_gateway/c/sci_matfile_varwrite.c \
-	src/nomatio/nomatio_gw.cpp sci_gateway/cpp/matio_gw.cpp
+	src/nomatio/nomatio_gw.cpp
 @MATIO_TRUE@am__objects_2 = libscimatio_la-gw_matio.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_open.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_close.lo \
@@ -161,7 +161,6 @@ am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varreadnext.lo \
 @MATIO_TRUE@	libscimatio_la-sci_matfile_varwrite.lo
 @MATIO_FALSE@am__objects_3 = libscimatio_la-nomatio_gw.lo
-@MATIO_TRUE@am__objects_3 = libscimatio_la-matio_gw.lo
 am_libscimatio_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscimatio_la_OBJECTS = $(am_libscimatio_la_OBJECTS)
 libscimatio_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -524,7 +523,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
 
 @MATIO_FALSE@GATEWAY_CPP_SOURCES = src/nomatio/nomatio_gw.cpp
-@MATIO_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/matio_gw.cpp
+@MATIO_TRUE@GATEWAY_CPP_SOURCES = 
 @MATIO_FALSE@MATIO_C_SOURCES = src/nomatio/nomatio.c
 
 #### List of the C files ####
@@ -561,7 +560,8 @@ libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/
+			-I$(top_srcdir)/modules/ast/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la
@@ -693,7 +693,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-matfile_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_algo_la-nomatio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-gw_matio.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-matio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-nomatio_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
@@ -924,13 +923,6 @@ libscimatio_la-nomatio_gw.lo: src/nomatio/nomatio_gw.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/nomatio/nomatio_gw.cpp' object='libscimatio_la-nomatio_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscimatio_la-nomatio_gw.lo `test -f 'src/nomatio/nomatio_gw.cpp' || echo '$(srcdir)/'`src/nomatio/nomatio_gw.cpp
-
-libscimatio_la-matio_gw.lo: sci_gateway/cpp/matio_gw.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscimatio_la-matio_gw.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-matio_gw.Tpo -c -o libscimatio_la-matio_gw.lo `test -f 'sci_gateway/cpp/matio_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/matio_gw.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-matio_gw.Tpo $(DEPDIR)/libscimatio_la-matio_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/matio_gw.cpp' object='libscimatio_la-matio_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscimatio_la-matio_gw.lo `test -f 'sci_gateway/cpp/matio_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/matio_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

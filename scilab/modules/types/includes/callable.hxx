@@ -41,10 +41,10 @@ namespace types
 
       virtual ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
 
-      void                  setName(std::wstring _stName) { m_stName = _stName; }
-      std::wstring          getName() { return m_stName; }
-      void                  setModule(std::wstring _stModule) { m_stModule = _stModule; }
-      std::wstring          getModule() { return m_stModule; }
+      void                  setName(std::wstring _wstName) { m_wstName = _wstName; }
+      std::wstring          getName() { return m_wstName; }
+      void                  setModule(std::wstring _wstModule) { m_wstModule = _wstModule; }
+      std::wstring          getModule() { return m_wstModule; }
 
       /* return type as string ( double, int, cell, list, ... )*/
       virtual std::wstring  getTypeStr() {return L"callable";}
@@ -53,8 +53,8 @@ namespace types
       virtual InternalType* clone(void) = 0;
 
   protected :
-      std::wstring           m_stName;
-      std::wstring           m_stModule;
+      std::wstring           m_wstName;
+      std::wstring           m_wstModule;
   };
 }
 

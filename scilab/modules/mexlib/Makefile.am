@@ -19,7 +19,8 @@ MEXLIB_FLAGS = 	-I$(srcdir)/includes/ \
 		-I$(top_srcdir)/modules/parse/includes \
 		-I$(top_srcdir)/modules/system_env/includes \
 		-I$(top_srcdir)/modules/threads/includes/ \
-		-I$(top_srcdir)/modules/api_scilab/includes/
+		-I$(top_srcdir)/modules/api_scilab/includes/ \
+        -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 

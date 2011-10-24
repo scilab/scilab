@@ -30,22 +30,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
-	Rhs = Max(0, Rhs);
-
-
-	if ( getScilabMode() == SCILAB_NWNI)
-	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "helptools");
-		return 0;
-	}
-
-	if (!loadedDep)
-	{
-		loadOnUseClassPath("documentationGeneration");
-		loadedDep=TRUE;
-	}
-
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -13,6 +13,7 @@
 #ifndef __FPRINTFMAT_H__
 #define __FPRINTFMAT_H__
 
+#include "dynlib_fileio.h"
 typedef enum { 
     FPRINTFMAT_NO_ERROR = 0,
     FPRINTFMAT_FOPEN_ERROR = 1,
@@ -24,7 +25,7 @@ typedef enum {
 #define DEFAULT_FPRINTFMAT_FORMAT "%lf"
 #define DEFAULT_FPRINTFMAT_SEPARATOR " "
 
-fprintfMatError fprintfMat(char *filename, char *format, char *separator,
+FILEIO_IMPEXP fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                            double *MatrixValues, int m, int n,
                            char **textAdded, int sizeTextAdded);
 

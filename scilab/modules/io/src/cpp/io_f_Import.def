@@ -1,0 +1,13 @@
+LIBRARY    io_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; io_f
+; --------------------------------------- 
+intread_
+intread4b_
+intreadb_
+intwrite_
+intwrite4b_
+intwritb_

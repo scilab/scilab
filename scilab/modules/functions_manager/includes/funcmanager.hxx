@@ -17,7 +17,6 @@
 #include <list>
 #include <iostream>
 #include <string>
-//#include "scilabfunction.hxx"
 
 
 #ifdef _MSC_VER

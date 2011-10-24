@@ -19,10 +19,7 @@
 /*--------------------------------------------------------------------------*/
 OUTPUT_STREAM_IMPEXP int gw_output_stream(void);
 /*--------------------------------------------------------------------------*/
-OUTPUT_STREAM_IMPEXP int sci_print(char *fname,unsigned long fname_len);
-
-//YaSp
-OUTPUT_STREAM_IMPEXP C_GATEWAY_PROTOTYPE(sci_diary);
+C_GATEWAY_PROTOTYPE(sci_diary);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_OUTPUT_STREAM_H__ */
 /*--------------------------------------------------------------------------*/

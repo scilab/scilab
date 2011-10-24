@@ -46,9 +46,9 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/scinotes_gw.cpp \
-						sci_gateway/cpp/sci_scinotes.cpp \
-						sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_scinotes.cpp \
+	sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
 
 libsciscinotes_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \

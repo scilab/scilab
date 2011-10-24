@@ -68,7 +68,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //isequal
 	{sci_spones,"spones"},
 	{NULL, ""}, //gsort
-	{sci_isequalbitwise,"isequalbitwise"},
+	{NULL, ""}, //isequalbitwise
     {NULL, ""}, //rat
 };
 /*--------------------------------------------------------------------------*/

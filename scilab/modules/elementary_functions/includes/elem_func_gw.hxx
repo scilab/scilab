@@ -15,16 +15,7 @@
 #define __ELEM_FUNC_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-
-#ifdef _MSC_VER
-	#if ELEM_FUNC_GW_EXPORTS
-		#define EXTERN_EF_GW __declspec (dllexport)
-	#else
-		#define EXTERN_EF_GW __declspec (dllimport)
-	#endif
-#else
-	#define EXTERN_EF_GW
-#endif
+#include "dynlib_elementary_functions_gw.h"
 
 class ElemFuncModule
 {

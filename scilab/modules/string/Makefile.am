@@ -93,7 +93,8 @@ libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/elementary_funcions/includes \
 	-I$(top_srcdir)/modules//includes \
 	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/types/includes
+	-I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 

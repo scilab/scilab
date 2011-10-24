@@ -14,7 +14,7 @@
 #ifndef __GW_DYNAMIC_GENERIC_H__
 #define __GW_DYNAMIC_GENERIC_H__
 
-#include "callDynamicGateway.h"
+#include "dynamiclibrary.h"
 
 /**
 * generic function to call a gateway dynamically loaded
@@ -29,7 +29,7 @@ int gw_dynamic_generic(char *moduleName,
 					   char **dynlibName,
 					   char **gatewayName,
 					   DynLibHandle *hModuleLib,
-					   PROC_GATEWAY *ptrGatewayFunction);
+					   void* ptrGatewayFunction);
 
 #endif /* __GW_DYNAMIC_GENERIC_H__ */
 /*--------------------------------------------------------------------------*/

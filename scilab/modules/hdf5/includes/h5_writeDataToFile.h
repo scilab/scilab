@@ -15,9 +15,10 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+extern "C"
+{
 HDF5_SCILAB_IMPEXP char* createGroupName(char* _pstGroupName);
 HDF5_SCILAB_IMPEXP char* createPathName(char* _pstGroupName, int _iIndex);
-
 
 HDF5_SCILAB_IMPEXP int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblData);
 HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
@@ -50,5 +51,6 @@ HDF5_SCILAB_IMPEXP int writeUndefined(int _iFile, char* _pstDatasetName);
 HDF5_SCILAB_IMPEXP void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 HDF5_SCILAB_IMPEXP int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 HDF5_SCILAB_IMPEXP int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);
+}
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */

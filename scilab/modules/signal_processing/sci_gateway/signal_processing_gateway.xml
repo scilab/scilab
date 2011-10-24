@@ -1,39 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2009 - Digiteo - Vincent Liard
- * 
- * Scilab
- * Interface description. In this file, we define the list of the function which
- * will be available into Scilab and the link to the "native" function.
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- * gatewayId is the position in the hashtable 'Interfaces' defined in the
- * file SCI/modules/core/src/c/callinterf.h
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- * primitiveId is the position in the hashtable '<module>Table Tab[]' defined
- * in the file modules/<module>/sci_gateway/c/gw_<module>.c
- *
- * primitiveName is the name of the Scilab function
- *
- * Don't touch if you do not know what you are doing
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
+ */
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
 
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="signal_processing">
-  <PRIMITIVE gatewayId="18" primitiveId="2" primitiveName="fft" />
-  <PRIMITIVE gatewayId="18" primitiveId="4" primitiveName="corr" />
-  <PRIMITIVE gatewayId="18" primitiveId="5" primitiveName="rpem" />
-  <PRIMITIVE gatewayId="18" primitiveId="6" primitiveName="amell" />
-  <PRIMITIVE gatewayId="18" primitiveId="7" primitiveName="delip" />
-  <PRIMITIVE gatewayId="18" primitiveId="8" primitiveName="remez" />
-  <PRIMITIVE gatewayId="18" primitiveId="9" primitiveName="syredi" />
-</GATEWAY>
+ Don't touch if you do not know what you are doing
+-->
+<module name="signal_processing">
+    <gateway name="sci_fft"     function="fft"      type="1" />
+    <gateway name="sci_corr"    function="corr"     type="1" />
+    <gateway name="sci_rpem"    function="rpem"     type="1" />
+    <gateway name="sci_amell"   function="amell"    type="0" />
+    <gateway name="sci_delip"   function="delip"    type="1" />
+    <gateway name="sci_remez"   function="remez"    type="0" />
+    <gateway name="sci_syredi"  function="syredi"   type="1" />
+</module>

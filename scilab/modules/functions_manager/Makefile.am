@@ -10,7 +10,10 @@
 ##
 ##
 
-FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp
+FUNCTION_MANAGER_CPP_SOURCES = \
+    src/cpp/funcmanager.cpp \
+    src/cpp/dynamic_modules.cpp \
+    src/cpp/callDynamicGateway.cpp
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 
@@ -31,6 +34,8 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-I$(top_builddir)/modules/threads/includes/ \
 						-I$(top_builddir)/modules/console/includes/ \
 						-I$(top_builddir)/modules/signal_processing/includes/ \
+						-I$(top_builddir)/modules/jvm/includes/ \
+                        -I$(top_srcdir)/libs/dynamiclibrary/includes \
 						-Iincludes/ \
 						$(XML_FLAGS)
 

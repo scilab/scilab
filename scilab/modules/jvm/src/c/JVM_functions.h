@@ -18,6 +18,7 @@
 #include <jni.h> /* JVM functions */
 #include "BOOL.h" /* BOOL */
 
+#include "dynlib_jvm.h"
 /**
 * Load JVM dynamic library
 * @return TRUE or FALSE
@@ -59,7 +60,7 @@ jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args);
 * Check if Scilab uses embedded JRE
 * @return <ReturnValue> TRUE or FALSE
 */
-BOOL withEmbeddedJRE(void);
+JVM_IMPEXP BOOL withEmbeddedJRE(void);
 
 /**
 * search a Created JavaVM

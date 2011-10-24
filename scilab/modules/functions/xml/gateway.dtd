@@ -1,5 +1,5 @@
-<!ELEMENT GATEWAY ( PRIMITIVE+ ) >
-<!ATTLIST GATEWAY name NMTOKEN #REQUIRED >
+<!ELEMENT module ( gateway+ ) >
+<!ATTLIST module name NMTOKEN #REQUIRED >
 
 <!ATTLIST META 
 CATEGORY 	CDATA 	"Scilab gateway" 	 
@@ -8,7 +8,19 @@ VERSION_DOC 	CDATA 	"1.0"
 AUTHOR 	CDATA 	"Allan CORNET DIGITEO 2010" 	 
  >
 
-<!ELEMENT PRIMITIVE EMPTY >
-<!ATTLIST PRIMITIVE gatewayId CDATA #REQUIRED >
-<!ATTLIST PRIMITIVE primitiveId NMTOKEN #REQUIRED >
-<!ATTLIST PRIMITIVE primitiveName CDATA #REQUIRED >
+<!ELEMENT gateway EMPTY >
+<!ATTLIST gateway name NMTOKEN #REQUIRED >
+<!ATTLIST gateway function NMTOKEN #REQUIRED >
+<!ATTLIST gateway type NMTOKEN #REQUIRED >
+<!--
+name:
+    the gateway name
+
+function:
+    Scilab function name
+
+type:
+    0: scilab 4/5 gateway
+    1: Scilab 6 gateway
+    2: Mex function
+-->

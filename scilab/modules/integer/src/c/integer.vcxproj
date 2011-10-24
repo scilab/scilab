@@ -240,7 +240,6 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile Include="genvmul.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_integer.c" />
     <ClCompile Include="i_nextj.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_int.c" />
     <ClCompile Include="tpconv.c" />
   </ItemGroup>
   <ItemGroup>

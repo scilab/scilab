@@ -15,7 +15,6 @@
 #include "core_math.h"
 #include "threadId.hxx"
 #include "tostring_common.hxx"
-#include "configvariable.hxx"
 
 extern "C"
 {

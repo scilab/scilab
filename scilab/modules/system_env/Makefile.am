@@ -35,7 +35,8 @@ libscisystem_env_la_CPPFLAGS = \
 	-I $(top_srcdir)/modules/fileio/includes \
 	-I $(top_srcdir)/modules/string/includes \
 	-I $(top_srcdir)/modules/threads/includes \
-	-I $(top_srcdir)/modules/ast/includes
+	-I $(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 
 libscisystem_env_la_includedir=$(pkgincludedir)/system_env

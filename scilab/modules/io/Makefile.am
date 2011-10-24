@@ -69,6 +69,7 @@ libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
+            -I$(top_srcdir)/libs/dynamiclibrary/includes \
 			$(XML_FLAGS)
 
 

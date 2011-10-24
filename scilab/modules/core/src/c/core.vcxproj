@@ -237,7 +237,6 @@ cd.. &gt;nul
   <ItemGroup>
     <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp" />
     <ClCompile Include="..\..\..\mexlib\src\cpp\sci_gateway.cpp" />
-    <ClCompile Include="callDynamicGateway.c" />
     <ClCompile Include="callFunctionFromGateway.c" />
     <ClCompile Include="callinterf.c" />
     <ClCompile Include="commandwords.c" />
@@ -308,7 +307,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_format.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getmemory.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getvariablesonstack.c" />
@@ -329,7 +327,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_return.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_setbpt.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_stacksize.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_type.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_typename.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_warning.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_what.c" />

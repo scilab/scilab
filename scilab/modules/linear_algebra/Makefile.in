@@ -570,7 +570,8 @@ libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 noinst_LTLIBRARIES = libscilinear_algebra-algo.la

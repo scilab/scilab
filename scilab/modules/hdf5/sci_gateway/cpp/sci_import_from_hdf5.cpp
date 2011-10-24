@@ -68,7 +68,6 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     forceJHDF5load();
 #endif
 
-
     if(in.size() != 1)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"import_from_hdf5", 1);
@@ -129,6 +128,7 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     out.push_back(pOut);
 
     FREE(pstFileName);
+    
     return types::Function::OK;
 }
 

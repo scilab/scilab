@@ -62,5 +62,34 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtrW(DynLibHandle _h
 */
 IMPORT_EXPORT_DYNAMICLIBRARY_DLL  wchar_t* GetLastDynLibError(void);
 
+
+typedef int (*PROC_GATEWAY) (void);
+
+typedef enum { DYN_GW_NO_ERROR = 0,
+DYN_GW_LOAD_LIBRARY_ERROR = 1,
+DYN_GW_PTR_FUNCTION_ERROR = 2,
+DYN_GW_CALL_FUNCTION_ERROR =3
+
+} dynamic_gateway_error_code;
+
+typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0, 
+DYNLIB_NAME_FORMAT_1 = 1,
+DYNLIB_NAME_FORMAT_2 = 2,
+DYNLIB_NAME_FORMAT_3 = 3
+} dynlib_name_format;
+
+#define FORMATGATEWAYLIBNAME_1 L"%ls%ls"
+#define FORMATGATEWAYLIBNAME_2 L"sci%ls%ls"
+#define FORMATGATEWAYLIBNAME_3 L"libsci%ls%ls"
+
+/**
+* Build name of dynamic library based on module name
+* @param[in] module name
+* @param[in] generated dynamic lib name type
+* @return name of dynamic library
+*/
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
+
 #endif /* __DYNAMICLIBRARY_WINDOWS_H__ */
 

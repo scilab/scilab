@@ -18,7 +18,6 @@ sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c
 
 GATEWAY_CPP_SOURCES =  \
-sci_gateway/cpp/functions_gw.cpp \
 sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
 sci_gateway/cpp/sci_whereis.cpp \
@@ -60,7 +59,8 @@ libscifunctions_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/threads/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+                -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libscifunctions.la
 noinst_LTLIBRARIES = libscifunctions-algo.la
