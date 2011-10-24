@@ -22,9 +22,17 @@ import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
  */
 public final class Console extends GraphicObject {
 
+    /**
+     * Scilab mode enum
+     * Java Console created only in STD mode
+     */
+    public enum ScilabMode { STD, NW };
+
     private static Console me;
 
     private boolean showHiddenHandles;
+
+    private ScilabMode scilabMode;
 
     /** Console properties names */
     private enum ConsoleProperty {
@@ -58,6 +66,22 @@ public final class Console extends GraphicObject {
      */
     public String getType() {
         return __GO_CONSOLE__;
+    }
+
+    /**
+     * Set the scilabMode property
+     * @param scilabMode the new value to set
+     */
+    public void setScilabMode(ScilabMode scilabMode) {
+        this.scilabMode = scilabMode;
+    }
+
+    /**
+     * Get the javaEnabled proeprty
+     * @return javaEnabled
+     */
+    public ScilabMode getScilabMode() {
+        return this.scilabMode;
     }
 
     /**

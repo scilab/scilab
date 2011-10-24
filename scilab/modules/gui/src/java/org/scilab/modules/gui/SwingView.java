@@ -64,6 +64,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.swing.ImageIcon;
 
@@ -99,6 +100,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -106,6 +108,8 @@ import org.scilab.modules.gui.widget.Widget;
  * @author Vincent COUVERT
  */
 public final class SwingView implements GraphicView {
+
+    public static final String NULLUUID = new UUID(0L, 0L).toString();
 
     private static final String SCIDIR = System.getenv("SCI");
 
@@ -123,8 +127,8 @@ public final class SwingView implements GraphicView {
         GraphicController.getController().register(this);
         allObjects = Collections.synchronizedMap(new HashMap<String, TypedObject>());
         // Register Console
-        String consoleId = Console.getConsole().getIdentifier();
-        allObjects.put(consoleId, CreateObjectFromType(__GO_CONSOLE__, consoleId));
+        //String consoleId = Console.getConsole().getIdentifier();
+        //allObjects.put(consoleId, CreateObjectFromType(__GO_CONSOLE__, consoleId));
     }
 
     public static void registerSwingView() {
@@ -145,6 +149,7 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
+        Console,
         CheckBox,
         Edit,
         Frame,
@@ -154,7 +159,6 @@ public final class SwingView implements GraphicView {
         PopupMenu,
         PushButton,
         RadioButton,
-        Root,
         Slider,
         Table,
         Text,
@@ -235,7 +239,7 @@ public final class SwingView implements GraphicView {
         if (style.equals(__GO_FIGURE__)) {
             return UielementType.Figure;
         } else if (style.equals(__GO_CONSOLE__)) {
-            return UielementType.Root;
+            return UielementType.Console;
         } else if (style.equals(__GO_UI_CHECKBOX__)) {
             return UielementType.CheckBox;
         } else if (style.equals(__GO_UI_EDIT__)) {
@@ -282,6 +286,17 @@ public final class SwingView implements GraphicView {
             checkBox.setId(id);
             setDefaultProperties(checkBox, id);
             return checkBox;
+        case Console:
+            Console console = (Console) GraphicController.getController().getObjectFromId(id);
+            if (console.getScilabMode() == Console.ScilabMode.STD) {
+                WindowsConfigurationManager.restoreUUID(NULLUUID);
+                SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+                SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+                consoleTab.setId(id);
+                return consoleTab;
+            } else {
+                return null;
+            }
         case Edit:
             SwingScilabEditBox edit = new SwingScilabEditBox();
             edit.setId(id);

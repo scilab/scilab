@@ -263,6 +263,11 @@ public final class GraphicModel {
             /* Create Scilab console object */
             case CONSOLE:
                 createdObject = Console.getConsole();
+                ((Console) createdObject).setScilabMode(Console.ScilabMode.NW);
+                break;
+            case JAVACONSOLE:
+                createdObject = Console.getConsole();
+                ((Console) createdObject).setScilabMode(Console.ScilabMode.STD);
                 break;
             case UNKNOWNOBJECT:
                 createdObject = null;
