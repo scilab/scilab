@@ -142,7 +142,7 @@ public class Axes extends GraphicObject {
             axes[1] = new AxisProperty();
             axes[2] = new AxisProperty();
             gridPosition = GridPosition.FOREGROUND;
-            title = GraphicController.getController().askObject(Type.LABEL);
+            title = "";
             autoClear = false;
             filled = false;
             camera = new Camera();
@@ -167,8 +167,7 @@ public class Axes extends GraphicObject {
 
             copy.axes = newAxes;
 
-            String newTitle = GraphicController.getController().cloneObject(title);
-            copy.setTitle(newTitle);
+            copy.title = "";
 
             copy.camera = new Camera(this.camera);
             copy.box = new Box(this.box);

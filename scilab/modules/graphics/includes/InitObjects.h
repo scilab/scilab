@@ -37,7 +37,7 @@ GRAPHICS_IMPEXP int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
 
 GRAPHICS_IMPEXP int sciInitGraphicMode (char* pobjUID);
 
-GRAPHICS_IMPEXP sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
+GRAPHICS_IMPEXP char * initLabel(char * parentObjUID) ; /* INITOBJECT */
 
 GRAPHICS_IMPEXP void reinitSubwin( void ) ;
 

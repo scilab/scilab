@@ -890,6 +890,8 @@ int InitAxesModel()
 //  sciInitGraphicMode (paxesmdl);
 //  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
+    char *labelUID = NULL;
+
     char *pfiguremdlUID = getFigureModel();
     char *paxesmdlUID = getAxesModel();
 
@@ -1133,6 +1135,19 @@ int InitAxesModel()
     arcDrawingMethod = 1;
     setGraphicObjectProperty(paxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
+    /* Creates the Axes model's labels and sets the model as their parent */
+    labelUID = initLabel(paxesmdlUID);
+    setGraphicObjectProperty(paxesmdlUID, __GO_TITLE__, labelUID, jni_string, 1);
+
+    labelUID = initLabel(paxesmdlUID);
+    setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LABEL__, labelUID, jni_string, 1);
+
+    labelUID = initLabel(paxesmdlUID);
+    setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LABEL__, labelUID, jni_string, 1);
+
+    labelUID = initLabel(paxesmdlUID);
+    setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_LABEL__, labelUID, jni_string, 1);
+
     return 0;
 
     /*
@@ -1336,61 +1351,6 @@ int InitAxesModel()
 
     paxesmdl->pObservers = NULL;
     paxesmdl->pDrawer = NULL;
-#endif
-
-    /*
-     * Label creation is done in the MVC Axes constructor for now.
-     * However, the equivalent of initLabel (which initializes Label
-     * properties default values) must be implemented.
-     */
-
-    /* F.Leray 10.06.04 */
-    /* Adding default Labels inside Axes */
-  /*---------------------------------------------------------------------------*/
-
-   /******************************  title *************************/
-#if 0
-    ppaxesmdl->mon_title = initLabel(paxesmdl);
-
-    if (ppaxesmdl->mon_title == NULL)
-    {
-        return -1;
-    }
-
-    pLABEL_FEATURE(ppaxesmdl->mon_title)->ptype = 1;
-
-  /******************************  x_label *************************/
-
-    ppaxesmdl->mon_x_label = initLabel(paxesmdl);
-
-    if (ppaxesmdl->mon_x_label == NULL)
-    {
-        return -1;
-    }
-
-    pLABEL_FEATURE(ppaxesmdl->mon_x_label)->ptype = 2;
-
-  /******************************  y_label *************************/
-
-    ppaxesmdl->mon_y_label = initLabel(paxesmdl);
-
-    if (ppaxesmdl->mon_y_label == NULL)
-    {
-        return -1;
-    }
-
-    pLABEL_FEATURE(ppaxesmdl->mon_y_label)->ptype = 3;
-
-  /******************************  z_label *************************/
-
-    ppaxesmdl->mon_z_label = initLabel(paxesmdl);
-
-    if (ppaxesmdl->mon_z_label == NULL)
-    {
-        return -1;
-    }
-
-    pLABEL_FEATURE(ppaxesmdl->mon_z_label)->ptype = 4;
 #endif
 
     return 0;
@@ -1614,80 +1574,29 @@ default:
 
 /*---------------------------------------------------------------------------------*/
 /* allocate and set a new label to default values */
-sciPointObj *initLabel(sciPointObj * pParentObj)
+char *initLabel(char * parentObjUID)
 {
-    sciPointObj *newLabel = MALLOC(sizeof(sciPointObj));
-    sciLabel *ppLabel;
-    char *emptyString = "";
+    char *newLabel = NULL;
+    int autoPosition = 1;
+    int autoRotation = 1;
 
-    if (newLabel == NULL)
-    {
-        return NULL;
-    }
+    newLabel = createGraphicObject(__GO_LABEL__);
 
-    sciSetEntityType(newLabel, SCI_LABEL);
+    /* Sets the label's parent */
+    setGraphicObjectProperty(newLabel, __GO_PARENT__, parentObjUID, jni_string, 1);
 
-    newLabel->pfeatures = MALLOC(sizeof(sciLabel));
-    if (newLabel->pfeatures == NULL)
-    {
-        FREE(newLabel);
-        return NULL;
-    }
+    setGraphicObjectProperty(newLabel, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
+    setGraphicObjectProperty(newLabel, __GO_AUTO_ROTATION__, &autoPosition, jni_bool, 1);
 
-    ppLabel = pLABEL_FEATURE(newLabel);
-
-    /* we must first construct the text object inside the label */
-    ppLabel->text = allocateText(pParentObj, &emptyString, 1, 1, 0.0, 0.0, TRUE, NULL, FALSE, NULL, NULL, FALSE, FALSE, FALSE, ALIGN_LEFT);
-
-    /* RelationShip is actually stored in the text object */
-    newLabel->relationShip = ppLabel->text->relationShip;
-
-    if (ppLabel->text == NULL)
-    {
-        deallocateText(ppLabel->text);
-        FREE(ppLabel);
-        FREE(newLabel);
-        return NULL;
-    }
-
-    //if ( sciAddNewHandle ( newLabel ) == -1 )
-    //{
-    //  FREE( ppLabel ) ;
-    //  FREE( newLabel ) ;
-    //  return NULL ;
-    //}
-
-    //if ( !sciAddThisToItsParent( newLabel, pParentObj ) )
-    //{
-    //sciDelHandle (newLabel);
-    //  FREE( ppLabel ) ;
-    //  FREE( newLabel  );
-    // return NULL ;
-    //}
-
-    ppLabel->auto_position = TRUE;
-    ppLabel->auto_rotation = TRUE;
-
+    /* Not used anymore */
+#if 0
     ppLabel->isselected = TRUE;
-
     ppLabel->ptype = 0;         /* must be changed : 1 for title, 2 x_label, 3 y_label, 4 z_label */
-
     sciInitIs3d(newLabel, FALSE);
+#endif
 
-    newLabel->pObservers = NULL;
-    newLabel->pDrawer = NULL;
-
-    if (sciInitGraphicContext(newLabel) == -1)
-    {
-        DestroyLabel(newLabel);
-        return NULL;
-    }
-
-    if (sciInitFontContext(newLabel) == -1)
-    {
-        DestroyLabel(newLabel);
-        return NULL;
-    }
+    cloneGraphicContext(parentObjUID, newLabel);
+    cloneFontContext(parentObjUID, newLabel);
 
     return newLabel;
 }

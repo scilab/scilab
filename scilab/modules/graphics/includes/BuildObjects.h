@@ -104,7 +104,7 @@ GRAPHICS_IMPEXP char *ConstructSegs (char * pparentsubwinUID, int type,double *v
 GRAPHICS_IMPEXP char *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 GRAPHICS_IMPEXP char *ConstructCompoundSeq (int number); /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
+GRAPHICS_IMPEXP char * ConstructLabel (char * pparentsubwinUID, char *text, int type); /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) ;
 

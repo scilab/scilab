@@ -90,9 +90,8 @@ public class AxisProperty {
 		reverse = false;
 		gridColor = 0;
 
-		/* Default label creation */
-		String labelId = GraphicController.getController().askObject(Type.LABEL);
-		label = labelId;
+                /* Sets the label to the null object */
+                label = "";
 
 		axisLocation = AxisLocation.ORIGIN;
 		ticks = new TicksProperty();
@@ -108,8 +107,7 @@ public class AxisProperty {
 		reverse = axisProperty.reverse;
 		gridColor = axisProperty.gridColor;
 
-		String newLabel = GraphicController.getController().cloneObject(axisProperty.label);
-		label = newLabel;
+                label = "";
 
 		axisLocation = axisProperty.axisLocation;
 		ticks = new TicksProperty(axisProperty.ticks);

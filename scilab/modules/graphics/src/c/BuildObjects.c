@@ -83,6 +83,12 @@ char *createNewFigureWithAxes()
      */
     pAxesUID = cloneGraphicObject(getAxesModel());
 
+    /* Clone the Axes model's labels and attach them to the newly created Axes */
+    ConstructLabel(pAxesUID, "", 1);
+    ConstructLabel(pAxesUID, "", 2);
+    ConstructLabel(pAxesUID, "", 3);
+    ConstructLabel(pAxesUID, "", 4);
+
     /* Sets the parent-child relationship within the MVC */
     setGraphicObjectRelationship(pFigureUID, pAxesUID);
 
@@ -145,6 +151,12 @@ ConstructSubWin(char * pparentfigureUID)
 //        FREE(pClone);
 //        return (sciPointObj*) NULL;
 //    }
+
+    /* Clone the Axes model's labels and attach them to the newly created Axes */
+    ConstructLabel(pCloneUID, "", 1);
+    ConstructLabel(pCloneUID, "", 2);
+    ConstructLabel(pCloneUID, "", 3);
+    ConstructLabel(pCloneUID, "", 4);
 
     setGraphicObjectRelationship(pparentfigureUID, pCloneUID);
 
@@ -2179,75 +2191,61 @@ ConstructCompoundSeq (int number)
 }
 
 
-
 /**ConstructLabel
- * This function creates Label structure used for x,y,z labels and for the Title.
- * @param  sciPointObj *pparentsubwin
- * @param  char text[] : intial text string.
- * @param  int type to get info. on the type of label
- * @return  : pointer sciPointObj if ok , NULL if not
+ * This function creates the Label structure used for x,y,z labels and for the Title.
+ * On the contrary to the other Construct functions, it clones the Axes model's relevant
+ * label instead of creating a new Label object and performing property sets using
+ * the values of the Axes model's label, which is done instead by the clone call.
+ * @param  char *pparentsubwinUID: the parent Axes' identifier.
+ * @param  char text[] : initial text string, unused.
+ * @param  int type to get info. on the type of label.
+ * @return  : char* identifier if ok , NULL if not.
  */
-sciPointObj *
-ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
+char *
+ConstructLabel (char * pparentsubwinUID, char *text, int type)
 {
-  sciPointObj * pobj = NULL;
-  /* get a pointer on the feature */
-  sciLabel    * ppLabel ;
-  char * emptyString = "" ;
-  int defaultColor = 0 ;
+    char* labelProperties[] = {__GO_X_AXIS_LABEL__, __GO_Y_AXIS_LABEL__, __GO_Z_AXIS_LABEL__, __GO_TITLE__};
+    char* parentType = NULL;
+    char* labelType = NULL;
+    char* modelLabelUID = NULL;
+    char* pobjUID = NULL;
+    int defaultColor = 0;
+    int autoPosition = 0;
+    int piAutoPosition = &autoPosition;
+    double position[3] = {1.0, 1.0, 1.0};
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-  {
-    if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+
+    if (strcmp(parentType, __GO_AXES__) != 0)
     {
-      return (sciPointObj *) NULL;
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (char*) NULL;
     }
 
-    sciSetEntityType (pobj, SCI_LABEL);
-    if ((pobj->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
+    if (type < 1 || type > 4)
     {
-      FREE(pobj);
-      return (sciPointObj *) NULL;
+        return (char*) NULL;
     }
 
-    ppLabel = pLABEL_FEATURE( pobj ) ;
+    labelType = labelProperties[type - 1];
 
-    ppLabel->text = allocateText( pparentsubwin, &emptyString, 1, 1,
-                                  0.0, 0.0, TRUE, NULL, FALSE, &defaultColor, &defaultColor,
-                                  FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+    getGraphicObjectProperty(getAxesModel(), labelType, jni_string, &modelLabelUID);
 
-		/* RelationShip is actually stored in the text object */
-		pobj->relationShip = ppLabel->text->relationShip;
+    /* Creates a new Label object with the same properties as the Axes model's corresponding label */
+    pobjUID = cloneGraphicObject(modelLabelUID);
 
-    sciStandardBuildOperations(pobj, pparentsubwin);
+    /* Position set to {1, 1, 1} as a default to take into account logarithmic coordinates */
+    setGraphicObjectProperty(pobjUID, __GO_POSITION__, position, jni_double_vector, 3);
 
-    /* labels are not clipped */
-    sciSetIsClipping(ppLabel->text, -1) ;
+    /* Auto position must be reset as setting the position has set it to false */
+    getGraphicObjectProperty(modelLabelUID, __GO_AUTO_POSITION__, jni_bool, &piAutoPosition);
+    setGraphicObjectProperty(pobjUID, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
 
-    /* Use centered mode */
-    sciInitCenterPos(ppLabel->text, FALSE);
-    sciInitAutoSize(ppLabel->text, TRUE);
+    /* Attach the cloned label to its parent Axes and set the latter as the label's parent */
+    setGraphicObjectProperty(pparentsubwinUID, labelType, pobjUID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    /* 1.0 for logarithmic mode */
-    sciInitTextPos(pobj, 1.0, 1.0, 1.0);
-
-    sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
-
-    sciInitIs3d( pobj, FALSE ) ; /* the text of labels is displayed using 2d scale */
-
-    ppLabel->ptype = type;
-    ppLabel->auto_position = TRUE;
-    ppLabel->auto_rotation = TRUE;
-
-    ppLabel->isselected = TRUE;
-
-    return pobj;
-  }
-  else
-  {
-    Scierror(999, _("The parent has to be a SUBWIN\n"));
-    return (sciPointObj *) NULL;
-  }
+    return pobjUID;
 }
 /*----------------------------------------------------------------------------*/
 /**
