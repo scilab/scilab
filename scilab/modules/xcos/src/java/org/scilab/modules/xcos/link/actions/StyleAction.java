@@ -24,45 +24,49 @@ import org.scilab.modules.xcos.link.BasicLink;
  * base class for changing the link style
  */
 public abstract class StyleAction extends DefaultAction {
-	/** Accelerator key for all children actions */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Accelerator key for all children actions */
+    public static final int ACCELERATOR_KEY = 0;
 
     /**
      * Default constructor
-     * @param scilabGraph the graph to associate
+     * 
+     * @param scilabGraph
+     *            the graph to associate
      */
     public StyleAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
-	
-	/**
-	 * @return the current selected links on the graph
-	 */
-	protected BasicLink[] getLinks() {
-		Object[] cells = getGraph(null).getSelectionModel().getCells();
-		List<BasicLink> links = new ArrayList<BasicLink>(cells.length);
-		
-		for (Object object : cells) {
-			if (object instanceof BasicLink) {
-				links.add((BasicLink) object);
-			}
-		}
-		
-		return links.toArray(new BasicLink[links.size()]);
-	}
-	
-	/**
-	 * Remove all point on the links
-	 * @param links the links to work on
-	 */
-	protected void removePointsOnLinks(BasicLink[] links) {
-		getGraph(null).getModel().beginUpdate();
-		for (BasicLink link : links) {
-			int numberOfPoints = link.getPointCount();
-			for (int j = numberOfPoints - 1; j >= 0; j--) {
-				link.removePoint(j);
-			}
-		}
-		getGraph(null).getModel().endUpdate();
-	}
+
+    /**
+     * @return the current selected links on the graph
+     */
+    protected BasicLink[] getLinks() {
+        Object[] cells = getGraph(null).getSelectionModel().getCells();
+        List<BasicLink> links = new ArrayList<BasicLink>(cells.length);
+
+        for (Object object : cells) {
+            if (object instanceof BasicLink) {
+                links.add((BasicLink) object);
+            }
+        }
+
+        return links.toArray(new BasicLink[links.size()]);
+    }
+
+    /**
+     * Remove all point on the links
+     * 
+     * @param links
+     *            the links to work on
+     */
+    protected void removePointsOnLinks(BasicLink[] links) {
+        getGraph(null).getModel().beginUpdate();
+        for (BasicLink link : links) {
+            int numberOfPoints = link.getPointCount();
+            for (int j = numberOfPoints - 1; j >= 0; j--) {
+                link.removePoint(j);
+            }
+        }
+        getGraph(null).getModel().endUpdate();
+    }
 }

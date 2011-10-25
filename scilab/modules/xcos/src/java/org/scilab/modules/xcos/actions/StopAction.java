@@ -29,53 +29,58 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Stop the simulation
  */
 public class StopAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.STOP;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "process-stop.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.STOP;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "process-stop.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * @param scilabGraph graph
-	 */
-	public StopAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-		setEnabled(false);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     */
+    public StopAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+        setEnabled(false);
+    }
 
-	/**
-	 * @param scilabGraph graph
-	 * @return push button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, StopAction.class);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return push button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, StopAction.class);
+    }
 
-	/**
-	 * @param scilabGraph graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, StopAction.class);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, StopAction.class);
+    }
 
-	/**
-	 * Action !!!
-	 * @param e source event
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (!GraphActionManager.getEnable(StartAction.class)) {
-		ScilabInterpreterManagement.requestScilabExec("haltscicos");
-		
-		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		GraphActionManager.setEnable(StartAction.class, true);
-		GraphActionManager.setEnable(StopAction.class, false);
-		((XcosDiagram) getGraph(null)).setReadOnly(false);
-		}
-	}
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            source event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!GraphActionManager.getEnable(StartAction.class)) {
+            ScilabInterpreterManagement.requestScilabExec("haltscicos");
+
+            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+            GraphActionManager.setEnable(StartAction.class, true);
+            GraphActionManager.setEnable(StopAction.class, false);
+            ((XcosDiagram) getGraph(null)).setReadOnly(false);
+        }
+    }
 }

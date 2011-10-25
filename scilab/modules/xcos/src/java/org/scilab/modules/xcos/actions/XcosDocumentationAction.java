@@ -27,49 +27,57 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * View Xcos documentation
  */
 public final class XcosDocumentationAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "help-browser.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_F1;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "help-browser.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_F1;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph corresponding Scilab Graph
-	 */
-	public XcosDocumentationAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     */
+    public XcosDocumentationAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create a button for a graph toolbar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, XcosDocumentationAction.class);
-	}
+    /**
+     * Create a button for a graph toolbar
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, XcosDocumentationAction.class);
+    }
 
-	/**
-	 * Create a menu for a graph menubar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, XcosDocumentationAction.class);
-	}
-	
-	/**
-	 * Action associated
-	 * @param e the event
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		ScilabInterpreterManagement.requestScilabExec("help xcos");
-	}
+    /**
+     * Create a menu for a graph menubar
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, XcosDocumentationAction.class);
+    }
+
+    /**
+     * Action associated
+     * 
+     * @param e
+     *            the event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ScilabInterpreterManagement.requestScilabExec("help xcos");
+    }
 
 }

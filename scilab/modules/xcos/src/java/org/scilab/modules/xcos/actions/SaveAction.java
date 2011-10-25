@@ -28,47 +28,55 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Management of "Diagram Saving"
  */
 public final class SaveAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.SAVE;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "media-floppy.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    /** Name of the action */
+    public static final String NAME = XcosMessages.SAVE;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "media-floppy.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+            .getMenuShortcutKeyMask();
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Xcos diagram
-	 */
-	public SaveAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     */
+    public SaveAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create menu for saving
-	 * @param scilabGraph associated Xcos diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SaveAction.class);
-	}
+    /**
+     * Create menu for saving
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, SaveAction.class);
+    }
 
-	/**
-	 * Create toolbar button for saving
-	 * @param scilabGraph associated Xcos diagram
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, SaveAction.class);
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    ((XcosDiagram) getGraph(null)).getRootDiagram().saveDiagram();
-	}
+    /**
+     * Create toolbar button for saving
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, SaveAction.class);
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ((XcosDiagram) getGraph(null)).getRootDiagram().saveDiagram();
+    }
 }

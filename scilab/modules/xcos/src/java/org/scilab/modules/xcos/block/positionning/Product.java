@@ -21,13 +21,13 @@ import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
  * This class just install a {@link ProdPortLabelingListener} on each instance.
  */
 public class Product extends BasicBlock {
-	/**
-	 * Default constructor
-	 */
-	public Product() {
-		super();
+    /**
+     * Default constructor
+     */
+    public Product() {
+        super();
 
-		getParametersPCS().addPropertyChangeListener("integerParameters",
-				ProdPortLabelingListener.getInstance());
-	}
+        getParametersPCS().addPropertyChangeListener("integerParameters",
+                ProdPortLabelingListener.getInstance());
+    }
 }

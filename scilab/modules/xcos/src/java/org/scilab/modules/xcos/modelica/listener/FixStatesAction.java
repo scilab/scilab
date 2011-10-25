@@ -23,28 +23,31 @@ import org.scilab.modules.xcos.modelica.ModelicaMessages;
  * Fix the state of the current model.
  */
 public final class FixStatesAction extends AbstractAction {
-	private final ModelicaController controller;
-	
-	/**
-	 * Default constructor
-	 * @param controller the associated controller 
-	 */
-	public FixStatesAction(ModelicaController controller) {
-		super();
-		
-		putValue(NAME, ModelicaMessages.FIX_STATES);
-		this.controller = controller;
-	}
-	
-	/**
-	 * Update the not fixed derivatives variable to 0.0 and not fixed state
-	 * variables to 1.0 
-	 * 
-	 * @param e the event
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		controller.updateWeight(0.0, 1.0);
-	}
+    private final ModelicaController controller;
+
+    /**
+     * Default constructor
+     * 
+     * @param controller
+     *            the associated controller
+     */
+    public FixStatesAction(ModelicaController controller) {
+        super();
+
+        putValue(NAME, ModelicaMessages.FIX_STATES);
+        this.controller = controller;
+    }
+
+    /**
+     * Update the not fixed derivatives variable to 0.0 and not fixed state
+     * variables to 1.0
+     * 
+     * @param e
+     *            the event
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        controller.updateWeight(0.0, 1.0);
+    }
 }

@@ -14,26 +14,27 @@
 package org.scilab.modules.xcos.block.io;
 
 /**
- * Implement an explicit output point of a {@link org.scilab.modules.xcos.block.SuperBlock}.
+ * Implement an explicit output point of a
+ * {@link org.scilab.modules.xcos.block.SuperBlock}.
  */
 public final class ExplicitOutBlock extends ContextUpdate {
 
     private static final long serialVersionUID = -3423053321045811400L;
 
-	/**
-	 * Constructor
-	 */
-	public ExplicitOutBlock() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public ExplicitOutBlock() {
+        super();
+    }
 
-	/**
-	 * Initialize the block with the default values
-	 */
-	@Override
-	protected void setDefaultValues() {
-		super.setDefaultValues();
-		setInterfaceFunctionName("OUT_f");
-		setSimulationFunctionName("output");
-	}
+    /**
+     * Initialize the block with the default values
+     */
+    @Override
+    protected void setDefaultValues() {
+        super.setDefaultValues();
+        setInterfaceFunctionName("OUT_f");
+        setSimulationFunctionName("output");
+    }
 }

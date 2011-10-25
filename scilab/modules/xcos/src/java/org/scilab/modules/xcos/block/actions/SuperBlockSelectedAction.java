@@ -23,14 +23,17 @@ import org.scilab.modules.xcos.block.SuperBlock;
  */
 public abstract class SuperBlockSelectedAction extends DefaultAction {
 
-	/**
-	 * Default constructor
-	 * @param scilabGraph The associated graph
-	 */
-	public SuperBlockSelectedAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-		
-		SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(SuperBlock.class);
-		c.install(this, scilabGraph);
-	}
+    /**
+     * Default constructor
+     * 
+     * @param scilabGraph
+     *            The associated graph
+     */
+    public SuperBlockSelectedAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+
+        SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(
+                SuperBlock.class);
+        c.install(this, scilabGraph);
+    }
 }

@@ -48,57 +48,57 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "WindowsManagementType", propOrder = { "palette", "diagram" })
 public class WindowsManagementType {
 
-	@XmlElement(required = true)
-	private PositionType palette;
-	@XmlElement(required = true)
-	private PositionType diagram;
+    @XmlElement(required = true)
+    private PositionType palette;
+    @XmlElement(required = true)
+    private PositionType diagram;
 
-	/**
-	 * Default constructor
-	 */
-	protected WindowsManagementType() {
-	};
+    /**
+     * Default constructor
+     */
+    protected WindowsManagementType() {
+    };
 
-	/**
-	 * Gets the value of the palette property.
-	 * 
-	 * @return possible object is {@link PositionType }
-	 * 
-	 */
-	public PositionType getPalette() {
-		return palette;
-	}
+    /**
+     * Gets the value of the palette property.
+     * 
+     * @return possible object is {@link PositionType }
+     * 
+     */
+    public PositionType getPalette() {
+        return palette;
+    }
 
-	/**
-	 * Sets the value of the palette property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link PositionType }
-	 * 
-	 */
-	public void setPalette(PositionType value) {
-		this.palette = value;
-	}
+    /**
+     * Sets the value of the palette property.
+     * 
+     * @param value
+     *            allowed object is {@link PositionType }
+     * 
+     */
+    public void setPalette(PositionType value) {
+        this.palette = value;
+    }
 
-	/**
-	 * Gets the value of the diagram property.
-	 * 
-	 * @return possible object is {@link PositionType }
-	 * 
-	 */
-	public PositionType getDiagram() {
-		return diagram;
-	}
+    /**
+     * Gets the value of the diagram property.
+     * 
+     * @return possible object is {@link PositionType }
+     * 
+     */
+    public PositionType getDiagram() {
+        return diagram;
+    }
 
-	/**
-	 * Sets the value of the diagram property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link PositionType }
-	 * 
-	 */
-	public void setDiagram(PositionType value) {
-		this.diagram = value;
-	}
+    /**
+     * Sets the value of the diagram property.
+     * 
+     * @param value
+     *            allowed object is {@link PositionType }
+     * 
+     */
+    public void setDiagram(PositionType value) {
+        this.diagram = value;
+    }
 
 }

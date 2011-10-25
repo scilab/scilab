@@ -11,7 +11,6 @@
  *
  */
 
-
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
@@ -26,84 +25,92 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Set the debug level
  */
 public class DebugLevelAction extends SimulationNotRunningAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.SET_DEBUG;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.SET_DEBUG;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Get the enum level value
-	 */
-	public static enum DebugLevel {
-		/** No trace nor debug */
-		ZERO (0, XcosMessages.DEBUGLEVEL_0),
-		/** Discrete/Continous switch */
-		ONE (1, XcosMessages.DEBUGLEVEL_1),
-		/** Per block trace */
-		TWO (2, XcosMessages.DEBUGLEVEL_2),
-		/** Debug blocks without trace */
-		THREE (3, XcosMessages.DEBUGLEVEL_3);
-		
-		private int level;
-		private String debugName;
-		
-		/**
-		 * @param realNumber level
-		 * @param name debug name
-		 */
-		private DebugLevel(int realNumber, String name) {
-			level = realNumber;
-			debugName = name;
-		}
-		
-		/**
-		 * @return value
-		 */
-		public int getValue() {
-			return level;
-		}
-		
-		/**
-		 * @return the localized debug name
-		 * @see java.lang.Enum#toString()
-		 */
-		@Override
-		public String toString() {
-			return debugName;
-		}
-	}
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph corresponding Scilab Graph
-	 */
-	public DebugLevelAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Get the enum level value
+     */
+    public static enum DebugLevel {
+        /** No trace nor debug */
+        ZERO(0, XcosMessages.DEBUGLEVEL_0),
+        /** Discrete/Continous switch */
+        ONE(1, XcosMessages.DEBUGLEVEL_1),
+        /** Per block trace */
+        TWO(2, XcosMessages.DEBUGLEVEL_2),
+        /** Debug blocks without trace */
+        THREE(3, XcosMessages.DEBUGLEVEL_3);
 
-	/**
-	 * Action !!!
-	 * @param e action parameters
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		final XcosDiagram diag = (XcosDiagram) getGraph(e);
-		final DebugLevelDialog dialog = new DebugLevelDialog(diag.getAsComponent(), diag.getScicosParameters());
-		
-		dialog.pack();
-		dialog.setVisible(true);
-	}
+        private int level;
+        private String debugName;
 
-	/**
-	 * @param scilabGraph graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, DebugLevelAction.class);
-	}
+        /**
+         * @param realNumber
+         *            level
+         * @param name
+         *            debug name
+         */
+        private DebugLevel(int realNumber, String name) {
+            level = realNumber;
+            debugName = name;
+        }
+
+        /**
+         * @return value
+         */
+        public int getValue() {
+            return level;
+        }
+
+        /**
+         * @return the localized debug name
+         * @see java.lang.Enum#toString()
+         */
+        @Override
+        public String toString() {
+            return debugName;
+        }
+    }
+
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     */
+    public DebugLevelAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            action parameters
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final XcosDiagram diag = (XcosDiagram) getGraph(e);
+        final DebugLevelDialog dialog = new DebugLevelDialog(
+                diag.getAsComponent(), diag.getScicosParameters());
+
+        dialog.pack();
+        dialog.setVisible(true);
+    }
+
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, DebugLevelAction.class);
+    }
 }

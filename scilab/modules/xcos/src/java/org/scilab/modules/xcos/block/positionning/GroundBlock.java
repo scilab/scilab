@@ -22,23 +22,26 @@ import com.mxgraph.model.mxICell;
  * The Ground block has only one specificity : it's port position.
  */
 public class GroundBlock extends BasicBlock {
-	
-	/** Default constructor */
-	public GroundBlock() {
-		super();
-	}
-	
-	/**
-	 * Set the orientation before calling parent method.
-	 * @param child the port to add.
-	 * @param index the index of the add
-	 * @return the inserted cell
-	 */
-	@Override
-	public mxICell insert(mxICell child, int index) {
-		if (child instanceof BasicPort) {
-			((BasicPort) child).setOrientation(Orientation.NORTH);
-		}
-		return super.insert(child, index);
-	}
+
+    /** Default constructor */
+    public GroundBlock() {
+        super();
+    }
+
+    /**
+     * Set the orientation before calling parent method.
+     * 
+     * @param child
+     *            the port to add.
+     * @param index
+     *            the index of the add
+     * @return the inserted cell
+     */
+    @Override
+    public mxICell insert(mxICell child, int index) {
+        if (child instanceof BasicPort) {
+            ((BasicPort) child).setOrientation(Orientation.NORTH);
+        }
+        return super.insert(child, index);
+    }
 }

@@ -28,55 +28,65 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
-public final class BlockDocumentationAction extends VertexSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "help-browser.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+public final class BlockDocumentationAction extends
+        VertexSelectionDependantAction {
+    /** Name of the action */
+    public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "help-browser.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph corresponding Scilab Graph
-	 */
-	public BlockDocumentationAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     */
+    public BlockDocumentationAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create a button for a graph toolbar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, BlockDocumentationAction.class);
-	}
+    /**
+     * Create a button for a graph toolbar
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, BlockDocumentationAction.class);
+    }
 
-	/**
-	 * Create a menu for a graph menubar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, BlockDocumentationAction.class);
-	}
-	
-	/**
-	 * Action associated
-	 * @param e the event
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
-		if (selectedBlock != null) {
-			ScilabInterpreterManagement.requestScilabExec("help " + selectedBlock.getInterfaceFunctionName());
-		} else {
-			XcosDialogs.noBlockSelected((XcosDiagram) getGraph(e));
-		}
-	}
+    /**
+     * Create a menu for a graph menubar
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, BlockDocumentationAction.class);
+    }
+
+    /**
+     * Action associated
+     * 
+     * @param e
+     *            the event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
+        if (selectedBlock != null) {
+            ScilabInterpreterManagement.requestScilabExec("help "
+                    + selectedBlock.getInterfaceFunctionName());
+        } else {
+            XcosDialogs.noBlockSelected((XcosDiagram) getGraph(e));
+        }
+    }
 
 }

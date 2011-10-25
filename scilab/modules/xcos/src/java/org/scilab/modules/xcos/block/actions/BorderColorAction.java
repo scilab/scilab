@@ -34,69 +34,77 @@ import com.mxgraph.util.mxUtils;
  * Change the color of multiple blocks
  */
 public final class BorderColorAction extends VertexSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.BORDER_COLOR;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "draw-brush.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
+    /** Name of the action */
+    public static final String NAME = XcosMessages.BORDER_COLOR;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "draw-brush.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
+
     /**
-     * @param scilabGraph graph
+     * @param scilabGraph
+     *            graph
      */
     public BorderColorAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
 
     /**
-     * @param scilabGraph graph
+     * @param scilabGraph
+     *            graph
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-    	return createMenu(scilabGraph, BorderColorAction.class);
+        return createMenu(scilabGraph, BorderColorAction.class);
     }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	XcosDiagram graph = (XcosDiagram) getGraph(null);
-	Object[] selectedCells = graph.getSelectionCells();
-	
-	//if no cells are selected : Do nothing
-	if (selectedCells.length == 0) { return; }
-	
-	// Get the selected cells statistics values
-	Map<String, Integer> colorStats = new HashMap<String, Integer>();
-	for (Object object : selectedCells) {
-		String color = (String) graph.getCellStyle(object).get(mxConstants.STYLE_STROKECOLOR);
-		if (colorStats.containsKey(color)) {
-			colorStats.put(color, colorStats.get(color) + 1);
-		} else {
-			colorStats.put(color, 1);
-		}
-	}
-	
-	// Getting the most present color
-	String color = "#FF0000";
-	int max = 0;
-	for (Entry<String, Integer> entry : colorStats.entrySet()) {
-		final int current = entry.getValue();
-		if (current > max) {
-			color = entry.getKey();
-			max = current;
-		}
-	}
-	
-	// Apply the most common color as the default color
-	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, mxUtils.parseColor(color));
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        XcosDiagram graph = (XcosDiagram) getGraph(null);
+        Object[] selectedCells = graph.getSelectionCells();
 
-	if (newColor != null) {
-	    graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(newColor));
-    	}
+        // if no cells are selected : Do nothing
+        if (selectedCells.length == 0) {
+            return;
+        }
+
+        // Get the selected cells statistics values
+        Map<String, Integer> colorStats = new HashMap<String, Integer>();
+        for (Object object : selectedCells) {
+            String color = (String) graph.getCellStyle(object).get(
+                    mxConstants.STYLE_STROKECOLOR);
+            if (colorStats.containsKey(color)) {
+                colorStats.put(color, colorStats.get(color) + 1);
+            } else {
+                colorStats.put(color, 1);
+            }
+        }
+
+        // Getting the most present color
+        String color = "#FF0000";
+        int max = 0;
+        for (Entry<String, Integer> entry : colorStats.entrySet()) {
+            final int current = entry.getValue();
+            if (current > max) {
+                color = entry.getKey();
+                max = current;
+            }
+        }
+
+        // Apply the most common color as the default color
+        Color newColor = JColorChooser.showDialog(getGraph(null)
+                .getAsComponent(), NAME, mxUtils.parseColor(color));
+
+        if (newColor != null) {
+            graph.setCellStyles(mxConstants.STYLE_STROKECOLOR,
+                    mxUtils.hexString(newColor));
+        }
     }
 }

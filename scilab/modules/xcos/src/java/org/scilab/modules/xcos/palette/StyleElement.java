@@ -34,188 +34,189 @@ import com.mxgraph.view.mxStylesheet;
  * Decode a palette into a {@link mxStylesheet}.
  */
 public class StyleElement extends AbstractElement<mxStylesheet> {
-	private static final List<String> DATA_FIELD_NAMES = asList("palette",
-			"name", "blockNames", "blocks", "icons", "style");
+    private static final List<String> DATA_FIELD_NAMES = asList("palette",
+            "name", "blockNames", "blocks", "icons", "style");
 
-	/** Mutable field to easily get the data through methods */
-	private ScilabTList data;
+    /** Mutable field to easily get the data through methods */
+    private ScilabTList data;
 
-	/**
-	 * Default constructor
-	 */
-	public StyleElement() {
-	}
+    /**
+     * Default constructor
+     */
+    public StyleElement() {
+    }
 
-	/**
-	 * Check if the element can be decoded by the current class.
-	 * 
-	 * @param element
-	 *            the data
-	 * @return <code>false</code> if {@link #decode(ScilabType, mxStylesheet)}
-	 *         will always throw an exception, <code>false</code> is sometimes
-	 *         only.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
-	 */
-	@Override
-	public boolean canDecode(ScilabType element) {
-		data = (ScilabTList) element;
+    /**
+     * Check if the element can be decoded by the current class.
+     * 
+     * @param element
+     *            the data
+     * @return <code>false</code> if {@link #decode(ScilabType, mxStylesheet)}
+     *         will always throw an exception, <code>false</code> is sometimes
+     *         only.
+     * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
+     */
+    @Override
+    public boolean canDecode(ScilabType element) {
+        data = (ScilabTList) element;
 
-		final String type = ((ScilabString) data.get(0)).getData()[0][0];
-		return type.equals(DATA_FIELD_NAMES.get(0));
-	}
+        final String type = ((ScilabString) data.get(0)).getData()[0][0];
+        return type.equals(DATA_FIELD_NAMES.get(0));
+    }
 
-	/**
-	 * Decode the current element on the into argument.
-	 * 
-	 * @param element
-	 *            the Scilab data
-	 * @param into
-	 *            the target of the decoding (may be null)
-	 * @return the filled instance
-	 * @throws ScicosFormatException
-	 *             on decoding error
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
-	 *      java.lang.Object)
-	 */
-	@Override
-	public mxStylesheet decode(ScilabType element, mxStylesheet into)
-			throws ScicosFormatException {
-		data = (ScilabTList) element;
-		final mxStylesheet styleSheet = into;
+    /**
+     * Decode the current element on the into argument.
+     * 
+     * @param element
+     *            the Scilab data
+     * @param into
+     *            the target of the decoding (may be null)
+     * @return the filled instance
+     * @throws ScicosFormatException
+     *             on decoding error
+     * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
+     *      java.lang.Object)
+     */
+    @Override
+    public mxStylesheet decode(ScilabType element, mxStylesheet into)
+            throws ScicosFormatException {
+        data = (ScilabTList) element;
+        final mxStylesheet styleSheet = into;
 
-		validate();
+        validate();
 
-		if (into == null) {
-			throw new NullPointerException("No place to decode data");
-		}
+        if (into == null) {
+            throw new NullPointerException("No place to decode data");
+        }
 
-		/*
-		 * get the data
-		 */
+        /*
+         * get the data
+         */
 
-		int field = 2;
-		String[][] blockNames = ((ScilabString) data.get(field)).getData();
+        int field = 2;
+        String[][] blockNames = ((ScilabString) data.get(field)).getData();
 
-		field++;
-		field++;
-		field++;
-		String[][] styles = ((ScilabString) data.get(field)).getData();
+        field++;
+        field++;
+        field++;
+        String[][] styles = ((ScilabString) data.get(field)).getData();
 
-		/*
-		 * Configure the current styleSheet instance
-		 */
+        /*
+         * Configure the current styleSheet instance
+         */
 
-		for (int i = 0; i < blockNames.length; i++) {
-			for (int j = 0; j < blockNames[i].length; j++) {
-				final Map<String, Object> style = 
-					styleSheet.getCellStyle(styles[i][j],
-					styleSheet.getCellStyle("Icon",
-							styleSheet.getDefaultVertexStyle()));
-				
-				// Translate Paths to URLs
-				String path = (String) style.get("image");
-				if (path != null && !path.isEmpty()) {
-					try {
-						style.put("image", new File(path).toURI().toURL().toString());
-					} catch (MalformedURLException e) {
-						throw new RuntimeException(e);
-					}
-				}
-				
-				styleSheet.putCellStyle(blockNames[i][j], style);
-			}
-		}
+        for (int i = 0; i < blockNames.length; i++) {
+            for (int j = 0; j < blockNames[i].length; j++) {
+                final Map<String, Object> style = styleSheet.getCellStyle(
+                        styles[i][j],
+                        styleSheet.getCellStyle("Icon",
+                                styleSheet.getDefaultVertexStyle()));
 
-		return styleSheet;
-	}
+                // Translate Paths to URLs
+                String path = (String) style.get("image");
+                if (path != null && !path.isEmpty()) {
+                    try {
+                        style.put("image", new File(path).toURI().toURL()
+                                .toString());
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
-	/**
-	 * Validate the current data.
-	 * 
-	 * This method doesn't pass the metrics because it perform many test.
-	 * Therefore all these tests are trivial and the conditioned action only
-	 * throw an exception.
-	 * 
-	 * @throws ScicosFormatException
-	 *             when there is a validation error.
-	 */
-	// CSOFF: CyclomaticComplexity
-	// CSOFF: NPathComplexity
-	private void validate() throws ScicosFormatException {
-		if (!canDecode(data)) {
-			throw new WrongElementException();
-		}
+                styleSheet.putCellStyle(blockNames[i][j], style);
+            }
+        }
 
-		int field = 0;
+        return styleSheet;
+    }
 
-		// we test if the structure as enough field
-		if (data.size() != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException(DATA_FIELD_NAMES);
-		}
+    /**
+     * Validate the current data.
+     * 
+     * This method doesn't pass the metrics because it perform many test.
+     * Therefore all these tests are trivial and the conditioned action only
+     * throw an exception.
+     * 
+     * @throws ScicosFormatException
+     *             when there is a validation error.
+     */
+    // CSOFF: CyclomaticComplexity
+    // CSOFF: NPathComplexity
+    private void validate() throws ScicosFormatException {
+        if (!canDecode(data)) {
+            throw new WrongElementException();
+        }
 
-		/*
-		 * Checking the TList header
-		 */
+        int field = 0;
 
-		// Check the first field
-		if (!(data.get(field) instanceof ScilabString)) {
-			throw new WrongTypeException(DATA_FIELD_NAMES, field);
-		}
-		final String[] header = ((ScilabString) data.get(field)).getData()[0];
+        // we test if the structure as enough field
+        if (data.size() != DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
+        }
 
-		// Checking for the field names
-		if (header.length != DATA_FIELD_NAMES.size()) {
-			throw new WrongStructureException(DATA_FIELD_NAMES);
-		}
-		for (int i = 0; i < header.length; i++) {
-			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
-				throw new WrongStructureException(DATA_FIELD_NAMES);
-			}
-		}
+        /*
+         * Checking the TList header
+         */
 
-		/*
-		 * Checking the data
-		 */
+        // Check the first field
+        if (!(data.get(field) instanceof ScilabString)) {
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
+        }
+        final String[] header = ((ScilabString) data.get(field)).getData()[0];
 
-		// the second field is handled by the PreLoadedElement decoder
-		field++;
+        // Checking for the field names
+        if (header.length != DATA_FIELD_NAMES.size()) {
+            throw new WrongStructureException(DATA_FIELD_NAMES);
+        }
+        for (int i = 0; i < header.length; i++) {
+            if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
+                throw new WrongStructureException(DATA_FIELD_NAMES);
+            }
+        }
 
-		// the third field must contains the block name (row column)
-		field++;
-		if (!(data.get(field) instanceof ScilabString)
-				|| data.get(field).getWidth() != 1) {
-			throw new WrongTypeException(DATA_FIELD_NAMES, field);
-		}
+        /*
+         * Checking the data
+         */
 
-		// the fourth field is handled by the PreLoadedElement decoder
-		field++;
+        // the second field is handled by the PreLoadedElement decoder
+        field++;
 
-		// the fifth field is handled by the PreLoadedElement decoder
-		field++;
+        // the third field must contains the block name (row column)
+        field++;
+        if (!(data.get(field) instanceof ScilabString)
+                || data.get(field).getWidth() != 1) {
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
+        }
 
-		// the sixth field must contains a valid style
-		field++;
-		if (!(data.get(field) instanceof ScilabString)
-				|| data.get(field).getWidth() != 1) {
-			throw new WrongTypeException(DATA_FIELD_NAMES, field);
-		}
-	}
+        // the fourth field is handled by the PreLoadedElement decoder
+        field++;
 
-	/**
-	 * Not used
-	 * 
-	 * @param from
-	 *            Not used
-	 * @param element
-	 *            Not used
-	 * @return null
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-	 *      org.scilab.modules.types.ScilabType)
-	 */
-	@Override
-	@Deprecated
-	public ScilabType encode(mxStylesheet from, ScilabType element) {
-		return null;
-	}
+        // the fifth field is handled by the PreLoadedElement decoder
+        field++;
+
+        // the sixth field must contains a valid style
+        field++;
+        if (!(data.get(field) instanceof ScilabString)
+                || data.get(field).getWidth() != 1) {
+            throw new WrongTypeException(DATA_FIELD_NAMES, field);
+        }
+    }
+
+    /**
+     * Not used
+     * 
+     * @param from
+     *            Not used
+     * @param element
+     *            Not used
+     * @return null
+     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
+     *      org.scilab.modules.types.ScilabType)
+     */
+    @Override
+    @Deprecated
+    public ScilabType encode(mxStylesheet from, ScilabType element) {
+        return null;
+    }
 
 }

@@ -19,32 +19,34 @@ import com.mxgraph.util.mxEvent;
  */
 public final class XcosEvent extends mxEvent {
 
-	/**
-	 * Fired when a port as been added by the user
-	 */
-	public static final String ADD_PORTS = "addPorts";
+    /**
+     * Fired when a port as been added by the user
+     */
+    public static final String ADD_PORTS = "addPorts";
 
-	/**
-	 * Fired when something as been done and the cell need to be updated
-	 */
-	public static final String FORCE_CELL_VALUE_UPDATE = "ForceCellValueUpdate";
+    /**
+     * Fired when something as been done and the cell need to be updated
+     */
+    public static final String FORCE_CELL_VALUE_UPDATE = "ForceCellValueUpdate";
 
-	/**
-	 * Fired when a {@link org.scilab.modules.xcos.block.SuperBlock} I/O block as been updated by the user
-	 */
-	public static final String IO_PORT_VALUE_UPDATED = "IoPortValueUpdated";
+    /**
+     * Fired when a {@link org.scilab.modules.xcos.block.SuperBlock} I/O block
+     * as been updated by the user
+     */
+    public static final String IO_PORT_VALUE_UPDATED = "IoPortValueUpdated";
 
-	/**
-	 * Fired when an {@link org.scilab.modules.xcos.block.SuperBlock} as been
-	 * updated by the user
-	 */
-	public static final String SUPER_BLOCK_UPDATED = "superBlockUpdated";
+    /**
+     * Fired when an {@link org.scilab.modules.xcos.block.SuperBlock} as been
+     * updated by the user
+     */
+    public static final String SUPER_BLOCK_UPDATED = "superBlockUpdated";
 
-	/**
-	 * Fired when the diagram has been updated since previous execution
-	 */
-	public static final String DIAGRAM_UPDATED = "DiagramUpdated";
-	
-	/** This class is a static singleton, thus it must not be instantiated */
-	private XcosEvent() { }
+    /**
+     * Fired when the diagram has been updated since previous execution
+     */
+    public static final String DIAGRAM_UPDATED = "DiagramUpdated";
+
+    /** This class is a static singleton, thus it must not be instantiated */
+    private XcosEvent() {
+    }
 }

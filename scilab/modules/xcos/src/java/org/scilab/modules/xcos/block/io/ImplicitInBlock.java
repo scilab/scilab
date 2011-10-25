@@ -14,26 +14,27 @@
 package org.scilab.modules.xcos.block.io;
 
 /**
- * Implement an implicit input point of a {@link org.scilab.modules.xcos.block.SuperBlock}.
+ * Implement an implicit input point of a
+ * {@link org.scilab.modules.xcos.block.SuperBlock}.
  */
 public final class ImplicitInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = 4280002965735451155L;
 
-	/**
-	 * Constructor
-	 */
-	public ImplicitInBlock() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public ImplicitInBlock() {
+        super();
+    }
 
-	/**
-	 * Initialize the block with the default values
-	 */
-	@Override
-	protected void setDefaultValues() {
-		super.setDefaultValues();
-		setInterfaceFunctionName("INIMPL_f");
-		setSimulationFunctionName("inimpl");
-	}
+    /**
+     * Initialize the block with the default values
+     */
+    @Override
+    protected void setDefaultValues() {
+        super.setDefaultValues();
+        setInterfaceFunctionName("INIMPL_f");
+        setSimulationFunctionName("inimpl");
+    }
 }

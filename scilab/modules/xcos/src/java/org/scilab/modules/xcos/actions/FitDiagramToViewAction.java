@@ -26,62 +26,69 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Use maximum of space inside the diagram
  */
 public final class FitDiagramToViewAction extends OneBlockDependantAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "zoom-fit-drawing";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "zoom-fit-drawing";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated diagram
-	 */
-	public FitDiagramToViewAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     */
+    public FitDiagramToViewAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Menu to add to the menubar
-	 * @param scilabGraph associated diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, FitDiagramToViewAction.class);
-	}
-	
-	/**
-	 * Button to add to the toolbar
-	 * @param scilabGraph associated diagram
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, FitDiagramToViewAction.class);
-	}
+    /**
+     * Menu to add to the menubar
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, FitDiagramToViewAction.class);
+    }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// If diagram is empty (has one default child) : do nothing.
-		if (getGraph(null).getModel().getChildCount(
-				getGraph(null).getDefaultParent()) < 1) {
-			return;
-		}
+    /**
+     * Button to add to the toolbar
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, FitDiagramToViewAction.class);
+    }
 
-		ScilabComponent comp = ((ScilabComponent) getGraph(null)
-				.getAsComponent());
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // If diagram is empty (has one default child) : do nothing.
+        if (getGraph(null).getModel().getChildCount(
+                getGraph(null).getDefaultParent()) < 1) {
+            return;
+        }
 
-		/* Save the configuration */
-		double oldZoomFactor = comp.getZoomFactor();
+        ScilabComponent comp = ((ScilabComponent) getGraph(null)
+                .getAsComponent());
 
-		comp.zoomAndCenterToCells();
+        /* Save the configuration */
+        double oldZoomFactor = comp.getZoomFactor();
 
-		/* Restore previous configuration */
-		comp.setZoomFactor(oldZoomFactor);
-	}
+        comp.zoomAndCenterToCells();
+
+        /* Restore previous configuration */
+        comp.setZoomFactor(oldZoomFactor);
+    }
 }

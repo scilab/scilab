@@ -37,215 +37,221 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Solve the model.
  */
 public final class SolveAction extends AbstractAction {
-	private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; " 
-			+ "if(compile_init_modelica(fw, paremb, jaco)) then " 
-			+ "mopen('%s', 'w'); end ";  
-	private static final String COMPUTE_STRING = "method='%s'; Nunknowns='%s'; " 
-			+ "if(Compute_cic(method,Nunknowns)) then " 
-			+ "mopen('%s', 'w'); "
-			+ "end "; 
+    private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; "
+            + "if(compile_init_modelica(fw, paremb, jaco)) then "
+            + "mopen('%s', 'w'); end ";
+    private static final String COMPUTE_STRING = "method='%s'; Nunknowns='%s'; "
+            + "if(Compute_cic(method,Nunknowns)) then "
+            + "mopen('%s', 'w'); "
+            + "end ";
 
-	private static final String IMF_INIT = "_init";
-	private static final String EXTENSION = ".xml"; 
-	private static final String INCIDENCE = "i_incidence_matrix"; 
+    private static final String IMF_INIT = "_init";
+    private static final String EXTENSION = ".xml";
+    private static final String INCIDENCE = "i_incidence_matrix";
 
-	private final ModelicaController controller;
+    private final ModelicaController controller;
 
-	/**
-	 * Default constructor
-	 * 
-	 * @param controller
-	 *            the associated controller
-	 */
-	public SolveAction(final ModelicaController controller) {
-		super();
+    /**
+     * Default constructor
+     * 
+     * @param controller
+     *            the associated controller
+     */
+    public SolveAction(final ModelicaController controller) {
+        super();
 
-		putValue(NAME, ModelicaMessages.SOLVE); 
-		this.controller = controller;
+        putValue(NAME, ModelicaMessages.SOLVE);
+        this.controller = controller;
 
-		// disable when the model is not square
-		controller.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				setEnabled(controller.isSquare());
-			}
-		});
-	}
+        // disable when the model is not square
+        controller.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                setEnabled(controller.isSquare());
+            }
+        });
+    }
 
-	/**
-	 * action !!!
-	 * 
-	 * @param e
-	 *            the event
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		final String modelName = controller.getRoot().getName();
+    /**
+     * action !!!
+     * 
+     * @param e
+     *            the event
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final String modelName = controller.getRoot().getName();
 
-		// defensive programming
-		if (!controller.isSquare()) {
-			LogFactory.getLog(SolveAction.class).error(ModelicaMessages.MODEL_INVALID); 
-		}
+        // defensive programming
+        if (!controller.isSquare()) {
+            LogFactory.getLog(SolveAction.class).error(
+                    ModelicaMessages.MODEL_INVALID);
+        }
 
-		initStatus();
-		try {
-			// store the updated values
-			final File updatedInitFile = new File(ScilabConstants.TMPDIR, modelName + IMF_INIT + EXTENSION);
-			Modelica.getInstance().save(controller.getRoot(), updatedInitFile);
-			
-			final int paremb;
-			if (controller.isParameterEmbedded()) {
-				paremb = 1;
-			} else {
-				paremb = 0;
-			}
+        initStatus();
+        try {
+            // store the updated values
+            final File updatedInitFile = new File(ScilabConstants.TMPDIR,
+                    modelName + IMF_INIT + EXTENSION);
+            Modelica.getInstance().save(controller.getRoot(), updatedInitFile);
 
-			final int jaco;
-			if (controller.isJacobianEnable()) {
-				jaco = 1;
-			} else {
-				jaco = 0;
-			}
+            final int paremb;
+            if (controller.isParameterEmbedded()) {
+                paremb = 1;
+            } else {
+                paremb = 0;
+            }
 
-			// creating a temporary status file
-			File statusFile = File.createTempFile(modelName, null);
-			statusFile.delete();
+            final int jaco;
+            if (controller.isJacobianEnable()) {
+                jaco = 1;
+            } else {
+                jaco = 0;
+            }
 
-			String cmd = String.format(COMPILE_STRING, modelName, paremb, jaco,
-					statusFile.getAbsolutePath());
+            // creating a temporary status file
+            File statusFile = File.createTempFile(modelName, null);
+            statusFile.delete();
 
-			LogFactory.getLog(SolveAction.class).trace("Compiling");
-			ScilabInterpreterManagement.asynchronousScilabExec(
-					new CompileFinished(statusFile), cmd.toString());
-		} catch (InterpreterException e1) {
-			LogFactory.getLog(SolveAction.class).error(e1);
-		} catch (IOException e1) {
-			LogFactory.getLog(SolveAction.class).error(e1);
-		} catch (JAXBException e1) {
-			LogFactory.getLog(SolveAction.class).error(e1);
-		}
-	}
+            String cmd = String.format(COMPILE_STRING, modelName, paremb, jaco,
+                    statusFile.getAbsolutePath());
 
-	/**
-	 * Initialize the button and error status.
-	 */
-	private void initStatus() {
-		putValue(NAME, ModelicaMessages.SOLVE);
-		setEnabled(true);
-	}
+            LogFactory.getLog(SolveAction.class).trace("Compiling");
+            ScilabInterpreterManagement.asynchronousScilabExec(
+                    new CompileFinished(statusFile), cmd.toString());
+        } catch (InterpreterException e1) {
+            LogFactory.getLog(SolveAction.class).error(e1);
+        } catch (IOException e1) {
+            LogFactory.getLog(SolveAction.class).error(e1);
+        } catch (JAXBException e1) {
+            LogFactory.getLog(SolveAction.class).error(e1);
+        }
+    }
 
-	/**
-	 * Set the error.
-	 */
-	private void displayError() {
-		controller.setValid(false);
-		controller.setError(ModelicaMessages.TAKE_A_LOOK_AT_SCILAB);
-	}
-	
-	/**
-	 * Action done at the end of the compilation
-	 */
-	private final class CompileFinished implements ActionListener {
-		private final File incidence;
-		private final File status;
+    /**
+     * Initialize the button and error status.
+     */
+    private void initStatus() {
+        putValue(NAME, ModelicaMessages.SOLVE);
+        setEnabled(true);
+    }
 
-		/**
-		 * Default constructor
-		 * 
-		 * @param status
-		 *            the status file
-		 */
-		public CompileFinished(File status) {
-			final String modelName = controller.getRoot().getName();
-			incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE
-					+ EXTENSION);
-			this.status = status;
-		}
+    /**
+     * Set the error.
+     */
+    private void displayError() {
+        controller.setValid(false);
+        controller.setError(ModelicaMessages.TAKE_A_LOOK_AT_SCILAB);
+    }
 
-		/**
-		 * Update things and compute the compiled model
-		 * 
-		 * @param e
-		 *            the event
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (status.exists()) {
-				putValue(NAME, ModelicaMessages.COMPUTING + XcosMessages.DOTS); 
-				try {
-					// update the model with the computed identifiers
-					final Model incidenceModel = Modelica
-							.getInstance().load(incidence);
-					controller.getRoot().setIdentifiers(
-							incidenceModel.getIdentifiers());
-					controller.getRoot()
-							.setOutputs(incidenceModel.getOutputs());
+    /**
+     * Action done at the end of the compilation
+     */
+    private final class CompileFinished implements ActionListener {
+        private final File incidence;
+        private final File status;
 
-					// update the statistics
-					controller.getStatistics().fireChange();
+        /**
+         * Default constructor
+         * 
+         * @param status
+         *            the status file
+         */
+        public CompileFinished(File status) {
+            final String modelName = controller.getRoot().getName();
+            incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE
+                    + EXTENSION);
+            this.status = status;
+        }
 
-					// update state
-					controller.setCompileNeeded(false);
+        /**
+         * Update things and compute the compiled model
+         * 
+         * @param e
+         *            the event
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (status.exists()) {
+                putValue(NAME, ModelicaMessages.COMPUTING + XcosMessages.DOTS);
+                try {
+                    // update the model with the computed identifiers
+                    final Model incidenceModel = Modelica.getInstance().load(
+                            incidence);
+                    controller.getRoot().setIdentifiers(
+                            incidenceModel.getIdentifiers());
+                    controller.getRoot()
+                            .setOutputs(incidenceModel.getOutputs());
 
-					// creating a temporary status file
-					File statusFile = File.createTempFile(controller.getRoot()
-							.getName(), null);
-					statusFile.delete();
+                    // update the statistics
+                    controller.getStatistics().fireChange();
 
-					final ModelStatistics stats = controller.getStatistics();
-					long nUnknowns = stats.getUnknowns() - stats.getEquations();
-					String cmd = String.format(COMPUTE_STRING, controller
-							.getComputeMethod(), nUnknowns, statusFile.getAbsolutePath());
+                    // update state
+                    controller.setCompileNeeded(false);
 
-					// compute now
-					LogFactory.getLog(SolveAction.class).trace("Computing");
-					ScilabInterpreterManagement.asynchronousScilabExec(
-							new ComputeFinished(statusFile), cmd);
-				} catch (JAXBException e1) {
-					LogFactory.getLog(CompileFinished.class).error(e1);
-				} catch (IOException e1) {
-					LogFactory.getLog(CompileFinished.class).error(e1);
-				} catch (InterpreterException e1) {
-					LogFactory.getLog(CompileFinished.class).error(e1);
-				}
-			} else {
-				// best effort to alert the user.
-				initStatus();
-				displayError();
-			}
-		}
-	}
+                    // creating a temporary status file
+                    File statusFile = File.createTempFile(controller.getRoot()
+                            .getName(), null);
+                    statusFile.delete();
 
-	/**
-	 * Action done at the end of the computation
-	 */
-	private final class ComputeFinished implements ActionListener {
-		private final File status; 
-		
-		/**
-		 * Default constructor
-		 * @param status the status file
-		 */
-		public ComputeFinished(File status) {
-			this.status = status;
-		}
+                    final ModelStatistics stats = controller.getStatistics();
+                    long nUnknowns = stats.getUnknowns() - stats.getEquations();
+                    String cmd = String.format(COMPUTE_STRING,
+                            controller.getComputeMethod(), nUnknowns,
+                            statusFile.getAbsolutePath());
 
-		/**
-		 * Clean the state
-		 * 
-		 * @param e the event
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			initStatus();
-			
-			if (!status.exists()) {
-				// best effort to alert the user.
-				displayError();
-			}
-		}
-	}
+                    // compute now
+                    LogFactory.getLog(SolveAction.class).trace("Computing");
+                    ScilabInterpreterManagement.asynchronousScilabExec(
+                            new ComputeFinished(statusFile), cmd);
+                } catch (JAXBException e1) {
+                    LogFactory.getLog(CompileFinished.class).error(e1);
+                } catch (IOException e1) {
+                    LogFactory.getLog(CompileFinished.class).error(e1);
+                } catch (InterpreterException e1) {
+                    LogFactory.getLog(CompileFinished.class).error(e1);
+                }
+            } else {
+                // best effort to alert the user.
+                initStatus();
+                displayError();
+            }
+        }
+    }
+
+    /**
+     * Action done at the end of the computation
+     */
+    private final class ComputeFinished implements ActionListener {
+        private final File status;
+
+        /**
+         * Default constructor
+         * 
+         * @param status
+         *            the status file
+         */
+        public ComputeFinished(File status) {
+            this.status = status;
+        }
+
+        /**
+         * Clean the state
+         * 
+         * @param e
+         *            the event
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            initStatus();
+
+            if (!status.exists()) {
+                // best effort to alert the user.
+                displayError();
+            }
+        }
+    }
 }

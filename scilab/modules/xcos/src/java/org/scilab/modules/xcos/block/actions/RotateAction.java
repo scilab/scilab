@@ -28,49 +28,56 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Block rotation handling
  */
 public class RotateAction extends VertexSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.ROTATE;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "transform-rotate.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_R;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph associated diagram
-	 */
-	public RotateAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.ROTATE;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "transform-rotate.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_R;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+            .getMenuShortcutKeyMask();
 
-	/**
-	 * Menu added to the menubar
-	 * @param scilabGraph associated diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, RotateAction.class);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     */
+    public RotateAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
-		
-		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
-		
-		getGraph(null).getModel().beginUpdate();
-		for (int i = 0; i < allCells.length; ++i) {
-		    if (allCells[i] instanceof BasicBlock) {
-			((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
-		    }
-		}
-		getGraph(null).getModel().endUpdate();
-	    }
-	}
+    /**
+     * Menu added to the menubar
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, RotateAction.class);
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+
+            Object[] allCells = ((XcosDiagram) getGraph(null))
+                    .getSelectionCells();
+
+            getGraph(null).getModel().beginUpdate();
+            for (int i = 0; i < allCells.length; ++i) {
+                if (allCells[i] instanceof BasicBlock) {
+                    ((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
+                }
+            }
+            getGraph(null).getModel().endUpdate();
+        }
+    }
 }

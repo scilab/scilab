@@ -31,50 +31,56 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Show the parent graph (only installed on a {@link SuperBlockDiagram})
  */
 public class ShowParentAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.SHOW_PARENT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph associated diagram
-	 */
-	public ShowParentAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.SHOW_PARENT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+            .getMenuShortcutKeyMask();
 
-	/**
-	 * Menu added to the menubar
-	 * @param scilabGraph associated diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, ShowParentAction.class);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     */
+    public ShowParentAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    if (getGraph(null) instanceof SuperBlockDiagram) {
-		SuperBlockDiagram diagram =  (SuperBlockDiagram) getGraph(null);
-		final SuperBlock block = diagram.getContainer();
-		
-		XcosDiagram graph = block.getParentDiagram();
-		if (graph == null) {
-			block.setParentDiagram(Xcos.findParent(block));
-			graph = block.getParentDiagram();
-			LogFactory.getLog(getClass()).error("Parent diagram was null");
-		}
-		
-		graph.setVisible(true);
-	    }
-	}
+    /**
+     * Menu added to the menubar
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, ShowParentAction.class);
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (getGraph(null) instanceof SuperBlockDiagram) {
+            SuperBlockDiagram diagram = (SuperBlockDiagram) getGraph(null);
+            final SuperBlock block = diagram.getContainer();
+
+            XcosDiagram graph = block.getParentDiagram();
+            if (graph == null) {
+                block.setParentDiagram(Xcos.findParent(block));
+                graph = block.getParentDiagram();
+                LogFactory.getLog(getClass()).error("Parent diagram was null");
+            }
+
+            graph.setVisible(true);
+        }
+    }
 }

@@ -21,14 +21,14 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
  * This class just install a {@link SumPortLabelingListener} on each instance.
  */
 public class Summation extends BasicBlock {
-	/**
-	 * Default constructor
-	 */
-	public Summation() {
-		super();
+    /**
+     * Default constructor
+     */
+    public Summation() {
+        super();
 
-		getParametersPCS().addPropertyChangeListener("integerParameters",
-				SumPortLabelingListener.getInstance());
-	}
+        getParametersPCS().addPropertyChangeListener("integerParameters",
+                SumPortLabelingListener.getInstance());
+    }
 
 }

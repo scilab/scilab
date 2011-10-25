@@ -22,29 +22,32 @@ import com.mxgraph.model.mxICell;
  * The VoltageSensor block has only one specificity : it's port position.
  */
 public class VoltageSensorBlock extends BasicBlock {
-	
-	/** Default constructor */
-	public VoltageSensorBlock() {
-		super();
-	}
-	
-	/**
-	 * Set the orientation before calling parent method.
-	 * @param child the port to add.
-	 * @param index the port index
-	 * @return the newly inserted cell
-	 */
-	@Override
-	public mxICell insert(mxICell child, int index) {
-		if (child instanceof OutputPort) {
-			final OutputPort port = (OutputPort) child;
-			
-			// Only orientate the first output port
-			if (port.getOrdering() == 1) {
-				port.setOrientation(Orientation.SOUTH);
-			}
-		}
-		
-		return super.insert(child, index);
-	}
+
+    /** Default constructor */
+    public VoltageSensorBlock() {
+        super();
+    }
+
+    /**
+     * Set the orientation before calling parent method.
+     * 
+     * @param child
+     *            the port to add.
+     * @param index
+     *            the port index
+     * @return the newly inserted cell
+     */
+    @Override
+    public mxICell insert(mxICell child, int index) {
+        if (child instanceof OutputPort) {
+            final OutputPort port = (OutputPort) child;
+
+            // Only orientate the first output port
+            if (port.getOrdering() == 1) {
+                port.setOrientation(Orientation.SOUTH);
+            }
+        }
+
+        return super.insert(child, index);
+    }
 }

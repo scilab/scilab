@@ -25,20 +25,23 @@ public abstract class AlignBlockAction extends MultiSelectionDependantAction {
     private String align;
 
     /**
-     * @param scilabGraph graph
-     * @param align value
+     * @param scilabGraph
+     *            graph
+     * @param align
+     *            value
      */
     protected AlignBlockAction(ScilabGraph scilabGraph, String align) {
-	super(scilabGraph);
-	this.align = align;
+        super(scilabGraph);
+        this.align = align;
     }
-    
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	getGraph(e).alignCells(align);
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        getGraph(e).alignCells(align);
     }
 }

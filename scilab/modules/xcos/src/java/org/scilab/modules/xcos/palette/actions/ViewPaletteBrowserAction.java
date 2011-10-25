@@ -27,49 +27,54 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Palette Tab visibility management
  */
 public final class ViewPaletteBrowserAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.PALETTE_BROWSER;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.PALETTE_BROWSER;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
     /**
      * Constructor
      * 
-     * @param scilabGraph associated Scilab Graph
+     * @param scilabGraph
+     *            associated Scilab Graph
      */
     public ViewPaletteBrowserAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
 
     /**
      * Create checkbox menu for the graph menu bar
      * 
-     * @param scilabGraph associated Scilab Graph
+     * @param scilabGraph
+     *            associated Scilab Graph
      * @return the menu
      */
     public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-    	final CheckBoxMenuItem menu = createCheckBoxMenu(scilabGraph, ViewPaletteBrowserAction.class);
-    	PaletteManager.getInstance().addPropertyChangeListener(new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				if ("visible".equals(evt.getPropertyName())) {
-					menu.setChecked((Boolean) evt.getNewValue());
-				}
-			}
-		});
-    	return menu;
+        final CheckBoxMenuItem menu = createCheckBoxMenu(scilabGraph,
+                ViewPaletteBrowserAction.class);
+        PaletteManager.getInstance().addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if ("visible".equals(evt.getPropertyName())) {
+                            menu.setChecked((Boolean) evt.getNewValue());
+                        }
+                    }
+                });
+        return menu;
     }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		PaletteManager.setVisible(!PaletteManager.isVisible());
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        PaletteManager.setVisible(!PaletteManager.isVisible());
     }
 }

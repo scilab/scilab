@@ -34,61 +34,67 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Dump the graph into scilab.
  * 
- * This action is only used for debugging purpose but not on any release version.
+ * This action is only used for debugging purpose but not on any release
+ * version.
  */
 public class DumpAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.DUMP;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.DUMP;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
     /**
-     * @param scilabGraph graph
+     * @param scilabGraph
+     *            graph
      */
     public DumpAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
 
     /**
-     * @param scilabGraph graph
+     * @param scilabGraph
+     *            graph
      * @return push button
      */
     public static PushButton dumpButton(ScilabGraph scilabGraph) {
-    	return createButton(scilabGraph, DumpAction.class);
+        return createButton(scilabGraph, DumpAction.class);
     }
 
     /**
-     * @param scilabGraph graph
+     * @param scilabGraph
+     *            graph
      * @return menu item
      */
     public static MenuItem dumpMenu(ScilabGraph scilabGraph) {
-    	return createMenu(scilabGraph, DumpAction.class);
+        return createMenu(scilabGraph, DumpAction.class);
     }
 
     /**
      * Do action !!!
-     * @param e params
+     * 
+     * @param e
+     *            params
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
-	@Override
+    @Override
     public void actionPerformed(ActionEvent e) {
-		try {
-		    String temp = FileUtils.createTempFile();
-		    new File(temp).deleteOnExit();
-		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp);
-		    try {
-		    	String cmd = buildCall("import_from_hdf5", temp);
-		    	cmd += buildCall("deletefile", temp);
-		    	ScilabInterpreterManagement.synchronousScilabExec(cmd);
-		    } catch (InterpreterException e1) {
-				LogFactory.getLog(DumpAction.class).error(e1);
-			}
-		} catch (IOException e1) {
-			LogFactory.getLog(DumpAction.class).error(e1);
-		}
+        try {
+            String temp = FileUtils.createTempFile();
+            new File(temp).deleteOnExit();
+            ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp);
+            try {
+                String cmd = buildCall("import_from_hdf5", temp);
+                cmd += buildCall("deletefile", temp);
+                ScilabInterpreterManagement.synchronousScilabExec(cmd);
+            } catch (InterpreterException e1) {
+                LogFactory.getLog(DumpAction.class).error(e1);
+            }
+        } catch (IOException e1) {
+            LogFactory.getLog(DumpAction.class).error(e1);
+        }
     }
 }

@@ -26,49 +26,49 @@ import com.mxgraph.util.mxConstants;
  * Implement the set link horizontal action
  */
 public class StyleHorizontalAction extends StyleAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.LINK_STYLE_HORIZONTAL;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_H;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.LINK_STYLE_HORIZONTAL;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_H;
 
-	/**
-	 * Default constructor the associated graph
-	 * 
-	 * @param scilabGraph
-	 *            the graph to associate
-	 */
-	public StyleHorizontalAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Default constructor the associated graph
+     * 
+     * @param scilabGraph
+     *            the graph to associate
+     */
+    public StyleHorizontalAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * @param scilabGraph
-	 *            graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, StyleHorizontalAction.class);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, StyleHorizontalAction.class);
+    }
 
-	/**
-	 * Action !!!
-	 * 
-	 * @param e
-	 *            params
-	 * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		BasicLink[] links = getLinks();
-		
-		getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
-		getGraph(e).setCellStyles(mxConstants.STYLE_EDGE,
-				mxConstants.EDGESTYLE_ELBOW, links);
-		getGraph(e).setCellStyles(mxConstants.STYLE_ELBOW,
-				mxConstants.ELBOW_HORIZONTAL, links);
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            params
+     * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        BasicLink[] links = getLinks();
 
-		removePointsOnLinks(links);
-	}
+        getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
+        getGraph(e).setCellStyles(mxConstants.STYLE_EDGE,
+                mxConstants.EDGESTYLE_ELBOW, links);
+        getGraph(e).setCellStyles(mxConstants.STYLE_ELBOW,
+                mxConstants.ELBOW_HORIZONTAL, links);
+
+        removePointsOnLinks(links);
+    }
 }

@@ -25,43 +25,50 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Opens context settings Window
  */
 public class SetContextAction extends SimulationNotRunningAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.SET_CONTEXT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * Constructor
-	 * @param scilabGraph corresponding Scilab Graph
-	 */
-	public SetContextAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
-	
-	/**
-	 * Create the associated menu
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SetContextAction.class);
-	}
-	
-	/**
-	 * Action !
-	 * @param e the event
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		final XcosDiagram diag = (XcosDiagram) getGraph(e);
-		final SetContextDialog dialog = new SetContextDialog(diag.getAsComponent(), diag.getScicosParameters());
-		
-		dialog.pack();
-		dialog.setVisible(true);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.SET_CONTEXT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
+
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     */
+    public SetContextAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * Create the associated menu
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, SetContextAction.class);
+    }
+
+    /**
+     * Action !
+     * 
+     * @param e
+     *            the event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final XcosDiagram diag = (XcosDiagram) getGraph(e);
+        final SetContextDialog dialog = new SetContextDialog(
+                diag.getAsComponent(), diag.getScicosParameters());
+
+        dialog.pack();
+        dialog.setVisible(true);
+    }
 }

@@ -53,171 +53,179 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * the numbers of graphical components involved in the GUI creation. For the
  * same reason (GUI class), constants are not used on this code.
  */
-//CSOFF: ClassDataAbstractionCoupling
-//CSOFF: ClassFanOutComplexity
-//CSOFF: MagicNumber
+// CSOFF: ClassDataAbstractionCoupling
+// CSOFF: ClassFanOutComplexity
+// CSOFF: MagicNumber
 public class SetContextDialog extends JDialog {
-	private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
-	private static final String SHARED_NEW_LINE = "\n";
+    private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
+    private static final String SHARED_NEW_LINE = "\n";
 
-	private final ScicosParameters parameters;
-	
-	private JTextArea contextArea;
-	
-	/**
-	 * Default constructor
-	 * @param parent the parent component
-	 * @param parameters the Scicos parameters
-	 */
-	public SetContextDialog(Component parent, ScicosParameters parameters) {
-		this.parameters = parameters;
-		
-		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
-		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
-		setLayout(new GridBagLayout());
-		setIconImage(imageForIcon);
-		setTitle(XcosMessages.SET_CONTEXT);
-		setModal(true);
-		setLocationRelativeTo(parent);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		initComponents();
-	}
+    private final ScicosParameters parameters;
 
-	/**
-	 * Initialize the components 
-	 */
-	private void initComponents() {
-		JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
-		
-		/*
-		 * Construct a text from a String array context
-		 */
+    private JTextArea contextArea;
+
+    /**
+     * Default constructor
+     * 
+     * @param parent
+     *            the parent component
+     * @param parameters
+     *            the Scicos parameters
+     */
+    public SetContextDialog(Component parent, ScicosParameters parameters) {
+        this.parameters = parameters;
+
+        Icon scilabIcon = new ImageIcon(System.getenv("SCI")
+                + "/modules/gui/images/icons/scilab.png");
+        Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+        setLayout(new GridBagLayout());
+        setIconImage(imageForIcon);
+        setTitle(XcosMessages.SET_CONTEXT);
+        setModal(true);
+        setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        initComponents();
+    }
+
+    /**
+     * Initialize the components
+     */
+    private void initComponents() {
+        JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
+
+        /*
+         * Construct a text from a String array context
+         */
         StringBuilder contextBuilder = new StringBuilder();
         for (int i = 0; i < parameters.getContext().length; i++) {
-        	contextBuilder.append(parameters.getContext()[i]);
-        	// The '\n' is used on JTextArea for new lines.
-        	contextBuilder.append(SHARED_NEW_LINE);
+            contextBuilder.append(parameters.getContext()[i]);
+            // The '\n' is used on JTextArea for new lines.
+            contextBuilder.append(SHARED_NEW_LINE);
         }
-        
+
         contextArea = new JTextArea(contextBuilder.toString());
-      
-        JScrollPane contextAreaScroll = new JScrollPane(contextArea, 
-        		ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
-		JButton cancelButton = new JButton(XcosMessages.CANCEL);
-		JButton okButton = new JButton(XcosMessages.OK);
-		okButton.setPreferredSize(cancelButton.getPreferredSize());
-		
+
+        JScrollPane contextAreaScroll = new JScrollPane(contextArea,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        JButton cancelButton = new JButton(XcosMessages.CANCEL);
+        JButton okButton = new JButton(XcosMessages.OK);
+        okButton.setPreferredSize(cancelButton.getPreferredSize());
+
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
         buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
-		buttonPane.add(okButton);
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		buttonPane.add(cancelButton);
-		
-		/*
-		 * Perform layout
-		 */
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.insets = new Insets(10, 10, 10, 10);
-		
-		add(textLabel, gbc);
-		
-		gbc.gridy = GridBagConstraints.RELATIVE;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weighty = 1.0;
-		add(contextAreaScroll, gbc);
-		
+        buttonPane.add(okButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(cancelButton);
 
+        /*
+         * Perform layout
+         */
+        GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.gridheight = 1;
-		gbc.gridwidth = 1;
-		
-		gbc.anchor = GridBagConstraints.LAST_LINE_END;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+
+        add(textLabel, gbc);
+
+        gbc.gridy = GridBagConstraints.RELATIVE;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1.0;
+        add(contextAreaScroll, gbc);
+
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
         gbc.fill = GridBagConstraints.NONE;
         gbc.weighty = 0;
-		gbc.insets = new Insets(5, 0, 10, 10);
-		add(buttonPane, gbc);
-		
-		installActionListeners(cancelButton, okButton);	
-		
-		setPreferredSize(PREFERRED_SIZE);
-	}
+        gbc.insets = new Insets(5, 0, 10, 10);
+        add(buttonPane, gbc);
 
-	/**
-	 * Install the action listener on the buttons
-	 * @param cancelButton the cancel button
-	 * @param okButton the OK button
-	 */
-	private void installActionListeners(JButton cancelButton, JButton okButton) {
-		/*
-		 * The cancel button just exit without doing anything
-		 */
-		cancelButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+        installActionListeners(cancelButton, okButton);
 
-		/*
-		 * The ok button parse the contextArea, reconstruct the real context and
-		 * set the scicosParameters before exiting.
-		 */
-		okButton.addActionListener(new ActionListener() {
+        setPreferredSize(PREFERRED_SIZE);
+    }
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<String> contextList = new ArrayList<String>();
-				int i = 0;
-				try {
-					StringReader stringReader = new StringReader(contextArea.getText());
-					BufferedReader bufferReader = new BufferedReader(stringReader);
-					String nextLine = "";
+    /**
+     * Install the action listener on the buttons
+     * 
+     * @param cancelButton
+     *            the cancel button
+     * @param okButton
+     *            the OK button
+     */
+    private void installActionListeners(JButton cancelButton, JButton okButton) {
+        /*
+         * The cancel button just exit without doing anything
+         */
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
-					while ((nextLine = bufferReader.readLine()) != null) {
-						contextList.add(nextLine);
-						i++;
-					} 
-					
-					if (i == 0) {
-						contextList.add("");
-					}
-					
-					String[] context = contextList.toArray(new String[i]);
-					parameters.setContext(context);
-					
-					// Execute the context to alert the user against wrong settings
-					String ctx = contextArea.getText();
-					if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
-						// We need to remove some blanks and convert to a one line expression
-						// The '\n' is used on JTextArea for new lines.
-						ScilabInterpreterManagement
-								.putCommandInScilabQueue(ctx
-										.trim()
-										.replaceAll(SHARED_NEW_LINE, "; ") + ";");
-					}
-					
-					
-					
-					dispose();
-					
-				} catch (IOException e1) {
-					LogFactory.getLog(SetContextAction.class).error(e1);
-				} catch (PropertyVetoException e2) {
-					LogFactory.getLog(SetContextAction.class).error(e2);
-				}
-			}
-		});
-	}	
+        /*
+         * The ok button parse the contextArea, reconstruct the real context and
+         * set the scicosParameters before exiting.
+         */
+        okButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<String> contextList = new ArrayList<String>();
+                int i = 0;
+                try {
+                    StringReader stringReader = new StringReader(contextArea
+                            .getText());
+                    BufferedReader bufferReader = new BufferedReader(
+                            stringReader);
+                    String nextLine = "";
+
+                    while ((nextLine = bufferReader.readLine()) != null) {
+                        contextList.add(nextLine);
+                        i++;
+                    }
+
+                    if (i == 0) {
+                        contextList.add("");
+                    }
+
+                    String[] context = contextList.toArray(new String[i]);
+                    parameters.setContext(context);
+
+                    // Execute the context to alert the user against wrong
+                    // settings
+                    String ctx = contextArea.getText();
+                    if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
+                        // We need to remove some blanks and convert to a one
+                        // line expression
+                        // The '\n' is used on JTextArea for new lines.
+                        ScilabInterpreterManagement
+                                .putCommandInScilabQueue(ctx.trim().replaceAll(
+                                        SHARED_NEW_LINE, "; ")
+                                        + ";");
+                    }
+
+                    dispose();
+
+                } catch (IOException e1) {
+                    LogFactory.getLog(SetContextAction.class).error(e1);
+                } catch (PropertyVetoException e2) {
+                    LogFactory.getLog(SetContextAction.class).error(e2);
+                }
+            }
+        });
+    }
 }
-//CSON: ClassDataAbstractionCoupling
-//CSON: ClassFanOutComplexity
-//CSON: MagicNumber
+// CSON: ClassDataAbstractionCoupling
+// CSON: ClassFanOutComplexity
+// CSON: MagicNumber

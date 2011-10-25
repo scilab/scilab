@@ -49,43 +49,43 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "RecentFilesType", propOrder = { "document" })
 public class RecentFilesType {
 
-	private List<DocumentType> document;
+    private List<DocumentType> document;
 
-	/**
-	 * Default constructor
-	 */
-	protected RecentFilesType() {
-	}
+    /**
+     * Default constructor
+     */
+    protected RecentFilesType() {
+    }
 
-	/**
-	 * Gets the value of the document property.
-	 * 
-	 * 
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a
-	 * snapshot. Therefore any modification you make to the returned list will
-	 * be present inside the JAXB object. This is why there is not a
-	 * <CODE>set</CODE> method for the document property.
-	 * 
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getDocument().add(newItem);
-	 * </pre>
-	 * 
-	 * 
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list
-	 * {@link DocumentType }
-	 * 
-	 * @return the document list
-	 */
-	public List<DocumentType> getDocument() {
-		if (document == null) {
-			document = new LinkedList<DocumentType>();
-		}
-		
-		return this.document;
-	}
+    /**
+     * Gets the value of the document property.
+     * 
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the document property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * 
+     * <pre>
+     * getDocument().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DocumentType }
+     * 
+     * @return the document list
+     */
+    public List<DocumentType> getDocument() {
+        if (document == null) {
+            document = new LinkedList<DocumentType>();
+        }
+
+        return this.document;
+    }
 }

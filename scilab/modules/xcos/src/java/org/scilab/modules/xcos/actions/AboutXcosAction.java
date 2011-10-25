@@ -23,52 +23,52 @@ import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-
 /**
  * Display about box for Xcos
  */
 public class AboutXcosAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.ABOUT_XCOS;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.ABOUT_XCOS;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Scilab graph
-	 */
-	public AboutXcosAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Scilab graph
+     */
+    public AboutXcosAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Menu created for "Help menu"
-	 * @param scilabGraph associated Scilab graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, AboutXcosAction.class);
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String[] contents = {
-				Xcos.TRADENAME,
-				"",
-				XcosMessages.CONSORTIUM,
-				XcosMessages.COPYRIGHT_INRIA,
-				"",
-				XcosMessages.SCICOS_BASED};
-		
-		ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null, null);
-    	
+    /**
+     * Menu created for "Help menu"
+     * 
+     * @param scilabGraph
+     *            associated Scilab graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, AboutXcosAction.class);
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String[] contents = { Xcos.TRADENAME, "", XcosMessages.CONSORTIUM,
+                XcosMessages.COPYRIGHT_INRIA, "", XcosMessages.SCICOS_BASED };
+
+        ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null,
+                null);
+
     }
 }

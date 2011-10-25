@@ -31,72 +31,70 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Create a mask for the {@link SuperBlock}
  */
 public final class SuperblockMaskCreateAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.CREATE;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * @param scilabGraph graph
-	 */
-	public SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.CREATE;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * @param scilabGraph graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     */
+    public SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Callback to be done
-	 * @param e parameters
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
-				.getSelectionCell();
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
+    }
 
-		block.mask();
-		
-		/*
-		 * Create a valid DSUPER exprs field if not already present.
-		 */
-		if (!(block.getExprs() instanceof ScilabList)) {
-			
-			/* Set default values */
-			ScilabList exprs = new ScilabList(
-				Arrays.asList(
-					new ScilabDouble(),
-					new ScilabList(
-						Arrays.asList(
-							new ScilabDouble(),
-							new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
-							new ScilabList(
-								Arrays.asList(
-									new ScilabDouble()
-								)
-							)
-						)
-					)
-				)
-			);
-			
-			block.setExprs(exprs);
-			
-			/*
-			 * Open the customization UI on a new mask creation
-			 */
-			GraphActionManager.getInstance(getGraph(e),
-					SuperblockMaskCustomizeAction.class).actionPerformed(e);
-		}
-	}
+    /**
+     * Callback to be done
+     * 
+     * @param e
+     *            parameters
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
+                .getSelectionCell();
+
+        block.mask();
+
+        /*
+         * Create a valid DSUPER exprs field if not already present.
+         */
+        if (!(block.getExprs() instanceof ScilabList)) {
+
+            /* Set default values */
+            ScilabList exprs = new ScilabList(
+                    Arrays.asList(
+                            new ScilabDouble(),
+                            new ScilabList(
+                                    Arrays.asList(
+                                            new ScilabDouble(),
+                                            new ScilabString(
+                                                    XcosMessages.MASK_DEFAULTWINDOWNAME),
+                                            new ScilabList(Arrays
+                                                    .asList(new ScilabDouble()))))));
+
+            block.setExprs(exprs);
+
+            /*
+             * Open the customization UI on a new mask creation
+             */
+            GraphActionManager.getInstance(getGraph(e),
+                    SuperblockMaskCustomizeAction.class).actionPerformed(e);
+        }
+    }
 }

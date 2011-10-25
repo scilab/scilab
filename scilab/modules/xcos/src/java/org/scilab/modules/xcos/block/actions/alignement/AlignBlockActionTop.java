@@ -21,29 +21,33 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Align block on the top
  */
 public final class AlignBlockActionTop extends AlignBlockAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.ALIGN_TOP;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "align-vertical-top.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * Default constructor
-	 * @param scilabGraph the graph to work on
-	 */
-	public AlignBlockActionTop(ScilabGraph scilabGraph) {
-		super(scilabGraph, XcosConstants.ALIGN_TOP);
-	}
-	
-	/**
-	 * Create the menu associated with this action.
-	 * @param scilabGraph the associated graph
-	 * @return The associated menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, AlignBlockActionTop.class);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.ALIGN_TOP;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "align-vertical-top.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
+
+    /**
+     * Default constructor
+     * 
+     * @param scilabGraph
+     *            the graph to work on
+     */
+    public AlignBlockActionTop(ScilabGraph scilabGraph) {
+        super(scilabGraph, XcosConstants.ALIGN_TOP);
+    }
+
+    /**
+     * Create the menu associated with this action.
+     * 
+     * @param scilabGraph
+     *            the associated graph
+     * @return The associated menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, AlignBlockActionTop.class);
+    }
 }

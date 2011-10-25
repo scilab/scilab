@@ -48,103 +48,103 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "PositionType")
 public class PositionType {
 
-	@XmlAttribute
-	private Integer x;
-	@XmlAttribute
-	private Integer y;
-	@XmlAttribute
-	private Integer width;
-	@XmlAttribute
-	private Integer height;
+    @XmlAttribute
+    private Integer x;
+    @XmlAttribute
+    private Integer y;
+    @XmlAttribute
+    private Integer width;
+    @XmlAttribute
+    private Integer height;
 
-	/**
-	 * Default constructor
-	 */
-	protected PositionType() {
-	}
+    /**
+     * Default constructor
+     */
+    protected PositionType() {
+    }
 
-	/**
-	 * Gets the value of the x property.
-	 * 
-	 * @return possible object is {@link Integer }
-	 * 
-	 */
-	public Integer getX() {
-		return x;
-	}
+    /**
+     * Gets the value of the x property.
+     * 
+     * @return possible object is {@link Integer }
+     * 
+     */
+    public Integer getX() {
+        return x;
+    }
 
-	/**
-	 * Sets the value of the x property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link Integer }
-	 * 
-	 */
-	public void setX(Integer value) {
-		this.x = value;
-	}
+    /**
+     * Sets the value of the x property.
+     * 
+     * @param value
+     *            allowed object is {@link Integer }
+     * 
+     */
+    public void setX(Integer value) {
+        this.x = value;
+    }
 
-	/**
-	 * Gets the value of the y property.
-	 * 
-	 * @return possible object is {@link Integer }
-	 * 
-	 */
-	public Integer getY() {
-		return y;
-	}
+    /**
+     * Gets the value of the y property.
+     * 
+     * @return possible object is {@link Integer }
+     * 
+     */
+    public Integer getY() {
+        return y;
+    }
 
-	/**
-	 * Sets the value of the y property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link Integer }
-	 * 
-	 */
-	public void setY(Integer value) {
-		this.y = value;
-	}
+    /**
+     * Sets the value of the y property.
+     * 
+     * @param value
+     *            allowed object is {@link Integer }
+     * 
+     */
+    public void setY(Integer value) {
+        this.y = value;
+    }
 
-	/**
-	 * Gets the value of the width property.
-	 * 
-	 * @return possible object is {@link Integer }
-	 * 
-	 */
-	public Integer getWidth() {
-		return width;
-	}
+    /**
+     * Gets the value of the width property.
+     * 
+     * @return possible object is {@link Integer }
+     * 
+     */
+    public Integer getWidth() {
+        return width;
+    }
 
-	/**
-	 * Sets the value of the width property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link Integer }
-	 * 
-	 */
-	public void setWidth(Integer value) {
-		this.width = value;
-	}
+    /**
+     * Sets the value of the width property.
+     * 
+     * @param value
+     *            allowed object is {@link Integer }
+     * 
+     */
+    public void setWidth(Integer value) {
+        this.width = value;
+    }
 
-	/**
-	 * Gets the value of the height property.
-	 * 
-	 * @return possible object is {@link Integer }
-	 * 
-	 */
-	public Integer getHeight() {
-		return height;
-	}
+    /**
+     * Gets the value of the height property.
+     * 
+     * @return possible object is {@link Integer }
+     * 
+     */
+    public Integer getHeight() {
+        return height;
+    }
 
-	/**
-	 * Sets the value of the height property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link Integer }
-	 * 
-	 */
-	public void setHeight(Integer value) {
-		this.height = value;
-	}
+    /**
+     * Sets the value of the height property.
+     * 
+     * @param value
+     *            allowed object is {@link Integer }
+     * 
+     */
+    public void setHeight(Integer value) {
+        this.height = value;
+    }
 
 }

@@ -23,43 +23,49 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Viewport tab visibility managemet 
+ * Viewport tab visibility managemet
  */
 public final class ViewViewportAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.VIEWPORT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.VIEWPORT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Scilab Graph
-	 */
-	public ViewViewportAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     */
+    public ViewViewportAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create checkbox menu for the graph menu bar
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the menu
-	 */
-	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		return createCheckBoxMenu(scilabGraph, ViewViewportAction.class);
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
+    /**
+     * Create checkbox menu for the graph menu bar
+     * 
+     * @param scilabGraph
+     *            associated Scilab Graph
+     * @return the menu
+     */
+    public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
+        return createCheckBoxMenu(scilabGraph, ViewViewportAction.class);
+    }
 
-		((XcosDiagram) getGraph(null)).setViewPortVisible(!viewPort.isVisible());
-	}
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
+
+        ((XcosDiagram) getGraph(null))
+                .setViewPortVisible(!viewPort.isVisible());
+    }
 }

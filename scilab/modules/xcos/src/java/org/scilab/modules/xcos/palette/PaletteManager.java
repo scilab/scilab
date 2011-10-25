@@ -44,244 +44,247 @@ import org.xml.sax.SAXException;
  * All the palette are described in the configuration file.
  */
 public final class PaletteManager {
-	/**
-	 * Model class package
-	 */
-	public static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
-	
-	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
-	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
-	private static final String INSTANCE_FILENAME = "/palettes.xml";
+    /**
+     * Model class package
+     */
+    public static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
 
-	private static final Log LOG = LogFactory.getLog(PaletteManager.class);
+    private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
+    private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
+    private static final String INSTANCE_FILENAME = "/palettes.xml";
 
-	private static PaletteManager instance;
-	private static Marshaller marshaller;
-	private static Unmarshaller unmarshaller;
+    private static final Log LOG = LogFactory.getLog(PaletteManager.class);
 
-	private PaletteManagerView view;
-	private Category root;
-	private final PropertyChangeSupport pcs;
+    private static PaletteManager instance;
+    private static Marshaller marshaller;
+    private static Unmarshaller unmarshaller;
 
-	/** Default constructor */
-	private PaletteManager() {
-		pcs = new PropertyChangeSupport(this);
-	}
-	
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(final PaletteManagerView view) {
-		this.view = view;
-	}
+    private PaletteManagerView view;
+    private Category root;
+    private final PropertyChangeSupport pcs;
 
-	/** @return the view */
-	public PaletteManagerView getView() {
-		return view;
-	}
+    /** Default constructor */
+    private PaletteManager() {
+        pcs = new PropertyChangeSupport(this);
+    }
 
-	/**
-	 * @param root
-	 *            the root to set
-	 */
-	public void setRoot(final Category root) {
-		this.root = root;
-	}
+    /**
+     * @param view
+     *            the view to set
+     */
+    public void setView(final PaletteManagerView view) {
+        this.view = view;
+    }
 
-	/**
-	 * @return the root
-	 */
-	public Category getRoot() {
-		return root;
-	}
+    /** @return the view */
+    public PaletteManagerView getView() {
+        return view;
+    }
 
-	/**
-	 * Add a PropertyChangeListener to the listener list.
-	 * @param listener the listener
-	 */
-	public void addPropertyChangeListener(final PropertyChangeListener listener) {
-		pcs.addPropertyChangeListener(listener);
-	}
+    /**
+     * @param root
+     *            the root to set
+     */
+    public void setRoot(final Category root) {
+        this.root = root;
+    }
 
-	/**
-	 * Add a PropertyChangeListener from the listener list.
-	 * @param listener the listener
-	 */
-	public void removePropertyChangeListener(final PropertyChangeListener listener) {
-		pcs.removePropertyChangeListener(listener);
-	}
+    /**
+     * @return the root
+     */
+    public Category getRoot() {
+        return root;
+    }
 
-	/** @return the default instance */
-	public static synchronized PaletteManager getInstance() {
-		if (instance == null) {
-			instance = new PaletteManager();
-			instance.loadConfig();
-		}
-		return instance;
-	}
+    /**
+     * Add a PropertyChangeListener to the listener list.
+     * 
+     * @param listener
+     *            the listener
+     */
+    public void addPropertyChangeListener(final PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
 
-	/** @return true if the palette window is visible, false otherwise */
-	public static boolean isVisible() {
-		return (getInstance().getView() != null)
-		&& getInstance().getView().isVisible();
-	}
+    /**
+     * Add a PropertyChangeListener from the listener list.
+     * 
+     * @param listener
+     *            the listener
+     */
+    public void removePropertyChangeListener(
+            final PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
 
-	/**
-	 * Set visible or hide the palette.
-	 * 
-	 * @param status
-	 *            true to set visible, false to hide.
-	 */
-	public static void setVisible(final boolean status) {
-		if (getInstance().getView() == null) {
-			getInstance().setView(new PaletteManagerView(getInstance()));
-		}
-		getInstance().getView().setVisible(status);
+    /** @return the default instance */
+    public static synchronized PaletteManager getInstance() {
+        if (instance == null) {
+            instance = new PaletteManager();
+            instance.loadConfig();
+        }
+        return instance;
+    }
 
-		getInstance().pcs.firePropertyChange("visible", !status, status);
-	}
+    /** @return true if the palette window is visible, false otherwise */
+    public static boolean isVisible() {
+        return (getInstance().getView() != null)
+                && getInstance().getView().isVisible();
+    }
 
-	/**
-	 * Load the palette configuration file on {@link #root}.
-	 */
-	private void loadConfig() {
-		try {
-			if (unmarshaller == null) {
-				initUnmarshaller();
-			}
+    /**
+     * Set visible or hide the palette.
+     * 
+     * @param status
+     *            true to set visible, false to hide.
+     */
+    public static void setVisible(final boolean status) {
+        if (getInstance().getView() == null) {
+            getInstance().setView(new PaletteManagerView(getInstance()));
+        }
+        getInstance().getView().setVisible(status);
 
-			File f;
-			try {
-				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
-						+ INSTANCE_FILENAME);
+        getInstance().pcs.firePropertyChange("visible", !status, status);
+    }
 
-				if (!f.exists()) {
-					final File base = new File(ScilabConstants.SCI.getAbsoluteFile()
-							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
-					FileUtils.forceCopy(base, f);
-				}
+    /**
+     * Load the palette configuration file on {@link #root}.
+     */
+    private void loadConfig() {
+        try {
+            if (unmarshaller == null) {
+                initUnmarshaller();
+            }
 
-				setRoot((Category) unmarshaller.unmarshal(f));
-			} catch (final JAXBException e) {
-				LOG.warn(
-						"user palette configuration file is not valid.\n"
-						+ "Switching to the default one."
-						+ e);
+            File f;
+            try {
+                f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
+                        + INSTANCE_FILENAME);
 
-				ScilabModalDialog.show(getView(),
-						XcosMessages.ERR_CONFIG_PALETTE_INVALID,
-						XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+                if (!f.exists()) {
+                    final File base = new File(
+                            ScilabConstants.SCI.getAbsoluteFile()
+                                    + XcosConstants.XCOS_ETC
+                                    + INSTANCE_FILENAME);
+                    FileUtils.forceCopy(base, f);
+                }
 
-				try {
-					f = new File(ScilabConstants.SCI.getAbsoluteFile()
-							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
-					setRoot((Category) unmarshaller.unmarshal(f));
-				} catch (final JAXBException ex) {
-					LOG.error(
-							"base palette configuration file corrupted.\n"
-							+ e);
-					return;
-				}
-			}
+                setRoot((Category) unmarshaller.unmarshal(f));
+            } catch (final JAXBException e) {
+                LOG.warn("user palette configuration file is not valid.\n"
+                        + "Switching to the default one." + e);
 
-		} catch (final JAXBException e) {
-			e.printStackTrace();
-			return;
-		}
-	}
+                ScilabModalDialog.show(getView(),
+                        XcosMessages.ERR_CONFIG_PALETTE_INVALID,
+                        XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 
-	/**
-	 * Initialize the shared unmarshaller instance
-	 * @throws JAXBException when an unsupported error has occured
-	 */
-	private void initUnmarshaller() throws JAXBException {
-		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
-		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+                try {
+                    f = new File(ScilabConstants.SCI.getAbsoluteFile()
+                            + XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
+                    setRoot((Category) unmarshaller.unmarshal(f));
+                } catch (final JAXBException ex) {
+                    LOG.error("base palette configuration file corrupted.\n"
+                            + e);
+                    return;
+                }
+            }
 
-		final JAXBContext jaxbContext = JAXBContext
-		.newInstance(MODEL_CLASS_PACKAGE);
-		unmarshaller = jaxbContext.createUnmarshaller();
+        } catch (final JAXBException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
 
-		try {
-			Schema schema;
-			schema = SchemaFactory.newInstance(
-					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-							new File(schemaPath));
-			unmarshaller.setSchema(schema);
-		} catch (final SAXException e) {
-			LOG.error(
-					UNABLE_TO_VALIDATE_CONFIG
-					+ e);
-		}
-	}
+    /**
+     * Initialize the shared unmarshaller instance
+     * 
+     * @throws JAXBException
+     *             when an unsupported error has occured
+     */
+    private void initUnmarshaller() throws JAXBException {
+        final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
+                + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
 
-	/**
-	 * Save the configuration file.
-	 */
-	public void saveConfig() {
-		try {
-			if (marshaller == null) {
-				initMarshaller();
-			}
+        final JAXBContext jaxbContext = JAXBContext
+                .newInstance(MODEL_CLASS_PACKAGE);
+        unmarshaller = jaxbContext.createUnmarshaller();
 
-			File f;
-			try {
-				f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
-						+ INSTANCE_FILENAME);
-				marshaller.marshal(getRoot(), f);
-			} catch (final JAXBException e) {
-				LOG.warn(
-						"Unable to save user palette configuration file.\n"
-						+ e);
-			}
+        try {
+            Schema schema;
+            schema = SchemaFactory.newInstance(
+                    XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+                    new File(schemaPath));
+            unmarshaller.setSchema(schema);
+        } catch (final SAXException e) {
+            LOG.error(UNABLE_TO_VALIDATE_CONFIG + e);
+        }
+    }
 
-		} catch (final JAXBException e) {
-			LOG.error(e);
-			return;
-		}
-	}
+    /**
+     * Save the configuration file.
+     */
+    public void saveConfig() {
+        try {
+            if (marshaller == null) {
+                initMarshaller();
+            }
 
-	/**
-	 * Initialize the shared marshaller instance
-	 * @throws JAXBException when an unsupported error has occured
-	 */
-	private void initMarshaller() throws JAXBException {
-		final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
-		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+            File f;
+            try {
+                f = new File(ScilabConstants.SCIHOME.getAbsoluteFile()
+                        + INSTANCE_FILENAME);
+                marshaller.marshal(getRoot(), f);
+            } catch (final JAXBException e) {
+                LOG.warn("Unable to save user palette configuration file.\n"
+                        + e);
+            }
 
-		final JAXBContext jaxbContext = JAXBContext
-		.newInstance(MODEL_CLASS_PACKAGE);
-		marshaller = jaxbContext.createMarshaller();
+        } catch (final JAXBException e) {
+            LOG.error(e);
+            return;
+        }
+    }
 
-		try {
-			Schema schema;
-			schema = SchemaFactory.newInstance(
-					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-							new File(schemaPath));
-			marshaller.setSchema(schema);
-		} catch (final SAXException e) {
-			LOG.warn(
-					UNABLE_TO_VALIDATE_CONFIG
-					+ e);
-		}
+    /**
+     * Initialize the shared marshaller instance
+     * 
+     * @throws JAXBException
+     *             when an unsupported error has occured
+     */
+    private void initMarshaller() throws JAXBException {
+        final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
+                + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
 
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	}
+        final JAXBContext jaxbContext = JAXBContext
+                .newInstance(MODEL_CLASS_PACKAGE);
+        marshaller = jaxbContext.createMarshaller();
 
-	/**
-	 * For debugging purpose
-	 * 
-	 * @param args
-	 *            Non used
-	 */
-	public static void main(final String[] args) {
-		InterpreterManagement.requestScilabExec("");
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				setVisible(true);
-			}
-		});
-	}
+        try {
+            Schema schema;
+            schema = SchemaFactory.newInstance(
+                    XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+                    new File(schemaPath));
+            marshaller.setSchema(schema);
+        } catch (final SAXException e) {
+            LOG.warn(UNABLE_TO_VALIDATE_CONFIG + e);
+        }
+
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    }
+
+    /**
+     * For debugging purpose
+     * 
+     * @param args
+     *            Non used
+     */
+    public static void main(final String[] args) {
+        InterpreterManagement.requestScilabExec("");
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setVisible(true);
+            }
+        });
+    }
 }

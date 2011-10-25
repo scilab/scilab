@@ -27,50 +27,57 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Mirror a block
  */
 public class MirrorAction extends VertexSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.MIRROR;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "transform-mirror.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_M;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    /** Name of the action */
+    public static final String NAME = XcosMessages.MIRROR;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "transform-mirror.png";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_M;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
+            .getMenuShortcutKeyMask();
 
     /**
      * Constructor
-     * @param scilabGraph associated diagram
+     * 
+     * @param scilabGraph
+     *            associated diagram
      */
     public MirrorAction(ScilabGraph scilabGraph) {
-	super(scilabGraph);
+        super(scilabGraph);
     }
 
     /**
      * Menu added to the menubar
-     * @param scilabGraph associated diagram
+     * 
+     * @param scilabGraph
+     *            associated diagram
      * @return the menu
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(scilabGraph, MirrorAction.class);
+        return createMenu(scilabGraph, MirrorAction.class);
     }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 
-	    Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
+            Object[] allCells = ((XcosDiagram) getGraph(null))
+                    .getSelectionCells();
 
-	    getGraph(null).getModel().beginUpdate();
-	    for (int i = 0; i < allCells.length; ++i) {
-		if (allCells[i] instanceof BasicBlock) {
-		    ((BasicBlock) allCells[i]).toggleMirror();
-		}
-	    }
-	    getGraph(null).getModel().endUpdate();
-	}
+            getGraph(null).getModel().beginUpdate();
+            for (int i = 0; i < allCells.length; ++i) {
+                if (allCells[i] instanceof BasicBlock) {
+                    ((BasicBlock) allCells[i]).toggleMirror();
+                }
+            }
+            getGraph(null).getModel().endUpdate();
+        }
     }
 
 }

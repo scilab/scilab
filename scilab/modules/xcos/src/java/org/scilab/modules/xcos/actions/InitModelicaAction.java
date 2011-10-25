@@ -32,72 +32,83 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Launch the modelica compiler configuration TCL UI
  */
 public class InitModelicaAction extends DefaultAction {
-	/** the name */
+    /** the name */
     public static final String NAME = XcosMessages.INIT_MODELICA;
-	/** no icon */
+    /** no icon */
     public static final String SMALL_ICON = "";
-	/** no mnemonic */
+    /** no mnemonic */
     public static final int MNEMONIC_KEY = 0;
-	/** no accelerator */
+    /** no accelerator */
     public static final int ACCELERATOR_KEY = 0;
-    
+
     /**
      * Constructor
-     * @param scilabGraph corresponding Scilab Graph
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      */
     public InitModelicaAction(ScilabGraph scilabGraph) {
-	super(scilabGraph);
+        super(scilabGraph);
     }
+
     /**
      * Create a button for a graph toolbar
-     * @param scilabGraph corresponding Scilab Graph
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the button
      */
     public static PushButton createButton(ScilabGraph scilabGraph) {
-	return createButton(scilabGraph, InitModelicaAction.class);
+        return createButton(scilabGraph, InitModelicaAction.class);
     }
 
     /**
      * Create a menu for a graph menubar
-     * @param scilabGraph corresponding Scilab Graph
+     * 
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the menu
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(scilabGraph, InitModelicaAction.class);
+        return createMenu(scilabGraph, InitModelicaAction.class);
     }
 
     /**
      * Action associated
-     * @param e the event
+     * 
+     * @param e
+     *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
-	@Override
+    @Override
     public void actionPerformed(ActionEvent e) {
-	String temp;
+        String temp;
 
-	try {
-	    ((XcosDiagram) getGraph(null)).info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
-	    temp = FileUtils.createTempFile();
-	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp);
+        try {
+            ((XcosDiagram) getGraph(null))
+                    .info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
+            temp = FileUtils.createTempFile();
+            ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp);
 
-	    String cmd = buildCall("import_from_hdf5", temp);
-	    cmd += buildCall("xcosConfigureModelica");
-	    cmd += buildCall("deletefile", temp);
-	    
-	    final ActionListener action = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-			}
-		};
-	    
-	    try {
-	    	asynchronousScilabExec(action, cmd);
-	    } catch (InterpreterException e1) {
-	    	LogFactory.getLog(InitModelicaAction.class).error(e1);
-	    }
-	} catch (IOException e1) {
-		LogFactory.getLog(InitModelicaAction.class).error(e1);
-	}  
+            String cmd = buildCall("import_from_hdf5", temp);
+            cmd += buildCall("xcosConfigureModelica");
+            cmd += buildCall("deletefile", temp);
+
+            final ActionListener action = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ((XcosDiagram) getGraph(null))
+                            .info(XcosMessages.EMPTY_INFO);
+                }
+            };
+
+            try {
+                asynchronousScilabExec(action, cmd);
+            } catch (InterpreterException e1) {
+                LogFactory.getLog(InitModelicaAction.class).error(e1);
+            }
+        } catch (IOException e1) {
+            LogFactory.getLog(InitModelicaAction.class).error(e1);
+        }
     }
 }

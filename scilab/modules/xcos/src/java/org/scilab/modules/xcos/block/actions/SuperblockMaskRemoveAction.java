@@ -22,44 +22,49 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-
 /**
  * Remove the {@link SuperBlock} mask.
+ * 
  * @see SuperBlock#unmask()
  */
 public final class SuperblockMaskRemoveAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.REMOVE;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * @param scilabGraph graph
-	 */
-	public SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.REMOVE;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * @param scilabGraph graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SuperblockMaskRemoveAction.class);
-	}
-	
-	/**
-	 * Action !!!
-	 * @param e the event source
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
-	    block.unmask();
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     */
+    public SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, SuperblockMaskRemoveAction.class);
+    }
+
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            the event source
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
+                .getSelectionCell();
+        block.unmask();
+    }
 }

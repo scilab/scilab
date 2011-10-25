@@ -21,14 +21,14 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
  * This class just install a {@link SumPortLabelingListener} on each instance.
  */
 public class BigSom extends BasicBlock {
-	/**
-	 * Default constructor
-	 */
-	public BigSom() {
-		super();
+    /**
+     * Default constructor
+     */
+    public BigSom() {
+        super();
 
-		getParametersPCS().addPropertyChangeListener("realParameters",
-				SumPortLabelingListener.getInstance());
-	}
+        getParametersPCS().addPropertyChangeListener("realParameters",
+                SumPortLabelingListener.getInstance());
+    }
 
 }

@@ -43,33 +43,34 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Custom", propOrder = { "path" })
 public class Custom extends Palette {
 
-	@XmlElement(required = true)
-	private VariablePath path;
+    @XmlElement(required = true)
+    private VariablePath path;
 
-	/**
-	 * Default constructor
-	 */
-	public Custom() { }
-	
-	/**
-	 * Gets the value of the path property.
-	 * 
-	 * @return possible object is {@link VariablePath }
-	 * 
-	 */
-	public VariablePath getPath() {
-		return path;
-	}
+    /**
+     * Default constructor
+     */
+    public Custom() {
+    }
 
-	/**
-	 * Sets the value of the path property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link VariablePath }
-	 * 
-	 */
-	public void setPath(VariablePath value) {
-		this.path = value;
-	}
+    /**
+     * Gets the value of the path property.
+     * 
+     * @return possible object is {@link VariablePath }
+     * 
+     */
+    public VariablePath getPath() {
+        return path;
+    }
+
+    /**
+     * Sets the value of the path property.
+     * 
+     * @param value
+     *            allowed object is {@link VariablePath }
+     * 
+     */
+    public void setPath(VariablePath value) {
+        this.path = value;
+    }
 
 }

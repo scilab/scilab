@@ -24,43 +24,49 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Set the text of a link.
  */
 public class TextAction extends StyleAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.EDIT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_F2;
-	
-	/**
-	 * Default constructor
-	 * @param scilabGraph the current graph
-	 */
-	public TextAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /** Name of the action */
+    public static final String NAME = XcosMessages.EDIT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_F2;
 
-	/**
-	 * Create the associated menu
-     * @param scilabGraph graph
+    /**
+     * Default constructor
+     * 
+     * @param scilabGraph
+     *            the current graph
+     */
+    public TextAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * Create the associated menu
+     * 
+     * @param scilabGraph
+     *            graph
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-    	return createMenu(scilabGraph, TextAction.class);
+        return createMenu(scilabGraph, TextAction.class);
     }
-	
-	/**
-	 * Action
-	 * @param e parameters
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		BasicLink[] links = getLinks();
-		
-		if (links.length == 1) {
-			BasicLink link = links[0];
-			getGraph(e).getAsComponent().startEditingAtCell(link, e);
-		}
-	}
+
+    /**
+     * Action
+     * 
+     * @param e
+     *            parameters
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        BasicLink[] links = getLinks();
+
+        if (links.length == 1) {
+            BasicLink link = links[0];
+            getGraph(e).getAsComponent().startEditingAtCell(link, e);
+        }
+    }
 
 }
