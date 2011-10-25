@@ -206,8 +206,12 @@ if test "$with_intelcompilers" = yes; then
 fi
 
 if test -z "$F77"; then
-## No Frotran compiler specified... We rely on Autoconf to find the best
-   AC_PROG_F77
+## No Fortran compiler specified... Prefer gfortran and intel compilers
+   AC_PROG_F77([gfortran ifc ifort])
+   if test -z "$F77"; then
+        # Best effort to find a compiler (might be g77)
+	AC_PROG_F77
+   fi
 fi
 
 

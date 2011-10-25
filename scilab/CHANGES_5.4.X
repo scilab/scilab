@@ -416,6 +416,8 @@ Compilation:
 
 * bug 9991 fixed - ./configure --without-xcos failed to build
 
+* bug 10158 fixed - Configure used g77 even if gfortran is available
+
 
 Dynamic link:
 =============
