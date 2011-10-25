@@ -21,15 +21,12 @@ import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
@@ -42,9 +39,6 @@ public class ConsoleTab {
 
     private static final String CLASS_NOT_FOUND = "Could not find class: ";
     private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
-    private static final String SCIDIR = System.getenv("SCI");
-    private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
-    private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
     private static final String NOCONSOLE = Messages.gettext("No available console !\nPlease use STD mode.");
     private static final String EMPTYTAB = Messages.gettext("Empty tab");
 
@@ -78,9 +72,6 @@ public class ConsoleTab {
 
             return tab;
         }
-
-        MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-        ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 
         /* Create the console */
         Tab consoleTab = null;
@@ -123,16 +114,14 @@ public class ConsoleTab {
             System.exit(-1);
         }
 
-        TextBox infoBar = ScilabTextBox.createTextBox();
-
         /** Adding content into container */
-        toolBar.setVisible(false); // Enabled in scilab.start
-        ScilabConsole.getConsole().addToolBar(toolBar);
-        ScilabConsole.getConsole().addMenuBar(menuBar);
-        ScilabConsole.getConsole().addInfoBar(infoBar);
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
         WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
+
+        MenuBar menuBar = ScilabMenuBar.createMenuBar();
+        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
+        ScilabConsole.getConsole().addMenuBar(menuBar);
 
         return consoleTab;
     }

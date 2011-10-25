@@ -35,9 +35,14 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
  * Main Class for Scilab
@@ -52,6 +57,9 @@ public class Scilab {
 
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
+
+    private static final String MAINMENUBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_menubar.xml";
+    private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
     private static final String ENABLE = "true";
@@ -136,6 +144,7 @@ public class Scilab {
 
                 if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
                     lookAndFeel.setLookAndFeel(scilabLookAndFeel);
+
                 } else {
                     lookAndFeel.setSystemLookAndFeel();
                 }
@@ -151,10 +160,21 @@ public class Scilab {
             // Create a user config file if not already exists
             ConfigManager.createUserCopy();
 
-            GraphicController.getController().askObject(Type.JAVACONSOLE);
+            String consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
+            MenuBarBuilder.buildMenuBar(MAINMENUBARXMLFILE, consoleId);
+
+            ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
+            TextBox infoBar = ScilabTextBox.createTextBox();
+
+            toolBar.setVisible(false); // Enabled in scilab.start
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
             SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+            consoleTab.setToolBar(toolBar);
+            consoleTab.setInfoBar(infoBar);
+            ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
+            ScilabConsole.getConsole().addToolBar(toolBar);
+            ScilabConsole.getConsole().addInfoBar(infoBar);
             mainView = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
         } else {
             GraphicController.getController().askObject(Type.CONSOLE);

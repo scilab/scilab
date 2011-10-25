@@ -352,6 +352,9 @@
 #define __GO_UICHECKEDMENU__               "UICheckedMenu";
 #define __GO_UI_CHECKED__                  "UIChecked"
 #define __GO_UI_LABEL__                    "UILabel"
+#define __GO_UI_MNEMONIC__                 "UIMnemonic"
+#define __GO_UI_ACCELERATOR__              "UIAccelerator"
+#define __GO_UI_SEPARATOR__                "UISeparator"
 
 #define __GO_CONSOLE__                     "console"
 #define __GO_SHOWHIDDENHANDLES__           "ShowHiddenHandles"

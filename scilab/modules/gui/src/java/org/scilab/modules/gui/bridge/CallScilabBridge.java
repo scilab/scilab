@@ -50,9 +50,12 @@ import javax.swing.text.Document;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -106,16 +109,15 @@ import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.uitable.ScilabUiTable;
 import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
@@ -656,9 +658,9 @@ public class CallScilabBridge {
 
         newWindow.setTitle(FIGURE_TITLE + figureIndex);
         /* MENUBAR */
-        MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
+        MenuBar menuBar = null; //MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
         /* TOOLBAR */
-        ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
+        ToolBar toolBar = null; //ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
 
         TextBox infoBar = ScilabTextBox.createTextBox();
 
@@ -1191,7 +1193,8 @@ public class CallScilabBridge {
      */
     public static void setRootMenuEnabled(String menuName, boolean status) {
         if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+            SwingScilabTab consoleTab = (SwingScilabTab) SwingView.getFromId(Console.getConsole().getIdentifier());
+            consoleTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
     }
 
@@ -2136,7 +2139,10 @@ public class CallScilabBridge {
     public static void setToolbarVisible(int figNum, boolean status) {
         if (figNum == -1) {
             if (ScilabConsole.isExistingConsole()) {
-                ScilabConsole.getConsole().getToolBar().setVisible(status);
+                SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+                SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+                consoleTab.getToolBar().setVisible(status);
+                BarUpdater.updateBars(consoleTab.getParentWindowId(), consoleTab.getMenuBar(), consoleTab.getToolBar(), consoleTab.getInfoBar(), consoleTab.getName(), consoleTab.getWindowIcon());
             }
         } else {
             ((ScilabRendererProperties) FigureMapper

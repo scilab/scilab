@@ -353,6 +353,9 @@ public static final String __GO_UICHILDMENU__ =            "UIChildMenu";
 public static final String __GO_UICHECKEDMENU__ =          "UICheckedMenu";
 public static final String __GO_UI_CHECKED__ =             "UIChecked";
 public static final String __GO_UI_LABEL__ =               "UILabel";
+public static final String __GO_UI_MNEMONIC__ =            "UIMnemonic";
+public static final String __GO_UI_ACCELERATOR__ =         "UIAccelerator";
+public static final String __GO_UI_SEPARATOR__ =           "UISeparator";
 
 public static final String __GO_CONSOLE__ =                "console";
 public static final String __GO_SHOWHIDDENHANDLES__ =      "ShowHiddenHandles";

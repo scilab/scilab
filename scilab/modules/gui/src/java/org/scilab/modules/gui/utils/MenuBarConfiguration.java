@@ -22,16 +22,22 @@ import org.scilab.modules.gui.menubar.MenuBar;
  */
 public interface MenuBarConfiguration {
 
-	/**
-	 * Add menus to a menubar
-	 * @param mb the menubar which the menus will be added to
-	 */
-	void addMenus(MenuBar mb);
-	
-	/**
-	 * Read submenus data in the XML file
-	 * @param menu the parent menu for submenus
-	 * @param index the index of the parent in menu list
-	 */
-	void addSubMenus(Menu menu, int index);
+    /**
+     * Add menus to a menubar
+     * @param mb the menubar which the menus will be added to
+     */
+    void addMenus(MenuBar mb);
+
+    /**
+     * Add menus to a menubar using Scilab MVC
+     * @param parentId the tab ID to which the menus will be added to
+     */
+    void addMenus(String parentId);
+
+    /**
+     * Read submenus data in the XML file
+     * @param menu the parent menu for submenus
+     * @param index the index of the parent in menu list
+     */
+    void addSubMenus(Menu menu, int index);
 }

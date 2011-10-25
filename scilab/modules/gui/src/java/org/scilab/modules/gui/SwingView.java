@@ -47,6 +47,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
@@ -67,6 +68,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -95,6 +97,7 @@ import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -113,8 +116,8 @@ public final class SwingView implements GraphicView {
 
     private static final String SCIDIR = System.getenv("SCI");
 
-    private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
-    private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
+    private static final String GRAPHICSMENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
+    private static final String GRAPHICSTOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 
     private static SwingView me;
 
@@ -126,9 +129,6 @@ public final class SwingView implements GraphicView {
     private SwingView() {
         GraphicController.getController().register(this);
         allObjects = Collections.synchronizedMap(new HashMap<String, TypedObject>());
-        // Register Console
-        //String consoleId = Console.getConsole().getIdentifier();
-        //allObjects.put(consoleId, CreateObjectFromType(__GO_CONSOLE__, consoleId));
     }
 
     public static void registerSwingView() {
@@ -292,6 +292,8 @@ public final class SwingView implements GraphicView {
                 WindowsConfigurationManager.restoreUUID(NULLUUID);
                 SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
                 SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+                consoleTab.setMenuBar(ScilabMenuBar.createMenuBar());
+                ScilabConsole.getConsole().addMenuBar(ScilabMenuBar.createMenuBar());
                 consoleTab.setId(id);
                 return consoleTab;
             } else {
@@ -314,9 +316,9 @@ public final class SwingView implements GraphicView {
 
             window.setTitle(figureTitle);
             /* MENUBAR */
-            MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureId);
+            MenuBar menuBar = MenuBarBuilder.buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
             /* TOOLBAR */
-            ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureId);
+            ToolBar toolBar = ToolBarBuilder.buildToolBar(GRAPHICSTOOLBARXMLFILE, figureId);
             /* INFOBAR */
             TextBox infoBar = ScilabTextBox.createTextBox();
 
@@ -326,7 +328,7 @@ public final class SwingView implements GraphicView {
             tab.setMenuBar(menuBar);
             tab.setToolBar(toolBar);
             tab.setInfoBar(infoBar);
-            window.addMenuBar(menuBar);
+            window.addMenuBar(ScilabMenuBar.createMenuBar());
             window.addToolBar(toolBar);
             window.addInfoBar(infoBar);
 
@@ -421,6 +423,8 @@ public final class SwingView implements GraphicView {
      * @param id the uimenu id
      */
     private void setMenuDefaultProperties(Widget uiMenuObject, String id) {
+        SwingViewMenu.update(uiMenuObject, __GO_CHILDREN__,
+                (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACK__,
                 (String) GraphicController.getController().getProperty(id, __GO_CALLBACK__));
         SwingViewMenu.update(uiMenuObject, __GO_CALLBACKTYPE__,
@@ -555,6 +559,40 @@ public final class SwingView implements GraphicView {
             }
         }
 
+        /*
+         * When the SEPARATOR property is updated for a UIMENU,
+         * When the property is set to TRUE: A separator is added if not already done
+         * When the property is set to FALSE: The previous separator is removed if it exists
+         */
+        if (registeredObject != null && property.equals(__GO_UI_SEPARATOR__)) {
+            String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+            if (type.equals(__GO_UIMENU__)) {
+                String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+                int menuPosition = -1;
+                Component[] allChildren =  ((SwingScilabMenu) allObjects.get(parentId).getValue()).getMenuComponents();
+                for (int kChild = 0; kChild < allChildren.length; kChild++) {
+                    if (allChildren[kChild] == (Component) allObjects.get(id).getValue()) {
+                        menuPosition = kChild;
+                        break;
+                    }
+                }
+                if (menuPosition < 0) {
+                    return;
+                }
+                boolean newSeparatorMode = (Boolean) GraphicController.getController().getProperty(id, __GO_UI_SEPARATOR__);
+                if (newSeparatorMode) { // Add a separator above the menu
+                    ((SwingScilabMenu) allObjects.get(parentId).getValue()).insertSeparator(menuPosition);
+                } else { // Remove the separator above the menu (if there is one)
+                    if (menuPosition == 0) { // There is no object above the menu
+                        return;
+                    }
+                    if (((SwingScilabMenu) allObjects.get(parentId).getValue()).getComponent(menuPosition - 1) instanceof JSeparator) {
+                        ((SwingScilabMenu) allObjects.get(parentId).getValue()).remove(menuPosition - 1);
+                    }
+                }
+            }
+        }
+
         if (registeredObject != null) {
             SwingViewObject swingObject = registeredObject.getValue();
             if (swingObject != null) {
@@ -659,10 +697,10 @@ public final class SwingView implements GraphicView {
                     case UiChildMenu:
                     case UiCheckedMenu:
                         allObjects.put(childId, CreateObjectFromType(__GO_UIPARENTMENU__, childId));
-                        ((Container) ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
+                        ((Container) ((SwingScilabTab) allObjects.get(id).getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                         break;
                     default: /* UiParentMenu */
-                        ((Container) ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
+                        ((Container) ((SwingScilabTab) allObjects.get(id).getValue()).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                         break;
                     }
                     needRevalidate = true;
@@ -681,7 +719,7 @@ public final class SwingView implements GraphicView {
                 String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 if (childType.equals(__GO_UIMENU__)) {
-                    ((Container) ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
+                    ((Container) ((SwingScilabTab) allObjects.get(id).getValue()).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
             }

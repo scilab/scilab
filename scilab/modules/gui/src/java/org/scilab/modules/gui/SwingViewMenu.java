@@ -14,15 +14,20 @@ package org.scilab.modules.gui;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ACCELERATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 
 import java.awt.Color;
 
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -66,7 +71,60 @@ public final class SwingViewMenu {
                     (int) (allColors[1] * COLORS_COEFF),
                     (int) (allColors[2] * COLORS_COEFF)));
         } else if (property.equals(__GO_UI_LABEL__)) {
-            uimenu.setText((String) value);
+            String newText = (String) value;
+            String label = newText;
+
+            // Try to set a mnemonic according to text (character preeceded by a &)
+            for (int charIndex = 0; charIndex < newText.length(); charIndex++) {
+                if (newText.charAt(charIndex) == '&') {
+
+                    boolean canBeAMnemonic = true;
+
+                    // Previous char must not be a &
+                    if ((charIndex != 0) && (newText.charAt(charIndex - 1) == '&')) {
+                        canBeAMnemonic = false;
+                    }
+
+                    if (canBeAMnemonic && newText.charAt(charIndex + 1) != '&') {
+                        // A mnemonic
+                        if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                            ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                        } else if (uimenu instanceof SwingScilabMenuItem) {
+                            ((SwingScilabMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                        } else if (uimenu instanceof SwingScilabMenu) {
+                            ((SwingScilabMenu) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                        }
+
+                        // Have to remove the & used to set a Mnemonic
+                        String firstPart = newText.substring(0, Math.max(charIndex, 0)); // Before &
+                        String secondPart = newText.substring(Math.min(charIndex + 1, newText.length()), newText.length()); // After &
+                        label = firstPart + secondPart;
+                        break;
+                    }
+
+                }
+            }
+
+            // Set the text after relacing all && (display a & in the label) by &
+            uimenu.setText(label.replaceAll("&&", "&"));
+        } else if (property.equals(__GO_UI_MNEMONIC__)) {
+            String mnemonic = (String) value;
+            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
+            } else if (uimenu instanceof SwingScilabMenuItem) {
+                ((SwingScilabMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
+            } else if (uimenu instanceof SwingScilabMenu) {
+                ((SwingScilabMenu) uimenu).setMnemonic(mnemonic.charAt(0));
+            }
+        } else if (property.equals(__GO_UI_ACCELERATOR__)) {
+            String accelerator = (String) value;
+            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                ((SwingScilabCheckBoxMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+            } else if (uimenu instanceof SwingScilabMenuItem) {
+                ((SwingScilabMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+            } else if (uimenu instanceof SwingScilabMenu) {
+                ((SwingScilabMenu) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+            }
         }
     }
 }
