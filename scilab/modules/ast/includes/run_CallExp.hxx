@@ -163,15 +163,43 @@ void visitprivate(const CallExp &e)
         }
         
         //clear input parameters
+        int* piInOutVar = new int[e.args_get().size()];
         for(unsigned int k = 0; k < e.args_get().size(); k++)		
         {		
+            piInOutVar[k] = -1;
             if(execVar[k].result_get() != NULL)		
-            {		
-                execVar[k].result_get()->DecreaseRef();		
+            {
+                //check if input data are use as output data
+                bool bFind = false;
+                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                {
+                    if(out[i] == execVar[k].result_get())
+                    {
+                        bFind = true;
+                        piInOutVar[k] = i;
+                        break;
+                    }
+                }
+
+                if(bFind == false)
+                {
+                    execVar[k].result_get()->DecreaseRef();
+                }
             }		
         }		
         
         delete[] execVar;
+
+        //descrease ref on input and output variables
+        for(int i = 0 ; i < e.args_get().size() ; i++)
+        {
+            if(piInOutVar[i] != -1)
+            {
+                out[piInOutVar[i]]->DecreaseRef();
+            }
+        }
+        delete[] piInOutVar;
+
     }
     else if(execFunc.result_get() != NULL)
     {//a(xxx) with a variable, extraction

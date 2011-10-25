@@ -227,6 +227,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\mgetl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\addfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -236,7 +239,16 @@
     <ClInclude Include="includes\createdirectory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\createtempfilename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\deleteafile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\delfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\do_xxscanf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dynlib_fileio.h">
@@ -248,6 +260,9 @@
     <ClInclude Include="includes\FileExist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\filemanager.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\filesmanagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -255,6 +270,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\findfiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\fullpath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\getfiledesc.h">
@@ -267,6 +285,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\getFullFilename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\getshortpathname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\gw_fileio.h">
@@ -296,7 +317,19 @@
     <ClInclude Include="includes\mtell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\newest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\os_wfopen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\readline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\removedir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\scanf_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\scicurdir.h">
@@ -308,79 +341,55 @@
     <ClInclude Include="includes\URIFileToFilename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\mgetl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\createtempfilename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\basename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\copyfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\do_xxscanf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fileinfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fprintfMat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fscanfMat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fullpath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\getdrives.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\getlongpathname.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\getrelativefilename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\isDrive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mclearerr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\meof.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\merror.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mgeti.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mgetstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\movefile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputstr.h">
+    <ClInclude Include="src\c\Status2Mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\pathconvert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\scanf_functions.h">
+    <ClInclude Include="src\c\mputi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\Status2Mode.h">
+    <ClInclude Include="src\c\movefile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\mgeti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\isDrive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getrelativefilename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getlongpathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getdrives.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\fscanfMat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\fprintfMat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\fileinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\copyfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\basename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\mgetstr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\mputl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\scilab_sscanf.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
