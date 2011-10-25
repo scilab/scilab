@@ -1289,6 +1289,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
                                     XcosConstants.EVENT_BLOCK_UPDATED,
                                     currentBlock));
                         } catch (ScicosFormatException e1) {
+                            System.err.println(e1.getMessage());
                             LOG.error(e1);
                         } finally {
                             graph.getModel().endUpdate();
