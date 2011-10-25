@@ -1,17 +1,39 @@
+
+
 A faire:
-* trouver comment envoyer le irows & icols dedans
-=> A priori, serialiser le flux binaire avec la structure et la restaurer
-* factoriser a d'autres types
 * ecrire d'autres tests
 * gestion du tag dans le send et le recv
-* region des irecv/isend
-* problement de l'ordonencement des outputs
-* pb dans la serialisation des doubles ?
+=> a mettre à jour. c'est hardcodé dans un des deux
+* gestion des irecv/isend
+* gestion des gather
+* MPI barrier
+* test unitaire de bcast
+* cable les redure
+* porter l'exemple pi.cc
+//   x = mpiallreduce(y,operation,comm)
 
-a=rand(100,100);
-myFile=TMPDIR+"/test"
-MPI_serialize(myFile,a);
-a2=MPI_unserialize(myFile);
+
+voir MPICOMMSPAWN
+MPIINTERCOMMMERGE
+
+freemat a
+  context->addFunction("mpisend",MPISend,4,0,"array","dest","tag","communicator");
+  context->addFunction("mpirecv",MPIRecv,3,3,"source","tag","communicator");
+  context->addFunction("mpibcast",MPIBcast,3,1,"array","root","communicator");
+  context->addFunction("mpibarrier",MPIBarrier,1,0,"communicator");
+  context->addFunction("mpicommrank",MPICommRank,1,1,"communicator");
+  context->addFunction("mpicommsize",MPICommSize,1,1,"communicator");
+  context->addFunction("mpireduce",MPIReduce,4,1,"y","operation","root","comm");
+  context->addFunction("mpiallreduce",MPIAllReduce,3,1,"y","operation","root");
+  context->addFunction("mpiinitialized",MPIInitialized,0,1);
+  context->addFunction("mpiinit",MPIInit,0,0);
+  context->addFunction("mpifinalize",MPIFinalize,0,0);
+  context->addFunction("mpicommgetparent",MPICommGetParent,0,1);
+  context->addFunction("mpicommspawn",MPICommSpawn,5,2,
+		       "command","args","maxprocs","root","comm");
+  context->addFunction("mpiintercommmerge",MPIIntercommMerge,2,1,"intercomm","highflag");
+}
+
 
 
 Mandatory functions :

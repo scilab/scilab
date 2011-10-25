@@ -10,6 +10,8 @@
  *
  */
 #include <stdio.h>
+#include "api_scilab.h"
+#include "stack-c.h"
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 
@@ -18,30 +20,35 @@
  * This function init the mpi env
  */
 MPI_Errhandler errhdl;
+
 /* should be moved elsewhere */
-void MPIErrHandler(MPI_Comm *comm, int *errorcode, ...) {
-  char buffer[4096];
-  int resultlen;
-  MPI_Error_string(*errorcode,buffer,&resultlen);
-  buffer[resultlen] = 0;
-  printf("Erreur mpi : %s\n",buffer);
+void MPIErrHandler(MPI_Comm * comm, int *errorcode, ...)
+{
+    char buffer[4096];
+    int resultlen;
+
+    MPI_Error_string(*errorcode, buffer, &resultlen);
+    buffer[resultlen] = 0;
+    printf("Erreur mpi : %s\n", buffer);
 }
 
-int sci_mpi_init (char *fname,unsigned long fname_len)
+int sci_mpi_init(char *fname, unsigned long fname_len)
 {
-	int flag;
-	CheckRhs(0,0);
-	CheckLhs(1,1);
+    int flag;
 
-	MPI_Initialized(&flag);
-	if (!flag) {
-		/* MPI Not yet initialized */
-		MPI_Init(NULL,NULL);
-		MPI_Comm_create_errhandler(MPIErrHandler,&errhdl);
+    CheckRhs(0, 0);
+    CheckLhs(1, 1);
 
-		printf("MPI_INIT : init done\n");
-	}
-	LhsVar(1)= 0;
-	C2F(putlhsvar)();
-	return 0;
+    MPI_Initialized(&flag);
+    if (!flag)
+    {
+        /* MPI Not yet initialized */
+        MPI_Init(NULL, NULL);
+        MPI_Comm_create_errhandler(MPIErrHandler, &errhdl);
+
+        printf("MPI_INIT : init done\n");
+    }
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }

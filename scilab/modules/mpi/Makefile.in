@@ -122,7 +122,9 @@ am__objects_1 = libscimpi_la-sci_mpi_init.lo \
 	libscimpi_la-sci_mpi_finalize.lo \
 	libscimpi_la-sci_mpi_comm_size.lo \
 	libscimpi_la-sci_mpi_comm_rank.lo libscimpi_la-gw_mpi.lo \
-	libscimpi_la-sci_mpi_recv.lo libscimpi_la-sci_mpi_send.lo
+	libscimpi_la-sci_mpi_recv.lo libscimpi_la-sci_mpi_send.lo \
+	libscimpi_la-sci_mpi_bcast.lo \
+	libscimpi_la-sci_mpi_get_processor_name.lo
 am__objects_2 = libscimpi_la-serialization.lo \
 	libscimpi_la-deserialization.lo
 am_libscimpi_la_OBJECTS = $(am__objects_1) $(am__objects_2)
@@ -418,7 +420,9 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_comm_rank.c \
     sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
-    sci_gateway/c/sci_mpi_send.c
+    sci_gateway/c/sci_mpi_send.c \
+    sci_gateway/c/sci_mpi_bcast.c \
+    sci_gateway/c/sci_mpi_get_processor_name.c
 
 libscimpi_la_CFLAGS = -Iincludes/ \
 	-Isrc/c/ \
@@ -599,9 +603,11 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-deserialization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-gw_mpi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_finalize.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_init.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_send.Plo@am__quote@
@@ -676,6 +682,20 @@ libscimpi_la-sci_mpi_send.lo: sci_gateway/c/sci_mpi_send.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_send.c' object='libscimpi_la-sci_mpi_send.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
+
+libscimpi_la-sci_mpi_bcast.lo: sci_gateway/c/sci_mpi_bcast.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_bcast.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo -c -o libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_bcast.c' object='libscimpi_la-sci_mpi_bcast.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_bcast.lo `test -f 'sci_gateway/c/sci_mpi_bcast.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_bcast.c
+
+libscimpi_la-sci_mpi_get_processor_name.lo: sci_gateway/c/sci_mpi_get_processor_name.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_get_processor_name.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo -c -o libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_get_processor_name.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_get_processor_name.c' object='libscimpi_la-sci_mpi_get_processor_name.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_get_processor_name.lo `test -f 'sci_gateway/c/sci_mpi_get_processor_name.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_get_processor_name.c
 
 libscimpi_la-serialization.lo: src/c/serialization.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-serialization.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-serialization.Tpo -c -o libscimpi_la-serialization.lo `test -f 'src/c/serialization.c' || echo '$(srcdir)/'`src/c/serialization.c

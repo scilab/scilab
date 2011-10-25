@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi_technical" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>MPI implementation</refname>
+    <refpurpose>Technical details about the implementation</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The main problem of a MPI implementation from a scripting language is due to their native characterics. Indeed, scripting language are, by nature, using dynamic variables of various <literal>types</literal> and sizes.</para>
+    <para>The implementation of MPI in Scilab is using an internal serialization and deserialization process to the MPI datatype MPI_INT. The send functions (MPI_Send, MPI_ISend, MPI_BCast, etc) will convert all the supported datatypes to MPI_INT while receiving functions (MPI_Recv, MPI_IRecv, etc) will <literal>restore</literal> the original variables.</para>
+    <para>Like their memory representation in the 5 family, variables are serialized in the following way:</para>
+    <para>
+    Double, Boolean, String(?)
+        <informaltable border="1"><tr><td><para>Type</para></td><td><para>Number of rows</para></td><td><para>Number of columns</para></td><td><para>Complex (if relevant)</para></td><td><para>Data</para></td></tr></informaltable>
+  </para>
+    <para>Integer
+        <informaltable border="1"><tr><td><para>Type</para></td><td><para>Number of rows</para></td><td><para>Number of columns</para></td><td><para>Precision</para></td><td><para>Data</para></td></tr></informaltable>
+  <para>
+  </para>
+        Sparse (double or boolean)
+        <informaltable border="1"><tr><td><para>Type</para></td><td><para>Number of rows</para></td><td><para>Number of columns</para></td><td><para>Complex</para></td><td><para>Number of items</para></td><td><para>Data</para></td></tr></informaltable>
+    </para>
+    <para>Other potential solutions have been considered but rejected for various reasons:
+    <simplelist type="inline"><member><literal>MPI based new datatype</literal> Needs to know <literal>a priori</literal> the size of the variable.</member><member><literal>One send for the metadata (size, type), one send for the data</literal> While decreasing the performances, the code would be strongly complexified.</member></simplelist>
+  </para>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mpi">MPI overview</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
