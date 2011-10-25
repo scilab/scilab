@@ -38,6 +38,10 @@
 #include "FigureList.h"
 #include "deleteGraphicObject.h"
 #include "CurrentObject.h"
+
+#include "AxesModel.h"
+#include "FigureModel.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
@@ -120,6 +124,12 @@ int sci_delete(char *fname,unsigned long fname_len)
         if (pobjUID == NULL)
         {
             Scierror(999,_("%s: The handle is not valid.\n"),fname);
+            return 0;
+        }
+
+        if (isFigureModel(pobjUID) || isAxesModel(pobjUID))
+        {
+            Scierror(999,_("This object cannot be deleted.\n"));
             return 0;
         }
 
