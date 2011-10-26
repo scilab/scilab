@@ -206,6 +206,8 @@ File input/output:
 
 * bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
+* bug 10055 fixed - findfiles had a wrong default filter under GNU/Linux
+                    & Mac OS X 
 
 New functions
 =============
