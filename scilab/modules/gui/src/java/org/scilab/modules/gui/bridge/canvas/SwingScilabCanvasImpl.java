@@ -89,7 +89,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	    if (noGLJPanel) {
 		/** Inform the users */
-		InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"));
+            InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
 	    }
 
         }
@@ -165,13 +165,13 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	        if (noGLJPanel) {
                     /** Inform the users */
-                    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"));
+                    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
 	        }
 	    }
 	    catch (GLException e) {
 	        noGLJPanel = true;
 	        /** Inform the users */
-	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")"));
+	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
 	    }
         catch (HeadlessException e) {
             // do not print anything on a CLI only environment
