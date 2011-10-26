@@ -149,10 +149,16 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         pal_block_img = fullpath(pathconvert(pal_block_img, %f));
     end
 
+    
+
     // now handle style argument
     if ~exists("style", 'l') | isempty(style) then
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
+        // protect drive letter
+        if getos() == "Windows" then
+            block_img = "/" + block_img;
+        end
         style = "noLabel=1;image=file://" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg", withPort=%f);
         if ~status then
@@ -177,6 +183,10 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             style = formattedStyle;
         elseif typeof(style) == "string" then
             if isfile(style) then
+                // protect drive letter
+                if getos() == "Windows" then
+                    style = "/" + style;
+                end
                 style = "shape=label;image=file://" + style + ";";
 //          else
 //              assume a well formatted string, do nothing
