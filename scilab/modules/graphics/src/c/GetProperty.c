@@ -2817,20 +2817,20 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 }
 
 /*-----------------------------------------------------------------------------------*/
-BOOL sciGetLegendDefined( sciPointObj * pObj )
+BOOL sciGetLegendDefined(char * pObjUID)
 {
     char* xLabelId;
     char* yLabelId;
     char* zLabelId;
 
-    if (pObj == NULL)
+    if (pObjUID == NULL)
     {
         return FALSE;
     }
 
-    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &xLabelId);
-    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &yLabelId);
-    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &zLabelId);
+    getGraphicObjectProperty(pObjUID, __GO_X_AXIS_LABEL__, jni_string, &xLabelId);
+    getGraphicObjectProperty(pObjUID, __GO_Y_AXIS_LABEL__, jni_string, &yLabelId);
+    getGraphicObjectProperty(pObjUID, __GO_Z_AXIS_LABEL__, jni_string, &zLabelId);
 
     /* get the text size of labels */
     if (sciisTextEmpty(xLabelId) &&

@@ -148,9 +148,9 @@ GRAPHICS_IMPEXP BOOL sciGetIs3d( sciPointObj * pObj ) ;
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
- * @param pObj the subwindow.
+ * @param pObjUID the subwindow's identifier.
  */
-GRAPHICS_IMPEXP BOOL sciGetLegendDefined( sciPointObj * pObj ) ;
+GRAPHICS_IMPEXP BOOL sciGetLegendDefined(char * pObjUID);
 
 GRAPHICS_IMPEXP BOOL sciGetAutoSize( sciPointObj * pObj ) ;
 GRAPHICS_IMPEXP sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;

@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - INRIA - Pierre Lando
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -233,59 +234,55 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend )
 }
 /*--------------------------------------------------------------------------*/
 /**
- * retrieve the labels from the command line  and store them into Legend
+ * retrieve the labels from the command line and store them into labels
  */
-int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
+int get_labels_arg(char *fname, int pos, rhs_opts opts[], char ** labels)
 {
-  int m,n,l,first_opt=FirstOpt(),kopt;
+    int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt)
-  {
-    if (VarType(pos)) {
-      GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
-      *labels = cstk(l);
+    if (pos < first_opt)
+    {
+        if (VarType(pos))
+        {
+            GetRhsVar(pos,STRING_DATATYPE, &m, &n, &l);
+            *labels = cstk(l);
+        }
+        else
+        {
+            /* jb silvy 03/2006 */
+            /* do not change the legend if one already exists */
+            char * pSubWinUID = getOrCreateDefaultSubwin();
+            if (sciGetLegendDefined(pSubWinUID))
+            {
+                *labels = NULL;
+            }
+            else
+            {
+                *labels = getDefLegend();
+            }
+        }
+    }
+    else if ((kopt=FindOpt("leg",opts)))
+    {
+        GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
+        *labels = cstk(l);
     }
     else
     {
+        /* jb silvy 03/2006 */
+        /* do not change the legend if one already exists */
+        char* pSubWinUID = getOrCreateDefaultSubwin();
 
-      /* jb silvy 03/2006 */
-      /* do not change the legend if one already exists */
-#if 0
-     sciPointObj * pSubWin = sciGetCurrentSubWin() ;
-      if ( sciGetLegendDefined( pSubWin ) )
-      {
-        *labels = NULL ;
-      }
-      else
-      {
-        *labels = getDefLegend() ;
-      }
-#endif
+        if (sciGetLegendDefined(pSubWinUID))
+        {
+            *labels = NULL;
+        }
+        else
+        {
+            *labels = getDefLegend();
+        }
     }
-  }
-  else if ((kopt=FindOpt("leg",opts)))
-  {
-    GetRhsVar(kopt,STRING_DATATYPE, &m, &n, &l);
-    *labels = cstk(l);
-  }
-  else
-  {
-
-    /* jb silvy 03/2006 */
-    /* do not change the legend if one already exists */
-#if 0
-    sciPointObj * pSubWin = sciGetCurrentSubWin() ;
-    if ( sciGetLegendDefined( pSubWin ) )
-    {
-      *labels = NULL ;
-    }
-    else
-    {
-      *labels = getDefLegend() ;
-    }
-#endif
-  }
-  return 1;
+    return 1;
 }
 
 /*--------------------------------------------------------------------------*/
