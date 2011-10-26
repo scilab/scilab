@@ -132,8 +132,6 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
     }
 
     /**
-<<<<<<< HEAD
-=======
      * Validate the path URI.
      * 
      * @param url
@@ -166,7 +164,6 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
     }
 
     /**
->>>>>>> 55f54ae... Xcos: validate the image URI.
      * Validate the current data.
      * 
      * This method doesn't pass the metrics because it perform many test.
