@@ -611,6 +611,8 @@ Bug fixes:
 * bug 4847 fixed - In uigetfile, there was no way to select files with a given
                    pattern.
 
+* bug 5491 fixed - Clearly states that haveacompiler() only works under Windows.
+
 * bug 5696 fixed - When SE Linux is enable, disable the error messages for
                    Scilab in the Scilab binary distribution.
 
