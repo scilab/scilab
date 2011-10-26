@@ -657,6 +657,9 @@ Bug fixes:
 
 * bug 8963 fixed - mtlb_mode test failed on Windows.
 
+* bug 8797 fixed - Update of the help pages of getdate('s') to detail that
+                   the value returned contains the leap seconds.
+
 * bug 9045 fixed - plot2d did not support overloading.
 
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
