@@ -10,33 +10,22 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlReadStr" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlReadStr" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>xmlReadStr</refname>
     <refpurpose>Read a XML tree from a string</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       doc = xmlReadStr(string [, validateDTD])
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>string</term>
@@ -44,14 +33,12 @@
           <para>a string, containing XML code.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>validateDTD</term>
         <listitem>
           <para>a boolean to indicate if the document must be validated.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>doc</term>
         <listitem>
@@ -60,16 +47,12 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Read and parse a XML string. The returned document allows to access to the DOM tree which is kept in memory.</para>
     <para>If validateDTD is set to true, the document will be validated or not during the parsing operation.</para>
-
     <para>It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlClose">xmlClose</link>.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -90,7 +73,6 @@
     xmlClose(doc);
     ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -111,9 +93,17 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Author</title>
     <para>Calixte DENIZET</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>
