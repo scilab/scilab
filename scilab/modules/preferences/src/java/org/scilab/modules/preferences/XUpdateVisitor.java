@@ -110,8 +110,18 @@ public class XUpdateVisitor {
                     }
                     visibleIndex++;
                 } */
-                if (visibleIndex < view.getComponentCount()) {
-                    component = view.getComponent(visibleIndex);
+                int count;
+                if (view instanceof Scroll) {
+                    count = ((Scroll) view).getXComponentCount();
+                } else {
+                    count = view.getComponentCount();
+                }
+                if (visibleIndex < count) {
+                    if (view instanceof Scroll) {
+                        component = ((Scroll) view).getXComponent(visibleIndex);
+                    } else {
+                        component = view.getComponent(visibleIndex);
+                    }
                     sentinel  = (XSentinel) correspondance.get(component);
                     if (sentinel == null || !sentinel.checks(item)) {
                         forget(view, component);
@@ -147,13 +157,10 @@ public class XUpdateVisitor {
                 forget(view, component);
                 continue;
             }
-/*            if ((component instanceof Box) && !(view instanceof XComponent)) {
-                forget(view, component);
-                continue;
-            }
-*/            // hidden swing node (Scroll, Table, Select, ...)
+//C            System.out.println("hidden swing node:" + component);
             visibleIndex++;
         }
+
         // Sentinel sets watch.
         sentinel  = (XSentinel) correspondance.get(view);
         if (sentinel == null) {

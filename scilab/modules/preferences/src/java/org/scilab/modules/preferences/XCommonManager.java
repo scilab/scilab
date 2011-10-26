@@ -131,6 +131,7 @@ public abstract class XCommonManager {
        visitor = new XUpdateVisitor(correspondance);
        visitor.visit(topSwing, topDOM, "\t");
        printTimeStamp("SWING refreshed");
+       setDimension(dialog, topDOM);
        dialog.pack();
        printTimeStamp("Packing done");
        /*
@@ -528,7 +529,10 @@ public abstract class XCommonManager {
             final int value
             ) {
         String response = getAttribute(node, name);
-        if (response == NAV) {
+        if (response.equals(NAV)) {
+            return value;
+        }
+        if (response.equals("")) {
             return value;
         }
         Integer integer = Integer.parseInt(response);
@@ -582,7 +586,7 @@ public abstract class XCommonManager {
      * @param peer : the node having the dimension information.
      */
     public static void setDimension(
-            final JComponent component,
+            final Component component,
             final Node peer) {
         int      height     = XConfigManager.getInt(peer , "height", 0);
         int       width     = XConfigManager.getInt(peer , "width",  0);

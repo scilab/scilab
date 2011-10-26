@@ -70,16 +70,11 @@ public class Scroll extends JScrollPane implements XComponent {
     * @param constraints : associated view DOM node.
      */
     public final void add(final Component component, final Object constraints) {
-        if (component instanceof javax.swing.JViewport) {
-            super.add(component, constraints);
+        if (component instanceof XComponent) {
+            insideContainer.add(component, constraints);
             return;
         }
-        if (component instanceof javax.swing.JScrollBar) {
-            super.add(component, constraints);
-            return;
-        }
-        //System.err.println("Scrollpane add (1): " + component + " -> " + insideContainer.getComponentCount());
-        insideContainer.add(component, constraints);
+        super.add(component, constraints);
     }
 
     /** Add to container except for system adds.
@@ -92,8 +87,11 @@ public class Scroll extends JScrollPane implements XComponent {
             final Component component,
             final Object constraints,
             final int index) {
-        //System.err.println("Scrollpane add (2): " + component + " -> " + insideContainer.getComponentCount());
-        insideContainer.add(component, constraints, index);
+        if (component instanceof XComponent) {
+            insideContainer.add(component, constraints, index);
+            return;
+        }
+        super.add(component, constraints, index);
     }
 
     /** Remove from container.
@@ -108,7 +106,7 @@ public class Scroll extends JScrollPane implements XComponent {
      *
      * @return container component count
      */
-    public final int getComponentCount() {
+    public final int getXComponentCount() {
         return insideContainer.getComponentCount();
     }
 
@@ -117,7 +115,7 @@ public class Scroll extends JScrollPane implements XComponent {
      * @param index : order number in layout.
      * @return indexed component
      */
-    public final Component getComponent(final int index) {
+    public final Component getXComponent(final int index) {
         return insideContainer.getComponent(index);
     }
 

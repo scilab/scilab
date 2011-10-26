@@ -123,6 +123,8 @@ public class Label extends JLabel implements XComponent {
             setHorizontalAlignment(SwingConstants.RIGHT);
         }
 
+        setRequestFocusEnabled(true);
+        setFocusable(true);
     }
 
     /** Sensor for 'text' attribute.

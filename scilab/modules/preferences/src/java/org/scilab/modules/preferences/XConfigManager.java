@@ -16,8 +16,12 @@ package org.scilab.modules.preferences;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import java.io.File;
 import java.util.HashMap;
@@ -83,7 +87,6 @@ public final class XConfigManager extends XCommonManager {
         // Set up Swing Side
         dialog      = new JDialog(getTopLevel(), "Scilab Preferences", true);
         topSwing    = dialog.getContentPane();
-	//dialog.setResizable(false);
 
         //dialog = new SwingScilabTab("Scilab Preferences");
         //topSwing = new JPanel();
@@ -95,6 +98,23 @@ public final class XConfigManager extends XCommonManager {
         readUserDocuments();
         updated = false;
         printTimeStamp("Model XML loaded");
+
+        // Plug in resize
+        //dialog.setResizable(false);
+        dialog.addComponentListener(new ComponentAdapter(){
+            public void componentResized(ComponentEvent e) {
+                Element element = (Element) document.getDocumentElement();
+                Dimension dimension = dialog.getSize();
+                int      height     = XConfigManager.getInt(element , "height", 0);
+                int       width     = XConfigManager.getInt(element , "width",  0);
+                if (Math.abs(height * 1.0 - dimension.getHeight()) > 0.1 
+                 && Math.abs( width * 1.0 - dimension.getWidth())  > 0.1 ) {
+                    element.setAttribute("height", "" + (int) dimension.getHeight());
+                    element.setAttribute("width" , "" + (int) dimension.getWidth());
+                 // System.err.println("RESIZE: " + dimension);
+                }
+            }
+        });
 
         // Set up correspondence
         correspondance = new Hashtable<Component, XSentinel>();
@@ -120,27 +140,6 @@ public final class XConfigManager extends XCommonManager {
     /** Help component text size.*/
     private static final int TEXT_SIZE = 30;
 
-    /** Contextual help meant for developer so far.
-     *  @deprecated
-     *  TODO should display the View DOM and the Swing composite
-     *       on single scrolled pair of textarea to manifest correspondence
-     *
-     *  TODO build proper user contextual help.
-     *
-     */
-    public static void help() {
-        if (help == null) {
-            JScrollPane scroll = new JScrollPane();
-            help               = new JDialog(getTopLevel(), "XML view", false);
-            xml                = new JTextArea(TEXT_SIZE, TEXT_SIZE);
-            scroll.add(xml);
-            help.add(scroll);
-            help.setVisible(true);
-        }
-        String  view       = viewDOM();
-        xml.setText(view);
-    }
-
     /** Read files to modify (and possibly create it).
      */
     private static void readUserDocuments() {
@@ -156,12 +155,19 @@ public final class XConfigManager extends XCommonManager {
         // Toolboxes files
         Element toolbox          = (Element) toolboxes.item(0);
         toolboxes                = toolbox.getChildNodes();
+        
         if (toolboxes.getLength()>0) {
             System.err.println("Recover from inconsistent state...");
             while (toolbox.hasChildNodes()) {
                 toolbox.removeChild(toolbox.getFirstChild());
             }
         }
+        
+        // Body (rendered as XConfiguration.xsl example)
+        Element body             = document.createElement("body");
+        Element toolboxInfo      = document.createElement("toolbox-info");
+        body.appendChild(toolboxInfo);
+        toolbox.appendChild(body);
         
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
         System.out.println(""+infos.size()+ " toolboxes loaded.");
@@ -184,7 +190,7 @@ public final class XConfigManager extends XCommonManager {
         }
 
         toolboxes                = toolbox.getChildNodes();
-        if (infos.size() != toolboxes.getLength()) {
+        if (infos.size() + 1 != toolboxes.getLength()) {
             System.err.println("Can't hook toolboxes [4]");
             return;
         }
@@ -195,6 +201,7 @@ public final class XConfigManager extends XCommonManager {
         // Toolboxes files
         NodeList toolboxes       = document.getElementsByTagName("toolboxes");
         Element toolbox          = (Element) toolboxes.item(0);
+        toolbox.removeChild(toolbox.getFirstChild()); // body
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
         toolboxes                = toolbox.getChildNodes();
         if (infos.size() != toolboxes.getLength()) {

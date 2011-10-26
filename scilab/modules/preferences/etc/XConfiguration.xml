@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<interface path="1/">
+<interface path="1/" width="700" height="500">
   <general>
     <body maturity="B">
       <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
