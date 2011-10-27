@@ -376,6 +376,11 @@ Sparse matrices:
 
 * Created an help page and unit test for ordmmd.
 
+Sparse Matrices:
+==============
+
+* Organized help pages into sub-sections.
+
 Documentation:
 ==============
 
