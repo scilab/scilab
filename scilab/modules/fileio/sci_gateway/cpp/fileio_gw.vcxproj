@@ -175,9 +175,6 @@
     <ClCompile Include="..\c\sci_fprintfMat.c" />
     <ClCompile Include="..\c\sci_fscanfMat.c" />
     <ClCompile Include="..\c\sci_fullpath.c" />
-    <ClCompile Include="..\c\sci_getlongpathname.c" />
-    <ClCompile Include="..\c\sci_getrelativefilename.c" />
-    <ClCompile Include="..\c\sci_get_absolute_file_path.c" />
     <ClCompile Include="..\c\sci_maxfiles.c" />
     <ClCompile Include="..\c\sci_movefile.c" />
     <ClCompile Include="..\c\sci_newest.c" />

@@ -147,15 +147,6 @@
     <ClCompile Include="..\c\sci_fullpath.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_get_absolute_file_path.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\c\sci_getlongpathname.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\c\sci_getrelativefilename.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\sci_maxfiles.c">
       <Filter>Source Files</Filter>
     </ClCompile>

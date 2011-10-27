@@ -25,7 +25,7 @@
 * on Linux returns same path name
 * used for Windows
 */
-char *getlongpathname(char *shortpathname,BOOL *convertok);
+FILEIO_IMPEXP char *getlongpathname(char *shortpathname,BOOL *convertok);
 
 /**
 * Retrieves the long path form of the specified path (wide string)

@@ -52,8 +52,8 @@ Source: contrib\loader.sce; DestDir: {app}\contrib; Components: {#COMPN_SCILAB}
 ;
 ; locale directory
 ; DISABLED on dev version
-;Source: locale\en_US\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\en_US\LC_MESSAGES; Components: {#COMPN_SCILAB}
-;Source: locale\fr_FR\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\fr_FR\LC_MESSAGES; Components: {#COMPN_SCILAB}
+Source: locale\en_US\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\en_US\LC_MESSAGES; Components: {#COMPN_SCILAB}
+Source: locale\fr_FR\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\fr_FR\LC_MESSAGES; Components: {#COMPN_SCILAB}
 ;Source: locale\zh_TW\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\zh_TW\LC_MESSAGES; Components: {#COMPN_SCILAB}
 ;Source: locale\zh_CN\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\zh_CN\LC_MESSAGES; Components: {#COMPN_SCILAB}
 ;Source: locale\ru_RU\LC_MESSAGES\scilab.mo ; DestDir: {app}\locale\ru_RU\LC_MESSAGES; Components: {#COMPN_SCILAB}

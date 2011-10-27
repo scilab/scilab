@@ -40,7 +40,6 @@
     <module name="action_binding" activate="yes"/>
     <module name="mexlib" activate="yes"/>
     <module name="history_manager" activate="yes"/>
-    <module name="parse" activate="yes"/>
     <module name="console" activate="yes"/>
     <module name="modules_manager" activate="yes"/>
     <module name="signal_processing" activate="yes"/>

@@ -29,7 +29,7 @@ Source: modules\{#STATISTICS}\sci_gateway\{#STATISTICS}_gateway.xml; DestDir: {a
 Source: modules\{#STATISTICS}\etc\{#STATISTICS}.quit; DestDir: {app}\modules\{#STATISTICS}\etc; Components: {#COMPN_STATS}
 Source: modules\{#STATISTICS}\etc\{#STATISTICS}.start; DestDir: {app}\modules\{#STATISTICS}\etc; Components: {#COMPN_STATS}
 ;
-;Source: modules\{#STATISTICS}\macros\lib; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
+Source: modules\{#STATISTICS}\macros\lib; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATISTICS}\macros\*.sci; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATISTICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATISTICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_STATS}
