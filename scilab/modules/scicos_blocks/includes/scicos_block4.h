@@ -93,7 +93,9 @@ typedef enum
     Initialization = 4,
     Ending = 5,
     ReInitialization = 6,
+    ContinousPropertiesUpdate = 7,
     ZeroCrossing = 9,
+    Residute = 10
 } scicos_flag;
 
 /* utility function for block declaration */
