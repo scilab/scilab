@@ -37,6 +37,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -331,7 +332,11 @@ public class EditFormatAction extends DefaultAction {
         final mxGraphModel model = (mxGraphModel) graph.getModel();
 
         final mxCell cell = dialog.getCell();
-        final StyleMap cellStyle = new StyleMap(cell.getStyle());
+        final StyleMap cellStyle = new StyleMap("");
+        if (cell instanceof BasicBlock) {
+            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
+        }
+        cellStyle.putAll(cell.getStyle());
 
         final mxCell identifier;
         final StyleMap identifierStyle;
@@ -346,15 +351,21 @@ public class EditFormatAction extends DefaultAction {
         if (!borderColor.equals(DEFAULT_BORDERCOLOR)) {
             cellStyle.put(mxConstants.STYLE_STROKECOLOR,
                     mxUtils.hexString(borderColor));
+        } else {
+            cellStyle.remove(mxConstants.STYLE_STROKECOLOR);
         }
 
         if (!backgroundColor.equals(DEFAULT_FILLCOLOR)) {
             cellStyle.put(mxConstants.STYLE_FILLCOLOR,
                     mxUtils.hexString(backgroundColor));
+        } else {
+            cellStyle.remove(mxConstants.STYLE_FILLCOLOR);
         }
 
         if (!fontName.equals(mxConstants.DEFAULT_FONTFAMILY)) {
             identifierStyle.put(mxConstants.STYLE_FONTFAMILY, fontName);
+        } else {
+            identifierStyle.remove(mxConstants.STYLE_FONTFAMILY);
         }
 
         applyFontStyle(isBold, isItalic, identifierStyle);
@@ -362,11 +373,15 @@ public class EditFormatAction extends DefaultAction {
         if (fontSize != mxConstants.DEFAULT_FONTSIZE) {
             identifierStyle.put(mxConstants.STYLE_FONTSIZE,
                     Integer.toString(fontSize));
+        } else {
+            identifierStyle.remove(mxConstants.DEFAULT_FONTSIZE);
         }
 
         if (!textColor.equals(DEFAULT_BORDERCOLOR)) {
             identifierStyle.put(mxConstants.STYLE_FONTCOLOR,
                     mxUtils.hexString(textColor));
+        } else {
+            identifierStyle.remove(mxConstants.STYLE_FONTCOLOR);
         }
 
         applyImage(image, cellStyle);
@@ -389,6 +404,39 @@ public class EditFormatAction extends DefaultAction {
     }
 
     // CSON: NPathComplexity
+
+    /**
+     * Reset to the default values
+     * 
+     * @param dialog
+     *            the dialog to reset
+     */
+    private static void reset(EditFormatDialog dialog) {
+        final XcosDiagram graph = dialog.getGraph();
+        final mxGraphModel model = (mxGraphModel) graph.getModel();
+
+        final mxCell cell = dialog.getCell();
+        final StyleMap cellStyle = new StyleMap(cell.getStyle());
+
+        final mxCell identifier;
+        if (cell instanceof TextBlock) {
+            identifier = cell;
+        } else {
+            identifier = getCellIdentifier(cell, model);
+            model.remove(identifier);
+        }
+
+        cellStyle.clear();
+        if (cell instanceof BasicBlock) {
+            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
+        }
+
+        dialog.setValues(DEFAULT_BORDERCOLOR, DEFAULT_FILLCOLOR,
+                mxConstants.DEFAULT_FONTFAMILY, mxConstants.DEFAULT_FONTSIZE,
+                0, DEFAULT_BORDERCOLOR, "", null);
+
+        dialog.updateFont();
+    }
 
     /**
      * Apply image to the identifier style
@@ -434,8 +482,12 @@ public class EditFormatAction extends DefaultAction {
             fontStyle |= mxConstants.FONT_ITALIC;
         }
 
-        identifierStyle.put(mxConstants.STYLE_FONTSTYLE,
-                Integer.toString(fontStyle));
+        if (fontStyle != 0) {
+            identifierStyle.put(mxConstants.STYLE_FONTSTYLE,
+                    Integer.toString(fontStyle));
+        } else {
+            identifierStyle.remove(mxConstants.STYLE_FONTSTYLE);
+        }
     }
 
     /**
@@ -507,6 +559,7 @@ public class EditFormatAction extends DefaultAction {
 
         private javax.swing.JButton cancelButton;
         private javax.swing.JButton okButton;
+        private javax.swing.JButton resetButton;
         private javax.swing.JPanel buttonPane;
 
         private XcosDiagram graph;
@@ -682,6 +735,7 @@ public class EditFormatAction extends DefaultAction {
 
             cancelButton = new javax.swing.JButton(XcosMessages.CANCEL);
             okButton = new javax.swing.JButton(XcosMessages.OK);
+            resetButton = new javax.swing.JButton(XcosMessages.RESET);
             buttonPane = new javax.swing.JPanel();
 
             backgroundPane.setLayout(new java.awt.BorderLayout());
@@ -694,9 +748,10 @@ public class EditFormatAction extends DefaultAction {
 
             fontNameLabel.setText(XcosMessages.FONT_NAME);
 
-            fontNameComboBox.setModel(new javax.swing.DefaultComboBoxModel(
-                    GraphicsEnvironment.getLocalGraphicsEnvironment()
-                            .getAvailableFontFamilyNames()));
+            fontNameComboBox
+                    .setModel(new javax.swing.DefaultComboBoxModel(
+                            GraphicsEnvironment.getLocalGraphicsEnvironment()
+                                    .getAvailableFontFamilyNames()));
 
             fontNameComboBox.addActionListener(defaultActionListener);
 
@@ -891,6 +946,16 @@ public class EditFormatAction extends DefaultAction {
                 }
             });
 
+            resetButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    graph.getModel().beginUpdate();
+                    EditFormatAction.reset(getDialog());
+                    graph.getModel().endUpdate();
+                }
+            });
+
             imageFileChooserBtn.addActionListener(new ActionListener() {
                 /**
                  * On file chooser open the file chooser with image filter.
@@ -954,10 +1019,15 @@ public class EditFormatAction extends DefaultAction {
             buttonPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(
                     BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
             buttonPane.add(javax.swing.Box.createHorizontalGlue());
+            buttonPane.add(okButton);
+            buttonPane.add(javax.swing.Box.createRigidArea(new Dimension(
+                    BORDER_SIZE, 0)));
             buttonPane.add(cancelButton);
             buttonPane.add(javax.swing.Box.createRigidArea(new Dimension(
                     BORDER_SIZE, 0)));
-            buttonPane.add(okButton);
+            buttonPane.add(javax.swing.Box.createRigidArea(new Dimension(
+                    BORDER_SIZE, 0)));
+            buttonPane.add(resetButton);
 
             java.awt.Container contentPane = getContentPane();
             contentPane.add(mainTab, java.awt.BorderLayout.CENTER);
