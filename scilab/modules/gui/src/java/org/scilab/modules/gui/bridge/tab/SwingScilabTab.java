@@ -16,10 +16,17 @@
 package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -50,6 +57,7 @@ import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
@@ -123,7 +131,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     private String parentWindowId;
-    private String appNameOnClose;
     private MenuBar menuBar;
     private ToolBar toolBar;
     private TextBox infoBar;
@@ -1318,6 +1325,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                             +      "end;";
             setCallback(null);
             setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
+            /* Update menus callbacks */
+            String[] children = (String[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
+            updateChildrenCallbacks(children, figureId);
         } else if (property.equals(__GO_SIZE__)) {
             Integer[] size = (Integer[]) value;
             SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(new Size(size[0], size[1]));
@@ -1331,6 +1341,36 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 this.getContentPane().setSize(axesSize[0], axesSize[1]);
             }
         }
+    }
+
+    /**
+     * Update the menus callbacks when they are linked to the figure ID
+     * @param children the children UID
+     * @param parentFigureId the figure ID
+     */
+    private void updateChildrenCallbacks(String[] children, int parentFigureId) {
+        for (int kChild = 0; kChild < children.length; kChild++) {
+            String childType = (String) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+            if (childType.equals(__GO_UIMENU__)
+                    || childType.equals(__GO_UIPARENTMENU__)
+                    || childType.equals(__GO_UICHILDMENU__)
+                    || childType.equals(__GO_UICHECKEDMENU__)) {
+                String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
+                SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
+                String[] menuChildren = (String[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
+                updateChildrenCallbacks(menuChildren, parentFigureId);
+            }
+        }
+    }
+
+    /**
+     * Replace pattern [SCILAB_FIGURE_ID] by the figure index
+     * @param initialString string read in XML file
+     * @param parentFigureId the figure ID
+     * @return callback string
+     */
+    private String replaceFigureID(String initialString, Integer parentFigureId) {
+        return initialString.replaceAll("\\[SCILAB_FIGURE_ID\\]", Integer.toString(parentFigureId));
     }
 
     /**

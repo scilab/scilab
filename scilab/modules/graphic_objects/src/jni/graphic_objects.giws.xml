@@ -93,5 +93,8 @@
     </method>
     <method name="getConsoleIdentifier" returnType="String" modifier="static">
     </method>
+    <method name="buildFigureMenuBar" returnType="void" modifier="static">
+      <parameter name="figureId" type="String"/>
+    </method>
   </object>
 </package>

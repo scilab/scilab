@@ -18,7 +18,7 @@ assert_checkequal(f.children(1).label, "Not hidden");
 // Now we show hidden handles
 c.showhiddenhandles = "on";
 assert_checkequal(c.showhiddenhandles, "on");
-// Check the figure has two children (axes + menu + menu)
-assert_checkequal(size(f.children), [3 1]);
+// Check the figure has seven children (axes + menu + menu + 4 default menus)
+assert_checkequal(size(f.children), [7 1]);
 assert_checkequal(f.children(1).label, "Hidden");
 assert_checkequal(f.children(2).label, "Not hidden");

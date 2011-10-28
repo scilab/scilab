@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,10 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
-
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menubar.MenuBar;
+package org.scilab.modules.graphic_objects.utils;
 
 /**
  * Scilab menubar configuration
@@ -22,16 +19,16 @@ import org.scilab.modules.gui.menubar.MenuBar;
  */
 public interface MenuBarConfiguration {
 
-	/**
-	 * Add menus to a menubar
-	 * @param mb the menubar which the menus will be added to
-	 */
-	void addMenus(MenuBar mb);
-	
-	/**
-	 * Read submenus data in the XML file
-	 * @param menu the parent menu for submenus
-	 * @param index the index of the parent in menu list
-	 */
-	void addSubMenus(Menu menu, int index);
+    /**
+     * Add menus to a menubar
+     * @param parentId the parent figure UID
+     */
+    void addMenus(String parentId);
+
+    /**
+     * Read submenus data in the XML file
+     * @param parentId the parent figure UID
+     * @param index the index of the parent in menu list
+     */
+    void addSubMenus(String parentId, int index);
 }

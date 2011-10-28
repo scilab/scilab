@@ -47,8 +47,6 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
 
     private static final long serialVersionUID = 1L;
     
-    private static final int COLORS_COEFF = 255;
-    
     private CommonCallBack callback;
     private MouseListener[] nativeMouseListeners;
     private MouseListener customedMouseListener;
@@ -277,6 +275,17 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      */
     public void setCallback(CommonCallBack cb) {
         this.callback = cb;
+        
+        // Manage callback removing (callback string == "")
+        if (cb.getCommand().equals("")) {
+            // Back to native listeners
+            if (nativeMouseListeners != null) {
+                for (int i = 0; i < nativeMouseListeners.length; i++) {
+                    addMouseListener(nativeMouseListeners[i]);
+                }
+            }
+            return;
+        }
 
         /* Remove Java MouseListeners if not already done */
         /* Save them so that they can be put back */

@@ -32,8 +32,12 @@ char *cloneGraphicObject(char *_sId)
     return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
 }
 
-char* createDataObject(char* _sId, char* _sType)
+char *createDataObject(char *_sId, char *_sType)
 {
     return DataController::createDataObject(_sId, _sType);
 }
 
+void buildFigureMenuBar(char *_sFigureId)
+{
+    CallGraphicController::buildFigureMenuBar(getScilabJavaVM(), _sFigureId);
+}

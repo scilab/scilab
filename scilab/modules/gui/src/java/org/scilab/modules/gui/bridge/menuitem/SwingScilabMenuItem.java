@@ -111,6 +111,12 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * @param callback the callback to set.
      */
     public void setCallback(CommonCallBack callback) {
+        if (this.callback != null) {
+            removeActionListener(this.callback);
+            if (meAsACheckBoxMenuItem != null) {
+                meAsACheckBoxMenuItem.setCallback(this.callback);
+            }
+        }
         this.callback = callback;
         addActionListener(this.callback);
         if (meAsACheckBoxMenuItem != null) {

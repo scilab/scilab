@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Vincent Couvert
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,7 +10,16 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.graphic_objects.utils;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ACCELERATOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,17 +32,11 @@ import java.util.TreeSet;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -47,12 +50,15 @@ import org.xml.sax.SAXException;
  */
 public final class MenuBarBuilder {
 
+    private static final String MAINMENUBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_menubar.xml";
+    private static final String GRAPHICSMENUBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/graphics_menubar.xml";
+
     private static final String FILE_NOT_FOUND = "Could not find file: ";
 
     private static final String CANNOT_CREATE_MENUBAR = "Cannot create MenuBar.\n"
             + "Check if file *_menubar.xml is available and valid.";
 
-    private static int figureIndex;
+    private static boolean isParentValid = true;;
 
     /**
      * Default constructor
@@ -78,30 +84,33 @@ public final class MenuBarBuilder {
     }
 
     /**
-     * Create a Scilab menubar from data in a XML file
-     * @param fileToLoad XML file to load
-     * @return the menubar created
+     * Create console menubar from data in a XML file
+     * @param consoleId the console
      */
-    public static MenuBar buildMenuBar(String fileToLoad) {
-        return buildMenuBar(fileToLoad, 0);
+    public static void buildConsoleMenuBar(String consoleId) {
+        buildMenuBar(MAINMENUBARXMLFILE, consoleId);
+    }
+    
+    /**
+     * Create graphic figure menubar from data in a XML file
+     * @param figureId the figure
+     */
+    public static void buildFigureMenuBar(String figureId) {
+        MenuBarBuilder.isParentValid = false;
+        buildMenuBar(GRAPHICSMENUBARXMLFILE, figureId);
     }
 
     /**
-     * Create a Scilab menubar from data in a XML file
+     * Create children used in the menubar from data in a XML file
      * @param fileToLoad XML file to load
-     * @param figureIndex the index of the figure in Scilab (for graphics figures only)
-     * @return the menubar created
+     * @param parentId the menubar parent
      */
-    public static MenuBar buildMenuBar(String fileToLoad, int figureIndex) {
-
-        MenuBarBuilder.figureIndex = figureIndex;
-
-        MenuBar menubar = ScilabMenuBar.createMenuBar();
+    public static void buildMenuBar(String fileToLoad, String parentId) {
 
         try {
             MenuBarConfiguration menuBarConfig =
                     (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
-            menuBarConfig.addMenus(menubar);
+            menuBarConfig.addMenus(parentId);
         } catch (IllegalArgumentException e) {
             System.err.println(CANNOT_CREATE_MENUBAR);
             System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
@@ -115,8 +124,6 @@ public final class MenuBarBuilder {
             System.err.println(CANNOT_CREATE_MENUBAR);
             System.err.println(FILE_NOT_FOUND + e.getLocalizedMessage());
         }
-
-        return menubar;
     }
 
     /**
@@ -184,61 +191,95 @@ public final class MenuBarBuilder {
         }
 
         /**
-         * Add menus to a menubar
-         * @param mb the menubar which the menus will be added to
-         * @see org.scilab.modules.gui.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
+         * Add menus to a menubar using Scilab MVC
+         * @param parentId the tab ID to which the menus will be added to
+         * @see org.scilab.modules.MenuBarConfiguration.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
          */
-        public void addMenus(MenuBar mb) {
-
+        public void addMenus(String parentId) {
             NodeList menus = dom.getElementsByTagName(MENU);
-            Menu menu = ScilabMenu.createMenu();
-            for (int i = 0; i < menus.getLength(); i++) {
-                menu = ScilabMenu.createMenu();
-                menu.setText(Messages.gettext(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue()));
-                if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
-                    menu.setMnemonic(menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue().charAt(0));
-                }
-                if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
-                    menu.setEnabled(menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE));
-                }
-                addSubMenus(menu, i);
-                mb.add(menu);
-            }
 
+            for (int i = 0; i < menus.getLength(); i++) {
+                // Create the menu
+                String menuId = null;
+                if (isParentValid) {
+                    menuId = GraphicController.getController().askObject(Type.UIMENU);
+                } else {
+                    menuId = GraphicController.getController().askObject(Type.UIMENUMODEL);
+                }
+
+                // The menu is not visible in Scilab view by default
+                GraphicController.getController().setProperty(menuId, __GO_HIDDEN__, true);
+
+                // Set the label
+                String menuLabel = Messages.gettext(menus.item(i).getAttributes().getNamedItem(LABEL).getNodeValue());
+                GraphicController.getController().setProperty(menuId, __GO_UI_LABEL__, menuLabel);
+
+                // Set the mnemonic if given
+                if (menus.item(i).getAttributes().getNamedItem(MNEMONIC) != null) {
+                    String mnemonicString = menus.item(i).getAttributes().getNamedItem(MNEMONIC).getNodeValue();
+                    GraphicController.getController().setProperty(menuId, __GO_UI_MNEMONIC__, mnemonicString);
+                }
+
+                // Set the enable status if given
+                if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
+                    boolean enabled = menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE);
+                    GraphicController.getController().setProperty(menuId, __GO_UI_ENABLE__, enabled);
+                }
+                // Set the menu parent
+                GraphicController.getController().setGraphicObjectRelationship(parentId, menuId);
+                addSubMenus(menuId, i);
+             }
         }
 
         /**
-         * Read submenus data in the XML file
-         * @param menu the parent menu for submenus
+         * Read submenus data in the XML file and create them using Scilab MVC
+         * @param parentMenuId the parent menu UID for submenus
          * @param index the index of the parent in menu list
          */
-        public void addSubMenus(Menu menu, int index) {
+        public void addSubMenus(String parentMenuId, int index) {
             Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
-            //Menu menuChild = ScilabMenu.createMenu();
+
+            boolean separator = false;
 
             while (submenu != null) {
                 if (submenu.getNodeName() == SEPARATOR) {
                     // Add a separator
-                    menu.addSeparator();
+                    separator = true;
                 } else if (submenu.getNodeName() == SUBMENU) {
-                    // Add a submenu
-                    MenuItem menuItem = ScilabMenuItem.createMenuItem();
-                    // Add the submenu to the parent menu
-                    menu.add(menuItem);
+                    // Create the menu
+                    String menuId = null;
+                    if (isParentValid) {
+                        menuId = GraphicController.getController().askObject(Type.UIMENU);
+                    } else {
+                        menuId = GraphicController.getController().askObject(Type.UIMENUMODEL);
+                    }
+
+                    // The menu is not visible in Scilab view by default
+                    GraphicController.getController().setProperty(menuId, __GO_HIDDEN__, true);
+
+                    // Set the menu parent
+                    GraphicController.getController().setGraphicObjectRelationship(parentMenuId, menuId);
 
                     // First we have to read its attributes
                     NamedNodeMap attributes = submenu.getAttributes();
 
                     for (int i = 0; i < attributes.getLength(); i++) {
                         if (attributes.item(i).getNodeName() == LABEL) {
-                            menuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
+                            // Set the label
+                            String menuLabel = Messages.gettext(attributes.item(i).getNodeValue());
+                            GraphicController.getController().setProperty(menuId, __GO_UI_LABEL__, menuLabel);
                         } else if (attributes.item(i).getNodeName() == MNEMONIC) {
-                            menuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
+                            // Set the mnemonic
+                            String mnemonicString = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_MNEMONIC__, mnemonicString);
                         } else if (attributes.item(i).getNodeName() == ENABLED) {
-                            menuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
+                            // Set the enable status
+                            boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ENABLE__, enabled);
                         } else if (attributes.item(i).getNodeName() == ACCELERATOR) {
-                            SwingScilabMenuItem smenuitem = (SwingScilabMenuItem) menuItem.getAsSimpleMenuItem();
-                            smenuitem.setAccelerator(ScilabKeyStroke.getKeyStroke((String) attributes.item(i).getNodeValue()));
+                            // Set the accelerator
+                            String acceleratorString = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ACCELERATOR__, acceleratorString);
                         }
                     }
 
@@ -257,14 +298,21 @@ public final class MenuBarBuilder {
                                 }
                             }
                             if (command != null && commandType != CallBack.UNTYPED) {
-                                menuItem.setCallback(CommonCallBack.createCallback(replaceFigureID(command), commandType));
+                                GraphicController.getController().setProperty(menuId, __GO_CALLBACK__, command);
+                                GraphicController.getController().setProperty(menuId, __GO_CALLBACKTYPE__, commandType);
                             }
                         } else if (callback.getNodeName() == SUBMENU) {
-                            addSubMenuItem(menuItem, callback);
+                            addSubMenuItem(menuId, callback);
                         }
                         // Read next child
                         callback = callback.getNextSibling();
                     }
+                    // Manage separators
+                    if (separator) {
+                        GraphicController.getController().setProperty(menuId, __GO_UI_SEPARATOR__, true);
+                        separator = false;
+                    }
+
 
                 }
                 // Read next child
@@ -274,22 +322,40 @@ public final class MenuBarBuilder {
 
         /**
          * Add submenu for menu
-         * @param menuItem will become a menu with subMenuItems
+         * @param parentMenuItemId object with this id will become a menu with subMenuItems
          * @param node to get attributs of the menu
          */
-        public void addSubMenuItem(MenuItem menuItem, Node node) {
+        public void addSubMenuItem(String parentMenuItemId, Node node) {
 
             NamedNodeMap attributes = node.getAttributes();
-            MenuItem subMenuItem = ScilabMenuItem.createMenuItem();
+
+            // Create the menu
+            String subMenuItemId = null;
+            if (isParentValid) {
+                subMenuItemId = GraphicController.getController().askObject(Type.UIMENU);
+            } else {
+                subMenuItemId = GraphicController.getController().askObject(Type.UIMENUMODEL);
+            }
+
+            // The menu is not visible in Scilab view by default
+            GraphicController.getController().setProperty(subMenuItemId, __GO_HIDDEN__, true);
+
+            // Set the menu parent
+            GraphicController.getController().setGraphicObjectRelationship(parentMenuItemId, subMenuItemId);
 
             for (int i = 0; i < attributes.getLength(); i++) {
                 if (attributes.item(i).getNodeName() == LABEL) {
-                    subMenuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
-                    subMenuItem.setText(Messages.gettext(attributes.item(i).getNodeValue()));
+                    // Set the label
+                    String menuLabel = Messages.gettext(attributes.item(i).getNodeValue());
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_LABEL__, menuLabel);
                 } else if (attributes.item(i).getNodeName() == MNEMONIC) {
-                    subMenuItem.setMnemonic(attributes.item(i).getNodeValue().charAt(0));
+                    // Set the mnemonic
+                    String mnemonicString = attributes.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_MNEMONIC__, mnemonicString);
                 } else if (attributes.item(i).getNodeName() == ENABLED) {
-                    subMenuItem.setEnabled(attributes.item(i).getNodeValue().equals(TRUE));
+                    // Set the enable status
+                    boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_ENABLE__, enabled);
                 }
             }
 
@@ -308,27 +374,15 @@ public final class MenuBarBuilder {
                         }
                     }
                     if (command != null && commandType != CallBack.UNTYPED) {
-                        subMenuItem.setCallback(CommonCallBack.createCallback(replaceFigureID(command), commandType));
+                        GraphicController.getController().setProperty(subMenuItemId, __GO_CALLBACK__, command);
+                        GraphicController.getController().setProperty(subMenuItemId, __GO_CALLBACKTYPE__, commandType);
                     }
                 } else if (callback.getNodeName() == SUBMENU) {
-                    addSubMenuItem(subMenuItem, callback);
+                    addSubMenuItem(subMenuItemId, callback);
                 }
                 // Read next child
                 callback = callback.getNextSibling();
             }
-            menuItem.add(subMenuItem);
-
         }
-
-
-        /**
-         * Replace pattern [SCILAB_FIGURE_ID] by the figure index
-         * @param initialString string read in XML file
-         * @return callback string
-         */
-        private String replaceFigureID(String initialString) {
-            return initialString.replaceAll("\\[SCILAB_FIGURE_ID\\]", Integer.toString(MenuBarBuilder.figureIndex));
-        }
-
     }
 }

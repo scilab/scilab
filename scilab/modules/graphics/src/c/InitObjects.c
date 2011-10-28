@@ -173,6 +173,9 @@ static void initFigureModel(char *pfiguremdlUID)
 
     // Parent
     setGraphicObjectProperty(pfiguremdlUID, __GO_PARENT__, "", jni_string, 1);
+
+    // Default menus
+    buildFigureMenuBar(pfiguremdlUID);
 }
 
 /* DJ.A 08/01/04 */

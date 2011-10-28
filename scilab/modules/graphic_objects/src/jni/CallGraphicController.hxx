@@ -101,6 +101,7 @@ jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stri
 jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanID; // cache method id
 jmethodID voidregisterScilabViewID; // cache method id
 jmethodID jstringgetConsoleIdentifierID; // cache method id
+jmethodID voidbuildFigureMenuBarjstringjava_lang_StringID; // cache method id
 
 
 
@@ -202,6 +203,8 @@ static bool setGraphicObjectProperty(JavaVM * jvm_, char * id, char * propertyNa
 static void registerScilabView(JavaVM * jvm_);
 
 static char * getConsoleIdentifier(JavaVM * jvm_);
+
+static void buildFigureMenuBar(JavaVM * jvm_, char * figureId);
 
 
                         /**

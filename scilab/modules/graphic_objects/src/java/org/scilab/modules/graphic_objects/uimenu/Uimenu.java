@@ -261,6 +261,14 @@ public class Uimenu extends GraphicObject {
     public void setSeparator(Boolean separator) {
         this.separator = separator;
     }
+
+    @Override
+    public Uimenu clone() {
+        Uimenu copy = (Uimenu) super.clone();
+        copy.setValid(true);
+        return copy;
+    }
+    
     /**
      * Accept method
      * @param visitor the visitor

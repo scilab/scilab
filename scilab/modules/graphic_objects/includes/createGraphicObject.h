@@ -31,6 +31,12 @@ GRAPHIC_OBJECTS_IMPEXP char *cloneGraphicObject(char *_sId);
 ** Ask Controller to create a data object
 ** referenced by the given _sId and of the given _sType
 */
-GRAPHIC_OBJECTS_IMPEXP char *createDataObject(char* _sId, char* _sType);
+GRAPHIC_OBJECTS_IMPEXP char *createDataObject(char *_sId, char *_sType);
+
+/*
+** Ask Controller to create a figure menubar
+** referenced by the given _sFigureId and of the given _sType
+*/
+GRAPHIC_OBJECTS_IMPEXP void buildFigureMenuBar(char *_sFigureId);
 
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

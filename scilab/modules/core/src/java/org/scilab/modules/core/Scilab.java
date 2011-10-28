@@ -29,6 +29,7 @@ import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -41,7 +42,6 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 
 /**
@@ -58,7 +58,6 @@ public class Scilab {
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
 
-    private static final String MAINMENUBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_menubar.xml";
     private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
@@ -161,7 +160,7 @@ public class Scilab {
             ConfigManager.createUserCopy();
 
             String consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
-            MenuBarBuilder.buildMenuBar(MAINMENUBARXMLFILE, consoleId);
+            MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
             TextBox infoBar = ScilabTextBox.createTextBox();

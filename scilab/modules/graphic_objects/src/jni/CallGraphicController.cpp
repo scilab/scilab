@@ -127,6 +127,7 @@ jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringj
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanID=NULL;
 voidregisterScilabViewID=NULL;
 jstringgetConsoleIdentifierID=NULL;
+voidbuildFigureMenuBarjstringjava_lang_StringID=NULL;
 
 
 }
@@ -172,6 +173,7 @@ jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringj
 jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanID=NULL;
 voidregisterScilabViewID=NULL;
 jstringgetConsoleIdentifierID=NULL;
+voidbuildFigureMenuBarjstringjava_lang_StringID=NULL;
 
 
 }
@@ -1119,6 +1121,32 @@ delete[] myStringBuffer;
 }
 return myStringBuffer;
 
+}
+
+void CallGraphicController::buildFigureMenuBar (JavaVM * jvm_, char * figureId){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidbuildFigureMenuBarjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "buildFigureMenuBar", "(Ljava/lang/String;)V" ) ;
+if (voidbuildFigureMenuBarjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "buildFigureMenuBar");
+}
+
+jstring figureId_ = curEnv->NewStringUTF( figureId );
+if (figureId != NULL && figureId_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidbuildFigureMenuBarjstringjava_lang_StringID ,figureId_);
+                        curEnv->DeleteLocalRef(figureId_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

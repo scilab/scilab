@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicView.ScilabView;
+import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 
 /**
  * This is a static class to access all controller capabilities
@@ -35,15 +36,15 @@ public final class CallGraphicController {
     public static String cloneGraphicObject(String id) {
         return GraphicController.getController().cloneObject(id);
     }
-    
+
     public static String askGraphicObject(String typeName) {
         return GraphicController.getController().askObject(GraphicObject.getTypeFromName(typeName));
     }
-    
+
     public static void deleteGraphicObject(String id) {
         GraphicController.getController().deleteObject(id);
     }
-    
+
     private static boolean setGraphicObjectProperty(String id, String propertyName, Object value) {
         return GraphicController.getController().setProperty(id, propertyName, value);
     }
@@ -94,7 +95,7 @@ public final class CallGraphicController {
     }
 
     public static boolean setGraphicObjectProperty(String id, String propertyName, boolean[] value) {
-	Boolean[] array = new Boolean[value.length];
+        Boolean[] array = new Boolean[value.length];
 
         for (int i = 0; i < value.length; i++) {
             array[i] = value[i];
@@ -112,7 +113,7 @@ public final class CallGraphicController {
     }
 
     public static double getGraphicObjectPropertyAsDouble(String id, String propertyName) {
-	return (Double) getGraphicObjectProperty(id, propertyName);
+        return (Double) getGraphicObjectProperty(id, propertyName);
     }
 
     public static double[] getGraphicObjectPropertyAsDoubleVector(String id, String propertyName) {
@@ -132,7 +133,7 @@ public final class CallGraphicController {
     }
 
     public static int getGraphicObjectPropertyAsInteger(String id, String propertyName) {
-	return (Integer) getGraphicObjectProperty(id, propertyName);
+        return (Integer) getGraphicObjectProperty(id, propertyName);
     }
 
     public static int[] getGraphicObjectPropertyAsIntegerVector(String id, String propertyName) {
@@ -152,13 +153,13 @@ public final class CallGraphicController {
     }
 
     public static int getGraphicObjectPropertyAsBoolean(String id, String propertyName) {
-	int result;
+        int result;
 
-	Boolean tmpValue = (Boolean) getGraphicObjectProperty(id, propertyName);
+        Boolean tmpValue = (Boolean) getGraphicObjectProperty(id, propertyName);
 
-	result = tmpValue ? 1: 0;
+        result = tmpValue ? 1: 0;
 
-	return result;
+        return result;
     }
 
     public static int[] getGraphicObjectPropertyAsBooleanVector(String id, String propertyName) {
@@ -176,12 +177,16 @@ public final class CallGraphicController {
 
         return result;
     }
-    
+
     public static void registerScilabView() {
         GraphicController.getController().register(new ScilabView());
     }
 
     public static String getConsoleIdentifier() {
         return Console.getConsole().getIdentifier();
+    }
+
+    public static void buildFigureMenuBar(String figureId) {
+        MenuBarBuilder.buildFigureMenuBar(figureId);
     }
 }

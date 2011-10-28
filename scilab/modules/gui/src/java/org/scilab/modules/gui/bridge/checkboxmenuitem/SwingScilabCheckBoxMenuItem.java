@@ -107,6 +107,9 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * @param callback the callback to set.
      */
     public void setCallback(CommonCallBack callback) {
+        if (this.callback != null) {
+            removeActionListener(this.callback);
+        }
         this.callback = callback;
         addActionListener(this.callback);
     }

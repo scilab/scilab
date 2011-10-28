@@ -260,6 +260,10 @@ public final class GraphicModel {
             case UIMENU:
                 createdObject = new Uimenu();
                 break;
+            case UIMENUMODEL:
+                createdObject = new Uimenu();
+                createdObject.setValid(false);
+                break;
             /* Create Scilab console object */
             case CONSOLE:
                 createdObject = Console.getConsole();
