@@ -657,11 +657,8 @@
     </method>
     <method name="pageSetup" returnType="boolean" modifier="static">
     </method>
-    <method name="requestWidgetFocus" returnType="void" modifier="static">
-      <parameter type="int" name="objID"/>
-    </method>
-    <method name="requestFrameFocus" returnType="void" modifier="static">
-      <parameter type="int" name="objID"/>
+    <method name="requestFocus" returnType="void" modifier="static">
+      <parameter type="String" name="objUID"/>
     </method>
     <method name="raiseWindow" returnType="void" modifier="static">
       <parameter type="int" name="objID"/>

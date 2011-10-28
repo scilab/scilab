@@ -14,32 +14,27 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void createFrame(sciPointObj* sciObj)
+void createFrame(sciPointObj * sciObj)
 {
-  pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newFrame(getScilabJavaVM());
+    pUICONTROL_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newFrame(getScilabJavaVM());
 }
 
-int setCurentFigureAsFrameParent(sciPointObj* sciObj)
+int setCurentFigureAsFrameParent(sciPointObj * sciObj)
 {
 // ???
 #if 0
-  int parentFigureIndex = 0;
+    int parentFigureIndex = 0;
 
-  // Scilab list of parent
-  sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
+    // Scilab list of parent
+    sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
 
-  // Java objects
-  parentFigureIndex = sciGetNum(sciGetCurrentFigure());
-  CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+    // Java objects
+    parentFigureIndex = sciGetNum(sciGetCurrentFigure());
+    CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
 
-  // Scilab default values
-  CallScilabBridge::setFramePosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(sciGetCurrentFigure()) - 80, 40, 20);
+    // Scilab default values
+    CallScilabBridge::setFramePosition(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex, 20, sciGetHeight(sciGetCurrentFigure()) - 80, 40,
+                                       20);
 #endif
-  return SET_PROPERTY_SUCCEED;
-}
-
-void requestFrameFocus(sciPointObj* sciObj)
-{
-  // Scilab default values
-  CallScilabBridge::requestFrameFocus(getScilabJavaVM(), pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+    return SET_PROPERTY_SUCCEED;
 }

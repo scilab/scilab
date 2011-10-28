@@ -261,8 +261,7 @@ jmethodID jbooleanprintFigurejintintjbooleanbooleanjbooleanbooleanID; // cache m
 jmethodID jbooleanprintFilejstringjava_lang_StringID; // cache method id
 jmethodID jbooleanprintStringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jmethodID jbooleanpageSetupID; // cache method id
-jmethodID voidrequestWidgetFocusjintintID; // cache method id
-jmethodID voidrequestFrameFocusjintintID; // cache method id
+jmethodID voidrequestFocusjstringjava_lang_StringID; // cache method id
 jmethodID voidraiseWindowjintintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
@@ -696,9 +695,7 @@ static bool printString(JavaVM * jvm_, char * theString, char * pageHeader);
 
 static bool pageSetup(JavaVM * jvm_);
 
-static void requestWidgetFocus(JavaVM * jvm_, int objID);
-
-static void requestFrameFocus(JavaVM * jvm_, int objID);
+static void requestFocus(JavaVM * jvm_, char * objUID);
 
 static void raiseWindow(JavaVM * jvm_, int objID);
 

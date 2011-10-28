@@ -52,8 +52,10 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingView;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -2997,19 +2999,17 @@ public class CallScilabBridge {
     }
 
     /**
-     * Give the focus to a Widget
-     * @param id the id of the Widget
+     * Give the focus to a uicontrol
+     * @param uicontrolUID the uicontrolUID of the Widget
      */
-    public static void requestWidgetFocus(int id) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
-    }
-
-    /**
-     * Give the focus to a Frame
-     * @param id the id of the Frame
-     */
-    public static void requestFrameFocus(int id) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(id)).requestFocus();
+    public static void requestFocus(String uicontrolUID) {
+        SwingViewObject uicontrol = SwingView.getFromId(uicontrolUID);
+        if (uicontrol instanceof SwingScilabFrame) {
+            ((SwingScilabFrame) uicontrol).requestFocus();
+        } else {
+            ((Widget) uicontrol).requestFocus();
+        }
+        
     }
 
     /**

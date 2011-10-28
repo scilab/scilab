@@ -287,8 +287,7 @@ jbooleanprintFigurejintintjbooleanbooleanjbooleanbooleanID=NULL;
 jbooleanprintFilejstringjava_lang_StringID=NULL;
 jbooleanprintStringjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleanpageSetupID=NULL;
-voidrequestWidgetFocusjintintID=NULL;
-voidrequestFrameFocusjintintID=NULL;
+voidrequestFocusjstringjava_lang_StringID=NULL;
 voidraiseWindowjintintID=NULL;
 voiduseCanvasForDisplayjbooleanbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL;
@@ -505,8 +504,7 @@ jbooleanprintFigurejintintjbooleanbooleanjbooleanbooleanID=NULL;
 jbooleanprintFilejstringjava_lang_StringID=NULL;
 jbooleanprintStringjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jbooleanpageSetupID=NULL;
-voidrequestWidgetFocusjintintID=NULL;
-voidrequestFrameFocusjintintID=NULL;
+voidrequestFocusjstringjava_lang_StringID=NULL;
 voidraiseWindowjintintID=NULL;
 voiduseCanvasForDisplayjbooleanbooleanID=NULL;
 jbooleanuseCanvasForDisplayID=NULL;
@@ -4931,37 +4929,27 @@ return (res == JNI_TRUE);
 
 }
 
-void CallScilabBridge::requestWidgetFocus (JavaVM * jvm_, int objID){
+void CallScilabBridge::requestFocus (JavaVM * jvm_, char * objUID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidrequestWidgetFocusjintintID = curEnv->GetStaticMethodID(cls, "requestWidgetFocus", "(I)V" ) ;
-if (voidrequestWidgetFocusjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "requestWidgetFocus");
+jmethodID voidrequestFocusjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "requestFocus", "(Ljava/lang/String;)V" ) ;
+if (voidrequestFocusjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "requestFocus");
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidrequestWidgetFocusjintintID ,objID);
-                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::requestFrameFocus (JavaVM * jvm_, int objID){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidrequestFrameFocusjintintID = curEnv->GetStaticMethodID(cls, "requestFrameFocus", "(I)V" ) ;
-if (voidrequestFrameFocusjintintID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "requestFrameFocus");
+jstring objUID_ = curEnv->NewStringUTF( objUID );
+if (objUID != NULL && objUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
 }
 
-                         curEnv->CallStaticVoidMethod(cls, voidrequestFrameFocusjintintID ,objID);
-                        curEnv->DeleteLocalRef(cls);
+
+                         curEnv->CallStaticVoidMethod(cls, voidrequestFocusjstringjava_lang_StringID ,objUID_);
+                        curEnv->DeleteLocalRef(objUID_);
+curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
