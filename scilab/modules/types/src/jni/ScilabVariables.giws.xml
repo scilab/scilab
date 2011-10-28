@@ -1,0 +1,164 @@
+<package name="org.scilab.modules.types">
+
+  <object name="ScilabVariables">
+    <method name="getAllListenedVariables" returnType="String[]" modifier="static" />
+
+    <!-- double matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="double[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- complex matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="double[][]" name="real"/>
+      <param type="double[][]" name="img"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- int8 matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="byte[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- uint8 matrix-->
+    <method name="sendUnsignedData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="byte[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- int16 matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="short[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- uint16 matrix-->
+    <method name="sendUnsignedData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="short[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- int32 matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="int[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- uint32 matrix-->
+    <method name="sendUnsignedData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="int[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- int64, uint64 matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="long[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- boolean matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="boolean[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- String matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="String[][]" name="data"/>
+      <param type="boolean" name="swaped"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- Lists -->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="char" name="type" />
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <method name="closeList" returnType="void" modifier="static">
+      <param type="int[]" name="indexes" />
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- Sparse matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="int" name="row"/>
+      <param type="int" name="col"/>
+      <param type="int" name="nbItem"/>
+      <param type="int[]" name="nbItemRow"/>
+      <param type="int[]" name="colPos"/>
+      <param type="double[]" name="data"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- Complex sparse matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="int" name="row"/>
+      <param type="int" name="col"/>
+      <param type="int" name="nbItem"/>
+      <param type="int[]" name="nbItemRow"/>
+      <param type="int[]" name="colPos"/>
+      <param type="double[]" name="real"/>
+      <param type="double[]" name="imag"/>
+      <param type="int" name="handlerId"/>
+    </method>
+
+    <!-- Boolean sparse matrix-->
+    <method name="sendData" returnType="void" modifier="static">
+      <param type="String" name="varName" />
+      <param type="int[]" name="indexes" />
+      <param type="int" name="row"/>
+      <param type="int" name="col"/>
+      <param type="int" name="nbItem"/>
+      <param type="int[]" name="nbItemRow"/>
+      <param type="int[]" name="colPos"/>
+      <param type="int" name="handlerId"/>
+    </method>
+  </object>
+
+  <object name="ScilabVariablesRefresh">
+    <method name="getAllListenedVariables" returnType="String[]" modifier="static" />
+    <method name="getScilabVariablesRefreshId" returnType="int" modifier="static" />
+  </object>
+
+</package>

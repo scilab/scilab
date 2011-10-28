@@ -48,9 +48,26 @@ static void freeJavaVMOption(void)
 	}
 }
 /*--------------------------------------------------------------------------*/ 
-JavaVM *getScilabJavaVM(void)
+JavaVM * getScilabJavaVM(void)
 {
-	return jvm_SCILAB;
+    if (!jvm_SCILAB && IsFromJava())
+    {
+        /* If getScilabJavaVM is called from C called itself from JavaSci
+           (in nwni mode) the function returns a JVM */
+        JavaVM * vm = 0;
+        JavaVM ** vmBuf = MALLOC(sizeof(JavaVM *) * 1);
+        jsize size = 0;
+        JNI_GetCreatedJavaVMs(vmBuf, 1, &size);
+        if (size)
+        {
+            vm = *vmBuf;
+        }
+        FREE(vmBuf);
+	
+        return vm;
+     }
+
+     return jvm_SCILAB;
 }
 /*--------------------------------------------------------------------------*/ 
 JNIEnv *getScilabJNIEnv(void)
