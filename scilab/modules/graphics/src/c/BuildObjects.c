@@ -2211,7 +2211,7 @@ ConstructLabel (char * pparentsubwinUID, char *text, int type)
     char* pobjUID = NULL;
     int defaultColor = 0;
     int autoPosition = 0;
-    int piAutoPosition = &autoPosition;
+    int *piAutoPosition = &autoPosition;
     double position[3] = {1.0, 1.0, 1.0};
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
