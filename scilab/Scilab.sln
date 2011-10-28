@@ -354,6 +354,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui-Ant", "modules\gui\src\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcxproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "localization-Ant", "modules\localization\src\java\localization-JAVA.vcxproj", "{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}"
 	ProjectSection(ProjectDependencies) = postProject

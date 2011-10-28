@@ -87,7 +87,7 @@
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -141,7 +141,7 @@
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libscilab.lib;dcd_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
