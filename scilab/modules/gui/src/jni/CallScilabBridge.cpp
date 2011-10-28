@@ -213,18 +213,15 @@ jintgetPopupMenuNumberOfItemsjintintID=NULL;
 voidsetPopupMenuTextjintintjobjectArray_java_lang_StringID=NULL;
 voidsetWidgetReliefjintintjstringjava_lang_StringID=NULL;
 voidsetFrameReliefjintintjstringjava_lang_StringID=NULL;
-voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID=NULL;
-voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
-voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID=NULL;
-voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
+voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
+voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
 voidsetWidgetEnablejintintjbooleanbooleanID=NULL;
 voidsetFrameEnablejintintjbooleanbooleanID=NULL;
 jbooleanisWidgetEnablejintintID=NULL;
 jbooleanisFrameEnablejintintID=NULL;
 voidsetMenuCheckedjintintjbooleanbooleanID=NULL;
 jbooleanisMenuCheckedjintintID=NULL;
-voidremoveRootMenujstringjava_lang_StringID=NULL;
-voidremoveFigureMenujintintjstringjava_lang_StringID=NULL;
+voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jstringdisplayAndWaitContextMenujintintID=NULL;
 jintnewMessageBoxID=NULL;
 voidsetMessageBoxTitlejintintjstringjava_lang_StringID=NULL;
@@ -434,18 +431,15 @@ jintgetPopupMenuNumberOfItemsjintintID=NULL;
 voidsetPopupMenuTextjintintjobjectArray_java_lang_StringID=NULL;
 voidsetWidgetReliefjintintjstringjava_lang_StringID=NULL;
 voidsetFrameReliefjintintjstringjava_lang_StringID=NULL;
-voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID=NULL;
-voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
-voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID=NULL;
-voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
+voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID=NULL;
+voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID=NULL;
 voidsetWidgetEnablejintintjbooleanbooleanID=NULL;
 voidsetFrameEnablejintintjbooleanbooleanID=NULL;
 jbooleanisWidgetEnablejintintID=NULL;
 jbooleanisFrameEnablejintintID=NULL;
 voidsetMenuCheckedjintintjbooleanbooleanID=NULL;
 jbooleanisMenuCheckedjintintID=NULL;
-voidremoveRootMenujstringjava_lang_StringID=NULL;
-voidremoveFigureMenujintintjstringjava_lang_StringID=NULL;
+voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 jstringdisplayAndWaitContextMenujintintID=NULL;
 jintnewMessageBoxID=NULL;
 voidsetMessageBoxTitlejintintjstringjava_lang_StringID=NULL;
@@ -3011,16 +3005,23 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setRootMenuEnabled (JavaVM * jvm_, char * menuName, bool status){
+void CallScilabBridge::setMenuEnabled (JavaVM * jvm_, char * parentUID, char * menuName, bool status){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setRootMenuEnabled", "(Ljava/lang/String;Z)V" ) ;
-if (voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setRootMenuEnabled");
+jmethodID voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setMenuEnabled", "(Ljava/lang/String;Ljava/lang/String;Z)V" ) ;
+if (voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setMenuEnabled");
 }
+
+jstring parentUID_ = curEnv->NewStringUTF( parentUID );
+if (parentUID != NULL && parentUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
 
 jstring menuName_ = curEnv->NewStringUTF( menuName );
 if (menuName != NULL && menuName_ == NULL)
@@ -3031,24 +3032,32 @@ throw GiwsException::JniBadAllocException(curEnv);
 
 jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID ,menuName_, status_);
-                        curEnv->DeleteLocalRef(menuName_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID ,parentUID_, menuName_, status_);
+                        curEnv->DeleteLocalRef(parentUID_);
+curEnv->DeleteLocalRef(menuName_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void CallScilabBridge::setRootSubMenuEnabled (JavaVM * jvm_, char * menuName, int position, bool status){
+void CallScilabBridge::setSubMenuEnabled (JavaVM * jvm_, char * parentUID, char * menuName, int position, bool status){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setRootSubMenuEnabled", "(Ljava/lang/String;IZ)V" ) ;
-if (voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setRootSubMenuEnabled");
+jmethodID voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setSubMenuEnabled", "(Ljava/lang/String;Ljava/lang/String;IZ)V" ) ;
+if (voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setSubMenuEnabled");
 }
+
+jstring parentUID_ = curEnv->NewStringUTF( parentUID );
+if (parentUID != NULL && parentUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
 
 jstring menuName_ = curEnv->NewStringUTF( menuName );
 if (menuName != NULL && menuName_ == NULL)
@@ -3059,64 +3068,9 @@ throw GiwsException::JniBadAllocException(curEnv);
 
 jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID ,menuName_, position, status_);
-                        curEnv->DeleteLocalRef(menuName_);
-curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::setFigureMenuEnabled (JavaVM * jvm_, int figureID, char * menuName, bool status){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setFigureMenuEnabled", "(ILjava/lang/String;Z)V" ) ;
-if (voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureMenuEnabled");
-}
-
-jstring menuName_ = curEnv->NewStringUTF( menuName );
-if (menuName != NULL && menuName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID ,figureID, menuName_, status_);
-                        curEnv->DeleteLocalRef(menuName_);
-curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::setFigureSubMenuEnabled (JavaVM * jvm_, int figureID, char * menuName, int position, bool status){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setFigureSubMenuEnabled", "(ILjava/lang/String;IZ)V" ) ;
-if (voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "setFigureSubMenuEnabled");
-}
-
-jstring menuName_ = curEnv->NewStringUTF( menuName );
-if (menuName != NULL && menuName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
-
-                         curEnv->CallStaticVoidMethod(cls, voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID ,figureID, menuName_, position, status_);
-                        curEnv->DeleteLocalRef(menuName_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID ,parentUID_, menuName_, position, status_);
+                        curEnv->DeleteLocalRef(parentUID_);
+curEnv->DeleteLocalRef(menuName_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
@@ -3243,16 +3197,23 @@ return (res == JNI_TRUE);
 
 }
 
-void CallScilabBridge::removeRootMenu (JavaVM * jvm_, char * menuName){
+void CallScilabBridge::removeMenu (JavaVM * jvm_, char * parentUID, char * menuName){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidremoveRootMenujstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "removeRootMenu", "(Ljava/lang/String;)V" ) ;
-if (voidremoveRootMenujstringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "removeRootMenu");
+jmethodID voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "removeMenu", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeMenu");
 }
+
+jstring parentUID_ = curEnv->NewStringUTF( parentUID );
+if (parentUID != NULL && parentUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
 
 jstring menuName_ = curEnv->NewStringUTF( menuName );
 if (menuName != NULL && menuName_ == NULL)
@@ -3261,34 +3222,9 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidremoveRootMenujstringjava_lang_StringID ,menuName_);
-                        curEnv->DeleteLocalRef(menuName_);
-curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::removeFigureMenu (JavaVM * jvm_, int figureID, char * menuName){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidremoveFigureMenujintintjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "removeFigureMenu", "(ILjava/lang/String;)V" ) ;
-if (voidremoveFigureMenujintintjstringjava_lang_StringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "removeFigureMenu");
-}
-
-jstring menuName_ = curEnv->NewStringUTF( menuName );
-if (menuName != NULL && menuName_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidremoveFigureMenujintintjstringjava_lang_StringID ,figureID, menuName_);
-                        curEnv->DeleteLocalRef(menuName_);
+                         curEnv->CallStaticVoidMethod(cls, voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID ,parentUID_, menuName_);
+                        curEnv->DeleteLocalRef(parentUID_);
+curEnv->DeleteLocalRef(menuName_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

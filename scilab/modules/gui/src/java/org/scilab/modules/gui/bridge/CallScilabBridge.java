@@ -55,7 +55,6 @@ import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -166,11 +165,6 @@ public class CallScilabBridge {
     private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
 
     private static final String FIGURE_TITLE = "Graphic window number ";
-
-    private static final String SCIDIR = System.getenv("SCI");
-
-    private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
-    private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 
     private static final String CONSOLE = "Console";
 
@@ -1152,61 +1146,29 @@ public class CallScilabBridge {
     /************************/
 
     /**
-     * Disable a menu of a Scilab figure giving its name
-     * @param figureID the id of the figure
+     * Enable/Disable a menu of a Scilab figure or console giving its name
+     * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      * @param status true to set the menu enabled
      */
-    public static void setFigureMenuEnabled(int figureID, String menuName, boolean status) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                    getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().setMenuEnabled(menuName, status);
+    public static void setMenuEnabled(String parentUID, String menuName, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
     }
 
     /**
-     * Disable a MenuItem of a Scilab figure giving its parent name and position
-     * @param figureID the id of the figure
+     * Disable a MenuItem of a Scilab figure or console giving its parent name and position
+     * @param parentUID the UID of the figure or console
      * @param parentMenuName the name of the parent menu
      * @param menuItemPosition the name of the parent menu
      * @param status true to set the menu enabled
      */
-    public static void setFigureSubMenuEnabled(int figureID, String parentMenuName, int menuItemPosition, boolean status) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                    getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
-        }
-    }
-
-    /**
-     * Disable a menu of a Scilab root window giving its name
-     * @param menuName the name of the menu
-     * @param status true to set the menu enabled
-     */
-    public static void setRootMenuEnabled(String menuName, boolean status) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
-            SwingScilabTab consoleTab = (SwingScilabTab) SwingView.getFromId(Console.getConsole().getIdentifier());
-            consoleTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
-        }
-    }
-
-    /**
-     * Disable a MenuItem of a Scilab root window giving its parent name and position
-     * @param parentMenuName the name of the parent menu
-     * @param menuItemPosition the name of the parent menu
-     * @param status true to set the menu enabled
-     */
-    public static void setRootSubMenuEnabled(String parentMenuName, int menuItemPosition, boolean status) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
+    public static void setSubMenuEnabled(String parentUID, String parentMenuName, int menuItemPosition, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
     }
 
@@ -1217,28 +1179,14 @@ public class CallScilabBridge {
     /****************/
 
     /**
-     * Delete a menu of a Scilab figure giving its name
-     * @param figureID the id of the figure
+     * Delete a menu of a Scilab figure or console giving its name
+     * @param parentUID the UID of the figure or console
      * @param menuName the name of the menu
      */
-    public static void removeFigureMenu(int figureID, String menuName) {
-        if (FigureMapper.getCorrespondingFigure(figureID) != null) { /** Parent figure must exist */
-            Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).
-                    getRendererProperties()).getParentTab();
-
-            MenuBar figureMenuBar = parentTab.getMenuBar();
-
-            figureMenuBar.getAsSimpleMenuBar().removeMenu(menuName);
-        }
-    }
-
-    /**
-     * Delete a menu of a Scilab root window giving its name
-     * @param menuName the name of the menu
-     */
-    public static void removeRootMenu(String menuName) {
-        if (ScilabConsole.isExistingConsole()) { /** Scilab Console must exist */
-            ScilabConsole.getConsole().getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
+    public static void removeMenu(String parentUID, String menuName) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) { /** Parent must exist */
+            parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
     }
 

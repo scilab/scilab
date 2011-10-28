@@ -19,7 +19,7 @@
 /**
  * @return number of opened windows in Scilab.
  */
-GRAPHIC_OBJECTS_IMPEXP int  sciGetNbFigure(void);
+GRAPHIC_OBJECTS_IMPEXP int sciGetNbFigure(void);
 
 /**
  * Fill the array Ids with all the figure ids currently used by Scilab.
@@ -35,7 +35,7 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciIsExistingFigure(int figNum);
 /**
  * Register Scilab View to Graphic Controller
  */
-GRAPHIC_OBJECTS_IMPEXP void registerToController();
+GRAPHIC_OBJECTS_IMPEXP void registerToController(void);
 
 /**
  * to know if there are some opened graphic windows
@@ -46,6 +46,6 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
  * returns the UID of window i
  * or NULL if this window does not exists
  */
-GRAPHIC_OBJECTS_IMPEXP char* getFigureFromIndex(int figNum);
+GRAPHIC_OBJECTS_IMPEXP char *getFigureFromIndex(int figNum);
 
 #endif /* !__FIGURE_LIST_H__ */

@@ -37,11 +37,6 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-void InitUIMenu(sciPointObj * sciObj)
-{
-    pUIMENU_FEATURE(sciObj)->hashMapIndex = CallScilabBridge::newMenu(getScilabJavaVM());
-}
-
 int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char *pstCurrentFigure = NULL;
@@ -72,7 +67,7 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
     /* Check parent type */
     if (getScilabMode() == SCILAB_STD)
     {
-        /* Figure, uimenu or Root can be the parent */
+        /* Figure, uimenu or Console can be the parent */
         if ((valueType == sci_handles) && (valueType == sci_matrix))
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: A handle or 0 expected.\n")), "SetMenuParent");
@@ -134,32 +129,17 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
 
 }
 
-void EnableRootMenu(char *name, BOOL status)
+void EnableMenu(char *pParentId, char *name, BOOL status)
 {
-    CallScilabBridge::setRootMenuEnabled(getScilabJavaVM(), name, BOOLtobool(status));
+    CallScilabBridge::setMenuEnabled(getScilabJavaVM(), pParentId, name, BOOLtobool(status));
 }
 
-void EnableRootSubMenu(char *name, int position, BOOL status)
+void EnableSubMenu(char *pParentId, char *name, int position, BOOL status)
 {
-    CallScilabBridge::setRootSubMenuEnabled(getScilabJavaVM(), name, position, BOOLtobool(status));
+    CallScilabBridge::setSubMenuEnabled(getScilabJavaVM(), pParentId, name, position, BOOLtobool(status));
 }
 
-void EnableFigureMenu(int figurenum, char *name, BOOL status)
+void DeleteMenu(char *pParentId, char *name)
 {
-    CallScilabBridge::setFigureMenuEnabled(getScilabJavaVM(), figurenum, name, BOOLtobool(status));
-}
-
-void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status)
-{
-    CallScilabBridge::setFigureSubMenuEnabled(getScilabJavaVM(), figurenum, name, position, BOOLtobool(status));
-}
-
-void DeleteRootMenu(char *name)
-{
-    CallScilabBridge::removeRootMenu(getScilabJavaVM(), name);
-}
-
-void DeleteFigureMenu(int figurenum, char *name)
-{
-    CallScilabBridge::removeFigureMenu(getScilabJavaVM(), figurenum, name);
+    CallScilabBridge::removeMenu(getScilabJavaVM(), pParentId, name);
 }

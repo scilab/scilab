@@ -187,18 +187,15 @@ jmethodID jintgetPopupMenuNumberOfItemsjintintID; // cache method id
 jmethodID voidsetPopupMenuTextjintintjobjectArray_java_lang_StringID; // cache method id
 jmethodID voidsetWidgetReliefjintintjstringjava_lang_StringID; // cache method id
 jmethodID voidsetFrameReliefjintintjstringjava_lang_StringID; // cache method id
-jmethodID voidsetRootMenuEnabledjstringjava_lang_StringjbooleanbooleanID; // cache method id
-jmethodID voidsetRootSubMenuEnabledjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
-jmethodID voidsetFigureMenuEnabledjintintjstringjava_lang_StringjbooleanbooleanID; // cache method id
-jmethodID voidsetFigureSubMenuEnabledjintintjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
+jmethodID voidsetMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID voidsetSubMenuEnabledjstringjava_lang_Stringjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
 jmethodID voidsetWidgetEnablejintintjbooleanbooleanID; // cache method id
 jmethodID voidsetFrameEnablejintintjbooleanbooleanID; // cache method id
 jmethodID jbooleanisWidgetEnablejintintID; // cache method id
 jmethodID jbooleanisFrameEnablejintintID; // cache method id
 jmethodID voidsetMenuCheckedjintintjbooleanbooleanID; // cache method id
 jmethodID jbooleanisMenuCheckedjintintID; // cache method id
-jmethodID voidremoveRootMenujstringjava_lang_StringID; // cache method id
-jmethodID voidremoveFigureMenujintintjstringjava_lang_StringID; // cache method id
+jmethodID voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jmethodID jstringdisplayAndWaitContextMenujintintID; // cache method id
 jmethodID jintnewMessageBoxID; // cache method id
 jmethodID voidsetMessageBoxTitlejintintjstringjava_lang_StringID; // cache method id
@@ -551,13 +548,9 @@ static void setWidgetRelief(JavaVM * jvm_, int objID, char * reliefType);
 
 static void setFrameRelief(JavaVM * jvm_, int objID, char * reliefType);
 
-static void setRootMenuEnabled(JavaVM * jvm_, char * menuName, bool status);
+static void setMenuEnabled(JavaVM * jvm_, char * parentUID, char * menuName, bool status);
 
-static void setRootSubMenuEnabled(JavaVM * jvm_, char * menuName, int position, bool status);
-
-static void setFigureMenuEnabled(JavaVM * jvm_, int figureID, char * menuName, bool status);
-
-static void setFigureSubMenuEnabled(JavaVM * jvm_, int figureID, char * menuName, int position, bool status);
+static void setSubMenuEnabled(JavaVM * jvm_, char * parentUID, char * menuName, int position, bool status);
 
 static void setWidgetEnable(JavaVM * jvm_, int objID, bool status);
 
@@ -571,9 +564,7 @@ static void setMenuChecked(JavaVM * jvm_, int objID, bool status);
 
 static bool isMenuChecked(JavaVM * jvm_, int objID);
 
-static void removeRootMenu(JavaVM * jvm_, char * menuName);
-
-static void removeFigureMenu(JavaVM * jvm_, int figureID, char * menuName);
+static void removeMenu(JavaVM * jvm_, char * parentUID, char * menuName);
 
 static char * displayAndWaitContextMenu(JavaVM * jvm_, int ID);
 
