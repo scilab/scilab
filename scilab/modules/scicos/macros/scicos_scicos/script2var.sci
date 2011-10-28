@@ -59,7 +59,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   %nww=size(who('get'),'*')
 
   %ierr=execstr(%txt,'errcatch')
-  if %ierr<>0 then return,end
+  if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
   %mm=who('get')
   %mm=%mm(1:size(%mm,'*')-%nww)
