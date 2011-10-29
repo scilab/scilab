@@ -69,16 +69,14 @@
       <varlistentry>
         <term>data: </term>
         <listitem>
-          <para>このフィールドはテキストの原点位置を表すベクトル<literal>[x,y,[z]]</literal>
-		で,単には軸のデータユニットです.</para>
+          <para>このフィールドはテキストの原点位置を表すベクトル<literal>[x,y,[z]]</literal>です．単位は,軸(axes)のデータ単位です.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>box: </term>
         <listitem>
           <para>このフィールドの値は,<literal>"on"</literal> または
-        <literal>"off"</literal>です. <literal>"on"</literal>の場合,テキストの周囲に
-	縁に線が引かれ,背景を有するボックスが描画されます.</para>
+        <literal>"off"</literal>です. <literal>"on"</literal>の場合,テキストの周囲に縁に線が引かれ,背景を有するボックスが描画されます.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
