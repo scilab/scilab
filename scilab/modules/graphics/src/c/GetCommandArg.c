@@ -25,6 +25,8 @@
 #include "CurrentSubwin.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BuildObjects.h"
+
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
 /*--------------------------------------------------------------------------*/

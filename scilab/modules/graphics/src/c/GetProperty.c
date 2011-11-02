@@ -2819,9 +2819,9 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined(char * pObjUID)
 {
-    char* xLabelId;
-    char* yLabelId;
-    char* zLabelId;
+    char* xLabelId = NULL;
+    char* yLabelId = NULL;
+    char* zLabelId = NULL;
 
     if (pObjUID == NULL)
     {
