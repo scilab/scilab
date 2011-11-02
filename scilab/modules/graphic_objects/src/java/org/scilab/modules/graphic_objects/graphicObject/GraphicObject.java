@@ -35,7 +35,8 @@ public abstract class GraphicObject implements Cloneable {
     /** Graphic objects types */
     public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, FIGUREMODEL, GRAYPLOT,
         LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
-        IMAGERENDERER, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL, UNKNOWNOBJECT 
+        IMAGERENDERER, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL, 
+        PROGRESSIONBAR, WAITBAR, UNKNOWNOBJECT 
     };
 
     /** GraphicObject properties */
@@ -201,6 +202,10 @@ public abstract class GraphicObject implements Cloneable {
             return Type.UITEXT;
         } else if (typeName.equals(__GO_UIMENU__)) {
             return Type.UIMENU;
+        } else if (typeName.equals(__GO_PROGRESSIONBAR__)) {
+            return Type.PROGRESSIONBAR;
+        } else if (typeName.equals(__GO_WAITBAR__)) {
+            return Type.WAITBAR;
         } else {
             return Type.UNKNOWNOBJECT;
         }

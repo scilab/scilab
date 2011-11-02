@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- Simple test hidden handles using the MVC implementation -->
 c = get(0); // Get console handle
-assert_checkequal(c.type, "console");
+assert_checkequal(c.type, "Console");
 assert_checkequal(c.showhiddenhandles, "off"); // Hidden handles are not shown by default
 // Create a figure with two menus (one with hidden handle)
 f = gcf();

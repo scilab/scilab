@@ -902,10 +902,10 @@ function %h_p(h)
             "TableData = "+fmtuser_data(h.columnnames)
             ]
 
-        // console
+        // Console
         // =====================================================================
 
-        case "console"
+        case "Console"
             t=[t;
                 "Children: "+fmtchildren(h.children)
                 "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)

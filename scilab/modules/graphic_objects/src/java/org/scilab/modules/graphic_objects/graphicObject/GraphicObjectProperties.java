@@ -357,7 +357,12 @@ public static final String __GO_UI_MNEMONIC__ =            "UIMnemonic";
 public static final String __GO_UI_ACCELERATOR__ =         "UIAccelerator";
 public static final String __GO_UI_SEPARATOR__ =           "UISeparator";
 
-public static final String __GO_CONSOLE__ =                "console";
+public static final String __GO_CONSOLE__ =                "Console";
 public static final String __GO_SHOWHIDDENHANDLES__ =      "ShowHiddenHandles";
+
+public static final String __GO_WAITBAR__ =                "Waitbar";
+public static final String __GO_PROGRESSIONBAR__ =         "Progressionbar";
+public static final String __GO_UI_MESSAGE__ =             "UIMessage";
+public static final String __GO_UI_MESSAGE_SIZE__ =        "UIMessageSize";
 
 }

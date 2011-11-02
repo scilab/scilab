@@ -356,7 +356,12 @@
 #define __GO_UI_ACCELERATOR__              "UIAccelerator"
 #define __GO_UI_SEPARATOR__                "UISeparator"
 
-#define __GO_CONSOLE__                     "console"
+#define __GO_CONSOLE__                     "Console"
 #define __GO_SHOWHIDDENHANDLES__           "ShowHiddenHandles"
+
+#define __GO_WAITBAR__                     "Waitbar"
+#define __GO_PROGRESSIONBAR__              "Progressionbar"
+#define __GO_UI_MESSAGE__                  "UIMessage"
+#define __GO_UI_MESSAGE_SIZE__             "UIMessageSize"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

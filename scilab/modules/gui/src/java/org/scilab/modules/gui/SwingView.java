@@ -20,6 +20,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
@@ -55,6 +56,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -94,6 +96,7 @@ import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
@@ -154,6 +157,7 @@ public final class SwingView implements GraphicView {
         ImageRenderer,
         ListBox,
         PopupMenu,
+        Progressbar,
         PushButton,
         RadioButton,
         Slider,
@@ -162,7 +166,8 @@ public final class SwingView implements GraphicView {
         Uimenu,
         UiParentMenu,
         UiChildMenu,
-        UiCheckedMenu
+        UiCheckedMenu,
+        Waitbar
     } 
 
     private class TypedObject {
@@ -211,7 +216,11 @@ public final class SwingView implements GraphicView {
 
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
         DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
-        if (objectType.equals(__GO_FIGURE__) || objectType.equals(__GO_UIMENU__)) {
+        if (objectType.equals(__GO_FIGURE__) 
+                || objectType.equals(__GO_UIMENU__)
+                || objectType.equals(__GO_CONSOLE__)
+                || objectType.equals(__GO_PROGRESSIONBAR__)
+                || objectType.equals(__GO_WAITBAR__)) {
             allObjects.put(id, CreateObjectFromType(objectType, id));
             return;
         }
@@ -224,10 +233,6 @@ public final class SwingView implements GraphicView {
             } else {
                 allObjects.put(id, null);
             }
-        }
-
-        if (objectType.equals(__GO_CONSOLE__)) {
-            allObjects.put(id, CreateObjectFromType(objectType, id));
         }
     }
 
@@ -267,6 +272,10 @@ public final class SwingView implements GraphicView {
             return UielementType.UiChildMenu;
         } else if (style.equals(__GO_UICHECKEDMENU__)) {
             return UielementType.UiCheckedMenu;
+        } else if (style.equals(__GO_PROGRESSIONBAR__)) {
+            return UielementType.Progressbar;
+        } else if (style.equals(__GO_WAITBAR__)) {
+            return UielementType.Waitbar;
         }
         return null;
     }
@@ -364,6 +373,11 @@ public final class SwingView implements GraphicView {
             popupMenu.setId(id);
             setDefaultProperties(popupMenu, id);
             return popupMenu;
+        case Progressbar:
+            SwingScilabWaitBar progressbar = new SwingScilabWaitBar();
+            progressbar.setIndeterminateMode(true);
+            progressbar.setId(id);
+            return progressbar;
         case PushButton:
             SwingScilabPushButton pushButton = new SwingScilabPushButton();
             pushButton.setId(id);
@@ -405,6 +419,11 @@ public final class SwingView implements GraphicView {
             checkedMenu.setId(id);
             setMenuDefaultProperties(checkedMenu, id);
             return checkedMenu;
+        case Waitbar:
+            SwingScilabWaitBar waitbar = new SwingScilabWaitBar();
+            waitbar.setIndeterminateMode(false);
+            waitbar.setId(id);
+            return waitbar;
         default:
             return null;
         }
@@ -478,6 +497,11 @@ public final class SwingView implements GraphicView {
                 DockingManager.close(tab);
                 DockingManager.unregisterDockable((Dockable) tab);
                 tab.close();
+                break;
+            case Progressbar:
+            case Waitbar:
+                SwingScilabWaitBar bar = (SwingScilabWaitBar) requestedObject.getValue();
+                bar.close();
                 break;
             default:
                 ((Widget) requestedObject.getValue()).destroy();
