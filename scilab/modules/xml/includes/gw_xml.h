@@ -66,6 +66,7 @@ int sci_xmlSchema(char *fname, unsigned long fname_len);
 int sci_xmlRelaxNG(char *fname, unsigned long fname_len);
 int sci_xmlValidate(char *fname, unsigned long fname_len);
 int sci_percent_XMLValid_p(char *fname, unsigned long fname_len);
+int sci_xmlIsValidObject(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */
 /*--------------------------------------------------------------------------*/

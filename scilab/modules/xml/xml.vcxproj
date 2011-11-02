@@ -263,6 +263,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByHref.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByPrefix.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenStreams.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlIsValidObject.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />

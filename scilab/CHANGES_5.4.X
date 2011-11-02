@@ -8,9 +8,9 @@ Scilab Desktop:
 * Thanks to this new feature, Scilab confirms its usuability and its strong
 user-oriented approach. Scilab Desktop is the new concept behind Scilab
 window management taking advantage of advanced Flexdock features.
-Out of the box, Scilab is now able to save all windows layouts including the 
+Out of the box, Scilab is now able to save all windows layouts including the
 help browser, the variable browser, the command history, Scinotes and Xcos.
-Through this major improvement, position and size of all the windows will 
+Through this major improvement, position and size of all the windows will
 be preserved from a session to an other.
 
 In this context, a file browser component has been developped and fully
@@ -51,6 +51,7 @@ XML files, validation and writing.
  - xmlValidate - Validate a document in using a DTD, a Relax NG or a Schema.
  - xmlWrite - Write a XML document in a file
  - xmlXPath - Make an XPath query on a XML document
+ - xmlIsValidObject - Test the existence of an XML object
 
 These features have been developped in the context of the OASIS R&D project.
 
@@ -136,7 +137,7 @@ Xcos:
 * bug 8742 fixed - On the Modelica initialization GUI, the error reporting did
                    not work.
 
-* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to 
+* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
                    re-fix the states after a derivatives fix.
 
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
@@ -213,7 +214,7 @@ File input/output:
 * bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
 * bug 10055 fixed - findfiles had a wrong default filter under GNU/Linux
-                    & Mac OS X 
+                    & Mac OS X
 
 New functions
 =============

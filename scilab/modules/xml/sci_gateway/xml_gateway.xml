@@ -102,4 +102,5 @@
 <PRIMITIVE gatewayId="68" primitiveId="71" primitiveName="xmlRelaxNG" />
 <PRIMITIVE gatewayId="68" primitiveId="72" primitiveName="xmlValidate" />
 <PRIMITIVE gatewayId="68" primitiveId="73" primitiveName="%XMLValid_p" />
+<PRIMITIVE gatewayId="68" primitiveId="74" primitiveName="xmlIsValidObject" />
 </GATEWAY>
