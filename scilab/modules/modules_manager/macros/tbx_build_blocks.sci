@@ -41,6 +41,20 @@ function tbx_build_blocks(module, names)
 
     // load Xcos libraries when not already loaded.
     if ~exists("scicos_diagram") then loadXcosLibs(); end
+    
+    // create directories
+    if ~isdir(module + "/images") then
+        createdir(module + "/images");
+    end
+    if ~isdir(module + "/images/h5") then
+        createdir(module + "/images/h5");
+    end
+    if ~isdir(module + "/images/gif") then
+        createdir(module + "/images/gif");
+    end
+    if ~isdir(module + "/images/svg") then
+        createdir(module + "/images/svg");
+    end
 
     sciFiles = pathconvert(module + "/macros/") + names + ".sci";
     h5Files = pathconvert(module + "/images/h5/") + names + ".h5";
