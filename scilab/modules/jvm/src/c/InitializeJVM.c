@@ -29,6 +29,9 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+
+#include "catchIfJavaException.h"
+
 /*--------------------------------------------------------------------------*/
 static void DoLoadClasspathInEtc(char *sciPath);
 static void DoLoadLibrarypathInEtc(char *sciPath);

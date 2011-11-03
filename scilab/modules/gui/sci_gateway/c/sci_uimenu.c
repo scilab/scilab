@@ -35,6 +35,8 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu(char *fname, unsigned long fname_len)
 {

@@ -35,6 +35,8 @@
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
 
+#include "BuildObjects.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
