@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-17 10:07+0100\n"
+"Revision-Date: 2011-11-03 10:55+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -294,7 +294,7 @@ msgstr ""
 
 #
 # File: macros/dllinfo.sci, line: 38
-# File: macros/ilib_gen_loader.sci, line: 121
+# File: macros/ilib_gen_loader.sci, line: 124
 # File: macros/windows/dlwDllInfo.sci, line: 110
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -313,6 +313,13 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
+# File: macros/haveacompiler.sci, line: 22
+msgid ""
+"Due to the multivendors nature of the Unix world, the function "
+"'haveacompiler' is only supported under Windows."
+msgstr ""
+
+#
 # File: macros/ilib_build.sci, line: 23
 # File: macros/ilib_mex_build.sci, line: 15
 #, c-format
@@ -321,9 +328,9 @@ msgstr ""
 
 #
 # File: macros/ilib_build.sci, line: 38
-# File: macros/ilib_gen_loader.sci, line: 83
-# File: macros/ilib_gen_loader.sci, line: 91
-# File: macros/ilib_gen_loader.sci, line: 99
+# File: macros/ilib_gen_loader.sci, line: 86
+# File: macros/ilib_gen_loader.sci, line: 94
+# File: macros/ilib_gen_loader.sci, line: 102
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -485,7 +492,7 @@ msgstr ""
 
 #
 # File: macros/ilib_gen_Make.sci, line: 62
-# File: macros/ilib_gen_loader.sci, line: 68
+# File: macros/ilib_gen_loader.sci, line: 71
 # File: macros/windows/dlwGenerateMakefile.sci, line: 56
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -598,8 +605,8 @@ msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/ilib_gen_loader.sci, line: 52
-# File: macros/ilib_gen_loader.sci, line: 75
+# File: macros/ilib_gen_loader.sci, line: 55
+# File: macros/ilib_gen_loader.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
