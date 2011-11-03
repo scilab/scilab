@@ -603,7 +603,7 @@ case "$CC" in
   *-*-darwin*)
     CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
     CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
-    FFLAGS="$FFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    FFLAGS="$FFLAGS -mmacosx-version-min=10.5"
     case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
