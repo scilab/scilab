@@ -27,6 +27,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
@@ -70,6 +71,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JSeparator;
 
 import org.flexdock.docking.Dockable;
@@ -83,6 +85,7 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
@@ -167,6 +170,7 @@ public final class SwingView implements GraphicView {
         UiParentMenu,
         UiChildMenu,
         UiCheckedMenu,
+        UiContextMenu,
         Waitbar
     } 
 
@@ -217,6 +221,7 @@ public final class SwingView implements GraphicView {
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
         DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
         if (objectType.equals(__GO_FIGURE__) 
+                || objectType.equals(__GO_UICONTEXTMENU__)
                 || objectType.equals(__GO_UIMENU__)
                 || objectType.equals(__GO_CONSOLE__)
                 || objectType.equals(__GO_PROGRESSIONBAR__)
@@ -276,6 +281,8 @@ public final class SwingView implements GraphicView {
             return UielementType.Progressbar;
         } else if (style.equals(__GO_WAITBAR__)) {
             return UielementType.Waitbar;
+        } else if (style.equals(__GO_UICONTEXTMENU__)) {
+            return UielementType.UiContextMenu;
         }
         return null;
     }
@@ -419,6 +426,10 @@ public final class SwingView implements GraphicView {
             checkedMenu.setId(id);
             setMenuDefaultProperties(checkedMenu, id);
             return checkedMenu;
+        case UiContextMenu:
+            SwingScilabContextMenu contextMenu = new SwingScilabContextMenu();
+            contextMenu.setId(id);
+            return contextMenu;
         case Waitbar:
             SwingScilabWaitBar waitbar = new SwingScilabWaitBar();
             waitbar.setIndeterminateMode(false);
@@ -545,6 +556,13 @@ public final class SwingView implements GraphicView {
              */
             if (type.equals(__GO_UIMENU__)) {
                 updateMenuChildren(id, newChildren);
+            }
+            
+            /*
+             * CONTEXTMENU CHILDREN UPDATE
+             */
+            if (type.equals(__GO_UICONTEXTMENU__)) {
+                updateContextMenuChildren(id, newChildren);
             }
         }
 
@@ -771,25 +789,26 @@ public final class SwingView implements GraphicView {
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     Object addedChild = allObjects.get(childId).getValue();
                     parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
+                    JComponent parent = (JComponent) allObjects.get(parentId).getValue();
                     switch (updatedObject.getType()) {
                     case UiChildMenu:
                         updatedComponent = (SwingScilabMenuItem) updatedObject.getValue();
                         switch (childAsTypedObject.getType()) {
                         case UiChildMenu:
                             /* Replace the item by a parent menu */
-                            updatedObjectPosition = ((SwingScilabMenu) allObjects.get(parentId).getValue()).getComponentZOrder((SwingScilabMenuItem) allObjects.get(id).getValue());
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).remove((SwingScilabMenuItem) allObjects.get(id).getValue());
+                            updatedObjectPosition = parent.getComponentZOrder((SwingScilabMenuItem) allObjects.get(id).getValue());
+                            parent.remove((SwingScilabMenuItem) allObjects.get(id).getValue());
                             allObjects.put(id, CreateObjectFromType(__GO_UIPARENTMENU__, id));
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
+                            parent.add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
                             /* Update the created menu */
                             ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabMenuItem) addedChild);
                             break;
                         case UiCheckedMenu:
                             /* Replace the item by a parent menu */
-                            updatedObjectPosition = ((SwingScilabMenu) allObjects.get(parentId).getValue()).getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            updatedObjectPosition = parent.getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            parent.remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
                             allObjects.put(id, CreateObjectFromType(__GO_UIPARENTMENU__, id));
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
+                            parent.add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
                             /* Update the created menu */
                             ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabCheckBoxMenuItem) addedChild);
                             break;
@@ -803,19 +822,19 @@ public final class SwingView implements GraphicView {
                         switch (childAsTypedObject.getType()) {
                         case UiChildMenu:
                             /* Replace the item by a parent menu */
-                            updatedObjectPosition = ((SwingScilabMenu) allObjects.get(parentId).getValue()).getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            updatedObjectPosition = parent.getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            parent.remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
                             allObjects.put(id, CreateObjectFromType(__GO_UIPARENTMENU__, id));
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
+                            parent.add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
                             /* Update the created menu */
                             ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabMenuItem) allObjects.get(childId).getValue());
                             break;
                         case UiCheckedMenu:
                             /* Replace the item by a parent menu */
-                            updatedObjectPosition = ((SwingScilabMenu) allObjects.get(parentId).getValue()).getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            updatedObjectPosition = parent.getComponentZOrder((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
+                            parent.remove((SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue());
                             allObjects.put(id, CreateObjectFromType(__GO_UIPARENTMENU__, id));
-                            ((SwingScilabMenu) allObjects.get(parentId).getValue()).add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
+                            parent.add((SwingScilabMenu) allObjects.get(id).getValue(), updatedObjectPosition);
                             /* Update the created menu */
                             ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
                             break;
@@ -873,6 +892,72 @@ public final class SwingView implements GraphicView {
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.validate();
         }
+    }
+    /**
+     * Update the children of a contextmenu (called by generic updateObject method)
+     * @param id the id of the contextmenu object
+     * @param newChildren the new children IDs list
+     */
+    private void updateContextMenuChildren(String id, String[] newChildren) {
+        TypedObject updatedObject = allObjects.get(id);
+        Container updatedComponent = null;
+        boolean needRevalidate = false;
 
+        // Add new children
+        for (String childId : newChildren) {
+            String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+            if (childType.equals(__GO_UIMENU__)) {
+                if (!updatedObject.hasChild(childId)) {
+
+                    // Add the child
+                    updatedObject.addChild(childId);
+
+                    TypedObject childAsTypedObject = allObjects.get(childId);
+                    SwingScilabContextMenu updatedMenu = (SwingScilabContextMenu) updatedObject.getValue();
+                    updatedComponent = updatedMenu;
+                    switch (childAsTypedObject.getType()) {
+                    case UiChildMenu:
+                        updatedMenu.add((SwingScilabMenuItem) allObjects.get(childId).getValue());
+                        break;
+                    case UiCheckedMenu:
+                        updatedMenu.add((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
+                        break;
+                    default: /* UiParentMenu */
+                        updatedMenu.add((SwingScilabMenu) allObjects.get(childId).getValue());
+                        break;
+                    }
+                    needRevalidate = true;
+                }
+            }
+        }
+        // Remove children which have been deleted
+        Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
+        for (String childId : updatedObject.getChildren()) {
+            if (!newChildrenSet.contains(childId)) {
+                // Remove the child
+                updatedObject.removeChild(childId);
+                updatedComponent = (SwingScilabMenu) updatedObject.getValue();
+
+                TypedObject childAsTypedObject = allObjects.get(childId);
+                SwingScilabContextMenu updatedMenu = (SwingScilabContextMenu) allObjects.get(id).getValue();
+                Object removedMenu = allObjects.get(childId).getValue();
+
+                switch (childAsTypedObject.getType()) {
+                case UiChildMenu:
+                    updatedMenu.remove((SwingScilabMenuItem) removedMenu);
+                    break;
+                case UiCheckedMenu:
+                    updatedMenu.remove((SwingScilabCheckBoxMenuItem) removedMenu);
+                    break;
+                default:
+                    updatedMenu.remove((SwingScilabMenu) removedMenu);
+                    break;
+                }
+                needRevalidate = true;
+            }
+        }
+        if (needRevalidate && updatedComponent != null) {
+            updatedComponent.validate();
+        }
     }
 }

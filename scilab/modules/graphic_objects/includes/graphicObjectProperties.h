@@ -40,6 +40,7 @@
 #define __GO_TEXT__                        "Text"
 #define __GO_UICONTROL__                   "uicontrol"
 #define __GO_UIMENU__                      "uimenu"
+#define __GO_UICONTEXTMENU__               "uicontextmenu"
 
 #define __GO_CHILDREN__                    "Children"
 #define __GO_CHILDREN_COUNT__              "ChildrenCount"

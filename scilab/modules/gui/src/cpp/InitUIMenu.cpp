@@ -92,7 +92,8 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
         if (pParentUID != NULL)
         {
             getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-            if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0))   // || (strcmp(parentType, __GO_UICONTEXTMENU__) == 0) )
+            if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0)
+                || (strcmp(parentType, __GO_UICONTEXTMENU__) == 0))
             {
                 setGraphicObjectRelationship(pParentUID, pobjUID);
                 free(parentType);

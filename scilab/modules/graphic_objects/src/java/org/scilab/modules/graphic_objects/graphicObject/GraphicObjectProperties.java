@@ -41,6 +41,7 @@ public static final String __GO_SEGS__ =                   "Segs";
 public static final String __GO_TEXT__ =                   "Text";
 public static final String __GO_UICONTROL__ =              "uicontrol";
 public static final String __GO_UIMENU__ =                 "uimenu";
+public static final String __GO_UICONTEXTMENU__ =          "uicontextmenu";
 
 public static final String __GO_CHILDREN__ =               "Children";
 public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";

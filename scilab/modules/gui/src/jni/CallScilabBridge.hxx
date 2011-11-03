@@ -196,7 +196,7 @@ jmethodID jbooleanisFrameEnablejintintID; // cache method id
 jmethodID voidsetMenuCheckedjintintjbooleanbooleanID; // cache method id
 jmethodID jbooleanisMenuCheckedjintintID; // cache method id
 jmethodID voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jstringdisplayAndWaitContextMenujintintID; // cache method id
+jmethodID jstringdisplayAndWaitContextMenujstringjava_lang_StringID; // cache method id
 jmethodID jintnewMessageBoxID; // cache method id
 jmethodID voidsetMessageBoxTitlejintintjstringjava_lang_StringID; // cache method id
 jmethodID voidsetMessageBoxMessagejintintjstringjava_lang_StringID; // cache method id
@@ -565,7 +565,7 @@ static bool isMenuChecked(JavaVM * jvm_, int objID);
 
 static void removeMenu(JavaVM * jvm_, char * parentUID, char * menuName);
 
-static char * displayAndWaitContextMenu(JavaVM * jvm_, int ID);
+static char * displayAndWaitContextMenu(JavaVM * jvm_, char * UID);
 
 static int newMessageBox(JavaVM * jvm_);
 

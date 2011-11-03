@@ -35,6 +35,7 @@ import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uibar.progressionbar.Progressionbar;
 import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
+import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
@@ -265,6 +266,10 @@ public final class GraphicModel {
             case UIMENUMODEL:
                 createdObject = new Uimenu();
                 createdObject.setValid(false);
+                break;
+            /* UICONTEXTMENU */
+            case UICONTEXTMENU:
+                createdObject = new Uicontextmenu();
                 break;
             /* Create Scilab console object */
             case CONSOLE:

@@ -222,7 +222,7 @@ jbooleanisFrameEnablejintintID=NULL;
 voidsetMenuCheckedjintintjbooleanbooleanID=NULL;
 jbooleanisMenuCheckedjintintID=NULL;
 voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-jstringdisplayAndWaitContextMenujintintID=NULL;
+jstringdisplayAndWaitContextMenujstringjava_lang_StringID=NULL;
 jintnewMessageBoxID=NULL;
 voidsetMessageBoxTitlejintintjstringjava_lang_StringID=NULL;
 voidsetMessageBoxMessagejintintjstringjava_lang_StringID=NULL;
@@ -439,7 +439,7 @@ jbooleanisFrameEnablejintintID=NULL;
 voidsetMenuCheckedjintintjbooleanbooleanID=NULL;
 jbooleanisMenuCheckedjintintID=NULL;
 voidremoveMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
-jstringdisplayAndWaitContextMenujintintID=NULL;
+jstringdisplayAndWaitContextMenujstringjava_lang_StringID=NULL;
 jintnewMessageBoxID=NULL;
 voidsetMessageBoxTitlejintintjstringjava_lang_StringID=NULL;
 voidsetMessageBoxMessagejintintjstringjava_lang_StringID=NULL;
@@ -3229,18 +3229,25 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-char * CallScilabBridge::displayAndWaitContextMenu (JavaVM * jvm_, int ID){
+char * CallScilabBridge::displayAndWaitContextMenu (JavaVM * jvm_, char * UID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jstringdisplayAndWaitContextMenujintintID = curEnv->GetStaticMethodID(cls, "displayAndWaitContextMenu", "(I)Ljava/lang/String;" ) ;
-if (jstringdisplayAndWaitContextMenujintintID == NULL) {
+jmethodID jstringdisplayAndWaitContextMenujstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "displayAndWaitContextMenu", "(Ljava/lang/String;)Ljava/lang/String;" ) ;
+if (jstringdisplayAndWaitContextMenujstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "displayAndWaitContextMenu");
 }
 
-                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringdisplayAndWaitContextMenujintintID ,ID));
+jstring UID_ = curEnv->NewStringUTF( UID );
+if (UID != NULL && UID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringdisplayAndWaitContextMenujstringjava_lang_StringID ,UID_));
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
@@ -3250,6 +3257,7 @@ char * myStringBuffer = new char[strlen(tempString) + 1];
 strcpy(myStringBuffer, tempString);
 curEnv->ReleaseStringUTFChars(res, tempString);
 curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(UID_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 delete[] myStringBuffer;

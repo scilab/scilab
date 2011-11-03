@@ -434,7 +434,7 @@
     </method>
     <!-- ContextMenu -->
     <method name="displayAndWaitContextMenu" returnType="String" modifier="static">
-      <parameter type="int" name="ID"/>
+      <parameter type="String" name="UID"/>
     </method>
     <!-- Message Box -->
     <method name="newMessageBox" returnType="int" modifier="static"/>

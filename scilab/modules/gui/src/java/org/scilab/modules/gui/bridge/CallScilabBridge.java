@@ -50,11 +50,11 @@ import javax.swing.text.Document;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -618,11 +618,12 @@ public class CallScilabBridge {
     /**
      * Create a new ContextMenu in Scilab GUIs
      * and wait for a user answer
-     * @param id the id of the Context Menu
+     * @param uicontextmenuUID the id of the Context Menu
      * @return the item of the menu selected
      */
-    public static String displayAndWaitContextMenu(int id) {
-        return ((ContextMenu) UIElementMapper.getCorrespondingUIElement(id)).getAsSimpleContextMenu().displayAndWait();
+    public static String displayAndWaitContextMenu(String uicontextmenuUID) {
+        SwingViewObject uicontextmenu = SwingView.getFromId(uicontextmenuUID);
+        return ((SwingScilabContextMenu) uicontextmenu).displayAndWait();
     }
 
     /**
