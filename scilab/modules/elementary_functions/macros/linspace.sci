@@ -18,15 +18,25 @@ function y = linspace(d1, d2, n)
   if rhs < 2 then
     error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"linspace", 2));
   end
+  if size(d1,2)<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),"linspace",1));
+  end
+  if ~and(size(d1) == size(d2)) then
+    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"linspace",1,2));
+  end
 
-  if argn(2) == 2 then 
+
+  if rhs == 2 then 
     n = 100;
+  else
+    if type(n)<>1|size(n,'*')<>1|int(n)<>n|n<2 then
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer >= %d expected.\n"),"linspace",3));
+  end
+  
   end
   if (n - 1) <= 0 then
     y = d2;
   else
-    // Note:
-    // The following works even if n is a real value
-    y = (0:n-1) * (d2-d1) / (n-1) + d1;
+    y = (d2-d1) * (0:n-1) / (n-1) + d1 * ones(0:n-1);
   end
 endfunction

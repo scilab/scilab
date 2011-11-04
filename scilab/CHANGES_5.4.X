@@ -603,6 +603,12 @@ CACSD and Signal processing
 Misc:
 =====
 
+* The linspace function accepts column vectors as input argument for the two
+  first input arguments. Thanks to Guillaume AZEMA for the implementation.
+
+* The logspace function accepts column vectors as input argument for the two
+  first input arguments.
+
 * Change the buffering display mode.
 
 * SEP #67: lines(0) by default at startup.
