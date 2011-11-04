@@ -32,7 +32,7 @@
   <target name="compile" description="build sources" depends="init">
     <mkdir dir="build/classes"/>
     <mkdir dir="jar"/>
-    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath" source="5" target="6"/>
+    <javac srcdir="${src}" destdir="build/classes" classpathref="classpath" source="6" target="6"/>
   </target>
   <target name="jar" description="do .jar file" depends="compile">
     <jar destfile="${dist}/others.jar" basedir="build/classes">
