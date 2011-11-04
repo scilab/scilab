@@ -132,14 +132,14 @@ am__libsciconsole_disable_la_SOURCES_DIST = src/noconsole/noconsole.c \
 	sci_gateway/c/sci_prompt.c \
 	sci_gateway/c/sci_iswaitingforinput.c src/c/clc.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
-	src/c/GetCommandLine.c src/c/others/zzledt.c \
-	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
-	src/c/prompt.c src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
+	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
+	src/c/others/clrscr_nw.c src/c/others/zzledt.c src/c/prompt.c \
+	src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
 	src/c/cmdLine/cap_func.c src/c/cmdLine/catstr.c \
-	src/c/cmdLine/charctl.c src/c/cmdLine/cmd_func.c \
-	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
-	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
-	src/c/cmdLine/getNbrLine.c src/c/cmdLine/reader.c \
+	src/c/cmdLine/charctl.c src/c/cmdLine/get_signal.c \
+	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
+	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
+	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
 	src/c/others/initMacOSXEnv.c
 @IS_MACOSX_TRUE@am__objects_1 =  \
 @IS_MACOSX_TRUE@	libsciconsole_disable_la-initMacOSXEnv.lo
@@ -156,22 +156,22 @@ am_libsciconsole_disable_la_OBJECTS =  \
 	libsciconsole_disable_la-more.lo \
 	libsciconsole_disable_la-scilines.lo \
 	libsciconsole_disable_la-GetCommandLine.lo \
-	libsciconsole_disable_la-zzledt.lo \
 	libsciconsole_disable_la-gotoxy_nw.lo \
 	libsciconsole_disable_la-clrscr_nw.lo \
+	libsciconsole_disable_la-zzledt.lo \
 	libsciconsole_disable_la-prompt.lo \
 	libsciconsole_disable_la-promptecho.lo \
 	libsciconsole_disable_la-aff_prompt.lo \
 	libsciconsole_disable_la-cap_func.lo \
 	libsciconsole_disable_la-catstr.lo \
 	libsciconsole_disable_la-charctl.lo \
-	libsciconsole_disable_la-cmd_func.lo \
 	libsciconsole_disable_la-get_signal.lo \
 	libsciconsole_disable_la-goto_func.lo \
 	libsciconsole_disable_la-history.lo \
 	libsciconsole_disable_la-init_tc_shell.lo \
 	libsciconsole_disable_la-getNbrLine.lo \
-	libsciconsole_disable_la-reader.lo $(am__objects_1)
+	libsciconsole_disable_la-autoCompletionCli.lo \
+	libsciconsole_disable_la-getKey.lo $(am__objects_1)
 libsciconsole_disable_la_OBJECTS =  \
 	$(am_libsciconsole_disable_la_OBJECTS)
 libsciconsole_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -183,14 +183,14 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/jni/DropFiles_wrap.c src/c/InitializeConsole.c \
 	src/c/GuiManagement.c src/c/dropFiles.c src/c/clc.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
-	src/c/GetCommandLine.c src/c/others/zzledt.c \
-	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
-	src/c/prompt.c src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
+	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
+	src/c/others/clrscr_nw.c src/c/others/zzledt.c src/c/prompt.c \
+	src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
 	src/c/cmdLine/cap_func.c src/c/cmdLine/catstr.c \
-	src/c/cmdLine/charctl.c src/c/cmdLine/cmd_func.c \
-	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
-	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
-	src/c/cmdLine/getNbrLine.c src/c/cmdLine/reader.c \
+	src/c/cmdLine/charctl.c src/c/cmdLine/get_signal.c \
+	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
+	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
+	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
 	src/c/others/initMacOSXEnv.c src/jni/CallScilabBridge.cpp \
 	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
 	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
@@ -209,16 +209,17 @@ am__objects_4 = libsciconsole_la-InitializeConsole.lo \
 	libsciconsole_la-dropFiles.lo libsciconsole_la-clc.lo \
 	libsciconsole_la-tohome.lo libsciconsole_la-more.lo \
 	libsciconsole_la-scilines.lo \
-	libsciconsole_la-GetCommandLine.lo libsciconsole_la-zzledt.lo \
+	libsciconsole_la-GetCommandLine.lo \
 	libsciconsole_la-gotoxy_nw.lo libsciconsole_la-clrscr_nw.lo \
-	libsciconsole_la-prompt.lo libsciconsole_la-promptecho.lo \
-	libsciconsole_la-aff_prompt.lo libsciconsole_la-cap_func.lo \
-	libsciconsole_la-catstr.lo libsciconsole_la-charctl.lo \
-	libsciconsole_la-cmd_func.lo libsciconsole_la-get_signal.lo \
+	libsciconsole_la-zzledt.lo libsciconsole_la-prompt.lo \
+	libsciconsole_la-promptecho.lo libsciconsole_la-aff_prompt.lo \
+	libsciconsole_la-cap_func.lo libsciconsole_la-catstr.lo \
+	libsciconsole_la-charctl.lo libsciconsole_la-get_signal.lo \
 	libsciconsole_la-goto_func.lo libsciconsole_la-history.lo \
 	libsciconsole_la-init_tc_shell.lo \
-	libsciconsole_la-getNbrLine.lo libsciconsole_la-reader.lo \
-	$(am__objects_3)
+	libsciconsole_la-getNbrLine.lo \
+	libsciconsole_la-autoCompletionCli.lo \
+	libsciconsole_la-getKey.lo $(am__objects_3)
 am__objects_5 = libsciconsole_la-CallScilabBridge.lo
 am__objects_6 = libsciconsole_la-ClearConsole.lo \
 	libsciconsole_la-ClearConsolePart.lo \
@@ -550,15 +551,15 @@ src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InitializeConsole.c src/c/GuiManagement.c \
 	src/c/dropFiles.c src/c/clc.c src/c/tohome.c src/c/more.c \
-	src/c/scilines.c src/c/GetCommandLine.c src/c/others/zzledt.c \
+	src/c/scilines.c src/c/GetCommandLine.c \
 	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
-	src/c/prompt.c src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
-	src/c/cmdLine/cap_func.c src/c/cmdLine/catstr.c \
-	src/c/cmdLine/charctl.c src/c/cmdLine/cmd_func.c \
+	src/c/others/zzledt.c src/c/prompt.c src/c/promptecho.c \
+	src/c/cmdLine/aff_prompt.c src/c/cmdLine/cap_func.c \
+	src/c/cmdLine/catstr.c src/c/cmdLine/charctl.c \
 	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
 	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
-	src/c/cmdLine/getNbrLine.c src/c/cmdLine/reader.c \
-	$(am__append_1)
+	src/c/cmdLine/getNbrLine.c src/c/cmdLine/autoCompletionCli.c \
+	src/c/cmdLine/getKey.c $(am__append_1)
 
 # List of the gateway c files
 CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
@@ -578,14 +579,14 @@ libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
 	sci_gateway/c/sci_prompt.c \
 	sci_gateway/c/sci_iswaitingforinput.c src/c/clc.c \
 	src/c/tohome.c src/c/more.c src/c/scilines.c \
-	src/c/GetCommandLine.c src/c/others/zzledt.c \
-	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
-	src/c/prompt.c src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
+	src/c/GetCommandLine.c src/c/others/gotoxy_nw.c \
+	src/c/others/clrscr_nw.c src/c/others/zzledt.c src/c/prompt.c \
+	src/c/promptecho.c src/c/cmdLine/aff_prompt.c \
 	src/c/cmdLine/cap_func.c src/c/cmdLine/catstr.c \
-	src/c/cmdLine/charctl.c src/c/cmdLine/cmd_func.c \
-	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
-	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
-	src/c/cmdLine/getNbrLine.c src/c/cmdLine/reader.c \
+	src/c/cmdLine/charctl.c src/c/cmdLine/get_signal.c \
+	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
+	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
+	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
 	$(am__append_4)
 libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -789,12 +790,13 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-GetCommandLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-aff_prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-autoCompletionCli.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-cap_func.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-catstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-charctl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-clrscr_nw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-cmd_func.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-getKey.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-getNbrLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-get_signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-goto_func.Plo@am__quote@
@@ -807,7 +809,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-noconsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-promptecho.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-reader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-sci_lines.Plo@am__quote@
@@ -832,13 +833,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-aff_prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-autoCompletionCli.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-cap_func.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-catstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-charctl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-clrscr_nw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-cmd_func.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-getKey.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-getNbrLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-get_signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-goto_func.Plo@am__quote@
@@ -850,7 +852,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-promptecho.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-reader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_lines.Plo@am__quote@
@@ -965,13 +966,6 @@ libsciconsole_disable_la-GetCommandLine.lo: src/c/GetCommandLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
-libsciconsole_disable_la-zzledt.lo: src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-zzledt.Tpo -c -o libsciconsole_disable_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-zzledt.Tpo $(DEPDIR)/libsciconsole_disable_la-zzledt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libsciconsole_disable_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
-
 libsciconsole_disable_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-gotoxy_nw.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-gotoxy_nw.Tpo -c -o libsciconsole_disable_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-gotoxy_nw.Tpo $(DEPDIR)/libsciconsole_disable_la-gotoxy_nw.Plo
@@ -985,6 +979,13 @@ libsciconsole_disable_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/clrscr_nw.c' object='libsciconsole_disable_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+
+libsciconsole_disable_la-zzledt.lo: src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-zzledt.Tpo -c -o libsciconsole_disable_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-zzledt.Tpo $(DEPDIR)/libsciconsole_disable_la-zzledt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libsciconsole_disable_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
 
 libsciconsole_disable_la-prompt.lo: src/c/prompt.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-prompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-prompt.Tpo -c -o libsciconsole_disable_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
@@ -1028,13 +1029,6 @@ libsciconsole_disable_la-charctl.lo: src/c/cmdLine/charctl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-charctl.lo `test -f 'src/c/cmdLine/charctl.c' || echo '$(srcdir)/'`src/c/cmdLine/charctl.c
 
-libsciconsole_disable_la-cmd_func.lo: src/c/cmdLine/cmd_func.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-cmd_func.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-cmd_func.Tpo -c -o libsciconsole_disable_la-cmd_func.lo `test -f 'src/c/cmdLine/cmd_func.c' || echo '$(srcdir)/'`src/c/cmdLine/cmd_func.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-cmd_func.Tpo $(DEPDIR)/libsciconsole_disable_la-cmd_func.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/cmd_func.c' object='libsciconsole_disable_la-cmd_func.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-cmd_func.lo `test -f 'src/c/cmdLine/cmd_func.c' || echo '$(srcdir)/'`src/c/cmdLine/cmd_func.c
-
 libsciconsole_disable_la-get_signal.lo: src/c/cmdLine/get_signal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-get_signal.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-get_signal.Tpo -c -o libsciconsole_disable_la-get_signal.lo `test -f 'src/c/cmdLine/get_signal.c' || echo '$(srcdir)/'`src/c/cmdLine/get_signal.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-get_signal.Tpo $(DEPDIR)/libsciconsole_disable_la-get_signal.Plo
@@ -1070,12 +1064,19 @@ libsciconsole_disable_la-getNbrLine.lo: src/c/cmdLine/getNbrLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
 
-libsciconsole_disable_la-reader.lo: src/c/cmdLine/reader.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-reader.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-reader.Tpo -c -o libsciconsole_disable_la-reader.lo `test -f 'src/c/cmdLine/reader.c' || echo '$(srcdir)/'`src/c/cmdLine/reader.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-reader.Tpo $(DEPDIR)/libsciconsole_disable_la-reader.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/reader.c' object='libsciconsole_disable_la-reader.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_disable_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-autoCompletionCli.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-autoCompletionCli.Tpo -c -o libsciconsole_disable_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-autoCompletionCli.Tpo $(DEPDIR)/libsciconsole_disable_la-autoCompletionCli.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/autoCompletionCli.c' object='libsciconsole_disable_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-reader.lo `test -f 'src/c/cmdLine/reader.c' || echo '$(srcdir)/'`src/c/cmdLine/reader.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+
+libsciconsole_disable_la-getKey.lo: src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-getKey.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-getKey.Tpo -c -o libsciconsole_disable_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-getKey.Tpo $(DEPDIR)/libsciconsole_disable_la-getKey.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/getKey.c' object='libsciconsole_disable_la-getKey.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
 
 libsciconsole_disable_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-initMacOSXEnv.Tpo -c -o libsciconsole_disable_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
@@ -1154,13 +1155,6 @@ libsciconsole_la-GetCommandLine.lo: src/c/GetCommandLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
-libsciconsole_la-zzledt.lo: src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-zzledt.Tpo -c -o libsciconsole_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-zzledt.Tpo $(DEPDIR)/libsciconsole_la-zzledt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libsciconsole_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
-
 libsciconsole_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-gotoxy_nw.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-gotoxy_nw.Tpo -c -o libsciconsole_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-gotoxy_nw.Tpo $(DEPDIR)/libsciconsole_la-gotoxy_nw.Plo
@@ -1174,6 +1168,13 @@ libsciconsole_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/clrscr_nw.c' object='libsciconsole_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+
+libsciconsole_la-zzledt.lo: src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-zzledt.Tpo -c -o libsciconsole_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-zzledt.Tpo $(DEPDIR)/libsciconsole_la-zzledt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libsciconsole_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
 
 libsciconsole_la-prompt.lo: src/c/prompt.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-prompt.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-prompt.Tpo -c -o libsciconsole_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
@@ -1217,13 +1218,6 @@ libsciconsole_la-charctl.lo: src/c/cmdLine/charctl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-charctl.lo `test -f 'src/c/cmdLine/charctl.c' || echo '$(srcdir)/'`src/c/cmdLine/charctl.c
 
-libsciconsole_la-cmd_func.lo: src/c/cmdLine/cmd_func.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-cmd_func.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-cmd_func.Tpo -c -o libsciconsole_la-cmd_func.lo `test -f 'src/c/cmdLine/cmd_func.c' || echo '$(srcdir)/'`src/c/cmdLine/cmd_func.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-cmd_func.Tpo $(DEPDIR)/libsciconsole_la-cmd_func.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/cmd_func.c' object='libsciconsole_la-cmd_func.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-cmd_func.lo `test -f 'src/c/cmdLine/cmd_func.c' || echo '$(srcdir)/'`src/c/cmdLine/cmd_func.c
-
 libsciconsole_la-get_signal.lo: src/c/cmdLine/get_signal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-get_signal.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-get_signal.Tpo -c -o libsciconsole_la-get_signal.lo `test -f 'src/c/cmdLine/get_signal.c' || echo '$(srcdir)/'`src/c/cmdLine/get_signal.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-get_signal.Tpo $(DEPDIR)/libsciconsole_la-get_signal.Plo
@@ -1259,12 +1253,19 @@ libsciconsole_la-getNbrLine.lo: src/c/cmdLine/getNbrLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-getNbrLine.lo `test -f 'src/c/cmdLine/getNbrLine.c' || echo '$(srcdir)/'`src/c/cmdLine/getNbrLine.c
 
-libsciconsole_la-reader.lo: src/c/cmdLine/reader.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-reader.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-reader.Tpo -c -o libsciconsole_la-reader.lo `test -f 'src/c/cmdLine/reader.c' || echo '$(srcdir)/'`src/c/cmdLine/reader.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-reader.Tpo $(DEPDIR)/libsciconsole_la-reader.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/reader.c' object='libsciconsole_la-reader.lo' libtool=yes @AMDEPBACKSLASH@
+libsciconsole_la-autoCompletionCli.lo: src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-autoCompletionCli.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-autoCompletionCli.Tpo -c -o libsciconsole_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-autoCompletionCli.Tpo $(DEPDIR)/libsciconsole_la-autoCompletionCli.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/autoCompletionCli.c' object='libsciconsole_la-autoCompletionCli.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-reader.lo `test -f 'src/c/cmdLine/reader.c' || echo '$(srcdir)/'`src/c/cmdLine/reader.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-autoCompletionCli.lo `test -f 'src/c/cmdLine/autoCompletionCli.c' || echo '$(srcdir)/'`src/c/cmdLine/autoCompletionCli.c
+
+libsciconsole_la-getKey.lo: src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-getKey.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-getKey.Tpo -c -o libsciconsole_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-getKey.Tpo $(DEPDIR)/libsciconsole_la-getKey.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/getKey.c' object='libsciconsole_la-getKey.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
 
 libsciconsole_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo -c -o libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c

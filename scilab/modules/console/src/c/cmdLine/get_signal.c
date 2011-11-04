@@ -14,7 +14,7 @@
 #include <signal.h>
 #include <curses.h>
 #include <term.h>
-#include "cmd_func.h"
+#include "getKey.h"
 #include "cap_func.h"
 #include "aff_prompt.h"
 #include "get_signal.h"

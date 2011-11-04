@@ -27,6 +27,7 @@
 #define	CTRL_D		0x04
 #define	CTRL_E		0x05
 #define	CTRL_F		0x06
+#define CTRL_H          0x08
 #define	CTRL_I		0x09
 #define	CTRL_K		0x0B
 #define	CTRL_M		0x0D

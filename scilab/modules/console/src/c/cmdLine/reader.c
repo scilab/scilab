@@ -19,7 +19,7 @@
 #include <term.h>
 #include <signal.h>
 #include "MALLOC.h"
-#include "cmd_func.h"
+#include "getKey.h"
 #include "history.h"
 #include "reader.h"
 #include "cap_func.h"

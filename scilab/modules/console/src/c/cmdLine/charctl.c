@@ -88,7 +88,7 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
             gotoLeft(CommandLine, cursorLocation);
         }
         indexToMoveChar = *cursorLocation;
-        capStr("dc");
+        capStr("sc");
         while (indexToMoveChar < sizeOfCmd)
         {
             /* move each character to the previous place and print it */
@@ -96,6 +96,8 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
             indexToMoveChar++;
         }
         CommandLine[indexToMoveChar] = L'\0';
+        printf("%ls ", &CommandLine[*cursorLocation]);
+        capStr("rc");
     }
     return 0;
 }
@@ -103,10 +105,12 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
 /* Delete all characters from cursor to the end. */
 int deleteLineFromCurs(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
-    /* The character at the cursor is '\0' mean this is the last */
-    while (CommandLine[*cursorLocation])
-    {
-        rmChar(CommandLine, SCI_DELETE, cursorLocation);
-    }
+    /* set the end of the command line at the current cursor location */
+    CommandLine[*cursorLocation] = '\0';
+    /*
+     * Clear screen from cursor to the end of the screen
+     * Don't use "ce" because of multiligne.
+     */
+    capStr("cd");
     return 0;
 }

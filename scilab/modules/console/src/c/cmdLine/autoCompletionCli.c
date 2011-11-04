@@ -10,29 +10,26 @@
 */
 
 #include <string.h>
+#include <wchar.h>
+#include <wctype.h>
 #include "charEncoding.h"
 #include "completion.h"
 #include "charctl.h"
+#include "MALLOC.h"
 
-void autoCompletionInConsoleMode(wchar_t * commandLine, int *cursorLocation)
+void doCompletion(char *, int *cursor, int *cursor_max);
+
+void autoCompletionInConsoleMode(wchar_t ** commandLine, int *cursorLocation);
+
+void autoCompletionInConsoleMode(wchar_t ** commandLine, int *cursorLocation)
 {
-    char saveChar = 0;
-
     char *multiByteString = NULL;
 
-    char **completedString = NULL;
+    int nbrCharInString;
 
-    int sizeArray;
-
-    saveChar = commandLine[*cursorLocation];
-    commandLine[*cursorLocation] = '\0';
-    multiByteString = wide_string_to_UTF8(commandLine);
-    commandLine[*cursorLocation] = saveChar;
-    completedString = completion(multiByteString, &sizeArray);
-    while (sizeArray)
-    {
-        printf("%s\n", *completedString);
-        completedString += 4;
-        sizeArray--;
-    }
+    multiByteString = wide_string_to_UTF8(*commandLine);
+    nbrCharInString = wcslen(*commandLine);
+    doCompletion(multiByteString, cursorLocation, &nbrCharInString);
+    FREE(*commandLine);
+    *commandLine = to_wide_string(multiByteString);
 }

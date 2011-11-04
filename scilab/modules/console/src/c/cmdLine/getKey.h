@@ -20,4 +20,12 @@
  */
 void memCmd(wchar_t * listCmd, int cursorLocation);
 
+/**
+ * Catch the key pressed and call the godd function.
+ * @param command line currently edited.
+ * @param cursor location in the command line.
+ * @return token to indicated the end of the edition of the line.
+ */
+int getKey(wchar_t ** commandLine, unsigned int *cursorLocation);
+
 #endif /* !CMD_FUNC_H_ */

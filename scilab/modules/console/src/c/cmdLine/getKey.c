@@ -24,13 +24,13 @@
 #include "charctl.h"
 #include "init_tc_shell.h"
 #include "aff_prompt.h"
-#include "cmd_func.h"
+#include "getKey.h"
 #include "MALLOC.h"
 #include "HistoryManager.h"
 #include "charEncoding.h"
 #include "aff_prompt.h"
 
-void autoCompletionInConsoleMode(wchar_t * commandLine, int *cursorLocation);
+void autoCompletionInConsoleMode(wchar_t ** commandLine, int *cursorLocation);
 
 /*
  * If last key was '1'
@@ -124,7 +124,7 @@ static void caseMetaKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 /*
  * Read keyboard a first time.
  */
-static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
+int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     int key;
 
@@ -141,11 +141,17 @@ static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     case CTRL_B:
         gotoLeft(*commandLine, cursorLocation);
         break;
+    case CTRL_D:
+        rmChar(*commandLine, SCI_DELETE, cursorLocation);
+        break;
     case CTRL_E:
         endLine(*commandLine, cursorLocation);
         break;
     case CTRL_F:
         gotoRight(*commandLine, cursorLocation);
+        break;
+    case CTRL_H:
+        rmChar(*commandLine, SCI_BACKSPACE, cursorLocation);
         break;
     case CTRL_K:
         deleteLineFromCurs(*commandLine, cursorLocation);
@@ -157,7 +163,7 @@ static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         previousCmd(commandLine, cursorLocation);
         break;
     case '\t':
-        autoCompletionInConsoleMode(*commandLine, cursorLocation);
+        autoCompletionInConsoleMode(commandLine, cursorLocation);
         break;
     case ESCAPE:
         caseMetaKey(commandLine, cursorLocation);
@@ -193,7 +199,7 @@ void memCmd(wchar_t * cmd, int cursorLocation)
     }
     else
     {
-/* TODO comment */
+        /* TODO comment */
         i = cursorLocation;
         cursorLocation = wcslen(memList);
         printf("%ls", memList);
@@ -221,7 +227,7 @@ char *getCmdLine(void)
     while (bin)
     {
         memCmd(wideString, cursorLocation);
-        if (getKey(&wideString, &cursorLocation) == '\n')
+        if (getKey(&wideString, &cursorLocation))
         {
             putchar('\n');
             bin = 0;

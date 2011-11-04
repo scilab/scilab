@@ -42,6 +42,7 @@
 #endif
 #endif
 
+#include "../cmdLine/aff_prompt.h"
 #include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
@@ -213,7 +214,7 @@ static void display_string(char *string);
 
 static void backspace(int n);
 
-static void doCompletion(char *, int *cursor, int *cursor_max);
+void doCompletion(char *, int *cursor, int *cursor_max);
 
 static void erase_nchar(int n);
 
@@ -470,7 +471,7 @@ char *TermReadAndProcess(void)
                 break;
 
             case CTRL_X:
-            case CTRL_C:             /** we never get there CTRL_C is explored above **/
+            case CTRL_C:            /** we never get there CTRL_C is explored above **/
                 {
                     int j = SIGINT;
 
@@ -912,7 +913,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             wk_buf[0] = NUL;
             *cursor = *cursor_max = 0;
 
-            displayPrompt(wk_buf);
+            getPrompt(WRT_PRT);
 
             if (defaultPattern[0] == 0)
             {
@@ -1114,7 +1115,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 wk_buf[0] = NUL;
                 *cursor = *cursor_max = 0;
 
-                displayPrompt(wk_buf);
+                getPrompt(WRT_PRT);
 
                 if (commonAll)
                 {
