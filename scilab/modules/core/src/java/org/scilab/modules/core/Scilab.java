@@ -17,19 +17,19 @@
 
 package org.scilab.modules.core;
 
+import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
-
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -38,11 +38,6 @@ import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.Window;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Main Class for Scilab
@@ -147,6 +142,18 @@ public class Scilab {
                 } else {
                     lookAndFeel.setSystemLookAndFeel();
                 }
+                
+                try {
+                    Toolkit xToolkit = Toolkit.getDefaultToolkit();
+                    java.lang.reflect.Field awtAppClassNameField =
+                        xToolkit.getClass().getDeclaredField("awtAppClassName");
+                    awtAppClassNameField.setAccessible(true);
+                    
+                    awtAppClassNameField.set(xToolkit, "Scilab");
+                } catch (Exception e) {
+                    System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
+                    System.err.println("Error: " + e.getLocalizedMessage());
+                }
 
             } catch (java.lang.NoClassDefFoundError exception) {
                 System.err.println("Could not initialize graphics Environment");
@@ -235,6 +242,7 @@ public class Scilab {
      */
     public static boolean canClose() {
         SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     exitCalled = true;
                     success = ClosingOperationsManager.startClosingOperationOnRoot();

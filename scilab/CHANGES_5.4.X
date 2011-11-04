@@ -600,7 +600,6 @@ Misc:
 
 * sprintf moved as alias on msprintf function.
 
-
 Bug fixes:
 ==========
 
@@ -790,6 +789,8 @@ Bug fixes:
                    and getAllocatedNamedMatrixOfWideString.
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
+
+* bug 9929 fixed - Improve integration with Gnome shell and Unity.
 
 * bug 9950 fixed - It was possible to select several texts in the console.
 
