@@ -565,6 +565,17 @@ Javasci:
 * Java mapping of Scilab data has now a new method called getType() which
 returns the value of the ScilabTypeEnum enum.
 
+* New methods added:
+  - Scilab.execException(String)
+    Same as Scilab.exec(String) but returns an exception when a Scilab error occurs
+  - Scilab.execException(String[])
+    Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs
+  - Scilab.execException(File)
+    Same as Scilab.exec(File) but returns an exception when a Scilab error occurs
+
+* bug 9149 fixed - Calling a graphic function without activated the appropriate 
+                   mode did not triggered an exception
+
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
 
 * bug 9544 fixed - Calling graphic with Javasci from a SWING application from
