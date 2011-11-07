@@ -31,28 +31,27 @@
 /*------------------------------------------------------------------------*/
 int get_user_data_property(char *pobjUID)
 {
-    // TODO
-    // Should not stay in this state.
-    return sciReturnEmptyMatrix() ;
+    int iUserDataSize = 0;
+    int *piUserDataSize = &iUserDataSize;
+    int *piUserData = NULL;
 
-#if 0
- /* user_data */
+    int status = 0;
 
-  int userDataSize;
-  int* userData;
+    getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
 
-  userDataSize = *(int*)getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int);
+    getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
 
-  userData = (int*)getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector);
+    if ((piUserData == NULL) || (piUserDataSize == 0))
+    {
+        status = sciReturnEmptyMatrix();
+    }
+    else
+    {
+        status = sciReturnUserData(piUserData, iUserDataSize);
+        free(piUserData);
+    }
 
-  if ( userData == NULL || userDataSize == 0 )
-  {
-    return sciReturnEmptyMatrix() ;
-  }
-  else
-  {
-    return sciReturnUserData( userData, userDataSize);
-  }
-#endif
+    return status;
 }
+
 /*------------------------------------------------------------------------*/

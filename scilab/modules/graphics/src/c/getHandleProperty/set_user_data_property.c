@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,59 +21,34 @@
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "setHandleProperty.h"
-#include "SetProperty.h"
-#include "getPropertyAssignedValue.h"
+#include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
-#include "SetPropertyStatus.h"
-#include "MALLOC.h"
-#include "BasicAlgos.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_user_data_property( char* pobjUID, size_t stackPointer,  int valueType, int nbRow, int nbCol )
+int set_user_data_property(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
 
-	/* set pobj->user_data*/
-	/* the data to be assigned to the user data property is located in the Scilab Stack at the variable
-	position given by stackPointer.
-	nbRow, nbCol are not used */
-	int *  size_ptr                                        ;
-	int ** user_data_ptr                                   ;
-	int    data_size     = GetDataSize( (int)stackPointer ) * 2 ; /*GetDataSize returns the size of the variable in double words */
-	int *  data_ptr      = GetData( (int)stackPointer )         ;
+    int iUserDataSize = GetDataSize((int)stackPointer) * 2; /* GetDataSize returns the size of the variable in double words */
+    int *piUserData = GetData((int)stackPointer);
 
-	BOOL status;
+    BOOL status = FALSE;
 
-	/* retrieve current user data matrix */
-	sciGetPointerToUserData(pobjUID, &user_data_ptr, &size_ptr ) ;
+    status = setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize);
 
-	/* Assigning an empty matrix, free the user_data property. Check for an empty matrix */
-	if ( valueType == 1 ) {
-		int nr, nc, l ;
-		GetRhsVar((int)stackPointer, MATRIX_OF_DOUBLE_DATATYPE, &nr, &nc, &l);
-		if ( nr * nc == 0 ) /*an empty matrix */
-		{
-			FREE( *user_data_ptr ) ;
-			*user_data_ptr = NULL ;
-			*size_ptr = 0 ;
-			return SET_PROPERTY_SUCCEED ;
-		}
-	}
-
-	status = setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, data_ptr, jni_int_vector, data_size);
-
-	if (status == TRUE)
-	{
-		return SET_PROPERTY_SUCCEED;
-	}
-	else
-	{
-		return SET_PROPERTY_ERROR;
-	}
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
+        return SET_PROPERTY_ERROR;
+    }
 
 }
+
 /*------------------------------------------------------------------------*/

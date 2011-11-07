@@ -19,6 +19,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
@@ -281,6 +282,8 @@ public final class SwingViewWidget {
             /* Nothing to do */ 
         } else if (property.equals(__GO_UI_TABLEDATA__)) {
             ((SwingScilabUiTable) uiControl).setData((String[]) value);
+        } else if (property.equals(__GO_USER_DATA__)) {
+            /* Nothing to do here */
         } else if (property.equals(__GO_UI_UNITS__)) {
             /* Nothing to do here, this property is used when setting position */
         } else if (property.equals(__GO_UI_VALUE__)) {

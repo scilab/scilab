@@ -66,7 +66,7 @@ public abstract class GraphicObject implements Cloneable {
     private boolean hidden;
 
     /** User data */
-    private Object userData;
+    private Integer[] userData;
 
     /** Tag */
     private String tag;
@@ -331,7 +331,7 @@ public abstract class GraphicObject implements Cloneable {
         } else if (property == GraphicObjectPropertyType.VISIBLE) {
             setVisible((Boolean) value);
         } else if (property == GraphicObjectPropertyType.USERDATA) {
-            setUserData(value);
+            setUserData((Integer[]) value);
         } else if (property == GraphicObjectPropertyType.USERDATASIZE) {
             return false;
         } else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
@@ -449,7 +449,7 @@ public abstract class GraphicObject implements Cloneable {
     /**
      * @param userData the userData to set
      */
-    public void setUserData(Object userData) {
+    public void setUserData(Integer[] userData) {
         this.userData = userData;
     }
 
@@ -457,7 +457,7 @@ public abstract class GraphicObject implements Cloneable {
      * @return the userDataSize
      */
     public Integer getUserDataSize() {
-        return 0;
+        return userData.length;
     }
 
     /**

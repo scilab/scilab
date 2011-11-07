@@ -142,9 +142,9 @@ static void initFigureModel(char *pfiguremdlUID)
      * NULL has been replaced by the empty string as the third argument in order to
      * avoid a crash due to giws 1.2.4
      */
-    setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
+    //setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
     // Size of user data
-    setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
+    //setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
     // Pixmap Mode
     setGraphicObjectProperty(pfiguremdlUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
     // Info Message
@@ -1577,7 +1577,7 @@ default:
 
 /*---------------------------------------------------------------------------------*/
 /* allocate and set a new label to default values */
-char *initLabel(char * parentObjUID)
+char *initLabel(char *parentObjUID)
 {
     char *newLabel = NULL;
     int autoPosition = 1;
