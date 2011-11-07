@@ -19,6 +19,7 @@ import java.awt.Font;
 
 import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Interface for SimpleFrame the associated object to Scilab GUIs Frame
@@ -26,7 +27,7 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
  * @author Marouane Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public interface SimpleFrame extends Container {
+public interface SimpleFrame extends Container, Widget {
 
 	/**
 	 * Set the Background color of the Frame.

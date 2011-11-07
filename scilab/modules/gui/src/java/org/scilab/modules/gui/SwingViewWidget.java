@@ -175,7 +175,11 @@ public final class SwingViewWidget {
             }
         } else if (property.equals(__GO_UI_MAX__)) {
             int maxValue = ((Integer) value);
-            int uicontrolValue = ((Integer[]) GraphicController.getController().getProperty(uid, __GO_UI_VALUE__))[0];
+            Integer[] allValues = (Integer[]) GraphicController.getController().getProperty(uid, __GO_UI_VALUE__);
+            if ((allValues == null) || (allValues.length == 0)) {
+                return;
+            }
+            int uicontrolValue = allValues[0];
             if (uiControl instanceof SwingScilabSlider) {
              // Update the slider properties
                 int minValue = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);

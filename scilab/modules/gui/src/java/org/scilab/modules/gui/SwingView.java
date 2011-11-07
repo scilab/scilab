@@ -366,6 +366,7 @@ public final class SwingView implements GraphicView {
         case Frame:
             SwingScilabFrame frame = new SwingScilabFrame();
             frame.setId(id);
+            setDefaultProperties(frame, id);
             return frame;
         case ImageRenderer:
             SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
