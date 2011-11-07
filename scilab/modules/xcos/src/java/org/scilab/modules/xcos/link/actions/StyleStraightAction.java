@@ -19,7 +19,6 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -71,10 +70,15 @@ public class StyleStraightAction extends StyleAction {
             return;
         }
         
-        BasicLink[] links = getLinks();
+        final Object[] links = getLinks();
 
-        getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "1", links);
+        graph.getModel().beginUpdate();
+        try {
+            graph.setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "1", links);
 
-        removePointsOnLinks(links);
+            reset(graph, links);
+        } finally {
+            graph.getModel().endUpdate();
+        }
     }
 }
