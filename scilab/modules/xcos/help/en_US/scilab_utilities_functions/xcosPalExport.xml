@@ -64,20 +64,14 @@ Export Scilab palette instance to a file.
 loadXcosLibs();
 pal = xcosPal();
 
-sumPath = TMPDIR + "/sum.h5";
-bigSomPath = TMPDIR + "/sum.h5";
+o1 = SUM_f("define");
+o2 = BIGSOM_f("define");
 
-scs_m = SUM_f("define");
-export_to_hdf5(sumPath, "scs_m");
-scs_m = BIGSOM("define");
-export_to_hdf5(bigSomPath, "scs_m");
-
-pal = xcosPalAddBlock(pal, sumPath);
-pal = xcosPalAddBlock(pal, bigSomPath);
+pal = xcosPalAddBlock(pal, o1);
+pal = xcosPalAddBlock(pal, o2);
 
 xcosPalExport(pal, TMPDIR + "/palette.h5");
-
-   ]]></programlisting>
+]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See also</title>
