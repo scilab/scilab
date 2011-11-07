@@ -50,6 +50,7 @@ import javax.swing.text.Document;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
@@ -2084,38 +2085,29 @@ public class CallScilabBridge {
 
     /**
      * Set the visibility of a Toolbar
-     * @param figNum the parentfigure
+     * @param parentUID the parent (figure or console) UID
      * @param status true to set the Toolbar visible
      */
-    public static void setToolbarVisible(int figNum, boolean status) {
-        if (figNum == -1) {
-            if (ScilabConsole.isExistingConsole()) {
-                SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-                SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-                consoleTab.getToolBar().setVisible(status);
-                BarUpdater.updateBars(consoleTab.getParentWindowId(), consoleTab.getMenuBar(), consoleTab.getToolBar(), consoleTab.getInfoBar(), consoleTab.getName(), consoleTab.getWindowIcon());
-            }
-        } else {
-            ((ScilabRendererProperties) FigureMapper
-                    .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
+    public static void setToolbarVisible(String parentUID, boolean status) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) {
+            parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
+            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(), 
+                    parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
         }
     }
 
     /**
      * Get the visibility of a Toolbar
-     * @param figNum the parentfigure
+     * @param parentUID the parent (figure or console) UID
      * @return true to set the Toolbar visible
      */
-    public static boolean isToolbarVisible(int figNum) {
-        if (figNum == -1) {
-            if (ScilabConsole.isExistingConsole()) {
-                return ScilabConsole.getConsole().getToolBar().isVisible();
-            } else {
-                return false;
-            }
+    public static boolean isToolbarVisible(String parentUID) {
+        SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
+        if (parentTab != null) {
+            return parentTab.getToolBar().getAsSimpleToolBar().isVisible();
         } else {
-            return ((ScilabRendererProperties) FigureMapper
-                    .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();
+            return false;
         }
     }
 

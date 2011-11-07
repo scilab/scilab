@@ -506,10 +506,10 @@
     </method>
     <!-- Toolbar -->
     <method name="isToolbarVisible" returnType="boolean" modifier="static">
-      <parameter name="figNum" type="int"/>
+      <parameter name="parentUID" type="String"/>
     </method>
     <method name="setToolbarVisible" returnType="void" modifier="static">
-      <parameter name="figNum" type="int"/>
+      <parameter name="parentUID" type="String"/>
       <parameter name="status" type="boolean"/>
     </method>
     <!-- EventHandler -->

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,17 +20,17 @@
 /**
  * Set the visibility of the toolbar
  *
- * @param figNum number of the parent figure (-1 for Console window)
+ * @param pParentUID the parent UID (figure or console)
  * @param status TRUE to set the toolbar visible
  */
-GUI_IMPEXP void setToolbarVisible(int figNum, BOOL status);
+GUI_IMPEXP void setToolbarVisible(char *pParentUID, BOOL status);
 
 /**
  * Get the visibility of the toolbar
  *
- * @param figNum number of the parent figure (-1 for Console window)
+ * @param pParentUID the parent UID (figure or console)
  * @return TRUE if the toolbar is visible
  */
-GUI_IMPEXP BOOL isToolbarVisible(int figNum);
+GUI_IMPEXP BOOL isToolbarVisible(char *pParentUID);
 
 #endif /* __TOOLBAR_H__ */

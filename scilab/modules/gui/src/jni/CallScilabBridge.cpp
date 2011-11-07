@@ -242,8 +242,8 @@ voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_StringID=NULL;
 voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_StringID=NULL;
 voidsetMessageBoxModaljintintjbooleanbooleanID=NULL;
 voidsetMessageBoxIconjintintjstringjava_lang_StringID=NULL;
-jbooleanisToolbarVisiblejintintID=NULL;
-voidsetToolbarVisiblejintintjbooleanbooleanID=NULL;
+jbooleanisToolbarVisiblejstringjava_lang_StringID=NULL;
+voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID=NULL;
 voidsetEventHandlerjintintjstringjava_lang_StringID=NULL;
 voidsetEventHandlerEnabledjintintjbooleanbooleanID=NULL;
 jintnewWaitBarID=NULL;
@@ -459,8 +459,8 @@ voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_StringID=NULL;
 voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_StringID=NULL;
 voidsetMessageBoxModaljintintjbooleanbooleanID=NULL;
 voidsetMessageBoxIconjintintjstringjava_lang_StringID=NULL;
-jbooleanisToolbarVisiblejintintID=NULL;
-voidsetToolbarVisiblejintintjbooleanbooleanID=NULL;
+jbooleanisToolbarVisiblejstringjava_lang_StringID=NULL;
+voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID=NULL;
 voidsetEventHandlerjintintjstringjava_lang_StringID=NULL;
 voidsetEventHandlerEnabledjintintjbooleanbooleanID=NULL;
 jintnewWaitBarID=NULL;
@@ -3863,19 +3863,27 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-bool CallScilabBridge::isToolbarVisible (JavaVM * jvm_, int figNum){
+bool CallScilabBridge::isToolbarVisible (JavaVM * jvm_, char * parentUID){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jbooleanisToolbarVisiblejintintID = curEnv->GetStaticMethodID(cls, "isToolbarVisible", "(I)Z" ) ;
-if (jbooleanisToolbarVisiblejintintID == NULL) {
+jmethodID jbooleanisToolbarVisiblejstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "isToolbarVisible", "(Ljava/lang/String;)Z" ) ;
+if (jbooleanisToolbarVisiblejstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "isToolbarVisible");
 }
 
-                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisToolbarVisiblejintintID ,figNum));
-                        curEnv->DeleteLocalRef(cls);
+jstring parentUID_ = curEnv->NewStringUTF( parentUID );
+if (parentUID != NULL && parentUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisToolbarVisiblejstringjava_lang_StringID ,parentUID_));
+                        curEnv->DeleteLocalRef(parentUID_);
+curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
@@ -3883,21 +3891,29 @@ return (res == JNI_TRUE);
 
 }
 
-void CallScilabBridge::setToolbarVisible (JavaVM * jvm_, int figNum, bool status){
+void CallScilabBridge::setToolbarVisible (JavaVM * jvm_, char * parentUID, bool status){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetToolbarVisiblejintintjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setToolbarVisible", "(IZ)V" ) ;
-if (voidsetToolbarVisiblejintintjbooleanbooleanID == NULL) {
+jmethodID voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "setToolbarVisible", "(Ljava/lang/String;Z)V" ) ;
+if (voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "setToolbarVisible");
 }
 
+jstring parentUID_ = curEnv->NewStringUTF( parentUID );
+if (parentUID != NULL && parentUID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
 jboolean status_ = (static_cast<bool>(status) ? JNI_TRUE : JNI_FALSE);
 
-                         curEnv->CallStaticVoidMethod(cls, voidsetToolbarVisiblejintintjbooleanbooleanID ,figNum, status_);
-                        curEnv->DeleteLocalRef(cls);
+                         curEnv->CallStaticVoidMethod(cls, voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID ,parentUID_, status_);
+                        curEnv->DeleteLocalRef(parentUID_);
+curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

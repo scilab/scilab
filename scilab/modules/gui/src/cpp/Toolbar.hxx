@@ -14,15 +14,11 @@
 #define __TOOLBAR_HXX__
 
 #include "CallScilabBridge.hxx"
-extern "C"{
+extern "C"
+{
 #include "Toolbar.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
-#include "GetProperty.h"
-#include "SetPropertyStatus.h"
-#include "getPropertyAssignedValue.h"
-#include "Scierror.h"
-#include "BOOL.h"
 }
 
-#endif /* !__TOOLBAR_HXX__ */
+#endif                          /* !__TOOLBAR_HXX__ */

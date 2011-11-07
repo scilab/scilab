@@ -216,8 +216,8 @@ jmethodID voidsetMessageBoxColumnLabelsjintintjobjectArray_java_lang_StringID; /
 jmethodID voidsetMessageBoxDefaultInputjintintjobjectArray_java_lang_StringID; // cache method id
 jmethodID voidsetMessageBoxModaljintintjbooleanbooleanID; // cache method id
 jmethodID voidsetMessageBoxIconjintintjstringjava_lang_StringID; // cache method id
-jmethodID jbooleanisToolbarVisiblejintintID; // cache method id
-jmethodID voidsetToolbarVisiblejintintjbooleanbooleanID; // cache method id
+jmethodID jbooleanisToolbarVisiblejstringjava_lang_StringID; // cache method id
+jmethodID voidsetToolbarVisiblejstringjava_lang_StringjbooleanbooleanID; // cache method id
 jmethodID voidsetEventHandlerjintintjstringjava_lang_StringID; // cache method id
 jmethodID voidsetEventHandlerEnabledjintintjbooleanbooleanID; // cache method id
 jmethodID jintnewWaitBarID; // cache method id
@@ -605,9 +605,9 @@ static void setMessageBoxModal(JavaVM * jvm_, int id, bool status);
 
 static void setMessageBoxIcon(JavaVM * jvm_, int id, char * name);
 
-static bool isToolbarVisible(JavaVM * jvm_, int figNum);
+static bool isToolbarVisible(JavaVM * jvm_, char * parentUID);
 
-static void setToolbarVisible(JavaVM * jvm_, int figNum, bool status);
+static void setToolbarVisible(JavaVM * jvm_, char * parentUID, bool status);
 
 static void setEventHandler(JavaVM * jvm_, int figNum, char * command);
 
