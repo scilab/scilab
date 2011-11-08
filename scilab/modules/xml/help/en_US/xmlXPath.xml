@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      xmlNodeSet = xmlXPath(xmlDoc, queryStr [, namespaces])
+      result = xmlXPath(xmlDoc, queryStr [, namespaces])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -45,6 +45,12 @@
           <para>namespaces, an optional matrix nx2 of strings</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>result</term>
+        <listitem>
+          <para>result can be a set of XMLElements or a number or a string or a boolean</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -61,7 +67,7 @@
     xp = xmlXPath(doc, "//note");
     s = size(xp);
     for i=1:s(2)
-        xmlDump(xp(i))
+    xmlDump(xp(i))
     end
 
     // Count the nodes with name equals to "note"
@@ -71,14 +77,14 @@
     xp = xmlXPath(doc, "//*[@id=""Philosophy""]");
     s = size(xp);
     if (s(2) <> 0) then
-        xmlDump(xp(1))
+    xmlDump(xp(1))
     end
 
     // Retrieve the nodes with an attribute num equals to the number 5
     xp = xmlXPath(doc, "//*[number(@num)=5]");
     s = size(xp);
     if (s(2) <> 0) then
-        xmlDump(xp(1))
+    xmlDump(xp(1))
     end
 
     xmlClose(doc);

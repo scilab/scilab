@@ -36,6 +36,12 @@ namespace org_modules_xml
 
         ~XMLAttr();
 
+        void * getRealXMLPointer() const;
+
+        /**
+         * Get the number of attributes
+         * @return the attributes number
+         */
         int getSize() const;
 
         /**

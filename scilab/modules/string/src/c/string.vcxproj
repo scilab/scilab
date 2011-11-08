@@ -258,12 +258,14 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="stringsCompare.c" />
     <ClCompile Include="stringsstrrchr.c" />
     <ClCompile Include="stringsstrrev.c" />
+    <ClCompile Include="stringToDouble.c" />
     <ClCompile Include="stripblanks.c" />
     <ClCompile Include="strsplitfunction.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\stringToDouble.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="..\..\includes\cvstr.h" />

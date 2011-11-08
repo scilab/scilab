@@ -84,6 +84,8 @@ namespace org_modules_xml
 
         ~XMLDocument();
 
+        void * getRealXMLPointer() const;
+
         /**
          * @return the xmlDoc behind this XMLDocument
          */

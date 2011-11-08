@@ -110,6 +110,11 @@ namespace org_modules_xml
         }
     }
 
+    void * XMLDocument::getRealXMLPointer() const
+    {
+        return static_cast<void *>(document);
+    }
+
     const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error)
     {
         if (errorXPathBuffer)

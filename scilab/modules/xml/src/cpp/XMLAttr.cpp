@@ -34,6 +34,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLAttr::getRealXMLPointer() const
+    {
+        return static_cast<void *>(elem.getRealNode()->properties);
+    }
+
     const XMLObject * XMLAttr::getXMLObjectParent() const
     {
         return &elem;

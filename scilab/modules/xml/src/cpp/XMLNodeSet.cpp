@@ -46,6 +46,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLNodeSet::getRealXMLPointer() const
+    {
+        return static_cast<void *>(nodeSet);
+    }
+
     const XMLObject * XMLNodeSet::getXMLObjectParent() const
     {
         return &doc;

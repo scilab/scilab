@@ -53,6 +53,8 @@ namespace org_modules_xml
 
         ~XMLElement();
 
+        void * getRealXMLPointer() const;
+
         /**
          * @return the node name
          */

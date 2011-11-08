@@ -42,6 +42,8 @@ namespace org_modules_xml
 
         ~XMLNotHandledElement();
 
+        void * getRealXMLPointer() const;
+
         const XMLObject * getXMLObjectParent() const;
         const std::string toString() const;
     };
