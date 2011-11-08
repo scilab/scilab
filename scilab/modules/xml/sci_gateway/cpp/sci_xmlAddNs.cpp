@@ -51,7 +51,7 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
 
     if (!isXMLElem(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
 
@@ -73,7 +73,7 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
 
         if (!isXMLNs(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, i, "XMLNs");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, i, "XMLNs");
             return 0;
         }
 

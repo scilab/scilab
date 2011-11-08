@@ -77,6 +77,21 @@ namespace org_modules_xml
         return 0;
     }
 
+    const char * XMLAttr::getAttributeValue(int index) const
+    {
+        xmlNode * node = elem.getRealNode();
+        int i = 1;
+        for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
+        {
+            if (i == index)
+            {
+                return (const char *)cur->children->content;
+            }
+        }
+
+        return 0;
+    }
+
     void XMLAttr::setAttributeValue(const char * prefix, const char * name, const char * value) const
     {
         xmlNode * node = elem.getRealNode();
@@ -92,14 +107,7 @@ namespace org_modules_xml
 
         if (attrs)
         {
-            if (strlen(value))
-            {
-                xmlSetNsProp(node, attrs->ns, (const xmlChar *)name, (const xmlChar *)value);
-            }
-            else
-            {
-                xmlUnsetNsProp(node, attrs->ns, (const xmlChar *)name);
-            }
+            xmlSetNsProp(node, attrs->ns, (const xmlChar *)name, (const xmlChar *)value);
         }
         else if (strlen(value))
         {
@@ -124,20 +132,33 @@ namespace org_modules_xml
         }
     }
 
+    void XMLAttr::setAttributeValue(int index, const char * value) const
+    {
+        xmlNode * node = elem.getRealNode();
+        unsigned int i = 1;
+        for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
+        {
+            if (i == index)
+            {
+                if (strlen(value))
+                {
+                    cur->children->content = xmlStrdup((const xmlChar *)value);
+                }
+                else
+                {
+                    cur->children->content = xmlStrdup((const xmlChar *)"");
+                }
+            }
+        }
+    }
+
     void XMLAttr::setAttributeValue(const char * name, const char * value) const
     {
         xmlNode * node = elem.getRealNode();
         xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)name);
         if (attrs)
         {
-            if (strlen(value))
-            {
-                xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
-            }
-            else
-            {
-                xmlUnsetProp(node, (const xmlChar *)name);
-            }
+            xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
         }
         else
         {

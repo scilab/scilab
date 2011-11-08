@@ -64,7 +64,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
 
     if (!isDoubleType(pvApiCtx, indexaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
         return 0;
     }
 

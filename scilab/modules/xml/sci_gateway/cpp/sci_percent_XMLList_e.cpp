@@ -70,7 +70,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     {
         if (row != 1 || col != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%i: A string or a double expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string or a double expected.\n"), fname, 1);
             return 0;
         }
 
@@ -111,13 +111,13 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
 
     if (row != 1 || col != 1 || typ != sci_matrix)
     {
-        Scierror(999, gettext("%s: Wrong dimension for input argument #%i: Single double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong dimension for input argument #%d: Single double expected.\n"), fname, 1);
         return 0;
     }
 
     if (isVarComplex(pvApiCtx, daddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: Double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 1);
         return 0;
     }
 

@@ -45,6 +45,13 @@ namespace org_modules_xml
         int getSize() const;
 
         /**
+         * Gets the attribute value with the given index.
+         * @param index the attribute index
+         * @return the attribute value
+         */
+        const char * getAttributeValue(int index) const;
+
+        /**
          * Gets the attribute value.
          * @param name the attribute name
          * @return the attribute value
@@ -65,6 +72,13 @@ namespace org_modules_xml
          * @param value the attribute value
          */
         void setAttributeValue(const char * name, const char * value) const;
+
+        /**
+         * Sets the attribute value at the given index.
+         * @param index the attribute index
+         * @param value the attribute value
+         */
+        void setAttributeValue(int index, const char * value) const;
 
         /**
          * Sets the attribute value with a prefix namespace.

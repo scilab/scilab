@@ -70,7 +70,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
         return 0;
     }
 
@@ -85,7 +85,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
 
         if (!isXMLValid(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLValid");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLValid");
             return 0;
         }
 

@@ -56,7 +56,7 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
     type = isXMLObject(addr, pvApiCtx);
     if (!type)
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XML object");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XML object");
         return 0;
     }
 
