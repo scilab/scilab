@@ -162,6 +162,8 @@ Xcos:
 
 * bug 9547 fixed - The about box was not localized due to a multi-line string.
 
+* bug 9573 fixed - getdebuginfo did not report multiple video cards on Windows.
+
 * bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
 * bug 9732 fixed - code generation failed on compilation on Windows with
