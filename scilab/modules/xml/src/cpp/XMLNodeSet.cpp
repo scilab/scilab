@@ -56,6 +56,7 @@ namespace org_modules_xml
         if (nodeSet && index >= 1 && index <= size)
         {
             XMLObject * obj = 0;
+            XMLElement * e = 0;
             xmlNode * node = nodeSet->nodeTab[index - 1];
             switch (node->type)
             {
@@ -77,7 +78,9 @@ namespace org_modules_xml
                     return static_cast<XMLAttr *>(obj);
                 }
 
-                return new XMLAttr(XMLElement(doc, node->parent));
+                e = new XMLElement(doc, node->parent);
+
+                return new XMLAttr(*e);
             case XML_NAMESPACE_DECL :
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
