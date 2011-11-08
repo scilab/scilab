@@ -16,12 +16,16 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,15 +68,19 @@ public class LabelManager {
      * @param drawingTools the given {@see DrawingTools}.
      * @param colorMap the current {@see ColorMap}.
      * @param label the given Scilab {@see Label}.
-     * @param labelPositioner the label positioner used to position the label.
-     * @param axesDrawer the Axes drawer used to to the label's parent Axes.
+     * @param labelPositioner the positioner used to compute the label's position.
+     * @param axesDrawer the Axes drawer used to draw the label's parent Axes.
      * @param drawnFlag a flag indicating whether the label must be drawn or not.
      */
     public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, AxesDrawer axesDrawer, boolean drawnFlag) {
+        String parentAxesID = label.getParentAxes();
+        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesID);
+
         Sprite labelSprite = getSprite(colorMap, label);
 
         labelPositioner.setLabelSprite(labelSprite);
-        labelPositioner.setCanvasProjection(drawingTools.getTransformationManager().getCanvasProjection());
+        labelPositioner.setDrawingTools(drawingTools);
+        labelPositioner.setParentAxes(parentAxes);
         labelPositioner.setAutoPosition(label.getAutoPosition());
 
         Vector3d labelUserPosition = new Vector3d(label.getPosition());
@@ -100,7 +108,18 @@ public class LabelManager {
 
         if (label.getVisible() && drawnFlag) {
             if (Utils.isValid(labelPos.getX(), labelPos.getY(), labelPos.getZ())) {
-                drawingTools.draw(labelSprite, labelAnchor, labelPos);
+                if (labelPositioner.getUseWindowCoordinates()) {
+                    /* Draw in window coordinates */
+                    Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
+                    Vector3d projLabelPos = canvasProjection.project(labelPos);
+
+                    drawingTools.getTransformationManager().useWindowCoordinate();
+                    drawingTools.draw(labelSprite, labelAnchor, projLabelPos);
+                    drawingTools.getTransformationManager().useSceneCoordinate();
+                } else {
+                    /* Draw using box coordinates */
+                    drawingTools.draw(labelSprite, labelAnchor, labelPos);
+                }
             }
         }
 
