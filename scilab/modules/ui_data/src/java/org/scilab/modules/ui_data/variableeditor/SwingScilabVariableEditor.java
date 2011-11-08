@@ -225,7 +225,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      * @param table the table to update
      * @param name the name of the variable
      * @param type the type of the matrix
-     * @param data the matrix datas
+     * @param data the matrix data
      */
     public void updateData(JTable table, String name, String type, Object[][] data) {
         ScilabGenericCellEditor cellEditor = (ScilabGenericCellEditor) CellEditorFactory.createCellEditor(type);
@@ -249,7 +249,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      * @param c the component in the tabbedpane
      * @param name the name of the variable
      * @param type the type of the matrix
-     * @param data the matrix datas
+     * @param data the matrix data
      */
     public void updateData(Component c, String name, String type, Object[][] data) {
         tabPane.setSelectedComponent(c);

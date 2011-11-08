@@ -10,20 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="RFILE_f" xml:lang="fr_FR"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="RFILE_f" xml:lang="fr_FR">
   <refnamediv>
     <refname>RFILE_f</refname>
     <refpurpose>Lecture dans un fichier</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Aperçu</title>
     <para>
@@ -34,7 +25,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_RFILE_f">
     <title>Contenu</title>
     <itemizedlist>
@@ -117,11 +107,12 @@
     <para>
       Le fichier est une séquence d'enregistrements. Chaque enregistrement a une longueur <emphasis role="bold">Record Size</emphasis> et la structure ci-dessous :
     </para>
-    <para />
-    <mediaobject><imageobject>
-      <imagedata fileref="../../../images/sources_pal/fr_FR/rfile_f_record_fr_FR.png" align="center" />
-    </imageobject></mediaobject>
-
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../images/sources_pal/fr_FR/rfile_f_record_fr_FR.png" align="center"/>
+      </imageobject>
+    </mediaobject>
     <para>
       Le paramètre <emphasis role="bold">Time record Selection</emphasis> permet à l'utilisateur de sélectionner un champ de l'enregistrement qui représente des événements
       temporels. Quand ce paramètre est fourni, une sortie d'activation est ajoutée au block qui renvoie ces événements à l'utilisateur. Vous pouvez effectuer un bouclage
@@ -138,10 +129,9 @@
       <listitem>
         <para>Pour un fichier texte, ce paramètre est une chaîne de format (syntaxe Fortran) entre parenthèses.</para>
       </listitem>
-    </itemizedlist>    
+    </itemizedlist>
     <para>Chaque appel au bloc avance d'un enregistrement dans le fichier.</para>
   </refsection>
-  
   <refsection id="Datatype_RFILE_f">
     <title>Types de données</title>
     <itemizedlist>
@@ -152,14 +142,13 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>  
-
+  </refsection>
   <refsection id="Dialogbox_RFILE_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../gui/sources_pal/fr_FR/RFILE_f_gui.png" align="center" />
+          <imagedata fileref="../../../gui/sources_pal/fr_FR/RFILE_f_gui.png" align="center"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -186,7 +175,7 @@
           Un vecteur d'entiers positifs <emphasis><literal>[k<subscript>i</subscript>,...,k<subscript>n</subscript>]</literal></emphasis>
           le <emphasis><literal>k<subscript>i</subscript><superscript>ième</superscript></literal></emphasis> élément 
           de l'enregistrement lu donne la valeur de la <emphasis><literal>i<superscript>ième</superscript></literal></emphasis> sortie.
-        </para>        
+        </para>
         <para> Propriétés : Type 'vec' de taille -1.</para>
       </listitem>
       <listitem>
@@ -195,7 +184,7 @@
         </para>
         <para>
            Une chaîne de caractères définissant le chemin du fichier. Le bloc supporte l'expansion de nom de fichier et vous pouvez utiliser les variables d'environment
-           comme <emphasis>PWD</emphasis> dans le chemin, par exemple <emphasis>"PWD/my_datas/"</emphasis>. Sans spécificateur de chemin, le fichier est lu dans le
+           comme <emphasis>PWD</emphasis> dans le chemin, par exemple <emphasis>"PWD/my_data/"</emphasis>. Sans spécificateur de chemin, le fichier est lu dans le
            répertoire défini par la variable <emphasis>PWD</emphasis>.
         </para>
         <para>Le fichier doit exister sinon vous obtiendrez un message d'erreur.</para>
@@ -223,7 +212,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_RFILE_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
@@ -270,7 +258,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_RFILE_f">
     <title>Exemple</title>
     <para>Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré par l'exemple de la page
@@ -283,21 +270,23 @@
       </link>.
     </para>
     <para>
-      <mediaobject><imageobject>
-        <imagedata fileref="../../../examples/sources_pal/fr_FR/rfile_f_diagram_fr_FR.png" align="center" />
-      </imageobject></mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/sources_pal/fr_FR/rfile_f_diagram_fr_FR.png" align="center"/>
+        </imageobject>
+      </mediaobject>
     </para>
   </refsection>
-
   <refsection id="Interfacingfunction_RFILE_f">
     <title>Fonction d'interfaçage</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RFILE_f.sci">SCI/modules/scicos_blocks/macros/Sources/RFILE_f.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RFILE_f.sci">SCI/modules/scicos_blocks/macros/Sources/RFILE_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_RFILE_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
@@ -306,12 +295,11 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_RFILE_f">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
-          <link linkend="READC_f">READC_f</link>
+        <link linkend="READC_f">READC_f</link>
       </listitem>
       <listitem>
         <link linkend="WRITEC_f">WRITEC_f</link>
@@ -321,7 +309,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Authors_RFILE_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

@@ -110,7 +110,7 @@ subplot(1,2,2)
 show_window()
 
 // this example shows the effect of zminmax and uses the
-// previous example datas (you have to execute the it before)
+// previous example data (you have to execute the it before)
 clf()
 xset("colormap",jetcolormap(64))
 colorbar(-0.5,0.5)  // be careful colorbar must be set by hands !
@@ -119,7 +119,7 @@ xtitle("fec example : using zminmax argument")
 show_window()
 
 // this example shows the effect of zminmax and colout. It uses
-// also the datas of the first example (you have to execute the it before)
+// also the data of the first example (you have to execute the it before)
 clf()
 xset("colormap",jetcolormap(64))
 subplot(2,2,1)
@@ -157,7 +157,7 @@ show_window()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="Sfgrayplot">Sfgrayplot</link>

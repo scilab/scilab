@@ -133,7 +133,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>y=2</term>
                     <listitem>
-                      <para>from the min/max of the x, y datas</para>
+                      <para>from the min/max of the x, y data</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -147,7 +147,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=4</term>
                     <listitem>
                       <para>built for an isometric plot from the min/max of
-                      the x, y datas</para>
+                      the x, y data</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -160,7 +160,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=6</term>
                     <listitem>
                       <para>enlarged for pretty axes from the min/max of the
-                      x, y datas</para>
+                      x, y data</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -275,7 +275,7 @@ Matplot((1:xget("lastpattern")))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>
