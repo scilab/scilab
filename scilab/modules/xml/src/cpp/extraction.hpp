@@ -184,6 +184,18 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     {
         return elem.getChildren()->createOnStack(pos, pvApiCtx);
     }
+    else if (!strcmp("line", field))
+    {
+        double line = (double)elem.getDefinitionLine();
+        SciErr err = createMatrixOfDouble(pvApiCtx, pos, 1, 1, &line);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            return 0;
+        }
+
+        return 1;
+    }
     else
     {
         Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);

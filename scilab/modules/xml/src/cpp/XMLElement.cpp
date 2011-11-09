@@ -207,6 +207,11 @@ namespace org_modules_xml
         return oss.str();
     }
 
+    int XMLElement::getDefinitionLine() const
+    {
+        return node->line;
+    }
+
     const XMLNs * XMLElement::getNodeNameSpace() const
     {
         if (node->ns)

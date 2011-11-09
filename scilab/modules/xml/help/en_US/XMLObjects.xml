@@ -89,6 +89,7 @@
         </para></listitem><listitem><para><emphasis role="bold">parent</emphasis>: the parent XML Element;
         </para></listitem><listitem><para><emphasis role="bold">attributes</emphasis>: the node attributes as a XML Attributes object;
         </para></listitem><listitem><para><emphasis role="bold">children</emphasis>: the children elements as a XML Node List object.
+        </para></listitem><listitem><para><emphasis role="bold">line</emphasis>: the line definition of this XML Element.
         </para></listitem></itemizedlist>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
@@ -112,6 +113,9 @@
 
     // non-integer index can be used to make insertion
     first.children(1.5) = "<d> Scilab</d>"
+
+    // First child has been defined at line...
+    b.line
 
     xmlDump(first)
     xmlClose(doc);

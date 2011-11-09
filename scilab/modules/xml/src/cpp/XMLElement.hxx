@@ -169,6 +169,11 @@ namespace org_modules_xml
          */
         const XMLDocument & getXMLDocument() const { return doc; }
 
+        /**
+         * @return the defintion line of this XMLElement
+         */
+        int getDefinitionLine() const;
+
         const XMLObject * getXMLObjectParent() const;
         const std::string dump() const;
         const std::string toString() const;
