@@ -52,6 +52,12 @@ namespace org_modules_xml
         return static_cast<void *>(node);
     }
 
+    void XMLElement::remove() const
+    {
+        xmlUnlinkNode(node);
+        xmlFreeNode(node);
+    }
+
     const XMLObject * XMLElement::getXMLObjectParent() const
     {
         return &doc;

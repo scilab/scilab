@@ -14,6 +14,7 @@
 #define __XMLLIST_HXX__
 
 #include <string>
+#include "XMLRemovable.hxx"
 
 #include "xml.h"
 
@@ -27,7 +28,7 @@ namespace org_modules_xml
      *
      * Virtual class to handle a list of XMLObjects
      */
-    class XMLList : public XMLObject
+    class XMLList : public XMLObject, public XMLRemovable
     {
 
     public :

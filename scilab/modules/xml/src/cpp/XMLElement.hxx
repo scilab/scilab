@@ -14,6 +14,7 @@
 #define __XMLELEMENT_HXX__
 
 #include <string>
+#include "XMLRemovable.hxx"
 
 #include "xml.h"
 
@@ -32,7 +33,7 @@ namespace org_modules_xml
      * Class to wrap a xmlNode
      * @see http://xmlsoft.org/html/libxml-tree.html#xmlNode
      */
-    class XMLElement : public XMLObject
+    class XMLElement : public XMLObject, public XMLRemovable
     {
         xmlNode * node;
         const XMLDocument & doc;
@@ -54,6 +55,8 @@ namespace org_modules_xml
         ~XMLElement();
 
         void * getRealXMLPointer() const;
+
+        void remove() const;
 
         /**
          * @return the node name

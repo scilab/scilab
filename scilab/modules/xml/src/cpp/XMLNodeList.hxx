@@ -50,6 +50,8 @@ namespace org_modules_xml
 
         const char ** getContentFromList() const;
 
+        void remove() const;
+
         /**
          * Removes an element
          * @param index the index of the element to remove

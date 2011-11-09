@@ -69,6 +69,7 @@ int sci_percent_XMLValid_p(char *fname, unsigned long fname_len);
 int sci_xmlIsValidObject(char *fname, unsigned long fname_len);
 int sci_xmlAsNumber(char *fname, unsigned long fname_len);
 int sci_xmlAsText(char *fname, unsigned long fname_len);
+int sci_xmlRemove(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */
 /*--------------------------------------------------------------------------*/
