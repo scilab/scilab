@@ -57,6 +57,6 @@ GUI_IMPEXP void EnableSubMenu(char *pParentId, char *name, int position, BOOL st
  * @param pParentId the figure UID
  * @param name name of the menu
  */
-GUI_IMPEXP void DeleteMenu(char *pParentId, char *name);
+GUI_IMPEXP void DeleteMenuWithName(char *pParentId, char *name);
 
 #endif /* !__INIT_UIMENU_H__ */

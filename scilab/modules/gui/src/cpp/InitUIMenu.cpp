@@ -140,7 +140,7 @@ void EnableSubMenu(char *pParentId, char *name, int position, BOOL status)
     CallScilabBridge::setSubMenuEnabled(getScilabJavaVM(), pParentId, name, position, BOOLtobool(status));
 }
 
-void DeleteMenu(char *pParentId, char *name)
+void DeleteMenuWithName(char *pParentId, char *name)
 {
     CallScilabBridge::removeMenu(getScilabJavaVM(), pParentId, name);
 }

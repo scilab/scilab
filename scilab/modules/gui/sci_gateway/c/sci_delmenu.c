@@ -55,7 +55,7 @@ int sci_delmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        DeleteMenu(getConsoleIdentifier(), cstk(stkAdr));
+        DeleteMenuWithName(getConsoleIdentifier(), cstk(stkAdr));
     }
     else
     {
@@ -80,7 +80,7 @@ int sci_delmenu(char *fname, unsigned long fname_len)
         }
         GetRhsVar(2, STRING_DATATYPE, &nbRow1, &nbCol1, &stkAdr1);
 
-        DeleteMenu(getFigureFromIndex((int)*stk(stkAdr)), cstk(stkAdr1));
+        DeleteMenuWithName(getFigureFromIndex((int)*stk(stkAdr)), cstk(stkAdr1));
     }
 
     LhsVar(1) = 0;
