@@ -451,7 +451,6 @@ libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION
 
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARY_FUNCTIONS_C_SOURCES) $(ELEMENTARY_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARY_FUNCTIONS_CPP_SOURCES)
 libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(ELEMENTARY_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)

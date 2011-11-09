@@ -57,7 +57,6 @@ libscihdf5_forceload_disable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
 else
 
-HDF5_SOURCES =
 GATEWAY_C_SOURCES =
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 

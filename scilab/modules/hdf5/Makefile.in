@@ -494,7 +494,6 @@ yacc_present = @yacc_present@
 @HDF5_TRUE@libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CFLAGS = $(libscihdf5_la_CFLAGS)
-@HDF5_FALSE@HDF5_SOURCES = 
 GIWS_WRAPPERS = src/jni/jhdf5load.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 

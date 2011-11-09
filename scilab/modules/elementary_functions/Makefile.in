@@ -1050,7 +1050,9 @@ libscielementary_functions_la_CFLAGS = \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/
 
-libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
+libscielementary_functions_algo_la_CFLAGS = \
+	$(libscielementary_functions_la_CFLAGS)
+
 libscielementary_functions_algo_la_CPPFLAGS = \
     $(libscielementary_functions_la_CPPFLAGS)
 
