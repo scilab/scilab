@@ -349,18 +349,20 @@ public class LegendDrawer {
 
                         lineVertices.setData(lineData, 4);
 
-                        Geometry myLines = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_STRIP, lineVertices);
-                        Appearance lineAppearance = new Appearance();
-                        lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
-                        lineAppearance.setLineWidth((float) lineThickness);
+                        if (currentLine.getLineMode()) {
+                                Geometry line = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_STRIP, lineVertices);
+                                Appearance lineAppearance = new Appearance();
+                                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                                lineAppearance.setLineWidth((float) lineThickness);
 
-                        lineAppearance.setLinePattern(linePattern);
+                                lineAppearance.setLinePattern(linePattern);
 
-                        drawingTools.draw(myLines, lineAppearance);
+                                drawingTools.draw(line, lineAppearance);
+                        }
 
                         if (currentLine.getMarkMode()) {
-                                Sprite myMark = markManager.getMarkSprite(currentLine, colorMap);
-                                drawingTools.draw(myMark, SpriteAnchorPosition.CENTER, lineVertices);
+                                Sprite markSprite = markManager.getMarkSprite(currentLine, colorMap);
+                                drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
                         }
 
                         lineData[1] += deltaHeight;
