@@ -19,6 +19,10 @@
 #include "strdup_windows.h"
 #endif
 /* ========================================================================== */
+#if defined(__linux__)
+#define _GNU_SOURCE /* avoid dependency on GLIBC_2.7 */
+#endif
+/* ========================================================================== */
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
