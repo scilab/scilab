@@ -33,10 +33,16 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
     CheckRhs(1, 2);
     CheckLhs(0, 1);
 
-    char *path = NULL;
+    char *init = NULL;
+    char *relations = NULL;
 
-    /* path setup */
-    if (readSingleString(pvApiCtx, 1, &path, fname))
+    /* first file setup */
+    if (readSingleString(pvApiCtx, 1, &init, fname))
+    {
+        return 0;
+    }
+    /* second file setup */
+    if (readSingleString(pvApiCtx, 2, &relations, fname))
     {
         return 0;
     }
@@ -44,7 +50,7 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
     /* Call the java implementation */
     try
     {
-        Modelica::load(getScilabJavaVM(), path);
+        Modelica::load(getScilabJavaVM(), init, relations);
     }
     catch(GiwsException::JniCallMethodException exception)
     {
@@ -56,6 +62,9 @@ int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
+
+    FREE(init);
+    FREE(relations);
 
     PutLhsVar();
     return 0;

@@ -19,8 +19,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.AbstractAction;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.logging.LogFactory;
@@ -32,7 +30,6 @@ import org.scilab.modules.xcos.modelica.Modelica;
 import org.scilab.modules.xcos.modelica.ModelicaController;
 import org.scilab.modules.xcos.modelica.ModelicaMessages;
 import org.scilab.modules.xcos.modelica.model.Model;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Solve the model.
@@ -63,14 +60,6 @@ public final class SolveAction extends AbstractAction {
 
         putValue(NAME, ModelicaMessages.SOLVE);
         this.controller = controller;
-
-        // disable when the model is not square
-        controller.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                setEnabled(controller.isSquare());
-            }
-        });
     }
 
     /**
@@ -168,7 +157,6 @@ public final class SolveAction extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (status.exists()) {
-                putValue(NAME, ModelicaMessages.COMPUTING + XcosMessages.DOTS);
                 try {
                     // update the model with the computed identifiers
                     final Model incidenceModel = Modelica.getInstance().load(

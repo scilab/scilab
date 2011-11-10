@@ -34,13 +34,15 @@ able to retrieve a struct but not to send it to Scilab).
 Xcos
 ====
 
-* bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
+* Bug #8744 fixed - Solving the initialization problem more than once crash Scilab.
+
+* Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
-* bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+* Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
                      labeling when ports had not the same types.
 
-* bug #10340 fixed - Exception occured while moving the palette split pane to
+* Bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
 
 * bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close

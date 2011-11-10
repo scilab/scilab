@@ -48,8 +48,9 @@ public final class ModelicaMessages {
 
     public static final String GLOBAL = Messages.gettext("Global");
     public static final String EQUATIONS = Messages.gettext("Equations");
-    public static final String DISCRETE = Messages.gettext("Discrete");
-    public static final String INPUT = Messages.gettext("Input");
+    public static final String DISCRETES = Messages.gettext("Discretes");
+    public static final String INPUTS = Messages.gettext("Inputs");
+    public static final String OUTPUTS = Messages.gettext("Outputs");
     public static final String SOLVER = Messages.gettext("Solver");
     public static final String INITIAL_COMPUTING_METHOD = Messages
             .gettext("Initial computing method");

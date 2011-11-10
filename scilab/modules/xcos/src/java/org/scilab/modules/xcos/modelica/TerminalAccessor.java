@@ -91,9 +91,7 @@ public enum TerminalAccessor {
             }
 
             if (terminal.getFixed().getValue().isEmpty()) {
-                final Boolean isFixed = getData(KIND, terminal).equals(
-                        FIXED_PARAMETER);
-                terminal.getFixed().setValue(isFixed.toString());
+                return Boolean.valueOf(false);
             }
 
             final String value = terminal.getFixed().getValue();
@@ -118,8 +116,7 @@ public enum TerminalAccessor {
             }
 
             if (terminal.getInitialValue().getValue().isEmpty()) {
-                terminal.getInitialValue().setValue(
-                        Double.valueOf(0.0).toString());
+                return Double.valueOf(0.0);
             }
 
             final String value = terminal.getInitialValue().getValue();
@@ -153,7 +150,7 @@ public enum TerminalAccessor {
                     initData = Double.valueOf(0.0);
                 }
 
-                terminal.getWeight().setValue(initData.toString());
+                return initData;
             }
 
             final String value = terminal.getWeight().getValue();
@@ -178,7 +175,7 @@ public enum TerminalAccessor {
             }
 
             if (terminal.getMax().getValue().isEmpty()) {
-                terminal.getMax().setValue(Double.valueOf(0.0).toString());
+                return Double.valueOf(0.0);
             }
 
             final String value = terminal.getMax().getValue();
@@ -203,7 +200,7 @@ public enum TerminalAccessor {
             }
 
             if (terminal.getMin().getValue().isEmpty()) {
-                terminal.getMin().setValue(Double.valueOf(0.0).toString());
+                return Double.valueOf(0.0);
             }
 
             final String value = terminal.getMin().getValue();
@@ -228,8 +225,7 @@ public enum TerminalAccessor {
             }
 
             if (terminal.getNominalValue().getValue().isEmpty()) {
-                terminal.getNominalValue().setValue(
-                        Double.valueOf(0.0).toString());
+                return Double.valueOf(0.0);
             }
 
             final String value = terminal.getNominalValue().getValue();
