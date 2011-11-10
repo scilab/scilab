@@ -258,6 +258,8 @@
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_size.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAddNs.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlClose.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDocument.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDump.cpp" />
@@ -274,8 +276,6 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlXPath.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_xmlXPathNumber.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_xmlXPathText.cpp" />
     <ClCompile Include="sci_gateway\c\gw_xml.c" />
     <ClCompile Include="src\cpp\VariableScope.cpp" />
     <ClCompile Include="src\cpp\XMLAttr.cpp" />

@@ -228,10 +228,10 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlIsValidObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlXPathNumber.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlXPathText.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
