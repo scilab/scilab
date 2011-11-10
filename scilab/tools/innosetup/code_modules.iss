@@ -210,11 +210,6 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_TEXMACS}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="texmacs" activate="yes"/>'; i := i + 1;
-            end;
-
         if IsComponentSelected( ExpandConstant('{#COMPN_SOUND}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;

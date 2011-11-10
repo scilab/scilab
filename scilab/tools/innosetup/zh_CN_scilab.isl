@@ -56,7 +56,6 @@ zh_CN.DescriptionUmfpack =UMFPACK for Scilab
 zh_CN.DescriptionCompatFunctions =Compatibility functions
 zh_CN.DescriptionM2sci =M2SCI Toolbox
 zh_CN.DescriptionMatio =MAT File Input/Output Toolbox
-zh_CN.DescriptionTexmacs =Texmacs Interface
 zh_CN.DescriptionSound =Sound file handling Toolbox
 zh_CN.DescriptionRandlib =Randlib Toolbox
 zh_CN.DescriptionJavasci =Java Interface with Scilab

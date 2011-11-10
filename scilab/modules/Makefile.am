@@ -65,7 +65,6 @@ windows_tools \
 functions \
 overloading \
 m2sci \
-texmacs \
 development_tools \
 compatibility_functions \
 helptools \

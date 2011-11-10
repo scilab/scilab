@@ -57,7 +57,6 @@ es_ES.DescriptionUmfpack =UMFPACK for Scilab
 es_ES.DescriptionCompatFunctions =Compatibility functions
 es_ES.DescriptionM2sci =M2SCI Toolbox
 es_ES.DescriptionMatio =MAT File Input/Output Toolbox
-es_ES.DescriptionTexmacs =Texmacs Interface
 es_ES.DescriptionSound =Sound file handling Toolbox
 es_ES.DescriptionRandlib =Randlib Toolbox
 es_ES.DescriptionJavasci =Java Interface with Scilab

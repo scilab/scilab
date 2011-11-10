@@ -57,7 +57,6 @@
 <module name="m2sci" activate="yes"/>
 <module name="mexlib" activate="yes"/>
 <module name="tclsci" activate="yes"/>
-<module name="texmacs" activate="yes"/>
 <module name="sound" activate="yes"/>
 <module name="randlib" activate="yes"/>
 <module name="development_tools" activate="yes"/>

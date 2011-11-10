@@ -202,6 +202,7 @@ scilab -l ja_JP
         <term>--texmacs</term>
         <listitem>
           <para>This option is reserved for TeXMacs.</para>
+          <para>Please install ATOMS module atomsInstall('texmacs')</para>
         </listitem>
       </varlistentry>
       <varlistentry>

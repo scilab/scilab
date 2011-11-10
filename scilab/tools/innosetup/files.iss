@@ -58,7 +58,6 @@
 #include BinariesSourcePath + "\modules\polynomials\polynomials.iss"
 #include BinariesSourcePath + "\modules\scicos\scicos.iss"
 #include BinariesSourcePath + "\modules\scicos_blocks\scicos_blocks.iss"
-#include BinariesSourcePath + "\modules\texmacs\texmacs.iss"
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"
 #include BinariesSourcePath + "\modules\javasci\javasci.iss"

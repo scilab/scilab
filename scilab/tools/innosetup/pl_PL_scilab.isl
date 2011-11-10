@@ -57,7 +57,6 @@ pl_PL.DescriptionUmfpack =UMFPACK for Scilab
 pl_PL.DescriptionCompatFunctions =Compatibility functions
 pl_PL.DescriptionM2sci =M2SCI Toolbox
 pl_PL.DescriptionMatio =MAT File Input/Output Toolbox
-pl_PL.DescriptionTexmacs =Texmacs Interface
 pl_PL.DescriptionSound =Sound file handling Toolbox
 pl_PL.DescriptionRandlib =Randlib Toolbox
 pl_PL.DescriptionJavasci =Java Interface with Scilab

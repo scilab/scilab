@@ -647,6 +647,9 @@ Misc:
 * Options -disable-exception-catching added under GNU/Linux & Mac OS X.
   Disables the Scilab exception catching system.
 
+* texmacs module moved as ATOMS module.
+  atomsInstall('texmacs')
+
 * PVM module moved as ATOMS module.
   atomsInstall('PVM')
 
