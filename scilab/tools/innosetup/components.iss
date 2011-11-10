@@ -51,7 +51,6 @@
 #define COMPN_MEXLIB 'mexlib'
 #define COMPN_TEXMACS 'texmacs'
 #define COMPN_M2SCI 'm2sci'
-#define COMPN_MAP2SCI 'maple2scilab'
 
 #define COMPN_JAVASCI 'javasci'
 #define COMPN_INTERSCI 'intersci'
@@ -125,7 +124,6 @@ Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default ful
 Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
 Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
 Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
-Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default full custom;
 ;
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
 ;

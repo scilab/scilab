@@ -26,7 +26,6 @@ zh_CN.MsgBoxWebOpen =Can not open web page.
 zh_CN.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but development_tools module is not selected.
 zh_CN.MsgBoxDevToolsRequired2 =Please install development_tools module.
 zh_CN.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
-zh_CN.MsgBoxTclsciRequired1 =You choose to install Scipad but tclsci module is not selected.
 zh_CN.MsgBoxTclsciRequired2 =Please install tclsci module.
 zh_CN.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
 zh_CN.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
@@ -63,10 +62,7 @@ zh_CN.DescriptionRandlib =Randlib Toolbox
 zh_CN.DescriptionJavasci =Java Interface with Scilab
 zh_CN.DescriptionMexlib =Mexlib Tools
 zh_CN.DescriptionIntersci =Intersci Toolbox
-zh_CN.DescriptionMaple2sci =Maple to Scilab Toolbox
-zh_CN.DescriptionFortran2sci =Scilab to Fortran Toolbox
 zh_CN.DescriptionTclTK =TCL/TK in Scilab
-zh_CN.DescriptionScipad =Scipad Editor for Scilab
 zh_CN.DescriptionSpreadsheet =Spreadsheet Toolbox
 zh_CN.DescriptionJVM =Java Runtime
 zh_CN.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
@@ -147,9 +143,6 @@ zh_CN.DescriptionAtoms =ATOMS
 ;
 zh_CN.DescriptionHelpScilabCHM =Scilab Help
 zh_CN.ScilabCHM =modules\helptools\chm\scilab_en_US_help.chm
-;
-zh_CN.DescriptionHelpScicosCHM =Scicos Help
-zh_CN.ScicosCHM =modules\scicos\chm\scilab_en_US_help.chm
 ;
 ;-------------------------------------------------------------------------------
 ;

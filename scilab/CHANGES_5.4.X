@@ -650,6 +650,9 @@ Misc:
 * PVM module moved as ATOMS module.
   atomsInstall('PVM')
 
+* maple2scilab module moved as ATOMS module.
+  atomsInstall('maple2scilab')
+
 * SEP #69: predef('names') returns names of protected variables by predef.
 
 * printf moved as alias on mprintf function.

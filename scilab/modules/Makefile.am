@@ -64,7 +64,6 @@ sparse \
 windows_tools \
 functions \
 overloading \
-maple2scilab \
 m2sci \
 texmacs \
 development_tools \

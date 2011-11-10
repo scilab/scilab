@@ -195,11 +195,6 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_MAP2SCI}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="maple2scilab" activate="yes"/>'; i := i + 1;
-            end;
-
         if IsComponentSelected( ExpandConstant('{#COMPN_M2SCI}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;

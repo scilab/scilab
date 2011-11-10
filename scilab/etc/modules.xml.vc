@@ -54,7 +54,6 @@
 <module name="arnoldi" activate="yes"/>
 <module name="compatibility_functions" activate="yes"/>
 <module name="javasci" activate="yes"/>
-<module name="maple2scilab" activate="yes"/>
 <module name="m2sci" activate="yes"/>
 <module name="mexlib" activate="yes"/>
 <module name="tclsci" activate="yes"/>

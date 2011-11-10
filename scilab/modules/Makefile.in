@@ -164,7 +164,7 @@ DIST_SUBDIRS = output_stream arnoldi elementary_functions string \
 	linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double io \
 	intersci signal_processing core call_scilab sound time sparse \
-	windows_tools functions overloading maple2scilab m2sci texmacs \
+	windows_tools functions overloading m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
 	parameters matio atoms types hdf5 graph xcos scinotes parallel \
@@ -453,7 +453,7 @@ SUBDIRS = output_stream arnoldi elementary_functions string api_scilab \
 	differential_equations cacsd polynomials boolean double io \
 	intersci signal_processing core call_scilab interpolation \
 	sound time randlib sparse windows_tools functions overloading \
-	maple2scilab m2sci texmacs development_tools \
+	m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	types hdf5 graph xcos scinotes parallel modules_manager \
