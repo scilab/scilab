@@ -72,7 +72,7 @@ SciNotes:
 * bug 9334 fixed - Extra lines were added when code was exported into PDF under
                    Windows.
 
-* Bug 9358 fixed - A simple quoted string was not always correctly convert
+* bug 9358 fixed - A simple quoted string was not always correctly convert
                    into double quoted one.
 
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
@@ -80,7 +80,7 @@ SciNotes:
 
 * bug 9480 fixed - Highlighted words after selection were wrong under Windows.
 
-* Bug 9484 fixed - An empty file was not removed when an existing file was
+* bug 9484 fixed - An empty file was not removed when an existing file was
                    opened.
 
 * Bug 9488 fixed - There was no popup menu on the tab to copy the file path.
@@ -99,6 +99,9 @@ SciNotes:
                    from Word to SciNotes.
 
 * bug 9878 fixed - Add a shortcut "Correct indentation" in right click menu.
+
+* bug 10252 fixed - Could not change the font when SciNotes was docked with the
+                    console.
 
 
 Graphical User Interface:
