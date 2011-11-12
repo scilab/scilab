@@ -44,8 +44,13 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicompletion.la
 noinst_LTLIBRARIES = libscicompletion-algo.la
+else
+noinst_LTLIBRARIES = libscicompletion-algo.la libscicompletion.la
+endif
+
 
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

@@ -12,7 +12,7 @@ includes/dynamiclibrary.h
 
 libscidynamiclibrary_la_CFLAGS= -Isrc/ -I$(srcdir)/includes/
 
-pkglib_LTLIBRARIES = libscidynamiclibrary.la
+noinst_LTLIBRARIES = libscidynamiclibrary.la
 
 libscidynamiclibrary_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

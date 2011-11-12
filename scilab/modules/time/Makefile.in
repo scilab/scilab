@@ -120,6 +120,8 @@ libscitime_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscitime_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscitime_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscitime_algo_la_rpath =
 libscitime_la_DEPENDENCIES = libscitime-algo.la
 am__objects_2 = libscitime_la-sci_realtime.lo \
 	libscitime_la-sci_timer.lo libscitime_la-sci_calendar.lo \
@@ -130,6 +132,8 @@ libscitime_la_OBJECTS = $(am_libscitime_la_OBJECTS)
 libscitime_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscitime_la_CFLAGS) \
 	$(CFLAGS) $(libscitime_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscitime_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscitime_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -419,8 +423,9 @@ libscitime_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes
 
-pkglib_LTLIBRARIES = libscitime.la
-noinst_LTLIBRARIES = libscitime-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscitime.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscitime-algo.la libscitime.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscitime-algo.la
 libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscitime_algo_la_SOURCES = $(TIME_C_SOURCES)
 libscitime_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -589,9 +594,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscitime-algo.la: $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_DEPENDENCIES) 
-	$(libscitime_algo_la_LINK)  $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_LIBADD) $(LIBS)
+	$(libscitime_algo_la_LINK) $(am_libscitime_algo_la_rpath) $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_LIBADD) $(LIBS)
 libscitime.la: $(libscitime_la_OBJECTS) $(libscitime_la_DEPENDENCIES) 
-	$(libscitime_la_LINK) -rpath $(pkglibdir) $(libscitime_la_OBJECTS) $(libscitime_la_LIBADD) $(LIBS)
+	$(libscitime_la_LINK) $(am_libscitime_la_rpath) $(libscitime_la_OBJECTS) $(libscitime_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

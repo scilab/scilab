@@ -41,8 +41,13 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscilocalization.la
 noinst_LTLIBRARIES = libscilocalization-algo.la
+else
+noinst_LTLIBRARIES = libscilocalization-algo.la libscilocalization.la
+endif
+
 
 libscilocalization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

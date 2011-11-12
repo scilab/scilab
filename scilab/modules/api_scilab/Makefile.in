@@ -112,7 +112,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciapi_scilab_la_etcdir)" \
 	"$(DESTDIR)$(libsciapi_scilab_la_rootdir)" \
 	"$(DESTDIR)$(libsciapi_scilab_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciapi_scilab_la_DEPENDENCIES =
 am__objects_1 = libsciapi_scilab_la-api_boolean.lo \
 	libsciapi_scilab_la-api_boolean_sparse.lo \
@@ -129,6 +129,9 @@ libsciapi_scilab_la_OBJECTS = $(am_libsciapi_scilab_la_OBJECTS)
 libsciapi_scilab_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libsciapi_scilab_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libsciapi_scilab_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciapi_scilab_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -428,7 +431,8 @@ libsciapi_scilab_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/string/includes
 
-pkglib_LTLIBRARIES = libsciapi_scilab.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciapi_scilab.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciapi_scilab.la
 libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES)
 
@@ -561,6 +565,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -593,7 +606,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciapi_scilab.la: $(libsciapi_scilab_la_OBJECTS) $(libsciapi_scilab_la_DEPENDENCIES) 
-	$(libsciapi_scilab_la_LINK) -rpath $(pkglibdir) $(libsciapi_scilab_la_OBJECTS) $(libsciapi_scilab_la_LIBADD) $(LIBS)
+	$(libsciapi_scilab_la_LINK) $(am_libsciapi_scilab_la_rpath) $(libsciapi_scilab_la_OBJECTS) $(libsciapi_scilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -895,7 +908,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -973,14 +986,14 @@ uninstall-am: uninstall-libsciapi_scilab_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciapi_scilab_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciapi_scilab_la_etcDATA \
 	install-libsciapi_scilab_la_includeHEADERS \
 	install-libsciapi_scilab_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \

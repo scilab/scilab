@@ -124,6 +124,8 @@ libscicall_scilab_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscicall_scilab_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicall_scilab_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicall_scilab_algo_la_rpath =
 libscicall_scilab_la_DEPENDENCIES = libscicall_scilab-algo.la
 am__objects_2 = libscicall_scilab_la-sci_fromjava.lo \
 	libscicall_scilab_la-sci_fromc.lo \
@@ -134,6 +136,9 @@ libscicall_scilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscicall_scilab_la_CFLAGS) $(CFLAGS) \
 	$(libscicall_scilab_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicall_scilab_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicall_scilab_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -428,8 +433,9 @@ libscicall_scilab_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/core/src/c/
 
-pkglib_LTLIBRARIES = libscicall_scilab.la
-noinst_LTLIBRARIES = libscicall_scilab-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicall_scilab.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicall_scilab-algo.la libscicall_scilab.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicall_scilab-algo.la
 libscicall_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscicall_scilab_algo_la_SOURCES = $(CALLSCILAB_C_SOURCES)
 libscicall_scilab_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -598,9 +604,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscicall_scilab-algo.la: $(libscicall_scilab_algo_la_OBJECTS) $(libscicall_scilab_algo_la_DEPENDENCIES) 
-	$(libscicall_scilab_algo_la_LINK)  $(libscicall_scilab_algo_la_OBJECTS) $(libscicall_scilab_algo_la_LIBADD) $(LIBS)
+	$(libscicall_scilab_algo_la_LINK) $(am_libscicall_scilab_algo_la_rpath) $(libscicall_scilab_algo_la_OBJECTS) $(libscicall_scilab_algo_la_LIBADD) $(LIBS)
 libscicall_scilab.la: $(libscicall_scilab_la_OBJECTS) $(libscicall_scilab_la_DEPENDENCIES) 
-	$(libscicall_scilab_la_LINK) -rpath $(pkglibdir) $(libscicall_scilab_la_OBJECTS) $(libscicall_scilab_la_LIBADD) $(LIBS)
+	$(libscicall_scilab_la_LINK) $(am_libscicall_scilab_la_rpath) $(libscicall_scilab_la_OBJECTS) $(libscicall_scilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

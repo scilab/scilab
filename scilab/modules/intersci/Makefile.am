@@ -24,7 +24,12 @@ src/exe/check.c
 libsciintersci_la_includedir=$(pkgincludedir)
 libsciintersci_la_include_HEADERS = includes/libinter.h
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciintersci.la
+else
+noinst_LTLIBRARIES = libsciintersci.la
+endif
+
 
 libsciintersci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

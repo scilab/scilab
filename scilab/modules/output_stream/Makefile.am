@@ -78,8 +78,13 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/string/includes
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la
+else
+noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
+endif
+
 
 if GUI
 USEANT=1

@@ -202,13 +202,15 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
+scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB) \
+	$(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
 am_scilab_cli_bin_OBJECTS = scilab_cli_bin-mainscic.$(OBJEXT)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
-scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB)
+scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB) \
+	$(am__DEPENDENCIES_1)
 scilab_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_cli_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -603,12 +605,12 @@ $(LTLIBINTL)
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB = $(top_builddir)/modules/libscilab-cli.la
 scilab_bin_SOURCES = $(top_srcdir)/modules/console/src/c/others/mainscic.c
-scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/console/src/c/others/mainscic.c
 scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la

@@ -144,6 +144,8 @@ libscilocalization_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscilocalization_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscilocalization_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscilocalization_algo_la_rpath =
 libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la
 am__objects_4 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_gettext.lo \
@@ -158,6 +160,9 @@ libscilocalization_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscilocalization_la_CFLAGS) $(CFLAGS) \
 	$(libscilocalization_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscilocalization_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscilocalization_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -448,8 +453,9 @@ libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I/sw/include \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
-pkglib_LTLIBRARIES = libscilocalization.la
-noinst_LTLIBRARIES = libscilocalization-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscilocalization.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscilocalization-algo.la libscilocalization.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscilocalization-algo.la
 libscilocalization_la_LDFLAGS = -version-number \
 	$(SCILAB_LIBRARY_VERSION) $(am__append_3)
 libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
@@ -629,9 +635,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscilocalization-algo.la: $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_DEPENDENCIES) 
-	$(libscilocalization_algo_la_LINK)  $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_LIBADD) $(LIBS)
+	$(libscilocalization_algo_la_LINK) $(am_libscilocalization_algo_la_rpath) $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_LIBADD) $(LIBS)
 libscilocalization.la: $(libscilocalization_la_OBJECTS) $(libscilocalization_la_DEPENDENCIES) 
-	$(libscilocalization_la_LINK) -rpath $(pkglibdir) $(libscilocalization_la_OBJECTS) $(libscilocalization_la_LIBADD) $(LIBS)
+	$(libscilocalization_la_LINK) $(am_libscilocalization_la_rpath) $(libscilocalization_la_OBJECTS) $(libscilocalization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

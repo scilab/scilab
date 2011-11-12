@@ -394,8 +394,14 @@ libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscielementary_functions.la
 noinst_LTLIBRARIES += libscielementary_functions-algo.la
+else
+noinst_LTLIBRARIES += libscielementary_functions-algo.la libscielementary_functions.la
+endif
+
+
 
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

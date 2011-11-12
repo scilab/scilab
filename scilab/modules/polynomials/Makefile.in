@@ -124,6 +124,8 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscipolynomials_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscipolynomials_algo_la_rpath =
 libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
@@ -152,6 +154,9 @@ libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libscipolynomials_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscipolynomials_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscipolynomials_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -531,8 +536,9 @@ libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
-pkglib_LTLIBRARIES = libscipolynomials.la
-noinst_LTLIBRARIES = libscipolynomials-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscipolynomials.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscipolynomials-algo.la
 libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
@@ -695,9 +701,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscipolynomials-algo.la: $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscipolynomials_algo_la_rpath) $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
 libscipolynomials.la: $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_DEPENDENCIES) 
-	$(libscipolynomials_la_LINK) -rpath $(pkglibdir) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
+	$(libscipolynomials_la_LINK) $(am_libscipolynomials_la_rpath) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

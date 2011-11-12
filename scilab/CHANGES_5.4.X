@@ -436,6 +436,10 @@ Removed functions (previously declared as obsolete):
 Performance:
 ============
 
+* Under GNU/Linux and Mac OS X, Scilab startup speed of scilab-cli and
+  scilab-adv-cli have been improved by 15 to 20 % (see Compilation for more
+  information).
+
 * SSE is now enabled by default under GNU/Linux with 32 bit CPU (it is already
   the case under 64 bit CPU).
   Pentium III class (or equivalent) with SSE instructions is required.
@@ -450,6 +454,12 @@ Compilation:
 ============
 
 * Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
+* Under GNU/Linux and Mac OS X, engine libraries have been merged into a single
+  libraries named libscilab-cli.so. This greatly improves the startup
+  performances.
+  Note that the --enable-maintainer-mode enables the previous behavior (simply
+  the development process).
 
 * Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
   as a static library (only available in the source tree).

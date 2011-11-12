@@ -119,6 +119,8 @@ am_libscispecial_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscispecial_functions_algo_la_OBJECTS =  \
 	$(am_libscispecial_functions_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscispecial_functions_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscispecial_functions_algo_la_rpath =
 libscispecial_functions_la_DEPENDENCIES =  \
 	libscispecial_functions-algo.la
 am__objects_4 = libscispecial_functions_la-sci_dlgamma.lo \
@@ -145,6 +147,9 @@ libscispecial_functions_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
 	$(libscispecial_functions_la_FFLAGS) $(FFLAGS) \
 	$(libscispecial_functions_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscispecial_functions_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscispecial_functions_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -476,8 +481,9 @@ libscispecial_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
-pkglib_LTLIBRARIES = libscispecial_functions.la
-noinst_LTLIBRARIES = libscispecial_functions-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscispecial_functions.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscispecial_functions-algo.la libscispecial_functions.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscispecial_functions-algo.la
 libscispecial_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES) $(SPECIAL_FUNCTIONS_CPP_SOURCES)
 libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
@@ -640,9 +646,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscispecial_functions-algo.la: $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscispecial_functions_algo_la_rpath) $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_LIBADD) $(LIBS)
 libscispecial_functions.la: $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_DEPENDENCIES) 
-	$(libscispecial_functions_la_LINK) -rpath $(pkglibdir) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
+	$(libscispecial_functions_la_LINK) $(am_libscispecial_functions_la_rpath) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

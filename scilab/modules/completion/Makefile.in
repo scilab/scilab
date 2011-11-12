@@ -145,6 +145,8 @@ libscicompletion_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscicompletion_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicompletion_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicompletion_algo_la_rpath =
 libscicompletion_la_DEPENDENCIES = libscicompletion-algo.la
 am__objects_3 = libscicompletion_la-sci_completion.lo \
 	libscicompletion_la-gw_completion.lo
@@ -154,6 +156,9 @@ libscicompletion_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscicompletion_la_CFLAGS) $(CFLAGS) \
 	$(libscicompletion_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicompletion_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicompletion_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -465,8 +470,9 @@ libscicompletion_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscicompletion.la
-noinst_LTLIBRARIES = libscicompletion-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicompletion.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicompletion-algo.la libscicompletion.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicompletion-algo.la
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
@@ -656,9 +662,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscicompletion-algo.la: $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_DEPENDENCIES) 
-	$(libscicompletion_algo_la_LINK)  $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_LIBADD) $(LIBS)
+	$(libscicompletion_algo_la_LINK) $(am_libscicompletion_algo_la_rpath) $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_LIBADD) $(LIBS)
 libscicompletion.la: $(libscicompletion_la_OBJECTS) $(libscicompletion_la_DEPENDENCIES) 
-	$(libscicompletion_la_LINK) -rpath $(pkglibdir) $(libscicompletion_la_OBJECTS) $(libscicompletion_la_LIBADD) $(LIBS)
+	$(libscicompletion_la_LINK) $(am_libscicompletion_la_rpath) $(libscicompletion_la_OBJECTS) $(libscicompletion_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
