@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS <antoine.elias@scilab.org>
- * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which

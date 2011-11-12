@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
- * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) Scilab Enterprises - 2011 - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
