@@ -716,6 +716,7 @@ blocks/SUPER_f.h5 \
 blocks/SWITCH2_m.h5 \
 blocks/SWITCH_f.h5 \
 blocks/Switch.h5 \
+blocks/SELF_SWITCH.h5 \
 blocks/TANBLK_f.h5 \
 blocks/TCLSS.h5 \
 blocks/TEXT_f.h5 \

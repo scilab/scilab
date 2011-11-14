@@ -17,6 +17,7 @@
 
 package org.scilab.modules.core;
 
+import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,6 +135,21 @@ public class Scilab {
                     scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
                 } else {
                     scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+                    
+                    /*
+                     * Linux specific desktop integration
+                     */
+                    try {
+                        Toolkit xToolkit = Toolkit.getDefaultToolkit();
+                        java.lang.reflect.Field awtAppClassNameField =
+                            xToolkit.getClass().getDeclaredField("awtAppClassName");
+                        awtAppClassNameField.setAccessible(true);
+                        
+                        awtAppClassNameField.set(xToolkit, "Scilab");
+                    } catch (Exception e) {
+                        System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
+                        System.err.println("Error: " + e.getLocalizedMessage());
+                    }
                 }
 
                 /* Init the LookAndFeelManager all the time since we can
@@ -147,7 +163,6 @@ public class Scilab {
                 } else {
                     lookAndFeel.setSystemLookAndFeel();
                 }
-
             } catch (java.lang.NoClassDefFoundError exception) {
                 System.err.println("Could not initialize graphics Environment");
                 System.err.println("Scilab Graphical option may not be working correctly.");

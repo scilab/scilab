@@ -206,8 +206,12 @@ if test "$with_intelcompilers" = yes; then
 fi
 
 if test -z "$F77"; then
-## No Frotran compiler specified... We rely on Autoconf to find the best
-   AC_PROG_F77
+## No Fortran compiler specified... Prefer gfortran and intel compilers
+   AC_PROG_F77([gfortran ifc ifort])
+   if test -z "$F77"; then
+        # Best effort to find a compiler (might be g77)
+	AC_PROG_F77
+   fi
 fi
 
 
@@ -599,7 +603,7 @@ case "$CC" in
   *-*-darwin*)
     CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
     CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
-    FFLAGS="$FFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    FFLAGS="$FFLAGS -mmacosx-version-min=10.5"
     case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
@@ -842,7 +846,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then

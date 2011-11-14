@@ -32,6 +32,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLXPath::getRealXMLPointer() const
+    {
+        return static_cast<void *>(xpath);
+    }
+
     const XMLObject * XMLXPath::getXMLObjectParent() const
     {
         return &doc;

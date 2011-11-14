@@ -766,6 +766,10 @@
         <data variable="SCI" path="/modules/scicos_blocks/blocks/SWITCH_f.h5"/>
         <icon variable="SCI" path="/modules/xcos/images/palettes/SWITCH_f.png"/>
       </block>
+      <block name="SELF_SWITCH">
+        <data variable="SCI" path="/modules/scicos_blocks/blocks/SELF_SWITCH.h5"/>
+        <icon variable="SCI" path="/modules/xcos/images/palettes/SELF_SWITCH.png"/>
+      </block>
     </node>
     <node xsi:type="PreLoaded" enable="true" name="Signal Processing">
       <block name="QUANT_f">

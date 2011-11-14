@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,52 +29,57 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-	/**
-	 * Create a new ObjectFactory that can be used to create new instances of
-	 * schema derived classes for package: org.scilab.modules.xcos.palette.model
-	 * 
-	 */
-	public ObjectFactory() {
-	}
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of
+     * schema derived classes for package: org.scilab.modules.xcos.palette.model
+     * 
+     */
+    public ObjectFactory() {
+    }
 
-	/**
-	 * Create an instance of {@link PaletteBlock }
-	 * @return a new instance
-	 */
-	public PaletteBlock createPaletteBlock() {
-		return new PaletteBlock();
-	}
+    /**
+     * Create an instance of {@link PaletteBlock }
+     * 
+     * @return a new instance
+     */
+    public PaletteBlock createPaletteBlock() {
+        return new PaletteBlock();
+    }
 
-	/**
-	 * Create an instance of {@link Category }
-	 * @return a new instance
-	 */
-	public Category createCategory() {
-		return new Category();
-	}
+    /**
+     * Create an instance of {@link Category }
+     * 
+     * @return a new instance
+     */
+    public Category createCategory() {
+        return new Category();
+    }
 
-	/**
-	 * Create an instance of {@link Custom }
-	 * @return a new instance
-	 */
-	public Custom createCustom() {
-		return new Custom();
-	}
+    /**
+     * Create an instance of {@link Custom }
+     * 
+     * @return a new instance
+     */
+    public Custom createCustom() {
+        return new Custom();
+    }
 
-	/**
-	 * Create an instance of {@link PreLoaded }
-	 * @return a new instance
-	 */
-	public PreLoaded createPreLoaded() {
-		return new PreLoaded();
-	}
+    /**
+     * Create an instance of {@link PreLoaded }
+     * 
+     * @return a new instance
+     */
+    public PreLoaded createPreLoaded() {
+        return new PreLoaded();
+    }
 
-	/**
-	 * Create an instance of {@link VariablePath }
-	 * @return a new instance
-	 */
-	public VariablePath createVariablePath() {
-		return new VariablePath();
-	}
+    /**
+     * Create an instance of {@link VariablePath }
+     * 
+     * @return a new instance
+     */
+    public VariablePath createVariablePath() {
+        return new VariablePath();
+    }
 
 }

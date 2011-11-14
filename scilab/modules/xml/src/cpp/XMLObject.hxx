@@ -48,6 +48,12 @@ namespace org_modules_xml
         virtual ~XMLObject() { }
 
         /**
+         * Get the libxml2 pointer
+         * @return the pointer
+         */
+        virtual void * getRealXMLPointer() const { return 0; }
+
+        /**
          * Gets a XML parent object. A set of dependencies is created between the objects
          * to be sure that all the XML objects will be freed when a document will be destroyed.
          * @return the parent XMLObject

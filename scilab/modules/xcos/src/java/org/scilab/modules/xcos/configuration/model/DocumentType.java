@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,59 +48,59 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "DocumentType")
 public class DocumentType {
 
-	@XmlAttribute
-	@XmlSchemaType(name = "anyURI")
-	private String url;
-	@XmlAttribute
-	@XmlSchemaType(name = "dateTime")
-	private XMLGregorianCalendar date;
+    @XmlAttribute
+    @XmlSchemaType(name = "anyURI")
+    private String url;
+    @XmlAttribute
+    @XmlSchemaType(name = "dateTime")
+    private XMLGregorianCalendar date;
 
-	/**
-	 * Default constructor
-	 */
-	protected DocumentType() {
-	}
+    /**
+     * Default constructor
+     */
+    protected DocumentType() {
+    }
 
-	/**
-	 * Gets the value of the url property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getUrl() {
-		return url;
-	}
+    /**
+     * Gets the value of the url property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getUrl() {
+        return url;
+    }
 
-	/**
-	 * Sets the value of the url property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setUrl(String value) {
-		this.url = value;
-	}
+    /**
+     * Sets the value of the url property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setUrl(String value) {
+        this.url = value;
+    }
 
-	/**
-	 * Gets the value of the date property.
-	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
-	 * 
-	 */
-	public XMLGregorianCalendar getDate() {
-		return date;
-	}
+    /**
+     * Gets the value of the date property.
+     * 
+     * @return possible object is {@link XMLGregorianCalendar }
+     * 
+     */
+    public XMLGregorianCalendar getDate() {
+        return date;
+    }
 
-	/**
-	 * Sets the value of the date property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link XMLGregorianCalendar }
-	 * 
-	 */
-	public void setDate(XMLGregorianCalendar value) {
-		this.date = value;
-	}
+    /**
+     * Sets the value of the date property.
+     * 
+     * @param value
+     *            allowed object is {@link XMLGregorianCalendar }
+     * 
+     */
+    public void setDate(XMLGregorianCalendar value) {
+        this.date = value;
+    }
 
 }

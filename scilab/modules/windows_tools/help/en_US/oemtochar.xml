@@ -19,7 +19,13 @@
     <refpurpose>translates a string from the OEM-defined
   character set into either an ANSI string. (Windows Only)</refpurpose>
   </refnamediv>
+  
   <refsynopsisdiv>
+
+  <refsection>
+    <para>Obsolete, it will be removed in Scilab 5.4.1</para>
+  </refsection>
+    
     <title>Calling Sequence</title>
     <synopsis>str=oemtochar(str1)</synopsis>
   </refsynopsisdiv>
@@ -53,4 +59,13 @@
       </member>
     </simplelist>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>This function will be removed in Scilab 5.4.1</revremark>
+      </revision>
+    </revhistory>
+  </refsection>  
 </refentry>

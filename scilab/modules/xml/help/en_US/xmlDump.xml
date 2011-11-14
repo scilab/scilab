@@ -73,4 +73,13 @@
     <title>Author</title>
     <para>Calixte DENIZET</para>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>

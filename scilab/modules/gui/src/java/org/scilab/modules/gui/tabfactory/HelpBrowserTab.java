@@ -38,7 +38,7 @@ public class HelpBrowserTab {
                 }
 
                 public void destroy() {
-                    ScilabHelpBrowser.closeHelpBrowser();
+                    ScilabHelpBrowser.closeHB();
                 }
 
                 public String askForClosing() {

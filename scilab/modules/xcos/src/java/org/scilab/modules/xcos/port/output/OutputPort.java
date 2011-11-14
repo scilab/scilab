@@ -28,12 +28,15 @@ public abstract class OutputPort extends BasicPort {
 
     /**
      * Default constructor
-     * @param type The string port name ("ExplicitOutputPort" or "ImplicitOutputPort")
+     * 
+     * @param type
+     *            The string port name ("ExplicitOutputPort" or
+     *            "ImplicitOutputPort")
      */
     public OutputPort(String type) {
-	super(type);
-	setOrientation(Orientation.EAST);
-	
-	setDefaultValues();
+        super(type);
+        setOrientation(Orientation.EAST);
+
+        setDefaultValues();
     }
 }

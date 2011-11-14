@@ -37,6 +37,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLNodeList::getRealXMLPointer() const
+    {
+        return static_cast<void *>(parent->children);
+    }
+
     const XMLObject * XMLNodeList::getXMLObjectParent() const
     {
         return &doc;
@@ -143,7 +148,7 @@ namespace org_modules_xml
 
     void XMLNodeList::setElementAtPosition(double index, const std::string & xmlCode)
     {
-	std::string error;
+        std::string error;
         XMLDocument document = XMLDocument(xmlCode, false, &error);
 
         if (error.empty())

@@ -44,6 +44,8 @@ namespace org_modules_xml
 
         ~XMLNodeSet();
 
+        void * getRealXMLPointer() const;
+
         const XMLObject * getXMLObjectParent() const;
         const XMLObject * getListElement(int index);
     };

@@ -37,6 +37,7 @@ import org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
@@ -268,16 +269,26 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         ScilabBridge.fullTextSearch(this, keyword);
     }
 
-    public static void closeHelpBrowser() {
-        instance.close();
+    /**
+     * Close the HelpBrowser
+     */
+    public void closeHelpBrowser() {
+        saveHelpBrowserState();
+        instance = null;
+    }
+
+    /**
+     * Close the HelpBrowser
+     */
+    public static void closeHB() {
+        ((ScilabHelpBrowser) instance).closeHelpBrowser();
     }
 
     /**
      * Close the HelpBrowser
      */
     public void close() {
-        saveHelpBrowserState();
-        instance = null;
+        ClosingOperationsManager.startClosingOperation((SwingScilabTab) helpTab.getAsSimpleTab());
     }
 
     /**

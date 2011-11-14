@@ -19,7 +19,9 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.localization.Messages;
 
 /**
- * Standard class to manage dialogs inside Scilab applications such as Xcos et Editor
+ * Standard class to manage dialogs inside Scilab applications such as Xcos et
+ * Editor
+ * 
  * @author Antoine ELIAS
  */
 public final class ScilabModalDialog {
@@ -55,118 +57,168 @@ public final class ScilabModalDialog {
         NO_OPTION,
         SAVE_EXECUTE_OPTION
     }
+
     /**
      * private constructor, only static functions 
      */
     private ScilabModalDialog() {
     }
 
-
     /**
-     * @param messages : messages to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * default icon "scilab"
-     * default button "OK"
+     * @param messages
+     *            : messages to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box default icon "scilab" default
+     *            button "OK"
      * @return index of the selected button
      */
     public static AnswerOption show(SimpleTab parent, String[] messages) {
-        return show(parent, messages, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
+        return show(parent, messages, Messages.gettext("Scilab Message"),
+                IconType.SCILAB_ICON, ButtonType.OK);
     }
 
     /**
-     * @param message : message to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * default icon "scilab"
-     * default button "OK"
+     * @param message
+     *            : message to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box default icon "scilab" default
+     *            button "OK"
      * @return index of the selected button
      */
     public static AnswerOption show(SimpleTab parent, String message) {
-        return show(parent, new String[]{message}, Messages.gettext("Scilab Message"), IconType.SCILAB_ICON, ButtonType.OK);
+        return show(parent, new String[] { message },
+                Messages.gettext("Scilab Message"), IconType.SCILAB_ICON,
+                ButtonType.OK);
     }
 
     /**
-     * @param messages : messages to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * default icon "Warning"
-     * default button "OK"
+     * @param messages
+     *            : messages to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box default icon "Warning" default
+     *            button "OK"
      * @return index of the selected button
      */
     public static AnswerOption show(SimpleTab parent, String[] messages, String title) {
-        return show(parent, messages, title, IconType.SCILAB_ICON, ButtonType.OK);
+        return show(parent, messages, title, IconType.SCILAB_ICON,
+                ButtonType.OK);
     }
 
     /**
-     * @param message : message to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * default icon "Warning"
-     * default button "OK"
+     * @param message
+     *            : message to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box default icon "Warning" default
+     *            button "OK"
      * @return index of the selected button
      */
     public static AnswerOption show(SimpleTab parent, String message, String title) {
-        return show(parent, new String[]{message}, title, IconType.SCILAB_ICON, ButtonType.OK);
+        return show(parent, new String[] { message }, title,
+                IconType.SCILAB_ICON, ButtonType.OK);
     }
 
     /**
-     * @param messages : messages to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * @param iconType : message box icon ( see IconType )
+     * @param messages
+     *            : messages to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box
+     * @param iconType
+     *            : message box icon ( see IconType )
      * @return index of the selected button
      */
-    public static AnswerOption show(SimpleTab parent, String[] messages, String title, ScilabModalDialog.IconType iconType) {
+    public static AnswerOption show(SimpleTab parent, String[] messages,
+            String title, ScilabModalDialog.IconType iconType) {
         return show(parent, messages, title, iconType, ButtonType.OK);
     }
 
     /**
-     * @param message : message to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * @param iconType : message box icon ( see IconType )
+     * @param message
+     *            : message to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box
+     * @param iconType
+     *            : message box icon ( see IconType )
      * @return index of the selected button
      */
-    public static AnswerOption show(SimpleTab parent, String message, String title, ScilabModalDialog.IconType iconType) {
-        return show(parent, new String[]{message}, title, iconType, ButtonType.OK);
+    public static AnswerOption show(SimpleTab parent, String message, String title,
+            ScilabModalDialog.IconType iconType) {
+        return show(parent, new String[] { message }, title, iconType,
+                ButtonType.OK);
     }
 
     /**
-     * @param message : message to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * @param iconType : message box icon ( see IconType )
-     * @param buttonType : message box type ( see ButtonType )
+     * @param message
+     *            : message to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box
+     * @param iconType
+     *            : message box icon ( see IconType )
+     * @param buttonType
+     *            : message box type ( see ButtonType )
      * @return index of the selected button
      */
-    public static AnswerOption show(SimpleTab parent, String message, String title, 
-            ScilabModalDialog.IconType iconType, ScilabModalDialog.ButtonType buttonType) {
-        return show(parent, new String[]{message}, title, iconType, buttonType);
+    public static AnswerOption show(SimpleTab parent, String message, String title,
+            ScilabModalDialog.IconType iconType,
+            ScilabModalDialog.ButtonType buttonType) {
+        return show(parent, new String[] { message }, title, iconType,
+                buttonType);
     }
 
     /**
-     * @param messages : messages to display
-     * @param parent : tab to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * @param iconType : message box icon ( see IconType )
-     * @param buttonType : message box type ( see ButtonType )
+     * @param messages
+     *            : messages to display
+     * @param parent
+     *            : tab to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box
+     * @param iconType
+     *            : message box icon ( see IconType )
+     * @param buttonType
+     *            : message box type ( see ButtonType )
      * @return index of the selected button
      */
-    public static AnswerOption show(SimpleTab parent, String[] messages, String title,
-            ScilabModalDialog.IconType iconType, ScilabModalDialog.ButtonType buttonType) {
-        return show((Component) parent, messages, title, iconType, buttonType);
+    public static AnswerOption show(SimpleTab parent, String[] messages,
+            String title, ScilabModalDialog.IconType iconType,
+            ScilabModalDialog.ButtonType buttonType) {
+        final Component c;
+        if (parent == null) {
+            c = null;
+        } else {
+            c = (Component) parent;
+        }
+        return show(c, messages, title, iconType, buttonType);
     }
 
     /**
-     * @param messages : messages to display
-     * @param parent : component to be used to set the location of the messagebox
-     * @param title : title of the message box
-     * @param iconType : message box icon ( see IconType )
-     * @param buttonType : message box type ( see ButtonType )
+     * @param messages
+     *            : messages to display
+     * @param parent
+     *            : component to be used to set the location of the messagebox
+     * @param title
+     *            : title of the message box
+     * @param iconType
+     *            : message box icon ( see IconType )
+     * @param buttonType
+     *            : message box type ( see ButtonType )
      * @return index of the selected button
      */
-    public static AnswerOption show(Component parent, String[] messages, String title,
-            ScilabModalDialog.IconType iconType, ScilabModalDialog.ButtonType buttonType) {
-
+    public static AnswerOption show(Component parent, String[] messages,
+            String title, ScilabModalDialog.IconType iconType,
+            ScilabModalDialog.ButtonType buttonType) {
 
         SwingScilabMessageBox messageBox = new SwingScilabMessageBox();
         messageBox.setTitle(title);
@@ -175,87 +227,93 @@ public final class ScilabModalDialog {
         String[] labels = null;
 
         switch (buttonType) {
-        case OK :
-            labels = new String[]{Messages.gettext("OK")};
+        case OK:
+            labels = new String[] { Messages.gettext("OK") };
             break;
-        case OK_CANCEL :
-            labels = new String[]{Messages.gettext("OK"), Messages.gettext("Cancel")};
+        case OK_CANCEL:
+            labels = new String[] { Messages.gettext("OK"),
+                    Messages.gettext("Cancel") };
             break;
-        case YES_NO :
-            labels = new String[]{Messages.gettext("Yes"), Messages.gettext("No")};
+        case YES_NO:
+            labels = new String[] { Messages.gettext("Yes"),
+                    Messages.gettext("No") };
             break;
-        case YES_NO_CANCEL :
-            labels = new String[]{Messages.gettext("Yes"), Messages.gettext("No"), Messages.gettext("Cancel")};
+        case YES_NO_CANCEL:
+            labels = new String[] { Messages.gettext("Yes"),
+                    Messages.gettext("No"), Messages.gettext("Cancel") };
             break;
-        case CANCEL_OR_SAVE_AND_EXECUTE :
-            labels = new String[]{Messages.gettext("Cancel"), Messages.gettext("Save and execute")};
+        case CANCEL_OR_SAVE_AND_EXECUTE:
+            labels = new String[] { Messages.gettext("Cancel"),
+                    Messages.gettext("Save and execute") };
             break;
         }
 
         messageBox.setButtonsLabels(labels);
 
         String iconName = null;
-        switch(iconType) {
-        case ERROR_ICON :
-            iconName = "error"; 
+        switch (iconType) {
+        case ERROR_ICON:
+            iconName = "error";
             break;
-        case INFORMATION_ICON :
-            iconName = "info"; 
+        case INFORMATION_ICON:
+            iconName = "info";
             break;
-        case PASSWORD_ICON :
-            iconName = "passwd"; 
+        case PASSWORD_ICON:
+            iconName = "passwd";
             break;
-        case QUESTION_ICON :
-            iconName = "question"; 
+        case QUESTION_ICON:
+            iconName = "question";
             break;
-        case WARNING_ICON :
-            iconName = "warning"; 
+        case WARNING_ICON:
+            iconName = "warning";
             break;
-        default :
-            iconName = "scilab"; 
+        default:
+            iconName = "scilab";
             break;
         }
 
         messageBox.setIcon(iconName);
 
-        messageBox.setParentForLocation(parent);
-
+        if (parent == null) {
+            ((SwingScilabMessageBox) messageBox).setParentForLocation(parent);
+        }
+        
         messageBox.displayAndWait();
-        int choice = (messageBox.getSelectedButton() - 1); //zero indexed
+        int choice = (messageBox.getSelectedButton() - 1); // zero indexed
 
         AnswerOption answer = AnswerOption.OK_OPTION;
 
         switch (buttonType) {
-        case OK : //OK
-            answer = AnswerOption.OK_OPTION;		
+        case OK: // OK
+            answer = AnswerOption.OK_OPTION;
             break;
-        case OK_CANCEL :
-            if (choice == 0) { //OK
-                answer = AnswerOption.OK_OPTION;		
-            } else { //Cancel
+        case OK_CANCEL:
+            if (choice == 0) { // OK
+                answer = AnswerOption.OK_OPTION;
+            } else { // Cancel
                 answer = AnswerOption.CANCEL_OPTION;
             }
             break;
-        case YES_NO :
-            if (choice == 0) { //Yes
-                answer = AnswerOption.YES_OPTION;		
-            } else { //No
+        case YES_NO:
+            if (choice == 0) { // Yes
+                answer = AnswerOption.YES_OPTION;
+            } else { // No
                 answer = AnswerOption.NO_OPTION;
             }
             break;
-        case YES_NO_CANCEL :
-            if (choice == 0) { //Yes
-                answer = AnswerOption.YES_OPTION;		
-            } else if (choice == 1) { //No
+        case YES_NO_CANCEL:
+            if (choice == 0) { // Yes
+                answer = AnswerOption.YES_OPTION;
+            } else if (choice == 1) { // No
                 answer = AnswerOption.NO_OPTION;
-            } else { //Cancel
+            } else { // Cancel
                 answer = AnswerOption.CANCEL_OPTION;
             }
             break;
-        case CANCEL_OR_SAVE_AND_EXECUTE :
-            if (choice == 0) { //Yes
-                answer = AnswerOption.CANCEL_OPTION;		
-            } else if (choice == 1) { //No
+        case CANCEL_OR_SAVE_AND_EXECUTE:
+            if (choice == 0) { // Yes
+                answer = AnswerOption.CANCEL_OPTION;
+            } else if (choice == 1) { // No
                 answer = AnswerOption.SAVE_EXECUTE_OPTION;
             }
             break;

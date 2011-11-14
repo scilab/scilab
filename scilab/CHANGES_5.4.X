@@ -13,6 +13,30 @@ GUI:
 * New uicontrols added: TODO
 
 
+Scilab Desktop:
+===============
+
+* Thanks to this new feature, Scilab confirms its usuability and its strong
+user-oriented approach. Scilab Desktop is the new concept behind Scilab
+window management taking advantage of advanced Flexdock features.
+Out of the box, Scilab is now able to save all windows layouts including the
+help browser, the variable browser, the command history, Scinotes and Xcos.
+Through this major improvement, position and size of all the windows will
+be preserved from a session to an other.
+
+In this context, a file browser component has been developped and fully
+integrated in Scilab Desktop and all other components have been improved
+to provide the best user experience for Scilab's users.
+
+Scilab Desktop provides various predefined layouts:
+ - Simple      The standard Scilab console
+               => Scilab 5.3.3 (and previous versions) defaults.
+ - Integrated  The variable browser, the history browser and the file browser
+               the console are opened by default and combined around Scilab's
+               Console to provide an ergonomic working environment
+               => Scilab 5.4.0 defaults
+
+
 XML features:
 =============
 
@@ -38,6 +62,7 @@ XML files, validation and writing.
  - xmlValidate - Validate a document in using a DTD, a Relax NG or a Schema.
  - xmlWrite - Write a XML document in a file
  - xmlXPath - Make an XPath query on a XML document
+ - xmlIsValidObject - Test the existence of an XML object
 
 These features have been developped in the context of the OASIS R&D project.
 
@@ -120,6 +145,12 @@ Xcos:
 
 * bug 8538 fixed - Counter block label was not reflecting parameters
 
+* bug 8742 fixed - On the Modelica initialization GUI, the error reporting did
+                   not work.
+
+* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
+                   re-fix the states after a derivatives fix.
+
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
                    column selection.
 
@@ -141,6 +172,8 @@ Xcos:
 * bug 9532 fixed - Users defined blocks had no icons when saved.
 
 * bug 9547 fixed - The about box was not localized due to a multi-line string.
+
+* bug 9573 fixed - getdebuginfo did not report multiple video cards on Windows.
 
 * bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
@@ -170,6 +203,8 @@ Xcos:
 * bug 10069 fixed - AFFICH_m block did not update its display at
                     re-initialization.
 
+* bug 10096 fixed - Set [1;-1;] on a product block thrown an exception.
+
 
 Localization:
 =============
@@ -191,6 +226,8 @@ File input/output:
 
 * bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
+* bug 10055 fixed - findfiles had a wrong default filter under GNU/Linux
+                    & Mac OS X
 
 New functions
 =============
@@ -207,6 +244,7 @@ New functions
 
 * The damp function in CACSD modules computes the natural pulsation
   and damping factor of linear dynamical systems.
+
 
 Optimization:
 =============
@@ -326,6 +364,9 @@ Statistics:
 
 * bug 9846 fixed - stdevf() gives zero result when a single row matrix is evaluated.
 
+* bug 7387 fixed - The help page of the rand function gave a wrong advice.
+                   The help page of the grand function gave a wrong advice.
+
 Linear Algebra:
 ==============
 
@@ -349,6 +390,8 @@ Documentation:
 
 * Bug 3431 fixed - some helptools functions were obsoletes and not removed.
 
+* Bug 9105 fixed - 'err' output parameter of 'mopen' function was not documented.
+
 * Bug 9299 fixed - Fix a typo in the cspect, pspect and window help pages
                    (Hanning changed to Hann)
 
@@ -365,6 +408,13 @@ Documentation:
 
 * Bug 9983 fixed - The xclick help page did not clearly specify the axes used for
                    coordinates
+
+Obsolete Functions:
+===================
+
+* 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
+   removed on 5.4.1
+
 
 
 Removed functions (previously declared as obsolete):
@@ -426,6 +476,8 @@ Compilation:
 * bug 9883 fixed - Build with --disable-build-help was failing.
 
 * bug 9991 fixed - ./configure --without-xcos failed to build
+
+* bug 10158 fixed - Configure used g77 even if gfortran is available
 
 
 Dynamic link:
@@ -572,7 +624,6 @@ Misc:
 
 * sprintf moved as alias on msprintf function.
 
-
 Bug fixes:
 ==========
 
@@ -589,6 +640,11 @@ Bug fixes:
 
 * bug 4847 fixed - In uigetfile, there was no way to select files with a given
                    pattern.
+
+* bug 5491 fixed - Clearly states that haveacompiler() only works under Windows.
+
+* bug 5696 fixed - When SE Linux is enable, disable the error messages for
+                   Scilab in the Scilab binary distribution.
 
 * bug 6875 fixed - test_run() could not run at once on the +3000 tests of
                    Scilab.
@@ -614,6 +670,8 @@ Bug fixes:
 
 * bug 8245 fixed - gsort() did not allow overloading with not managed types.
 
+* bug 8420 fixed - 'lines' crashed scilab in some cases.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 
@@ -624,6 +682,9 @@ Bug fixes:
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
 * bug 8963 fixed - mtlb_mode test failed on Windows.
+
+* bug 8797 fixed - Update of the help pages of getdate('s') to detail that
+                   the value returned contains the leap seconds.
 
 * bug 9045 fixed - plot2d did not support overloading.
 
@@ -753,6 +814,8 @@ Bug fixes:
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
+* bug 9929 fixed - Improve integration with Gnome shell and Unity.
+
 * bug 9950 fixed - It was possible to select several texts in the console.
 
 * bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
@@ -776,3 +839,5 @@ Bug fixes:
                     Icons renamed from XPM to PNG.
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
+
+* bug 10126 fixed - Wrong (or failing) insertion in a sparse matrix.

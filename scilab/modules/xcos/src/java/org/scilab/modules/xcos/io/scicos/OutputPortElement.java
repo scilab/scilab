@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -235,12 +235,11 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 
         final ScilabString styles = (ScilabString) graphics
                 .get(GRAPHICS_OUTSTYLE_INDEX);
-        if (styles.getData() != null
-                && alreadyDecodedCount < styles.getHeight()
-                && 0 < styles.getWidth()) {
+        if (styles.getData() != null && 0 < styles.getHeight()
+                && alreadyDecodedCount < styles.getWidth()) {
             final String style;
 
-            style = styles.getData()[alreadyDecodedCount][0];
+            style = styles.getData()[0][alreadyDecodedCount];
             port.setStyle(new StyleMap(port.getStyle()).putAll(style)
                     .toString());
         }

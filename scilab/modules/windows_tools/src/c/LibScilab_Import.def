@@ -19,4 +19,4 @@ checkrhs_
 freeArrayOfString
 getTMPDIR
 createvar_
-
+getWarningMode

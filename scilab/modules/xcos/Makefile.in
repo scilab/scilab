@@ -578,6 +578,9 @@ images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \
 images/blocks/SWITCH.svg \
+images/blocks/SELF_SWITCH.svg \
+images/blocks/Self_Switch_on.svg \
+images/blocks/Self_Switch_off.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
@@ -787,6 +790,9 @@ images/palettes/SUPER_f.png \
 images/palettes/SWITCH2_m.png \
 images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
+images/palettes/SELF_SWITCH.png \
+images/palettes/SELF_SWITCH_on.png \
+images/palettes/SELF_SWITCH_off.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
 images/palettes/TEXT_f.png \

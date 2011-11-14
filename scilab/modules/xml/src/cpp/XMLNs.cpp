@@ -40,6 +40,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLNs::getRealXMLPointer() const
+    {
+        return static_cast<void *>(ns);
+    }
+
     const XMLObject * XMLNs::getXMLObjectParent() const
     {
         return &parent;

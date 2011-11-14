@@ -19,6 +19,7 @@ function bOK = haveacompiler()
     // Very hard to detect under Linux/Unix since there are plenty of
     // compiler... Then, we return all the time TRUE
     // The actual detection is done by the dedicated ./configure
+    warning(msprintf(gettext("Due to the multivendors nature of the Unix world, the function ''haveacompiler'' is only supported under Windows.")));
     bOK = %T;
   end
 endfunction

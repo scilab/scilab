@@ -99,7 +99,7 @@ public class CopyAsHTMLAction extends DefaultAction {
 
         /**
          * Default constructor
-         * @param data the datas to copy
+         * @param data the data to copy
          */
         HTMLSelection(ScilabEditorPane pane, String data, boolean printLineNumber) {
             this.data = data;
