@@ -51,6 +51,17 @@ namespace org_modules_xml
         return static_cast<void *>(nodeSet);
     }
 
+    const char ** XMLNodeSet::getContentFromList() const
+    {
+        const char ** list = new const char*[size];
+        for (int i = 0; i < size; i++)
+        {
+            list[i] = (const char *)xmlNodeGetContent(nodeSet->nodeTab[i]);
+        }
+
+        return list;
+    }
+
     const XMLObject * XMLNodeSet::getXMLObjectParent() const
     {
         return &doc;

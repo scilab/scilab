@@ -48,6 +48,8 @@ namespace org_modules_xml
 
         void * getRealXMLPointer() const;
 
+        const char ** getContentFromList() const;
+
         /**
          * Removes an element
          * @param index the index of the element to remove

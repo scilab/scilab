@@ -42,6 +42,18 @@ namespace org_modules_xml
         return static_cast<void *>(parent->children);
     }
 
+    const char ** XMLNodeList::getContentFromList() const
+    {
+        const char ** list = new const char*[size];
+        int i = 0;
+        for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
+        {
+            list[i] = (const char *)xmlNodeGetContent(cur);
+        }
+
+        return list;
+    }
+
     const XMLObject * XMLNodeList::getXMLObjectParent() const
     {
         return &doc;

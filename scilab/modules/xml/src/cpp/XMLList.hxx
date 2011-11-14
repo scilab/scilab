@@ -49,6 +49,12 @@ namespace org_modules_xml
          */
         int getSize() const { return size; }
 
+        /**
+         * Get the content of each node of the list
+         * @return an array of strings
+         */
+        virtual const char ** getContentFromList() const = 0;
+
         const std::string toString() const;
 
     protected :
