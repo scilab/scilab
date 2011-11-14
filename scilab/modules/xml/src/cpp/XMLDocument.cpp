@@ -186,6 +186,11 @@ namespace org_modules_xml
     const XMLElement * XMLDocument::getRoot() const
     {
         xmlNode * root = xmlDocGetRootElement(document);
+        if (!root)
+        {
+            return 0;
+        }
+
         XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(root);
         if (obj)
         {
