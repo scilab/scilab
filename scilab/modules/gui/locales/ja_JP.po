@@ -1973,6 +1973,3 @@ msgstr "%s: %sの大きさが間違っています: 実数を指定してくだ�
 # File: etc/main_toolbar.xml, line: 39
 #~ msgid "Select a directory"
 #~ msgstr "ディレクトリを選択"
-
-#~ msgid "SNECMA EDTEX Processing platform"
-#~ msgstr "SNECMA EDTEX 処理プラットフォーム"

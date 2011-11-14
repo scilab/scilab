@@ -1723,6 +1723,3 @@ msgstr "%s: помилковий розмір для %s: слід викорис
 
 #~ msgid "Select a file to execute"
 #~ msgstr "Вкажіть файл для виконання"
-
-#~ msgid "SNECMA EDTEX Processing platform"
-#~ msgstr "Платформа обробки SNECMA EDTEX"
