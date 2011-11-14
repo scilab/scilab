@@ -109,7 +109,7 @@ namespace org_modules_xml
         {
             xmlSetNsProp(node, attrs->ns, (const xmlChar *)name, (const xmlChar *)value);
         }
-        else if (strlen(value))
+        else
         {
             xmlNs * ns = 0;
             if (!strncmp(prefix, "http://", strlen("http://")))
@@ -140,14 +140,7 @@ namespace org_modules_xml
         {
             if (i == index)
             {
-                if (strlen(value))
-                {
-                    cur->children->content = xmlStrdup((const xmlChar *)value);
-                }
-                else
-                {
-                    cur->children->content = xmlStrdup((const xmlChar *)"");
-                }
+		cur->children->content = xmlStrdup((const xmlChar *)value);
             }
         }
     }
@@ -162,10 +155,7 @@ namespace org_modules_xml
         }
         else
         {
-            if (strlen(value))
-            {
-                xmlNewProp(node, (const xmlChar *)name, (const xmlChar *)value);
-            }
+	    xmlNewProp(node, (const xmlChar *)name, (const xmlChar *)value);
         }
     }
 
