@@ -872,6 +872,8 @@ Bug fixes:
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
 
+* bug 10179 fixed - Weird behaviour with evstr.
+
 * bug 10289 fixed - xload returns a better error message when a file does
                     not exist.
 
