@@ -279,6 +279,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRemove.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlSetAttributes.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidate.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />

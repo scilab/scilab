@@ -49,7 +49,8 @@ namespace org_modules_xml
         const char ** getContentFromList() const;
 
         void remove() const;
-
+	void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const;
+        void setAttributeValue(const char ** name, const char ** value, int lsize) const;
         const XMLObject * getXMLObjectParent() const;
         const XMLObject * getListElement(int index);
     };

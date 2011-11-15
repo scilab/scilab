@@ -94,68 +94,127 @@ namespace org_modules_xml
 
     void XMLAttr::setAttributeValue(const char * prefix, const char * name, const char * value) const
     {
-        xmlNode * node = elem.getRealNode();
-        xmlAttr * attrs = 0;
-        for (xmlAttr * cur = node->properties; cur; cur = cur->next)
-        {
-            if (cur->ns && !strcmp(name, (const char *)cur->name) && (!strcmp(prefix, (const char *)cur->ns->prefix) || !strcmp(prefix, (const char *)cur->ns->href)))
-            {
-                attrs = cur;
-                break;
-            }
-        }
+        setAttributeValue(elem.getRealNode(), prefix, name, value);
+    }
 
-        if (attrs)
+    void XMLAttr::setAttributeValue(xmlNode * node, const char * prefix, const char * name, const char * value)
+    {
+        if (node && node->type == XML_ELEMENT_NODE)
         {
-            xmlSetNsProp(node, attrs->ns, (const xmlChar *)name, (const xmlChar *)value);
-        }
-        else
-        {
-            xmlNs * ns = 0;
-            if (!strncmp(prefix, "http://", strlen("http://")))
+            xmlAttr * attrs = 0;
+            for (xmlAttr * cur = node->properties; cur; cur = cur->next)
             {
-                ns = xmlSearchNsByHref(elem.getXMLDocument().getRealDocument(), node, (const xmlChar *)prefix);
+                if (cur->ns && !strcmp(name, (const char *)cur->name) && (!strcmp(prefix, (const char *)cur->ns->prefix) || !strcmp(prefix, (const char *)cur->ns->href)))
+                {
+                    attrs = cur;
+                    break;
+                }
+            }
+
+            if (attrs)
+            {
+                xmlSetNsProp(node, attrs->ns, (const xmlChar *)name, (const xmlChar *)value);
             }
             else
             {
-                ns = xmlSearchNs(elem.getXMLDocument().getRealDocument(), node, (const xmlChar *)prefix);
-            }
+                xmlNs * ns = 0;
+                if (!strncmp(prefix, "http://", strlen("http://")))
+                {
+                    ns = xmlSearchNsByHref(node->doc, node, (const xmlChar *)prefix);
+                }
+                else
+                {
+                    ns = xmlSearchNs(node->doc, node, (const xmlChar *)prefix);
+                }
 
-            if (ns)
-            {
-                xmlSetNsProp(node, ns, (const xmlChar *)name, (const xmlChar *)value);
+                if (ns)
+                {
+                    xmlSetNsProp(node, ns, (const xmlChar *)name, (const xmlChar *)value);
+                }
+                else
+                {
+                    xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
+                }
             }
-            else
+        }
+    }
+
+    void XMLAttr::setAttributeValue(xmlNode * node, const char ** prefix, const char ** name, const char ** value, int size)
+    {
+        if (node && node->type == XML_ELEMENT_NODE)
+        {
+            for (int i = 0; i < size; i++)
             {
-                xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
+                setAttributeValue(node, prefix[i], name[i], value[i]);
             }
+        }
+    }
+
+    void XMLAttr::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const
+    {
+        for (int i = 0; i < size; i++)
+        {
+            setAttributeValue(prefix[i], name[i], value[i]);
         }
     }
 
     void XMLAttr::setAttributeValue(int index, const char * value) const
     {
-        xmlNode * node = elem.getRealNode();
-        unsigned int i = 1;
-        for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
+        setAttributeValue(elem.getRealNode(), index, value);
+    }
+
+    void XMLAttr::setAttributeValue(xmlNode * node, int index, const char * value)
+    {
+        if (node && node->type == XML_ELEMENT_NODE)
         {
-            if (i == index)
+            int i = 1;
+            for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
             {
-		cur->children->content = xmlStrdup((const xmlChar *)value);
+                if (i == index)
+                {
+                    cur->children->content = xmlStrdup((const xmlChar *)value);
+                }
             }
         }
     }
 
     void XMLAttr::setAttributeValue(const char * name, const char * value) const
     {
-        xmlNode * node = elem.getRealNode();
-        xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)name);
-        if (attrs)
+        setAttributeValue(elem.getRealNode(), name, value);
+    }
+
+    void XMLAttr::setAttributeValue(xmlNode * node, const char * name, const char * value)
+    {
+        if (node && node->type == XML_ELEMENT_NODE)
         {
-            xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
+            xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)name);
+            if (attrs)
+            {
+                xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
+            }
+            else
+            {
+                xmlNewProp(node, (const xmlChar *)name, (const xmlChar *)value);
+            }
         }
-        else
+    }
+
+    void XMLAttr::setAttributeValue(xmlNode * node, const char ** name, const char ** value, int size)
+    {
+        if (node && node->type == XML_ELEMENT_NODE)
         {
-	    xmlNewProp(node, (const xmlChar *)name, (const xmlChar *)value);
+            for (int i = 0; i < size; i++)
+            {
+                setAttributeValue(node, name[i], value[i]);
+            }
+        }
+    }
+
+    void XMLAttr::setAttributeValue(const char ** name, const char ** value, int size) const
+    {
+        for (int i = 0; i < size; i++)
+        {
+            setAttributeValue(name[i], value[i]);
         }
     }
 

@@ -62,6 +62,22 @@ namespace org_modules_xml
         return list;
     }
 
+    void XMLNodeSet::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    {
+	for (int i = 0; i < size; i++)
+        {
+            XMLAttr::setAttributeValue(nodeSet->nodeTab[i], prefix, name, value, lsize);
+        }
+    }
+
+    void XMLNodeSet::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    {
+	for (int i = 0; i < size; i++)
+        {
+            XMLAttr::setAttributeValue(nodeSet->nodeTab[i], name, value, lsize);
+        }
+    }
+
     void XMLNodeSet::remove() const
     {
         for (int i = 0; i < size; i++)

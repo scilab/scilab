@@ -79,7 +79,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlIsValidObject.cpp \
 		      sci_gateway/cpp/sci_xmlAsNumber.cpp \
 		      sci_gateway/cpp/sci_xmlAsText.cpp \
-		      sci_gateway/cpp/sci_xmlRemove.cpp
+		      sci_gateway/cpp/sci_xmlRemove.cpp \
+		      sci_gateway/cpp/sci_xmlSetAttributes.cpp
 
 libscixml_la_CFLAGS= -I$(srcdir)/includes/ \
 		     -I$(top_srcdir)/libs/MALLOC/includes/ \

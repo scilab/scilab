@@ -14,6 +14,7 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLAttr.hxx"
 #include "XMLElement.hxx"
 #include "XMLNodeList.hxx"
 #include "VariableScope.hxx"
@@ -52,6 +53,22 @@ namespace org_modules_xml
         }
 
         return list;
+    }
+
+    void XMLNodeList::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    {
+        for (xmlNode * cur = parent->children; cur; cur = cur->next)
+        {
+            XMLAttr::setAttributeValue(cur, prefix, name, value, lsize);
+        }
+    }
+
+    void XMLNodeList::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    {
+        for (xmlNode * cur = parent->children; cur; cur = cur->next)
+        {
+            XMLAttr::setAttributeValue(cur, name, value, lsize);
+        }
     }
 
     void XMLNodeList::remove() const

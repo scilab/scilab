@@ -102,6 +102,16 @@ namespace org_modules_xml
         }
     }
 
+    void XMLElement::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const
+    {
+	XMLAttr::setAttributeValue(node, prefix, name, value, size);
+    }
+
+    void XMLElement::setAttributeValue(const char ** name, const char ** value, int size) const
+    {
+	XMLAttr::setAttributeValue(node, name, value, size);
+    }
+
     void XMLElement::setChildren(const XMLElement & elem) const
     {
         xmlNode * n = elem.getRealNode();
