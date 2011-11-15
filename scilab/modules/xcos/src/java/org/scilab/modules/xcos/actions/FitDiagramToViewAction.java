@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -31,7 +32,7 @@ public final class FitDiagramToViewAction extends OneBlockDependantAction {
     /** Icon name of the action */
     public static final String SMALL_ICON = "zoom-fit-drawing";
     /** Mnemonic key of the action */
-    public static final int MNEMONIC_KEY = 0;
+    public static final int MNEMONIC_KEY = KeyEvent.VK_SPACE;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = 0;
 
@@ -86,7 +87,7 @@ public final class FitDiagramToViewAction extends OneBlockDependantAction {
         /* Save the configuration */
         double oldZoomFactor = comp.getZoomFactor();
 
-        comp.zoomAndCenterToCells();
+        comp.zoomAndCenterToCells(getGraph(null).getSelectionCells());
 
         /* Restore previous configuration */
         comp.setZoomFactor(oldZoomFactor);
