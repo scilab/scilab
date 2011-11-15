@@ -50,6 +50,6 @@ namespace org_modules_xml
             return static_cast<XMLNodeSet *>(obj);
         }
 
-        return new XMLNodeSet(doc, xpath->nodesetval);
+        return new XMLNodeSet(doc, xpath);
     }
 }

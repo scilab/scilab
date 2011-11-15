@@ -24,9 +24,9 @@
 namespace org_modules_xml
 {
 
-    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlNodeSet * _nodeSet) : XMLList(), doc(_doc)
+    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLList(), doc(_doc), xpath(_xpath)
     {
-        nodeSet = _nodeSet;
+        nodeSet = xpath->nodesetval;
         if (nodeSet)
         {
             scope->registerPointers(nodeSet, this);
@@ -44,6 +44,7 @@ namespace org_modules_xml
     {
         scope->unregisterPointer(nodeSet);
         scope->removeId(id);
+        xmlXPathFreeObject(xpath);
     }
 
     void * XMLNodeSet::getRealXMLPointer() const

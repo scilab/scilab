@@ -32,6 +32,7 @@ namespace org_modules_xml
 
         const XMLDocument & doc;
         xmlNodeSet * nodeSet;
+        xmlXPathObject * xpath;
 
     public :
 
@@ -40,7 +41,7 @@ namespace org_modules_xml
          * @param doc the document where the node set is existing
          * @param nodeSet a xmlNodeSet
          */
-        XMLNodeSet(const XMLDocument & doc, xmlNodeSet * nodeSet);
+        XMLNodeSet(const XMLDocument & doc, xmlXPathObject * _xpath);
 
         ~XMLNodeSet();
 

@@ -144,12 +144,14 @@ namespace org_modules_xml
         if (!expr)
         {
             xmlSetStructuredErrorFunc(ctxt, 0);
+            xmlXPathFreeContext(ctxt);
             *error = *errorXPathBuffer;
             return 0;
         }
 
         xmlXPathObject * xpath = xmlXPathCompiledEval(expr, ctxt);
         xmlSetStructuredErrorFunc(ctxt, 0);
+        xmlXPathFreeContext(ctxt);
         if (!xpath)
         {
             *error = *errorXPathBuffer;
