@@ -296,7 +296,7 @@ public final class XcosMessages {
 
     /* About box */
     public static final String CONSORTIUM = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT_INRIA = "Copyright © 1989-2009 (INRIA)";
+    public static final String COPYRIGHT_INRIA = "Copyright (c) 1989-2009 (INRIA)";
     public static final String SCICOS_BASED = Messages
             .gettext("Based on Scicos");
 

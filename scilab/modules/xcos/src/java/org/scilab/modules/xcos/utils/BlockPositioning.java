@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -39,7 +39,7 @@ public final class BlockPositioning {
     public static final double DEFAULT_GRIDSIZE = 10.0;
     /** The rotation step of the clockwise and anticlockwise rotation */
     public static final int ROTATION_STEP = 90;
-    /** The max valid rotation value (always 360°) */
+    /** The max valid rotation value (always 360 degres) */
     public static final int MAX_ROTATION = 360;
 
     /** This class is a static singleton, thus it must not be instantiated */
