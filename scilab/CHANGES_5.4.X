@@ -140,8 +140,10 @@ Xcos:
 * bug 8742 fixed - On the Modelica initialization GUI, the error reporting did
                    not work.
 
-* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
+* bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
                    re-fix the states after a derivatives fix.
+
+* bug 9037 fixed - While linking, the green port blinked on a small mouse move.
 
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
                    column selection.
