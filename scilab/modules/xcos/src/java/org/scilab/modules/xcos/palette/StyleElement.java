@@ -112,12 +112,24 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
         for (int i = 0; i < blockNames.length; i++) {
             for (int j = 0; j < blockNames[i].length; j++) {
+                /*
+                 * Do not update the style if it already exists
+                 */
+                if (styleSheet.getStyles().containsKey(blockNames[i][j])) {
+                    continue;
+                }
+
+                /*
+                 * Inherit attributes from the Icon style
+                 */
                 final Map<String, Object> style = styleSheet.getCellStyle(
                         styles[i][j],
                         styleSheet.getCellStyle("Icon",
                                 styleSheet.getDefaultVertexStyle()));
 
-                // Translate Paths to URLs and check validity
+                /*
+                 * Translate Paths to URLs and check validity
+                 */
                 if (style.containsKey(mxConstants.STYLE_IMAGE)) {
                     String url = (String) style.get(mxConstants.STYLE_IMAGE);
                     url = validateURL(url);
