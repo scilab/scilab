@@ -106,6 +106,7 @@ namespace org_modules_xml
             case XML_TEXT_NODE :
             case XML_CDATA_SECTION_NODE :
             case XML_COMMENT_NODE :
+            case XML_ATTRIBUTE_NODE :
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
                 {
@@ -113,16 +114,6 @@ namespace org_modules_xml
                 }
 
                 return new XMLElement(doc, node);
-            case XML_ATTRIBUTE_NODE :
-                obj = scope->getXMLObjectFromLibXMLPtr(node->parent->properties);
-                if (obj)
-                {
-                    return static_cast<XMLAttr *>(obj);
-                }
-
-                e = new XMLElement(doc, node->parent);
-
-                return new XMLAttr(*e);
             case XML_NAMESPACE_DECL :
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
