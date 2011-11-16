@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.bridge.listbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -207,6 +208,13 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         mouseListener = new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
+                // Scilab indices in Value begin at 1 and Java indices begin at 0
+                int[] javaIndices = getList().getSelectedIndices().clone();
+                Integer[] scilabIndices = new Integer[javaIndices.length];
+                for (int i = 0; i < getList().getSelectedIndices().length; i++) {
+                    scilabIndices[i] = javaIndices[i] + 1;
+                }
+                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     callback.actionPerformed(null);
                 }
