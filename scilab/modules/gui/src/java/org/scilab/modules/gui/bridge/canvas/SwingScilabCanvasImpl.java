@@ -21,6 +21,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.HeadlessException;
 import java.awt.MenuComponent;
 import java.awt.MenuContainer;
 import java.awt.event.ComponentListener;
@@ -172,6 +173,10 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	        /** Inform the users */
 	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")"));
 	    }
+        catch (HeadlessException e) {
+            // do not print anything on a CLI only environment
+            noGLJPanel = true;
+        }
 
         }
 
