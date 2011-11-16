@@ -366,6 +366,12 @@ Linear Algebra:
 
 * bug 9749 fixed - expm reported non convergence problem.
 
+Sparse matrices:
+==============
+
+* bug 10126 fixed - Wrong (or failing) insertion in a sparse matrix.
+
+* Created an help page and unit test for ordmmd.
 
 Documentation:
 ==============
@@ -828,5 +834,3 @@ Bug fixes:
                     Icons renamed from XPM to PNG.
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
-
-* bug 10126 fixed - Wrong (or failing) insertion in a sparse matrix.
