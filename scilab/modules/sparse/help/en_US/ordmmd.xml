@@ -139,6 +139,35 @@ n = size(A,"r");
     </programlisting>
 
     <para>
+      In the following example, we compute an ordering for a symmetric 
+	  sparse matrix. 
+	  We check that <literal>invp</literal> is the inverse of <literal>perm</literal>.
+    </para>
+
+
+    <programlisting role="example">
+      <![CDATA[ 
+    A = [
+    0.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
+    0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
+    0.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
+    2.,  0.,  0.,  0.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
+    0.,  0.,  0.,  0. , 0.,  0.,  0.,  0.,  0.,  0.,  4. ;
+    0.,  0.,  0.,  0.,  0.,  0.,  0.,  3.,  0.,  3.,  0. ;
+    2.,  0.,  0.,  2.,  0.,  0.,  0.,  0.,  2.,  0.,  0. ;
+    0.,  0.,  0.,  0.,  0.,  3.,  0.,  0.,  0.,  3.,  0. ;
+    2.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  0.,  0.,  0. ;
+    0.,  0.,  0.,  0.,  0.,  3.,  0.,  3.,  0.,  0.,  0. ;
+    0.,  0.,  0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  0.];
+    n=size(A,1);
+    A=sparse(A);
+    [xadj,adjncy,anz]=sp2adj(A);
+    [perm,invp,nofsub]=ordmmd(xadj,adjncy,n);
+    perm(invp) 
+ ]]>
+    </programlisting>
+
+    <para>
       In the following example, we compare the sparsity pattern of the Cholesky
       factor of a matrix <literal>A</literal> and the matrix <literal>P'*A*P</literal>.
       See p. 3, "Chapter 1: Introduction" in
