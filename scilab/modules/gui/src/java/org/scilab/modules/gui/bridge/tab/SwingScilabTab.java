@@ -116,6 +116,11 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener {
 
+    /** Use to put a component above any other object within its layer */
+    private static final int TOP_POSITION = 0;
+    /** Use to put a component below any other object within its layer */
+    private static final int BOTTOM_POSITION = -1;
+
     private static final Image SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
 
     private static final long serialVersionUID = 1L;
@@ -184,13 +189,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         this.addAction(DockingConstants.ACTIVE_WINDOW);
 
         // create the panel in which all the uiobjects will lie.
-        contentPane = new SwingScilabAxes(figureId);
+        //contentPane = new SwingScilabAxes(figureId);
 
         // add it inside a JSCrollPane
-        scrolling = new SwingScilabScrollPane(contentPane);
-
+        //scrolling = new SwingScilabScrollPane(contentPane);
+        //scrolling.setBackground(1, 0, 0);
         // put in in the back of the tab
-        setContentPane(scrolling.getAsContainer());
+        //setContentPane(scrolling.getAsContainer());
 
         this.setVisible(true);
 
@@ -255,7 +260,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 newSize[0] = parentSize.getWidth();
                 newSize[1] = parentSize.getHeight();
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
-
                 /* Update the axes_size property */
                 Dimension contentPaneSize = getContentPane().getSize();
                 Integer[] newAxesSize = new Integer[2];
@@ -501,6 +505,18 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             } catch (InvocationTargetException e) {
                 e.getCause().printStackTrace();
             }
+        }
+    }
+
+    /**
+     * Add a SwingViewObject (from SwingView.java) to container and returns its index
+     * @param member the member to add
+     */
+    public void addMember(SwingViewObject member) {
+        if (member instanceof SwingScilabFrame) {
+            this.add((Component) member, BOTTOM_POSITION);
+        } else {
+            this.add((Component) member, TOP_POSITION);
         }
     }
 
@@ -1336,9 +1352,16 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             SwingScilabWindow.allScilabWindows.get(parentWindowId).setPosition(new Position(position[0], position[1]));
         } else if (property.equals(__GO_AXES_SIZE__)) {
             Integer[] axesSize = (Integer[]) value;
-            Dimension contentPaneSize = getContentPane().getSize();
-            if (contentPaneSize.width != axesSize[0] || contentPaneSize.height != axesSize[1]) {
-                this.getContentPane().setSize(axesSize[0], axesSize[1]);
+            Dimension oldAxesSize = getContentPane().getSize();
+            if (oldAxesSize.getWidth() != axesSize[0] || oldAxesSize.getHeight() != axesSize[1]) {
+                // Autoresize == "on" management
+                // TODO manage scrolling in with autoresize mode set to "off"
+                // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
+                int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
+                int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
+                Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
+                SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
+                        new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
             }
         }
     }
