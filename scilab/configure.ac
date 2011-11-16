@@ -1430,6 +1430,13 @@ ACX_LAPACK(
         AC_MSG_ERROR([Impossible to find the LAPACK library.])
         )
 
+AC_MSG_CHECKING([if ARPACK-ng is available])
+echo ""
+ACX_ARPACK(
+        [AC_MSG_RESULT([$ARPACK_TYPE found])],
+        AC_MSG_ERROR([Impossible to find the ARPACK library. Please note that arpack was bundled with version prior to 5.4.0 and Scilab requires arpack-ng ( http://forge.scilab.org/index.php/p/arpack-ng/ ).])
+        )
+
 #################
 ## UMFPACK
 #################
@@ -2017,7 +2024,7 @@ echo "  BLAS LIBS ............. = $BLAS_LIBS"
 echo "  BLAS TYPE ............. = $BLAS_TYPE"
 echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
-
+echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
 
 #if test "$with_mpi" = yes; then

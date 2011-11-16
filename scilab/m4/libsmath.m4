@@ -268,3 +268,91 @@ else
         $2
 fi
 ])dnl ACX_LAPACK
+
+
+dnl ----------------------------------------------------------------------------
+dnl @synopsis ACX_ARPACK([ACTION-IF-FOUND[, ACTION-IF-NOT-FOUND]])
+dnl
+dnl This macro looks for a library that implements the ARPACK
+dnl collection of Fortran77 subroutines designed to solve large 
+dnl scale eigenvalue problems (http://forge.scilab.org/index.php/p/arpack-ng/).
+dnl On success, it sets the ARPACK_LIBS output variable to
+dnl hold the requisite library linkages.
+dnl
+dnl To link with ARPACK, you should link with:
+dnl
+dnl     $ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS
+dnl
+dnl in that order.  BLAS_LIBS is the output variable of the ACX_BLAS
+dnl macro, called automatically.  FLIBS is the output variable of the
+dnl AC_F77_LIBRARY_LDFLAGS macro (called if necessary by ACX_BLAS),
+dnl and is sometimes necessary in order to link with F77 libraries.
+dnl Users will also need to use AC_F77_DUMMY_MAIN (see the autoconf
+dnl manual), for the same reason.
+dnl
+dnl The user may also use --with-arpack-library=<DIR> in order to use some
+dnl specific ARPACK library <lib>.  In order to link successfully,
+dnl however, be aware that you will probably need to use the same
+dnl Fortran compiler (which can be set via the F77 env. var.) as
+dnl was used to compile the ARPACK and BLAS libraries.
+dnl
+dnl ACTION-IF-FOUND is a list of shell commands to run if a ARPACK
+dnl library is found, and ACTION-IF-NOT-FOUND is a list of commands
+dnl to run it if it is not found.  If ACTION-IF-FOUND is not specified,
+dnl the default action will define HAVE_ARPACK.
+dnl
+dnl @version acsite.m4,v 1.3 2002/08/02 09:28:12 steve Exp
+dnl @author Steven G. Johnson <stevenj@alum.mit.edu>
+dnl @author Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
+
+AC_DEFUN([ACX_ARPACK], [
+AC_REQUIRE([ACX_BLAS])
+acx_arpack_ok=no
+
+AC_ARG_WITH(arpack-library,
+            AC_HELP_STRING([--with-arpack-library=DIR], [set the path to the ARPACK library]))
+saved_ldflags="$LDFLAGS"
+
+if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
+LDFLAGS="$LDFLAGS -L$with_arpack_library"
+fi
+
+ARPACK_LIBS="-larpack"
+# Get fortran linker name of ARPACK function to check for.
+AC_F77_FUNC(znaupd)
+
+# We cannot use ARPACK if BLAS is not found
+if test "x$acx_blas_ok" != xyes; then
+        acx_arpack_ok=noblas
+fi
+
+# First, check ARPACK_LIBS environment variable
+if test "x$ARPACK_LIBS" != x; then
+        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+        AC_MSG_CHECKING([for $znaupd in $ARPACK_LIBS])
+        AC_TRY_LINK_FUNC($znaupd, [acx_arpack_ok=yes], [ARPACK_LIBS="-larpack"])
+        AC_MSG_RESULT($acx_arpack_ok)
+        LIBS="$save_LIBS"
+        if test acx_arpack_ok = no; then
+                ARPACK_LIBS=""
+        fi
+fi
+
+
+LDFLAGS="$saved_ldflags"
+
+if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
+ARPACK_LIBS="$ARPACK_LIBS -L$with_arpack_library"
+fi
+
+AC_SUBST(ARPACK_LIBS)
+
+# Finally, execute ACTION-IF-FOUND/ACTION-IF-NOT-FOUND:
+if test x"$acx_arpack_ok" = xyes; then
+        ifelse([$1],,,[$1])
+        :
+else
+        acx_arpack_ok=no
+        $2
+fi
+])dnl ACX_ARPACK
