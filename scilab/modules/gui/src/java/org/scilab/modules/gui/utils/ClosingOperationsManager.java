@@ -283,147 +283,159 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     private static final boolean close(List<SwingScilabTab> list, SwingScilabWindow window, boolean mustSave) {
+        boolean ret = false;
         if (canClose(list, window)) {
-            // We remove the tabs which have a callback and no ClosingOperation
-            // To avoid annoying situations the tab will be undocked and closed
-            List<SwingScilabTab> tabsToRemove = new ArrayList<SwingScilabTab>();
-            for (SwingScilabTab tab : list) {
-                if (closingOps.get(tab) == null) {
-                    tab.setVisible(false);
-                    tab.getActionButton("undock").getAction().actionPerformed(null);
-                    Action action = ((SciClosingAction) tab.getActionButton(DockingConstants.CLOSE_ACTION).getAction()).getAction();
-                    if (action == null) {
-                        SwingScilabWindow win = getWindow(tab);
-                        if (win != null) {
-                            win.removeTabs(new SwingScilabTab[]{tab});
+            ret = true;
+            SwingScilabTab console = null;
+            try {
+                // First thing we get the console (if it is here) to be sure to kill it !
+                for (SwingScilabTab tab : list) {
+                    if (tab.getPersistentId().equals(NULLUUID)) {
+                        console = tab;
+                        break;
+                    }
+                }
+
+                // We remove the tabs which have a callback and no ClosingOperation
+                // To avoid annoying situations the tab will be undocked and closed
+                List<SwingScilabTab> tabsToRemove = new ArrayList<SwingScilabTab>();
+                for (SwingScilabTab tab : list) {
+                    if (closingOps.get(tab) == null) {
+                        tab.setVisible(false);
+                        tab.getActionButton("undock").getAction().actionPerformed(null);
+                        Action action = ((SciClosingAction) tab.getActionButton(DockingConstants.CLOSE_ACTION).getAction()).getAction();
+                        if (action == null) {
+                            SwingScilabWindow win = getWindow(tab);
+                            if (win != null) {
+                                win.removeTabs(new SwingScilabTab[]{tab});
+                            }
+                        } else {
+                            action.actionPerformed(null);
+                        }
+                        tabsToRemove.add(tab);
+                    }
+                }
+                list.removeAll(tabsToRemove);
+
+                // we group the tabs by win
+                Map<SwingScilabWindow, List<SwingScilabTab>> map = new HashMap<SwingScilabWindow, List<SwingScilabTab>>();
+                for (SwingScilabTab tab : list) {
+                    SwingScilabWindow win = getWindow(tab);
+                    if (win != null) {
+                        if (!map.containsKey(win)) {
+                            map.put(win, new ArrayList<SwingScilabTab>());
+                        }
+                        map.get(win).add(tab);
+                    }
+                }
+
+                List<SwingScilabWindow> winsWithOneTab = new ArrayList<SwingScilabWindow>();
+                List<SwingScilabWindow> windowsToClose = new ArrayList<SwingScilabWindow>();
+                for (SwingScilabWindow win : map.keySet()) {
+                    List<SwingScilabTab> listTabs = map.get(win);
+                    int nbDockedTabs = win.getNbDockedObjects();
+                    if (nbDockedTabs == listTabs.size()) {
+                        // all the tabs in the window are removed so we save the win state
+                        if (mustSave) {
+                            WindowsConfigurationManager.saveWindowProperties(win);
+                        }
+                        windowsToClose.add(win);
+                    } else {
+                        if (nbDockedTabs - listTabs.size() == 1) {
+                            winsWithOneTab.add(win);
+                        }
+                        // the window will stay opened
+                        if (mustSave) {
+                            for (SwingScilabTab tab : listTabs) {
+                                WindowsConfigurationManager.saveTabProperties(tab, true);
+                            }
+                        }
+                    }
+                }
+
+                // If a parent and a child are removed, we make a dependency between them
+                // The parent restoration will imply the child one
+                for (SwingScilabTab tab : list) {
+                    SwingScilabTab parent = getParent(tab);
+                    if (list.contains(parent) || parent == null) {
+                        if (parent != null) {
+                            WindowsConfigurationManager.makeDependency(parent.getPersistentId(), tab.getPersistentId());
+                        } else if (!tab.getPersistentId().equals(NULLUUID)) {
+                            // if the parent is null, we make a dependency with the console which is the default root
+                            WindowsConfigurationManager.makeDependency(NULLUUID, tab.getPersistentId());
                         }
                     } else {
-                        action.actionPerformed(null);
+                        WindowsConfigurationManager.removeDependency(tab.getPersistentId());
                     }
-                    tabsToRemove.add(tab);
                 }
-            }
-            list.removeAll(tabsToRemove);
 
-            // we group the tabs by win
-            Map<SwingScilabWindow, List<SwingScilabTab>> map = new HashMap<SwingScilabWindow, List<SwingScilabTab>>();
-            for (SwingScilabTab tab : list) {
-                SwingScilabWindow win = getWindow(tab);
-                if (win != null) {
-                    if (!map.containsKey(win)) {
-                        map.put(win, new ArrayList<SwingScilabTab>());
-                    }
-                    map.get(win).add(tab);
-                }
-            }
-
-            List<SwingScilabWindow> winsWithOneTab = new ArrayList<SwingScilabWindow>();
-            List<SwingScilabWindow> windowsToClose = new ArrayList<SwingScilabWindow>();
-            for (SwingScilabWindow win : map.keySet()) {
-                List<SwingScilabTab> listTabs = map.get(win);
-                int nbDockedTabs = win.getNbDockedObjects();
-                if (nbDockedTabs == listTabs.size()) {
-                    // all the tabs in the window are removed so we save the win state
-                    if (mustSave) {
-                        WindowsConfigurationManager.saveWindowProperties(win);
-                    }
-                    windowsToClose.add(win);
-                } else {
-                    if (nbDockedTabs - listTabs.size() == 1) {
-                        winsWithOneTab.add(win);
-                    }
-                    // the window will stay opened
-                    if (mustSave) {
-                        for (SwingScilabTab tab : listTabs) {
-                            WindowsConfigurationManager.saveTabProperties(tab, true);
+                WindowsConfigurationManager.clean();
+                // We destroy all the tabs: children before parents.
+                for (SwingScilabTab tab : list) {
+                    tab.setVisible(false);
+                    if (!tab.getPersistentId().equals(NULLUUID)) {
+                        try {
+                            closingOps.get(tab).destroy();
+                        } catch (Exception e) {
+                            // An error can occured during the destroy operation
+                            // We show it but it mustn't avoid the window destruction
+                            e.printStackTrace();
                         }
                     }
                 }
-            }
 
-            // If a parent and a child are removed, we make a dependency between them
-            // The parent restoration will imply the child one
-            for (SwingScilabTab tab : list) {
-                SwingScilabTab parent = getParent(tab);
-                if (list.contains(parent) || parent == null) {
-                    if (parent != null) {
-                        WindowsConfigurationManager.makeDependency(parent.getPersistentId(), tab.getPersistentId());
-                    } else if (!tab.getPersistentId().equals(NULLUUID)) {
-                        // if the parent is null, we make a dependency with the console which is the default root
-                        WindowsConfigurationManager.makeDependency(NULLUUID, tab.getPersistentId());
-                    }
-                } else {
-                    WindowsConfigurationManager.removeDependency(tab.getPersistentId());
+                // We remove the tabs in each window
+                // The tabs are removed in one time to avoid that the ActiveDockableTracker tryes to give the activation to a removed tab
+                for (SwingScilabWindow win : map.keySet()) {
+                    win.removeTabs(map.get(win).toArray(new SwingScilabTab[0]));
                 }
-            }
 
-            WindowsConfigurationManager.clean();
-            SwingScilabTab console = null;
-            // We destroy all the tabs: children before parents.
-            for (SwingScilabTab tab : list) {
-                tab.setVisible(false);
-                if (!tab.getPersistentId().equals(NULLUUID)) {
+                // It stays one docked tab so we remove close and undock action
+                for (SwingScilabWindow win : winsWithOneTab) {
+                    Object[] dockArray =  win.getDockingPort().getDockables().toArray();
+                    SwingScilabTab.removeActions((SwingScilabTab) dockArray[0]);
+                }
+
+                // We wait until all the windows are definitly closed
+                while (windowsToClose.size() != 0) {
+                    List<SwingScilabWindow> toRemove = new ArrayList<SwingScilabWindow>();
+                    for (SwingScilabWindow win : windowsToClose) {
+                        WindowsConfigurationManager.removeWin(win.getUUID());
+                        if (win.isDisplayable()) {
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException e) { }
+                        } else {
+                            toRemove.add(win);
+                        }
+                    }
+                    windowsToClose.removeAll(toRemove);
+                }
+
+                // We remove the tabs from the cache
+                for (SwingScilabTab tab : list) {
+                    ScilabTabFactory.getInstance().removeFromCache(tab.getPersistentId());
+                    SwingScilabTab parent = getParent(tab);
+                    List<SwingScilabTab> l = deps.get(parent);
+                    if (l != null) {
+                        l.remove(tab);
+                    }
+                    deps.remove(tab);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (console != null) {
                     try {
-                        closingOps.get(tab).destroy();
+                        closingOps.get(console).destroy();
                     } catch (Exception e) {
-                        // An error can occured during the destroy operation
-                        // We show it but it mustn't avoid the window destruction
                         e.printStackTrace();
                     }
-                } else {
-                    console = tab;
                 }
             }
-
-            // We remove the tabs in each window
-            // The tabs are removed in one time to avoid that the ActiveDockableTracker tryes to give the activation to a removed tab
-            for (SwingScilabWindow win : map.keySet()) {
-                win.removeTabs(map.get(win).toArray(new SwingScilabTab[0]));
-            }
-
-            // It stays one docked tab so we remove close and undock action
-            for (SwingScilabWindow win : winsWithOneTab) {
-                Object[] dockArray =  win.getDockingPort().getDockables().toArray();
-                SwingScilabTab.removeActions((SwingScilabTab) dockArray[0]);
-            }
-
-            // We wait until all the windows are definitly closed
-            while (windowsToClose.size() != 0) {
-                List<SwingScilabWindow> toRemove = new ArrayList<SwingScilabWindow>();
-                for (SwingScilabWindow win : windowsToClose) {
-                    WindowsConfigurationManager.removeWin(win.getUUID());
-                    if (win.isDisplayable()) {
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) { }
-                    } else {
-                        toRemove.add(win);
-                    }
-                }
-                windowsToClose.removeAll(toRemove);
-            }
-
-            // We remove the tabs from the cache
-            for (SwingScilabTab tab : list) {
-                ScilabTabFactory.getInstance().removeFromCache(tab.getPersistentId());
-                SwingScilabTab parent = getParent(tab);
-                List<SwingScilabTab> l = deps.get(parent);
-                if (l != null) {
-                    l.remove(tab);
-                }
-                deps.remove(tab);
-            }
-
-            if (console != null) {
-                try {
-                    closingOps.get(console).destroy();
-                } catch (Exception e) { }
-            }
-
-            return true;
         }
 
-        return false;
+        return ret;
     }
 
     /**
