@@ -376,6 +376,7 @@ public class WindowsConfigurationManager {
      */
     public static final Set<Element> createDescendantTabs(String uuid) {
         Set<Element> list = getTabDependencies(uuid);
+        Dimension nullDims = new Dimension(0, 0);
         for (Element e : list) {
             // All the tabs created in the factory will be cached so when Flexdock will restore the docking
             // it will use the same tab as created here.
@@ -384,6 +385,7 @@ public class WindowsConfigurationManager {
             currentlyRestored.add(e.getAttribute("uuid"));
             SwingScilabTab tab = factory.getTab(e.getAttribute("uuid"));
             if (!e.getAttribute("width").isEmpty() && !e.getAttribute("height").isEmpty()) {
+                tab.setMinimumSize(nullDims);
                 tab.setPreferredSize(new Dimension(Integer.parseInt(e.getAttribute("width")), Integer.parseInt(e.getAttribute("width"))));
             }
         }
