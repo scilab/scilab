@@ -34,6 +34,7 @@
 #include "UpdateBrowseVar.h"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
+#include "InitializeJVM.h"
 #ifdef _MSC_VER
 #include "mmapWindows.h"
 #include "strdup_windows.h"
@@ -82,6 +83,8 @@ static BOOL WatchGetCmdLineThreadAlive = FALSE;
 static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
+
+static BOOL initialJavaHooks = FALSE;
 
 /***********************************************************************
  * line editor
@@ -184,6 +187,12 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
                  int *menusflag,int * modex,long int dummy1)
 {
+    if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
+    {
+	initialJavaHooks = TRUE;
+        // Execute the initial hooks registered in Scilab.java
+	ExecuteInitialHooks();	
+    }
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER

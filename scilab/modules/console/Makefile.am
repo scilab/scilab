@@ -120,7 +120,8 @@ libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/fileio/src/c/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/ui_data/includes/
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 
 
 # Includes need for the compilation
@@ -142,7 +143,8 @@ libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/fileio/src/c/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/ui_data/includes/
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 if IS_MACOSX
 libsciconsole_la_CFLAGS += -msse2
 endif
