@@ -26,8 +26,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHECKEDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
@@ -516,7 +516,8 @@ public final class SwingView implements GraphicView {
                 bar.close();
                 break;
             default:
-                ((Widget) requestedObject.getValue()).destroy();
+                // Nothing to do
+                // uicontrol case: the object is destroyed when its parent updates its children
                 break;
             }
         }
@@ -658,7 +659,7 @@ public final class SwingView implements GraphicView {
 
                 /* Add an uicontrol */
                 if (childType.equals(__GO_UICONTROL__)) {
-                    updatedComponent.add((Component) allObjects.get(childId).getValue());
+                    ((SwingScilabTab) updatedComponent).addMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
 
@@ -682,7 +683,9 @@ public final class SwingView implements GraphicView {
 
         // Remove children which have been deleted
         Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-        for (String childId : updatedObject.getChildren()) {
+        // Clone the children set to avoid concurrent accesses
+        String[] oldChildrenSet = (String[]) updatedObject.getChildren().toArray(new String[updatedObject.getChildren().size()]);
+        for (String childId : oldChildrenSet) {
             if (!newChildrenSet.contains(childId)) {
 
                 // Remove the child
