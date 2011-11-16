@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
@@ -308,11 +309,16 @@ public class WindowsConfigurationManager {
                                                 Thread.sleep(10);
                                             } catch (InterruptedException e) { }
                                         }
-                                        while (!mainTab.hasFocus()) {
+
+                                        // Be sure that te main tab or one of its subcomponent
+                                        // will have the focus on start-up
+                                        Component owner = null;
+                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
                                             mainTab.requestFocus();
                                             try {
-                                                Thread.sleep(10);
+                                                Thread.sleep(100);
                                             } catch (InterruptedException e) { }
+                                            owner = window.getFocusOwner();
                                         }
                                         ActiveDockableTracker.requestDockableActivation(mainTab);
                                         window.toFront();
@@ -452,7 +458,7 @@ public class WindowsConfigurationManager {
         List<String> tabsWithoutWin = new ArrayList<String>();
         for (Element e : list) {
             String winuuid = e.getAttribute("winuuid");
-            if (winuuid.equals(NULLUUID)) {
+            if (winuuid.equals(NULLUUID) || getElementWithUUID(winuuid) == null || !isDockableIdExisting(winuuid, e.getAttribute("uuid"))) {
                 tabsWithoutWin.add(e.getAttribute("uuid"));
             } else if (!wins.contains(winuuid)) {
                 wins.add(winuuid);
@@ -528,6 +534,28 @@ public class WindowsConfigurationManager {
         }
 
         return null;
+    }
+
+    /**
+     * Check if there is a window which has a dockableID equals to the given uuid
+     * @param winuuid the uuid of the window
+     * @param uuid the uuid to test
+     * @return true if a dockableId exists
+     */
+    public static final boolean isDockableIdExisting(String winuuid, String uuid) {
+        if (winuuid == null || winuuid.isEmpty() || uuid == null || uuid.isEmpty()) {
+            return false;
+        }
+
+        Element win = getElementWithUUID(winuuid);
+        if (win != null) {
+            List<Element> list = ScilabXMLUtilities.getElementsWithAttributeEquals(win, "dockableId", uuid);
+            if (list.size() != 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

@@ -293,13 +293,15 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-        for (SwingScilabTab tab : set) {
-            if (tab == editor) {
-                addToolBar(editor.getToolBar());
-                break;
-            }
-        }
+        if (win != null && win.getDockingPort() != null) {
+	    Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+	    for (SwingScilabTab tab : set) {
+		if (tab == editor) {
+		    addToolBar(editor.getToolBar());
+		    break;
+		}
+	    }
+	}
     }
 
     /**

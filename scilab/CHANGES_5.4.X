@@ -100,6 +100,9 @@ SciNotes:
 
 * bug 9878 fixed - Add a shortcut "Correct indentation" in right click menu.
 
+* bug 10157 fixed - Scilab froze when docking SciNotes after a flexdock bug in a
+                    previous session.
+
 * bug 10252 fixed - Could not change the font when SciNotes was docked with the
                     console.
 
