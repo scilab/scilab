@@ -520,6 +520,8 @@ Graphics:
   A warning message will be displayed if the user tries to set this property to 0.
   Setting this property to 0 will no more be supported in Scilab 5.4.1.
 
+* getcallbackobject: Input argument must be an UID (String) and no more an index (Constant).
+
 * datatips tool improved on several aspects:
   - It is now possible to manage directional arrows as well as
     square marks markers.

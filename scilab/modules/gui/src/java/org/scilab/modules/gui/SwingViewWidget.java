@@ -56,7 +56,7 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UnitsConverter;
@@ -100,10 +100,10 @@ public final class SwingViewWidget {
                     (int) (allColors[2] * COLORS_COEFF)));
         } else if (property.equals(__GO_CALLBACK__)) {
             int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
-            uiControl.setCallback(ScilabCallBack.createCallback((String) value, cbType));
+            uiControl.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
         } else if (property.equals(__GO_CALLBACKTYPE__)) {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
-            uiControl.setCallback(ScilabCallBack.createCallback(cbString, (Integer) value));
+            uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
         } else if (property.equals(__GO_UI_COLUMNNAMES__)) {
             ((SwingScilabUiTable) uiControl).setColumnNames((String[]) value);
         } else if (property.equals(__GO_UI_ENABLE__)) {

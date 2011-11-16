@@ -84,10 +84,10 @@ public abstract class CommonCallBack extends AbstractAction {
      * Create a Callback from Scilab data
      * @param command the instruction
      * @param callbackType the type of the instruction
-     * @param objectIndex the index of the object in the UIElementMapper
+     * @param objectUID the object UID
      * @return the Callback
      */
-    public static CommonCallBack createCallback(String command, int callbackType, int objectIndex) {
+    public static CommonCallBack createCallback(String command, int callbackType, String objectUID) {
         CommonCallBack callback = null;
         switch (callbackType) {
         case CallBack.JAVA :
@@ -104,7 +104,7 @@ public abstract class CommonCallBack extends AbstractAction {
             break;
         default:
             callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                    + "gcbo = getcallbackobject(" + objectIndex + ");"
+                    + "gcbo = getcallbackobject(\"" + objectUID + "\");"
                     + command
                     + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
             break;

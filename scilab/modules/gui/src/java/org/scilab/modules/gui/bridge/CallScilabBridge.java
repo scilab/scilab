@@ -50,7 +50,6 @@ import javax.swing.text.Document;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
@@ -69,7 +68,6 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
-import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -1129,8 +1127,9 @@ public class CallScilabBridge {
      * @param callbackType the type of the callback
      */
     public static void setWidgetCallback(int objID, String callbackString, int callbackType) {
-        ((Widget) UIElementMapper.getCorrespondingUIElement(objID))
-        .setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
+        // TODO Remove me
+        //((Widget) UIElementMapper.getCorrespondingUIElement(objID))
+        //.setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
     /**
@@ -1140,7 +1139,8 @@ public class CallScilabBridge {
      * @param callbackType the type of the callback
      */
     public static void setFrameCallback(int objID, String callbackString, int callbackType) {
-        ((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
+        // TODO Remove me
+        //((Frame) UIElementMapper.getCorrespondingUIElement(objID)).setCallback(CommonCallBack.createCallback(callbackString, callbackType, objID));
     }
 
     /************************/
