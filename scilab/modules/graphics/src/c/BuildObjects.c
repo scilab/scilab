@@ -78,17 +78,29 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
     pFigureUID = cloneGraphicObject(getFigureModel());
 
     /*
-     * Clones the default menus
+     * Clone the default menus
      */
     cloneMenus(getFigureModel(), pFigureUID);
 
     setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
 
     /*
-     * Clones a new Axes object using the Axes model which is then
-     * attached to the newly created Figure.
+     * Clone the default axes
      */
-    pAxesUID = cloneGraphicObject(getAxesModel());
+    cloneAxesModel(pFigureUID);
+
+    setCurrentFigure(pFigureUID);
+
+    return pFigureUID;
+}
+
+/*
+ * Clone a new Axes object using the Axes model which is then
+ * attached to the newly created Figure.
+ */
+GRAPHICS_IMPEXP void cloneAxesModel(char *pstFigureUID)
+{
+    char *pAxesUID = cloneGraphicObject(getAxesModel());
 
     /* Clone the Axes model's labels and attach them to the newly created Axes */
     ConstructLabel(pAxesUID, "", 1);
@@ -97,16 +109,14 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
     ConstructLabel(pAxesUID, "", 4);
 
     /* Sets the parent-child relationship within the MVC */
-    setGraphicObjectRelationship(pFigureUID, pAxesUID);
+    setGraphicObjectRelationship(pstFigureUID, pAxesUID);
 
     /* Sets the newly created Axes as the Figure's current selected child */
-    setGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, pAxesUID, jni_string, 1);
+    setGraphicObjectProperty(pstFigureUID, __GO_SELECTED_CHILD__, pAxesUID, jni_string, 1);
 
-    setCurrentFigure(pFigureUID);
+    // Set new axes as default too.
     setCurrentObject(pAxesUID);
     setCurrentSubWin(pAxesUID);
-
-    return pFigureUID;
 }
 
 GRAPHICS_IMPEXP void cloneMenus(char *pModelUID, char *pCloneUID)
@@ -2167,7 +2177,6 @@ char *ConstructCompoundSeq(int number)
     return (char *)pobjUID;
 }
 
-
 /**ConstructLabel
  * This function creates the Label structure used for x,y,z labels and for the Title.
  * On the contrary to the other Construct functions, it clones the Axes model's relevant
@@ -2178,30 +2187,29 @@ char *ConstructCompoundSeq(int number)
  * @param  int type to get info. on the type of label.
  * @return  : char* identifier if ok , NULL if not.
  */
-char *
-ConstructLabel (char * pparentsubwinUID, char *text, int type)
+char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
 {
-    char* labelProperties[] = {__GO_X_AXIS_LABEL__, __GO_Y_AXIS_LABEL__, __GO_Z_AXIS_LABEL__, __GO_TITLE__};
-    char* parentType = NULL;
-    char* labelType = NULL;
-    char* modelLabelUID = NULL;
-    char* pobjUID = NULL;
+    char *labelProperties[] = { __GO_X_AXIS_LABEL__, __GO_Y_AXIS_LABEL__, __GO_Z_AXIS_LABEL__, __GO_TITLE__ };
+    char *parentType = NULL;
+    char *labelType = NULL;
+    char *modelLabelUID = NULL;
+    char *pobjUID = NULL;
     int defaultColor = 0;
     int autoPosition = 0;
     int *piAutoPosition = &autoPosition;
-    double position[3] = {1.0, 1.0, 1.0};
+    double position[3] = { 1.0, 1.0, 1.0 };
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return (char*) NULL;
+        return (char *)NULL;
     }
 
     if (type < 1 || type > 4)
     {
-        return (char*) NULL;
+        return (char *)NULL;
     }
 
     labelType = labelProperties[type - 1];

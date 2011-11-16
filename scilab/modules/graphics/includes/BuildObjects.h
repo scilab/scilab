@@ -36,6 +36,8 @@
  */
 GRAPHICS_IMPEXP char *createNewFigureWithAxes(void);
 
+GRAPHICS_IMPEXP void cloneAxesModel(char *pstFigureUID);
+
 GRAPHICS_IMPEXP void cloneMenus(char *pModelUID, char *pCloneUID);
 
 GRAPHICS_IMPEXP char *getOrCreateDefaultSubwin(void);
@@ -81,7 +83,7 @@ GRAPHICS_IMPEXP char *ConstructSegs(char *pparentsubwinUID, int type, double *vx
 GRAPHICS_IMPEXP char *ConstructCompound(long *tabpointobj, int number); /* BUILD */
 GRAPHICS_IMPEXP char *ConstructCompoundSeq(int number); /* BUILD */
 
-GRAPHICS_IMPEXP char * ConstructLabel (char * pparentsubwinUID, char *text, int type); /* BUILD */
+GRAPHICS_IMPEXP char *ConstructLabel(char *pparentsubwinUID, char *text, int type); /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj *sciStandardBuildOperations(sciPointObj * pObj, sciPointObj * parent);
 

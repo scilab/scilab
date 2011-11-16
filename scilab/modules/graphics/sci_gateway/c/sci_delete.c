@@ -42,42 +42,48 @@
 #include "AxesModel.h"
 #include "FigureModel.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
-int sci_delete(char *fname,unsigned long fname_len)
+int sci_delete(char *fname, unsigned long fname_len)
 {
-    int m1,n1,l1,m2,n2,l2,num, lw;
+    int m1, n1, l1, m2, n2, l2, lw;
     unsigned long hdl;
     int nb_handles = 0, i, dont_overload = 0;
-    char* pobjUID;
-    sciPointObj * parentFigure;
+    char *pobjUID;
 
-    CheckRhs(0,1);
-    CheckLhs(0,1);
+    char *pstParentUID = NULL;
+    char *pstParentType = NULL;
+    char *pstObjType = NULL;
 
-    if (Rhs==0) /* Delete current object */
+    CheckRhs(0, 1);
+    CheckLhs(0, 1);
+
+    if (Rhs == 0)               /* Delete current object */
     {
-        hdl = (unsigned long) getHandle(getCurrentObject());
+        hdl = (unsigned long)getHandle(getCurrentObject());
         dont_overload = 1;
         nb_handles = 1;
     }
     else
     {
-        switch(VarType(1))
+        switch (VarType(1))
         {
-        case sci_handles: /* delete Entity given by a handle */
-            GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
-            nb_handles = m1*n1;
+        case sci_handles:      /* delete Entity given by a handle */
+            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
+            nb_handles = m1 * n1;
 
             if (Rhs == 2)
             {
-                GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
+                GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
             }
             hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
             break;
-        case sci_strings: /* delete("all") */
-            CheckRhs(1,1);
-            GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
-            if (strcmp(cstk(l2),"all") == 0)
+        case sci_strings:      /* delete("all") */
+            CheckRhs(1, 1);
+            GetRhsVar(1, STRING_DATATYPE, &m2, &n2, &l2);
+            if (strcmp(cstk(l2), "all") == 0)
             {
                 //startGraphicDataWriting();
                 //sciClearFigure(sciGetCurrentFigure());
@@ -86,9 +92,10 @@ int sci_delete(char *fname,unsigned long fname_len)
                 int i = 0;
                 int iFigureNumber = sciGetNbFigure();
                 int *piFigureIds = MALLOC(iFigureNumber * sizeof(int));
+
                 sciGetFiguresId(piFigureIds);
 
-                for(i = 0 ; i < iFigureNumber ; ++i)
+                for (i = 0; i < iFigureNumber; ++i)
                 {
                     deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
                 }
@@ -100,62 +107,102 @@ int sci_delete(char *fname,unsigned long fname_len)
             }
             else
             {
-                Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"all");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "all");
                 return 0;
             }
             break;
         default:
             // Overload
             lw = 1 + Top - Rhs;
-            C2F(overload)(&lw,"delete",6);
+            C2F(overload) (&lw, "delete", 6);
             return 0;
         }
     }
 
-    for( i = 0 ; i < nb_handles ; i++)
+    for (i = 0; i < nb_handles; i++)
     {
         if (Rhs != 0)
         {
-            hdl = (unsigned long)*hstk(l1+i); /* Puts the value of the Handle to hdl */
+            hdl = (unsigned long)*hstk(l1 + i); /* Puts the value of the Handle to hdl */
         }
 
         pobjUID = getObjectFromHandle(hdl);
 
         if (pobjUID == NULL)
         {
-            Scierror(999,_("%s: The handle is not valid.\n"),fname);
+            Scierror(999, _("%s: The handle is not valid.\n"), fname);
             return 0;
         }
 
         if (isFigureModel(pobjUID) || isAxesModel(pobjUID))
         {
-            Scierror(999,_("This object cannot be deleted.\n"));
+            Scierror(999, _("This object cannot be deleted.\n"));
             return 0;
         }
 
+        /* Object type */
+        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjType);
+        /* Parent object */
+        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
+        /* Parent type */
+        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
+
         deleteGraphicObject(pobjUID);
 
+        /*
+         ** All figure must have at least one axe child.
+         ** If the last one is removed, add a new default one.
+         */
+        if ((strcmp(pstObjType, __GO_AXES__) == 0) && (strcmp(pstParentType, __GO_FIGURE__) == 0))
+        {
+            int iChild = 0;
+            int iChildCount = 0;
+            int *piChildCount = &iChildCount;
+            char **pstChildren = NULL;
+            char *pstChildType = NULL;
+            int iAxesFound = 0;
+
+            getGraphicObjectProperty(pstParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
+            getGraphicObjectProperty(pstParentUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildren);
+            for (iChild = 0; iChild < iChildCount; iChild++)
+            {
+                getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_string, (void **)&pstChildType);
+                if (strcmp(pstChildType, __GO_AXES__) == 0)
+                {
+                    iAxesFound = 1;
+                    break;
+                }
+            }
+            if (!iAxesFound)
+            {
+                /*
+                 * Clone a new Axes object using the Axes model which is then
+                 * attached to the newly created Figure.
+                 */
+                cloneAxesModel(pstParentUID);
+            }
+        }
 #if 0
         parentFigure = sciGetParentFigure(pobj);
 
-        num = sciGetNumFigure( pobj ) ;
+        num = sciGetNumFigure(pobj);
 
-        if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
+        if ((Rhs == 2) && (strcmp(cstk(l2), "callback") == 0))
         {
             startFigureDataWriting(parentFigure);
-            sciDelCallback((sciPointObj *)pobj);
+            sciDelCallback((sciPointObj *) pobj);
             endFigureDataWriting(parentFigure);
         }
         else
         {
 
-            sciEntityType objType = sciGetEntityType( pobj ) ;
+            sciEntityType objType = sciGetEntityType(pobj);
 
             if (objType == SCI_UIMENU)
             {
                 DestroyUimenu(pobj);
             }
-            else if(objType == SCI_UICONTROL)
+            else if (objType == SCI_UICONTROL)
             {
                 DestroyUicontrol(pobj);
             }
@@ -163,35 +210,36 @@ int sci_delete(char *fname,unsigned long fname_len)
             {
                 DestroyWaitBar(pobj);
             }
-            else if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
+            else if (sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
             {
-                BOOL selected = sciGetIsSelected( pobj ) ;
-                sciPointObj * parentObj = sciGetParent(pobj);
+                BOOL selected = sciGetIsSelected(pobj);
+                sciPointObj *parentObj = sciGetParent(pobj);
+
                 startFigureDataWriting(parentFigure);
                 if (sciIsCurrentObject(pobj))
                 {
                     /* If the object is the current one, modify the current object pointer */
-                    sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
+                    sciSetCurrentObj(parentObj);    /* A LAISSER F.Leray 25.03.04 */
                 }
-                sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
-                pobj = NULL ;
+                sciDelGraphicObj(pobj); /* don't use pobj after this point */
+                pobj = NULL;
 
                 /* test here: we could have deleted the selected subwindow, we must choose an other */
                 /* We must always have one selected subwindow (if at least one subwindow exists) */
-                if ( objType == SCI_SUBWIN && selected )
+                if (objType == SCI_SUBWIN && selected)
                 {
                     /* we have to select antoher subwindow if one exists at least */
-                    sciSelectFirstSubwin( parentFigure ) ;
+                    sciSelectFirstSubwin(parentFigure);
                 }
 
                 endFigureDataWriting(parentFigure);
 
                 /* redraw the window */
-                sciDrawObj( parentObj ) ;
+                sciDrawObj(parentObj);
             }
-            else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
+            else if (sciGetEntityType(pobj) == SCI_FIGURE)  /* F.Leray 13.04.04: We delete the special object Figure !! */
             {
-                sciDeleteWindow( num );
+                sciDeleteWindow(num);
             }
         }
 #endif
@@ -201,7 +249,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     {
         // Overload
         lw = 1 + Top - Rhs;
-        C2F(overload)(&lw,"delete",6);
+        C2F(overload) (&lw, "delete", 6);
     }
     else
     {
