@@ -74,12 +74,11 @@ function tbx_build_blocks(module, names, macros_path)
         createdir(module + "/images/svg");
     end
 
+    names = names(:);
     sciFiles = pathconvert(macros_path + "/") + names + ".sci";
     h5Files = pathconvert(module + "/images/h5/") + names + ".h5";
     gif_tlbx = pathconvert(module + "/images/gif");
-    gifFiles = pathconvert(module + "/images/gif/") + names + ".gif";
     svg_tlbx = pathconvert(module + "/images/svg");
-    svgFiles = pathconvert(module + "/images/svg/") + names + ".svg";
     handle = gcf();
     for i=1:size(names, "*")
         // load the interface function
@@ -93,15 +92,17 @@ function tbx_build_blocks(module, names, macros_path)
 
         block = scs_m;
 
-        // export a gif file if it doesn't exist
-        if ~isfile(gifFiles(i)) then
+        // export an image file if it doesn't exist
+        files = gif_tlbx + "/" + names(i) + [".png" ".jpg" ".gif"];
+        if ~or(isfile(files)) then
             if ~generateBlockImage(block, gif_tlbx, names(i), handle, "gif", %t) then
                 error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), gifFiles(i)));
             end
         end
 
-        // export an svg file if it doesn't exist
-        if ~isfile(svgFiles(i)) then
+        // export a schema file if it doesn't exist
+        files = svg_tlbx + "/" + names(i) + [".svg" ".png" ".jpg" ".gif"];
+        if ~or(isfile(files)) then
             if ~generateBlockImage(block, svg_tlbx, names(i), handle, "svg", %f) then
                 error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), svgFiles(i)));
             end
