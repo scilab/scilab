@@ -44,7 +44,6 @@ namespace org_modules_xml
     {
         scope->unregisterPointer(nodeSet);
         scope->removeId(id);
-        xmlXPathFreeObject(xpath);
     }
 
     void * XMLNodeSet::getRealXMLPointer() const
@@ -65,7 +64,7 @@ namespace org_modules_xml
 
     void XMLNodeSet::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
     {
-	for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             XMLAttr::setAttributeValue(nodeSet->nodeTab[i], prefix, name, value, lsize);
         }
@@ -73,7 +72,7 @@ namespace org_modules_xml
 
     void XMLNodeSet::setAttributeValue(const char ** name, const char ** value, int lsize) const
     {
-	for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
             XMLAttr::setAttributeValue(nodeSet->nodeTab[i], name, value, lsize);
         }
