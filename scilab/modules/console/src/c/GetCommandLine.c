@@ -28,7 +28,7 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "storeCommand.h"       /* for ismenu() */
-#include "cmdLine/reader.h"
+#include "cmdLine/getKey.h"
 #include "cmdLine/init_tc_shell.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
@@ -117,10 +117,12 @@ static void getCommandLine(void)
     }
     else
     {
+        /* Set console mode to raw */
         initConsoleMode(RAW);
         /* Call Term Management for NW and NWNI to get a string */
         __CommandLine = getCmdLine();
-        initConsoleMode(CANON);
+        /* Set Console mode to the shell one */
+        initConsoleMode(ATTR_RESET);
     }
 }
 

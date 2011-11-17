@@ -18,15 +18,16 @@
 #include <locale.h>
 #include <string.h>
 #include <errno.h>
+#include "MALLOC.h"
 #include "init_tc_shell.h"
 
-void canonicMode(struct termios *t)
+static void canonicMode(struct termios *t)
 {
     t->c_lflag |= ICANON;
     t->c_lflag |= ECHO;
 }
 
-void rawMode(struct termios *t)
+static void rawMode(struct termios *t)
 {
     t->c_lflag &= ~ICANON;
     t->c_lflag &= ~ECHO;
@@ -34,28 +35,52 @@ void rawMode(struct termios *t)
     t->c_cc[VTIME] = 0;         /* TODO: comment */
 }
 
+/* Save Shell Attribute To reset it when exit */
+static void saveAndResetShellAttr(struct termios *shellAttr)
+{
+    static struct termios *savedAttr = NULL;
+
+    if (savedAttr == NULL)
+    {
+        savedAttr = MALLOC(sizeof(struct termios));
+        *savedAttr = *shellAttr;
+    }
+    else if (shellAttr == NULL)
+    {
+        if (tcsetattr(0, 0, savedAttr) == -1)
+        {
+            fprintf(stderr, "Cannot reset the Shell attributes: %s\n", strerror(errno));
+        }
+        FREE(savedAttr);
+        savedAttr = NULL;
+    }
+}
+
 /* Set Raw mode or Canonic Mode */
 int setAttr(int bin)
 {
-    struct termios t;
+    struct termios shellAttr;
 
-    if (tcgetattr(0, &t) == -1)
+    if (bin == ATTR_RESET)
+    {
+        saveAndResetShellAttr(NULL);
+        return 0;
+    }
+    if (tcgetattr(0, &shellAttr) == -1)
     {
         fprintf(stderr, "Cannot access to the term attributes: %s\n", strerror(errno));
         return -1;
     }
+    saveAndResetShellAttr(&shellAttr);
     if (bin == CANON)
     {
-        canonicMode(&t);
+        canonicMode(&shellAttr);
     }
-    else
+    else if (bin == RAW)
     {
-        if (bin == RAW)
-        {
-            rawMode(&t);
-        }
+        rawMode(&shellAttr);
     }
-    if (tcsetattr(0, 0, &t) == -1)
+    if (tcsetattr(0, 0, &shellAttr) == -1)
     {
         fprintf(stderr, "Cannot change the term attributes: %s\n", strerror(errno));
         return -1;
