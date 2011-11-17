@@ -629,6 +629,8 @@ returns the value of the ScilabTypeEnum enum.
 
 CACSD and Signal processing
 ==========================
+* bug 1635 fixed - iir filter frequency response may be wrong. "pole zero gain"
+                   representation added as possible iir function returned values.
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
