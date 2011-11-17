@@ -22,17 +22,19 @@
 #define	SCI_DELETE	0X1b5b337e
 
 /* Value returned by getchar/getwchar by pressing ctrl + key */
-#define	CTRL_A		0x01
-#define	CTRL_B		0x02
-#define	CTRL_D		0x04
-#define	CTRL_E		0x05
-#define	CTRL_F		0x06
+#define	CTRL_A          0x01
+#define	CTRL_B          0x02
+#define	CTRL_D          0x04
+#define	CTRL_E          0x05
+#define	CTRL_F          0x06
 #define CTRL_H          0x08
-#define	CTRL_I		0x09
-#define	CTRL_K		0x0B
-#define	CTRL_M		0x0D
-#define	CTRL_N		0x0E
-#define	CTRL_P		0x10
+#define	CTRL_I          0x09
+#define	CTRL_K          0x0B
+#define	CTRL_M          0x0D
+#define	CTRL_N          0x0E
+#define	CTRL_P          0x10
+#define	CTRL_U          0x15
+#define CTRL_W          0x17
 
 /* Define for meta key (alt + key or escape) */
 #define	ESCAPE		0x1b

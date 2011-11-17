@@ -190,6 +190,12 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     case CTRL_P:
         previousCmd(commandLine, cursorLocation);
         break;
+    case CTRL_U:
+        deleteFromCursToBeginningLine(*commandLine, cursorLocation);
+        break;
+    case CTRL_W:
+        deletePreviousWordFromCurs(*commandLine, cursorLocation);
+        break;
     case '\t':
         autoCompletionInConsoleMode(commandLine, cursorLocation);
         break;

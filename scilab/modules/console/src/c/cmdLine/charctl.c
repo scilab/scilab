@@ -118,3 +118,27 @@ int deleteFromCursToEndLine(wchar_t * CommandLine, unsigned int *cursorLocation)
     capStr("cd");
     return 0;
 }
+
+int deleteFromCursToBeginningLine(wchar_t * CommandLine, unsigned int *cursorLocation)
+{
+    while (*cursorLocation)
+    {
+        rmChar(CommandLine, SCI_BACKSPACE, cursorLocation);
+    }
+    return 0;
+}
+
+int deletePreviousWordFromCurs(wchar_t * CommandLine, unsigned int *cursorLocation)
+{
+    /* Delete void character before cursor */
+    while (*cursorLocation && (CommandLine[*cursorLocation - 1] == ' ' || CommandLine[*cursorLocation - 1] == '\t'))
+    {
+        rmChar(CommandLine, SCI_BACKSPACE, cursorLocation);
+    }
+    /* Then delete word before cursor */
+    while (*cursorLocation && CommandLine[*cursorLocation - 1] != ' ' && CommandLine[*cursorLocation - 1] != '\t')
+    {
+        rmChar(CommandLine, SCI_BACKSPACE, cursorLocation);
+    }
+    return 0;
+}

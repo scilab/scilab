@@ -19,9 +19,9 @@
 
 void doCompletion(char *, int *cursor, int *cursor_max);
 
-void autoCompletionInConsoleMode(wchar_t ** commandLine, int *cursorLocation);
+void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
 
-void autoCompletionInConsoleMode(wchar_t ** commandLine, int *cursorLocation)
+void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     char *multiByteString = NULL;
 

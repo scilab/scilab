@@ -88,6 +88,13 @@ Call_Scilab:
 * bug 10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
                     removed.
 
+CLI console:
+============
+
+* New shortcuts
+  - CTRL+W: Remove the previous word.
+  - CTRL+U: Remove everything from the current position to the beginning of
+            the line. 
 
 Xcos:
 =====

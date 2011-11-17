@@ -41,4 +41,19 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation);
  */
 int deleteFromCursToEndLine(wchar_t * CommandLine, unsigned int *cursorLocation);
 
+/**
+ * Delete all characters from the cursor position to the beginning of the line.
+ * @param current edited line.
+ * @param cursor position in the string.
+ * @return user input.
+ */
+int deleteFromCursToBeginningLine(wchar_t * CommandLine, unsigned int *cursorLocation);
+
+/**
+ * Delete previous word from cursor.
+ * @param command line.
+ * @param cursor location.
+ * @return user input.
+ */
+int deletePreviousWordFromCurs(wchar_t * CommandLine, unsigned int *cursorLocation);
 #endif /* !CHAR_CTL_H_ */
