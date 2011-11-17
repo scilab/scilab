@@ -140,7 +140,7 @@ am__libsciconsole_disable_la_SOURCES_DIST = src/noconsole/noconsole.c \
 	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
 	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
 	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
-	src/c/others/initMacOSXEnv.c
+	src/c/cmdLine/setCharDisplay.c src/c/others/initMacOSXEnv.c
 @IS_MACOSX_TRUE@am__objects_1 =  \
 @IS_MACOSX_TRUE@	libsciconsole_disable_la-initMacOSXEnv.lo
 am_libsciconsole_disable_la_OBJECTS =  \
@@ -171,7 +171,8 @@ am_libsciconsole_disable_la_OBJECTS =  \
 	libsciconsole_disable_la-init_tc_shell.lo \
 	libsciconsole_disable_la-getNbrLine.lo \
 	libsciconsole_disable_la-autoCompletionCli.lo \
-	libsciconsole_disable_la-getKey.lo $(am__objects_1)
+	libsciconsole_disable_la-getKey.lo \
+	libsciconsole_disable_la-setCharDisplay.lo $(am__objects_1)
 libsciconsole_disable_la_OBJECTS =  \
 	$(am_libsciconsole_disable_la_OBJECTS)
 libsciconsole_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -191,10 +192,10 @@ am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
 	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
 	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
 	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
-	src/c/others/initMacOSXEnv.c src/jni/CallScilabBridge.cpp \
-	src/cpp/ClearConsole.cpp src/cpp/ClearConsolePart.cpp \
-	src/cpp/ConsolePrintf.cpp src/cpp/ConsoleRead.cpp \
-	src/cpp/ConsoleIsWaitingForInput.cpp \
+	src/c/cmdLine/setCharDisplay.c src/c/others/initMacOSXEnv.c \
+	src/jni/CallScilabBridge.cpp src/cpp/ClearConsole.cpp \
+	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
+	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
 	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
 	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp \
 	sci_gateway/c/gw_console.c sci_gateway/c/sci_clc.c \
@@ -219,7 +220,8 @@ am__objects_4 = libsciconsole_la-InitializeConsole.lo \
 	libsciconsole_la-init_tc_shell.lo \
 	libsciconsole_la-getNbrLine.lo \
 	libsciconsole_la-autoCompletionCli.lo \
-	libsciconsole_la-getKey.lo $(am__objects_3)
+	libsciconsole_la-getKey.lo libsciconsole_la-setCharDisplay.lo \
+	$(am__objects_3)
 am__objects_5 = libsciconsole_la-CallScilabBridge.lo
 am__objects_6 = libsciconsole_la-ClearConsole.lo \
 	libsciconsole_la-ClearConsolePart.lo \
@@ -559,7 +561,8 @@ CONSOLE_C_SOURCES = src/c/InitializeConsole.c src/c/GuiManagement.c \
 	src/c/cmdLine/get_signal.c src/c/cmdLine/goto_func.c \
 	src/c/cmdLine/history.c src/c/cmdLine/init_tc_shell.c \
 	src/c/cmdLine/getNbrLine.c src/c/cmdLine/autoCompletionCli.c \
-	src/c/cmdLine/getKey.c $(am__append_1)
+	src/c/cmdLine/getKey.c src/c/cmdLine/setCharDisplay.c \
+	$(am__append_1)
 
 # List of the gateway c files
 CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
@@ -587,7 +590,7 @@ libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
 	src/c/cmdLine/goto_func.c src/c/cmdLine/history.c \
 	src/c/cmdLine/init_tc_shell.c src/c/cmdLine/getNbrLine.c \
 	src/c/cmdLine/autoCompletionCli.c src/c/cmdLine/getKey.c \
-	$(am__append_4)
+	src/c/cmdLine/setCharDisplay.c $(am__append_4)
 libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -815,6 +818,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-sci_prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-scilines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-setCharDisplay.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-zzledt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
@@ -858,6 +862,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-scilines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-setCharDisplay.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-zzledt.Plo@am__quote@
 
@@ -1078,6 +1083,13 @@ libsciconsole_disable_la-getKey.lo: src/c/cmdLine/getKey.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
 
+libsciconsole_disable_la-setCharDisplay.lo: src/c/cmdLine/setCharDisplay.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-setCharDisplay.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-setCharDisplay.Tpo -c -o libsciconsole_disable_la-setCharDisplay.lo `test -f 'src/c/cmdLine/setCharDisplay.c' || echo '$(srcdir)/'`src/c/cmdLine/setCharDisplay.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-setCharDisplay.Tpo $(DEPDIR)/libsciconsole_disable_la-setCharDisplay.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/setCharDisplay.c' object='libsciconsole_disable_la-setCharDisplay.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-setCharDisplay.lo `test -f 'src/c/cmdLine/setCharDisplay.c' || echo '$(srcdir)/'`src/c/cmdLine/setCharDisplay.c
+
 libsciconsole_disable_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-initMacOSXEnv.Tpo -c -o libsciconsole_disable_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_disable_la-initMacOSXEnv.Tpo $(DEPDIR)/libsciconsole_disable_la-initMacOSXEnv.Plo
@@ -1266,6 +1278,13 @@ libsciconsole_la-getKey.lo: src/c/cmdLine/getKey.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/getKey.c' object='libsciconsole_la-getKey.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-getKey.lo `test -f 'src/c/cmdLine/getKey.c' || echo '$(srcdir)/'`src/c/cmdLine/getKey.c
+
+libsciconsole_la-setCharDisplay.lo: src/c/cmdLine/setCharDisplay.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-setCharDisplay.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-setCharDisplay.Tpo -c -o libsciconsole_la-setCharDisplay.lo `test -f 'src/c/cmdLine/setCharDisplay.c' || echo '$(srcdir)/'`src/c/cmdLine/setCharDisplay.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciconsole_la-setCharDisplay.Tpo $(DEPDIR)/libsciconsole_la-setCharDisplay.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cmdLine/setCharDisplay.c' object='libsciconsole_la-setCharDisplay.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-setCharDisplay.lo `test -f 'src/c/cmdLine/setCharDisplay.c' || echo '$(srcdir)/'`src/c/cmdLine/setCharDisplay.c
 
 libsciconsole_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-initMacOSXEnv.Tpo -c -o libsciconsole_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c

@@ -20,12 +20,12 @@
 #include "reader.h"
 #include "aff_prompt.h"
 #include "prompt.h"
+#include "setCharDisplay.h"
 
 /*
  * If there's a string, the function save it.
  * The function return the current saved prompt.
  */
-
 wchar_t *setPrompt(wchar_t * wcs)
 {
     static wchar_t *prompt = NULL;
@@ -43,7 +43,6 @@ wchar_t *setPrompt(wchar_t * wcs)
  * If Argument pass is WRT_PRT (1), it write prompt (NOWRT_PRT (-1) not to write prompt)
  * Function return size of the prompt.
  */
-
 int getPrompt(int token)
 {
     wchar_t *prompt;
@@ -51,11 +50,13 @@ int getPrompt(int token)
     prompt = setPrompt(NULL);
     if (prompt == NULL)
     {
-        prompt = setPrompt((wchar_t *) WSCIPROMPT);
+        prompt = setPrompt(WSCIPROMPT);
     }
     if (token == WRT_PRT)
     {
+        setCharDisplay(DISP_DEFAULT);
         printf("%ls", prompt);
+        setCharDisplay(DISP_LAST_SET);
         fflush(stdout);
     }
     return wcslen(prompt);

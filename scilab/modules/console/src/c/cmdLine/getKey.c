@@ -29,8 +29,7 @@
 #include "HistoryManager.h"
 #include "charEncoding.h"
 #include "aff_prompt.h"
-
-void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
+#include "setCharDisplay.h"
 
 /*
  * If last key was '1'
@@ -204,10 +203,11 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         setCBreak(1);
         return endCopyPast(*commandLine);
     default:
-/* Different keys are not in different case because it add char to the command line */
+/* Different keys are not in different case when it add char to the command line */
         if (key == L'\n')
         {
             setCBreak(0);
+            setCharDisplay(DISP_FAINT);
         }
         addChar(commandLine, key, cursorLocation);
         /*setSearchedTokenInScilabHistory(*commandLine); */
@@ -229,6 +229,7 @@ char *getCmdLine(void)
     static int nextLineLocationInWideString = 0;
 
     getPrompt(WRT_PRT);
+    setCharDisplay(DISP_BRIGHT);
     if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')
     {
         /*if (wideString != NULL) */
@@ -263,6 +264,7 @@ char *getCmdLine(void)
     nextLineLocationInWideString = cursorLocation + 1;
     appendLineToScilabHistory(multiByteString);
     setSearchedTokenInScilabHistory(NULL);
+    setCharDisplay(DISP_RESET);
     return multiByteString;
 }
 

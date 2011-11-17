@@ -67,7 +67,7 @@ static void findEndLine(int i, int promptSize, int nbrCol)
     }
     else
     {
-        capStr("le");
+        putchar('\b');
     }
 }
 

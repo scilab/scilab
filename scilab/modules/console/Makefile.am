@@ -66,7 +66,8 @@ src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \
 src/c/cmdLine/getNbrLine.c \
 src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/getKey.c
+src/c/cmdLine/getKey.c \
+src/c/cmdLine/setCharDisplay.c
 
 
 if IS_MACOSX
@@ -122,7 +123,8 @@ src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \
 src/c/cmdLine/getNbrLine.c \
 src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/getKey.c
+src/c/cmdLine/getKey.c \
+src/c/cmdLine/setCharDisplay.c
 
 if IS_MACOSX
 libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
