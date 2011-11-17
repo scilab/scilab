@@ -216,12 +216,14 @@ namespace org_modules_xml
         if (it != mapLibXMLToXMLObject->end())
         {
             delete it->second;
+            mapLibXMLToXMLObject->erase(mem);
         }
 
         std::map<void *, XMLNodeList *>::const_iterator itnl = mapLibXMLToXMLNodeList->find(mem);
         if (itnl != mapLibXMLToXMLNodeList->end())
         {
             delete itnl->second;
+            mapLibXMLToXMLNodeList->erase(mem);
         }
 
         XMLFreeFunc(mem);
