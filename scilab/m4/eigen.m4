@@ -34,10 +34,11 @@ else
 	AC_CHECK_HEADER([Eigen/Sparse],
 		[EIGEN_CPPFLAGS=""],
 		[       $as_unset ac_cv_header_Eigen_Sparse 
+                saved_cppflags="$CPPFLAGS"
                 EIGENPATH="/usr/include/eigen3/"
-                CPPFLAGS="-I$EIGENPATH"
+                CPPFLAGS="$CPPFLAGS -I$EIGENPATH  -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
                 AC_CHECK_HEADER([Eigen/Sparse],
-                                [EIGEN_CPPFLAGS=$CPPFLAGS],
+                                [EIGEN_CPPFLAGS="-I$EIGENPATH  -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"],
                                 AC_MSG_ERROR([Cannot find headers (Eigen/Sparse) of the library eigen. Please install the dev package (Debian : libeigen3-dev)])
                 )
          ])
@@ -45,7 +46,7 @@ fi
 CPPFLAGS="$save_CPPFLAGS"
 
 # Check in the packaged version of eigen where is this stuff
-AC_CHECK_EIGEN_VERSION($EIGENPATH,2,92,Eigen/src/Core/util/Macros.h)
+AC_CHECK_EIGEN_VERSION($EIGENPATH,3,0,Eigen/src/Core/util/Macros.h)
 
 AC_SUBST(EIGEN_CPPFLAGS)
 AC_DEFINE([WITH_EIGEN], [], [With the EIGEN library])
@@ -103,7 +104,7 @@ int main(void) {
         FILE *minor = fopen("eigenminor","w");
         fprintf(world,"%d",EIGEN_WORLD_VERSION);
         fprintf(major,"%d",EIGEN_MAJOR_VERSION);
-        fprintf(minor,"%s",EIGEN_MINOR_VERSION);
+        fprintf(minor,"%d",EIGEN_MINOR_VERSION);
         fclose(world);
         fclose(major);
         fclose(minor);
