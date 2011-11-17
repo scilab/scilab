@@ -7,10 +7,6 @@ EXPORTS
 ; --------------------------------------- 
 cngu_
 ddassl_
-sciode_
-sciodc_
-scibvode_
-sciimpl_
 cndf_
 cnf_
 cng_

@@ -296,7 +296,7 @@ r=surf(t,y,x1,x2,...)
               <para>Cの場合,呼び出し手順は次のようになります:</para>
 
               <programlisting role = ""><![CDATA[ 
-void surf(int *ny, double *t, double y[], int *ng, double gout[])
+void surf(int *ny, double *t, double y[], int *ng, double gout[], double rpar[], int ipar[])
  ]]></programlisting>
 
               <para>Fortranの場合,呼び出し手順は次のようになります:</para>

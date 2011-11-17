@@ -32,7 +32,7 @@
 /* 09 */						#include "../../cacsd/includes/gw_cacsd1.h"
 /* 10 */						#include "../../cacsd/includes/gw_cacsd2.h"
 /* 11 */						#include "dynamic_gateways.h" /* optimization */
-/* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
+/* 12 *///						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
 /* 14  gw_user(); RESERVED to gw_user (see callinter.h) */
 /* 15  gw_user(); FREE */
@@ -47,13 +47,13 @@
 /* 24  gw_user2(); RESERVED to gw_user (see callinter.h) */
                                 #include "gw_user2.h"
 /* 25 */						#include "../../gui/includes/gw_gui.h"
-/* 26 */						#include "../../differential_equations/includes/gw_differential_equations2.h"
+/* 26 *///						#include "../../differential_equations/includes/gw_differential_equations2.h"
 /* 27 */						#include "../../sparse/includes/gw_sparse.h"
 /* 28 */						#include "../../cacsd/includes/gw_slicot.h"
-/* 29 */						#include "../../differential_equations/includes/gw_differential_equations3.h"
-/* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
+/* 29 *///						#include "../../differential_equations/includes/gw_differential_equations3.h"
+/* 30 *///						#include "../../differential_equations/includes/gw_differential_equations4.h"
 /* 31 */     					#include "dynamic_gateways.h"	/* functions */
-/* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
+/* 32 *///						#include "../../differential_equations/includes/gw_differential_equations6.h"
 /* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */

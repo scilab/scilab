@@ -18,6 +18,7 @@ clll. optimize
      1   acor(*), wm(*), iwm(*)
       integer         iero
       common /ierode/ iero
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround, iownd(14),

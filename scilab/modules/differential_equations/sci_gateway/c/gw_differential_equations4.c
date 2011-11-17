@@ -17,10 +17,10 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_intg,"intg"},
-	{sci_int2d,"int2d"},
-	{sci_int3d,"int3d"},
-	{sci_feval,"feval"}
+	{NULL,""},  // intg
+	{NULL,""}, // int2d
+	{NULL,""}, // int3d
+	{NULL,""}  // feval
 };
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations4(void)

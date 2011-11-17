@@ -31,7 +31,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+    <synopsis>[y,w,iw]=impl([type,]y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac] [,w,iw])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -42,7 +42,7 @@
         <term>y0,ydot0</term>
 
         <listitem>
-          <para>real vectors or matrix (initial conditions).</para>
+          <para>real vectors (initial conditions).</para>
         </listitem>
       </varlistentry>
 
@@ -93,6 +93,22 @@
 
         <listitem>
           <para>external (function or character string or list).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+      <varlistentry>
+        <term>w, iw</term>
+
+        <listitem>
+          <para>real vectors.
+        Optional arguments <literal>w</literal> and
+      <literal>iw</literal> are vectors for storing information returned by
+      the integration routine (see <link
+        linkend="ode_optional_output">ode_optional_output</link> for details).
+      When these vectors are provided in RHS of <literal>impl</literal> the
+      integration re-starts with the same parameters as in its previous
+      stop.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -199,5 +215,14 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 
       <member><link linkend="external">external</link></member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>6.0.0</revnumber>
+        <revremark>Recall impl with the same parameters as in its previous stop is now available.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

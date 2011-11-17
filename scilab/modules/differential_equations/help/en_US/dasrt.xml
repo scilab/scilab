@@ -295,7 +295,7 @@ r=surf(t,y,x1,x2,...)
               <para>In C The calling sequence must be:</para>
 
               <programlisting role = ""><![CDATA[ 
-void surf(int *ny, double *t, double y[], int *ng, double gout[])
+void surf(int *ny, double *t, double y[], int *ng, double gout[], double rpar[], int ipar[])
  ]]></programlisting>
 
               <para>In Fortran it must be:</para>
@@ -465,5 +465,14 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 
       <member><link linkend="external">external</link></member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>6.0.0</revnumber>
+        <revremark>Prototype of C calling sequence for surf function was wrong.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

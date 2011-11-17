@@ -9,7 +9,10 @@
 
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
-deff('z=f(x,y)','z=cos(x+y)')
+function z=f(x,y)
+    z=cos(x+y)
+endfunction
+
 [I,e]=int2d(X,Y,f);
 if e <%eps then pause,end;
 if abs(I-0.5) < %eps then pause,end;

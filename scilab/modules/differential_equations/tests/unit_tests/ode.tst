@@ -194,6 +194,7 @@ mputl(C,TMPDIR+'/fext2.c');
 ilib_for_link('fext2','fext2.c',[],'c');
 exec loader.sce;
 clear f;
+
 function ydot=f(t, y)
     ydot=A*y
 endfunction

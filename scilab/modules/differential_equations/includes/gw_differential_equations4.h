@@ -18,10 +18,10 @@
 /*--------------------------------------------------------------------------*/
 DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations4(void);
 /*--------------------------------------------------------------------------*/
-int sci_intg(char *fname,unsigned long fname_len);
-int sci_int2d(char *fname,unsigned long fname_len);
-int sci_int3d(char *fname,unsigned long fname_len);
-int sci_feval(char *fname,unsigned long fname_len);
+//int sci_intg(char *fname,unsigned long fname_len);
+//int sci_int2d(char *fname,unsigned long fname_len);
+//int sci_int3d(char *fname,unsigned long fname_len);
+//int sci_feval(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS4__ */
 /*--------------------------------------------------------------------------*/

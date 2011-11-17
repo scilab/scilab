@@ -14,11 +14,13 @@ clll. optimize
       double precision rownr3, t0, tlast, toutc
       double precision hming, t1, temp1, temp2, x
       logical zroot
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
      1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge      
       integer         iero

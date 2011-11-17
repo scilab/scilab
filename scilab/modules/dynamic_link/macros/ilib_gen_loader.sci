@@ -11,7 +11,6 @@
 function ilib_gen_loader(varargin)
   // varargin (max) name, tables, libs, libname, flag, loadername
   [lhs, rhs] = argn(0);
-
   if and(rhs <> [2 3 6]) then
     error(msprintf(_("%s: Wrong number of input argument(s): %d,%d or %d expected.\n"), "ilib_gen_loader", 2, 3, 6));
   end

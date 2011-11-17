@@ -15,8 +15,8 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int C2F(parab)(int *nn, double *x1, double *x2,double *xres, int *itype, char *name, long int name_len);
-int C2F(parabc)(int *nn, double *x1, double *x2,double *xres, int *itype, char *name, long int name_len);
+int C2F(parab)(int *nn, double *x1, double *x2,double *xres, int *itype);
+int C2F(parabc)(int *nn, double *x1, double *x2,double *xres, int *itype);
 /*--------------------------------------------------------------------------*/
 #endif /* __FEVAL_H__ */
 /*--------------------------------------------------------------------------*/

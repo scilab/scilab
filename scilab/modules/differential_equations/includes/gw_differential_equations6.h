@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/ 
 DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations6(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(scibvode)(char *fname,unsigned long fname_len);
+//int C2F(scibvode)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS6__ */
 /*--------------------------------------------------------------------------*/

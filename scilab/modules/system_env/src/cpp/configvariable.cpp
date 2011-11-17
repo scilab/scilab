@@ -17,6 +17,7 @@ extern "C"
 #include "strsubst.h"
 #include "os_wcsdup.h"
 #include "MALLOC.h"
+#include "elem_common.h"
 }
 /*
 ** Module List
@@ -756,7 +757,6 @@ wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 /*
 ** \}
 */
-
 
 ///*
 //** Input Method

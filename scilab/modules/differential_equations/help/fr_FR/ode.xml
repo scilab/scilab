@@ -33,7 +33,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>y0</term>
 
         <listitem>
-          <para>vecteur ou matrice réelle (conditions initiales).</para>
+          <para>vecteur colonne réel (conditions initiales).</para>
         </listitem>
       </varlistentry>
 
@@ -489,5 +489,14 @@ ode("stiff",[0;1],0,1,f,Jacobian)
 
     <para>Les sous programmes associés se trouvent dans le repertoire
 	    SCI/modules/differential_equations/src/fortran: lsode.f lsoda.f lsodar.f</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>6.0.0</revnumber>
+        <revremark>y0 est resteint a un vecteur colonne.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

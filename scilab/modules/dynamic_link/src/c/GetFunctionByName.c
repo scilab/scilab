@@ -21,7 +21,7 @@ static void Emptyfunc(void) {}
 /*--------------------------------------------------------------------------*/
 voidf GetFunctionByName (char *name, int *rep, FTAB *table)
 {
-	return NULL;
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ())

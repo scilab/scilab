@@ -1010,28 +1010,22 @@ namespace ast
 
                             try
                             {
+                                //in this case of calling, we can return only one values
+                                int iSaveExpectedSize = expected_getSize();
+                                expected_size_set(1);
                                 Function::ReturnValue Ret = pCall->call(in, expected_getSize(), out, this);
-
+                                expected_size_set(iSaveExpectedSize);
+            
                                 if(Ret == Callable::OK)
                                 {
                                     if(out.size() == 0)
                                     {
                                         result_set(NULL);
                                     }
-                                    else if(out.size() == 1)
-                                    {
-                                        out[0]->DecreaseRef();
-                                        result_set(out[0]);
-                                    }
                                     else
                                     {
-                                        for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                                        {
-                                            out[i]->DecreaseRef();
-                                            result_set(i, out[i]);
-                                        }
+                                        result_set(out[0]);
                                     }
-
                                     bImplicitCall = true;
                                 }
                                 else if(Ret == Callable::Error)

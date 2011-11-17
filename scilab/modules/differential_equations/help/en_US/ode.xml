@@ -34,7 +34,7 @@
       <varlistentry>
         <term>y0</term>
         <listitem>
-          <para>real vector or matrix, the initial conditions.</para>
+          <para>real column vector, the initial conditions.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -579,5 +579,14 @@ y=ode(y0,t0,t,'myode');
       The associated routines can be found in SCI/modules/differential_equations/src/fortran directory:
       lsode.f lsoda.f lsodar.f
     </para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>6.0.0</revnumber>
+        <revremark>y0 is restricted to a column vector.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

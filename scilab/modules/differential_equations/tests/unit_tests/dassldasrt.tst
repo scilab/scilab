@@ -14,16 +14,25 @@
 //X1 + X2 = 1
 //X1(0) = 1.0, X2(0) = 0.0
 //
-t=1:10;t0=0;y0=[1;0];y0d=[-10;0];
+t=1:10;
+t0=0;
+y0=[1;0];
+y0d=[-10;0];
 info=list([],0,[],[],[],0,0);
 //    Calling Scilab functions
-deff('[r,ires]=dres1(t,y,ydot)','r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0')
-deff('pd=djac1(t,y,ydot,cj)','pd=[cj+10,0;1,1]')
+function [r,ires] = dres1(t, y, ydot)
+    r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0
+endfunction
+
+function pd=djac1(t,y,ydot,cj)
+    pd=[cj+10,0;1,1]
+endfunction
+
 //   scilab function, without jacobian
 yy0=dassl([y0,y0d],t0,t,dres1,info);
 //   scilab functions, with jacobian
 yy1=dassl([y0,y0d],t0,t,dres1,djac1,info);
-// fortran routine, without jocabian
+// fortran routine, without jacobian
 yy2=dassl([y0,y0d],t0,t,'dres1',info);   //=yy0
 if norm(yy2-yy0,1)>1E-5 then pause,end
 // fortran routines, with jacobian
@@ -46,24 +55,48 @@ if norm(yy7-yy6,1)>1E-12 then pause,end
 //   x(0)=x0;   xdot(0)=xd0
 rand('seed',0);
 nx=5;
-E=rand(nx,1)*rand(1,nx);A=rand(nx,nx);
+E=rand(nx,1)*rand(1,nx);
+A=rand(nx,nx);
 //         Index 1
-[Si,Pi,Di,o]=penlaur(E,A);pp=Si*E;[q,m]=fullrf(pp);x0=q(:,1);x0d=pinv(E)*A*x0;
-deff('[r,ires]=g(t,x,xdot)','r=E*xdot-A*x;ires=0');
-t=[1,2,3];t0=0;info=list([],0,[],[],[],0,0);
-x=dassl([x0,x0d],t0,t,g,info);x1=x(2:nx+1,:);
+[Si,Pi,Di,o]=penlaur(E,A);
+pp=Si*E;
+[q,m]=fullrf(pp);
+
+x0=q(:,1);
+x0d=pinv(E)*A*x0;
+
+function [r,ires]=g(t,x,xdot)
+    r=E*xdot-A*x;
+    ires=0
+endfunction
+
+t=[1,2,3];
+t0=0;
+info=list([],0,[],[],[],0,0);
+x=dassl([x0,x0d],t0,t,g,info);
+x1=x(2:nx+1,:);
 if norm(pp*x1-x1,1)>1.d-5 then pause,end
 //x(4) goes through 1 at  t=1.5409711;
-t=1.5409711;ww=dassl([x0,x0d],t0,t,g,info);
+t=1.5409711;
+ww=dassl([x0,x0d],t0,t,g,info);
 if abs(ww(5)-1)>0.001 then pause,end
-deff('[rt]=surface(t,y,yd)','rt=y(4)-1');nbsurf=1;
+function [rt]=surface(t,y,yd)
+    rt=y(4)-1
+endfunction
+
+nbsurf=1;
 [yyy,nnn]=dasrt([x0,x0d],t0,t,g,nbsurf,surface,info);
-deff('pd=j(t,y,ydot,cj)','pd=cj*E-A');
-x=dassl([x0,x0d],t0,t,g,j,info);x2=x(2:nx+1,1);
+function pd=j(t,y,ydot,cj)
+    pd=cj*E-A
+endfunction
+
+x=dassl([x0,x0d],t0,t,g,j,info);
+x2=x(2:nx+1,1);
 if norm(x2-ww(2:nx+1,1),1)>0.0001 then pause,end
 [yyy1,nnn]=dasrt([x0,x0d],t0,t,g,j,nbsurf,surface,info);
 //x0d is not known:
-x0d=ones(x0);info(7)=1;
+x0d=ones(x0);
+info(7)=1;
 x=dassl([x0,x0d],t0,t,g,info);
 xn=dassl([x0,x0d],t0,t,g,j,info);
 if norm(x-xn,1)>0.00001 then pause,end
@@ -72,13 +105,19 @@ if norm(x-xn,1)>0.00001 then pause,end
 //PROBLEM 2..
 
 info=list([],0,[],[],[],0,0);
-y0=zeros(25,1);y0(1)=1;
+y0=zeros(25,1);
+y0(1)=1;
 delta=0*y0;
 //link('dres2.o','dres2');
 //y0d=call('dres2',0,1,'d',y0,2,'d',delta,3,'d',0,5,'i',0,6,'d',0,7,'d','out',[25,1],4,'d');
-y0d=zeros(y0);y0d(1)=-2;y0d(2)=1;y0d(6)=1;
-t0=0;t=[0.01,0.1,1,10,100];
-rtol=0;atol=1.d-6;
+y0d=zeros(y0);
+y0d(1)=-2;
+y0d(2)=1;
+y0d(6)=1;
+t0=0;
+t=[0.01,0.1,1,10,100];
+rtol=0;
+atol=1.d-6;
 y=dassl([y0,y0d],t0,t,atol,rtol,'dres2',info);
 
 //                 DASRT
@@ -104,8 +143,14 @@ y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info);
 if abs(nn(1)-2.53)>0.001 then pause,end
 
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
-deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+function [delta,ires]=res1(t,y,ydot)
+    ires=0;
+    delta=ydot-((2*log(y)+8)/t-5)*y
+endfunction
+
+function [rts]=gr1(t,y,yd)
+    rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]
+endfunction
 
 y0=1;t=2:6;t0=1;y0d=3;
 info=list([],0,[],[],[],0,0);
@@ -136,12 +181,25 @@ info=list([],0,[],[],[],0,0);
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
 if abs(nn(1)-81.163512)>0.001 then pause,end
 
-deff('[delta,ires]=res2(t,y,ydot)',...
-'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
+function [delta,ires]=res2(t,y,ydot)
+    ires=0;
+    y1=y(1);
+    y2=y(2);
+    delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]
+endfunction
+
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res2,'jac2',ng,'gr2',info);
-deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]')
+function J=jac2(t,y,ydot,c)
+    y1=y(1);
+    y2=y(2);
+    J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]
+endfunction
+
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info);
-deff('s=gr2(t,y,yd)','s=y(1)')
+function s=gr2(t,y,yd)
+    s=y(1)
+endfunction
+
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info);
 
 //           Hot Restart

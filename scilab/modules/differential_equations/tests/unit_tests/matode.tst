@@ -19,17 +19,27 @@ Leps=1.e-6;
 // on the interval from t = 0.0 to t = 4.e10, with initial conditions
 // y1 = 1.0, y2 = y3 = 0.  the problem is stiff.
 //     definition of rhs
-deff('[ydot]=f(t,y)',...
-   'f1=-0.04*y(1)+1e4*y(2)*y(3),...
-    f3=3e7*y(2)*y(2),...
-    ydot=[f1;-f1-f3;f3]','n')
+function [ydot]=f(t,y)
+    f1=-0.04*y(1)+1e4*y(2)*y(3)
+    f3=3e7*y(2)*y(2)
+    ydot=[f1;-f1-f3;f3]
+endfunction
+
 //     jacobian
-deff('[jac]=j(t,y)',...
-'jac(1,1)=-0.04;jac(1,2)=1.e4*y(3);jac(1,3)=1.e4*y(2),...
- jac(3,1)=0;jac(3,2)=6.e7*y(2);jac(3,3)=0;...
- jac(2,1)=-jac(1,1);jac(2,2)=-jac(1,2)-jac(3,2);jac(2,3)=-jac(1,3);','n')
+function [jac]=j(t,y)
+    jac(1,1)=-0.04;jac(1,2)=1.e4*y(3);jac(1,3)=1.e4*y(2)
+    jac(3,1)=0
+    jac(3,2)=6.e7*y(2)
+    jac(3,3)=0
+    jac(2,1)=-jac(1,1)
+    jac(2,2)=-jac(1,2)-jac(3,2)
+    jac(2,3)=-jac(1,3)
+endfunction
 //    
-y0=[1;0;0];t0=0;t1=[0.4,4];nt=size(t1,'*');
+y0=[1;0;0];
+t0=0;
+t1=[0.4,4];
+nt=size(t1,'*');
 //    solution 
 yref=[0.9851721 0.9055180;0.0000339 0.0000224;0.0147940 0.0944596];
 //
@@ -56,7 +66,8 @@ y2=ode(y0,t1(1),t1(2:nt),'fex','jex',w,iw);
 if max([y1 y2]-yref) > Leps then pause,end
 
 //   variation of tolerances
-atol=[0.001,0.0001,0.001];rtol=atol;
+atol=[0.001,0.0001,0.001];
+rtol=atol;
 //    externals 
 //  4. type given , scilab lhs ,jacobian not passed
 y4=ode('stiff',y0,t0,t1(1),atol,rtol,f);
@@ -70,7 +81,9 @@ if (y6-yref) > 2*0.00001 then pause,end
 //  7. matrix rhs, type given(adams),jacobian not passed
 // 
 a=rand(3,3);ea=expm(a);
-deff('[ydot]=f(t,y)','ydot=a*y')
+function [ydot]=f(t,y)
+    ydot=a*y
+endfunction
 t1=1;y=ode('adams',eye(a),t0,t1,f);
 if max(ea-y) > Leps then pause,end
 //
@@ -80,22 +93,29 @@ if max(ea-y) > Leps then pause,end
 //       0.   = y1 + y2 + y3 - 1.
 //  y1(0) = 1.0, y2(0) = y3(0) = 0.
 // scilab macros
-deff('[r]=resid(t,y,s)','...
-r(1)=-0.04*y(1)+1.d4*y(2)*y(3)-s(1),...
-r(2)=0.04*y(1)-1.d4*y(2)*y(3)-3.d7*y(2)*y(2)-s(2),...
-r(3)=y(1)+y(2)+y(3)-1')
-deff('[p]=aplusp(t,y,p)','...
-p(1,1)=p(1,1)+1,...
-p(2,2)=p(2,2)+1')
-deff('[p]=dgbydy(t,y,s)','[-0.04,1.d4*y(3),1.d4*y(2);...
-0.04,-1.d4*y(3)-6.d7*y(2),-1.d4*y(2);...
-1,1,1]')
+function [r]=resid(t,y,s)
+    r(1)=-0.04*y(1)+1.d4*y(2)*y(3)-s(1)
+    r(2)=0.04*y(1)-1.d4*y(2)*y(3)-3.d7*y(2)*y(2)-s(2)
+    r(3)=y(1)+y(2)+y(3)-1
+endfunction
+
+function [p]=aplusp(t,y,p)
+    p(1,1)=p(1,1)+1
+    p(2,2)=p(2,2)+1
+endfunction
+
 //        %ODEOPTIONS tests
 //       
 rand('seed',0);rand('normal');
 nx=20;A=rand(nx,nx);A=A-4.5*eye();
-deff('y=f(t,x)','y=A*x')
-deff('J=j(t,x)','J=A')
+function y=f(t,x)
+    y=A*x
+endfunction
+
+function J=j(t,x)
+    J=A
+endfunction
+
 x0=ones(nx,1);t0=0;t=[1,2,3,4,5];
 nt=size(t,'*');
 eAt=expm(A*t(nt));
@@ -131,10 +151,15 @@ if norm(x3(2:nx+1)-xlast,1)>Leps then pause,end
 %ODEOPTIONS(1)=4; //---> computation at all t and t>tcrit are not called
 tcrit=2.5;%ODEOPTIONS(2)=tcrit;
 chk=0;
-deff('y=fcrit(t,x)',['if t<=tcrit then'
-                      ' y=A*x;'
-                      'else'
-                      ' y=A*x;chk=resume(1);end'])
+function y=fcrit(t,x)
+    if t<=tcrit then
+        y=A*x;
+    else
+        y=A*x;
+        chk=resume(1);
+    end
+endfunction
+
 x42=ode(x0,t0,t,fcrit);
 if chk==1 then pause,end
 [p,q]=size(x42);
@@ -159,29 +184,29 @@ if norm(x35-xf,1)>Leps then pause,end
 //test of %ODEOPTIONS(6)=jacflag
 %ODEOPTIONS(6)=1;//Jacobian given
 %ODEOPTIONS(3:5)=[0 0 0];
-x61=ode('st',x0,t0,t,f,j);   //with Jacobian
+x61=ode('stiff',x0,t0,t,f,j);   //with Jacobian
 if norm(x61-xf,1)>10*Leps then pause,end
 
 
 %ODEOPTIONS(6)=0; // jacobian nor called nor estimated
-x60=ode('st',x0,t0,t,f,j);   //Jacobian not used (warning)
-x60=ode('st',x0,t0,t,f);    //Jacobian not used
+x60=ode('stiff',x0,t0,t,f,j);   //Jacobian not used (warning)
+x60=ode('stiff',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then pause,end
 
 
 %ODEOPTIONS(6)=1;//Jacobian estimated
-x60=ode('st',x0,t0,t,f)  ; 
+x60=ode('stiff',x0,t0,t,f);
 if norm(x60-x61,1)>10*Leps then pause,end
 
 //test of %ODEOPTIONS(6)=jacflag   (adams)
 %ODEOPTIONS(6)=1;//with given Jacobian
-x60=ode('ad',x0,t0,t,f,j) ;  
+x60=ode('adams',x0,t0,t,f,j) ;  
 if norm(x60-x61,1)>10*Leps then pause,end
 
 
 %ODEOPTIONS(6)=0;// jacobian nor called nor estimated
-x60=ode('ad',x0,t0,t,f,j);   //Jacobian not used (warning)
-x60=ode('ad',x0,t0,t,f);    //Jacobian not used
+x60=ode('adams',x0,t0,t,f,j);   //Jacobian not used (warning)
+x60=ode('adams',x0,t0,t,f);    //Jacobian not used
 if norm(x60-x61,1)>10*Leps then pause,end
 
 // test lsoda
@@ -208,7 +233,10 @@ for k=1:nx-2, A(k,k+2)=-2;end
 for k=1:nx-1, A(k+1,k)=-1;end
 for k=1:nx-2, A(k+2,k)=2;end
 for k=1:nx-3, A(k+3,k)=-3;end
-deff('xd=f(t,x)','xd=A*x')
+function xd=f(t,x)
+    xd=A*x
+endfunction
+
 ml=3;mu=2;
 %ODEOPTIONS(11:12)=[ml,mu];
 for i=1:nx;
@@ -221,20 +249,28 @@ end;end;
 // Column 2 of J is made of mu-1 zeros followed by df1/dx2, df2/dx2, ...
 // etc...
 %ODEOPTIONS(6)=1;%ODEOPTIONS(11:12)=[-1,-1];
-deff('jj=j1(t,x)','jj=A')
-xnotband=ode('st',x0,t0,t,f,j1);
+function jj=j1(t,x)
+    jj=A
+endfunction
+
+xnotband=ode('stiff',x0,t0,t,f,j1);
 
 
 %ODEOPTIONS(6)=4;//banded jacobian external given
 %ODEOPTIONS(11:12)=[3,2];
-deff('jj=j(t,x)','jj=J')
-xband=ode('st',x0,t0,t,f,j);
+function jj=j(t,x)
+    jj=J
+endfunction
+
+xband=ode('stiff',x0,t0,t,f,j);
 if norm(xnotband-xband,1)>Leps then pause,end
 
 %ODEOPTIONS(6)=5;//banded jacobian evaluated
 %ODEOPTIONS(11:12)=[3,2];
-deff('jj=j(t,x)','jj=J')
-xband=ode('st',x0,t0,t,f,j);
+function jj=j(t,x)
+    jj=J
+endfunction
+xband=ode('stiff',x0,t0,t,f,j);
 if norm(xnotband-xband,1)>Leps then pause,end
 
 
@@ -265,11 +301,11 @@ if norm(wref-ode(x0,t0,t,f),1)>Leps then pause,end
 //using stiff method
 
 %ODEOPTIONS(9)=0;
-wref=ode('st',x0,t0,t,f);
+wref=ode('stiff',x0,t0,t,f);
 %ODEOPTIONS(9)=5;
-if norm(wref-ode('st',x0,t0,t,f),1) >Leps then pause,end //=0
+if norm(wref-ode('stiff',x0,t0,t,f),1) >Leps then pause,end //=0
 %ODEOPTIONS(9)=4;
-if norm(wref-ode('st',x0,t0,t,f),1)  >Leps then pause,end  //small
+if norm(wref-ode('stiff',x0,t0,t,f),1)  >Leps then pause,end  //small
 
 
 //using nonstiff method
@@ -277,9 +313,9 @@ if norm(wref-ode('st',x0,t0,t,f),1)  >Leps then pause,end  //small
 %ODEOPTIONS(8)=0;
 wref=ode('ad',x0,t0,t,f);
 %ODEOPTIONS(8)=12;
-if norm(wref-ode('ad',x0,t0,t,f),1) >Leps then pause,end  //=0
+if norm(wref-ode('adams',x0,t0,t,f),1) >Leps then pause,end  //=0
 %ODEOPTIONS(8)=5;
-if norm(wref-ode('ad',x0,t0,t,f),1) >Leps then pause,end   //small
+if norm(wref-ode('adams',x0,t0,t,f),1) >Leps then pause,end   //small
 
 //mixed 
 %ODEOPTIONS(8:9)=[5,12];
@@ -289,9 +325,14 @@ if norm(ode(x0,t0,t,f)-wref,1)>Leps then pause,end   //small
 
 
 A=diag([-10,-0.01,-1]);
-deff('uu=u(t)','uu=sin(t)');
+function uu=u(t)
+    uu=sin(t)
+endfunction
 B=rand(3,1);
-deff('y=f(t,x)','y=A*x+B*u(t)')
+function y=f(t,x)
+    y=A*x+B*u(t)
+endfunction
+
 %ODEOPTIONS(1)=2;
 yy1=ode('stiff',[1;1;1],0,1,f);
 yy2=ode('stiff',[1;1;1],0,2,f);
@@ -302,8 +343,12 @@ yy2=ode('stiff',[1;1;1],0,2,f);
 clear %ODEOPTIONS;
 rand('seed',0);rand('normal');
 nx=20;A=rand(nx,nx);A=A-4.5*eye();
-deff('y=f(t,x)','y=A*x')
-deff('J=j(t,x)','J=A')
+function y=f(t,x)
+    y=A*x
+endfunction
+function J=j(t,x)
+    J=A
+endfunction
 //%ODEOPTIONS(1)=1;
 y2=ode('stiff',ones(nx,1),0,2,f,j);
 [y1,w,iw]=ode('stiff',ones(nx,1),0,1,f,j);
@@ -315,7 +360,10 @@ yaj=ode('adams',ones(nx,1),0,2,f,j);
 ysf=ode('stiff',ones(nx,1),0,2,f,j);
 ysj=ode('stiff',ones(nx,1),0,2,f,j);
 
-deff('xd=f(t,x)','xd=A*x+B*sin(3*t)')
+function xd=f(t,x)
+    xd=A*x+B*sin(3*t)
+endfunction
+
 A=rand(10,10)-4.5*eye();B=rand(10,1);
 x=ode(ones(10,1),0,[1,2,3],f);
 //link('fexab.o','fexab')

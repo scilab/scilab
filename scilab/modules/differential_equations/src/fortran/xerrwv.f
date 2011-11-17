@@ -57,6 +57,7 @@ c statement 100 at the end.
 c!
 c-----------------------------------------------------------------------
       include 'stack.h'
+cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
       common /eh0001/ mesflg, lunit
       integer         iero
       common /ierode/ iero

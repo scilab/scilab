@@ -25,12 +25,14 @@ clll. optimize
       dimension sm1(12)
       integer         iero
       common /ierode/ iero
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround, iownd(14),
      3   ialth, ipup, lmax, meo, nqnyh, nslp,
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ rownd2, pdest, pdlast, ratio, cm1(12), cm2(5),
      1   pdnorm,
      2   iownd2(3), icount, irflag, jtyp, mused, mxordn, mxords

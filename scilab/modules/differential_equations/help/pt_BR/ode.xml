@@ -33,7 +33,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>y0</term>
 
         <listitem>
-          <para>matriz ou vetor de reais (condições iniciais).</para>
+          <para>vetor coluna de reais (condições iniciais).</para>
         </listitem>
       </varlistentry>
 

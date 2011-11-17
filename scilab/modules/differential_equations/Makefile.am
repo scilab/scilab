@@ -3,22 +3,20 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
+DIFFERENTIAL_EQUATIONS_CPP_SOURCES = \
+src/cpp/scifunctions.cpp \
+src/cpp/checkodeerror.cpp \
+src/cpp/differentialequationfunctions.cpp
 
-DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
+
+DIFFERENTIAL_EQUATIONS_C_SOURCES = \
+src/c/dassl.c \
 src/c/feval.c \
-src/c/fevaltable.c \
-src/c/fydottable.c \
-src/c/impltable.c \
-src/c/colnewtable.c \
-src/c/intgtable.c \
-src/c/int2dtable.c \
-src/c/int3dtable.c \
-src/c/fydot2table.c \
-src/c/dassltable.c \
 src/c/arnol.c \
 src/c/rk4.c
 
-DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
+DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
+src/fortran/rscar1.f \
 src/fortran/bcomp.f \
 src/fortran/lcomp.f \
 src/fortran/loren.f \
@@ -76,45 +74,7 @@ src/fortran/odeint.f \
 src/fortran/rkqc.f \
 src/fortran/writbufode.f
 
-GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_int2d.c \
-sci_gateway/c/sci_int3d.c \
-sci_gateway/c/sci_intg.c \
-sci_gateway/c/sci_ode.c \
-sci_gateway/c/sci_odc.c \
-sci_gateway/c/sci_feval.c \
-sci_gateway/c/gw_differential_equations1.c \
-sci_gateway/c/gw_differential_equations2.c \
-sci_gateway/c/gw_differential_equations3.c \
-sci_gateway/c/gw_differential_equations4.c \
-sci_gateway/c/sci_bvode.c \
-sci_gateway/c/gw_differential_equations6.c
-
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_dasrt.f \
-sci_gateway/fortran/sci_f_feval.f \
-sci_gateway/fortran/sci_f_odedc.f \
-sci_gateway/fortran/sci_f_bvode.f \
-sci_gateway/fortran/sci_f_impl.f \
-sci_gateway/fortran/sci_f_dassl.f \
-sci_gateway/fortran/sci_f_ode.f \
-sci_gateway/fortran/bsurf.f \
-sci_gateway/fortran/bsurfd.f \
-sci_gateway/fortran/bydot.f \
-sci_gateway/fortran/bydot2.f \
-sci_gateway/fortran/bresd.f \
-sci_gateway/fortran/bresid.f \
-sci_gateway/fortran/bjac.f \
-sci_gateway/fortran/bjacd.f \
-sci_gateway/fortran/badd.f \
-sci_gateway/fortran/bj2.f \
-sci_gateway/fortran/bfeval.f \
-sci_gateway/fortran/int2d.f \
-sci_gateway/fortran/bint2d.f \
-sci_gateway/fortran/bint3d.f \
-sci_gateway/fortran/bintg.f \
-sci_gateway/fortran/int3d.f \
-sci_gateway/fortran/intg.f \
 sci_gateway/fortran/Ex-odedc.f \
 sci_gateway/fortran/Ex-ode.f \
 sci_gateway/fortran/Ex-impl.f \
@@ -123,19 +83,45 @@ sci_gateway/fortran/Ex-int3d.f \
 sci_gateway/fortran/Ex-intg.f \
 sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
-sci_gateway/fortran/Ex-bvode.f \
-sci_gateway/fortran/bbvode.f
+sci_gateway/fortran/Ex-bvode.f
 
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_int2d.cpp \
+sci_gateway/cpp/sci_int3d.cpp \
+sci_gateway/cpp/sci_intg.cpp \
+sci_gateway/cpp/sci_ode.cpp \
+sci_gateway/cpp/sci_odedc.cpp \
+sci_gateway/cpp/sci_feval.cpp \
+sci_gateway/cpp/sci_bvode.cpp \
+sci_gateway/cpp/sci_impl.cpp \
+sci_gateway/cpp/sci_dassl.cpp \
+sci_gateway/cpp/sci_dasrt.cpp
 
-libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
-						-I$(top_srcdir)/modules/output_stream/includes \
-						-I$(top_srcdir)/modules/dynamic_link/includes \
-						-I$(top_srcdir)/modules/elementary_functions/includes \
-						-I$(top_srcdir)/modules/api_scilab/includes \
-						-I$(top_srcdir)/modules/operations/includes
-						-I$(top_srcdir)/modules/api_scilab/includes \
-						-I$(top_srcdir)/modules/elementary_functions/includes \
-						-I$(top_srcdir)/modules/dynamic_link/includes
+libscidifferential_equations_la_CFLAGS= \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes
+
+libscidifferential_equations_la_CPPFLAGS= \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/types/includes \
+$(EIGEN_CPPFLAGS)
 
 
 if MAINTAINER_MODE
@@ -148,12 +134,13 @@ endif
 
 libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES)
-libscidifferential_equations_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
+libscidifferential_equations_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_CFLAGS)
+libscidifferential_equations_algo_la_CPPFLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
 
 libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la

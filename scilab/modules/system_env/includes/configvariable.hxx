@@ -16,8 +16,8 @@
 #include <list>
 #include <map>
 #include <string>
-#include "threadId.hxx"
 #include "callable.hxx"
+#include "threadId.hxx"
 #include "cell.hxx"
 
 extern "C"
@@ -272,21 +272,6 @@ public :
     static void setCommandLineArgs(int _iArgs, char** _pstArgs);
     static wchar_t** getCommandLineArgs(int* _piCount);
 
-
-//    //input function
-//private :
-//    static SCILAB_INPUT_METHOD m_pInputMethod;
-//public :
-//    static void setInputMethod(SCILAB_INPUT_METHOD _pInputMethod);
-//    static SCILAB_INPUT_METHOD getInputMethod(void);
-//
-//    //output function
-//private :
-//    static SCILAB_OUTPUT_METHOD m_pOutputMethod;
-//public :
-//    static void setOutputMethod(SCILAB_OUTPUT_METHOD _pOutputMethod);
-//    static SCILAB_OUTPUT_METHOD getOutputMethod(void);
-
     //schur function
 private :
     static types::Callable* m_schurFunction;
@@ -294,8 +279,6 @@ private :
 public :
     static void setSchurFunction(types::Callable* _schurFunction);
     static types::Callable* getSchurFunction();
-
-
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

@@ -264,3 +264,23 @@ int ActionBindingModule::Load()
     return 1;
 }
 
+int DifferentialEquationsModule::Load()
+{
+    wstring wstPath = L"differential_equations";
+#ifdef _MSC_VER
+    wstring wstModuleName = L"differential_equations_gw";
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wstring wstModuleName = L"differential_equations";
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+    vectGateway vect = loadGatewaysName(wstPath);
+
+    for(int i = 0 ; i < vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    return 1;
+}
+

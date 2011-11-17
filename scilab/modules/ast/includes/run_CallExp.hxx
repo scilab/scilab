@@ -18,6 +18,7 @@
 
 void visitprivate(const CallExp &e)
 {
+    wchar_t pwstLog[200];
     std::list<Exp *>::const_iterator	itExp;
 
     e.name_get().accept(*this);
@@ -28,7 +29,22 @@ void visitprivate(const CallExp &e)
         types::typed_list out;
         types::typed_list in;
 
+        //iLevel++;
+        //for(int i = 0 ; i < iLevel ; i++)
+        //{
+        //    scilabForcedWriteW(L"\t");
+        //}
+        //os_swprintf(pwstLog, 200, L"************  DEBUT %s ***************\n", pCall->getName().c_str());
+        //scilabForcedWriteW(pwstLog);
+
         int iRetCount = expected_getSize();
+
+        //for(int i = 0 ; i < iLevel ; i++)
+        //{
+        //    scilabForcedWriteW(L"\t");
+        //}
+        //os_swprintf(pwstLog, 200, L"expected_getSize : %d\n", expected_getSize());
+        //scilabForcedWriteW(pwstLog);
 
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
@@ -73,14 +89,46 @@ void visitprivate(const CallExp &e)
             }
         }
 
+        //for(int i = 0 ; i < iLevel ; i++)
+        //{
+        //    scilabForcedWriteW(L"\t");
+        //}
+        //os_swprintf(pwstLog, 200, L"After inputs %d\n", expected_getSize());
+        //scilabForcedWriteW(pwstLog);
+
         ////reset result
         //result_clear();
 
         try
         {
-            expected_size_set(iRetCount);
+            int iSaveExpectedSize = iRetCount;
+            expected_size_set(iSaveExpectedSize);
             iRetCount = Max(1, iRetCount);
+
+            //for(int i = 0 ; i < iLevel ; i++)
+            //{
+            //    scilabForcedWriteW(L"\t");
+            //}
+            //os_swprintf(pwstLog, 200, L"Before call : %d\n", expected_getSize());
+            //scilabForcedWriteW(pwstLog);
+
             types::Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
+            expected_size_set(iSaveExpectedSize);
+
+            //for(int i = 0 ; i < iLevel ; i++)
+            //{
+            //    scilabForcedWriteW(L"\t");
+            //}
+            //os_swprintf(pwstLog, 200, L"After call : %d\n", expected_getSize());
+            //scilabForcedWriteW(pwstLog);
+
+            //for(int i = 0 ; i < iLevel ; i++)
+            //{
+            //    scilabForcedWriteW(L"\t");
+            //}
+            //os_swprintf(pwstLog, 200, L"************  FIN %s ***************\n\n\n", pCall->getName().c_str());
+            //scilabForcedWriteW(pwstLog);
+            //iLevel--;
             //reset result
             result_clear();
             if(Ret == types::Callable::OK)

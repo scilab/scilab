@@ -26,13 +26,7 @@
     <ClCompile Include="arnol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="colnewtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dassl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dassltable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainDifferential_equations.c">
@@ -41,64 +35,16 @@
     <ClCompile Include="feval.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fevaltable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fydot2table.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fydottable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations6.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="impltable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int2dtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int3dtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="intgtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rk4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_bvode.c">
+    <ClCompile Include="..\cpp\checkodeerror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_feval.c">
+    <ClCompile Include="..\cpp\scifunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int3d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_intg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_odc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ode.c">
+    <ClCompile Include="..\cpp\differentialequationfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -112,22 +58,19 @@
     <ClInclude Include="feval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="rk4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\checkodeerror.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\differentialequationfunctions.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\scifunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\common_structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

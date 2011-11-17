@@ -44,5 +44,6 @@
     <module name="signal_processing" activate="yes"/>
     <module name="linear_algebra" activate="yes"/>
     <module name="statistics" activate="yes"/>
+    <module name="differential_equations" activate="yes"/>
 </modules>
 

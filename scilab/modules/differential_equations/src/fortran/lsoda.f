@@ -1010,12 +1010,14 @@ c where those variables are not used.
 c-----------------------------------------------------------------------
       integer         iero
       common /ierode/ iero
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,
      3   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ tsw, rowns2(20), pdnorm,
      1   insufr, insufi, ixpr, iowns2(2), jtyp, mused, mxordn, mxords
 c

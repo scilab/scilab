@@ -12,3 +12,9 @@ Removed functions (previously declared as obsolete):
 
 * maxfile function is now obsolete.
 
+Functions modified:
+===================
+
+* impl : Recall impl with the same parameters as in its previous stop is now available.
+* ode  : y0 is restricted to a column vector.
+

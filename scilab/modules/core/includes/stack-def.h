@@ -262,7 +262,7 @@ typedef struct {
 	int nge; /**< @TODO : add comment */
 } LSR001_struct;
 
-IMPORT LSR001_struct C2F(lsr001);
+//IMPORT LSR001_struct C2F(lsr001);
 
 /**
  * @TODO : add comment 
@@ -317,7 +317,7 @@ typedef struct {
 	int nqu; /**< @TODO : add comment */
 } LS0001_struct;
 
-IMPORT LS0001_struct C2F(ls0001);
+//IMPORT LS0001_struct C2F(ls0001);
 
 
 /**
@@ -337,9 +337,13 @@ typedef struct {
 	int mxords; /**< @TODO : add comment */
 } LSA001_struct;
 
-IMPORT LSA001_struct C2F(lsa001);
+//IMPORT LSA001_struct C2F(lsa001);
 
+typedef struct {
+    int mesflg, lunit;
+} EH0001_struct;
 
+//IMPORT EH0001_struct C2F(eh0001);
 
 /**
  * @TODO : add comment 

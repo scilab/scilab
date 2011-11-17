@@ -975,6 +975,7 @@ c where those variables are not used.
 c-----------------------------------------------------------------------
       integer         iero
       common /ierode/ iero
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,

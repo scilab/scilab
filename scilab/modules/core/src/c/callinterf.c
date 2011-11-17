@@ -47,7 +47,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 09  */ {gw_cacsd1},
     /* 10  */ {gw_cacsd2},
     /* 11  */ {gw_dynamic_optimization},
-    /* 12  */ {gw_differential_equations1},
+    /* 12  */ {NULL}, //gw_differential_equations1
     /* 13  */ {gw_core},
     /* 14  */ {gw_user}, /* RESERVED (see callinter.h) */
     /* 15  */ {gw_user}, /* free position may be used */
@@ -61,13 +61,13 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 23  */ {NULL}, //gw_boolean
     /* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */
     /* 25  */ {gw_gui},
-    /* 26  */ {gw_differential_equations2},
+    /* 26  */ {NULL}, //gw_differential_equations2
     /* 27  */ {gw_sparse},
     /* 28  */ {gw_slicot},
-    /* 29  */ {gw_differential_equations3},
-    /* 30  */ {gw_differential_equations4},
+    /* 29  */ {NULL}, //gw_differential_equations3
+    /* 30  */ {NULL}, //gw_differential_equations4
     /* 31  */ {NULL}, //gw_dynamic_functions
-    /* 32  */ {gw_differential_equations6},
+    /* 32  */ {NULL}, //gw_differential_equations6
     /* 33  */ {gw_output_stream},
     /* 34  */ {gw_fileio},
     /* 35  */ {gw_dynamic_arnoldi},

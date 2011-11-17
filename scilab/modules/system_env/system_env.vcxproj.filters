@@ -91,5 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="differential_equations_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="differential_equations_Import.def">
+      <Filter>Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

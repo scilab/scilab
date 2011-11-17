@@ -624,6 +624,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-se
 		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations_gw", "modules\differential_equations\sci_gateway\differential_equations_gw.vcxproj", "{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1904,6 +1906,14 @@ Global
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|Win32.Build.0 = Release|Win32
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|x64.ActiveCfg = Release|x64
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|x64.Build.0 = Release|x64
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Debug|Win32.Build.0 = Debug|Win32
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Debug|x64.ActiveCfg = Debug|x64
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Debug|x64.Build.0 = Debug|x64
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|Win32.ActiveCfg = Release|Win32
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|Win32.Build.0 = Release|Win32
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|x64.ActiveCfg = Release|x64
+		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
