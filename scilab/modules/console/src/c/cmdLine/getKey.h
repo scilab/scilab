@@ -18,7 +18,7 @@
  * Save a command if listCmd is not NULL, else, display it.
  * @param list of command.
  */
-void memCmd(wchar_t * listCmd, int cursorLocation);
+void memCmd(wchar_t * listCmd, unsigned int cursorLocation);
 
 /**
  * Catch the key pressed and call the godd function.

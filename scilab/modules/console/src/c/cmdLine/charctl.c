@@ -24,7 +24,7 @@
 #include "getNbrLine.h"
 
 /* Add a character to a command line */
-int addChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
+int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
 {
     unsigned int indexToMoveChar = 0;
 
@@ -35,27 +35,31 @@ int addChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
     unsigned int nbrLine = 0;
 
     promptSize = getPrompt(NOWRT_PRT);
-    nbrLine = getNbrLine(CommandLine);
-    sizeOfCmd = wcslen(CommandLine);
-    if (' ' <= key)
+    nbrLine = getNbrLine(*CommandLine);
+    sizeOfCmd = wcslen(*CommandLine);
+    if (L' ' <= key || key == L'\n')
     {
-        capStr("im");
-        if (sizeOfCmd && !((sizeOfCmd + 1) % 1024))
+        if (key == L'\n')
         {
-            CommandLine = realloc(CommandLine, sizeof(wchar_t) * (sizeOfCmd + 1 + 1024));
+            *cursorLocation = sizeOfCmd;
+        }
+        capStr("im");
+        if (sizeOfCmd && !((sizeOfCmd + 1) % 1024)) /* TODO: Comment */
+        {
+            *CommandLine = realloc(*CommandLine, sizeof(wchar_t) * (sizeOfCmd + 1 + 1024));
         }
         indexToMoveChar = sizeOfCmd;
         /* move each character to the next place */
         while (indexToMoveChar > *cursorLocation)
         {
-            CommandLine[indexToMoveChar] = CommandLine[indexToMoveChar - 1];
+            (*CommandLine)[indexToMoveChar] = (*CommandLine)[indexToMoveChar - 1];
             indexToMoveChar--;
         }
         /* Add the new character to the command line. */
-        CommandLine[*cursorLocation] = (wchar_t) key;
-        printf("%lc", CommandLine[*cursorLocation]);
+        (*CommandLine)[*cursorLocation] = (wchar_t) key;
+        printf("%lc", (*CommandLine)[*cursorLocation]);
         sizeOfCmd++;
-        CommandLine[sizeOfCmd] = L'\0';
+        (*CommandLine)[sizeOfCmd] = L'\0';
         (*cursorLocation)++;
         if (!((*cursorLocation + promptSize) % tgetnum("co")))
         {
@@ -69,11 +73,11 @@ int addChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
 /* Delete a character in the command line */
 int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
 {
-    int indexToMoveChar;
+    unsigned int indexToMoveChar;
 
     int promptSize;
 
-    int sizeOfCmd = 0;
+    unsigned int sizeOfCmd = 0;
 
     promptSize = getPrompt(NOWRT_PRT);
     sizeOfCmd = wcslen(CommandLine);
@@ -103,7 +107,7 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
 }
 
 /* Delete all characters from cursor to the end. */
-int deleteLineFromCurs(wchar_t * CommandLine, unsigned int *cursorLocation)
+int deleteFromCursToEndLine(wchar_t * CommandLine, unsigned int *cursorLocation)
 {
     /* set the end of the command line at the current cursor location */
     CommandLine[*cursorLocation] = '\0';

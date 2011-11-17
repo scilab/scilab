@@ -34,6 +34,5 @@ void getNewTerm(int signum)
         fprintf(stderr, "\nCannot get terminfo databases. Termcaps are no longer available\n");
     }
     getPrompt(WRT_PRT);
-    memCmd(NULL, 0);
     signal(signum, getNewTerm);
 }
