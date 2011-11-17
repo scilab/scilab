@@ -328,7 +328,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
     if(iRet)
     {
-        printf("failed !!!  %d",iRet);
+        ScierrorW(999,_W("%ls: Schur exit with state %d\n"), L"schur", iRet);
         return types::Function::Error;
     }
 
