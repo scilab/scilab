@@ -30,6 +30,7 @@
 #include "charEncoding.h"
 #include "aff_prompt.h"
 #include "setCharDisplay.h"
+#include "autoCompletionCli.h"
 
 /*
  * If last key was '1'
@@ -91,6 +92,7 @@ static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocati
         if (getwchar() == L'~')
         {
             rmChar(*commandLine, SCI_DELETE, cursorLocation);
+            updateTokenInScilabHistory(commandLine);
             break;
         }
     }
@@ -171,6 +173,7 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         break;
     case CTRL_D:
         rmChar(*commandLine, SCI_DELETE, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case CTRL_E:
         endLine(*commandLine, cursorLocation);
@@ -183,6 +186,7 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         break;
     case CTRL_K:
         deleteFromCursToEndLine(*commandLine, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case CTRL_N:
         nextCmd(commandLine, cursorLocation);
@@ -192,18 +196,22 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         break;
     case CTRL_U:
         deleteFromCursToBeginningLine(*commandLine, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case CTRL_W:
         deletePreviousWordFromCurs(*commandLine, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case '\t':
         autoCompletionInConsoleMode(commandLine, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case ESCAPE:
         caseMetaKey(commandLine, cursorLocation);
         break;
     case SCI_BACKSPACE:
         rmChar(*commandLine, SCI_BACKSPACE, cursorLocation);
+        updateTokenInScilabHistory(commandLine);
         break;
     case WEOF:
         setCBreak(1);
@@ -216,7 +224,7 @@ int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
             setCharDisplay(DISP_FAINT);
         }
         addChar(commandLine, key, cursorLocation);
-        /*setSearchedTokenInScilabHistory(*commandLine); */
+        updateTokenInScilabHistory(commandLine);
         break;
     }
     return 1;
