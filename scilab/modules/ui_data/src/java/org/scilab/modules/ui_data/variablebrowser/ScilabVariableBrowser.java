@@ -13,10 +13,12 @@ package org.scilab.modules.ui_data.variablebrowser;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -119,16 +121,16 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * Close Variable Browser
      */
     public static void closeVariableBrowser() {
-	if (instance != null) {
-	    instance.close();
-	}
+        if (instance != null) {
+            instance = null;
+        }
     }
 
     /**
      * Close Variable Browser
      */
     public void close() {
-        instance = null;
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) browserTab);
     }
 
     /**
