@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class ScilabGraphUtilsTest {
 	private static final String TEXT = "Sample text without any symbols";
 	private static final String TEXT_WITH_BLANKS = "        Sample text without any symbols";
-	private static final String SOME_HTML_SYMBOLS = "<>&\\‡¿‚¬‰ƒ";
+	private static final String SOME_HTML_SYMBOLS = "<>&\\√†√Ä√¢√Ç√§√Ñ";
 	
 	private static final String SAMPLE_LATEX = "\frac{a+b}{c-d}";
 	
