@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -395,7 +395,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_set.c" />
     <ClCompile Include="sci_gateway\c\sci_show_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_show_window.c" />
-    <ClCompile Include="sci_gateway\c\sci_showalluimenushandles.c" />
     <ClCompile Include="sci_gateway\c\sci_StringBox.c" />
     <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />
     <ClCompile Include="sci_gateway\c\sci_unglue.c" />

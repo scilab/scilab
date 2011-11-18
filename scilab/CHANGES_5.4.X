@@ -415,6 +415,10 @@ Obsolete Functions:
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed on 5.4.1
 
+* 'showalluimenushandles' function (graphics) was undocumented. This function is
+  obsolete and will be removed on 5.4.
+  Use set(get(0), "ShowHiddenHandles", "on"); instead.
+
 
 
 Removed functions (previously declared as obsolete):

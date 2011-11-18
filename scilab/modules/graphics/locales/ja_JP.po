@@ -347,13 +347,6 @@ msgstr "%s: 指定された図を作成できません: メモリ不足です.\n
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' ハンドルはもう存在しません。\n"
 
-#
-# File: sci_gateway/c/sci_showalluimenushandles.c, line: 42
-# File: sci_gateway/c/sci_showalluimenushandles.c, line: 52
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr "%s: 入力引数で不正な型: '%s' ハンドルを想定します。\n"
-
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
 msgstr "%s: このルーチンは 2 個のシングルハンドルの交換のみ可能です.\n"

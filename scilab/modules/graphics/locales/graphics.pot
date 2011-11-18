@@ -492,13 +492,6 @@ msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_showalluimenushandles.c, line: 44
-# File: sci_gateway/c/sci_showalluimenushandles.c, line: 54
-#, c-format
-msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_swap_handles.c, line: 41
 #, c-format
 msgid "%s: Routine can only swap two single handles.\n"
