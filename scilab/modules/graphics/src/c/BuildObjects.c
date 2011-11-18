@@ -2106,13 +2106,13 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
 */
 char *ConstructCompoundSeq(int number)
 {
-    char **children;
-    char *parentFigure;
+    char **children = NULL;
+    char *parentFigure = NULL;
     int numberChildren = 0;
-    int piNumberChildren = &numberChildren;
+    int *piNumberChildren = &numberChildren;
     int i;
     int visible = 0;
-    int piVisible = &visible;
+    int *piVisible = &visible;
 
     char *pobjUID = NULL;
     char *psubwinUID;
