@@ -14,6 +14,12 @@
 
 #include <wchar.h>
 
+/*
+ * Note:
+ * The command line must be a multiple of 1024.
+ * Then, each time the buffer size is reached, 1024 * sizeof(wchar_t) is added.
+ */
+
 /**
  * Add a character in the command line at the cursor position.
  * @param current edited line.

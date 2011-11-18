@@ -16,20 +16,38 @@
 #include "completion.h"
 #include "charctl.h"
 #include "MALLOC.h"
+#include "autoCompletionCli.h"
 
-void doCompletion(char *, int *cursor, int *cursor_max);
-
-void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
-
+/* Autocopmpletion in NW/NWNI */
 void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     char *multiByteString = NULL;
+
+    wchar_t *wideString = NULL;
+
+    int sizeToAlloc = 0;
 
     int nbrCharInString;
 
     multiByteString = wide_string_to_UTF8(*commandLine);
     nbrCharInString = wcslen(*commandLine);
     doCompletion(multiByteString, cursorLocation, &nbrCharInString);
+    wideString = to_wide_string(multiByteString);
+    /* Copy the new string in a buffer wich size is a multiple of 1024 */
+    sizeToAlloc = 1024 * (wcslen(wideString) / 1024 + 1);
     FREE(*commandLine);
-    *commandLine = to_wide_string(multiByteString);
+    *commandLine = MALLOC(sizeof(**commandLine) * sizeToAlloc);
+    wcscpy(*commandLine, wideString);
+    FREE(wideString);
+    FREE(multiByteString);
+}
+
+/* Set new token in history in order to get string changement */
+void updateTokenInScilabHistory(wchar_t ** commandLine)
+{
+    char *multiByteString = NULL;
+
+    multiByteString = wide_string_to_UTF8(*commandLine);
+    setSearchedTokenInScilabHistory(multiByteString);
+    FREE(multiByteString);
 }
