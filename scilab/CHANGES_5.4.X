@@ -747,12 +747,19 @@ Bug fixes:
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
+* bug 9461 fixed - The assert_checkalmostequal function did not manage 
+                   sparse matrices.
+                   The assert_checkalmostequal function did not manage 
+                   hypermatrices.
+
 * bug 9479 fixed - Typo fixed (intput => input).
 
 * bug 9498 fixed - A long history caused Scilab startup to be very long.
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
+
+* bug 9531 fixed - assert_checkequal failed with mlist
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
@@ -872,6 +879,8 @@ Bug fixes:
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
 
+* bug 10119 fixed - assert_checkequal did not support sparse complex doubles
+
 * bug 10179 fixed - Weird behaviour with evstr.
 
 * bug 10289 fixed - xload returns a better error message when a file does
@@ -880,3 +889,5 @@ Bug fixes:
 * bug 10292 fixed - Improved description of the help page of modulo.
 
 * bug 10293 fixed - Improved description of the help page of bvode.
+
+
