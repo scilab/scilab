@@ -858,3 +858,6 @@ Bug fixes:
                     Icons renamed from XPM to PNG.
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
+
+* bug 10289 fixed - xload returns a better error message when a file does
+                    not exist.
