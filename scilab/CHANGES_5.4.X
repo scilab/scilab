@@ -861,3 +861,7 @@ Bug fixes:
 
 * bug 10289 fixed - xload returns a better error message when a file does
                     not exist.
+
+* bug 10292 fixed - Improved description of the help page of modulo.
+
+* bug 10293 fixed - Improved description of the help page of bvode.
