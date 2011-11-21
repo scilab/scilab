@@ -1871,15 +1871,17 @@ check-java:
 
 @GENERATE_LOCALIZATION_FILES_TRUE@localization-status:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-@GENERATE_LOCALIZATION_FILES_TRUE@		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		if test ! -d $$PATHTO; then \
-@GENERATE_LOCALIZATION_FILES_TRUE@			echo "        Creating $$PATHTO"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@			mkdir -p $$PATHTO; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$$LOCALE" != "en_US"; then \
+@GENERATE_LOCALIZATION_FILES_TRUE@			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			if test ! -d $$PATHTO; then \
+@GENERATE_LOCALIZATION_FILES_TRUE@				echo "        Creating $$PATHTO"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@				mkdir -p $$PATHTO; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			fi; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			echo "Building status for $$LOCALE"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		echo "Building status for $$LOCALE"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done; 
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

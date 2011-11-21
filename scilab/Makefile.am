@@ -341,15 +341,17 @@ localization:
 
 localization-status:
 	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-		if test ! -d $$PATHTO; then \
-			echo "        Creating $$PATHTO"; \
-			mkdir -p $$PATHTO; \
+		if test "$$LOCALE" != "en_US"; then \
+			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+			if test ! -d $$PATHTO; then \
+				echo "        Creating $$PATHTO"; \
+				mkdir -p $$PATHTO; \
+			fi; \
+			echo "Building status for $$LOCALE"; \
+			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 		fi; \
-		echo "Building status for $$LOCALE"; \
-		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
-	done; 
+	done;
 
 endif
 
