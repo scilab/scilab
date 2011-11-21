@@ -75,11 +75,12 @@ namespace org_modules_xml
     {
         xmlNode * cur = parent->children;
 
-        while (cur)
+        while (cur != NULL)
         {
+            xmlNode * nxt = cur->next;
             xmlUnlinkNode(cur);
             xmlFreeNode(cur);
-            cur = parent->children;
+            cur = nxt;
         }
     }
 
