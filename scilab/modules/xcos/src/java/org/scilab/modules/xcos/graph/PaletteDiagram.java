@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ScrollPaneConstants;
+import javax.xml.transform.TransformerException;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -60,8 +61,7 @@ public class PaletteDiagram extends XcosDiagram {
         setGridVisible(false);
         setCellsDeletable(false);
         setCellsEditable(false);
-        this.getAsComponent().setHorizontalScrollBarPolicy(
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        this.getAsComponent().setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         getUndoManager().setEventsEnabled(false);
     }
@@ -75,8 +75,9 @@ public class PaletteDiagram extends XcosDiagram {
         File theFile = new File(diagramFileName);
 
         if (theFile.exists()) {
-            boolean loaded = transformAndLoadFile(diagramFileName, true);
-            if (!loaded) {
+            try {
+                load(new File(diagramFileName));
+            } catch (TransformerException e) {
                 return false;
             }
             setName(theFile.getName());
@@ -88,8 +89,7 @@ public class PaletteDiagram extends XcosDiagram {
             List<Object> tobeRemoved = new ArrayList<Object>();
             for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
                 Object obj = getModel().getChildAt(getDefaultParent(), i);
-                if (obj instanceof BasicLink || obj instanceof SplitBlock
-                        || obj instanceof TextBlock) {
+                if (obj instanceof BasicLink || obj instanceof SplitBlock || obj instanceof TextBlock) {
                     tobeRemoved.add(obj);
                 }
             }
@@ -128,8 +128,7 @@ public class PaletteDiagram extends XcosDiagram {
             Object obj = getModel().getChildAt(getDefaultParent(), i);
             if (obj instanceof BasicBlock) {
                 BasicBlock block = (BasicBlock) obj;
-                block.setGeometry(getNewBlockPosition(block.getGeometry(),
-                        blockCount));
+                block.setGeometry(getNewBlockPosition(block.getGeometry(), blockCount));
                 BlockPositioning.updateBlockView(block);
                 blockCount++;
             }
@@ -156,19 +155,16 @@ public class PaletteDiagram extends XcosDiagram {
         double w = geom.getWidth();
         double h = geom.getHeight();
 
-        if (geom.getWidth() > BLOCK_MAX_WIDTH
-                || geom.getHeight() > BLOCK_MAX_HEIGHT) {
+        if (geom.getWidth() > BLOCK_MAX_WIDTH || geom.getHeight() > BLOCK_MAX_HEIGHT) {
             // update block size to fill "block area"
             double ratio = Math.min(BLOCK_MAX_HEIGHT / h, BLOCK_MAX_WIDTH / w);
             w *= ratio;
             h *= ratio;
         }
 
-        x = row
-                * (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+        x = row * (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
         x += (XcosConstants.PALETTE_BLOCK_WIDTH - w) / 2;
-        y = col
-                * (XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
+        y = col * (XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
         y += (XcosConstants.PALETTE_BLOCK_HEIGHT - h) / 2;
 
         return new mxGeometry(x, y, w, h);

@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.graph;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -55,7 +56,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
      */
     public SuperBlockDiagram(SuperBlock superBlock) {
         super();
-        this.container = superBlock;
+        setContainer(superBlock);
     }
 
     /**
@@ -71,6 +72,18 @@ public final class SuperBlockDiagram extends XcosDiagram implements
      */
     public void setContainer(SuperBlock container) {
         this.container = container;
+    }
+
+    @Override
+    public File getSavedFile() {
+        if (getContainer() != null) {
+            XcosDiagram parent = getContainer().getParentDiagram();
+            if (parent != null) {
+                return parent.getSavedFile();
+            }
+        }
+
+        return super.getSavedFile();
     }
 
     /**

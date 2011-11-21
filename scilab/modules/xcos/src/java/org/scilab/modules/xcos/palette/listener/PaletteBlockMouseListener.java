@@ -30,6 +30,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
@@ -56,7 +57,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
             ContextMenu menu = ScilabContextMenu.createContextMenu();
 
             final List<XcosDiagram> allDiagrams = Xcos.getInstance()
-                    .getDiagrams();
+                    .openedDiagrams();
             final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource())
                     .getController();
 
@@ -69,7 +70,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 MenuItem addTo = ScilabMenuItem.createMenuItem();
 
                 addTo.setText(XcosMessages.ADDTO + " "
-                        + allDiagrams.get(0).getParentTab().getName());
+                        + XcosTab.get(allDiagrams.get(0)).getName());
                 final XcosDiagram theDiagram = allDiagrams.get(0);
                 addTo.setCallback(new CallBack(e.toString()) {
                     @Override
@@ -90,7 +91,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 for (int i = 0; i < allDiagrams.size(); i++) {
                     MenuItem diagram = ScilabMenuItem.createMenuItem();
                     final XcosDiagram theDiagram = allDiagrams.get(i);
-                    diagram.setText(allDiagrams.get(i).getParentTab().getName());
+                    diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
                     diagram.setCallback(new CallBack(e.toString()) {
                         @Override
                         public void callBack() {

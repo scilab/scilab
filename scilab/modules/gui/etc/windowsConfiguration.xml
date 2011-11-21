@@ -1,9 +1,23 @@
 <?xml version="1.0"?>
 <Scilab>
+  <!-- Console default configuration -->
   <Window height="453" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="556" x="180" y="25">
     <DockingPortNode>
       <DockableNode dockableId="00000000-0000-0000-0000-000000000000"/>
     </DockingPortNode>
   </Window>
   <Console factory="org.scilab.modules.core.ConsoleTabFactory" load="Console" uuid="00000000-0000-0000-0000-000000000000" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
+  <!-- Xcos default configuration -->
+  <Window height="500" uuid="xcos-palette-default-window" width="500" x="0" y="0">
+    <DockingPortNode>
+      <DockableNode dockableId="org.scilab.modules.xcos.palette.model"/>
+    </DockingPortNode>
+  </Window>
+  <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="org.scilab.modules.xcos.palette.model" width="498" winuuid="xcos-palette-default-window"/>
+  <Window height="500" uuid="xcos-default-window" width="600" x="501" y="0">
+    <DockingPortNode>
+      <DockableNode dockableId="xcos-default-tab"/>
+    </DockingPortNode>
+  </Window>
+  <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="xcos-default-tab" width="574" winuuid="xcos-default-window"/>
 </Scilab>
