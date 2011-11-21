@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,51 +19,52 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "DrawObjects.h"
 #include "sciCall.h"
-#include "GetProperty.h"
-#include "GraphicSynchronizerInterface.h"
-#include "HandleManagement.h"
+#include "BuildObjects.h"
+
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)
 {
-  int close=0,m1,n1,l1,m2,n2 ,l2,m3,n3,l3,mn1 ;
+    int iForeground = 0;
+    int *piForeground = &iForeground;
+    int m1 = 0, n1 = 0, l1 = 0;
+    int m2 = 0, n2 = 0, l2 = 0;
+    int m3 = 0, n3 = 0, l3 = 0;
+    int mn1 = 0;
 
-  long hdl; /* NG */
-  sciPointObj * psubwin = NULL ;
+    long hdl; /* NG */
+    char *psubwinUID = NULL;
 
-  CheckRhs(2,3);
+    CheckRhs(2, 3);
 
-  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-  CheckSameDims(1,2,m1,n1,m2,n2);
+    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+    CheckSameDims(1, 2, m1, n1, m2, n2);
 
-  if (Rhs == 3) {
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
-    CheckScalar(3,m3,n3);
-    close = (int)  *stk(l3);
-  }
-  mn1 = m1 * n1;
+    if (Rhs == 3)
+    {
+        GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
+        CheckScalar(3, m3, n3);
+        iForeground = (int) *stk(l3);
+    }
 
+    mn1 = m1 * n1;
 
-  psubwin = sciGetCurrentSubWin();
+    psubwinUID = getOrCreateDefaultSubwin();
 
-  if(close == 0)
-  {
-    close = sciGetForeground(sciGetCurrentSubWin());
-  }
+    if (iForeground == 0)
+    {
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+    }
 
-  startFigureDataWriting(sciGetParentFigure(psubwin));
-  Objfpoly (stk(l1),stk(l2),mn1,&close,&hdl,0);
-  endFigureDataWriting(sciGetParentFigure(psubwin));
+    Objfpoly(stk(l1), stk(l2), mn1, &iForeground, &hdl, 0);
 
-  sciDrawObjIfRequired(sciGetCurrentObj ());
-
-  LhsVar(1)=0;
-	PutLhsVar();
-  return 0;
-
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/
