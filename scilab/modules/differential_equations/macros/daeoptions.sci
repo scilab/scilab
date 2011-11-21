@@ -58,8 +58,8 @@ chapeau=["Defining %DAEOPTIONS variable";
          '1 : if ydot0 is just an estimation';
 	 ' '
 	 'Default values are given in square brackets'
-	 'If the function is called without argument, default values"+...
-	 " are used"
+	 'If the function is called without argument, default values'+ ...
+	 ' are used'
 	]
 
 dims = list("vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,..
