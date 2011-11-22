@@ -30,7 +30,7 @@ src/jni/jhdf5load.cpp
 else
 
 # This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = 
+FORCE_LOAD_SOURCES =
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
@@ -94,13 +94,8 @@ libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
-
-if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscihdf5.la
-noinst_LTLIBRARIES = 
-else
-noinst_LTLIBRARIES = libscihdf5.la
-endif
+noinst_LTLIBRARIES =
 
 if HDF5
 noinst_LTLIBRARIES += libscihdf5-algo.la
@@ -119,7 +114,7 @@ endif
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
@@ -142,7 +137,7 @@ modulename=hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA =  license.txt 
+libscihdf5_la_root_DATA =  license.txt
 
 
 #### hdf5 : init scripts ####

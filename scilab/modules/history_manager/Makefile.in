@@ -132,8 +132,6 @@ am_libscihistory_manager_algo_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3)
 libscihistory_manager_algo_la_OBJECTS =  \
 	$(am_libscihistory_manager_algo_la_OBJECTS)
-@MAINTAINER_MODE_FALSE@am_libscihistory_manager_algo_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libscihistory_manager_algo_la_rpath =
 libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la
 am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_addhistory.lo \
@@ -156,9 +154,6 @@ libscihistory_manager_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscihistory_manager_la_CFLAGS) $(CFLAGS) \
 	$(libscihistory_manager_la_LDFLAGS) $(LDFLAGS) -o $@
-@MAINTAINER_MODE_FALSE@am_libscihistory_manager_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libscihistory_manager_la_rpath = -rpath \
-@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -500,9 +495,8 @@ libscihistory_manager_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscihistory_manager.la
-@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscihistory_manager-algo.la libscihistory_manager.la
-@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscihistory_manager-algo.la
+pkglib_LTLIBRARIES = libscihistory_manager.la
+noinst_LTLIBRARIES = libscihistory_manager-algo.la
 libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscihistory_manager.la
@@ -519,7 +513,7 @@ modulename = history_manager
 
 #### history_manager : Conf files ####
 libscihistory_manager_la_rootdir = $(mydatadir)
-libscihistory_manager_la_root_DATA = license.txt 
+libscihistory_manager_la_root_DATA = license.txt
 
 #### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
@@ -679,9 +673,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihistory_manager-algo.la: $(libscihistory_manager_algo_la_OBJECTS) $(libscihistory_manager_algo_la_DEPENDENCIES) 
-	$(CXXLINK) $(am_libscihistory_manager_algo_la_rpath) $(libscihistory_manager_algo_la_OBJECTS) $(libscihistory_manager_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK)  $(libscihistory_manager_algo_la_OBJECTS) $(libscihistory_manager_algo_la_LIBADD) $(LIBS)
 libscihistory_manager.la: $(libscihistory_manager_la_OBJECTS) $(libscihistory_manager_la_DEPENDENCIES) 
-	$(libscihistory_manager_la_LINK) $(am_libscihistory_manager_la_rpath) $(libscihistory_manager_la_OBJECTS) $(libscihistory_manager_la_LIBADD) $(LIBS)
+	$(libscihistory_manager_la_LINK) -rpath $(pkglibdir) $(libscihistory_manager_la_OBJECTS) $(libscihistory_manager_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

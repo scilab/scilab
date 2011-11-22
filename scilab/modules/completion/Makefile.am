@@ -9,7 +9,7 @@
 
 if GUI
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 USEANT=1
 
 endif
@@ -25,7 +25,7 @@ src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
 src/c/getCommonPart.c \
 src/c/completeLine.c \
-src/c/completeLine_wrap_java.c 
+src/c/completeLine_wrap_java.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -44,13 +44,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicompletion.la
 noinst_LTLIBRARIES = libscicompletion-algo.la
-else
-noinst_LTLIBRARIES = libscicompletion-algo.la libscicompletion.la
-endif
-
 
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -64,14 +59,14 @@ CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
-libscicompletion_la_LIBADD = libscicompletion-algo.la 
+libscicompletion_la_LIBADD = libscicompletion-algo.la
 
 #### Name of the module and the path ######
 modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt 
+libscicompletion_la_root_DATA =  license.txt
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
@@ -100,7 +95,7 @@ tests/utilities/sci_getfilepartlevel.c \
 tests/utilities/sci_getpartlevel.c
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i 
+SWIG_WRAPPERS = src/jni/Completion.i
 
 if SWIG
 BUILT_SOURCES=swig

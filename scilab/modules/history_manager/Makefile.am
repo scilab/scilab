@@ -70,13 +70,8 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscihistory_manager.la
 noinst_LTLIBRARIES = libscihistory_manager-algo.la
-else
-noinst_LTLIBRARIES = libscihistory_manager-algo.la libscihistory_manager.la
-endif
-
 
 libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -96,7 +91,7 @@ modulename=history_manager
 
 #### history_manager : Conf files ####
 libscihistory_manager_la_rootdir = $(mydatadir)
-libscihistory_manager_la_root_DATA =  license.txt 
+libscihistory_manager_la_root_DATA =  license.txt
 
 #### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc
