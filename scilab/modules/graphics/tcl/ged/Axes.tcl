@@ -17,7 +17,7 @@ cd $pwd
 
 variable DEMODIR
 
-lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0"]
+lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget"]
 #lappend ::auto_path "$env(SCIPATH)/tcl"
 namespace inscope :: package require BWidget
 package require BWidget
