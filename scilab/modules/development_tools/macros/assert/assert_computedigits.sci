@@ -47,12 +47,9 @@ function d = assert_computedigits ( varargin )
   //
   d = zeros(expected)
   //
-  n = size(expected,"*")
-  for i = 1 : n
-    dre = computedigits_data ( real(expected(i)) , real(computed(i)) , basis )
-    dim = computedigits_data ( imag(expected(i)) , imag(computed(i)) , basis )
-    d(i) = min(dre,dim)
-  end
+  dre = computedigits_data ( real(expected) , real(computed) , basis );
+  dim = computedigits_data ( imag(expected) , imag(computed) , basis );
+  d = min(dre,dim)
   //
   // Reshape
   d = matrix(d,nre,nce)
@@ -72,43 +69,40 @@ function argin = argindefault ( rhs , vararglist , ivar , default )
     end
   end
 endfunction
+
 function d = computedigits_data ( expected , computed , basis )
-    dmin = 0
-    dmax = -log(2^(-53))/log(basis)
-    //
-    if ( isnan(expected) & isnan(computed) ) then
-        d = dmax
-    elseif ( isnan(expected) & ~isnan(computed) ) then
-        d = dmin
-    elseif ( ~isnan(expected) & isnan(computed) ) then
-        d = dmin
-        // From now, both expected and computed are non-nan
-    elseif ( expected == 0 & computed == 0 ) then
-        d = dmax
-    elseif ( expected == 0 & computed <> 0 ) then
-        d = dmin
-        // From now, expected is non-zero
-    elseif ( expected == computed ) then
-        d = dmax
-        // From now, expected and computed are different
-    elseif ( expected == %inf & computed <> %inf ) then
-        d = dmin
-    elseif ( expected == -%inf & computed <> -%inf ) then
-        d = dmin
-        // From now, neither of computed, nor expected is infinity
-    else
-        // The max function does not ensure that the sign bit of d is positive.
-        // For example : 
-        // ieee(2); z=max(-0,0); 1/z is -%inf
-        // To force this, consider the special case where the relative error is 
-        // larger than 1.
-        relerr = abs(computed-expected) / abs(expected)
-        if ( relerr >= 1 ) then
-            d = dmin
-        else
-            sigdig = -log ( relerr ) / log(basis)
-            d = max ( sigdig , dmin )
-        end
-    end
+  //
+  dmin = 0
+  dmax = -log(2^(-53))/log(basis)
+  d = ones(expected)*%inf;
+  d( isnan(expected) & isnan(computed) ) = dmax;
+  d( isnan(expected) & ~isnan(computed) ) = dmin;
+  d( ~isnan(expected) & isnan(computed) ) = dmin;
+  // From now, both expected and computed are non-nan
+  k = ~isnan(expected) & ~isnan(computed);
+  d( k & expected == 0 & computed == 0 ) = dmax;
+  d( k & expected == 0 & computed <> 0 ) = dmin;
+  // From now, expected is non-zero
+  k = k & expected <> 0;
+  d( k & expected == computed ) = dmax;
+  // From now, expected and computed are different
+  k = k & expected <> computed;
+  d( k & expected == %inf & computed <> %inf ) = dmin;
+  d( k & expected == -%inf & computed <> -%inf ) = dmin;
+  // From now, neither of computed, nor expected is infinity
+  kdinf=find(d==%inf);
+  if ( kdinf <> [] ) then
+      relerr = ones(expected)*%nan;
+      relerr(kdinf) = abs(computed(kdinf)-expected(kdinf)) ./ abs(expected(kdinf));
+      k = find( relerr >= 1 );
+      if ( k<> [] ) then
+          d(k) = dmin;
+      end
+      k = find( d==%inf & relerr < 1 );
+      if ( k<> [] ) then
+          sigdig(k) = -log ( 2*relerr(k) ) ./ log(basis);
+          d(k) = max ( sigdig(k) , dmin );
+      end
+  end
 endfunction
 

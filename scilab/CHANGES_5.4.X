@@ -868,6 +868,11 @@ Bug fixes:
 
 * bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
 
+* bug 9825 fixed - The assert_computedigits function generously 
+                   gives too large correct digits.
+
+* bug 9963 fixed - The assert_computedigits function was not vectorized.
+
 * bug 9966 fixed - The default value of comptype in assert_checkalmostequal
                    was wrongly chosen.
 
