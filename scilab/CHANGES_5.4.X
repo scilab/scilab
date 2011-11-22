@@ -106,6 +106,8 @@ SciNotes:
 * bug 10252 fixed - Could not change the font when SciNotes was docked with the
                     console.
 
+* bug 10283 fixed - The values write in w and iw output arguments of ode function
+                    are directly got from work table used in lsod* function.
 
 Graphical User Interface:
 =========================
