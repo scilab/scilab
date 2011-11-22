@@ -67,7 +67,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 	if(in.size() > 1)
 	{//errcatch or mode
-        if(in[1]->isString() && in[1]->getAs<types::String>() ->getSize() == 1)
+        if(in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
 		{//errcatch
 			String* pS = in[1]->getAs<types::String>();
 			if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
@@ -82,7 +82,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 			if(in.size() > 2)
 			{
-                if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
+                if(in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
 				{//mode
                     ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"exec", 3);
                     return Function::Error;
@@ -91,7 +91,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 promptMode = (int)in[2]->getAs<Double>()->getReal()[0];
 			}
 		}
-		else if(in[1]->isDouble() && in[1]->getAs<Double>()->getSize() == 1)
+		else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
         {//mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
 		}
@@ -102,7 +102,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
 	}
 
-    if(in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
+    if(in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
 	{//1st argument is a path, parse file and execute it
 		int iParsePathLen		= 0;
 		String* pS = in[0]->getAs<types::String>();

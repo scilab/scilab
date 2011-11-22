@@ -37,17 +37,17 @@ namespace types
         int                         m_iCols;
         int                         m_iSize;
         int                         m_iSizeMax;
-        int*                        m_piDims;
+        int                         m_piDims[50];
         int                         m_iDims;
         
 
-                                    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_piDims(NULL), m_iDims(0) {}
-        virtual                     ~GenericType() {}
+                                    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_iDims(0) {}
 
         bool                        hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount);
         bool                        hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount);
 
     public :
+        virtual                     ~GenericType() {}
         void                        whoAmI(void) { std::cout << "types::GenericType"; }
         virtual bool                isComplex(){ return false;}
         virtual bool                isScalar(){ return false;}

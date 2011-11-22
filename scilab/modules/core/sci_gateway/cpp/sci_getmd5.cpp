@@ -69,9 +69,9 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
     }
 
     String *pIn = in[0]->getAs<types::String>();
-    String *pOutput = new String(in[0]->getAs<types::String>()->getRows(), in[0]->getAs<types::String>()->getCols());
+    String *pOutput = new String(pIn->getRows(), pIn->getCols());
 
-    for(int i = 0 ; i < in[0]->getAs<types::String>()->getSize() ; ++i)
+    for(int i = 0 ; i < pIn->getSize() ; ++i)
     {
         wchar_t *wcsCurrentIn = pIn->get(i);
         wchar_t *pstMD5 = NULL;

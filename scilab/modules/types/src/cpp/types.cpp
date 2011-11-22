@@ -26,7 +26,7 @@ namespace types
 {
     bool InternalType::isGenericType(void)
     {
-        return (dynamic_cast<GenericType*>(this) != NULL);
+        return true;
     }
 
 	/*commun functions*/

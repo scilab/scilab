@@ -40,12 +40,12 @@ namespace symbol
     // Operators for better performances.
     bool Symbol::operator== (const Symbol &rhs) const
     {
-        return _set_node == rhs.get_node();
+        return &(*_set_node) == &(*rhs.get_node());
     }
 
     bool Symbol::operator!= (const Symbol &rhs) const
     {
-        return this != &rhs;
+        return !(*this == rhs);
     }
 
     bool Symbol::operator<(const Symbol &rhs) const

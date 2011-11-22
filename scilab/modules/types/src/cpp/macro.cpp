@@ -32,11 +32,16 @@ extern "C"
 namespace types
 {
     Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule):
-    Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body)
+        Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
+        m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout"))
     {
         setName(_stName);
         setModule(_stModule);
         bAutoAlloc = false;
+        m_pDblArgIn = new Double(1);
+        m_pDblArgIn->IncreaseRef(); //never delete
+        m_pDblArgOut = new Double(1);
+        m_pDblArgOut->IncreaseRef(); //never delete
     }
 
     Macro::~Macro()
@@ -113,7 +118,7 @@ namespace types
             }
 
             //create varargin only if previous variable are assigned
-            if(in.size() >= static_cast<int>(m_inputArgs->size()) - 1)
+            if(in.size() >= m_inputArgs->size() - 1)
             {
                 //create and fill varargin
                 List* pL = new List();
@@ -173,8 +178,10 @@ namespace types
         //common part with or without varargin/varargout
 
         // Declare nargin & nargout in function context.
-        pContext->put(symbol::Symbol(L"nargin"), *new Double(static_cast<double>(in.size())));
-        pContext->put(symbol::Symbol(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
+        m_pDblArgIn->set(0, in.size());
+        m_pDblArgOut->set(0, _iRetCount);
+        pContext->put(m_ArgInSymb, *m_pDblArgIn);
+        pContext->put(m_ArgOutSymb, *m_pDblArgOut);
 
         //save current prompt mode
         int oldVal = ConfigVariable::getPromptMode();
@@ -204,13 +211,13 @@ namespace types
                     return Callable::Error;
                 }
 
-                List* pVarOut = pOut->getAs<List>();
-                if(pVarOut == NULL || pVarOut->getSize() == 0)
+                if(pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
                 {
                     ScierrorW(999, _W("Invalid index.\n"));
                     return Callable::Error;
                 }
 
+                List* pVarOut = pOut->getAs<List>();
                 for(int i = 0 ; i < Min(pVarOut->getSize(), _iRetCount) ; i++)
                 {
                     InternalType* pIT = pVarOut->get(i);
@@ -249,7 +256,7 @@ namespace types
             ConfigVariable::setPromptMode(oldVal);
             //close the current scope
             pContext->scope_end();
-            for (int j = 0; j < out.size(); ++j)
+            for (size_t j = 0; j < out.size(); ++j)
             {
                 out[j]->DecreaseRef();
             }
@@ -261,7 +268,7 @@ namespace types
             ConfigVariable::setPromptMode(oldVal);
             //close the current scope
             pContext->scope_end();
-            for (int j = 0; j < out.size(); ++j)
+            for (size_t j = 0; j < out.size(); ++j)
             {
                 out[j]->DecreaseRef();
             }
@@ -271,7 +278,7 @@ namespace types
         //close the current scope
         pContext->scope_end();
 
-        for (int j = 0; j < out.size(); ++j)
+        for (size_t j = 0; j < out.size(); ++j)
         {
             out[j]->DecreaseRef();
         }

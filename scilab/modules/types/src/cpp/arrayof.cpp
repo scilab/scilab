@@ -80,12 +80,12 @@ namespace types
     {
         for(int i = 0 ; i < _Arg.size() ; i++)
         {
-            Double* pDbl = _Arg[i]->getAs<Double>();
-            if(pDbl == NULL)
+            if( _Arg[i]->isDouble() == false)
             {
                 return false;
             }
 
+            Double* pDbl = _Arg[i]->getAs<Double>();
             double* pdbl = pDbl->get();
             for(int j = 0 ; j < pDbl->getSize() ; j++)
             {

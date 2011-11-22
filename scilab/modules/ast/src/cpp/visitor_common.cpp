@@ -227,7 +227,7 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
 _iRows : Position if _poDest allready initialized else size of the matrix
 _iCols : Position if _poDest allready initialized else size of the matrix
 */
-types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows, int *_piCols)
+types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
 {
 	types::InternalType *poResult	= NULL;
 	types::InternalType::RealType TypeSource	= _poSource->getType();
@@ -289,13 +289,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
             // FIXME What should we do here ...
             break;
 		}
-		iCurCol		= 0;
-		iCurRow		= 0;
-		TypeDest	=	TypeSource;
+		iCurCol = 0;
+		iCurRow = 0;
+		TypeDest =	TypeSource;
 	}
 	else
 	{
-		TypeDest		= _poDest->getType();
+		TypeDest = _poDest->getType();
 		poResult = _poDest;
 	}
 
@@ -336,8 +336,6 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 				}
 
 				poResult->getAs<types::Polynom>()->setCoef(iCurRow, iCurCol, _poSource->getAs<types::Polynom>()->get(0)->getCoef());
-                *_piRows = _poSource->getAsGenericType()->getRows();
-                *_piCols = _poSource->getAsGenericType()->getCols();
 			}
 			break;
 		case types::GenericType::RealPoly :
@@ -348,8 +346,6 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 				pPolyOut->setRank(1);
                 pPolyOut->setCoef(_poSource->getAs<types::Double>());
-                *_piRows = _poSource->getAsGenericType()->getRows();
-                *_piCols = _poSource->getAsGenericType()->getCols();
 			}
 			break;
 		default:
@@ -361,68 +357,44 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 	{//Just add the new value in the current item
 		switch(TypeDest)
 		{
-		case types::GenericType::RealDouble :
-    		{
-            types::Double* pDblSource = _poSource->getAs<types::Double>();
-			poResult->getAs<types::Double>()->append(iCurRow, iCurCol, pDblSource);
-			*_piRows = pDblSource->getRows();
-			*_piCols = pDblSource->getCols();
-			break;
-			}
-		case types::GenericType::RealPoly :
+        case types::GenericType::RealDouble :
+            ((Double*)poResult)->append(iCurRow, iCurCol, (Double*)_poSource);
+            break;
+        case types::GenericType::RealPoly :
 			poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealBool:
 			poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource->getAs<types::Bool>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealInt8 :
 			poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int8>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealUInt8 :
 			poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt8>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealInt16 :
 			poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int16>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealUInt16 :
 			poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt16>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealInt32 :
 			poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int32>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealUInt32 :
 			poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt32>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealInt64 :
 			poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int64>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealUInt64 :
 			poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt64>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
 			break;
 		case types::GenericType::RealString :
-            poResult->getAs<types::String>()->append(iCurRow, iCurCol, _poSource->getAs<types::String>());
-			*_piRows = _poSource->getAsGenericType()->getRows();
-			*_piCols = _poSource->getAsGenericType()->getCols();
+            {
+                types::String* pSource = _poSource->getAs<types::String>();
+                poResult->getAs<types::String>()->append(iCurRow, iCurCol, pSource);
+            }
 			break;
 		case types::GenericType::RealImplicitList :
 			{

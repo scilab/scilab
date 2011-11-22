@@ -36,8 +36,8 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
-        Double *pL = _pLeftOperand->getAs<Double>();
-        Double *pR = _pRightOperand->getAs<Double>();
+        Double *pL = (Double*)_pLeftOperand;
+        Double *pR = (Double*)_pRightOperand;
 
         int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
         if(iResult != 0)
@@ -281,6 +281,25 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 					(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
 		}
 	}
+    else if(bScalar1 && bScalar2)
+    {
+		if(bComplex1 == false && bComplex2 == false)
+        {
+            (*_pDoubleOut)	= new Double(*_pDouble1->get() + *_pDouble2->get());
+        }
+		else if(bComplex1 == false && bComplex2 == true)
+        {
+            (*_pDoubleOut)	= new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble2->getImg(0));
+        }
+		else if(bComplex1 == true && bComplex2 == false)
+        {
+            (*_pDoubleOut)	= new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble1->getImg(0));
+        }
+		else if(bComplex1 == true && bComplex2 == true)
+        {
+            (*_pDoubleOut)	= new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble1->getImg(0) + _pDouble2->getImg(0));
+        }
+    }
 	else if(bScalar1)
 	{//add pL with each element of pR
         (*_pDoubleOut)	= new Double(iDims2, piDims2, bComplex1 || bComplex2);

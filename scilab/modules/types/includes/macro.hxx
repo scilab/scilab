@@ -24,7 +24,7 @@ namespace types
     class Macro : public Callable
     {
     public :
-                                    Macro(): Callable(){};
+                                    Macro() : Callable(), m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout")) {}
                                     Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
         virtual                     ~Macro();
 
@@ -56,6 +56,10 @@ namespace types
         std::list<symbol::Symbol>*  m_outputArgs;
         ast::SeqExp*                m_body;
         bool                        bAutoAlloc;
+        symbol::Symbol              m_ArgInSymb;
+        symbol::Symbol              m_ArgOutSymb;
+        Double*                     m_pDblArgIn;
+        Double*                     m_pDblArgOut;
 
     };
 }

@@ -57,6 +57,8 @@ namespace types
         InternalType*               clone();
         bool                        fillFromCol(int _iCols, Double *_poSource);
         bool                        fillFromRow(int _iRows, Double *_poSource);
+        bool                        append(int _iRows, int _iCols, InternalType* _poSource);
+
 	    //bool                        append(int _iRows, int _iCols, Double *_poSource);
 
         bool                        operator==(const InternalType& it);
@@ -80,6 +82,7 @@ namespace types
         virtual void                deleteAll();
         virtual void                deleteImg();
         virtual double*             allocData(int _iSize);
+
 
     };
 }

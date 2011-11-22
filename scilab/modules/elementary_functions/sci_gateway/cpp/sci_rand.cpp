@@ -85,14 +85,13 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             }
             else if(iSizeIn == 2)
             {
-                types::Double* pSeed = in[1]->getAs<types::Double>();
-                if(pSeed == NULL || pSeed->isScalar() == false)
+                if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
                 {
                     ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"rand", 2);
                     return types::Function::Error;
                 }
 
-                siRandSave = (int)Max(pSeed->get(0), 0);
+                siRandSave = (int)Max(in[1]->getAs<types::Double>()->get(0), 0);
                 iForceInit = 1;
             }
             else
@@ -163,14 +162,13 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             //check others parameter type and size
             for(int i = 0 ; i < iSizeIn ; i++)
             {
-                types::Double* pD = in[i]->getAs<types::Double>();
-                if(pD == NULL || pD->getSize() != 1)
+                if(in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isScalar() == false)
                 {
                     ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"rand" , i+1);
                     return types::Function::Error;
                 }
 
-                piDims[i] = (int)pD->get(0);
+                piDims[i] = (int)in[i]->getAs<types::Double>()->get(0);
             }
 
             types::Double* pOut = new types::Double(iDims, piDims);

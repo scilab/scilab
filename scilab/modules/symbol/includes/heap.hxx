@@ -15,13 +15,12 @@
 
 #include <iostream>
 #include <list>
+#include <map>
 #include "symbol.hxx"
 #include "table.hxx"
 
 #include "bool.hxx"
 #include "double.hxx"
-
-#define UNNAMED L"unnamed"
 
 namespace symbol
 {
@@ -33,257 +32,202 @@ namespace symbol
 | removed when the scope is closed.  Lookup of symbols is donne in the   |
 | last added dictionnary first (LIFO).                                   |
 `-----------------------------------------------------------------------*/
-    class EXTERN_SYMBOL Heap : public Table
+    class EXTERN_SYMBOL Heap
     {
-    public:
-
+    private :
         types::Bool *m_True;
+        typedef std::list<Scope*> ListScope;
+        typedef std::map<Symbol, ListScope* > MapScope;
+        MapScope namespaces;
+        ListScope globals;
+    public:
         /**
 
         */
         Heap()
         {
-            scope_begin(UNNAMED);
+            scope_begin();
             m_True = new types::Bool(1);
             m_True->IncreaseRef();
         }
 
-        /** Open a new scope */
-        void scope_begin(const std::wstring& name)
+        void namespace_add(const symbol::Symbol& name)
         {
-            this->l_scope.push_front(new Scope(name));
+            namespaces[name] = new ListScope;
         }
 
-        /** Open a new scope */
         void scope_begin()
         {
-            this->l_scope.push_front(new Scope(UNNAMED));
+            globals.push_front(new Scope());
+            MapScope::iterator it = namespaces.begin();
+            for(; it != namespaces.end() ; it++)
+            {
+                it->second->push_front(new Scope());
+            }
         }
 
-        /** Close the last scope, forgetting everything since the latest
-        **	scope_begin (). */
         void scope_end()
         {
-            Scope* scope = this->l_scope.front();
-            this->l_scope.pop_front();
-            delete scope;
+            delete globals.front();
+            globals.pop_front();
+            MapScope::iterator it = namespaces.begin();
+            for(; it != namespaces.end() ; it++)
+            {
+                delete it->second->front();
+                it->second->pop_front();
+            }
         }
 
-        /*
-        ** Global namespace direct access.
-        ** {
-        */
-
-        /** Associate value to key in the global scope. */
         void put(const symbol::Symbol& key, types::InternalType &value)
         {
-            (*this->l_scope.back()).put(key, value);
+            globals.back()->put(key, value);
         }
 
-        /** \brief If key was associated to some Entry_T in
-        ** the "global"/last namespace, return the
-        ** most recent insertion. Otherwise return the empty pointer.
-        ** \param key : the key to look for
-        */
+        void put(const symbol::Symbol& name, const symbol::Symbol& key, types::InternalType &value)
+        {
+            MapScope::iterator scope = namespaces.find(name);
+            if(scope == namespaces.end())
+            {//create namespace if does not exist
+                namespace_add(name);
+                scope = namespaces.find(name);
+            }
+
+            scope->second->back()->put(key, value);
+        }
+
         types::InternalType* get(const symbol::Symbol& key) const
         {
-            types::InternalType* result = 0;
-
-            result = (*this->l_scope.back()).get(key);
-            return result;
+            return globals.back()->get(key);
         }
 
-        /*
-        ** }
-        ** END Global Namespace
-        */
-
-        /** \brief Associate a value to a key in the given namespace.
-        ** If the Namespace does not exists it will be automatically
-        ** created.
-        ** \param name : the name of the namespace.
-        ** \param key : the key.
-        ** \param value : the value associated to the key.
-        */
-        void put(const std::wstring& name, symbol::Symbol& key, types::InternalType &value)
+        types::InternalType* get(const symbol::Symbol& name, const symbol::Symbol& key) const
         {
-            std::list<Scope*>::iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end(); ++it_list_scope)
+            MapScope::const_iterator scope = namespaces.find(name);
+            if(scope != namespaces.end())
             {
-                if ((*it_list_scope)->get_name() == name)
-                {
-                    (*it_list_scope)->put(key, value);
-                    return ;
-                }
+                return scope->second->back()->get(key);
             }
-            scope_begin(name);
-            (*this->l_scope.front()).put(key, value);
+            return NULL;
         }
 
-        /** \brief Check if key is visible in the current global scope
-        ** \param key : the key to look for
-        */
         bool isGlobalVisible(const symbol::Symbol& key) const
         {
-            std::list<Scope*>::const_iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+            if(globals.empty())
             {
-                if ((*it_list_scope)->get_name() == UNNAMED)
+                return false;
+            }
+
+            ListScope::const_iterator it;
+            for (it = globals.begin() ; it != globals.end() ; it++)
+            {
+                if((*it)->get(key))
                 {
-                    types::InternalType* pIT = (*it_list_scope)->get(key);
-                    if(pIT != NULL)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
                 }
             }
             return false;
         }
 
-        /** \brief Check if key exists in globals
-        ** \param key : the key to look for
-        */
         bool isGlobalExists(const symbol::Symbol& key) const
         {
-            types::InternalType* pIT = getGlobalValue(key);
-            if(pIT)
+            if(getGlobalValue(key))
             {
                 return true;
             }
             return false;
         }
 
-        /** \brief Return value associated to key in current global scope
-        ** \param key : the key to look for
-        */
         types::InternalType* getGlobalValue(const symbol::Symbol& key) const
         {
-            std::list<Scope*>::const_reverse_iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.rbegin() ; it_list_scope != this->l_scope.rend() ; ++it_list_scope)
-            {
-                if ((*it_list_scope)->get_name() == UNNAMED)
-                {
-                    return (*it_list_scope)->get(key);
-                }
-            }
-            return NULL;
+            return globals.back()->get(key);
         }
 
-        /** \brief associate value to key in current global scope
-        ** \param key : the key to look for
-        ** \param value : the value to associete
-        */
         void setGlobalValue(const symbol::Symbol& key, types::InternalType &value)
         {
-            std::list<Scope*>::reverse_iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.rbegin() ; it_list_scope != this->l_scope.rend() ; ++it_list_scope)
-            {
-                if ((*it_list_scope)->get_name() == UNNAMED)
-                {
-                    (*it_list_scope)->put(key, value);
-                    break;
-                }
-            }
+            globals.back()->put(key, value);
         }
 
-        /** \brief Create a "empty" global value
-        ** \param key : the key to create
-        */
         void createEmptyGlobalValue(const symbol::Symbol& key)
         {
             setGlobalValue(key, *types::Double::Empty());
         }
 
 
-        /** \brief Change visibility of a global variable
-        ** \param key : the key to manage
-        ** \param bVisible : status ( true to visible, false to hide )
-        */
         void setGlobalVisible(const symbol::Symbol& key, bool bVisible)
         {
-            std::list<Scope*>::const_iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+            if(bVisible)
             {
-                if ((*it_list_scope)->get_name() == UNNAMED)
-                {
-                    if(bVisible)
-                    {
-                        (*it_list_scope)->put(key, *m_True);
-                    }
-                    else
-                    {
-                        (*it_list_scope)->remove(key);
-                    }
-                    break;
-                }
+                globals.front()->put(key, *m_True);
+            }
+            else
+            {
+                globals.front()->remove(key);
             }
         }
 
-        /** \brief Remove a variable from global scope
-        ** \param key : the key to remove
-        */
         void removeGlobal(const symbol::Symbol& key)
         {
-            //remove variable and all variable references
-            std::list<Scope*>::const_iterator it_list_scope;
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+            ListScope::const_iterator it;
+            for (it = globals.begin() ; it != globals.end() ; it++)
             {
-                if ((*it_list_scope)->get_name() == UNNAMED)
-                {
-                    (*it_list_scope)->remove(key);
-                }
+                (*it)->remove(key);
             }
         }
 
-        /** \brief Remove all variables from global scope
-        */
         void removeGlobalAll()
         {
-            std::list<Scope*>::const_iterator it_list_scope;
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+            ListScope::const_iterator it;
+            for (it = globals.begin() ; it != globals.end() ; it++)
             {
-                if ((*it_list_scope)->get_name() == UNNAMED)
-                {
-                    std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
-                    std::map<symbol::Symbol, types::InternalType*>* pScope = (*it_list_scope)->getInternalMap();
+                std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
+                std::map<symbol::Symbol, types::InternalType*>* pScope = (*it)->getInternalMap();
 
+                it_scope = pScope->begin();
+                while(it_scope != pScope->end())
+                {
+                    (*it)->remove(it_scope->first);
                     it_scope = pScope->begin();
-                    while(it_scope != pScope->end())
-                    {
-                        (*it_list_scope)->remove(it_scope->first);
-                        it_scope = pScope->begin();
-                    }
                 }
             }
         }
 
-        /** \brief If key was associated to some Entry_T in
-        ** the "global"/last namespace, return the
-        ** most recent insertion. Otherwise return the empty pointer.
-        ** \param key : the key to look for
-        */
-        types::InternalType* get(const std::wstring& name, const symbol::Symbol& key) const
+        void print(std::wostream& ostr) const
         {
-            std::list<Scope*>::const_iterator it_list_scope;
-
-            for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+            //print globals
+            ListScope::const_iterator it;
+            for(it = globals.begin() ; it != globals.end() ; it++)
             {
-                if ((*it_list_scope)->get_name() == name)
-                {
-                    return (*it_list_scope)->get(key);
-                }
+                (*it)->print(ostr);                
             }
-            return NULL;
+            
+            //print namespace
+            MapScope::const_iterator it_namespace;
+            ListScope::const_iterator it_scope;
+            for(it_namespace = namespaces.begin() ; it_namespace != namespaces.end() ; it_namespace++)
+            {
+                print(it_namespace->first, ostr);
+            }
+            
         }
+
+        void print(const Symbol& name, std::wostream& ostr) const
+        {
+            MapScope::const_iterator scope = namespaces.find(name);
+            if(scope == namespaces.end())
+            {
+               ostr << name.name_get() << L" not found" << std::endl;
+               return;
+            }
+
+            ListScope::const_iterator it;
+
+            ostr << scope->first.name_get() << "L : " << std::endl;
+            for(it = scope->second->begin() ; it != scope->second->end() ; it++)
+            {
+                (*it)->print(ostr);
+            }
+        }
+
     };
 
     inline std::wostream& operator<< (std::wostream& ostr, const Heap &tbl)

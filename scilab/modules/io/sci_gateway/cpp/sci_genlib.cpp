@@ -90,7 +90,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 	}
 
 	pS = pIT->getAs<types::String>();
-	if(pS->getSize() != 1)
+	if(pS->isScalar() == false)
 	{
 		return Function::Error;
 	}

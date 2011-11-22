@@ -39,7 +39,7 @@ Function::ReturnValue sci_inspectorGetUnreferencedItem(typed_list &in, int _iRet
     }
 
     Double *pD = in[0]->getAs<Double>();
-    if(pD->getSize() != 1)
+    if(pD->isScalar() == false)
     {
         ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"inspectorGetItem", 1);
         Function::Error;

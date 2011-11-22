@@ -122,7 +122,7 @@ namespace types
         */
 
         template <class T>
-        T*                              getAs(void) { return dynamic_cast<T*>(this); }
+        T*                              getAs(void) { return static_cast<T*>(this); }
 
         /* GenericType */
         virtual bool                    isGenericType(void);

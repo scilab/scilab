@@ -74,10 +74,20 @@ namespace types
 
 	Double::Double(double _dblReal)
 	{
-        int piDims[2] = {1, 1};
-		double *pdblVal;
-		create(piDims, 2, &pdblVal, NULL);
-		pdblVal[0] = _dblReal;
+        m_piDims[0] = 1;
+        m_piDims[1] = 1;
+        m_iDims = 2;
+        m_iRows = 1;
+        m_iCols = 1;
+        m_iSize = 1;
+        m_iSizeMax = m_iSize;
+        m_pRealData = new double[1];
+        m_pRealData[0] = _dblReal;
+
+  //      int piDims[2] = {1, 1};
+		//double *pdblVal;
+		//create(piDims, 2, &pdblVal, NULL);
+		//pdblVal[0] = _dblReal;
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -193,11 +203,12 @@ namespace types
 	bool Double::setOnes()
 	{
 		if(m_pRealData != NULL)
-		{
-			for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-			{
-				m_pRealData[iIndex] = 1;
-			}
+        {
+            std::fill(m_pRealData, m_pRealData + m_iSize, 1);
+			//for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
+			//{
+			//	m_pRealData[iIndex] = 1;
+			//}
 		}
 		else
         {
@@ -208,10 +219,7 @@ namespace types
 		{
 			if(m_pImgData != NULL)
 			{
-				for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-				{
-					m_pImgData[iIndex] = 1;
-				}
+                std::fill(m_pImgData, m_pImgData + m_iSize, 1);
 			}
 			else
             {
@@ -761,61 +769,112 @@ namespace types
         return pDbl;
     }
 
-    //bool Double::append(int _iRows, int _iCols, Double *_poSource)
-    //{
-    //    int iSourceRows = _poSource->getRows();
-    //    int iSourceCols = _poSource->getCols();
-    //    int iOrigRows   = getRows();
-    //    int iOrigCols   = getCols();
+    bool Double::append(int _iRows, int _iCols, InternalType* _poSource)
+    {
+        Double* pD = _poSource->getAs<Double>();
+        int iRows = pD->getRows();
+        int iCols = pD->getCols();
+        int iSize = iRows * iCols;
 
-    //    //insert without resize
-    //    if(iSourceRows + _iRows > iOrigRows || iSourceCols + _iCols > iOrigCols)
-    //    {
-    //        return false;
-    //    }
+        //insert without resize
+        if(iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+        {
+            return false;
+        }
 
-    //    double* pSourceReal = _poSource->get();
-    //    double* pSourceImg  = _poSource->getImg();
-    //    double* pOrigReal   = get();
-    //    double* pOrigImg    = getImg();
+        //Update complexity if necessary
+        setComplex(isComplex() || pD->isComplex());
 
-    //    if(m_bComplex)
-    //    {
-    //        for(int iRow = 0 ; iRow < iSourceRows ; iRow++)
-    //        {
-    //            int iDestOffset = _iCols * iOrigRows + iRow;
-    //            int iOrigOffset = iSourceCols * iSourceRows + iRow;
-    //            memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceCols * sizeof(double));
-    //            if(_poSource->isComplex())
-    //            {
-    //                memcpy(pOrigImg + iDestOffset, pSourceImg + iOrigOffset, iSourceCols * sizeof(double));
-    //            }
-    //            else
-    //            {
-    //                memset(pOrigImg + iDestOffset, 0x00, iSourceCols * sizeof(double));
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if(iSourceRows != 1)
-    //        {
-    //            for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
-    //            {
-    //                int iDestOffset = (iCol + _iCols ) * iOrigRows + _iRows;
-    //                int iOrigOffset = iCol * iSourceRows;
-    //                memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceRows * sizeof(double));
-    //            }
-    //        }
-    //        else
-    //        {
-    //            for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
-    //            {
-    //                //set(_iRows, _iCols + iCol, pSourceReal[iCol]);
-    //                set((_iCols + iCol) * iOrigRows + _iRows, pSourceReal[iCol]);
-    //            }
-    //        }
-    //    }
-    //    return true;
-    //}
+        int iInc = 1;
+        int iOne = 1;
+
+        //two cases : 
+        //  - append to 0,0
+        //  - real append in x,y
+
+        if(_iRows == 0 && _iCols == 0)
+        {//append to 0,0
+            //std::cout << "append 0,0" << std::endl;
+            if(iRows == 1 || iRows == getRows())
+            {
+                //std::cout << "full Rows or one row" << std::endl;
+                if(iRows == 1)
+                {
+                    iInc = getRows();
+                    //std::cout << "iInc : " << iInc << std::endl;
+                }
+                
+                if(isComplex())
+                {
+                    C2F(dcopy)(&iSize, pD->get(), &iOne, get(), &iInc);
+                    C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg(), &iInc);
+                }
+                else
+                {
+                    C2F(dcopy)(&iSize, pD->get(), &iOne, get(), &iInc);
+                }
+            }
+            else
+            {
+                //std::cout << "part of row" << std::endl;
+                if(isComplex())
+                {
+                    for(int i = 0 ; i < iCols ; i++)
+                    {
+                        int iOffset = i * getRows();
+                        C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
+                        C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                    }
+                }
+                else
+                {
+                    for(int i = 0 ; i < iCols ; i++)
+                    {
+                        C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + i * getRows(), &iOne);
+                    }
+                }
+            }
+        }
+        else if(_iRows == 0 || (_iCols == 0 && (iCols == 1 || iRows == 1)))
+        {//real append in x,y
+            //std::cout << "real append in x,y" << std::endl;
+            if(iRows == 1)
+            {
+                iInc = getRows();
+                //std::cout << "iInc : " << iInc << std::endl;
+            }
+
+            if(isComplex())
+            {
+                int iOffset =  _iCols * getRows() + _iRows;
+                C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
+                C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
+            }
+            else
+            {
+                C2F(dcopy)(&iSize, pD->get(), &iOne, get() + _iCols * getRows() + _iRows, &iInc);
+            }
+        }
+        else 
+        {
+            //std::cout << "no optimisation" << std::endl;
+            if(isComplex())
+            {
+                for(int i = 0 ; i < iCols ; i++)
+                {
+                    int iOffset = (_iCols + i) * getRows() + _iRows;
+                    C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
+                    C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                }
+            }
+            else
+            {
+                for(int i = 0 ; i < iCols ; i++)
+                {
+                    C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + (_iCols + i) * getRows() + _iRows, &iOne);
+                }
+            }
+        }
+        return true;
+    }
 }

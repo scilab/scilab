@@ -19,17 +19,12 @@
 
 void visitprivate(const OpExp &e)
 {
-    T execMeL;
-    T execMeR;
-
     try
     {
-
         /*getting what to assign*/
-        e.left_get().accept(execMeL);
-        /*getting what to assign*/
-        e.right_get().accept(execMeR);
-        if(execMeL.is_single_result() == false || execMeR.is_single_result() == false)
+        e.left_get().accept(*this);
+        InternalType *pITL = result_get();
+        if(is_single_result() == false)
         {
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
@@ -37,8 +32,17 @@ void visitprivate(const OpExp &e)
             throw ScilabError(os.str(), 999, e.right_get().location_get());
         }
 
-        InternalType *pITL          = execMeL.result_get();
-        InternalType *pITR          = execMeR.result_get();
+        /*getting what to assign*/
+        e.right_get().accept(*this);
+        InternalType *pITR = result_get();
+        if(is_single_result() == false)
+        {
+            std::wostringstream os;
+            os << _W("Incompatible output argument.\n");
+            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+            throw ScilabError(os.str(), 999, e.right_get().location_get());
+        }
+
         GenericType::RealType TypeL = pITL->getType();
         GenericType::RealType TypeR = pITR->getType();
 
@@ -68,20 +72,11 @@ void visitprivate(const OpExp &e)
         {
         case OpExp::plus :
             {
-                try
-                {
-                    pResult = GenericPlus(pITL, pITR);
-                }
-                catch (ScilabException *pSE)
-                {
-                    pSE->SetErrorLocation(e.right_get().location_get());
-                    throw pSE;
-                }
-
+                pResult = GenericPlus(pITL, pITR);
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
 
@@ -103,7 +98,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
 
@@ -125,7 +120,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
                 result_set(pResult);
@@ -146,7 +141,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
                 result_set(pResult);
@@ -167,7 +162,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
                 }
                 result_set(pResult);
                 break;
@@ -187,7 +182,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
                 result_set(pResult);
@@ -208,7 +203,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
                 result_set(pResult);
@@ -229,7 +224,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
                 }
                 result_set(pResult);
                 break;
@@ -249,7 +244,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
                 }
                 result_set(pResult);
                 break;
@@ -305,7 +300,7 @@ void visitprivate(const OpExp &e)
                 }
                 else
                 {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    result_set(callOverload(e.oper_get(), pITL, pITR));
                 }
                 break;
             }
@@ -360,7 +355,7 @@ void visitprivate(const OpExp &e)
                 }
                 else
                 {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    result_set(callOverload(e.oper_get(), pITL, pITR));
                 }
                 break;
             }
@@ -416,7 +411,7 @@ void visitprivate(const OpExp &e)
                 }
                 else
                 {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    result_set(callOverload(e.oper_get(), pITL, pITR));
                 }
                 break;
             }
@@ -471,7 +466,7 @@ void visitprivate(const OpExp &e)
                 }
                 else
                 {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                    result_set(callOverload(e.oper_get(), pITL, pITR));
                 }
                 break;
             }
@@ -490,7 +485,7 @@ void visitprivate(const OpExp &e)
                 if (pResult == NULL)
                 {
                     // We did not have any algorithm matching, so we try to call OverLoad
-                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
 
                 }
                 result_set(pResult);
@@ -498,241 +493,238 @@ void visitprivate(const OpExp &e)
             }
         default :
             // By default call overload if we do not know this operator ...
-            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+            result_set(callOverload(e.oper_get(), pITL, pITR));
             break;
         }
+        //clear left and/or right operands
+        if(pITL->isDeletable())
+        {
+            delete pITL;
+        }
+
+        if(pITR->isDeletable())
+        {
+            delete pITR;
+        }
+
     }
     catch(ScilabError error)
     {
         error.SetErrorLocation(e.location_get());
         throw error;
     }
+
 }
 
 void visitprivate(const LogicalOpExp &e)
 {
-    T execMeL;
-    T execMeR;
-
-    e.left_get().accept(execMeL);
-    InternalType *pITL          = execMeL.result_get();
-    InternalType *pITR          = NULL;
+    e.left_get().accept(*this);
+    InternalType *pITL = result_get();
+    InternalType *pITR = NULL;
 
     GenericType::RealType TypeL = pITL->getType();
-    Bool *pL	= NULL;
+    
+    InternalType *pResult = NULL;
 
-    if(TypeL == GenericType::RealBool)
-    {
-        pL	= pITL->getAs<types::Bool>();
-    }
-    else
+    if(TypeL != GenericType::RealBool)
     {
         //TODO YaSp : Overloading %*_oper_*
-        e.right_get().accept(execMeR);
+        e.right_get().accept(*this);
+        pITR = result_get();
         switch(e.oper_get())
         {
         case LogicalOpExp::logicalShortCutOr :
         case LogicalOpExp::logicalOr :
-            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+            result_set(callOverload(e.oper_get(), pITL, pITR));
             break;
         case LogicalOpExp::logicalShortCutAnd :
         case LogicalOpExp::logicalAnd :
-            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+            result_set(callOverload(e.oper_get(), pITL, pITR));
             break;
         default :
             break;
         }
-        return;
     }
-
-    InternalType *pResult = NULL;
-    switch(e.oper_get())
+    else
     {
-    case LogicalOpExp::logicalShortCutOr :
+        Bool *pL = pITL->getAs<types::Bool>();
+        switch(e.oper_get())
         {
-            Bool *pB	= pITL->getAs<types::Bool>();
-            int *piL	= pB->get();
-            bool iL     = true;
-            // Check if all values are true
-            // true || <something is always true>
-            for(int i = 0 ; i < pB->getSize() ; i++)
+        case LogicalOpExp::logicalShortCutOr :
             {
-                if(piL[i] == false)
+                int *piL	= pL->get();
+                bool iL     = true;
+                // Check if all values are true
+                // true || <something is always true>
+                for(int i = 0 ; i < pL->getSize() ; i++)
                 {
-                    iL = false;
+                    if(piL[i] == false)
+                    {
+                        iL = false;
+                        break;
+                    }
+                }
+
+                if(iL)
+                {//we don't need to look at ohers exp
+                    pResult = new Bool(true);
                     break;
                 }
+                // DO NOT break here, falling into normal Or if this can not be shotcutted.
             }
-
-            if(iL)
-            {//we don't need to look at ohers exp
-                pResult = new Bool(true);
-                result_set(pResult);
-                return;
-            }
-            // DO NOT break here, falling into normal Or if this can not be shotcutted.
-        }
-    case LogicalOpExp::logicalOr :
-        {
-            e.right_get().accept(execMeR);
-            pITR = execMeR.result_get();
-            GenericType::RealType TypeR = pITR->getType();
-
-            if(TypeR == GenericType::RealBool)
+        case LogicalOpExp::logicalOr :
             {
-                Bool *pR	= pITR->getAs<types::Bool>();
-                int* piR = pR->get();
-                int* piL = pL->get();
-                int* piB	= NULL;
+                e.right_get().accept(*this);
+                pITR = result_get();
+                GenericType::RealType TypeR = pITR->getType();
 
-                // M | scalar
-                if(pR->getSize() == 1)
+                if(TypeR == GenericType::RealBool)
                 {
-                    pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                    for(int i = 0 ; i < pL->getSize(); i++)
-                    {
-                        piB[i] = (piR[0] == 1) || (piL[i] == 1);
-                    }
-                    result_set(pResult);
-                    return;
-                }
+                    Bool *pR = pITR->getAs<types::Bool>();
+                    int* piR = pR->get();
+                    int* piL = pL->get();
+                    int* piB = NULL;
 
-                // scalar | M
-                if(pL->getSize() == 1)
-                {
-                    pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                    for(int i = 0 ; i < pR->getSize(); i++)
+                    // M | scalar
+                    if(pR->getSize() == 1)
                     {
-                        piB[i] = (piR[i] == 1) || (piL[0] == 1);
+                        pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
+                        for(int i = 0 ; i < pL->getSize(); i++)
+                        {
+                            piB[i] = (piR[0] == 1) || (piL[i] == 1);
+                        }
                     }
-                    result_set(pResult);
-                    return;
-                }
-
-                // M | N (generic case)
-                if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                {
-                    pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                    for(int i = 0 ; i < pL->getSize(); i++)
+                    else if(pL->getSize() == 1)
+                    {// scalar | M
+                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
+                        for(int i = 0 ; i < pR->getSize(); i++)
+                        {
+                            piB[i] = (piR[i] == 1) || (piL[0] == 1);
+                        }
+                    }
+                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
+                    {// M | N (generic case)
+                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
+                        for(int i = 0 ; i < pL->getSize(); i++)
+                        {
+                            piB[i] = (piR[i] == 1) || (piL[i] == 1);
+                        }
+                    }
+                    else
                     {
-                        piB[i] = (piR[i] == 1) || (piL[i] == 1);
+                        std::wostringstream os;
+                        os << _W("Inconsistent row/column dimensions.\n");
+                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+                        throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
-                    result_set(pResult);
                 }
                 else
                 {
-                    std::wostringstream os;
-                    os << _W("Inconsistent row/column dimensions.\n");
-                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, e.right_get().location_get());
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
                 }
+                break;
             }
-            else
+        case LogicalOpExp::logicalShortCutAnd :
             {
-                result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
+                int *piL	= pL->get();
+                // Check if one value is false
+                // false && <something> is always false
+                for(int i = 0 ; i < pL->getSize() ; i++)
+                {
+                    if(piL[i] == false)
+                    {
+                        pResult = new Bool(false);
+                        break;
+                    }
+                }
+                // DO NOT break here, falling into normal And if this can not be shotcutted.
             }
-            break;
-        }
-    case LogicalOpExp::logicalShortCutAnd :
-        {
-            Bool *pB	= pITL->getAs<types::Bool>();
-            int *piL	= pB->get();
-            // Check if one value is false
-            // false && <something> is always false
-            for(int i = 0 ; i < pB->getSize() ; i++)
+        case LogicalOpExp::logicalAnd :
             {
-                if(piL[i] == false)
-                {
-                    pResult = new Bool(false);
-                    result_set(pResult);
-                    return;
-                }
-            }
-            // DO NOT break here, falling into normal And if this can not be shotcutted.
-        }
-    case LogicalOpExp::logicalAnd :
-        {
-            e.right_get().accept(execMeR);
-            pITR = execMeR.result_get();
-            GenericType::RealType TypeR = pITR->getType();
+                e.right_get().accept(*this);
+                pITR = result_get();
+                GenericType::RealType TypeR = pITR->getType();
 
-            if(TypeR == GenericType::RealBool)
-            {
-                Bool *pR	= pITR->getAs<types::Bool>();
-                int* piR = pR->get();
-                int* piL = pL->get();
-                int* piB	= NULL;
-
-                // M & scalar
-                if(pR->getSize() == 1)
+                if(TypeR == GenericType::RealBool)
                 {
-                    pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                    for(int i = 0 ; i < pL->getSize(); i++)
+                    Bool *pR = pITR->getAs<types::Bool>();
+                    int* piR = pR->get();
+                    int* piL = pL->get();
+                    int* piB = NULL;
+
+                    // M & scalar
+                    if(pR->getSize() == 1)
                     {
-                        piB[i] = (piR[0] == 1) && (piL[i] == 1);
+                        pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
+                        for(int i = 0 ; i < pL->getSize(); i++)
+                        {
+                            piB[i] = (piR[0] == 1) && (piL[i] == 1);
+                        }
                     }
-                    result_set(pResult);
-                    return;
-                }
-
-                // scalar & M
-                if(pL->getSize() == 1)
-                {
-                    pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                    for(int i = 0 ; i < pR->getSize(); i++)
+                    else if(pL->getSize() == 1)
+                    {// scalar & M
+                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
+                        for(int i = 0 ; i < pR->getSize(); i++)
+                        {
+                            piB[i] = (piR[i] == 1) && (piL[0] == 1);
+                        }
+                    }
+                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
+                    {// M & N (generic case)
+                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
+                        for(int i = 0 ; i < pL->getSize(); i++)
+                        {
+                            piB[i] = (piR[i] == 1) && (piL[i] == 1);
+                        }
+                    }
+                    else
                     {
-                        piB[i] = (piR[i] == 1) && (piL[0] == 1);
+                        std::wostringstream os;
+                        os << _W("Inconsistent row/column dimensions.\n");
+                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+                        throw ScilabError(os.str(), 999, e.right_get().location_get());
                     }
-                    result_set(pResult);
-                    return;
-                }
-
-                // M & N (generic case)
-                if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                {
-                    pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                    for(int i = 0 ; i < pL->getSize(); i++)
-                    {
-                        piB[i] = (piR[i] == 1) && (piL[i] == 1);
-                    }
-                    result_set(pResult);
                 }
                 else
                 {
-                    std::wostringstream os;
-                    os << _W("Inconsistent row/column dimensions.\n");
-                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, e.right_get().location_get());
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
                 }
+                break;
             }
-            else
-            {
-                result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-            }
-            break;
-        }
 
-    default :
-        {
-            result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-            break;
+        default :
+            {
+                pResult = callOverload(e.oper_get(), pITL, pITR);
+                break;
+            }
         }
     }
+
+    if(pITL && pITL->isDeletable())
+    {
+        delete pITL;
+    }
+
+    if(pITR && pITR->isDeletable())
+    {
+        delete pITR;
+    }
+
+    result_set(pResult);
 }
 
-InternalType* callOverload(OpExp::Oper _oper, T *_paramL, T *_paramR)
+InternalType* callOverload(OpExp::Oper _oper, InternalType* _paramL, InternalType* _paramR)
 {
-    T execMe;
     types::typed_list in;
     types::typed_list out;
-    _paramL->result_get()->IncreaseRef();
-    _paramR->result_get()->IncreaseRef();
-    in.push_back(_paramL->result_get());
-    in.push_back(_paramR->result_get());
+    _paramL->IncreaseRef();
+    _paramR->IncreaseRef();
+    in.push_back(_paramL);
+    in.push_back(_paramR);
 
-    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, &execMe);
+    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this);
 
-    _paramL->result_get()->DecreaseRef();
-    _paramR->result_get()->DecreaseRef();
+    _paramL->DecreaseRef();
+    _paramR->DecreaseRef();
     return out[0];
 }

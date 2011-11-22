@@ -376,13 +376,15 @@ namespace types
 
     List* Cell::extractCell(typed_list* _pArgs)
     {
-        Cell* pCell = extract(_pArgs)->getAs<Cell>();
-        if(pCell == NULL)
+        InternalType* pIT = extract(_pArgs);
+        if(pIT->isCell() == false)
         {
             return NULL;
         }
 
         List* pList = new List();
+        
+        Cell* pCell = pIT->getAs<Cell>();
         for(int i = 0 ; i < pCell->getSize() ; i++)
         {
             pList->append(pCell->get(i));

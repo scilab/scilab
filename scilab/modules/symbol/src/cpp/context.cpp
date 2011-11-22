@@ -51,9 +51,9 @@ namespace symbol
 
     void Context::scope_begin()
     {
-        PrivateFunTable.scope_begin();
-        PrivateVarTable.scope_begin();
-        HeapFunTable.scope_begin();
+        //PrivateFunTable.scope_begin();
+        //PrivateVarTable.scope_begin();
+        //HeapFunTable.scope_begin();
         HeapVarTable.scope_begin();
         EnvFunTable.scope_begin();
         EnvVarTable.scope_begin();
@@ -61,12 +61,12 @@ namespace symbol
 
     void Context::scope_end()
     {
-        PrivateFunTable.scope_end();
-        PrivateVarTable.scope_end();
+        //PrivateFunTable.scope_end();
+        //PrivateVarTable.scope_end();
+        //HeapFunTable.scope_end();
+        HeapVarTable.scope_end();
         EnvFunTable.scope_end();
         EnvVarTable.scope_end();
-        HeapFunTable.scope_end();
-        HeapVarTable.scope_end();
     }
 
     types::InternalType* Context::get(const symbol::Symbol& key) const
@@ -76,20 +76,7 @@ namespace symbol
         //global scope
         if(HeapVarTable.isGlobalVisible(key))
         {
-            pI = HeapVarTable.getGlobalValue(key);
-        }
-
-        if(pI != NULL)
-        {
-            return pI;
-        }
-        else
-        {
-            pI = HeapFunTable.get(key);
-            if(pI != NULL)
-            {
-                return pI;
-            }
+            return HeapVarTable.getGlobalValue(key);
         }
 
         //local scope

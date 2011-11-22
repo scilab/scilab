@@ -27,23 +27,15 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    for(int i = 0 ; i < in.size() ; i++)
-    {
-        if(in[i]->isDouble() == false)
-        {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"ones", i + 1);
-            return Function::Error;
-        }
-    }
-
     Double* pOut = NULL;
     if(in.size() == 0)
     {
-        pOut = new Double(0);
+        out.push_back(new Double(1));
+        return Function::OK;
     }
     else if(in.size() == 1)
     {
-        Double* pIn = in[0]->getAs<Double>();
+        types::GenericType* pIn = in[0]->getAs<types::GenericType>();
         int iDims = pIn->getDims();
         int* piDims = pIn->getDimsArray();
 
@@ -56,7 +48,7 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
         for(int i = 0 ; i < iDims ; i++)
         {
             Double* pIn = in[i]->getAs<Double>();
-            if(pIn->getSize() != 1 || pIn->isComplex())
+            if(pIn->isDouble() == false || pIn->isScalar() == false || pIn->isComplex())
             {
                 ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"ones", i + 1);
                 return Function::Error;

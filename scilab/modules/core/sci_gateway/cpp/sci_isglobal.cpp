@@ -43,7 +43,7 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
         }
 
         String* pS = in[0]->getAs<types::String>();
-        if(pS->getSize() != 1)
+        if(pS->isScalar() == false)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "isglobal", 1);
             return Function::Error;

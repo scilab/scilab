@@ -18,102 +18,95 @@
 
 void visitprivate(const CallExp &e)
 {
-    T execFunc;
     std::list<Exp *>::const_iterator	itExp;
 
-    e.name_get().accept(execFunc);
-    if(execFunc.result_get() != NULL && execFunc.result_get()->isCallable())
+    e.name_get().accept(*this);
+    if(result_get() != NULL && result_get()->isCallable())
     {//function call
-        Callable *pCall = execFunc.result_get()->getAsCallable();
+        InternalType* pIT = result_get();
+        Callable *pCall = pIT->getAs<Callable>();
         types::typed_list out;
         types::typed_list in;
 
         //get function arguments
-        int iSize = e.args_get().size();
-        T *execVar = new T[iSize]();
-        int j = 0;
-        for (j = 0, itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp,j++)
+        for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
-            (*itExp)->accept (execVar[j]);
+            (*itExp)->accept (*this);
 
-            if(execVar[j].result_get() == NULL)
+            if(result_get() == NULL)
             {
                 //special case for empty extraction of list ( list()(:) )
-                execVar[j].result_set(NULL);
                 continue;
             }
 
-            if(execVar[j].result_get()->isImplicitList())
+            pIT = result_get();
+            if(result_get()->isImplicitList())
             {
-                ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
+                ImplicitList* pIL = pIT->getAs<ImplicitList>();
                 if(pIL->isComputable() == false)
                 {
                     Double* pVal = new Double(-1, -1);
                     pVal->getReal()[0] = 1;
-                    execVar[j].result_set(pVal);
+                    result_set(pVal);
                 }
                 else
                 {
-                    execVar[j].result_set(pIL->extractFullMatrix());
+                    result_set(pIL->extractFullMatrix());
                 }
             }
 
-            if(execVar[j].is_single_result())
+            if(is_single_result())
             {
-                in.push_back(execVar[j].result_get());
-                execVar[j].result_get()->IncreaseRef();
+                in.push_back(result_get());
+                result_get()->IncreaseRef();
             }
             else
             {
-                for(int i = 0 ; i < execVar[j].result_getSize() ; i++)
+                for(int i = 0 ; i < result_getSize() ; i++)
                 {
-                    in.push_back(execVar[j].result_get(i));
-                    execVar[j].result_get(i)->IncreaseRef();
+                    in.push_back(result_get(i));
+                    result_get(i)->IncreaseRef();
                 }
             }
         }
+
+        ////reset result
+        //result_clear();
 
         int iRetCount = Max(1, expected_getSize());
 
         try
         {
-            T execCall;
-            Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
-
-
+            Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
+            //reset result
+            result_clear();
             if(Ret == Callable::OK)
             {
-                if(expected_getSize() == 1 && out.size() == 0) //to manage ans
+                if(static_cast<int>(out.size()) < expected_getSize())
                 {
-                    if(static_cast<int>(out.size()) < expected_getSize())
+                    //clear input parameters
+                    for(unsigned int k = 0; k < in.size(); k++)
                     {
-                        //clear input parameters
-                        for(unsigned int k = 0; k < e.args_get().size(); k++)		
-                        {		
-                            if(execVar[k].result_get() != NULL)		
-                            {		
-                                execVar[k].result_get()->DecreaseRef();		
-                            }		
-                        }		
-
-                        delete[] execVar;
-
-                        std::wostringstream os;
-                        os << L"bad lhs, expected : " << expected_getSize() << L" returned : " << out.size() << std::endl;
-                        throw ScilabError(os.str(), 999, e.location_get());
+                        in[k]->DecreaseRef();
+                        if(in[k]->isDeletable())
+                        {
+                            delete in[k];
+                        }
                     }
+
+                    std::wostringstream os;
+                    os << L"bad lhs, expected : " << expected_getSize() << L" returned : " << out.size() << std::endl;
+                    throw ScilabError(os.str(), 999, e.location_get());
                 }
 
                 if(out.size() == 1)
-                {//protect output values
-                    out[0]->IncreaseRef();
+                {
                     result_set(out[0]);
                 }
                 else
                 {
                     for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                    {//protect output values
-                        out[i]->IncreaseRef();
+                    {
                         result_set(i, out[i]);
                     }
                 }
@@ -124,31 +117,17 @@ void visitprivate(const CallExp &e)
                 ConfigVariable::setLastErrorLine(e.location_get().first_line);
                 throw ScilabError();
             }
-
-            if(out.size() == 1)
-            {//unprotect output values
-                out[0]->DecreaseRef();
-            }
-            else
-            {
-                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                {//unprotect output values
-                    out[i]->DecreaseRef();
-                }
-            }
         }
         catch(ScilabMessage sm)
         {
             //clear input parameters
-            for(unsigned int k = 0; k < e.args_get().size(); k++)		
-            {		
-                if(execVar[k].result_get() != NULL)		
-                {		
-                    execVar[k].result_get()->DecreaseRef();		
-                }		
-            }		
-
-            delete[] execVar;
+            for(unsigned int k = 0; k < in.size(); k++)
+            {
+                if(in[k]->isDeletable())
+                {
+                    delete in[k];
+                }
+            }
 
             if(pCall->isMacro() || pCall->isMacroFile())
             {
@@ -162,46 +141,31 @@ void visitprivate(const CallExp &e)
             }
         }
         
-        //clear input parameters
-        int* piInOutVar = new int[e.args_get().size()];
-        for(unsigned int k = 0; k < e.args_get().size(); k++)		
-        {		
-            piInOutVar[k] = -1;
-            if(execVar[k].result_get() != NULL)		
-            {
-                //check if input data are use as output data
-                bool bFind = false;
-                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                {
-                    if(out[i] == execVar[k].result_get())
-                    {
-                        bFind = true;
-                        piInOutVar[k] = i;
-                        break;
-                    }
-                }
-
-                if(bFind == false)
-                {
-                    execVar[k].result_get()->DecreaseRef();
-                }
-            }		
-        }		
-        
-        delete[] execVar;
-
-        //descrease ref on input and output variables
-        for(int i = 0 ; i < e.args_get().size() ; i++)
+        //clear input parameters but take care in case of in[k] == out[i]
+        for(unsigned int k = 0; k < in.size(); k++)
         {
-            if(piInOutVar[i] != -1)
+            //check if input data are use as output data
+            bool bFind = false;
+            for(int i = 0 ; i < out.size() ; i++)
             {
-                out[piInOutVar[i]]->DecreaseRef();
+                if(out[i] == in[k])
+                {
+                    bFind = true;
+                    break;
+                }
+            }
+
+            in[k]->DecreaseRef();
+            if(bFind == false)
+            {
+                if(in[k]->isDeletable())
+                {
+                    delete in[k];
+                }
             }
         }
-        delete[] piInOutVar;
-
     }
-    else if(execFunc.result_get() != NULL)
+    else if(result_get() != NULL)
     {//a(xxx) with a variable, extraction
 
         //get symbol of variable
@@ -215,7 +179,7 @@ void visitprivate(const CallExp &e)
         }
         else
         {
-            pIT = execFunc.result_get();
+            pIT = result_get();
         }
 
         int iArgDim = static_cast<int>(e.args_get().size());
@@ -237,32 +201,32 @@ void visitprivate(const CallExp &e)
             bool bTypeSet = false;
             for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
             {
-                T execArg;
-                (*it1)->accept(execArg);
+                (*it1)->accept(*this);
 
-                if(bTypeSet == true && execArg.result_get()->getType() != rtIndex)
+                if(bTypeSet && result_get()->getType() != rtIndex)
                 {//TODO: error
                     scilabWriteW(L"merdouille");
                 }
 
-                if(execArg.result_get()->isString())
+                if(result_get()->isString())
                 {
                     rtIndex = InternalType::RealString;
                     bTypeSet = true;
-                    InternalType* pVar  = execArg.result_get();
+                    InternalType* pVar  = result_get();
                     String *pString = pVar->getAs<types::String>();
                     for(int i = 0 ; i < pString->getSize() ; i++)
                     {
                         stFields.push_back(pString->get(i));
                     }
                 }
-                else if(execArg.result_get()->isDouble())
+                else if(result_get()->isDouble())
                 {//manage error
                     rtIndex = InternalType::RealDouble;
                     bTypeSet = true;
                     break;
                 }
             }
+            result_set(NULL);
 
             if(rtIndex  == InternalType::RealDouble)
             {

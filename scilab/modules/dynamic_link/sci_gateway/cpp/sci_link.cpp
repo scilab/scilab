@@ -68,13 +68,13 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() == 3)
     {//flag
-        types::String* pSFlag = in[2]->getAs<types::String>();
-        if(pSFlag == NULL || pSFlag->isScalar() == false)
+        if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
             ScierrorW(999 ,_W("%ls : Wrong type for input argument #%d: A string expected.\n"), L"link", 3);
             return types::Function::Error;
         }
 
+        types::String* pSFlag = in[2]->getAs<types::String>();
         wchar_t* pwstFlag = pSFlag->get(0);
         if(wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
         {
@@ -93,34 +93,34 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() >= 2)
     {//sub names
-        types::String* pSSubNames = in[1]->getAs<types::String>();
-        if(pSSubNames == NULL || ( pSSubNames->isVector() == false && pSSubNames->isScalar() == false))
+        if(in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
         {
             ScierrorW(999, _W("%ls Wrong type for input argument #%d: A string or a string vector expected.\n"), L"link", 2);
             return types::Function::Error;
         }
 
+        types::String* pSSubNames = in[1]->getAs<types::String>();
         iSizeSubNames = pSSubNames->getSize();
         pwstSubNames = pSSubNames->get();
     }
 
     if(in.size() >= 1)
     {
-        if(in[0]->getType() == types::InternalType::RealDouble)
+        if(in[0]->isDouble())
         {
-            types::Double* pDSharedLib = in[0]->getAs<types::Double>();
-            if(pDSharedLib == NULL || pDSharedLib->isScalar() == false)
+            types::Double* pD = in[0]->getAs<types::Double>();
+            if(pD->isScalar() == false)
             {
                 ScierrorW(999, _W("%ls : Wrong value for argument #%d: %ls\n"), L"link", 1, _W("Unique id of a shared library expected."));
                 return types::Function::Error;
             }
 
-            iIDSharedLib = (int)pDSharedLib->get(0);
+            iIDSharedLib = (int)pD->get(0);
         }
-        else if(in[0]->getType() == types::InternalType::RealString)
+        else if(in[0]->isString())
         {
             types::String* pS = in[0]->getAs<types::String>();
-            if(pS == NULL || pS->isScalar() == false)
+            if(pS->isScalar() == false)
             {
                 ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"link", 1);
                 return types::Function::Error;

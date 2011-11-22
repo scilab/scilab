@@ -78,27 +78,6 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if(pDbl->getCols() == -1)
-    {
-        types::Double* pDblEyeMatrix = new types::Double(-1, -1);
-        out.push_back(pDblEyeMatrix);
-        return types::Function::Error;
-    }
-
-    if(pDbl->isComplex())
-    {
-        pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-        if(!pData)
-        {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"det");
-            return types::Function::Error;
-        }
-    }
-    else
-    {
-        pData = pDbl->getReal();
-    }
-
     pDblMantissa = new types::Double(1, 1, pDbl->isComplex());
 
     if(_iRetCount == 2)
@@ -129,6 +108,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         out.push_back(pDblExponent);
     }
 
+    delete pDbl;
     out.push_back(pDblMantissa);
 
     return types::Function::OK;

@@ -59,13 +59,13 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     }
 
 
-    types::String* pSLibName = in[0]->getAs<types::String>();
-    if(pSLibName == NULL || pSLibName->isScalar() == false)
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
         ScierrorW(999 ,_W("%ls : Wrong type for input argument #%d: A string expected.\n"), L"c_link", 1);
         return types::Function::Error;
     }
 
+    types::String* pSLibName = in[0]->getAs<types::String>();
     bool bFind = isLink(pSLibName->get(0), &iLib);
 
     out.push_back(new types::Bool(bFind));

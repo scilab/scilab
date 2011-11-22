@@ -135,15 +135,15 @@ namespace types
             os << _W("Unable to insert multiple item in a struct.\n");
             throw ast::ScilabError(os.str());
         }
-        String* pstKey = (*_pArgs)[0]->getAs<String>();
 
-        if(pstKey == NULL)
+        if((*_pArgs)[0]->isString() == false)
         {
             std::wostringstream os;
             os << _W("Assignment between unlike types is not allowed.\n");
             throw ast::ScilabError(os.str());
         }
 
+        String* pstKey = (*_pArgs)[0]->getAs<String>();
         for (int i = 0 ; i < pstKey->getSize() ; ++i)
         {
             set(std::wstring(pstKey->get(i)), _pSource);

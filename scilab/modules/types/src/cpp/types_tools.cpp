@@ -69,10 +69,10 @@ namespace types
 
                 pCurrentArg = pIL->extractFullMatrix()->getAs<Double>();
             }
-            else if(pIT->getAs<types::String>())
+            else if(pIT->isString())
             {//see later for extract from struct or Tlist
             }
-            else if(pIT->getAs<types::Polynom>())
+            else if(pIT->isPoly())
             {//$
                 Polynom* pMP = pIT->getAs<types::Polynom>();
                 int iMaxDim     = 0;
@@ -84,7 +84,7 @@ namespace types
                 Double dbl(iMaxDim); // $
                 pCurrentArg = pMP->evaluate(&dbl);
             }
-            else if(pIT->getAs<types::Bool>())
+            else if(pIT->isBool())
             {//[T F F T F]
                 Bool *pB    = pIT->getAs<types::Bool>();
                 int *piB    = pB->get();

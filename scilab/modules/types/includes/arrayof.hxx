@@ -53,7 +53,7 @@ namespace types
                                 ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
         virtual                 ~ArrayOf()
         {
-            delete[] m_piDims;
+            //delete[] m_piDims;
         }
 
         /*internal constructor*/
@@ -71,7 +71,7 @@ namespace types
                 }
             }
 
-            m_piDims    = new int[m_iDims];
+            //m_piDims    = new int[m_iDims];
 
             for(int i = 0 ; i < m_iDims ; i++)
             {
@@ -645,7 +645,7 @@ namespace types
             return pOut2;
 	    }
 
-        bool append(int _iRows, int _iCols, InternalType* _poSource)
+        virtual bool append(int _iRows, int _iCols, InternalType* _poSource)
         {
             ArrayOf* pGT = _poSource->getAs<ArrayOf>();
             int iRows = pGT->getRows();
@@ -1249,13 +1249,13 @@ namespace types
 
             if(_iDims != m_iDims)
             {
-                int* piDims = new int[_iDims];
+                //int* piDims = new int[_iDims];
                 for(int i = 0 ; i < _iDims ; i++)
                 {
-                    piDims[i] = _piDims[i];
+                    m_piDims[i] = _piDims[i];
                 }
-                delete[] m_piDims;
-                m_piDims = piDims;
+                //delete[] m_piDims;
+                //m_piDims = piDims;
                 m_iDims = _iDims;
             }
             else

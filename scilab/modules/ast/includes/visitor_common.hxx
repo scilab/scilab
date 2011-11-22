@@ -26,7 +26,7 @@ EXTERN_AST bool bConditionState(types::InternalType *_pITResult);
 EXTERN_AST types::InternalType* AddElementToVariable(
 						types::InternalType* _poDest,
 						types::InternalType* _poSource,
-						int _iRows, int _iCols, int *_piRows, int *_piCols);
+						int _iRows, int _iCols);
 
 EXTERN_AST types::InternalType* AddElementToVariableFromCol(
                         types::InternalType* _poDest,

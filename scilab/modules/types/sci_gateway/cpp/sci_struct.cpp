@@ -112,7 +112,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
         if(pData->isCell())
         {//non scalar cell dispatch cell data in each SingleStruct
             Cell* pCell = pData->getAs<Cell>();
-            if(pCell->getSize() == 1)
+            if(pCell->isScalar())
             {
                 for(int i = 0 ; i < pOut->getSize() ; i++)
                 {

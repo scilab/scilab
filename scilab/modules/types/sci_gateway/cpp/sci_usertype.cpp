@@ -69,7 +69,7 @@ Function::ReturnValue sci_usertype(typed_list &in, int _piRetCount, typed_list &
     int i = 1;
     for (itInput = in.begin() ; itInput != in.end() ; itInput++, i++)
     {
-        if (!(*itInput)->isString() || (*itInput)->getAs<types::String>()->getSize() != 1)
+        if (!(*itInput)->isString() || (*itInput)->getAs<types::String>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "usertype", i);
             return Function::Error;

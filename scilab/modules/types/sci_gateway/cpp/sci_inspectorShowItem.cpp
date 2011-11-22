@@ -57,7 +57,7 @@ Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, type
         }
 
         Double *pD = in[0]->getAs<Double>();
-        if(pD->getSize() != 1)
+        if(pD->isScalar() == false)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"inspectorShowItem", 1);
             Function::Error;

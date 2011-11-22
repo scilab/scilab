@@ -69,7 +69,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     }
     else if(in.size() == 1)
     {
-        if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+        if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 1);
             return Function::Error;

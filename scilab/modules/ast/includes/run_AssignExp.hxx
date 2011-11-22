@@ -19,154 +19,73 @@
 void visitprivate(const AssignExp  &e)
 {
     /*Create local exec visitor*/
-    T execMeR;
     try
     {
         /*get king of left hand*/
-        const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
-        const FieldExp *pField				= dynamic_cast<const FieldExp*>(&e.left_exp_get());
-        const AssignListExp *pList	        = dynamic_cast<const AssignListExp*>(&e.left_exp_get());
-        const CallExp *pCall				= dynamic_cast<const CallExp*>(&e.left_exp_get());
-        const CellCallExp *pCell    		= dynamic_cast<const CellCallExp*>(&e.left_exp_get());
-
-        if(pCell)
-        {
-            T execVar;
-            InternalType *pIT;
-            bool bRet           = true;
-            bool bNew           = false;
-
-            //retrieve variable
-            pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
-            if(pVar == NULL)
-            {//manage a.b{1} = x
-                pCell->name_get().accept(execVar);
-
-                if(execVar.result_get() != NULL && execVar.result_get()->isCell())
-                {
-                    pIT = execVar.result_get();
-                }
-                else
-                {//never append ?
-                    std::wostringstream os;
-                    os << _W("Unable to extract left part expression.\n");
-                    //os << ((Location)e.left_exp_get().location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
-                }
-            }
-            else
-            {
-                pIT = symbol::Context::getInstance()->get(pVar->name_get());
-            }
-
+        const SimpleVar *pVar = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
+        if(pVar)
+        {// x = ?
             /*getting what to assign*/
-            e.right_exp_get().accept(execMeR);
-            if(pIT == NULL)
-            {//Var doesn't exist, create it with good dimensions
-                bNew = true;
-            }
-            else
+            expected_size_set(1);
+            e.right_exp_get().accept(*this);
+
+            if(result_getSize() != 1)
             {
-                if(pIT->isRef(1) == true)
-                {
-                    pIT = pIT->clone();
-                    bNew = true;
-                }
-            }
-
-            InternalType *pOut	= NULL;
-            typed_list *pArgs = GetArgumentList(pCall->args_get());
-
-            //fisrt extract implicit list
-            if(execMeR.result_get()->isImplicitList())
-            {
-                InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extractFullMatrix();
-                execMeR.result_set(pIL);
-            }
-            else if(execMeR.result_get()->isContainer() && execMeR.result_get()->isRef())
-            {
-                InternalType* pIL = execMeR.result_get()->clone();
-                execMeR.result_set(pIL);
-            }
-
-
-            if(pIT == NULL)
-            {//call static insert function
-                pOut = Cell::insertNewCell(pArgs, execMeR.result_get());
-            }
-            else
-            {//call type insert function
-                pOut = pIT->getAs<Cell>()->insertCell(pArgs, execMeR.result_get());
-
-                if(pOut && pOut != pIT)
-                {
-                    //variable change
-                    pIT->DecreaseRef();
-                    if(pIT->isDeletable())
-                    {
-                        delete pIT;
-                    }
-                    bNew = true;
-                }
-            }
-
-
-            if(pOut != NULL)
-            {
-                if(bNew)
-                {
-                    symbol::Context::getInstance()->put(pVar->name_get(), *pOut);
-                }
-
-                if(e.is_verbose())
-                {
-                    std::wostringstream ostr;
-                    if(pVar)
-                    {
-                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
-                    }
-                    else
-                    {
-                        ostr << L"???" << L"  = " << std::endl;
-                    }
-                    ostr << std::endl;
-                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                    scilabWriteW(ostr.str().c_str());
-                }
-            }
-            else
-            {
-                //manage error
                 std::wostringstream os;
-                os << _W("Invalid Index.\n");
+                os << L"Can not assign multiple value in a single variable" << std::endl;;
                 //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-//            delete piMaxDim;
-//            delete[] piDimSize;
-            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+
+            InternalType *pIT = result_get();
+
+            //reset result
+            result_set(NULL);
+            if(pIT->isImplicitList())
             {
-                if((*pArgs)[iArg]->isDeletable())
+                if(pIT->getAsImplicitList()->isComputable())
                 {
-                    delete (*pArgs)[iArg];
+                    InternalType *pTemp = pIT->getAsImplicitList()->extractFullMatrix();
+                    delete pIT;
+                    pIT = pTemp;
                 }
             }
-            delete pArgs;
+
+            const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
+            if(pReturn)
+            {//ReturnExp so, put the value in the previous scope
+                symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *pIT);
+                ((AssignExp*)&e)->break_set();
+            }
+            else
+            {
+                symbol::Context::getInstance()->put(pVar->name_get(), *pIT);
+            }
+
+            if(e.is_verbose())
+            {
+                std::wostringstream ostr;
+                ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
+                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                scilabWriteW(ostr.str().c_str());
+            }
+            return;
         }
-        else if(pCall)
+
+        const CallExp *pCall = dynamic_cast<const CallExp*>(&e.left_exp_get());
+        if(pCall)
         {//x(?) = ?
-            T execVar;
             InternalType *pIT;
             bool bNew   = false;
 
             pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
             if(pVar == NULL)
             {//manage a.b(1) = x
-                pCall->name_get().accept(execVar);
+                pCall->name_get().accept(*this);
 
-                if(execVar.result_get() != NULL)
+                if(result_get() != NULL)
                 {
-                    pIT = execVar.result_get();
+                    pIT = result_get();
                 }
                 else
                 {//never append ?
@@ -175,6 +94,8 @@ void visitprivate(const AssignExp  &e)
                     //os << ((Location)e.left_exp_get().location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
                 }
+
+                result_set(NULL);
             }
             else
             {
@@ -182,8 +103,12 @@ void visitprivate(const AssignExp  &e)
             }
 
             /*getting what to assign*/
-            e.right_exp_get().accept(execMeR);
-            InternalType* pITR = execMeR.result_get();
+            e.right_exp_get().accept(*this);
+            InternalType* pITR = result_get();
+
+            //reset result
+            result_set(NULL);
+
             if(pIT == NULL)
             {//Var doesn't exist, create it with good dimensions
                 bNew = true;
@@ -459,7 +384,6 @@ void visitprivate(const AssignExp  &e)
                 }
                 else
                 {//overloading
-                    T execMe;
                     types::typed_list in;
                     types::typed_list out;
 
@@ -487,7 +411,7 @@ void visitprivate(const AssignExp  &e)
                     //b : type that receive data
                     std::wstring function_name;
                     function_name = L"%" + pInsert->getShortTypeStr() + L"_i_" + pIT->getShortTypeStr();
-                    Overload::call(function_name, in, 1, out, &execMe);
+                    Overload::call(function_name, in, 1, out, this);
 
                     pIT->DecreaseRef();
                     pInsert->DecreaseRef();
@@ -568,89 +492,182 @@ void visitprivate(const AssignExp  &e)
                     delete (*pArgs)[iArg];
                 }
             }
+            result_clear();
             delete pArgs;
+            return;
         }
-        else if(pVar)
-        {// x = ?
-            /*getting what to assign*/
-            execMeR.expected_size_set(1);
-            e.right_exp_get().accept(execMeR);
 
-            if(execMeR.result_getSize() != 1)
-            {
-                std::wostringstream os;
-                os << L"Can not assign multiple value in a single variable" << std::endl;;
-                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
-            }
-
-            InternalType *pIT	=	execMeR.result_get();
-            if(pIT->isImplicitList())
-            {
-                if(pIT->getAsImplicitList()->isComputable())
-                {
-                    InternalType *pTemp = pIT->getAsImplicitList()->extractFullMatrix();
-                    delete pIT;
-                    execMeR.result_set(NULL);
-                    pIT = pTemp;
-                }
-            }
-
-            const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
-            if(pReturn)
-            {//ReturnExp so, put the value in the previous scope
-                symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
-                ((AssignExp*)&e)->break_set();
-            }
-            else
-            {
-                symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
-            }
-
-            if(e.is_verbose())
-            {
-                std::wostringstream ostr;
-                ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
-                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                scilabWriteW(ostr.str().c_str());
-            }
-        }
-        else if(pList)
+        const AssignListExp *pList = dynamic_cast<const AssignListExp*>(&e.left_exp_get());
+        if(pList)
         {//[x,y] = ?
-
             int iLhsCount = (int)pList->exps_get().size();
 
             /*getting what to assign*/
-            execMeR.expected_size_set(iLhsCount);
-            e.right_exp_get().accept(execMeR);
+            expected_size_set(iLhsCount);
+            e.right_exp_get().accept(*this);
 
-            if(execMeR.result_getSize() != execMeR.expected_getSize())
+            if(result_getSize() != iLhsCount)
             {
                 std::wostringstream os;
-                os << L"Incompatible assignation: trying to assign " << execMeR.result_getSize();
-                os << " values in " << execMeR.expected_getSize() << " variables." << std::endl;
+                os << L"Incompatible assignation: trying to assign " << result_getSize();
+                os << " values in " << iLhsCount << " variables." << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
 
             std::list<Exp *>::const_reverse_iterator it;
             int i = (int)iLhsCount - 1;
-            for(it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++)
+            for(it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++,i--)
             {
                 const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
-                symbol::Context::getInstance()->put(pListVar->name_get(), *((GenericType*)execMeR.result_get(i)));
+                symbol::Context::getInstance()->put(pListVar->name_get(), *result_get(i));
                 if(e.is_verbose())
                 {
                     std::wostringstream ostr;
                     ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
                     ostr << std::endl;
-                    ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                    ostr << result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     scilabWriteW(ostr.str().c_str());
                 }
-                i--;
             }
+            result_clear();
+            return;
         }
-        else if(pField)
+        
+        const CellCallExp *pCell = dynamic_cast<const CellCallExp*>(&e.left_exp_get());
+        if(pCell)
+        {
+            InternalType *pIT;
+            bool bRet           = true;
+            bool bNew           = false;
+
+            //retrieve variable
+            pVar = dynamic_cast<const SimpleVar*>(&pCell->name_get());
+            if(pVar == NULL)
+            {//manage a.b{1} = x
+                pCell->name_get().accept(*this);
+
+                if(result_get() != NULL && result_get()->isCell())
+                {
+                    pIT = result_get();
+                }
+                else
+                {//never append ?
+                    std::wostringstream os;
+                    os << _W("Unable to extract left part expression.\n");
+                    //os << ((Location)e.left_exp_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
+                }
+                //reset result
+                result_set(NULL);
+            }
+            else
+            {
+                pIT = symbol::Context::getInstance()->get(pVar->name_get());
+            }
+
+            /*getting what to assign*/
+            e.right_exp_get().accept(*this);
+            if(pIT == NULL)
+            {//Var doesn't exist, create it with good dimensions
+                bNew = true;
+            }
+            else
+            {
+                if(pIT->isRef(1) == true)
+                {
+                    pIT = pIT->clone();
+                    bNew = true;
+                }
+            }
+
+            InternalType *pOut	= NULL;
+            typed_list *pArgs = GetArgumentList(pCall->args_get());
+
+            //fisrt extract implicit list
+            if(result_get()->isImplicitList())
+            {
+                InternalType *pIL = result_get()->getAsImplicitList()->extractFullMatrix();
+                if(result_get()->isDeletable())
+                {
+                    delete result_get();
+                }
+                result_set(pIL);
+            }
+            else if(result_get()->isContainer() && result_get()->isDeletable() == false)
+            {
+                InternalType* pIL = result_get()->clone();
+                result_set(pIL);
+            }
+
+
+            if(pIT == NULL)
+            {//call static insert function
+                pOut = Cell::insertNewCell(pArgs, result_get());
+            }
+            else
+            {//call type insert function
+                pOut = pIT->getAs<Cell>()->insertCell(pArgs, result_get());
+
+                if(pOut && pOut != pIT)
+                {
+                    //variable change
+                    pIT->DecreaseRef();
+                    if(pIT->isDeletable())
+                    {
+                        delete pIT;
+                    }
+                    bNew = true;
+                }
+            }
+
+
+            if(pOut != NULL)
+            {
+                if(bNew)
+                {
+                    symbol::Context::getInstance()->put(pVar->name_get(), *pOut);
+                }
+
+                if(e.is_verbose())
+                {
+                    std::wostringstream ostr;
+                    if(pVar)
+                    {
+                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
+                    }
+                    else
+                    {
+                        ostr << L"???" << L"  = " << std::endl;
+                    }
+                    ostr << std::endl;
+                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                    scilabWriteW(ostr.str().c_str());
+                }
+            }
+            else
+            {
+                //manage error
+                std::wostringstream os;
+                os << _W("Invalid Index.\n");
+                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+            }
+//            delete piMaxDim;
+//            delete[] piDimSize;
+            for(int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            {
+                if((*pArgs)[iArg]->isDeletable())
+                {
+                    delete (*pArgs)[iArg];
+                }
+            }
+            delete pArgs;
+            return;
+        }
+       
+        const FieldExp *pField = dynamic_cast<const FieldExp*>(&e.left_exp_get());
+        if(pField)
         {//a.b = x
             //a.b can be a struct or a tlist/mlist
             InternalType *pHead = NULL;
@@ -658,10 +675,10 @@ void visitprivate(const AssignExp  &e)
             Struct* pCurrent    = NULL;
 
             /*getting what to assign*/
-            execMeR.expected_size_set(1);
-            e.right_exp_get().accept(execMeR);
+            expected_size_set(1);
+            e.right_exp_get().accept(*this);
 
-            bool bOK = getStructFromExp(pField, &pMain, &pCurrent, NULL, execMeR.result_get());
+            bool bOK = getStructFromExp(pField, &pMain, &pCurrent, NULL, result_get());
             if(pMain != NULL)
             {
                 pHead = pMain;
@@ -686,7 +703,7 @@ void visitprivate(const AssignExp  &e)
             }
 
             //we can assign only one value
-            if(execMeR.result_getSize() != 1)
+            if(result_getSize() != 1)
             {
                 std::wostringstream os;
                 os << L"Lhs != Rhs";
@@ -694,14 +711,14 @@ void visitprivate(const AssignExp  &e)
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
-            InternalType *pIT = execMeR.result_get();
+            InternalType *pIT = result_get();
             if(pIT->isImplicitList())
             {
                 if(pIT->getAsImplicitList()->isComputable())
                 {
                     InternalType *pTemp = pIT->getAsImplicitList()->extractFullMatrix();
                     delete pIT;
-                    execMeR.result_set(NULL);
+                    result_set(NULL);
                     pIT = pTemp;
                 }
             }
@@ -747,14 +764,15 @@ void visitprivate(const AssignExp  &e)
                 ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 scilabWriteW(ostr.str().c_str());
             }
+
+            result_clear();
+            return;
         }
-        else
-        {//Houston ...
-            std::wostringstream os;
-            os << L"unknow script form";
-            //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
-        }
+
+        std::wostringstream os;
+        os << L"unknow script form";
+        //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+        throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
     }
     catch(ScilabError error)
     {
