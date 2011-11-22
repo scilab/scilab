@@ -1783,7 +1783,6 @@ modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
-modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
