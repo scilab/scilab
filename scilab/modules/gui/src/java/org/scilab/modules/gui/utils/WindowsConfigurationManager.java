@@ -575,6 +575,21 @@ public class WindowsConfigurationManager {
     }
 
     /**
+     * Remove a node with a given uuid
+     * @param nodeName the node name
+     * @param uuid the uuid
+     */
+    public static final void removeNode(String uuid) {
+        if (uuid == null || uuid.isEmpty()) {
+            return;
+        }
+        Element e = getElementWithUUID(uuid);
+        if (e != null && e.getParentNode() != null) {
+            e.getParentNode().removeChild(e);
+        }
+    }
+
+    /**
      * Save the tab properties
      * @param tab the tab
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
