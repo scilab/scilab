@@ -82,6 +82,8 @@ public class LabelManager {
         labelPositioner.setDrawingTools(drawingTools);
         labelPositioner.setParentAxes(parentAxes);
         labelPositioner.setAutoPosition(label.getAutoPosition());
+        labelPositioner.setAutoRotation(label.getAutoRotation());
+        labelPositioner.setUserRotationAngle(180.0*label.getFontAngle()/Math.PI);
 
         Vector3d labelUserPosition = new Vector3d(label.getPosition());
         labelUserPosition = axesDrawer.getBoxCoordinates(labelUserPosition);
@@ -106,19 +108,39 @@ public class LabelManager {
             label.setAutoPosition(true);
         }
 
+
+        double rotationAngle = 0.0;
+
+        if (label.getAutoRotation()) {
+            rotationAngle = labelPositioner.getRotationAngle();
+
+            label.setFontAngle(Math.PI*rotationAngle/180.0);
+
+            /*
+             * Must be reset to true as setFontAngle modifies the label's auto rotation field.
+             * To be modified.
+             */
+            label.setAutoRotation(true);
+        } else {
+            rotationAngle = labelPositioner.getUserRotationAngle();
+        }
+
+        /* The label's rotation direction convention is opposite to the standard one. */
+        rotationAngle = -rotationAngle;
+
         if (label.getVisible() && drawnFlag) {
-            if (Utils.isValid(labelPos.getX(), labelPos.getY(), labelPos.getZ())) {
+            if (Utils.isValid(labelPos.getX(), labelPos.getY(), labelPos.getZ()) && Utils.isValid(rotationAngle)) {
                 if (labelPositioner.getUseWindowCoordinates()) {
                     /* Draw in window coordinates */
                     Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                     Vector3d projLabelPos = canvasProjection.project(labelPos);
 
                     drawingTools.getTransformationManager().useWindowCoordinate();
-                    drawingTools.draw(labelSprite, labelAnchor, projLabelPos);
+                    drawingTools.draw(labelSprite, labelAnchor, projLabelPos, rotationAngle);
                     drawingTools.getTransformationManager().useSceneCoordinate();
                 } else {
                     /* Draw using box coordinates */
-                    drawingTools.draw(labelSprite, labelAnchor, labelPos);
+                    drawingTools.draw(labelSprite, labelAnchor, labelPos, rotationAngle);
                 }
             }
         }
@@ -159,7 +181,7 @@ public class LabelManager {
      */
     private Sprite createSprite(final ColorMap colorMap, final Label label) {
         LabelSpriteDrawer spriteDrawer = new LabelSpriteDrawer(spriteManager, colorMap, label);
-        Sprite sprite = spriteManager.createSprite(spriteDrawer.getWidth(), spriteDrawer.getHeight());
+        Sprite sprite = spriteManager.createRotatableSprite(spriteDrawer.getWidth(), spriteDrawer.getHeight());
         sprite.setDrawer(spriteDrawer);
         return sprite;
     }

@@ -15,6 +15,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
+import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 
@@ -28,10 +29,9 @@ import org.scilab.modules.graphic_objects.axes.Axes;
  * positioning for respectively axis-associated labels and title labels
  * (respectively {@see AxisLabelPositioner} and {@see TitlePositioner}).
  * All positions and vectors are specified in box coordinates, unless stated otherwise.
- * Position can be automatically computed or user-specified.
+ * The position and rotation angle can be both automatically computed or user-specified.
  *
  * To do:
- *    -take into account label text angle and automatic rotation.
  *    -take into account logarithmic coordinates.
  *    -implement window-coordinates displacement computation.
  *    -optimize the lower-left corner computation methods.
@@ -41,6 +41,9 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 public abstract class LabelPositioner {
         /** Specifies whether the label is automatically positioned or not. */
         protected boolean autoPosition;
+
+        /** Specifies whether the label is automatically rotated or not. */
+        protected boolean autoRotation;
 
         /**
          * The label's position, which is its anchor point's undisplaced position.
@@ -53,6 +56,20 @@ public abstract class LabelPositioner {
 
         /** The label's user-specified position. */
         protected Vector3d labelUserPosition;
+
+        /**
+         * The label's rotation angle (degrees).
+         * This is the angle from the window coordinate system's +X axis to
+         * the label's half-width vector.  Positive values are measured clockwise
+         * (opposite to the standard convention).
+         */
+        protected double rotationAngle;
+
+        /**
+         * The label's user-specified rotation angle (degrees). Positive values are
+         * measured clockwise (see rotationAngle).
+         */
+        protected double userRotationAngle;
 
         /** The label displacement vector from its position to its anchor point. */
         protected Vector3d labelDisplacement;
@@ -83,8 +100,11 @@ public abstract class LabelPositioner {
          */
         public LabelPositioner() {
                 autoPosition = false;
+                autoRotation = false;
                 labelPosition = new Vector3d(0.0, 0.0, 0.0);
                 labelUserPosition = new Vector3d(0.0, 0.0, 0.0);
+                rotationAngle = 0.0;
+                userRotationAngle = 0.0;
                 labelDisplacement = new Vector3d(0.0, 0.0, 0.0);
                 anchorPoint = new Vector3d(0.0, 0.0, 0.0);
                 anchorPosition = SpriteAnchorPosition.LOWER_LEFT;
@@ -109,6 +129,22 @@ public abstract class LabelPositioner {
          */
         public boolean getAutoPosition() {
                 return autoPosition;
+        }
+
+        /**
+         * Sets the label's auto rotation flag.
+         * @param autoRotation the autoRotation to set.
+         */
+        public void setAutoRotation(boolean autoRotation) {
+                this.autoRotation = autoRotation;
+        }
+
+        /**
+         * Returns the label's auto rotation flag.
+         * @return autoRotation the autoRotation to set.
+         */
+        public boolean getAutoRotation() {
+                return autoRotation;
         }
 
         /**
@@ -141,6 +177,38 @@ public abstract class LabelPositioner {
          */
         public Vector3d getLabelUserPosition() {
                 return labelUserPosition;
+        }
+
+        /**
+         * Sets the label's rotation angle.
+         * @param rotationAngle the rotation angle to set.
+         */
+        public void setRotationAngle(double rotationAngle) {
+                this.rotationAngle = rotationAngle;
+        }
+
+        /**
+         * Returns the label's rotation angle.
+         * @return the rotation angle.
+         */
+        public double getRotationAngle() {
+                return rotationAngle;
+        }
+
+        /**
+         * Sets the label's user rotation angle.
+         * @param userRotationAngle the user rotation angle to set.
+         */
+        public void setUserRotationAngle(double userRotationAngle) {
+                this.userRotationAngle = userRotationAngle;
+        }
+
+        /**
+         * Returns the label's user rotation angle.
+         * @return the user rotation angle.
+         */
+        public double getUserRotationAngle() {
+                return userRotationAngle;
         }
 
         /**
@@ -213,6 +281,10 @@ public abstract class LabelPositioner {
          */
         public void positionLabel() {
                 computeAnchorPoint();
+
+                computeRotationAngle();
+
+                /* Depends on the rotation angle and must therefore be computed afterwards. */
                 computeAnchorPosition();
         }
 
@@ -244,6 +316,28 @@ public abstract class LabelPositioner {
                 position = position.plus(labelDisplacement);
 
                 return position;
+        }
+
+        /**
+         * Computes and sets the label's rotation angle depending on
+         * the automatic rotation mode. If it is not automatic, the angle
+         * is set to the user-specified one.
+         */
+        private void computeRotationAngle() {
+                if (autoRotation) {
+                        rotationAngle = getAutoRotationAngle();
+                } else {
+                        rotationAngle = userRotationAngle;
+                }
+        }
+
+        /**
+         * Returns the automatically computed rotation angle.
+         * Set to 0 as a default.
+         * @return the rotation angle.
+         */
+        protected double getAutoRotationAngle() {
+                return 0.0;
         }
 
         /**
@@ -304,9 +398,9 @@ public abstract class LabelPositioner {
         /**
          * Computes and returns the position of the label's lower-left corner in box coordinates.
          * It projects the label's anchor point to compute the points located from it at
-         * respectively half the sprite width and half its height, which are then used
-         * to obtain the label's half-width and half-height vectors in box coordinates.
-         * The label's anchor point and anchor position, associated sprite, and drawing tools
+         * respectively half the sprite width and half its height, taking into account the label's rotation angle,
+         * which are then used to obtain the label's half-width and half-height vectors in box coordinates.
+         * The label's anchor point and anchor position, rotation angle, associated sprite, and drawing tools
          * must have been initialized beforehand.
          * @return the label's lower-left corner position.
          */
@@ -314,14 +408,27 @@ public abstract class LabelPositioner {
                 Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                 Vector3d labelPoint = new Vector3d(anchorPoint);
 
+                /*
+                 * Ought to be -rotationAngle as positive angle values are measured clockwise for labels.
+                 * Apparently uses the same convention as the labels (clockwise positive directions).
+                 * To be verified.
+                 */
+                Transformation winRotation = TransformationFactory.getRotationTransformation(rotationAngle, 0.0, 0.0, 1.0);
+
+                Vector3d projHalfWidth = new Vector3d(0.5 * (double) labelSprite.getWidth(), 0.0, 0.0);
+                Vector3d projHalfHeight = new Vector3d(0.0, 0.5 * (double) labelSprite.getHeight(), 0.0);
+
+                projHalfWidth = winRotation.projectDirection(projHalfWidth);
+                projHalfHeight = winRotation.projectDirection(projHalfHeight);
+
                 Vector3d projLabelPoint = canvasProjection.project(labelPoint);
 
-                Vector3d projRightPoint = new Vector3d(projLabelPoint.getX() + 0.5 * (double) labelSprite.getWidth(), projLabelPoint.getY(), projLabelPoint.getZ());
+                Vector3d projRightPoint = projLabelPoint.plus(projHalfWidth);
                 Vector3d unprojRightPoint = canvasProjection.unproject(projRightPoint);
 
                 Vector3d halfWidth = unprojRightPoint.minus(labelPoint);
 
-                Vector3d projUpperPoint = new Vector3d(projLabelPoint.getX(), projLabelPoint.getY() + 0.5 * (double) labelSprite.getHeight(), projLabelPoint.getZ());
+                Vector3d projUpperPoint = projLabelPoint.plus(projHalfHeight);
                 Vector3d unprojUpperPoint = canvasProjection.unproject(projUpperPoint);
 
                 Vector3d halfHeight = unprojUpperPoint.minus(labelPoint);

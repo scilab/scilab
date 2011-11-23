@@ -11,6 +11,9 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
@@ -28,9 +31,10 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
  * drawer (used by AxesRulerDrawer), and the label position and box coordinates
  * ticks direction, obtained from the AxesRuler drawer {@see AxesRulerDrawer}.
  * These parameters must be set before computing the label's position values.
+ * The rotation angle can also be determined automatically or user-specified
+ * and requires the same parameters (as well as for sprite anchor position correction).
  *
  * To do:
- *    -take into account label text angle and automatic rotation.
  *    -take into account logarithmic coordinates.
  *    -implement window-coordinates displacement computation.
  *    -optimize the anchor position computation methods.
@@ -46,6 +50,19 @@ public class AxisLabelPositioner extends LabelPositioner {
 
         /** The normalized projected ticks direction. */
         private Vector3d projectedTicksDirection;
+
+        /**
+         * The array of allowed anchor positions.
+         * It is used to determine the corrected anchor position as a function of the rotation angle.
+         * The uncorrected position (angle = 0) is obtained from the auto-positioning algorithm.
+         * Adding k*90 (respectively -k*90) degrees to its angle amounts to shifing by k elements to the right
+         * (respectively to the left) from its location in the array, modulo the array size.
+         */
+        private static final SpriteAnchorPosition[] allowedAnchorPositionsArray = {SpriteAnchorPosition.LEFT, SpriteAnchorPosition.DOWN,
+                                                                                    SpriteAnchorPosition.RIGHT, SpriteAnchorPosition.UP};
+
+        /** The list of allowed anchor positions. */
+        private static final ArrayList<SpriteAnchorPosition> allowedAnchorPositions = new ArrayList<SpriteAnchorPosition>(Arrays.asList(allowedAnchorPositionsArray));
 
         /**
          * Constructor.
@@ -106,6 +123,50 @@ public class AxisLabelPositioner extends LabelPositioner {
         }
 
         /**
+         * Determines and returns the rotation angle (in degrees) from the window coordinate system's axis
+         * (+Y, -Y, +X, -X) most closely aligned with the projected ticks direction to the projected ticks direction itself.
+         * (the most closely aligned axis is the one such that the angle between the two is minimal). Positive angles
+         * are measured clockwise.
+         * @return the angle from the most closely aligned axis to the projected ticks direction.
+         */
+        private double computeTicksDirectionAngle() {
+                double sign;
+
+                Vector3d axis;
+
+                double signX = Math.signum(projectedTicksDirection.getX());
+                double signY = Math.signum(projectedTicksDirection.getY());
+
+                if (projectedTicksDirection.getY() > Math.abs(projectedTicksDirection.getX())) {
+                        /* Nearest: +Y */
+                        axis = new Vector3d(0.0, 1.0, 0.0);
+                        sign = signX;
+
+                } else if (projectedTicksDirection.getY() < -Math.abs(projectedTicksDirection.getX())) {
+                        /* Nearest: -Y */
+                        axis = new Vector3d(0.0, -1.0, 0.0);
+                        sign = -signX;
+
+                } else if (projectedTicksDirection.getX() > 0.0) {
+                        /* Nearest: +X */
+                        axis = new Vector3d(1.0, 0.0, 0.0);
+                        sign = -signY;
+
+                } else {
+                        /* Nearest: -X */
+                        axis = new Vector3d(-1.0, 0.0, 0.0);
+                        sign = signY;
+                }
+
+                double dp = axis.scalar(projectedTicksDirection);
+                double angle = Math.acos(dp) * 180.0 / Math.PI;
+
+                angle *= sign;
+
+                return angle;
+        }
+
+        /**
          * Computes and returns the position of the label's anchor point,
          * obtained by adding the displacement vector to its position.
          * It additionally sets the displacement vector member.
@@ -123,10 +184,84 @@ public class AxisLabelPositioner extends LabelPositioner {
         }
 
         /**
-         * Returns the automatically computed sprite anchor position corresponding to the projected ticks direction.
+         * Returns the automatically computed rotation angle.
+         * Set to 0 as a default.
+         * @return the rotation angle.
+         */
+        protected double getAutoRotationAngle() {
+                return 0.0;
+        }
+
+        /**
+         * Returns the automatically computed sprite anchor position.
+         * The anchor position is first determined from the projected ticks direction and
+         * then corrected depending on the label's rotation angle.
+         * To do so, a signed offset is computed (number of quadrants swept by the angle)
+         * and added to the uncorrected position (read from the array of allowed values)
+         * to obtain the corrected one.
+         * The orientation of the label's axis is taken into account by subtracting the angle between
+         * the closest window coordinate axis and the ticks direction from the rotation angle.
+         * The resulting angle therefore amounts to the angle from the ticks direction to
+         * the vector going from the anchor point to (and orthogonal to) the opposite side of the label box.
+         * The anchor position remains constant when the corrected angle lies in the initial quadrant
+         * centered about the ticks direction (from -45 to 45 degrees relative to it),
+         *
+         * The result is such that the anchor-to-opposite side vector always points away from
+         * the interior of the Axes box. This avoids overlapping between the label's box and its axis
+         * when the rotation angle is such that the label box's width vector is parallel or orthogonal
+         * to the axis.
+         *
          * @return the sprite anchor position.
          */
         protected SpriteAnchorPosition getAutoAnchorPosition() {
+                SpriteAnchorPosition anchorPosition = getUncorrectedAutoAnchorPosition();
+
+                double tmpRotationAngle;
+
+                /* Get the angle from the closest window coordinate axis to the ticks direction. */
+                double ticksDirectionAngle = computeTicksDirectionAngle();
+
+                tmpRotationAngle = rotationAngle % 360.0;
+
+                /*
+                 * Subtract the closest axis to ticks direction angle from the rotation angle
+                 * to take into account the associated axis' orientation.
+                 */
+                tmpRotationAngle -= ticksDirectionAngle;
+
+                int anchorIndex = 0;
+
+                anchorIndex = allowedAnchorPositions.indexOf(anchorPosition);
+
+                /*
+                 * The offset is the number of quadrants swept by the rotation angle.
+                 * The inital quadrant is -45/+45 degrees about the reference vector
+                 * (ticks direction) and amounts to 0.
+                 */
+                int offset = (int) ((Math.abs(tmpRotationAngle) + 45.0) / 90.0);
+
+                if (tmpRotationAngle < 0.0) {
+                         offset = -offset;
+                }
+
+                /* Cycle through the allowed anchor positions. */
+                anchorIndex = (anchorIndex + offset) % 4;
+
+                if (anchorIndex < 0) {
+                        anchorIndex = 4 + anchorIndex;
+                }
+
+                anchorPosition = allowedAnchorPositions.get(anchorIndex);
+
+                return anchorPosition;
+        }
+
+        /**
+         * Returns the automatically computed sprite anchor position corresponding to the projected ticks direction.
+         * It is determined independently of the rotation angle.
+         * @return the sprite anchor position.
+         */
+        private SpriteAnchorPosition getUncorrectedAutoAnchorPosition() {
                 if (projectedTicksDirection.getY() > Math.abs(projectedTicksDirection.getX())) {
                         return SpriteAnchorPosition.DOWN;
                 } else if (projectedTicksDirection.getY() < -Math.abs(projectedTicksDirection.getX())) {
