@@ -123,10 +123,11 @@ namespace org_modules_xml
          * @param query the XPath query
          * @param namespaces an a matrix nx2 containing mapping between prefix and href
          * @param length the number of namespaces
+         * @param the node from where start the query
          * @param error a pointer to a string which will receive the error message
          * @return a pointer on a XPath object
          */
-        const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error);
+        const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, const XMLElement * e, std::string * error);
 
         const XMLObject * getXMLObjectParent() const;
         const std::string dump(bool indent) const;

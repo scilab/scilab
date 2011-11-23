@@ -115,7 +115,7 @@ namespace org_modules_xml
         return static_cast<void *>(document);
     }
 
-    const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error)
+    const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, const XMLElement * e, std::string * error)
     {
         if (errorXPathBuffer)
         {
@@ -129,6 +129,11 @@ namespace org_modules_xml
             errorXPathBuffer->append(gettext("Cannot create a parser context"));
             *error = *errorXPathBuffer;
             return 0;
+        }
+
+        if (e)
+        {
+            ctxt->node = (xmlNode *)e->getRealXMLPointer();
         }
 
         if (namespaces)
