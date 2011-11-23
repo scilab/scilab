@@ -529,6 +529,8 @@ void visitprivate(const AssignExp  &e)
                     ostr << result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     scilabWriteW(ostr.str().c_str());
                 }
+                //clear result to take care of [n,n]
+                result_set(i, NULL);
             }
             result_clear();
             return;
