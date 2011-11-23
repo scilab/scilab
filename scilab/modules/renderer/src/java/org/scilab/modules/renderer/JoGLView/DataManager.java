@@ -293,7 +293,13 @@ public class DataManager {
         int length = MainDataLoader.getIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = MainDataLoader.fillIndices(id, data, DEFAULT_LOG_MASK);
+        int actualLength = 0;
+        if (length != 0) {
+            /* Do not call JNI when the buffer is empty */
+            /* Because under Mac OS X, GetDirectBufferAddress returns a NULL pointer in this case */
+            /* This generates an exception in DataLoader_wrap.c */
+            actualLength = MainDataLoader.fillIndices(id, data, DEFAULT_LOG_MASK);
+        }
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);
@@ -305,7 +311,13 @@ public class DataManager {
         int length = MainDataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = MainDataLoader.fillWireIndices(id, data, DEFAULT_LOG_MASK);
+        int actualLength = 0;
+        if (length != 0) {
+            /* Do not call JNI when the buffer is empty */
+            /* Because under Mac OS X, GetDirectBufferAddress returns a NULL pointer in this case */
+            /* This generates an exception in DataLoader_wrap.c */
+            actualLength = MainDataLoader.fillWireIndices(id, data, DEFAULT_LOG_MASK);
+        }
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);
