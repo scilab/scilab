@@ -85,7 +85,7 @@ namespace org_modules_xml
         /**
          * @return a dump of this object
          */
-        virtual const std::string dump() const { return std::string(""); }
+        virtual const std::string dump(bool indent) const { return std::string(""); }
 
         /**
          * @return the object id

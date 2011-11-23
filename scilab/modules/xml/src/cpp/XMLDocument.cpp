@@ -176,11 +176,11 @@ namespace org_modules_xml
         return oss.str();
     }
 
-    const std::string XMLDocument::dump() const
+    const std::string XMLDocument::dump(bool indent) const
     {
         xmlChar * buffer = 0;
         int size = 0;
-        xmlDocDumpFormatMemory(document, &buffer, &size, 1);
+        xmlDocDumpFormatMemory(document, &buffer, &size, indent ? 1 : 0);
         std::string str = std::string((const char *)buffer);
         xmlFree(buffer);
 

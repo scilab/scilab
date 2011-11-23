@@ -129,7 +129,7 @@ namespace org_modules_xml
         const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error);
 
         const XMLObject * getXMLObjectParent() const;
-        const std::string dump() const;
+        const std::string dump(bool indent) const;
         const std::string toString() const;
 
     private :

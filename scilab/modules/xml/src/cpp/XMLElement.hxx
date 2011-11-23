@@ -180,7 +180,7 @@ namespace org_modules_xml
         void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const;
         void setAttributeValue(const char ** name, const char ** value, int size) const;
         const XMLObject * getXMLObjectParent() const;
-        const std::string dump() const;
+        const std::string dump(bool indent) const;
         const std::string toString() const;
     };
 }

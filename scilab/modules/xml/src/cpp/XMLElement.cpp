@@ -104,12 +104,12 @@ namespace org_modules_xml
 
     void XMLElement::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const
     {
-	XMLAttr::setAttributeValue(node, prefix, name, value, size);
+        XMLAttr::setAttributeValue(node, prefix, name, value, size);
     }
 
     void XMLElement::setAttributeValue(const char ** name, const char ** value, int size) const
     {
-	XMLAttr::setAttributeValue(node, name, value, size);
+        XMLAttr::setAttributeValue(node, name, value, size);
     }
 
     void XMLElement::setChildren(const XMLElement & elem) const
@@ -184,10 +184,10 @@ namespace org_modules_xml
         return new XMLNs(*this, ns);
     }
 
-    const std::string XMLElement::dump() const
+    const std::string XMLElement::dump(bool indent) const
     {
         xmlBufferPtr buffer = xmlBufferCreate();
-        xmlNodeDump(buffer, doc.getRealDocument(), node, 0, 1);
+        xmlNodeDump(buffer, doc.getRealDocument(), node, 0, indent ? 1 : 0);
         std::string str = std::string((const char *)buffer->content);
         xmlBufferFree(buffer);
 
