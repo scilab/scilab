@@ -99,12 +99,9 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/fileio/includes \
     $(XML_FLAGS)
 
-if MAINTAINER_MODE
+
 pkglib_LTLIBRARIES = libscixml.la 
 noinst_LTLIBRARIES = libscixml-algo.la 
-else
-noinst_LTLIBRARIES = libscixml-algo.la libscixml.la 
-endif
 
 libscixml_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 

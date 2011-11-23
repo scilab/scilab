@@ -133,8 +133,6 @@ am__objects_3 = libscixml_algo_la-VariableScope.lo \
 am_libscixml_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscixml_algo_la_OBJECTS = $(am_libscixml_algo_la_OBJECTS)
-@MAINTAINER_MODE_FALSE@am_libscixml_algo_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libscixml_algo_la_rpath =
 libscixml_la_DEPENDENCIES = libscixml-algo.la
 am__objects_4 = libscixml_la-gw_xml.lo
 am__objects_5 = libscixml_la-sci_xmlRead.lo \
@@ -168,8 +166,6 @@ libscixml_la_OBJECTS = $(am_libscixml_la_OBJECTS)
 libscixml_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscixml_la_LDFLAGS) $(LDFLAGS) -o $@
-@MAINTAINER_MODE_FALSE@am_libscixml_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libscixml_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -593,9 +589,8 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/fileio/includes \
     $(XML_FLAGS)
 
-@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscixml.la 
-@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscixml-algo.la libscixml.la 
-@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscixml-algo.la 
+pkglib_LTLIBRARIES = libscixml.la 
+noinst_LTLIBRARIES = libscixml-algo.la 
 libscixml_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CPP_SOURCES)
 libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
@@ -688,9 +683,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscixml-algo.la: $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_DEPENDENCIES) 
-	$(CXXLINK) $(am_libscixml_algo_la_rpath) $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK)  $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_LIBADD) $(LIBS)
 libscixml.la: $(libscixml_la_OBJECTS) $(libscixml_la_DEPENDENCIES) 
-	$(libscixml_la_LINK) $(am_libscixml_la_rpath) $(libscixml_la_OBJECTS) $(libscixml_la_LIBADD) $(LIBS)
+	$(libscixml_la_LINK) -rpath $(pkglibdir) $(libscixml_la_OBJECTS) $(libscixml_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
