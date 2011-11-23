@@ -6,8 +6,6 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 //
-// <-- NO CHECK ERROR OUTPUT --> 
-//
 // <-- Non-regression test for bug 10283 -->
 //
 // <-- Bugzilla URL -->
