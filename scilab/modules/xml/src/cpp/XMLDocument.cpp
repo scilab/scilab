@@ -287,7 +287,7 @@ namespace org_modules_xml
 
         if (!ctxt)
         {
-            xmlSetGenericErrorFunc(ctxt, 0);
+            xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
             return 0;
         }
 
@@ -297,7 +297,7 @@ namespace org_modules_xml
             *error = *errorBuffer;
         }
 
-        xmlSetGenericErrorFunc(ctxt, 0);
+        xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
@@ -316,7 +316,7 @@ namespace org_modules_xml
 
         if (!ctxt)
         {
-            xmlSetGenericErrorFunc(ctxt, 0);
+            xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
             return 0;
         }
 
@@ -326,7 +326,7 @@ namespace org_modules_xml
             *error = *errorBuffer;
         }
 
-        xmlSetGenericErrorFunc(ctxt, 0);
+        xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
@@ -355,7 +355,7 @@ namespace org_modules_xml
             ctxt->vctxt.error = (xmlValidityErrorFunc)errorFunction;
         }
 
-        xmlSetGenericErrorFunc(ctxt, XMLDocument::errorFunction);
+        xmlSetGenericErrorFunc(ctxt, errorFunction);
 
         return ctxt;
     }

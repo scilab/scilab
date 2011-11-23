@@ -141,6 +141,12 @@ namespace org_modules_xml
         static void errorFunction(void * ctx, const char * msg, ...);
 
         /**
+         * Error function which does nothing for the XML parser
+         * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlGenericErrorFunc
+         */
+        static void errorFunctionWithoutOutput(void * ctx, const char * msg, ...) { }
+
+        /**
          * Error function used when the XPath query is compiled/
          * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlStructuredErrorFunc
          */
