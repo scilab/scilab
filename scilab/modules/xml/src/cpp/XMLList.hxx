@@ -56,6 +56,12 @@ namespace org_modules_xml
          */
         virtual const char ** getContentFromList() const = 0;
 
+        /**
+         * Get the name of each node of the list
+         * @return an array of strings
+         */
+        virtual const char ** getNameFromList() const = 0;
+
         const std::string toString() const;
 
     protected :

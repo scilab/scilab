@@ -62,6 +62,17 @@ namespace org_modules_xml
         return list;
     }
 
+    const char ** XMLNodeSet::getNameFromList() const
+    {
+        const char ** list = new const char*[size];
+        for (int i = 0; i < size; i++)
+        {
+            list[i] = nodeSet->nodeTab[i]->name ? (const char *)nodeSet->nodeTab[i]->name : "";
+        }
+
+        return list;
+    }
+
     void XMLNodeSet::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
     {
         for (int i = 0; i < size; i++)

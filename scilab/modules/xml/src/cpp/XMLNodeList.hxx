@@ -50,6 +50,8 @@ namespace org_modules_xml
 
         const char ** getContentFromList() const;
 
+        const char ** getNameFromList() const;
+
         void remove() const;
 
         /**

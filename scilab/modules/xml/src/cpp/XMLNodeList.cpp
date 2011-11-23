@@ -55,6 +55,18 @@ namespace org_modules_xml
         return list;
     }
 
+    const char ** XMLNodeList::getNameFromList() const
+    {
+        const char ** list = new const char*[size];
+        int i = 0;
+        for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
+        {
+            list[i] = cur->name ? (const char *)cur->name : "";
+        }
+
+        return list;
+    }
+
     void XMLNodeList::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
     {
         for (xmlNode * cur = parent->children; cur; cur = cur->next)

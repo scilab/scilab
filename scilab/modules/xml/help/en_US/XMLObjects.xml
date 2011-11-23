@@ -166,6 +166,7 @@
     <title>XML Node List</title>
     <para>A XML Node List is a type used to enumerate the children of an element. Each element can be accessed with an integer index. Since this is a list, it is possible to make insertion of new element in it, in using double index.</para>
     <para>The size of the list can be retrieved in using 'size' field.</para>
+    <para>The name or the contents of each node of the list can be retrieved in using 'name' or 'content' field.</para>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
     c = doc.root.children;
@@ -188,6 +189,12 @@
 
     xmlDump(c)
 
+    // Get the nodes name
+    c.name
+
+    // Get the nodes contents
+    c.content
+
     xmlClose(doc);
     ]]></programlisting>
   </refsection>
@@ -202,6 +209,9 @@
 
     s(1).content
     s(2).content
+
+    // Or ...
+    s.content
 
     xmlClose(doc);
     ]]></programlisting>
