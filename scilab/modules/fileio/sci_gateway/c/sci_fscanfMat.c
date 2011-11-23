@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -224,6 +224,8 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
                     if(sciErr.iErr)
                     {
+                        freeFscanfMatResult(results);
+                        results = NULL;
                         printError(&sciErr, 0);
                         return 0;
                     }
@@ -245,6 +247,10 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                     if (results->text)
                     {
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
+
+                        freeFscanfMatResult(results);
+                        results = NULL;
+
                         if(sciErr.iErr)
                         {
                             printError(&sciErr, 0);
@@ -267,6 +273,9 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
                         LhsVar(2) = Rhs + 2;
                     }
                 }
+
+                freeFscanfMatResult(results);
+                results = NULL;
 
                 if (filename) {FREE(filename); filename = NULL;}
 

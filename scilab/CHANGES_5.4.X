@@ -109,6 +109,7 @@ SciNotes:
 * bug 10283 fixed - The values write in w and iw output arguments of ode function
                     are directly got from work table used in lsod* function.
 
+
 Graphical User Interface:
 =========================
 
@@ -216,6 +217,7 @@ Localization:
 * bug 10032 fixed - Mac OS X locale detection did not take in account
                     the LANG variable.
 
+
 File input/output:
 ==================
 
@@ -223,10 +225,21 @@ File input/output:
 
 * tempname function added (SEP 68).
 
+* bug 9253 fixed - fscanfMat failed to read a file with some lines
+                   of text at the end (backward compatibility).
+
+* bug 9570 fixed - fprintfMat did not use the good format argument with nan and
+                   inf in a matrix.
+
+* bug 9869 fixed - fscanf did not check number of input arguments.
+
 * bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
 * bug 10055 fixed - findfiles had a wrong default filter under GNU/Linux
                     & Mac OS X
+
+* bug 10300 fixed - fscanfMat did not free some memory.
+
 
 New functions
 =============
@@ -366,10 +379,12 @@ Statistics:
 * bug 7387 fixed - The help page of the rand function gave a wrong advice.
                    The help page of the grand function gave a wrong advice.
 
+
 Linear Algebra:
 ==============
 
 * bug 9749 fixed - expm reported non convergence problem.
+
 
 Sparse matrices:
 ==============
@@ -378,10 +393,12 @@ Sparse matrices:
 
 * Created an help page and unit test for ordmmd.
 
+
 Sparse Matrices:
 ==============
 
 * Organized help pages into sub-sections.
+
 
 Documentation:
 ==============
@@ -419,12 +436,12 @@ Documentation:
 * Bug 9983 fixed - The xclick help page did not clearly specify the axes used for
                    coordinates
 
+
 Obsolete Functions:
 ===================
 
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed on 5.4.1
-
 
 
 Removed functions (previously declared as obsolete):
@@ -564,6 +581,7 @@ Graphics:
 * bug 10121 fixed - polyline.interp_color_vector where not saved/recoverabled
                     by xsave/xload. Thanks to Samuel Gougeon for the fix.
 
+
 ATOMS:
 ======
 
@@ -600,7 +618,7 @@ returns the value of the ScilabTypeEnum enum.
   - Scilab.execException(File)
     Same as Scilab.exec(File) but returns an exception when a Scilab error occurs
 
-* bug 9149 fixed - Calling a graphic function without activated the appropriate 
+* bug 9149 fixed - Calling a graphic function without activated the appropriate
                    mode did not triggered an exception
 
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
@@ -669,6 +687,7 @@ Misc:
 
 * sprintf moved as alias on msprintf function.
 
+
 Bug fixes:
 ==========
 
@@ -726,7 +745,7 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
-* bug 8874 fixed - Display of Complex numbers with Inf or Nan for real or Imaginary 
+* bug 8874 fixed - Display of Complex numbers with Inf or Nan for real or Imaginary
                    parts was broken.
 
 * bug 8963 fixed - mtlb_mode test failed on Windows.
@@ -748,9 +767,6 @@ Bug fixes:
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
-* bug 9253 fixed - fscanfMat failed to read a file with some lines
-                   of text at the end (backward compatibility).
-
 * bug 9268 fixed - Scilab was overridding a predefined variable JAVA_HOME.
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
@@ -763,9 +779,9 @@ Bug fixes:
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
-* bug 9461 fixed - The assert_checkalmostequal function did not manage 
+* bug 9461 fixed - The assert_checkalmostequal function did not manage
                    sparse matrices.
-                   The assert_checkalmostequal function did not manage 
+                   The assert_checkalmostequal function did not manage
                    hypermatrices.
 
 * bug 9479 fixed - Typo fixed (intput => input).
@@ -786,9 +802,6 @@ Bug fixes:
                    to parse XML configuration files.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
-
-* bug 9570 fixed - fprintfMat did not use the good format argument with nan and
-                   inf in a matrix.
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
@@ -851,8 +864,6 @@ Bug fixes:
 
 * bug 9858 fixed - length() could not be overloaded with mlist.
 
-* bug 9869 fixed - fscanf did not check number of input arguments.
-
 * bug 9879 fixed - Fix some minor issues in the isdir help pages.
 
 * bug 9880 fixed - Fix in the help page a page referencing itself.
@@ -875,7 +886,7 @@ Bug fixes:
 
 * bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
 
-* bug 9825 fixed - The assert_computedigits function generously 
+* bug 9825 fixed - The assert_computedigits function generously
                    gives too large correct digits.
 
 * bug 9963 fixed - The assert_computedigits function was not vectorized.
