@@ -128,15 +128,14 @@ assert_checkalmostequal(res, res5, 2d-7, [], "matrix");
 assert_checkalmostequal(res, res6, 2d-7, [], "matrix");
 
 //*************************** w iw ********************************/
-if version(1) > 5 then
-    tout2 = 0.4*exp(12*log(10));
-    tout3 = 0.4*exp((0:12)*log(10));
-    [yout w iw] = ode(y, t, tout, rtol, atol, f);
-    yout1 = ode(y, t, tout2, rtol, atol, f, w, iw);
-    yout2 = ode(y, t, tout3, rtol, atol, f);
+tout2 = 0.4*exp(12*log(10));
+tout3 = 0.4*exp((0:12)*log(10));
+[yout w iw] = ode(y, t, tout, rtol, atol, f);
+yout1 = ode(y, t, tout2, rtol, atol, f, w, iw);
+yout2 = ode(y, t, tout3, rtol, atol, f);
 
-    assert_checkalmostequal(yout2(3*12+1:3*13), yout1, %eps, [], "matrix");
-end
+assert_checkalmostequal(yout2(3*12+1:3*13), yout1, %eps, [], "matrix");
+
 //*************************** Polynom ********************************/
 //y(1) = 1;
 //y(2) = 2;
