@@ -355,6 +355,7 @@ public class WindowsConfigurationManager {
      * @return a list of the elements with the given uuid
      */
     public static final Set<Element> getTabDependencies(String uuid) {
+	readDocument();
         Element root = doc.getDocumentElement();
 
         // Children
@@ -408,7 +409,9 @@ public class WindowsConfigurationManager {
      * @return tabs to restore
      */
     private static final Set<Element> createAdjacentTabs(Set<Element> elems) {
-        Element root = doc.getDocumentElement();
+        readDocument();
+	
+	Element root = doc.getDocumentElement();
         boolean jobFinished = true;
         Set<Element> toAdd = new LinkedHashSet<Element>();
         for (Element e : elems) {
@@ -438,7 +441,9 @@ public class WindowsConfigurationManager {
      * @return the elder parent of this element (elder for the attribute "depends")
      */
     private static final Element getElderParent(Element e) {
-        Element root = doc.getDocumentElement();
+        readDocument();
+	
+	Element root = doc.getDocumentElement();
         String dep = e.getAttribute("depends");
         if (!dep.isEmpty()) {
             return getElderParent(ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", dep).get(0));
@@ -515,7 +520,9 @@ public class WindowsConfigurationManager {
      * @return the corresponding element or null if it does not exist
      */
     public static final Element getElementWithUUID(String uuid) {
-        return getElementWithUUID(doc.getDocumentElement(), uuid);
+        readDocument();
+	
+	return getElementWithUUID(doc.getDocumentElement(), uuid);
     }
 
     /**
@@ -596,6 +603,7 @@ public class WindowsConfigurationManager {
      */
     public static void saveTabProperties(SwingScilabTab tab, boolean nullWin) {
         readDocument();
+
         ScilabTabFactory factory = ScilabTabFactory.getInstance();
         String uuid = tab.getPersistentId();
         Element root = doc.getDocumentElement();
@@ -628,6 +636,7 @@ public class WindowsConfigurationManager {
      */
     public static void clean() {
         readDocument();
+
         Element root = doc.getDocumentElement();
         NodeList list = root.getElementsByTagName("Window");
         int len = getNodeListLength(list);
@@ -651,6 +660,7 @@ public class WindowsConfigurationManager {
      */
     public static final void makeDependency(String parentUUID, String childUUID) {
         readDocument();
+
         Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
         if (e != null) {
             e.setAttribute("depends", parentUUID);
@@ -664,6 +674,7 @@ public class WindowsConfigurationManager {
      */
     public static void removeDependency(String childUUID) {
         readDocument();
+
         Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
         if (e != null) {
             e.removeAttribute("depends");
@@ -695,6 +706,7 @@ public class WindowsConfigurationManager {
      */
     public static String[] getApplicationUUIDs(String name) {
         readDocument();
+
         NodeList list = doc.getDocumentElement().getElementsByTagName(name);
         String[] uuids = new String[getNodeListLength(list)];
         for (int i = 0; i < uuids.length; i++) {
