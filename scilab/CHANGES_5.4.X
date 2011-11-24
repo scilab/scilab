@@ -205,6 +205,8 @@ Xcos:
 
 * bug 10096 fixed - Set [1;-1;] on a product block thrown an exception.
 
+* bug 10302 fixed - Latex labels were not rendered.
+
 
 Localization:
 =============
