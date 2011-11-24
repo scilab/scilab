@@ -17,6 +17,7 @@
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
 #include "api_poly.h"
+#include "api_double.h"
 #include "localization.h"
 
 #include "MALLOC.h"
@@ -166,11 +167,23 @@ SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int
 SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int *piAddr				= NULL;
-	int iSize					= _iRows * _iCols;
-	int iNewPos				= Top - Rhs + _iVar;
-	int iAddr					= *Lstk(iNewPos);
-	int iTotalLen			= 0;
+	int *piAddr     = NULL;
+	int iSize       = _iRows * _iCols;
+	int iNewPos     = Top - Rhs + _iVar;
+	int iAddr       = *Lstk(iNewPos);
+	int iTotalLen   = 0;
+
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 	sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
@@ -259,10 +272,22 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	int *piAddr				= NULL;
-	int iTotalLen			= 0;
+    int iSaveRhs    = Rhs;
+	int iSaveTop    = Top;
+	int *piAddr     = NULL;
+	int iTotalLen   = 0;
+
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
@@ -292,7 +317,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 	createNamedVariable(iVarID);
 
 	Top = iSaveTop;
-  Rhs = iSaveRhs;
+    Rhs = iSaveRhs;
 
 	return sciErr;
 }

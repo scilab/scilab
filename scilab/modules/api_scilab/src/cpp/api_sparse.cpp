@@ -17,6 +17,7 @@
 #include "api_internal_common.h"
 #include "api_internal_sparse.h"
 #include "api_sparse.h"
+#include "api_double.h"
 #include "localization.h"
 
 #include "MALLOC.h"
@@ -114,13 +115,25 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int	iTotalSize	= 0;
-	int iOffset			= 0;
-	int* piAddr			= NULL;
+	int iNewPos     = Top - Rhs + _iVar;
+	int iAddr       = *Lstk(iNewPos);
+	int	iTotalSize  = 0;
+	int iOffset     = 0;
+	int* piAddr     = NULL;
 
-		//header + offset
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    //header + offset
 	int iMemSize = (5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2)) / 2;
 	//+ items size
 	iMemSize += _iNbItem * (_iComplex + 1); 
@@ -190,11 +203,22 @@ SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int* piNbItemRow	= NULL;
-	int* piColPos		= NULL;
-	int iOne		= 1;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
+	int* piNbItemRow    = NULL;
+	int* piColPos       = NULL;
+	int iOne            = 1;
+	double* pdblReal    = NULL;
+	double* pdblImg     = NULL;
+
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
 
 	sciErr = allocCommonSparseMatrix(_pvCtx, _iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	if(sciErr.iErr)
@@ -227,17 +251,29 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  	int iSaveRhs		= Rhs;
-	int iSaveTop		= Top;
-	int iTotalSize		= 0;
-	int iPos		= 0;
+  	int iSaveRhs        = Rhs;
+	int iSaveTop        = Top;
+	int iTotalSize      = 0;
+	int iPos            = 0;
 
-	int* piAddr		= NULL;
-	int* piNbItemRow	= NULL;
-	int* piColPos		= NULL;
-	int iOne		= 1;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
+	int* piAddr         = NULL;
+	int* piNbItemRow    = NULL;
+	int* piColPos       = NULL;
+	int iOne            = 1;
+	double* pdblReal    = NULL;
+	double* pdblImg     = NULL;
+
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
@@ -287,7 +323,7 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 	createNamedVariable(iVarID);
 
 	Top = iSaveTop;
-  Rhs = iSaveRhs;
+    Rhs = iSaveRhs;
 
 	return sciErr;
 
