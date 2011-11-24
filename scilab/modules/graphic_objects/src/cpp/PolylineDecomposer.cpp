@@ -75,6 +75,11 @@ int PolylineDecomposer::getDataSize(char* id)
     {
         return 5*nPoints;
     }
+    /* Horizontal bars plus segments */
+    else if (polylineStyle == 7)
+    {
+        return 5*nPoints;
+    }
     /* To be done: remaining styles */
     else
     {
@@ -124,6 +129,10 @@ void PolylineDecomposer::fillVertices(char* id, float* buffer, int bufferLength,
     else if (polylineStyle == 6)
     {
         fillVerticalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
+    }
+    else if (polylineStyle == 7)
+    {
+        fillHorizontalBarsDecompositionVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, t, nPoints, xshift, yshift, zshift);
     }
 
 }
@@ -532,6 +541,131 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(char* id, float* 
 }
 
 /*
+ * To do: -refactor with fillVerticalBarsDecompositionVertices as these two functions are very similar, possibly by implementing
+           a PolylineBarDecomposer class.
+ */
+void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
+    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
+{
+    double barWidth = 0.0;
+    double* pdBarWidth = &barWidth;
+
+    int i;
+
+    int shiftUsed[3];
+    int *piShiftUsed;
+
+    /*
+     * Offsets of the lower-left, lower-right, upper-right and upper-left bar vertices (respectively)
+     * and of the polyline vertex proper
+     */
+    int offsets[5];
+
+    /*
+     * {x,y or z}-component values of a bar's 4 vertices (same ordering as the offsets)
+     * and of the polyline vertex proper.
+     */
+    double coords[5];
+
+    double shift;
+
+
+    getGraphicObjectProperty(id, __GO_BAR_WIDTH__, jni_double, (void**) &pdBarWidth);
+
+    piShiftUsed = &shiftUsed[0];
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, jni_double_vector, (void**) &piShiftUsed);
+    piShiftUsed = &shiftUsed[1];
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_double_vector, (void**) &piShiftUsed);
+    piShiftUsed = &shiftUsed[2];
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, jni_double_vector, (void**) &piShiftUsed);
+
+    for (i = 0; i < nPoints; i++)
+    {
+        offsets[0] = elementsSize*4*i;
+        offsets[1] = elementsSize*(4*i+1);
+        offsets[2] = elementsSize*(4*i+2);
+        offsets[3] = elementsSize*(4*i+3);
+
+        offsets[4] = elementsSize*(4*nPoints+i);
+
+        /* The actual x coordinates correspond to the polyline's y coordinates. */
+        if (coordinateMask & 0x01)
+        {
+            coords[0] = 0.0;
+            coords[1] = 0.0;
+            coords[2] = coordinates[i + nPoints];
+            coords[3] = coordinates[i + nPoints];
+
+            coords[4] = coordinates[i];
+
+            if (shiftUsed[1])
+            {
+                shift = yshift[i];
+            }
+
+            writeBarVerticesToBuffer(buffer, offsets, 0, coords, shift, shiftUsed[1], scale[0], translation[0], logMask & 0x01);
+        }
+
+        /* The actual y coordinates correspond to the polyline's x coordinates. */
+        if (coordinateMask & 0x02)
+        {
+            coords[0] = coordinates[i] - 0.5*barWidth;
+            coords[1] = coordinates[i] + 0.5*barWidth;
+            coords[2] = coordinates[i] + 0.5*barWidth;
+            coords[3] = coordinates[i] - 0.5*barWidth;
+
+            coords[4] = coordinates[i + nPoints];
+
+            if (shiftUsed[0])
+            {
+                shift = xshift[i];
+            }
+
+            if (logMask & 0x02)
+            {
+                /*
+                 * The two lower endpoints' y coordinates must be set to 1
+                 * since writeBarVerticesToBuffer applies the logarithmic transformation.
+                 */
+                coords[0] = 1.0;
+                coords[1] = 1.0;
+            }
+
+            writeBarVerticesToBuffer(buffer, offsets, 1, coords, shift, shiftUsed[0], scale[1], translation[1], logMask & 0x02);
+        }
+
+        if (coordinateMask & 0x04)
+        {
+            coords[0] = coordinates[i + 2 * nPoints];
+            coords[1] = coordinates[i + 2 * nPoints];
+            coords[2] = coordinates[i + 2 * nPoints];
+            coords[3] = coordinates[i + 2 * nPoints];
+
+            coords[4] = coordinates[i + 2* nPoints];
+
+            if (shiftUsed[2])
+            {
+                shift = zshift[i];
+            }
+
+            writeBarVerticesToBuffer(buffer, offsets, 2, coords, shift, shiftUsed[2], scale[2], translation[2], logMask & 0x04);
+        }
+
+        if((elementsSize == 4) && (coordinateMask & 0x08))
+        {
+            buffer[offsets[0] +3] = 1.0;
+            buffer[offsets[1] +3] = 1.0;
+            buffer[offsets[2] +3] = 1.0;
+            buffer[offsets[3] +3] = 1.0;
+
+            buffer[offsets[4] +3] = 1.0;
+        }
+
+    }
+
+}
+
+/*
  * To do: see fillIndices
  * -take into account polyline_style.
  */
@@ -573,13 +707,18 @@ int PolylineDecomposer::getIndicesSize(char* id)
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
-        nIndices = PolylineDecomposer::getVerticalBarsDecompositionTriangleIndicesSize(nPoints);
+        nIndices = PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(nPoints);
+    }
+    /* Horizontal bars plus segments */
+    else if (polylineStyle == 7)
+    {
+        nIndices = PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(nPoints);
     }
 
     return nIndices;
 }
 
-int PolylineDecomposer::getVerticalBarsDecompositionTriangleIndicesSize(int nPoints)
+int PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(int nPoints)
 {
     return 2*3*nPoints;
 }
@@ -628,7 +767,11 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
     }
     else if (polylineStyle == 6)
     {
-        return fillVerticalBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+        return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
+    }
+    else if (polylineStyle == 7)
+    {
+        return fillBarsDecompositionTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
     }
 
     return 0;
@@ -725,7 +868,7 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
  * Only bars are filled at the present moment, the curve is not.
  * See fillTriangleIndices for more information.
  */
-int PolylineDecomposer::fillVerticalBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
     double barWidth = 0.0;
@@ -831,7 +974,12 @@ int PolylineDecomposer::getWireIndicesSize(char* id)
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
-        return getVerticalBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
+        return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
+    }
+    /* Horizontal bars plus segments */
+    else if (polylineStyle == 7)
+    {
+        return getBarsDecompositionSegmentIndicesSize(nPoints, lineMode);
     }
     else
     {
@@ -905,7 +1053,7 @@ int PolylineDecomposer::getVerticalLinesDecompositionSegmentIndicesSize(int nPoi
     }
 }
 
-int PolylineDecomposer::getVerticalBarsDecompositionSegmentIndicesSize(int nPoints, int lineMode)
+int PolylineDecomposer::getBarsDecompositionSegmentIndicesSize(int nPoints, int lineMode)
 {
     if (nPoints == 0)
     {
@@ -967,7 +1115,11 @@ int PolylineDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength,
     }
     else if (polylineStyle == 6)
     {
-        return fillVerticalBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+        return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
+    }
+    else if (polylineStyle == 7)
+    {
+        return fillBarsDecompositionSegmentIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, lineMode);
     }
 
     return 0;
@@ -1236,7 +1388,7 @@ int PolylineDecomposer::fillVerticalLinesDecompositionSegmentIndices(char* id, i
 }
 
 
-int PolylineDecomposer::fillVerticalBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
+int PolylineDecomposer::fillBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
     int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode)
 {
     double barWidth = 0.0;
