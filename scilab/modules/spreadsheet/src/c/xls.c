@@ -84,8 +84,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   *chainesind= (int *) NULL;
   *err=0;
 
-  *cur_pos=*cur_pos;
-  mseek(*fd, *cur_pos, SEEK_SET);
+  *err = mseek(*fd, *cur_pos, SEEK_SET);
   if (*err > 0) goto ErrL;
 
   /* first record should be a BOF */
@@ -101,13 +100,13 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
     return;
   }
 
-  mtell(*fd);
+  pos = mtell(*fd);
   if (*err > 0) goto ErrL;
   *cur_pos=(int)pos;
 
   while(1)
     {
-      mseek(*fd, *cur_pos, SEEK_SET);
+      *err = mseek(*fd, *cur_pos, SEEK_SET);
       if (*err > 0) goto ErrL;
       /*Enregistrement de l'Opcode et de la Len du tag*/
       C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
@@ -189,7 +188,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        longueur=l_col;/*-f_col;*/
        capacite=hauteur*longueur;
 
-       /*D�claration des tableaux de synth�se*/
+       /*Declaration des tableaux de synthese*/
        if ((valeur=(void*) MALLOC((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
        if ((*chainesind=(int *) MALLOC((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
@@ -261,7 +260,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     4 = incorrect file
     5 = not a BIFF8 xls file
    */
-  /*---------------D�claration Des Variables*--------------------*/
+  /*---------------Declaration Des Variables*--------------------*/
   int k,one=1;
   int cur_pos, init_pos;
   double pos = 0;
@@ -270,14 +269,14 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   *nsheets=0;
   *err=0;
-  /*---------------D�claration Des Variables*--------------------*/
+  /*---------------Declaration Des Variables*--------------------*/
   cur_pos=0;
 
   /*  if (get_oleheader(fd)) {
     *err=1;
     return;
     }*/
-  mtell(*fd);
+  pos = mtell(*fd);
   cur_pos=(int)pos;
   init_pos=cur_pos;
 
@@ -294,7 +293,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     return;
   }
 
-  mtell(*fd);
+  pos = mtell(*fd);
   if (*err > 0) goto Err2;
   cur_pos=(int)pos;
 
@@ -395,21 +394,21 @@ static void getBOF(int *fd ,int* Data, int *err)
     else
       BIFF=7;
     break;
-  case 1033 : /*Interpr�tation du BIFF4  0409 H*/
+  case 1033 : /*Interpretation du BIFF4  0409 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
     if (*err > 0) return;
     BIFF=4;
     break;
-  case 521 : /*Interpr�tation du BIFF3  0209 H*/
+  case 521 : /*Interpretation du BIFF3  0209 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
     if (*err > 0) return;
     BIFF=3;
     break;
-  case 9 : /*Interpr�tation du BIFF2  0009 H*/
+  case 9 : /*Interpretation du BIFF2  0009 H*/
     C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
     if (*err > 0) return;
     C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);

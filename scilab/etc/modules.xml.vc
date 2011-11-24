@@ -46,5 +46,6 @@
     <module name="linear_algebra" activate="yes"/>
     <module name="statistics" activate="yes"/>
     <module name="differential_equations" activate="yes"/>
+    <module name="spreadsheet" activate="yes"/>
 </modules>
 

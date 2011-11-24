@@ -41,4 +41,5 @@
 //#include "../../statistics/includes/statistics_gw.hxx"
 #include "dynamic_modules.hxx"
 #include "../../differential_equations/includes/differential_equations_gw.hxx"
+#include "../../spreadsheet/includes/spreadsheet_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

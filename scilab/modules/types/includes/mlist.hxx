@@ -25,11 +25,15 @@ namespace types
                                         MList() : TList() {}
                                         //Destructor uses ~TList()
 
+        virtual InternalType*           clone() {return new MList(this);}
         void                            whoAmI(void) { std::cout << "types::MList"; };
 
         RealType                        getType(void) { return RealMList; }
         bool                            isMList() { return true; }
         bool                            isTList() { return false; }
+
+    protected :
+                                        MList(MList *_oMListCopyMe) : TList(_oMListCopyMe) {}
     };
 }
 

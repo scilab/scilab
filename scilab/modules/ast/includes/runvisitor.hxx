@@ -227,7 +227,17 @@ namespace ast
             for(it = _plstArg.begin() ; it != _plstArg.end() ; it++)
             {
                 (*it)->accept(*this);
-                pArgs->push_back(result_get());
+                if(result_getSize() > 1)
+                {
+                    for(int i = 0 ; i < result_getSize() ; i++)
+                    {
+                        pArgs->push_back(result_get(i));
+                    }
+                }
+                else
+                {
+                    pArgs->push_back(result_get());
+                }
             }
             //to be sure, delete operation does not delete result
             result_set(NULL);
@@ -365,7 +375,7 @@ namespace ast
             result_set(pI);
             if(pI != NULL)
             {
-                if(e.is_verbose() && pI->isCallable() == false)
+                if(e.is_verbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
                     ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")"<< std::endl;
@@ -1106,7 +1116,7 @@ namespace ast
                             //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
                             InternalType* pITAns = result_get()->clone();
                             symbol::Context::getInstance()->put(*m_pAns, *pITAns);
-                            if((*itExp)->is_verbose())
+                            if((*itExp)->is_verbose() && ConfigVariable::isPromptShow())
                             {
                                 //TODO manage multiple returns
                                 scilabWriteW(L"ans = \n\n");

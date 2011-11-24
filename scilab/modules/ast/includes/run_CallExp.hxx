@@ -267,96 +267,79 @@ void visitprivate(const CallExp &e)
                 }
                 break;
             case InternalType::RealTList :
-            case InternalType::RealMList :
                 {
-                    list<wstring> stFields;
-                    typed_list iFields;
-                    InternalType::RealType rtIndex = InternalType::RealInternal;
-                    bool bTypeSet = false;
+                    bool bCallOverLoad = false;
+                    if(pArgs->size() == 1)
+                    {
+                        types::InternalType* pArg = (*pArgs)[0];
+                        if( pArg->isDouble() ||
+                            pArg->isInt() || 
+                            pArg->isBool() ||  
+                            pArg->isImplicitList() || 
+                            pArg->isColon() || 
+                            pArg->isDollar())
 
-                    if(pArgs->size() != 1)
-                    {
-                        std::wostringstream os;
-                        os << L"Wrong number of input argument(s): 1 expected.\n";
-                        throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-                    }
-                    if((*pArgs)[0]->isString())
-                    {
-                        rtIndex = InternalType::RealString;
-                        bTypeSet = true;
-                        String *pString = (*pArgs)[0]->getAs<types::String>();
-                        for(int i = 0 ; i < pString->getSize() ; i++)
-                        {
-                            stFields.push_back(pString->get(i));
+                        {//call "normal" extract
+                            typed_list iField;
+                            iField.push_back(pArg);
+                            ResultList = pIT->getAs<TList>()->extract(&iField);
                         }
-                    }
-                    else if((*pArgs)[0]->isDouble())
-                    {
-                        rtIndex = InternalType::RealDouble;
-                        bTypeSet = true;
-                        Double* pDbl = (*pArgs)[0]->getAs<types::Double>();
-                        iFields.push_back(pDbl);
-                    }
-
-                    result_set(NULL);
-
-                    if(rtIndex  == InternalType::RealDouble)
-                    {
-                        if(pIT->isTList())
-                        {
-                            ResultList = pIT->getAs<TList>()->extract(&iFields);
+                        else if(pArg->isString())
+                        {//extractStrings
+                            list<wstring> stFields;
+                            String *pString = (*pArgs)[0]->getAs<types::String>();
+                            for(int i = 0 ; i < pString->getSize() ; i++)
+                            {
+                                stFields.push_back(pString->get(i));
+                            }
+                            
+                            ResultList = pIT->getAs<TList>()->extractStrings(stFields);
+                            if(ResultList.empty())
+                            {
+                                bCallOverLoad = true;
+                            }
                         }
                         else
-                        {//try to call extraction function %MList_type_e
-                            types::typed_list in;
-
-                            (*pArgs)[0]->IncreaseRef();
-                            pIT->IncreaseRef();
-                            in.push_back((*pArgs)[0]);
-                            in.push_back(pIT);
-
-                            //try to call specific exrtaction function
-                            try
-                            {
-                                Overload::call(L"%" + pIT->getAs<MList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
-                            }
-                            catch(ScilabError /*&e*/)
-                            {//if call failed try to call generic extraction function
-                                Overload::call(L"%l_e", in, 1, ResultList, this);
-                            }
-
-                            (*pArgs)[0]->DecreaseRef();
-                            pIT->DecreaseRef();
-                        }
-                    }
-                    else if(rtIndex  == InternalType::RealString)
-                    {//TList::extractStrings can be call on TList or MList
-                        ResultList = pIT->getAs<TList>()->extractStrings(stFields);
-                        if(ResultList.empty())
-                        {//call overload %l_e
-                            types::typed_list in;
-
-                            (*pArgs)[0]->IncreaseRef();
-                            pIT->IncreaseRef();
-                            in.push_back((*pArgs)[0]);
-                            in.push_back(pIT);
-                            //try to call specific exrtaction function
-                            try
-                            {
-                                Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
-                            }
-                            catch(ScilabError /*&e*/)
-                            {//if call failed try to call generic extraction function
-                               Overload::call(L"%l_e", in, 1, ResultList, this);
-                            }
-
-                            (*pArgs)[0]->DecreaseRef();
-                            pIT->DecreaseRef();
+                        {
+                            bCallOverLoad = true;
                         }
                     }
                     else
                     {
-                        ResultList = pIT->getAs<TList>()->extract(pArgs);
+                        bCallOverLoad = true;
+                    }
+
+                    if(bCallOverLoad)
+                    {
+                        types::typed_list in;
+
+                        //create input argument list
+
+                        //protect inputs 
+                        for(int i = 0 ; i < pArgs->size() ; i++)
+                        {
+                            (*pArgs)[i]->IncreaseRef();
+                            in.push_back((*pArgs)[i]);
+                        }
+
+                        //protect TList
+                        pIT->IncreaseRef();
+                        in.push_back(pIT);
+
+                        try
+                        {//try to call specific exrtaction function
+                            Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                        }
+                        catch(ScilabError /*&e*/)
+                        {//if call failed try to call generic extraction function
+                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                        }
+
+                        for(int i = 0 ; i < pArgs->size() ; i++)
+                        {
+                            (*pArgs)[i]->DecreaseRef();
+                        }
+                        pIT->DecreaseRef();
                     }
 
                     switch(ResultList.size())
@@ -378,8 +361,93 @@ void visitprivate(const CallExp &e)
                         }
                         break;
                     }
+                    break;
                 }
-                break;
+            case InternalType::RealMList :
+                {
+                    bool bCallOverLoad = false;
+                    if(pArgs->size() == 1)
+                    {
+                        types::InternalType* pArg = (*pArgs)[0];
+                        if(pArg->isString())
+                        {//extractStrings
+                            list<wstring> stFields;
+                            String *pString = (*pArgs)[0]->getAs<types::String>();
+                            for(int i = 0 ; i < pString->getSize() ; i++)
+                            {
+                                stFields.push_back(pString->get(i));
+                            }
+                            
+                            ResultList = pIT->getAs<MList>()->extractStrings(stFields);
+                            if(ResultList.empty())
+                            {
+                                bCallOverLoad = true;
+                            }
+                        }
+                        else
+                        {
+                            bCallOverLoad = true;
+                        }
+                    }
+                    else
+                    {
+                        bCallOverLoad = true;
+                    }
+
+                    if(bCallOverLoad)
+                    {
+                        types::typed_list in;
+
+                        //create input argument list
+
+                        //protect inputs 
+                        for(int i = 0 ; i < pArgs->size() ; i++)
+                        {
+                            (*pArgs)[i]->IncreaseRef();
+                            in.push_back((*pArgs)[i]);
+                        }
+
+                        //protect TList
+                        pIT->IncreaseRef();
+                        in.push_back(pIT);
+
+                        try
+                        {//try to call specific exrtaction function
+                            Overload::call(L"%" + pIT->getAs<MList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                        }
+                        catch(ScilabError /*&e*/)
+                        {//if call failed try to call generic extraction function
+                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                        }
+
+                        for(int i = 0 ; i < pArgs->size() ; i++)
+                        {
+                            (*pArgs)[i]->DecreaseRef();
+                        }
+                        pIT->DecreaseRef();
+                    }
+
+                    switch(ResultList.size())
+                    {
+                    case 0 :
+                        {
+                            std::wostringstream os;
+                            os << L"Invalid index.\n";
+                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                        }
+                        break;
+                    case 1 :
+                        result_set(ResultList[0]);
+                        break;
+                    default :
+                        for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                        {
+                            result_set(i, ResultList[i]);
+                        }
+                        break;
+                    }
+                    break;
+                }
             case InternalType::RealCell :
                 pOut = pIT->getAs<Cell>()->extract(pArgs);
                 break;

@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;../types/includes;../dynamic_link/includes;../../libs/dynamiclibrary/includes;../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;../types/includes;../dynamic_link/includes;../../libs/dynamiclibrary/includes;../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -128,7 +128,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;../types/includes;../dynamic_link/includes;../../libs/dynamiclibrary/includes;../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;../core/includes;../fileio/includes;../io/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes;../system_env/includes;../types/includes;../dynamic_link/includes;../../libs/dynamiclibrary/includes;../ast/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -188,6 +188,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_xls_open.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xls_read.cpp" />
     <ClCompile Include="src\c\ripole\bt-int.c" />
     <ClCompile Include="src\c\ripole\bytedecoders.c" />
     <ClCompile Include="src\c\DllmainSpreadsheet.c" />
@@ -197,8 +199,6 @@
     <ClCompile Include="src\c\ripole\olestream-unwrap.c" />
     <ClCompile Include="src\c\ripole\pldstr.c" />
     <ClCompile Include="src\c\ripole\ripole.c" />
-    <ClCompile Include="sci_gateway\c\sci_xls_open.c" />
-    <ClCompile Include="sci_gateway\c\sci_xls_read.c" />
     <ClCompile Include="src\c\xls.c" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +243,9 @@
     <ProjectReference Include="..\system_env\system_env.vcxproj">
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>

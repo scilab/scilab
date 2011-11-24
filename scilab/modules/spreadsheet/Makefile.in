@@ -127,15 +127,13 @@ libscispreadsheet_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 libscispreadsheet_la_DEPENDENCIES = libscispreadsheet-algo.la
-am__objects_3 = libscispreadsheet_la-gw_spreadsheet.lo \
-	libscispreadsheet_la-sci_xls_read.lo \
+am__objects_3 = libscispreadsheet_la-sci_xls_read.lo \
 	libscispreadsheet_la-sci_xls_open.lo
 am_libscispreadsheet_la_OBJECTS = $(am__objects_3)
 libscispreadsheet_la_OBJECTS = $(am_libscispreadsheet_la_OBJECTS)
-libscispreadsheet_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscispreadsheet_la_CFLAGS) $(CFLAGS) \
-	$(libscispreadsheet_la_LDFLAGS) $(LDFLAGS) -o $@
+libscispreadsheet_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscispreadsheet_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -148,6 +146,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscispreadsheet_algo_la_SOURCES) \
 	$(libscispreadsheet_la_SOURCES)
@@ -418,7 +425,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 SPREADSHEET_C_SOURCES = src/c/xls.c
-RIPOLE_SOURCES = src/c/ripole/olestream-unwrap.c \
+RIPOLE_SOURCES = \
+src/c/ripole/olestream-unwrap.c \
 src/c/ripole/pldstr.c \
 src/c/ripole/ole.c \
 src/c/ripole/bytedecoders.c \
@@ -426,31 +434,50 @@ src/c/ripole/logger.c \
 src/c/ripole/ripole.c \
 src/c/ripole/bt-int.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
-sci_gateway/c/sci_xls_read.c \
-sci_gateway/c/sci_xls_open.c
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_xls_read.cpp \
+    sci_gateway/cpp/sci_xls_open.cpp
 
-libscispreadsheet_la_CFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(srcdir)/src/c/ripole \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/string/includes
+libscispreadsheet_la_CFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/ripole \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/io/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes
+
+libscispreadsheet_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/ripole \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/types/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la
 libscispreadsheet_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscispreadsheet_algo_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(RIPOLE_SOURCES)
-libscispreadsheet_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscispreadsheet_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscispreadsheet_algo_la_CFLAGS = $(libscispreadsheet_la_CFLAGS)
+libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
+CHECK_SRC = $(SPREADSHEET_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CFLAGS)
 libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
 
@@ -534,7 +561,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -624,7 +651,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-pldstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-ripole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-xls.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_xls_open.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_xls_read.Plo@am__quote@
 
@@ -650,81 +676,95 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscispreadsheet_algo_la-xls.lo: src/c/xls.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-xls.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-xls.Tpo -c -o libscispreadsheet_algo_la-xls.lo `test -f 'src/c/xls.c' || echo '$(srcdir)/'`src/c/xls.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-xls.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-xls.Tpo -c -o libscispreadsheet_algo_la-xls.lo `test -f 'src/c/xls.c' || echo '$(srcdir)/'`src/c/xls.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-xls.Tpo $(DEPDIR)/libscispreadsheet_algo_la-xls.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xls.c' object='libscispreadsheet_algo_la-xls.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-xls.lo `test -f 'src/c/xls.c' || echo '$(srcdir)/'`src/c/xls.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-xls.lo `test -f 'src/c/xls.c' || echo '$(srcdir)/'`src/c/xls.c
 
 libscispreadsheet_algo_la-olestream-unwrap.lo: src/c/ripole/olestream-unwrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-olestream-unwrap.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Tpo -c -o libscispreadsheet_algo_la-olestream-unwrap.lo `test -f 'src/c/ripole/olestream-unwrap.c' || echo '$(srcdir)/'`src/c/ripole/olestream-unwrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-olestream-unwrap.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Tpo -c -o libscispreadsheet_algo_la-olestream-unwrap.lo `test -f 'src/c/ripole/olestream-unwrap.c' || echo '$(srcdir)/'`src/c/ripole/olestream-unwrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Tpo $(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/olestream-unwrap.c' object='libscispreadsheet_algo_la-olestream-unwrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-olestream-unwrap.lo `test -f 'src/c/ripole/olestream-unwrap.c' || echo '$(srcdir)/'`src/c/ripole/olestream-unwrap.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-olestream-unwrap.lo `test -f 'src/c/ripole/olestream-unwrap.c' || echo '$(srcdir)/'`src/c/ripole/olestream-unwrap.c
 
 libscispreadsheet_algo_la-pldstr.lo: src/c/ripole/pldstr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-pldstr.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-pldstr.Tpo -c -o libscispreadsheet_algo_la-pldstr.lo `test -f 'src/c/ripole/pldstr.c' || echo '$(srcdir)/'`src/c/ripole/pldstr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-pldstr.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-pldstr.Tpo -c -o libscispreadsheet_algo_la-pldstr.lo `test -f 'src/c/ripole/pldstr.c' || echo '$(srcdir)/'`src/c/ripole/pldstr.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-pldstr.Tpo $(DEPDIR)/libscispreadsheet_algo_la-pldstr.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/pldstr.c' object='libscispreadsheet_algo_la-pldstr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-pldstr.lo `test -f 'src/c/ripole/pldstr.c' || echo '$(srcdir)/'`src/c/ripole/pldstr.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-pldstr.lo `test -f 'src/c/ripole/pldstr.c' || echo '$(srcdir)/'`src/c/ripole/pldstr.c
 
 libscispreadsheet_algo_la-ole.lo: src/c/ripole/ole.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-ole.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-ole.Tpo -c -o libscispreadsheet_algo_la-ole.lo `test -f 'src/c/ripole/ole.c' || echo '$(srcdir)/'`src/c/ripole/ole.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-ole.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-ole.Tpo -c -o libscispreadsheet_algo_la-ole.lo `test -f 'src/c/ripole/ole.c' || echo '$(srcdir)/'`src/c/ripole/ole.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-ole.Tpo $(DEPDIR)/libscispreadsheet_algo_la-ole.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/ole.c' object='libscispreadsheet_algo_la-ole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-ole.lo `test -f 'src/c/ripole/ole.c' || echo '$(srcdir)/'`src/c/ripole/ole.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-ole.lo `test -f 'src/c/ripole/ole.c' || echo '$(srcdir)/'`src/c/ripole/ole.c
 
 libscispreadsheet_algo_la-bytedecoders.lo: src/c/ripole/bytedecoders.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-bytedecoders.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-bytedecoders.Tpo -c -o libscispreadsheet_algo_la-bytedecoders.lo `test -f 'src/c/ripole/bytedecoders.c' || echo '$(srcdir)/'`src/c/ripole/bytedecoders.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-bytedecoders.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-bytedecoders.Tpo -c -o libscispreadsheet_algo_la-bytedecoders.lo `test -f 'src/c/ripole/bytedecoders.c' || echo '$(srcdir)/'`src/c/ripole/bytedecoders.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-bytedecoders.Tpo $(DEPDIR)/libscispreadsheet_algo_la-bytedecoders.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/bytedecoders.c' object='libscispreadsheet_algo_la-bytedecoders.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-bytedecoders.lo `test -f 'src/c/ripole/bytedecoders.c' || echo '$(srcdir)/'`src/c/ripole/bytedecoders.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-bytedecoders.lo `test -f 'src/c/ripole/bytedecoders.c' || echo '$(srcdir)/'`src/c/ripole/bytedecoders.c
 
 libscispreadsheet_algo_la-logger.lo: src/c/ripole/logger.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-logger.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-logger.Tpo -c -o libscispreadsheet_algo_la-logger.lo `test -f 'src/c/ripole/logger.c' || echo '$(srcdir)/'`src/c/ripole/logger.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-logger.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-logger.Tpo -c -o libscispreadsheet_algo_la-logger.lo `test -f 'src/c/ripole/logger.c' || echo '$(srcdir)/'`src/c/ripole/logger.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-logger.Tpo $(DEPDIR)/libscispreadsheet_algo_la-logger.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/logger.c' object='libscispreadsheet_algo_la-logger.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-logger.lo `test -f 'src/c/ripole/logger.c' || echo '$(srcdir)/'`src/c/ripole/logger.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-logger.lo `test -f 'src/c/ripole/logger.c' || echo '$(srcdir)/'`src/c/ripole/logger.c
 
 libscispreadsheet_algo_la-ripole.lo: src/c/ripole/ripole.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-ripole.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-ripole.Tpo -c -o libscispreadsheet_algo_la-ripole.lo `test -f 'src/c/ripole/ripole.c' || echo '$(srcdir)/'`src/c/ripole/ripole.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-ripole.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-ripole.Tpo -c -o libscispreadsheet_algo_la-ripole.lo `test -f 'src/c/ripole/ripole.c' || echo '$(srcdir)/'`src/c/ripole/ripole.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-ripole.Tpo $(DEPDIR)/libscispreadsheet_algo_la-ripole.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/ripole.c' object='libscispreadsheet_algo_la-ripole.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-ripole.lo `test -f 'src/c/ripole/ripole.c' || echo '$(srcdir)/'`src/c/ripole/ripole.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-ripole.lo `test -f 'src/c/ripole/ripole.c' || echo '$(srcdir)/'`src/c/ripole/ripole.c
 
 libscispreadsheet_algo_la-bt-int.lo: src/c/ripole/bt-int.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-bt-int.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-bt-int.Tpo -c -o libscispreadsheet_algo_la-bt-int.lo `test -f 'src/c/ripole/bt-int.c' || echo '$(srcdir)/'`src/c/ripole/bt-int.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-bt-int.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-bt-int.Tpo -c -o libscispreadsheet_algo_la-bt-int.lo `test -f 'src/c/ripole/bt-int.c' || echo '$(srcdir)/'`src/c/ripole/bt-int.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-bt-int.Tpo $(DEPDIR)/libscispreadsheet_algo_la-bt-int.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ripole/bt-int.c' object='libscispreadsheet_algo_la-bt-int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-bt-int.lo `test -f 'src/c/ripole/bt-int.c' || echo '$(srcdir)/'`src/c/ripole/bt-int.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-bt-int.lo `test -f 'src/c/ripole/bt-int.c' || echo '$(srcdir)/'`src/c/ripole/bt-int.c
 
-libscispreadsheet_la-gw_spreadsheet.lo: sci_gateway/c/gw_spreadsheet.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-gw_spreadsheet.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo -c -o libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo $(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_spreadsheet.c' object='libscispreadsheet_la-gw_spreadsheet.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
-libscispreadsheet_la-sci_xls_read.lo: sci_gateway/c/sci_xls_read.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Tpo -c -o libscispreadsheet_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Tpo $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xls_read.c' object='libscispreadsheet_la-sci_xls_read.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-sci_xls_read.lo `test -f 'sci_gateway/c/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_read.c
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-libscispreadsheet_la-sci_xls_open.lo: sci_gateway/c/sci_xls_open.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-sci_xls_open.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Tpo -c -o libscispreadsheet_la-sci_xls_open.lo `test -f 'sci_gateway/c/sci_xls_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_open.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Tpo $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xls_open.c' object='libscispreadsheet_la-sci_xls_open.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscispreadsheet_la_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-sci_xls_open.lo `test -f 'sci_gateway/c/sci_xls_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xls_open.c
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscispreadsheet_la-sci_xls_read.lo: sci_gateway/cpp/sci_xls_read.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscispreadsheet_la-sci_xls_read.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Tpo -c -o libscispreadsheet_la-sci_xls_read.lo `test -f 'sci_gateway/cpp/sci_xls_read.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xls_read.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Tpo $(DEPDIR)/libscispreadsheet_la-sci_xls_read.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xls_read.cpp' object='libscispreadsheet_la-sci_xls_read.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscispreadsheet_la-sci_xls_read.lo `test -f 'sci_gateway/cpp/sci_xls_read.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xls_read.cpp
+
+libscispreadsheet_la-sci_xls_open.lo: sci_gateway/cpp/sci_xls_open.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscispreadsheet_la-sci_xls_open.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Tpo -c -o libscispreadsheet_la-sci_xls_open.lo `test -f 'sci_gateway/cpp/sci_xls_open.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xls_open.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Tpo $(DEPDIR)/libscispreadsheet_la-sci_xls_open.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xls_open.cpp' object='libscispreadsheet_la-sci_xls_open.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscispreadsheet_la-sci_xls_open.lo `test -f 'sci_gateway/cpp/sci_xls_open.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xls_open.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

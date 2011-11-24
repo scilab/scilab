@@ -62,7 +62,7 @@ void visitprivate(const AssignExp  &e)
                 symbol::Context::getInstance()->put(pVar->name_get(), *pIT);
             }
 
-            if(e.is_verbose())
+            if(e.is_verbose() && ConfigVariable::isPromptShow())
             {
                 std::wostringstream ostr;
                 ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
@@ -470,7 +470,7 @@ void visitprivate(const AssignExp  &e)
                     }
                 }
 
-                if(e.is_verbose())
+                if(e.is_verbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
                     if(pVar)
@@ -533,7 +533,7 @@ void visitprivate(const AssignExp  &e)
             {
                 const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
                 symbol::Context::getInstance()->put(pListVar->name_get(), *result_get(i));
-                if(e.is_verbose())
+                if(e.is_verbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
                     ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
@@ -643,7 +643,7 @@ void visitprivate(const AssignExp  &e)
                     symbol::Context::getInstance()->put(pVar->name_get(), *pOut);
                 }
 
-                if(e.is_verbose())
+                if(e.is_verbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
                     if(pVar)
@@ -768,7 +768,7 @@ void visitprivate(const AssignExp  &e)
                 //TODO:
             }
 
-            if(e.is_verbose())
+            if(e.is_verbose() && ConfigVariable::isPromptShow())
             {
                 const wstring *pstName = getStructNameFromExp(pField);
 

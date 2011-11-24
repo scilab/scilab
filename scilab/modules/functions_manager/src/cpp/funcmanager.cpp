@@ -308,6 +308,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"linear_algebra", &LinearAlgebraModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"statistics", &StatisticsModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"differential_equations", &DifferentialEquationsModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"spreadsheet", &SpreadsheetModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

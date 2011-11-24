@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Antoine ELIAS
+ * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,11 +17,15 @@
 #include "string.hxx"
 #include "container.hxx"
 #include "getmode.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
+
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "os_swprintf.h"
 }
 
 using namespace types;
@@ -37,9 +41,14 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
     switch(in[0]->getType())
     {
         // Dedicated case for lists.
-    case InternalType::RealList:
     case InternalType::RealMList:
+        {
+            std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
+            Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            break;
+        }
     case InternalType::RealTList:
+    case InternalType::RealList:
         {
             if(in.size() > 1)
             {

@@ -51,13 +51,13 @@
     <ClCompile Include="src\c\ripole\ripole.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_open.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_read.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\xls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xls_open.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xls_read.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

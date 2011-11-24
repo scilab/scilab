@@ -168,7 +168,7 @@ int OLE_dir_init(struct OLE_directory_entry *dir )
 	dir->right_child = 0;
 	dir->root = 0;
 
-	dir->class[0] = '\0';
+	dir->_class[0] = '\0';
 	dir->userflags = 0;
 	dir->timestamps[0] = '\0';
 	dir->start_sector = 0;
@@ -823,7 +823,7 @@ int OLE_convert_directory( struct OLE_object *ole, unsigned char *buf, struct OL
 	**/
 	dir->root = get_4byte_value( buf +0x4c );
 
-	memcpy( dir->class, buf +0x50, 16 );
+	memcpy( dir->_class, buf +0x50, 16 );
 	dir->userflags = get_4byte_value( buf +0x60 );
 	memcpy( dir->timestamps, buf +0x64, 16 ); /** Actually consists of 2 8 byte stamps **/
 

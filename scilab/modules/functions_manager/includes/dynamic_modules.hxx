@@ -100,4 +100,10 @@ public :
    static int Load();
 };
 
+class SpreadsheetModule : public GenericModule
+{
+public :
+   static int Load();
+};
+
 #endif /* !__DYNAMIC_MODULES_HXX_ */

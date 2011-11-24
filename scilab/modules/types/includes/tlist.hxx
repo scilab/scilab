@@ -25,7 +25,7 @@ namespace types
     public :
                                         TList();
                                         ~TList();
-    private :
+    protected :
                                         TList(TList *_oTListCopyMe);
 
     public :
@@ -34,7 +34,7 @@ namespace types
         RealType                        getType(void) { return RealTList; }
         bool                            isTList() { return true; }
 
-        InternalType*                   clone();
+        virtual InternalType*           clone();
 
         bool                            exists(const std::wstring& _sKey);
         InternalType*                   get(const std::wstring& _sKey);

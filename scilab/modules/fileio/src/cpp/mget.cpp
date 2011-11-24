@@ -73,51 +73,59 @@ extern "C"
     }								\
 }
 /*--------------------------------------------------------------------------*/
-void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr)
+void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
 {  
-  char c1,c2;
-  int i,items=*n1,n=*n1;
-  FILE *fa;
+    char c1;
+    char c2;
+    int i;
+    int items   = *n1;
+    int n       = *n1;
+    FILE* fa; // used in MGET_GEN_NC => MGET_NC
+    File* pFile = FileManager::getFile(*fd);
 
+    *ierr = 0;
 
-  *ierr=0;
-  if ((fa = GetFileOpenedInScilab(*fd)) ==NULL) {
-    sciprint(_("%s: No input file associated to logical unit %d.\n"),"mget",*fd);
-    *ierr=3;
+    if(pFile == NULL || (fa = pFile->getFiledesc()) == NULL)
+    {
+        sciprintW(_W("%ls: No input file associated to logical unit %d.\n"),L"mget",*fd);
+        *ierr=3;
+        return;
+    }
+
+    c1 = (strlen(type) > 1) ? type[1] : ' ';
+    c2 = (strlen(type) > 2) ? type[2] : ' ';
+
+    int swap = pFile->getFileSwap(); // used in MGET_GEN_NC => MGET_NC
+
+    switch(type[0])
+    {
+        case 'i' : MGET_GEN_NC(int,c1);    break;
+        case 'l' : MGET_GEN_NC(int32_t,c1);break;
+        case 's' : MGET_GEN_NC(short,c1);  break;
+        case 'c' : MGET_CHAR_NC(char);     break;
+        case 'd' : MGET_GEN_NC(double,c1); break;
+        case 'f' : MGET_GEN_NC(float,c1);  break;
+        case 'u' :
+            switch(c1)
+            {
+                case 'i' :  MGET_GEN_NC(unsigned int,c2);   break;
+                case 'l' :  MGET_GEN_NC(uint32_t,c2);       break;
+                case 's' :  MGET_GEN_NC(unsigned short,c2); break;
+                case ' ' :  MGET_GEN_NC(unsigned int,' ');  break;
+                case 'c' :  MGET_CHAR_NC(unsigned char);    break;
+                default : *ierr = 1; return;
+            }
+            break;
+        default : *ierr = 1; return;
+    }
+
+    if(items != n)
+    {
+        *ierr = -items - 1 ;
+        // sciprint("Read %d out of\n",items,n);
+    }
+
     return;
-  }
-  int swap = GetSwapStatus(*fd);
-  c1 = ( strlen(type) > 1) ? type[1] : ' '; 
-  c2 = ( strlen(type) > 2) ? type[2] : ' '; 
-  switch ( type[0] )
-    {
-    case 'i' : MGET_GEN_NC(int,c1);    break;
-    case 'l' : MGET_GEN_NC(int32_t,c1);   break;
-    case 's' : MGET_GEN_NC(short,c1);  break;
-    case 'c' : MGET_CHAR_NC(char);     break;
-    case 'd' : MGET_GEN_NC(double,c1); break;
-    case 'f' : MGET_GEN_NC(float,c1);  break;
-    case 'u' :
-      switch ( c1 )
-	{
-	case 'i' :  MGET_GEN_NC(unsigned int,c2);   break;
-	case 'l' :  MGET_GEN_NC(uint32_t,c2);  break;
-	case 's' :  MGET_GEN_NC(unsigned short,c2); break;
-	case ' ' :  MGET_GEN_NC(unsigned int,' ');  break;
-	case 'c' :  MGET_CHAR_NC(unsigned char);    break;
-	default : *ierr=1; return; break;
-	}
-      break;
-    default :
-      *ierr=1;
-      return ;
-    }
-  if ( items != n ) 
-    {
-      *ierr = -(items) -1 ;
-      /** sciprint("Read %d out of\n",items,n); **/
-    }
-  return;
 }
 /*--------------------------------------------------------------------------*/
 /* =================================================

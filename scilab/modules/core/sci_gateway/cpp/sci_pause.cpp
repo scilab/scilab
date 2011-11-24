@@ -33,12 +33,6 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if(_iRetCount != -1)
-    {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"pause", 0);
-        return types::Function::Error;
-    }
-
     ConfigVariable::IncreasePauseLevel();
     Runner::UnlockPrompt();
     ThreadId* pThread = ConfigVariable::getLastRunningThread();
