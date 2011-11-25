@@ -78,7 +78,7 @@ public class Label extends JLabel implements XComponent {
     *
     * @param peer the corresponding view DOM node
     */
-    public final void refresh(final Node peer) {
+    public void refresh(final Node peer) {
 
         String text = XConfigManager.getAttribute(peer , "text");
         if (!text.equals(text())) {

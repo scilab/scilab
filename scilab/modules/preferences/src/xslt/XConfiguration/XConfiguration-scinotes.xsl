@@ -116,10 +116,10 @@
 				<VSpace height="20"/>
 				<Grid insets="large" anchor="west">
 					<Label text="View"/>
-					<Label gridx="2" listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;custom font&lt;/U&gt;&lt;/HTML&gt;" foreground="#0000ff">
-						<mouseClicked callback="customScinotesFonts"/>
-					</Label>
-					<Label gridx="3" text="preferences to change scinotes font."/>
+					<Link gridx="2" listener="MouseListener" text="custom font">
+                        <mouseClicked set="path" value="2/" context="/"/>
+					</Link>
+					<Label gridx="3" text="preferences to change Scinotes fonts."/>
 				</Grid>
 					
 			</VBox>
@@ -138,10 +138,9 @@
 					</xsl:call-template>
 					<xsl:if test="@highlight='true'">
 						<HSpace width="30"/>
-						<Label listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;Set syntax Colors&lt;/U&gt;"
-							foreground="#0000ff">
-							<mouseClicked callback="customScinotesColors"/>
-						</Label>
+						<Link listener="MouseListener" text="Set syntax Colors">
+                            <mouseClicked set="path" value="3/" context="/"/>
+						</Link>
 					</xsl:if>
 					<Glue/>
 				</HBox>
@@ -177,10 +176,9 @@
 				<HBox gridy="2" gridwidth="3">
 						View
 						<HSpace width="2"/>
-						<Label listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;Scinotes tab keys preferences&lt;/U&gt;&lt;/HTML&gt;" 
-							foreground="#0000ff">
+						<Link listener="MouseListener" text="Scinotes tab keys preferences">
 							<mouseClicked callback="customScinotesColors"/>
-						</Label>
+						</Link>
 				</HBox>
 				<Label gridy="3" text="Indent size:"/>
 				<Panel gridy="3" gridx="2" >
