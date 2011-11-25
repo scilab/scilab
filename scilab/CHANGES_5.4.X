@@ -225,6 +225,8 @@ File input/output:
 
 * tempname function added (SEP 68).
 
+* fullpath did not manage matrix of string as input argument. (SEP 72)
+
 * bug 9253 fixed - fscanfMat failed to read a file with some lines
                    of text at the end (backward compatibility).
 

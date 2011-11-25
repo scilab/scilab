@@ -33,3 +33,6 @@ r2 = fullpath(REF2);
 assert_checkequal(r2, REF2);
 r3 = fullpath(REF3);
 assert_checkequal(r3, REF3);
+REF_M = [REF1, REF2, REF3];
+M = ['../../test1.txt', '../test2.txt', 'test3.txt'];
+assert_checkequal(REF_M, REF_M);
