@@ -1922,6 +1922,20 @@ check-java:
 
 .NOTPARALLEL: macros doc
 
+# Construct the LD_LIBRARY_PATH from the variable detected previously
+# Run the unitary test of call_scilab
+check-call_scilab: $(check_PROGRAMS)
+	@for a in $(JAVA_JNI_LIBS); do \
+		LD_PATH=`echo $$a|grep '^-L'|sed -e 's|-L\(.*\)|\1|g'`;\
+		LOCAL_LD="$$LOCAL_LD:$$LD_PATH"; \
+	done; \
+	for f in $(check_PROGRAMS); do \
+		if test "$$f" != "call_scilab_c"; then \
+			echo "Run: LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(top_srcdir) ./$$f"; \
+			LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(abs_top_builddir) ./$$f; \
+		fi \
+	done
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -66,7 +66,7 @@ int SendScilabJob(char *job)
         {
             printError(&sciErr, 0);
             /* Problem */
-            fprintf(stderr, "Error: SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
+            fprintf(stderr, "Error: SendScilabJob (1) call_scilab failed to create the temporary variable 'TMP_EXEC_STRING'.\n");
             retCode = -1;
 
             if (command) {FREE(command); command = NULL;}
@@ -81,7 +81,7 @@ int SendScilabJob(char *job)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            fprintf(stderr,"Error: SendScilabJob (2) 'Err_Job'.\n");	
+            fprintf(stderr, "Error: SendScilabJob (2) call_scilab failed to detect the temporary variable 'Err_Job' size.\n");
             retCode = -2;
 
             if (command) {FREE(command); command = NULL;}
@@ -92,7 +92,7 @@ int SendScilabJob(char *job)
 
         if ( (m != 1) && (n != 1) )
         {
-            fprintf(stderr,"Error: SendScilabJob (3) 'Err_Job'.\n");	
+            fprintf(stderr, "Error: SendScilabJob (3) call_scilab detected a badly formated 'Err_Job' variable. Size [1,1] expected.\n");
             retCode = -3;
 
             if (command) {FREE(command); command = NULL;}
@@ -105,7 +105,7 @@ int SendScilabJob(char *job)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            fprintf(stderr,"Error: SendScilabJob (4) 'Err_Job'.\n");	
+            fprintf(stderr, "Error: SendScilabJob (4) call_scilab failed to read the temporary variable 'Err_Job'.\n");
             retCode = -4;
 
             if (command) {FREE(command); command = NULL;}
@@ -125,7 +125,7 @@ int SendScilabJob(char *job)
     }
     else
     {
-        fprintf(stderr,"Error: SendScilabJob (4) 'command' MALLOC.\n");
+        fprintf(stderr,"Error: SendScilabJob (5) call_scilab failed to create the 'command' variable (MALLOC).\n");
         retCode = -4;
     }
 
