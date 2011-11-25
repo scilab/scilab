@@ -103,6 +103,7 @@ namespace ast
             }
             _resultVect.clear();
             m_bSingleResult = true;
+            _result = NULL;
         }
 
     public:

@@ -28,9 +28,12 @@ void visitprivate(const CallExp &e)
         types::typed_list out;
         types::typed_list in;
 
+        int iRetCount = expected_getSize();
+
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
+            expected_size_set(1);
             (*itExp)->accept (*this);
 
             if(result_get() == NULL)
@@ -73,30 +76,33 @@ void visitprivate(const CallExp &e)
         ////reset result
         //result_clear();
 
-        int iRetCount = Max(1, expected_getSize());
-
         try
         {
+            expected_size_set(iRetCount);
+            iRetCount = Max(1, iRetCount);
             Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
             //reset result
             result_clear();
             if(Ret == Callable::OK)
             {
-                if(static_cast<int>(out.size()) < expected_getSize())
+                if(expected_getSize() == 1 && out.size() == 0) //some function have no returns
                 {
-                    //clear input parameters
-                    for(unsigned int k = 0; k < in.size(); k++)
+                    if(static_cast<int>(out.size()) < iRetCount)
                     {
-                        in[k]->DecreaseRef();
-                        if(in[k]->isDeletable())
+                        //clear input parameters
+                        for(unsigned int k = 0; k < in.size(); k++)
                         {
-                            delete in[k];
+                            in[k]->DecreaseRef();
+                            if(in[k]->isDeletable())
+                            {
+                                delete in[k];
+                            }
                         }
-                    }
 
-                    std::wostringstream os;
-                    os << L"bad lhs, expected : " << expected_getSize() << L" returned : " << out.size() << std::endl;
-                    throw ScilabError(os.str(), 999, e.location_get());
+                        std::wostringstream os;
+                        os << L"bad lhs, expected : " << iRetCount << L" returned : " << out.size() << std::endl;
+                        throw ScilabError(os.str(), 999, e.location_get());
+                    }
                 }
 
                 if(out.size() == 1)
