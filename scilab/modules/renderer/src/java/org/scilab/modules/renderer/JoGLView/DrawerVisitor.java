@@ -46,6 +46,7 @@ import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
+import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
@@ -63,6 +64,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final AxesDrawer axesDrawer;
     private final ContouredObjectDrawer contouredObjectDrawer;
     private final LegendDrawer legendDrawer;
+    private final LabelManager labelManager;
 
     private ColorMap colorMap;
     private DrawingTools drawingTools = null;
@@ -76,7 +78,8 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.dataManager = new DataManager(canvas);
         this.markManager = new MarkSpriteManager(canvas.getSpriteManager());
         this.textManager = new TextManager(canvas.getSpriteManager());
-        this.axesDrawer = new AxesDrawer(this);
+        this.labelManager = new LabelManager(canvas.getSpriteManager());
+        this.axesDrawer = new AxesDrawer(this, this.labelManager);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
     }
@@ -843,12 +846,14 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             dataManager.disposeAllColorBuffers();
             markManager.disposeAll();
             textManager.disposeAll();
+            labelManager.disposeAll();
             axesDrawer.disposeAll();
             canvas.redraw();
         } else if (isFigureChild(id)) {
             dataManager.update(id, property);
             markManager.update(id, property);
             textManager.update(id, property);
+            labelManager.update(id, property);
             axesDrawer.update(id, property);
             legendDrawer.update(id, property);
             canvas.redraw();
@@ -864,6 +869,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
+        labelManager.dispose(id);
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
         canvas.redraw();

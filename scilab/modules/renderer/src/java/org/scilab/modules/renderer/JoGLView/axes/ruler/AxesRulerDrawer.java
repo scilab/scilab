@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,6 +28,8 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.nio.FloatBuffer;
@@ -46,12 +49,13 @@ public class AxesRulerDrawer {
     }
 
     /**
-     * Draw the rulers.
+     * Draw the rulers and sets the axis label positioners' relevant values.
      * @param axes the current {@see Axes}
+     * @param axesDrawer the drawer used to draw the current {@see Axes}
      * @param colorMap current {@see ColorMap}
      * @param drawingTools the used {@see DrawingTools}
      */
-    public void drawRuler(Axes axes, ColorMap colorMap, DrawingTools drawingTools) {
+    public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) {
         Double[] bounds = getCurrentBounds(axes);
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
 
@@ -116,6 +120,18 @@ public class AxesRulerDrawer {
             rulerModel.setValues(bounds[1], bounds[0]);
         }
 
+        double [] midpoints = new double[]{0.0, 0.0, 0.0};
+        double [] otherbounds = new double[2];
+
+        otherbounds[0] = (ys > 0) ? +1 : -1;
+        otherbounds[1] = (zs > 0) ? +1 : -1;
+
+        Vector3d labelPosition = new Vector3d(midpoints[0], otherbounds[0], otherbounds[1]);
+        double distanceRatio;
+
+        AxisLabelPositioner xAxisLabelPositioner = (AxisLabelPositioner) axesDrawer.getXAxisLabelPositioner();
+        xAxisLabelPositioner.setLabelPosition(labelPosition);
+
         if (axes.getXAxisVisible()) {
             rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
@@ -123,8 +139,12 @@ public class AxesRulerDrawer {
             axes.setXAxisTicksLabels(toStringArray(values));
             axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
 
+            distanceRatio  = rulerDrawingResult.getMaxDistToTicksDirNorm();
+            double [] xticksdir = rulerDrawingResult.getNormalizedTicksDirection();
 
-            // Draw Y ruler
+            xAxisLabelPositioner.setTicksDirection(xTicksDirection);
+            xAxisLabelPositioner.setDistanceRatio(distanceRatio);
+            xAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(xticksdir[0], xticksdir[1], 0.0));
 
             if (axes.getXAxisGridColor() != -1) {
                 FloatBuffer vertexData = getXGridData(values, rulerModel);
@@ -145,6 +165,7 @@ public class AxesRulerDrawer {
         }
 
 
+        // Draw Y ruler
         if (axes.getAxes()[1].getAxisLocation().equals(AxisProperty.AxisLocation.LEFT)) {
             zs = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
             xs = -Math.signum(matrix[2]) * zs * Math.signum(matrix[10]);
@@ -175,12 +196,30 @@ public class AxesRulerDrawer {
         } else {
             rulerModel.setValues(bounds[3], bounds[2]);
         }
+
+        otherbounds[0] = (xs > 0) ? +1 : -1;
+        otherbounds[1] = (zs > 0) ? +1 : -1;
+
+        labelPosition = new Vector3d(otherbounds[0], midpoints[1], otherbounds[1]);
+
+        AxisLabelPositioner yAxisLabelPositioner = (AxisLabelPositioner) axesDrawer.getYAxisLabelPositioner();
+        yAxisLabelPositioner.setLabelPosition(labelPosition);
+
         if (axes.getYAxisVisible()) {
             rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
             axes.setYAxisTicksLocations(toDoubleArray(values));
             axes.setYAxisTicksLabels(toStringArray(values));
             axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+
+            Vector3d yTicksDirection = rulerModel.getTicksDirection();
+
+            distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
+            double [] yticksdir = rulerDrawingResult.getNormalizedTicksDirection();
+
+            yAxisLabelPositioner.setTicksDirection(yTicksDirection);
+            yAxisLabelPositioner.setDistanceRatio(distanceRatio);
+            yAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(yticksdir[0], yticksdir[1], 0.0));
 
             if (axes.getYAxisGridColor() != -1) {
                 FloatBuffer vertexData = getYGridData(values, rulerModel);
@@ -200,7 +239,7 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
-        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
+        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0) {
             double txs;
             double tys;
             if (Math.abs(matrix[2]) < Math.abs(matrix[6])) {
@@ -224,12 +263,27 @@ public class AxesRulerDrawer {
                 rulerModel.setValues(bounds[5], bounds[4]);
             }
 
+            otherbounds[0] = (xs > 0) ? +1 : -1;
+            otherbounds[1] = (ys > 0) ? +1 : -1;
+
+            labelPosition = new Vector3d(otherbounds[0], otherbounds[1], midpoints[2]);
+
+            AxisLabelPositioner zAxisLabelPositioner = (AxisLabelPositioner) axesDrawer.getZAxisLabelPositioner();
+            zAxisLabelPositioner.setLabelPosition(labelPosition);
+
             if (axes.getZAxisVisible()) {
                 rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
                 values = rulerDrawingResult.getTicksValues();
                 axes.setZAxisTicksLocations(toDoubleArray(values));
                 axes.setZAxisTicksLabels(toStringArray(values));
                 axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+
+                distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
+                double [] zticksdir = rulerDrawingResult.getNormalizedTicksDirection();
+
+                zAxisLabelPositioner.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0.0));
+                zAxisLabelPositioner.setDistanceRatio(distanceRatio);
+                zAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(zticksdir[0], zticksdir[1], 0.0));
 
                 if (axes.getZAxisGridColor() != -1 || axes.getZAxisVisible() == false) {
                     FloatBuffer vertexData = getZGridData(values, rulerModel);

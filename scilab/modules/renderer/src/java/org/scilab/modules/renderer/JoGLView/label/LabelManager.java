@@ -31,6 +31,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_ROTATION__;
 
 /**
  *
@@ -153,7 +156,8 @@ public class LabelManager {
      * @param property the changed property.
      */
     public void update(String id, String property) {
-        if (!__GO_POSITION__.equals(property)) {
+        if (!__GO_POSITION__.equals(property) && !__GO_AUTO_POSITION__.equals(property)
+         && !__GO_FONT_ANGLE__.equals(property) && !__GO_AUTO_ROTATION__.equals(property)) {
             dispose(id);
         }
     }

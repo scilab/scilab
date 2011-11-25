@@ -24,10 +24,18 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
+import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
+import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.LabelManager;
+import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
+import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.geom.Rectangle2D;
@@ -53,6 +61,21 @@ public class AxesDrawer {
     /** The back face culling mode. */
     private FaceCullingMode backFaceCullingMode;
 
+    /** The label manager. */
+    private final LabelManager labelManager;
+
+    /** The x-axis label positioner. */
+    private AxisLabelPositioner xAxisLabelPositioner;
+
+    /** The y-axis label positioner. */
+    private AxisLabelPositioner yAxisLabelPositioner;
+
+    /** The z-axis label positioner. */
+    private AxisLabelPositioner zAxisLabelPositioner;
+
+    /** The title positioner. */
+    private TitlePositioner titlePositioner;
+
     /**
      * The current reversed bounds. Used by the functions converting
      * between object and box coordinates.
@@ -65,11 +88,19 @@ public class AxesDrawer {
     /**
      * Default constructor.
      * @param visitor the parent {@see DrawerVisitor}.
+     * @param labelManager the parent's {@see LabelManager}.
      */
-    public AxesDrawer(DrawerVisitor visitor) {
+    public AxesDrawer(DrawerVisitor visitor, LabelManager labelManager) {
         this.visitor = visitor;
         this.geometries = new Geometries(visitor.getCanvas());
         this.rulerDrawer = new AxesRulerDrawer(visitor.getCanvas());
+
+        this.labelManager = labelManager;
+
+        this.xAxisLabelPositioner = new AxisLabelPositioner();
+        this.yAxisLabelPositioner = new YAxisLabelPositioner();
+        this.zAxisLabelPositioner = new AxisLabelPositioner();
+        this.titlePositioner = new TitlePositioner();
 
         reversedBounds = new double[6];
         reversedBoundsIntervals = new double[3];
@@ -113,10 +144,37 @@ public class AxesDrawer {
         modelViewStack.pop();
 
         // Ruler are drawn in box coordinate.
-        rulerDrawer.drawRuler(axes, colorMap, drawingTools);
+        rulerDrawer.drawRuler(axes, this, colorMap, drawingTools);
 
         /* Compute reversed bounds. */
         computeReversedBounds(axes);
+
+        /* Draw the labels. */
+
+        /* X-axis label */
+        String labelID = axes.getXAxisLabel();
+        Label label = (Label) GraphicController.getController().getObjectFromId(labelID);
+
+        labelManager.positionAndDraw(drawingTools, colorMap, label, xAxisLabelPositioner, this, true);
+
+        /* Y-axis label */
+        labelID = axes.getYAxisLabel();
+        label = (Label) GraphicController.getController().getObjectFromId(labelID);
+
+        labelManager.positionAndDraw(drawingTools, colorMap, label, yAxisLabelPositioner, this, true);
+
+        /* Z-axis label */
+        labelID = axes.getZAxisLabel();
+        label = (Label) GraphicController.getController().getObjectFromId(labelID);
+
+        labelManager.positionAndDraw(drawingTools, colorMap, label, zAxisLabelPositioner, this, (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D));
+
+        /* Title */
+        labelID = axes.getTitle();
+        label = (Label) GraphicController.getController().getObjectFromId(labelID);
+
+        labelManager.positionAndDraw(drawingTools, colorMap, label, titlePositioner, this, true);
+
 
         /**
          * Scale and translate for data fitting.
@@ -498,6 +556,38 @@ public class AxesDrawer {
      */
     public FaceCullingMode getBackFaceCullingMode() {
         return this.backFaceCullingMode;
+    }
+
+    /**
+     * Returns the x-axis label positioner.
+     * @return the x-axis label positioner.
+     */
+    public LabelPositioner getXAxisLabelPositioner() {
+        return this.xAxisLabelPositioner;
+    }
+
+    /**
+     * Returns the y-axis label positioner.
+     * @return the y-axis label positioner.
+     */
+    public LabelPositioner getYAxisLabelPositioner() {
+        return this.yAxisLabelPositioner;
+    }
+
+    /**
+     * Returns the z-axis label positioner.
+     * @return the z-axis label positioner.
+     */
+    public LabelPositioner getZAxisLabelPositioner() {
+        return this.zAxisLabelPositioner;
+    }
+
+    /**
+     * Returns the title positioner.
+     * @return the title positioner.
+     */
+    public LabelPositioner getTitlePositioner() {
+        return this.titlePositioner;
     }
 
     public void disposeAll() {
