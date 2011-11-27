@@ -168,7 +168,7 @@
   <!-- Compile test sources -->
   <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
     <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6">
+    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="UTF-8">
       <classpath>
         <path refid="unittest.classpath"/>
         <path refid="compile.classpath"/>
