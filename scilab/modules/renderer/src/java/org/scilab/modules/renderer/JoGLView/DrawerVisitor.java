@@ -109,8 +109,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
      */
     public void askAcceptVisitor(String[] childrenId) {
         if (childrenId != null) {
-            for (String childId : childrenId) {
-                GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            
+            for (int i = childrenId.length - 1 ; i >= 0 ; --i) {
+                GraphicObject child = GraphicController.getController().getObjectFromId(childrenId[i]);
                 if (child != null) {
                     child.accept(this);
                 }
