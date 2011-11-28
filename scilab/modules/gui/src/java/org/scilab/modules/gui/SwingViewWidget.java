@@ -110,59 +110,67 @@ public final class SwingViewWidget {
             uiControl.setEnabled(((Boolean) value).booleanValue());
         } else if (property.equals(__GO_UI_FONTANGLE__)) {
             Font font = uiControl.getFont();
-            String angle = (String) value;
+            if (font != null) {
+                String angle = (String) value;
 
-            if (angle.equalsIgnoreCase(ITALICFONT) || angle.equalsIgnoreCase(OBLIQUEFONT)) {
-                if (font.isBold()) {
-                    font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                if (angle.equalsIgnoreCase(ITALICFONT) || angle.equalsIgnoreCase(OBLIQUEFONT)) {
+                    if (font.isBold()) {
+                        font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                    } else {
+                        font = new Font(font.getName(), Font.ITALIC, font.getSize());
+                    }
                 } else {
-                    font = new Font(font.getName(), Font.ITALIC, font.getSize());
+                    if (font.isBold()) {
+                        font = new Font(font.getName(), Font.BOLD, font.getSize());
+                    } else {
+                        font = new Font(font.getName(), Font.PLAIN, font.getSize());
+                    }
                 }
-            } else {
-                if (font.isBold()) {
-                    font = new Font(font.getName(), Font.BOLD, font.getSize());
-                } else {
-                    font = new Font(font.getName(), Font.PLAIN, font.getSize());
-                }
+
+                uiControl.setFont(font);
             }
-
-            uiControl.setFont(font);
         } else if (property.equals(__GO_UI_FONTNAME__)) {
             Font font = uiControl.getFont();
-            String name = (String) value;
+            if (font != null) {
+                String name = (String) value;
 
-            font = new Font(name, font.getStyle(), font.getSize());
+                font = new Font(name, font.getStyle(), font.getSize());
 
-            uiControl.setFont(font);
+                uiControl.setFont(font);
+            }
         } else if (property.equals(__GO_UI_FONTSIZE__)) {
             UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController()
                     .getProperty(uid, __GO_UI_FONTUNITS__));
             Double dblFontSize = UnitsConverter.convertToPoint((Double) value, fontUnitsProperty, uiControl, false);
             Font font = uiControl.getFont();
-            int size = dblFontSize.intValue();
-            font = new Font(font.getName(), font.getStyle(), size);
-            uiControl.setFont(font);
+            if (font != null) {
+                int size = dblFontSize.intValue();
+                font = new Font(font.getName(), font.getStyle(), size);
+                uiControl.setFont(font);
+            }
         } else if (property.equals(__GO_UI_FONTUNITS__)) {
             /* Nothing to do here, this property is used when setting position */
         } else if (property.equals(__GO_UI_FONTWEIGHT__)) {
             Font font = uiControl.getFont();
-            String weight = (String) value;
+            if (font != null) {
+                String weight = (String) value;
 
-            if (weight.equalsIgnoreCase(BOLDFONT)) {
-                if (font.isItalic()) {
-                    font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                if (weight.equalsIgnoreCase(BOLDFONT)) {
+                    if (font.isItalic()) {
+                        font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
+                    } else {
+                        font = new Font(font.getName(), Font.BOLD, font.getSize());
+                    }
                 } else {
-                    font = new Font(font.getName(), Font.BOLD, font.getSize());
+                    if (font.isItalic()) {
+                        font = new Font(font.getName(), Font.ITALIC, font.getSize());
+                    } else {
+                        font = new Font(font.getName(), Font.PLAIN, font.getSize());
+                    }
                 }
-            } else {
-                if (font.isItalic()) {
-                    font = new Font(font.getName(), Font.ITALIC, font.getSize());
-                } else {
-                    font = new Font(font.getName(), Font.PLAIN, font.getSize());
-                }
+
+                uiControl.setFont(font);
             }
-
-            uiControl.setFont(font);
         } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
             Double[] allColors = ((Double[]) value);
             uiControl.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
@@ -182,7 +190,7 @@ public final class SwingViewWidget {
             }
             int uicontrolValue = allValues[0];
             if (uiControl instanceof SwingScilabSlider) {
-             // Update the slider properties
+                // Update the slider properties
                 int minValue = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
                 ((SwingScilabSlider) uiControl).setMaximumValue(maxValue);
                 Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__));
