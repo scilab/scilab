@@ -73,7 +73,7 @@ public class ConsoleTab {
 
                     public void destroy() { }
 
-                    public String askForClosing() {
+                    public String askForClosing(final List<SwingScilabTab> list) {
                         return null;
                     }
                 });
@@ -113,7 +113,7 @@ public class ConsoleTab {
                         }
                     }
 
-                    public String askForClosing() {
+                    public String askForClosing(final List<SwingScilabTab> list) {
                         return "Console";
                     }
                 });

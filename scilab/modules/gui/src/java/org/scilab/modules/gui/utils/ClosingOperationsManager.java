@@ -14,6 +14,7 @@ package org.scilab.modules.gui.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -469,10 +470,11 @@ public class ClosingOperationsManager {
      */
     private static final String makeQuestion(List<SwingScilabTab> list) {
         List<String> apps = new ArrayList<String>();
+        List<SwingScilabTab> toBeRemoved = Collections.unmodifiableList(list);
         for (SwingScilabTab t : list) {
             ClosingOperation op = closingOps.get(t);
             if (op != null) {
-                String name = op.askForClosing();
+                String name = op.askForClosing(toBeRemoved);
                 if (name != null && !apps.contains(name)) {
                     apps.add(name);
                 }
@@ -556,6 +558,6 @@ public class ClosingOperationsManager {
         /**
          * @return non null String if the tab requires a "Are you sure you want to close FOO ?..."
          */
-        public String askForClosing();
+        public String askForClosing(final List<SwingScilabTab> list);
     }
 }
