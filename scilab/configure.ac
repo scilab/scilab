@@ -1685,6 +1685,17 @@ AC_BACKTRACE()
 ##########
 AC_PATH_PROG(SPLINT, splint, no)
 
+##########
+##### Detect ccache and use it by default if available
+##########
+
+AC_PATH_PROG(CCACHE, ccache)
+
+if test x"$CCACHE" != x; then
+  CC="ccache $CC"
+  CXX="ccache $CXX"
+fi
+
 #######################
 ###### Creation of the header file (machine.h)
 #######################
