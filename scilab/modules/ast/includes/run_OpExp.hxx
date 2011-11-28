@@ -567,8 +567,8 @@ void visitprivate(const LogicalOpExp &e)
 
                 if(iL)
                 {//we don't need to look at ohers exp
-                    pResult = new Bool(true);
-                    break;
+                    result_set(new Bool(true));
+                    return;
                 }
                 // DO NOT break here, falling into normal Or if this can not be shotcutted.
             }
@@ -633,8 +633,8 @@ void visitprivate(const LogicalOpExp &e)
                 {
                     if(piL[i] == false)
                     {
-                        pResult = new Bool(false);
-                        break;
+                        result_set(new Bool(false));
+                        return;
                     }
                 }
                 // DO NOT break here, falling into normal And if this can not be shotcutted.

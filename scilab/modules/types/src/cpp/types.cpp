@@ -112,7 +112,7 @@ namespace types
     int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
     {
         int iDim    = 1;
-        if(m_piDims)
+        if(m_iDims != 0)
         {
             if(_iMaxDim != m_iDims)
             {//view as "vector", not all dimensions are used
