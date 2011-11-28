@@ -38,6 +38,7 @@
 #include "FigureList.h"
 #include "deleteGraphicObject.h"
 #include "CurrentObject.h"
+#include "BuildObjects.h"
 
 #include "AxesModel.h"
 #include "FigureModel.h"
