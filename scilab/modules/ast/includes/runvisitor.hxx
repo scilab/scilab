@@ -698,6 +698,7 @@ namespace ast
 
             if(result_get()->isImplicitList())
             {
+                bool bNeedUpdate = false;
                 ImplicitList* pVar = result_get()->getAsImplicitList();
 
                 InternalType *pIT = NULL;
@@ -731,10 +732,9 @@ namespace ast
                     if(pIT->isRef(1))
                     {
                         pIT = pIT->clone();
-                        if(pDouble)
-                        {//update pDouble after clone
-                            pDouble = pIT->getAs<Double>();
-                        }
+                        //update pDouble after clone
+                        pDouble = pIT->getAs<Double>();
+                        bNeedUpdate = true;
                     }
 
                     if(pIT->isDouble())
@@ -800,9 +800,10 @@ namespace ast
                         pIT = pVar->extractValue(i);
                     }
 
-                    if(pDouble == NULL)
+                    if(pDouble == NULL || bNeedUpdate)
                     {
                         symbol::Context::getInstance()->put(varName, *pIT);
+                        bNeedUpdate = false;
                     }
 
                     e.body_get().accept(*this);
