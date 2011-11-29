@@ -56,7 +56,7 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
         for(int i = 0 ; i < iDims ; i++)
         {
             Double* pIn = in[i]->getAs<Double>();
-            if(pIn->isScalar() || pIn->isComplex())
+            if(pIn->isScalar() == false || pIn->isComplex())
             {
                 ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"zeros", i + 1);
                 return Function::Error;
