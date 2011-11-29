@@ -169,9 +169,6 @@
     <ClInclude Include="..\..\includes\Fac3DDecomposer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\gw_graphic_objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
