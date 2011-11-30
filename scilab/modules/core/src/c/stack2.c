@@ -2172,9 +2172,9 @@ int C2F(getopcode)(char *string,unsigned long string_len)
 
 int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
 {
-    int srhs, slhs;
-    int ix, k, intop, lw, pt0;
-    int imode,ireftop;
+    int srhs = 0, slhs = 0;
+    int ix = 0, k = 0, intop = 0, lw = 0;
+    int imode = 0, ireftop = 0;
     intop = Top;
 
     if ( intersci_push() == 0 )

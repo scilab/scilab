@@ -2291,7 +2291,7 @@ int C2F(pmatj) (char *fname, int *lw, int *j, unsigned long fname_len)
 
 int C2F(crewmat) (char *fname, int *lw, int *m, int *lr, unsigned long fname_len)
 {
-    int il, ix1;
+    int il = 0;
 
     if (*lw + 1 >= Bot)
     {
