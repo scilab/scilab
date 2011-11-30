@@ -669,6 +669,8 @@ CACSD and Signal processing
 
 * bug 9321 fixed - missing tests and help info for some CACSD functions
 
+* bug 10008 fixed - Wrong unit in the datatip for bode function.
+
 * bug 10169 fixed - bad clipping option in evans.
 
 
