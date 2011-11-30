@@ -587,6 +587,7 @@ Graphics:
 * bug 10121 fixed - polyline.interp_color_vector where not saved/recoverabled
                     by xsave/xload. Thanks to Samuel Gougeon for the fix.
 
+* bug 10298 fixed - Example of datatipSetDisplay generated an error.
 
 ATOMS:
 ======

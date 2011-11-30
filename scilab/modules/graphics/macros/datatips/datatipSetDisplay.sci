@@ -36,12 +36,12 @@ function datatipSetDisplay(curve_handle,fun)
   if ~datatipCheckFunction(fun) then return,end
   ds.formatfunction=fun
   datatipSetStruct(curve_handle,ds)
-  for k=1:size(ds.tips,'*')
-    tip_handle=ds.tips(k)
-    point_handle=tip_handle.children(1)
-    string_handle=tip_handle.children(2)
+  for k=1:size(ds.tips.children,'*')
+    tip_handle=ds.tips.children(k)
+    point_handle=tip_handle.children(1);
+    string_handle=tip_handle.children(2);
     tip_index=point_handle.user_data(2)
-    string_handle.text=fun(curve_handle,point_handle.data)
+    string_handle.text=fun(curve_handle,point_handle.data,tip_index)
     datatipSetTipStyle(tip_handle,ds.style)
   end
 
