@@ -87,8 +87,10 @@ libscistatistics_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
+
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
+
 
 libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

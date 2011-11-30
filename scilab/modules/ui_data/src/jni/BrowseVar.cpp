@@ -104,7 +104,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringID=NULL;
+voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringjobjectArray_java_lang_StringjbooleanArray_booleanID=NULL;
 jbooleanisVariableBrowserOpenedID=NULL;
 voidcloseVariableBrowserID=NULL;
 
@@ -129,7 +129,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringID=NULL;
+        voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringjobjectArray_java_lang_StringjbooleanArray_booleanID=NULL;
 jbooleanisVariableBrowserOpenedID=NULL;
 voidcloseVariableBrowserID=NULL;
 
@@ -151,41 +151,19 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "BrowseVar");
 }
 // Method(s)
 
-void BrowseVar::openVariableBrowser (JavaVM * jvm_, bool update, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableVisibility, int variableVisibilitySize){
+void BrowseVar::openVariableBrowser (JavaVM * jvm_, bool update, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringID = curEnv->GetStaticMethodID(cls, "openVariableBrowser", "(Z[Ljava/lang/String;[Ljava/lang/String;[I[I[Ljava/lang/String;)V" ) ;
-if (voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringID == NULL) {
+jmethodID voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringjobjectArray_java_lang_StringjbooleanArray_booleanID = curEnv->GetStaticMethodID(cls, "openVariableBrowser", "(Z[Ljava/lang/String;[I[I[Ljava/lang/String;[Ljava/lang/String;[Z)V" ) ;
+if (voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringjobjectArray_java_lang_StringjbooleanArray_booleanID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "openVariableBrowser");
 }
 
 jboolean update_ = (static_cast<bool>(update) ? JNI_TRUE : JNI_FALSE);
 jclass stringArrayClass = curEnv->FindClass("java/lang/String");
-
-// create java array of strings.
-jobjectArray columnNames_ = curEnv->NewObjectArray( columnNamesSize, stringArrayClass, NULL);
-if (columnNames_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-// convert each char * to java strings and fill the java array.
-for ( int i = 0; i < columnNamesSize; i++)
-{
-jstring TempString = curEnv->NewStringUTF( columnNames[i] );
-if (TempString == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-curEnv->SetObjectArrayElement( columnNames_, i, TempString);
-
-// avoid keeping reference on to many strings
-curEnv->DeleteLocalRef(TempString);
-}
 
 // create java array of strings.
 jobjectArray variableNames_ = curEnv->NewObjectArray( variableNamesSize, stringArrayClass, NULL);
@@ -232,6 +210,28 @@ curEnv->SetIntArrayRegion( variableTypes_, 0, variableTypesSize, (jint*)(variabl
 
 
 // create java array of strings.
+jobjectArray variableSize_ = curEnv->NewObjectArray( variableSizeSize, stringArrayClass, NULL);
+if (variableSize_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < variableSizeSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( variableSize[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( variableSize_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+
+// create java array of strings.
 jobjectArray variableVisibility_ = curEnv->NewObjectArray( variableVisibilitySize, stringArrayClass, NULL);
 if (variableVisibility_ == NULL)
 {
@@ -252,13 +252,17 @@ curEnv->SetObjectArrayElement( variableVisibility_, i, TempString);
 // avoid keeping reference on to many strings
 curEnv->DeleteLocalRef(TempString);
 }
-                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringID ,update_, columnNames_, variableNames_, variableBytes_, variableTypes_, variableVisibility_);
+jbooleanArray variableFromUser_ = curEnv->NewBooleanArray( variableFromUserSize ) ;
+curEnv->SetBooleanArrayRegion( variableFromUser_, 0, variableFromUserSize, (jboolean*)variableFromUser ) ;
+
+                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_StringjintArray_intjintArray_intjobjectArray_java_lang_StringjobjectArray_java_lang_StringjbooleanArray_booleanID ,update_, variableNames_, variableBytes_, variableTypes_, variableSize_, variableVisibility_, variableFromUser_);
                         curEnv->DeleteLocalRef(stringArrayClass);
-curEnv->DeleteLocalRef(columnNames_);
 curEnv->DeleteLocalRef(variableNames_);
 curEnv->DeleteLocalRef(variableBytes_);
 curEnv->DeleteLocalRef(variableTypes_);
+curEnv->DeleteLocalRef(variableSize_);
 curEnv->DeleteLocalRef(variableVisibility_);
+curEnv->DeleteLocalRef(variableFromUser_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

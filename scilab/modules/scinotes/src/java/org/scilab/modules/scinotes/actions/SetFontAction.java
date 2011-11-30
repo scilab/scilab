@@ -45,14 +45,13 @@ public class SetFontAction extends DefaultAction {
      * DoAction
      */
     public void doAction() {
-        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser((JFrame) getEditor().getParentWindow().getAsSimpleWindow(), ConfigSciNotesManager.getFont(), true);
+        SwingScilabFontChooser fontChooser = new SwingScilabFontChooser((JFrame) getEditor().getSwingParentWindow(), ConfigSciNotesManager.getFont(), true);
         fontChooser.setLocationRelativeTo(getEditor());
         fontChooser.displayAndWait();
 
         Font newFont = fontChooser.getSelectedFont();
 
         if (newFont != null) {
-
             List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
             int numberOfTab = getEditor().getTabPane().getTabCount();

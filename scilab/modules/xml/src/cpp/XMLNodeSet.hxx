@@ -32,6 +32,7 @@ namespace org_modules_xml
 
         const XMLDocument & doc;
         xmlNodeSet * nodeSet;
+        xmlXPathObject * xpath;
 
     public :
 
@@ -40,10 +41,19 @@ namespace org_modules_xml
          * @param doc the document where the node set is existing
          * @param nodeSet a xmlNodeSet
          */
-        XMLNodeSet(const XMLDocument & doc, xmlNodeSet * nodeSet);
+        XMLNodeSet(const XMLDocument & doc, xmlXPathObject * _xpath);
 
         ~XMLNodeSet();
 
+        void * getRealXMLPointer() const;
+
+        const char ** getContentFromList() const;
+
+        const char ** getNameFromList() const;
+
+        void remove() const;
+        void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const;
+        void setAttributeValue(const char ** name, const char ** value, int lsize) const;
         const XMLObject * getXMLObjectParent() const;
         const XMLObject * getListElement(int index);
     };

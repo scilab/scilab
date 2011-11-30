@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -522,15 +522,3 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada: tamanhos "
 "incompatíveis.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected."
-#~ msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d."
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
-#~ "or %s expected"
-#~ msgstr ""
-#~ "%s: Valor incorreto para o argumento de entrada #%d: a extensão do arquivo é "
-#~ "desconhecida; esperava-se %s, %s, %s ou %s"

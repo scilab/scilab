@@ -135,6 +135,8 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	ta2lpd.lo
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscisparse_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscisparse_algo_la_rpath =
 libscisparse_la_DEPENDENCIES = libscisparse-algo.la
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
@@ -162,6 +164,8 @@ libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 libscisparse_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libscisparse_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscisparse_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscisparse_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -206,6 +210,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -597,8 +602,9 @@ libscisparse_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 #-Isrc/c/
-pkglib_LTLIBRARIES = libscisparse.la
-noinst_LTLIBRARIES = libscisparse-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscisparse.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscisparse-algo.la libscisparse.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscisparse-algo.la
 libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscisparse_algo_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES)
 libscisparse_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -761,9 +767,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscisparse-algo.la: $(libscisparse_algo_la_OBJECTS) $(libscisparse_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscisparse_algo_la_OBJECTS) $(libscisparse_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscisparse_algo_la_rpath) $(libscisparse_algo_la_OBJECTS) $(libscisparse_algo_la_LIBADD) $(LIBS)
 libscisparse.la: $(libscisparse_la_OBJECTS) $(libscisparse_la_DEPENDENCIES) 
-	$(libscisparse_la_LINK) -rpath $(pkglibdir) $(libscisparse_la_OBJECTS) $(libscisparse_la_LIBADD) $(LIBS)
+	$(libscisparse_la_LINK) $(am_libscisparse_la_rpath) $(libscisparse_la_OBJECTS) $(libscisparse_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

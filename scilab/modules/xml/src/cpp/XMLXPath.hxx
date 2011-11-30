@@ -28,7 +28,9 @@ namespace org_modules_xml
 
     public:
         XMLXPath(const XMLDocument & doc, xmlXPathObject * xpath);
-	~XMLXPath();
+        ~XMLXPath();
+
+        void * getRealXMLPointer() const;
 
         int getBooleanValue() const { return xpath->boolval; }
         double getFloatValue() const { return xpath->floatval; }

@@ -44,14 +44,14 @@ int sci_percent_XMLAttr_size(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLAttr(addr))
+    if (!isXMLAttr(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLAttr");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLAttr");
         return 0;
 
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     attrs = XMLObject::getFromId<XMLAttr>(id);
     if (!attrs)
     {

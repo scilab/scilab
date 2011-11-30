@@ -31,7 +31,8 @@ etc/graphics_toolbar.xml \
 etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
-etc/flexdock-themes.xml
+etc/flexdock-themes.xml \
+etc/windowsConfiguration.xml
 
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree
@@ -39,7 +40,6 @@ MACROSDIRSEXT = macros/tree
 include $(top_srcdir)/Makefile.incl.am
 
 GUI_C_SOURCES = \
-src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
@@ -52,7 +52,9 @@ src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c \
+src/c/ScilabTermination.c \
+src/jni/ScilabTermination_wrap.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -68,7 +70,6 @@ src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \
@@ -143,7 +144,6 @@ src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
-
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
@@ -156,6 +156,14 @@ src/jni/ScilabDisplayTree.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+
+if SWIG
+    BUILT_SOURCES=swig
 endif
 
 
@@ -290,9 +298,11 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/apps/system-search.png \
+images/icons/16x16/actions/edit-clear.png \
 images/icons/16x16/actions/execute-all.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \
@@ -302,11 +312,32 @@ images/icons/16x16/search/file.png \
 images/icons/16x16/search/line-found.png \
 images/icons/16x16/search/scilab-file.png \
 images/icons/16x16/actions/save-and-execute.png \
+images/icons/16x16/filebrowser/application-pdf.png \
+images/icons/16x16/filebrowser/binary.png \
+images/icons/16x16/filebrowser/dynamic-blue-up.png \
+images/icons/16x16/filebrowser/emblem-readonly.png \
+images/icons/16x16/filebrowser/filter.png \
+images/icons/16x16/filebrowser/folder-open.png \
+images/icons/16x16/filebrowser/folder.png \
+images/icons/16x16/filebrowser/go-next.png \
+images/icons/16x16/filebrowser/go-previous.png \
+images/icons/16x16/filebrowser/icon_scilab.png \
+images/icons/16x16/filebrowser/image-x-generic.png \
+images/icons/16x16/filebrowser/open-scilab-folder.png \
+images/icons/16x16/filebrowser/open-user-home.png \
+images/icons/16x16/filebrowser/scilab-folder.png \
+images/icons/16x16/filebrowser/system-search.png \
+images/icons/16x16/filebrowser/text-csv.png \
+images/icons/16x16/filebrowser/text-html.png \
+images/icons/16x16/filebrowser/text-x-generic.png \
+images/icons/16x16/filebrowser/text-xml.png \
+images/icons/16x16/filebrowser/user-home.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \
 images/icons/check-icon.png \
 images/icons/close-tab.png \
+images/icons/close-tab-on.png \
 images/icons/datatips.png \
 images/icons/document-new.png \
 images/icons/document-open.png \

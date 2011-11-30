@@ -90,6 +90,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
+        setFocusTraversalPolicy(new java.awt.DefaultFocusTraversalPolicy() {
+                public java.awt.Component getComponentAfter(java.awt.Container aContainer, java.awt.Component aComponent) {
+                    return SciInputCommandView.this;
+                }
+            });
+        setFocusCycleRoot(true);
     }
 
     /**

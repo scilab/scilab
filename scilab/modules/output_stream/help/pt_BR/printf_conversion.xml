@@ -16,13 +16,13 @@
   </info>
   <refnamediv>
     <refname>printf_conversion</refname>
-    <refpurpose>Especificações de conversão de printf, sprintf,
-    fprintf</refpurpose>
+    <refpurpose>Especificações de conversão de mprintf, msprintf,
+    mfprintf</refpurpose>
   </refnamediv>
   <refsection>
     <title>Descrição</title>
     <para>Cada especificação de conversão no parâmetro format de
-    <literal>printf</literal> , <literal>sprintf</literal> ,
+    <literal>mprintf</literal> , <literal>msprintf</literal> ,
     <literal>fprintf</literal> possui a seguinte sintaxe:</para>
     <itemizedlist>
       <listitem>
@@ -234,13 +234,13 @@
     <title>Ver Também</title>
     <simplelist type="inline">
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
         <link linkend="fprintf">fprintf</link>
       </member>
       <member>
-        <link linkend="sprintf">sprintf</link>
+        <link linkend="msprintf">msprintf</link>
       </member>
     </simplelist>
   </refsection>

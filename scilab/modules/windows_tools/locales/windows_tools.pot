@@ -14,13 +14,37 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:33+0100\n"
+"Revision-Date: 2011-11-03 10:55+0100\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
+# File: sci_gateway/c/sci_chartooem.c, line: 30
+# File: sci_gateway/c/sci_oemtochar.c, line: 30
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_chartooem.c, line: 30
+# File: sci_gateway/c/sci_chartooem.c, line: 31
+# File: sci_gateway/c/sci_oemtochar.c, line: 30
+# File: sci_gateway/c/sci_oemtochar.c, line: 31
+msgid "Warning"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_chartooem.c, line: 31
+# File: sci_gateway/c/sci_oemtochar.c, line: 31
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_chartooem.c, line: 56
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
+# File: sci_gateway/c/sci_oemtochar.c, line: 56
 # File: sci_gateway/c/sci_winqueryreg.c, line: 53
 # File: sci_gateway/c/sci_winqueryreg.c, line: 79
 # File: sci_gateway/c/sci_winqueryreg.c, line: 98

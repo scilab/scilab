@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: ru\n"
 
 #, c-format
@@ -22,12 +22,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -113,9 +113,8 @@ msgstr ""
 "номер ошибки = %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица логических значений.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
@@ -219,3 +218,16 @@ msgstr "Файл ссылок (%s) не существует"
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Нет переменной %s_ref в файле ссылок"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+#~ msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип параметра %d: ожидалась матрица логических значений.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+#~ msgstr "%s: Неверный тип параметра %d: ожидалась матрица.\n"

@@ -8,5 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function r=with_texmacs()
+  warnobsolete("atomsInstall(''texmacs'')", "5.4.1")
   r=or(sciargs()=="--texmacs")
 endfunction

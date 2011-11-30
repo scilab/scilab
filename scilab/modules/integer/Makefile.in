@@ -162,6 +162,8 @@ am__objects_2 = unarybit.lo i_mput.lo i_logic.lo i_a_i.lo i_b_i.lo \
 	i_cumprod.lo i_cumsum.lo i_kron.lo
 am_libsciinteger_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciinteger_algo_la_OBJECTS = $(am_libsciinteger_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libsciinteger_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciinteger_algo_la_rpath =
 libsciinteger_la_DEPENDENCIES = libsciinteger-algo.la
 am__objects_3 = libsciinteger_la-gw_integer.lo
 am__objects_4 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
@@ -176,6 +178,8 @@ libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
 libsciinteger_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libsciinteger_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libsciinteger_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciinteger_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -220,6 +224,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -566,8 +571,9 @@ libsciinteger_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
-pkglib_LTLIBRARIES = libsciinteger.la
-noinst_LTLIBRARIES = libsciinteger-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciinteger.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libsciinteger-algo.la
 libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) 
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -732,9 +738,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciinteger-algo.la: $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libsciinteger_algo_la_rpath) $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_LIBADD) $(LIBS)
 libsciinteger.la: $(libsciinteger_la_OBJECTS) $(libsciinteger_la_DEPENDENCIES) 
-	$(libsciinteger_la_LINK) -rpath $(pkglibdir) $(libsciinteger_la_OBJECTS) $(libsciinteger_la_LIBADD) $(LIBS)
+	$(libsciinteger_la_LINK) $(am_libsciinteger_la_rpath) $(libsciinteger_la_OBJECTS) $(libsciinteger_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

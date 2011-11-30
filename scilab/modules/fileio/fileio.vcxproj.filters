@@ -315,6 +315,9 @@
     <ClCompile Include="src\c\URIFileToFilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\sendtorecyclebin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\createtempfilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -472,6 +475,9 @@
     </ClInclude>
     <ClInclude Include="includes\mgetl.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\sendtorecyclebin.h">
+      <Filter>Header Files</Filter>    
     </ClInclude>
     <ClInclude Include="includes\createtempfilename.h">
       <Filter>Header Files</Filter>

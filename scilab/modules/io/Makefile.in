@@ -117,6 +117,8 @@ am__objects_1 = libsciio_algo_la-getpidc.lo \
 am__objects_2 = v2unit.lo newsave.lo v2cunit.lo
 am_libsciio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciio_algo_la_OBJECTS = $(am_libsciio_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libsciio_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciio_algo_la_rpath =
 libsciio_la_DEPENDENCIES = libsciio-algo.la
 am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_readb.lo libsciio_la-sci_host.lo \
@@ -133,6 +135,8 @@ libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
 libsciio_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libsciio_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libsciio_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciio_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -176,6 +180,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -456,8 +461,9 @@ libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
-pkglib_LTLIBRARIES = libsciio.la
-noinst_LTLIBRARIES = libsciio-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciio.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciio-algo.la libsciio.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libsciio-algo.la
 libsciio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libsciio_algo_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES)
 libsciio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -620,9 +626,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciio-algo.la: $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libsciio_algo_la_rpath) $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_LIBADD) $(LIBS)
 libsciio.la: $(libsciio_la_OBJECTS) $(libsciio_la_DEPENDENCIES) 
-	$(libsciio_la_LINK) -rpath $(pkglibdir) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
+	$(libsciio_la_LINK) $(am_libsciio_la_rpath) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

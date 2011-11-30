@@ -41,7 +41,7 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>data</term>
         <listitem>
-          <para>vector (datas to be analysed)</para>
+          <para>vector (data to be analysed)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -71,9 +71,11 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
         (default case) and else, simply equal to <emphasis>Ni</emphasis>. When normalization occurs the
         histogram verifies: 
     </para>
-    <para><latex style="display"><![CDATA[
+    <para>
+      <latex style="display"><![CDATA[
     \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1
-    ]]></latex></para>
+    ]]></latex>
+    </para>
     <para>when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis></para>
     <para>Any <link linkend="plot2d">plot2d</link> (optional) parameter may be provided; for instance to
        plot a histogram with the color number 2 (blue if std colormap is used) and
@@ -125,7 +127,7 @@ legend(["exponential random sample histogram" "exact density curve"]);
     </simplelist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hist3d">hist3d</link>

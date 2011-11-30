@@ -202,13 +202,15 @@ am__DEPENDENCIES_2 = $(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/io/libsciio.la $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB)
+scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB) \
+	$(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
 am_scilab_cli_bin_OBJECTS = scilab_cli_bin-mainscic.$(OBJEXT)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
-scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB)
+scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB) \
+	$(am__DEPENDENCIES_1)
 scilab_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_cli_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -346,6 +348,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -603,12 +606,12 @@ $(LTLIBINTL)
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB = $(top_builddir)/modules/libscilab-cli.la
 scilab_bin_SOURCES = $(top_srcdir)/modules/console/src/c/others/mainscic.c
-scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/console/src/c/others/mainscic.c
 scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
@@ -648,13 +651,14 @@ $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
 iconsdir = $(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
-$(top_srcdir)/desktop/puffin_128.xpm \
-$(top_srcdir)/desktop/puffin_256.xpm \
-$(top_srcdir)/desktop/puffin_32.xpm \
-$(top_srcdir)/desktop/puffin_48.xpm \
+icons_DATA = $(top_srcdir)/desktop/scilab.png \
+$(top_srcdir)/desktop/puffin_128.png \
+$(top_srcdir)/desktop/puffin_256.png \
+$(top_srcdir)/desktop/puffin_32.png \
+$(top_srcdir)/desktop/puffin_48.png \
 $(top_srcdir)/desktop/puffin.png \
 $(top_srcdir)/desktop/puffin.icns \
+$(top_srcdir)/desktop/scilab.xml \
 $(top_srcdir)/desktop/scilab.icns
 
 valgrinddir = $(pkgdatadir)/tools/profiling
@@ -1718,7 +1722,7 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@		for l in $(ALL_LINGUAS_DOC); do \
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
 @BUILD_HELP_TRUE@			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
-@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -ex \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
 @BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 @BUILD_HELP_TRUE@		done; \
 @BUILD_HELP_TRUE@	else \
@@ -1868,15 +1872,17 @@ check-java:
 
 @GENERATE_LOCALIZATION_FILES_TRUE@localization-status:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-@GENERATE_LOCALIZATION_FILES_TRUE@		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		if test ! -d $$PATHTO; then \
-@GENERATE_LOCALIZATION_FILES_TRUE@			echo "        Creating $$PATHTO"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@			mkdir -p $$PATHTO; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$$LOCALE" != "en_US"; then \
+@GENERATE_LOCALIZATION_FILES_TRUE@			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			if test ! -d $$PATHTO; then \
+@GENERATE_LOCALIZATION_FILES_TRUE@				echo "        Creating $$PATHTO"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@				mkdir -p $$PATHTO; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			fi; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			echo "Building status for $$LOCALE"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		echo "Building status for $$LOCALE"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done; 
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
@@ -1916,6 +1922,20 @@ check-java:
 .PHONY: macros localization doc
 
 .NOTPARALLEL: macros doc
+
+# Construct the LD_LIBRARY_PATH from the variable detected previously
+# Run the unitary test of call_scilab
+check-call_scilab: $(check_PROGRAMS)
+	@for a in $(JAVA_JNI_LIBS); do \
+		LD_PATH=`echo $$a|grep '^-L'|sed -e 's|-L\(.*\)|\1|g'`;\
+		LOCAL_LD="$$LOCAL_LD:$$LD_PATH"; \
+	done; \
+	for f in $(check_PROGRAMS); do \
+		if test "$$f" != "call_scilab_c"; then \
+			echo "Run: LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(top_srcdir) ./$$f"; \
+			LD_LIBRARY_PATH=$$LOCAL_LD SCI=$(abs_top_builddir) ./$$f; \
+		fi \
+	done
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

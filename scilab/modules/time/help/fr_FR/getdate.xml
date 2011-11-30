@@ -116,6 +116,7 @@ dt=getdate(x)</synopsis>
         <term>x = getdate("s")</term>
         <listitem>
           <para> renvoie un entier contenant le nombre de secondes écoulées depuis le 1er Janvier 1970, 00:00 UTC (Unix Time Convention).</para>
+          <para>L'entier retourné prend en compte <ulink url="http://fr.wikipedia.org/wiki/Seconde_intercalaire">seconde intercalaire</ulink>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -138,7 +139,7 @@ getdate(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="date">date</link>

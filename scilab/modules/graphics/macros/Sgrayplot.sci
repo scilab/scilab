@@ -62,7 +62,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
       end
    end
    
-   // build the datas for fec
+   // build the data for fec
    [noe_x,noe_y] = ndgrid(x,y)
    nbtri = 2*(p-1)*(q-1)
    num = (1:p*(q-1))'; num(p*(1:q-1)) = []; num1 = num+1

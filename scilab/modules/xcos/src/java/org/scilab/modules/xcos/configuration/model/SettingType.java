@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -50,57 +50,57 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "SettingType", propOrder = { "windows", "recentFiles" })
 public class SettingType {
 
-	@XmlElement(required = true)
-	private WindowsManagementType windows;
-	@XmlElement(required = true)
-	private RecentFilesType recentFiles;
+    @XmlElement(required = true)
+    private WindowsManagementType windows;
+    @XmlElement(required = true)
+    private RecentFilesType recentFiles;
 
-	/**
-	 * Default constructor
-	 */
-	protected SettingType() {
-	}
+    /**
+     * Default constructor
+     */
+    protected SettingType() {
+    }
 
-	/**
-	 * Gets the value of the windows property.
-	 * 
-	 * @return possible object is {@link WindowsManagementType }
-	 * 
-	 */
-	public WindowsManagementType getWindows() {
-		return windows;
-	}
+    /**
+     * Gets the value of the windows property.
+     * 
+     * @return possible object is {@link WindowsManagementType }
+     * 
+     */
+    public WindowsManagementType getWindows() {
+        return windows;
+    }
 
-	/**
-	 * Sets the value of the windows property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link WindowsManagementType }
-	 * 
-	 */
-	public void setWindows(WindowsManagementType value) {
-		this.windows = value;
-	}
+    /**
+     * Sets the value of the windows property.
+     * 
+     * @param value
+     *            allowed object is {@link WindowsManagementType }
+     * 
+     */
+    public void setWindows(WindowsManagementType value) {
+        this.windows = value;
+    }
 
-	/**
-	 * Gets the value of the recentFiles property.
-	 * 
-	 * @return possible object is {@link RecentFilesType }
-	 * 
-	 */
-	public RecentFilesType getRecentFiles() {
-		return recentFiles;
-	}
+    /**
+     * Gets the value of the recentFiles property.
+     * 
+     * @return possible object is {@link RecentFilesType }
+     * 
+     */
+    public RecentFilesType getRecentFiles() {
+        return recentFiles;
+    }
 
-	/**
-	 * Sets the value of the recentFiles property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link RecentFilesType }
-	 * 
-	 */
-	public void setRecentFiles(RecentFilesType value) {
-		this.recentFiles = value;
-	}
+    /**
+     * Sets the value of the recentFiles property.
+     * 
+     * @param value
+     *            allowed object is {@link RecentFilesType }
+     * 
+     */
+    public void setRecentFiles(RecentFilesType value) {
+        this.recentFiles = value;
+    }
 
 }

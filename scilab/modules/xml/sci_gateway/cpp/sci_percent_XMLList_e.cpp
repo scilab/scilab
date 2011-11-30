@@ -41,6 +41,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     int index;
     double d;
     char * field = 0;
+    const char ** pstStrings = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);
@@ -70,32 +71,62 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     {
         if (row != 1 || col != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%i: A string or a double expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string or a double expected.\n"), fname, 1);
             return 0;
         }
 
         getAllocatedSingleString(pvApiCtx, daddr, &field);
+        err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
+        if (err.iErr)
+        {
+            freeAllocatedSingleString(field);
+            printError(&err, 0);
+            return 0;
+        }
+
+        id = getXMLObjectId(mlistaddr, pvApiCtx);
+        list = XMLObject::getFromId<XMLList>(id);
+        if (!list)
+        {
+            freeAllocatedSingleString(field);
+            Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+            return 0;
+        }
+
         if (!strcmp(field, "size"))
         {
-            err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
+            d = (double)list->getSize();
+            createScalarDouble(pvApiCtx, Rhs + 1, d);
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+        }
+        else if (!strcmp(field, "content"))
+        {
+            pstStrings = list->getContentFromList();
+
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
+            delete[] pstStrings;
             if (err.iErr)
             {
-                freeAllocatedSingleString(field);
                 printError(&err, 0);
                 return 0;
             }
 
-            id = getXMLObjectId(mlistaddr);
-            list = XMLObject::getFromId<XMLList>(id);
-            if (!list)
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+        }
+        else if (!strcmp(field, "name"))
+        {
+            pstStrings = list->getNameFromList();
+
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
+            delete[] pstStrings;
+            if (err.iErr)
             {
-                freeAllocatedSingleString(field);
-                Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+                printError(&err, 0);
                 return 0;
             }
-
-            d = (double)list->getSize();
-            createScalarDouble(pvApiCtx, Rhs + 1, d);
 
             LhsVar(1) = Rhs + 1;
             PutLhsVar();
@@ -111,13 +142,13 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
 
     if (row != 1 || col != 1 || typ != sci_matrix)
     {
-        Scierror(999, gettext("%s: Wrong dimension for input argument #%i: Single double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong dimension for input argument #%d: Single double expected.\n"), fname, 1);
         return 0;
     }
 
     if (isVarComplex(pvApiCtx, daddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: Double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -135,7 +166,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
     list = XMLObject::getFromId<XMLList>(id);
     if (!list)
     {
@@ -151,7 +182,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!elem->createOnStack(Rhs + 1))
+    if (!elem->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

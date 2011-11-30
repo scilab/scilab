@@ -14,6 +14,7 @@
 #define __XMLLIST_HXX__
 
 #include <string>
+#include "XMLRemovable.hxx"
 
 #include "xml.h"
 
@@ -27,7 +28,7 @@ namespace org_modules_xml
      *
      * Virtual class to handle a list of XMLObjects
      */
-    class XMLList : public XMLObject
+    class XMLList : public XMLObject, public XMLRemovable
     {
 
     public :
@@ -48,6 +49,18 @@ namespace org_modules_xml
          * @return the list size
          */
         int getSize() const { return size; }
+
+        /**
+         * Get the content of each node of the list
+         * @return an array of strings
+         */
+        virtual const char ** getContentFromList() const = 0;
+
+        /**
+         * Get the name of each node of the list
+         * @return an array of strings
+         */
+        virtual const char ** getNameFromList() const = 0;
 
         const std::string toString() const;
 

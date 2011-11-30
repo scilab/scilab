@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,7 +47,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 
 	/** The rotation step of the clockwise and anticlockwise rotation */
 	public static final int ROTATION_STEP = 90;
-	/** The max valid rotation value (always 360°) */
+	/** The max valid rotation value (always 360 degres) */
 	public static final int MAX_ROTATION = 360;
 
 	/** The border ratio between the background image and the icon image */

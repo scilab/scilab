@@ -209,6 +209,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="forbiddenToUseScilab.c" />
     <ClCompile Include="getBlasType.c" />
     <ClCompile Include="getScilabDirectory.c" />
+    <ClCompile Include="getVideoAdapters.c" />
     <ClCompile Include="InnosetupMutex.c" />
     <ClCompile Include="killScilabProcess.c" />
     <ClCompile Include="mmapWindows.c" />
@@ -238,6 +239,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="forbiddenToUseScilab.h" />
     <ClInclude Include="getBlasType.h" />
     <ClInclude Include="getScilabDirectory.h" />
+    <ClInclude Include="getVideoAdapters.h" />
     <ClInclude Include="InnosetupMutex.h" />
     <ClInclude Include="killScilabProcess.h" />
     <ClInclude Include="mmapWindows.h" />

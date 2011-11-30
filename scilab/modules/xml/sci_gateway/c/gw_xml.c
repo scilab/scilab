@@ -92,7 +92,12 @@ static gw_generic_table Tab[] =
     {sci_xmlSchema, "xmlSchema"},
     {sci_xmlRelaxNG, "xmlRelaxNG"},
     {sci_xmlValidate, "xmlValidate"},
-    {sci_percent_XMLValid_p, "%XMLValid_p"}
+    {sci_percent_XMLValid_p, "%XMLValid_p"},
+    {sci_xmlIsValidObject, "xmlIsValidObject"},
+    {sci_xmlAsNumber, "xmlAsNumber"},
+    {sci_xmlAsText, "xmlAsText"},
+    {sci_xmlRemove, "xmlRemove"},
+    {sci_xmlSetAttributes, "xmlSetAttributes"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_xml(void)

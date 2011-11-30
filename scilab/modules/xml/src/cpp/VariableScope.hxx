@@ -36,13 +36,12 @@ namespace org_modules_xml
     class VariableScope
     {
 
-        //XMLObject ** scope;
         std::vector<XMLObject *> * scope;
         int position;
         int initialSize;
         std::stack<int> * freePlaces;
-        std::map<const XMLObject *, std::vector<const XMLObject *> *> * parentToChildren;
 
+        static std::map<const XMLObject *, std::vector<const XMLObject *> *> * parentToChildren;
         static std::map<void *, XMLObject *> * mapLibXMLToXMLObject;
         static std::map<void *, XMLNodeList *> * mapLibXMLToXMLNodeList;
         static xmlFreeFunc XMLFreeFunc;
@@ -130,6 +129,8 @@ namespace org_modules_xml
         static void _xmlFreeFunc(void * mem);
         static void initXMLMemory();
         static xmlFreeFunc getFreeFunc(xmlFreeFunc freeFunc);
+
+	static void removeChildFromParent(const XMLObject * child);
 
         /**
          * Removes the object dependencies if they exist

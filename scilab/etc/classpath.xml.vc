@@ -28,15 +28,22 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-0.5.2.jar"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
+<path value="$SCILAB/thirdparty/flexdock-0.5.4.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
 <path value="$SCILAB/thirdparty/jhall.jar"/>
 
 <!-- Load when needed -->
+
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="onUse">
+        <load on="Console" />
+        <load on="SciNotes" />
+</path>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="onUse">
+        <load on="Console" />
+        <load on="SciNotes" />
+</path>
 
 <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
 	<load on="XCos"/>
@@ -140,7 +147,10 @@ The option is "disableUnderMode" and can be:
 
 <!-- Console GUI dep -->
 <path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
-<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="onUse">
+        <load on="Console"/>
+        <load on="SciNotes"/>
+</path>
 
 <path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
 

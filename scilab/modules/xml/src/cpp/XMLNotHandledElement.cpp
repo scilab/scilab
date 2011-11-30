@@ -34,6 +34,11 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
+    void * XMLNotHandledElement::getRealXMLPointer() const
+    {
+        return static_cast<void *>(node);
+    }
+
     const XMLObject * XMLNotHandledElement::getXMLObjectParent() const
     {
         return &parent;

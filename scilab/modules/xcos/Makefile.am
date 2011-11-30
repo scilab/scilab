@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt 
+libscixcos_la_root_DATA =  license.txt
 
 
 #### xcos : init scripts ####
@@ -134,6 +134,7 @@ nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
+images/blocks/BARXY.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
@@ -170,6 +171,9 @@ images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \
 images/blocks/SWITCH.svg \
+images/blocks/SELF_SWITCH.svg \
+images/blocks/Self_Switch_on.svg \
+images/blocks/Self_Switch_off.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
@@ -379,6 +383,9 @@ images/palettes/SUPER_f.png \
 images/palettes/SWITCH2_m.png \
 images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
+images/palettes/SELF_SWITCH.png \
+images/palettes/SELF_SWITCH_on.png \
+images/palettes/SELF_SWITCH_off.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
 images/palettes/TEXT_f.png \

@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
- * Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +36,7 @@ import com.mxgraph.model.mxGeometry;
 
 /**
  * Protected class which decode graphic fields of a block.
- *
+ * 
  * This class is intentionally package-protected to prevent external use.
  */
 // CSOFF: ClassDataAbstractionCoupling
@@ -46,12 +46,12 @@ class BlockGraphicElement extends BlockPartsElement {
      * cycle they are not checked to be compatible with older versions.
      */
     private static final List<String> DATA_FIELD_NAMES = asList("graphics",
-                                                                "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein",
-                                                                "peout", "gr_i", "id", "in_implicit", "out_implicit");
+            "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein",
+            "peout", "gr_i", "id", "in_implicit", "out_implicit");
     private static final List<String> DATA_FIELD_NAMES_FULL = asList(
-        "graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
-        "pein", "peout", "gr_i", "id", "in_implicit", "out_implicit",
-        "in_style", "out_style", "style");
+            "graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
+            "pein", "peout", "gr_i", "id", "in_implicit", "out_implicit",
+            "in_style", "out_style", "style");
 
     private static final int ORIGIN_INDEX = 1;
     private static final int DIMS_INDEX = 2;
@@ -93,7 +93,7 @@ class BlockGraphicElement extends BlockPartsElement {
      */
     @Override
     public BasicBlock decode(ScilabType element, BasicBlock into)
-        throws ScicosFormatException {
+            throws ScicosFormatException {
 
         if (into == null) {
             throw new IllegalArgumentException();
@@ -119,7 +119,9 @@ class BlockGraphicElement extends BlockPartsElement {
             final ScilabString style = (ScilabString) data.get(STYLE_INDEX);
             final String s = style.getData()[0][0];
 
-            block.setStyle(s);
+            if (s != null && !s.isEmpty()) {
+                block.setStyle(s);
+            }
         }
 
         block = afterDecode(element, block);
@@ -203,9 +205,9 @@ class BlockGraphicElement extends BlockPartsElement {
         // exprs
         field++;
         if (!(data.get(field) instanceof ScilabString)
-            && !(data.get(field) instanceof ScilabList)
-            && !(data.get(field) instanceof ScilabTList)
-            && !isEmptyField(data.get(field))) {
+                && !(data.get(field) instanceof ScilabList)
+                && !(data.get(field) instanceof ScilabTList)
+                && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -247,14 +249,14 @@ class BlockGraphicElement extends BlockPartsElement {
         // in_implicit
         field++;
         if (!(data.get(field) instanceof ScilabString)
-            && !isEmptyField(data.get(field))) {
+                && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
         // out_implicit
         field++;
         if (!(data.get(field) instanceof ScilabString)
-            && !isEmptyField(data.get(field))) {
+                && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -283,7 +285,7 @@ class BlockGraphicElement extends BlockPartsElement {
         double y;
 
         final double[][] real = ((ScilabDouble) data.get(ORIGIN_INDEX))
-            .getRealPart();
+                .getRealPart();
         x = real[0][0];
         final double[] vector = real[real.length - 1];
         y = vector[vector.length - 1];
@@ -320,7 +322,7 @@ class BlockGraphicElement extends BlockPartsElement {
         double h;
 
         final double[][] real = ((ScilabDouble) data.get(DIMS_INDEX))
-            .getRealPart();
+                .getRealPart();
         w = real[0][0];
         final double[] vector = real[real.length - 1];
         h = vector[vector.length - 1];
@@ -361,7 +363,7 @@ class BlockGraphicElement extends BlockPartsElement {
          * Rotation management
          */
         int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1))
-            .getRealPart()[0][0];
+                .getRealPart()[0][0];
 
         // convert to a valid value
         theta = BlockPositioning.roundAngle(theta);
@@ -405,7 +407,7 @@ class BlockGraphicElement extends BlockPartsElement {
             data = allocateElement();
         } else {
             throw new IllegalArgumentException(
-                "The element parameter must be null.");
+                    "The element parameter must be null.");
         }
 
         data = (ScilabMList) beforeEncode(from, data);
@@ -433,18 +435,18 @@ class BlockGraphicElement extends BlockPartsElement {
 
         field++; // pein
         List<ControlPort> ctrlPorts = BasicBlockInfo.getAllTypedPorts(from,
-                                                                      false, ControlPort.class);
+                false, ControlPort.class);
         data.set(field, BasicBlockInfo.getAllLinkId(ctrlPorts));
         field++; // peout
         List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(from,
-                                                                     false, CommandPort.class);
+                false, CommandPort.class);
         data.set(field, BasicBlockInfo.getAllLinkId(cmdPorts));
 
         field++; // gr_i
         ScilabList graphics = (ScilabList) data.get(field);
         ScilabString graphicsInstructions = new ScilabString(
-            "xstringb(orig(1),orig(2),\"" + from.getInterfaceFunctionName()
-            + "\",sz(1),sz(2));");
+                "xstringb(orig(1),orig(2),\"" + from.getInterfaceFunctionName()
+                        + "\",sz(1),sz(2));");
         graphics.add(graphicsInstructions);
         graphics.add(new ScilabDouble(GRAPHICS_INSTRUCTION_SIZE));
 
@@ -485,7 +487,7 @@ class BlockGraphicElement extends BlockPartsElement {
 
         internalField++; // orig
         final double[][] orig = { { geom.getX(),
-                                    -geom.getY() - geom.getHeight() } };
+                -geom.getY() - geom.getHeight() } };
         data.set(internalField, new ScilabDouble(orig));
 
         internalField++; // sz
@@ -502,7 +504,7 @@ class BlockGraphicElement extends BlockPartsElement {
      */
     private ScilabMList allocateElement() {
         ScilabMList element = new ScilabMList(
-            DATA_FIELD_NAMES_FULL.toArray(new String[0]));
+                DATA_FIELD_NAMES_FULL.toArray(new String[0]));
         element.add(new ScilabDouble()); // orig
         element.add(new ScilabDouble()); // sz
         element.add(new ScilabBoolean()); // flip

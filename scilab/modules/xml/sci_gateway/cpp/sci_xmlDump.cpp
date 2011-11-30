@@ -42,9 +42,10 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
     int * addr = 0;
     std::vector<std::string> lines;
     std::vector<const char *> clines;
+    bool indent = true;
 
     CheckLhs(1, 1);
-    CheckRhs(1, 1);
+    CheckRhs(1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -53,14 +54,14 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    type = isXMLObject(addr);
+    type = isXMLObject(addr, pvApiCtx);
     if (!type)
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XML object");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XML object");
         return 0;
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
@@ -68,8 +69,31 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
         return 0;
     }
 
+    if (Rhs == 2)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            return 0;
+        }
+
+        if (!isBooleanType(pvApiCtx, addr))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 2, "boolean");
+            return 0;
+        }
+
+        int b;
+        if (getScalarBoolean(pvApiCtx, addr, &b))
+        {
+            return 0;
+        }
+        indent = b != 0;
+    }
+
     lines = std::vector<std::string>();
-    SplitString::split(obj->dump(), lines);
+    SplitString::split(obj->dump(indent), lines);
     clines = std::vector<const char *>(lines.size());
 
     for (unsigned int i = 0; i < lines.size(); i++)

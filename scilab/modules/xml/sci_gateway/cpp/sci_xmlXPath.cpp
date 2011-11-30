@@ -53,13 +53,13 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    id = getXMLObjectId(addr);
+    id = getXMLObjectId(addr, pvApiCtx);
     doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
     if (!doc)
     {
@@ -76,7 +76,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
     getAllocatedSingleString(pvApiCtx, addr, &query);
@@ -94,7 +94,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -109,7 +109,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         if (col != 2)
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Bad number of columns for argument #%i: two expected.\n"), fname, 3);
+            Scierror(999, gettext("%s: Bad number of columns for argument #%d: two expected.\n"), fname, 3);
             return 0;
         }
 
@@ -138,7 +138,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         {
             createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
-        set->createOnStack(Rhs + 1);
+        set->createOnStack(Rhs + 1, pvApiCtx);
         break;
     }
     case XPATH_BOOLEAN :

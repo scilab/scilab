@@ -24,5 +24,9 @@ BOOL createMainScilabObject(void);
 
 BOOL finishMainScilabObject(void);
 
+BOOL executeInitialHooks(void);
+
+BOOL canCloseMainScilabObject(void);
+
 #endif /* __CREATEMAINSCILABOBJECT_H__ */
 /*--------------------------------------------------------------------------*/ 

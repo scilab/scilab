@@ -1,5 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
+c Copyright (C) - INRIA - Serge Steer
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -112,8 +112,17 @@ c     determination du format devant representer a
          l1=l1+7
 
          typ=1
-         if(mode.eq.1) call fmt(a,maxc,typ,n1,n2)
-         if(typ.eq.2) typ=n2+32*n1
+         if(mode.eq.1) then
+            call fmt(a,maxc,typ,n1,n2)
+            if(typ.eq.2) typ=n2+32*n1
+         else
+            if (isanan(a).eq.1) then
+               typ=-2
+            elseif (a.gt.dlamch('o')) then
+               typ=-1
+            endif
+         endif
+
          call formatnumber(a,typ,maxc,cw(l1:),fl)
          l1=l1+fl
          call basout(io,lunit,cw(1:l1) )
@@ -122,6 +131,5 @@ c     determination du format devant representer a
    20 continue
  99   continue
 c
-  120 format('(f',i2,'.',i2,')')
   130 format('(1pd',i2,'.',i2,')')
       end

@@ -25,9 +25,11 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 1 )
         error(errmsg)
     end
-    if ( typeof(expectedmsg) <> "string" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 2 )
-        error(errmsg)
+    if (expectedmsg<>[]) then
+        if ( typeof(expectedmsg) <> "string" ) then
+            errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 2 )
+            error(errmsg)
+        end
     end
     if ( typeof(expectederrnb) <> "constant" ) then
         errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkerror" , 3 )
@@ -39,9 +41,11 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 1 , 1 , 1 )
         error(errmsg)
     end
-    if ( size(expectedmsg,"*") <> 1 ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 2 , 1 , 1 )
-        error(errmsg)
+    if (expectedmsg<>[]) then
+        if ( size(expectedmsg,"*") <> 1 ) then
+            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 2 , 1 , 1 )
+            error(errmsg)
+        end
     end
     if ( expectederrnb <> [] ) then
         if ( size(expectederrnb,"*") <> 1 ) then
@@ -51,9 +55,18 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     end
     //
     // Check values of variables
-    if ( expectederrnb <> [] ) then
-        if ( expectederrnb < 0 ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"  ) , "assert_checkerror" , 3 )
+    if (expectedmsg<>[]) then
+        if ( expectederrnb <> [] ) then
+            if ( expectederrnb < 0 ) then
+                errmsg = sprintf ( gettext ( "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"  ) , "assert_checkerror" , 3 )
+                error(errmsg)
+            end
+        end
+    else
+        // If the message is empty (arg #2), check that the error 
+        // number is not empty (arg #3).
+        if ( expectederrnb == [] ) then
+            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"  ) , "assert_checkerror" , 3 )
             error(errmsg)
         end
     end
@@ -89,15 +102,17 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     end
     //
     // Check the error message
-    if ( expectedmsg <> compmsg ) then
-        flag = %f
-        localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
-        errmsg = msprintf(localstr,"assert_checkerror",expectedmsg,compmsg)
-        if ( lhs < 2 ) then
-            // If no output variable is given, generate an error
-            error ( errmsg )
-        else
-            return
+    if (expectedmsg<>[]) then
+        if ( expectedmsg <> compmsg ) then
+            flag = %f
+            localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
+            errmsg = msprintf(localstr,"assert_checkerror",expectedmsg,compmsg)
+            if ( lhs < 2 ) then
+                // If no output variable is given, generate an error
+                error ( errmsg )
+            else
+                return
+            end
         end
     end
     if ( expectederrnb <> [] ) then

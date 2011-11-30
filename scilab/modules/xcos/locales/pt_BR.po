@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -565,15 +565,6 @@ msgstr "Não é possível excluir "
 msgid "No block selected"
 msgstr "Nenhum bloco selecionado"
 
-msgid "Export to XML"
-msgstr "Exportar para XML"
-
-msgid "Export in progress"
-msgstr "Exportação em andamento"
-
-msgid "Import from XML"
-msgstr "Importar de XML"
-
 msgid "Add to"
 msgstr "Adicione a"
 
@@ -722,14 +713,20 @@ msgstr "Gerando código C para o SuperBloco"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "Um SuperBloco deve ser selecionado para gerar código"
 
-msgid "Simulation in progress"
-msgstr "Simulação em andamento"
+msgid "Export in progress"
+msgstr "Exportação em andamento"
 
 msgid ""
-"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+"Import in progress, results will be stored through the 'scs_m' variable"
 msgstr ""
-"Compilação em andamento, os resultados serão armazenados na variável "
-"'scicos_cpr'"
+
+#, c-format
+msgid ""
+"Compilation in progress, results will be stored through the '%cpr' variable"
+msgstr ""
+
+msgid "Simulation in progress"
+msgstr "Simulação em andamento"
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -825,14 +822,6 @@ msgstr "Configurando o compilador Modelica."
 
 msgid "Modelica initialize"
 msgstr "Iniciar Modelica"
-
-#, c-format
-msgid "From %s"
-msgstr "De %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Ir para %s"
 
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
@@ -1233,7 +1222,7 @@ msgstr "As bibliotecas Scicos não estão carregadas"
 msgid "Unable to simulate %s"
 msgstr "Não é possível simular %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format
@@ -1249,3 +1238,21 @@ msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
+
+#~ msgid "Export to XML"
+#~ msgstr "Exportar para XML"
+
+#~ msgid "Import from XML"
+#~ msgstr "Importar de XML"
+
+#~ msgid "From %s"
+#~ msgstr "De %s"
+
+#~ msgid "Goto %s"
+#~ msgstr "Ir para %s"
+
+#~ msgid ""
+#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+#~ msgstr ""
+#~ "Compilação em andamento, os resultados serão armazenados na variável "
+#~ "'scicos_cpr'"

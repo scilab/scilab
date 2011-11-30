@@ -64,10 +64,22 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr	= NULL;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
+	int iNewPos = Top - Rhs + _iVar;
+	int iAddr   = *Lstk(iNewPos);
 
-	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
 	if (iMemSize > iFreeSpace)
 	{
@@ -100,7 +112,18 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piBool		= NULL;
 
-	sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
@@ -119,6 +142,18 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
 	int iSaveTop			= Top;
 	int* piBool				= NULL;
 	int *piAddr				= NULL;
+
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {

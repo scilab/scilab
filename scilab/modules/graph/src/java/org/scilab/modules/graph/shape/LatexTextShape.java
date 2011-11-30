@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -49,6 +49,9 @@ public class LatexTextShape implements mxITextShape {
 		
 		CellRendererPane rendererPane = canvas.getRendererPane();
 		Rectangle rect = state.getRectangle();
+		if (rect.isEmpty()) {
+			rect.grow(1, 1);
+		}
 		Graphics2D g = canvas.getGraphics();
 		
 		if (rendererPane != null

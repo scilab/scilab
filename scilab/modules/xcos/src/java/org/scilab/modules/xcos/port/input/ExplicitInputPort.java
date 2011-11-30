@@ -22,13 +22,13 @@ public class ExplicitInputPort extends InputPort {
 
     /** Default constructor */
     public ExplicitInputPort() {
-	super("ExplicitInputPort");
+        super("ExplicitInputPort");
     }
 
     /** @return always Type.EXPLICIT */
-	@Override
+    @Override
     public Type getType() {
-	return Type.EXPLICIT;
+        return Type.EXPLICIT;
     }
-    
+
 }

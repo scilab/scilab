@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS <antoine.elias@scilab.org>
- * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,26 +14,27 @@
 package org.scilab.modules.xcos.block.io;
 
 /**
- * Implement an event entry point of a {@link org.scilab.modules.xcos.block.SuperBlock}.
+ * Implement an event entry point of a
+ * {@link org.scilab.modules.xcos.block.SuperBlock}.
  */
 public final class EventInBlock extends ContextUpdate {
 
-	private static final long serialVersionUID = 2799781225262685322L;
+    private static final long serialVersionUID = 2799781225262685322L;
 
-	/**
-	 * Constructor
-	 */
-	public EventInBlock() {
-		super();
-	}
+    /**
+     * Constructor
+     */
+    public EventInBlock() {
+        super();
+    }
 
-	/**
-	 * Initialize the block with the default values
-	 */
-	@Override
-	protected void setDefaultValues() {
-		super.setDefaultValues();
-		setInterfaceFunctionName("CLKINV_f");
-		setSimulationFunctionName("input");
-	}
+    /**
+     * Initialize the block with the default values
+     */
+    @Override
+    protected void setDefaultValues() {
+        super.setDefaultValues();
+        setInterfaceFunctionName("CLKINV_f");
+        setSimulationFunctionName("input");
+    }
 }

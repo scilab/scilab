@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:39+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-05 14:04+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -289,6 +289,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s: Java例外が発生しました:\n"
+"%s"
 
 #
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
@@ -710,6 +712,9 @@ msgstr "変数ブラウザ(&V)"
 msgid "&Command History"
 msgstr "コマンドヒストリ (&C)"
 
+msgid "&File Browser"
+msgstr ""
+
 #
 # File: scilab_fake_localization_file.c, line: 74
 msgid "Scilab &Help"
@@ -789,11 +794,6 @@ msgstr "コピー"
 
 msgid "Paste"
 msgstr "貼り付け"
-
-#
-# File: scilab_fake_localization_file.c, line: 91
-msgid "Change Current Directory"
-msgstr "現在のディレクトリを変更"
 
 #
 # File: scilab_fake_localization_file.c, line: 92
@@ -1425,6 +1425,26 @@ msgstr "はい"
 msgid "Save and execute"
 msgstr "保存して実行"
 
+msgid "Empty tab"
+msgstr ""
+
+#, c-format
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
 msgid "An error occured: "
 msgstr "エラーが発生しました: "
 
@@ -1473,6 +1493,7 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
+#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
@@ -1561,34 +1582,8 @@ msgstr "構成を保存しました。\n"
 msgid "Select a file name"
 msgstr "ファイル名を選択"
 
-#
-# File: etc/main_menubar.xml, line: 11
-msgid "Select a file to execute"
-msgstr "ファイルを選択して実行"
-
-#
-# File: etc/main_menubar.xml, line: 14
-msgid "Execution done.\n"
-msgstr "実行は完了しました。\n"
-
 msgid "Select a file to open with SciNotes"
 msgstr "SciNotesでオープンするファイルを選択"
-
-#
-# File: etc/main_menubar.xml, line: 36
-msgid "Environment loaded.\n"
-msgstr "環境をロードしました。\n"
-
-#
-# File: etc/main_menubar.xml, line: 50
-msgid "Environment saved.\n"
-msgstr "環境を保存しました。\n"
-
-#
-# File: etc/main_menubar.xml, line: 59
-# File: etc/main_toolbar.xml, line: 39
-msgid "Select a directory"
-msgstr "ディレクトリを選択"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
@@ -1599,9 +1594,6 @@ msgstr "Plot3d コントロール"
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
 msgid "File"
 msgstr "ファイル"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 #
 # File: etc/gui.start, line: 13
@@ -1952,48 +1944,32 @@ msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
 
 #
-# File: macros/about.sci, line: 18
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "作者:\n"
-#~ "Scilabコンソーシアム　/ INRIA / ENPC / 貢献者達\n"
-#~ "\n"
+# File: scilab_fake_localization_file.c, line: 91
+#~ msgid "Change Current Directory"
+#~ msgstr "現在のディレクトリを変更"
 
 #
-# File: macros/about.sci, line: 16
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr "Scilab 5.0 と 将来バージョン は CeCILLライセンス の条件の下でリリースされます。\n"
+# File: etc/main_menubar.xml, line: 11
+#~ msgid "Select a file to execute"
+#~ msgstr "ファイルを選択して実行"
 
 #
-# File: macros/about.sci, line: 30
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Scilab の貢献者達..."
+# File: etc/main_menubar.xml, line: 14
+#~ msgid "Execution done.\n"
+#~ msgstr "実行は完了しました。\n"
 
 #
-# File: macros/about.sci, line: 17
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "いくつかの Scilabモジュール は、GPLv2ライセンス の下でリリースされます。\n"
-#~ "\n"
+# File: etc/main_menubar.xml, line: 36
+#~ msgid "Environment loaded.\n"
+#~ msgstr "環境をロードしました。\n"
 
 #
-# File: macros/about.sci, line: 19
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "バージョン %s (%s)\n"
-#~ "\n"
+# File: etc/main_menubar.xml, line: 50
+#~ msgid "Environment saved.\n"
+#~ msgstr "環境を保存しました。\n"
 
 #
-# File: macros/about.sci, line: 20
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"
+# File: etc/main_menubar.xml, line: 59
+# File: etc/main_toolbar.xml, line: 39
+#~ msgid "Select a directory"
+#~ msgstr "ディレクトリを選択"

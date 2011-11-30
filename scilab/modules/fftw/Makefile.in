@@ -61,9 +61,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@FFTW_TRUE@am__append_1 = libscifftw-algo.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/fftw
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -129,7 +130,8 @@ libscifftw_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscifftw_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-@FFTW_TRUE@am_libscifftw_algo_la_rpath =
+@FFTW_TRUE@@MAINTAINER_MODE_FALSE@am_libscifftw_algo_la_rpath =
+@FFTW_TRUE@@MAINTAINER_MODE_TRUE@am_libscifftw_algo_la_rpath =
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la
 am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	src/c/fftwlibname.c src/c/fftw_utilities.c src/c/with_fftw.c \
@@ -161,6 +163,8 @@ libscifftw_la_OBJECTS = $(am_libscifftw_la_OBJECTS)
 libscifftw_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscifftw_la_CFLAGS) \
 	$(CFLAGS) $(libscifftw_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscifftw_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscifftw_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -198,6 +202,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -431,8 +436,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = fftw
-pkglib_LTLIBRARIES = libscifftw.la
-@FFTW_TRUE@noinst_LTLIBRARIES = libscifftw-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscifftw.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscifftw.la \
+@MAINTAINER_MODE_FALSE@	$(am__append_1)
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = $(am__append_1)
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
@@ -498,7 +505,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -626,7 +633,7 @@ clean-pkglibLTLIBRARIES:
 libscifftw-algo.la: $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_DEPENDENCIES) 
 	$(libscifftw_algo_la_LINK) $(am_libscifftw_algo_la_rpath) $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
 libscifftw.la: $(libscifftw_la_OBJECTS) $(libscifftw_la_DEPENDENCIES) 
-	$(libscifftw_la_LINK) -rpath $(pkglibdir) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
+	$(libscifftw_la_LINK) $(am_libscifftw_la_rpath) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

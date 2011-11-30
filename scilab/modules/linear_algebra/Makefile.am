@@ -95,8 +95,13 @@ libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 noinst_LTLIBRARIES = libscilinear_algebra-algo.la
+else
+noinst_LTLIBRARIES = libscilinear_algebra-algo.la libscilinear_algebra.la
+endif
+
 
 libscilinear_algebra_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

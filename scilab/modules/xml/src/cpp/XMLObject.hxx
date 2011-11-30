@@ -48,11 +48,34 @@ namespace org_modules_xml
         virtual ~XMLObject() { }
 
         /**
+         * Get the libxml2 pointer
+         * @return the pointer
+         */
+        virtual void * getRealXMLPointer() const { return 0; }
+
+        /**
          * Gets a XML parent object. A set of dependencies is created between the objects
          * to be sure that all the XML objects will be freed when a document will be destroyed.
          * @return the parent XMLObject
          */
         virtual const XMLObject * getXMLObjectParent() const { return 0; }
+
+	/**
+         * Sets the attribute value.
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        virtual void setAttributeValue(const char ** name, const char ** value, int size) const { return; }
+
+	/**
+         * Sets the attribute value with a prefix namespace.
+         * @param prefix the namespace prefix or the namespace itself
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        virtual void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const { return; }
 
         /**
          * @return the string representation of this object
@@ -62,7 +85,7 @@ namespace org_modules_xml
         /**
          * @return a dump of this object
          */
-        virtual const std::string dump() const { return std::string(""); }
+        virtual const std::string dump(bool indent) const { return std::string(""); }
 
         /**
          * @return the object id
@@ -74,7 +97,7 @@ namespace org_modules_xml
          * @param pos the stack position
          * @return 1 if all is ok, else 0
          */
-        int createOnStack(int pos) const;
+        int createOnStack(int pos, void* pvApiCtx) const;
 
         /**
          * @param id the object id

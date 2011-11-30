@@ -28,13 +28,12 @@ function atomsDisp(str)
 
     // Verbose Mode ?
     // =========================================================================
-
     if isdef("ATOMSVERBOSE") then
         if ATOMSVERBOSE then
-            mprintf("%s\n",str);
+            mprintf("%s",strcat(str,ascii(10)));
         end
     elseif strcmpi(atomsGetConfig("Verbose"),"True") == 0
-        mprintf("%s\n",str);
+        mprintf("%s",strcat(str,ascii(10)));
     end
 
 endfunction

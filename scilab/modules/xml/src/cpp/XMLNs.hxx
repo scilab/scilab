@@ -52,6 +52,8 @@ namespace org_modules_xml
 
         ~XMLNs();
 
+        void * getRealXMLPointer() const;
+
         /**
          * @return the namespace href
          */

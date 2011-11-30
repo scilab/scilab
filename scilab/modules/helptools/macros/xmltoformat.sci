@@ -2,7 +2,7 @@
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
-// Copyright (C) 2010 DIGITEO - Allan CORNET
+// Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -227,30 +227,22 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     // Convert paths into absolute paths
     // ---------------------------------------------------------------------
-
-    for k=1:size(dirs,'*');
-        if ~isdir(dirs(k)) then
-            error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
+    function dir_modified = checkAndConvertDir(dirs_path)
+      dir_modified = [];
+      if (dirs_path <> []) then
+        if ~and(isdir(dirs_path)) then
+          notDirIdx = find(isdir(dirs_path) == %F);
+          error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat", dirs_path(notDirIdx(1))));
         end
-        dirs(k) = fullpath(dirs(k));
-    end
-
+        dir_modified = fullpath(dirs_path);
+      end
+    endfunction
+    
+    dirs = checkAndConvertDir(dirs);
 
     if all_scilab_help then
-
-        for k=1:size(dirs_m,'*');
-            if ~isdir(dirs_m(k)) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
-            end
-            dirs_m(k) = fullpath(dirs_m(k));
-        end
-
-        for k=1:size(dirs_c,'*');
-            if ~isdir(dirs_c(k)) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
-            end
-            dirs_c(k) = fullpath(dirs_c(k));
-        end
+        dirs_m = checkAndConvertDir(dirs_m);
+        dirs_c = checkAndConvertDir(dirs_c);
     end
 
     // =========================================================================

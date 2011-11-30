@@ -74,9 +74,9 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
     {
 
 #ifdef __INTEL_COMPILER
-        sprintf(str_info,"Compiled with %s","Intel compiler");
+        sprintf(str_info,"Compiled with %s (%d)","Intel compiler", __INTEL_COMPILER);
 #elif defined _MSC_VER
-        sprintf(str_info,"Compiled with %s","Microsoft compiler");
+        sprintf(str_info,"Compiled with %s (%d)","Microsoft compiler", _MSC_FULL_VER);
 #else
         sprintf(str_info,"Compiled with %s","unknown compiler");
 #endif
@@ -102,7 +102,7 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
         {
         default:
         case BLAS_UNKNOW:
-            strcat(str_info, "Unknow");
+            strcat(str_info, "Unknown");
             break;
 
         case BLAS_REF:

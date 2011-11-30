@@ -89,8 +89,17 @@
     <para>
       If the expression does not generate an error, then <literal>assert_checkerror</literal> generates an error.
       Performs silently if the evaluated expression generates the expected error message.
-      If the error number is provided, we additionnally check that the generated error number matches the
+    </para>
+    <para>
+      If the error message <literal>expectedmsg</literal> is provided and is not the empty matrix <literal>[]</literal>, 
+      we check that the generated error number matches the
       expected one.
+      If the error number <literal>expectederrnb</literal> is provided and is not the empty matrix <literal>[]</literal>, 
+      we check that the generated error number matches the
+      expected one.
+      If the error message <literal>expectedmsg</literal> and the error number <literal>expectederrnb</literal> 
+      cannot be equal to the empty matrix <literal>[]</literal> at the same time: at least one of them 
+      must be provided.
     </para>
     <para>
       The string matching is strict string equality: no pattern or regular expression can be used.
@@ -147,6 +156,9 @@
     <para>
       We give several examples of using the <literal>assert_checkerror</literal> function. 
       We first have to define a function to be tested. 
+    </para>
+
+    <para>
       The following function <literal>f</literal> generates an error when
       the number of input arguments in wrong or the type of <literal>x</literal> is wrong.
     </para>
@@ -156,12 +168,12 @@ function y = f(x)
   [lhs,rhs]=argn()
   if ( rhs <> 1 ) then
     lstr=gettext("%s: Wrong number of input argument: %d expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg)
   end
   if ( typeof(x) <> "constant" ) then
     lstr=gettext("%s: Wrong type for argument %d: Matrix expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg,123456789)
   end
   y = x
@@ -249,6 +261,21 @@ assert_checkerror ( "y=f()"      , msg1 );
 msg2=msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"f",1);
 assert_checkerror ( "y=f(""a"")" , msg2 );
    ]]>
+   
+    <para>
+    It may happen that we want to just test the error number, but not the 
+    error message. 
+The following script just checks that the generated error number is 123456789 
+when the first argument is not a matrix of doubles: 
+we do not check the error message.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[
+assert_checkerror("f(""foo"")",[],123456789);
+]]>
+    </programlisting>
+
     </programlisting>
   </refsection>
 

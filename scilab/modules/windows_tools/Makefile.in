@@ -108,7 +108,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_etcdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_rootdir)" \
 	"$(DESTDIR)$(libsciwindows_tools_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciwindows_tools_la_LIBADD =
 am__objects_1 = libsciwindows_tools_la-nowindows_tools.lo
 am_libsciwindows_tools_la_OBJECTS = $(am__objects_1)
@@ -117,6 +117,9 @@ libsciwindows_tools_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciwindows_tools_la_CFLAGS) $(CFLAGS) \
 	$(libsciwindows_tools_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libsciwindows_tools_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciwindows_tools_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -154,6 +157,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -400,7 +404,8 @@ libsciwindows_tools_la_CFLAGS = -I$(srcdir)/includes/ \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libsciwindows_tools.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciwindows_tools.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciwindows_tools.la
 libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciwindows_tools.la
@@ -517,6 +522,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -549,7 +563,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciwindows_tools.la: $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_DEPENDENCIES) 
-	$(libsciwindows_tools_la_LINK) -rpath $(pkglibdir) $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_LIBADD) $(LIBS)
+	$(libsciwindows_tools_la_LINK) $(am_libsciwindows_tools_la_rpath) $(libsciwindows_tools_la_OBJECTS) $(libsciwindows_tools_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -771,7 +785,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -849,14 +863,14 @@ uninstall-am: uninstall-libsciwindows_tools_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciwindows_tools_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciwindows_tools_la_etcDATA \
 	install-libsciwindows_tools_la_rootDATA \
 	install-libsciwindows_tools_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \

@@ -8,10 +8,12 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis><![CDATA[pal = xcosPalAddBlock(pal, block);
-pal = xcosPalAddBlock(pal, block, pal_block_img);
-pal = xcosPalAddBlock(pal, block, [], style);
-pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
+    <synopsis>
+	pal = xcosPalAddBlock(pal, block)
+	pal = xcosPalAddBlock(pal, block, pal_block_img)
+	pal = xcosPalAddBlock(pal, block, [], style)
+	pal = xcosPalAddBlock(pal, block, pal_block_img, style)
+	</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -1108,16 +1110,11 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
 loadXcosLibs();
 pal = xcosPal();
 
-sumPath = TMPDIR + "/sum.h5";
-bigSomPath = TMPDIR + "/sum.h5";
+o1 = SUMMATION("define");
+o2 = BIGSOM_f("define");
 
-scs_m = SUM_f("define");
-export_to_hdf5(sumPath, "scs_m");
-scs_m = BIGSOM_f("define");
-export_to_hdf5(bigSomPath, "scs_m");
-
-pal = xcosPalAddBlock(pal, sumPath);
-pal = xcosPalAddBlock(pal, bigSomPath);
+pal = xcosPalAddBlock(pal, o1);
+pal = xcosPalAddBlock(pal, o2);
 
 xcosPalAdd(pal);]]></programlisting>
     </para>
@@ -1141,14 +1138,13 @@ function [x,y,typ]=MyBlock(job,arg1,arg2)
 endfunction
 
 //create an instance of a new block
-scs_m = MyBlock("define");
-export_to_hdf5(TMPDIR + "/MyBlock.h5", "scs_m");
+o = MyBlock("define");
 
 //create a new palette
 pal = xcosPal("My palette");
 //add block to this palette using e.g. RAMP icon
 pal = xcosPalAddBlock(pal,..
-        TMPDIR + "/MyBlock.h5",..
+        o,..
         SCI + "/modules/xcos/images/palettes/RAMP.png",..
         SCI + "/modules/xcos/images/blocks/RAMP.svg");
 
@@ -1180,14 +1176,13 @@ style.fillColor="red";
 style.image="file://" + SCI + "/modules/xcos/images/blocks/RAMP.svg";
 
 //create an instance of a new block
-scs_m = MyBlock("define");
-export_to_hdf5(TMPDIR + "/MyBlock.h5", "scs_m");
+o = MyBlock("define");
 
 //create a new palette
 pal = xcosPal("My palette");
 //add block to this palette using e.g. RAMP icon
 pal = xcosPalAddBlock(pal,..
-        TMPDIR + "/MyBlock.h5",..
+        o,..
         SCI + "/modules/xcos/images/palettes/RAMP.png",..
         style);
 

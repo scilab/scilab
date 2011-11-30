@@ -22,7 +22,7 @@ public class ExplicitOutputPort extends OutputPort {
 
     /** Default constructor */
     public ExplicitOutputPort() {
-	super("ExplicitOutputPort");
+        super("ExplicitOutputPort");
     }
 
     /**
@@ -30,6 +30,6 @@ public class ExplicitOutputPort extends OutputPort {
      */
     @Override
     public Type getType() {
-	return Type.EXPLICIT;
+        return Type.EXPLICIT;
     }
-   }
+}

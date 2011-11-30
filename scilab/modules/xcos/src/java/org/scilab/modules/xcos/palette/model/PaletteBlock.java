@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,89 +48,91 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "PaletteBlock", propOrder = { "data", "icon" })
 public class PaletteBlock {
 
-	@XmlElement(required = true)
-	private VariablePath data;
-	@XmlElement(required = true)
-	private VariablePath icon;
-	@XmlAttribute(required = true)
-	private String name;
+    @XmlElement(required = true)
+    private VariablePath data;
+    @XmlElement(required = true)
+    private VariablePath icon;
+    @XmlAttribute(required = true)
+    private String name;
 
-	/**
-	 * Default constructor
-	 */
-	public PaletteBlock() { }
-	
-	/**
-	 * Gets the value of the data property.
-	 * 
-	 * @return possible object is {@link VariablePath }
-	 * 
-	 */
-	public VariablePath getData() {
-		return data;
-	}
+    /**
+     * Default constructor
+     */
+    public PaletteBlock() {
+    }
 
-	/**
-	 * Sets the value of the data property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link VariablePath }
-	 * 
-	 */
-	public void setData(VariablePath value) {
-		this.data = value;
-	}
+    /**
+     * Gets the value of the data property.
+     * 
+     * @return possible object is {@link VariablePath }
+     * 
+     */
+    public VariablePath getData() {
+        return data;
+    }
 
-	/**
-	 * Gets the value of the icon property.
-	 * 
-	 * @return possible object is {@link VariablePath }
-	 * 
-	 */
-	public VariablePath getIcon() {
-		return icon;
-	}
+    /**
+     * Sets the value of the data property.
+     * 
+     * @param value
+     *            allowed object is {@link VariablePath }
+     * 
+     */
+    public void setData(VariablePath value) {
+        this.data = value;
+    }
 
-	/**
-	 * Sets the value of the icon property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link VariablePath }
-	 * 
-	 */
-	public void setIcon(VariablePath value) {
-		this.icon = value;
-	}
+    /**
+     * Gets the value of the icon property.
+     * 
+     * @return possible object is {@link VariablePath }
+     * 
+     */
+    public VariablePath getIcon() {
+        return icon;
+    }
 
-	/**
-	 * Gets the value of the name property.
-	 * 
-	 * @return possible object is {@link String }
-	 * 
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Sets the value of the icon property.
+     * 
+     * @param value
+     *            allowed object is {@link VariablePath }
+     * 
+     */
+    public void setIcon(VariablePath value) {
+        this.icon = value;
+    }
 
-	/**
-	 * Sets the value of the name property.
-	 * 
-	 * @param value
-	 *            allowed object is {@link String }
-	 * 
-	 */
-	public void setName(String value) {
-		this.name = value;
-	}
-	
-	/**
-	 * Load the icon and return it. 
-	 * @return the loaded icon
-	 * @see PaletteBlock#getIcon()
-	 */
-	public Icon getLoadedIcon() {
-		String path = getIcon().getEvaluatedPath();
-		return new ImageIcon(path);
-	}
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *            allowed object is {@link String }
+     * 
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Load the icon and return it.
+     * 
+     * @return the loaded icon
+     * @see PaletteBlock#getIcon()
+     */
+    public Icon getLoadedIcon() {
+        String path = getIcon().getEvaluatedPath();
+        return new ImageIcon(path);
+    }
 
 }

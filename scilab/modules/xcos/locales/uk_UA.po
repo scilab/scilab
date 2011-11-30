@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:28+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-10-03 19:54+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14157)\n"
 "Language: uk\n"
 
 #, c-format
@@ -571,15 +571,6 @@ msgstr "Не вдалося вилучити "
 msgid "No block selected"
 msgstr "Не позначено жодного блоку"
 
-msgid "Export to XML"
-msgstr "Експортувати у XML…"
-
-msgid "Export in progress"
-msgstr "Триває експортування"
-
-msgid "Import from XML"
-msgstr "Імпортувати з XML"
-
 msgid "Add to"
 msgstr "Додати до"
 
@@ -724,13 +715,20 @@ msgstr "Створення коду C для суперблоку"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "Для створення коду слід позначити суперблок"
 
-msgid "Simulation in progress"
-msgstr "Виконується моделювання"
+msgid "Export in progress"
+msgstr "Триває експортування"
 
 msgid ""
-"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+"Import in progress, results will be stored through the 'scs_m' variable"
 msgstr ""
-"Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+
+#, c-format
+msgid ""
+"Compilation in progress, results will be stored through the '%cpr' variable"
+msgstr ""
+
+msgid "Simulation in progress"
+msgstr "Виконується моделювання"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Створення суперблоку, зачекайте"
@@ -827,14 +825,6 @@ msgstr "Налаштування компілятора Modelica."
 
 msgid "Modelica initialize"
 msgstr "Ініціалізація Modelica"
-
-#, c-format
-msgid "From %s"
-msgstr "З %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Перейти до %s"
 
 msgid "Error: unable to compile this SuperBlock"
 msgstr "Помилка: не вдалося зібрати цей суперблок"
@@ -1214,27 +1204,30 @@ msgstr "%s: не вдалося експортувати палітру до hdf
 #, c-format
 msgid "%s: Wrong type for argument %d: A String expected."
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
 
 msgid "Interface function does not exist or can not be called."
-msgstr ""
+msgstr "Функції інтерфейсу не існує або цю функцію неможливо викликати."
 
 #, c-format
 msgid "%s is not a valid block descriptor."
-msgstr ""
+msgstr "%s не є коректним дескриптором блоку."
 
 #, c-format
 msgid ""
 "%s\n"
 "Error: dialog wrong size."
 msgstr ""
+"%s\n"
+"Помилка: помилкові розміри діалогового вікна."
 
 #, c-format
 msgid "Block definition with function [%s] failed."
-msgstr ""
+msgstr "Спроба визначення блоку з функцією [%s] зазнала невдачі."
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
-msgstr ""
+msgstr "Спроба налаштування блоку з функцією [%s] зазнала невдачі."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Не завантажено бібліотеки Scicos"
@@ -1243,8 +1236,8 @@ msgstr "Не завантажено бібліотеки Scicos"
 msgid "Unable to simulate %s"
 msgstr "Не вдалося імітувати %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
+msgstr "Сталася помилка у pre_xcos_simulate: імітацію скасовано."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1258,4 +1251,21 @@ msgid "Simulation problem"
 msgstr "Проблема імітації:"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
+msgstr "Помилка у post_xcos_simulate: завершуємо імітацію."
+
+#~ msgid ""
+#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+#~ msgstr ""
+#~ "Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+
+#~ msgid "Export to XML"
+#~ msgstr "Експортувати у XML…"
+
+#~ msgid "Import from XML"
+#~ msgstr "Імпортувати з XML"
+
+#~ msgid "From %s"
+#~ msgstr "З %s"
+
+#~ msgid "Goto %s"
+#~ msgstr "Перейти до %s"

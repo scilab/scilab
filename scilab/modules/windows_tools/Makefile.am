@@ -15,7 +15,12 @@ libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
+
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciwindows_tools.la
+else
+noinst_LTLIBRARIES = libsciwindows_tools.la
+endif
 
 libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
