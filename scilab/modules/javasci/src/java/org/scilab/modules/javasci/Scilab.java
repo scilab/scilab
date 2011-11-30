@@ -28,7 +28,7 @@ import org.scilab.modules.javasci.JavasciException.UnsupportedTypeException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
 import org.scilab.modules.javasci.JavasciException.UnknownTypeException;
 import org.scilab.modules.javasci.JavasciException.ScilabInternalException;
-
+import org.scilab.modules.javasci.JavasciException.ScilabErrorException;
 
 /**
  * This class provides the capability to access to the Scilab engine from
@@ -255,7 +255,34 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean exec(String job) {
-        return (Call_Scilab.SendScilabJob(job) == 0);
+        try {
+            this.execException(job);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+    /**
+     * Execute a single command in Scilab<br />
+     * Returns a ScilabErrorException in case of Scilab problem<br />
+     * This function is based on SendScilabJob from call_scilab
+     * <br />
+     * Example:<br />
+     * <code>
+     * sci.exec("a=2*%pi");<br />
+     * <br />
+     * </code>
+     * @param job the job to execute
+     * @return if the operation is successful
+     * @since 5.4.0
+     */
+    public void execException(String job) throws ScilabErrorException {
+        int result = Call_Scilab.SendScilabJob(job);
+        if (result != 0) {
+            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
+        }
     }
 
 
@@ -272,12 +299,62 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean exec(String jobs[]) {
-        return (Call_Scilab.SendScilabJobs(jobs, jobs.length) == 0);
+        try {
+            this.execException(jobs);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
+    /**
+     * Execute several commands in Scilab<br />
+     * Returns a ScilabErrorException in case of Scilab problem<br />
+     * This function is based on SendScilabJob from call_scilab
+     * <br />
+     * Example:<br />
+     * <code>
+     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
+     * <br />
+     * </code>
+     * @param jobs the serie of job to execute
+     * @return if the operation is successful
+     * @since 5.4.0
+     */
+    public void execException(String jobs[]) throws ScilabErrorException {
+        int result = Call_Scilab.SendScilabJobs(jobs, jobs.length);
+        if (result != 0) {
+            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
+        }
+    }
 
     /**
-     * Execute a Scilab script .sce/.sci<br />
+     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
+     * of a Scilab error<br />
+     * Returns a ScilabErrorException in case of Scilab problem<br />
+     * This function is based on SendScilabJob from call_scilab<br />
+     * Note that this function is a direct call on the Scilab function exec:
+     * <code> this.exec("exec('" + scriptFilename + "');");</code>
+     * <br />
+     * Example:<br />
+     * <code>
+     * sci.exec(new File("/tmp/myscript.sci"));<br />
+     * <br />
+     * </code>
+     * @param scriptFilename the script to execute
+     * @return if the operation is successful
+     * @since 5.4.0
+     */
+    public void execException(File scriptFilename) throws FileNotFoundException, ScilabErrorException {
+        if (!scriptFilename.exists()) {
+            throw new FileNotFoundException("Could not find " + scriptFilename);
+        }
+        this.execException("exec('" + scriptFilename + "');");
+    }
+
+    /**
+     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
+     * the file is not found<br />
      * This function is based on SendScilabJob from call_scilab<br />
      * Note that this function is a direct call on the Scilab function exec:
      * <code> this.exec("exec('" + scriptFilename + "');");</code>
@@ -329,8 +406,7 @@ public class Scilab {
      * @return if the operation is successful
      */
     public boolean close() {
-        boolean res = Call_Scilab.TerminateScilab(null);
-        return res;
+        return Call_Scilab.TerminateScilab(null);
     }
 
 

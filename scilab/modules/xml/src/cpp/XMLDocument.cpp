@@ -143,11 +143,15 @@ namespace org_modules_xml
         xmlXPathCompExpr * expr = xmlXPathCtxtCompile(ctxt, (const xmlChar *)query);
         if (!expr)
         {
+            xmlSetStructuredErrorFunc(ctxt, 0);
+            xmlXPathFreeContext(ctxt);
             *error = *errorXPathBuffer;
             return 0;
         }
 
         xmlXPathObject * xpath = xmlXPathCompiledEval(expr, ctxt);
+        xmlSetStructuredErrorFunc(ctxt, 0);
+        xmlXPathFreeContext(ctxt);
         if (!xpath)
         {
             *error = *errorXPathBuffer;
@@ -172,11 +176,11 @@ namespace org_modules_xml
         return oss.str();
     }
 
-    const std::string XMLDocument::dump() const
+    const std::string XMLDocument::dump(bool indent) const
     {
         xmlChar * buffer = 0;
         int size = 0;
-        xmlDocDumpFormatMemory(document, &buffer, &size, 1);
+        xmlDocDumpFormatMemory(document, &buffer, &size, indent ? 1 : 0);
         std::string str = std::string((const char *)buffer);
         xmlFree(buffer);
 
@@ -186,6 +190,11 @@ namespace org_modules_xml
     const XMLElement * XMLDocument::getRoot() const
     {
         xmlNode * root = xmlDocGetRootElement(document);
+        if (!root)
+        {
+            return 0;
+        }
+
         XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(root);
         if (obj)
         {
@@ -268,7 +277,7 @@ namespace org_modules_xml
     xmlDoc * XMLDocument::readDocument(const char * filename, bool validate, std::string * error)
     {
         xmlParserCtxt * ctxt = initContext(error, validate);
-        xmlDoc * doc;
+        xmlDoc * doc = 0;
         int options = XML_PARSE_NSCLEAN;
 
         if (validate)
@@ -278,6 +287,7 @@ namespace org_modules_xml
 
         if (!ctxt)
         {
+            xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
             return 0;
         }
 
@@ -287,7 +297,7 @@ namespace org_modules_xml
             *error = *errorBuffer;
         }
 
-        xmlSetGenericErrorFunc(ctxt, 0);
+        xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
@@ -296,7 +306,7 @@ namespace org_modules_xml
     xmlDoc * XMLDocument::readDocument(const std::string & xmlCode, bool validate, std::string * error)
     {
         xmlParserCtxt * ctxt = initContext(error, validate);
-        xmlDoc * doc;
+        xmlDoc * doc = 0;
         int options = XML_PARSE_NSCLEAN;
 
         if (validate)
@@ -306,6 +316,7 @@ namespace org_modules_xml
 
         if (!ctxt)
         {
+            xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
             return 0;
         }
 
@@ -315,7 +326,7 @@ namespace org_modules_xml
             *error = *errorBuffer;
         }
 
-        xmlSetGenericErrorFunc(ctxt, 0);
+        xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
@@ -344,7 +355,7 @@ namespace org_modules_xml
             ctxt->vctxt.error = (xmlValidityErrorFunc)errorFunction;
         }
 
-        xmlSetGenericErrorFunc(ctxt, XMLDocument::errorFunction);
+        xmlSetGenericErrorFunc(ctxt, errorFunction);
 
         return ctxt;
     }

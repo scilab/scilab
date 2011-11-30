@@ -214,7 +214,6 @@
     <ClInclude Include="..\..\includes\dynlib_ui_data.h" />
     <ClInclude Include="..\jni\EditVar.hxx" />
     <ClInclude Include="..\jni\FileBrowser.hxx" />
-    <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\gw_ui_data.h" />
   </ItemGroup>
   <ItemGroup>
@@ -242,7 +241,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
-    </ProjectReference>      
+    </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>

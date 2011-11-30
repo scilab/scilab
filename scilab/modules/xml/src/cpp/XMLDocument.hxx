@@ -129,7 +129,7 @@ namespace org_modules_xml
         const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error);
 
         const XMLObject * getXMLObjectParent() const;
-        const std::string dump() const;
+        const std::string dump(bool indent) const;
         const std::string toString() const;
 
     private :
@@ -139,6 +139,12 @@ namespace org_modules_xml
          * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlGenericErrorFunc
          */
         static void errorFunction(void * ctx, const char * msg, ...);
+
+        /**
+         * Error function which does nothing for the XML parser
+         * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlGenericErrorFunc
+         */
+        static void errorFunctionWithoutOutput(void * ctx, const char * msg, ...) { }
 
         /**
          * Error function used when the XPath query is compiled/

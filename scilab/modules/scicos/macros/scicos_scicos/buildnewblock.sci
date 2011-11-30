@@ -139,7 +139,20 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
     chdir(TMPDIR);
   end
   
+  // Since all files Xcos generated files of all diagrams are in the same TEMP directory 
+  // Here, we force to rebuild (not a simple incremental build on Windows)
+  if getos() == "Windows" then
+    VC_rebuild_mode = dlwForceRebuild();
+    dlwForceRebuild(%t);
+  end  
+  
   ierr = execstr("libn =ilib_for_link(blknam,files,"""",""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
+  
+  // restore previous build mode
+  if getos() == "Windows" then
+    dlwForceRebuild(VC_rebuild_mode);
+  end  
+  
   if ierr <> 0 then
     ok = %f;
     chdir(oldpath);

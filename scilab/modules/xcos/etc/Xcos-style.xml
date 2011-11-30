@@ -686,6 +686,7 @@
   <add as="GOTO" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="Goto %s"/>
   </add>
   <add as="GotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
@@ -693,6 +694,7 @@
   <add as="FROM" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value=" From %s"/>
   </add>
   <add as="WFILE_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Write to&lt;BR&gt;         output file"/>

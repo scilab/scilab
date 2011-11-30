@@ -52,6 +52,12 @@ namespace org_modules_xml
         return static_cast<void *>(node);
     }
 
+    void XMLElement::remove() const
+    {
+        xmlUnlinkNode(node);
+        xmlFreeNode(node);
+    }
+
     const XMLObject * XMLElement::getXMLObjectParent() const
     {
         return &doc;
@@ -94,6 +100,16 @@ namespace org_modules_xml
             node->properties = 0;
             xmlCopyPropList(node, attrNode->properties);
         }
+    }
+
+    void XMLElement::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const
+    {
+        XMLAttr::setAttributeValue(node, prefix, name, value, size);
+    }
+
+    void XMLElement::setAttributeValue(const char ** name, const char ** value, int size) const
+    {
+        XMLAttr::setAttributeValue(node, name, value, size);
     }
 
     void XMLElement::setChildren(const XMLElement & elem) const
@@ -168,10 +184,10 @@ namespace org_modules_xml
         return new XMLNs(*this, ns);
     }
 
-    const std::string XMLElement::dump() const
+    const std::string XMLElement::dump(bool indent) const
     {
         xmlBufferPtr buffer = xmlBufferCreate();
-        xmlNodeDump(buffer, doc.getRealDocument(), node, 0, 1);
+        xmlNodeDump(buffer, doc.getRealDocument(), node, 0, indent ? 1 : 0);
         std::string str = std::string((const char *)buffer->content);
         xmlBufferFree(buffer);
 
@@ -205,6 +221,11 @@ namespace org_modules_xml
         oss << "definition line: " << node->line;
 
         return oss.str();
+    }
+
+    int XMLElement::getDefinitionLine() const
+    {
+        return node->line;
     }
 
     const XMLNs * XMLElement::getNodeNameSpace() const

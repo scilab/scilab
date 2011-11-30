@@ -52,7 +52,6 @@ public class SetFontAction extends DefaultAction {
         Font newFont = fontChooser.getSelectedFont();
 
         if (newFont != null) {
-
             List<String> listStylesName = ConfigSciNotesManager.getAllStyleName();
 
             int numberOfTab = getEditor().getTabPane().getTabCount();

@@ -112,7 +112,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciintersci_la_etcdir)" \
 	"$(DESTDIR)$(libsciintersci_la_rootdir)" \
 	"$(DESTDIR)$(libsciintersci_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciintersci_la_LIBADD =
 am__objects_1 = libsciintersci_la-libinter.lo libsciintersci_la-out.lo
 am_libsciintersci_la_OBJECTS = $(am__objects_1)
@@ -121,6 +121,8 @@ libsciintersci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciintersci_la_CFLAGS) $(CFLAGS) \
 	$(libsciintersci_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libsciintersci_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libsciintersci_la_rpath = -rpath $(pkglibdir)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_2 = intersci-n.$(OBJEXT) getrhs.$(OBJEXT) crerhs.$(OBJEXT) \
 	variables.$(OBJEXT) read.$(OBJEXT) fornames.$(OBJEXT) \
@@ -165,6 +167,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -417,7 +420,8 @@ src/exe/check.c
 
 libsciintersci_la_includedir = $(pkgincludedir)
 libsciintersci_la_include_HEADERS = includes/libinter.h
-pkglib_LTLIBRARIES = libsciintersci.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciintersci.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciintersci.la
 libsciintersci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
@@ -538,6 +542,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -570,7 +583,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciintersci.la: $(libsciintersci_la_OBJECTS) $(libsciintersci_la_DEPENDENCIES) 
-	$(libsciintersci_la_LINK) -rpath $(pkglibdir) $(libsciintersci_la_OBJECTS) $(libsciintersci_la_LIBADD) $(LIBS)
+	$(libsciintersci_la_LINK) $(am_libsciintersci_la_rpath) $(libsciintersci_la_OBJECTS) $(libsciintersci_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -1012,7 +1025,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-binPROGRAMS clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1090,14 +1103,15 @@ uninstall-am: uninstall-binPROGRAMS \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-binPROGRAMS clean-generic clean-libtool \
-	clean-local clean-pkglibLTLIBRARIES ctags distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-local distclean-tags distdir dvi dvi-am html html-am \
-	info info-am install install-am install-binPROGRAMS \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libsciintersci_la_etcDATA \
+	clean-local clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES \
+	ctags distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-binPROGRAMS install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libsciintersci_la_etcDATA \
 	install-libsciintersci_la_includeHEADERS \
 	install-libsciintersci_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \

@@ -85,7 +85,7 @@ int C2F(sci_exit)(char *fname,unsigned long fname_len)
         setExitCodeValue(iExit);
     }
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && Rhs == 0)
     {
         if (canCloseMainScilabObject())
         {

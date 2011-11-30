@@ -141,6 +141,8 @@ libscistring_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscistring_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscistring_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscistring_algo_la_rpath =
 libscistring_la_DEPENDENCIES = libscistring-algo.la
 am__objects_3 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
@@ -166,6 +168,8 @@ libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 libscistring_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libscistring_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscistring_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscistring_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -210,6 +214,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -512,8 +517,9 @@ libscistring_la_CFLAGS = $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes
 
-pkglib_LTLIBRARIES = libscistring.la
-noinst_LTLIBRARIES = libscistring-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscistring.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscistring-algo.la
 libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES)
 libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -678,9 +684,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscistring-algo.la: $(libscistring_algo_la_OBJECTS) $(libscistring_algo_la_DEPENDENCIES) 
-	$(libscistring_algo_la_LINK)  $(libscistring_algo_la_OBJECTS) $(libscistring_algo_la_LIBADD) $(LIBS)
+	$(libscistring_algo_la_LINK) $(am_libscistring_algo_la_rpath) $(libscistring_algo_la_OBJECTS) $(libscistring_algo_la_LIBADD) $(LIBS)
 libscistring.la: $(libscistring_la_OBJECTS) $(libscistring_la_DEPENDENCIES) 
-	$(libscistring_la_LINK) -rpath $(pkglibdir) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
+	$(libscistring_la_LINK) $(am_libscistring_la_rpath) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

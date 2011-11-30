@@ -72,7 +72,7 @@ BOOL canCloseMainScilabObject(void)
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL ExecuteInitialHooks(void)
+JVM_IMPEXP BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }

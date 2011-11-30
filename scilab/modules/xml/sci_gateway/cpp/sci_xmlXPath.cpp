@@ -55,7 +55,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 
     if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
@@ -76,7 +76,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
     getAllocatedSingleString(pvApiCtx, addr, &query);
@@ -94,7 +94,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -109,7 +109,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         if (col != 2)
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Bad number of columns for argument #%i: two expected.\n"), fname, 3);
+            Scierror(999, gettext("%s: Bad number of columns for argument #%d: two expected.\n"), fname, 3);
             return 0;
         }
 

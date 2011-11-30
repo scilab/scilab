@@ -309,16 +309,6 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      */
 
     /**
-     * @return true if not already connected
-     * @see com.mxgraph.model.mxCell#isConnectable()
-     */
-    @Override
-    public boolean isConnectable() {
-        final int edges = getEdgeCount();
-        return edges == 0 || getEdgeAt(0).getTerminal(false) == null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override

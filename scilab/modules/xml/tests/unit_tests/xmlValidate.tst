@@ -16,10 +16,10 @@ xmlValidate(doc, rng);
 
 xmlValidate(doc, schema);
 
-xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml")
+xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml");
 //xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml")
 
-xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
+xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema);
 //xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
 
 // Commented because I don't know how to check that now

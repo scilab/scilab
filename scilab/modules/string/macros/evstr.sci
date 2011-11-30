@@ -38,7 +38,7 @@ function [%val, %ierr] = evstr(%str)
       %t1(%l) = strcat(%str(%l, :), ',') + ';'
     end
     %t1(1) = '%val=[' + %t1(1);
-    %t1($) = part(%t1($), 1:length(%t1($)) - 1);
+    %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
     %t1($+1)=']';
     if lhs == 2 then
       %ierr = execstr(%t1, 'errcatch');

@@ -49,11 +49,17 @@ libscidata_structures_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 # Disable optimisation of the file intl_e.f
 noinst_LTLIBRARIES = libdummy-data_structures.la
+
 libdummy_data_structures_la_SOURCES = src/fortran/intl_e.f
 libdummy_data_structures_la_FFLAGS = $(FFLAGS:-O%=)
 
+
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
 noinst_LTLIBRARIES += libscidata_structures-algo.la
+else
+noinst_LTLIBRARIES += libscidata_structures-algo.la libscidata_structures.la
+endif
 
 libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

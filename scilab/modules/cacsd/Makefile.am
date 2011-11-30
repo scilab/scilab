@@ -206,8 +206,13 @@ libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicacsd.la
 noinst_LTLIBRARIES = libscicacsd-algo.la
+else
+noinst_LTLIBRARIES = libscicacsd-algo.la libscicacsd.la
+endif
+
 
 libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
 

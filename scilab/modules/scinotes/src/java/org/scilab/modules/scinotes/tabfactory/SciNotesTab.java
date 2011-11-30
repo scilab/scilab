@@ -12,6 +12,8 @@
 
 package org.scilab.modules.scinotes.tabfactory;
 
+import java.util.List;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -50,7 +52,7 @@ public class SciNotesTab {
                     ed.closeSciNotes();
                 }
 
-                public String askForClosing() {
+                public String askForClosing(final List<SwingScilabTab> list) {
                     return ed.askForClosing();
                 }
             });

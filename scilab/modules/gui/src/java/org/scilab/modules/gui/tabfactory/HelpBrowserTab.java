@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.tabfactory;
 
+import java.util.List;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -41,7 +43,7 @@ public class HelpBrowserTab {
                     ScilabHelpBrowser.closeHB();
                 }
 
-                public String askForClosing() {
+                public String askForClosing(final List<SwingScilabTab> list) {
                     return null;
                 }
             });

@@ -698,7 +698,7 @@ print <<<END_OF_MULTILINE
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
 <head>
-<title>PHPDOC Revision-check</title>
+<title>Scilab documentation Revision-check</title>
 <meta http-equiv="Content-Type" content="text/html; charset={$charset}">
 <style type="text/css">
 <!--
@@ -741,91 +741,6 @@ if (!empty($translation["intro"])) {
   echo '<a name="intro"></a>';
   echo '<table width="800" align="center"><tr><td class=c>' .
          $translation['intro'] . '</td></tr></table>';
-}
-
-// =========================================================================
-// Translators table goes here
-// =========================================================================
-
-// If person list available (valid translation.xml file in lang), print out
-// the person list, with respect to the maintainer parameter specified
-if (!empty($translation["persons"])) {
-
-print <<<END_OF_MULTILINE
-<a name="translators"></a>
-<table width="820" border="0" cellpadding="4" cellspacing="1" align="center">
-<tr class=blue>
-<th rowspan=2>Translator's name</th>
-<th rowspan=2>Contact email</th>
-<th colspan=7>Files maintained</th>
-</tr>
-<tr>
-<th class="{$CSS[REV_CREDIT]}" style="color:#000000">cre-<br>dits</th>
-<th class="{$CSS[REV_UPTODATE]}" style="color:#000000">upto-<br>date</th>
-<th class="{$CSS[REV_OLD]}" style="color:#000000">old</th>
-<th class="{$CSS[REV_CRITICAL]}" style="color:#000000">cri-<br>tical</th>
-<th class="{$CSS[REV_NOREV]}" style="color:#000000">no<br>rev</th>
-<th class="{$CSS[REV_WIP]}" style="color:#000000">wip</th>
-<th class="blue">sum</th>
-</tr>
-END_OF_MULTILINE;
-
-  // ' Please leave this comment here
-
-  // We will collect the maintainers by nick here
-  $maint_by_nick = array();
-
-  // Print out a line for each maintainer (with respect to
-  // maintainer setting provided in command line)
-  foreach($translation["persons"] as $num => $person) {
-
-    // Do not print out this person, if a
-    // specific maintainer info is asked for
-    if (!empty($MAINT) && $person["name"] != $MAINT) {
-      continue;
-    }
-
-    // Put maintaner number into associative array
-    // [Used in further tables for referencing]
-    $maint_by_nick[$person["name"]] = $num;
-
-    // Decide on the SVN text and the color of the line
-    if (isset($person["vcs"]) && $person["vcs"] === "yes") {
-      $svnu = "x";
-      $col = "old";
-    } else {
-      $svnu = "&nbsp;";
-      $col = "wip";
-    }
-
-    // Try to do some antispam actions
-    $person["email"] = str_replace(
-        "@",
-        "<small>:at:</small>",
-        $person["email"]
-    );
-
-    // Get file info for this person
-    if (isset($files_by_maint[$person["name"]])) {
-      $pi = $files_by_maint[$person["name"]];
-    } else {
-      $pi = array();
-    }
-
-    echo "<tr class=$col>" .
-          "<td><a name=\"maint$num\">$person[name]</a></td>" .
-          "<td>$person[email]</td>" .
-          "<td class=c>" . $pi[REV_CREDIT]   . "</td>" .
-          "<td class=c>" . $pi[REV_UPTODATE] . "</td>" .
-          "<td class=c>" . $pi[REV_OLD]      . "</td>" .
-          "<td class=c>" . $pi[REV_CRITICAL] . "</td>" .
-          "<td class=c>" . $pi[REV_NOREV]    . "</td>" .
-          "<td class=c>" . $pi[REV_WIP]      . "</td>" .
-          "<th class=blue>" . array_sum($pi) . "</th>" .
-          "</tr>\n";
-  }
-
-  echo "</table>\n<p>&nbsp;</p>\n";
 }
 
 // =========================================================================
@@ -975,6 +890,91 @@ END_OF_MULTILINE;
 
 }
 
+
+// =========================================================================
+// Translators table goes here
+// =========================================================================
+
+// If person list available (valid translation.xml file in lang), print out
+// the person list, with respect to the maintainer parameter specified
+if (!empty($translation["persons"])) {
+
+print <<<END_OF_MULTILINE
+<a name="translators"></a>
+<table width="820" border="0" cellpadding="4" cellspacing="1" align="center">
+<tr class=blue>
+<th rowspan=2>Translator's name</th>
+<th rowspan=2>Contact email</th>
+<th colspan=7>Files maintained</th>
+</tr>
+<tr>
+<th class="{$CSS[REV_CREDIT]}" style="color:#000000">cre-<br>dits</th>
+<th class="{$CSS[REV_UPTODATE]}" style="color:#000000">upto-<br>date</th>
+<th class="{$CSS[REV_OLD]}" style="color:#000000">old</th>
+<th class="{$CSS[REV_CRITICAL]}" style="color:#000000">cri-<br>tical</th>
+<th class="{$CSS[REV_NOREV]}" style="color:#000000">no<br>rev</th>
+<th class="{$CSS[REV_WIP]}" style="color:#000000">wip</th>
+<th class="blue">sum</th>
+</tr>
+END_OF_MULTILINE;
+
+  // ' Please leave this comment here
+
+  // We will collect the maintainers by nick here
+  $maint_by_nick = array();
+
+  // Print out a line for each maintainer (with respect to
+  // maintainer setting provided in command line)
+  foreach($translation["persons"] as $num => $person) {
+
+    // Do not print out this person, if a
+    // specific maintainer info is asked for
+    if (!empty($MAINT) && $person["name"] != $MAINT) {
+      continue;
+    }
+
+    // Put maintaner number into associative array
+    // [Used in further tables for referencing]
+    $maint_by_nick[$person["name"]] = $num;
+
+    // Decide on the SVN text and the color of the line
+    if (isset($person["vcs"]) && $person["vcs"] === "yes") {
+      $svnu = "x";
+      $col = "old";
+    } else {
+      $svnu = "&nbsp;";
+      $col = "wip";
+    }
+
+    // Try to do some antispam actions
+    $person["email"] = str_replace(
+        "@",
+        "<small>:at:</small>",
+        $person["email"]
+    );
+
+    // Get file info for this person
+    if (isset($files_by_maint[$person["name"]])) {
+      $pi = $files_by_maint[$person["name"]];
+    } else {
+      $pi = array();
+    }
+
+    echo "<tr class=$col>" .
+          "<td><a name=\"maint$num\">$person[name]</a></td>" .
+          "<td>$person[email]</td>" .
+          "<td class=c>" . $pi[REV_CREDIT]   . "</td>" .
+          "<td class=c>" . $pi[REV_UPTODATE] . "</td>" .
+          "<td class=c>" . $pi[REV_OLD]      . "</td>" .
+          "<td class=c>" . $pi[REV_CRITICAL] . "</td>" .
+          "<td class=c>" . $pi[REV_NOREV]    . "</td>" .
+          "<td class=c>" . $pi[REV_WIP]      . "</td>" .
+          "<th class=blue>" . array_sum($pi) . "</th>" .
+          "</tr>\n";
+  }
+
+  echo "</table>\n<p>&nbsp;</p>\n";
+}
 
 // =========================================================================
 // Work in progress table goes here

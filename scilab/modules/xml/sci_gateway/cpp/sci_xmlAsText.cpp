@@ -10,10 +10,8 @@
  *
  */
 
-#include <cstdlib>
-
 #include "XMLObject.hxx"
-#include "XMLNodeSet.hxx"
+#include "XMLList.hxx"
 
 extern "C"
 {
@@ -33,8 +31,7 @@ int sci_xmlAsText(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
-    XMLNodeSet * set = 0;
-    xmlNodeSet * realSet = 0;
+    XMLList * list = 0;
     const char ** pstStrings = 0;
 
     CheckLhs(1, 1);
@@ -47,31 +44,23 @@ int sci_xmlAsText(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLSet(addr, pvApiCtx))
+    if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"), fname, 1);
         return 0;
-
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    set = XMLObject::getFromId<XMLNodeSet>(id);
-    if (!set)
+    list = XMLObject::getFromId<XMLList>(id);
+    if (!list)
     {
-        Scierror(999, gettext("%s: XMLSet does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XMLSet or XMLList does not exist.\n"), fname);
         return 0;
     }
 
-    realSet = static_cast<xmlNodeSet *>(set->getRealXMLPointer());
-    pstStrings = new const char*[set->getSize()];
+    pstStrings = list->getContentFromList();
 
-    for (int i = 0; i < set->getSize(); i++)
-    {
-        xmlNode * node = realSet->nodeTab[i];
-        pstStrings[i] = (const char *)xmlNodeGetContent(node);
-    }
-
-    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, set->getSize(), const_cast<const char * const *>(pstStrings));
+    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
     delete[] pstStrings;
     if (err.iErr)
     {

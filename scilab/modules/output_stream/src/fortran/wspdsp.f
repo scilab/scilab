@@ -1,5 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
+c Copyright (C) - INRIA - Serge Steer
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -107,13 +107,22 @@ c        if (abs(ar).lt.eps .and. mode.ne.0) ar = 0.0d+0
 c        if (abs(ai).lt.eps .and. mode.ne.0) ai = 0.0d+0
         if (ar.eq.0.0d0 .and. ai.ne.0.0d0) goto 16
 C     determination du format devant representer a
-        typ = 1
-        if (mode .eq. 1) call fmt(abs(ar),maxc,typ,n1,n2)
-        if (typ .eq. 2) typ=n2 + 32*n1
-
         sgn = ' '
         if (ar .lt. 0.0d+0) sgn = '-'
         ar = abs(ar)
+
+        typ = 1
+        if(mode.eq.1) then
+           call fmt(ar,maxc,typ,n1,n2)
+        else
+           if (isanan(ar).eq.1) then
+              typ=-2
+           elseif (ar.gt.dlamch('o')) then
+              typ=-1
+           endif
+        endif
+        if (typ .eq. 2) typ=n2 + 32*n1
+
         cw(l1:l1+1) = ' ' // sgn
         l1 = l1 + 2
         call formatnumber(ar,typ,maxc,cw(l1:),fl)
@@ -124,20 +133,24 @@ C     determination du format devant representer a
         endif
  16     continue
         if (ai .eq. 0.0d0) goto 17
-        typ = 1
-        if (mode .eq. 1) call fmt(abs(ai),maxc,typ,n1,n2)
-        if (typ .eq. 2) typ=n2 + 32*n1
-
-        if (ar .ne. 0.0d+0) then
-          sgn = '+'
-        else
-          sgn = ' '
-        endif
+        sgn = '+'
         if (ai .lt. 0.0d+0) sgn = '-'
         ai = abs(ai)
+        typ = 1
+        if(mode.eq.1) then
+           call fmt(ai,maxc,typ,n1,n2)
+           if (typ .eq. 2) typ=n2 + 32*n1
+        else
+           if (isanan(ai).eq.1) then
+              typ=-2
+           elseif (ai.gt.dlamch('o')) then
+              typ=-1
+           endif
+        endif
+
         cw(l1:l1+1) = ' ' // sgn
         l1 = l1 + 2
-        call formatnumber(aI,typ,maxc,cw(l1:),fl)
+        call formatnumber(ai,typ,maxc,cw(l1:),fl)
         l1 = l1 + fl
         cw(l1:l1) = 'i'
         l1 = l1 + 1
@@ -147,7 +160,6 @@ C     determination du format devant representer a
  20   continue
  99   continue
 C     
- 120  format ('(f',i2,'.',i2,')')
  130  format ('(1pd',i2,'.',i2,')')
       end
 

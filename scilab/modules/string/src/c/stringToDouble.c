@@ -9,6 +9,11 @@
 *
 */
 
+/* ========================================================================== */
+#if defined(__linux__)
+#define _GNU_SOURCE             /* avoid dependency on GLIBC_2.7 */
+#endif
+/* ========================================================================== */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,11 +23,6 @@
 #ifdef  _MSC_VER
 #include "strdup_windows.h"
 #endif
-/* ========================================================================== */
-#if defined(__linux__)
-#define _GNU_SOURCE /* avoid dependency on GLIBC_2.7 */
-#endif
-/* ========================================================================== */
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
@@ -35,17 +35,16 @@
 /* ========================================================================== */
 static double returnINF(BOOL bPositive);
 static double returnNAN(void);
+
 /* ========================================================================== */
-double stringToDouble(const char *pSTR,
-    BOOL bConvertByNAN,
-    stringToDoubleError *ierr)
+double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError * ierr)
 {
     double dValue = 0.0;
+
     *ierr = STRINGTODOUBLE_ERROR;
     if (pSTR)
     {
-        if ((stricmp(pSTR, NanString) == 0) || (stricmp(pSTR, NegNanString) == 0) ||
-            (stricmp(pSTR, PosNanString) == 0))
+        if ((stricmp(pSTR, NanString) == 0) || (stricmp(pSTR, NegNanString) == 0) || (stricmp(pSTR, PosNanString) == 0))
         {
             dValue = returnNAN();
         }
@@ -66,7 +65,8 @@ double stringToDouble(const char *pSTR,
             if (err == 1)
             {
                 double v2 = 0.;
-                char * pEnd = NULL;
+                char *pEnd = NULL;
+
                 v2 = strtod(pSTR, &pEnd);
                 if (strcmp(pEnd, "") == 0)
                 {
@@ -106,25 +106,30 @@ double stringToDouble(const char *pSTR,
     }
     return dValue;
 }
+
 /* ========================================================================== */
 static double returnNAN(void)
 {
     static int first = 1;
     static double nan = 1.0;
 
-    if ( first )
+    if (first)
     {
-        nan = (nan - (double) first)/(nan - (double) first);
+        nan = (nan - (double)first) / (nan - (double)first);
         first = 0;
     }
     return (nan);
 }
+
 /* ========================================================================== */
 static double returnINF(BOOL bPositive)
 {
     double v = 0 - 0;
     double p = 10;
-    if (!bPositive) p = -10;
-    return (double) p / (double)v;
+
+    if (!bPositive)
+        p = -10;
+    return (double)p / (double)v;
 }
+
 /* ========================================================================== */

@@ -60,6 +60,23 @@ namespace org_modules_xml
          */
         virtual const XMLObject * getXMLObjectParent() const { return 0; }
 
+	/**
+         * Sets the attribute value.
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        virtual void setAttributeValue(const char ** name, const char ** value, int size) const { return; }
+
+	/**
+         * Sets the attribute value with a prefix namespace.
+         * @param prefix the namespace prefix or the namespace itself
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        virtual void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const { return; }
+
         /**
          * @return the string representation of this object
          */
@@ -68,7 +85,7 @@ namespace org_modules_xml
         /**
          * @return a dump of this object
          */
-        virtual const std::string dump() const { return std::string(""); }
+        virtual const std::string dump(bool indent) const { return std::string(""); }
 
         /**
          * @return the object id

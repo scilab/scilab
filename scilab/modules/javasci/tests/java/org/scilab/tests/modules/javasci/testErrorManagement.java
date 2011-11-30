@@ -17,6 +17,7 @@ import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
+import org.scilab.modules.javasci.JavasciException.ScilabErrorException;
 
 
 public class testErrorManagement {
@@ -33,7 +34,6 @@ public class testErrorManagement {
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
         assert sci.open() == true;
-
     }
 
 
@@ -67,6 +67,35 @@ public class testErrorManagement {
         sci.exec("errclear();");
         sci.exec("a=rand(10,10);");//no error
         assert sci.getLastErrorMessage().length() == 0;
+    }
+
+    @Test(sequential = true)
+    public void getLastErrorMessageWithExceptionNonErrorTest() throws NullPointerException, JavasciException {
+        sci.execException("errclear();"); // No error by default
+        assert sci.getLastErrorMessage().equals("");
+        assert sci.getLastErrorMessage().length() == 0;
+
+        sci.execException("errclear();");
+    }
+
+    @Test(sequential = true)
+    public void getLastErrorMessageWithExceptionNonError2Test() throws NullPointerException, JavasciException {
+        sci.execException("errclear();"); // No error by default
+        assert sci.getLastErrorMessage().equals("");
+        assert sci.getLastErrorMessage().length() == 0;
+        sci.execException("a=rand(10,10);");//no error
+        assert sci.getLastErrorMessage().length() == 0;
+    }
+    
+    
+    @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
+    public void getLastErrorMessageWithExceptionWithErrorTest() throws NullPointerException, ScilabErrorException {
+        sci.execException("a+b"); //undefined a & b
+    }
+
+    @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
+    public void getLastErrorMessageWithExceptionWithError2Test() throws NullPointerException, ScilabErrorException {
+        sci.execException("a+b*"); //undefined a & b
     }
 
     /**

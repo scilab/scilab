@@ -1693,6 +1693,17 @@ AC_BACKTRACE()
 ##########
 AC_PATH_PROG(SPLINT, splint, no)
 
+##########
+##### Detect ccache and use it by default if available
+##########
+
+AC_PATH_PROG(CCACHE, ccache)
+
+if test x"$CCACHE" != x; then
+  CC="ccache $CC"
+  CXX="ccache $CXX"
+fi
+
 #######################
 ###### Creation of the header file (machine.h)
 #######################
@@ -1792,10 +1803,8 @@ modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
-modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
-modules/texmacs/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile

@@ -56,9 +56,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@MAINTAINER_MODE_TRUE@am__append_1 = libscielementary_functions-algo.la
+@MAINTAINER_MODE_FALSE@am__append_2 = libscielementary_functions-algo.la libscielementary_functions.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -189,6 +191,8 @@ am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_5) $(am__objects_6)
 libscielementary_functions_algo_la_OBJECTS =  \
 	$(am_libscielementary_functions_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscielementary_functions_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscielementary_functions_algo_la_rpath =
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
 	libscielementary_functions-algo.la
@@ -297,6 +301,9 @@ libscielementary_functions_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
 	$(libscielementary_functions_la_FFLAGS) $(FFLAGS) \
 	$(libscielementary_functions_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscielementary_functions_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscielementary_functions_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -345,6 +352,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -933,8 +941,8 @@ sci_gateway/fortran/sci_f_exp.f
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
-noinst_LTLIBRARIES = libdummy-elementary_functions.la \
-	libscielementary_functions-algo.la
+noinst_LTLIBRARIES = libdummy-elementary_functions.la $(am__append_1) \
+	$(am__append_2)
 libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
 	src/fortran/linpack/pade.f \
@@ -967,7 +975,7 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
-pkglib_LTLIBRARIES = libscielementary_functions.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
@@ -1004,7 +1012,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1132,9 +1140,9 @@ clean-pkglibLTLIBRARIES:
 libdummy-elementary_functions.la: $(libdummy_elementary_functions_la_OBJECTS) $(libdummy_elementary_functions_la_DEPENDENCIES) 
 	$(libdummy_elementary_functions_la_LINK)  $(libdummy_elementary_functions_la_OBJECTS) $(libdummy_elementary_functions_la_LIBADD) $(LIBS)
 libscielementary_functions-algo.la: $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscielementary_functions_algo_la_rpath) $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_LIBADD) $(LIBS)
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) 
-	$(libscielementary_functions_la_LINK) -rpath $(pkglibdir) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
+	$(libscielementary_functions_la_LINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

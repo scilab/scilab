@@ -83,7 +83,7 @@ SciNotes:
 * bug 9334 fixed - Extra lines were added when code was exported into PDF under
                    Windows.
 
-* Bug 9358 fixed - A simple quoted string was not always correctly convert
+* bug 9358 fixed - A simple quoted string was not always correctly convert
                    into double quoted one.
 
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
@@ -91,7 +91,7 @@ SciNotes:
 
 * bug 9480 fixed - Highlighted words after selection were wrong under Windows.
 
-* Bug 9484 fixed - An empty file was not removed when an existing file was
+* bug 9484 fixed - An empty file was not removed when an existing file was
                    opened.
 
 * Bug 9488 fixed - There was no popup menu on the tab to copy the file path.
@@ -110,6 +110,15 @@ SciNotes:
                    from Word to SciNotes.
 
 * bug 9878 fixed - Add a shortcut "Correct indentation" in right click menu.
+
+* bug 10157 fixed - Scilab froze when docking SciNotes after a flexdock bug in a
+                    previous session.
+
+* bug 10252 fixed - Could not change the font when SciNotes was docked with the
+                    console.
+
+* bug 10283 fixed - The values write in w and iw output arguments of ode function
+                    are directly got from work table used in lsod* function.
 
 
 Graphical User Interface:
@@ -148,8 +157,10 @@ Xcos:
 * bug 8742 fixed - On the Modelica initialization GUI, the error reporting did
                    not work.
 
-* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
+* bug 8743 fixed - On the Modelica initialization GUI, it was impossible to
                    re-fix the states after a derivatives fix.
+
+* bug 9037 fixed - While linking, the green port blinked on a small mouse move.
 
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
                    column selection.
@@ -205,6 +216,8 @@ Xcos:
 
 * bug 10096 fixed - Set [1;-1;] on a product block thrown an exception.
 
+* bug 10302 fixed - Latex labels were not rendered.
+
 
 Localization:
 =============
@@ -217,6 +230,7 @@ Localization:
 * bug 10032 fixed - Mac OS X locale detection did not take in account
                     the LANG variable.
 
+
 File input/output:
 ==================
 
@@ -224,10 +238,23 @@ File input/output:
 
 * tempname function added (SEP 68).
 
+* fullpath did not manage matrix of string as input argument. (SEP 72)
+
+* bug 9253 fixed - fscanfMat failed to read a file with some lines
+                   of text at the end (backward compatibility).
+
+* bug 9570 fixed - fprintfMat did not use the good format argument with nan and
+                   inf in a matrix.
+
+* bug 9869 fixed - fscanf did not check number of input arguments.
+
 * bug 9917 fixed - 'mputl' function crashed with a wrong second parameter.
 
 * bug 10055 fixed - findfiles had a wrong default filter under GNU/Linux
                     & Mac OS X
+
+* bug 10300 fixed - fscanfMat did not free some memory.
+
 
 New functions
 =============
@@ -367,10 +394,25 @@ Statistics:
 * bug 7387 fixed - The help page of the rand function gave a wrong advice.
                    The help page of the grand function gave a wrong advice.
 
+
 Linear Algebra:
 ==============
 
 * bug 9749 fixed - expm reported non convergence problem.
+
+
+Sparse matrices:
+==============
+
+* bug 10126 fixed - Wrong (or failing) insertion in a sparse matrix.
+
+* Created an help page and unit test for ordmmd.
+
+
+Sparse Matrices:
+==============
+
+* Organized help pages into sub-sections.
 
 
 Documentation:
@@ -409,6 +451,7 @@ Documentation:
 * Bug 9983 fixed - The xclick help page did not clearly specify the axes used for
                    coordinates
 
+
 Obsolete Functions:
 ===================
 
@@ -418,7 +461,6 @@ Obsolete Functions:
 * 'showalluimenushandles' function (graphics) was undocumented. This function is
   obsolete and will be removed on 5.4.
   Use set(get(0), "ShowHiddenHandles", "on"); instead.
-
 
 
 Removed functions (previously declared as obsolete):
@@ -437,6 +479,10 @@ Removed functions (previously declared as obsolete):
 Performance:
 ============
 
+* Under GNU/Linux and Mac OS X, Scilab startup speed of scilab-cli and
+  scilab-adv-cli have been improved by 15 to 20 % (see Compilation for more
+  information).
+
 * SSE is now enabled by default under GNU/Linux with 32 bit CPU (it is already
   the case under 64 bit CPU).
   Pentium III class (or equivalent) with SSE instructions is required.
@@ -451,6 +497,12 @@ Compilation:
 ============
 
 * Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
+* Under GNU/Linux and Mac OS X, engine libraries have been merged into a single
+  libraries named libscilab-cli.so. This greatly improves the startup
+  performances.
+  Note that the --enable-maintainer-mode enables the previous behavior (simply
+  the development process).
 
 * Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
   as a static library (only available in the source tree).
@@ -467,6 +519,8 @@ Compilation:
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
+
+* Under GNU/Linux and Mac OS X, if ccache is installed, use it to build Scilab.
 
 * bug 9409 fixed - warning "remark #8291" removed with Intel Fortran 2011 compiler.
 
@@ -535,6 +589,9 @@ Graphics:
   - Markers can now be selected and moved using the arrow keys
     or deleted with the "Del" key.
 
+* bug 2043 fixed - The graphic function copy() did not manage axes. Thanks to
+                   Samuel Gougeon for the fix.
+
 * bug 7412 fixed - Better management of datatips activation/deactivation.
 
 * bug 7419 fixed - datatips(): customization is now available through a GUI.
@@ -542,16 +599,23 @@ Graphics:
 * bug 8239 fixed - Activation of datatips overwrote and destroyed any event_handler
                    formerly defined.
 
+* bug 8965 fixed - copy function did not work for handles.
+
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
 
 * bug 9455 fixed - The contourf and contourf 2 demos displayed unwanted dots.
+
+* bug 10121 fixed - polyline.interp_color_vector where not saved/recoverabled
+                    by xsave/xload. Thanks to Samuel Gougeon for the fix.
 
 
 ATOMS:
 ======
 
 * bug 5380 fixed - atomsShow() output was broken (separators were not aligned).
+
+* bug 8648 fixed - We did not delete the tarball when removing a module (SEP 71).
 
 * bug 8664 fixed - Message error updated for non supported OS.
 
@@ -563,11 +627,14 @@ ATOMS:
 
 * bug 8942, 9805 fixed - atomsSystemUpdate() failed on some Windows.
 
+* bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
+
 * bug 9967 fixed - windows UAC causing trouble with atomsRepositorySetOfl (internal function)
 
 * bug 10025 fixed - wrong url in some examples from help files
 
 * bug 10031 fixed - atomsDisp did not work with Verbose option set to True and "\n" in messages.
+
 
 
 Javasci:
@@ -576,14 +643,28 @@ Javasci:
 * Java mapping of Scilab data has now a new method called getType() which
 returns the value of the ScilabTypeEnum enum.
 
+* New methods added:
+  - Scilab.execException(String)
+    Same as Scilab.exec(String) but returns an exception when a Scilab error occurs
+  - Scilab.execException(String[])
+    Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs
+  - Scilab.execException(File)
+    Same as Scilab.exec(File) but returns an exception when a Scilab error occurs
+
+* bug 9149 fixed - Calling a graphic function without activated the appropriate
+                   mode did not triggered an exception
+
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
 
 * bug 9544 fixed - Calling graphic with Javasci from a SWING application from
                    EDT was crashing the execution of a java program.
 
 
+
 CACSD and Signal processing
 ==========================
+* bug 1635 fixed - iir filter frequency response may be wrong. "pole zero gain"
+                   representation added as possible iir function returned values.
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
@@ -610,9 +691,17 @@ CACSD and Signal processing
 
 * bug 9321 fixed - missing tests and help info for some CACSD functions
 
+* bug 10169 fixed - bad clipping option in evans.
+
 
 Misc:
 =====
+
+* The linspace function accepts column vectors as input argument for the two
+  first input arguments. Thanks to Guillaume AZEMA for the implementation.
+
+* The logspace function accepts column vectors as input argument for the two
+  first input arguments.
 
 * Change the buffering display mode.
 
@@ -621,14 +710,21 @@ Misc:
 * Options -disable-exception-catching added under GNU/Linux & Mac OS X.
   Disables the Scilab exception catching system.
 
+* texmacs module moved as ATOMS module.
+  atomsInstall('texmacs')
+
 * PVM module moved as ATOMS module.
   atomsInstall('PVM')
+
+* maple2scilab module moved as ATOMS module.
+  atomsInstall('maple2scilab')
 
 * SEP #69: predef('names') returns names of protected variables by predef.
 
 * printf moved as alias on mprintf function.
 
 * sprintf moved as alias on msprintf function.
+
 
 Bug fixes:
 ==========
@@ -665,6 +761,8 @@ Bug fixes:
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
 
+* bug 7409 fixed - Some corrupted matrices could be created from api_scilab.
+
 * bug 7700 fixed - Bad proposition in the console history when a char is added
 
 * bug 7745 fixed - add_demo moved in demo_tools module.
@@ -687,6 +785,9 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 8874 fixed - Display of Complex numbers with Inf or Nan for real or Imaginary
+                   parts was broken.
+
 * bug 8963 fixed - mtlb_mode test failed on Windows.
 
 * bug 8797 fixed - Update of the help pages of getdate('s') to detail that
@@ -706,9 +807,6 @@ Bug fixes:
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
-* bug 9253 fixed - fscanfMat failed to read a file with some lines
-                   of text at the end (backward compatibility).
-
 * bug 9268 fixed - Scilab was overridding a predefined variable JAVA_HOME.
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
@@ -721,12 +819,19 @@ Bug fixes:
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
+* bug 9461 fixed - The assert_checkalmostequal function did not manage
+                   sparse matrices.
+                   The assert_checkalmostequal function did not manage
+                   hypermatrices.
+
 * bug 9479 fixed - Typo fixed (intput => input).
 
 * bug 9498 fixed - A long history caused Scilab startup to be very long.
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
+
+* bug 9531 fixed - assert_checkequal failed with mlist
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
@@ -737,9 +842,6 @@ Bug fixes:
                    to parse XML configuration files.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
-
-* bug 9570 fixed - fprintfMat did not use the good format argument with nan and
-                   inf in a matrix.
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
@@ -802,8 +904,6 @@ Bug fixes:
 
 * bug 9858 fixed - length() could not be overloaded with mlist.
 
-* bug 9869 fixed - fscanf did not check number of input arguments.
-
 * bug 9879 fixed - Fix some minor issues in the isdir help pages.
 
 * bug 9880 fixed - Fix in the help page a page referencing itself.
@@ -826,6 +926,11 @@ Bug fixes:
 
 * bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
 
+* bug 9825 fixed - The assert_computedigits function generously
+                   gives too large correct digits.
+
+* bug 9963 fixed - The assert_computedigits function was not vectorized.
+
 * bug 9966 fixed - The default value of comptype in assert_checkalmostequal
                    was wrongly chosen.
 
@@ -846,4 +951,15 @@ Bug fixes:
 
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
 
-* bug 10126 fixed - Wrong (or failing) insertion in a sparse matrix.
+* bug 10119 fixed - assert_checkequal did not support sparse complex doubles
+
+* bug 10179 fixed - Weird behaviour with evstr.
+
+* bug 10289 fixed - xload returns a better error message when a file does
+                    not exist.
+
+* bug 10292 fixed - Improved description of the help page of modulo.
+
+* bug 10293 fixed - Improved description of the help page of bvode.
+
+

@@ -49,7 +49,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -71,7 +71,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         if (!isBooleanType(pvApiCtx, addr))
         {
             delete code;
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A boolean expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
 

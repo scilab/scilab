@@ -50,7 +50,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, i + 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i + 1);
             return 0;
         }
 

@@ -17,6 +17,7 @@
 
 package org.scilab.modules.core;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -134,34 +135,36 @@ public class Scilab {
                     System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
                     scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
                 } else {
-                    scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+                	scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
                     
                     /*
                      * Linux specific desktop integration
                      */
-                    try {
-                        Toolkit xToolkit = Toolkit.getDefaultToolkit();
-                        java.lang.reflect.Field awtAppClassNameField =
-                            xToolkit.getClass().getDeclaredField("awtAppClassName");
-                        awtAppClassNameField.setAccessible(true);
-                        
-                        awtAppClassNameField.set(xToolkit, "Scilab");
-                    } catch (Exception e) {
-                        System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
-                        System.err.println("Error: " + e.getLocalizedMessage());
-                    }
+                	if (!GraphicsEnvironment.isHeadless()) {
+	                    try {
+	                        Toolkit xToolkit = Toolkit.getDefaultToolkit();
+	                        java.lang.reflect.Field awtAppClassNameField =
+	                            xToolkit.getClass().getDeclaredField("awtAppClassName");
+	                        awtAppClassNameField.setAccessible(true);
+	                        
+	                        awtAppClassNameField.set(xToolkit, "Scilab");
+	                    } catch (Exception e) {
+	                        System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
+	                        System.err.println("Error: " + e.getLocalizedMessage());
+	                    }
+                	}
                 }
 
                 /* Init the LookAndFeelManager all the time since we can
                  * create windows in the NW mode */
+                if (!GraphicsEnvironment.isHeadless()) {
+                    LookAndFeelManager lookAndFeel = new LookAndFeelManager();
 
-                LookAndFeelManager lookAndFeel = new LookAndFeelManager();
-
-                if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
-                    lookAndFeel.setLookAndFeel(scilabLookAndFeel);
-
-                } else {
-                    lookAndFeel.setSystemLookAndFeel();
+                    if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
+                        lookAndFeel.setLookAndFeel(scilabLookAndFeel);
+                    } else {
+                        lookAndFeel.setSystemLookAndFeel();
+                    }
                 }
             } catch (java.lang.NoClassDefFoundError exception) {
                 System.err.println("Could not initialize graphics Environment");

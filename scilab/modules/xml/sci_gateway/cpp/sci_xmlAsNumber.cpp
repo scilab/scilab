@@ -10,10 +10,8 @@
  *
  */
 
-#include <cstdlib>
-
 #include "XMLObject.hxx"
-#include "XMLNodeSet.hxx"
+#include "XMLList.hxx"
 
 extern "C"
 {
@@ -34,8 +32,7 @@ int sci_xmlAsNumber(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
-    XMLNodeSet * set = 0;
-    xmlNodeSet * realSet = 0;
+    XMLList * list = 0;
     double * pdblReal = 0;
 
     CheckLhs(1, 1);
@@ -48,31 +45,30 @@ int sci_xmlAsNumber(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLSet(addr, pvApiCtx))
+    if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"), fname, 1);
         return 0;
-
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    set = XMLObject::getFromId<XMLNodeSet>(id);
-    if (!set)
+    list = XMLObject::getFromId<XMLList>(id);
+    if (!list)
     {
-        Scierror(999, gettext("%s: XMLSet does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XMLSet or XMLList does not exist.\n"), fname);
         return 0;
     }
 
-    err = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, set->getSize(), &pdblReal);
-    realSet = static_cast<xmlNodeSet *>(set->getRealXMLPointer());
+    err = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, list->getSize(), &pdblReal);
+    const char ** contents = list->getContentFromList();
 
-    for (int i = 0; i < set->getSize(); i++)
+    for (int i = 0; i < list->getSize(); i++)
     {
-        xmlNode * node = realSet->nodeTab[i];
-        const char * content = (const char *)xmlNodeGetContent(node);
         stringToDoubleError convErr = STRINGTODOUBLE_NO_ERROR;
-        pdblReal[i] = stringToDouble(content, TRUE, &convErr);
+        pdblReal[i] = stringToDouble(contents[i], TRUE, &convErr);
     }
+
+    delete[] contents;
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();

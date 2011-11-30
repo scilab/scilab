@@ -27,7 +27,12 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidouble.la
+else
+noinst_LTLIBRARIES = libscidouble.la
+endif
+
 
 libscidouble_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

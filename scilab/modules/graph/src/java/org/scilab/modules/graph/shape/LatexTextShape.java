@@ -49,6 +49,9 @@ public class LatexTextShape implements mxITextShape {
 		
 		CellRendererPane rendererPane = canvas.getRendererPane();
 		Rectangle rect = state.getRectangle();
+		if (rect.isEmpty()) {
+			rect.grow(1, 1);
+		}
 		Graphics2D g = canvas.getGraphics();
 		
 		if (rendererPane != null

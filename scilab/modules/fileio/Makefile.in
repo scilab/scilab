@@ -162,6 +162,8 @@ libscifileio_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscifileio_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscifileio_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscifileio_algo_la_rpath =
 libscifileio_la_DEPENDENCIES = libscifileio-algo.la
 am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_mfprintf.lo libscifileio_la-sci_mscanf.lo \
@@ -201,6 +203,8 @@ libscifileio_la_OBJECTS = $(am_libscifileio_la_OBJECTS)
 libscifileio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscifileio_la_CFLAGS) \
 	$(CFLAGS) $(libscifileio_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscifileio_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscifileio_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -239,6 +243,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -588,8 +593,9 @@ libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes
 
-noinst_LTLIBRARIES = libscifileio-algo.la
-pkglib_LTLIBRARIES = libscifileio.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscifileio.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscifileio-algo.la libscifileio.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscifileio-algo.la
 libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -760,9 +766,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscifileio-algo.la: $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_DEPENDENCIES) 
-	$(libscifileio_algo_la_LINK)  $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
+	$(libscifileio_algo_la_LINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
 libscifileio.la: $(libscifileio_la_OBJECTS) $(libscifileio_la_DEPENDENCIES) 
-	$(libscifileio_la_LINK) -rpath $(pkglibdir) $(libscifileio_la_OBJECTS) $(libscifileio_la_LIBADD) $(LIBS)
+	$(libscifileio_la_LINK) $(am_libscifileio_la_rpath) $(libscifileio_la_OBJECTS) $(libscifileio_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

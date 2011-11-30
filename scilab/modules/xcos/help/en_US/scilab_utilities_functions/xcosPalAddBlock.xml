@@ -8,10 +8,12 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis><![CDATA[pal = xcosPalAddBlock(pal, block);
-pal = xcosPalAddBlock(pal, block, pal_block_img);
-pal = xcosPalAddBlock(pal, block, [], style);
-pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
+    <synopsis>
+	pal = xcosPalAddBlock(pal, block)
+	pal = xcosPalAddBlock(pal, block, pal_block_img)
+	pal = xcosPalAddBlock(pal, block, [], style)
+	pal = xcosPalAddBlock(pal, block, pal_block_img, style)
+	</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>

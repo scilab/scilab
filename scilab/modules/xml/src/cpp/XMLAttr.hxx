@@ -45,6 +45,13 @@ namespace org_modules_xml
         int getSize() const;
 
         /**
+         * Gets the attribute value with the given index.
+         * @param index the attribute index
+         * @return the attribute value
+         */
+        const char * getAttributeValue(int index) const;
+
+        /**
          * Gets the attribute value.
          * @param name the attribute name
          * @return the attribute value
@@ -67,12 +74,80 @@ namespace org_modules_xml
         void setAttributeValue(const char * name, const char * value) const;
 
         /**
+         * Sets the attribute value.
+         * @param node the node where to set the attributes
+         * @param name the attribute name
+         * @param value the attribute value
+         */
+        static void setAttributeValue(xmlNode * node, const char * name, const char * value);
+
+        /**
+         * Sets the attribute value.
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        void setAttributeValue(const char ** name, const char ** value, int size) const;
+
+        /**
+         * Sets the attribute value.
+         * @param node the node where to set the attributes
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        static void setAttributeValue(xmlNode * node, const char ** name, const char ** value, int size);
+
+        /**
+         * Sets the attribute value at the given index.
+         * @param index the attribute index
+         * @param value the attribute value
+         */
+        void setAttributeValue(int index, const char * value) const;
+
+        /**
+         * Sets the attribute value at the given index.
+         * @param node the node where to set the attributes
+         * @param index the attribute index
+         * @param value the attribute value
+         */
+        static void setAttributeValue(xmlNode * node, int index, const char * value);
+
+        /**
          * Sets the attribute value with a prefix namespace.
          * @param prefix the namespace prefix or the namespace itself
          * @param name the attribute name
          * @param value the attribute value
          */
         void setAttributeValue(const char * prefix, const char * name, const char * value) const;
+
+        /**
+         * Sets the attribute value with a prefix namespace.
+         * @param node the node where to set the attributes
+         * @param prefix the namespace prefix or the namespace itself
+         * @param name the attribute name
+         * @param value the attribute value
+         */
+        static void setAttributeValue(xmlNode * node, const char * prefix, const char * name, const char * value);
+
+        /**
+         * Sets the attribute value with a prefix namespace.
+         * @param prefix the namespace prefix or the namespace itself
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const;
+
+        /**
+         * Sets the attribute value with a prefix namespace.
+         * @param node the node where to set the attributes
+         * @param prefix the namespace prefix or the namespace itself
+         * @param name the attribute names
+         * @param value the attribute values
+         * @param size the number of names
+         */
+        static void setAttributeValue(xmlNode * node, const char ** prefix, const char ** name, const char ** value, int size);
 
         /**
          * Gets the element associated with this object

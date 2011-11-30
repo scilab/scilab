@@ -46,7 +46,7 @@ int sci_percent_XMLList_length(char * fname, unsigned long fname_len)
 
     if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLList or XMLSet expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"), fname, 1);
         return 0;
 
     }

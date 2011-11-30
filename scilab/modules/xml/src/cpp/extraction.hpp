@@ -105,7 +105,13 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
 {
     if (!strcmp("root", field))
     {
-        return doc.getRoot()->createOnStack(pos, pvApiCtx);
+        const XMLElement * e = doc.getRoot();
+        if (!e)
+        {
+            Scierror(999, gettext("%s: No root element.\n"), fname, field);
+            return 0;
+        }
+        return e->createOnStack(pos, pvApiCtx);
     }
     else if (!strcmp("url", field))
     {
@@ -177,6 +183,18 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     else if (!strcmp("children", field))
     {
         return elem.getChildren()->createOnStack(pos, pvApiCtx);
+    }
+    else if (!strcmp("line", field))
+    {
+        double line = (double)elem.getDefinitionLine();
+        SciErr err = createMatrixOfDouble(pvApiCtx, pos, 1, 1, &line);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            return 0;
+        }
+
+        return 1;
     }
     else
     {

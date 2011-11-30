@@ -2121,13 +2121,7 @@ msgstr ""
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 72
-# File: demos/cb_uicontrol_snecma.dem.sci, line: 72
 msgid "File"
-msgstr ""
-
-#
-# File: demos/cb_uicontrol_snecma.dem.sci, line: 67
-msgid "SNECMA EDTEX Processing platform"
 msgstr ""
 
 #

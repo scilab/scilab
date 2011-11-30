@@ -12,6 +12,7 @@
 
 package org.scilab.modules.core;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.swing.JTextArea;
@@ -26,7 +27,6 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
@@ -62,7 +62,7 @@ public class ConsoleTab {
 
                     public void destroy() { }
 
-                    public String askForClosing() {
+                    public String askForClosing(final List<SwingScilabTab> list) {
                         return null;
                     }
                 });
@@ -99,7 +99,7 @@ public class ConsoleTab {
                         }
                     }
 
-                    public String askForClosing() {
+                    public String askForClosing(final List<SwingScilabTab> list) {
                         return "Console";
                     }
                 });

@@ -230,6 +230,7 @@
   <ItemGroup>
     <ClInclude Include="src\cpp\extraction.hpp" />
     <ClInclude Include="src\cpp\insertion.hpp" />
+    <ClInclude Include="src\cpp\SplitString.hxx" />
     <ClInclude Include="src\cpp\VariableScope.hxx" />
     <ClInclude Include="src\cpp\XMLAttr.hxx" />
     <ClInclude Include="src\cpp\XMLDocument.hxx" />
@@ -241,7 +242,12 @@
     <ClInclude Include="src\cpp\XMLNotHandledElement.hxx" />
     <ClInclude Include="src\cpp\XMLNs.hxx" />
     <ClInclude Include="src\cpp\XMLObject.hxx" />
+    <ClInclude Include="src\cpp\XMLRemovable.hxx" />
     <ClInclude Include="src\cpp\XMLRhsValue.hxx" />
+    <ClInclude Include="src\cpp\XMLValidation.hxx" />
+    <ClInclude Include="src\cpp\XMLValidationDTD.hxx" />
+    <ClInclude Include="src\cpp\XMLValidationRelaxNG.hxx" />
+    <ClInclude Include="src\cpp\XMLValidationSchema.hxx" />
     <ClInclude Include="src\cpp\XMLXPath.hxx" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +278,8 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlRemove.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlSetAttributes.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidate.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />

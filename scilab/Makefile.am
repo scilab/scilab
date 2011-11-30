@@ -30,8 +30,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 		=
-scilab_cli_bin_LDFLAGS		=
+scilab_bin_LDFLAGS 	    =
+scilab_cli_bin_LDFLAGS  =
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -54,13 +54,13 @@ SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
 
 
 if NEED_JAVA
@@ -341,15 +341,17 @@ localization:
 
 localization-status:
 	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-		if test ! -d $$PATHTO; then \
-			echo "        Creating $$PATHTO"; \
-			mkdir -p $$PATHTO; \
+		if test "$$LOCALE" != "en_US"; then \
+			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+			if test ! -d $$PATHTO; then \
+				echo "        Creating $$PATHTO"; \
+				mkdir -p $$PATHTO; \
+			fi; \
+			echo "Building status for $$LOCALE"; \
+			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 		fi; \
-		echo "Building status for $$LOCALE"; \
-		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
-	done; 
+	done;
 
 endif
 

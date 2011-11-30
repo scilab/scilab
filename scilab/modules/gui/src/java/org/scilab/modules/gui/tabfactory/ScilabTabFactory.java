@@ -128,6 +128,7 @@ public class ScilabTabFactory extends DockableFactory.Stub {
             }
         }
 
+        WindowsConfigurationManager.removeNode(uuid);
         return makeEmptyTab(uuid);
     }
 

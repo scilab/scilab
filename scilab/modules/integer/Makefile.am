@@ -118,8 +118,13 @@ libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
 noinst_LTLIBRARIES = libsciinteger-algo.la
+else
+noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
+endif
+
 
 libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

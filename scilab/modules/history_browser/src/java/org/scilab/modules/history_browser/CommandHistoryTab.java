@@ -12,6 +12,8 @@
 
 package org.scilab.modules.history_browser;
 
+import java.util.List;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -41,7 +43,7 @@ public class CommandHistoryTab {
                     CommandHistory.close();
                 }
 
-                public String askForClosing() {
+                public String askForClosing(final List<SwingScilabTab> list) {
                     return null;
                 }
             });

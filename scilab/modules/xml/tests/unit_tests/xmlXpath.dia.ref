@@ -63,3 +63,11 @@ xmlClose(xmlFile);
 xmlClose(xmlFile2);
 // Close the file a second time
 assert_checkerror("xmlClose(xmlFile)","xmlClose: XML document does not exist.");
+xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
+titles=xmlXPath(xmlFile, "/bookstore/book/title");
+assert_checkequal(titles.name,["title","title","title","title","title"]);
+assert_checkequal(titles.content,["Everyday Italian","Harry Potter","XQuery Kick Start","Learning XML","Scilab rox"]);
+prices=xmlXPath(xmlFile, "/bookstore/book/price");
+assert_checkequal(prices.name,["price","price","price","price","price"]);
+assert_checkequal(prices.content,["30.00","29.99","49.99","39.95","0.0"]);
+xmlClose(xmlFile);

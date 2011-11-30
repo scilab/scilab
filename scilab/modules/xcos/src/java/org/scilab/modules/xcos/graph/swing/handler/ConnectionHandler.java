@@ -12,14 +12,17 @@
 
 package org.scilab.modules.xcos.graph.swing.handler;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.swing.handler.mxCellMarker;
 import com.mxgraph.swing.handler.mxConnectPreview;
 import com.mxgraph.swing.handler.mxConnectionHandler;
 import com.mxgraph.util.mxEvent;
@@ -43,6 +46,90 @@ public class ConnectionHandler extends mxConnectionHandler {
         super(graphComponent);
 
         getMarker().setHotspot(1.0);
+
+        /*
+         * Same default settings as mxConnectionHandler plus get first free
+         * input port in case of a simple flow connection.
+         */
+
+        marker = new mxCellMarker(graphComponent) {
+            // Overrides to return cell at location only if valid (so that
+            // there is no highlight for invalid cells that have no error
+            // message when the mouse is released)
+            @Override
+            protected Object getCell(MouseEvent e) {
+                Object cell = super.getCell(e);
+
+                if (isConnecting()) {
+                    if (source != null) {
+                        cell = getFirstValidPort(cell);
+                        error = validateConnection(source.getCell(), cell);
+
+                        if (error != null && error.length() == 0) {
+                            cell = null;
+
+                            // Enables create target inside groups
+                            if (createTarget) {
+                                error = null;
+                            }
+                        }
+                    }
+                } else if (!isValidSource(cell)) {
+                    cell = null;
+                }
+
+                return cell;
+            }
+
+            // Sets the highlight color according to isValidConnection
+            @Override
+            protected boolean isValidState(mxCellState state) {
+                if (isConnecting()) {
+                    return error == null;
+                } else {
+                    return super.isValidState(state);
+                }
+            }
+
+            // Overrides to use marker color only in highlight mode or for
+            // target selection
+            @Override
+            protected Color getMarkerColor(MouseEvent e, mxCellState state,
+                    boolean isValid) {
+                return (isHighlighting() || isConnecting()) ? super
+                        .getMarkerColor(e, state, isValid) : null;
+            }
+
+            // Overrides to use hotspot only for source selection otherwise
+            // intersects always returns true when over a cell
+            @Override
+            protected boolean intersects(mxCellState state, MouseEvent e) {
+                if (!isHighlighting() || isConnecting()) {
+                    return true;
+                }
+
+                return super.intersects(state, e);
+            }
+
+            private Object getFirstValidPort(Object o) {
+                if (!(o instanceof BasicBlock)) {
+                    return o;
+                }
+                final BasicBlock block = (BasicBlock) o;
+
+                for (int i = 0; i < block.getChildCount(); i++) {
+                    final Object cell = block.getChildAt(i);
+
+                    final String err = validateConnection(source.getCell(),
+                            cell);
+                    if (err == null) {
+                        return cell;
+                    }
+                }
+
+                return o;
+            }
+        };
     }
 
     /**

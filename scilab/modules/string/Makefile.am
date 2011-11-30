@@ -75,8 +75,13 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscistring.la
 noinst_LTLIBRARIES = libscistring-algo.la
+else
+noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
+endif
+
 
 libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 

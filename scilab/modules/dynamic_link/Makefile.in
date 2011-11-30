@@ -125,6 +125,8 @@ libscidynamic_link_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscidynamic_link_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscidynamic_link_algo_la_rpath =
 libscidynamic_link_la_DEPENDENCIES = libscidynamic_link-algo.la
 am__objects_2 = libscidynamic_link_la-gw_dynamic_link.lo \
 	libscidynamic_link_la-sci_getdynlibext.lo \
@@ -140,6 +142,9 @@ libscidynamic_link_la_OBJECTS = $(am_libscidynamic_link_la_OBJECTS)
 libscidynamic_link_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libscidynamic_link_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscidynamic_link_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscidynamic_link_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 SCRIPTS = $(libscidynamic_link_la_script_SCRIPTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -188,6 +193,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -449,8 +455,9 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(srcdir)/includes/
 
-pkglib_LTLIBRARIES = libscidynamic_link.la
-noinst_LTLIBRARIES = libscidynamic_link-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidynamic_link.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscidynamic_link-algo.la
 libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -636,9 +643,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscidynamic_link-algo.la: $(libscidynamic_link_algo_la_OBJECTS) $(libscidynamic_link_algo_la_DEPENDENCIES) 
-	$(libscidynamic_link_algo_la_LINK)  $(libscidynamic_link_algo_la_OBJECTS) $(libscidynamic_link_algo_la_LIBADD) $(LIBS)
+	$(libscidynamic_link_algo_la_LINK) $(am_libscidynamic_link_algo_la_rpath) $(libscidynamic_link_algo_la_OBJECTS) $(libscidynamic_link_algo_la_LIBADD) $(LIBS)
 libscidynamic_link.la: $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_DEPENDENCIES) 
-	$(libscidynamic_link_la_LINK) -rpath $(pkglibdir) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
+	$(libscidynamic_link_la_LINK) $(am_libscidynamic_link_la_rpath) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
 install-libscidynamic_link_la_scriptSCRIPTS: $(libscidynamic_link_la_script_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscidynamic_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"

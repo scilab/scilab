@@ -147,6 +147,8 @@ am_libscioutput_stream_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscioutput_stream_algo_la_OBJECTS =  \
 	$(am_libscioutput_stream_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscioutput_stream_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscioutput_stream_algo_la_rpath =
 libscioutput_stream_la_DEPENDENCIES = libscioutput_stream-algo.la
 am__objects_4 = libscioutput_stream_la-gw_output_stream.lo \
 	libscioutput_stream_la-sci_print.lo \
@@ -161,6 +163,9 @@ libscioutput_stream_la_OBJECTS = $(am_libscioutput_stream_la_OBJECTS)
 libscioutput_stream_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscioutput_stream_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscioutput_stream_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscioutput_stream_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -217,6 +222,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -517,8 +523,9 @@ libscioutput_stream_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes
 
-pkglib_LTLIBRARIES = libscioutput_stream.la
-noinst_LTLIBRARIES = libscioutput_stream-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscioutput_stream.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscioutput_stream-algo.la
 @GUI_TRUE@USEANT = 1
 libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
@@ -691,9 +698,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscioutput_stream-algo.la: $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_DEPENDENCIES) 
-	$(CXXLINK)  $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscioutput_stream_algo_la_rpath) $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_LIBADD) $(LIBS)
 libscioutput_stream.la: $(libscioutput_stream_la_OBJECTS) $(libscioutput_stream_la_DEPENDENCIES) 
-	$(libscioutput_stream_la_LINK) -rpath $(pkglibdir) $(libscioutput_stream_la_OBJECTS) $(libscioutput_stream_la_LIBADD) $(LIBS)
+	$(libscioutput_stream_la_LINK) $(am_libscioutput_stream_la_rpath) $(libscioutput_stream_la_OBJECTS) $(libscioutput_stream_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

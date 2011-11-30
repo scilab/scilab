@@ -48,13 +48,10 @@ function libn = ilib_for_link(names, ..
   end
 
   if getos() == "Windows" then
-    if ~isdef("makename") | (makename == []) | (makename == "") then
-      // Load dynamic_link Internal lib if it"s not already loaded
-      if ~ exists("dynamic_linkwindowslib") then
-        load("SCI/modules/dynamic_link/macros/windows/lib");
-      end
-      makename = dlwGetDefltMakefileName();
+    if ~ exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
     end
+    makename = dlwGetDefltMakefileName() + dlwGetMakefileExt();
   else
     makename = "Makefile";
   end
@@ -92,16 +89,19 @@ function libn = ilib_for_link(names, ..
     mprintf(gettext("   Generate a Makefile\n"));
   end
 
-  generateMakefile(names, ..
+  modifiedmakename = generateMakefile(names, ..
                    files, ..
                    libs, ..
-                   makename, ..
                    libname, ..
                    ldflags, ..
                    cflags, ..
                    fflags, ..
                    cc, ..
                    flag);
+
+  if modifiedmakename <> makename then
+    makename = modifiedmakename;
+  end
 
   // we call make
   if ( ilib_verbose() <> 0 ) then
@@ -122,10 +122,9 @@ function libn = ilib_for_link(names, ..
 
 endfunction
 //=============================================================================
-function generateMakefile(names, ..
+function makename = generateMakefile(names, ..
                             files, ..
                             libs, ..
-                            makename, ..
                             libname, ..
                             ldflags, ..
                             cflags, ..
@@ -133,7 +132,7 @@ function generateMakefile(names, ..
                             cc, ..
                             flag)
 
-
+  makename = [];
   if getos() <> "Windows" then
     Makename = makename;
     ilib_gen_Make_unix(names, ..
@@ -155,12 +154,11 @@ function generateMakefile(names, ..
 
     names = names(1);
 
-    Makename = dlwGenerateMakefile(names, ..
+    makename = dlwGenerateMakefile(names, ..
                                     [], ..
                                     files, ..
                                     libs, ..
                                     libname, ..
-                                    makename, ..
                                     %f, ..
                                     ldflags, ..
                                     cflags, ..

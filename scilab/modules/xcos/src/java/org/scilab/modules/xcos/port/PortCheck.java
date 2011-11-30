@@ -17,6 +17,8 @@ import java.util.List;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -77,8 +79,14 @@ public class PortCheck extends mxMultiplicity {
     @Override
     public String check(mxGraph graph, Object edge, Object source,
             Object target, int sourceOut, int targetIn) {
-        // maybe there is a better way to check this
-        if (sourceOut > 0 || targetIn > 0) {
+
+        // check that source and target has no connections (removing the current
+        // edge)
+        final mxIGraphModel model = graph.getModel();
+        final int sourceCount = getEdgeCount(model, source, edge);
+        final int targetCount = getEdgeCount(model, target, edge);
+
+        if (sourceCount > 0 || targetCount > 0) {
             if (errorMessage
                     .compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
                 return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
@@ -91,6 +99,36 @@ public class PortCheck extends mxMultiplicity {
         }
 
         return errorMessage;
+    }
+
+    /**
+     * Returns the number of incoming and outgoing edges, ignoring the given
+     * edge.
+     * 
+     * @param model
+     *            Graph model that contains the connection data.
+     * @param cell
+     *            Cell whose edges should be counted.
+     * @param ignoredEdge
+     *            Object that represents an edge to be ignored.
+     * @return Returns the number of incoming and outgoing edges.
+     * @see mxGraphModel#getDirectedEdgeCount(mxIGraphModel, Object, boolean,
+     *      Object)
+     */
+    private int getEdgeCount(mxIGraphModel model, Object cell,
+            Object ignoredEdge) {
+        int count = 0;
+        int edgeCount = model.getEdgeCount(cell);
+
+        for (int i = 0; i < edgeCount; i++) {
+            Object edge = model.getEdgeAt(cell, i);
+
+            if (edge != ignoredEdge) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     /**

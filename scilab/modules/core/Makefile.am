@@ -307,10 +307,16 @@ libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
 		                  $(TK_INC_PATH)
 endif
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicore.la
 noinst_LTLIBRARIES = libscicore-algo.la
+else
+noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
+endif
+
 
 libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+#-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)

@@ -48,6 +48,12 @@ namespace org_modules_xml
 
         void * getRealXMLPointer() const;
 
+        const char ** getContentFromList() const;
+
+        const char ** getNameFromList() const;
+
+        void remove() const;
+
         /**
          * Removes an element
          * @param index the index of the element to remove
@@ -93,6 +99,8 @@ namespace org_modules_xml
          */
         xmlNode * getRealNode() const { return parent->children; }
 
+	void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const;
+        void setAttributeValue(const char ** name, const char ** value, int lsize) const;
         const XMLObject * getXMLObjectParent() const;
         const std::string dump() const;
         const XMLObject * getListElement(int index);

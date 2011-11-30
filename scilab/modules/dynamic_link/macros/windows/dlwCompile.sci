@@ -22,10 +22,16 @@ function dlwCompile(files, make_command, makename)
       mprintf(_("   Building shared library (be patient)\n"));
     end
 
-    [msg, stat] = unix_g(make_command + makename + " all 2>&0");
+    if dlwForceRebuild() then
+      target_build = 'clean all';
+    else
+      target_build = 'all';
+    end
+    
+    [msg, stat] = unix_g(make_command + makename + " " + target_build + " 2>&0");
     if stat <> 0 then
       // more feedback when compilation fails
-      [msg, stat, stderr] = unix_g(make_command + makename + " all 1>&2"); 
+      [msg, stat, stderr] = unix_g(make_command + makename  + " " + target_build + " 1>&2"); 
       disp(stderr);
       error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
     else

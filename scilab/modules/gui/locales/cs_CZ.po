@@ -1616,6 +1616,3 @@ msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
 
 #~ msgid "Select a file to execute"
 #~ msgstr "Vyberte soubor ke spuštění"
-
-#~ msgid "SNECMA EDTEX Processing platform"
-#~ msgstr "Platforma zpracování SNECMA EDTEX"

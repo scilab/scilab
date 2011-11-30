@@ -132,20 +132,24 @@ public class BasicPortCodec extends XcosObjectCodec {
             LOG.error("Unable to decode " + obj);
             return obj;
         }
+        final BasicPort port = (BasicPort) obj;
+        final String attr = ((Element) node).getAttribute(DATA_TYPE);
 
-        String attr = ((Element) node).getAttribute(DATA_TYPE);
-
+        // set default data type
         if (attr == null || attr.equals("")) {
-            ((BasicPort) obj).setDataType(BasicPort.DataType.REAL_MATRIX);
+            port.setDataType(BasicPort.DataType.REAL_MATRIX);
 
         } else {
-            ((BasicPort) obj).setDataType(BasicPort.DataType.valueOf(attr));
+            port.setDataType(BasicPort.DataType.valueOf(attr));
         }
+
+        // update connectable flag
+        port.setConnectable(true);
 
         // update style from version to version.
         StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));
         formatStyle(map, (BasicPort) obj);
-        ((BasicPort) obj).setStyle(map.toString());
+        port.setStyle(map.toString());
 
         return super.afterDecode(dec, node, obj);
     }

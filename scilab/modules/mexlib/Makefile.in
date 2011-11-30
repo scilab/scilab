@@ -109,7 +109,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libmex_la_etcdir)" \
 	"$(DESTDIR)$(libmex_la_rootdir)" \
 	"$(DESTDIR)$(libmex_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libmat_la_DEPENDENCIES =
 am__objects_1 = libmat_la-mexlib.lo libmat_la-sci_gateway.lo
 am_libmat_la_OBJECTS = $(am__objects_1)
@@ -117,6 +117,8 @@ libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
 libmat_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmat_la_CFLAGS) \
 	$(CFLAGS) $(libmat_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libmat_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libmat_la_rpath = -rpath $(pkglibdir)
 libmex_la_DEPENDENCIES =
 am__objects_2 = libmex_la-mexlib.lo libmex_la-sci_gateway.lo
 am_libmex_la_OBJECTS = $(am__objects_2)
@@ -124,6 +126,8 @@ libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
 libmex_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmex_la_CFLAGS) \
 	$(CFLAGS) $(libmex_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libmex_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libmex_la_rpath = -rpath $(pkglibdir)
 libmx_la_DEPENDENCIES =
 am__objects_3 = libmx_la-mexlib.lo libmx_la-sci_gateway.lo
 am_libmx_la_OBJECTS = $(am__objects_3)
@@ -131,6 +135,8 @@ libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
 libmx_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(libmx_la_CFLAGS) $(CFLAGS) \
 	$(libmx_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libmx_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libmx_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -169,6 +175,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -410,7 +417,8 @@ MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/string/includes
-pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)
 libmex_la_CFLAGS = $(MEXLIB_FLAGS)
@@ -541,6 +549,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -573,11 +590,11 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libmat.la: $(libmat_la_OBJECTS) $(libmat_la_DEPENDENCIES) 
-	$(libmat_la_LINK) -rpath $(pkglibdir) $(libmat_la_OBJECTS) $(libmat_la_LIBADD) $(LIBS)
+	$(libmat_la_LINK) $(am_libmat_la_rpath) $(libmat_la_OBJECTS) $(libmat_la_LIBADD) $(LIBS)
 libmex.la: $(libmex_la_OBJECTS) $(libmex_la_DEPENDENCIES) 
-	$(libmex_la_LINK) -rpath $(pkglibdir) $(libmex_la_OBJECTS) $(libmex_la_LIBADD) $(LIBS)
+	$(libmex_la_LINK) $(am_libmex_la_rpath) $(libmex_la_OBJECTS) $(libmex_la_LIBADD) $(LIBS)
 libmx.la: $(libmx_la_OBJECTS) $(libmx_la_DEPENDENCIES) 
-	$(libmx_la_LINK) -rpath $(pkglibdir) $(libmx_la_OBJECTS) $(libmx_la_LIBADD) $(LIBS)
+	$(libmx_la_LINK) $(am_libmx_la_rpath) $(libmx_la_OBJECTS) $(libmx_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -839,7 +856,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -914,22 +931,22 @@ uninstall-am: uninstall-libmex_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libmex_la_etcDATA install-libmex_la_includeHEADERS \
-	install-libmex_la_rootDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libmex_la_etcDATA \
-	uninstall-libmex_la_includeHEADERS \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libmex_la_etcDATA \
+	install-libmex_la_includeHEADERS install-libmex_la_rootDATA \
+	install-man install-pdf install-pdf-am \
+	install-pkglibLTLIBRARIES install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libmex_la_etcDATA uninstall-libmex_la_includeHEADERS \
 	uninstall-libmex_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 

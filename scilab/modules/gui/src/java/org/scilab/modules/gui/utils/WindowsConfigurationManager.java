@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
@@ -300,11 +301,16 @@ public class WindowsConfigurationManager {
                                         Thread.sleep(10);
                                     } catch (InterruptedException e) { }
                                 }
-                                while (!mainTab.hasFocus()) {
+
+                                // Be sure that te main tab or one of its subcomponent
+                                // will have the focus on start-up
+                                Component owner = null;
+                                while (owner == null && !mainTab.isAncestorOf(owner)) {
                                     mainTab.requestFocus();
                                     try {
-                                        Thread.sleep(10);
+                                        Thread.sleep(100);
                                     } catch (InterruptedException e) { }
+                                    owner = window.getFocusOwner();
                                 }
                                 ActiveDockableTracker.requestDockableActivation(mainTab);
                                 window.toFront();
@@ -341,6 +347,7 @@ public class WindowsConfigurationManager {
      * @return a list of the elements with the given uuid
      */
     public static final Set<Element> getTabDependencies(String uuid) {
+        readDocument();
         Element root = doc.getDocumentElement();
 
         // Children
@@ -368,6 +375,7 @@ public class WindowsConfigurationManager {
      */
     public static final Set<Element> createDescendantTabs(String uuid) {
         Set<Element> list = getTabDependencies(uuid);
+        Dimension nullDims = new Dimension(0, 0);
         for (Element e : list) {
             // All the tabs created in the factory will be cached so when Flexdock will restore the docking
             // it will use the same tab as created here.
@@ -376,6 +384,7 @@ public class WindowsConfigurationManager {
             currentlyRestored.add(e.getAttribute("uuid"));
             SwingScilabTab tab = factory.getTab(e.getAttribute("uuid"));
             if (!e.getAttribute("width").isEmpty() && !e.getAttribute("height").isEmpty()) {
+                tab.setMinimumSize(nullDims);
                 tab.setPreferredSize(new Dimension(Integer.parseInt(e.getAttribute("width")), Integer.parseInt(e.getAttribute("width"))));
             }
         }
@@ -392,6 +401,8 @@ public class WindowsConfigurationManager {
      * @return tabs to restore
      */
     private static final Set<Element> createAdjacentTabs(Set<Element> elems) {
+        readDocument();
+
         Element root = doc.getDocumentElement();
         boolean jobFinished = true;
         Set<Element> toAdd = new LinkedHashSet<Element>();
@@ -422,6 +433,8 @@ public class WindowsConfigurationManager {
      * @return the elder parent of this element (elder for the attribute "depends")
      */
     private static final Element getElderParent(Element e) {
+        readDocument();
+
         Element root = doc.getDocumentElement();
         String dep = e.getAttribute("depends");
         if (!dep.isEmpty()) {
@@ -442,7 +455,7 @@ public class WindowsConfigurationManager {
         List<String> tabsWithoutWin = new ArrayList<String>();
         for (Element e : list) {
             String winuuid = e.getAttribute("winuuid");
-            if (winuuid.equals(NULLUUID)) {
+            if (winuuid.equals(NULLUUID) || getElementWithUUID(winuuid) == null || !isDockableIdExisting(winuuid, e.getAttribute("uuid"))) {
                 tabsWithoutWin.add(e.getAttribute("uuid"));
             } else if (!wins.contains(winuuid)) {
                 wins.add(winuuid);
@@ -499,6 +512,8 @@ public class WindowsConfigurationManager {
      * @return the corresponding element or null if it does not exist
      */
     public static final Element getElementWithUUID(String uuid) {
+        readDocument();
+
         return getElementWithUUID(doc.getDocumentElement(), uuid);
     }
 
@@ -521,6 +536,28 @@ public class WindowsConfigurationManager {
     }
 
     /**
+     * Check if there is a window which has a dockableID equals to the given uuid
+     * @param winuuid the uuid of the window
+     * @param uuid the uuid to test
+     * @return true if a dockableId exists
+     */
+    public static final boolean isDockableIdExisting(String winuuid, String uuid) {
+        if (winuuid == null || winuuid.isEmpty() || uuid == null || uuid.isEmpty()) {
+            return false;
+        }
+
+        Element win = getElementWithUUID(winuuid);
+        if (win != null) {
+            List<Element> list = ScilabXMLUtilities.getElementsWithAttributeEquals(win, "dockableId", uuid);
+            if (list.size() != 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Remove a node with a given uuid
      * @param parent the parent element
      * @param nodeName the node name
@@ -537,12 +574,28 @@ public class WindowsConfigurationManager {
     }
 
     /**
+     * Remove a node with a given uuid
+     * @param nodeName the node name
+     * @param uuid the uuid
+     */
+    public static final void removeNode(String uuid) {
+        if (uuid == null || uuid.isEmpty()) {
+            return;
+        }
+        Element e = getElementWithUUID(uuid);
+        if (e != null && e.getParentNode() != null) {
+            e.getParentNode().removeChild(e);
+        }
+    }
+
+    /**
      * Save the tab properties
      * @param tab the tab
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
      */
     public static void saveTabProperties(SwingScilabTab tab, boolean nullWin) {
         readDocument();
+
         ScilabTabFactory factory = ScilabTabFactory.getInstance();
         String uuid = tab.getPersistentId();
         Element root = doc.getDocumentElement();
@@ -575,6 +628,7 @@ public class WindowsConfigurationManager {
      */
     public static void clean() {
         readDocument();
+
         Element root = doc.getDocumentElement();
         NodeList list = root.getElementsByTagName("Window");
         int len = getNodeListLength(list);
@@ -598,6 +652,7 @@ public class WindowsConfigurationManager {
      */
     public static final void makeDependency(String parentUUID, String childUUID) {
         readDocument();
+
         Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
         if (e != null) {
             e.setAttribute("depends", parentUUID);
@@ -611,6 +666,7 @@ public class WindowsConfigurationManager {
      */
     public static void removeDependency(String childUUID) {
         readDocument();
+
         Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
         if (e != null) {
             e.removeAttribute("depends");
@@ -642,6 +698,7 @@ public class WindowsConfigurationManager {
      */
     public static String[] getApplicationUUIDs(String name) {
         readDocument();
+
         NodeList list = doc.getDocumentElement().getElementsByTagName(name);
         String[] uuids = new String[getNodeListLength(list)];
         for (int i = 0; i < uuids.length; i++) {

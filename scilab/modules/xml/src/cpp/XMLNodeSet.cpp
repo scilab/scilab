@@ -24,9 +24,9 @@
 namespace org_modules_xml
 {
 
-    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlNodeSet * _nodeSet) : XMLList(), doc(_doc)
+    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLList(), doc(_doc), xpath(_xpath)
     {
-        nodeSet = _nodeSet;
+        nodeSet = xpath->nodesetval;
         if (nodeSet)
         {
             scope->registerPointers(nodeSet, this);
@@ -51,6 +51,54 @@ namespace org_modules_xml
         return static_cast<void *>(nodeSet);
     }
 
+    const char ** XMLNodeSet::getContentFromList() const
+    {
+        const char ** list = new const char*[size];
+        for (int i = 0; i < size; i++)
+        {
+            list[i] = (const char *)xmlNodeGetContent(nodeSet->nodeTab[i]);
+        }
+
+        return list;
+    }
+
+    const char ** XMLNodeSet::getNameFromList() const
+    {
+        const char ** list = new const char*[size];
+        for (int i = 0; i < size; i++)
+        {
+            list[i] = nodeSet->nodeTab[i]->name ? (const char *)nodeSet->nodeTab[i]->name : "";
+        }
+
+        return list;
+    }
+
+    void XMLNodeSet::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    {
+        for (int i = 0; i < size; i++)
+        {
+            XMLAttr::setAttributeValue(nodeSet->nodeTab[i], prefix, name, value, lsize);
+        }
+    }
+
+    void XMLNodeSet::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    {
+        for (int i = 0; i < size; i++)
+        {
+            XMLAttr::setAttributeValue(nodeSet->nodeTab[i], name, value, lsize);
+        }
+    }
+
+    void XMLNodeSet::remove() const
+    {
+        for (int i = 0; i < size; i++)
+        {
+            xmlNode * node = nodeSet->nodeTab[i];
+            xmlUnlinkNode(node);
+            xmlFreeNode(node);
+        }
+    }
+
     const XMLObject * XMLNodeSet::getXMLObjectParent() const
     {
         return &doc;
@@ -69,6 +117,7 @@ namespace org_modules_xml
             case XML_TEXT_NODE :
             case XML_CDATA_SECTION_NODE :
             case XML_COMMENT_NODE :
+            case XML_ATTRIBUTE_NODE :
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
                 {
@@ -76,16 +125,6 @@ namespace org_modules_xml
                 }
 
                 return new XMLElement(doc, node);
-            case XML_ATTRIBUTE_NODE :
-                obj = scope->getXMLObjectFromLibXMLPtr(node->parent->properties);
-                if (obj)
-                {
-                    return static_cast<XMLAttr *>(obj);
-                }
-
-                e = new XMLElement(doc, node->parent);
-
-                return new XMLAttr(*e);
             case XML_NAMESPACE_DECL :
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
