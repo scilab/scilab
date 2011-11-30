@@ -143,11 +143,13 @@ int sci_delete(char *fname, unsigned long fname_len)
 
         /* Object type */
         getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjType);
-        /* Parent object */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
-        /* Parent type */
-        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
-
+        if (strcmp(pstObjType, __GO_AXES__) == 0)
+        {
+            /* Parent object */
+            getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
+            /* Parent type */
+            getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
+        }
         deleteGraphicObject(pobjUID);
 
         /*
