@@ -57,6 +57,8 @@ Bug fixes
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
 
+* bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
+
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded. 
 

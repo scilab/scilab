@@ -47,7 +47,7 @@ else
         error(msprintf(_("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"wfir",2))
     end
     if or(ftype==["hp" "sb"]) then
-        if 2*int(forder/2)<>forder then
+        if 2*int(forder/2)==forder then
             error(msprintf(_("%s:  Wrong value for input argument #%d: Must be odd.\n"),"wfir",2))
         end
     end
