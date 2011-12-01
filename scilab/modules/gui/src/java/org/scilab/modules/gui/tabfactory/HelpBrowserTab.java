@@ -13,40 +13,51 @@
 package org.scilab.modules.gui.tabfactory;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
  * Class to create SciNotes instances
+ * 
  * @author Calixte DENIZET
  */
 public class HelpBrowserTab {
 
     /**
-     * @param uuid the uuid to restore
+     * @param uuid
+     *            the uuid to restore
      * @return a new SciNotes instance
      */
     public static SwingScilabTab getHelpBrowserInstance() {
         final SwingScilabTab hb = ScilabHelpBrowser.createHelpBrowserTab();
         ScilabTabFactory.getInstance().addToCache(hb);
 
-        ClosingOperationsManager.registerClosingOperation(hb, new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation(hb,
+                new ClosingOperationsManager.ClosingOperation() {
 
-                public boolean canClose() {
-                    return true;
-                }
+                    @Override
+                    public boolean canClose() {
+                        return true;
+                    }
 
-                public void destroy() {
-                    ScilabHelpBrowser.closeHB();
-                }
+                    @Override
+                    public void destroy() {
+                        ScilabHelpBrowser.closeHB();
+                    }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
-                    return null;
-                }
-            });
+                    @Override
+                    public String askForClosing(final List<SwingScilabTab> list) {
+                        return null;
+                    }
+
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
+                    }
+                });
 
         ClosingOperationsManager.addDependencyWithRoot(hb);
 

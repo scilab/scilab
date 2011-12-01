@@ -13,6 +13,7 @@
 package org.scilab.modules.scinotes.tabfactory;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -23,46 +24,62 @@ import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * Class to create SciNotes instances
+ * 
  * @author Calixte DENIZET
  */
 public class CodeNavigatorTab {
 
     /**
-     * @param uuid the uuid to restore
+     * @param uuid
+     *            the uuid to restore
      * @return a new SciNotes instance
      */
-    public static NavigatorWindow getCodeNavigatorInstance(final SciNotes editor, String uuid) {
-	final NavigatorWindow nav;
+    public static NavigatorWindow getCodeNavigatorInstance(
+            final SciNotes editor, String uuid) {
+        final NavigatorWindow nav;
         if (uuid != null) {
             nav = new NavigatorWindow(editor, uuid);
         } else {
             nav = new NavigatorWindow(editor);
-	    ScilabTabFactory.getInstance().addToCache(nav);
+            ScilabTabFactory.getInstance().addToCache(nav);
         }
 
-	ClosingOperationsManager.registerClosingOperation((SwingScilabTab) nav, new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) nav,
+                new ClosingOperationsManager.ClosingOperation() {
 
-                public boolean canClose() {
-                    return true;
-                }
+                    @Override
+                    public boolean canClose() {
+                        return true;
+                    }
 
-                public void destroy() {
-                    nav.closeNavigator();
-                }
+                    @Override
+                    public void destroy() {
+                        nav.closeNavigator();
+                    }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
-                    return null;
-                }
-            });
+                    @Override
+                    public String askForClosing(final List<SwingScilabTab> list) {
+                        return null;
+                    }
 
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) nav, new WindowsConfigurationManager.EndedRestoration() {
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
+                    }
+                });
 
-                public void finish() {
-                    nav.changeToolBar();
-                }
-            });
+        WindowsConfigurationManager.registerEndedRestoration(
+                (SwingScilabTab) nav,
+                new WindowsConfigurationManager.EndedRestoration() {
 
-        ClosingOperationsManager.addDependency((SwingScilabTab) editor, (SwingScilabTab) nav);
+                    @Override
+                    public void finish() {
+                        nav.changeToolBar();
+                    }
+                });
+
+        ClosingOperationsManager.addDependency((SwingScilabTab) editor,
+                (SwingScilabTab) nav);
 
         return nav;
     }
