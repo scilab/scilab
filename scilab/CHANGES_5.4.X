@@ -964,6 +964,8 @@ Bug fixes:
 
 * bug 10293 fixed - Improved description of the help page of bvode.
 
+* bug 10324 fixed - format(m) where m is a vector did not work but the
+                    documentation states it can be used.
 
 
 
