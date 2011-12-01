@@ -11,13 +11,16 @@
  */
 package org.scilab.modules.graphic_objects;
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GuiLogView;
+import org.scilab.modules.graphic_objects.graphicView.TreeView;
 
 public class MVCDebugView {
 
     public static void showLogView() {
-        GraphicController.getController().register(GuiLogView.createGuiLogView());
+        GuiLogView.createGuiLogView().show();
     }
-    
+   
+    public static void showAllObjectsView() {
+        TreeView.createTreeView().show();
+    } 
 }

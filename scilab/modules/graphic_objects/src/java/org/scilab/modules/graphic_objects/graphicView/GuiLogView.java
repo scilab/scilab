@@ -23,6 +23,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 public class GuiLogView implements GraphicView {
     private static GuiLogView me;
     private JEditorPane htmlLogPane;
+    private JFrame frame;
 
     public static GuiLogView createGuiLogView() {
         if (me == null) {
@@ -32,16 +33,21 @@ public class GuiLogView implements GraphicView {
     }
 
     private GuiLogView() {
-        JFrame frame = new JFrame("GuiLogView");
+        frame = new JFrame("GuiLogView");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         htmlLogPane = new JEditorPane();
         htmlLogPane.setEditable(false);
         JScrollPane logView = new JScrollPane(htmlLogPane);
         frame.setContentPane(logView);
-        frame.setVisible(true);
+        frame.setVisible(false);
         frame.setSize(800, 600);
     }
+    
+    public void show() {
+        frame.setVisible(true);
+    }
+    
     public void createObject(String id) {
         try {
             String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);

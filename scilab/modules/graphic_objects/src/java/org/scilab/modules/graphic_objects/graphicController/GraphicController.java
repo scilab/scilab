@@ -24,7 +24,8 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-
+import org.scilab.modules.graphic_objects.graphicView.GuiLogView;
+import org.scilab.modules.graphic_objects.graphicView.TreeView;
 
 /**
  * GraphicController class
@@ -51,6 +52,8 @@ public class GraphicController {
      * Default constructor
      */
     private GraphicController() {
+        register(GuiLogView.createGuiLogView());
+        register(TreeView.createTreeView());
     }
 
     /**
@@ -100,11 +103,20 @@ public class GraphicController {
      * @return true if the property has been set, false otherwise
      */
     public boolean setProperty(String id, String prop, Object value) {
-        if (GraphicModel.getModel().setProperty(id, prop, value)) {
-            objectUpdate(id, prop);
-            return true;
+        try {
+            if (GraphicModel.getModel().setProperty(id, prop, value)) {
+                objectUpdate(id, prop);
+                return true;
+            }
+            return false;
         }
-        return false;
+        catch (Exception e) {
+            System.err.println("====== Exception caught ======");
+            DEBUG("setProperty : " + id + " " + prop);
+            e.printStackTrace();
+            System.err.println("====== Exception caught ======");
+            return false;
+        }
     }
 
     /**
@@ -114,7 +126,16 @@ public class GraphicController {
      * @return the property value
      */
     public Object getProperty(String id, String prop) {
-        return GraphicModel.getModel().getProperty(id, prop);
+        try {
+            return GraphicModel.getModel().getProperty(id, prop);
+        }
+        catch (Exception e) {
+            System.err.println("====== Exception caught ======");
+            DEBUG("getProperty : [" + id + "] " + prop);
+            e.printStackTrace();
+            System.err.println("====== Exception caught ======");
+            return null;
+        }
     }
 
     /**
@@ -133,11 +154,20 @@ public class GraphicController {
      * @return the created object's id
      */
     public String askObject(Type type) {
-        UID id = createUID();
-        GraphicModel.getModel().createObject(id.toString(), type);
-        objectCreated(id.toString());
+        try {
+            UID id = createUID();
+            GraphicModel.getModel().createObject(id.toString(), type);
+            objectCreated(id.toString());
 
-        return id.toString();
+            return id.toString();
+        }
+        catch (Exception e) {
+            System.err.println("====== Exception caught ======");
+            e.printStackTrace();
+            System.err.println("====== Exception caught ======");
+            return "";
+        }
+
     }
 
     /**
@@ -146,11 +176,19 @@ public class GraphicController {
      * @return the id of the clone.
      */
     public String cloneObject(String id) {
-        UID newId = createUID();
-        GraphicModel.getModel().cloneObject(id, newId.toString());
-        objectCreated(newId.toString());
+        try {
+            UID newId = createUID();
+            GraphicModel.getModel().cloneObject(id, newId.toString());
+            objectCreated(newId.toString());
 
-        return newId.toString();
+            return newId.toString();
+        }
+        catch (Exception e) {
+            System.err.println("====== Exception caught ======");
+            e.printStackTrace();
+            System.err.println("====== Exception caught ======");
+            return "";
+        }
     }
 
     /**
@@ -158,8 +196,15 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void deleteObject(String id) {
-        objectDeleted(id);
-        GraphicModel.getModel().deleteObject(id);
+        try {
+            objectDeleted(id);
+            GraphicModel.getModel().deleteObject(id);
+        }
+        catch (Exception e) {
+            System.err.println("====== Exception caught ======");
+            e.printStackTrace();
+            System.err.println("====== Exception caught ======");
+        }
     }
 
     /**
