@@ -227,7 +227,20 @@
             <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"off");' type="0"/>
         </submenu>
     </menu>
-
+    <menu label="&amp;MVC">
+        <submenu label="&amp;Log View (Trace all View notifications)">
+             <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showLogView' type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;All Objects View (All objects with properties)">
+             <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showAllObjectsView' type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Ged-like View (Future ged)">
+             <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showGedView([SCILAB_FIGURE_ID])' type="3"/>
+        </submenu>
+        <separator/>
+    </menu>
     <menu label="&amp;?">
         <submenu label="&amp;Scilab Help" accelerator="F1">
             <callback instruction='help();' type="0"/>
