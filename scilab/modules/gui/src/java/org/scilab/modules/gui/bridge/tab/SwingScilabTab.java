@@ -1275,7 +1275,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Close the tab and disable it.
      */
     public void close() {
-        getContentPane().removeAll();
         setMenuBar(null);
         setToolBar(null);
         setInfoBar(null);
