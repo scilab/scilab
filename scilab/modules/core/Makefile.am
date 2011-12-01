@@ -89,7 +89,8 @@ src/c/dynamic_tclsci.c \
 src/c/dynamic_parallel.c \
 src/c/storeCommand.c \
 src/c/backtrace.c \
-src/c/signal_mgmt.c
+src/c/signal_mgmt.c \
+src/c/suspendProcess.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -293,6 +294,8 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/console/includes \
+	-I$(top_srcdir)/modules/console/src/c/cmdLine \
+	-I$(top_srcdir)/modules/history_manager/includes \
 	$(XML_FLAGS)
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
