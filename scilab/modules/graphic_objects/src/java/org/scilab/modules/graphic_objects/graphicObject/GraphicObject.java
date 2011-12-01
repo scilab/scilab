@@ -457,7 +457,10 @@ public abstract class GraphicObject implements Cloneable {
      * @return the userDataSize
      */
     public Integer getUserDataSize() {
-        return userData.length;
+        if (userData != null) {
+            return userData.length;
+        }
+        return 0;
     }
 
     /**
