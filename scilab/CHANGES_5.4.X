@@ -591,6 +591,9 @@ Graphics:
 
 * bug 10298 fixed - Example of datatipSetDisplay generated an error.
 
+* bug 10331 fixed - datatipCreate produces a warning and an error instead of 
+                    a warning if the curve user_data is not a struct
+
 ATOMS:
 ======
 
