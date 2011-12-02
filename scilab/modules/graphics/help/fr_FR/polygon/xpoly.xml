@@ -58,13 +58,12 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xpoly(x,y,"lines",1) // by default closed
 
-// News graphics only
 e=gce(); // get the current entity (the last created: here the polyline)
 e.closed = 'off' // the polyline is now open
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>

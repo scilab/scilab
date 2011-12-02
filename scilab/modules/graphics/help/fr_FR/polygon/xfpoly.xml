@@ -44,7 +44,6 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfpoly(x,y)
 
-// News graphics only
 e=gce(); // get the current entity (the last created: here the polyline)
 e.fill_mode='off';
 e.closed = 'off' // the polyline is now open
@@ -52,7 +51,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpolys">xfpolys</link>
