@@ -836,6 +836,8 @@ Bug fixes:
 
 * bug 9573 fixed - getdebuginfo did not report multiple video cards on Windows.
 
+* bug 9581 fixed - cleaner.sce in toolbox_skeleton did not remove all generated files.
+
 * bug 9599 fixed - error message "at line ... of function ... called by" was
                    printed directly on the same line.
 
