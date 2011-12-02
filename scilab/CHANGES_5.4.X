@@ -534,6 +534,8 @@ Dynamic link:
 
 * bug 9930 fixed - ilib_build did not display all filenames used.
 
+* bug 10320 fixed - libname argument of ilib_for_link did not work.
+
 
 Variable browser:
 =================
@@ -940,7 +942,7 @@ Bug fixes:
 
 * bug 10179 fixed - Weird behaviour with evstr.
 
-* bug 10282 fixed - repmat did not work for scalar input on dims greater than 2 
+* bug 10282 fixed - repmat did not work for scalar input on dims greater than 2
                     neither for N-D arrays.
 
 * bug 10289 fixed - xload returns a better error message when a file does
