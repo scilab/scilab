@@ -585,6 +585,8 @@ Graphics:
 
 * bug 8965 fixed - copy function did not work for handles.
 
+* bug 9269 fixed - Specified graphic entities for legend are drawn in reverse order.
+
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
 
