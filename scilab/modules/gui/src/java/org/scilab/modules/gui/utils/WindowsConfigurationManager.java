@@ -201,17 +201,23 @@ public class WindowsConfigurationManager {
     }
 
     /**
-     * Restore a window with a given uuid
-     * @param uuid the uuid
-     * @param restoreTab if true the tab is restored too
-     * @return the corresponding window
+     * Create a window according to the uuid.
+     * 
+     * This method can be used to create a reference windows.
+     * 
+     * @param uuid
+     *            the reference uuid
+     * @param preserveUUID
+     *            if true the uuid will be used on the new windows, generate a
+     *            new uuid otherwise
+     * @return the window
      */
-    public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
+    public static Window createWindow(final String uuid, final boolean preserveUUID) {
         readDocument();
 
-        Element root = doc.getDocumentElement();
-        Map<String, Object> attrs = new HashMap<String, Object>();
-        boolean nullUUID = uuid.equals(NULLUUID);
+        final Element root = doc.getDocumentElement();
+        final boolean nullUUID = uuid.equals(NULLUUID);
+        final Map<String, Object> attrs = new HashMap<String, Object>();
         Element win = null;
 
         if (!nullUUID) {
@@ -226,25 +232,52 @@ public class WindowsConfigurationManager {
             attrs.put("width", int.class);
             ScilabXMLUtilities.readNodeAttributes(win, attrs);
         } else {
-            attrs = defaultWinAttributes;
+            attrs.putAll(defaultWinAttributes);
         }
 
         Window w = ScilabWindow.createWindow();
-        UIElementMapper.add(w);
         final SwingScilabWindow window = (SwingScilabWindow) w.getAsSimpleWindow();
-        if (!nullUUID) {
-            window.setUUID(uuid);
+
+        final String localUUID;
+        if (preserveUUID) {
+            localUUID = uuid;
         } else {
-            window.setUUID(UUID.randomUUID().toString());
+            localUUID = UUID.randomUUID().toString();
         }
+        window.setUUID(localUUID);
+        UIElementMapper.add(w);
+
         window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
 
+        return w;
+    }
+
+    /**
+     * Restore a window with a given uuid
+     * 
+     * @param uuid
+     *            the uuid
+     * @param restoreTab
+     *            if true the tab is restored too
+     * @return the corresponding window
+     */
+    public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
+        readDocument();
+
+        final boolean nullUUID = uuid.equals(NULLUUID);
+
+        // create the window and preserve the uuid if not null
+        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID).getAsSimpleWindow();
+        if (window == null) {
+            return null;
+        }
+
         if (restoreTab) {
-            if (win != null) {
-                LayoutNodeSerializer serializer = new LayoutNodeSerializer();
-                NodeList children = win.getElementsByTagName(PersistenceConstants.DOCKING_PORT_NODE_ELEMENT_NAME);
-                LayoutNode layoutNode = (LayoutNode) serializer.deserialize((Element) children.item(0));
+            if (!nullUUID) {
+                final LayoutNodeSerializer serializer = new LayoutNodeSerializer();
+                final Element dockingPort = getDockingPort(uuid);
+                LayoutNode layoutNode = (LayoutNode) serializer.deserialize(dockingPort);
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
                 SwingScilabTab defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
@@ -301,37 +334,55 @@ public class WindowsConfigurationManager {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            final Thread t = new Thread(new Runnable() {
-                                    public void run() {
-                                        while (currentlyRestored.size() != 0) {
-                                            try {
-                                                Thread.sleep(10);
-                                            } catch (InterruptedException e) { }
-                                        }
-
-                                        // Be sure that te main tab or one of its subcomponent
-                                        // will have the focus on start-up
-                                        Component owner = null;
-                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                            mainTab.requestFocus();
-                                            try {
-                                                Thread.sleep(100);
-                                            } catch (InterruptedException e) { }
-                                            owner = window.getFocusOwner();
-                                        }
-                                        ActiveDockableTracker.requestDockableActivation(mainTab);
-                                        window.toFront();
+                    @Override
+                    public void run() {
+                        final Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while (currentlyRestored.size() != 0) {
+                                    try {
+                                        Thread.sleep(10);
+                                    } catch (InterruptedException e) {
                                     }
-                                });
-                            t.start();
-                        }
-                    });
+                                }
+
+                                // Be sure that te main tab or one of its subcomponent
+                                // will have the focus on start-up
+                                Component owner = null;
+                                while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                    mainTab.requestFocus();
+                                    try {
+                                        Thread.sleep(100);
+                                    } catch (InterruptedException e) {
+                                    }
+                                    owner = window.getFocusOwner();
+                                }
+                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                                window.toFront();
+                            }
+                        });
+                        t.start();
+                    }
+                });
             }
         }
 
         return window;
     }
+
+    private static final Element getDockingPort(final String winUUID) {
+        readDocument();
+
+        final Element root = doc.getDocumentElement();
+        final Element win = getElementWithUUID(root, "Window", winUUID);
+        if (win == null) {
+            return null;
+        }
+
+        final NodeList children = win.getElementsByTagName(PersistenceConstants.DOCKING_PORT_NODE_ELEMENT_NAME);
+        return (Element) children.item(0);
+    }
+
 
     /**
      * Must be called when the restoration is finished
