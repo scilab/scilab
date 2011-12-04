@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
@@ -11,7 +10,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="selection_ga_elitist">
   <info>
     <pubdate>4-Feb-2008</pubdate>
@@ -37,14 +35,14 @@
       <varlistentry>
         <term>Indiv1</term>
         <listitem>
-          <para>a first set of childs generated via crossover + mutation.
+          <para>a first set of children generated via crossover + mutation.
        </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Indiv2</term>
         <listitem>
-          <para>a second set of childs generated via crossover + mutation.
+          <para>a second set of children generated via crossover + mutation.
        </para>
         </listitem>
       </varlistentry>
@@ -133,13 +131,13 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function performs the elitist selection function. We select the best individuals in the set of parents and childs individuals.
+      This function performs the elitist selection function. We select the best individuals in the set of parents and children individuals.
      </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="selection_ga_random"> selection_ga_random </link>

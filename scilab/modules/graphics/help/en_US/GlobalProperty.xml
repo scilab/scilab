@@ -24,14 +24,13 @@
     <para>The GlobalProperty is an optional argument that can be used inside a <link linkend="plot">plot</link> or <link linkend="surf">surf</link> command. It allows a global customization of all the new plotted lines (respectivly surfaces). It has to be given as a couple {PropertyName, PropertyValue}. Several couples can be set at the same time in a plot or surf call.</para>
     <para>PropertyName must be a string defining the property to set.The PropertyValue can be a real, integer or string (scalar or matrix) depending on the type of property used. For example, to specify a red (color) longdash-dot (line style) with diamond marker (marker), the sequence should be : 'Colo','red','LineSt','-.','Marker','diam'.</para>
     <para>As you can see, a full complete spelling of each property name and value is not required but those arguments, specified in any order, must remain unambiguous. Furthermore, the string specification is not case sensitive. GlobalProperty is predominant on all LineSpec previously stated.</para>
-
     <para>Here is a complete list of the <literal>PropertyName</literal> you can
     specify (using <link linkend="plot">plot</link> or <link linkend="surf">surf</link>) and their available
     associated <literal>PropertyValue</literal>. If not specified, those properties
     are available for both <literal>Polyline</literal> and <literal>Fac3d</literal>
     objects (created respectivly by plot or surf) and, as previously said,
     they are applied to the new created objects (lines or surfaces).</para>
-    <para>Sometimes, you may have two PropertyName correponding to one property :
+    <para>Sometimes, you may have two PropertyName corresponding to one property :
     the first one is the equivalent default Matlab name, the second is the
     default name used by Scilab (i.e.:<literal> Color or Foreground</literal> for a
     line, see below).</para>
@@ -55,7 +54,7 @@
         <literal>cdata_mapping</literal> determines wether those indices are scaled
         to map linearly into the current colormap (<literal>'scaled'</literal> mode)
         or point directly into this colormap (<literal>'direct</literal>' mode).
-        This property is usefull when <literal>color_flag</literal> equals
+        This property is useful when <literal>color_flag</literal> equals
         <literal>2</literal>,<literal>3</literal> or <literal>4</literal>. Note that this
         property exists only with <literal>Fac3d</literal> entities. Note also that
         <literal>plot3d</literal> has <literal>'direct'</literal> mode by default and
@@ -439,7 +438,7 @@ surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="LineSpec">LineSpec</link>

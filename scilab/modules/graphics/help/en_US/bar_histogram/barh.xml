@@ -58,7 +58,7 @@ barh([h],x,y [,width [,color [,style]]])</synopsis>
       <varlistentry>
         <term>color</term>
         <listitem>
-          <para>(optional), a string (default: 'blue'), specifing the inside
+          <para>(optional), a string (default: 'blue'), specifying the inside
 					color bar.</para>
         </listitem>
       </varlistentry>
@@ -122,7 +122,7 @@ barh(x,y,0.2,'green');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bar">bar</link>

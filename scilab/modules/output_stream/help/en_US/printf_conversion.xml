@@ -240,7 +240,7 @@
     field is expanded to contain the converted result.</para>
     <para>The representation of the plus sign depends on whether the
     <literal>+</literal> or (space) formatting option is specified.</para>
-    <para>display of exponential form %e is platform dependant with a different number of digits in exponent.</para>
+    <para>display of exponential form %e is platform dependent with a different number of digits in exponent.</para>
     <informaltable border="1">
       <tr>
         <td>Platform</td>

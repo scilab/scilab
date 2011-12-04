@@ -56,7 +56,7 @@
   <refsection>
     <title>Description</title>
     <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument.</para>
-    <para>For more informations about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
+    <para>For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

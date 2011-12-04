@@ -162,7 +162,7 @@
         <td>100*fun, #rhs, #lhs, fin</td>
       </tr>
     </informaltable>
-    <para>The <link linkend="fun2string">fun2string</link> function can be used to generate the intial code.</para>
+    <para>The <link linkend="fun2string">fun2string</link> function can be used to generate the initial code.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -180,7 +180,7 @@ fun2string(L)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="macrovar">macrovar</link>

@@ -36,7 +36,7 @@ value=fileparts(fullpath,sel)</synopsis>
       <varlistentry>
         <term>sel</term>
         <listitem>
-          <para>a optional character string selector, with posible values:
+          <para>a optional character string selector, with possible values:
        'path' 'fname' or 'extension'</para>
         </listitem>
       </varlistentry>
@@ -81,7 +81,7 @@ fileparts('SCI/etc/scilab.start','extension')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>

@@ -103,7 +103,7 @@
       <varlistentry>
         <term>B</term>
         <listitem>
-          <para>optionnal, input matrix of the given system</para>
+          <para>optional, input matrix of the given system</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -115,7 +115,7 @@
       <varlistentry>
         <term>D</term>
         <listitem>
-          <para>optionnal, direct feedthrough of the given system</para>
+          <para>optional, direct feedthrough of the given system</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -133,7 +133,7 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>optionnal, tolerance used for estimating the rank of
+          <para>optional, tolerance used for estimating the rank of
   matrices. If  tol &gt; 0,  then the given value of  tol  is used as
   a lower bound for the reciprocal condition number; an m-by-n matrix
   whose estimated condition number is less than  1/tol  is considered
@@ -144,7 +144,7 @@
       <varlistentry>
         <term>printw</term>
         <listitem>
-          <para>optionnal, switch for printing the warning messages.</para>
+          <para>optional, switch for printing the warning messages.</para>
           <variablelist>
             <varlistentry>
               <term>=  </term>
@@ -209,7 +209,7 @@
     matrices B and D of a discrete-time system, using SLICOT routine 
     IB01CD.
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
       [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
@@ -231,7 +231,7 @@
     <para>
     The model structure is :
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
@@ -309,7 +309,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inistate">inistate</link>

@@ -1959,7 +1959,7 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
   <refsection>
     <title>Used Functions</title>
     <para>This function is based on the Fortran routine
-    <literal>colnew</literal> developped by</para>
+    <literal>colnew</literal> developed by</para>
     <para>U. Ascher, Department of Computer Science, University of British
     Columbia, Vancouver, B.C. V6T 1W5, Canada</para>
     <para>G. Bader, institut f. Angewandte mathematik university of
@@ -1993,7 +1993,7 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
       <listitem>
         <para>U. Ascher, J. Christiansen and R.D. russell, colsys - a
         collocation code for boundary value problems, lecture notes comp.sc.
-        76, springer verlag, b. childs et. al. (eds.) (1979), 164-185.</para>
+        76, springer verlag, b. children et. al. (eds.) (1979), 164-185.</para>
       </listitem>
       <listitem>
         <para>C. Deboor and R. Weiss, solveblok: a package for solving almost

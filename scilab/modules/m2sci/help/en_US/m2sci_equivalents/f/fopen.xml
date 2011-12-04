@@ -55,7 +55,7 @@ Matlab offers two permissions options not supported by Scilab: <emphasis role="b
         <term>Input values:</term>
         <listitem>
           <para>
-In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis> does not exist. You can also use <emphasis role="bold">fopen</emphasis> in Matlab to get informations on a file identifier (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented in Scilab.
+In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis> does not exist. You can also use <emphasis role="bold">fopen</emphasis> in Matlab to get information on a file identifier (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented in Scilab.
 </para>
         </listitem>
       </varlistentry>
