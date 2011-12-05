@@ -70,6 +70,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/scirenderer-0.2.5.jar" load="onUse">
     <load on="graphics"/>
     <load on="graphic_ojects"/>
+	<load on="XCos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
