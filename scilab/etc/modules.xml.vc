@@ -48,5 +48,6 @@
     <module name="spreadsheet" activate="yes"/>
     <module name="randlib" activate="yes"/>
     <module name="atoms" activate="yes"/>
+    <module name="interpolation" activate="yes"/>
 </modules>
 

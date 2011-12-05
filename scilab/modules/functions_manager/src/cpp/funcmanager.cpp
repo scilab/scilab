@@ -311,6 +311,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"spreadsheet", &SpreadsheetModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"randlib", &RandlibModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"graphics", &GraphicsModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"interpolation", &InterpolationModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

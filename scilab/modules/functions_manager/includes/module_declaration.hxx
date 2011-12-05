@@ -44,4 +44,5 @@
 #include "../../spreadsheet/includes/spreadsheet_gw.hxx"
 #include "../../randlib/includes/randlib_gw.hxx"
 #include "../../graphics/includes/graphics_gw.hxx"
+#include "../../interpolation/includes/interpolation_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */
