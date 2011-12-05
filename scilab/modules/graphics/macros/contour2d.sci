@@ -155,6 +155,6 @@ if cnt>0 then
 end
 set('current_entity',a);
 fig.immediate_drawing=v;
-fig.auto_clear=autoc;
+//fig.auto_clear=autoc;
 draw(fig)
 endfunction

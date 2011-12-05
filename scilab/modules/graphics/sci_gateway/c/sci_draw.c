@@ -29,6 +29,7 @@ int sci_draw( char * fname, unsigned long fname_len )
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 
+#if 0
   if (Rhs == 0)
   {
     sciDrawSingleObj(sciGetCurrentObj()) ;
@@ -68,6 +69,7 @@ int sci_draw( char * fname, unsigned long fname_len )
 
     FREE(drawnObjects);
   }
+#endif
 
   LhsVar(1) = 0;
   PutLhsVar();
