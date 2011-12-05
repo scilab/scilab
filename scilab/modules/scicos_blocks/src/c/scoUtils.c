@@ -79,7 +79,7 @@ BOOL setLabel(char *pAxeUID, const char *_pstName, const char *label)
 
     getGraphicObjectProperty(pAxeUID, _pstName, jni_string, (void **)&pLabelUID);
 
-    if (pLabelUID != NULL)
+    if (pLabelUID != NULL && strcmp(pLabelUID, "") != 0)
     {
         dimensions[0] = 1;
         dimensions[1] = 1;
