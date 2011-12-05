@@ -936,6 +936,8 @@ Bug fixes:
 
 * bug 10119 fixed - assert_checkequal did not support sparse complex doubles
 
+* bug 10151 fixed - wrong error message about polynomials was displayed.
+
 * bug 10179 fixed - Weird behaviour with evstr.
 
 * bug 10282 fixed - repmat did not work for scalar input on dims greater than 2 
