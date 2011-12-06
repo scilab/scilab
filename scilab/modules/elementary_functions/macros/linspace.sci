@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -26,13 +26,13 @@ function y = linspace(d1, d2, n)
   end
 
 
-  if rhs == 2 then 
+  if rhs == 2 then
     n = 100;
   else
     if type(n)<>1|size(n,'*')<>1|int(n)<>n|n<2 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer >= %d expected.\n"),"linspace",3));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer >= %d expected.\n"),"linspace",3, 2));
   end
-  
+
   end
   if (n - 1) <= 0 then
     y = d2;
