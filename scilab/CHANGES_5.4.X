@@ -591,7 +591,7 @@ Graphics:
 
 * bug 10298 fixed - Example of datatipSetDisplay generated an error.
 
-* bug 10331 fixed - datatipCreate produces a warning and an error instead of 
+* bug 10331 fixed - datatipCreate produces a warning and an error instead of
                     a warning if the curve user_data is not a struct
 
 ATOMS:
@@ -940,6 +940,8 @@ Bug fixes:
 * bug 10105 fixed - Focus was not given to the prompt when outputview had it.
 
 * bug 10119 fixed - assert_checkequal did not support sparse complex doubles
+
+* bug 10124 fixed - strsplit crashed with wrong input arguments.
 
 * bug 10151 fixed - wrong error message about polynomials was displayed.
 
