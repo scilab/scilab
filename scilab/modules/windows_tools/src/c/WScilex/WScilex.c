@@ -18,7 +18,8 @@
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
 /*--------------------------------------------------------------------------*/
-#define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
+#define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
+#define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
 #define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "Wscilex.exe failed with error %d: %s"
@@ -44,9 +45,15 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
     HINSTANCE hinstLib = NULL; 
     BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
 
-    if (GetWindowsVersion() < OS_WIN32_WINDOWS_2000)
+    if (GetWindowsVersion() == OS_ERROR	)
     {
-        MessageBox(NULL, TEXT(MSG_DETECT_2K_OR_MORE), TEXT(MSG_WARNING), MB_ICONWARNING);
+        MessageBox(NULL, TEXT(MSG_DETECT_UNKNOW), TEXT(MSG_WARNING), MB_ICONWARNING);
+        return -1;
+    }
+
+    if (GetWindowsVersion() < OS_WIN32_WINDOWS_XP	)
+    {
+        MessageBox(NULL, TEXT(MSG_DETECT_XP_OR_MORE), TEXT(MSG_WARNING), MB_ICONWARNING);
         return -1;
     }
 
