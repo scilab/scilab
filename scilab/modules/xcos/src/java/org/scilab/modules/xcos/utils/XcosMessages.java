@@ -41,6 +41,7 @@ public final class XcosMessages {
     public static final String NEW_PALETTE = Messages.gettext("New palette")
             + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
+    public static final String OPEN_IN = Messages.gettext("Open file in Scilab current directory");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String EXPORT = Messages.gettext("Export") + DOTS;

@@ -12,6 +12,8 @@
 #ifndef __FILEUTILS_H__
 #define __FILEUTILS_H__
 /*--------------------------------------------------------------------------*/
-int isEmptyDirectory(char * dirName);
+int isEmptyDirectory(char *dirName);
+char *getCWD();
+
 /*--------------------------------------------------------------------------*/
 #endif /* __FILEUTILS_H__ */

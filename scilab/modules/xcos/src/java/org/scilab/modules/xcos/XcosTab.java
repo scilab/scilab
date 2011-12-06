@@ -66,6 +66,7 @@ import org.scilab.modules.xcos.actions.InitModelicaAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
+import org.scilab.modules.xcos.actions.OpenInSciAction;
 import org.scilab.modules.xcos.actions.PrintAction;
 import org.scilab.modules.xcos.actions.QuitAction;
 import org.scilab.modules.xcos.actions.RecentFileAction;
@@ -357,6 +358,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
         fileMenu.add(NewDiagramAction.createMenu(diagram));
         fileMenu.add(OpenAction.createMenu(diagram));
+        fileMenu.add(OpenInSciAction.createMenu(diagram));
         fileMenu.addSeparator();
         fileMenu.add(SaveAction.createMenu(diagram));
         fileMenu.add(SaveAsAction.createMenu(diagram));
@@ -572,6 +574,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
         openAction = OpenAction.createButton(diagram);
         toolBar.add(openAction);
+
+        toolBar.add(OpenInSciAction.createButton(diagram));
 
         toolBar.addSeparator();
 
