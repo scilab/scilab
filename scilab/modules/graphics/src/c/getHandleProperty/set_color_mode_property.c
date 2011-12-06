@@ -27,7 +27,6 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "ColorMapManagement.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 

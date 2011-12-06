@@ -200,7 +200,6 @@ src/c/getHandleProperty/set_current_entity_property.c \
 src/c/getHandleProperty/set_figure_id_property.c \
 src/c/getHandleProperty/set_pixmap_property.c \
 src/c/getHandleProperty/set_figure_style_property.c \
-src/c/ColorMapManagement.c \
 src/c/getHandleProperty/set_mark_size_property.c \
 src/c/getHandleProperty/set_y_shift_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \

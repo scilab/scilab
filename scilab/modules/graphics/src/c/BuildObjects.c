@@ -43,7 +43,6 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
-#include "ColorMapManagement.h"
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
 #include "loadTextRenderingAPI.h"
