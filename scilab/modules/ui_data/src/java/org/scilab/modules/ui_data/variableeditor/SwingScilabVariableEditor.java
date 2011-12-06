@@ -38,6 +38,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.Window;
@@ -57,16 +58,16 @@ import org.scilab.modules.ui_data.variableeditor.actions.PasteAction;
 import org.scilab.modules.ui_data.variableeditor.actions.PlotAction;
 import org.scilab.modules.ui_data.variableeditor.actions.RedoAction;
 import org.scilab.modules.ui_data.variableeditor.actions.RefreshAction;
-import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionShortAction;
-import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionShorteAction;
 import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionLongAction;
 import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionLongeAction;
+import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionShortAction;
+import org.scilab.modules.ui_data.variableeditor.actions.SetPrecisionShorteAction;
 import org.scilab.modules.ui_data.variableeditor.actions.SizeColumnsToFitAction;
 import org.scilab.modules.ui_data.variableeditor.actions.SupprAction;
 import org.scilab.modules.ui_data.variableeditor.actions.UndoAction;
-import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.CellEditorFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabGenericCellEditor;
+import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
 
 /**
@@ -85,10 +86,10 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     private static final String APOS = "'";
     private static final long serialVersionUID = 1L;
 
-    private ScilabTabbedPane tabPane;
-    private PushButton refreshButton;
-    private PushButton undoButton;
-    private PushButton redoButton;
+    private final ScilabTabbedPane tabPane;
+    private final PushButton refreshButton;
+    private final PushButton undoButton;
+    private final PushButton redoButton;
 
     /**
      * Create a JTable with data Model.
@@ -98,7 +99,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
-        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/rrze_table.png").getImage());
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table")).getImage());
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
         undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);
         redoButton = RedoAction.createButton(this, UiDataMessages.REDO);
@@ -106,6 +107,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         enableRedoButton(false);
         tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
+                @Override
                 public void stateChanged(ChangeEvent e) {
                     String name = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
                     if (name.length() != 0) {
@@ -139,6 +141,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
         setInfoBar(infoBarToAdd);
     }
@@ -146,6 +149,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
     }
@@ -153,6 +157,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
         setToolBar(toolBarToAdd);
     }
@@ -309,6 +314,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setData(String name, String type, Object[][] data) {
         TableVariableEditor table = new TableVariableEditor(this);
 
@@ -329,13 +335,13 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         table.setComponentPopupMenu(createPopupMenu());
 
         ScilabGenericCellEditor cellEditor = (ScilabGenericCellEditor) CellEditorFactory.createCellEditor(type);
-        int rows = Math.max(((TableVariableEditor) table).getMinimalRowNumber(), table.getModel().getRowCount());
+        int rows = Math.max(table.getMinimalRowNumber(), table.getModel().getRowCount());
         int cols = table.getModel().getColumnCount();
 
         SwingEditvarTableModel dataModel = new SwingEditvarTableModel(this, name, type, data, cellEditor, rows, cols);
 
-        dataModel.addTableModelListener(getRowHeader((TableVariableEditor) table));
-        getRowHeader((TableVariableEditor) table).tableChanged(new TableModelEvent(dataModel));
+        dataModel.addTableModelListener(getRowHeader(table));
+        getRowHeader(table).tableChanged(new TableModelEvent(dataModel));
         table.setModel(dataModel);
         table.setDefaultEditor(Object.class, cellEditor);
         table.setDefaultRenderer(Object.class, RendererFactory.createRenderer(type));
@@ -421,6 +427,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public SimpleTab getAsSimpleTab() {
         return this;
     }
@@ -428,6 +435,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * {@inheritDoc}
      */
+    @Override
     public Window getParentWindow() {
         return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
     }

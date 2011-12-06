@@ -62,7 +62,7 @@ public class EditFormatAction extends DefaultAction {
     /**
      * Icon of the action
      */
-    public static final String SMALL_ICON = "select-by-color.png";
+    public static final String SMALL_ICON = "select-by-color";
     /**
      * Mnemonic key for the action
      */

@@ -17,10 +17,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Iterator;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -33,7 +29,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -44,7 +39,7 @@ public final class OpenAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.OPEN;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "document-open.png";
+    public static final String SMALL_ICON = "document-open";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_O;
     /** Accelerator key for the action */

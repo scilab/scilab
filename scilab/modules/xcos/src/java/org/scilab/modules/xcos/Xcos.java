@@ -46,6 +46,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -83,9 +84,7 @@ public final class Xcos {
      * The current Xcos tradename
      */
     public static final String TRADENAME = "Xcos";
-    public static final ImageIcon ICON = new ImageIcon(
-            System.getenv("SCI")
-                    + "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png");
+    public static final ImageIcon ICON = new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor"));
 
     private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
 
@@ -145,7 +144,7 @@ public final class Xcos {
         }
 
         /* Check the dependencies at startup time */
-        checkDependencies();
+        // checkDependencies();
 
         /*
          * Allocate data

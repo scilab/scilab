@@ -124,11 +124,11 @@ public class OSXAdapter implements InvocationHandler {
 	 * Pass this method an Image which is going to be the Dock Icon of Scilab 
 	 * @param icon the icon itself
 	 */
-    public static void setDockIcon(String pathIcon) {
+    public static void setDockIcon(ImageIcon icon) {
  
        try {
             Method setDockIconMethod = macOSXApplication.getClass().getDeclaredMethod("setDockIconImage", new Class[] { Image.class });
-	   setDockIconMethod.invoke(macOSXApplication, new Object[] { new ImageIcon(pathIcon).getImage() });
+            setDockIconMethod.invoke(macOSXApplication, new Object[] { icon.getImage() });
     }catch (java.lang.NoSuchMethodException ex){
 	   System.err.println("Could not access to the method setDockIconImage. ");
 	   System.err.println("This is due to your version of Java / Mac OS X which is too old or not up-to-date");
@@ -138,7 +138,7 @@ public class OSXAdapter implements InvocationHandler {
        }catch (java.lang.reflect.InvocationTargetException ex){
            System.err.println("Exception occured while the method was invocated setDockIconImage");
        }catch (java.lang.NullPointerException ex){
-           System.err.println("Exception occured while the method was executed with the icon "+pathIcon);
+            System.err.println("Exception occured while the method was executed with the icon " + icon);
        }
        
 	   /*        } catch (Exception ex) {
@@ -155,7 +155,8 @@ public class OSXAdapter implements InvocationHandler {
         setHandler(new OSXAdapter("handleOpenFile", target, fileHandler) {
 		// Override OSXAdapter.callTarget to send information on the
 		// file to be opened
-		public boolean callTarget(Object appleEvent) {
+		@Override
+        public boolean callTarget(Object appleEvent) {
 		    if (appleEvent != null) {
 			try {
 			    Method getFilenameMethod = appleEvent.getClass().getDeclaredMethod("getFilename", (Class[])null);
@@ -217,6 +218,7 @@ public class OSXAdapter implements InvocationHandler {
     
     // InvocationHandler implementation
     // This is the entry point for our proxy object; it is called every time an ApplicationListener method is invoked
+    @Override
     public Object invoke (Object proxy, Method method, Object[] args) throws Throwable {
         if (isCorrectMethod(method, args)) {
             boolean handled = callTarget(args[0]);

@@ -2,6 +2,13 @@
             =========================================================
 
 
+Graphical User Interface
+========================
+
+* bug 4978 fixed - Icons did not follow the Tango norm.
+
+
+
 Javasci
 =======
 

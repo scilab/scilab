@@ -12,9 +12,9 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
@@ -25,6 +25,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -37,7 +38,7 @@ public final class UndoAction extends CallBack {
     private static final String KEY = "OSSCKEY Z";
     private static final String UNDO = "Undo";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -61,6 +62,7 @@ public final class UndoAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         ((SwingEditvarTableModel) table.getModel()).getUndoManager().undo();
@@ -76,7 +78,7 @@ public final class UndoAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new UndoAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-undo.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-undo"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

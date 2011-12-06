@@ -104,7 +104,7 @@
     <para/>
     <para>
       Invoking xcos with the toolbar icon
-      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/32x32/apps/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
       , with the <emphasis>Xcos</emphasis> menu item in <emphasis>Applications</emphasis> of the Scilab main window,
       or as the following example opens up the empty <emphasis>Xcos</emphasis> window of edition shown below.
     </para>
@@ -166,10 +166,8 @@ xcos(scs_m);]]></programlisting>
         <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
       </imageobject>
     </mediaobject>
-    
     <para>Xcos requires a C compiler for simulation acceleration.</para>
     <para>It is recommended that you install a supported compiler on your machine.</para>
-
   </refsection>
   <refsection id="SeeAlso_xcos">
     <title role="see also">See Also</title>

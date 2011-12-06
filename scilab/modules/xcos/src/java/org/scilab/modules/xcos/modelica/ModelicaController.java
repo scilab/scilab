@@ -28,6 +28,7 @@ import javax.swing.event.EventListenerList;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Model.Identifiers;
 import org.scilab.modules.xcos.modelica.model.Struct;
@@ -129,8 +130,9 @@ public final class ModelicaController {
         JDialog dialog = new JDialog();
         dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
         dialog.setAlwaysOnTop(false);
-        dialog.setIconImage(new ImageIcon(System.getenv("SCI")
-                + "/modules/gui/images/icons/scilab.png").getImage());
+
+        final ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        dialog.setIconImage(icon.getImage());
 
         ModelicaController controller;
         try {

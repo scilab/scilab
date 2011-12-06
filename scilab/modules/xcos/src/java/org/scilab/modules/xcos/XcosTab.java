@@ -121,11 +121,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
     public static final String DEFAULT_WIN_UUID = "xcos-default-window";
     public static final String DEFAULT_TAB_UUID = "xcos-default-tab";
 
-    static {
-        DefaultAction.addIconPath(new File(ScilabConstants.SCI,
-                "/modules/xcos/images/icons/"));
-    }
-
     /*
      * Instance fields
      */

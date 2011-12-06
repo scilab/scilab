@@ -40,7 +40,7 @@ public class StartAction extends OneBlockDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.START;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "media-playback-start.png";
+    public static final String SMALL_ICON = "media-playback-start";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = 0;
     /** Accelerator key for the action */

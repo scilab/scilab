@@ -33,7 +33,7 @@ public final class SaveAsAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SAVE_AS;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "document-save-as.png";
+    public static final String SMALL_ICON = "document-save-as";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_S;
     /** Accelerator key for the action */
