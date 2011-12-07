@@ -323,7 +323,8 @@ DestroySubWin (sciPointObj * pthis)
  */
 int deallocateText( sciPointObj * pthis )
 {
-  deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
+#if 0
+    deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
   FREE (pTEXT_FEATURE (pthis)->user_data);
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
   destroyHandleDrawer(pthis);
@@ -331,8 +332,9 @@ int deallocateText( sciPointObj * pthis )
 	destroyRelationShip(pthis);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
-
-  return 0;
+#endif
+    abort();
+    return 0;
 }
 
 /**DestroyText
@@ -363,7 +365,8 @@ DestroyLegend (sciPointObj * pthis)
 
 int deallocatePolyline (sciPointObj * pthis)
 {
-  FREE (pPOLYLINE_FEATURE (pthis)->pvx);
+#if 0
+    FREE (pPOLYLINE_FEATURE (pthis)->pvx);
   FREE (pPOLYLINE_FEATURE (pthis)->pvy);
 
   if (pPOLYLINE_FEATURE (pthis)->pvz != NULL) /**DJ.Abdemouche 2003**/
@@ -377,6 +380,8 @@ int deallocatePolyline (sciPointObj * pthis)
 	destroyRelationShip(pthis);
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
+#endif
+  abort();
   return 0;
 }
 
