@@ -273,7 +273,6 @@ char *getCmdLine(void)
     {
         printf("%ls\n", &wideString[nextLineLocationInWideString]);
     }
-    /* What if copy/paste then up arrow ? */
     multiByteString = wide_string_to_UTF8(&wideString[nextLineLocationInWideString]);
     nextLineLocationInWideString = cursorLocation + 1;
     appendLineToScilabHistory(multiByteString);

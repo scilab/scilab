@@ -61,11 +61,18 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         sizeOfCmd++;
         (*CommandLine)[sizeOfCmd] = L'\0';
         (*cursorLocation)++;
-        if (!((*cursorLocation + promptSize) % tgetnum("co")))
-        {
-            capStr("do");
-        }
         capStr("ei");
+        /* To prevent a lost cursor (if cursor reach the last column of the term) */
+        if ((*CommandLine)[*cursorLocation] && (*CommandLine)[*cursorLocation] != L'\n')
+        {
+            /* Write the next character in the string then move the cursor left */
+            printf("%lc\b", (*CommandLine)[*cursorLocation]);
+        }
+        else
+        {
+            /* If there is none, write a space then move the cursor left */
+            printf(" \b");
+        }
     }
     return 0;
 }
@@ -92,6 +99,7 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
             gotoLeft(CommandLine, cursorLocation);
         }
         indexToMoveChar = *cursorLocation;
+        /* Save cursor position where it must be placed */
         capStr("sc");
         while (indexToMoveChar < sizeOfCmd)
         {
@@ -100,7 +108,11 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
             indexToMoveChar++;
         }
         CommandLine[indexToMoveChar] = L'\0';
-        printf("%ls ", &CommandLine[*cursorLocation]);
+        /* Delete sreen from cursor to the end */
+        capStr("cd");
+        /* write the new string */
+        printf("%ls", &CommandLine[*cursorLocation]);
+        /* Put cursor to the previously saved position */
         capStr("rc");
     }
     return 0;
@@ -113,7 +125,7 @@ int deleteFromCursToEndLine(wchar_t * CommandLine, unsigned int *cursorLocation)
     CommandLine[*cursorLocation] = '\0';
     /*
      * Clear screen from cursor to the end of the screen
-     * Don't use "ce" because of multiligne.
+     * Don't use "ce" because of multiline.
      */
     capStr("cd");
     return 0;
