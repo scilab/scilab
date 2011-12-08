@@ -20,6 +20,11 @@ Graphical User Interface
 
 * bug 4978 fixed - Icons did not follow the Tango norm.
 
+Scinotes
+========
+
+* Add shortcuts META+(UP|DOWN) to navigate between paragraphs
+
 
 Javasci
 =======
