@@ -33,183 +33,154 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-      
-			<varlistentry>
+      <varlistentry>
         <term>modules</term>
         <listitem>
           <para>
 						mx1 or mx2 character string matrix:
 					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
 								Mandatory
 							</td>
-							<td>
+              <td>
 							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+								Optional
 							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
+              <td>
 								If this field is empty or is not present, all versions
 								of the module are removed.
 							</td>
-						</tr>
-						
-					</informaltable>
-					
+            </tr>
+          </informaltable>
         </listitem>
       </varlistentry>
-      
-			<varlistentry>
+      <varlistentry>
         <term>section</term>
         <listitem>
           <para>
 						This argument controls the list of sections where search
 						modules to remove.
 					</para>
-          <para>
-						<literal>section</literal> is a single-string and its value should be :
+          <para><literal>section</literal> is a single-string and its value should be :
 					</para>
           <itemizedlist>
             <listitem>
-              <para>
-								<literal>"all"</literal>: Modules to remove are searched in both
+              <para><literal>"all"</literal>: Modules to remove are searched in both
 								"user" and "allusers" sections.
 							</para>
             </listitem>
             <listitem>
-              <para>
-								<literal>"allusers"</literal>: Modules to remove are only searched in
+              <para><literal>"allusers"</literal>: Modules to remove are only searched in
 								the "allusers" section.
 							</para>
             </listitem>
             <listitem>
-              <para>
-								<literal>"user"</literal>: Modules to remove are only searched in
+              <para><literal>"user"</literal>: Modules to remove are only searched in
 								the "user" section.
 							</para>
             </listitem>
           </itemizedlist>
-					<para>
+          <para>
 						If SCI is write accessible, "all" is the default value.
 						Otherwise, the default value is "user".
 					</para>
         </listitem>
-			</varlistentry>
-			<varlistentry>
+      </varlistentry>
+      <varlistentry>
         <term>delete</term>
         <listitem>
-          <para>
-						<literal>delete</literal> is a boolean. If set to %T (True), the .zip or .tar.gz file containing 
+          <para><literal>delete</literal> is a boolean. If set to %T (True), the .zip or .tar.gz file containing 
 the sources will also be deleted. This includes the dependencies' archives files that were installed with the module, if any.
 					</para>
         </listitem>
-			</varlistentry>
-			
+      </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>5xn character string matrix:</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
 							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
 							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Section -->
-						
-						<tr>
-							<td>
-								<emphasis>3rd Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Installation section</emphasis>
-							</td>
-							<td>
+            </tr>
+            <!-- Section -->
+            <tr>
+              <td>
+                <emphasis>3rd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Installation section</emphasis>
+              </td>
+              <td>
 								this parameter determines whether the module has been installed
 								for all users or only for the	current user.
 							</td>
-						</tr>
-						
-						<!-- Installation path -->
-						
-						<tr>
-							<td>
-								<emphasis>4th Col.</emphasis>
+            </tr>
+            <!-- Installation path -->
+            <tr>
+              <td>
+                <emphasis>4th Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Installation path</emphasis>
+              </td>
+              <td>
 							</td>
-							<td>
-								<emphasis role="strong">Installation path</emphasis>
-							</td>
-							<td>
-							</td>
-						</tr>
-						
-						<!-- Status -->
-						
-						<tr>
-							<td>
-								<emphasis>5th Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Status</emphasis>
-							</td>
-							<td>
+            </tr>
+            <!-- Status -->
+            <tr>
+              <td>
+                <emphasis>5th Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Status</emphasis>
+              </td>
+              <td>
 								"I" stands for "Intentionnaly", "A" stands for "Automatically"
 							</td>
-						</tr>
-						
-					</informaltable>
-					
+            </tr>
+          </informaltable>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-	
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
@@ -217,7 +188,6 @@ the sources will also be deleted. This includes the dependencies' archives files
     <title>Description</title>
     <para><literal>atomsRemove</literal> remove one or more modules.
 	</para>
-	
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -282,7 +252,7 @@ atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsInstall">atomsInstall</link>

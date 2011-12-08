@@ -61,7 +61,7 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-								Optionnal
+								Optional
 							</td>
               <td>
 								If this field is empty or is not present,
@@ -77,7 +77,7 @@
                 <emphasis role="strong">Section</emphasis>
               </td>
               <td>
-								Optionnal
+								Optional
 							</td>
               <td>
 								If this field is empty or is not present,
