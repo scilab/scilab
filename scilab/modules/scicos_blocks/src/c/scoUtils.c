@@ -24,7 +24,7 @@
 
 #include <string.h>
 
-char *findChildWithKindAt(char *parent, const char *type, int position)
+char *findChildWithKindAt(char *parent, const char *type, const int position)
 {
     char *child = NULL;
 

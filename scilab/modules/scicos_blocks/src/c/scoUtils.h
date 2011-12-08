@@ -23,7 +23,7 @@
  * \param position the n child of kind (starting at 0)
  * \return the found child
  */
-char *findChildWithKindAt(char *parent, const char *type, int position);
+char *findChildWithKindAt(char *parent, const char *type, const int position);
 
 /**
  * Set the labels of the axe

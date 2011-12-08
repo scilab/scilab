@@ -618,26 +618,26 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
      */
     if (pAxe == NULL)
     {
-        pAxe = cloneGraphicObject(getAxesModel());
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    }
 
-        if (pAxe != NULL)
+    /*
+     * Setup on first access
+     */
+    if (pAxe != NULL)
+    {
+        // allocate the segs through the getter
+        for (i = 0; i < nclk; i++)
         {
-            setGraphicObjectRelationship(pFigureUID, pAxe);
-
-            // allocate the segs through the getter
-            for (i = 0; i < nclk; i++)
-            {
-                getSegs(pAxe, block, i);
-            }
-
-            sco->scope.cachedAxeUID = pAxe;
+            getSegs(pAxe, block, i);
         }
     }
 
-    if (sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = pAxe;
-    }
+    /*
+     * then cache
+     */
+    sco->scope.cachedAxeUID = pAxe;
     return pAxe;
 }
 
@@ -670,30 +670,37 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
         {
             createDataObject(pSegs, __GO_SEGS__);
             setGraphicObjectRelationship(pAxeUID, pSegs);
-
-            setGraphicObjectProperty(pSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
-
-            // Setup properties
-            setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
-
-            color = block->ipar[2 + input];
-            if (color > 0)
-            {
-                setGraphicObjectProperty(pSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-                setGraphicObjectProperty(pSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
-            }
-            else
-            {
-                color = -color;
-                setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-                setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
-            }
-
-            sco->scope.cachedSegsUIDs[input] = pSegs;
         }
     }
 
-    if (sco->scope.cachedSegsUIDs != NULL && sco->scope.cachedSegsUIDs[input] == NULL)
+    /*
+     * Setup on first access
+     */
+    if (pSegs != NULL)
+    {
+        setGraphicObjectProperty(pSegs, __GO_NUMBER_ARROWS__, &sco->internal.maxNumberOfPoints[input], jni_int, 1);
+
+        // Setup properties
+        setGraphicObjectProperty(pSegs, __GO_LINE_THICKNESS__, &d__1, jni_double, 1);
+
+        color = block->ipar[2 + input];
+        if (color > 0)
+        {
+            setGraphicObjectProperty(pSegs, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pSegs, __GO_SEGS_COLORS__, &color, jni_int_vector, 1);
+        }
+        else
+        {
+            color = -color;
+            setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
+        }
+    }
+
+    /*
+     * then cache
+     */
+    if (sco->scope.cachedSegsUIDs != NULL)
     {
         sco->scope.cachedSegsUIDs[input] = pSegs;
     }

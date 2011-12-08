@@ -358,20 +358,22 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
      */
     if (pAxe == NULL)
     {
-        pAxe = cloneGraphicObject(getAxesModel());
-
-        if (pAxe != NULL)
-        {
-            setGraphicObjectRelationship(pFigureUID, pAxe);
-
-            getGrayplot(pAxe, block);
-        }
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
     }
 
-    if (sco->scope.cachedAxeUID == NULL)
+    /*
+     * Setup on first access
+     */
+    if (pAxe != NULL)
     {
-        sco->scope.cachedAxeUID = pAxe;
+        getGrayplot(pAxe, block);
     }
+
+    /*
+     * then cache
+     */
+    sco->scope.cachedAxeUID = pAxe;
     return pAxe;
 }
 
@@ -405,17 +407,24 @@ static char *getGrayplot(char *pAxeUID, scicos_block * block)
         {
             createDataObject(pGrayplot, __GO_GRAYPLOT__);
             setGraphicObjectRelationship(pAxeUID, pGrayplot);
-
-            setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
-            setBounds(block, pAxeUID, pGrayplot);
-            setDefaultValues(block, pGrayplot);
         }
     }
 
-    if (sco->scope.cachedGrayplotUID == NULL)
+    /*
+     * Setup on first access
+     */
+    if (pGrayplot != NULL)
     {
-        sco->scope.cachedGrayplotUID = pGrayplot;
+
+        setGraphicObjectProperty(pGrayplot, __GO_DATA_MAPPING__, &i__0, jni_int, 1);
+        setBounds(block, pAxeUID, pGrayplot);
+        setDefaultValues(block, pGrayplot);
     }
+
+    /*
+     * then cache
+     */
+    sco->scope.cachedGrayplotUID = pGrayplot;
     return pGrayplot;
 }
 

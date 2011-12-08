@@ -591,26 +591,27 @@ static char *getAxe(char *pFigureUID, scicos_block * block, int input)
      */
     if (pAxe == NULL)
     {
-        pAxe = cloneGraphicObject(getAxesModel());
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, input);
+    }
 
-        if (pAxe != NULL)
+    /*
+     * Setup on first access
+     */
+    if (pAxe != NULL)
+    {
+        // allocate the polylines through the getter
+        for (i = 0; i < block->insz[input]; i++)
         {
-            setGraphicObjectRelationship(pFigureUID, pAxe);
-
-            // allocate the polylines through the getter
-            for (i = 0; i < block->insz[input]; i++)
-            {
-                getPolyline(pAxe, block, i);
-            }
-
-            sco->scope.cachedAxeUID = pAxe;
+            getPolyline(pAxe, block, i);
         }
     }
 
-    if (sco->scope.cachedAxeUID == NULL)
-    {
-        sco->scope.cachedAxeUID = pAxe;
-    }
+    /*
+     * then cache
+     */
+
+    sco->scope.cachedAxeUID = pAxe;
     return pAxe;
 }
 
@@ -645,34 +646,43 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
             createDataObject(pPolyline, __GO_POLYLINE__);
             setGraphicObjectRelationship(pAxeUID, pPolyline);
 
-            /*
-             * Default setup (will crash if removed)
-             */
-            {
-                int polylineSize[2] = { 1, block->ipar[2] };
-                setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
-            }
-
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
-
-            color = block->ipar[3 + row];
-            if (color > 0)
-            {
-                setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
-                setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
-            }
-            else
-            {
-                color = -color;
-                setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
-                setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
-            }
-
-            sco->scope.cachedPolylinesUIDs[row] = pPolyline;
         }
     }
 
+    /*
+     * Setup on first access
+     */
+    if (pPolyline != NULL)
+    {
+
+        /*
+         * Default setup (will crash if removed)
+         */
+        {
+            int polylineSize[2] = { 1, block->ipar[2] };
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+        }
+
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
+        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
+
+        color = block->ipar[3 + row];
+        if (color > 0)
+        {
+            setGraphicObjectProperty(pPolyline, __GO_LINE_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pPolyline, __GO_LINE_COLOR__, &color, jni_int, 1);
+        }
+        else
+        {
+            color = -color;
+            setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
+            setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+        }
+    }
+
+    /*
+     * then cache
+     */
     if (sco->scope.cachedPolylinesUIDs != NULL && sco->scope.cachedPolylinesUIDs[row] == NULL)
     {
         sco->scope.cachedPolylinesUIDs[row] = pPolyline;

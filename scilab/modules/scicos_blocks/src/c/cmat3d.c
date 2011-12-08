@@ -317,14 +317,10 @@ static char *getFigure(scicos_block * block)
         setGraphicObjectProperty(pAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(pAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(pAxe, __GO_Z_AXIS_VISIBLE__, &i__1, jni_bool, 1);
-
-        sco->scope.cachedFigureUID = pFigureUID;
     }
 
-    if (sco->scope.cachedFigureUID == NULL)
-    {
-        sco->scope.cachedFigureUID = pFigureUID;
-    }
+    sco->scope.cachedFigureUID = pFigureUID;
+
     return pFigureUID;
 }
 
@@ -348,20 +344,17 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
      */
     if (pAxe == NULL)
     {
-        pAxe = cloneGraphicObject(getAxesModel());
-
-        if (pAxe != NULL)
-        {
-            setGraphicObjectRelationship(pFigureUID, pAxe);
-
-            getPlot3d(pAxe, block);
-        }
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
     }
 
-    if (sco->scope.cachedAxeUID == NULL)
+    if (pAxe != NULL)
     {
-        sco->scope.cachedAxeUID = pAxe;
+        getPlot3d(pAxe, block);
     }
+
+    sco->scope.cachedAxeUID = pAxe;
+
     return pAxe;
 }
 
@@ -395,17 +388,24 @@ static char *getPlot3d(char *pAxeUID, scicos_block * block)
         {
             createDataObject(pPlot3d, __GO_PLOT3D__);
             setGraphicObjectRelationship(pAxeUID, pPlot3d);
-
-            setBounds(block, pAxeUID, pPlot3d);
-            setPlot3dSettings(block, pPlot3d);
-            setDefaultValues(block, pPlot3d);
         }
     }
 
-    if (sco->scope.cachedPlot3dUID == NULL)
+    /*
+     * Setup on first access
+     */
+    if (pPlot3d != NULL)
     {
-        sco->scope.cachedPlot3dUID = pPlot3d;
+
+        setBounds(block, pAxeUID, pPlot3d);
+        setPlot3dSettings(block, pPlot3d);
+        setDefaultValues(block, pPlot3d);
     }
+
+    /*
+     * then cache
+     */
+    sco->scope.cachedPlot3dUID = pPlot3d;
     return pPlot3d;
 }
 

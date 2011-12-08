@@ -418,20 +418,25 @@ static char *getAxe(char *pFigureUID, scicos_block * block)
      */
     if (pAxe == NULL)
     {
-        pAxe = cloneGraphicObject(getAxesModel());
+        cloneAxesModel(pFigureUID);
+        pAxe = findChildWithKindAt(pFigureUID, __GO_AXES__, 0);
+    }
 
-        if (pAxe != NULL)
+    /*
+     * Setup on first access
+     */
+    if (pAxe != NULL)
+    {
+        // allocate the polylines through the getter
+        for (i = 0; i < block->insz[0]; i++)
         {
-            setGraphicObjectRelationship(pFigureUID, pAxe);
-
-            // allocate the polylines through the getter
-            for (i = 0; i < block->insz[0]; i++)
-            {
-                getArc(pAxe, block, i);
-            }
+            getArc(pAxe, block, i);
         }
     }
 
+    /*
+     * then cache
+     */
     sco->scope.cachedAxeUID = pAxe;
     return pAxe;
 }
@@ -466,20 +471,27 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
             createDataObject(pArc, __GO_ARC__);
             setGraphicObjectRelationship(pAxeUID, pArc);
 
-            /*
-             * Default setup
-             */
-            setGraphicObjectProperty(pArc, __GO_START_ANGLE__, &d__0, jni_double, 1);
-            setGraphicObjectProperty(pArc, __GO_END_ANGLE__, &d__2PI, jni_double, 1);
-
-            color = block->ipar[2 + row];
-            setGraphicObjectProperty(pArc, __GO_BACKGROUND__, &color, jni_int, 1);
-
-            setGraphicObjectProperty(pArc, __GO_WIDTH__, &sco->internal.ballsSize[row], jni_double, 1);
-            setGraphicObjectProperty(pArc, __GO_HEIGHT__, &sco->internal.ballsSize[row], jni_double, 1);
         }
     }
 
+    /*
+     * Setup on first access
+     */
+    if (pArc != NULL)
+    {
+        setGraphicObjectProperty(pArc, __GO_START_ANGLE__, &d__0, jni_double, 1);
+        setGraphicObjectProperty(pArc, __GO_END_ANGLE__, &d__2PI, jni_double, 1);
+
+        color = block->ipar[2 + row];
+        setGraphicObjectProperty(pArc, __GO_BACKGROUND__, &color, jni_int, 1);
+
+        setGraphicObjectProperty(pArc, __GO_WIDTH__, &sco->internal.ballsSize[row], jni_double, 1);
+        setGraphicObjectProperty(pArc, __GO_HEIGHT__, &sco->internal.ballsSize[row], jni_double, 1);
+    }
+
+    /*
+     * then cache
+     */
     if (sco->scope.cachedArcsUIDs != NULL)
     {
         sco->scope.cachedArcsUIDs[row] = pArc;
