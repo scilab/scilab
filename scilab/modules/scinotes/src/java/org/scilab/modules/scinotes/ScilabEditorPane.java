@@ -1348,7 +1348,15 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void select(int start, int end) {
         removeHighlightOnPosition(start);
-        super.select(start, end);
+        int docLength = getDocument().getLength();
+        if (start > docLength) {
+            start = docLength;
+        }
+        if (end > docLength) {
+            end = docLength;
+        }
+        super.setCaretPosition(start);
+        super.moveCaretPosition(end);
     }
 
     /**

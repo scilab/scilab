@@ -106,8 +106,7 @@ SciNotes:
 * bug 10252 fixed - Could not change the font when SciNotes was docked with the
                     console.
 
-* bug 10283 fixed - The values write in w and iw output arguments of ode function
-                    are directly got from work table used in lsod* function.
+* bug 10354 fixed - Bad caret position after action on selection.
 
 
 Graphical User Interface:
@@ -956,6 +955,9 @@ Bug fixes:
 
 * bug 10282 fixed - repmat did not work for scalar input on dims greater than 2
                     neither for N-D arrays.
+
+* bug 10283 fixed - The values write in w and iw output arguments of ode function
+                    are directly got from work table used in lsod* function.
 
 * bug 10289 fixed - xload returns a better error message when a file does
                     not exist.
