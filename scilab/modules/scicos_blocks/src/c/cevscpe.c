@@ -524,8 +524,15 @@ static void setFigureSettings(char *pFigureUID, scicos_block * block)
     win_dim[0] = ipar[(nipar - 1) - 1];
     win_dim[1] = ipar[nipar - 1];
 
-    setGraphicObjectProperty(pFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
-    setGraphicObjectProperty(pFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
+    if (win_pos[0] > 0 && win_pos[1] > 0)
+    {
+        setGraphicObjectProperty(pFigureUID, __GO_POSITION__, &win_pos, jni_int_vector, 2);
+    }
+
+    if (win_dim[0] > 0 && win_dim[1] > 0)
+    {
+        setGraphicObjectProperty(pFigureUID, __GO_SIZE__, &win_dim, jni_int_vector, 2);
+    }
 };
 
 /*****************************************************************************
