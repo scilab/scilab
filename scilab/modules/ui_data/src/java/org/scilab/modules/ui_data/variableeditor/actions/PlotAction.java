@@ -121,7 +121,11 @@ public final class PlotAction extends CallBack {
         } else {
             int[] cols = table.getSelectedColumns();
             int[] rows = table.getSelectedRows();
-            if (cols.length > 0 && rows.length > 0) {
+            if (cols == null || cols.length == 0 || rows == null || rows.length == 0) {
+                rowC = model.getScilabMatrixRowCount();
+                colC = model.getScilabMatrixColCount();
+                datas = model.getVarName();
+            } else {
                 if (model.getType().equals(EditVar.STRING)) {
                     return;
                 }
@@ -135,6 +139,10 @@ public final class PlotAction extends CallBack {
                 rowC = rowSize[0];
                 colC = colSize[0];
             }
+        }
+
+        if (rowC == 0 || colC == 0) {
+            return;
         }
 
         if (!model.getType().equals(EditVar.DOUBLE)) {
