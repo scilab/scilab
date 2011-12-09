@@ -478,7 +478,14 @@ function status = test_single(_module, _testPath, _testName)
   //Process output files
 
   //Get the dia file
-  dia = mgetl(tmp_dia);
+  if isfile(tmp_dia) then
+    dia = mgetl(tmp_dia);
+  else
+    status.id = 6;
+    status.message = "failed: the dia file is not correct";
+    status.details = checkthefile(tmp_dia);
+    return;
+  end
 
   // To get TMPDIR value
   tmpdir1_line = grep(dia, "TMPDIR1");
