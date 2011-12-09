@@ -24,6 +24,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -68,9 +69,9 @@ SCICOS_BLOCKS_IMPEXP void mat_bksl(scicos_block *block,int flag)
  u1=GetRealInPortPtrs(block,1);
  u2=GetRealInPortPtrs(block,2);
  y=GetRealOutPortPtrs(block,1);
- l=max(mu,nu1);
- lu=max(4*nu1,min(mu,nu1)+3*nu1+1);
- lw=max(lu,2*min(mu,nu1)+nu2);
+ l=Max(mu,nu1);
+ lu=Max(4*nu1,Min(mu,nu1)+3*nu1+1);
+ lw=Max(lu,2*Min(mu,nu1)+nu2);
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_bksl_struct*) scicos_malloc(sizeof(mat_bksl_struct)))==NULL)

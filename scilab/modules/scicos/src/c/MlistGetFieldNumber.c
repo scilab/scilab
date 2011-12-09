@@ -40,7 +40,7 @@ int MlistGetFieldNumber(int *ptr, const char *string)
 	retval = -1;
 	for (k=0; k<nf; k++) 
 	{
-		longueur = min( headerstr[6+k] - headerstr[5+k] , nlgh);  /* size of kth fieldname */
+		longueur = Min( headerstr[6+k] - headerstr[5+k] , nlgh);  /* size of kth fieldname */
 		istart = 5 + nf + headerstr[5+k];    /* start of kth fieldname code */
 
 		C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);

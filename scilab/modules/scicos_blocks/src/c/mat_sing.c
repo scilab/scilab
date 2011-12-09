@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -54,8 +55,8 @@ SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block,int flag)
  u = GetRealInPortPtrs(block,1);
  y = GetRealOutPortPtrs(block,1);
  /* for lapack 3.1 (2006)*/
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
- lwork=max(1,lwork); 
+ lwork=Max(3*Min(mu,nu)+Max(mu,nu),5*Min(mu,nu));
+ lwork=Max(1,lwork); 
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct)))==NULL)

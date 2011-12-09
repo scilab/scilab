@@ -764,7 +764,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 		phase=1;
 		idoit(t0);
 		if (*ierr == 0) {
-			if((W=MALLOC(sizeof(double)*(max(nx,ng))))== NULL ){
+			if((W=MALLOC(sizeof(double)*(Max(nx,ng))))== NULL ){
 				FREE(iwa);
 				FREE_blocks();
 				*ierr =5;
@@ -1356,7 +1356,7 @@ L30:
 					}
 				}
 				tstop = rhotmp;
-				t = min(*told + deltat,min(t,*tf + ttol));
+				t = Min(*told + deltat,Min(t,*tf + ttol));
 
 				if (ng>0 &&  hot == 0 && nmod>0) {
 					zdoit(told,x,x,g);
@@ -1989,7 +1989,7 @@ L30:
 					}
 				}
 				tstop = rhotmp;
-				t = min(*told + deltat,min(t,*tf + ttol));
+				t = Min(*told + deltat,Min(t,*tf + ttol));
 
 				if (hot == 0){ /* CIC calculation when hot==0 */
 
@@ -4119,36 +4119,36 @@ static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 		switch(outtbtyp[-1+inplnk[inpptr[kf-1]-1]])
 		{
 		case SCSREAL_N    : outtbdptr=(SCSREAL_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbcptr,
+			i=Max(Min((int) *outtbcptr,
 				scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbsptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbsptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtblptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtblptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbucptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbucptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbusptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbusptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
-			i=max(min((int) *outtbulptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbulptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		default  : /* Add a message here */
@@ -4256,56 +4256,56 @@ static int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=*outtbdptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSCOMPLEX_N : outtbdptr=(SCSCOMPLEX_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=*outtbdptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbdptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT8_N    : outtbcptr=(SCSINT8_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtbcptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbcptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbcptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT16_N   : outtbsptr=(SCSINT16_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtbsptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbsptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbsptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSINT32_N   : outtblptr=(SCSINT32_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtblptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtblptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtblptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT8_N   : outtbucptr=(SCSUINT8_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtbucptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbucptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbucptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT16_N  : outtbusptr=(SCSUINT16_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtbusptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbusptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbusptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		case SCSUINT32_N  : outtbulptr=(SCSUINT32_COP *)outtbptr[-1+inplnk[inpptr[kf-1]-1]];
 			for (jj=0;jj<scs_imp->blocks[kf-1].nevout-1;jj++) {
 				g[zcptr[kf-1]-1+jj]=(double) *outtbulptr-(double)(jj+2);
 			}
-			i=max(min((int) *outtbulptr,scs_imp->blocks[kf-1].nevout),1);
+			i=Max(Min((int) *outtbulptr,scs_imp->blocks[kf-1].nevout),1);
 			break;
 
 		default  : /* Add a message here */
@@ -4682,9 +4682,9 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 		// xcdot[i] += CJ*inc;
 		xc[i] += inc;
 		xcdot[i] += CJJ*inc;
-		/*a= max(abs(H[0]*xcdot[i]),abs(1.0/Ewt[i]));
-		b= max(1.0,abs(xc[i]));
-		del=SQUR[0]*max(a,b);    */
+		/*a= Max(abs(H[0]*xcdot[i]),abs(1.0/Ewt[i]));
+		b= Max(1.0,abs(xc[i]));
+		del=SQUR[0]*Max(a,b);    */
 		job=0;/* read residuals */
 		Jdoit(&ttx, xc, xcdot, ERR2, &job);
 		if (*ierr < 0) return -1;
@@ -4719,7 +4719,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 		ysave=y[i][0];
 		inc =srur * MAX( ABS(ysave),1);
 		inc = (ysave + inc) - ysave;
-		/*del=SQUR[0]* max(1.0,abs(y[i][0]));
+		/*del=SQUR[0]* Max(1.0,abs(y[i][0]));
 		del=(y[i][0]+del)-y[i][0];*/
 		y[i][0] += inc;
 		job=2;/* applying y[i][0] to the output of imp block*/
@@ -4966,7 +4966,7 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 		rho_(a, lambda, x, work, rpar, ipar);
 		srur = 1e-10;
 		xi = x[*col-2];  
-		inc = srur * max(fabs(xi),1);
+		inc = srur * Max(fabs(xi),1);
 		inc = (xi + inc) - xi;  
 		x[*col-2] += inc;
 
