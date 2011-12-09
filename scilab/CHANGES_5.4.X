@@ -244,6 +244,8 @@ File input/output:
 
 * bug 10300 fixed - fscanfMat did not free some memory.
 
+* bug 10355 fixed - error messages in fullfile function were not localized.
+
 
 New functions
 =============
