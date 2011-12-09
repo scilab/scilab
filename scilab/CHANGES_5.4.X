@@ -991,6 +991,9 @@ Graphics
 ATOMS
 ======
 
+* atomsCheckModule function added. (SEP #76)
+  This function checks a given list of ATOMS modules (install, load, test, remove)
+
 * Bug #5380 fixed - atomsShow() output was broken (separators were not aligned).
 
 * Bug #8648 fixed - The tarball was not deleted when a module was removed (SEP #71).
