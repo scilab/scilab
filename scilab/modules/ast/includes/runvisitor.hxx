@@ -690,6 +690,7 @@ namespace ast
             //allow break and continue operations
             const_cast<Exp*>(&e.body_get())->breakable_set();
             const_cast<Exp*>(&e.body_get())->continuable_set();
+
             //allow return operation
             if(e.is_returnable())
             {
@@ -809,6 +810,7 @@ namespace ast
                     e.body_get().accept(*this);
                     if(e.body_get().is_break())
                     {
+                        const_cast<Exp*>(&(e.body_get()))->break_reset();
                         break;
                     }
 
@@ -978,6 +980,7 @@ namespace ast
             {
                 if(e.is_breakable())
                 {
+                    (*itExp)->break_reset();
                     (*itExp)->breakable_set();
                 }
 
