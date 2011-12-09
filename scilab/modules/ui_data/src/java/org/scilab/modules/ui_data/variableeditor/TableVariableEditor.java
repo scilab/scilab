@@ -110,20 +110,25 @@ public class TableVariableEditor extends JTable {
                         JTable table = TableVariableEditor.this;
                         int column = table.getColumnModel().getColumnIndexAtX(e.getX());
                         ListSelectionModel csm = table.getColumnModel().getSelectionModel();
+                        int rowC = ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount();
+                        if (rowC == 0) {
+                            rowC = 1;
+                        }
+
                         if (e.isShiftDown()) {
                             csm.setSelectionInterval(column, clickedColumn);
-                            table.setRowSelectionInterval(0, ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount() - 1);
+                            table.setRowSelectionInterval(0, rowC - 1);
                         } else {
                             if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
                                 if (table.isColumnSelected(column)) {
                                     csm.removeSelectionInterval(column, column);
                                 } else {
                                     csm.addSelectionInterval(column, column);
-                                    table.setRowSelectionInterval(0, ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount() - 1);
+                                    table.setRowSelectionInterval(0, rowC - 1);
                                 }
                             } else {
                                 csm.setSelectionInterval(column, column);
-                                table.setRowSelectionInterval(0, ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount() - 1);
+                                table.setRowSelectionInterval(0, rowC - 1);
                             }
                             clickedColumn = column;
                         }
@@ -166,7 +171,12 @@ public class TableVariableEditor extends JTable {
                                     csm.setSelectionInterval(clickedColumn, column);
                                 }
                             }
-                            table.setRowSelectionInterval(0, ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount() - 1);
+                            int rowC = ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount();
+                            if (rowC == 0) {
+                                rowC = 1;
+                            }
+
+                            table.setRowSelectionInterval(0, rowC - 1);
                             table.requestFocus();
                         }
                     }
@@ -211,7 +221,7 @@ public class TableVariableEditor extends JTable {
         for (int i : rowDiff) {
             rowHeader.repaint(rowHeader.getCellRect(i, 0, false));
         }
-	selectedRows = rows;
+        selectedRows = rows;
         SwingEditvarTableModel model = (SwingEditvarTableModel) getModel();
         editor.getInfoBar().getAsSimpleTextBox().setText(model.getScilabSubMatrix(rows, getSelectedColumns()));
 
@@ -241,10 +251,18 @@ public class TableVariableEditor extends JTable {
     public void selectAll() {
         /* Just select the matrix not all the table */
         SwingEditvarTableModel model = (SwingEditvarTableModel) getModel();
-        int rowC = model.getScilabMatrixRowCount() - 1;
-        int colC = model.getScilabMatrixColCount() - 1;
-        setColumnSelectionInterval(0, colC);
-        setRowSelectionInterval(0, rowC);
+        int rowC = model.getScilabMatrixRowCount();
+        if (rowC == 0) {
+            rowC = 1;
+        }
+
+        int colC = model.getScilabMatrixColCount();
+        if (colC == 0) {
+            colC = 1;
+        }
+
+        setColumnSelectionInterval(0, colC - 1);
+        setRowSelectionInterval(0, rowC - 1);
     }
 
     /**

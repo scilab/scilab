@@ -80,7 +80,7 @@ public class RowHeader extends JPanel implements TableModelListener {
                     g.drawLine(x, y, x + width, y);
                 }
             });
-	rowTable.setDoubleBuffered(true);
+        rowTable.setDoubleBuffered(true);
         rowTable.setDragEnabled(false);
         rowTable.setGridColor(table.getGridColor().darker());
         rowTable.setShowVerticalLines(true);
@@ -100,20 +100,25 @@ public class RowHeader extends JPanel implements TableModelListener {
                     if (SwingUtilities.isLeftMouseButton(e)) {
                         int row  = rowTable.rowAtPoint(e.getPoint());
                         ListSelectionModel rsm = table.getSelectionModel();
+                        int colC = ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount();
+                        if (colC == 0) {
+                            colC = 1;
+                        }
+
                         if (e.isShiftDown()) {
                             rsm.setSelectionInterval(row, clickedRow);
-                            table.setColumnSelectionInterval(0, ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount() - 1);
+                            table.setColumnSelectionInterval(0, colC - 1);
                         } else {
                             if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
                                 if (table.isRowSelected(row)) {
                                     rsm.removeSelectionInterval(row, row);
                                 } else {
                                     rsm.addSelectionInterval(row, row);
-                                    table.setColumnSelectionInterval(0, ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount() - 1);
+                                    table.setColumnSelectionInterval(0, colC - 1);
                                 }
                             } else {
                                 rsm.setSelectionInterval(row, row);
-                                table.setColumnSelectionInterval(0, ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount() - 1);
+                                table.setColumnSelectionInterval(0, colC - 1);
                             }
                             clickedRow = row;
                         }
@@ -154,7 +159,13 @@ public class RowHeader extends JPanel implements TableModelListener {
                                     rsm.setSelectionInterval(clickedRow, row);
                                 }
                             }
-                            table.setColumnSelectionInterval(0, ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount() - 1);
+
+                            int colC = ((SwingEditvarTableModel) ((TableVariableEditor) table).getModel()).getScilabMatrixColCount();
+                            if (colC == 0) {
+                                colC = 1;
+                            }
+                            table.setColumnSelectionInterval(0, colC - 1);
+
                             table.requestFocus();
                         }
                     }
