@@ -536,7 +536,7 @@ namespace ast
             e.test_get().accept(*this);
 
             bTestStatus = bConditionState(result_get());
-            result_set(NULL);
+            result_clear();
             if(bTestStatus == true)
             {//condition == true
                 if(e.is_breakable())
