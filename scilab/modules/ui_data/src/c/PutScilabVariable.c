@@ -10,9 +10,15 @@
  *
  */
 
+#include <string.h>
+#include <stdio.h>
 #include "ui_data.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif 
+
 
 void putScilabVariable(char * name, char ** lines, int rows, int cols)
 {
@@ -33,7 +39,7 @@ void putScilabVariable(char * name, char ** lines, int rows, int cols)
     }
 }
 
-char * getUnnamedVariable()
+char * getUnnamedVariable(void)
 {
     char buffer[128];
     int i = 0;
