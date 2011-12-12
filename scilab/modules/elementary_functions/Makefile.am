@@ -24,7 +24,8 @@ src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
-src/c/IsEqualVar.c
+src/c/IsEqualVar.c \
+src/c/convertbase.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES =
@@ -306,7 +307,8 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
-sci_gateway/c/sci_isequalbitwise.c
+sci_gateway/c/sci_isequalbitwise.c \
+sci_gateway/c/sci_base2dec.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \

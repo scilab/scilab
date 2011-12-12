@@ -190,7 +190,9 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_base2dec.c" />
     <ClCompile Include="cmp.c" />
+    <ClCompile Include="convertbase.c" />
     <ClCompile Include="DllmainElementary_functions.c" />
     <ClCompile Include="finite.c" />
     <ClCompile Include="gsort.c" />
@@ -289,6 +291,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />
+    <ClInclude Include="convertbase.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\en_US\elementary_functions.pot" />

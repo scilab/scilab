@@ -474,8 +474,8 @@ Performance:
   the case under 64 bit CPU).
   Pentium III class (or equivalent) with SSE instructions is required.
 
-* bug 8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified
-                   and optimized.
+* bug 8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
+                   simplified and optimized.
 
 * Performances of function pareto_filter (Genetic algorithms) improved.
 
@@ -767,9 +767,6 @@ Bug fixes:
 * bug 8296 fixed - asking for extra array dimension value with size crashed scilab
 
 * bug 8420 fixed - 'lines' crashed scilab in some cases.
-
-* bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
-                   and optimized.
 
 * bug 8688 fixed - fillMatrixOfString did not check available memory on stack.
 
