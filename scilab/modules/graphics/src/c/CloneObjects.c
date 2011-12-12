@@ -286,25 +286,6 @@ CloneArc (sciPointObj * pthis)
   return (sciPointObj *)pobj;
 }
 
-
-
-/**sciCopyObj
- */
-sciPointObj *
-sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
-{
-// ???
-#if 0
-  sciPointObj *pcopyobj;
-
-  pcopyobj = sciCloneObj ((sciPointObj *)pobj);
-  //sciDelThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)sciGetParent(pcopyobj));
-  //sciAddThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)psubwinparenttarget);
-  return (sciPointObj *)pcopyobj;
-#endif
-  return NULL;
-}
-
 /*--------------------------------------------------------------------------*/
 /*
  * Copies the ContouredObject properties from the source object to the destination object

@@ -37,8 +37,6 @@ GRAPHICS_IMPEXP sciPointObj *CloneRectangle (sciPointObj * pthis);
 GRAPHICS_IMPEXP sciPointObj *ClonePolyline (sciPointObj * pthis);
 GRAPHICS_IMPEXP sciPointObj *CloneArc (sciPointObj * pthis);
 
-GRAPHICS_IMPEXP sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
-
 /*--------------------------------------------------------------------------*/
 /**
  * copy the ContouredObject properties of a source object to a destination object
