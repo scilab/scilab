@@ -981,6 +981,9 @@ Bug fixes:
 * bug 10324 fixed - format(m) where m is a vector did not work but the
                     documentation states it can be used.
 
+* bug 10366 fixed - a warning about fun2string redefinition was displayed
+                    when we used "Edit label generator" and click "Ok"
+
 Known issues
 ============
 
