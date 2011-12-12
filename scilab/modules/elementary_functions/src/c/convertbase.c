@@ -20,9 +20,9 @@
 #define char_zero '0'
 #define char_nine '9'
 /*--------------------------------------------------------------------------*/ 
-unsigned int convertBase2Dec(char *pStr, int numberbase, int *ierr)
+double convertBase2Dec(const char *pStr, int numberbase, int *ierr)
 {
-    unsigned int result = 0;
+    double result = 0.;
     *ierr = 1;
 
     if (pStr)

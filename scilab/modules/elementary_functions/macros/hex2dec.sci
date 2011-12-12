@@ -33,19 +33,6 @@ function d = hex2dec(h)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
   end
 
-  [nr, nc] = size(h);
-
-  d = [];
-
-  for i = 1:size(h, "*")
-    r = msscanf(h(i), "%X");
-    if r <> [] then
-      d(i) = r;
-    else
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"), "hex2dec", 1));
-    end
-  end
-
-  d = matrix(d, nr, nc);
+  d = base2dec(h, 16);
 
 endfunction

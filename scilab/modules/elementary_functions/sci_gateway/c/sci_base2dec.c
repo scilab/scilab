@@ -105,7 +105,7 @@ int sci_base2dec(char *fname,unsigned long fname_len)
     for (i = 0; i < m * n; i++)
     {
         int ierr = 0;
-        dResults[i] = (double)convertBase2Dec(pStrs[i], iValue, &ierr);
+        dResults[i] = convertBase2Dec(pStrs[i], iValue, &ierr);
         if (ierr)
         {
             freeAllocatedMatrixOfString(m, n, pStrs);

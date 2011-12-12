@@ -20,7 +20,7 @@
 * @param[out] int if 0 no error  
 * @return converted value (decimal)
 */
-unsigned int convertBase2Dec(char *pStr, int numberbase, int *ierr);
+double convertBase2Dec(const char *pStr, int numberbase, int *ierr);
 
 #endif /* __CONVERTBASE_H__ */
 /*--------------------------------------------------------------------------*/ 
