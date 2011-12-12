@@ -540,6 +540,9 @@ Dynamic link:
 
 * bug 10320 fixed - libname argument of ilib_for_link did not work.
 
+* bug 10344 fixed - Windows SDK 7.1 was not detected with VS Express 2010 
+                    on x64 platform.
+
 
 Variable browser:
 =================
