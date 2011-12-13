@@ -3,8 +3,8 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-
-RANDLIB_C_SOURCES = src/c/fsultra.c \
+RANDLIB_C_SOURCES = \
+src/c/fsultra.c \
 src/c/mt.c \
 src/c/igngeom.c \
 src/c/kiss.c \
@@ -39,25 +39,43 @@ src/fortran/gennor.f
 #src/fortran/ignpoi.f
 #src/fortran/sgamma.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
-sci_gateway/c/sci_grand.c
+RANDLIB_CPP_SOURCES = src/cpp/grand.cpp
 
-libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_grand.cpp
+
+libscirandlib_la_CFLAGS= \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes
+
+libscirandlib_la_CPPFLAGS= \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
 noinst_LTLIBRARIES = libscirandlib-algo.la
 
 libscirandlib_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscirandlib_algo_la_SOURCES = $(RANDLIB_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
-libscirandlib_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscirandlib_algo_la_SOURCES = $(RANDLIB_CPP_SOURCES) $(RANDLIB_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
+libscirandlib_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscirandlib_algo_la_CFLAGS = $(libscirandlib_la_CFLAGS)
+libscirandlib_algo_la_CPPFLAGS = $(libscirandlib_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(RANDLIB_CPP_SOURCES) $(RANDLIB_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscirandlib_la_CFLAGS)
 
 libscirandlib_la_LIBADD =  libscirandlib-algo.la

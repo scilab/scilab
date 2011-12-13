@@ -279,6 +279,18 @@ private :
 public :
     static void setSchurFunction(types::Callable* _schurFunction);
     static types::Callable* getSchurFunction();
+
+    //grand (module randlib)
+private :
+    static int m_currentBaseGen;
+    static int m_currentClcg4;
+
+public :
+    static void setCurrentBaseGen(int _currentBaseGen);
+    static int getCurrentBaseGen();
+
+    static void setCurrentClcg4(int _currentClcg4);
+    static int getCurrentClcg4();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

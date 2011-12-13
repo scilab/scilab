@@ -1,3 +1,15 @@
+/*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+
 #include "dynamic_modules.hxx"
 #include "context.hxx"
 #include "callDynamicGateway.hxx"
@@ -108,7 +120,7 @@ int ScinotesModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
     }
@@ -129,7 +141,7 @@ int FunctionsModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -149,7 +161,7 @@ int StatisticsModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -169,7 +181,7 @@ int SignalProcessingModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -198,7 +210,7 @@ int HelptoolsModule::Load()
 
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -218,7 +230,7 @@ int MatioModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -236,7 +248,7 @@ int Hdf5Module::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -256,7 +268,7 @@ int ActionBindingModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -272,17 +284,17 @@ int DifferentialEquationsModule::Load()
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
     wstring wstModuleName = L"differential_equations";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
 }
+
 
 int SpreadsheetModule::Load()
 {
@@ -294,7 +306,7 @@ int SpreadsheetModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < vect.size() ; i++)
+    for(int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -302,3 +314,20 @@ int SpreadsheetModule::Load()
     return 1;
 }
 
+int RandlibModule::Load()
+{
+    wstring wstModuleName = L"randlib";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for(int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    return 1;
+}

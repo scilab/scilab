@@ -38,9 +38,6 @@
     <ClCompile Include="genbet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_randlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ignbin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,9 +53,6 @@
     <ClCompile Include="mt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_grand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sexpo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="urand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_grand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\grand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,10 +79,10 @@
     <ClInclude Include="..\..\includes\grand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_randlib.h">
+    <ClInclude Include="..\..\includes\others_generators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\others_generators.h">
+    <ClInclude Include="..\..\includes\randlib_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

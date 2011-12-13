@@ -820,3 +820,40 @@ types::Callable* ConfigVariable::getSchurFunction()
 /*
 ** \}
 */
+
+/*
+** grand (module randlib)
+** \{
+*/
+
+int ConfigVariable::m_currentBaseGen = 0;
+int ConfigVariable::m_currentClcg4   = 0;
+
+void ConfigVariable::setCurrentBaseGen(int _gen)
+{
+    m_currentBaseGen = _gen;
+}
+
+int ConfigVariable::getCurrentBaseGen()
+{
+    return m_currentBaseGen;
+}
+
+void ConfigVariable::setCurrentClcg4(int _clcg4)
+{
+    m_currentClcg4 = _clcg4;
+}
+
+int ConfigVariable::getCurrentClcg4()
+{
+    return m_currentClcg4;
+}
+/*
+** \}
+*/
+
+
+
+
+
+

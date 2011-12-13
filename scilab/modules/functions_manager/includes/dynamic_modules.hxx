@@ -106,4 +106,10 @@ public :
    static int Load();
 };
 
+class RandlibModule : public GenericModule
+{
+public :
+   static int Load();
+};
+
 #endif /* !__DYNAMIC_MODULES_HXX_ */
