@@ -221,7 +221,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
             case(MT) :
                 if ( Rhs != 2 )
                 {
-                    Scierror(999,_("%s: Wrong number of input arguments: %d expected for '%s' with the %s generator.\n"),fname,2,"setall","mt");
+                    Scierror(999,_("%s: Wrong number of input arguments: %d expected for '%s' with the %s generator.\n"),fname,2,"setsd","mt");
                     return 0;
                 }
                 GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -888,7 +888,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
         for ( i = 0 ; i < m2*n2 ; i++)
             if ( *istk(lb+i)-1 < 0 || *istk(lb+i)-1 >= n1 )
             {
-                Scierror(999,_("%s: X0(%d) must be in the range [1,%d]\n"),fname,i,n1);
+                Scierror(999,_("%s: X0(%d) must be in the range [1,%d[\n"),fname,i+1,n1+1);
                 return 0;
             }
             mm= m2*n2;
