@@ -1,5 +1,5 @@
-            Changes between version 5.3.3 and 5.4.0 of Scilab
-            =================================================
+            Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
+            =========================================================
 
 
 Scilab Desktop:
@@ -16,6 +16,9 @@ be preserved from a session to an other.
 In this context, a file browser component has been developped and fully
 integrated in Scilab Desktop and all other components have been improved
 to provide the best user experience for Scilab's users.
+
+Editvar had a important refreshment. It allows plot and subplot, manages
+almost all Scilab variables and is as fast as the light.
 
 Scilab Desktop provides various predefined layouts:
  - Simple      The standard Scilab console
@@ -399,10 +402,6 @@ Sparse matrices:
 
 * Created an help page and unit test for ordmmd.
 
-
-Sparse Matrices:
-==============
-
 * Organized help pages into sub-sections.
 
 
@@ -410,7 +409,8 @@ Documentation:
 ==============
 
 * A new system to keep track of the translations of the main documentation
-  has been developed. See HTTP:// @TODO@
+  has been developed. See http://help.scilab.org/status/fr_FR/, 
+  help.scilab.org/status/pt_BR/ and http://help.scilab.org/status/ja_JP/
   See bug 5119.
 
 * <ALT>+<LEFT ARROW> / <ALT>+<RIGHT ARROW> allows the browse of the history.
