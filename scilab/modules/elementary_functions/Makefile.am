@@ -131,7 +131,6 @@ LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/dqrsl.f \
 	src/fortran/linpack/dqrsm.f \
 	src/fortran/linpack/hhdml.f \
-	src/fortran/linpack/spofa.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
 	src/fortran/linpack/wgesl.f \
@@ -255,8 +254,7 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
-src/fortran/rat.f \
-src/fortran/sdot.f
+src/fortran/rat.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -361,7 +359,7 @@ sci_gateway/fortran/sci_f_exp.f
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
-noinst_LTLIBRARIES = libdummy-elementary_functions.la 
+noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
 libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
@@ -408,7 +406,7 @@ endif
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
-libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
 
 # For the code check (splint)
@@ -441,7 +439,7 @@ modulename=elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA =  license.txt 
+libscielementary_functions_la_root_DATA =  license.txt
 
 
 

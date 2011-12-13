@@ -252,7 +252,6 @@ cd ..
     <ClCompile Include="hhdml.c" />
     <ClCompile Include="icopy.c" />
     <ClCompile Include="pade.c" />
-    <ClCompile Include="spofa.c" />
     <ClCompile Include="util.c" />
     <ClCompile Include="wcopy.c" />
     <ClCompile Include="wgeco.c" />
@@ -273,7 +272,6 @@ cd ..
     <f2c_rule Include="hhdml.f" />
     <f2c_rule Include="icopy.f" />
     <f2c_rule Include="pade.f" />
-    <f2c_rule Include="spofa.f" />
     <f2c_rule Include="util.f" />
     <f2c_rule Include="wcopy.f" />
     <f2c_rule Include="wgeco.f" />

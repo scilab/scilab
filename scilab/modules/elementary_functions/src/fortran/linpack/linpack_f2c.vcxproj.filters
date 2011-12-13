@@ -54,9 +54,6 @@
     <ClCompile Include="pade.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="spofa.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="pade.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="spofa.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="util.f">

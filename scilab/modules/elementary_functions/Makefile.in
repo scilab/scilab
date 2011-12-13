@@ -141,8 +141,8 @@ am__objects_1 = zwrsk.lo d9b0mp.lo d9b1mp.lo d9knus.lo d9lgmc.lo \
 	zunk1.lo zunk2.lo zuoik.lo dlngam.lo balanc.lo dtensbs.lo \
 	pchim.lo
 am__objects_2 = dgesl.lo wpade.lo util.lo wcopy.lo dgefa.lo dgbfa.lo \
-	dgeco.lo dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo spofa.lo \
-	wgeco.lo wgefa.lo wgesl.lo dpofa.lo
+	dgeco.lo dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo wgeco.lo \
+	wgefa.lo wgesl.lo dpofa.lo
 am__objects_3 = balbak.lo
 am__objects_4 = libscielementary_functions_algo_la-sci_tools.lo \
 	libscielementary_functions_algo_la-finite.lo \
@@ -185,7 +185,7 @@ am__objects_5 = psi.lo wasum.lo dexpm1.lo wwdiv.lo wdotcr.lo iset.lo \
 	dmcopy.lo wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo \
 	infinity.lo dwpow1.lo wmul.lo dad.lo dset.lo dtild.lo \
 	i1mach.lo dclmat.lo ortran.lo bdiag.lo wvmul.lo dmmul.lo \
-	wsqrt.lo israt.lo rat.lo sdot.lo
+	wsqrt.lo israt.lo rat.lo
 am__objects_6 =
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -714,7 +714,6 @@ LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/dqrsl.f \
 	src/fortran/linpack/dqrsm.f \
 	src/fortran/linpack/hhdml.f \
-	src/fortran/linpack/spofa.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
 	src/fortran/linpack/wgesl.f \
@@ -838,8 +837,7 @@ src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
-src/fortran/rat.f \
-src/fortran/sdot.f
+src/fortran/rat.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -981,7 +979,7 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
-libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
 
 # For the code check (splint)
@@ -994,7 +992,7 @@ modulename = elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA = license.txt 
+libscielementary_functions_la_root_DATA = license.txt
 
 #### elementary_functions : init scripts ####
 libscielementary_functions_la_etcdir = $(mydatadir)/etc
@@ -2069,9 +2067,6 @@ dqrsm.lo: src/fortran/linpack/dqrsm.f
 hhdml.lo: src/fortran/linpack/hhdml.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hhdml.lo `test -f 'src/fortran/linpack/hhdml.f' || echo '$(srcdir)/'`src/fortran/linpack/hhdml.f
 
-spofa.lo: src/fortran/linpack/spofa.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spofa.lo `test -f 'src/fortran/linpack/spofa.f' || echo '$(srcdir)/'`src/fortran/linpack/spofa.f
-
 wgeco.lo: src/fortran/linpack/wgeco.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wgeco.lo `test -f 'src/fortran/linpack/wgeco.f' || echo '$(srcdir)/'`src/fortran/linpack/wgeco.f
 
@@ -2440,9 +2435,6 @@ israt.lo: src/fortran/israt.f
 
 rat.lo: src/fortran/rat.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
-
-sdot.lo: src/fortran/sdot.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sdot.lo `test -f 'src/fortran/sdot.f' || echo '$(srcdir)/'`src/fortran/sdot.f
 
 libscielementary_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
