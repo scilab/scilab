@@ -26,6 +26,13 @@ a sparse but not to send it to Scilab).
 able to retrieve a struct but not to send it to Scilab).
 
 
+Xcos
+====
+
+* bug 10107 fixed - Default value of the Integrator Absolute Tolerance was too 
+                    large. It has been reduced to 1e-6.
+
+
 Bug fixes
 ========= 
 
@@ -236,7 +243,6 @@ Xcos
                    a file.
 
 * Bug #10003 fixed - The MAXMIN block did not update its display according to
-                    the settings.
 
 * Bug #10048 fixed - Blocks which use superblocks now loop over their children 
 to find the parameters dialog to open.
