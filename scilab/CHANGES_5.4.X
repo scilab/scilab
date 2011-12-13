@@ -1,3 +1,20 @@
+CLI console:
+============
+
+* bug 3400 fixed - Long lines in the history breaks the display.
+
+* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
+
+* bug 3108 fixed - Some specific chars in the terminal are not correctly
+                   removed by the backspace.
+
+* New shortcuts
+  - CTRL+W: Remove the previous word.
+  - CTRL+U: Remove everything from the current position to the beginning of
+            the line. 
+
+
+
  	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
 
@@ -123,14 +140,6 @@ Call_Scilab
 
 * Bug #10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
                     removed.
-
-CLI console:
-============
-
-* New shortcuts
-  - CTRL+W: Remove the previous word.
-  - CTRL+U: Remove everything from the current position to the beginning of
-            the line. 
 
 Xcos
 =====
