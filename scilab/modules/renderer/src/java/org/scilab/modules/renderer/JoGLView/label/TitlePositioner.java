@@ -69,8 +69,12 @@ public class TitlePositioner extends LabelPositioner {
         protected Vector3d computeDisplacedPosition() {
                 Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 
-                Double [] axesBounds = parentAxes.getAxesBounds();
-                Double [] margins = parentAxes.getMargins();
+                Double [] axesBounds = {0.0, 0.0, 0.0, 0.0};
+                Double [] margins = {0.0, 0.0, 0.0, 0.0};
+                if (parentAxes != null) {
+                    axesBounds = parentAxes.getAxesBounds();
+                    margins = parentAxes.getMargins();
+                }
 
                 /* Compute the anchor point's position in window coordinates */
                 double xmid = (axesBounds[0] + axesBounds[2] * margins[0] + 0.5*axesBounds[2]*(1.0-margins[0]-margins[1]));

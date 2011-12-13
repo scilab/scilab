@@ -38,7 +38,7 @@ public class YAxisLabelPositioner extends AxisLabelPositioner {
          * @return the rotation angle.
          */
         protected double getAutoRotationAngle() {
-                if (parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
+                if (parentAxes != null && parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
                         return 0.0;
                 } else {
                         return 270.0;
