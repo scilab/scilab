@@ -17,7 +17,6 @@
 #include "cap_func.h"
 #include "goto_func.h"
 #include "aff_prompt.h"
-#include "reader.h"
 #include "history.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"

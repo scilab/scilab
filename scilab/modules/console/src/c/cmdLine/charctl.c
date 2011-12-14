@@ -16,7 +16,6 @@
 #include <unistd.h>
 #include <wchar.h>
 #include <wctype.h>
-#include "reader.h"
 #include "cap_func.h"
 #include "goto_func.h"
 #include "aff_prompt.h"

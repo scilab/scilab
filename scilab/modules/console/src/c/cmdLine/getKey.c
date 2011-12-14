@@ -18,7 +18,6 @@
 #include <termios.h>
 #include <term.h>
 #include "history.h"
-#include "reader.h"
 #include "cap_func.h"
 #include "goto_func.h"
 #include "charctl.h"
@@ -158,7 +157,7 @@ static int endCopyPast(wchar_t * commandLine)
 /*
  * Read keyboard a first time.
  */
-int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
+static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     int key;
 
@@ -246,10 +245,10 @@ char *getCmdLine(void)
     setCharDisplay(DISP_BRIGHT);
     if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')
     {
-        /*if (wideString != NULL) */
-        /*{ */
-        /*FREE(wideString); */
-        /*} */
+        if (wideString != NULL)
+        {
+            FREE(wideString);
+        }
         wideString = MALLOC(1024 * sizeof(*wideString));
         *wideString = L'\0';
         nextLineLocationInWideString = 0;
@@ -279,32 +278,4 @@ char *getCmdLine(void)
     setSearchedTokenInScilabHistory(NULL);
     setCharDisplay(DISP_RESET);
     return multiByteString;
-}
-
-/*
- * If there is a string the function save it.
- * else The function write the saved string.
- */
-void memCmd(wchar_t * cmd, unsigned int cursorLocation)
-{
-    static wchar_t *memList;
-
-    static unsigned int i;
-
-    if (cmd != NULL)
-    {
-        memList = cmd;
-        i = cursorLocation;
-    }
-    else
-    {
-        /* TODO comment */
-        i = cursorLocation;
-        cursorLocation = wcslen(memList);
-        printf("%ls", memList);
-        while (cursorLocation != i)
-        {
-            gotoLeft(memList, &cursorLocation);
-        }
-    }
 }

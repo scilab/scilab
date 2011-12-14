@@ -29,7 +29,9 @@
 #endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
+#ifndef _MSC_VER
 #include "init_tc_shell.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int ExitScilab(void)
 {

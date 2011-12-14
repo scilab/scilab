@@ -17,7 +17,8 @@
 #include "getKey.h"
 #include "cap_func.h"
 #include "aff_prompt.h"
-#include "get_signal.h"
+#include "windowsChangeManagement.h"
+#include "HistoryManager.h"
 
 /*
  * Get new terminfo
@@ -27,12 +28,20 @@ void getNewTerm(int signum)
 {
     char *termEnv;
 
+    char *currentLine = NULL;
+
     capStr("cl");
     /* get new terminfo */
-    if (((termEnv = getenv("TERM")) == NULL) && (tgetent(NULL, termEnv) == ERR))
+    if (((termEnv = getenv("TERM")) == NULL) || (tgetent(NULL, termEnv) == ERR))
     {
         fprintf(stderr, "\nCannot get terminfo databases. Termcaps are no longer available\n");
     }
     getPrompt(WRT_PRT);
+    currentLine = getSearchedTokenInScilabHistory();
+    if (currentLine != NULL)
+    {
+        printf("%s", currentLine);
+        fflush(stdout);
+    }
     signal(signum, getNewTerm);
 }

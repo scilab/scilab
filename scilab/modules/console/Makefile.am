@@ -60,7 +60,6 @@ src/c/cmdLine/aff_prompt.c \
 src/c/cmdLine/cap_func.c \
 src/c/cmdLine/catstr.c \
 src/c/cmdLine/charctl.c \
-src/c/cmdLine/get_signal.c \
 src/c/cmdLine/goto_func.c \
 src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \
@@ -117,7 +116,6 @@ src/c/cmdLine/aff_prompt.c \
 src/c/cmdLine/cap_func.c \
 src/c/cmdLine/catstr.c \
 src/c/cmdLine/charctl.c \
-src/c/cmdLine/get_signal.c \
 src/c/cmdLine/goto_func.c \
 src/c/cmdLine/history.c \
 src/c/cmdLine/init_tc_shell.c \

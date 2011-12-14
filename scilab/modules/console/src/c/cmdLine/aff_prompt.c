@@ -17,7 +17,6 @@
 #include <wchar.h>
 #include <wctype.h>
 #include <curses.h>
-#include "reader.h"
 #include "aff_prompt.h"
 #include "prompt.h"
 #include "setCharDisplay.h"

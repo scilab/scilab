@@ -90,7 +90,8 @@ src/c/dynamic_parallel.c \
 src/c/storeCommand.c \
 src/c/backtrace.c \
 src/c/signal_mgmt.c \
-src/c/suspendProcess.c
+src/c/suspendProcess.c \
+src/c/windowsChangeManagement.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \

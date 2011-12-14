@@ -40,6 +40,7 @@
 #include "Scierror.h"
 #include "suspendProcess.h"
 #include "scilabmode.h"
+#include "windowsChangeManagement.h"
 extern jmp_buf jmp_env;
 
 /*----------------------------------------------------------------------------

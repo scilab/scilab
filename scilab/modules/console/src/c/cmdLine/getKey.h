@@ -9,23 +9,16 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef CMD_FUNC_H_
-#define	CMD_FUNC_H_
+#ifndef GET_KEY_H_
+#define GET_KEY_H_
 
 #include <wchar.h>
 
 /**
- * Save a command if listCmd is not NULL, else, display it.
- * @param list of command.
+ * Wait for user user input and Manage all the command line.
+ * Function is left when the user press enter.
+ * @return command line enter by the user.
  */
-void memCmd(wchar_t * listCmd, unsigned int cursorLocation);
+char *getCmdLine(void);
 
-/**
- * Catch the key pressed and call the godd function.
- * @param command line currently edited.
- * @param cursor location in the command line.
- * @return token to indicated the end of the edition of the line.
- */
-int getKey(wchar_t ** commandLine, unsigned int *cursorLocation);
-
-#endif /* !CMD_FUNC_H_ */
+#endif /* !GET_KEY_H_ */
