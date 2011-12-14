@@ -202,9 +202,9 @@ public class WindowsConfigurationManager {
 
     /**
      * Create a window according to the uuid.
-     * 
+     *
      * This method can be used to create a reference windows.
-     * 
+     *
      * @param uuid
      *            the reference uuid
      * @param preserveUUID
@@ -219,6 +219,7 @@ public class WindowsConfigurationManager {
         final boolean nullUUID = uuid.equals(NULLUUID);
         final Map<String, Object> attrs = new HashMap<String, Object>();
         Element win = null;
+        boolean containsX = true;
 
         if (!nullUUID) {
             win = getElementWithUUID(root, "Window", uuid);
@@ -226,8 +227,13 @@ public class WindowsConfigurationManager {
                 return null;
             }
 
-            attrs.put("x", int.class);
-            attrs.put("y", int.class);
+            containsX = !win.getAttribute("x").equals("");
+
+            if (containsX) {
+                attrs.put("x", int.class);
+                attrs.put("y", int.class);
+            }
+
             attrs.put("height", int.class);
             attrs.put("width", int.class);
             ScilabXMLUtilities.readNodeAttributes(win, attrs);
@@ -247,7 +253,10 @@ public class WindowsConfigurationManager {
         window.setUUID(localUUID);
         UIElementMapper.add(w);
 
-        window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+        if (containsX) {
+            window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+        }
+
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
 
         return w;
@@ -255,7 +264,7 @@ public class WindowsConfigurationManager {
 
     /**
      * Restore a window with a given uuid
-     * 
+     *
      * @param uuid
      *            the uuid
      * @param restoreTab
@@ -334,36 +343,36 @@ public class WindowsConfigurationManager {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final Thread t = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                while (currentlyRestored.size() != 0) {
-                                    try {
-                                        Thread.sleep(10);
-                                    } catch (InterruptedException e) {
-                                    }
-                                }
+                        @Override
+                        public void run() {
+                            final Thread t = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        while (currentlyRestored.size() != 0) {
+                                            try {
+                                                Thread.sleep(10);
+                                            } catch (InterruptedException e) {
+                                            }
+                                        }
 
-                                // Be sure that te main tab or one of its subcomponent
-                                // will have the focus on start-up
-                                Component owner = null;
-                                while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                    mainTab.requestFocus();
-                                    try {
-                                        Thread.sleep(100);
-                                    } catch (InterruptedException e) {
+                                        // Be sure that te main tab or one of its subcomponent
+                                        // will have the focus on start-up
+                                        Component owner = null;
+                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                            mainTab.requestFocus();
+                                            try {
+                                                Thread.sleep(100);
+                                            } catch (InterruptedException e) {
+                                            }
+                                            owner = window.getFocusOwner();
+                                        }
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                        window.toFront();
                                     }
-                                    owner = window.getFocusOwner();
-                                }
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
-                                window.toFront();
-                            }
-                        });
-                        t.start();
-                    }
-                });
+                                });
+                            t.start();
+                        }
+                    });
             }
         }
 
@@ -406,7 +415,7 @@ public class WindowsConfigurationManager {
      * @return a list of the elements with the given uuid
      */
     public static final Set<Element> getTabDependencies(String uuid) {
-	readDocument();
+        readDocument();
         Element root = doc.getDocumentElement();
 
         // Children
@@ -461,8 +470,8 @@ public class WindowsConfigurationManager {
      */
     private static final Set<Element> createAdjacentTabs(Set<Element> elems) {
         readDocument();
-	
-	Element root = doc.getDocumentElement();
+
+        Element root = doc.getDocumentElement();
         boolean jobFinished = true;
         Set<Element> toAdd = new LinkedHashSet<Element>();
         for (Element e : elems) {
@@ -493,8 +502,8 @@ public class WindowsConfigurationManager {
      */
     private static final Element getElderParent(Element e) {
         readDocument();
-	
-	Element root = doc.getDocumentElement();
+
+        Element root = doc.getDocumentElement();
         String dep = e.getAttribute("depends");
         if (!dep.isEmpty()) {
             return getElderParent(ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", dep).get(0));
@@ -572,8 +581,8 @@ public class WindowsConfigurationManager {
      */
     public static final Element getElementWithUUID(String uuid) {
         readDocument();
-	
-	return getElementWithUUID(doc.getDocumentElement(), uuid);
+
+        return getElementWithUUID(doc.getDocumentElement(), uuid);
     }
 
     /**
