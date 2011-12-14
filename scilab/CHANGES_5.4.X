@@ -62,6 +62,8 @@ Bug fixes
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #8050 fixed - A weird error message was displayed in some cases.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
@@ -845,7 +847,7 @@ Bug Fixes
 * Bug #7815 fixed - tohome() function erased previous and future commands in Scilab console.
 
 * Bug #8086 fixed - Some functions displayed a wrong error message when called
-                   without input argument.
+                    without input argument.
 
 * Bug #8243 fixed - xgeom demonstration renamed to geom3d.
 

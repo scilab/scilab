@@ -206,7 +206,12 @@ c     *call* allops(rconc)
  29   if (sym .eq. eol) then
          if(comp(1).ne.0) call seteol
          if(lpt(4).eq.lpt(6))  then
-            call getlin(0,0) 
+            call getlin(2,0) 
+            if (fin.eq.-2) then
+C     .        end of function reached before ]
+               call error(2)
+               return
+            endif
          else
             lpt(4)=lpt(4)+1
             call getsym
