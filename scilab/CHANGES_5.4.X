@@ -95,6 +95,9 @@ Compatibility Functions
 Bug fixes
 =========
 
+* Bug #4806 fixed - If A is a sparse matrix, A^0 returned A and not the identity
+                    matrix as expected.
+
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
