@@ -18,7 +18,6 @@ extern "C"
 }
 
 #include "DrawableObjectFactory.h"
-#include "figureDrawing/DrawableFigureFactory.h"
 #include "subwinDrawing/DrawableSubwinFactory.h"
 #include "textDrawing/DrawableTextFactory.h"
 #include "polylineDrawing/DrawablePolylineFactory.h"
@@ -73,7 +72,7 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   switch ( sciGetEntityType(m_pDrawed) )
   {
   case SCI_FIGURE:
-    return new DrawableFigureFactory() ;
+    return NULL;
     break ;
   case SCI_SUBWIN:
     return new DrawableSubwinFactory() ;

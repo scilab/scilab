@@ -11,7 +11,6 @@
  */
 
 #include "getHandleDrawer.h"
-#include "figureDrawing/DrawableFigure.h"
 #include "JavaInteraction.h"
 
 using namespace sciGraphics ;
@@ -19,12 +18,12 @@ using namespace sciGraphics ;
 /*---------------------------------------------------------------------------------*/
 void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton)
 {
-  getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), initialRect, endRect, usedButton);
+  //getFigureDrawer(pFigure)->rubberBox((isClick == TRUE), initialRect, endRect, usedButton);
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveJavaZoom(sciPointObj * pFigure)
 {
-	getFigureDrawer(pFigure)->interactiveZoom();
+	//getFigureDrawer(pFigure)->interactiveZoom();
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveJavaSubwinZoom(sciPointObj * pSubwin)
@@ -34,7 +33,7 @@ void interactiveJavaSubwinZoom(sciPointObj * pSubwin)
 /*---------------------------------------------------------------------------------*/
 void interactiveJavaRotation(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->interactiveRotation();
+  //getFigureDrawer(pFigure)->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
 void interactiveJavaSubwinRotation(sciPointObj * pSubwin)
@@ -49,6 +48,6 @@ void javaUnzoomSubwin(sciPointObj * pSubwin)
 /*---------------------------------------------------------------------------------*/
 void javaShowWindow(sciPointObj * pFigure)
 {
-  getFigureDrawer(pFigure)->showWindow();
+  //getFigureDrawer(pFigure)->showWindow();
 }
 /*---------------------------------------------------------------------------------*/

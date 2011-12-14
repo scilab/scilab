@@ -19,11 +19,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2007 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -118,12 +118,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwin.lo \
-	libscirenderer_la-DrawableFigureJoGL.lo \
-	libscirenderer_la-DrawableFigureBridgeFactory.lo \
-	libscirenderer_la-DrawableFigure.lo \
-	libscirenderer_la-ConcreteDrawableFigure.lo \
-	libscirenderer_la-DrawableFigureFactory.lo \
-	libscirenderer_la-FigureScilabCall.lo \
 	libscirenderer_la-DrawableCompoundFactory.lo \
 	libscirenderer_la-DrawableCompound.lo \
 	libscirenderer_la-DrawableTextFactory.lo \
@@ -184,13 +178,11 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
 	libscirenderer_la-ConcreteDrawableRectangle.lo \
 	libscirenderer_la-DrawableSubwinJavaMapper.lo \
-	libscirenderer_la-DrawableFigureJavaMapper.lo \
 	libscirenderer_la-DrawablePolylineJavaMapper.lo \
 	libscirenderer_la-DrawableRectangleJavaMapper.lo \
 	libscirenderer_la-RectangleFillDrawerJavaMapper.lo \
 	libscirenderer_la-RectangleLineDrawerJavaMapper.lo \
 	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo \
-	libscirenderer_la-DrawableFigureGL.lo \
 	libscirenderer_la-DrawableSubwinGL.lo \
 	libscirenderer_la-DrawablePolylineGL.lo \
 	libscirenderer_la-DrawableRectangleGL.lo \
@@ -208,7 +200,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-ArcLineDrawerGL.lo \
 	libscirenderer_la-ArcFillDrawerGL.lo \
 	libscirenderer_la-DrawableArcGL.lo \
-	libscirenderer_la-FigureScilabCall_wrap.lo \
 	libscirenderer_la-PolylineLineDrawerJavaMapper.lo \
 	libscirenderer_la-InterpolatedDecomposition.lo \
 	libscirenderer_la-StairCaseDecomposition.lo \
@@ -358,7 +349,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GridDrawerJavaMapper.lo \
 	libscirenderer_la-TicksDrawerGL.lo \
 	libscirenderer_la-GridDrawerGL.lo \
-	libscirenderer_la-RenderingChecker.lo \
 	libscirenderer_la-RendererFontManager.lo \
 	libscirenderer_la-XlFontManager.lo \
 	libscirenderer_la-AutoLogSubticksComputer.lo \
@@ -380,15 +370,6 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -660,7 +641,7 @@ modulename = renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = license.txt 
+libscirenderer_la_root_DATA = license.txt
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -670,12 +651,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
-src/cpp/figureDrawing/DrawableFigure.cpp \
-src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-src/cpp/figureDrawing/FigureScilabCall.cpp \
 src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
 src/cpp/compoundDrawing/DrawableCompound.cpp \
 src/cpp/textDrawing/DrawableTextFactory.cpp \
@@ -736,13 +711,11 @@ src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
 src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-src/jni/DrawableFigureGL.cpp \
 src/jni/DrawableSubwinGL.cpp \
 src/jni/DrawablePolylineGL.cpp \
 src/jni/DrawableRectangleGL.cpp \
@@ -760,7 +733,6 @@ src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
 src/jni/ArcLineDrawerGL.cpp \
 src/jni/ArcFillDrawerGL.cpp \
 src/jni/DrawableArcGL.cpp \
-src/jni/FigureScilabCall_wrap.c \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
@@ -910,7 +882,6 @@ src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 src/jni/TicksDrawerGL.cpp \
 src/jni/GridDrawerGL.cpp \
-src/jni/RenderingChecker.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
 src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
@@ -1071,7 +1042,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
+.SUFFIXES: .sci .bin .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1176,7 +1147,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFec.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
@@ -1209,12 +1179,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFecJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigure.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo@am__quote@
@@ -1270,8 +1234,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FecLineDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FilledTextDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FilledTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FilledTextDrawerJoGL.Plo@am__quote@
@@ -1341,7 +1303,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RectangleMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RenderingChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Plo@am__quote@
@@ -1397,34 +1358,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
-.c.o:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(COMPILE) -c $<
-
-.c.obj:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
-
-.c.lo:
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscirenderer_la-FigureScilabCall_wrap.lo: src/jni/FigureScilabCall_wrap.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -MT libscirenderer_la-FigureScilabCall_wrap.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/FigureScilabCall_wrap.c' object='libscirenderer_la-FigureScilabCall_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -1459,48 +1392,6 @@ libscirenderer_la-DrawableSubwin.lo: src/cpp/subwinDrawing/DrawableSubwin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwin.cpp' object='libscirenderer_la-DrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
-
-libscirenderer_la-DrawableFigureJoGL.lo: src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Tpo -c -o libscirenderer_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJoGL.cpp' object='libscirenderer_la-DrawableFigureJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureJoGL.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJoGL.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJoGL.cpp
-
-libscirenderer_la-DrawableFigureBridgeFactory.lo: src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Tpo -c -o libscirenderer_la-DrawableFigureBridgeFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' object='libscirenderer_la-DrawableFigureBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureBridgeFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp
-
-libscirenderer_la-DrawableFigure.lo: src/cpp/figureDrawing/DrawableFigure.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigure.Tpo -c -o libscirenderer_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigure.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigure.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigure.cpp' object='libscirenderer_la-DrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigure.lo `test -f 'src/cpp/figureDrawing/DrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigure.cpp
-
-libscirenderer_la-ConcreteDrawableFigure.lo: src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableFigure.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Tpo -c -o libscirenderer_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableFigure.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' object='libscirenderer_la-ConcreteDrawableFigure.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableFigure.lo `test -f 'src/cpp/figureDrawing/ConcreteDrawableFigure.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/ConcreteDrawableFigure.cpp
-
-libscirenderer_la-DrawableFigureFactory.lo: src/cpp/figureDrawing/DrawableFigureFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Tpo -c -o libscirenderer_la-DrawableFigureFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureFactory.cpp' object='libscirenderer_la-DrawableFigureFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureFactory.lo `test -f 'src/cpp/figureDrawing/DrawableFigureFactory.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureFactory.cpp
-
-libscirenderer_la-FigureScilabCall.lo: src/cpp/figureDrawing/FigureScilabCall.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FigureScilabCall.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FigureScilabCall.Tpo -c -o libscirenderer_la-FigureScilabCall.lo `test -f 'src/cpp/figureDrawing/FigureScilabCall.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/FigureScilabCall.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FigureScilabCall.Tpo $(DEPDIR)/libscirenderer_la-FigureScilabCall.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/FigureScilabCall.cpp' object='libscirenderer_la-FigureScilabCall.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FigureScilabCall.lo `test -f 'src/cpp/figureDrawing/FigureScilabCall.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/FigureScilabCall.cpp
 
 libscirenderer_la-DrawableCompoundFactory.lo: src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableCompoundFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Tpo -c -o libscirenderer_la-DrawableCompoundFactory.lo `test -f 'src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
@@ -1922,13 +1813,6 @@ libscirenderer_la-DrawableSubwinJavaMapper.lo: src/cpp/subwinDrawing/DrawableSub
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJavaMapper.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
 
-libscirenderer_la-DrawableFigureJavaMapper.lo: src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureJavaMapper.Tpo -c -o libscirenderer_la-DrawableFigureJavaMapper.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigureJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp' object='libscirenderer_la-DrawableFigureJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureJavaMapper.lo `test -f 'src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp
-
 libscirenderer_la-DrawablePolylineJavaMapper.lo: src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Tpo -c -o libscirenderer_la-DrawablePolylineJavaMapper.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Plo
@@ -1963,13 +1847,6 @@ libscirenderer_la-RectangleMarkDrawerJavaMapper.lo: src/cpp/rectangleDrawing/Rec
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' object='libscirenderer_la-RectangleMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerJavaMapper.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
-
-libscirenderer_la-DrawableFigureGL.lo: src/jni/DrawableFigureGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Tpo -c -o libscirenderer_la-DrawableFigureGL.lo `test -f 'src/jni/DrawableFigureGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFigureGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableFigureGL.cpp' object='libscirenderer_la-DrawableFigureGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableFigureGL.lo `test -f 'src/jni/DrawableFigureGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFigureGL.cpp
 
 libscirenderer_la-DrawableSubwinGL.lo: src/jni/DrawableSubwinGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
@@ -3132,13 +3009,6 @@ libscirenderer_la-GridDrawerGL.lo: src/jni/GridDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GridDrawerGL.cpp' object='libscirenderer_la-GridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerGL.lo `test -f 'src/jni/GridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/GridDrawerGL.cpp
-
-libscirenderer_la-RenderingChecker.lo: src/jni/RenderingChecker.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RenderingChecker.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RenderingChecker.Tpo -c -o libscirenderer_la-RenderingChecker.lo `test -f 'src/jni/RenderingChecker.cpp' || echo '$(srcdir)/'`src/jni/RenderingChecker.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-RenderingChecker.Tpo $(DEPDIR)/libscirenderer_la-RenderingChecker.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RenderingChecker.cpp' object='libscirenderer_la-RenderingChecker.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RenderingChecker.lo `test -f 'src/jni/RenderingChecker.cpp' || echo '$(srcdir)/'`src/jni/RenderingChecker.cpp
 
 libscirenderer_la-RendererFontManager.lo: src/cpp/RendererFontManager.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RendererFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp

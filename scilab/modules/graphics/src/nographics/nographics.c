@@ -600,11 +600,6 @@ sciFont *sciGetFontContext (sciPointObj * pobj)
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-double sciGetFontSize(sciPointObj * pobj)
-{
-	return 0.;
-}
-/*--------------------------------------------------------------------------*/
  int sciGetFontStyle (sciPointObj * pobj)
 {
 	return -1;

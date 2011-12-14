@@ -78,7 +78,7 @@ void TicksDrawerJoGL::initializeDrawing(void)
                                                  (float) sciGetLineWidth(pObj),
                                                  sciGetGraphicContext(pObj)->foregroundcolor,
                                                  sciGetFontStyle(pObj),
-                                                 sciGetFontSize(pObj),
+                                                 sciGetFontSize(pObj->UID),
                                                  sciGetFontContext(pObj)->foregroundcolor,
                                                  sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 

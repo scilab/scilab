@@ -14,7 +14,6 @@
 
 #include "GetJavaProperty.h"
 #include "getHandleDrawer.h"
-#include "figureDrawing/DrawableFigure.h"
 #include "BasicAlgos.hxx"
 
 extern "C"
@@ -27,43 +26,45 @@ using namespace sciGraphics;
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaColormap(sciPointObj * pFigure, double rgbMat[])
 {
-    getFigureDrawer(pFigure)->getColorMap(rgbMat);
+    //getFigureDrawer(pFigure)->getColorMap(rgbMat);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaFigureSize(sciPointObj * pFigure, int size[2])
 {
-    getFigureDrawer(pFigure)->getSize(size);
+    //getFigureDrawer(pFigure)->getSize(size);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaWindowSize(sciPointObj * pFigure, int size[2])
 {
-    getFigureDrawer(pFigure)->getWindowSize(size);
+    //getFigureDrawer(pFigure)->getWindowSize(size);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
 {
-    getFigureDrawer(pFigure)->getWindowPosition(pos);
+    //getFigureDrawer(pFigure)->getWindowPosition(pos);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaInfoMessage(sciPointObj * pFigure, char *infoMessage)
 {
-    getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
+    //getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
 }
 
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaInfoMessageLength(sciPointObj * pFigure)
 {
-    return getFigureDrawer(pFigure)->getInfoMessageLength();
+    //return getFigureDrawer(pFigure)->getInfoMessageLength();
+    return 0;
 }
 
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
 {
-    return getFigureDrawer(pFigure)->getAntialiasingQuality();
+    //return getFigureDrawer(pFigure)->getAntialiasingQuality();
+    return 0;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -117,11 +118,11 @@ void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
 /*---------------------------------------------------------------------------------*/
 BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 {
-    if (getFigureDrawer(pFigure)->getAutoResizeMode())
+    //if (getFigureDrawer(pFigure)->getAutoResizeMode())
     {
         return TRUE;
     }
-    else
+    //else
     {
         return FALSE;
     }
@@ -130,7 +131,7 @@ BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 {
-    getFigureDrawer(pFigure)->getViewport(viewport);
+    //getFigureDrawer(pFigure)->getViewport(viewport);
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -208,11 +209,11 @@ void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
 /*---------------------------------------------------------------------------------*/
 BOOL sciGetJavaIsAbleToCreateWindow(void)
 {
-    if (DrawableFigure::isAbleToCreateFigure())
+    //if (DrawableFigure::isAbleToCreateFigure())
     {
         return booltoBOOL(true);
     }
-    else
+    //else
     {
         return booltoBOOL(false);
     }

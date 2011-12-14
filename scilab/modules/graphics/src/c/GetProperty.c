@@ -538,8 +538,10 @@ sciGetFontContext (sciPointObj * pobj)
 **sciGetFontSize
 * Gets the Font Size
 */
-double sciGetFontSize(sciPointObj * pobj)
+double sciGetFontSize(char * pobjUID)
 {
+    abort();
+#if 0
     if (sciGetFontContext(pobj) != NULL)
     {
         return (sciGetFontContext(pobj))->fontSize;
@@ -549,6 +551,7 @@ double sciGetFontSize(sciPointObj * pobj)
         printSetGetErrorMessage("font_size");
         return -1.0;
     }
+#endif
 }
 
 

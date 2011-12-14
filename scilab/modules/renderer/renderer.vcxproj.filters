@@ -171,36 +171,6 @@
     <ClCompile Include="src\jni\XlFontManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\ConcreteDrawableFigure.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigure.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureBridgeFactory.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureFactory.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableFigureGL.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJavaMapper.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJoGL.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\figureDrawing\FigureScilabCall.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\FigureScilabCall_wrap.c">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\RenderingChecker.cpp">
-      <Filter>Source Files\FigureDrawing</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\polylineDrawing\BarDecomposition.cpp">
       <Filter>Source Files\PolylineDrawing</Filter>
     </ClCompile>
@@ -1386,9 +1356,6 @@
       <Filter>Header Files\ArcDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\figureDrawing\ConcreteDrawableFigure.h">
-      <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigure.h">
       <Filter>Header Files\FigureDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\figureDrawing\DrawableFigureBridge.h">

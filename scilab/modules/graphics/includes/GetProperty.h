@@ -63,7 +63,7 @@ GRAPHICS_IMPEXP int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP double sciGetFontSize(sciPointObj * pobj); /* GET */
+GRAPHICS_IMPEXP double sciGetFontSize(char * pobjUID); /* GET */
 GRAPHICS_IMPEXP double sciGetFontOrientation (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */

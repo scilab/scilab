@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2007 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -16,7 +16,7 @@ modulename=renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA =  license.txt 
+libscirenderer_la_root_DATA =  license.txt
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -28,12 +28,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
-src/cpp/figureDrawing/DrawableFigure.cpp \
-src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-src/cpp/figureDrawing/FigureScilabCall.cpp \
 src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
 src/cpp/compoundDrawing/DrawableCompound.cpp \
 src/cpp/textDrawing/DrawableTextFactory.cpp \
@@ -94,13 +88,11 @@ src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
 src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-src/jni/DrawableFigureGL.cpp \
 src/jni/DrawableSubwinGL.cpp \
 src/jni/DrawablePolylineGL.cpp \
 src/jni/DrawableRectangleGL.cpp \
@@ -118,7 +110,6 @@ src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
 src/jni/ArcLineDrawerGL.cpp \
 src/jni/ArcFillDrawerGL.cpp \
 src/jni/DrawableArcGL.cpp \
-src/jni/FigureScilabCall_wrap.c \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
@@ -268,7 +259,6 @@ src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
 src/jni/TicksDrawerGL.cpp \
 src/jni/GridDrawerGL.cpp \
-src/jni/RenderingChecker.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
 src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
@@ -303,7 +293,7 @@ libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
-                
+
 if SWIG
   BUILT_SOURCES=swig
 endif

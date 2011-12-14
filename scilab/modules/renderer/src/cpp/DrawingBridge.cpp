@@ -54,7 +54,7 @@ void sciDrawObj( sciPointObj * pObj )
   /* we need to recreate a new one */
   getHandleDrawer(pObj)->hasChanged() ;
   /* redisplay everything, including this handle */
-  getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
+  //getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
 }
 /*---------------------------------------------------------------------------------*/
 void sciMoveObj(sciPointObj * pObj, const double translation[3])
@@ -62,7 +62,7 @@ void sciMoveObj(sciPointObj * pObj, const double translation[3])
   /* Specify that the object has moved */
   forceMove(pObj, translation[0], translation[1], translation[2]);
   /* redisplay everything, including this handle */
-  getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
+  //getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
 }
 /*---------------------------------------------------------------------------------*/
 void sciDrawSingleObj( sciPointObj * pObj )
@@ -89,7 +89,7 @@ void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs )
     list<sciPointObj *> childrens = getChildrenOfFigure(curFigure, pObjs, nbObjs);
 
     // then draw them
-    getFigureDrawer(curFigure)->drawSingleObjs(childrens);
+    //getFigureDrawer(curFigure)->drawSingleObjs(childrens);
   }
 
 }
@@ -105,7 +105,7 @@ void redrawHierarchy( sciPointObj * pObj )
   forceHierarchyRedraw(pObj);
 
   /* redisplay everything, including this handle */
-  getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
+  //getFigureDrawer( sciGetParentFigure( pObj ) )->forceDisplay() ;
 }
 /*---------------------------------------------------------------------------------*/
 void forceHierarchyRedraw( sciPointObj * pObj )

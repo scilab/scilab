@@ -39,7 +39,7 @@ void StandardTextDrawerJoGL::setDrawerParameters(void)
 {
   sciPointObj * pObj = m_pDrawed->getDrawedObject();
   getStandardTextDrawerJavaMapper()->setTextParameters(sciGetAlignment(pObj), sciGetFontContext(pObj)->foregroundcolor,
-                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj), sciGetFontOrientation(pObj),
+                                                       sciGetFontStyle(pObj), sciGetFontSize(pObj->UID), sciGetFontOrientation(pObj),
                                                        sciGetIsUsingFractionalMetrics(pObj) == TRUE);
 
   StringMatrix * textMatrix = sciGetText(pObj);

@@ -224,16 +224,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\cpp\RendererFontManager.cpp" />
     <ClCompile Include="src\cpp\SetJavaProperty.cpp" />
     <ClCompile Include="src\jni\XlFontManager.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\ConcreteDrawableFigure.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigure.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableFigureGL.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\DrawableFigureJoGL.cpp" />
-    <ClCompile Include="src\cpp\figureDrawing\FigureScilabCall.cpp" />
-    <ClCompile Include="src\jni\FigureScilabCall_wrap.c" />
-    <ClCompile Include="src\jni\RenderingChecker.cpp" />
     <ClCompile Include="src\cpp\polylineDrawing\BarDecomposition.cpp" />
     <ClCompile Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp" />
     <ClCompile Include="src\cpp\polylineDrawing\DrawablePolyline.cpp" />
@@ -631,7 +621,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="src\cpp\arcDrawing\DrawableArcJoGL.hxx" />
     <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h" />
     <ClInclude Include="src\cpp\figureDrawing\ConcreteDrawableFigure.h" />
-    <ClInclude Include="src\cpp\figureDrawing\DrawableFigure.h" />
     <ClInclude Include="src\cpp\figureDrawing\DrawableFigureBridge.h" />
     <ClInclude Include="src\cpp\figureDrawing\DrawableFigureBridgeFactory.h" />
     <ClInclude Include="src\cpp\figureDrawing\DrawableFigureFactory.h" />

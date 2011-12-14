@@ -19,7 +19,6 @@ extern "C"
 #include "ObjectStructure.h"
 }
 #include "DrawableObject.h"
-#include "figureDrawing/DrawableFigure.h"
 #include "rectangleDrawing/DrawableRectangle.h"
 #include "arcDrawing/DrawableArc.h"
 #include "polylineDrawing/DrawablePolyline.h"
@@ -67,12 +66,6 @@ DrawableObject * getHandleDrawerPointer( sciPointObj * pObj ) ;
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
 
 /*------------------------------------------------------------------------------*/
-
-/**
- * Return a DrawableFigure object corresponding to a sciPointObj object.
- * @return the corresponding figure to pFigure if pFigure if of type figure, NULL otherwise
- */
-DrawableFigure * getFigureDrawer( sciPointObj * pFigure ) ;
 
 /**
  * Return a DrawableRectangle object corresponding to a sciPointObj object.
