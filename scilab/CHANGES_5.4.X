@@ -87,6 +87,8 @@ Xcos
 Elementary functions
 ====================
 
+* dec2base function added (See SEP #75).
+
 * linspace deprecates the usage of non integer values as third input argument.
 
 * logspace deprecates the usage of non integer values as third input argument.
@@ -155,6 +157,7 @@ Compilation
 
 * "make check" will now launch the most important unitary tests (level 1).
 
+
 Bug fixes
 =========
 
@@ -164,6 +167,9 @@ Bug fixes
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
+                    simplified and optimized.
 
 * Bug #8682 fixed - funcprot did not return the previous value when called with
                     an argument.

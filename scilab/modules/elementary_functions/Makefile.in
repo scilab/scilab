@@ -247,7 +247,8 @@ am__objects_7 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_maxi.lo \
 	libscielementary_functions_la-sci_gsort.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo \
-	libscielementary_functions_la-sci_base2dec.lo
+	libscielementary_functions_la-sci_base2dec.lo \
+	libscielementary_functions_la-sci_dec2base.lo
 am__objects_8 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
@@ -891,7 +892,8 @@ sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_isequalbitwise.c \
-sci_gateway/c/sci_base2dec.c
+sci_gateway/c/sci_base2dec.c \
+sci_gateway/c/sci_dec2base.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -1189,6 +1191,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumsum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_dec2base.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_diag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_dsearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_exp.Plo@am__quote@
@@ -1759,6 +1762,13 @@ libscielementary_functions_la-sci_base2dec.lo: sci_gateway/c/sci_base2dec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_base2dec.c' object='libscielementary_functions_la-sci_base2dec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_base2dec.lo `test -f 'sci_gateway/c/sci_base2dec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_base2dec.c
+
+libscielementary_functions_la-sci_dec2base.lo: sci_gateway/c/sci_dec2base.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_dec2base.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_dec2base.Tpo -c -o libscielementary_functions_la-sci_dec2base.lo `test -f 'sci_gateway/c/sci_dec2base.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dec2base.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_dec2base.Tpo $(DEPDIR)/libscielementary_functions_la-sci_dec2base.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dec2base.c' object='libscielementary_functions_la-sci_dec2base.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_dec2base.lo `test -f 'sci_gateway/c/sci_dec2base.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dec2base.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
