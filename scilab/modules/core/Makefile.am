@@ -295,7 +295,6 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/console/includes \
-	-I$(top_srcdir)/modules/console/src/c/cmdLine \
 	-I$(top_srcdir)/modules/history_manager/includes \
 	$(XML_FLAGS)
 

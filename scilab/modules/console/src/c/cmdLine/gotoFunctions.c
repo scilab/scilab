@@ -16,9 +16,9 @@
 #include <wchar.h>
 #include <wctype.h>
 #include "BOOL.h"
-#include "cap_func.h"
-#include "aff_prompt.h"
-#include "goto_func.h"
+#include "termcapManagement.h"
+#include "cliPrompt.h"
+#include "gotoFunctions.h"
 
 /*
  * Return the cursor position of the cursor in the line.

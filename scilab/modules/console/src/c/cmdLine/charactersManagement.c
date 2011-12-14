@@ -16,10 +16,10 @@
 #include <unistd.h>
 #include <wchar.h>
 #include <wctype.h>
-#include "cap_func.h"
-#include "goto_func.h"
-#include "aff_prompt.h"
-#include "charctl.h"
+#include "termcapManagement.h"
+#include "gotoFunctions.h"
+#include "cliPrompt.h"
+#include "charactersManagement.h"
 #include "getNbrLine.h"
 
 /* Add a character to a command line */

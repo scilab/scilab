@@ -17,18 +17,17 @@
 #include <curses.h>
 #include <termios.h>
 #include <term.h>
-#include "history.h"
-#include "cap_func.h"
-#include "goto_func.h"
-#include "charctl.h"
-#include "init_tc_shell.h"
-#include "aff_prompt.h"
+#include "cliHistory.h"
+#include "termcapManagement.h"
+#include "gotoFunctions.h"
+#include "charactersManagement.h"
+#include "initConsoleMode.h"
+#include "cliPrompt.h"
 #include "getKey.h"
 #include "MALLOC.h"
 #include "HistoryManager.h"
 #include "charEncoding.h"
-#include "aff_prompt.h"
-#include "setCharDisplay.h"
+#include "cliDisplayManagement.h"
 #include "autoCompletionCli.h"
 
 /*

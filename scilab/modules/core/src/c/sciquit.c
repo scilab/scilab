@@ -30,7 +30,7 @@
 #include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
 #ifndef _MSC_VER
-#include "init_tc_shell.h"
+#include "initConsoleMode.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int ExitScilab(void)

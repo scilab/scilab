@@ -19,7 +19,7 @@
 #include <string.h>
 #include <errno.h>
 #include "MALLOC.h"
-#include "init_tc_shell.h"
+#include "initConsoleMode.h"
 
 static void canonicMode(struct termios *t)
 {

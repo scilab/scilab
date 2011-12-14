@@ -15,8 +15,8 @@
 #include <curses.h>
 #include <term.h>
 #include "getKey.h"
-#include "cap_func.h"
-#include "aff_prompt.h"
+#include "termcapManagement.h"
+#include "cliPrompt.h"
 #include "windowsChangeManagement.h"
 #include "HistoryManager.h"
 

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "setCharDisplay.h"
+#include "cliDisplayManagement.h"
 
 /* Set color and other settings about charcter display */
 void setCharDisplay(const char *setting)

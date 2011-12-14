@@ -14,10 +14,10 @@
 #include <term.h>
 #include <termios.h>
 #include <wchar.h>
-#include "cap_func.h"
-#include "goto_func.h"
-#include "aff_prompt.h"
-#include "history.h"
+#include "termcapManagement.h"
+#include "gotoFunctions.h"
+#include "cliPrompt.h"
+#include "cliHistory.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "charEncoding.h"

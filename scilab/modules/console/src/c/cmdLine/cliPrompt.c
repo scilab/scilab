@@ -17,9 +17,9 @@
 #include <wchar.h>
 #include <wctype.h>
 #include <curses.h>
-#include "aff_prompt.h"
+#include "cliPrompt.h"
 #include "prompt.h"
-#include "setCharDisplay.h"
+#include "cliDisplayManagement.h"
 
 /*
  * If there's a string, the function save it.

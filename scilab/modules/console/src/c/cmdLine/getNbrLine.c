@@ -13,7 +13,7 @@
 #include <wctype.h>
 #include <term.h>
 #include <curses.h>
-#include "aff_prompt.h"
+#include "cliPrompt.h"
 #include "getNbrLine.h"
 
 /* Get the number of line the string passed take in the window */

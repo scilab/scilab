@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "cap_func.h"
+#include "termcapManagement.h"
 /* Simplify termcap activation */
 void capStr(const char *capacity)
 {

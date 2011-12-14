@@ -42,7 +42,7 @@
 #endif
 #endif
 
-#include "../cmdLine/aff_prompt.h"
+#include "cliPrompt.h"
 #include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
@@ -471,7 +471,7 @@ char *TermReadAndProcess(void)
                 break;
 
             case CTRL_X:
-            case CTRL_C:            /** we never get there CTRL_C is explored above **/
+            case CTRL_C:           /** we never get there CTRL_C is explored above **/
                 {
                     int j = SIGINT;
 

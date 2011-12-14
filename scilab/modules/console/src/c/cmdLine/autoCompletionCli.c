@@ -14,7 +14,6 @@
 #include <wctype.h>
 #include "charEncoding.h"
 #include "completion.h"
-#include "charctl.h"
 #include "MALLOC.h"
 #include "autoCompletionCli.h"
 

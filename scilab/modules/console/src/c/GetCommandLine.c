@@ -28,8 +28,8 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "storeCommand.h"       /* for ismenu() */
-#include "cmdLine/getKey.h"
-#include "cmdLine/init_tc_shell.h"
+#include "getKey.h"
+#include "initConsoleMode.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
