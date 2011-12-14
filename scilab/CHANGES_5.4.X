@@ -32,6 +32,9 @@ Xcos
 * bug 10107 fixed - Default value of the Integrator Absolute Tolerance was too 
                     large. It has been reduced to 1e-6.
 
+* bug 10340 fixed - Exception occured while moving the palette split pane to
+                    hide the block list and while using a palette diagram.
+
 
 Bug fixes
 ========= 
@@ -253,6 +256,7 @@ to find the parameters dialog to open.
 * Bug #10096 fixed - Set [1;-1;] on a product block thrown an exception.
 
 * Bug #10302 fixed - LaTeX labels were not rendered.
+
 
 
 Localization

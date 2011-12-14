@@ -148,6 +148,9 @@ public class PaletteDiagram extends XcosDiagram {
     private mxGeometry getNewBlockPosition(mxGeometry geom, int blockCount) {
 
         int maxRowItem = (int) (windowWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN));
+        if (maxRowItem <= 0)  {
+            maxRowItem = 1;
+        }
         int row = blockCount % maxRowItem;
         int col = blockCount / maxRowItem;
         double x = geom.getX();
