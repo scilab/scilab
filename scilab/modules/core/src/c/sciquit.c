@@ -10,13 +10,13 @@
  *
  */
 
-#ifdef sun 
-	#ifndef SYSV
-	#include <sys/ieeefp.h>
-	#endif
+#ifdef sun
+#ifndef SYSV
+#include <sys/ieeefp.h>
+#endif
 #endif
 #include "sciquit.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "TerminateCore.h"
 #include "../../../graphics/includes/TerminateGraphics.h"
 #include "dynamic_tclsci.h"
@@ -29,51 +29,64 @@
 #endif
 #include "../../../gui/includes/TerminateGui.h"
 #include "scilabmode.h"
-/*--------------------------------------------------------------------------*/ 
+#include "init_tc_shell.h"
+/*--------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-	TerminateCorePart1();
-  
-	if ( getScilabMode() != SCILAB_NWNI ) 
-	{
-		dynamic_TerminateTclTk();
-		TerminateGraphics();
-		TerminateJVM();
-	}
+    scilabMode CurrentScilabMode;
 
-	TerminateCorePart2();
+    TerminateCorePart1();
 
-	#ifdef _MSC_VER
-	TerminateWindows_tools();
-	#endif
+    CurrentScilabMode = getScilabMode();
+    if (CurrentScilabMode != SCILAB_NWNI)
+    {
+        dynamic_TerminateTclTk();
+        TerminateGraphics();
+        TerminateJVM();
+    }
 
-	return 0;
+    TerminateCorePart2();
+
+#ifdef _MSC_VER
+    TerminateWindows_tools();
+#endif
+
+    /* Reset Shell Settings before leaving Scilab. */
+    if (CurrentScilabMode == SCILAB_NWNI || CurrentScilabMode == SCILAB_NW)
+    {
+        initConsoleMode(ATTR_RESET);
+    }
+
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+
+/*--------------------------------------------------------------------------*/
 void sciquit(void)
 {
 #ifdef _MSC_VER
-	/* bug 3672 */
-	/* Create a Mutex (closing scilab)
-	used by files association 
-	*/
-	createMutexClosingScilab();
+    /* bug 3672 */
+    /* Create a Mutex (closing scilab)
+     * used by files association 
+     */
+    createMutexClosingScilab();
 #endif
 
-	ExitScilab();
+    ExitScilab();
 
-#ifdef sun 
+#ifdef sun
 #ifndef SYSV
-	char **out;
-	ieee_flags("clearall","exception","all", &out);
-#endif 
-#endif 
+    char **out;
+
+    ieee_flags("clearall", "exception", "all", &out);
+#endif
+#endif
 
 #ifdef _MSC_VER
-	/* close mutex (closing scilab)
-	used by files association 
-	*/
-	terminateMutexClosingScilab();
+    /* close mutex (closing scilab)
+     * used by files association 
+     */
+    terminateMutexClosingScilab();
 #endif
 }
+
 /*--------------------------------------------------------------------------*/

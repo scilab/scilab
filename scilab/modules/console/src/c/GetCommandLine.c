@@ -122,12 +122,8 @@ static void getCommandLine(void)
     }
     else
     {
-        /* Set console mode to raw */
-        initConsoleMode(RAW);
         /* Call Term Management for NW and NWNI to get a string */
         __CommandLine = getCmdLine();
-        /* Set Console mode to the shell one */
-        initConsoleMode(ATTR_RESET);
     }
 }
 
@@ -148,6 +144,8 @@ char *getConsoleInputLine(void)
 */
 static void initAll(void)
 {
+    /* Set console mode to raw */
+    initConsoleMode(RAW);
     initialized = TRUE;
     pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     atexit(release);
@@ -259,6 +257,7 @@ void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *men
             {
 
                 char *cwd = NULL;
+
                 int err = 0;
 
                 UpdateBrowseVar(TRUE);

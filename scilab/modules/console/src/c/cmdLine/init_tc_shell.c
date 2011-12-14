@@ -40,12 +40,12 @@ static void saveAndResetShellAttr(struct termios *shellAttr)
 {
     static struct termios *savedAttr = NULL;
 
-    if (savedAttr == NULL)
+    if (savedAttr == NULL && shellAttr != NULL)
     {
-        savedAttr = MALLOC(sizeof(struct termios));
+        savedAttr = MALLOC(sizeof(*savedAttr));
         *savedAttr = *shellAttr;
     }
-    else if (shellAttr == NULL)
+    else if (shellAttr == NULL && savedAttr != NULL)
     {
         if (tcsetattr(0, 0, savedAttr) == -1)
         {
@@ -56,6 +56,16 @@ static void saveAndResetShellAttr(struct termios *shellAttr)
     }
 }
 
+static void saveShellAttr(struct termios *shellAttr)
+{
+    saveAndResetShellAttr(shellAttr);
+}
+
+static void resetShellAttr(void)
+{
+    saveAndResetShellAttr(NULL);
+}
+
 /* Set Raw mode or Canonic Mode */
 int setAttr(int bin)
 {
@@ -63,7 +73,7 @@ int setAttr(int bin)
 
     if (bin == ATTR_RESET)
     {
-        saveAndResetShellAttr(NULL);
+        resetShellAttr();
         return 0;
     }
     if (tcgetattr(0, &shellAttr) == -1)
@@ -71,7 +81,7 @@ int setAttr(int bin)
         fprintf(stderr, "Cannot access to the term attributes: %s\n", strerror(errno));
         return -1;
     }
-    saveAndResetShellAttr(&shellAttr);
+    saveShellAttr(&shellAttr);
     if (bin == CANON)
     {
         canonicMode(&shellAttr);
