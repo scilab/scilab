@@ -844,21 +844,18 @@ namespace types
                 //std::cout << "iInc : " << iInc << std::endl;
             }
 
-            if(isComplex())
+            int iOffset =  _iCols * getRows() + _iRows;
+            C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
+
+            if(pD->isComplex())
             {
-                int iOffset =  _iCols * getRows() + _iRows;
-                C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
                 C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
-            }
-            else
-            {
-                C2F(dcopy)(&iSize, pD->get(), &iOne, get() + _iCols * getRows() + _iRows, &iInc);
             }
         }
         else 
         {
             //std::cout << "no optimisation" << std::endl;
-            if(isComplex())
+            if(pD->isComplex())
             {
                 for(int i = 0 ; i < iCols ; i++)
                 {
