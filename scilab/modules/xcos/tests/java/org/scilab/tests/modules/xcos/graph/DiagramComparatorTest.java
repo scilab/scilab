@@ -50,11 +50,8 @@ public class DiagramComparatorTest {
         /*
          * Assert
          */
-        for (int i = testVector.size() - 1; i >= 0; i--) {
-            final XcosDiagram s = sorted.poll();
-            final XcosDiagram ref = testVector.get(i);
-
-            assert s == ref;
+        for (XcosDiagram ref : testVector) {
+            assert sorted.contains(ref);
         }
     }
 
@@ -81,11 +78,8 @@ public class DiagramComparatorTest {
         /*
          * Assert
          */
-        for (int i = testVector.size() - 1; i >= 0; i--) {
-            final XcosDiagram s = sorted.poll();
-            final XcosDiagram ref = testVector.get(i);
-
-            assert s == ref;
+        for (XcosDiagram ref : testVector) {
+            assert sorted.contains(ref);
         }
     }
 

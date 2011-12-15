@@ -50,13 +50,13 @@ public final class DiagramComparator implements Comparator<XcosDiagram> {
     @Override
     public int compare(final XcosDiagram o1, final XcosDiagram o2) {
         int o1Relative = 0;
-        for (XcosDiagram graph1 = o1; graph1 instanceof SuperBlockDiagram; graph1 = ((SuperBlockDiagram) graph1)
+        for (XcosDiagram graph1 = o1; graph1 instanceof SuperBlockDiagram && ((SuperBlockDiagram) graph1).getContainer() != null; graph1 = ((SuperBlockDiagram) graph1)
                 .getContainer().getParentDiagram()) {
             o1Relative++;
         }
 
         int o2Relative = 0;
-        for (XcosDiagram graph2 = o2; graph2 instanceof SuperBlockDiagram; graph2 = ((SuperBlockDiagram) graph2)
+        for (XcosDiagram graph2 = o2; graph2 instanceof SuperBlockDiagram && ((SuperBlockDiagram) graph2).getContainer() != null; graph2 = ((SuperBlockDiagram) graph2)
                 .getContainer().getParentDiagram()) {
             o2Relative++;
         }

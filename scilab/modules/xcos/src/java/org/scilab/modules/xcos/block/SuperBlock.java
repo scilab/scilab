@@ -463,8 +463,10 @@ public final class SuperBlock extends BasicBlock {
         updateBlocksColor(getAllTypedBlock(EventInBlock.class));
         updateBlocksColor(getAllTypedBlock(EventOutBlock.class));
 
-        child.getAsComponent().validate();
-        child.getView().validate();
+        if (child != null) {
+            child.getAsComponent().validate();
+            child.getView().validate();
+        }
     }
 
     /**
@@ -472,12 +474,12 @@ public final class SuperBlock extends BasicBlock {
      *            block list
      */
     private void updateBlocksColor(List<? extends BasicBlock> blocks) {
+        if (blocks == null || blocks.size() == 0 || child == null) {
+            return;
+        }
 
         try {
             child.getModel().beginUpdate();
-            if (blocks == null || blocks.size() == 0) {
-                return;
-            }
 
             final int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
             boolean[] isDone = new boolean[countUnique];
