@@ -247,6 +247,7 @@
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
+    <ClCompile Include="..\cpp\Triangulator.cpp" />
     <ClCompile Include="..\jni\CallGraphicController.cpp" />
     <ClCompile Include="..\cpp\ColorComputer.cpp" />
     <ClCompile Include="..\cpp\createGraphicObject.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="..\..\includes\returnType.h" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />
     <ClInclude Include="..\..\includes\setGraphicObjectProperty.h" />
+    <ClInclude Include="..\..\includes\Triangulator.hxx" />
     <ClInclude Include="..\jni\CallGraphicController.hxx" />
     <ClInclude Include="..\..\includes\createGraphicObject.h" />
     <ClInclude Include="..\..\includes\Data3D.hxx" />

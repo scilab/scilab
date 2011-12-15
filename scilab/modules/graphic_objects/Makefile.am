@@ -59,6 +59,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
 								src/cpp/TriangleMeshFecDataDecomposer.cpp \
+								src/cpp/Triangulator.cpp \
 								src/cpp/ScilabView.cpp \
 								src/cpp/FigureList.cpp \
 								src/cpp/HandleManagement.cpp \

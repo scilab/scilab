@@ -160,6 +160,7 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-Plot3DDecomposer.lo \
 	libscigraphic_objects_la-PolylineDecomposer.lo \
 	libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo \
+	libscigraphic_objects_la-Triangulator.lo \
 	libscigraphic_objects_la-ScilabView.lo \
 	libscigraphic_objects_la-FigureList.lo \
 	libscigraphic_objects_la-HandleManagement.lo \
@@ -569,6 +570,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
 								src/cpp/TriangleMeshFecDataDecomposer.cpp \
+								src/cpp/Triangulator.cpp \
 								src/cpp/ScilabView.cpp \
 								src/cpp/FigureList.cpp \
 								src/cpp/HandleManagement.cpp \
@@ -736,6 +738,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Triangulator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-dataModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-deleteGraphicObject.Plo@am__quote@
@@ -1003,6 +1006,13 @@ libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo: src/cpp/TriangleMeshF
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshFecDataDecomposer.cpp' object='libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo `test -f 'src/cpp/TriangleMeshFecDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecDataDecomposer.cpp
+
+libscigraphic_objects_la-Triangulator.lo: src/cpp/Triangulator.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-Triangulator.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-Triangulator.Tpo -c -o libscigraphic_objects_la-Triangulator.lo `test -f 'src/cpp/Triangulator.cpp' || echo '$(srcdir)/'`src/cpp/Triangulator.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-Triangulator.Tpo $(DEPDIR)/libscigraphic_objects_la-Triangulator.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Triangulator.cpp' object='libscigraphic_objects_la-Triangulator.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-Triangulator.lo `test -f 'src/cpp/Triangulator.cpp' || echo '$(srcdir)/'`src/cpp/Triangulator.cpp
 
 libscigraphic_objects_la-ScilabView.lo: src/cpp/ScilabView.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-ScilabView.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-ScilabView.Tpo -c -o libscigraphic_objects_la-ScilabView.lo `test -f 'src/cpp/ScilabView.cpp' || echo '$(srcdir)/'`src/cpp/ScilabView.cpp
