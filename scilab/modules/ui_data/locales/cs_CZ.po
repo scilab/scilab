@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-21 19:35+0000\n"
+"PO-Revision-Date: 2011-10-17 12:57+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -64,7 +64,7 @@ msgid "Name"
 msgstr "Jméno"
 
 msgid "Dimension"
-msgstr ""
+msgstr "Rozměr"
 
 msgid "Type"
 msgstr "Typ"
@@ -76,13 +76,13 @@ msgid "Bytes"
 msgstr "Bajty"
 
 msgid "User"
-msgstr ""
+msgstr "Uživatel"
 
 msgid "Type int value"
-msgstr ""
+msgstr "Zadejte celočíselnou hodnotu"
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "Funkce není v tomto režimu dostupná..."
 
 msgid "File"
 msgstr "Soubor"
@@ -94,7 +94,7 @@ msgid "Filter"
 msgstr "Filtr"
 
 msgid "Hide Scilab variables"
-msgstr ""
+msgstr "Skrýt proměnné Scilab"
 
 msgid "Double"
 msgstr "Double"
@@ -172,7 +172,7 @@ msgid "Cut"
 msgstr "Vyjmout"
 
 msgid "Clear"
-msgstr ""
+msgstr "Vyčistit"
 
 msgid "Undo"
 msgstr "Zpět"
@@ -181,77 +181,74 @@ msgid "Redo"
 msgstr "Znovu"
 
 msgid "File Browser"
-msgstr ""
+msgstr "Průzkumník souborů"
 
 msgid "Size"
-msgstr ""
+msgstr "Velikost"
 
 msgid "Last modified"
-msgstr ""
+msgstr "Naposledy upraveno"
 
 msgid "Directory"
-msgstr ""
+msgstr "Adresář"
 
 #, c-format
 msgid "%s File"
-msgstr ""
+msgstr "Soubor %s"
 
 msgid "File/directory filter"
-msgstr ""
+msgstr "Filtr souboru/adresáře"
 
 msgid "Enter your working folder"
-msgstr ""
+msgstr "Zadejte Váš pracovní adresář"
 
 msgid "Case sensitive"
-msgstr ""
+msgstr "Citlivost na velikost písmen"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "Regulární výraz"
 
 msgid "Select a directory"
-msgstr ""
+msgstr "Zvolte adresář"
 
 msgid "Home"
-msgstr ""
+msgstr "Domů"
 
 msgid "Scilab"
-msgstr ""
+msgstr "Scilab"
 
 #, c-format
 msgid "Cannot edit the file %s"
-msgstr ""
+msgstr "Nelze upravit soubor %s"
 
 #, c-format
 msgid "Cannot open the file %s"
-msgstr ""
+msgstr "Nelze otevřít soubor %s"
 
 msgid "Open with SciNotes"
-msgstr ""
+msgstr "Otevřít pomocí SciNotes"
 
 msgid "Execute in Scilab"
-msgstr ""
+msgstr "Spustit v Scilab"
 
 msgid "Open with Xcos"
-msgstr ""
+msgstr "Otevřít pomocí Xcos"
 
 msgid "Load in Scilab"
-msgstr ""
+msgstr "Načíst v Scilab"
 
 msgid "Edit with default application"
-msgstr ""
+msgstr "Upravit pomocí výchozí aplikace"
 
 msgid "Open with default application"
-msgstr ""
+msgstr "Otevřít pomocí výchozí aplikace"
 
 msgid "Scilab type:"
-msgstr ""
+msgstr "Typ Scilab:"
 
 msgid "Bytes:"
-msgstr ""
+msgstr "Bajty:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
-
-#~ msgid "Icon"
-#~ msgstr "Ikona"

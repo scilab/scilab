@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-02 07:31+0000\n"
+"PO-Revision-Date: 2011-11-15 09:14+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1154,16 +1154,16 @@ msgid "Customize your complex function"
 msgstr "Personnalisez votre fonction complexe"
 
 msgid "datatips on 2D curves"
-msgstr ""
+msgstr "Datatips sur des courbes 2D"
 
 msgid "datatips on 3D curves"
-msgstr ""
+msgstr "Datatips sur des courbes 3D"
 
 msgid "2D curves"
-msgstr ""
+msgstr "Courbes 2D"
 
 msgid "3D curve"
-msgstr ""
+msgstr "Courbes 3D"
 
 msgid "Graphics"
 msgstr "Graphiques"
@@ -1193,7 +1193,7 @@ msgid "bar histogram"
 msgstr "Histogramme à barres"
 
 msgid "Datatips"
-msgstr ""
+msgstr "Datatips"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
@@ -1398,25 +1398,25 @@ msgstr ""
 "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 msgid "Delete all datatips"
-msgstr "Effacer toutes les étiquettes de données"
+msgstr "Supprimer tous les datatips"
 
 msgid "Delete all datatips for the selected curve"
-msgstr "Effacer toutes les étiquettes de données pour la courbe sélectionnée"
+msgstr "Supprimer tous les datatips sur la courbe sélectionnée"
 
 msgid "Delete nearest datatip"
-msgstr "Effacer l'étiquette de données la plus proche"
+msgstr "Supprimer le datatip le plus proche"
 
 msgid "Delete last datatip"
-msgstr "Effacer la dernière étiquette de données"
+msgstr "Supprimer le dernier datatip"
 
 msgid "Delete selected datatip"
-msgstr ""
+msgstr "Supprimer le datatip sélectionné"
 
 msgid "Open curve tip style editor"
-msgstr ""
+msgstr "Ouvrir l'éditeur de style de datatips"
 
 msgid "Redraw all datatips"
-msgstr "Redessiner toutes les étiquettes de données"
+msgstr "Redessiner tous les datatips"
 
 msgid "Edit the curve tip display function"
 msgstr ""
@@ -1432,10 +1432,10 @@ msgid "Disable interpolation"
 msgstr "Désactiver l'interpolation"
 
 msgid "Multiple datatips mode"
-msgstr "Mode d'étiquettes de données multiples"
+msgstr "Mode datatips multiples"
 
 msgid "Unique datatip mode"
-msgstr "Mode d'étiquette de données unique"
+msgstr "Mode datatip unique"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -1444,7 +1444,7 @@ msgstr ""
 "attendu.\n"
 
 msgid "createPopupItems: found an empty cascading menu."
-msgstr ""
+msgstr "createPopupItems : un menu déroulant vide a été trouvé."
 
 msgid "automatic"
 msgstr "automatique"
@@ -1479,21 +1479,28 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau de %d "
+"éléments attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d(1) : Doit être compris entre "
+"%d et %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d(2) : Doit être compris entre "
+"%d et %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1502,29 +1509,37 @@ msgstr "%s : Trop d'arguments d'entrée"
 msgid ""
 "Datatip manager cannot be enabled, user data figure field is already used"
 msgstr ""
+"Le gestionnaire de datatips ne peut pas être activé, le champ user_data de "
+"la figure est déjà utilisé"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
-"Le clic gauche sur une courbe crée une étiquette de données, le clic droit "
-"ouvre un menu contextuel"
+"Le clic gauche sur une courbe crée un datatip, le clic droit ouvre un menu "
+"contextuel"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de handle graphique "
+"attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: the handles must have the same "
 "parent.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Les handles doivent avoir "
+"le même parent.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: handle on axes or axes children "
 "expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un handle de type axe ou des "
+"enfants d'axes attendu.\n"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
@@ -1536,35 +1551,39 @@ msgstr "La fonction sélectionnée doit avoir 1 paramètre de sortie (str)"
 #, c-format
 msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
 msgstr ""
+"%s : Type erroné pour le champ user_data de la courbe : Une structure "
+"attendue.\n"
 
 msgid "Square mark, boxed label"
-msgstr ""
+msgstr "Puce carrée, label encadré"
 
 msgid "Square mark, simple label"
-msgstr ""
+msgstr "Puce carrée, label simple"
 
 msgid "Square mark, no label"
-msgstr ""
+msgstr "Puce carrée, aucun label"
 
 msgid "Directional arrow, boxed label"
-msgstr ""
+msgstr "Flèche directionnelle, label encadré"
 
 msgid "Directional arrow, simple label"
-msgstr ""
+msgstr "Flèche directionnelle, label simple"
 
 msgid "Directional arrow, no label"
-msgstr ""
+msgstr "Flèche directionnelle, aucun label"
 
 msgid "Select tip style"
-msgstr ""
+msgstr "Sélectionner le style des datatips"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire booléen attendu.\n"
 
 msgid "&File"
 msgstr "&Fichier"
@@ -1579,43 +1598,43 @@ msgid "&?"
 msgstr "&?"
 
 msgid "Datatips style"
-msgstr ""
+msgstr "Style des datatips"
 
 msgid "Marker style:"
-msgstr ""
+msgstr "Style de puces :"
 
 msgid "Square"
-msgstr ""
+msgstr "Carré"
 
 msgid "Arrow"
-msgstr ""
+msgstr "Flèche"
 
 msgid "Labeled?"
-msgstr ""
+msgstr "Avec label ?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 msgid "Boxed?"
-msgstr ""
+msgstr "Encadré ?"
 
 msgid "Positionning?"
-msgstr ""
+msgstr "Position ?"
 
 msgid "Knots"
-msgstr ""
+msgstr "Nœuds"
 
 msgid "Interpolated"
-msgstr ""
+msgstr "Interpolé"
 
 msgid "Allow multiple datatips?"
-msgstr ""
+msgstr "Autoriser les datatips multiples ?"
 
 msgid "Edit label generator"
-msgstr ""
+msgstr "Éditer le générateur de labels"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -1649,6 +1668,8 @@ msgstr ""
 msgid ""
 "Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
+"Le sélectionneur d'entité ne peut pas être activé, le champ user_data de la "
+"figure est déjà utilisé"
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
@@ -1853,15 +1874,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur attendu.\n"
-
-#~ msgid ""
-#~ "Data tips cannot be attached to this curve,\n"
-#~ "the user_data field is already used"
-#~ msgstr ""
-#~ "Les étiquettes de données ne peuvent être liées à cette courbe.\n"
-#~ "le champ user_data est déjà utilisé"
-
-#~ msgid "Left click on a curve to create a datatip, right opens"
-#~ msgstr ""
-#~ "Le clic gauche sur une courbe crée une étiquette de données, le clic droit "
-#~ "ouvre"

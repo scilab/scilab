@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 
 #, c-format
@@ -1026,11 +1026,11 @@ msgstr "点击鼠标左键终止选择，点击右键取消。"
 msgid "OK"
 msgstr "确认"
 
-msgid "No"
-msgstr "否"
-
 msgid "Yes"
 msgstr "是"
+
+msgid "No"
+msgstr "否"
 
 msgid "Save and execute"
 msgstr "保存并执行"
@@ -1038,17 +1038,14 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1103,7 +1100,6 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
@@ -1477,21 +1473,3 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
-
-#~ msgid "Environment loaded.\n"
-#~ msgstr "运行环境已被装载\n"
-
-#~ msgid "Select a file to execute"
-#~ msgstr "执行文件"
-
-#~ msgid "Execution done.\n"
-#~ msgstr "执行完毕\n"
-
-#~ msgid "Environment saved.\n"
-#~ msgstr "运行环境已被保存\n"
-
-#~ msgid "Change Current Directory"
-#~ msgstr "改变当前目录"
-
-#~ msgid "Select a directory"
-#~ msgstr "选择目录"

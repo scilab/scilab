@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-05 14:36+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2011-12-13 07:21+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 
 #, c-format
@@ -309,7 +309,7 @@ msgstr "描述"
 msgid ""
 "Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
-msgstr ""
+msgstr "ATOMS 設置中的 offLine 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
 
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
@@ -490,11 +490,11 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是布林值.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
+msgstr "%s: 描述檔案 ('%s') 並不存在.\n"
 
 #, c-format
 msgid "%s: gzip not found.\n"
-msgstr ""
+msgstr "%s: gzip 不存在.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
@@ -547,39 +547,39 @@ msgstr "%s: Wget 及 Curl 接未安裝: 請安裝其中之一\n"
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: 錯誤: 無效網址 URL.\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: 錯誤: 開啟網際網路.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: 錯誤: 開啟網址 URL.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: 錯誤: 建立檔案.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: 錯誤: 無效的檔案長度.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: 錯誤: 讀取網際網路上的檔案.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: 錯誤: 檔案寫入.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: 錯誤: 失敗.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: 錯誤: 記憶體不足.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -587,7 +587,7 @@ msgstr "%s: 以下檔案未曾下載:\n"
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - URL: '%s'\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -599,7 +599,7 @@ msgstr "%s: 以下檔案未曾複製:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - 來源: '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -611,7 +611,7 @@ msgstr "%s: 下載之檔案無法檢查 MD5SUM:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t [tab 定位鍵] - 檔案: '%s'\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
