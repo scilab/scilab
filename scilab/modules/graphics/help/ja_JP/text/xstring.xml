@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>xstring(x,y,str,[angle,box])</synopsis>
+    <synopsis>xstring(x,y,str,[angle,[box]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -35,7 +35,7 @@
         <term>str</term>
         <listitem>
           <para>文字列の行列.</para>
-         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeXまたはMathML式</link>を記述することが可能です.</para>
+          <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeXまたはMathML式</link>を記述することが可能です.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
