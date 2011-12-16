@@ -18,7 +18,6 @@ package org.scilab.modules.gui.bridge.canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -28,10 +27,12 @@ import javax.media.opengl.GL;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
-import javax.media.opengl.GLException;
+import javax.media.opengl.GLJPanel;
+import javax.swing.JPanel;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -40,16 +41,8 @@ import org.scilab.modules.gui.graphicWindow.FigureInteraction;
 import org.scilab.modules.gui.graphicWindow.PanelLayout;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
-
-import com.sun.opengl.util.Screenshot;
-
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
@@ -63,20 +56,34 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 	
-	private static final int ACCUM_BUFFER_BITS = 16;
-
-	private GLEventListener renderer;
-	
 	public SwingScilabCanvas(int figureId, Figure figure)
 	{
 	    super(new PanelLayout());
-	    GLCanvas glCanvas = new GLCanvas();
-        add(glCanvas, PanelLayout.GL_CANVAS);
-        
-        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
-        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
-        FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
-        figureInteraction.setEnable(true);
+	    
+	    /*
+	     * Even with the good Java 1.6 version
+	     * MacOSX does not manage mixing ligthweight and heavyweight components
+	     * Keep GLJPanel as OpenGL component for now 
+	     */
+	    if (OS.get() == OS.MAC) {
+		    GLJPanel glCanvas = new GLJPanel();
+		    add(glCanvas, PanelLayout.GL_CANVAS);
+	        
+	        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
+	        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
+	        FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
+	        figureInteraction.setEnable(true);
+	    	
+	    }
+	    else {
+	    	GLCanvas glCanvas = new GLCanvas();
+	    	add(glCanvas, PanelLayout.GL_CANVAS);
+
+	    	Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
+	    	canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
+	    	FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
+	    	figureInteraction.setEnable(true);
+	    }
 	}
 	/**
 	 * Constructor
