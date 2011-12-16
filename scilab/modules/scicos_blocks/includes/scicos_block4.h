@@ -22,10 +22,6 @@
 #ifndef __SCICOS_BLOCK4_H__
 #define __SCICOS_BLOCK4_H__
 
-#ifndef WIN32
-#include <malloc.h>
-#endif
-
 #ifndef NULL
 #define NULL 0
 #endif
