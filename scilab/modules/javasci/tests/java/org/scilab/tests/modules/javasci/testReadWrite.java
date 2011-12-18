@@ -13,6 +13,9 @@ package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
@@ -21,7 +24,9 @@ import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabBoolean;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabSparse;
 import org.scilab.modules.types.ScilabTypeEnum;
 
 public class testReadWrite {
@@ -95,18 +100,40 @@ public class testReadWrite {
         assert aFromScilab.equals(aOriginal);
     }
 
-    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
-    public void ReadSparseUnsupportedTypeExceptionTest() throws NullPointerException, JavasciException {
+//    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
+    @Test(sequential = true)
+    public void ReadSparseTypeTest() throws NullPointerException, JavasciException {
         assert sci.exec("W=sparse([1,2;4,5;3,10],[1,2,3]);") == true;
         assert sci.getVariableType("W") == ScilabTypeEnum.sci_sparse;
-        sci.get("W"); /* Will launch an UnsupportedTypeException exception */
+        ScilabSparse aFromScilab = (ScilabSparse)sci.get("W");
+        assert aFromScilab.toString().equals("sparse([1, 2 ; 3, 10 ; 4, 5], [1.0 ; 3.0 ; 2.0], [4, 10])");
+        assert sci.exec("AZE= "+aFromScilab.toString());
+        ScilabSparse aFromScilab2 = (ScilabSparse)sci.get("AZE");
+
+		assert Arrays.deepEquals(aFromScilab.getFullRealPart(), aFromScilab2.getFullRealPart()) == true;
+
+        
     }
 
-    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
-    public void ReadStructUnsupportedTypeExceptionTest() throws NullPointerException, JavasciException {
+    @Test(sequential = true)
+    public void ReadStructTest() throws NullPointerException, JavasciException {
         assert sci.exec("myDate=struct('day',25,'month' ,'DEC','year',2006)") == true;
         assert sci.getVariableType("myDate") == ScilabTypeEnum.sci_mlist;
-        sci.get("myDate"); /* Will launch an UnsupportedTypeException exception */
+
+        ScilabMList myDate = (ScilabMList)sci.get("myDate");
+        assert myDate.toString().equals("mlist([\"st\", \"dims\", \"day\", \"month\", \"year\"], int32([1, 1]), [25.0], [\"DEC\"], [2006.0])");
+        assert myDate.getHeight() == 1;
+        assert myDate.getWidth() == 5;
+        assert myDate.getVarName().equals("myDate");
+        assert myDate.getMListType().equals("st");
+        Map<String, ScilabType> listFields = myDate.getMListFields();
+        ScilabString month = (ScilabString)listFields.get("month");
+        assert month.getData()[0][0].equals("DEC");
+        ScilabDouble year = (ScilabDouble)listFields.get("year");
+        assert year.getRealPart()[0][0] == 2006.0;
+        ScilabDouble day = (ScilabDouble)listFields.get("day");
+        assert day.getRealPart()[0][0] == 25.0;
+
     }
 
     @Test(sequential = true, expectedExceptions = UndefinedVariableException.class)

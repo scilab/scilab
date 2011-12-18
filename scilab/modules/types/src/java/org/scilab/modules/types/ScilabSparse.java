@@ -140,6 +140,7 @@ public class ScilabSparse implements ScilabType {
             for (Integer c : listCol) {
                 colPos[i++] = c;
             }
+            i = 0;
             for (Double x : listVal) {
                 realPart[i++] = x;
             }

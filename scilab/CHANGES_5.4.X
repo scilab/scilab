@@ -1,6 +1,20 @@
- 	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
+ 	    Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
             =========================================================
 
+
+Javasci
+=======
+
+* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve 
+a sparse but not to send it to Scilab).
+
+* Javasci supports struct datatypes under the form of an MList  (Javasci is
+able to retrieve a struct but not to send it to Scilab).
+
+
+
+ 	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
+            =========================================================
 
 Scilab Desktop
 ===============
