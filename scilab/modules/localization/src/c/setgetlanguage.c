@@ -75,6 +75,13 @@ BOOL setlanguage(char *lang)
                 //for mbstowcs
                 char *ret = setlocale(LC_CTYPE, lang);
 
+                if (ret == NULL)
+                {
+                    fprintf(stderr,
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?",
+                            lang, ret, setlocale(LC_CTYPE, NULL));
+                }
+
                 //for gettext
                 ret = setlocale(LC_MESSAGES, lang);
 #else
