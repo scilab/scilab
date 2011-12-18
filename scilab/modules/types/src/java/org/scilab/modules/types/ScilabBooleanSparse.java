@@ -63,6 +63,23 @@ public class ScilabBooleanSparse implements ScilabType {
      * @param nbItem the number of true items
      * @param nbItemRow contains the number of true in each rows
      * @param colPos the column position of each true
+     * @param check if true the parameters validity is checked
+     */
+    public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos);
+        if (check) {
+            ScilabSparse.checkValidity(rows, cols, nbItem, nbItemRow, colPos);
+        }
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of true items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each true
      */
     public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos) {
         this.rows = rows;

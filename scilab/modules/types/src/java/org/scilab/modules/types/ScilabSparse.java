@@ -84,14 +84,63 @@ public class ScilabSparse implements ScilabType {
      * @param nbItemRow contains the number of true in each rows
      * @param colPos the column position of each non null item
      * @param data the non null data
+     * @param check if true the parameters validity is checked
      */
-    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] data) {
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] data, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos, data);
+        if (check) {
+            checkValidity(rows, cols, nbItem, nbItemRow, colPos);
+
+            if (realPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array realPart: its length must be equal to the number of non-null items.");
+            }
+        }
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     * @param real the non null real data
+     */
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real) {
         this.rows = rows;
         this.cols = cols;
         this.nbItem = nbItem;
         this.nbItemRow = nbItemRow;
         this.colPos = colPos;
-        this.realPart = data;
+        this.realPart = real;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     * @param real the non null real data
+     * @param imag the non null imaginary data
+     * @param check if true the parameters validity is checked
+     */
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos, real, imag);
+        if (check) {
+            checkValidity(rows, cols, nbItem, nbItemRow, colPos);
+
+            if (realPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array realPart: its length must be equal to the number of non-null items.");
+            }
+
+            if (imaginaryPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array imaginaryPart: its length must be equal to the number of non-null items.");
+            }
+        }
     }
 
     /**
@@ -108,6 +157,47 @@ public class ScilabSparse implements ScilabType {
     public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag) {
         this(rows, cols, nbItem, nbItemRow, colPos, real);
         this.imaginaryPart = imag;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     */
+    static final void checkValidity(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos) throws ScilabSparseException {
+        if (nbItem > rows * cols || nbItem < 0) {
+            throw new ScilabSparseException("Invalid number of items: between 0 and " + rows * cols + " expected.");
+        }
+
+        if (nbItemRow.length > rows) {
+            throw new ScilabSparseException("Invalid length for the array nbItemRow: a length between 0 and " + rows + " expected.");
+        }
+
+        int s = 0;
+        for (int i = 0; i < nbItemRow.length; i++) {
+            if (nbItemRow[i] > cols) {
+                throw new ScilabSparseException("Invalid number of non-null items in nbItemRow at position " + i + ".");
+            }
+            s += nbItemRow[i];
+        }
+
+        if (s != nbItem) {
+            throw new ScilabSparseException("Invalid array nbItemRow: the total sum is not equal to the number of non-null items.");
+        }
+
+        if (colPos.length != nbItem) {
+            throw new ScilabSparseException("Invalid length for the array colPos: its length must be equal to the number of non-null items.");
+        }
+
+        for (int i = 0; i < nbItem; i++) {
+            if (colPos[i] >= cols || colPos[i] < 0) {
+                throw new ScilabSparseException("Invalid column position at position " + i + ".");
+            }
+        }
     }
 
     /**
