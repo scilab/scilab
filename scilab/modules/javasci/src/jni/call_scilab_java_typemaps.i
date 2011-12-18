@@ -17,56 +17,7 @@
 
 //////////////////////////////////////////////
 
-%typemap(in) (char* variableName, int *nbRow, int *nbCol)  {
-    $2 = &nbRow;
-    $3 = &nbCol;
-    $1 = 0;
-    if ($input) {
-       $1 = (char *)(*jenv)->GetStringUTFChars(jenv, $input, 0);
-       if (!$1) return 0;
-    }
-}
-
 %define JAVASCI_ARRAYS_IMPL(CTYPE, JNITYPE, JAVATYPE, JAVAPRIMITIVETYPE, JNICODE)
-
-// retrieve from the native code a CTYPE * => JAVAPRIMITIVETYPE[][] (java)
-%typemap(out) (CTYPE *) (int nbRow, int nbCol) {
-
-  jclass JAVAPRIMITIVETYPE##Arr = (*jenv)->FindClass(jenv, JNICODE);
-  int i = 0, j = 0;
-  jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##JAVAPRIMITIVETYPE##Arr, NULL);
-
-    for (i=0; i < nbRow; i++) {
-        JNITYPE *array = (JNITYPE*)malloc(nbCol * sizeof(JNITYPE)) ;
-        ##JNITYPE##Array jarray = (*jenv)->New##JAVATYPE##Array(jenv, nbCol);
-        if (jarray == NULL) {
-            printf("Could not allocate\n");fflush(NULL);
-        }
-
-        if (array) {
-            for (j=0; j < nbCol; j++) {
-            /* Scilab is storing matrice cols by cols while Java is doing it
-               row by row. Therefor, we need to convert it */
-                array[j]=result[nbRow*j+i];
-                }
-        }
-
-        (*jenv)->Set##JAVATYPE##ArrayRegion(jenv, jarray, 0, nbCol, array);
-
-        (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-
-        (*jenv)->DeleteLocalRef(jenv, jarray);
-        if (array) {
-            free(array);
-            array = NULL;
-        }
-    }
-
-
-     if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-
-}
 
 %typemap(jni) (CTYPE *) "jobjectArray"
 %typemap(jtype) (CTYPE *) "JAVAPRIMITIVETYPE[][]"
