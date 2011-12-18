@@ -213,7 +213,7 @@ public class ScilabBooleanSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         boolean[][] b = new boolean[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 b[i][colPos[j]] = true;
             }
@@ -260,7 +260,7 @@ public class ScilabBooleanSparse implements ScilabType {
         if (obj instanceof ScilabBooleanSparse) {
             ScilabBooleanSparse sciSparse = (ScilabBooleanSparse) obj;
             return this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                Arrays.equals(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
                 Arrays.equals(this.getColPos(), sciSparse.getColPos());
         } else {
             return false;
@@ -286,7 +286,7 @@ public class ScilabBooleanSparse implements ScilabType {
         result.append("sparse([");
         int j = 0;
         int prev = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 result.append(Integer.toString(i + 1));
                 result.append(", ");

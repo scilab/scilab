@@ -350,7 +350,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][] d = new double[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[i][colPos[j]] = realPart[j];
             }
@@ -369,7 +369,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][] d = new double[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[i][colPos[j]] = imaginaryPart[j];
             }
@@ -389,7 +389,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][][] d = new double[2][rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[0][i][colPos[j]] = realPart[j];
                 d[1][i][colPos[j]] = imaginaryPart[j];
@@ -437,7 +437,7 @@ public class ScilabSparse implements ScilabType {
         if (obj instanceof ScilabSparse) {
             ScilabSparse sciSparse = (ScilabSparse) obj;
             if (this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                Arrays.equals(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
                 Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
                 if (this.isReal() && sciSparse.isReal()) {
                     return Arrays.equals(this.getRealPart(), sciSparse.getRealPart());
@@ -451,6 +451,47 @@ public class ScilabSparse implements ScilabType {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Compare two arrays containing the number of items by row.
+     * For example {1, 2, 3, 4} is equal to {1, 2, 3, 4, 0, 0, 0, 0}/
+     * @param a an array
+     * @param b an other array
+     * @return true if the arrays are equal
+     */
+    static final boolean compareNbItemRow(final int[] a, final int[] b) {
+        if (Arrays.equals(a, b)) {
+            return true;
+        }
+
+        if (a.length == b.length) {
+            return false;
+        }
+
+        int[] c, d;
+        if (a.length < b.length) {
+            c = a;
+            d = b;
+        } else {
+            c = b;
+            d = a;
+        }
+
+        int i = 0;
+        for (; i < c.length; i++) {
+            if (c[i] != d[i]) {
+                return false;
+            }
+        }
+
+        for (; i < d.length; i++) {
+            if (d[i] != 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -472,7 +513,7 @@ public class ScilabSparse implements ScilabType {
         result.append("sparse([");
         int j = 0;
         int prev = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 result.append(Integer.toString(i + 1));
                 result.append(", ");

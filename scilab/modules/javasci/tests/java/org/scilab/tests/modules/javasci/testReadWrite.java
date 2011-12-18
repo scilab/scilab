@@ -112,6 +112,14 @@ public class testReadWrite {
 
 		assert Arrays.deepEquals(aFromScilab.getFullRealPart(), aFromScilab2.getFullRealPart()) == true;
 
+		ScilabSparse mySparse = new ScilabSparse(100, 100, 5, new int[] { 1, 1, 1, 1, 1}, new int[]{ 1, 25, 50, 75, 99}, new double[] { 1.0, 2.0, 3.0, 4.0, 5.0});
+        // sci.put with a sparse is not yet functionnal
+//        assert sci.put("mySparse", mySparse) == true;
+//        String ref="mySparseRef = sparse([1, 2 ; 2, 26 ; 3, 51 ; 4, 76 ; 5, 100], [1.0 ; 2.0 ; 3.0 ; 4.0 ; 5.0], [100, 100]);";
+//        sci.exec("isEqual=(mySparseRef==mySparse)");
+//        ScilabBoolean isEqual = (ScilabBoolean)sci.get("isEqual");
+//        System.out.println("isequal " +isEqual);
+
         
     }
 
