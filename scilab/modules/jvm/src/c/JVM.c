@@ -57,7 +57,7 @@ JavaVM * getScilabJavaVM(void)
         JavaVM * vm = 0;
         JavaVM ** vmBuf = MALLOC(sizeof(JavaVM *) * 1);
         jsize size = 0;
-        JNI_GetCreatedJavaVMs(vmBuf, 1, &size);
+        SciJNI_GetCreatedJavaVMs(vmBuf, 1, &size);
         if (size)
         {
             vm = *vmBuf;

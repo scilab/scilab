@@ -89,7 +89,7 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>
-</Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -117,7 +117,7 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>
-</Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -146,7 +146,7 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>
-</Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -180,7 +180,7 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>
-</Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -227,7 +227,6 @@
     <ClCompile Include="src\jni\ScilabPolynomialToJava.cpp" />
     <ClCompile Include="src\jni\ScilabVariables.cpp" />
     <ClCompile Include="src\jni\ScilabVariablesRefresh.cpp" />
-    <ClCompile Include="src\jni\sci_types_wrap.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

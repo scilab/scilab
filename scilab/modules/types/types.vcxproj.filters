@@ -51,9 +51,6 @@
     <ClCompile Include="src\jni\getScilabVariable_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\jni\sci_types_wrap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\jni\ScilabPolynomialToJava.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
