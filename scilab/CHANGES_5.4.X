@@ -8,7 +8,6 @@ Graphical User Interface
 * bug 4978 fixed - Icons did not follow the Tango norm.
 
 
-
 Javasci
 =======
 
@@ -17,6 +16,14 @@ a sparse but not to send it to Scilab).
 
 * Javasci supports struct datatypes under the form of an MList  (Javasci is
 able to retrieve a struct but not to send it to Scilab).
+
+
+Bug fixes
+========= 
+
+* Bug #9811 fixed - Output message of fminsearch was wrongly set.
+
+
 
 
 
