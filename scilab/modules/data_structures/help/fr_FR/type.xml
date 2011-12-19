@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[i]=type(x)</synopsis>
+    <synopsis> i =type(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -17,8 +17,9 @@
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>objet Scilab
-</para>
+          <para>
+            objet Scilab
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -32,7 +33,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>type(x)</literal>  renvoie un entier donnant le code numérique du type de  <literal>x</literal> définit comme suit :</para>
+    <para><literal>type(x)</literal> renvoie un entier donnant le code
+    numérique du type de <literal>x</literal> définit comme suit
+    :</para>
 
     <variablelist>
       <varlistentry>
@@ -80,14 +83,17 @@
       <varlistentry>
         <term>8</term>
         <listitem>
-            <para>matrice d'<link linkend="int8">entiers</link> codés sur 1 (int8), 2 (int16) ou 4 (int32) octets.</para>
+            <para>matrice d'<link linkend="int8">entiers</link> codés
+            sur 1 (int8), 2 (int16) ou 4 (int32) octets.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>9</term>
         <listitem>
-            <para>matrice de "<link linkend="graphics_entities">handle</link>" sur les objets graphiques.</para>
+            <para>matrice de "<link
+            linkend="graphics_entities">handle</link>" sur les objets
+            graphiques.</para>
         </listitem>
       </varlistentry>
 
@@ -101,7 +107,9 @@
       <varlistentry>
         <term>11</term>
         <listitem>
-            <para>fonction non-compilée (code Scilab). Fonction créée par <link linkend="deff">deff</link> avec l'argument 'n'.</para>
+            <para>fonction non-compilée (code Scilab). Fonction créée
+            par <link linkend="deff">deff</link> avec l'argument
+            'n'.</para>
         </listitem>
       </varlistentry>
 
@@ -136,14 +144,16 @@
       <varlistentry>
         <term>17</term>
         <listitem>
-            <para>liste typée orientée matrice (<link linkend="tlist">mlist</link>).</para>
+            <para>liste typée orientée matrice (<link
+            linkend="tlist">mlist</link>).</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>128</term>
         <listitem>
-            <para>pointeur (Use case: <link linkend="lufact">lufact</link>).</para>
+            <para>pointeur (Use case: <link
+            linkend="lufact">lufact</link>).</para>
         </listitem>
       </varlistentry>
 
@@ -157,11 +167,43 @@
       <varlistentry>
         <term>130</term>
         <listitem>
-            <para>Fonction interne Scilab, aussi appellé <emphasis role="italic">gateway</emphasis> (Code C, C++ ou Fortran).</para>
+            <para>Fonction interne Scilab, aussi appellé <emphasis
+            role="italic">primitive</emphasis> (Code C, C++ ou
+            Fortran).</para>
         </listitem>
       </varlistentry>
+   <varlistentry>
+        <term>0</term>
+        <listitem>
+            <para><emphasis role="italic"> variable
+            nulle</emphasis>. Ce type est principalement utilisé en
+            interne par Scilab. Si une fonction n'a pas pas d'argument
+            de retour déclaré comme <literal>disp</literal>, quand
+            elle est appelée elle retourne une <emphasis
+            role="italic"> variable nulle</emphasis>. Si une fonction
+            est appellée avec un argument de la liste des arguments
+            d'entrée omis comme <literal>foo(a,,b)</literal>
+            l'argument manquant est assigné à la <emphasis
+            role="italic"> variable nulle</emphasis>.</para>
+            <para>
+              Note: Si une <emphasis role="italic"> variable
+              nulle</emphasis> est affectée à un nom, ce nom est
+              supprimé de la liste des variables définies.
+              <literal>x=disp(1)</literal> détruit
+              <literal>x</literal>.
+            </para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
-<para>Note: pour certaines variables, à cause de la représentation interne, <emphasis role="italic">type(x)</emphasis> retournera tlist (16) ou mlist (17). C'est le cas de <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>, <emphasis role="italic">hypermat</emphasis> et <emphasis role="italic">struct</emphasis>. Merci de considérer l'utilisation de <link linkend="typeof">typeof</link> à la place.
+    <para>Note: pour certaines variables, à cause de la représentation
+    interne, <emphasis role="italic">type(x)</emphasis> retournera
+    tlist (16) ou mlist (17). C'est le cas de <emphasis
+    role="italic">rational</emphasis>, <emphasis
+    role="italic">state-space</emphasis>, <emphasis
+    role="italic">hypermat</emphasis> et <emphasis
+    role="italic">struct</emphasis>. Merci de considérer l'utilisation
+    de <link linkend="typeof">typeof</link> à la place.
    </para>
   </refsection>
   <refsection role="see also">

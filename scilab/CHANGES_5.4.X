@@ -21,13 +21,12 @@ able to retrieve a struct but not to send it to Scilab).
 Bug fixes
 ========= 
 
+* Bug #4813 fixed - Description of type 0 added in type help page.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
-
-
-
 
 
 
