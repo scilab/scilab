@@ -164,6 +164,8 @@ Bug fixes
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
+* Bug #10396 fixed - Display of a structure with large matrix took a long time.
+
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
 
