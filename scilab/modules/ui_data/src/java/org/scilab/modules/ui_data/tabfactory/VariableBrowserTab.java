@@ -13,41 +13,53 @@
 package org.scilab.modules.ui_data.tabfactory;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
 /**
  * Class to create SciNotes instances
+ * 
  * @author Calixte DENIZET
  */
 public class VariableBrowserTab {
 
     /**
-     * @param uuid the uuid to restore
+     * @param uuid
+     *            the uuid to restore
      * @return a new SciNotes instance
      */
     public static SwingScilabTab getVariableBrowserInstance() {
-	final SwingScilabTab varbrowser = ScilabVariableBrowser.createVarBrowserTab();
-	ScilabTabFactory.getInstance().addToCache(varbrowser);
-        
-	ClosingOperationsManager.registerClosingOperation(varbrowser, new ClosingOperationsManager.ClosingOperation() {
+        final SwingScilabTab varbrowser = ScilabVariableBrowser
+                .createVarBrowserTab();
+        ScilabTabFactory.getInstance().addToCache(varbrowser);
 
-                public boolean canClose() {
-                    return true;
-                }
+        ClosingOperationsManager.registerClosingOperation(varbrowser,
+                new ClosingOperationsManager.ClosingOperation() {
 
-                public void destroy() {
-                    ScilabVariableBrowser.closeVariableBrowser();
-                }
+                    @Override
+                    public boolean canClose() {
+                        return true;
+                    }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
-                    return null;
-                }
-            });
+                    @Override
+                    public void destroy() {
+                        ScilabVariableBrowser.closeVariableBrowser();
+                    }
+
+                    @Override
+                    public String askForClosing(final List<SwingScilabTab> list) {
+                        return null;
+                    }
+
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
+                    }
+                });
 
         ClosingOperationsManager.addDependencyWithRoot(varbrowser);
 

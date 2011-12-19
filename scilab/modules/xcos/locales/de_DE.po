@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: de\n"
 
 #, c-format
@@ -521,6 +521,10 @@ msgstr ""
 "Die Datei %s existiert nicht.\n"
 " Wollen Sie diese erzeugen?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -563,6 +567,15 @@ msgstr "Nicht entfernbar "
 
 msgid "No block selected"
 msgstr "Kein Block ausgewählt"
+
+msgid "Export to XML"
+msgstr ""
+
+msgid "Export in progress"
+msgstr "Exportieren in Bearbeitung"
+
+msgid "Import from XML"
+msgstr ""
 
 msgid "Add to"
 msgstr "Addieren zu"
@@ -712,20 +725,12 @@ msgstr "Generiere C-Code für Superblock"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "Ein Superblock muß ausgewählt werden, um Code zu erzeugen"
 
-msgid "Export in progress"
-msgstr "Exportieren in Bearbeitung"
-
-msgid ""
-"Import in progress, results will be stored through the 'scs_m' variable"
-msgstr ""
-
-#, c-format
-msgid ""
-"Compilation in progress, results will be stored through the '%cpr' variable"
-msgstr ""
-
 msgid "Simulation in progress"
 msgstr "Simulation in Bearbeitung"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -1221,21 +1226,3 @@ msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
-
-#~ msgid "Export to XML"
-#~ msgstr "Exportieren nach XML"
-
-#~ msgid "Goto %s"
-#~ msgstr "Gehe zu %s"
-
-#~ msgid "From %s"
-#~ msgstr "Von %s"
-
-#~ msgid ""
-#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-#~ msgstr ""
-#~ "Kompilation in Bearbeitung. Ergebnisse werden in 'scicos-cpr'-Variable "
-#~ "gespeichert"
-
-#~ msgid "Import from XML"
-#~ msgstr "Importieren von XML"

@@ -20,8 +20,10 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include <stdlib.h>
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "core_math.h"
 #include "scicos_block.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
@@ -58,7 +60,7 @@ SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block,int flag)
 		pw=*block->work; 
 		iw=(int *) (pw+block->ipar[0]*(1+block->insz[0]));
 		t=get_scicos_time();
-		del=min(max(0,block->inptr[1][0]),block->rpar[0]);
+		del=Min(Max(0,block->inptr[1][0]),block->rpar[0]);
 		td=t-del;
 		if(td<pw[*iw]){
 			sciprint(_("delayed time=%f but last stored time=%f\n"), td, pw[*iw]);

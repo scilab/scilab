@@ -56,6 +56,15 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_filebrowser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PutScilabVariable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\ui_data_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_updatebrowsevar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\BrowseVar.hxx">

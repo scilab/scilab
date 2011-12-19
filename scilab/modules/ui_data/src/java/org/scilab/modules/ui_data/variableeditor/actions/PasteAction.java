@@ -12,18 +12,26 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
+import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
 
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
@@ -35,7 +43,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  */
 public final class PasteAction extends CallBack {
 
-    private static final String KEY = "ctrl V";
+    private static final String KEY = "OSSCKEY V";
     private static final String PASTE = "Paste";
 
     private SwingScilabVariableEditor editor;
@@ -56,7 +64,7 @@ public final class PasteAction extends CallBack {
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
         table.getActionMap().put(PASTE, new PasteAction(editor, PASTE));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), PASTE);
+        table.getInputMap().put(ScilabKeyStroke.getKeyStroke(KEY), PASTE);
     }
 
     /**
@@ -69,6 +77,7 @@ public final class PasteAction extends CallBack {
         table.setColumnSelectionInterval(col, col);
         table.setRowSelectionInterval(row, row);
         String str = "";
+        editor.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             str = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this).getTransferData(DataFlavor.stringFlavor);
         } catch (UnsupportedFlavorException ex1) {
@@ -77,15 +86,29 @@ public final class PasteAction extends CallBack {
             System.err.println(ex2);
         }
         StringTokenizer rElems = new StringTokenizer(str, "\n");
-        SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
-        for (int i = 0; rElems.hasMoreTokens(); i++) {
+        int countRows = rElems.countTokens();
+        Vector vr = new Vector(countRows);
+        for (int i = 0; i < countRows; i++) {
             StringTokenizer cElems = new StringTokenizer(rElems.nextToken(), "\t");
-            for (int j = 0; cElems.hasMoreTokens(); j++) {
-                String value = (String) cElems.nextToken();
-                model.setValueAtAndUpdate(false, value, row + i, col + j);
+            int countCols = cElems.countTokens();
+            Vector vc = new Vector(countCols);
+            for (int j = 0; j < countCols; j++) {
+                vc.addElement(cElems.nextToken());
             }
+            vr.addElement(vc);
         }
-        model.updateMatrix();
+
+        SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
+        int oldRows = model.getScilabMatrixRowCount();
+        int oldCols = model.getScilabMatrixColCount();
+
+        if (vr.size() == 1 && ((Vector) vr.get(0)).size() == 1 && row < oldRows && col < oldCols) {
+            model.setValueAtAndUpdate(true, true, ((Vector) vr.get(0)).get(0), row, col);
+        } else {
+            Vector oldVector = (Vector) model.cloneDatas();
+            model.setValues(vr, row, col);
+            model.updateFullMatrix(oldVector, oldRows, oldCols);
+        }
     }
 
     /**
@@ -102,5 +125,30 @@ public final class PasteAction extends CallBack {
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
+    }
+
+    /**
+     * Create a menu item
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static MenuItem createMenuItem(SwingScilabVariableEditor editor, String title) {
+        MenuItem menu = ScilabMenuItem.createMenuItem();
+        menu.setCallback(new PasteAction(editor, title));
+        menu.setText(title);
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
+
+        return menu;
+    }
+
+    /**
+     * Create a menu item as a SwingScilabMenuItem
+     * @param editor the associated editor
+     * @param title the menu title
+     * @return the menu item
+     */
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabVariableEditor editor, String title) {
+        return (SwingScilabMenuItem) createMenuItem(editor, title).getAsSimpleMenuItem();
     }
 }

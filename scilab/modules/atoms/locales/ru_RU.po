@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-12 16:33+0000\n"
+"PO-Revision-Date: 2011-10-21 17:41+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 #, c-format
@@ -633,7 +633,7 @@ msgstr "%s: Ошибка: Некорректный размер файла.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: Ошибка чтения файла по сети  Internet.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
@@ -665,7 +665,7 @@ msgstr "%s: Следующий файл не был скопирован:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t - ресурс    : '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"

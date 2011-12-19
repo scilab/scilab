@@ -596,7 +596,9 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
                                 line.setAnchor(anchor.toString());
                             }
-                            getEditor().getNavigator().update();
+                            if (getEditor().getNavigator() != null) {
+                                getEditor().getNavigator().update();
+                            }
                             previousRegexp = "";
                             previousIndex = -1;
                             buttonReplace.setEnabled(false);

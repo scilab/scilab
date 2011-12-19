@@ -24,7 +24,7 @@ function tip_handle=datatipCreate(curve,index,ax)
   if typeof(ud)<>'datatips' then
     //no datatips structure yet, initialize it
     if ~datatipInitStruct(curve) then
-      datatip_handle=[]
+      tip_handle=[]
       return
     end
     ud=datatipGetStruct(curve)

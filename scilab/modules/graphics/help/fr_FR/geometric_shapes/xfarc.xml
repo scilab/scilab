@@ -39,6 +39,7 @@
     donnés respectivement par <literal>a1/64</literal> degrés et <literal>a2/64</literal> degrés.
     Cette fonction utilise la couleur courantes et les coordonnées utilisateur.
   </para>
+    <para>Si a2 est égal à 360*62, un circle complet sera dessiné.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -51,7 +52,7 @@ xfarc(0.5,0.5,1,1,0,360*64)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xarc">xarc</link>

@@ -289,10 +289,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                  }
 
   " "                            {
+    				   transposable = false;
                                    return ScilabLexerConstants.WHITE;
                                  }
 
   "\t"                           {
+    				   transposable = false;
                                    return ScilabLexerConstants.TAB;
                                  }
 

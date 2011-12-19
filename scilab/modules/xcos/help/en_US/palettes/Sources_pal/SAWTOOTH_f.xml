@@ -22,21 +22,12 @@
  * 
  * See the file ./license.txt
  -->
-<refentry
-  version="5.0-subset Scilab" xml:id="SAWTOOTH_f" xml:lang="en_US"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:ns5="http://www.w3.org/1999/xhtml"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook"
->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SAWTOOTH_f" xml:lang="en_US">
   <refnamediv>
     <refname>SAWTOOTH_f</refname>
     <refpurpose>Sawtooth generator</refpurpose>
   </refnamediv>
   <refsection>
-
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -46,7 +37,6 @@
       </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Contents_SAWTOOTH_f">
     <title>Contents</title>
     <itemizedlist>
@@ -106,7 +96,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_SAWTOOTH_f">
     <title>Palette</title>
     <itemizedlist>
@@ -117,7 +106,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_SAWTOOTH_f">
     <title>Description</title>
     <para>
@@ -130,13 +118,12 @@
     </para>
     <para>
       At first event on its activation input, the output increases linearly from 0 with a unitary rate. When the
-      following event occurs, the ouput goes to 0 and begin again to increase until the next event and so on.
+      following event occurs, the output goes to 0 and begin again to increase until the next event and so on.
     </para>
     <para>
       The resulting amplitude of the output is equal to the period of event signal. If you want more control on the amplitude or a negative rate, use the <link linkend="Sigbuilder">Sigbuilder</link> or <link linkend="Sigbuilder">Curve_f</link> blocks.
     </para>
   </refsection>
-
   <refsection id="Datatype_SAWTOOTH_f">
     <title>Data types</title>
     <itemizedlist>
@@ -147,7 +134,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_SAWTOOTH_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -194,7 +180,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Example_SAWTOOTH_f">
     <title>Example</title>
     <para>
@@ -205,21 +190,23 @@
       </link>
     </para>
     <para>
-      <inlinemediaobject><imageobject>
-        <imagedata fileref="../../../examples/sources_pal/en_US/sawtooth_f_diagram_en_US.png" />
-      </imageobject></inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/sources_pal/en_US/sawtooth_f_diagram_en_US.png"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
   </refsection>
-
   <refsection id="Interfacingfunction_SAWTOOTH_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/SAWTOOTH_f.sci">SCI/modules/scicos_blocks/macros/Sources/SAWTOOTH_f.sci</link></para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/SAWTOOTH_f.sci">SCI/modules/scicos_blocks/macros/Sources/SAWTOOTH_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_SAWTOOTH_f">
     <title>Computational function</title>
     <itemizedlist>
@@ -228,7 +215,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection role="see also" id="Seealso_SAWTOOTH_f">
     <title>See also</title>
     <itemizedlist>
@@ -246,7 +232,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Authors_SAWTOOTH_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

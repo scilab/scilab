@@ -465,7 +465,7 @@ pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscijvm-algo.la
 libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
-	-lpthread $(XML_LIBS) $(am__append_2)
+	-lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) $(am__append_2)
 libscijvm_la_LIBADD = libscijvm-algo.la
 
 #### jvm : gateway declaration ####

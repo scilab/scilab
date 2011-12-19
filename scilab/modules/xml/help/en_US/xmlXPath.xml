@@ -21,16 +21,16 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      result = xmlXPath(xmlDoc, queryStr [, namespaces])
+      result = xmlXPath(xmlObj, queryStr [, namespaces])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>xmlDoc</term>
+        <term>xmlObj</term>
         <listitem>
-          <para>xmlDoc, a XML mlist typed XMLDoc</para>
+          <para>xmlObj, a XML mlist typed XMLDoc or XMLElem</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,8 +55,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Make an XPath query on a document. If you need to use namespaces, then you must define them in using the optional argument.</para>
-    <para>For more informations about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
+    <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument.</para>
+    <para>For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -101,6 +101,20 @@
     xmlXPath(doc, "//a") // => nothing
     xmlXPath(doc, "//scilab:a") // => error
     xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
+
+    xmlClose(doc);
+
+    // Query starting on an element
+    doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
+    e = doc.root.children(1);
+
+    // Get the attributes of e
+    xp = xmlXPath(e, "@*");
+    xmlAsText(xp)
+
+    // Get the 'b' from e
+    xp = xmlXPath(e, "b");
+    xmlAsText(xp)
 
     xmlClose(doc);
     ]]></programlisting>

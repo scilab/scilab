@@ -31,7 +31,8 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 		      src/jni/EditVar.cpp \
 		      src/jni/FileBrowser.cpp
 
-UI_DATA_C_SOURCES = 
+UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
+                    src/c/PutScilabVariable.c
 
 UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
 		      src/cpp/FileBrowserChDir.cpp
@@ -48,9 +49,11 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
+
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
 		      sci_gateway/cpp/sci_browsevar.cpp \
-		      sci_gateway/cpp/sci_filebrowser.cpp
+		      sci_gateway/cpp/sci_filebrowser.cpp \
+			sci_gateway/cpp/sci_updatebrowsevar.cpp
 
 libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

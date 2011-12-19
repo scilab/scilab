@@ -68,13 +68,12 @@ x=fft(a,1,dim,incr)</synopsis>
                     <listitem>
                       <para>If <literal>a</literal> is a vector a single variate direct FFT
                 is computed that is:</para>
-                <para>      
-                  <latex>
+                      <para>
+                        <latex>
                     $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
                   </latex>
-                </para>
-                      
-                <para>(the <literal>-1</literal> argument refers to the sign of the
+                      </para>
+                      <para>(the <literal>-1</literal> argument refers to the sign of the
                 exponent..., NOT to "inverse"),</para>
                     </listitem>
                   </varlistentry>
@@ -82,7 +81,7 @@ x=fft(a,1,dim,incr)</synopsis>
                     <term>multivariate</term>
                     <listitem>
                       <para>If <literal>a</literal> is a matrix or or
-                      a multidimensionnal array a multivariate direct
+                      a multidimensional array a multivariate direct
                       FFT is performed.</para>
                     </listitem>
                   </varlistentry>
@@ -101,7 +100,7 @@ x=fft(a,1,dim,incr)</synopsis>
                     <listitem>
                       <para>If <literal>a</literal> is a vector a
                       single variate inverse FFT is computed</para>
-                      <para>      
+                      <para>
                         <latex>
                           $x(k) = \sum_{m=1}^n {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
                         </latex>
@@ -131,7 +130,7 @@ x=fft(a,1,dim,incr)</synopsis>
         <literal>j1</literal> lies in <literal>1:dim(1),</literal> <literal>j2</literal> in
         <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
         <literal>fft</literal> as follows</para>
-          <programlisting role  = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 incrk=1; 
 x=a;
 for k=1:p 
@@ -145,18 +144,17 @@ end
         <literal>a</literal>.</para>
           <para>In particular,if <literal>a</literal> is an mxn matrix,
         <literal>x=fft(a,-1)</literal> is equivalent to the two instructions:</para>
-            <programlisting role ="">
-              <![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 a1=fft(a,-1,m,1);
 x=fft(a1,-1,n,m);
-              ]]></programlisting> 
+              ]]></programlisting>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-   <title>Algorithms</title>
-<para>If the <literal>fftw</literal> module has been loaded into
+    <title>Algorithms</title>
+    <para>If the <literal>fftw</literal> module has been loaded into
 Scilab this function uses that library (http://www.fftw.org/). On the
 other case the fft function is based on the Fortran routines fft842.f
 (Cooley-Tukey algorithm for vectors of size n=2^m) and dfftbi.f (for
@@ -181,7 +179,6 @@ n=size(f,'*')
 clf()
 plot(f,abs(y(1:n)))
      ]]></programlisting>
-
     <programlisting role="example"><![CDATA[ 
 //Using explicit formula for  discrete Fourier transform
 //------------------------------------------------
@@ -208,7 +205,7 @@ timer();fft(a,-1);timer()
      ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="corr">corr</link>

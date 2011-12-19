@@ -84,17 +84,19 @@ void UpdateBrowseVar(BOOL update)
         // Sizes of the variable
         getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
 
-        if (nbRows*nbCols == 0) {
+        if (nbRows * nbCols == 0)
+        {
 #define N_A "N/A"
             pstAllVariableSizes[i] = (char *)MALLOC((sizeof(N_A) + 1) * sizeof(char));
-            strcpy(pstAllVariableSizes[i],N_A);
-        } else {
+            strcpy(pstAllVariableSizes[i], N_A);
+        }
+        else
+        {
             sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
             sprintf(sizeStr, "%dx%d", nbRows, nbCols);
             pstAllVariableSizes[i] = strdup(sizeStr);
             FREE(sizeStr);
         }
-
 
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
@@ -122,7 +124,8 @@ void UpdateBrowseVar(BOOL update)
         //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Using old stack operations...
         int pos = C2F(vstk).isiz + 2 + j;
-        piAllVariableTypes[i] = C2F(gettype)(&pos);
+
+        piAllVariableTypes[i] = C2F(gettype) (&pos);
 
         // Sizes of the variable
         getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
@@ -180,40 +183,41 @@ void UpdateBrowseVar(BOOL update)
 static std::set < string > createScilabDefaultVariablesSet()
 {
     string arr[] = { "home",
-                     "PWD",
-                     "%tk",
-                     "%pvm",
-                     "MSDOS",
-                     "%F",
-                     "%T",
-                     "%f",
-                     "%t",
-                     "%e",
-                     "%pi",
-                     "%modalWarning",
-                     "%exportFileName",
-                     "%nan",
-                     "%inf",
-                     "SCI",
-                     "SCIHOME",
-                     "TMPDIR",
-                     "%gui",
-                     "%fftw",
-                     "%helps",
-                     "%eps",
-                     "%io",
-                     "%i",
-                     "demolist",
-                     "%z",
-                     "%s",
-                     "$",
-                     "%driverName",
-                     "%toolboxes",
-                     "%toolboxes_dir"
+        "PWD",
+        "%tk",
+        "%pvm",
+        "MSDOS",
+        "%F",
+        "%T",
+        "%f",
+        "%t",
+        "%e",
+        "%pi",
+        "%modalWarning",
+        "%exportFileName",
+        "%nan",
+        "%inf",
+        "SCI",
+        "WSCI",
+        "SCIHOME",
+        "TMPDIR",
+        "%gui",
+        "%fftw",
+        "%helps",
+        "%eps",
+        "%io",
+        "%i",
+        "demolist",
+        "%z",
+        "%s",
+        "$",
+        "%driverName",
+        "%toolboxes",
+        "%toolboxes_dir"
     };
     int i = 0;
 
-#define NBELEMENT 30
+#define NBELEMENT 31
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++)

@@ -157,7 +157,7 @@ mclose(u);
 
 u=mopen(TMPDIR+'/foo','r'); // open the file for reading
 //read the file line by line
-[n,a,b]=mfscanf(u,'%e %e') //first line using mutiple LHS syntax
+[n,a,b]=mfscanf(u,'%e %e') //first line using multiple LHS syntax
 l=mfscanf(u,'%e %e')       //second one using single LHS syntax
 //use niter to read 5 more lines
 l=mfscanf(5,u,'%e %e')  

@@ -502,7 +502,7 @@ case "$CXX" in
    fi
 
    if test "$enable_debug_CXX" = yes; then
-      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
+      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -540,7 +540,7 @@ case "$CC" in
    fi
 
    if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
+      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
       # used to be -O
       # -D_FORTIFY_SOURCE=2
       case "$host" in
@@ -865,7 +865,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.3],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.0],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")

@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
@@ -35,7 +36,7 @@ SCICOS_BLOCKS_IMPEXP void extdiag(scicos_block *block,int flag)
   u1=GetRealInPortPtrs(block,1);
   y=GetRealOutPortPtrs(block,1);
   for (i=0;i<mu*nu;i++) *(y+i)=0;
-  for (i=0;i<min(mu,nu);i++)     
+  for (i=0;i<Min(mu,nu);i++)     
 	{ii=i+i*mu;
 	 *(y+ii)=*(u1+ii);}
 }

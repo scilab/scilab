@@ -55,7 +55,7 @@ There is not equivalent function for <emphasis role="bold">pow2</emphasis> in Sc
         <term>X=pow2(F,E)</term>
         <listitem>
           <para>
-In this case, Matlab <emphasis role="bold">pow2()</emphasis> ignores imaginary part of input arguments. An equivalent expression for this use of <emphasis role="bold">pow2</emphasis> is: <emphasis role="bold">F.* 2 .^ E </emphasis>(Note that 2 must be preceeded and followed by a white space).
+In this case, Matlab <emphasis role="bold">pow2()</emphasis> ignores imaginary part of input arguments. An equivalent expression for this use of <emphasis role="bold">pow2</emphasis> is: <emphasis role="bold">F.* 2 .^ E </emphasis>(Note that 2 must be preceded and followed by a white space).
 </para>
         </listitem>
       </varlistentry>

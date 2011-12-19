@@ -35,6 +35,14 @@ public interface VariableEditor extends Window {
     void updateData(String name, String type, Object[][] data);
 
     /**
+     * Set Data stored in JTable.
+     * @param name the name of the Scilab var
+     * @param type the type of the var
+     * @param data : the data to be stored.
+     */
+    void updateData(String name, String type, Object[][] data, double[] rowsIndex, double[] colsIndex);
+
+    /**
      * Set the name of the variable being edited in Editvar
      * @param variableName : name of the variable being edited.
      */

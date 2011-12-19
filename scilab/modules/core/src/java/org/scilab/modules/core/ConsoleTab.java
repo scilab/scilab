@@ -14,6 +14,7 @@ package org.scilab.modules.core;
 
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 
 import javax.swing.JTextArea;
@@ -76,6 +77,11 @@ public class ConsoleTab {
                     public String askForClosing(final List<SwingScilabTab> list) {
                         return null;
                     }
+
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
+                    }
                 });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
@@ -115,6 +121,11 @@ public class ConsoleTab {
 
                     public String askForClosing(final List<SwingScilabTab> list) {
                         return "Console";
+                    }
+
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
                     }
                 });
 

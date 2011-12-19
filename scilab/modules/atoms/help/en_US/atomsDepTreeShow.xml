@@ -30,54 +30,46 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			<varlistentry>
+      <varlistentry>
         <term>module</term>
         <listitem>
-					
           <para>
 						1x1 or 1x2 Matrix of strings:
 					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
 								Mandatory
 							</td>
-							<td>
+              <td>
 							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+								Optional
 							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
+              <td>
 								If this field is empty or is not present,
 								the most recent	version is used
 							</td>
-						</tr>
-						
-					</informaltable>
-				</listitem>
+            </tr>
+          </informaltable>
+        </listitem>
       </varlistentry>
-			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -102,7 +94,7 @@ atomsDepTreeShow("toolbox_6")
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsShow">atomsShow</link>

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-13 22:50+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-10-22 11:29+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 #, c-format
@@ -316,6 +316,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s: Возникло исключение Java:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -1137,34 +1139,34 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "No"
-msgstr "Нет"
-
 msgid "Yes"
 msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
 
 msgid "Save and execute"
 msgstr "Сохранить и выполнить"
 
 msgid "Empty tab"
-msgstr ""
+msgstr "Пустая вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
+"Вкладку с uuid %s нельзя сохранить.\n"
+"Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
+"файл %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
-msgstr ""
+msgstr "Вы действительно хотите закрыть %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
-msgstr ""
+msgstr "Вы действительно хотите закрыть %s и %s ?"
 
 msgid "Exit"
-msgstr ""
+msgstr "Выйти"
 
 msgid "An error occured: "
 msgstr "Произошла ошибка: "
@@ -1214,7 +1216,6 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 
@@ -1601,21 +1602,3 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
-
-#~ msgid "Environment loaded.\n"
-#~ msgstr "Окружение загружено.\n"
-
-#~ msgid "Environment saved.\n"
-#~ msgstr "Окружение сохранено.\n"
-
-#~ msgid "Select a directory"
-#~ msgstr "Выберите каталог"
-
-#~ msgid "Change Current Directory"
-#~ msgstr "Сменить текущий каталог"
-
-#~ msgid "Select a file to execute"
-#~ msgstr "Выберите файл для выполнения"
-
-#~ msgid "Execution done.\n"
-#~ msgstr "Выполнение завершено.\n"

@@ -21,21 +21,6 @@
 
 #ifndef __SCICOS_MATH_H__
 #define __SCICOS_MATH_H__
-
-/*--------------------------------------------------------------------------*/ 
-#ifdef abs
-	#undef abs
-#endif
-#define abs(x) ((x) >= 0 ? (x) : -(x))
-/*--------------------------------------------------------------------------*/ 
-#ifdef max
-	#undef max
-#endif
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-
-#ifdef min
-	#undef min
-#endif
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#pragma message("Deprecated header (since 5.4.0). scicos_math.h is now including automatically math.h of the libc. Please replace the include of scicos_math.h by math.")
 #endif /* __SCICOS_MATH_H__ */

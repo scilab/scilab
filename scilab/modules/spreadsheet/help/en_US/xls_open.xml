@@ -72,7 +72,7 @@
       and opened. The <literal>fd</literal> logical unit points to this temporary
       file. Then the  first sheet in this stream is read to get the global information
       like number of sheets, sheet names <literal>Sheetnames</literal>, sheet
-      adresses within the stream <literal>Sheetpos</literal> and the
+      addresses within the stream <literal>Sheetpos</literal> and the
       <literal>SST</literal> which contains all the strings used in the following
       sheets.</para>
     <para>The <literal>fd</literal> and <literal>Sheetpos</literal> data have to be passed to
@@ -93,7 +93,7 @@ mclose(fd)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xls_read">xls_read</link>

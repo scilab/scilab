@@ -57,7 +57,7 @@
     <emphasis>s</emphasis> which interpolates the <emphasis>(xi,yi)</emphasis>
     points, ie, we have <emphasis>s(xi)=yi</emphasis> for all
     <emphasis>i=1,..,n</emphasis>. The resulting spline <emphasis>s</emphasis>
-    is completly defined by the triplet <literal>(x,y,d)</literal> where
+    is completely defined by the triplet <literal>(x,y,d)</literal> where
     <literal>d</literal> is the vector with the derivatives at the
     <literal>xi</literal>: <emphasis>s'(xi)=di</emphasis> (this is called the
     <emphasis>Hermite</emphasis> form). The evaluation of the spline at some

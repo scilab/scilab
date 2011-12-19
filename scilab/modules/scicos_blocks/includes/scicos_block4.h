@@ -22,19 +22,12 @@
 #ifndef __SCICOS_BLOCK4_H__
 #define __SCICOS_BLOCK4_H__
 
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-#ifndef WIN32
-#include <malloc.h>
-#endif
-#endif
-
 #ifndef NULL
 #define NULL 0
 #endif
 
-#include "scicos_math.h"
+#include <math.h>
+#include <stdlib.h>
 
 typedef void (*voidg) ();
 
@@ -668,21 +661,5 @@ typedef enum
 \brief Get pointer of the block label
 */
 #define GetLabelPtrs(blk) (blk->label)
-
-#if _MSC_VER
-#ifdef min
-#undef min
-#endif
-#ifdef max
-#undef max
-#endif
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
 
 #endif /* __SCICOS_BLOCK_H__ */

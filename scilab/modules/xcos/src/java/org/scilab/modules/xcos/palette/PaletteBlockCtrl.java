@@ -225,8 +225,10 @@ public final class PaletteBlockCtrl {
         DragGestureListener dragGestureListener = new DragGestureListener() {
             @Override
             public void dragGestureRecognized(DragGestureEvent e) {
-                final PaletteManagerView winView = PaletteManager.getInstance()
-                        .getView();
+                if (PaletteManagerView.get() == null) {
+                    PaletteManagerView.restore(null);
+                }
+                final PaletteManagerView winView = PaletteManagerView.get();
                 final DragGestureEvent event = e;
                 final String msg = String.format(UNABLE_TO_LOAD_BLOCK,
                         getModel().getData().getEvaluatedPath());
@@ -258,5 +260,4 @@ public final class PaletteBlockCtrl {
         dragSource.createDefaultDragGestureRecognizer(this.getView(),
                 DnDConstants.ACTION_COPY, dragGestureListener);
     }
-
 }

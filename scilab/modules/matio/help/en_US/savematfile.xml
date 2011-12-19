@@ -143,7 +143,7 @@ disp(B)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="load">load</link>
@@ -168,7 +168,7 @@ disp(B)
   </refsection>
   <refsection>
     <title>Bibliography</title>
-    <para>This function has been developped following the "MAT-File Format"
+    <para>This function has been developed following the "MAT-File Format"
   description: 
 <literal><ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></literal></para>
   </refsection>

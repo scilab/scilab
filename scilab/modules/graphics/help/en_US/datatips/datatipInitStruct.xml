@@ -137,7 +137,7 @@
     </variablelist>
     <para>
       Others fields can be added by the programmer to the datatips
-      data structure throught the <literal>datatipInitStruct</literal>
+      data structure through the <literal>datatipInitStruct</literal>
       <literal>varargin</literal> optional arguments.
     </para>
   </refsection>

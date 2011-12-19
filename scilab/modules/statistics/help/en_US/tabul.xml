@@ -34,7 +34,7 @@
       <varlistentry>
         <term>order</term>
         <listitem>
-          <para>(optionnal) a character equal to "d" or "i" (default value "d")</para>
+          <para>(optional) a character equal to "d" or "i" (default value "d")</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -112,7 +112,7 @@ results = [m(1)(p) string(occ)]             // display result
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="dsearch">dsearch</link>

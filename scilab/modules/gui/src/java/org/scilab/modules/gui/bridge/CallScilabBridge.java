@@ -2211,10 +2211,24 @@ public class CallScilabBridge {
     }
 
     /**
-     * Open a Browser on Mailing List Archives
+     * Open a Browser on Mailing List info
      */
     public static void openMailingList() {
         WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
+    }
+
+    /**
+     * Open a Browser on Mailing List Archives
+     */
+    public static void openMailingListArchives() {
+        WebBrowser.openUrl("http://mailinglists.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on S/E
+     */
+    public static void openSE() {
+        WebBrowser.openUrl("http://www.scilab-enterprises.com/");
     }
 
     /***************************/

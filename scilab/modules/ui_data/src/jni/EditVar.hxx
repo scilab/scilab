@@ -78,6 +78,9 @@ JavaVM * jvm;
 
 protected:
 jmethodID voidopenVariableEditorDoublejobjectArray__doublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorBooleanSparsejobjectArray__intjstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorSparsejobjectArray__doublejstringjava_lang_StringID; // cache method id
+jmethodID voidopenVariableEditorComplexSparsejobjectArray__doublejobjectArray__doublejstringjava_lang_StringID; // cache method id
 jmethodID voidopenVariableEditorComplexjobjectArray__doublejobjectArray__doublejstringjava_lang_StringID; // cache method id
 jmethodID voidopenVariableEditorStringjobjectArray__java_lang_Stringjstringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
@@ -88,6 +91,19 @@ jmethodID voidopenVariableEditorInteger16jobjectArray__shortjstringjava_lang_Str
 jmethodID voidopenVariableEditorUInteger16jobjectArray__intjstringjava_lang_StringID; // cache method id
 jmethodID voidopenVariableEditorInteger32jobjectArray__intjstringjava_lang_StringID; // cache method id
 jmethodID voidopenVariableEditorUInteger32jobjectArray__longjstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorDoublejobjectArray__doublejdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorBooleanSparsejobjectArray__intjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorSparsejobjectArray__doublejdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorComplexSparsejobjectArray__doublejobjectArray__doublejdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorComplexjobjectArray__doublejobjectArray__doublejdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorStringjobjectArray__java_lang_StringjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorBooleanjobjectArray__intjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger8jobjectArray__bytejdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger8jobjectArray__shortjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger16jobjectArray__shortjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger16jobjectArray__intjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorInteger32jobjectArray__intjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
+jmethodID voidrefreshVariableEditorUInteger32jobjectArray__longjdoubleArray_doublejdoubleArray_doublejstringjava_lang_StringID; // cache method id
 jmethodID voidcloseVariableEditorID; // cache method id
 
 
@@ -147,6 +163,12 @@ void endSynchronize();
 // Methods
 static void openVariableEditorDouble(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, char * variableName);
 
+static void openVariableEditorBooleanSparse(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorSparse(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void openVariableEditorComplexSparse(JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** complexData, int complexDataSize, int complexDataSizeCol, char * variableName);
+
 static void openVariableEditorComplex(JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** imgData, int imgDataSize, int imgDataSizeCol, char * variableName);
 
 static void openVariableEditorString(JavaVM * jvm_, char *** data, int dataSize, int dataSizeCol, char * variableName);
@@ -164,6 +186,32 @@ static void openVariableEditorUInteger16(JavaVM * jvm_, int** data, int dataSize
 static void openVariableEditorInteger32(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, char * variableName);
 
 static void openVariableEditorUInteger32(JavaVM * jvm_, long long** data, int dataSize, int dataSizeCol, char * variableName);
+
+static void refreshVariableEditorDouble(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorBooleanSparse(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorSparse(JavaVM * jvm_, double** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorComplexSparse(JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** complexData, int complexDataSize, int complexDataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorComplex(JavaVM * jvm_, double** realData, int realDataSize, int realDataSizeCol, double** imgData, int imgDataSize, int imgDataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorString(JavaVM * jvm_, char *** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorBoolean(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorInteger8(JavaVM * jvm_, byte** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorUInteger8(JavaVM * jvm_, short** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorInteger16(JavaVM * jvm_, short** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorUInteger16(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorInteger32(JavaVM * jvm_, int** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
+
+static void refreshVariableEditorUInteger32(JavaVM * jvm_, long long** data, int dataSize, int dataSizeCol, double* rowsIndex, int rowsIndexSize, double* colsIndex, int colsIndexSize, char * variableName);
 
 static void closeVariableEditor(JavaVM * jvm_);
 

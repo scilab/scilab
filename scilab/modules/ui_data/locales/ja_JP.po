@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-14 05:21+0000\n"
+"PO-Revision-Date: 2011-10-29 07:27+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ja\n"
 
 #, c-format
@@ -65,7 +65,7 @@ msgid "Name"
 msgstr "名前"
 
 msgid "Dimension"
-msgstr ""
+msgstr "次元"
 
 msgid "Type"
 msgstr "型"
@@ -77,13 +77,13 @@ msgid "Bytes"
 msgstr "バイト数"
 
 msgid "User"
-msgstr ""
+msgstr "ユーザ"
 
 msgid "Type int value"
-msgstr ""
+msgstr "int値を入力"
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "この機能はこのモードでは利用できません."
 
 msgid "File"
 msgstr "ファイル"
@@ -95,7 +95,7 @@ msgid "Filter"
 msgstr "フィルタ"
 
 msgid "Hide Scilab variables"
-msgstr ""
+msgstr "Scilab変数を隠す"
 
 msgid "Double"
 msgstr "二重化"
@@ -173,7 +173,7 @@ msgid "Cut"
 msgstr "切り取る"
 
 msgid "Clear"
-msgstr ""
+msgstr "消去"
 
 msgid "Undo"
 msgstr "元に戻す"
@@ -182,77 +182,74 @@ msgid "Redo"
 msgstr "やり直す"
 
 msgid "File Browser"
-msgstr ""
+msgstr "ファイル ブラウザ"
 
 msgid "Size"
-msgstr ""
+msgstr "大きさ"
 
 msgid "Last modified"
-msgstr ""
+msgstr "最終更新日"
 
 msgid "Directory"
-msgstr ""
+msgstr "ディレクトリ"
 
 #, c-format
 msgid "%s File"
-msgstr ""
+msgstr "%s ファイル"
 
 msgid "File/directory filter"
-msgstr ""
+msgstr "ファイル/ディレクトリフィルタ"
 
 msgid "Enter your working folder"
-msgstr ""
+msgstr "作業フォルダを入力"
 
 msgid "Case sensitive"
-msgstr ""
+msgstr "大文字/小文字を区別"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "正規表現"
 
 msgid "Select a directory"
-msgstr ""
+msgstr "ディレクトリ選択"
 
 msgid "Home"
-msgstr ""
+msgstr "ホーム"
 
 msgid "Scilab"
-msgstr ""
+msgstr "Scilab"
 
 #, c-format
 msgid "Cannot edit the file %s"
-msgstr ""
+msgstr "ファイル %s を編集できません"
 
 #, c-format
 msgid "Cannot open the file %s"
-msgstr ""
+msgstr "ファイル %s をオープンできません"
 
 msgid "Open with SciNotes"
-msgstr ""
+msgstr "SciNoteで開く"
 
 msgid "Execute in Scilab"
-msgstr ""
+msgstr "Scilabで実行"
 
 msgid "Open with Xcos"
-msgstr ""
+msgstr "Xcosで開く"
 
 msgid "Load in Scilab"
-msgstr ""
+msgstr "Scilabにロード"
 
 msgid "Edit with default application"
-msgstr ""
+msgstr "デフォルトアプリケーションで編集"
 
 msgid "Open with default application"
-msgstr ""
+msgstr "デフォルトアプリケーションで開く"
 
 msgid "Scilab type:"
-msgstr ""
+msgstr "Scilab型:"
 
 msgid "Bytes:"
-msgstr ""
+msgstr "バイト数:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
-
-#~ msgid "Icon"
-#~ msgstr "アイコン"

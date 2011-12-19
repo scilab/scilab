@@ -19,7 +19,10 @@ function [vars_out, vars_in, fun_text] = %mc_string(pfunc)
   end
 
   //fun2string referenced to make its subfunctions known there
+  prot = funcprot();
+  funcprot(0);
   fun2string = fun2string;
+  funcprot(prot);
   //get the function pseudo code
   lst = mmodlst(macr2lst(pfunc));
 

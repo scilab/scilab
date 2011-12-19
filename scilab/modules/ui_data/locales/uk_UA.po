@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-20 03:03+0000\n"
+"PO-Revision-Date: 2011-10-17 17:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -68,7 +68,7 @@ msgid "Name"
 msgstr "Назва"
 
 msgid "Dimension"
-msgstr ""
+msgstr "Розмірність"
 
 msgid "Type"
 msgstr "Тип"
@@ -80,13 +80,13 @@ msgid "Bytes"
 msgstr "Байти"
 
 msgid "User"
-msgstr ""
+msgstr "Користувач"
 
 msgid "Type int value"
-msgstr ""
+msgstr "Значення типу int"
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "Ця можливість недоступна у поточному режимі…"
 
 msgid "File"
 msgstr "Файл"
@@ -98,7 +98,7 @@ msgid "Filter"
 msgstr "Фільтр"
 
 msgid "Hide Scilab variables"
-msgstr ""
+msgstr "Приховати змінні Scilab"
 
 msgid "Double"
 msgstr "Подвійний"
@@ -176,7 +176,7 @@ msgid "Cut"
 msgstr "Вирізати"
 
 msgid "Clear"
-msgstr ""
+msgstr "Спорожнити"
 
 msgid "Undo"
 msgstr "Вернути"
@@ -185,77 +185,74 @@ msgid "Redo"
 msgstr "Повторити"
 
 msgid "File Browser"
-msgstr ""
+msgstr "Перегляд файлів"
 
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 msgid "Last modified"
-msgstr ""
+msgstr "Дата зміни"
 
 msgid "Directory"
-msgstr ""
+msgstr "Каталог"
 
 #, c-format
 msgid "%s File"
-msgstr ""
+msgstr "Файл %s"
 
 msgid "File/directory filter"
-msgstr ""
+msgstr "Фільтр файлів та каталогів"
 
 msgid "Enter your working folder"
-msgstr ""
+msgstr "Вкажіть вашу робочу теку"
 
 msgid "Case sensitive"
-msgstr ""
+msgstr "З врахуванням регістру"
 
 msgid "Regular expression"
-msgstr ""
+msgstr "Формальний вираз"
 
 msgid "Select a directory"
-msgstr ""
+msgstr "Виберіть каталог"
 
 msgid "Home"
-msgstr ""
+msgstr "Домівка"
 
 msgid "Scilab"
-msgstr ""
+msgstr "Scilab"
 
 #, c-format
 msgid "Cannot edit the file %s"
-msgstr ""
+msgstr "Редагування файла %s неможливе"
 
 #, c-format
 msgid "Cannot open the file %s"
-msgstr ""
+msgstr "Не вдалося відкрити файл %s"
 
 msgid "Open with SciNotes"
-msgstr ""
+msgstr "Відкрити за допомогою SciNotes"
 
 msgid "Execute in Scilab"
-msgstr ""
+msgstr "Виконати у Scilab"
 
 msgid "Open with Xcos"
-msgstr ""
+msgstr "Відкрити за допомогою Xcos"
 
 msgid "Load in Scilab"
-msgstr ""
+msgstr "Завантажити до Scilab"
 
 msgid "Edit with default application"
-msgstr ""
+msgstr "Редагувати за допомогою типової програми"
 
 msgid "Open with default application"
-msgstr ""
+msgstr "Відкрити за допомогою типової програми"
 
 msgid "Scilab type:"
-msgstr ""
+msgstr "Тип Scilab:"
 
 msgid "Bytes:"
-msgstr ""
+msgstr "Байтів:"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
-
-#~ msgid "Icon"
-#~ msgstr "Піктограма"

@@ -68,7 +68,8 @@ static gw_generic_table Tab[] =
 	{sci_spones, "spones"},
 	{sci_gsort, "gsort"},
 	{sci_isequalbitwise, "isequalbitwise"},
-    {sci_rat, "rat"}
+    {sci_rat, "rat"},
+    {sci_base2dec, "base2dec"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

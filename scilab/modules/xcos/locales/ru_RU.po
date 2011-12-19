@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-14 01:16+0000\n"
+"PO-Revision-Date: 2011-11-16 14:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 #, c-format
@@ -516,6 +516,10 @@ msgstr ""
 "Файл %s не существует.\n"
 "Создать файл?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr "Невозможно декодировать адрес : %s ."
+
 msgid "Ok"
 msgstr "ОК"
 
@@ -562,6 +566,15 @@ msgstr "Не удалось удалить "
 
 msgid "No block selected"
 msgstr "Нет выбранного блока"
+
+msgid "Export to XML"
+msgstr "Экспорт в XML"
+
+msgid "Export in progress"
+msgstr "Идёт экспорт"
+
+msgid "Import from XML"
+msgstr "Импорт из XML"
 
 msgid "Add to"
 msgstr "Добавить к"
@@ -710,20 +723,13 @@ msgstr "Формируется код на C для суперблока..."
 msgid "A SuperBlock must be selected to generate code"
 msgstr "Суперблок должен быть выделен, чтобы сформировать код"
 
-msgid "Export in progress"
-msgstr "Идёт экспорт"
-
-msgid ""
-"Import in progress, results will be stored through the 'scs_m' variable"
-msgstr ""
-
-#, c-format
-msgid ""
-"Compilation in progress, results will be stored through the '%cpr' variable"
-msgstr ""
-
 msgid "Simulation in progress"
 msgstr "Выполняется моделирование"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+"Идёт компиляция, результаты будут сохранены в переменной 'scicos_cpr'"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Генерация СуперБлока, пожалуйста, подождите"
@@ -912,7 +918,7 @@ msgid "Old Gain Block"
 msgstr ""
 
 msgid "Standard demos"
-msgstr ""
+msgstr "Стандартные демонстрационные примеры"
 
 msgid "Control Systems"
 msgstr "Системы управления"
@@ -927,10 +933,10 @@ msgid "Modelica demos"
 msgstr ""
 
 msgid "Old demos"
-msgstr ""
+msgstr "Старые демонстрационные примеры"
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "Простой демонстрационный пример"
 
 msgid "Bouncing Balls"
 msgstr "Скачущие шары"
@@ -1215,20 +1221,3 @@ msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "В post_xcos_simulate ошибка: моделирование завершается."
-
-#~ msgid ""
-#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-#~ msgstr ""
-#~ "Идёт компиляция, результаты будут сохранены в переменной «scicos_cpr»"
-
-#~ msgid "Export to XML"
-#~ msgstr "Экспортировать в XML"
-
-#~ msgid "Import from XML"
-#~ msgstr "Импортировать из XML"
-
-#~ msgid "From %s"
-#~ msgstr "От %s"
-
-#~ msgid "Goto %s"
-#~ msgstr "Перейти к %s"

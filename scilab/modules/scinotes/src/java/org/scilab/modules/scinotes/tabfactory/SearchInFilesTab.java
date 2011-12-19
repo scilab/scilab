@@ -13,6 +13,7 @@
 package org.scilab.modules.scinotes.tabfactory;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -23,46 +24,62 @@ import org.scilab.modules.scinotes.utils.SearchFile;
 
 /**
  * Class to create SciNotes instances
+ * 
  * @author Calixte DENIZET
  */
 public class SearchInFilesTab {
 
     /**
-     * @param uuid the uuid to restore
+     * @param uuid
+     *            the uuid to restore
      * @return a new SciNotes instance
      */
-    public static SearchFile getSearchInFilesTabInstance(final SciNotes editor, String uuid) {
-	final SearchFile sf;
+    public static SearchFile getSearchInFilesTabInstance(final SciNotes editor,
+            String uuid) {
+        final SearchFile sf;
         if (uuid != null) {
             sf = new SearchFile(editor, uuid);
         } else {
             sf = new SearchFile(editor);
-	    ScilabTabFactory.getInstance().addToCache(sf);
+            ScilabTabFactory.getInstance().addToCache(sf);
         }
 
-        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) sf, new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation((SwingScilabTab) sf,
+                new ClosingOperationsManager.ClosingOperation() {
 
-                public boolean canClose() {
-                    return true;
-                }
+                    @Override
+                    public boolean canClose() {
+                        return true;
+                    }
 
-                public void destroy() {
-                    sf.closeSearchInFiles();
-                }
+                    @Override
+                    public void destroy() {
+                        sf.closeSearchInFiles();
+                    }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
-                    return null;
-                }
-            });
+                    @Override
+                    public String askForClosing(final List<SwingScilabTab> list) {
+                        return null;
+                    }
 
-        WindowsConfigurationManager.registerEndedRestoration((SwingScilabTab) sf, new WindowsConfigurationManager.EndedRestoration() {
+                    @Override
+                    public void updateDependencies(List<SwingScilabTab> list,
+                            ListIterator<SwingScilabTab> it) {
+                    }
+                });
 
-                public void finish() {
-                    sf.changeToolBar();
-                }
-            });
+        WindowsConfigurationManager.registerEndedRestoration(
+                (SwingScilabTab) sf,
+                new WindowsConfigurationManager.EndedRestoration() {
 
-        ClosingOperationsManager.addDependency((SwingScilabTab) editor, (SwingScilabTab) sf);
+                    @Override
+                    public void finish() {
+                        sf.changeToolBar();
+                    }
+                });
+
+        ClosingOperationsManager.addDependency((SwingScilabTab) editor,
+                (SwingScilabTab) sf);
 
         return sf;
     }

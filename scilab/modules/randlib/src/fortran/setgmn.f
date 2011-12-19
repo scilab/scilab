@@ -48,7 +48,7 @@ C
 C**********************************************************************
 C     .. Scalar Arguments ..
 C      INTEGER p
-      include 'stack.h' 
+      include 'stack.h'
       INTEGER p, ldcovm
 C     ..
 C     .. Array Arguments ..
@@ -59,7 +59,7 @@ C     .. Local Scalars ..
       INTEGER i,icount,info,j
 C     ..
 C     .. External Subroutines ..
-      EXTERNAL spofa
+      EXTERNAL dpofa
 C     ..
 C     .. Executable Statements ..
 C
@@ -76,8 +76,8 @@ C
 C
 C      Cholesky decomposition to find A s.t. trans(A)*(A) = COVM
 C
-C      CALL spofa(covm,p,p,info)
-      CALL spofa(covm,ldcovm,p,info)
+C      CALL dpofa(covm,p,p,info)
+      CALL dpofa(covm,ldcovm,p,info)
       ierr=0
       IF (.NOT. (info.NE.0)) GO TO 30
       call basout(io,wte,"Rand: COV not positive definite")

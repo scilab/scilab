@@ -344,7 +344,7 @@ public class SwingScilabTreeTable extends JTable {
         ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
         tree.expandPath(path);
 	if (getRowCount() >= 1) {
-	    repaint(tree.getRowBounds(1));
+	    repaint(tree.getRowBounds(0));
 	}
         editingRow = 0;
     }

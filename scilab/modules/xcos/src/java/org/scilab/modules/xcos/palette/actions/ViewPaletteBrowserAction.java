@@ -65,6 +65,8 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
                         }
                     }
                 });
+
+        menu.setChecked(PaletteManager.isVisible());
         return menu;
     }
 
@@ -75,6 +77,6 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        PaletteManager.setVisible(!PaletteManager.isVisible());
+        PaletteManager.setVisible(PaletteManager.isVisible());
     }
 }

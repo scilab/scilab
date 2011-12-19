@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-10-05 14:04+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-11-14 22:54+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -713,7 +713,7 @@ msgid "&Command History"
 msgstr "コマンドヒストリ (&C)"
 
 msgid "&File Browser"
-msgstr ""
+msgstr "ファイルブラウザ (&F)"
 
 #
 # File: scilab_fake_localization_file.c, line: 74
@@ -1414,11 +1414,11 @@ msgstr "左クリックで選択終了、右クリックでキャンセル。"
 msgid "OK"
 msgstr "OK"
 
-msgid "No"
-msgstr "いいえ"
-
 msgid "Yes"
 msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
 
 #
 # File: etc/main_menubar.xml, line: 11
@@ -1426,24 +1426,23 @@ msgid "Save and execute"
 msgstr "保存して実行"
 
 msgid "Empty tab"
-msgstr ""
+msgstr "空のタブ"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
+"uuid %s のタブは回復できません.\n"
+"前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
-msgstr ""
+msgstr "%s を閉じても良ろしいですか?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
-msgstr ""
+msgstr "%s と %s を閉じても宜しいですか?"
 
 msgid "Exit"
-msgstr ""
+msgstr "終了"
 
 msgid "An error occured: "
 msgstr "エラーが発生しました: "
@@ -1493,7 +1492,6 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
-#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
@@ -1942,34 +1940,3 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
-
-#
-# File: scilab_fake_localization_file.c, line: 91
-#~ msgid "Change Current Directory"
-#~ msgstr "現在のディレクトリを変更"
-
-#
-# File: etc/main_menubar.xml, line: 11
-#~ msgid "Select a file to execute"
-#~ msgstr "ファイルを選択して実行"
-
-#
-# File: etc/main_menubar.xml, line: 14
-#~ msgid "Execution done.\n"
-#~ msgstr "実行は完了しました。\n"
-
-#
-# File: etc/main_menubar.xml, line: 36
-#~ msgid "Environment loaded.\n"
-#~ msgstr "環境をロードしました。\n"
-
-#
-# File: etc/main_menubar.xml, line: 50
-#~ msgid "Environment saved.\n"
-#~ msgstr "環境を保存しました。\n"
-
-#
-# File: etc/main_menubar.xml, line: 59
-# File: etc/main_toolbar.xml, line: 39
-#~ msgid "Select a directory"
-#~ msgstr "ディレクトリを選択"

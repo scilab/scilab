@@ -35,6 +35,7 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 /**
  * Used to modify the palette tree
@@ -161,7 +162,10 @@ public class PaletteTreeTransferHandler extends TransferHandler {
      */
     @Override
     public boolean importData(final TransferSupport support) {
-        final JTree tree = PaletteManager.getInstance().getView().getTree();
+        if (PaletteManagerView.get() == null) {
+            PaletteManagerView.restore(null);
+        }
+        final JTree tree = PaletteManagerView.get().getTree();
         final JTree.DropLocation location = tree.getDropLocation();
 
         final Category newParent = (Category) location.getPath()

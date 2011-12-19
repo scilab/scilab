@@ -386,10 +386,12 @@ htmlentity = "&"[#a-zA-Z0-9]*";"
                                  }
 
   " "                            {
+                                   transposable = false;
                                    handler.handleNothing(" ");
                                  }
 
   "\t"                           {
+                                   transposable = false;
                                    handler.handleNothing("    ");
                                  }
 

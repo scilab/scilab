@@ -189,7 +189,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/xml/libscixml.la \
     $(top_builddir)/modules/statistics/libscistatistics.la \
     $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
@@ -210,6 +209,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
 

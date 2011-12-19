@@ -34,14 +34,14 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>optionnal character string, with possible values
+          <para>optional character string, with possible values
 	    <literal>'svd'</literal> or <literal>'qr'</literal>. The default value is  <literal>'svd'</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>optionnal real non negative number. The default value is 
+          <para>optional real non negative number. The default value is 
 	    <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
         </listitem>
       </varlistentry>
@@ -88,7 +88,7 @@ norm(y(dim+1:$))/norm(y(1:dim))     // small
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colcomp">colcomp</link>

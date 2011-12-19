@@ -12,9 +12,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include <jni.h> /* JavaVM */
-#endif
 #include "Scierror.h"
 #include "gw_jvm.h"
 #include "dynlib_jvm.h"
@@ -23,23 +20,6 @@
 #include "loadBackGroundClassPath.h"
 #include "loadOnUseClassPath.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-JVM_IMPEXP JavaVM *getScilabJavaVM(void)
-{
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
-JVM_IMPEXP jobject getScilabObject(void)
-{
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
-JVM_IMPEXP JNIEnv *getScilabJNIEnv(void)
-{
-    return NULL;
-}
-#endif
 /*--------------------------------------------------------------------------*/
 int gw_jvm(void)
 {
@@ -67,12 +47,13 @@ BOOL loadOnUseClassPath(char *tag)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL canCloseMainScilabObject(void)
+/* BUG 10325: FORCE EXPORT canCloseMainScilabObject on Windows */
+JVM_IMPEXP BOOL canCloseMainScilabObject(void)
 {
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL ExecuteInitialHooks(void)
+BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }

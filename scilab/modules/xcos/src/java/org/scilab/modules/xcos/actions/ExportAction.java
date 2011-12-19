@@ -44,6 +44,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -173,7 +174,7 @@ public final class ExportAction extends DefaultAction {
                 /* Export the file */
                 if (selected.exists()) {
                     final boolean overwrite = ScilabModalDialog.show(
-                            graph.getParentTab(),
+                            XcosTab.get(graph),
                             XcosMessages.OVERWRITE_EXISTING_FILE,
                             XcosMessages.XCOS, IconType.QUESTION_ICON,
                             ButtonType.YES_NO) == AnswerOption.YES_OPTION;
@@ -281,7 +282,7 @@ public final class ExportAction extends DefaultAction {
         Color bg = null;
 
         if ((!fileFormat.equalsIgnoreCase("png"))
-                || ScilabModalDialog.show(graph.getParentTab(),
+                || ScilabModalDialog.show(XcosTab.get(graph),
                         XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS,
                         IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
             bg = graphComponent.getBackground();

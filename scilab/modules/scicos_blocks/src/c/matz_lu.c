@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
@@ -61,7 +62,7 @@ SCICOS_BLOCKS_IMPEXP void matz_lu(scicos_block *block,int flag)
 	y1i=GetImagOutPortPtrs(block,1);
 	y2r=GetRealOutPortPtrs(block,2);
 	y2i=GetImagOutPortPtrs(block,2);
-	l=min(mu,nu);
+	l=Min(mu,nu);
 	/*init : initialization*/
 	if (flag==4)
 	{

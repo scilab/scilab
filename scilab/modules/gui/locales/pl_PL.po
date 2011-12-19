@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-10 18:59+0000\n"
+"PO-Revision-Date: 2011-12-03 14:24+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 #, c-format
@@ -1104,7 +1104,7 @@ msgid "Please specify a file format"
 msgstr "Proszę określić format pliku"
 
 msgid "Error on export"
-msgstr "Błąd podczas exportowania"
+msgstr "Błąd podczas eksportowania"
 
 msgid "Unrecognized extension '"
 msgstr "Nierozpoznane rozszerzenie '"
@@ -1181,11 +1181,11 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "No"
-msgstr "Nie"
-
 msgid "Yes"
 msgstr "Tak"
+
+msgid "No"
+msgstr "Nie"
 
 msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
@@ -1193,17 +1193,14 @@ msgstr "Zapisz i wykonaj"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1258,7 +1255,6 @@ msgstr "Wszystkie pliki PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Wszystkie pliki RTF"
 
-#, c-format
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 
@@ -1658,21 +1654,3 @@ msgstr "%s: Nieprawidłowy typ dla %s: Oczekiwano wartości typu real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar dla %s: Oczekiwano wartości typu real .\n"
-
-#~ msgid "Select a directory"
-#~ msgstr "Wybierz katalog"
-
-#~ msgid "Select a file to execute"
-#~ msgstr "Wybierz plik do wykonania"
-
-#~ msgid "Environment loaded.\n"
-#~ msgstr "Środowisko załadowane.\n"
-
-#~ msgid "Change Current Directory"
-#~ msgstr "Zmień katalog bieżący"
-
-#~ msgid "Environment saved.\n"
-#~ msgstr "Środowisko zapisane\n"
-
-#~ msgid "Execution done.\n"
-#~ msgstr "Wykonywanie zakończono .\n"

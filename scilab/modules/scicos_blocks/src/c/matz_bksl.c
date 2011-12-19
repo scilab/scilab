@@ -24,6 +24,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
@@ -74,10 +75,10 @@ SCICOS_BLOCKS_IMPEXP void matz_bksl(scicos_block *block,int flag)
 	u2i=GetImagInPortPtrs(block,2);
 	yr=GetRealOutPortPtrs(block,1);
 	yi=GetImagOutPortPtrs(block,1);
-	l=max(mu,nu1);
-	lw=max(2*min(mu,nu1),nu1+1);
-	lu=max(lw,min(mu,nu1)+nu2);
-	lw=max(2*nu1,min(mu,nu1)+lu);
+	l=Max(mu,nu1);
+	lw=Max(2*Min(mu,nu1),nu1+1);
+	lu=Max(lw,Min(mu,nu1)+nu2);
+	lw=Max(2*nu1,Min(mu,nu1)+lu);
 	rw=2*nu1;
 
 	/*init : initialization*/

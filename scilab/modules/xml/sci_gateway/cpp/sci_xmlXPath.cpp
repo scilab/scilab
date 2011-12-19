@@ -24,6 +24,7 @@ extern "C"
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLElement.hxx"
 #include "XMLXPath.hxx"
 #include "XMLNodeSet.hxx"
 
@@ -35,6 +36,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     org_modules_xml::XMLDocument * doc;
+    XMLElement * where = 0;
     const XMLXPath * xpath;
     int * addr = 0;
     char * query = 0;
@@ -42,6 +44,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     int row = 0;
     int col = 0;
     char ** namespaces = 0;
+    int isElem = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 3);
@@ -53,18 +56,33 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isXMLDoc(addr, pvApiCtx))
+    isElem = isXMLElem(addr, pvApiCtx);
+
+    if (!isElem && !isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"), fname, 1);
         return 0;
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
-    if (!doc)
+    if (isElem)
     {
-        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
-        return 0;
+        where = XMLObject::getFromId<XMLElement>(id);
+        if (!where)
+        {
+            Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
+            return 0;
+        }
+        doc = const_cast<org_modules_xml::XMLDocument *>(&(where->getXMLDocument()));
+    }
+    else
+    {
+        doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+        if (!doc)
+        {
+            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
+            return 0;
+        }
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
@@ -116,7 +134,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces);
     }
 
-    xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, &error);
+    xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, where, &error);
     freeAllocatedSingleString(query);
     if (namespaces)
     {

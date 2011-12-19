@@ -20,6 +20,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -78,8 +79,10 @@ public final class SaveAsAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (((XcosDiagram) getGraph(null)).saveDiagramAs(null)) {
-            ((XcosDiagram) getGraph(null)).setModified(false);
+        final XcosDiagram graph = (XcosDiagram) getGraph(null);
+        if (graph.saveDiagramAs(null)) {
+            graph.setModified(false);
+            Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         }
 
     }

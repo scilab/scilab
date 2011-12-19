@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:47+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-11-08 11:00+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 
 #, c-format
@@ -1055,9 +1055,11 @@ msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
+"La console n'est pas disponible.\n"
+"Veuillez passer en mode STD."
 
 msgid "Empty tab"
-msgstr ""
+msgstr "Onglet vide"
 
 msgid "Scilab Console"
 msgstr "Console Scilab"
@@ -1196,7 +1198,7 @@ msgstr "Vos variables sont :"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "Utilisation des éléments %s de %s"
 
 msgid " by "
 msgstr " par "

@@ -90,22 +90,10 @@ indent() {
 	do
 		local ext=$(expr "$file" : ".*\(\..*\)")
 		case $ext in
-		.xcos)
+		.xcos|.xml)
 			__indent_Xml;
 		;;
-		.xml)
-			__indent_Xml;
-		;;
-		.h)
-			__indent_C;
-		;;
-		.c)
-			__indent_C;
-		;;
-		.hxx)
-			__indent_C;
-		;;
-		.cpp)
+		.h|.c|.hxx|.cpp)
 			__indent_C;
 		;;
 		esac

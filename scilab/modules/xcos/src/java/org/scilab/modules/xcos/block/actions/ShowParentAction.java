@@ -22,6 +22,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -80,7 +81,7 @@ public class ShowParentAction extends DefaultAction {
                 LogFactory.getLog(getClass()).error("Parent diagram was null");
             }
 
-            graph.setVisible(true);
+            XcosTab.restore(graph);
         }
     }
 }

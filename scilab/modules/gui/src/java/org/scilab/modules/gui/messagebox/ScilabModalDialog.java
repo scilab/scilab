@@ -261,9 +261,7 @@ public final class ScilabModalDialog {
 
         messageBox.setIcon(iconName);
 
-        if (parent == null)
-            ((SwingScilabMessageBox) messageBox.getAsSimpleMessageBox())
-                    .setParentForLocation(parent);
+        ((SwingScilabMessageBox) messageBox.getAsSimpleMessageBox()).setParentForLocation(parent);
 
         messageBox.displayAndWait();
         int choice = (messageBox.getSelectedButton() - 1); // zero indexed

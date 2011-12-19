@@ -36,9 +36,10 @@
     <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
     par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
   </para>
-  <para>Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.</para>
+    <para>Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.</para>
     <para><literal>style(i)</literal> donne la couleur utilisée pour remplir l'ellipse <literal>i</literal>.
   </para>
+    <para>Si a2 est égal à 360*62, un circle complet sera dessiné.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -54,7 +55,7 @@ xfarcs(arcs,[1,2,3])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xarc">xarc</link>
