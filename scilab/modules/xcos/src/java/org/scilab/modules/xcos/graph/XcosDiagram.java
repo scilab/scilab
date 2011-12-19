@@ -1555,14 +1555,17 @@ public class XcosDiagram extends ScilabGraph {
         if (cell != null) {
             final Map<String, Object> style = getCellStyle(cell);
 
-            final String customLabel = (String) style.get("displayedLabel");
-            if (customLabel != null && cell instanceof BasicBlock) {
-                try {
-                    ret = String.format(customLabel,
-                            ((BasicBlock) cell).getExprsFormat());
-                } catch (IllegalFormatException e) {
-                    LOG.error(e);
-                    ret = customLabel;
+            final String displayedLabel = (String) style.get("displayedLabel");
+            if (displayedLabel != null) {
+                if (cell instanceof BasicBlock) {
+                    try {
+                        ret = String.format(displayedLabel, ((BasicBlock) cell).getExprsFormat());
+                    } catch (IllegalFormatException e) {
+                        LOG.error(e);
+                        ret = displayedLabel;
+                    }
+                } else {
+                    ret = displayedLabel;
                 }
             } else {
                 final String label = super.convertValueToString(cell);
