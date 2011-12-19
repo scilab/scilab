@@ -30,7 +30,7 @@ void getNewTerm(int signum)
 
     char *currentLine = NULL;
 
-    capStr("cl");
+    setStringCapacities("cl");
     /* get new terminfo */
     if (((termEnv = getenv("TERM")) == NULL) || (tgetent(NULL, termEnv) == ERR))
     {
