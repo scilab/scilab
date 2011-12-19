@@ -26,6 +26,10 @@
 #include "localization.h"
 #include "returnProperty.h"
 #include "HandleManagement.h"
+#include "CurrentSubwin.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+#include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1);
 /*--------------------------------------------------------------------------*/
@@ -139,8 +143,10 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if(strcmp(cstk(l1),"clipping") == 0)
   {
-    double * clipArea = sciGetClipping(sciGetCurrentSubWin());
-    sciReturnRowVector(clipArea, 4);
+      double *clipBox;
+      char* pobjUID = getOrCreateDefaultSubwin();
+     getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
+    sciReturnRowVector(clipBox, 4);
     LhsVar(1)=Rhs+1;
   }
   else

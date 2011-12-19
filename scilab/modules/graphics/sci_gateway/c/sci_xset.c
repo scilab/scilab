@@ -36,6 +36,7 @@
 #include "setGraphicObjectProperty.h"
 #include "FigureList.h"
 #include "CurrentFigure.h"
+#include "CurrentSubwin.h"
 #include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,int lx0,int lx1) ;
@@ -46,6 +47,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   int lr;
   double  xx[5];
   sciPointObj *subwin = NULL;
+  char * subwinUID = NULL;
   BOOL keyFound = FALSE ;
 
   if (Rhs <= 0)
@@ -115,10 +117,13 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if (strcmp(cstk(l1),"clipping") == 0)
   {
-    subwin = sciGetCurrentSubWin() ;
-    sciSetClipping(subwin,xx);
-    sciSetIsClipping(subwin, 1);
-    forceRedraw(subwin);
+    int clipState = 2;
+    subwinUID = getOrCreateDefaultSubwin();
+    setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
+    setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    //sciSetClipping(subwin,xx);
+    //sciSetIsClipping(subwin, 1);
+    //forceRedraw(subwin);
   }
   else if ( strcmp(cstk(l1),"colormap") == 0)
   {
