@@ -23,6 +23,10 @@ Bug fixes
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
+* Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
+                     operator.
+
+
 
 
 
