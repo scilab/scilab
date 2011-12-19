@@ -38,9 +38,9 @@ int previousCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
     {
         gotoLeft(*commandLine, cursorLocation);
     }
-    capStr("up");               /* TODO: rename this function */
-    capStr("do");
-    capStr("cd");
+    setStringCapacities("up");
+    setStringCapacities("do");
+    setStringCapacities("cd");
     /* Get the new command line then display it */
     promptSize = getPrompt(WRT_PRT);
     multiByteHistory = getPreviousLineInScilabHistory();
@@ -71,7 +71,7 @@ int previousCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
      */
     if (!((*cursorLocation + promptSize) % tgetnum("co")))
     {
-        capStr("do");
+        setStringCapacities("do");
     }
     return 0;
 }
@@ -92,9 +92,9 @@ int nextCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
     {
         gotoLeft(*commandLine, cursorLocation);
     }
-    capStr("up");
-    capStr("do");
-    capStr("cd");
+    setStringCapacities("up");
+    setStringCapacities("do");
+    setStringCapacities("cd");
     /* Get the new command line then display it */
     promptSize = getPrompt(WRT_PRT);
     multiByteHistory = getNextLineInScilabHistory();
@@ -125,7 +125,7 @@ int nextCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
      */
     if (!((*cursorLocation + promptSize) % tgetnum("co")))
     {
-        capStr("do");
+        setStringCapacities("do");
     }
     return 0;
 }

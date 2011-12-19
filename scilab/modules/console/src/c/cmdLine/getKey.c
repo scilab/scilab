@@ -127,13 +127,13 @@ static void setCBreak(bool cbk)
     tcgetattr(0, &t);
     if (cbk)
     {
-        t.c_cc[VMIN] = 0;       /* TODO: comment */
-        t.c_cc[VTIME] = 0;      /* TODO: comment */
+        t.c_cc[VMIN] = 0;       /* Do not wait any character before leaving getwchar */
+        t.c_cc[VTIME] = 1;      /* Do not wait any second before leaving getwchar */
     }
     else
     {
-        t.c_cc[VMIN] = 0;       /* TODO: comment */
-        t.c_cc[VTIME] = 0;      /* TODO: comment */
+        t.c_cc[VMIN] = 0;       /* Wait 1 character before leaving getwchar */
+        t.c_cc[VTIME] = 0;      /* Do not wait any second before leaving getwchar */
     }
     tcsetattr(0, 0, &t);
 }

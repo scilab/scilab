@@ -42,8 +42,12 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         {
             *cursorLocation = sizeOfCmd;
         }
-        capStr("im");
-        if (sizeOfCmd && !((sizeOfCmd + 1) % 1024)) /* TODO: Comment */
+        setStringCapacities("im");
+        /*
+         * If the size of the string size is a multiple of 1024,
+         * it means the string has reached its max.
+         */
+        if (sizeOfCmd && !((sizeOfCmd + 1) % 1024))
         {
             *CommandLine = realloc(*CommandLine, sizeof(wchar_t) * (sizeOfCmd + 1 + 1024));
         }
@@ -60,7 +64,7 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
         sizeOfCmd++;
         (*CommandLine)[sizeOfCmd] = L'\0';
         (*cursorLocation)++;
-        capStr("ei");
+        setStringCapacities("ei");
         /* To prevent a lost cursor (if cursor reach the last column of the term) */
         if ((*CommandLine)[*cursorLocation] && (*CommandLine)[*cursorLocation] != L'\n')
         {
@@ -99,7 +103,7 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
         }
         indexToMoveChar = *cursorLocation;
         /* Save cursor position where it must be placed */
-        capStr("sc");
+        setStringCapacities("sc");
         while (indexToMoveChar < sizeOfCmd)
         {
             /* move each character to the previous place and print it */
@@ -108,11 +112,11 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
         }
         CommandLine[indexToMoveChar] = L'\0';
         /* Delete sreen from cursor to the end */
-        capStr("cd");
+        setStringCapacities("cd");
         /* write the new string */
         printf("%ls", &CommandLine[*cursorLocation]);
         /* Put cursor to the previously saved position */
-        capStr("rc");
+        setStringCapacities("rc");
     }
     return 0;
 }
@@ -126,7 +130,7 @@ int deleteFromCursToEndLine(wchar_t * CommandLine, unsigned int *cursorLocation)
      * Clear screen from cursor to the end of the screen
      * Don't use "ce" because of multiline.
      */
-    capStr("cd");
+    setStringCapacities("cd");
     return 0;
 }
 

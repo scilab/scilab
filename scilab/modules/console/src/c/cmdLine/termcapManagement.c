@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include "termcapManagement.h"
 /* Simplify termcap activation */
-void capStr(const char *capacity)
+void setStringCapacities(const char *capacity)
 {
     char *stringCap;
 

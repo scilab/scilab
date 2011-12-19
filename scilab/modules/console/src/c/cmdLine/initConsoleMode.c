@@ -23,16 +23,16 @@
 
 static void canonicMode(struct termios *t)
 {
-    t->c_lflag |= ICANON;
-    t->c_lflag |= ECHO;
+    t->c_lflag |= ICANON;       /* Set CANON flag */
+    t->c_lflag |= ECHO;         /* Print character when a key is pressed */
 }
 
 static void rawMode(struct termios *t)
 {
-    t->c_lflag &= ~ICANON;
-    t->c_lflag &= ~ECHO;
-    t->c_cc[VMIN] = 1;          /* TODO: comment */
-    t->c_cc[VTIME] = 0;         /* TODO: comment */
+    t->c_lflag &= ~ICANON;      /* take off CANON flag */
+    t->c_lflag &= ~ECHO;        /* Do not print character when a key is pressed */
+    t->c_cc[VMIN] = 1;          /* Wait 1 charater before leaving getwchar */
+    t->c_cc[VTIME] = 0;         /* Wait 0 second before leaving getwchar */
 }
 
 /* Save Shell Attribute To reset it when exit */

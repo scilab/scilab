@@ -93,12 +93,12 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
                 || CommandLine[*cursorLocation] == L'\n')   // ... or if the cursor will go to the next line.
             {
                 /* move the cursor down. */
-                capStr("do");
+                setStringCapacities("do");
             }
             else
             {
                 /* else, move it to the right */
-                capStr("nd");
+                setStringCapacities("nd");
             }
             sizeOfWChar--;
         }
@@ -107,7 +107,7 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
     /* else, if the cursor is next to the last column of the window, move it down a line */
     else if (widthOfStringInTerm && !(widthOfStringInTerm % nbrCol))
     {
-        capStr("do");
+        setStringCapacities("do");
     }
     return *cursorLocation;
 }
@@ -145,7 +145,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
             /* Manage two consecutive L'\n' */
             if ((*cursorLocation >= 2 && CommandLine[*cursorLocation - 2] == L'\n'))
             {
-                capStr("up");
+                setStringCapacities("up");
                 i--;
                 if (CommandLine != NULL)
                 {
@@ -174,10 +174,10 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
             if ((!(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1)   // if last column of the terminal is reached...
                 || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
             {
-                capStr("up");
+                setStringCapacities("up");
                 while (nbrCol)
                 {
-                    capStr("nd");
+                    setStringCapacities("nd");
                     --nbrCol;
                 }
             }

@@ -44,7 +44,7 @@
  * TODO: please rename for something more explicit (startTermcap ?)
  * @param capacity to activate.
  */
-void capStr(const char *str);
+void setStringCapacities(const char *str);
 
 /**
  * Move cursor using termcap, Useful to simplify termcap use.
