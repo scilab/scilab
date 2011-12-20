@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <locale.h>
 #include <string.h>
 #include <errno.h>
 #include "MALLOC.h"
@@ -105,11 +104,6 @@ int initConsoleMode(int bin)
     if (tgetent(NULL, getenv("TERM")) == ERR && tgetent(NULL, "xterm") == ERR)
     {
         fprintf(stderr, "Cannot initialise termcaps.\nPlease check your variable TERM in your environment.\n");
-        return -1;
-    }
-    if (setlocale(LC_CTYPE, "") == NULL)
-    {
-        fprintf(stderr, "Cannot set wide char.\n");
         return -1;
     }
 
