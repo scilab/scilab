@@ -127,13 +127,10 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if ( strcmp(cstk(l1),"line style") == 0)
   {
-    sciPointObj * subwin = sciGetCurrentSubWin();
-    x1[0] = sciGetLineStyle(subwin);
-
-    x2=1;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    *stk(l3 ) = (double) x1[0];
-    LhsVar(1)=Rhs+1;
+      get_line_style_property(getOrCreateDefaultSubwin());
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
   }
   else if ( strcmp(cstk(l1),"old_style") == 0)
   {

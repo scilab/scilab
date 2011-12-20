@@ -248,7 +248,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else
     {
-        subwin = sciGetCurrentSubWin();
+        subwin = NULL;
         if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {
             sciSetForeground(subwin, x[0]);
             if (sciGetSons((sciPointObj *) subwin) == (sciSons *)NULL) {/* added SS 20.04.04 */
@@ -268,9 +268,8 @@ int sci_xset( char *fname, unsigned long fname_len )
             forceRedraw(subwin);
         }
         else if ( strcmp(cstk(l1),"line style") == 0) {
-            sciSetLineStyle(subwin, x[0]);
-            sciSetLineStyle(sciGetParent(subwin), x[0]);
-            forceRedraw(subwin);
+            int lineStyle = (int) x[0];
+            setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
         }
         else if ( strcmp(cstk(l1),"mark") == 0) {
             sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */

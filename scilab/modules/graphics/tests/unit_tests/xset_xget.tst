@@ -30,3 +30,8 @@ assert_checkequal(out, 456);
 xset("mark", 4, 5);
 out = xget("mark");
 assert_checkequal(out, [4 5]);
+
+// line style
+xset("line style", 8);
+out = xget("line style");
+assert_checkequal(out, 8);
