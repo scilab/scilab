@@ -813,7 +813,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             {
                 if (nbRowsIndex == 0 || nbColsIndex == 0)
                 {
-                    EditVar::openVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iCols, iRows, pStVarOne);
+                    EditVar::openVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
                 }
                 else
                 {
