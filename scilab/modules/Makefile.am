@@ -15,68 +15,67 @@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 
+
 SUBDIRS = \
-output_stream \
-arnoldi \
-elementary_functions \
-string \
-api_scilab \
-dynamic_link \
+prebuildjava \
 fileio \
+mexlib \
+functions \
+parameters \
+boolean \
+cacsd \
+core \
+call_scilab \
+api_scilab \
+data_structures \
+differential_equations \
+double \
+elementary_functions \
+integer \
+intersci \
+io \
+linear_algebra \
+localization \
+polynomials \
+special_functions \
+time \
+windows_tools \
+sparse \
+completion \
 history_manager \
+output_stream \
+string \
+hdf5 \
+fftw \
+statistics \
+dynamic_link \
+console \
+arnoldi \
 spreadsheet \
 tclsci \
-localization \
 commons \
 jvm \
 action_binding \
 renderer \
-completion \
-console \
 graphic_export \
 gui \
 graphics \
 optimization \
 symbolic \
 randlib \
-statistics \
-special_functions \
-interpolation \
-linear_algebra \
-integer \
-data_structures \
-mexlib \
-differential_equations \
-cacsd \
-polynomials \
-boolean \
-double \
-io \
-intersci \
-signal_processing \
-core \
-call_scilab \
 interpolation \
 sound \
-time \
-randlib \
-sparse \
-windows_tools \
-functions \
 overloading \
 m2sci \
 development_tools \
 compatibility_functions \
 helptools \
-fftw \
 umfpack \
 demo_tools \
 genetic_algorithms \
 simulated_annealing \
-parameters \
 matio \
 atoms \
-types \
 hdf5 \
 graph\
 xcos \
@@ -85,13 +84,9 @@ parallel \
 modules_manager \
 ui_data \
 history_browser \
-xml
-
-#umfpack
-
-#if MPI
-#SUBDIRS += mpi
-#endif
+xml \
+libscilab-cli \
+types
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -112,12 +107,12 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la 
+pkglib_LTLIBRARIES = libscilab.la 
 libscilab_la_SOURCES =
-libscilab_cli_la_SOURCES =
+#libscilab_cli_la_SOURCES =
 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
@@ -214,22 +209,20 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+libscilab_la_LIBADD = $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
 if GUI
-libscilab_la_LIBADD = $(GUI_LIBS)
+libscilab_la_LIBADD += $(GUI_LIBS)
 else
-libscilab_la_LIBADD = $(NO_GUI_LIBS)
+libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += libscilab-cli.la $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 if ENABLE_STATIC
 libscilab_la_LIBADD += $(ALL_LIBS)
 
 endif
-
-#if MPI
-#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
-#endif

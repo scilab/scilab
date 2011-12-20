@@ -50,7 +50,7 @@ $(top_builddir)/modules/io/libsciio.la \
 $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
+SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
