@@ -42,6 +42,7 @@
 #endif
 #endif
 
+#include "cliDisplayManagement.h"
 #include "cliPrompt.h"
 #include "MALLOC.h"
 #include "completion.h"
@@ -471,7 +472,7 @@ char *TermReadAndProcess(void)
                 break;
 
             case CTRL_X:
-            case CTRL_C:           /** we never get there CTRL_C is explored above **/
+            case CTRL_C:          /** we never get there CTRL_C is explored above **/
                 {
                     int j = SIGINT;
 
@@ -786,11 +787,17 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
 
         int lenCurrentLine = 0;
 
+        /* Set the category */
+        setCharDisplay(DISP_ITALIC);
         display_string("\r\n");
         display_string(namedictionary);
         display_string(":");
         display_string("\r\n");
+        /* Reset to set back the default display. */
+        setCharDisplay(DISP_LAST_SET);
 
+        /* Set the list of completion */
+        setCharDisplay(DISP_RESET);
         for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
@@ -808,6 +815,8 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
             display_string(" ");
         }
         display_string("\r\n");
+        /* Reset to set back the default display. */
+        setCharDisplay(DISP_LAST_SET);
     }
 }
 
