@@ -391,6 +391,13 @@ public final class Xcos {
             LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
         }
 
+        /*
+         * If it is the first window opened, then open the palette first.
+         */
+        if (filename == null && openedDiagrams().isEmpty()) {
+            PaletteManager.setVisible(true);
+        }
+
         XcosDiagram diag = null;
 
         if (filename != null) {
@@ -429,6 +436,7 @@ public final class Xcos {
         if (XcosTab.get(diag) == null) {
             XcosTab.restore(diag);
         }
+
     }
 
     /**
@@ -751,7 +759,6 @@ public final class Xcos {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                PaletteManager.setVisible(true);
                 instance.open(null);
             }
         });

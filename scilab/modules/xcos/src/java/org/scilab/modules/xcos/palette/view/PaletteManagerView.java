@@ -115,8 +115,8 @@ public class PaletteManagerView extends SwingScilabTab implements Tab {
                 PaletteManager.getInstance());
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
-            PaletteManager.getInstance().firePropertyChange("visible", false, true);
         }
+        PaletteManager.getInstance().firePropertyChange("visible", false, true);
 
         ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
