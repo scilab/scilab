@@ -169,21 +169,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         sciSetFontSize(subwin, fontSize);
         sciSetFontSize(sciGetParent(subwin), fontSize);
         forceRedraw(subwin);
-    }
-    /* NG beg */
-    else if ( strcmp(cstk(l1),"old_style") == 0)
-    {
-        if (*stk(lr) == 1)
-        {
-            Scierror(999, _("%s: Old graphic mode is no longer available. Please refer to the set help page.\n"),"xset");
-            return -1;
-        }
-        else if (*stk(lr) != 0)
-        {
-            Scierror(999,"%s: Wrong value for input argument: %d or %d expected.\n",fname,0, 1);
-            return -1;
-        }
-    }/* NG end */
+    }  
     else if( strcmp(cstk(l1),"default") == 0 )
     {
         sciPointObj * pfigure = sciGetCurrentFigure();

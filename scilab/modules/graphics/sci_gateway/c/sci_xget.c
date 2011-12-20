@@ -132,13 +132,6 @@ int sci_xget(char *fname,unsigned long fname_len)
       PutLhsVar();
       return 0;
   }
-  else if ( strcmp(cstk(l1),"old_style") == 0)
-  {
-    x2=1;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    *stk(l3 ) = 0 ;
-    LhsVar(1)=Rhs+1;
-  }
   else if(strcmp(cstk(l1),"clipping") == 0)
   {
       double *clipBox;
@@ -152,7 +145,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else
   {
     int i2;
-    sciPointObj *psubwin = sciGetCurrentSubWin();
+    sciPointObj *psubwin = NULL;
     x2=0;
     if(strcmp(cstk(l1),"font")==0){
       x1[0] = (int) sciGetFontStyle(psubwin);
