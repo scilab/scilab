@@ -25,3 +25,8 @@ assert_checkequal(out, [1,2,3,4]);
 xset("mark size", 456);
 out = xget("mark size");
 assert_checkequal(out, 456);
+
+// mark
+xset("mark", 4, 5);
+out = xget("mark");
+assert_checkequal(out, [4 5]);

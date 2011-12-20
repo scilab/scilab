@@ -39,7 +39,8 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1);
 int sci_xget(char *fname,unsigned long fname_len)
 {
   int flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,i ;
-  int one = 1 ;
+  int one = 1;
+  int two = 2;
   BOOL keyFound = FALSE ;
 
   if ( Rhs <= 0 )
@@ -100,15 +101,20 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
-    int i2;
-    sciPointObj * subwin = sciGetCurrentSubWin();
-    x1[0] = sciGetMarkStyle(subwin);
-    x1[1] = sciGetMarkSize(subwin);
-    x2=2;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    for (i2 = 0 ; i2 < x2 ; ++i2)
-		*stk(l3 + i2 ) = (double) x1[i2];
+    char *pobjUID = getOrCreateDefaultSubwin();
+    int iMarkStyle = 0;
+    int* piMarkStyle = &iMarkStyle;
+    int iMarkSize = 0;
+    int* piMarkSize = &iMarkSize;
+
+    getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, &piMarkStyle);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, &piMarkSize);
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&two,&l3);
+    *stk(l3 + 0 ) = (double) iMarkStyle;
+    *stk(l3 + 1 ) = (double) iMarkSize;
     LhsVar(1)=Rhs+1;
+    PutLhsVar();
+    return 0;
   }
   else if ( strcmp(cstk(l1),"mark size") == 0)
   {

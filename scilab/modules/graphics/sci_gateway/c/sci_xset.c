@@ -147,14 +147,13 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1),"mark") == 0)
     {
-        subwin = sciGetCurrentSubWin();
-        sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
-        sciSetMarkStyle(subwin,(int) xx[0]);
-        sciSetMarkSize(subwin,(int) xx[1]);
-
-        // force mark drawing
-        sciSetIsMark(subwin, TRUE);
-        forceRedraw(subwin);
+        int markStyle = (int) xx[0];
+        int markSize = (int) xx[1];
+        int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
+        char *subwinUID = getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
+        setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+        setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
     else if ( strcmp(cstk(l1),"font size") == 0) {
         double defaultSubwinFontSize = sciGetFontSize(getAxesModel());
