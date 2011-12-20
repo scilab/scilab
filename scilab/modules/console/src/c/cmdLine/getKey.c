@@ -48,6 +48,14 @@ static void caseCtrlAndArrowKey(wchar_t * commandLine, unsigned int *cursorLocat
             break;
         }
     }
+    else
+    {
+        /*
+         * In case the condition returned false, it may be SHIFT or Alt and an arrow key
+         * So, the last character is taken to avoid an unintentional print of any other characters.
+         */
+        getwchar();
+    }
 }
 
 static void caseHomeOrEndKey(wchar_t * commandLine, unsigned int *cursorLocation)
