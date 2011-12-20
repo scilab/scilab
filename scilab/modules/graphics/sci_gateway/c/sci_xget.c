@@ -30,8 +30,11 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
+
+#include "getHandleProperty.h"
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
-int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1);
+int xgetg( char * str, char * str1, int * len,int  lx0,int lx1);
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
 {
@@ -77,28 +80,23 @@ int sci_xget(char *fname,unsigned long fname_len)
   {
     int bufl;
     /*     special case for global variables set */
-    C2F(xgetg)( cstk(l1),C2F(cha1).buf,&bufl,m1,bsiz);
+    xgetg( cstk(l1),C2F(cha1).buf,&bufl,m1,bsiz);
     CreateVar(Rhs+1,STRING_DATATYPE,&bufl,&one,&l3);
     strncpy(cstk(l3),C2F(cha1).buf,bufl);
     LhsVar(1)=Rhs+1;
-		PutLhsVar();
+	PutLhsVar();
     return 0;
   }
   else if ( strcmp(cstk(l1),"colormap") == 0)
   {
-    /*     special case for colormap : must allocate space */
-    int nbRow = 0 ;
-    int nbCol = 3 ;
-    sciPointObj * curFig = sciGetCurrentFigure() ;
-
-    nbRow = sciGetNumColors( curFig ) ;
-    if ( nbRow == 0 ) { nbCol = 0 ; }
-
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&l3);
-
-    sciGetColormap( curFig, stk(l3) ) ;
-
-    LhsVar(1)=Rhs+1;
+      char *pobjUID = NULL;
+      // Force figure creation if none exists.
+      getOrCreateDefaultSubwin();
+      pobjUID = getCurrentFigure();
+      get_color_map_property(pobjUID);
+      LhsVar(1) = Rhs+1;
+      PutLhsVar();
+      return 0;
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
@@ -114,15 +112,12 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if ( strcmp(cstk(l1),"mark size") == 0)
   {
-    int i2;
-    sciPointObj * subwin = sciGetCurrentSubWin();
-    x1[0] = x1[1] = sciGetMarkSize(subwin);
+      char *pobjUID = getOrCreateDefaultSubwin();
+      get_mark_size_property(pobjUID);
 
-    x1[0]=x1[1];
-    x2=1;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];
-    LhsVar(1)=Rhs+1;
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
   }
   else if ( strcmp(cstk(l1),"line style") == 0)
   {
@@ -145,9 +140,11 @@ int sci_xget(char *fname,unsigned long fname_len)
   {
       double *clipBox;
       char* pobjUID = getOrCreateDefaultSubwin();
-     getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
-    sciReturnRowVector(clipBox, 4);
-    LhsVar(1)=Rhs+1;
+      getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
+      sciReturnRowVector(clipBox, 4);
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
   }
   else
   {
@@ -304,7 +301,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1)
+int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
 {
   if ( strcmp(str,"fpf") == 0)
   {

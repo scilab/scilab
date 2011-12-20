@@ -12,7 +12,7 @@
 
 // colormap
 c_map = graycolormap(512);
-xet("colormap", c_map);
+xset("colormap", c_map);
 out = xget("colormap");
 assert_checkequal(out, c_map);
 
@@ -20,3 +20,8 @@ assert_checkequal(out, c_map);
 xset("clipping", 1,2,3,4);
 out = xget("clipping");
 assert_checkequal(out, [1,2,3,4]);
+
+// mark size
+xset("mark size", 456);
+out = xget("mark size");
+assert_checkequal(out, 456);
