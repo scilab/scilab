@@ -58,6 +58,7 @@ public class SetAnchorAction extends DefaultAction {
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         openAnchorWindow();
     }
@@ -114,12 +115,14 @@ public class SetAnchorAction extends DefaultAction {
         dialog.setContentPane(panelDialog);
 
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                 }
             });
 
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     setAnchorName(textField.getText());
                     dialog.dispose();
@@ -127,6 +130,7 @@ public class SetAnchorAction extends DefaultAction {
             });
 
         textField.addKeyListener(new KeyListener() {
+                @Override
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {
@@ -136,8 +140,10 @@ public class SetAnchorAction extends DefaultAction {
                     }
                 }
 
+                @Override
                 public void keyPressed(KeyEvent arg0) { }
 
+                @Override
                 public void keyTyped(KeyEvent arg0) { }
             });
 
@@ -154,7 +160,7 @@ public class SetAnchorAction extends DefaultAction {
      */
     private void setAnchorName(String name) {
         if (name != null && name.length() != 0) {
-            ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+            ScilabEditorPane sep = getEditor().getTextPane();
             sep.getXln().repaint();
             ScilabDocument doc = (ScilabDocument) sep.getDocument();
             Element root = doc.getDefaultRootElement();

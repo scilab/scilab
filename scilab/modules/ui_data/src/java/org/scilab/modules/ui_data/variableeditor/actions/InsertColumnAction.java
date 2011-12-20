@@ -29,7 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  */
 public final class InsertColumnAction extends CallBack {
 
-    private JTable table;
+    private final JTable table;
     
     /**
      * Constructor
@@ -44,6 +44,7 @@ public final class InsertColumnAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
 	int[] rows = table.getSelectedRows();
         int column = ((TableVariableEditor) table).getPopupColumn();

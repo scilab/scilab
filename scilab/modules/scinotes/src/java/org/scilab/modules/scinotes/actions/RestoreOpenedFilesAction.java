@@ -13,37 +13,37 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
 import java.util.Vector;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dialog.ModalityType;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.AbstractCellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
@@ -53,13 +53,13 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
 import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -87,6 +87,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         ConfigSciNotesManager.saveRestoreOpenedFiles(this.getState());
     }
@@ -126,6 +127,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         final JTree tree = fillTree(uuid);
         dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                 }
@@ -138,6 +140,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         ok.setPreferredSize(cancel.getPreferredSize());
         Object[] buttons = new Object[2];
         ok.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     selectedFiles = getOpenedFiles(tree, uuid);
                     dialog.dispose();
@@ -145,6 +148,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
             });
 
         cancel.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     List<UUID> editorID = ConfigSciNotesManager.getOpenFilesEditorList();
                     for (int i = 0; i < editorID.size(); i++) {
@@ -293,14 +297,14 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      */
     static class CheckBoxNodeRenderer implements TreeCellRenderer {
 
-        private JCheckBox leafRenderer = new JCheckBox();
-        private DefaultTreeCellRenderer nonLeafRenderer = new DefaultTreeCellRenderer();
+        private final JCheckBox leafRenderer = new JCheckBox();
+        private final DefaultTreeCellRenderer nonLeafRenderer = new DefaultTreeCellRenderer();
 
-        private Color selectionBorderColor;
-        private Color selectionForeground;
-        private Color selectionBackground;
-        private Color textForeground;
-        private Color textBackground;
+        private final Color selectionBorderColor;
+        private final Color selectionForeground;
+        private final Color selectionBackground;
+        private final Color textForeground;
+        private final Color textBackground;
 
         /**
          * Constructor
@@ -323,6 +327,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value,
                                                       boolean selected, boolean expanded, boolean leaf, int row,
                                                       boolean hasFocus) {
@@ -368,9 +373,9 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      */
     static class CheckBoxNodeEditor extends AbstractCellEditor implements TreeCellEditor {
 
-        private CheckBoxNodeRenderer renderer = new CheckBoxNodeRenderer();
+        private final CheckBoxNodeRenderer renderer = new CheckBoxNodeRenderer();
         private ChangeEvent changeEvent;
-        private JTree tree;
+        private final JTree tree;
 
         /**
          * Default constructor
@@ -383,6 +388,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Object getCellEditorValue() {
             JCheckBox checkbox = renderer.getLeafRenderer();
             CheckBoxNode checkBoxNode = new CheckBoxNode(checkbox.getText(), checkbox.isSelected());
@@ -392,6 +398,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public boolean isCellEditable(EventObject e) {
             boolean ret = false;
             if (e instanceof MouseEvent) {
@@ -412,10 +419,12 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Component getTreeCellEditorComponent(JTree tree, Object value,
                                                     boolean selected, boolean expanded, boolean leaf, int row) {
             Component editor = renderer.getTreeCellRendererComponent(tree, value, true, expanded, leaf, row, true);
             ItemListener itemListener = new ItemListener() {
+                    @Override
                     public void itemStateChanged(ItemEvent itemEvent) {
                         if (stopCellEditing()) {
                             fireEditingStopped();
@@ -482,7 +491,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      */
     static class FilesVector extends Vector {
 
-        private String name;
+        private final String name;
 
         /**
          * Constructor
@@ -500,6 +509,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public String toString() {
             return name;
         }

@@ -40,7 +40,6 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -74,6 +73,7 @@ public final class IncrementalSearchAction extends DefaultAction {
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         if (!fields.containsKey(getEditor())) {
             SearchField field = new SearchField();
@@ -147,7 +147,7 @@ public final class IncrementalSearchAction extends DefaultAction {
     class SearchField extends JPanel implements FocusListener, KeyListener {
 
         private String text;
-        private JTextField field;
+        private final JTextField field;
         private boolean exact;
 
         /**
@@ -161,6 +161,7 @@ public final class IncrementalSearchAction extends DefaultAction {
             field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
             field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
             field.getActionMap().put(TAB, new AbstractAction() {
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         getEditor().getTextPane().requestFocus();
                     }
@@ -171,6 +172,7 @@ public final class IncrementalSearchAction extends DefaultAction {
             panelButtons.add(new TopBotButtons(false));
             JCheckBox check = new JCheckBox(SciNotesMessages.EXACT);
             check.addItemListener(new ItemListener() {
+                    @Override
                     public void itemStateChanged(ItemEvent e) {
                         exact = e.getStateChange() == ItemEvent.SELECTED;
                         changeText();
@@ -199,6 +201,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void requestFocus() {
             field.requestFocus();
         }
@@ -206,6 +209,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void focusGained(FocusEvent e) {
             if (text == null) {
                 changeText();
@@ -216,6 +220,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void focusLost(FocusEvent e) {
             text = null;
         }
@@ -240,6 +245,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_ESCAPE) {
@@ -279,11 +285,13 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void keyTyped(KeyEvent e) { }
 
         /**
          * {@inheritDoc}
          */
+        @Override
         public void keyPressed(KeyEvent e) { }
 
         /**
@@ -318,6 +326,7 @@ public final class IncrementalSearchAction extends DefaultAction {
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent e) {
                             hideField();
                         }
@@ -343,6 +352,7 @@ public final class IncrementalSearchAction extends DefaultAction {
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent e) {
                             ScilabEditorPane sep = getEditor().getTextPane();
                             int pos = sep.getSelectionStart();

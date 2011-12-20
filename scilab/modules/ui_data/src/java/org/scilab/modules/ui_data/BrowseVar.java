@@ -15,8 +15,8 @@ package org.scilab.modules.ui_data;
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
+import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
 /**
  *

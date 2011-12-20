@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -24,7 +23,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
 
@@ -37,7 +35,7 @@ public final class SizeColumnsToFitAction extends CallBack {
     private static final String KEY = "OSSCKEY F";
     private static final String FIT = "Size to fit";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -61,6 +59,7 @@ public final class SizeColumnsToFitAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         TableVariableEditor table = (TableVariableEditor) editor.getCurrentTable();
         table.sizeColumnsToFit();

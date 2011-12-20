@@ -52,9 +52,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -2840,7 +2838,7 @@ public class CallScilabBridge {
      * Class used to store Images in the clipboard
      */
     public static class ClipboardImage implements Transferable {
-        private Image image;
+        private final Image image;
 
         /**
          * Default constructor
@@ -2854,6 +2852,7 @@ public class CallScilabBridge {
          * DataFlavors of this transferable
          * @return the DataFlavors accepeted
          */
+        @Override
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[]{DataFlavor.imageFlavor};
         }
@@ -2863,6 +2862,7 @@ public class CallScilabBridge {
          * @param flavor the flavor to test
          * @return true if the flavor is supported
          */
+        @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
@@ -2873,6 +2873,7 @@ public class CallScilabBridge {
          * @return the contents
          * @throws UnsupportedFlavorException if the flavor is not supported by this transferable
          */
+        @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
             if (!DataFlavor.imageFlavor.equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);

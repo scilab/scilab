@@ -12,22 +12,15 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.util.Vector;
-
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 import org.scilab.modules.ui_data.variableeditor.renderers.ScilabComplexRenderer;
 
@@ -40,7 +33,7 @@ public final class SetPrecisionShorteAction extends CallBack {
     private static final String KEY = "OSSCKEY shift S";
     private static final String PRECISION = "Short E Precision";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     protected int precision;
 
@@ -66,6 +59,7 @@ public final class SetPrecisionShorteAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         ScilabComplexRenderer.setFormat(ScilabComplexRenderer.SHORTE);
         editor.getCurrentTable().repaint();

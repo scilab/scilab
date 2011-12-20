@@ -13,11 +13,9 @@
 package org.scilab.modules.gui.events;
 
 import java.awt.Cursor;
-
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
-
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
@@ -52,7 +50,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 * @param endRect array [x1,y1,x2,y2] containing the result of rubberbox
 	 * @return Scilab code of the pressed button
 	 */
-	public int getRectangle(int[] initialRect, int[] endRect) {
+	@Override
+    public int getRectangle(int[] initialRect, int[] endRect) {
 		
 		zoomedFigure = FigureMapper.getCorrespondingFigure(getSelectedCanvas().getFigureIndex());
 		String currentInfoMessage = zoomedFigure.getInfoMessage();
@@ -83,7 +82,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 * Override the function to be able to cancel recording when right mouse button is pressed
 	 * @param event event when the action occurs
 	 */
-	public void mousePressed(MouseEvent event) {
+	@Override
+    public void mousePressed(MouseEvent event) {
 		if (event.getButton() == MouseEvent.BUTTON1) {
 			// confirmation button do as usual
 			// change info message
@@ -101,7 +101,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	/**
 	 * @param event focus gained event
 	 */
-	public void focusGained(FocusEvent event) {
+	@Override
+    public void focusGained(FocusEvent event) {
 		// nothing to do here
 		// canvas must always have focus during the recording
 	}
@@ -111,7 +112,8 @@ public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 	 * also when the windows is closed. We then need to wake up every one.
 	 * @param event focus lost event
 	 */
-	public void focusLost(FocusEvent event) {
+	@Override
+    public void focusLost(FocusEvent event) {
 		// focus lost so stop recording
 		// do only this if the opposite component is not the canvas itself
 		if (event.getOppositeComponent() != getSelectedCanvas().getAsComponent()) {

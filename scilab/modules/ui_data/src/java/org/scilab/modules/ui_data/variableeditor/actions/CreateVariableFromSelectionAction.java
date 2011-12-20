@@ -13,9 +13,9 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Dialog.ModalityType;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -31,10 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -57,7 +54,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
     private static final String CREATE = "Create";
     private static final int GAP = 5;
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -81,6 +78,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         int[] cols = table.getSelectedColumns();
@@ -144,12 +142,14 @@ public final class CreateVariableFromSelectionAction extends CallBack {
         dialog.setContentPane(panel);
 
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                 }
             });
 
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                     ret[0] = textField.getText();
@@ -157,6 +157,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
             });
 
         textField.addKeyListener(new KeyAdapter() {
+                @Override
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {

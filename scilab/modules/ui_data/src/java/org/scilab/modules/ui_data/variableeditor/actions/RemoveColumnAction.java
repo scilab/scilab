@@ -29,7 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  */
 public final class RemoveColumnAction extends CallBack {
 
-    private JTable table;
+    private final JTable table;
 
     /**
      * Constructor
@@ -44,6 +44,7 @@ public final class RemoveColumnAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         int[] cols = table.getSelectedColumns();
         if (cols.length == 0) {

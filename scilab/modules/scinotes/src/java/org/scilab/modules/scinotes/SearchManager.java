@@ -12,8 +12,8 @@
 
 package org.scilab.modules.scinotes;
 
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
@@ -32,10 +32,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Class SearchManager
@@ -152,6 +151,7 @@ public class SearchManager {
         } else {
             final Pattern fword = word;
             SwingWorker worker = new SwingWorker<Object, Object>() {
+                @Override
                 public Object doInBackground() {
                     long begin = System.currentTimeMillis();
                     bgs.setResults(searchInFiles(killed, dir, recursive, ignoreCR, file, fword));
@@ -160,6 +160,7 @@ public class SearchManager {
                     return null;
                 }
 
+                @Override
                 public void done() {
                     bgs.done();
                 }
@@ -188,6 +189,7 @@ public class SearchManager {
             pos = new MatchingPositions(base.getAbsolutePath(), list);
             int occurences = 0;
             File[] files = base.listFiles(new FilenameFilter() {
+                    @Override
                     public boolean accept(File dir, String name) {
                         File f = new File(dir, name);
                         return f.isFile() && f.canRead() && file.matcher(name).matches();
@@ -217,6 +219,7 @@ public class SearchManager {
 
             if (recursive) {
                 files = base.listFiles(new FilenameFilter() {
+                        @Override
                         public boolean accept(File dir, String name) {
                             File d = new File(dir, name);
                             return d.isDirectory() && d.canRead();
@@ -325,6 +328,7 @@ public class SearchManager {
      */
     private static void countFiles(File base, final Pattern pat, final int[] count) {
         File[] files = base.listFiles(new FilenameFilter() {
+                @Override
                 public boolean accept(File dir, String name) {
                     File f = new File(dir, name);
                     if (f.isFile() && f.canRead() && pat.matcher(name).matches()) {
@@ -370,12 +374,12 @@ public class SearchManager {
      */
     public static class MatchingPositions implements Iconable {
 
-        private String file;
+        private final String file;
         private boolean isRoot;
         private Icon icon;
         private int occurences;
         private List<MatchingPositions> children;
-        private List<Line> lines = new ArrayList<Line>();
+        private final List<Line> lines = new ArrayList<Line>();
 
         /**
          * Constructor
@@ -485,6 +489,7 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Icon getIcon() {
             return icon;
         }
@@ -551,6 +556,7 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public String toString() {
             String occ = SciNotesMessages.MATCHES;
             if (occurences <= 1) {
@@ -580,7 +586,7 @@ public class SearchManager {
      */
     public static class Line implements Iconable {
 
-        private int number;
+        private final int number;
         private String content;
 
         /**
@@ -636,6 +642,7 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Icon getIcon() {
             return LINEICON;
         }
@@ -652,6 +659,7 @@ public class SearchManager {
         /**
          * {@inheritDoc}
          */
+        @Override
         public String toString() {
             return "<html><u>line " + number + "</u>&thinsp;: " + content + "</html>";
         }

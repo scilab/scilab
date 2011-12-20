@@ -15,8 +15,8 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,9 +24,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -44,42 +42,37 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import org.flexdock.docking.event.DockingEvent;
-import org.flexdock.docking.defaults.DockingSplitPane;
-
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SearchManager;
 import org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
@@ -135,6 +128,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
      * Get the parent window for this tab
      * @return the parent window
      */
+    @Override
     public Window getParentWindow() {
         return this.parentWindow;
     }
@@ -142,6 +136,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public SimpleTab getAsSimpleTab() {
         return this;
     }
@@ -149,6 +144,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
         setInfoBar(infoBarToAdd);
     }
@@ -156,6 +152,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
     }
@@ -163,6 +160,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
         setToolBar(toolBarToAdd);
     }
@@ -170,6 +168,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
         changeToolBar();
@@ -180,7 +179,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+        Set<SwingScilabTab> set = win.getDockingPort().getDockables();
         for (SwingScilabTab tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
@@ -202,6 +201,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void undockingComplete(DockingEvent evt) {
         super.undockingComplete(evt);
         addToolBar(null);
@@ -314,10 +314,12 @@ public class SearchFile extends SwingScilabTab implements Tab {
         updateUI();
 
         CallBack callback = new CallBack(null) {
+                @Override
                 public void callBack() {
                     ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
                 }
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     callBack();
                 }
@@ -382,6 +384,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
         files.setRoot();
         final JTree tree = new JTree(files.toDefaultMutableTreeNode());
         MouseListener ml = new MouseAdapter() {
+                @Override
                 public void mousePressed(MouseEvent e) {
                     int row = tree.getRowForLocation(e.getX(), e.getY());
                     if(row != -1) {
@@ -393,6 +396,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
             };
         tree.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "toggle");
         tree.addKeyListener(new KeyAdapter() {
+                @Override
                 public void keyTyped(KeyEvent e) {
                     if (e.getKeyChar() == '\n') {
                         int row = tree.getMinSelectionRow();
@@ -404,6 +408,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
             });
         tree.addMouseListener(ml);
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+                @Override
                 public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
                                                               boolean expanded, boolean leaf, int row, boolean hasFocus) {
                     super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
@@ -415,6 +420,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
             };
         if (statusbar != null) {
             tree.addTreeSelectionListener(new TreeSelectionListener() {
+                    @Override
                     public void valueChanged(TreeSelectionEvent e) {
                         TreePath path = e.getNewLeadSelectionPath();
                         Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
@@ -511,6 +517,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
                 final ScilabEditorPane sep = editor.getTextPane();
                 if (sep.getName().equals(fileName)) {
                     SwingUtilities.invokeLater(new Runnable() {
+                            @Override
                             public void run() {
                                 sep.highlightWords(pat, fline);
                                 if (ln != 0) {
@@ -582,6 +589,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
         /**
          * Stop the search and fire a propertyChange
          */
+        @Override
         synchronized public void stop() {
             super.stop();
             if (component != null) {
@@ -592,6 +600,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
         /**
          * Called when the results are available
          */
+        @Override
         synchronized public void done() {
             SearchManager.MatchingPositions pos = getResults();
             if (pos == null) {
@@ -614,6 +623,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
             sf.setMyBackgroundSearch(this);
 
             SwingUtilities.invokeLater(new Runnable() {
+                    @Override
                     public void run() {
                         sf.getJTree().addSelectionRow(0);
                         sf.getJTree().requestFocus();

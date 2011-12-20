@@ -43,26 +43,26 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JEditorPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.Highlighter;
 
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
@@ -150,7 +150,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     private String previousRegexp;
     private int previousIndex;
     private List<Integer[]> foundOffsets;
-    private MyListener myListener = new MyListener();
+    private final MyListener myListener = new MyListener();
 
     private boolean comboReplaceCanceled;
     private boolean comboFindCanceled;
@@ -167,6 +167,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         if (windowAlreadyExist) {
             if (current != this) {
@@ -257,6 +258,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     /**
      * {@inheritedDoc}
      */
+    @Override
     public void windowGainedFocus(WindowEvent e) {
         if (e.getWindow() == getEditor().getSwingParentWindow()) {
             frame.setAlwaysOnTop(true);
@@ -266,6 +268,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     /**
      * {@inheritedDoc}
      */
+    @Override
     public void windowLostFocus(WindowEvent e) {
         if (e.getOppositeWindow() != frame && e.getOppositeWindow() != getEditor().getSwingParentWindow()) {
             frame.setAlwaysOnTop(false);
@@ -282,6 +285,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         frame.setAlwaysOnTop(true);
         frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         frame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     closeFindReplaceWindow();
                 }
@@ -430,6 +434,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         checkCase.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveCaseSensitive(checkCase.isSelected());
                     updateFindReplaceButtonStatus();
@@ -437,6 +442,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         checkWhole.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
                     updateFindReplaceButtonStatus();
@@ -444,6 +450,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         checkCircular.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveCircularSearch(checkCircular.isSelected());
                     updateFindReplaceButtonStatus();
@@ -451,6 +458,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         checkRegular.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
                     updateFindReplaceButtonStatus();
@@ -459,6 +467,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
 
         /*behaviour of buttons*/
         radioSelection.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     Element root = scinotesTextPane.getDocument().getDefaultRootElement();
@@ -475,6 +484,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                     setSelectedHighlight();
 
                     scinotesTextPane.addFocusListener(new FocusListener() {
+                            @Override
                             public void focusGained(FocusEvent e) {
                                 removeAllHighlights();
                                 previousRegexp = "";
@@ -482,6 +492,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                                 getEditor().getTextPane().removeFocusListener(this);
                             }
 
+                            @Override
                             public void focusLost(FocusEvent e) { }
                         });
 
@@ -490,6 +501,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         radioAll.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     removeAllHighlights();
                     previousRegexp = "";
@@ -498,12 +510,14 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         radioBackward.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateFindReplaceButtonStatus();
                 }
             });
 
         buttonFind.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateRecentSearch();
                     findText();
@@ -511,6 +525,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         buttonReplace.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateRecentSearch();
                     updateRecentReplace();
@@ -526,6 +541,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         buttonReplaceFind.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateRecentSearch();
                     updateRecentReplace();
@@ -543,6 +559,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         buttonReplaceAll.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateRecentSearch();
                     updateRecentReplace();
@@ -618,34 +635,45 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             });
 
         buttonClose.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     closeFindReplaceWindow();
                 }
             });
 
         comboReplace.addPopupMenuListener(new PopupMenuListener() {
+                @Override
                 public void popupMenuCanceled(PopupMenuEvent e) {
                     comboReplaceCanceled = true;
                 }
 
+                @Override
                 public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
+                @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
+                @Override
                 public void mouseReleased(MouseEvent e) { }
+                @Override
                 public void mousePressed(MouseEvent e) {
                     closeComboPopUp();
                     updateFindReplaceButtonStatus();
                 }
+                @Override
                 public void mouseExited(MouseEvent e) { }
+                @Override
                 public void mouseEntered(MouseEvent e) { }
+                @Override
                 public void mouseClicked(MouseEvent e) { }
             });
 
         comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                @Override
                 public void keyTyped(KeyEvent e) { }
+                @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         if (comboReplaceCanceled) {
@@ -663,37 +691,49 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
 
                     updateFindReplaceButtonStatus();
                 }
+                @Override
                 public void keyPressed(KeyEvent e) { }
             });
 
         comboFind.addPopupMenuListener(new PopupMenuListener() {
+                @Override
                 public void popupMenuCanceled(PopupMenuEvent e) {
                     comboFindCanceled = true;
                 }
 
+                @Override
                 public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
+                @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
+                @Override
                 public void mouseReleased(MouseEvent arg0) { }
+                @Override
                 public void mousePressed(MouseEvent arg0) {
                     closeComboPopUp();
                 }
+                @Override
                 public void mouseExited(MouseEvent arg0) { }
+                @Override
                 public void mouseEntered(MouseEvent arg0) { }
+                @Override
                 public void mouseClicked(MouseEvent arg0) { }
             });
 
         comboFind.addItemListener(new ItemListener() {
+                @Override
                 public void itemStateChanged(ItemEvent e) {
                     updateFindReplaceButtonStatus();
                 }
             });
 
         comboFind.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                @Override
                 public void keyTyped(KeyEvent e) { }
+                @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         if (comboFindCanceled) {
@@ -711,20 +751,28 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                     updateFindReplaceButtonStatus();
                 }
 
+                @Override
                 public void keyPressed(KeyEvent e) { }
             });
 
         frame.addWindowListener(new WindowListener() {
+                @Override
                 public void windowClosed(WindowEvent e) { }
+                @Override
                 public void windowDeiconified(WindowEvent e) { }
+                @Override
                 public void windowActivated(WindowEvent e) { }
 
+                @Override
                 public void windowClosing(WindowEvent e) {
                     closeFindReplaceWindow();
                 }
 
+                @Override
                 public void windowDeactivated(WindowEvent e) { }
+                @Override
                 public void windowIconified(WindowEvent e) { }
+                @Override
                 public void windowOpened(WindowEvent e) { }
             });
     }
@@ -1207,6 +1255,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
          * focusGained in interface FocusListener
          * @param e FocusEvent
          */
+        @Override
         public void focusGained(FocusEvent e) {
             if (previousIndex != -1) {
                 int start = foundOffsets.get(previousIndex)[0];
@@ -1220,12 +1269,14 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
          * focusLost in interface FocusListener
          * @param e FocusEvent
          */
+        @Override
         public void focusLost(FocusEvent e) { }
 
         /**
          * caretUpdate in interface CaretListener
          * @param e FocusEvent
          */
+        @Override
         public void caretUpdate(CaretEvent e) {
             removeAllHighlights();
             getEditor().getTextPane().removeCaretListener(this);

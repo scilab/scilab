@@ -38,11 +38,11 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	
 	private int elementId;
 	
-	private JProgressBar progressBar;
+	private final JProgressBar progressBar;
 	
-	private JLabel messageLabel;
+	private final JLabel messageLabel;
 
-	private ImageIcon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+	private final ImageIcon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 	
 	/**
 	 * Default constructor
@@ -112,7 +112,8 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Set the element id for this MessageBox
 	 * @param id the id of the corresponding MessageBox object
 	 */
-	public void setElementId(int id) {
+	@Override
+    public void setElementId(int id) {
 		elementId = id;
 	}
 	
@@ -120,7 +121,8 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Get the element id for this MessageBox
 	 * @return id the id of the corresponding MessageBox object
 	 */
-	public int getElementId() {
+	@Override
+    public int getElementId() {
 		return elementId;
 	}
 	
@@ -128,7 +130,8 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Set the title of the WaitBar
 	 * @param title the title to set
 	 */
-	public void setTitle(String title) {
+	@Override
+    public void setTitle(String title) {
 		super.setTitle(title);
 	}
 	
@@ -136,7 +139,8 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Set the message of the WaitBar
 	 * @param message the message to set
 	 */
-	public void setMessage(String[] message) {
+	@Override
+    public void setMessage(String[] message) {
 		int line = 0;
 		StringBuffer msg = new StringBuffer("<HTML>");
 		for (line = 0; line < message.length - 1; line++) {
@@ -150,14 +154,16 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Set the current value of the WaitBar
 	 * @param value the value to set
 	 */
-	public void setValue(int value) {
+	@Override
+    public void setValue(int value) {
 		progressBar.setValue(value);
 	}
 	
 	/**
 	 * Close the WaitBar
 	 */
-	public void close() {
+	@Override
+    public void close() {
 		this.dispose();
 	}
 	
@@ -165,7 +171,8 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 * Indicates if the total execution time is known
 	 * @param status true if the total progress time in unknown
 	 */
-	public void setIndeterminateMode(boolean status) {
+	@Override
+    public void setIndeterminateMode(boolean status) {
 		progressBar.setIndeterminate(status);
 		progressBar.setStringPainted(!status);
 

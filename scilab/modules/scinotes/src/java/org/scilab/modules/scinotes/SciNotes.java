@@ -15,9 +15,6 @@ package org.scilab.modules.scinotes;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,16 +47,11 @@ import javax.swing.text.View;
 import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
-
 import org.flexdock.docking.event.DockingEvent;
-
 import org.scilab.modules.core.Scilab;
-import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -95,22 +87,20 @@ import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
+import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTab;
-import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
 import org.scilab.modules.scinotes.tabfactory.SciNotesTab;
 import org.scilab.modules.scinotes.tabfactory.SciNotesTabFactory;
 import org.scilab.modules.scinotes.tabfactory.SearchInFilesTab;
-import org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
-import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
-import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
 import org.scilab.modules.scinotes.utils.SciNotesContents;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
+import org.scilab.modules.scinotes.utils.SearchFile;
 
 /**
  * Main SciNotes class.
@@ -145,10 +135,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static SciNotes editor;
 
     private Window parentWindow;
-    private UUID uuid;
+    private final UUID uuid;
 
     private ScilabTabbedPane tabPane;
-    private SciNotesContents contentPane;
+    private final SciNotesContents contentPane;
     private NavigatorWindow navigator;
     private SearchFile searchInFiles;
 
@@ -161,13 +151,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private boolean protectOpenFileList;
     private boolean restored;
 
-    private List<Integer> tabList = new ArrayList<Integer>();
-    private List<Integer> closedTabList = new ArrayList<Integer>();
+    private final List<Integer> tabList = new ArrayList<Integer>();
+    private final List<Integer> closedTabList = new ArrayList<Integer>();
 
     static {
         ConfigSciNotesManager.createUserCopy();
         ScilabTabFactory.getInstance().addTabFactory(SciNotesTabFactory.getInstance());
         Scilab.registerInitialHook(new Runnable() {
+                @Override
                 public void run() {
                     updateSciNotes();
                 }
@@ -188,6 +179,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         contentPane = new SciNotesContents(this);
         tabPane = contentPane.getScilabTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
+                @Override
                 public void stateChanged(ChangeEvent e) {
                     if (getTextPane() != null) {
                         //updateUI();
@@ -242,6 +234,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setTitle(String title) {
         super.setTitle(title);
         SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
@@ -264,6 +257,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void undockingComplete(DockingEvent evt) {
         super.undockingComplete(evt);
         if (navigator != null) {
@@ -277,6 +271,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
         if (navigator != null) {
@@ -382,6 +377,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
+                    @Override
                     public void run() {
                         launchSciNotes();
                         // Open an empty file if no tabs were opened at launch.
@@ -410,6 +406,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
+                    @Override
                     public void run() {
                         launchSciNotes();
                         editor.openFile(filePath, 0, null);
@@ -435,6 +432,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
+                    @Override
                     public void run() {
                         launchSciNotes();
                         editor.openFile(filePath, lineNumber, functionName);
@@ -460,6 +458,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
+                    @Override
                     public void run() {
                         launchSciNotes();
                         editor.openFile(filePath, 0, option);
@@ -554,11 +553,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
     /**
      * Execute after when the restoration is finished
      */
+    @Override
     public void endedRestoration() {
         if (!SwingUtilities.isEventDispatchThread()) {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
 
+                        @Override
                         public void run() {
                             restorePreviousSession();
                         }
@@ -591,6 +592,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     RestoreOpenedFilesAction.displayDialog((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, SciNotes.this), getUUID().toString());
                     List<File> list = RestoreOpenedFilesAction.getSelectedFiles();
@@ -1395,7 +1397,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public int getNumberForEmptyTab() {
         if (closedTabList.size() > 0) {
-            Integer n = (Integer) Collections.min(closedTabList);
+            Integer n = Collections.min(closedTabList);
             closedTabList.remove(n);
             return n.intValue();
         } else {
@@ -1640,7 +1642,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.getXln().setWhereamiLineNumbering(state);
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().getXln().setWhereamiLineNumbering(state);
@@ -1658,7 +1660,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 ((ScilabDocument) sep.getDocument()).setAutoIndent(b);
                 if (sep.getOtherPaneInSplit() != null) {
                     ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(b);
@@ -1675,7 +1677,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.suppressCommentsInExecutingCode(b);
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().suppressCommentsInExecutingCode(b);
@@ -1692,7 +1694,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 if (sep.getOtherPaneInSplit() == null) {
                     ScilabEditorPane pane = new ScilabEditorPane(editor);
                     ed.initPane(pane, !b);
@@ -1720,7 +1722,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.enableHighlightedLine(b);
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().enableHighlightedLine(b);
@@ -1744,7 +1746,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.activateHelpOnTyping();
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().activateHelpOnTyping();
@@ -1761,7 +1763,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.getTabManager().setTabulation(tab);
                 View view = ((ScilabDocument) sep.getDocument()).getView();
                 if (view != null) {
@@ -1785,7 +1787,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.setHighlightedLineColor(c);
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().setHighlightedLineColor(c);
@@ -1802,7 +1804,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         for (SciNotes ed : scinotesList) {
             int n = ed.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                ScilabEditorPane sep = ed.getTextPane(i);
                 sep.setHighlightedContourColor(c);
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().setHighlightedContourColor(c);
@@ -1827,6 +1829,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return SciNotes instance
      * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()
      */
+    @Override
     public SimpleTab getAsSimpleTab() {
         return this;
     }
@@ -1836,6 +1839,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return parent Window
      * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
      */
+    @Override
     public Window getParentWindow() {
         return parentWindow;
     }
@@ -1853,6 +1857,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param infoBarToAdd the status bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addInfoBar(org.scilab.modules.gui.textbox.TextBox)
      */
+    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
         setInfoBar(infoBarToAdd);
     }
@@ -1862,6 +1867,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param menuBarToAdd the menu bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
+    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
         setMenuBar(menuBarToAdd);
     }
@@ -1871,6 +1877,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param toolBarToAdd the tool bar to be added
      * @see org.scilab.modules.gui.uielement.UIElement#addToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
+    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
         setToolBar(toolBarToAdd);
     }
@@ -2081,6 +2088,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
+                    @Override
                     public void run() {
                         SciNotes[] arr = scinotesList.toArray(new SciNotes[0]);
                         for (int i = 0; i < arr.length; i++) {

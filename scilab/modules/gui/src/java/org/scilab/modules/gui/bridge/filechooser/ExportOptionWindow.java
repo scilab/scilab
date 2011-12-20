@@ -30,10 +30,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
@@ -48,7 +46,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
-    private ExportData exportData;
+    private final ExportData exportData;
     private Window parentWindow;
     private Tab parentTab;
     private JDialog optionDialog;
@@ -129,6 +127,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
      * Action manager
      * @param evt ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent evt) {
         boolean b = portrait.isSelected();
         Vector<String> properties = new Vector<String>();

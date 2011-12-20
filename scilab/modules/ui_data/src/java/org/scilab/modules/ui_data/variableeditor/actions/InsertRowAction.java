@@ -29,7 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  */
 public final class InsertRowAction extends CallBack {
 
-    private JTable table;
+    private final JTable table;
     
     /**
      * Constructor
@@ -44,6 +44,7 @@ public final class InsertRowAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         int row = ((TableVariableEditor) table).getPopupRow();
 	SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
