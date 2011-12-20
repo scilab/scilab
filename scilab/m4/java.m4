@@ -501,7 +501,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
                 if test -d $D; then
                   ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D"
                 fi
             fi
         fi
@@ -604,7 +604,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
                 if test -d $D; then
                   ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+                  ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D"
                 fi
             fi
         fi
