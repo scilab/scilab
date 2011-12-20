@@ -23,6 +23,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -465,6 +466,21 @@ public final class Xcos {
     }
 
     /**
+     * Get an unmodifiable view of the diagrams for a specific file
+     * 
+     * @param f
+     *            the file
+     * @return the diagram collection
+     */
+    public Collection<XcosDiagram> getDiagrams(final File f) {
+        final Collection<XcosDiagram> diags = diagrams.get(f);
+        if (diags == null) {
+            return null;
+        }
+        return Collections.unmodifiableCollection(diags);
+    }
+
+    /**
      * Add a diagram to the diagram list for a file. Be sure to set the right
      * opened status on the diagram before calling this method.
      * 
@@ -828,73 +844,7 @@ public final class Xcos {
                     final ArrayDeque<String> deque = new ArrayDeque<String>(
                             Arrays.asList(uid));
 
-                    String id;
-                    BasicBlock block = null;
-                    Collection<XcosDiagram> diags = null;
-
-                    // specific case with an empty array
-                    if (deque.isEmpty()) {
-                        return;
-                    }
-
-                    // first element
-                    id = deque.pop();
-                    try {
-                        getInstance().onDiagramIteration = true;
-
-                        for (Collection<XcosDiagram> ds : getInstance().diagrams
-                                .values()) {
-                            final XcosDiagram root = ds.iterator().next();
-
-                            block = (BasicBlock) ((mxGraphModel) root
-                                    .getModel()).getCell(id);
-                            if (block != null) {
-                                diags = ds;
-                                break;
-                            }
-                        }
-                    } finally {
-                        getInstance().onDiagramIteration = false;
-                    }
-
-                    // loop to get only the last diagram
-                    while (block instanceof SuperBlock && !deque.isEmpty()) {
-                        block.getParentDiagram()
-                                .warnCellByUID(
-                                        block.getId(),
-                                        XcosMessages.ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK);
-
-                        final SuperBlock superBlock = (SuperBlock) block;
-                        id = deque.pop();
-
-                        if (!diags.contains(superBlock.getChild())) {
-                            block.openBlockSettings(null);
-                        }
-                        XcosTab.get(superBlock.getChild()).setCurrent();
-
-                        block = (BasicBlock) ((mxGraphModel) superBlock
-                                .getChild().getModel()).getCell(id);
-                    }
-
-                    // We are unable to find the block with the right id
-                    if (block == null) {
-                        return;
-                    }
-
-                    // finally perform the action on the last block
-                    final XcosDiagram parent = findParent(block);
-                    parent.warnCellByUID(block.getId(), message);
-
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            /*
-                             * Focus on an existing diagram
-                             */
-                            XcosTab.get(parent).setCurrent();
-                        }
-                    });
-
+                    warnCellByUID(deque, message);
                 }
             });
         } catch (final InterruptedException e) {
@@ -909,6 +859,73 @@ public final class Xcos {
 
             throw new RuntimeException(firstMessage, e);
         }
+    }
+
+    private static void warnCellByUID(final ArrayDeque<String> deque, final String message) {
+        String id;
+        BasicBlock block = null;
+        Collection<XcosDiagram> diags = null;
+
+        // specific case with an empty array
+        if (deque.isEmpty()) {
+            return;
+        }
+
+        // first element
+        id = deque.pop();
+        try {
+            getInstance().onDiagramIteration = true;
+
+            for (Collection<XcosDiagram> ds : getInstance().diagrams.values()) {
+                if (ds.isEmpty()) {
+                    continue;
+                }
+
+                final XcosDiagram root = ds.iterator().next();
+
+                block = (BasicBlock) ((mxGraphModel) root.getModel()).getCell(id);
+                if (block != null) {
+                    diags = ds;
+                    break;
+                }
+            }
+        } finally {
+            getInstance().onDiagramIteration = false;
+        }
+
+        // loop to get only the last diagram
+        while (block instanceof SuperBlock && !deque.isEmpty()) {
+            block.getParentDiagram().warnCellByUID(block.getId(), XcosMessages.ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK);
+
+            final SuperBlock superBlock = (SuperBlock) block;
+            id = deque.pop();
+
+            if (!diags.contains(superBlock.getChild()) || !superBlock.getChild().isOpened()) {
+                block.openBlockSettings(null);
+            }
+
+            final mxGraphModel model = ((mxGraphModel) superBlock.getChild().getModel());
+            block = (BasicBlock) model.getCell(id);
+        }
+
+        // We are unable to find the block with the right id
+        if (block == null) {
+            return;
+        }
+
+        // finally perform the action on the last block
+        final XcosDiagram parent = findParent(block);
+        parent.warnCellByUID(block.getId(), message);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                /*
+                 * Focus on an existing diagram
+                 */
+                XcosTab.get(parent).setCurrent();
+            }
+        });
     }
 
     /**

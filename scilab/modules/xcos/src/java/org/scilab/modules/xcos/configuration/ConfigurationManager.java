@@ -480,13 +480,12 @@ public final class ConfigurationManager {
         SuperBlock block = ((SuperBlockDiagram) graph).getContainer();
         XcosDiagram parent = block.getParentDiagram();
 
-        final StringBuilder str = new StringBuilder();
-        str.append(block.getId());
+        final StringBuilder str = new StringBuilder(block.getId());
         while (parent instanceof SuperBlockDiagram) {
             block = ((SuperBlockDiagram) parent).getContainer();
 
-            str.append("/");
-            str.append(block.getId());
+            str.insert(0, "/");
+            str.insert(0, block.getId());
 
             parent = block.getParentDiagram();
         }

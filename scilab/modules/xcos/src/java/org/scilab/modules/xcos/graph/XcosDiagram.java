@@ -2342,7 +2342,9 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         // open the tab
-        XcosTab.restore(this);
+        if (XcosTab.get(this) == null) {
+            XcosTab.restore(this);
+        }
 
         if (message.isEmpty()) {
             getAsComponent().clearCellOverlays(cell);
