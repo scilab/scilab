@@ -52,6 +52,7 @@ import javax.swing.text.DefaultCaret;
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.KeywordAdaptater;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.SciNotes;
@@ -153,7 +154,7 @@ public final class SetColorsAction extends DefaultAction {
 
         /* Main frame = Window */
         dialog = new JDialog((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTabPane()), true);
-        dialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         dialog.setTitle(SciNotesMessages.SET_COLORS);
 

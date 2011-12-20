@@ -34,7 +34,7 @@ import org.scilab.modules.localization.Messages;
 
 public class ScilabAboutBox {
 
-        private static Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+    private static Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
         private static Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
         /**
          * Constructor

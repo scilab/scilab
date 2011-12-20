@@ -55,7 +55,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          */
         public SwingScilabColorChooser(Color color) {
                 super(new JFrame(), "Color Chooser", true);
-                ((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
 
                 getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

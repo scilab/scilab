@@ -71,6 +71,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -223,7 +224,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     public void setParentWindow() {
         this.parentWindow = ScilabWindow.createWindow();
-        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor", "32x32")).getImage());
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
@@ -585,7 +586,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
                 openFile(null, 0, null);
             }
-            setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
+            setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor", "32x32")).getImage());
             WindowsConfigurationManager.restorationFinished(this);
 
             return;
@@ -607,7 +608,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         }
                     }
 
-                    setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
+                setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor", "32x32")).getImage());
 
                     if (navigator != null) {
                         navigator.updateTree();

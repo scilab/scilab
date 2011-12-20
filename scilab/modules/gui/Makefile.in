@@ -876,6 +876,7 @@ images/icons/16x16/actions/edit-find.png \
 images/icons/16x16/actions/edit-find-replace.png \
 images/icons/16x16/actions/edit-paste.png \
 images/icons/16x16/actions/edit-redo.png \
+images/icons/16x16/actions/edit-select-all.png \
 images/icons/16x16/actions/edit-undo.png \
 images/icons/16x16/actions/execute-all.png \
 images/icons/16x16/actions/filter.png \
@@ -925,6 +926,7 @@ images/icons/16x16/places/folder.png \
 images/icons/16x16/places/folder-saved-search.png \
 images/icons/16x16/places/scilab-folder.png \
 images/icons/16x16/places/user-home.png \
+images/icons/16x16/status/error.png \
 images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \

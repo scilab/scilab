@@ -74,6 +74,7 @@ import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -86,7 +87,7 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
-    private static final Image SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
+    private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage();
 
     private static final long serialVersionUID = 1L;
 

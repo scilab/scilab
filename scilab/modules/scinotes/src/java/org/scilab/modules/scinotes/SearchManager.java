@@ -32,6 +32,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -43,10 +44,10 @@ import org.w3c.dom.NodeList;
  */
 public class SearchManager {
 
-    private static final ImageIcon FILEIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/file.png");
-    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/scilab-file.png");
-    private static final ImageIcon FOLDERIMAGE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/folder.png");
-    private static final ImageIcon LINEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/search/line-found.png");
+    private static final ImageIcon FILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("stock_search"));
+    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("scilab_search"));
+    private static final ImageIcon FOLDERIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("folder-saved-search"));
+    private static final ImageIcon LINEICON = new ImageIcon(ScilabSwingUtilities.findIcon("line-found"));
 
     /**
      * FIND AND REPLACE START

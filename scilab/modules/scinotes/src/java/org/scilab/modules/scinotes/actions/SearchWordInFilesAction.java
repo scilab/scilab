@@ -56,6 +56,7 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -225,7 +226,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
                 }
             });
         mainFrame.setTitle(SciNotesMessages.SEARCHINFILES);
-        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
+        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
 
         getEditor().getSwingParentWindow().addWindowFocusListener(this);
         mainFrame.addWindowFocusListener(this);

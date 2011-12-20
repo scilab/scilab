@@ -100,13 +100,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     /**
      * Icons
      */
-    private final Icon scilabIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/scilab.png");
-    private final Icon passwdIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/emblem-readonly.png");
-    private final Icon hourglassIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/process-working.png");
+    private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private final Icon passwdIcon = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly"));
+    private final Icon hourglassIcon = new ImageIcon(ScilabSwingUtilities.findIcon("process-working"));
 
     private int elementId;
 
-    private Icon messageIcon; //= new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+    private Icon messageIcon; // = new
+                              // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 

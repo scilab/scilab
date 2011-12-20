@@ -62,6 +62,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -310,7 +311,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
      */
     private void initTab() {
         final TextBox infobar = ScilabTextBox.createTextBox();
-        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
         updateUI();
 
         CallBack callback = new CallBack(null) {

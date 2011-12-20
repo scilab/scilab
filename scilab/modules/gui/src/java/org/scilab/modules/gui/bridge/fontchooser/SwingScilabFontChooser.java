@@ -105,7 +105,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         public SwingScilabFontChooser(JFrame owner, Font font, boolean calledFromScinotes) {
                 super(owner, Messages.gettext("Font Chooser"), true);
                 this.calledFromScinotes = calledFromScinotes;
-                ((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
 
                 getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

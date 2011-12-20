@@ -249,6 +249,7 @@ public final class ScilabSwingUtilities {
         final String fallback = lookupFallbackIcon(icon);
         if (fallback == null) {
             System.err.println("Unable to found icon: " + icon + '[' + size + ']');
+            return System.getenv("SCI") + "/modules/gui/images/icons/16x16/status/error.png";
         }
         return fallback;
     }

@@ -111,7 +111,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
         this.setTitle("Scilab");
-        setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
 
         /* defining the Layout */
         super.setLayout(new java.awt.BorderLayout());

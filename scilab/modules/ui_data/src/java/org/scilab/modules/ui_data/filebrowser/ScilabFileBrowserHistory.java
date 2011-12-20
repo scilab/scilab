@@ -29,6 +29,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * The File Browser history
@@ -36,8 +37,8 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
  */
 public class ScilabFileBrowserHistory {
 
-    private static final String PREVIOUSICON = System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/go-previous.png";
-    private static final String NEXTICON = System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/go-next.png";
+    private static final String PREVIOUSICON = ScilabSwingUtilities.findIcon("go-previous");
+    private static final String NEXTICON = ScilabSwingUtilities.findIcon("go-next");
 
     private final SwingScilabTreeTable stt;
     private final List<String> history = new ArrayList<String>();

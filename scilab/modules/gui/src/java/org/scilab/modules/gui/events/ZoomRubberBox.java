@@ -31,7 +31,7 @@ import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
  */
 public class ZoomRubberBox extends ClickRubberBox implements FocusListener {
 
-	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/zoom-area-cursor.png";
+    private static final String ICON_PATH = ScilabSwingUtilities.findIcon("zoom-area-cursor");
 	private static final String CURSOR_ICON_NAME = "zoom-area";
 	
 	private DrawableFigureGL zoomedFigure;

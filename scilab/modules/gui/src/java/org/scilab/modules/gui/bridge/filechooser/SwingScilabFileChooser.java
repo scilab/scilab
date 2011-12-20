@@ -25,6 +25,7 @@ import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -128,7 +129,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	@Override
     public void displayAndWait() {
 		JFrame parentFrame = new JFrame();
-		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
 		int returnValue = 0;
 		if (maskSize > 0) {
                         setFileFilter(getChoosableFileFilters()[maskSize]);

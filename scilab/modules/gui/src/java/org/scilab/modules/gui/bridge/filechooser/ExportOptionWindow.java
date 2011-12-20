@@ -35,6 +35,7 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Window in which we can configure option for the selected format
@@ -71,7 +72,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
         parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle("Option for " + exportData.getExportExtension().toUpperCase() + " format");
-        optionDialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         //Center the frame
         optionDialog.setLocationRelativeTo(parentWindow);
     }

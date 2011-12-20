@@ -40,6 +40,7 @@ import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.IndentManager;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -123,7 +124,7 @@ public class ConfigTabulationsAction extends DefaultAction {
         TabManager.Tabulation tabProps = ConfigSciNotesManager.getDefaultTabulation();
 
         mainFrame = new JFrame();
-        mainFrame.setIconImage(new ImageIcon(SCI + "/modules/gui/images/icons/scilab.png").getImage());
+        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         mainFrame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {

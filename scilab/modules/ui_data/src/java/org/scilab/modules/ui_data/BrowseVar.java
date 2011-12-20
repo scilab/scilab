@@ -14,6 +14,7 @@ package org.scilab.modules.ui_data;
 
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
@@ -44,22 +45,20 @@ public class BrowseVar {
                                                             Messages.gettext("Type int value")
     };
 
-    private static final String ICON_PATH = System.getenv("SCI") + "/modules/ui_data/images/icons/";
-
-    private static final ImageIcon NO_ICON = new ImageIcon(ICON_PATH + "noicon.png");
-    private static final ImageIcon DOUBLE_ICON = new ImageIcon(ICON_PATH + "double.png");
-    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(ICON_PATH + "polynomial.png");
-    private static final ImageIcon BOOLEAN_ICON = new ImageIcon(ICON_PATH + "boolean.png");
-    private static final ImageIcon SPARSE_ICON = new ImageIcon(ICON_PATH + "sparse.png");
-    private static final ImageIcon INT_ICON = new ImageIcon(ICON_PATH + "int.png");
-    private static final ImageIcon HANDLE_ICON = new ImageIcon(ICON_PATH + "handle.png");
-    private static final ImageIcon STRING_ICON = new ImageIcon(ICON_PATH + "string.png");
-    private static final ImageIcon FUNCTION_ICON = new ImageIcon(ICON_PATH + "function.png");
-    private static final ImageIcon LIST_ICON = new ImageIcon(ICON_PATH + "list.png");
-    private static final ImageIcon TLIST_ICON = new ImageIcon(ICON_PATH + "tlist.png");
-    private static final ImageIcon MLIST_ICON = new ImageIcon(ICON_PATH + "mlist.png");
-    private static final ImageIcon USER_ICON = new ImageIcon(ICON_PATH + "user.png");
-    private static final ImageIcon FPTR_ICON = new ImageIcon(ICON_PATH + "fptr.png");
+    private static final ImageIcon NO_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("noicon"));
+    private static final ImageIcon DOUBLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("double"));
+    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("polynomial"));
+    private static final ImageIcon BOOLEAN_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("boolean"));
+    private static final ImageIcon SPARSE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("sparse"));
+    private static final ImageIcon INT_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("int"));
+    private static final ImageIcon HANDLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("handle"));
+    private static final ImageIcon STRING_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("string"));
+    private static final ImageIcon FUNCTION_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("function"));
+    private static final ImageIcon LIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("list"));
+    private static final ImageIcon TLIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("tlist"));
+    private static final ImageIcon MLIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("mlist"));
+    private static final ImageIcon USER_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("user"));
+    private static final ImageIcon FPTR_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("fptr"));
 
     /**
      * Default private constructor for utility class
