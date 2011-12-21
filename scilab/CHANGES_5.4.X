@@ -56,6 +56,9 @@ Xcos
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
 
+* Bug #10081 fixed - Palette configuration saving could produce an invalid
+                     file.
+
 * Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
