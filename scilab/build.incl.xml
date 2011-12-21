@@ -50,7 +50,6 @@
   </path>
   <path id="compile.classpath">
     <pathelement location="${library.types.dir}/${library.types.name}"/>
-    <pathelement location="${library.types.dir}/${library.output_stream.name}"/>
     <pathelement location="${library.graph.dir}/${library.graph.name}"/>
     <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
     <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
@@ -87,7 +86,6 @@
     <pathelement location="${fop.jar}"/>
     <pathelement location="${jlatexmath-fop.jar}"/>
     <pathelement location="${avalon-framework.jar}"/>
-    <pathelement location="${avalon-framework-impl.jar}"/>
     <pathelement location="${jeuclid-core.jar}"/>
     <pathelement location="${jlatexmath.jar}"/>
   </path>
