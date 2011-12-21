@@ -23,6 +23,8 @@ checkstyle.jar=@CHECKSTYLE@
 
 testng.jar=@TESTNG@
 
+jcommander.jar=@JCOMMANDER@
+
 qdox.jar=@QDOX@
 
 bsh.jar=@BSH@

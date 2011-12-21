@@ -43,6 +43,7 @@
   </path>
   <path id="unittest.classpath">
     <pathelement location="${testng.jar}"/>
+    <pathelement location="${jcommander.jar}"/>
     <pathelement location="${bsh.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${qdox.jar}"/>
