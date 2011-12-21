@@ -29,11 +29,14 @@ able to retrieve a struct but not to send it to Scilab).
 Xcos
 ====
 
-* bug 10107 fixed - Default value of the Integrator Absolute Tolerance was too 
-                    large. It has been reduced to 1e-6.
+* bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
+                     too large. It has been reduced to 1e-6.
 
-* bug 10340 fixed - Exception occured while moving the palette split pane to
-                    hide the block list and while using a palette diagram.
+* bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+                     labeling when ports had not the same types.
+
+* bug #10340 fixed - Exception occured while moving the palette split pane to
+                     hide the block list and while using a palette diagram.
 
 
 Bug fixes
@@ -904,7 +907,7 @@ Bug Fixes
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
 
-* Bug #9682 fixed Ð 3-D assignment into a 2-D array of integers issued an error.
+* Bug #9682 fixed \D0 3-D assignment into a 2-D array of integers issued an error.
 
 * Bug #9696 fixed - An error in an if expression inside a try make Scilab froze.
 
