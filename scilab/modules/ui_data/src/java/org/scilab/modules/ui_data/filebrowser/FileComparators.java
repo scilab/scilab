@@ -14,7 +14,7 @@ package org.scilab.modules.ui_data.filebrowser;
 
 import java.util.Comparator;
 
-import org.scilab.modules.core.Scilab;
+import org.scilab.modules.commons.OS;
 
 /**
  * Several file comparators
@@ -22,8 +22,8 @@ import org.scilab.modules.core.Scilab;
  */
 public final class FileComparators {
 
-    private static final boolean isWindows = Scilab.isWindowsPlateform();
-
+    private static final boolean isWindows = (OS.get() == OS.WINDOWS);
+    
     public static final Comparator<FileNode> ASCENDING_ALPHA = new Comparator<FileNode>() {
         public int compare(FileNode f1, FileNode f2) {
             if (f1.isFile == f2.isFile) {

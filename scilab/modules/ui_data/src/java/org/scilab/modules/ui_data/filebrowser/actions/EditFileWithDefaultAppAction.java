@@ -17,8 +17,7 @@ import java.io.File;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.core.Scilab;
-import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.tab.Tab;
@@ -31,7 +30,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  */
 public class EditFileWithDefaultAppAction extends CallBack {
 
-    private static final boolean isWindows = Scilab.isWindowsPlateform();
+    private static final boolean isWindows = (OS.get() == OS.WINDOWS);
 
     private SwingScilabTreeTable table;
 
