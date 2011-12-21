@@ -322,6 +322,8 @@ images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-next.png \
 images/icons/16x16/actions/go-previous.png \
 images/icons/16x16/actions/go-top.png \
+images/icons/16x16/actions/list-add.png \
+images/icons/16x16/actions/list-remove.png \
 images/icons/16x16/actions/longe.png \
 images/icons/16x16/actions/long.png \
 images/icons/16x16/actions/media-playback-start.png \
