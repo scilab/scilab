@@ -13,19 +13,12 @@
 package org.scilab.modules.helptools;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
 import org.xml.sax.SAXException;
 
@@ -39,7 +32,7 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private StringBuilder buffer = new StringBuilder(8192);
     private String outName;
-    private List<String> filesList = new ArrayList();
+    private List<String> filesList = new ArrayList<String>();
     private String language;
     private String docWebsite;
 
