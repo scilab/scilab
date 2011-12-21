@@ -1011,7 +1011,7 @@ msgid ""
 msgstr ""
 "disp(\"ATTENTION : À cause des limitations de votre configuration, Scilab "
 "est passé dans un mode dans lequel mélanger des uicontrols et des graphiques "
-"n'est pas possible. Tapez \"\"help usecanvas\"\" pour plus d'informations.\")"
+"n''est pas possible. Tapez \"\"help usecanvas\"\" pour plus d''informations.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
