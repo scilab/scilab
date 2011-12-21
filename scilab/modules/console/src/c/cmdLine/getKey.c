@@ -135,12 +135,12 @@ static void setCBreak(bool cbk)
     tcgetattr(0, &t);
     if (cbk)
     {
-        t.c_cc[VMIN] = 0;       /* Do not wait any character before leaving getwchar */
-        t.c_cc[VTIME] = 1;      /* Do not wait any second before leaving getwchar */
+        t.c_cc[VMIN] = 1;       /* Wait 1 character before leaving getwchar */
+        t.c_cc[VTIME] = 0;      /* Do not wait any second before leaving getwchar */
     }
     else
     {
-        t.c_cc[VMIN] = 0;       /* Wait 1 character before leaving getwchar */
+        t.c_cc[VMIN] = 0;
         t.c_cc[VTIME] = 0;      /* Do not wait any second before leaving getwchar */
     }
     tcsetattr(0, 0, &t);
@@ -153,12 +153,30 @@ static int endCopyPast(wchar_t * commandLine)
     sizeOfCmd = wcslen(commandLine);
     if (commandLine[sizeOfCmd - 1] == L'\n')
     {
-        return 0;
+        setTokenInteruptExecution(SEND_COMMAND);
     }
     else
     {
-        return 1;
+        setTokenInteruptExecution(CONTINUE_COMMAND);
     }
+}
+
+/* Reset command line if CTRL-C is pressed */
+static void resetCommandLine(wchar_t ** commandLine, unsigned int *cursorLocation)
+{
+    char *multiByteString = NULL;
+
+    /* Send the preivous edited line in the history */
+    multiByteString = wide_string_to_UTF8(*commandLine);
+    appendLineToScilabHistory(multiByteString);
+    FREE(multiByteString);
+    setSearchedTokenInScilabHistory(NULL);
+    FREE(*commandLine);
+    /* Reset command line and cursor position */
+    *cursorLocation = 0;
+    *commandLine = MALLOC(1024 * sizeof(**commandLine));
+    **commandLine = L'\0';
+    setTokenInteruptExecution(RESET_TOKEN);
 }
 
 /*
@@ -169,6 +187,10 @@ static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     int key;
 
     key = getwchar();
+    if (getTokenInteruptExecution() == DO_NOT_SEND_COMMAND)
+    {
+        resetCommandLine(commandLine, cursorLocation);
+    }
     switch (key)
     {
     case CTRL_A:
@@ -221,9 +243,9 @@ static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         break;
     case WEOF:
         setCBreak(1);
-        return endCopyPast(*commandLine);
+        endCopyPast(*commandLine);
     default:
-/* Different keys are not in different case when it add char to the command line */
+/* Different keys are not in different case when it add characters to the command line */
         if (key == L'\n')
         {
             setCBreak(0);
@@ -233,13 +255,11 @@ static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         updateTokenInScilabHistory(commandLine);
         break;
     }
-    return 1;
 }
 
+/* main command line function */
 char *getCmdLine(void)
 {
-    int bin = 1;
-
     char *multiByteString = NULL;
 
     unsigned int cursorLocation = 0;
@@ -250,6 +270,7 @@ char *getCmdLine(void)
 
     getPrompt(WRT_PRT);
     setCharDisplay(DISP_BRIGHT);
+    setTokenInteruptExecution(RESET_TOKEN);
     if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')
     {
         if (wideString != NULL)
@@ -262,12 +283,12 @@ char *getCmdLine(void)
     }
     else
     {
-        bin = 2;
+        setTokenInteruptExecution(SEND_MULTI_COMMAND);
     }
     setSearchedTokenInScilabHistory(NULL);
-    while (bin == 1)
+    while (getTokenInteruptExecution() == CONTINUE_COMMAND)
     {
-        bin = getKey(&wideString, &cursorLocation);
+        getKey(&wideString, &cursorLocation);
     }
     cursorLocation = nextLineLocationInWideString;
     while (wideString[cursorLocation] != L'\n' && wideString[cursorLocation] != L'\0')
@@ -275,7 +296,7 @@ char *getCmdLine(void)
         cursorLocation++;
     }
     wideString[cursorLocation] = L'\0';
-    if (bin == 2)
+    if (getTokenInteruptExecution() == SEND_MULTI_COMMAND)
     {
         printf("%ls\n", &wideString[nextLineLocationInWideString]);
     }
@@ -285,4 +306,22 @@ char *getCmdLine(void)
     setSearchedTokenInScilabHistory(NULL);
     setCharDisplay(DISP_RESET);
     return multiByteString;
+}
+
+/* set the token for the command line */
+int setTokenInteruptExecution(int token)
+{
+    static int savedToken = RESET_TOKEN;
+
+    if (token != CHECK_TOKEN)
+    {
+        savedToken = token;
+    }
+    return savedToken;
+}
+
+/* get the token for the command line */
+int getTokenInteruptExecution(void)
+{
+    return setTokenInteruptExecution(CHECK_TOKEN);
 }
