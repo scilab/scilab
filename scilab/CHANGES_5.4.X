@@ -122,6 +122,12 @@ Compatibility Functions
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
 
 
+Compilation
+===========
+
+* Enforce a minimal version of JLaTeXMath (0.9.7).
+
+
 Bug fixes
 =========
 
