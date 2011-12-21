@@ -508,11 +508,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-          buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
-        else
-          buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
-        end
+        buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
 
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
@@ -606,11 +602,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            end
+            buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
 
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
@@ -729,11 +721,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-             end
+            buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
 
              // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
