@@ -35,3 +35,11 @@ assert_checkequal(out, [4 5]);
 xset("line style", 8);
 out = xget("line style");
 assert_checkequal(out, 8);
+
+// font
+out = xget("font");
+assert_checkequal(out, [0 0]);
+
+// font size
+out = xget("font size");
+assert_checkequal(out, 0);

@@ -16,6 +16,9 @@
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
 
+#include "api_common.h"
+#include "api_double.h"
+
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "XsetXgetParameters.h"
@@ -106,12 +109,14 @@ int sci_xget(char *fname,unsigned long fname_len)
     int* piMarkStyle = &iMarkStyle;
     int iMarkSize = 0;
     int* piMarkSize = &iMarkSize;
+    double pdblResult[2];
 
     getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, &piMarkStyle);
     getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE__, jni_int, &piMarkSize);
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&two,&l3);
-    *stk(l3 + 0 ) = (double) iMarkStyle;
-    *stk(l3 + 1 ) = (double) iMarkSize;
+    pdblResult[0] = iMarkStyle;
+    pdblResult[1] = iMarkSize;
+
+    createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblResult);
     LhsVar(1)=Rhs+1;
     PutLhsVar();
     return 0;
@@ -128,6 +133,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"line style") == 0)
   {
       get_line_style_property(getOrCreateDefaultSubwin());
+
       LhsVar(1)=Rhs+1;
       PutLhsVar();
       return 0;
@@ -136,8 +142,41 @@ int sci_xget(char *fname,unsigned long fname_len)
   {
       double *clipBox;
       char* pobjUID = getOrCreateDefaultSubwin();
+
       getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
-      sciReturnRowVector(clipBox, 4);
+
+      createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 4, clipBox);
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
+  }
+  else if(strcmp(cstk(l1),"font")==0)
+  {
+      char *pobjUID = getOrCreateDefaultSubwin();
+      double dblFontSize = 0;
+      double* pdblFontSize = &dblFontSize;
+      int iFontStyle = 0;
+      int* piFontStyle = &iFontStyle;
+      double pdblResult[2];
+
+      getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, &pdblFontSize);
+      getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, &piFontStyle);
+
+      pdblResult[0] = dblFontSize;
+      pdblResult[1] = iFontStyle;
+
+      createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblResult);
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
+  }
+  else if(strcmp(cstk(l1),"font size")==0)
+  {
+      double dblFontSize = 0;
+      double* pdblFontSize = &dblFontSize;
+      getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, jni_double, &pdblFontSize);
+
+      createScalarDouble(pvApiCtx, Rhs + 1, dblFontSize);
       LhsVar(1)=Rhs+1;
       PutLhsVar();
       return 0;
@@ -147,18 +186,17 @@ int sci_xget(char *fname,unsigned long fname_len)
     int i2;
     sciPointObj *psubwin = NULL;
     x2=0;
-    if(strcmp(cstk(l1),"font")==0){
-      x1[0] = (int) sciGetFontStyle(psubwin);
-      x1[1] = (int) sciGetFontSize(psubwin);
-      x2 = 2;
-    }
-    else if(strcmp(cstk(l1),"font size")==0){
-      x1[0] = (int) sciGetFontSize(psubwin);
-      x2 = 1;
-    }
-    else if(strcmp(cstk(l1),"dashes")==0){
-      x1[0] = sciGetLineStyle(psubwin);
-      x2 = 1;
+
+    if(strcmp(cstk(l1),"dashes")==0)
+    {
+        int iLineStyle = 0;
+        int* piLineStyle = &iLineStyle;
+
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, jni_int, &piLineStyle);
+        createScalarDouble(pvApiCtx, Rhs + 1, iLineStyle);
+        LhsVar(1)=Rhs+1;
+        PutLhsVar();
+        return 0;
     }
     else if(strcmp(cstk(l1),"hidden3d")==0){
       x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
@@ -166,30 +204,50 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"window")==0 || strcmp(cstk(l1),"figure") == 0)
     {
-      x1[0] = sciGetNum(sciGetCurrentFigure());
-      x2 = 1;
+        int iFigureId = 0;
+        int* piFigureId = &iFigureId;
+
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_ID__, jni_int, &piFigureId);
+        createScalarDouble(pvApiCtx, Rhs + 1, iFigureId);
+        LhsVar(1)=Rhs+1;
+        PutLhsVar();
+        return 0;
     }
     else if(strcmp(cstk(l1),"thickness") == 0)
     {
       x1[0] = (int) sciGetLineWidth(sciGetCurrentSubWin());
       x2 = 1;
     }
-    else if(strcmp(cstk(l1),"wdim") == 0)
+    else if(strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0)
     {
-      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
-      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
-      x2 = 2;
+        int piFigureSize[2];
+        double pdblFigureSize[2];
+
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, jni_int_vector, (void **) &piFigureSize);
+        pdblFigureSize[0] = piFigureSize[0];
+        pdblFigureSize[1] = piFigureSize[1];
+
+        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblFigureSize);
+        LhsVar(1)=Rhs+1;
+        PutLhsVar();
+        return 0;
     }
     else if(strcmp(cstk(l1),"wpos") == 0)
     {
-      sciGetScreenPosition(sciGetCurrentFigure(), &(x1[0]), &(x1[1]));
-      x2 = 2;
-    }
-    else if(strcmp(cstk(l1),"wpdim") == 0)
-    {
-      x1[0] = sciGetWindowWidth(sciGetCurrentFigure());
-      x1[1] = sciGetWindowHeight(sciGetCurrentFigure());
-      x2 = 2;
+        int piFigurePosition[2];
+        double pdblFigurePosition[2];
+
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, jni_int_vector, (void **) &piFigurePosition);
+        pdblFigurePosition[0] = piFigurePosition[0];
+        pdblFigurePosition[1] = piFigurePosition[1];
+
+        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblFigurePosition);
+        LhsVar(1)=Rhs+1;
+        PutLhsVar();
+        return 0;
     }
     else if(strcmp(cstk(l1),"viewport") == 0)
     {
