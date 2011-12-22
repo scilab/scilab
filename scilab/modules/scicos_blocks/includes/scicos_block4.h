@@ -29,7 +29,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-typedef void (*voidg) ();
+typedef void (*voidg) (void);
 
 /* scicos_block structure definition
 * WARNING: take care that this sructure is
@@ -100,8 +100,8 @@ typedef enum
 
 /* utility function for block declaration */
 int get_block_error(void);
-int *get_pointer_xproperty();
-int get_npointer_xproperty();
+int *get_pointer_xproperty(void);
+int get_npointer_xproperty(void);
 double Get_Jacobian_cj(void);
 double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);
