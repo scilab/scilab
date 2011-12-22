@@ -19,6 +19,9 @@
 #include "termcapManagement.h"
 #include "cliPrompt.h"
 #include "gotoFunctions.h"
+/* for wcwidth */
+#define _XOPEN_SOURCE
+#include <wchar.h>
 
 /*
  * Return the cursor position of the cursor in the line.

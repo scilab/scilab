@@ -33,6 +33,7 @@
 #include "SetConsolePrompt.h"
 #include "TermReadAndProcess.h"
 #include "sciquit.h"
+#include "getCommonPart.h"
 
 static void doCompletion(char *wk_buf, int *cursor, int *cursor_max);
 
@@ -140,7 +141,6 @@ static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
 
 static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
 {
-    char *line = NULL;
 
     if (wk_buf)
     {
