@@ -30,6 +30,16 @@
 #include "cliDisplayManagement.h"
 #include "autoCompletionCli.h"
 
+/* Set new token in order to get string changement in history */
+static void updateTokenInScilabHistory(wchar_t ** commandLine)
+{
+    char *multiByteString = NULL;
+
+    multiByteString = wide_string_to_UTF8(*commandLine);
+    setSearchedTokenInScilabHistory(multiByteString);
+    FREE(multiByteString);
+}
+
 /*
  * If last key was '1'
  * it means this could be arrow key plus control key
@@ -146,7 +156,7 @@ static void setCBreak(bool cbk)
     tcsetattr(0, 0, &t);
 }
 
-static int endCopyPast(wchar_t * commandLine)
+static void endCopyPast(wchar_t * commandLine)
 {
     int sizeOfCmd = 0;
 

@@ -12,7 +12,8 @@
 #ifndef AUTO_COMPLETION_CLI_H_
 #define AUTO_COMPLETION_CLI_H_
 
-void doCompletion(char *commandLine, int *cursor, int *cursor_max);
+#define WK_BUF_SIZE 520
+#define GET_MAX(x,y) (x) > (y) ? (x) : (y)
 
 /**
  * Manage auto completion in NW/NWNI console.
@@ -20,11 +21,5 @@ void doCompletion(char *commandLine, int *cursor, int *cursor_max);
  * @param Cursor position in command line.
  */
 void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
-
-/**
- * Set token in history when the line is edited.
- * @param pointer to the current edited line.
- */
-void updateTokenInScilabHistory(wchar_t ** commandLine);
 
 #endif /* !AUTO_COMPLETION_CLI_H_ */

@@ -53,7 +53,6 @@ src/c/scilines.c \
 src/c/GetCommandLine.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
-src/c/others/zzledt.c \
 src/c/prompt.c \
 src/c/promptecho.c \
 src/c/cmdLine/autoCompletionCli.c \
@@ -108,7 +107,6 @@ src/c/scilines.c \
 src/c/GetCommandLine.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
-src/c/others/zzledt.c \
 src/c/prompt.c \
 src/c/promptecho.c \
 src/c/cmdLine/autoCompletionCli.c \
