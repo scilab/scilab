@@ -38,10 +38,11 @@
   <refsection>
     <title>Description</title>
     <para><literal>editvar</literal> is the Scilab variable editor.</para>
+    <para><literal>editvar</literal> can be started by calling it on the name of the variable or by double-clicking on the name of the variable from the <link linkend="browsevar">browsevar component</link>.</para>
     <para><literal>editvar</literal> has numerous features: 
 <itemizedlist><listitem><para>
 Matrix visualisation
-<para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_default.png"/></imageobject></inlinemediaobject></para><para/>
+<para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_default.png"/></imageobject></inlinemediaobject></para><para/>
 
 </para></listitem><listitem><para>
 Cell editing
@@ -94,6 +95,8 @@ a=rand(10,10);
 editvar a;
 b=['hello';'good bye'];
 editvar b;
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+editvar("sp");
  ]]></programlisting>
   </refsection>
 </refentry>
