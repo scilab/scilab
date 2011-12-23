@@ -13,15 +13,16 @@
 #include <curses.h>
 #include <term.h>
 #include <string.h>
+
+/* for wcwidth and wcswidth */
+#define _XOPEN_SOURCE
 #include <wchar.h>
+
 #include <wctype.h>
 #include "BOOL.h"
 #include "termcapManagement.h"
 #include "cliPrompt.h"
 #include "gotoFunctions.h"
-/* for wcwidth */
-#define _XOPEN_SOURCE
-#include <wchar.h>
 
 /*
  * Return the cursor position of the cursor in the line.
@@ -174,7 +175,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
         widthOfStringInTerm = sizeOfOneLineInTerm(CommandLine, i);
         while (sizeOfWChar)     /* While we are not at the beginning of the character... */
         {
-            if ((!(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1)   // if last column of the terminal is reached...
+            if ((nbrCol && !(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1) // if last column of the terminal is reached...
                 || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
             {
                 setStringCapacities("up");

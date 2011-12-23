@@ -14,7 +14,7 @@
 #include "cliDisplayManagement.h"
 
 /* Set color and other settings about charcter display */
-void setCharDisplay(const char *setting)
+void setCharDisplay(char *setting)
 {
     static char *currentSetting = NULL;
 

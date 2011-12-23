@@ -39,4 +39,6 @@ int setTokenInteruptExecution(int token);
  */
 int getTokenInteruptExecution();
 
+int getTokenInteruptExecution(void);
+
 #endif /* !GET_KEY_H_ */

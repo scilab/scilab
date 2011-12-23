@@ -27,14 +27,8 @@ int addChar(wchar_t ** CommandLine, int key, unsigned int *cursorLocation)
 {
     unsigned int indexToMoveChar = 0;
 
-    unsigned int promptSize;
-
     unsigned int sizeOfCmd = 0;
 
-    unsigned int nbrLine = 0;
-
-    promptSize = getPrompt(NOWRT_PRT);
-    nbrLine = getNbrLine(*CommandLine);
     sizeOfCmd = wcslen(*CommandLine);
     if (L' ' <= key || key == L'\n')
     {
@@ -85,11 +79,8 @@ int rmChar(wchar_t * CommandLine, int key, unsigned int *cursorLocation)
 {
     unsigned int indexToMoveChar;
 
-    int promptSize;
-
     unsigned int sizeOfCmd = 0;
 
-    promptSize = getPrompt(NOWRT_PRT);
     sizeOfCmd = wcslen(CommandLine);
 /*
  * Case Backspace is pressed -> cursor must not be at the beginning of the command line

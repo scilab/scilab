@@ -23,7 +23,7 @@
 #include "scilabmode.h"
 
 /*
- * Function called by signal when SIGTSTP is caught.
+ * Function called by signal when signum is caught.
  * Reset termcaps and colors before suspending Scilab.
  */
 void suspendProcess(int signum)
@@ -37,7 +37,7 @@ void suspendProcess(int signum)
     signalDefaultSettings.sa_flags = 0;
     sigemptyset(&signalDefaultSettings.sa_mask);
     /* Then apply settings. */
-    sigaction(SIGTSTP, &signalDefaultSettings, &lastSignalSettings);
+    sigaction(signum, &signalDefaultSettings, &lastSignalSettings);
     /* If scilab is launched in cli mode */
     if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
     {
@@ -45,7 +45,7 @@ void suspendProcess(int signum)
         setAttr(ATTR_RESET);
         setCharDisplay(DISP_RESET);
         /* Suspend Scilab. */
-        if (kill(getpid(), SIGTSTP))
+        if (kill(getpid(), signum))
         {
             fprintf(stderr, "\nCannot suspend scilab\n");
         }
@@ -53,12 +53,12 @@ void suspendProcess(int signum)
         {
             sleep(1);
             /* Set back handler to reset settings if Scilab is suspended a new time. */
-            sigaction(SIGTSTP, &lastSignalSettings, NULL);
+            sigaction(signum, &lastSignalSettings, NULL);
         }
     }
     else
     {
-        if (kill(getpid(), SIGTSTP))
+        if (kill(getpid(), signum))
         {
             fprintf(stderr, "\nCannot suspend scilab\n");
         }

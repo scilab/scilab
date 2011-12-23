@@ -192,7 +192,7 @@ static void resetCommandLine(wchar_t ** commandLine, unsigned int *cursorLocatio
 /*
  * Read keyboard a first time.
  */
-static int getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
+static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
     int key;
 

@@ -25,6 +25,7 @@
 #include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
+#include "getCommonPart.h"
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
@@ -35,11 +36,11 @@
 #include "sciquit.h"
 #include "getCommonPart.h"
 
-static void doCompletion(char *wk_buf, int *cursor, int *cursor_max);
+static void doCompletion(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 
-static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max);
+static char *getLineBeforeCaret(char *wk_buf, unsigned int *cursor);
 
-static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max);
+static char *getLineAfterCaret(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 
 static void backspace(int n);
 
@@ -47,10 +48,11 @@ static void erase_nchar(int n);
 
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
-                                  char *wk_buf, int *cursor, int *cursor_max);
-static int CopyLineAtPrompt(char *wk_buf, char *line, int *cursor, int *cursor_max);
+                                  char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);
+static int CopyLineAtPrompt(char *wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
 
-static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, int *cursor, int *cursor_max);
+static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, unsigned int *cursor,
+                                unsigned int *cursor_max);
 
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
 
@@ -65,7 +67,7 @@ void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLoc
 
     int sizeToAlloc = 0;
 
-    int nbrCharInString;
+    unsigned int nbrCharInString;
 
     multiByteString = wide_string_to_UTF8(*commandLine);
     nbrCharInString = wcslen(*commandLine);
@@ -80,9 +82,9 @@ void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLoc
     FREE(multiByteString);
 }
 
-static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+static void doCompletion(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
-    char *LineBeforeCaret = getLineBeforeCaret(wk_buf, cursor, cursor_max);
+    char *LineBeforeCaret = getLineBeforeCaret(wk_buf, cursor);
 
     char *LineAfterCaret = getLineAfterCaret(wk_buf, cursor, cursor_max);
 
@@ -129,7 +131,7 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
     }
 }
 
-static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
+static char *getLineBeforeCaret(char *wk_buf, unsigned int *cursor)
 {
     char *line = NULL;
 
@@ -139,9 +141,8 @@ static char *getLineBeforeCaret(char *wk_buf, int *cursor, int *cursor_max)
     return line;
 }
 
-static char *getLineAfterCaret(char *wk_buf, int *cursor, int *cursor_max)
+static char *getLineAfterCaret(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
-
     if (wk_buf)
     {
         if (*cursor != *cursor_max)
@@ -191,7 +192,7 @@ static void erase_nchar(int n)
 
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
-                                  char *wk_buf, int *cursor, int *cursor_max)
+                                  char *wk_buf, unsigned int *cursor, unsigned int *cursor_max)
 {
     if (dictionaryFiles)
     {
@@ -285,7 +286,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
     }
 }
 
-static int CopyLineAtPrompt(char *wk_buf, char *line, int *cursor, int *cursor_max)
+static int CopyLineAtPrompt(char *wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max)
 {
     if (line)
     {
@@ -365,7 +366,8 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1, char *st
     return arrayOfString;
 }
 
-static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, int *cursor, int *cursor_max)
+static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char *wk_buf, unsigned int *cursor,
+                                unsigned int *cursor_max)
 {
     if (defaultPattern)
     {
