@@ -159,7 +159,7 @@ static void initFigureModel(char *pfiguremdlUID)
     if (pdblColorMap == NULL)
     {
         sprintf(error_message, _("%s: No more memory.\n"), "InitFigureModel");
-        return -1;
+        return;
     }
 
     for (i = 0; i < m; i++)
