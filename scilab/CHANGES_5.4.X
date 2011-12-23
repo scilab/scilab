@@ -38,6 +38,9 @@ Xcos
 * bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
 
+* bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
+                     Scilab".
+
 
 Bug fixes
 ========= 
