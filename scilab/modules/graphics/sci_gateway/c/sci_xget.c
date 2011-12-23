@@ -251,8 +251,18 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"viewport") == 0)
     {
-      sciGetViewport(sciGetCurrentFigure(), x1);
-      x2 = 2;
+      int* viewport;
+      double pdblViewport[2];
+
+      getOrCreateDefaultSubwin();
+      getGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, jni_int_vector, &viewport);
+      pdblViewport[0] = viewport[0];
+      pdblViewport[1] = viewport[1];
+
+      createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblViewport);
+      LhsVar(1)=Rhs+1;
+      PutLhsVar();
+      return 0;
     }
     else if(strcmp(cstk(l1),"alufunction") == 0)
     {
