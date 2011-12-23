@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>                                      
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
@@ -73,7 +73,7 @@
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
     doc.root = doc.root.children(1);
     xmlDump(doc)
-    doc.url = "/tmp/foo.xml";
+    doc.url = TMPDIR+"/foo.xml";
     doc
     xmlWrite(doc);
     xmlClose(doc);
