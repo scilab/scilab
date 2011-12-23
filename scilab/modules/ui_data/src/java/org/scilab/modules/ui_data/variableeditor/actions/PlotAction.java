@@ -13,17 +13,12 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Component;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
-
-import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
@@ -32,6 +27,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.EditVar;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
@@ -81,16 +77,25 @@ public final class PlotAction extends CallBack {
     private static final String COM_CONTOUR2D = "L?8625083632641564278=xget(\"fpf\");xset(\"fpf\",\" \");contour2d(1:%s,1:%s,%s,10);xset(\"fpf\",L?8625083632641564278);clear(\"L?8625083632641564278\")";
     private static final String COM_PIE = "L?8625083632641564278=%s;pie(L?8625083632641564278(find(L?8625083632641564278>0&L?8625083632641564278<>%%inf&L?8625083632641564278<>%%nan)))";
 
-    private static final String PATHTOIMG = System.getenv("SCI") + "/modules/gui/images/icons/64x64/";
-
     private static final String[] COMMANDS = new String[]{COM_PLOT2D, COM_MATPLOT, COM_GRAYPLOT, COM_SGRAYPLOT, COM_CHAMP, COM_HISTPLOT, COM_MESH, COM_SURF, COM_HIST3D, COM_CONTOUR2D, COM_PIE};
-    private static final String[] IMG = new String[]{"plot2d.png", "Matplot.png", "grayplot.png", "Sgrayplot.png", "champ.png", "histplot.png", "mesh.png", "surf.png", "hist3d.png", "contour2d.png", "pie.png"};
+    private static final String[] IMG = new String[] {
+            "application-x-scilab-plot2d",
+            "application-x-scilab-Matplot",
+            "application-x-scilab-grayplot",
+            "application-x-scilab-Sgrayplot",
+            "application-x-scilab-champ",
+            "application-x-scilab-histplot",
+            "application-x-scilab-mesh",
+            "application-x-scilab-surf",
+            "application-x-scilab-hist3d",
+            "application-x-scilab-contour2d",
+            "application-x-scilab-pie" };
 
     private static final String CREATE = "Create";
 
-    private SwingScilabVariableEditor editor;
-    private int type;
-    private boolean onSelection;
+    private final SwingScilabVariableEditor editor;
+    private final int type;
+    private final boolean onSelection;
 
     /**
      * Constructor
@@ -107,6 +112,7 @@ public final class PlotAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
@@ -188,10 +194,11 @@ public final class PlotAction extends CallBack {
     public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
         final PushButton button = ScilabPushButton.createPushButton();
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/actions/plot.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("plot"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         final JPopupMenu popup = new JPopupMenu() {
+                @Override
                 public void show(Component c, int x, int y) {
                     SwingScilabPushButton but = (SwingScilabPushButton) button.getAsSimplePushButton();
                     super.show(but, 0, but.getBounds(null).height);
@@ -214,6 +221,7 @@ public final class PlotAction extends CallBack {
         popup.pack();
 
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CallBack(null) {
+                @Override
                 public void callBack() {
                     if (!popup.isVisible()) {
                         popup.show(null, 0, 0);
@@ -236,7 +244,7 @@ public final class PlotAction extends CallBack {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new PlotAction(editor, title, onSelection));
         menu.setText(title);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setIcon(new ImageIcon(PATHTOIMG + IMG[map.get(title)]));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(IMG[map.get(title)])));
 
         return menu;
     }

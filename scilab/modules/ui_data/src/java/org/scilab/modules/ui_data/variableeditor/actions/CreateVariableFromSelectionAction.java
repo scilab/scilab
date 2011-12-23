@@ -13,9 +13,9 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Dialog.ModalityType;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -31,10 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -42,6 +39,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.UI_data;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -57,7 +55,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
     private static final String CREATE = "Create";
     private static final int GAP = 5;
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -81,6 +79,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         int[] cols = table.getSelectedColumns();
@@ -102,7 +101,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
         final String[] ret = new String[]{ "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/rrze_table.png").getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table")).getImage());
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -144,12 +143,14 @@ public final class CreateVariableFromSelectionAction extends CallBack {
         dialog.setContentPane(panel);
 
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                 }
             });
 
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     dialog.dispose();
                     ret[0] = textField.getText();
@@ -157,6 +158,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
             });
 
         textField.addKeyListener(new KeyAdapter() {
+                @Override
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {
@@ -187,7 +189,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CreateVariableFromSelectionAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/actions/variable-from-selection.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("variable-from-selection"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

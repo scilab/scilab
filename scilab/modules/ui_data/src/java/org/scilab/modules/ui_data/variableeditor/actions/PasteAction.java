@@ -20,13 +20,10 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
-
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -34,6 +31,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -46,7 +44,7 @@ public final class PasteAction extends CallBack {
     private static final String KEY = "OSSCKEY V";
     private static final String PASTE = "Paste";
 
-    private SwingScilabVariableEditor editor;
+    private final SwingScilabVariableEditor editor;
 
     /**
      * Constructor
@@ -70,6 +68,7 @@ public final class PasteAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         JTable table = editor.getCurrentTable();
         int col = table.getSelectedColumn();
@@ -105,7 +104,7 @@ public final class PasteAction extends CallBack {
         if (vr.size() == 1 && ((Vector) vr.get(0)).size() == 1 && row < oldRows && col < oldCols) {
             model.setValueAtAndUpdate(true, true, ((Vector) vr.get(0)).get(0), row, col);
         } else {
-            Vector oldVector = (Vector) model.cloneDatas();
+            Vector oldVector = model.cloneDatas();
             model.setValues(vr, row, col);
             model.updateFullMatrix(oldVector, oldRows, oldCols);
         }
@@ -121,7 +120,7 @@ public final class PasteAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new PasteAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-paste.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-paste"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

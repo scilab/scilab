@@ -25,7 +25,6 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 import javax.swing.JButton;
@@ -36,6 +35,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -120,9 +120,8 @@ public class SetupDialog extends JDialog {
 
         this.parameters = parameters;
 
-        Icon scilabIcon = new ImageIcon(System.getenv("SCI")
-                + "/modules/gui/images/icons/scilab.png");
-        Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+        ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        Image imageForIcon = scilabIcon.getImage();
         setLayout(new GridBagLayout());
         setIconImage(imageForIcon);
         setTitle(XcosMessages.SETUP_TITLE);

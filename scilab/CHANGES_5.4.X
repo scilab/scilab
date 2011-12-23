@@ -1,3 +1,21 @@
+ 	    Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
+            =========================================================
+
+
+Unitary testing
+===============
+
+* external modules are now managed by out of the box by test_run
+Example: test_run('SCI/contrib/toolbox_skeleton')
+(See bug #9834)
+
+
+Graphical User Interface
+========================
+
+* bug 4978 fixed - Icons did not follow the Tango norm.
+
+
 CLI console:
 ============
 
@@ -14,10 +32,45 @@ CLI console:
             the line. 
 
 
+Javasci
+=======
+
+* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve 
+a sparse but not to send it to Scilab).
+
+* Javasci supports struct datatypes under the form of an MList  (Javasci is
+able to retrieve a struct but not to send it to Scilab).
+
+
+Xcos
+====
+
+* bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
+                     too large. It has been reduced to 1e-6.
+
+* bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+                     labeling when ports had not the same types.
+
+* bug #10340 fixed - Exception occured while moving the palette split pane to
+                     hide the block list and while using a palette diagram.
+
+* bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
+                     Scilab".
+
+
+Bug fixes
+========= 
+
+* Bug #4813 fixed - Description of type 0 added in type help page.
+
+* Bug #9811 fixed - Output message of fminsearch was wrongly set.
+
+* Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
+                     operator.
+
 
  	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
-
 
 Scilab Desktop
 ===============
@@ -187,7 +240,7 @@ Xcos
 * Bug #9506 fixed - Some libraries dependencies were not loaded at
                    xcos_toolbox_skeleton startup.
 
-* Bug #9532 fixed Ð User-defined blocks had no icons when saved.
+* Bug #9532 fixed - User-defined blocks had no icons when saved.
 
 * Bug #9547 fixed - The about box was not localized due to a multi-line string.
 
@@ -214,7 +267,6 @@ Xcos
                    a file.
 
 * Bug #10003 fixed - The MAXMIN block did not update its display according to
-                    the settings.
 
 * Bug #10048 fixed - Blocks which use superblocks now loop over their children 
 to find the parameters dialog to open.
@@ -227,10 +279,12 @@ to find the parameters dialog to open.
 * Bug #10302 fixed - LaTeX labels were not rendered.
 
 
+
 Localization
 =============
 
 * Czech localization by ZbynÄk Schwarz
+
 
 * Bug #10032 fixed - Force the unset of the environment variable LANGUAGE to
                     tackle some issues. Mac OS X locale detection did not take into account
@@ -400,7 +454,7 @@ Statistics
 
 * Bug #9846 fixed - stdevf() gave zero result when a single row matrix was evaluated.
 
-* Bug #7387 fixed Ð The help pages for rand and grand functions gave wrong advice.
+* Bug #7387 fixed - The help pages for rand and grand functions gave wrong advice.
 
 
 Linear Algebra
@@ -871,7 +925,7 @@ Bug Fixes
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
 
-* Bug #9682 fixed Ð 3-D assignment into a 2-D array of integers issued an error.
+* Bug #9682 fixed \D0 3-D assignment into a 2-D array of integers issued an error.
 
 * Bug #9696 fixed - An error in an if expression inside a try make Scilab froze.
 
@@ -1008,4 +1062,3 @@ Known Issues
   Uninstall / disable Audio Hijack should fix this problem.
   Airfoil, also developed by Rogue Amoeba, has been reported as also breaking
   Scilab.
-

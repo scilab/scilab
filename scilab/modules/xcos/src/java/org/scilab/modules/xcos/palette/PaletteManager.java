@@ -146,25 +146,25 @@ public final class PaletteManager {
     /**
      * Set visible or hide the palette.
      * 
-     * @param status
-     *            true to set visible, false to hide.
+     * @param new true to set visible, false to hide.
      */
-    public static void setVisible(final boolean status) {
+    public static void setVisible(final boolean newValue) {
         final PaletteManagerView tab = PaletteManagerView.get();
+        final boolean oldValue = isVisible();
 
-        if (status && tab == null) {
+        if (newValue && tab == null) {
             final boolean view = WindowsConfigurationManager
                     .restoreUUID(PaletteManagerView.DEFAULT_TAB_UUID);
             if (!view) {
                 PaletteManagerView.restore(null, true);
             }
-        } else {
+        } else if (oldValue) {
             ClosingOperationsManager
                     .startClosingOperation((SwingScilabTab) PaletteManagerView
                             .get());
         }
 
-        getInstance().firePropertyChange("visible", !status, status);
+        getInstance().firePropertyChange("visible", oldValue, newValue);
     }
 
     /**

@@ -12,10 +12,6 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.util.Iterator;
-import java.util.NavigableSet;
-import java.util.Set;
-import java.util.TreeSet;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +19,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Iterator;
+import java.util.NavigableSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -36,15 +36,16 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabLexer;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * OpenSourceFileOnKeywordAction Class
@@ -88,8 +89,9 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     /**
      * doAction
      */
+    @Override
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         KeywordEvent kwe = sep.getKeywordEvent(sep.getSelectionEnd());
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
         if (ScilabLexerConstants.isOpenable(kwe.getType())) {
@@ -163,7 +165,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
         mainFrame = new JFrame();
         mainFrame.setAlwaysOnTop(true);
-        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         windowAlreadyExist = true;
@@ -207,6 +209,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
         mainFrame.setContentPane(panelFrame);
 
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
                     mainFrame.dispose();
@@ -214,6 +217,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
             });
 
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
                     mainFrame.dispose();
@@ -225,6 +229,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
                 private String old = "";
 
+                @Override
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {
@@ -241,25 +246,34 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                     }
                 }
 
+                @Override
                 public void keyPressed(KeyEvent arg0) {
                     old = (String) comboComplete.getEditor().getItem();
                 }
 
+                @Override
                 public void keyTyped(KeyEvent arg0) { }
             });
 
         mainFrame.addWindowListener(new WindowListener() {
+                @Override
                 public void windowClosed(WindowEvent arg0) { }
+                @Override
                 public void windowDeiconified(WindowEvent arg0) { }
+                @Override
                 public void windowActivated(WindowEvent arg0) { }
 
+                @Override
                 public void windowClosing(WindowEvent arg0) {
                     OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
                     mainFrame.dispose();
                 }
 
+                @Override
                 public void windowDeactivated(WindowEvent arg0) { }
+                @Override
                 public void windowIconified(WindowEvent arg0) { };
+                @Override
                 public void windowOpened(WindowEvent arg0) { }
             });
 
@@ -275,7 +289,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
      * @param name of the macro
      */
     private void openSource(String name) {
-        openSource((ScilabEditorPane) getEditor().getTextPane(), name);
+        openSource(getEditor().getTextPane(), name);
     }
 
     /**

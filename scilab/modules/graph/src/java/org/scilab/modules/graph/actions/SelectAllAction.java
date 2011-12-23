@@ -29,7 +29,7 @@ public final class SelectAllAction extends OneBlockDependantAction {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.SELECT_ALL;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "edit-select-all.png";
+    public static final String SMALL_ICON = "edit-select-all";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_A;
 	/** Accelerator key for the action */
@@ -57,7 +57,8 @@ public final class SelectAllAction extends OneBlockDependantAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		getGraph(e).selectAll();
 	}
 }

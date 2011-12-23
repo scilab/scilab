@@ -1050,6 +1050,11 @@ the the JNI libraries."])],
         TESTNG=$PACKAGE_JAR_FILE
         AC_SUBST(TESTNG)
 
+        # JCommander - dependency of TestNG >= 6
+        AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
+        JCOMMANDER=$PACKAGE_JAR_FILE
+        AC_SUBST(JCOMMANDER)
+
         # Qdox (parses declarations and Javadoc) - dependency of TestNG
         AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
         QDOX=$PACKAGE_JAR_FILE
@@ -1742,6 +1747,9 @@ libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
+desktop/images/icons/Makefile
+desktop/images/Makefile
+desktop/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile

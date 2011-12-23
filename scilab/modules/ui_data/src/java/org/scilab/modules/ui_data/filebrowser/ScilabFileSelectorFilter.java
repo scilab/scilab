@@ -14,25 +14,19 @@ package org.scilab.modules.ui_data.filebrowser;
 
 import java.awt.Color;
 import java.awt.ContainerOrderFocusTraversalPolicy;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Collections;
 import java.util.regex.Pattern;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -43,8 +37,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultEditorKit;
 
-import org.scilab.modules.core.Scilab;
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -53,12 +48,12 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  */
 public class ScilabFileSelectorFilter extends JPanel {
 
-    private static boolean isWindows = Scilab.isWindowsPlateform();
+    private static boolean isWindows = (OS.get() == OS.WINDOWS);
     private static final int GAP = 3;
-    private static final Icon VALIDATE = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/filter.png");
+    private static final Icon VALIDATE = new ImageIcon(ScilabSwingUtilities.findIcon("filter"));
 
     private MyJTextField textfield;
-    private SwingScilabTreeTable stt;
+    private final SwingScilabTreeTable stt;
     private JCheckBox caseSensitive;
     private JCheckBox regexp;
     private JButton validate;
@@ -85,6 +80,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         setFocusTraversalPolicy(new ContainerOrderFocusTraversalPolicy());
 
         validate = new JButton(new CallBack(null) {
+                @Override
                 public void callBack() {
                     stt.setFilter(getPattern());
                 }
@@ -185,6 +181,7 @@ public class ScilabFileSelectorFilter extends JPanel {
             addFocusListener(this);
             getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
             getActionMap().put("ENTER", new CallBack(null) {
+                    @Override
                     public void callBack() {
                         stt.setFilter(getPattern());
                     }
@@ -205,6 +202,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public String getText() {
             if (isEmpty) {
                 return "";
@@ -216,6 +214,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void focusGained(FocusEvent e) {
             getDocument().addDocumentListener(this);
             if (isEmpty) {
@@ -227,6 +226,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void focusLost(FocusEvent e) {
             getDocument().removeDocumentListener(this);
             isEmpty = super.getText().isEmpty();
@@ -236,6 +236,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void insertUpdate(DocumentEvent e) {
             isEmpty = super.getText().isEmpty();
             testPattern();
@@ -244,6 +245,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void removeUpdate(DocumentEvent e) {
             isEmpty = super.getText().isEmpty();
             testPattern();
@@ -252,6 +254,7 @@ public class ScilabFileSelectorFilter extends JPanel {
         /**
          * {@inheritDoc}
          */
+        @Override
         public void changedUpdate(DocumentEvent e) { }
 
         /**
@@ -274,6 +277,7 @@ public class ScilabFileSelectorFilter extends JPanel {
 
             item = new JMenuItem(UiDataMessages.CLEAR);
             item.addActionListener(new ActionListener() {
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         MyJTextField.this.setText("");
                     }

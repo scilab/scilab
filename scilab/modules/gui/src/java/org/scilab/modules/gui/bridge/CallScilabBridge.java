@@ -52,9 +52,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -110,6 +108,7 @@ import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -603,8 +602,7 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("graphic-window")).getImage());
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
@@ -2840,7 +2838,7 @@ public class CallScilabBridge {
      * Class used to store Images in the clipboard
      */
     public static class ClipboardImage implements Transferable {
-        private Image image;
+        private final Image image;
 
         /**
          * Default constructor
@@ -2854,6 +2852,7 @@ public class CallScilabBridge {
          * DataFlavors of this transferable
          * @return the DataFlavors accepeted
          */
+        @Override
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[]{DataFlavor.imageFlavor};
         }
@@ -2863,6 +2862,7 @@ public class CallScilabBridge {
          * @param flavor the flavor to test
          * @return true if the flavor is supported
          */
+        @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
@@ -2873,6 +2873,7 @@ public class CallScilabBridge {
          * @return the contents
          * @throws UnsupportedFlavorException if the flavor is not supported by this transferable
          */
+        @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
             if (!DataFlavor.imageFlavor.equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);

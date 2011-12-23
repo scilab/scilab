@@ -120,7 +120,7 @@ public class ConsoleTab {
                     }
 
                     public String askForClosing(final List<SwingScilabTab> list) {
-                        return "Console";
+                        return "Scilab";
                     }
 
                     @Override

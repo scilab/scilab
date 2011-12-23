@@ -16,7 +16,8 @@ AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
 SUBDIRS= libs \
 	modules \
-	contrib
+	contrib \
+	desktop
 
 ACLOCAL_AMFLAGS = -I m4/
 
@@ -132,26 +133,8 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.png \
-$(top_srcdir)/desktop/puffin_128.png \
-$(top_srcdir)/desktop/puffin_256.png \
-$(top_srcdir)/desktop/puffin_32.png \
-$(top_srcdir)/desktop/puffin_48.png \
-$(top_srcdir)/desktop/puffin.png \
-$(top_srcdir)/desktop/puffin.icns \
-$(top_srcdir)/desktop/scilab.xml \
-$(top_srcdir)/desktop/scilab.icns
-
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
-
-# Desktop file
-# Note that here, it is datadir and NOT pkgdatadir
-desktopdir = $(datadir)/applications
-desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
-$(top_srcdir)/desktop/scilab-cli.desktop \
-$(top_srcdir)/desktop/scilab.desktop
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \

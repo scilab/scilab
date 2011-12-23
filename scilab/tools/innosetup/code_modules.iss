@@ -303,6 +303,11 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
             end;
 #endif
+        if (IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') )) then
+            begin
+                ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
+            end;
+
 
         ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 

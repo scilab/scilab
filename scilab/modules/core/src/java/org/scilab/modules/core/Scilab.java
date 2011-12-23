@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -51,10 +52,6 @@ import org.scilab.modules.gui.window.Window;
  */
 public class Scilab {
 
-    private static final String CLASS_NOT_FOUND = "Could not find class: ";
-
-    private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
-
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
 
@@ -65,8 +62,6 @@ public class Scilab {
     private static final String OSNAME = "os.name";
     private static final String MACOS = "mac";
 
-    private static String SCIDIR;
-
     private static boolean success;
     private static boolean finish;
     private static boolean exitCalled;
@@ -75,14 +70,18 @@ public class Scilab {
     private static List<Runnable> finalhooks = new ArrayList<Runnable>();
     private static List<Runnable> initialhooks = new ArrayList<Runnable>();
 
+    /**
+     * WARNING : mainView is directly referenced from a JNI even it's private.
+     * TODO : Better add getter for this variable.
+     */
     private Window mainView;
-
+    
     /**
      * Constructor Scilab Class.
      * @param mode Mode Scilab -NW -NWNI -STD -API
      */
     public Scilab(int mode) {
-        this.mode = mode;
+        Scilab.mode = mode;
         DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
 
         /*
@@ -91,8 +90,6 @@ public class Scilab {
          * race condition. See bug #4419
          */
         try {
-            SCIDIR = System.getenv("SCI");
-
             /*
              * Set Java directories to Scilab ones
              */
@@ -123,7 +120,7 @@ public class Scilab {
 
                 String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-                if (isWindowsPlateform()) {
+                if (OS.get() == OS.WINDOWS) {
                     scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
                 } else if (System.getProperty(OSNAME).toLowerCase().indexOf(MACOS) != -1) {
                     /** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
@@ -208,38 +205,14 @@ public class Scilab {
         //System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
         System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
 
-        if (isWindowsPlateform()) {
-            if (findWindowsVersion() >= VISTA_VERSION) {
+        if (OS.get() == OS.WINDOWS) {
+            if ((Double) OS.get().getVersion() >= VISTA_VERSION) {
                 // don't enable OpenGL because of aero
                 System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
             }
             // desactivate direct3d and direct draw under windows
             System.setProperty(DISABLE_DDRAW, ENABLE);
         }
-    }
-
-    /**
-     * @return true if the os is windows, false otherwise
-     */
-    public static boolean isWindowsPlateform() {
-        // get os name
-        return System.getProperty(OSNAME).toLowerCase().contains("windows");
-    }
-
-    /**
-     * Find the verion of windows used on the computer if one
-     * @return negative value if the OS is not windows, the version of windows otherwise
-     */
-    public static double findWindowsVersion() {
-        // default valu enot windows
-        double windowsVersion = -1.0;
-
-        if (isWindowsPlateform()) {
-            // windows plateform
-            return Double.valueOf(System.getProperty("os.version"));
-        }
-
-        return windowsVersion;
     }
 
     /**

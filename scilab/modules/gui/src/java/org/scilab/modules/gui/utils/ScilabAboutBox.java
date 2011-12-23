@@ -30,12 +30,11 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
 
 public class ScilabAboutBox {
 
-        private static Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+    private static Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
         private static Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
         /**
          * Constructor
@@ -100,6 +99,7 @@ public class ScilabAboutBox {
 
                 JButton close = new JButton(Messages.gettext("Close"));
                 close.addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent event) {
                                 aboutBox.dispose();
                                 ackBox.dispose();
@@ -114,6 +114,7 @@ public class ScilabAboutBox {
                 final String filename = ackFile;
                 final String finalAckTitle = ackTitle;
                 acknowledgements.addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent event) {
 
                                 StringBuilder contents = new StringBuilder();
@@ -174,6 +175,7 @@ final class ImagePanel extends JTextPane {
 
         Image background = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.png").getImage();
 
+        @Override
         public void paintComponent(Graphics g) {
                 g.drawImage(background, 0, 0, (int)getSize().getWidth(), (int)getSize().getHeight(), this);
                 super.paintComponent(g);

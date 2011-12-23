@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -114,8 +115,8 @@ public class PaletteManagerView extends SwingScilabTab implements Tab {
                 PaletteManager.getInstance());
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
-            PaletteManager.getInstance().firePropertyChange("visible", false, true);
         }
+        PaletteManager.getInstance().firePropertyChange("visible", false, true);
 
         ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,

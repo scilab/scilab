@@ -20,6 +20,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
 
@@ -29,7 +30,7 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  */
 public final class InsertRowAction extends CallBack {
 
-    private JTable table;
+    private final JTable table;
     
     /**
      * Constructor
@@ -44,6 +45,7 @@ public final class InsertRowAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         int row = ((TableVariableEditor) table).getPopupRow();
 	SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
@@ -61,7 +63,7 @@ public final class InsertRowAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new InsertRowAction(table, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/actions/short.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("short"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
