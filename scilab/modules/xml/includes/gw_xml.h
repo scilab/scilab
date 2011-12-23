@@ -18,9 +18,9 @@
 XML_SCILAB_IMPEXP int gw_xml(void);
 /*--------------------------------------------------------------------------*/
 int sci_xmlRead(char *fname, unsigned long fname_len);
-int sci_xmlClose(char *fname, unsigned long fname_len);
+int sci_xmlDelete(char *fname, unsigned long fname_len);
 int sci_xmlDump(char *fname, unsigned long fname_len);
-int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len);
+int sci_xmlGetOpenDocs(char *fname, unsigned long fname_len);
 int sci_xmlXPath(char *fname, unsigned long fname_len);
 int sci_percent_XMLDoc_e(char *fname, unsigned long fname_len);
 int sci_percent_XMLElem_e(char *fname, unsigned long fname_len);

@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len)
+int sci_xmlGetOpenDocs(char *fname, unsigned long fname_len)
 {
     int j = 1;
     SciErr err;

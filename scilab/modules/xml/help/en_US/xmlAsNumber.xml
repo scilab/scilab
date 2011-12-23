@@ -56,7 +56,7 @@
     // convert the result into doubles
     data = xmlAsNumber(xp)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

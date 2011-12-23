@@ -76,7 +76,7 @@
     doc.url = TMPDIR+"/foo.xml";
     doc
     xmlWrite(doc);
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection id="XMLElement">
@@ -118,7 +118,7 @@
     b.line
 
     xmlDump(first)
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
     </para>
   </refsection>
@@ -143,7 +143,7 @@
     first.attributes(1)
 
     xmlDump(first)
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection id="XMLNamespace">
@@ -159,7 +159,7 @@
     ns.href
     ns.prefix
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection id="XMLNodeList">
@@ -195,7 +195,7 @@
     // Get the nodes contents
     c.content
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection id="XMLNodeSet">
@@ -213,7 +213,7 @@
     // Or ...
     s.content
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection id="XMLValid">
@@ -230,7 +230,7 @@
     xmlValidate(doc, rng);
     xmlValidate(doc, schema);
 
-    xmlClose("all");
+    xmlDelete("all");
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

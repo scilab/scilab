@@ -18,4 +18,4 @@
 
 doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
 assert_checkequal(execstr("xmlWrite(doc, TMPDIR+''/A/B.xml'', %f)","errcatch"), 999);
-xmlClose(doc);
+xmlDelete(doc);

@@ -48,7 +48,7 @@
     xp = xmlXPath(doc, "//a");
     xmlRemove(xp);
     xmlDump(doc)
-    xmlClose(doc);
+    xmlDelete(doc);
 
     // Remove the first element
     doc = xmlReadStr("<root><a>Hello</a><b>Scilab</b><a>World</a></root>");
@@ -59,7 +59,7 @@
     xmlRemove(doc.root.children);
     xmlDump(doc)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

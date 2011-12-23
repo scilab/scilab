@@ -32,20 +32,20 @@ assert_checkequal(freeBooks.size,1);
 assert_checkequal(size(freeBooks),[1,1]); 
 assert_checkequal(freeBooks(1).content,"Scilab rox");
 
-xmlClose(xmlFile);
+xmlDelete(xmlFile);
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/sep_69_example.xml");
 titles=xmlXPath(xmlFile, "/root/hello");
 assert_checkequal(titles.size,2);
-xmlClose(xmlFile);
+xmlDelete(xmlFile);
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 content=xmlDump(xmlFile);
 assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[1,1]);
-xmlClose(xmlFile);
-// Close the file a second time
-assert_checkerror("xmlClose(xmlFile)",gettext("xmlClose: XML document does not exist."));
+xmlDelete(xmlFile);
+// Delete the file a second time
+assert_checkerror("xmlDelete(xmlFile)",gettext("xmlDelete: XML document does not exist."));
 
 
 xmlClasspath=xmlRead(SCI+"/etc/classpath.xml");
@@ -61,7 +61,7 @@ assert_checkequal(jarPath(1).attributes.load,"startup");
 assert_checkequal(jarPath(1).parent.name,"classpaths"); // it is the root dir
 
 
-xmlClose(xmlClasspath);
+xmlDelete(xmlClasspath);
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 xmlFile2=xmlRead(SCI+"/etc/classpath.xml");
@@ -72,10 +72,10 @@ assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[1,1]);
 assert_checktrue(length(content2)>0);
 assert_checktrue(size(content2)>=[1,1]);
-xmlClose(xmlFile);
-xmlClose(xmlFile2);
-// Close the file a second time
-assert_checkerror("xmlClose(xmlFile)","xmlClose: XML document does not exist.");
+xmlDelete(xmlFile);
+xmlDelete(xmlFile2);
+// Delete the file a second time
+assert_checkerror("xmlDelete(xmlFile)","xmlDelete: XML document does not exist.");
 
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
@@ -90,7 +90,7 @@ assert_checkequal(prices.content,["30.00","29.99","49.99","39.95","0.0"]);
 titlesEmpty=xmlXPath(xmlFile, "/bookstore/book/prices");
 assert_checkequal(length(titlesEmpty),0);
 
-xmlClose(xmlFile);
+xmlDelete(xmlFile);
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
 titles=xmlXPath(xmlFile, "/bookstore");
@@ -99,7 +99,7 @@ assert_checkequal(length(results),1);
 assert_checkequal(results.name,"book");
 assert_checkequal(results.content,"Everyday ItalianGiada De Laurentiis200530.00");
 assert_checkequal(results(1).children(1).content,"Everyday Italian");
-xmlClose(xmlFile);
+xmlDelete(xmlFile);
 
 doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
 
@@ -113,4 +113,4 @@ assert_checkequal(["A1","A2","A3"],xmlAsText(xp));
 xp = xmlXPath(e, "b");
 assert_checkequal(["Hello","World"],xmlAsText(xp));
 
-xmlClose(doc);
+xmlDelete(doc);

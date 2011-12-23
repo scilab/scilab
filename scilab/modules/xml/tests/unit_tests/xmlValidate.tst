@@ -30,4 +30,4 @@ xmlValidate(doc, rng);
 xmlValidate(doc, schema);
 
 
-xmlClose(doc, dtd, schema, rng);
+xmlDelete(doc, dtd, schema, rng);

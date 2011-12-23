@@ -56,7 +56,7 @@
 
     xmlValidate(doc, dtd);
 
-    xmlClose(doc, dtd);
+    xmlDelete(doc, dtd);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

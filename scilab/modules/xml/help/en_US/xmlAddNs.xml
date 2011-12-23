@@ -60,7 +60,7 @@
     doc.root.children(2) = b;
     xmlDump(doc)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

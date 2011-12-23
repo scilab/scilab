@@ -2,6 +2,11 @@
             =========================================================
 
 
+XML
+===
+
+* Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
+
 Unitary testing
 ===============
 

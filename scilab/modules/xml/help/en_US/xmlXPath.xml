@@ -92,7 +92,7 @@
     xp.name
     xp.content
 
-    xmlClose(doc);
+    xmlDelete(doc);
 
     // Query using namespaces
     doc = xmlReadStr("<root xmlns:scilab=""http://www.scilab.org""><scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>");
@@ -102,7 +102,7 @@
     xmlXPath(doc, "//scilab:a") // => error
     xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
 
-    xmlClose(doc);
+    xmlDelete(doc);
 
     // Query starting on an element
     doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
@@ -116,7 +116,7 @@
     xp = xmlXPath(e, "b");
     xmlAsText(xp)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

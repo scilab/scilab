@@ -66,7 +66,7 @@
     doc.root = root;
     xmlDump(doc)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

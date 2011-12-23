@@ -34,4 +34,4 @@ assert_checkequal(doc2.root.children(1).attributes.rib,"bar");
 assert_checkequal(doc2.root.children(1).children(1).name,"b");
 assert_checkequal(doc2.root.children(1).children(1).content,"Hello");
 
-xmlClose("all");
+xmlDelete("all");

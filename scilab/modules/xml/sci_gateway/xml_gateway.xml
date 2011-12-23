@@ -30,9 +30,9 @@
 
 -->
 <PRIMITIVE gatewayId="68" primitiveId="1" primitiveName="xmlRead" />
-<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlClose" />
+<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlDelete" />
 <PRIMITIVE gatewayId="68" primitiveId="3" primitiveName="xmlDump" />
-<PRIMITIVE gatewayId="68" primitiveId="4" primitiveName="xmlGetOpenStreams" />
+<PRIMITIVE gatewayId="68" primitiveId="4" primitiveName="xmlGetOpenDocs" />
 <PRIMITIVE gatewayId="68" primitiveId="5" primitiveName="xmlXPath" />
 <PRIMITIVE gatewayId="68" primitiveId="6" primitiveName="%XMLDoc_e" />
 <PRIMITIVE gatewayId="68" primitiveId="7" primitiveName="%XMLElem_e" />

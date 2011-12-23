@@ -58,7 +58,7 @@
     c = doc.root.children(1).children(2);
     xmlGetNsByHref(c, "http://www.scilab.org")
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

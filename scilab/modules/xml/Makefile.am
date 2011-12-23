@@ -52,8 +52,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_extraction.cpp \
 		      sci_gateway/cpp/sci_insertion.cpp \
 		      sci_gateway/cpp/sci_print.cpp \
-		      sci_gateway/cpp/sci_xmlGetOpenStreams.cpp \
-		      sci_gateway/cpp/sci_xmlClose.cpp \
+		      sci_gateway/cpp/sci_xmlGetOpenDocs.cpp \
+		      sci_gateway/cpp/sci_xmlDelete.cpp \
 		      sci_gateway/cpp/sci_xmlDump.cpp \
 		      sci_gateway/cpp/sci_xmlReadStr.cpp \
 		      sci_gateway/cpp/sci_xmlFormat.cpp \

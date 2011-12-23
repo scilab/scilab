@@ -10,49 +10,53 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlGetOpenStreams" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlDelete" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>xmlGetOpenStreams</refname>
-    <refpurpose>Get all open XML documents or all open XML Validation files.</refpurpose>
+    <refname>xmlDelete</refname>
+    <refpurpose>Delete a XML document</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      list = xmlGetOpenStreams()
+      xmlDelete(obj1 [, obj2, [...]])
+      xmlDelete("all")
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>list</term>
+        <term>obji</term>
         <listitem>
-          <para>list, a list containing all the open documents or XML Validation files</para>
+          <para>a mlist type XMLDoc or XMLValid, the document to delete</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function is useful to close open streams (and essentially to free the memory).</para>
+    <para>Delete a document or a validation file (in fact free all the memory associated with this object).</para>
+    <para>When the syntax xmlDelete("all") is used, all the open documents will be deleted.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
-    doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
-    l = xmlGetOpenStreams()
-    xmlClose("all");
+    root = doc.root
+    xmlDelete(doc);
+
+    // root is no more valid... so try to access it, will lead to an error
+    root
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
       </member>
     </simplelist>
   </refsection>

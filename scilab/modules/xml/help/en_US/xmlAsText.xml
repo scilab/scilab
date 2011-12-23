@@ -56,7 +56,7 @@
     // convert the result into a row of strings
     data = xmlAsText(xp)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

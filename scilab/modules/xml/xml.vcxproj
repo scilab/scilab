@@ -266,14 +266,14 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlAddNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_xmlClose.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlDelete.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDocument.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDump.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlElement.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlFormat.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByHref.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByPrefix.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenStreams.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenDocs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlIsValidObject.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />

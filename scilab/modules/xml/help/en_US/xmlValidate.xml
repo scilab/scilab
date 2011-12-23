@@ -88,8 +88,8 @@
     xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
     xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
 
-    // We close the all the open streams
-    xmlClose(doc, dtd, schema, rng);
+    // We delete the all the open documents
+    xmlDelete(doc, dtd, schema, rng);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
