@@ -422,11 +422,12 @@ public final class ConfigurationManager {
             Xcos.getInstance().addDiagram(f, graph);
 
             graph = loadPath(doc, graph);
+
+            graph.setDiagramTab(doc.getUuid());
         } catch (TransformerException e) {
             graph = null;
         }
 
-        graph.setDiagramTab(doc.getUuid());
         return graph;
     }
 
