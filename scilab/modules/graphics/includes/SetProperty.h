@@ -142,9 +142,6 @@ GRAPHICS_IMPEXP int sciSetAutoScale (char* pobj, BOOL value); /* SET */
 GRAPHICS_IMPEXP int sciInitZooming(char* pobj, BOOL value);
 GRAPHICS_IMPEXP int sciSetZooming (char* pobj, BOOL value); /* SET */
 
-GRAPHICS_IMPEXP int sciInitXorMode(char* pobj, int value);
-GRAPHICS_IMPEXP int sciSetXorMode (char* pobj, int value); /* SET */
-
 GRAPHICS_IMPEXP int sciInitVisibility (char* pobj, BOOL value);
 GRAPHICS_IMPEXP int sciSetVisibility (char* pobj, BOOL value); /* SET */
 

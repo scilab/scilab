@@ -264,11 +264,6 @@ int sci_xget(char *fname,unsigned long fname_len)
       PutLhsVar();
       return 0;
     }
-    else if(strcmp(cstk(l1),"alufunction") == 0)
-    {
-      x1[0] = sciGetXorMode(sciGetCurrentFigure());
-      x2 = 1;
-    }
     else if(strcmp(cstk(l1),"background") == 0)
     {
       x1[0] = sciGetBackground(sciGetCurrentSubWin());

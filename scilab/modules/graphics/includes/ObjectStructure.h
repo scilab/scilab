@@ -248,10 +248,6 @@ typedef struct
   BOOL autoscaling;
   /** Is zooming allowed                                               */
   BOOL zooming;
-  /** drawing xor mode                                                         */
-  int xormode;
-
-
 }/** */
 scigMode;
 

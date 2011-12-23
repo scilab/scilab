@@ -1768,65 +1768,6 @@ sciSetDefaultValues (void)
     return 0;
 }
 
-
-
-int sciInitXorMode( char * pobjUID, int value )
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        (sciGetGraphicMode (pobjUID))->xormode = value;
-        break;
-    case SCI_SUBWIN:
-        /* the value is inhirated by the parent */
-        sciSetXorMode (sciGetParentFigure (pobjUID), value);
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("graphic_mode");
-        return -1 ;
-        break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetXorMode
- * Sets the xor mode
- * @param char * pobjUID: the pointer to the entity
- * @param int value: the value of the xor mode
- * @return
- * @author Djalel ABDEMOUCHE
- * @see sciGetXorMode
- */
-int
-sciSetXorMode (char * pobjUID, int value)
-{
-
-    if ( sciGetXorMode( pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitXorMode( pobjUID, value ) ;
-
-}
-
 int sciInitVisibility( char * pobjUID, BOOL value )
 {
     // FIXME

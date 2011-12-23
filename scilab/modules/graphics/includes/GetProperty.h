@@ -99,7 +99,6 @@ GRAPHICS_IMPEXP double *sciGetClipping (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetAddPlot (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP int sciGetXorMode (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
 GRAPHICS_IMPEXP BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP BOOL sciGetResize (sciPointObj * pobj);  /* GET */

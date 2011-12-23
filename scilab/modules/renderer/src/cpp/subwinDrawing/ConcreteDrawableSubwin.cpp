@@ -258,7 +258,7 @@ void ConcreteDrawableSubwin::updateScale(void)
 
   sciPointObj * parentFigure = sciGetParentFigure(m_pDrawed);
   BOOL visible = sciGetVisibility(m_pDrawed);
-  int pixelMode = sciGetXorMode(parentFigure);
+  //int pixelMode = sciGetXorMode(parentFigure);
 
 
   // update the data by just calling

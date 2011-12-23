@@ -272,10 +272,6 @@ int sci_xset( char *fname, unsigned long fname_len )
             sciSetLineStyle(sciGetParent(subwin), x[0]);
             forceRedraw(subwin);
         }
-        else if ( strcmp(cstk(l1),"alufunction") == 0) {
-            sciSetXorMode(subwin, x[0]);
-            sciSetXorMode(sciGetParent(subwin), x[0]);
-        }
         else if ( strcmp(cstk(l1),"auto clear") == 0) {
             if ( x[0] == 1 )
             {
