@@ -57,6 +57,9 @@ Bug fixes
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
 
+* Bug #10402 fixed - FileBrowser threw an exception when a filter was set
+                     and the tree was expanded. 
+
 
  	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
