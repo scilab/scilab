@@ -44,7 +44,7 @@ int get_hidden_axis_color_property(char *pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, &piHiddenAxisColor);
 
-    if (iHiddenAxisColor == NULL)
+    if (piHiddenAxisColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color");
         return -1;
