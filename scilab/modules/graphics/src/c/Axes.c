@@ -141,10 +141,7 @@ void initSubWinSize( sciPointObj * pSubWin )
 void initSubWinBounds( sciPointObj * pSubWin )
 {
     double* dataBounds;
-    double* realDataBounds;
-    sciPointObj* axesModel;
-
-    axesModel = getAxesModel();
+    double* realDataBounds;   
 
     getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
     setGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
