@@ -44,7 +44,6 @@ public abstract class JavaCallBack extends CallBack {
 					// Only able to launch method Class.
 					runMe.invoke(invokedClass.getClass(), (Object[]) null);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -67,7 +66,6 @@ public abstract class JavaCallBack extends CallBack {
 					// Only able to launch method Class.
 					runMe.invoke(invokedClass.getClass(), (Object[]) null);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

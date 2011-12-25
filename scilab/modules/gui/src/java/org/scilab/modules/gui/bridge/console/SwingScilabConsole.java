@@ -250,7 +250,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         try {
             ((SciConsole) this).getCanReadUserInputValue().acquire();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -410,7 +409,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
             try {
                 doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
             } catch (BadLocationException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -419,7 +417,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
             doc.insertString(((JTextPane) this.getConfiguration().getInputCommandView()).getCaretPosition(),
                              clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
         } catch (BadLocationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -520,7 +517,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 /* Remove selected text */
                 doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
             } catch (BadLocationException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
