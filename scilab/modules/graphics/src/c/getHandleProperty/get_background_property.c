@@ -46,10 +46,5 @@ int get_background_property(char *pobjUID)
     }
 
     return sciReturnDouble(iBackground);
-
-/* deactivated for now, to be implemented */
-#if 0
-    return sciReturnDouble( sciGetBackgroundToDisplay( pobj ) ) ;
-#endif
 }
 /*------------------------------------------------------------------------*/
