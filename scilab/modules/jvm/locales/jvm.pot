@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-11-03 10:55+0100\n"
+"Revision-Date: 2011-12-26 15:30+0100\n"
 
 # File: sci_gateway/c/gw_jvm.c, line: 41
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
@@ -54,8 +54,8 @@ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 46
-# File: src/c/InitializeJVM.c, line: 48
+# File: src/c/InitializeJVM.c, line: 47
+# File: src/c/InitializeJVM.c, line: 49
 #, c-format
 msgid ""
 "\n"
@@ -63,18 +63,18 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 46
-# File: src/c/InitializeJVM.c, line: 73
-# File: src/c/JVM.c, line: 70
-# File: src/c/JVM.c, line: 85
-# File: src/c/JVM.c, line: 154
-# File: src/c/JVM.c, line: 188
-# File: src/c/JVM.c, line: 224
+# File: src/c/InitializeJVM.c, line: 47
+# File: src/c/InitializeJVM.c, line: 74
+# File: src/c/JVM.c, line: 87
+# File: src/c/JVM.c, line: 102
+# File: src/c/JVM.c, line: 171
+# File: src/c/JVM.c, line: 205
+# File: src/c/JVM.c, line: 241
 msgid "Error"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 58
+# File: src/c/InitializeJVM.c, line: 59
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -83,14 +83,14 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 62
+# File: src/c/InitializeJVM.c, line: 63
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 126
+# File: src/c/InitializeJVM.c, line: 127
 # File: src/c/createMainScilabObject.c, line: 34
 # File: src/c/createMainScilabObject.c, line: 70
 # File: src/c/createMainScilabObject.c, line: 99
@@ -98,13 +98,13 @@ msgid "Could not access to the Main Scilab Class:\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 135
+# File: src/c/InitializeJVM.c, line: 136
 msgid "Cannot execute initial hooks. Error:\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 70
-# File: src/c/JVM.c, line: 72
+# File: src/c/JVM.c, line: 87
+# File: src/c/JVM.c, line: 89
 #, c-format
 msgid ""
 "\n"
@@ -112,8 +112,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 85
-# File: src/c/JVM.c, line: 87
+# File: src/c/JVM.c, line: 102
+# File: src/c/JVM.c, line: 104
 #, c-format
 msgid ""
 "\n"
@@ -122,7 +122,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 110
+# File: src/c/JVM.c, line: 127
 #, c-format
 msgid ""
 "\n"
@@ -131,7 +131,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 119
+# File: src/c/JVM.c, line: 136
 #, c-format
 msgid ""
 "\n"
@@ -139,13 +139,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 120
+# File: src/c/JVM.c, line: 137
 #, c-format
 msgid "Error: %s\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 121
+# File: src/c/JVM.c, line: 138
 #, c-format
 msgid ""
 "If you are using a binary version of Scilab, please report a bug http://"
@@ -153,7 +153,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 122
+# File: src/c/JVM.c, line: 139
 #, c-format
 msgid ""
 "If you are using a self-built version of Scilab, update the script bin/"
@@ -161,13 +161,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 124
+# File: src/c/JVM.c, line: 141
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 125
+# File: src/c/JVM.c, line: 142
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
@@ -175,7 +175,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 160
+# File: src/c/JVM.c, line: 177
 #, c-format
 msgid ""
 "\n"
@@ -183,8 +183,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 188
-# File: src/c/JVM.c, line: 190
+# File: src/c/JVM.c, line: 205
+# File: src/c/JVM.c, line: 207
 #, c-format
 msgid ""
 "\n"
@@ -192,20 +192,20 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 202
+# File: src/c/JVM.c, line: 219
 #, c-format
 msgid "Error in the creation of the Java VM: %s\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 207
+# File: src/c/JVM.c, line: 224
 #, c-format
 msgid "Options:\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 224
-# File: src/c/JVM.c, line: 226
+# File: src/c/JVM.c, line: 241
+# File: src/c/JVM.c, line: 243
 #, c-format
 msgid ""
 "\n"
@@ -335,6 +335,6 @@ msgid ""
 msgstr ""
 
 #
-# File: src/nojvm/nojvm.c, line: 46
+# File: src/nojvm/nojvm.c, line: 26
 msgid "Scilab Java module not installed.\n"
 msgstr ""
