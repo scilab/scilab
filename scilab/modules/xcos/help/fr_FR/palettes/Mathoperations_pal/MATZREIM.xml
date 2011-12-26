@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) INRIA\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-          version="5.0-subset Scilab"
-          xml:id="MATZREIM"
-          xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATZREIM" xml:lang="fr_FR">
   <refnamediv>
     <refname>MATZREIM</refname>
     <refpurpose>Composition/décomposition complexe</refpurpose>
@@ -99,23 +91,32 @@
   </refsection>
   <refsection id="Description_MATZREIM">
     <title>Description</title>
-
     <para>
       Ce bloc décompose une matrice de nombres complexes en séparant les parties réelles et imaginaires ou
       compose une matrice de nombres complexes en joignant les deux parties en fonction de la valeur du
       paramètre <emphasis role="bold">decomposition type</emphasis>.
       Le tableau suivant résume le comportement du bloc :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left"><emphasis role="bold">Decomposition type</emphasis></td>
-        <td align="left"><emphasis role="bold">Entrées</emphasis></td>
-        <td align="left"><emphasis role="bold">Sorties</emphasis></td>
-        <td align="left"><emphasis role="bold">Opération</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Decomposition type</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Entrées</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Sorties</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Opération</emphasis>
+        </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">1</emphasis>
+        </td>
         <td align="left">Une entrée (complexe ou double)</td>
         <td align="left">Deux sorties (double)</td>
         <td align="left">
@@ -124,7 +125,9 @@
         </td>
       </tr>
       <tr>
-        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">2</emphasis>
+        </td>
         <td align="left">Deux entrées (doubles)</td>
         <td align="left">Une sortie (complexe)</td>
         <td align="left">
@@ -133,9 +136,7 @@
         </td>
       </tr>
     </informaltable>
-
-    <para />
-
+    <para/>
   </refsection>
   <refsection id="Dialogbox_MATZREIM">
     <title>Boîte de dialogue</title>
