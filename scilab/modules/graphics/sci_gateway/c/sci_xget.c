@@ -302,8 +302,18 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"lastpattern") == 0)
     {
-        x1[0] = sciGetNumColors(sciGetCurrentFigure());
-        x2 = 1;
+        int iNumColors = 0;
+        int* piNumColors = &iNumColors;
+
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
+
+        createScalarDouble(pvApiCtx, Rhs + 1, iNumColors);
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if(strcmp(cstk(l1),"line mode") == 0)
     {
