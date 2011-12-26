@@ -60,6 +60,9 @@ Bug fixes
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded. 
 
+* Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
+                     Pierre-Henri Jondot for the patch.
+
 
  	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
