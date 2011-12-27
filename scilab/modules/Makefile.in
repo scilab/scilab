@@ -121,9 +121,9 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 am__DEPENDENCIES_1 =
-@GUI_FALSE@libscilab_la_DEPENDENCIES = $(NO_GUI_LIBS) libscilab-cli.la \
+@GUI_FALSE@libscilab_la_DEPENDENCIES = $(NO_GUI_LIBS) $(ENGINE_LIBS) \
 @GUI_FALSE@	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
-@GUI_TRUE@libscilab_la_DEPENDENCIES = $(GUI_LIBS) libscilab-cli.la \
+@GUI_TRUE@libscilab_la_DEPENDENCIES = $(GUI_LIBS) $(ENGINE_LIBS) \
 @GUI_TRUE@	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
@@ -465,7 +465,7 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la 
+pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
 libscilab_cli_la_SOURCES = 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
@@ -559,11 +559,11 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 # Core modules
-@GUI_FALSE@libscilab_la_LIBADD = $(NO_GUI_LIBS) libscilab-cli.la \
+@GUI_FALSE@libscilab_la_LIBADD = $(NO_GUI_LIBS) $(ENGINE_LIBS) \
 @GUI_FALSE@	$(OTHER_LIBS) $(EXTERNAL_LIBS) $(am__append_5)
 
 # Core modules
-@GUI_TRUE@libscilab_la_LIBADD = $(GUI_LIBS) libscilab-cli.la \
+@GUI_TRUE@libscilab_la_LIBADD = $(GUI_LIBS) $(ENGINE_LIBS) \
 @GUI_TRUE@	$(OTHER_LIBS) $(EXTERNAL_LIBS) $(am__append_5)
 all: all-recursive
 
