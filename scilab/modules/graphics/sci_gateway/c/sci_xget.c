@@ -317,63 +317,89 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"line mode") == 0)
     {
-        if (sciGetIsLine(sciGetCurrentSubWin()))
-        {
-            x1[0] = 1;
-        }
-        else
-        {
-            x1[0] = 0;
-        }
-        x2 = 1;
+        int iLineMode = 0;
+        int* lineMode = &iLineMode;
+
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_MODE__, jni_bool, &lineMode);
+
+        createScalarDouble(pvApiCtx, Rhs + 1, iLineMode);
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if(strcmp(cstk(l1),"pixmap") == 0)
     {
-        if (sciGetPixmapMode(sciGetCurrentFigure()))
-        {
-            x1[0] = 1;
-        }
-        else
-        {
-            x1[0] = 0;
-        }
-        x2 = 1;
+        getOrCreateDefaultSubwin();
+        get_pixmap_property(getCurrentFigure());
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if(strcmp(cstk(l1),"white") == 0)
     {
-        x1[0] = sciGetNumColors(sciGetCurrentFigure()) + 2;
-        x2 = 1;
+        int iNumColors = 0;
+        int* piNumColors = &iNumColors;
+
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
+
+        /* White is lqst colormap index + 2 */
+        createScalarDouble(pvApiCtx, Rhs + 1, iNumColors + 2);
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if(strcmp(cstk(l1),"wresize") == 0)
     {
-        x1[0] = sciGetResize(sciGetCurrentFigure());
-        x2 = 1;
+        // autoresize property
+        getOrCreateDefaultSubwin();
+        get_auto_resize_property(getCurrentFigure());
+
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if( strcmp(cstk(l1),"clipgrf") == 0 )
     {
-        /* special treatement for xset("cligrf") */
-        if (sciGetIsClipping(sciGetCurrentSubWin()) == 0)
-        {
-            x1[0] = 1;
-        }
-        else
-        {
-            x1[0] = 0;
-        }
-        x2 = 1;
+        /* clip_state : 0 = off, 1 = on */
+        int iClipState = 0;
+        int* piClipState = &iClipState;
+
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, &piClipState);
+
+        createScalarDouble(pvApiCtx, Rhs + 1, iClipState);
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else if( strcmp(cstk(l1),"clipoff") == 0 )
     {
-        /* special treatement for xset("cligrf") */
-        if (sciGetIsClipping(sciGetCurrentSubWin()) == -1)
+        int iClipState = 0;
+        int* piClipState = &iClipState;
+
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, jni_int, &piClipState);
+
+        /* clip_state : 0 = off, 1 = on */
+        if (iClipState == 0)
         {
-            x1[0] = 1;
+            createScalarDouble(pvApiCtx, Rhs + 1, 1);
         }
         else
         {
-            x1[0] = 0;
+            createScalarDouble(pvApiCtx, Rhs + 1, 0);
         }
-        x2 = 1;
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+
+        return 0;
     }
     else
     {
