@@ -16,6 +16,7 @@ Xcos
   - EVTDLY_c - Event delay
   - AFFICH_m - Display value
   - CLSS - Continuous state-space system
+  - SELECT_m - Selector block
 
 
 Unitary testing
