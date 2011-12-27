@@ -43,11 +43,7 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(LTLIBINTL)
+COMMON_LIBS = $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
