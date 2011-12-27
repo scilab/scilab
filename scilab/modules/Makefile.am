@@ -112,7 +112,7 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
+pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la 
 libscilab_la_SOURCES =
 libscilab_cli_la_SOURCES =
 
@@ -223,7 +223,7 @@ libscilab_la_LIBADD = $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD += libscilab-cli.la $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 if ENABLE_STATIC
 libscilab_la_LIBADD += $(ALL_LIBS)
