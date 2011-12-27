@@ -192,7 +192,7 @@ the delay and <inlinemediaobject><imageobject><imagedata fileref="../../../image
     </itemizedlist>
   </refsection>
   <refsection id="Example_EVTDLY_c">
-    <title>EVTDLY_c Example</title>
+    <title>Example</title>
     <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/EVTDLY_c_Example.xcos">
       <inlinemediaobject>
         <imageobject>

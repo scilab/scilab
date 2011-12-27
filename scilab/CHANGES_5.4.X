@@ -14,6 +14,7 @@ Xcos
 * New examples are provided in the documentation for the blocks:
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay
+  - AFFICH_m - Display value
 
 
 Unitary testing
