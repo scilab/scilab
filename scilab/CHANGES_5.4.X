@@ -12,7 +12,8 @@ Xcos
 ====
 
 * New examples are provided in the documentation for the blocks:
-  - ABS_VALUE
+  - ABS_VALUE - Absolute value
+  - EVTDLY_c - Event delay
 
 
 Unitary testing

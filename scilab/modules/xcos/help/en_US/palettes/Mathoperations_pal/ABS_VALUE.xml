@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_ABS_VALUE">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_ABS_VALUE">Interfacing function</xref>
             </para>
           </listitem>
