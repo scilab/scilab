@@ -15,6 +15,7 @@ Xcos
   - ABS_VALUE - Absolute value
   - EVTDLY_c - Event delay
   - AFFICH_m - Display value
+  - CLSS - Continuous state-space system
 
 
 Unitary testing
