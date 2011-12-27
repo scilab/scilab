@@ -166,6 +166,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_ABS_VALUE">
+    <title>ABS_VALUE Exemple</title>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/mathoperations_pal/ABS_VALUE_Example.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
+  </refsection>
   <refsection id="Interfacingfunction_ABS_VALUE">
     <title>Fonction d'interfaçage</title>
     <itemizedlist>

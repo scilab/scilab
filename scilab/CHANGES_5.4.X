@@ -7,6 +7,14 @@ XML
 
 * Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
 
+
+Xcos
+====
+
+* New examples are provided in the documentation for the blocks:
+  - ABS_VALUE
+
+
 Unitary testing
 ===============
 
