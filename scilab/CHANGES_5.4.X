@@ -17,6 +17,8 @@ Xcos
   - AFFICH_m - Display value
   - CLSS - Continuous state-space system
   - SELECT_m - Selector block
+  - NEGTOPOS_f - Threshold negative to positive
+
 
 
 Unitary testing
