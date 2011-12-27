@@ -139,7 +139,7 @@ static int sci_format_onerhs(char *fname)
                 unsigned int value = (int) dValue;
                 if (dValue != (double)value)
                 {
-                    Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 1);
+                    Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                     return 0;
                 }
 
@@ -255,13 +255,13 @@ static int sci_format_tworhs(char *fname)
 
     if (!isScalar(pvApiCtx, piAddressVarOne))
     {
-        Scierror(999,_("%s: Wrong size for  for input argument #%d.\n"),fname, 1);
+        Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 1);
         return 0;
     }
 
     if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong size for  for input argument #%d.\n"),fname, 2);
+        Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
         return 0;
     }
 
@@ -294,7 +294,7 @@ static int sci_format_tworhs(char *fname)
 
         if (v_value_d != (double)v_value)
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 1);
+            Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
             return 0;
         }
 
@@ -355,7 +355,7 @@ static int sci_format_tworhs(char *fname)
                 freeAllocatedSingleString(param);
                 param = NULL;
 
-                Scierror(999,_("%s: Wrong values for input argument #%d: A integer value expected.\n"), fname, 2);
+                Scierror(999,_("%s: Wrong values for input argument #%d: An integer value expected.\n"), fname, 2);
                 return 0;
             }
         }
@@ -371,7 +371,7 @@ static int sci_format_tworhs(char *fname)
             value = (int)dvalue;
             if (dvalue != (double)value)
             {
-                Scierror(999,_("%s: Wrong values for input argument #%d: A integer value expected.\n"), fname, 1);
+                Scierror(999,_("%s: Wrong values for input argument #%d: An integer value expected.\n"), fname, 1);
                 return 0;
             }
 

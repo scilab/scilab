@@ -2194,7 +2194,7 @@ int C2F(getonepoly) (char *fname, int *topk, int *lw, int *it, int *md, char *na
 
     if (m * n != 1)
     {
-        Scierror(998, _("%s: Wrong type for argument %d : Polynomial expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(998, _("%s: Wrong type for argument %d: Polynomial expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     *md = *istk(ilp + 1) - *istk(ilp) - 1;

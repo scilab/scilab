@@ -376,7 +376,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<double>(ppdblRealMatrix, iRows);
@@ -412,7 +412,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<double>(ppdblRealMatrix, iRows);
@@ -478,7 +478,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         }
         catch (const GiwsException::JniException & e)
         {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
         }
 
         FREE(piLen);
@@ -518,7 +518,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         }
         catch (const GiwsException::JniException & e)
         {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
         }
 
         clearWrap<int>(ppiBool, iRows);
@@ -562,7 +562,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<char>(ppiInt8, iRows);
@@ -593,7 +593,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<short>(ppiUInt8, iRows);
@@ -624,7 +624,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<short>(ppiInt16, iRows);
@@ -655,7 +655,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<int>(ppiUInt16, iRows);
@@ -686,7 +686,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<int>(ppiInt32, iRows);
@@ -717,7 +717,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<long long int>(ppiUInt32, iRows);
@@ -757,7 +757,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         }
         catch (const GiwsException::JniException & e)
         {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
         }
 
         clearWrap<int>(ppiBool, iRows);
@@ -790,7 +790,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<double>(ppdblRealMatrix, iRows);
@@ -822,7 +822,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
             clearWrap<double>(ppdblRealMatrix, iRows);
