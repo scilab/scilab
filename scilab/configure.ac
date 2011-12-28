@@ -1748,7 +1748,6 @@ libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
 desktop/images/icons/Makefile
-desktop/images/Makefile
 desktop/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile

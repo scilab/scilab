@@ -9,7 +9,7 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
-SUBDIRS = images
+SUBDIRS = images/icons/
 
 # Desktop file
 # Note that here, it is datadir and NOT pkgdatadir
