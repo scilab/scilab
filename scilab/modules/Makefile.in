@@ -112,8 +112,9 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(am__append_5) $(am__append_6) $(EXTERNAL_LIBS) \
-	$(am__DEPENDENCIES_1)
+	$(am__append_5) $(am__append_6) \
+	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
+	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -551,8 +552,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 libscilab_la_LIBADD =  \
 	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(am__append_5) $(am__append_6) $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(am__append_7)
+	$(am__append_5) $(am__append_6) \
+	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
+	$(OTHER_LIBS) $(EXTERNAL_LIBS) $(am__append_7)
 all: all-recursive
 
 .SUFFIXES:

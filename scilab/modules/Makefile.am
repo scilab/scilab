@@ -220,7 +220,7 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli/libscilab-cli.la $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 if ENABLE_STATIC
 libscilab_la_LIBADD += $(ALL_LIBS)
