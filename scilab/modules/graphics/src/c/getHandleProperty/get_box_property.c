@@ -36,7 +36,7 @@ int get_box_property(char *pobjUID)
 {
     char* type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
@@ -48,7 +48,7 @@ int get_box_property(char *pobjUID)
         int iBoxType = 0;
         int* piBoxType = &iBoxType;
 
-        getGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, jni_int, &piBoxType);
+        getGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, jni_int, (void **) &piBoxType);
 
         if (piBoxType == NULL)
         {
@@ -79,7 +79,7 @@ int get_box_property(char *pobjUID)
         int iBox = 0;
         int* piBox = &iBox;
 
-        getGraphicObjectProperty(pobjUID, __GO_BOX__, jni_bool, &piBox);
+        getGraphicObjectProperty(pobjUID, __GO_BOX__, jni_bool, (void **) &piBox);
 
         if (piBox == NULL)
         {

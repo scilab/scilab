@@ -40,7 +40,7 @@ int get_links_property(char *pobjUID)
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, (void **) &piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -55,7 +55,7 @@ int get_links_property(char *pobjUID)
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_LINKS__, jni_string_vector, &links);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS__, jni_string_vector, (void **) &links);
 
     if (links == NULL)
     {

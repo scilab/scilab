@@ -39,14 +39,14 @@ int get_text_property(char *pobjUID)
     int* dimensions;
     char** textMatrix;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
 
     if (dimensions == NULL) {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
         return -1;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
     if (textMatrix == NULL)
     {

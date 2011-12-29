@@ -127,11 +127,11 @@ GRAPHICS_IMPEXP void cloneMenus(char *pModelUID, char *pCloneUID)
     char **pChildren = NULL;
     char *pChildType = NULL;
 
-    getGraphicObjectProperty(pModelUID, __GO_CHILDREN_COUNT__, jni_int, &piNbChildren);
-    getGraphicObjectProperty(pModelUID, __GO_CHILDREN__, jni_string_vector, &pChildren);
+    getGraphicObjectProperty(pModelUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piNbChildren);
+    getGraphicObjectProperty(pModelUID, __GO_CHILDREN__, jni_string_vector, (void **) &pChildren);
     for (iChild = iNbChildren - 1; iChild >= 0; iChild--)
     {
-        getGraphicObjectProperty(pChildren[iChild], __GO_TYPE__, jni_string, &pChildType);
+        getGraphicObjectProperty(pChildren[iChild], __GO_TYPE__, jni_string, (void **) &pChildType);
         if (strcmp(pChildType, __GO_UIMENU__) == 0)
         {
             pChildUID = cloneGraphicObject(pChildren[iChild]);
@@ -411,7 +411,6 @@ char *ConstructLegend(char *pparentsubwinUID, char **text, long long tabofhandle
     int *piLegendPresent = &iLegendPresent;
     int iVisible;
     int *piVisible = &iVisible;
-    int *tmp;
     int textDimensions[2];
     int fillMode;
     int legendLocation;
@@ -565,11 +564,9 @@ char *allocatePolyline(char *pparentsubwinUID, double *pvecx, double *pvecy, dou
     int *piClipState = &clipState;
     int lineClosed;
     int numElementsArray[2];
-    int polylineStyle;
     int visible = 0;
     int *piVisible = &visible;
     int zCoordinatesSet;
-    int *tmp;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
 
@@ -855,7 +852,6 @@ char *ConstructArc(char *pparentsubwinUID, double x, double y,
     char *type;
     double upperLeftPoint[3];
     double *clipRegion;
-    int *tmp;
     int visible = 0;
     int *piVisible = &visible;
     int arcDrawingMethod = 0;
@@ -986,7 +982,6 @@ char *ConstructRectangle(char *pparentsubwinUID, double x, double y,
     double *clipRegion;
     int visible = 0;
     int *piVisible = &visible;
-    int *tmp;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
@@ -1124,7 +1119,6 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     int hiddenColor = 0;
     int *piHiddenColor = &hiddenColor;
     int surfaceMode;
-    int *tmp;
 
     /* To be modified: the MVC does not allow Plot3d objects with color data yet */
     if (typeof3d == SCI_PLOT3D)
@@ -1357,7 +1351,6 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
     int *piClipRegionSet = &clipRegionSet;
     int clipState = 0;
     int *piClipState = &clipState;
-    int *tmp;
     int numElements;
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &typeParent);
@@ -1702,16 +1695,13 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
     int parentVisible = 0;
     int *piParentVisible = &parentVisible;
 
-    int lineMode;
-
     double *clipRegion;
     int clipRegionSet = 0;
     int *piClipRegionSet = &clipRegionSet;
-    int clipState = 0;
-    int *piClipState = &piClipState;
-    int *tmp;
+    int iClipState = 0;
+    int *piClipState = &iClipState;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **) &parentType);
 
     /* test using sciGetEntityType replaced by a test on the type string */
     if (strcmp(parentType, __GO_AXES__) != 0)
@@ -1786,7 +1776,7 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
 
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piParentVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **) &piParentVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     /* Clipping: to be checked */
@@ -1799,14 +1789,14 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **) &clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **) &piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
-    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **) &piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
 
     /* Initializes the default Contour values */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
@@ -1839,8 +1829,6 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     int numberArrows;
     int dimensions[2];
     int i;
-    int foreground;
-    int *tmp;
 
     double *clipRegion;
     double *arrowCoords;
@@ -1878,13 +1866,13 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **) &clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **) &piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **) &piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (type == 1)
@@ -2129,9 +2117,9 @@ char *ConstructCompoundSeq(int number)
 //        return NULL;
 //    }
 
-    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, &piNumberChildren);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piNumberChildren);
 
-    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, &children);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, (void **) &children);
 
     /*
      * Remove the last "number" created objects (located at the children list's head)
@@ -2258,7 +2246,7 @@ sciPointObj *sciStandardBuildOperations(sciPointObj * pObj, sciPointObj * parent
     //  return NULL ;
     //}
 
-    sciInitVisibility(pObj, TRUE);
+    sciInitVisibility(pObj->UID, TRUE);
 
     initUserData(pObj);
 
@@ -2269,37 +2257,6 @@ sciPointObj *sciStandardBuildOperations(sciPointObj * pObj, sciPointObj * parent
 
     return pObj;
 
-}
-
-/*----------------------------------------------------------------------------*/
-/**
- * Get the first subwin object within a figure.
- * If not exists, create one withj default value.
- * @return the first subwin or NULL if an error occured during subwin creation
- */
-sciPointObj *createFirstSubwin(sciPointObj * pFigure)
-{
-    if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) > 0)
-    {
-        /* return the first object */
-        return sciGetFirstTypedSelectedSon(pFigure, SCI_SUBWIN);
-    }
-    else
-    {
-        /* No subwins, create the default one */
-        sciPointObj *newSubwin = ConstructSubWin(pFigure);
-
-        if (newSubwin != NULL)
-        {
-            sciSetCurrentObj(newSubwin);
-            sciSetOriginalSubWin(pFigure, newSubwin);
-            return newSubwin;
-        }
-        else
-        {
-            return NULL;
-        }
-    }
 }
 
 /*----------------------------------------------------------------------------*/

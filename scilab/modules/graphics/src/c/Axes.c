@@ -109,10 +109,10 @@ void initSubWinAngles( sciPointObj * pSubWin )
     double* rotationAngles;
     char* axesModelUID = getAxesModel();
 
-    getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, &piViewType);
-    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, iViewType, jni_int, 1);
+    getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, (void **) &piViewType);
+    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, piViewType, jni_int, 1);
 
-    getGraphicObjectProperty(axesModelUID, __GO_ROTATION_ANGLES__, jni_double_vector, &rotationAngles);
+    getGraphicObjectProperty(axesModelUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **) &rotationAngles);
     setGraphicObjectProperty(pSubWin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
    /* To be implemented: last known values of the rotation angles when VIEW was equal to 3D */

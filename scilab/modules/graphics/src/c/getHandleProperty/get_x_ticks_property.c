@@ -46,7 +46,7 @@ int get_x_ticks_property(char *pobjUID)
 #endif
 
     /* retrieve number of ticks */
-    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
 
     if (piNbTicks == NULL)
     {
@@ -64,9 +64,9 @@ int get_x_ticks_property(char *pobjUID)
         char ** labels;
         double * positions;
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector, &positions);
+        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector, &labels);
+        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
         if (positions == NULL || labels == NULL)
         {

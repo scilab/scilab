@@ -61,8 +61,8 @@ int get_interp_color_vector_property(char *pobjUID)
     }
     else
     {
-        getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, &piInterpVector);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
+        getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void **) &piInterpVector);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
         return sciReturnRowVectorFromInt(piInterpVector, iNumElements);
     }

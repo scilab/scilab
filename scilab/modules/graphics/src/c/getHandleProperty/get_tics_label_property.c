@@ -72,9 +72,9 @@ int get_tics_labels_property(char *pobjUID)
     else
 #endif
     {
-        getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNumberTicksLabels);
+        getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
 
-        getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, &labels);
+        getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
         if (piNumberTicksLabels == NULL || labels == NULL)
         {

@@ -84,7 +84,7 @@ void sciClearFigure(sciPointObj * pFigure)
   destroyGraphicsSons(pFigure);
 
   /* recreate the subwindow */
-  createFirstSubwin(pFigure);
+  //createFirstSubwin(pFigure);
 
   forceHierarchyRedraw(pFigure);
 }

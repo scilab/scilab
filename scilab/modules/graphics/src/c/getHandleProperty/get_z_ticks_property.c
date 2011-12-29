@@ -56,9 +56,9 @@ int get_z_ticks_property(char *pobjUID)
         char ** labels;
         double * positions;
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, &positions);
+        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, &labels);
+        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
         if (positions == NULL || labels == NULL)
         {

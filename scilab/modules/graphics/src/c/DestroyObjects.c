@@ -180,45 +180,9 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
 int
 sciDelGraphicObj (sciPointObj * pthis)
 {
-     deleteGraphicObject(pthis->UID);
+    deleteGraphicObject(pthis->UID);
 
     return 0;
-
-#ifdef __OLD_IMPLEMENTATION__
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_LABEL:
-      Scierror(999, _("A Label object cannot be deleted.\n"));
-      return -1;
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_TEXT:
-    case SCI_FIGURE:
-			destroyGraphicHierarchy (pthis);
-      return 0;
-		case SCI_SUBWIN:
-			{
-				/* Special case here since for now there should be always one subwindow */
-				/* Inside a figure */
-				sciPointObj * parentFigure = sciGetParentFigure(pthis);
-				destroyGraphicHierarchy (pthis);
-
-				createFirstSubwin(parentFigure);
-				return 0;
-			}
-    default:
-      Scierror(999, _("This object cannot be deleted.\n"));
-      return -1;
-    }
-#endif
 }
 
 /*-----------------------------------------------------------------------------*/
