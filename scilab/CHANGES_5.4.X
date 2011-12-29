@@ -174,6 +174,7 @@ characters.
 * bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
 
 
+
 Scinotes
 ========
 
@@ -190,6 +191,11 @@ api_scilab
 
 * Construction of any type of lists is now way faster (300x in some cases).
 
+
+Performances
+============
+
+* hank function performances improved.
 
 Javasci
 =======
