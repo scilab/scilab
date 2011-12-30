@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
+import java.awt.GraphicsEnvironment;
+
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.DiagramComparator;
@@ -29,6 +31,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void addXcosDiagrams() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
                 1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -57,6 +63,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void addSuperBlocksDiagrams() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
                 1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -85,6 +95,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void checkOneHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -143,6 +157,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void checkTwoFilesHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -235,6 +253,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void checkValidHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
