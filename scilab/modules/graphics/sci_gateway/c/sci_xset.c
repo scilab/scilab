@@ -156,20 +156,10 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
     else if ( strcmp(cstk(l1),"font size") == 0) {
-        double defaultSubwinFontSize = sciGetFontSize(getAxesModel());
         double fontSize = xx[0];
-        // set also the default subwin font size in order
-        // to have the right font size for labels if they are created
-        sciSetFontSize(getAxesModel(), fontSize);
-        subwin = sciGetCurrentSubWin();
 
-        // restore previous font size
-        sciSetFontSize(getAxesModel(), defaultSubwinFontSize);
-
-        sciSetFontSize(subwin, fontSize);
-        sciSetFontSize(sciGetParent(subwin), fontSize);
-        forceRedraw(subwin);
-    }  
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    }
     else if( strcmp(cstk(l1),"default") == 0 )
     {
         sciPointObj * pfigure = sciGetCurrentFigure();
@@ -181,45 +171,32 @@ int sci_xset( char *fname, unsigned long fname_len )
 
         ResetFigureToDefaultValues(pfigure);
     }
-    else if( strcmp(cstk(l1),"clipgrf") == 0 ) {
+    else if( strcmp(cstk(l1),"clipgrf") == 0 )
+    {
+        int clipState = 1;
         /* special treatement for xset("cligrf") */
-        sciPointObj * psubwin = sciGetCurrentSubWin();
-        sciSetIsClipping(psubwin,0);
-        forceRedraw(psubwin);
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if( strcmp(cstk(l1),"clipoff") == 0 ) {
+    else if( strcmp(cstk(l1),"clipoff") == 0 )
+    {
+        int clipState = 0;
         /* special treatement for xset("clipoff") */
-        sciPointObj * psubwin = sciGetCurrentSubWin();
-        sciSetIsClipping(psubwin,-1);
-        forceRedraw(psubwin);
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if( strcmp(cstk(l1),"hidden3d") == 0 ) {
+    else if( strcmp(cstk(l1),"hidden3d") == 0 )
+    {
         /* special treatement for xset("hidden3d") */
-        sciPointObj * psubwin = sciGetCurrentSubWin();
-        pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
-        forceRedraw(psubwin);
+        int hiddenColor = (int) x[0];
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1),"font") == 0) {
-        int defaultSubwinFontStyle = sciGetFontStyle(getAxesModel());
-        double defaultSubwinFontSize = sciGetFontSize(getAxesModel());
+    else if ( strcmp(cstk(l1),"font") == 0)
+    {
         int fontStyle = x[0];
         double fontSize = x[1];
 
-        // set also the default subwin font size in order
-        // to have the right font size for labels if they are created
-        sciSetFontStyle(getAxesModel(), fontStyle);
-        sciSetFontSize(getAxesModel(), fontSize);
-        subwin = sciGetCurrentSubWin();
-
-        // restore previous font size
-        sciSetFontStyle(getAxesModel(), defaultSubwinFontStyle);
-        sciSetFontSize(getAxesModel(), defaultSubwinFontSize);
-
-        sciSetFontStyle(subwin, fontStyle);
-        sciSetFontSize(subwin,  fontSize);
-        sciSetFontStyle(sciGetParent(subwin), fontStyle);
-        sciSetFontSize(sciGetParent(subwin), fontSize);
-        forceRedraw(subwin);
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
     }
     else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
     {
@@ -232,132 +209,133 @@ int sci_xset( char *fname, unsigned long fname_len )
             setCurrentFigure(pFigureUID);
         }
     }
-    else
+    else if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) )
     {
-        subwin = NULL;
-        if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {
-            sciSetForeground(subwin, x[0]);
-            if (sciGetSons((sciPointObj *) subwin) == (sciSons *)NULL) {/* added SS 20.04.04 */
-                /* if subwin is empty, set also the ticscolor and fontforeground */
-                pSUBWIN_FEATURE (subwin)->axes.ticscolor= x[0];
-                sciSetFontForeground(subwin,x[0]);
-            }
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"background") == 0) {
-            sciSetBackground(subwin, x[0]);
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"thickness") == 0) {
-            sciSetLineWidth(subwin, x[0]);
-            sciSetLineWidth(sciGetParent(subwin), x[0]);
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"line style") == 0) {
-            int lineStyle = (int) x[0];
-            setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
-        }
-        else if ( strcmp(cstk(l1),"mark") == 0) {
-            sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
-            sciSetIsMark(sciGetParent(subwin),1);
-            sciSetMarkStyle(subwin,x[0]);
-            sciSetMarkStyle(sciGetParent(subwin),x[0]);
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"colormap") == 0) {
-            sciSetColormap(sciGetParent(subwin), stk(lr),xm[0], xn[0]);
-        }
-        else if ( strcmp(cstk(l1),"dashes") == 0) {
-            sciSetLineStyle(subwin, x[0]);
-            sciSetLineStyle(sciGetParent(subwin), x[0]);
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"auto clear") == 0) {
-            if ( x[0] == 1 )
-            {
-                sciSetAddPlot(subwin, TRUE);
-                sciSetAddPlot(sciGetParent(subwin), TRUE);
-            }
-            else
-            {
-                sciSetAddPlot(subwin, FALSE);
-                sciSetAddPlot(sciGetParent(subwin), FALSE);
-            }
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"auto scale") == 0) {
-            if ( x[0] == 1 )
-            {
-                sciSetAutoScale(subwin, TRUE);
-                sciSetAutoScale(sciGetParent(subwin), TRUE);
-            }
-            else
-            {
-                sciSetAutoScale(subwin, FALSE);
-                sciSetAutoScale(sciGetParent(subwin), FALSE);
-            }
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"wresize") == 0) {
-            if ( x[0] == 1 )
-            {
-                sciSetResize(subwin, TRUE);
-                sciSetResize(sciGetParent(subwin), TRUE);
-            }
-            else
-            {
-                sciSetResize(subwin, FALSE);
-                sciSetResize(sciGetParent(subwin), FALSE);
-            }
-            forceRedraw(subwin);
-        }
-        else if ( strcmp(cstk(l1),"wpos") == 0) {
-            sciSetScreenPosition(sciGetParent(subwin), x[0], x[1]);
-        }
-        else if ( strcmp(cstk(l1),"wpdim") == 0) {
-            sciSetWindowDim(sciGetParent(subwin), x[0], x[1] ) ;
-        }
-        else if ( strcmp(cstk(l1),"wdim") == 0) {
-            sciSetDimension(sciGetParent(subwin), x[0], x[1] ) ;
+        int iColor = (int) x[0];
 
-        } /*Ajout A.Djalel le 10/11/03 */
-        else if ( strcmp(cstk(l1),"pixmap") == 0) {
-            sciSetPixmapMode(sciGetParent(subwin), x[0]);
-        }
-        else if ( strcmp(cstk(l1),"wshow") == 0) { /* a supprimer ce n'est pas une propriete mais une action */
-            showPixmap(sciGetParentFigure(subwin));
-        }
-        else if (strcmp(cstk(l1),"viewport") == 0) {
-            int viewport[4] = {x[0], x[1], 0, 0};
-            sciSetViewport(sciGetParentFigure(subwin), viewport);
-        }
-        else if (strcmp(cstk(l1),"wwpc") == 0) {
-            // clear pixmap
-            clearPixmap(sciGetParentFigure(subwin));
-        }
-        else if(strcmp(cstk(l1),"line mode") == 0)
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
+    }
+    else if ( strcmp(cstk(l1),"background") == 0)
+    {
+        int iColor = (int) x[0];
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
+    }
+    else if ( strcmp(cstk(l1),"thickness") == 0)
+    {
+        sciSetLineWidth(getOrCreateDefaultSubwin(), x[0]);
+    }
+    else if ( strcmp(cstk(l1),"line style") == 0)
+    {
+        int lineStyle = (int) x[0];
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+    }
+    else if ( strcmp(cstk(l1),"mark") == 0)
+    {
+        int markMode = 1;
+        int markStyle;
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
+
+        sciSetMarkStyle(getOrCreateDefaultSubwin(), x[0]);
+    }
+    else if ( strcmp(cstk(l1),"colormap") == 0)
+    {
+        getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, stk(lr), jni_double_vector, xm[0] * xn[0]);
+    }
+    else if ( strcmp(cstk(l1),"dashes") == 0)
+    {
+        sciSetLineStyle(subwin, x[0]);
+    }
+    else if ( strcmp(cstk(l1),"auto clear") == 0)
+    {
+        if ( x[0] == 1 )
         {
-            if (x[0] == 0)
-            {
-                sciSetIsLine(subwin, FALSE);
-            }
-            else
-            {
-                sciSetIsLine(subwin, TRUE);
-            }
-            forceRedraw(subwin);
+            sciSetAddPlot(subwin, TRUE);
+            sciSetAddPlot(sciGetParent(subwin), TRUE);
         }
         else
         {
-            Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-            return 0;
+            sciSetAddPlot(subwin, FALSE);
+            sciSetAddPlot(sciGetParent(subwin), FALSE);
         }
-
-        if(strcmp(cstk(l1),"window") != 0 && strcmp(cstk(l1),"wshow") != 0)
+    }
+    else if ( strcmp(cstk(l1),"auto scale") == 0)
+    {
+        if ( x[0] == 1 )
         {
-            // for wshow redraw already done
-            sciRedrawFigure();
+            sciSetAutoScale(subwin, TRUE);
+            sciSetAutoScale(sciGetParent(subwin), TRUE);
         }
+        else
+        {
+            sciSetAutoScale(subwin, FALSE);
+            sciSetAutoScale(sciGetParent(subwin), FALSE);
+        }
+    }
+    else if ( strcmp(cstk(l1),"wresize") == 0)
+    {
+        int iAutoResizeMode = x[0];
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
+    }
+    else if ( strcmp(cstk(l1),"wpos") == 0)
+    {
+       int figurePosition[2];
+       getOrCreateDefaultSubwin();
+
+       figurePosition[0] = x[0];
+       figurePosition[1] = x[1];
+       setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
+    }
+    else if ( strcmp(cstk(l1),"wpdim") == 0 || strcmp(cstk(l1),"wdim") == 0)
+    {
+       int figureSize[2];
+       getOrCreateDefaultSubwin();
+
+       figureSize[0] = x[0];
+       figureSize[1] = x[1];
+       setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
+    } /*Ajout A.Djalel le 10/11/03 */
+    else if ( strcmp(cstk(l1),"pixmap") == 0)
+    {
+        int iPixmapMode = x[0];
+        getOrCreateDefaultSubwin();
+
+        setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
+    }
+    else if ( strcmp(cstk(l1),"wshow") == 0)
+    {
+        /* a supprimer ce n'est pas une propriete mais une action */
+        showPixmap(sciGetParentFigure(subwin));
+    }
+    else if (strcmp(cstk(l1),"viewport") == 0)
+    {
+        int viewport[4] = {x[0], x[1], 0, 0};
+        getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
+    }
+    else if (strcmp(cstk(l1),"wwpc") == 0)
+    {
+        // clear pixmap
+        clearPixmap(sciGetParentFigure(subwin));
+    }
+    else if(strcmp(cstk(l1),"line mode") == 0)
+    {
+        if (x[0] == 0)
+        {
+            sciSetIsLine(subwin, FALSE);
+        }
+        else
+        {
+            sciSetIsLine(subwin, TRUE);
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+        return 0;
     }
 
     LhsVar(1)=0;
