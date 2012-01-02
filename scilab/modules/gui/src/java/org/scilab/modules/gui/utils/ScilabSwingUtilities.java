@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,6 +38,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -46,6 +49,7 @@ import javax.swing.JWindow;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
@@ -243,13 +247,20 @@ public final class ScilabSwingUtilities {
 
         final String filename = findIconHelper(icon, size, "Tango");
         if (filename != null) {
+            if (LOG.isLoggable(Level.INFO)) {
+                LOG.info(icon + '[' + size + ']' + " i " + filename);
+            }
             return filename;
         }
 
         final String fallback = lookupFallbackIcon(icon);
         if (fallback == null) {
-            System.err.println("Unable to found icon: " + icon + '[' + size + ']');
+            LOG.severe("Unable to found icon: " + icon + '[' + size + ']');
             return System.getenv("SCI") + "/modules/gui/images/icons/16x16/status/error.png";
+        }
+
+        if (LOG.isLoggable(Level.INFO)) {
+            LOG.info(icon + '[' + size + ']' + " f " + fallback);
         }
         return fallback;
     }
@@ -276,6 +287,8 @@ public final class ScilabSwingUtilities {
         }
     }
 
+    private static final Logger LOG = Logger.getLogger(ScilabSwingUtilities.class.getName());
+
     private static final String SCI = System.getenv("SCI");
     private static final String SEP = System.getProperty("file.separator");
     private static final String DOT = ".";
@@ -295,18 +308,27 @@ public final class ScilabSwingUtilities {
         THEME_BASENAME = new ArrayList<String>();
 
         /*
-         * Default themes
+         * Linux specific path
          */
-        THEME_BASENAME.add("~/.icons");
-        THEME_BASENAME.add("/usr/share/icons");
-        THEME_BASENAME.add("/usr/share/pixmaps");
+        switch (OS.get()) {
+        case UNIX:
+            THEME_BASENAME.add("~/.icons");
+            THEME_BASENAME.add("/usr/share/icons");
+            THEME_BASENAME.add("/usr/share/pixmaps");
+
+            THEME_BASENAME.add(SCI + "/../icons");
+            break;
+
+        default:
+            break;
+        }
 
         /*
          * Scilab embedded icons
          */
 
         final ArrayList<File> dirs = new ArrayList<File>();
-        
+
         // Append SCI/desktop and SCI/modules/xxx to the dirs
         dirs.add(new File(SCI + SEP + "desktop"));
         dirs.addAll(Arrays.asList(new File(SCI + SEP + "modules").listFiles(DIR_FILTER)));

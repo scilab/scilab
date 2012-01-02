@@ -1,5 +1,5 @@
-            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =================================================================
+ 	    Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
+            =========================================================
 
 
 XML
@@ -32,7 +32,8 @@ Example: test_run('SCI/contrib/toolbox_skeleton')
 Graphical User Interface
 ========================
 
-* Bug 4978 fixed - Icons did not follow the Tango norm.
+* Bug #4978 fixed - Icons did not follow the Tango norm.
+
 
 Scinotes
 ========
@@ -96,7 +97,7 @@ Compatibility functions
 
 
 Bug fixes
-=========
+========= 
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
@@ -901,7 +902,7 @@ Bug Fixes
 * Bug #7815 fixed - tohome() function erased previous and future commands in Scilab console.
 
 * Bug #8086 fixed - Some functions displayed a wrong error message when called
-                    without input argument.
+                   without input argument.
 
 * Bug #8243 fixed - xgeom demonstration renamed to geom3d.
 
