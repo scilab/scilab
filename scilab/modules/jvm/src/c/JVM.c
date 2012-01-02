@@ -25,14 +25,11 @@
 #include "getJvmOptions.h"
 /*--------------------------------------------------------------------------*/
 static JavaVM *jvm_SCILAB = NULL;
-
 /*--------------------------------------------------------------------------*/
 static BOOL HadAlreadyJavaVm = FALSE;
-
 /*--------------------------------------------------------------------------*/
 static JavaVMOption *jvm_options = NULL;
 static int nOptions = 0;
-
 /*--------------------------------------------------------------------------*/
 static void freeJavaVMOption(void)
 {
@@ -58,16 +55,19 @@ JavaVM *getScilabJavaVM(void)
     if (!jvm_SCILAB && IsFromJava())
     {
         /* If getScilabJavaVM is called from C called itself from JavaSci
-         * (in nwni mode) the function returns a JVM */
+        * (in nwni mode) the function returns a JVM */
         JavaVM *vm = 0;
         JavaVM **vmBuf = MALLOC(sizeof(JavaVM *) * 1);
         jsize size = 0;
 
-#ifdef _MSC_VER
+        if (!hasJvmSymbolsLoaded())
+        {
+            /* We load symbols of the current jvm already used */
+            LoadFunctionsJVM(NULL);
+        }
+
         SciJNI_GetCreatedJavaVMs(vmBuf, 1, &size);
-#else
-        JNI_GetCreatedJavaVMs(vmBuf, 1, &size);
-#endif
+
         if (size)
         {
             vm = *vmBuf;
@@ -97,7 +97,7 @@ JNIEnv *getScilabJNIEnv(void)
         {
 #ifdef _MSC_VER
             MessageBox(NULL, gettext("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"), gettext("Error"),
-                       MB_ICONEXCLAMATION | MB_OK);
+                MB_ICONEXCLAMATION | MB_OK);
 #else
             fprintf(stderr, _("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"));
 #endif
@@ -113,13 +113,13 @@ JNIEnv *getScilabJNIEnv(void)
     {
 #ifdef _MSC_VER
         MessageBox(NULL,
-                   gettext
-                   ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),
-                   gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
+            gettext
+            ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),
+            gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
 #else
         fprintf(stderr,
-                _
-                ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
+            _
+            ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
 #endif
     }
     return JNIEnv_SCILAB;
@@ -164,8 +164,8 @@ BOOL startJVM(char *SCI_PATH)
         else
         {
             /**
-			* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
-			*/
+            * http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
+            */
 #define JVM_OPTIONS_FILENAME_FORMAT "%s/etc/jvm_options.xml"
             char *jvm_options_filename = NULL;
 
@@ -259,7 +259,7 @@ BOOL startJVM(char *SCI_PATH)
     {
 #ifdef _MSC_VER
         MessageBox(NULL, gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"), gettext("Error"),
-                   MB_ICONEXCLAMATION | MB_OK);
+            MB_ICONEXCLAMATION | MB_OK);
 #else
         fprintf(stderr, gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"));
 #endif
@@ -270,7 +270,6 @@ BOOL startJVM(char *SCI_PATH)
     else
         return TRUE;
 }
-
 /*--------------------------------------------------------------------------*/
 BOOL finishJVM(void)
 {
@@ -284,11 +283,9 @@ BOOL finishJVM(void)
     freeJavaVMOption();
     return bOK;
 }
-
 /*--------------------------------------------------------------------------*/
 BOOL isItTheDisabledLib(void)
 {
     return FALSE;
 }
-
 /*--------------------------------------------------------------------------*/
