@@ -182,7 +182,7 @@ Typically the event input port is used to specify the signal period.
     </itemizedlist>
   </refsection>
   <refsection id="Example_GENSQR_f">
-    <title>Square wave generator: Example</title>
+    <title>Example</title>
     <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
           Open this exemple into Xcos
       </link></para>

@@ -57,6 +57,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_ABS_VALUE">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_ABS_VALUE">Fonction d'interfaçage</xref>
             </para>
           </listitem>
@@ -167,7 +172,7 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_ABS_VALUE">
-    <title>ABS_VALUE Exemple</title>
+    <title>Exemple</title>
     <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
       <inlinemediaobject>
         <imageobject>

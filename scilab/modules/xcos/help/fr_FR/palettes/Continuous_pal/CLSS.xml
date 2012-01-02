@@ -210,7 +210,7 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_CLSS">
-    <title>CLSS : Exemple</title>
+    <title>Exemple</title>
     <para>Cet exemple illustre l'utilisation du bloc CLSS pour simuler et afficher
     la forme d'onde en sortie <emphasis role="bold">y(t)=Vc(t)</emphasis> du circuit RLC ci-dessous.</para>
     <para>

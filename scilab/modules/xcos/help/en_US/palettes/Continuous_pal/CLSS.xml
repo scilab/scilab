@@ -230,7 +230,7 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_CLSS">
-    <title>CLSS Example</title>
+    <title>Example</title>
     <para>This sample example illustrates how to use CLSS block to simulate
     and display the output waveform <emphasis role="bold">y(t)=Vc(t)</emphasis> of the RLC circuit shown below.</para>
     <para>
