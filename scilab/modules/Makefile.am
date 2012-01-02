@@ -24,6 +24,7 @@ functions \
 parameters \
 boolean \
 cacsd \
+signal_processing \
 core \
 call_scilab \
 api_scilab \

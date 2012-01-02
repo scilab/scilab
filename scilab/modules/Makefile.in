@@ -147,19 +147,19 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
-	cacsd core call_scilab api_scilab data_structures \
-	differential_equations double elementary_functions integer \
-	intersci io linear_algebra localization polynomials \
-	special_functions time windows_tools sparse completion \
-	history_manager output_stream string hdf5 fftw statistics \
-	dynamic_link console arnoldi spreadsheet tclsci commons jvm \
-	action_binding renderer graphic_export gui graphics \
-	optimization symbolic randlib interpolation sound overloading \
-	m2sci development_tools compatibility_functions helptools \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	matio atoms graph xcos scinotes parallel modules_manager \
-	ui_data history_browser xml libscilab-cli types scicos_blocks \
-	scicos . javasci
+	cacsd signal_processing core call_scilab api_scilab \
+	data_structures differential_equations double \
+	elementary_functions integer intersci io linear_algebra \
+	localization polynomials special_functions time windows_tools \
+	sparse completion history_manager output_stream string hdf5 \
+	fftw statistics dynamic_link console arnoldi spreadsheet \
+	tclsci commons jvm action_binding renderer graphic_export gui \
+	graphics optimization symbolic randlib interpolation sound \
+	overloading m2sci development_tools compatibility_functions \
+	helptools umfpack demo_tools genetic_algorithms \
+	simulated_annealing matio atoms graph xcos scinotes parallel \
+	modules_manager ui_data history_browser xml libscilab-cli \
+	types scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -437,19 +437,19 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
-	cacsd core call_scilab api_scilab data_structures \
-	differential_equations double elementary_functions integer \
-	intersci io linear_algebra localization polynomials \
-	special_functions time windows_tools sparse completion \
-	history_manager output_stream string hdf5 fftw statistics \
-	dynamic_link console arnoldi spreadsheet tclsci commons jvm \
-	action_binding renderer graphic_export gui graphics \
-	optimization symbolic randlib interpolation sound overloading \
-	m2sci development_tools compatibility_functions helptools \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	matio atoms hdf5 graph xcos scinotes parallel modules_manager \
-	ui_data history_browser xml libscilab-cli types \
-	$(am__append_1) scicos . $(am__append_2)
+	cacsd signal_processing core call_scilab api_scilab \
+	data_structures differential_equations double \
+	elementary_functions integer intersci io linear_algebra \
+	localization polynomials special_functions time windows_tools \
+	sparse completion history_manager output_stream string hdf5 \
+	fftw statistics dynamic_link console arnoldi spreadsheet \
+	tclsci commons jvm action_binding renderer graphic_export gui \
+	graphics optimization symbolic randlib interpolation sound \
+	overloading m2sci development_tools compatibility_functions \
+	helptools umfpack demo_tools genetic_algorithms \
+	simulated_annealing matio atoms hdf5 graph xcos scinotes \
+	parallel modules_manager ui_data history_browser xml \
+	libscilab-cli types $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
