@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2011 - Serge Steer
+// Copyright (C) INRIA - 2011 - Serge Steer
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -425,7 +425,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
       "ForegroundColor"     , [1 1 1]*0, ...
       "userdata"            , list(Fpv,fact), ...
       "callback"            , "wfirSliderpos2Value()")
-    if and(wtype<>["""kr""" """ch"""]) then Fps.visible="off";FPv.visible="off";end
+    if and(wtype<>["""kr""" """ch"""]) then Fps.visible="off";Fpv.visible="off";end
 
   set(Fpv,"userdata",Fps);
   
@@ -536,7 +536,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
   end
   if ret==1&or(winsid()==fig_id) then
     ok=%t
-    [ftype,forder,low,high,wtype,fpar,freq_ech]= wfirGetFilterParameters(gui.userdata)
+    [ftype,forder,low,high,wtype,fpar,freq_ech,ok]= wfirGetFilterParameters(gui.userdata)
     values=tlist(["wfir","ftype","forder","low","high","wtype","fpar","freq_ech"],ftype,forder,low,high,wtype,fpar,freq_ech)
     exprs= wfirGetFilterExprs(gui.userdata)
     delete(fig)
@@ -545,6 +545,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     ok=%f
     values=[]
     exprs=[]
+    if or(winsid()==fig_id) then delete(fig),end
   end
   clearglobal ret idle;
 
@@ -553,26 +554,35 @@ endfunction
 function wfirSliderpos2Value(hs)
   //hs handle on the slider
   if argn(2)<1 then hs=gcbo,end
+  H=hs.parent.userdata
   ud=hs.userdata 
   hv=ud(1);//handle on edition zone
   fact=ud(2)// scale factor
-  hv.string=string(hs.value/fact)
+  Sfreq=H(12);
+  freq_ech=evstr(Sfreq.string)
+  hv.string=string((hs.value/fact)*freq_ech);
   wfirUpdate(hs)
 endfunction
+
 function wfirValue2Sliderpos(hv)
   // hv handle on edition zone
   if argn(2)<1 then hv=gcbo,end
   H=hv.parent.userdata
   //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
   k=find(H==hv)
+  Sfreq=H(12)
+  hs=hv.userdata //handle on the slider
+  ud=hs.userdata
+  fact=ud(2)// scale factor
+
   Ok=%t
   if execstr("v="+hv.string,'errcatch')==0 then
     if k==8 then //Hcfv
       execstr("v2="+H(6).string)
-      if v<=v2|v<=0|v>0.5 then Ok=%f,end
+      if v<=v2|v<=0|v>0.5*fact then Ok=%f,end
     elseif k==6 then  //Lcfv
       execstr("v2="+H(8).string)
-      if v>=v2|v<=0|v>0.5 then Ok=%f,end
+      if v>=v2|v<=0|v>0.5*fact then Ok=%f,end
     elseif k==4 then  //Forderv
       if v<3 then Ok=%f,end
     elseif k==10 then  //Fpv
@@ -583,10 +593,9 @@ function wfirValue2Sliderpos(hv)
       
     end
     if Ok then
-      hs=hv.userdata //handle on the slider
-      ud=hs.userdata
-      fact=ud(2)// scale factor
-      hs.value=fact*v
+      Sfreq=H(12);
+      freq_ech=evstr(Sfreq.string)
+      hs.value=v*fact/freq_ech;
       hv.ForegroundColor=[0 0 0];
       wfirUpdate(hv)
     else
@@ -673,9 +682,9 @@ function wfirSetWindowType()
       label.visible="on";
       value.visible="on";
       
-      init=2.5;fact=100;
+      init=2.5;fact=50;
       value.string=string(init)
-      scroll.min=0
+      scroll.min=1d-10*fact
       scroll.max=10*fact
       scroll.value=init*fact
       d=scroll.userdata;d(2)=fact
@@ -687,7 +696,7 @@ function wfirSetWindowType()
       value.visible="on";
       init=0.2;fact=1000;
       value.string=string(init)
-      scroll.min=1d-10*fact
+      scroll.min=1d-6*fact
       scroll.max=0.5*fact
       scroll.value=init*fact
       d=scroll.userdata;d(2)=fact
@@ -698,9 +707,9 @@ function wfirSetWindowType()
       label.string=_("maximum side-lobe height")
       label.visible="on";
       value.visible="on";
-      init=0.001;fact=1000;
+      init=0.001;fact=500;
       value.string=string(init)
-      scroll.min=1d-10*fact
+      scroll.min=1d-6*fact
       scroll.max=1*fact
       scroll.value=init*fact
       d=scroll.userdata;d(2)=fact
@@ -746,18 +755,11 @@ function wfirSetSamplingFrequency()
     //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
     //update low and high cutoff frequencies
     r=newfreq/curfreq
-    Lcfv=H(6),Lcfs=H(7),Hcfv=H(8),Hcfs=H(9)
-    
-    Lcfs.min=Lcfs.min*r
-    Lcfs.max=Lcfs.max*r
-    Lcfs.value=Lcfs.value*r
+    Lcfv=H(6);
+    Hcfv=H(8);
     Lcfv.string=string(evstr(Lcfv.string)*r)
-    
-    Hcfs.min=Hcfs.min*r
-    Hcfs.max=Hcfs.max*r
-    Hcfs.value=Hcfs.value*r
     Hcfv.string=string(evstr(Hcfv.string)*r)
-   
+    
     Sfreq.userdata=newfreq
     wfirUpdate(gcbo)
   else
@@ -766,9 +768,10 @@ function wfirSetSamplingFrequency()
 
 endfunction
 
-function [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(H)
+function [ftype,forder,low,high,wtype,fpar,freq_ech,ok]=wfirGetFilterParameters(H)
 //  low,high,freq_ech are returned in Hz
 //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
+  ftype=[];forder=[];low=[];high=[];wtype=[];fpar=[];freq_ech=[];ok=%t
   FT=["lp","hp","bp","sb"]
   WT=["re","tr","hn","hm","kr","ch","ch"]
   Filtertype=H(2);
@@ -781,6 +784,14 @@ function [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(H)
   ftype=FT(Filtertype.value)
   wtype=WT(Windowtype.value)
   forder=evstr(Forderv.string)
+  if and(Forderv.ForegroundColor==[1 0 0])| ...
+        and(Lcfv.ForegroundColor==[1 0 0])| ...
+        and(Hcfv.ForegroundColor==[1 0 0])| ...
+        and(Sfreq.ForegroundColor==[1 0 0])| ...
+        and(Fpv.ForegroundColor==[1 0 0]) then 
+    ok=%f
+    return
+  end
   if or(ftype==["hp" "sb"]) then
     //force odd ordrer
     if 2*int(forder/2)==forder then forder=forder+1,end
@@ -797,11 +808,11 @@ function [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(H)
     high=evstr(Hcfv.string)
   end
   if Windowtype.value==5 //Kaiser
-    fpar=[evstr(Fpv.string) 0]
+    fpar=[max(1e-10,evstr(Fpv.string)) 0]
   elseif Windowtype.value==6 //Chebychev, main lobe constraint df in [0 0.5]
-    fpar=[-1 evstr(Fpv.string)]
+    fpar=[-1 max(1e-10,evstr(Fpv.string))]
   elseif Windowtype.value==7  //Chebychev, side lobe constraint dp>0
-    fpar=[evstr(Fpv.string) -1]
+    fpar=[ max(1e-10,evstr(Fpv.string)) -1]
   else
     fpar=[-1 -1]
   end
@@ -843,11 +854,13 @@ function  wfirUpdate(h)
   //  H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
   if H(1).value==1 then
     old=gcf()
-    [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(H)
+    [ftype,forder,low,high,wtype,fpar,freq_ech,ok]= wfirGetFilterParameters(H)
+    if ~ok then clearglobal idle;return,end
     cfreq=[low,high]/freq_ech;
     [filt,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar);
     fig=H(1).userdata
-    if ~is_handle_valid(fig) then 
+    if ~is_handle_valid(fig) then ...
+        
       //the window has been closed by user
       fig=scf(max(winsid())+1)
       a=gca();

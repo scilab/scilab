@@ -68,7 +68,7 @@ Xcos
 
 
 Bug fixes
-========= 
+=========
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
@@ -82,12 +82,15 @@ Bug fixes
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
-                     and the tree was expanded. 
+                     and the tree was expanded.
 
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
 * Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
+
+* Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
+                     and an erronous value was entered.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
