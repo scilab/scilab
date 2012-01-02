@@ -22,15 +22,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -207,22 +210,51 @@ public final class ExportAction extends DefaultAction {
     private String getFormat(XcosDiagram graph, JFileChooser fc,
             final File selected) {
         final String format;
-        // reference equality works here
-        if (fc.getFileFilter() == fc.getAcceptAllFileFilter()) {
+        final FileFilter fileFilter = fc.getFileFilter();
+
+        // accept all file filter or any custom file filter (generated
+        // by a <TAB> press)
+        if (!(fileFilter instanceof FileMask)) {
+
+            /*
+             * Get the extension from the file name. Fail safely.
+             */
             if (FileMask.getExtension(selected) == null
                     || FileMask.getExtension(selected).isEmpty()) {
-                JOptionPane.showMessageDialog(graph.getAsComponent(),
-                        Messages.gettext("Please specify a file format"),
-                        Messages.gettext("Error on export"),
-                        JOptionPane.ERROR_MESSAGE);
-                return null;
+                format = null;
             } else {
                 format = FileMask.getExtension(selected);
             }
+
         } else {
-            format = ((FileMask) fc.getFileFilter()).getExtensionFromFilter();
+            /*
+             * Get the format from the file mask
+             */
+            format = ((FileMask) fileFilter).getExtensionFromFilter();
+
         }
-        return format;
+        final boolean validFormat = isValidFormat(format);
+
+        /*
+         * When the format is unspecified, popup an error dialog
+         */
+        if (format == null || !validFormat) {
+            JOptionPane.showMessageDialog(graph.getAsComponent(), Messages.gettext("Please specify a valid file format"), Messages.gettext("Error on export"),
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (validFormat) {
+            return format;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean isValidFormat(String format) {
+        Iterator<ImageWriter> it = ImageIO.getImageWritersBySuffix(format);
+        Collection<String> externals = Arrays.asList(SVG, HTML, VML);
+
+        return it.hasNext() || externals.contains(format.toLowerCase());
     }
 
     /**

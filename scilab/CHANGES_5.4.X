@@ -1,5 +1,5 @@
- 	    Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =========================================================
+            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
+            =================================================================
 
 
 XML
@@ -18,7 +18,7 @@ Example: test_run('SCI/contrib/toolbox_skeleton')
 Graphical User Interface
 ========================
 
-* bug 4978 fixed - Icons did not follow the Tango norm.
+* Bug 4978 fixed - Icons did not follow the Tango norm.
 
 Scinotes
 ========
@@ -50,8 +50,11 @@ Xcos
 * Bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
 
-* bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
+* Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
+
+* Bug #10422 fixed - Exception occured when exporting with an unspecified
+                     format.
 
 
 Bug fixes
@@ -64,7 +67,7 @@ Bug fixes
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
 
-* bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
+* Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded. 
@@ -73,7 +76,7 @@ Bug fixes
                      Pierre-Henri Jondot for the patch.
 
 
- 	    Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
+            Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
 
 Scilab Desktop
