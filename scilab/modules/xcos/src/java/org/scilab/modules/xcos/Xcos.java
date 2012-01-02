@@ -400,7 +400,7 @@ public final class Xcos {
 
         XcosDiagram diag = null;
 
-        if (filename != null) {
+        if (filename != null && filename.exists()) {
             configuration.addToRecentFiles(filename);
 
             /*
@@ -426,7 +426,7 @@ public final class Xcos {
             }
 
             if (diag != null) {
-                addDiagram(filename, diag);
+                addDiagram(diag.getSavedFile(), diag);
             }
         }
 

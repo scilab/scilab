@@ -2135,9 +2135,8 @@ public class XcosDiagram extends ScilabGraph {
                 } else {
                     return null;
                 }
-            } else {
-                return null;
             }
+
         }
         info(XcosMessages.EMPTY_INFO);
         getUndoManager().clear();

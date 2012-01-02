@@ -108,7 +108,9 @@ public final class OpenAction extends DefaultAction {
 
         final File[] multiSelected = fc.getSelectedFiles();
         for (File file : multiSelected) {
-            Xcos.getInstance().open(file);
+            if (file != onlySelected) {
+                Xcos.getInstance().open(file);
+            }
         }
     }
 
