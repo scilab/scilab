@@ -77,6 +77,8 @@ Bug fixes
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
+* Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================

@@ -26,13 +26,18 @@ import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
+import javax.swing.InputMap;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
@@ -81,6 +86,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private boolean isLatex;
 
     private PlainView plainView;
+    private List<KeyStroke> keysForHistory;
 
     /**
      * Constructor
@@ -232,11 +238,17 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         this.addKeyListener(new KeyListener() {
                 public void keyPressed (KeyEvent e) {
-                    if (e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT) {
+                    if (keysForHistory == null) {
+                        getKeysForHistory();
+                    }
+
+                    // key char is equal to 65535 when the hit key is only shift, meta, alt,...
+                    if (e.getKeyChar() != 65535 && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT && !keysForHistory.contains(KeyStroke.getKeyStrokeForEvent(e))) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
                             console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
                     }
+
                     if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
                         && e.getKeyCode() == KeyEvent.VK_DELETE
                         && e.getKeyChar() != KeyEvent.VK_DELETE) {
@@ -352,5 +364,23 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
                 return SciInputCommandView.this;
             }
         };
+    }
+
+    /**
+     * Find the key used to navigate in the history
+     */
+    private void getKeysForHistory() {
+        ActionMap am = getActionMap();
+        InputMap im = getInputMap();
+        KeyStroke[] keys = im.keys();
+
+        keysForHistory = new ArrayList<KeyStroke>();
+
+        for (KeyStroke key : keys) {
+            Object a = im.get(key);
+            if (a.equals("PREVIOUS_HISTORY_LINE") || a.equals("NEXT_HISTORY_LINE")) {
+                keysForHistory.add(key);
+            }
+        }
     }
 }
