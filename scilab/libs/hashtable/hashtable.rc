@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "hashtable library for Scilab 5.x"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "hashtable library for Scilab 5.x"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "hashtable.dll"
             VALUE "ProductName", "hashtable library for Scilab 5.x"
             VALUE "ProductVersion", "5, 4, 0, 0"

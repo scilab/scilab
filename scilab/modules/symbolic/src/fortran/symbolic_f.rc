@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "symbolic_f module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "symbolic_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalCopyright", "Copyright (C) 2012"
             VALUE "OriginalFilename", "symbolic_f.dll"
             VALUE "ProductName", "symbolic_f module"
             VALUE "ProductVersion", "5, 4, 0, 0"
