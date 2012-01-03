@@ -382,7 +382,7 @@ function status = test_single(_module, _testPath, _testName)
     tail = [ tail; "xdel(winsid());sleep(1000);" ];
   end
 
-  tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
+  tail = [ tail; "exit(0);" ; "// <-- FOOTER END -->" ];
 
   //Build final test
   sciFile = [head ; sciFile ; tail];
