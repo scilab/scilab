@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
+import javax.swing.BoundedRangeModel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -268,11 +269,16 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
                 scilabHistoryTree.scrollPathToVisible(new TreePath(currentSessionNode.getPath()));
             }
         } else {
+            BoundedRangeModel model = scrollPane.getVerticalScrollBar().getModel();
+            // mustScroll is true if the knob is at the bottom of the scollbar.
+            boolean mustScroll = model.getValue() == model.getMaximum() - model.getExtent();
             DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(lineToAppend);
             scilabHistoryTreeModel.insertNodeInto(childNode, currentSessionNode, currentSessionNode.getChildCount());
             if (expand && isHistoryVisible()) {
                 scilabHistoryTree.expandRow(scilabHistoryTree.getRowCount() - 1);
-                scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));
+                if (mustScroll) {
+                    scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));
+                }
             }
         }
     }
@@ -522,9 +528,11 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
         public void paint (Graphics g) {
             if (first) {
                 g.setFont(getFont());
-                setRowHeight(g.getFontMetrics().getHeight());
+                int height = g.getFontMetrics().getHeight();
+                setRowHeight(height);
                 setLargeModel(true);
                 first = false;
+                scrollPane.getVerticalScrollBar().setUnitIncrement(height);
                 scrollAtBottom();
             }
             super.paint(g);

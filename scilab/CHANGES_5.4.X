@@ -92,6 +92,9 @@ Bug fixes
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
 
+* Bug #10408 fixed - In the history browser, the contents was scrolled even if the
+                     knob was not at the bottom.
+
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
