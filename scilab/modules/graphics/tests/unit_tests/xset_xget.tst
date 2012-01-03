@@ -38,8 +38,11 @@ assert_checkequal(out, 8);
 
 // font
 out = xget("font");
-assert_checkequal(out, [0 0]);
+assert_checkequal(out, [6 1]);
+xset("font", 8, 2);
+out = xget("font");
+assert_checkequal(out, [8 2]);
 
 // font size
 out = xget("font size");
-assert_checkequal(out, 0);
+assert_checkequal(out, 2);

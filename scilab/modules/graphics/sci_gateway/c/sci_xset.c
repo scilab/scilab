@@ -106,6 +106,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         x[i - 2] = (int)  *stk(lr);
         xx[i - 2] = *stk(lr);
     }
+
     if (strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0) {
         /* Xwindows limits dimensions to 2^16 */
         if ( (x[0]>65535)||(x[1]>65535)) {
@@ -150,7 +151,14 @@ int sci_xset( char *fname, unsigned long fname_len )
         int markStyle = (int) xx[0];
         int markSize = (int) xx[1];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
-        char *subwinUID = getOrCreateDefaultSubwin();
+        char *subwinUID = NULL;
+        if (Rhs != 3)
+        {
+            Scierror(999, _("%s: Wrong number of input argument %d expected.\n"),fname, 3);
+            return -1;
+        }
+
+        subwinUID = getOrCreateDefaultSubwin();
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
@@ -192,8 +200,13 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1),"font") == 0)
     {
-        int fontStyle = x[0];
-        double fontSize = x[1];
+        int fontStyle = (int) xx[0];
+        double fontSize = xx[1];
+        if (Rhs != 3)
+        {
+            Scierror(999, _("%s: Wrong number of input argument %d expected.\n"),fname, 3);
+            return -1;
+        }
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
@@ -283,7 +296,12 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1),"wpos") == 0)
     {
        int figurePosition[2];
-       getOrCreateDefaultSubwin();
+        if (Rhs != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input argument %d expected.\n"),fname, 2);
+            return -1;
+        }
+        getOrCreateDefaultSubwin();
 
        figurePosition[0] = x[0];
        figurePosition[1] = x[1];
@@ -291,8 +309,13 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1),"wpdim") == 0 || strcmp(cstk(l1),"wdim") == 0)
     {
-       int figureSize[2];
-       getOrCreateDefaultSubwin();
+        int figureSize[2];
+        if (Rhs != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input argument %d expected.\n"),fname, 2);
+            return -1;
+        }
+        getOrCreateDefaultSubwin();
 
        figureSize[0] = x[0];
        figureSize[1] = x[1];

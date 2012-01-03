@@ -169,8 +169,9 @@ int sci_xget(char *fname,unsigned long fname_len)
         getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, &pdblFontSize);
         getGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, jni_int, &piFontStyle);
 
-        pdblResult[0] = dblFontSize;
-        pdblResult[1] = iFontStyle;
+        pdblResult[0] = iFontStyle;
+        pdblResult[1] = dblFontSize;
+
 
         createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblResult);
         LhsVar(1) = Rhs + 1;
