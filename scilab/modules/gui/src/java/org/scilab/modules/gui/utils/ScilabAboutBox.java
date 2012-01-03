@@ -46,7 +46,7 @@ public class ScilabAboutBox {
         public static void displayAndWait() {
 
                 String[] contents = {Messages.gettext("The Scilab Consortium (DIGITEO)"),
-                                Messages.gettext("Copyright (c) 1989-2011 (INRIA)"),
+                                Messages.gettext("Copyright (c) 1989-2012 (INRIA)"),
                                 Messages.gettext("Copyright (c) 1989-2007 (ENPC)"),
                                 "",
                                 Messages.gettext("CeCILL License")};
