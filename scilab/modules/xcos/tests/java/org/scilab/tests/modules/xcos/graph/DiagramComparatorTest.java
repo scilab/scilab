@@ -11,20 +11,18 @@
  */
 package org.scilab.tests.modules.xcos.graph;
 
+import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
-import java.awt.GraphicsEnvironment;
-
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DiagramComparatorTest {
@@ -59,6 +57,8 @@ public class DiagramComparatorTest {
         for (XcosDiagram ref : testVector) {
             assert sorted.contains(ref);
         }
+
+        assertOnDiagramCollection(sorted);
     }
 
     @Test
@@ -147,12 +147,28 @@ public class DiagramComparatorTest {
         expected.add(r1diag1);
         expected.add(r1diag1b1diag1);
 
-        Assert.assertEquals(sorted, expected);
+        assertOnDiagramCollection(sorted);
 
         sorted.clear();
         Collections.shuffle(testVector);
         sorted.addAll(testVector);
-        Assert.assertEquals(sorted, expected);
+        assertOnDiagramCollection(sorted);
+    }
+
+    private void assertOnDiagramCollection(Collection<XcosDiagram> diags) {
+        int depth = 0;
+
+        for (XcosDiagram d : diags) {
+            int currentDepth = 0;
+
+            while (d instanceof SuperBlockDiagram) {
+                currentDepth++;
+                d = ((SuperBlockDiagram) d).getContainer().getParentDiagram();
+            }
+
+            assert currentDepth >= depth;
+            depth = currentDepth;
+        }
     }
 
     @Test
@@ -219,6 +235,7 @@ public class DiagramComparatorTest {
         sorted.addAll(testVector);
         assert sorted.size() == testVector.size();
 
+        assertOnDiagramCollection(sorted);
         assertOnTwoFilesHierarchy(sorted, root1, root2);
 
         /*
@@ -230,6 +247,7 @@ public class DiagramComparatorTest {
             sorted.clear();
             sorted.addAll(testVector);
 
+            assertOnDiagramCollection(sorted);
             assertOnTwoFilesHierarchy(sorted, root1, root2);
         }
 
@@ -312,5 +330,6 @@ public class DiagramComparatorTest {
             assert it.next() == diag1;
         }
 
+        assertOnDiagramCollection(sorted);
     }
 }
