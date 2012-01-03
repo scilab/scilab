@@ -75,6 +75,23 @@ Xcos
                      format.
 
 
+Signal Processing
+=================
+
+* New functions:
+  - conv - discrete 1-D convolution.
+  - conv2 - discrete 2-D convolution.
+  - convol2d - discrete 2-D convolution, using fft.
+
+* Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
+
+
+Compatibility functions
+=======================
+
+* 'mtlb_conv' obsolete. Please use 'conv' instead.
+
+
 Bug fixes
 =========
 

@@ -6,3 +6,7 @@ EXPORTS
 ; Libscilab
 ; --------------------------------------- 
 callFunctionFromGateway
+putlhsvar_
+intersci_
+com_
+checkrhs_
