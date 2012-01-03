@@ -39,6 +39,9 @@ Scinotes
 
 * Add shortcuts META+(UP|DOWN) to navigate between paragraphs
 
+* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+                     restoring.
+
 
 Javasci
 =======

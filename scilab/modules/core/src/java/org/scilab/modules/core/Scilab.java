@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -75,7 +76,7 @@ public class Scilab {
      * TODO : Better add getter for this variable.
      */
     private Window mainView;
-    
+
     /**
      * Constructor Scilab Class.
      * @param mode Mode Scilab -NW -NWNI -STD -API
@@ -127,36 +128,36 @@ public class Scilab {
                     System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
                     scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
                 } else {
-                	scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-                    
+                    scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+
                     /*
                      * Linux specific desktop integration
                      */
-                	if (!GraphicsEnvironment.isHeadless()) {
-	                    try {
-	                        Toolkit xToolkit = Toolkit.getDefaultToolkit();
-	                        java.lang.reflect.Field awtAppClassNameField =
-	                            xToolkit.getClass().getDeclaredField("awtAppClassName");
-	                        awtAppClassNameField.setAccessible(true);
-	                        
-	                        awtAppClassNameField.set(xToolkit, "Scilab");
-	                    } catch (Exception e) {
-	                        System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
-	                        System.err.println("Error: " + e.getLocalizedMessage());
-	                    }
-                	}
+                    if (!GraphicsEnvironment.isHeadless()) {
+                        try {
+                            Toolkit xToolkit = Toolkit.getDefaultToolkit();
+                            java.lang.reflect.Field awtAppClassNameField =
+                                xToolkit.getClass().getDeclaredField("awtAppClassName");
+                            awtAppClassNameField.setAccessible(true);
+
+                            awtAppClassNameField.set(xToolkit, "Scilab");
+                        } catch (Exception e) {
+                            System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
+                            System.err.println("Error: " + e.getLocalizedMessage());
+                        }
+                    }
                 }
 
                 /* Init the LookAndFeelManager all the time since we can
                  * create windows in the NW mode */
                 if (!GraphicsEnvironment.isHeadless()) {
-	                LookAndFeelManager lookAndFeel = new LookAndFeelManager();
-	
-	                if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
-	                    lookAndFeel.setLookAndFeel(scilabLookAndFeel);
-	                } else {
-	                    lookAndFeel.setSystemLookAndFeel();
-	                }
+                    LookAndFeelManager lookAndFeel = new LookAndFeelManager();
+
+                    if (lookAndFeel.isSupportedLookAndFeel(scilabLookAndFeel)) {
+                        lookAndFeel.setLookAndFeel(scilabLookAndFeel);
+                    } else {
+                        lookAndFeel.setSystemLookAndFeel();
+                    }
                 }
             } catch (java.lang.NoClassDefFoundError exception) {
                 System.err.println("Could not initialize graphics Environment");
@@ -293,14 +294,10 @@ public class Scilab {
      * This method should be called from C (realmain)
      */
     public static void executeInitialHooks() {
+        ScilabCommonsUtils.registerScilabThread();
+
         for (final Runnable hook : initialhooks) {
-            try {
-                SwingUtilities.invokeAndWait(hook);
-            } catch (InterruptedException e) {
-                System.err.println(e);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            hook.run();
         }
     }
 }

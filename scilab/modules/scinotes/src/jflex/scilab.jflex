@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.io.IOException;
 import javax.swing.text.Element;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
+
 %%
 
 %public
@@ -43,20 +45,22 @@ import javax.swing.text.Element;
     }
 
     public static void update() {
-        String[] vars = ScilabKeywords.GetVariablesName();
-	String[] funs = ScilabKeywords.GetFunctionsName();
-	String[] macs = ScilabKeywords.GetMacrosName();
-	variables.clear();
-        commands.clear();
-        macros.clear();
-	if (vars != null) {
-	    variables.addAll(Arrays.asList(vars));
-	}
-        if (funs != null) {
-	    commands.addAll(Arrays.asList(funs));
-	}
-	if (macs != null) {
-	    macros.addAll(Arrays.asList(macs));
+    	if (ScilabCommonsUtils.isScilabThread()) {
+            String[] vars = ScilabKeywords.GetVariablesName();
+	    String[] funs = ScilabKeywords.GetFunctionsName();
+	    String[] macs = ScilabKeywords.GetMacrosName();
+	    variables.clear();
+            commands.clear();
+            macros.clear();
+	    if (vars != null) {
+	        variables.addAll(Arrays.asList(vars));
+	    }
+            if (funs != null) {
+	        commands.addAll(Arrays.asList(funs));
+	    }
+	    if (macs != null) {
+	        macros.addAll(Arrays.asList(macs));
+	    }
 	}
     }
 

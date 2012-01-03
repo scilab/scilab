@@ -375,6 +375,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * This method *must not* be called on the EDT thread.
      */
     public static void scinotes() {
+        ScilabLexer.update();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -404,6 +405,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * This method *must not* be called on the EDT thread.
      */
     public static void scinotes(final String filePath) {
+        ScilabLexer.update();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -417,6 +419,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
+	    e.printStackTrace();
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         }
@@ -430,6 +433,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * This method *must not* be called on the EDT thread.
      */
     public static void scinotes(final String filePath, final int lineNumber, final String functionName) {
+        ScilabLexer.update();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -443,6 +447,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
+	    e.printStackTrace();
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         }
@@ -456,6 +461,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * This method *must not* be called on the EDT thread.
      */
     public static void scinotes(final String filePath, final String option) {
+        ScilabLexer.update();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -469,6 +475,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
+	    e.printStackTrace();
             LogFactory.getLog(SciNotes.class).error(e);
             throw new RuntimeException(e);
         }
@@ -479,6 +486,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param text the text which should be modified
      */
     public static void scinotesWithText(String text) {
+        ScilabLexer.update();
         launchSciNotes();
         ScilabEditorPane theTextPane;
         if (editor.getTabPane().getTabCount() != 0) {
@@ -608,7 +616,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         }
                     }
 
-                setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor", "32x32")).getImage());
+                    setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor", "32x32")).getImage());
 
                     if (navigator != null) {
                         navigator.updateTree();
@@ -1237,7 +1245,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
         tabPane.insertTab(title, null, sep.getEditorComponent(), "", ind);
         tabPane.setSelectedIndex(ind);
-        setContentPane(contentPane);
         initInputMap(sep);
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
@@ -1331,7 +1338,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
 
-        setContentPane(contentPane);
         activateHelpOnTyping(leftPane);
         activateHelpOnTyping(rightPane);
         initInputMap(leftPane);
@@ -1366,7 +1372,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             pane.setCaretPosition(0);
             activateHelpOnTyping(pane);
             tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getEditorComponent());
-            setContentPane(contentPane);
             initInputMap(pane);
             if (doc.getBinary()) {
                 pane.setBinary(true);
