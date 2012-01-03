@@ -160,7 +160,10 @@ libsciscicos_la_include_HEADERS = includes/scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
 includes/scicos_malloc.h \
-includes/scicos_math.h
+includes/scicos_math.h \
+includes/dynlib_scicos.h \
+includes/import.h
+
 
 
 #### scicos : cosf files ####

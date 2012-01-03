@@ -384,7 +384,8 @@ DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_root_DATA) \
 	$(nobase_libsciscicos_la_cosf_DATA)
 am__libsciscicos_la_include_HEADERS_DIST = includes/scicos.h \
 	includes/scicos-def.h includes/scicos_free.h \
-	includes/scicos_malloc.h includes/scicos_math.h
+	includes/scicos_malloc.h includes/scicos_math.h \
+	includes/dynlib_scicos.h includes/import.h
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -951,7 +952,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@includes/scicos-def.h \
 @XCOS_TRUE@includes/scicos_free.h \
 @XCOS_TRUE@includes/scicos_malloc.h \
-@XCOS_TRUE@includes/scicos_math.h
+@XCOS_TRUE@includes/scicos_math.h \
+@XCOS_TRUE@includes/dynlib_scicos.h \
+@XCOS_TRUE@includes/import.h
 
 
 #### scicos : cosf files ####

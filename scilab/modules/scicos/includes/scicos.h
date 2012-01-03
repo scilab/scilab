@@ -33,7 +33,12 @@ block of type 2 */
 of type 0 */
 #define TB_SIZE 500
 
+#ifdef _MSC_VER
+typedef void (*voidf) ();
+#else
 typedef void (*voidf) (void);
+#endif
+
 
 /* Blocks prototypes */
 #define I int
