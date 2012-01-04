@@ -242,8 +242,6 @@ sciFont;
  */
 typedef struct
 {
-  /** Are new Plot added to the old plot on the graphics window        */
-  BOOL addplot;
   /** Is zooming allowed                                               */
   BOOL zooming;
 }/** */

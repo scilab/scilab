@@ -265,13 +265,13 @@ int sci_xset( char *fname, unsigned long fname_len )
     {
         if ( x[0] == 1 )
         {
-            sciSetAddPlot(subwin, TRUE);
-            sciSetAddPlot(sciGetParent(subwin), TRUE);
+            //sciSetAddPlot(subwin, TRUE);
+            //sciSetAddPlot(sciGetParent(subwin), TRUE);
         }
         else
         {
-            sciSetAddPlot(subwin, FALSE);
-            sciSetAddPlot(sciGetParent(subwin), FALSE);
+            //sciSetAddPlot(subwin, FALSE);
+            //sciSetAddPlot(sciGetParent(subwin), FALSE);
         }
     }
     else if ( strcmp(cstk(l1),"wresize") == 0)
@@ -364,10 +364,10 @@ int xsetg(char * str,char * str1,int lx0,int lx1)
         sciPointObj * subwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
         if (strcmp(str1,"on")==0 )
         {
-            sciSetAddPlot( subwin,FALSE);
+            //sciSetAddPlot( subwin,FALSE);
         }
         else{
-            sciSetAddPlot( subwin,TRUE);
+            //sciSetAddPlot( subwin,TRUE);
         }
         forceRedraw(subwin);
     }

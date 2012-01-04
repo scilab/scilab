@@ -1586,59 +1586,6 @@ sciSetClipping (char * pobjUID, double pclip[4] )
 
 }
 
-
-int sciInitAddPlot( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-    switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        (sciGetGraphicMode (pobjUID))->addplot = value;
-        break;
-    case SCI_SUBWIN:
-        (sciGetGraphicMode (pobjUID))->addplot = value;
-        /*(sciGetGraphicMode (sciGetParentFigure(pobjUID)))->addplot = value;*/
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("auto_clear");
-        return -1 ;
-        break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetAddPlot
- * Tunrs ON or OFF the possibility to draw multi plots in one graphic.
- * If FALSE, plot is cleared before new drawing
- */
-int
-sciSetAddPlot (char * pobjUID, BOOL value)
-{
-    if ( sciGetAddPlot( pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAddPlot( pobjUID, value ) ;
-
-}
-
 int sciInitZooming( char * pobjUID, BOOL value )
 {
     // FIXME

@@ -432,7 +432,7 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
     {
         int autoclear;
         sciPointObj * subwin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
-        autoclear = !(sciGetAddPlot(subwin));
+        //autoclear = !(sciGetAddPlot(subwin));
         if (autoclear == 1)
         {
             strncpy(str1,"on",2);

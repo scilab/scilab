@@ -1247,52 +1247,6 @@ sciGetClipping (sciPointObj * pobj)
 
 }
 
-
-/**sciGetHighLight
-* Returns the highlight mode where the object are.
-*/
-
-
-/**sciGetAddPlot
-* Returns the mode of the adding plot
-* @param sciPointObj * pobj: the pointer to the entity
-* @return TRUE if yes, FALSE if no
-* @author Djalel ABDEMOUCHE
-* 25/10/2002
-*/
-BOOL
-sciGetAddPlot (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-        return (sciGetGraphicMode (pobj))->addplot;
-        break;
-    case SCI_SUBWIN:
-        return (sciGetGraphicMode (pobj))->addplot;
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("auto_clear");
-        return FALSE;
-        break;
-    }
-    return FALSE;
-}
-
-
 /**sciGetZooming
 * Returns the zooming state of the object is it or not zoomed.
 */
