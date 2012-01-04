@@ -36,15 +36,13 @@ import org.scilab.modules.localization.Messages;
 
 /**
  * Class to handle the different closing operations.
- * 
+ *
  * @author Calixte DENIZET
  */
 public class ClosingOperationsManager {
 
-    private static final String EXIT_CONFIRM = Messages
-            .gettext("Are you sure you want to close %s ?");
-    private static final String EXIT_CONFIRM_AND = Messages
-            .gettext("Are you sure you want to close %s and %s ?");
+    private static final String EXIT_CONFIRM = Messages.gettext("Are you sure you want to close %s ?");
+    private static final String EXIT_CONFIRM_AND = Messages.gettext("Are you sure you want to close %s and %s ?");
     private static final String EXIT = Messages.gettext("Exit");
     private static final String NULLUUID = new UUID(0L, 0L).toString();
     private static final Map<SwingScilabTab, ClosingOperation> closingOps = new HashMap<SwingScilabTab, ClosingOperation>();
@@ -58,20 +56,20 @@ public class ClosingOperationsManager {
 
     /**
      * Register a closing operation for a tab
-     * 
+     *
      * @param tab
      *            the associated tab
      * @param op
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-            ClosingOperation op) {
+                                                ClosingOperation op) {
         closingOps.put(tab, op);
     }
 
     /**
      * Register a closing operation for a tab
-     * 
+     *
      * @param tab
      *            the associated tab
      * @param op
@@ -83,7 +81,7 @@ public class ClosingOperationsManager {
 
     /**
      * Start a closing operation on root
-     * 
+     *
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationOnRoot() {
@@ -100,7 +98,7 @@ public class ClosingOperationsManager {
             for (SwingScilabTab tab : deps.get(null)) {
                 collectTabsToClose(tab, list);
             }
-            return close(list, null, true);
+            return close(list, null, true, true);
         } else {
             return true;
         }
@@ -108,18 +106,18 @@ public class ClosingOperationsManager {
 
     /**
      * Start a closing operation on a tab
-     * 
+     *
      * @param tab
      *            the tab to close
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperation(SwingScilabTab tab) {
-        return close(collectTabsToClose(tab), getWindow(tab), true);
+        return close(collectTabsToClose(tab), getWindow(tab), true, true);
     }
 
     /**
      * Start a closing operation on a tab
-     * 
+     *
      * @param tab
      *            the tab to close
      * @return true if the closing operation succeeded
@@ -130,30 +128,51 @@ public class ClosingOperationsManager {
 
     /**
      * Start a closing operation on a tab
-     * 
+     *
+     * @param tab
+     *            the tab to close
+     * @return true if the closing operation succeeded
+     */
+    public static boolean startClosingOperation(SwingScilabTab tab, boolean askToExit, boolean mustSave) {
+        return close(collectTabsToClose(tab), getWindow(tab), askToExit, mustSave);
+    }
+
+    /**
+     * Start a closing operation on a tab
+     *
+     * @param tab
+     *            the tab to close
+     * @return true if the closing operation succeeded
+     */
+    public static boolean startClosingOperation(Tab tab, boolean askToExit, boolean mustSave) {
+        return startClosingOperation((SwingScilabTab) tab.getAsSimpleTab(), askToExit, mustSave);
+    }
+
+    /**
+     * Start a closing operation on a tab
+     *
      * @param tab
      *            the tab to close
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationWithoutSave(SwingScilabTab tab) {
-        return close(collectTabsToClose(tab), getWindow(tab), false);
+        return close(collectTabsToClose(tab), getWindow(tab), true, false);
     }
 
     /**
      * Start a closing operation on a tab
-     * 
+     *
      * @param tab
      *            the tab to close
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationWithoutSave(Tab tab) {
-        return startClosingOperationWithoutSave((SwingScilabTab) tab
-                .getAsSimpleTab());
+        return startClosingOperationWithoutSave((SwingScilabTab) tab.getAsSimpleTab());
     }
 
     /**
      * Start a closing operation on a window
-     * 
+     *
      * @return true if the closing operation succeeded
      * @param window
      *            the window to close
@@ -161,12 +180,11 @@ public class ClosingOperationsManager {
     public static boolean startClosingOperation(SwingScilabWindow window) {
         if (window != null) {
             List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
-            Object[] dockArray = window.getDockingPort().getDockables()
-                    .toArray();
+            Object[] dockArray = window.getDockingPort().getDockables().toArray();
             for (int i = 0; i < dockArray.length; i++) {
                 collectTabsToClose((SwingScilabTab) dockArray[i], list);
             }
-            return close(list, window, true);
+            return close(list, window, true, true);
         }
 
         return true;
@@ -174,19 +192,18 @@ public class ClosingOperationsManager {
 
     /**
      * Start a closing operation on a window
-     * 
+     *
      * @param window
      *            the window to close
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperation(Window window) {
-        return startClosingOperation((SwingScilabWindow) window
-                .getAsSimpleWindow());
+        return startClosingOperation((SwingScilabWindow) window.getAsSimpleWindow());
     }
 
     /**
      * Add a dependency between two tabs
-     * 
+     *
      * @param parent
      *            the parent tab
      * @param child
@@ -203,20 +220,19 @@ public class ClosingOperationsManager {
 
     /**
      * Add a dependency between two tabs
-     * 
+     *
      * @param parent
      *            the parent tab
      * @param child
      *            the child tab
      */
     public static void addDependency(Tab parent, Tab child) {
-        addDependency((SwingScilabTab) parent.getAsSimpleTab(),
-                (SwingScilabTab) child.getAsSimpleTab());
+        addDependency((SwingScilabTab) parent.getAsSimpleTab(), (SwingScilabTab) child.getAsSimpleTab());
     }
 
     /**
      * Add a dependency between two tabs
-     * 
+     *
      * @param parent
      *            the parent tab
      * @param child
@@ -228,7 +244,7 @@ public class ClosingOperationsManager {
 
     /**
      * Add a dependency between two tabs
-     * 
+     *
      * @param parent
      *            the parent tab
      * @param child
@@ -240,7 +256,7 @@ public class ClosingOperationsManager {
 
     /**
      * Add a dependency with the root tab
-     * 
+     *
      * @param child
      *            the child tab
      */
@@ -250,7 +266,7 @@ public class ClosingOperationsManager {
 
     /**
      * Add a dependency with the root tab
-     * 
+     *
      * @param child
      *            the child tab
      */
@@ -260,7 +276,7 @@ public class ClosingOperationsManager {
 
     /**
      * Set the root element (normally the console)
-     * 
+     *
      * @param root
      *            the root element
      */
@@ -273,7 +289,7 @@ public class ClosingOperationsManager {
 
     /**
      * Set the root element (normally the console)
-     * 
+     *
      * @param root
      *            the root element
      */
@@ -283,7 +299,7 @@ public class ClosingOperationsManager {
 
     /**
      * Return the parent tab
-     * 
+     *
      * @param tab
      *            the child
      * @return the parent tab
@@ -300,7 +316,7 @@ public class ClosingOperationsManager {
 
     /**
      * Return the parent tab
-     * 
+     *
      * @param tab
      *            the child
      * @return the parent tab
@@ -330,17 +346,20 @@ public class ClosingOperationsManager {
 
     /**
      * Close a list of tabs
-     * 
+     *
      * @param list
      *            the list
      * @param window
      *            the window to use to center the modal dialog
+     * @param askToExit
+     *            if true, then ask to exit
+     * @param mustSave
+     *            if true, the configuration is saved
      * @return true if the closing operation succeeded
      */
-    private static final boolean close(List<SwingScilabTab> list,
-            SwingScilabWindow window, boolean mustSave) {
+    private static final boolean close(List<SwingScilabTab> list, SwingScilabWindow window, boolean askToExit, boolean mustSave) {
         boolean ret = false;
-        if (canClose(list, window)) {
+        if (!askToExit || canClose(list, window)) {
             ret = true;
             SwingScilabTab console = null;
             try {
@@ -361,11 +380,8 @@ public class ClosingOperationsManager {
                 for (SwingScilabTab tab : list) {
                     if (closingOps.get(tab) == null) {
                         tab.setVisible(false);
-                        tab.getActionButton("undock").getAction()
-                                .actionPerformed(null);
-                        Action action = ((SciClosingAction) tab
-                                .getActionButton(DockingConstants.CLOSE_ACTION)
-                                .getAction()).getAction();
+                        tab.getActionButton("undock").getAction().actionPerformed(null);
+                        Action action = ((SciClosingAction) tab.getActionButton(DockingConstants.CLOSE_ACTION).getAction()).getAction();
                         if (action == null) {
                             SwingScilabWindow win = getWindow(tab);
                             if (win != null) {
@@ -400,8 +416,7 @@ public class ClosingOperationsManager {
                         // all the tabs in the window are removed so we save the
                         // win state
                         if (mustSave) {
-                            WindowsConfigurationManager
-                                    .saveWindowProperties(win);
+                            WindowsConfigurationManager.saveWindowProperties(win);
                         }
                         windowsToClose.add(win);
                     } else {
@@ -411,8 +426,7 @@ public class ClosingOperationsManager {
                         // the window will stay opened
                         if (mustSave) {
                             for (SwingScilabTab tab : listTabs) {
-                                WindowsConfigurationManager.saveTabProperties(
-                                        tab, true);
+                                WindowsConfigurationManager.saveTabProperties(tab, true);
                             }
                         }
                     }
@@ -425,18 +439,14 @@ public class ClosingOperationsManager {
                     SwingScilabTab parent = getParent(tab);
                     if (list.contains(parent) || parent == null) {
                         if (parent != null) {
-                            WindowsConfigurationManager.makeDependency(
-                                    parent.getPersistentId(),
-                                    tab.getPersistentId());
+                            WindowsConfigurationManager.makeDependency(parent.getPersistentId(), tab.getPersistentId());
                         } else if (!tab.getPersistentId().equals(NULLUUID)) {
                             // if the parent is null, we make a dependency with
                             // the console which is the default root
-                            WindowsConfigurationManager.makeDependency(
-                                    NULLUUID, tab.getPersistentId());
+                            WindowsConfigurationManager.makeDependency(NULLUUID, tab.getPersistentId());
                         }
                     } else {
-                        WindowsConfigurationManager.removeDependency(tab
-                                .getPersistentId());
+                        WindowsConfigurationManager.removeDependency(tab.getPersistentId());
                     }
                 }
 
@@ -466,8 +476,7 @@ public class ClosingOperationsManager {
 
                 // It stays one docked tab so we remove close and undock action
                 for (SwingScilabWindow win : winsWithOneTab) {
-                    Object[] dockArray = win.getDockingPort().getDockables()
-                            .toArray();
+                    Object[] dockArray = win.getDockingPort().getDockables().toArray();
                     SwingScilabTab.removeActions((SwingScilabTab) dockArray[0]);
                 }
 
@@ -490,8 +499,7 @@ public class ClosingOperationsManager {
 
                 // We remove the tabs from the cache
                 for (SwingScilabTab tab : list) {
-                    ScilabTabFactory.getInstance().removeFromCache(
-                            tab.getPersistentId());
+                    ScilabTabFactory.getInstance().removeFromCache(tab.getPersistentId());
                     SwingScilabTab parent = getParent(tab);
                     List<SwingScilabTab> l = deps.get(parent);
                     if (l != null) {
@@ -517,7 +525,7 @@ public class ClosingOperationsManager {
 
     /**
      * Check if the tabs of the liste are closable or not
-     * 
+     *
      * @param list
      *            the list of tabs
      * @param window
@@ -525,11 +533,10 @@ public class ClosingOperationsManager {
      * @return true if all the tabs can be closed
      */
     private static final boolean canClose(List<SwingScilabTab> list,
-            SwingScilabWindow window) {
+                                          SwingScilabWindow window) {
         String question = makeQuestion(list);
         if (question != null) {
-            if (ScilabModalDialog.show(window, new String[] { question }, EXIT,
-                    IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+            if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
                 return false;
             }
         }
@@ -546,7 +553,7 @@ public class ClosingOperationsManager {
 
     /**
      * Make the question to ask to exit
-     * 
+     *
      * @param list
      *            the list of the tabs to close
      * @return the question
@@ -581,14 +588,14 @@ public class ClosingOperationsManager {
 
     /**
      * Collect the tabs and their children to close (recursive function)
-     * 
+     *
      * @param tab
      *            the current tab
      * @param list
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-            List<SwingScilabTab> list) {
+                                                 List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {
@@ -603,8 +610,7 @@ public class ClosingOperationsManager {
          * Update the tab list in case of hidden (eg. dynamic) dependencies
          */
         final List<SwingScilabTab> ro = Collections.unmodifiableList(list);
-        for (ListIterator<SwingScilabTab> it = list.listIterator(); it
-                .hasNext();) {
+        for (ListIterator<SwingScilabTab> it = list.listIterator(); it.hasNext();) {
             final SwingScilabTab t = it.next();
 
             final ClosingOperation op = closingOps.get(t);
@@ -616,13 +622,13 @@ public class ClosingOperationsManager {
 
     /**
      * Collect the tabs and their children to close (recursive function)
-     * 
+     *
      * @param tab
      *            the current tab
      * @return the list of the tabs to close
      */
     private static final List<SwingScilabTab> collectTabsToClose(
-            SwingScilabTab tab) {
+        SwingScilabTab tab) {
         final List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
         collectTabsToClose(tab, list);
         return list;
@@ -630,14 +636,13 @@ public class ClosingOperationsManager {
 
     /**
      * Get the window containing the given tab
-     * 
+     *
      * @param tab
      *            the tab
      * @return the corresponding window
      */
     private static final SwingScilabWindow getWindow(SwingScilabTab tab) {
-        Window win = (Window) UIElementMapper.getCorrespondingUIElement(tab
-                .getParentWindowId());
+        Window win = (Window) UIElementMapper.getCorrespondingUIElement(tab.getParentWindowId());
         if (win == null) {
             return null;
         }
@@ -669,13 +674,12 @@ public class ClosingOperationsManager {
 
         /**
          * Update the dependency list to handle specific dependency
-         * 
+         *
          * @param list
          *            the tab list to update
          * @param it
          *            the iterator to update
          */
-        public void updateDependencies(final List<SwingScilabTab> list,
-                final ListIterator<SwingScilabTab> it);
+        public void updateDependencies(final List<SwingScilabTab> list, final ListIterator<SwingScilabTab> it);
     }
 }
