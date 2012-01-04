@@ -440,30 +440,29 @@ public final class Xcos {
     }
 
     /**
-     * Close the currently opened file
+     * Close an opened file
      * 
      * @param f
      *            the file to close
+     * @param ask
+     *            ask for exiting and store the window config or not
      * @return close status (true on success, false on abort)
      * 
      */
-    public boolean close(final File f) {
+    private boolean close(final File f, final boolean ask) {
         final Collection<XcosDiagram> diags = diagrams.get(f);
         boolean status = true;
 
         try {
             onDiagramIteration = true;
 
-            for (Iterator<XcosDiagram> iterator = diags.iterator(); iterator
-                    .hasNext() && status;) {
+            for (Iterator<XcosDiagram> iterator = diags.iterator(); iterator.hasNext() && status;) {
                 final XcosDiagram graph = iterator.next();
 
                 if (graph.isOpened()) {
-                    final SwingScilabTab tab = ScilabTabFactory.getInstance()
-                            .getFromCache(graph.getDiagramTab());
+                    final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(graph.getDiagramTab());
 
-                    status = ClosingOperationsManager
-                            .startClosingOperation(tab);
+                    status = ClosingOperationsManager.startClosingOperation(tab, ask, ask);
                 }
             }
         } finally {
@@ -696,7 +695,7 @@ public final class Xcos {
      * This method must be called on the EDT thread. For other use, please use
      * the {@link #closeXcosFromScilab()} method.
      */
-    public static synchronized void closeSession() {
+    public static synchronized void closeSession(final boolean ask) {
         if (!SwingUtilities.isEventDispatchThread()) {
             LOG.error(CALLED_OUTSIDE_THE_EDT_THREAD);
         }
@@ -713,10 +712,9 @@ public final class Xcos {
         try {
             instance.onDiagramIteration = true;
 
-            for (Iterator<File> iterator = instance.diagrams.keySet()
-                    .iterator(); iterator.hasNext();) {
+            for (Iterator<File> iterator = instance.diagrams.keySet().iterator(); iterator.hasNext();) {
                 File file = iterator.next();
-                instance.close(file);
+                instance.close(file, ask);
                 iterator.remove();
             }
         } finally {
@@ -813,7 +811,7 @@ public final class Xcos {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
-                    closeSession();
+                    closeSession(false);
                     clearInstance();
                 }
             });

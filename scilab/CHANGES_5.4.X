@@ -89,6 +89,8 @@ Bug fixes
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
+* Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
+
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
