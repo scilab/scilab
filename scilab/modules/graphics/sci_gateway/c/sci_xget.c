@@ -17,6 +17,8 @@
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
 
+#include <stdio.h>
+
 #include "api_common.h"
 #include "api_double.h"
 
@@ -121,7 +123,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         pdblResult[0] = iMarkStyle;
         pdblResult[1] = iMarkSize;
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblResult);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, pdblResult);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
@@ -152,7 +154,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
         getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 4, clipBox);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 4, clipBox);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
         return 0;
@@ -173,7 +175,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         pdblResult[1] = dblFontSize;
 
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblResult);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, pdblResult);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
         return 0;
@@ -235,15 +237,15 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0)
     {
-        int piFigureSize[2];
+        int *piFigureSize;
         double pdblFigureSize[2];
 
         getOrCreateDefaultSubwin();
         getGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, jni_int_vector, (void **) &piFigureSize);
-        pdblFigureSize[0] = piFigureSize[0];
-        pdblFigureSize[1] = piFigureSize[1];
+        pdblFigureSize[0] = (double) piFigureSize[0];
+        pdblFigureSize[1] = (double) piFigureSize[1];
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblFigureSize);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, pdblFigureSize);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
@@ -251,7 +253,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"wpos") == 0)
     {
-        int piFigurePosition[2];
+        int *piFigurePosition;
         double pdblFigurePosition[2];
 
         getOrCreateDefaultSubwin();
@@ -259,7 +261,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         pdblFigurePosition[0] = piFigurePosition[0];
         pdblFigurePosition[1] = piFigurePosition[1];
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblFigurePosition);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, pdblFigurePosition);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
@@ -275,7 +277,7 @@ int sci_xget(char *fname,unsigned long fname_len)
         pdblViewport[0] = viewport[0];
         pdblViewport[1] = viewport[1];
 
-        createMatrixOfDouble(pvApiCtx, Lhs + 1, 1, 2, pdblViewport);
+        createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, pdblViewport);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
@@ -332,9 +334,13 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"pixmap") == 0)
     {
-        getOrCreateDefaultSubwin();
-        get_pixmap_property(getCurrentFigure());
+        int iPixmap = 0;
+        int *piPixmap = &iPixmap;
 
+        getOrCreateDefaultSubwin();
+        getGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, jni_bool, &piPixmap);
+
+        createScalarDouble(pvApiCtx, Rhs + 1, iPixmap);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
@@ -359,8 +365,13 @@ int sci_xget(char *fname,unsigned long fname_len)
     else if(strcmp(cstk(l1),"wresize") == 0)
     {
         // autoresize property
+        int iAutoResize = 0;
+        int* piAutoResize =  &iAutoResize;
+
         getOrCreateDefaultSubwin();
-        get_auto_resize_property(getCurrentFigure());
+        getGraphicObjectProperty(getCurrentFigure(), __GO_AUTORESIZE__, jni_bool, &piAutoResize);
+
+        createScalarDouble(pvApiCtx, Rhs + 1, iAutoResize);
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
