@@ -21,6 +21,7 @@ import java.awt.Graphics;
 
 import javax.swing.BoundedRangeModel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JViewport;
@@ -269,9 +270,15 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
                 scilabHistoryTree.scrollPathToVisible(new TreePath(currentSessionNode.getPath()));
             }
         } else {
-            BoundedRangeModel model = scrollPane.getVerticalScrollBar().getModel();
-            // mustScroll is true if the knob is at the bottom of the scollbar.
-            boolean mustScroll = model.getValue() == model.getMaximum() - model.getExtent();
+            boolean mustScroll = false;
+            if (expand && isHistoryVisible()) {
+                JScrollBar vb = scrollPane.getVerticalScrollBar();
+                if (vb != null) {
+                    BoundedRangeModel model = vb.getModel();
+                    // mustScroll is true if the knob is at the bottom of the scollbar.
+                    mustScroll = model.getValue() == model.getMaximum() - model.getExtent();
+                }
+            }
             DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(lineToAppend);
             scilabHistoryTreeModel.insertNodeInto(childNode, currentSessionNode, currentSessionNode.getChildCount());
             if (expand && isHistoryVisible()) {

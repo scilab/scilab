@@ -128,6 +128,9 @@ Bug fixes
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
 
+* Bug #10449 fixed - On restoration, empty tabs could appear if the previous
+                     session was not cleanly exited.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================

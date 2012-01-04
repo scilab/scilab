@@ -25,14 +25,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.swing.SwingUtilities;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 import org.flexdock.docking.Dockable;
@@ -626,6 +626,129 @@ public class WindowsConfigurationManager {
     }
 
     /**
+     * Validate all the windows in checking if all the dockable nodes are ok.
+     * If a split node contains an invalid uuid, then the invalid dockable is removed
+     * and the split node is replaced by the valid dockable.
+     */
+    private static final void validateWindows() {
+        // We remove all the blanks and carriage return
+        try {
+            XPath xp = XPathFactory.newInstance().newXPath();
+            NodeList nodes = (NodeList) xp.compile("//text()").evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodes.getLength(); i++) {
+                nodes.item(i).getParentNode().removeChild(nodes.item(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Element root = doc.getDocumentElement();
+        NodeList list = root.getElementsByTagName("Window");
+
+        int length = getNodeListLength(list);
+        for (int i = 0; i < length; i++) {
+            validateWindow(((Element) list.item(i)).getAttribute("uuid"));
+        }
+    }
+
+    /**
+     * Validate a window element.
+     * The window element in the DOM is eventually replaced by a valid one.
+     * @param winuuid the window uuid
+     */
+    private static final void validateWindow(final String winuuid) {
+        if (winuuid == null || winuuid.isEmpty()) {
+            return;
+        }
+
+        Element win = getElementWithUUID(winuuid);
+        if (win == null) {
+            return;
+        }
+
+        Element dp = (Element) win.getFirstChild();
+        Element e = validateDockingPortNode(winuuid, dp);
+        if (e == null) {
+            win.removeChild(dp);
+            return;
+        }
+
+        win.removeChild(dp);
+        win.appendChild(e);
+    }
+
+    /**
+     * Validate a dockingport node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateDockingPortNode(final String winuuid, final Element e) {
+        Element ee = (Element) e.getFirstChild();
+        if (ee.getTagName().equals("DockableNode")) {
+            ee = validateDockableNode(winuuid, ee);
+            if (ee == null) {
+                return null;
+            }
+            return e;
+        } else {
+            ee = validateSplitNode(winuuid, ee);
+            if (ee == null) {
+                return null;
+            }
+            Element eee = (Element) e.cloneNode(false);
+            eee.appendChild(ee);
+
+            return eee;
+        }
+    }
+
+    /**
+     * Validate a dockable node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateDockableNode(final String winuuid, final Element e) {
+        String id = e.getAttribute("dockableId");
+        Element ee = getElementWithUUID(id);
+        if (ee == null || !ee.getAttribute("winuuid").equals(winuuid)) {
+            return null;
+        }
+
+        return e;
+    }
+
+    /**
+     * Validate a split node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateSplitNode(final String winuuid, final Element e) {
+        NodeList set = e.getChildNodes();
+        Element c1 = validateDockingPortNode(winuuid, (Element) set.item(0));
+        Element c2 = validateDockingPortNode(winuuid, (Element) set.item(1));
+
+        if (c1 != null && c2 != null) {
+            Element ee = (Element) e.cloneNode(false);
+            ee.appendChild(c1);
+            ee.appendChild(c2);
+            return ee;
+        }
+
+        if (c1 == null && c2 == null) {
+            return null;
+        }
+
+        if (c1 == null) {
+            return (Element) c2.getFirstChild().cloneNode(true);
+        }
+
+        return (Element) c1.getFirstChild().cloneNode(true);
+    }
+
+    /**
      * Remove a node with a given uuid
      * @param parent the parent element
      * @param nodeName the node name
@@ -693,9 +816,12 @@ public class WindowsConfigurationManager {
 
     /**
      * Clean the document in removing the useless tags
+     * and validate the different windows.
      */
     public static void clean() {
         readDocument();
+
+        validateWindows();
 
         Element root = doc.getDocumentElement();
         NodeList list = root.getElementsByTagName("Window");
@@ -743,18 +869,23 @@ public class WindowsConfigurationManager {
     }
 
     /**
-     * Restore an application by its name
-     * @param name the application name
+     * Restore an application by its uuid
+     * @param uuid the application uuid
      * @return true if the operation succeded
      */
     public static boolean restoreUUID(String uuid) {
         readDocument();
+        clean();
+
         Element elem = getElementWithUUID(uuid);
         if (elem == null) {
             return false;
         }
 
         startRestoration(uuid);
+
+        writeDocument();
+        doc = null;
 
         return true;
     }
