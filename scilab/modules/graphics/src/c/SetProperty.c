@@ -1639,61 +1639,6 @@ sciSetAddPlot (char * pobjUID, BOOL value)
 
 }
 
-
-int sciInitAutoScale( char * pobjUID, BOOL value )
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        if (pobjUID == getFigureModel())
-            (sciGetGraphicMode (pobjUID))->autoscaling = value;
-        else
-            sciSetAutoScale(sciGetFirstTypedSelectedSon(pobjUID, SCI_SUBWIN),value);
-        break;
-    case SCI_SUBWIN:
-        (sciGetGraphicMode (pobjUID))->autoscaling = value;
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("autos_cale");
-        return -1 ;
-        break;
-    }
-#endif
-    return 0 ;
-}
-
-/**sciSetAutoScale
- * Sets the mode if the plot is in zoom fit mode, or fixed by the user
- */
-int
-sciSetAutoScale (char * pobjUID, BOOL value)
-{
-
-    if ( sciGetAutoScale( pobjUID ) == value )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitAutoScale( pobjUID, value ) ;
-
-}
-
 int sciInitZooming( char * pobjUID, BOOL value )
 {
     // FIXME

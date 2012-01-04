@@ -1470,7 +1470,6 @@ int sciInitGraphicMode(char *pobjUID)
         {
 #if 0
             (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(pfiguremdl))->addplot;
-            (sciGetGraphicMode(pobj))->autoscaling = (sciGetGraphicMode(pfiguremdl))->autoscaling;
             (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(pfiguremdl))->zooming;
             (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(pfiguremdl))->xormode;
 #endif
@@ -1506,7 +1505,6 @@ int sciInitGraphicMode(char *pobjUID)
 
 #if 0
             (sciGetGraphicMode(pobj))->addplot = sciGetAddPlot(sciGetParent(pobj));
-            (sciGetGraphicMode(pobj))->autoscaling = sciGetAutoScale(sciGetParent(pobj));
             (sciGetGraphicMode(pobj))->zooming = sciGetZooming(sciGetParent(pobj));
             (sciGetGraphicMode(pobj))->xormode = sciGetXorMode(sciGetParent(pobj));
 #endif
@@ -1544,7 +1542,6 @@ int sciInitGraphicMode(char *pobjUID)
 
 #if 0
             (sciGetGraphicMode(pobj))->addplot = (sciGetGraphicMode(paxesmdl))->addplot;
-            (sciGetGraphicMode(pobj))->autoscaling = (sciGetGraphicMode(paxesmdl))->autoscaling;
             (sciGetGraphicMode(pobj))->zooming = (sciGetGraphicMode(paxesmdl))->zooming;
             (sciGetGraphicMode(pobj))->xormode = (sciGetGraphicMode(paxesmdl))->xormode;
 #endif

@@ -274,19 +274,6 @@ int sci_xset( char *fname, unsigned long fname_len )
             sciSetAddPlot(sciGetParent(subwin), FALSE);
         }
     }
-    else if ( strcmp(cstk(l1),"auto scale") == 0)
-    {
-        if ( x[0] == 1 )
-        {
-            sciSetAutoScale(subwin, TRUE);
-            sciSetAutoScale(sciGetParent(subwin), TRUE);
-        }
-        else
-        {
-            sciSetAutoScale(subwin, FALSE);
-            sciSetAutoScale(sciGetParent(subwin), FALSE);
-        }
-    }
     else if ( strcmp(cstk(l1),"wresize") == 0)
     {
         int iAutoResizeMode = x[0];

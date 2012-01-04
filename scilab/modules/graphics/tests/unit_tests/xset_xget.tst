@@ -41,28 +41,41 @@ assert_checkequal(out, [8 2]);
 // font size
 out = xget("font size");
 assert_checkequal(out, 2);
+xset("font size", 42);
+out = xget("font size");
+assert_checkequal(out, 42);
 
 // fpf
 out = xget("fpf");
 assert_checkequal(out, "");
+xset("fpf", "%s.%s");
+out = xget("fpf");
+assert_checkequal(out, "%s.%s");
+
 
 // auto clear
 //out = xget("auto clear");
 //assert_checkequal(out, "off");
+//xset("auto clear", "on")
+//out = xget("auto clear");
+//assert_checkequal(out, "om");
 
 // dashes
 out = xget("dashes");
 assert_checkequal(out, 8);
+xset("dashes", 12);
+out = xget("dashes");
+assert_checkequal(out, 12);
 
 // hidden3d
 out = xget("hidden3d");
 assert_checkequal(out, 4);
-
-
+xset("hidden3d", 21);
+out = xget("hidden3d");
+assert_checkequal(out, 21);
 
 // window figure
 f = gcf();
-
 out = xget("window");
 assert_checkequal(out, f.figure_id);
 out = xget("figure");
@@ -71,6 +84,9 @@ assert_checkequal(out, f.figure_id);
 // thickness
 out = xget("thickness");
 assert_checkequal(out, 1);
+xset("thickness", 5);
+out = xget("thickness");
+assert_checkequal(out, 5);
 
 // wdim wpdim
 out = xget("wdim");

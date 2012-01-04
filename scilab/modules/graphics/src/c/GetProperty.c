@@ -1293,42 +1293,6 @@ sciGetAddPlot (sciPointObj * pobj)
 }
 
 
-/**sciGetAutoScale
-* Returns the mode of the autoscaling
-*/
-BOOL
-sciGetAutoScale (sciPointObj * pobj)
-{
-    switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-        return (sciGetGraphicMode (pobj))->autoscaling;
-        break;
-    case SCI_SUBWIN:
-        return (sciGetGraphicMode (pobj))->autoscaling;
-        break;
-    case SCI_TEXT:
-    case SCI_LEGEND:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-        printSetGetErrorMessage("auto_scale");
-        return FALSE;
-        break;
-    }
-    return FALSE;
-}
-
-
 /**sciGetZooming
 * Returns the zooming state of the object is it or not zoomed.
 */

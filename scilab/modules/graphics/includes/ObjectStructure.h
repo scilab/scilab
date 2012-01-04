@@ -244,8 +244,6 @@ typedef struct
 {
   /** Are new Plot added to the old plot on the graphics window        */
   BOOL addplot;
-  /** The min max ranges of the the graphics window is given by users  */
-  BOOL autoscaling;
   /** Is zooming allowed                                               */
   BOOL zooming;
 }/** */

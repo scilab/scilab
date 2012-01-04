@@ -136,9 +136,6 @@ GRAPHICS_IMPEXP int sciSetClipping (char* pobj, double pclip[4] ); /* SET */
 GRAPHICS_IMPEXP int sciInitAddPlot (char* pobj, BOOL value);
 GRAPHICS_IMPEXP int sciSetAddPlot (char* pobj, BOOL value); /* SET */
 
-GRAPHICS_IMPEXP int sciInitAutoScale(char* pobj, BOOL value);
-GRAPHICS_IMPEXP int sciSetAutoScale (char* pobj, BOOL value); /* SET */
-
 GRAPHICS_IMPEXP int sciInitZooming(char* pobj, BOOL value);
 GRAPHICS_IMPEXP int sciSetZooming (char* pobj, BOOL value); /* SET */
 
