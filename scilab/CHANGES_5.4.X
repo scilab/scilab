@@ -137,6 +137,8 @@ Bug fixes
 * Bug #10450 fixed - Overloading for gamma, dlgamma and gammaln functions for list,
                      tlist, mlist and hypermatrices types was not allowed.
 
+* Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
