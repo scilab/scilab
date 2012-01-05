@@ -44,7 +44,7 @@ GRAPHICS_IMPEXP void reinitSubwin( void ) ;
 GRAPHICS_IMPEXP FigureModelData * newFigureModelData( void ) ;
 GRAPHICS_IMPEXP void destroyFigureModelData( FigureModelData * data ) ;
 
-GRAPHICS_IMPEXP int InitFigureModel(void); /* INITOBJECT */
+GRAPHICS_IMPEXP void InitFigureModel(char* pfiguremdlUID); /* INITOBJECT */
 GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
 
 GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );

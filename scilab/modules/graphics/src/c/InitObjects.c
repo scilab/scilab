@@ -93,7 +93,7 @@ unsigned short defcolors[] = {
     255, 215, 0                 /* Gold */
 };
 
-static void initFigureModel(char *pfiguremdlUID)
+void InitFigureModel(char *pfiguremdlUID)
 {
     int iZero = 0;
     BOOL bTrue = TRUE;
@@ -197,7 +197,7 @@ int C2F(graphicsmodels) (void)
     // Create default figure by Asking MVC a new one.
     pfiguremdlUID = createGraphicObject(__GO_FIGUREMODEL__);
     setFigureModel(pfiguremdlUID);
-    initFigureModel(pfiguremdlUID);
+    InitFigureModel(pfiguremdlUID);
 
     sciInitGraphicMode(pfiguremdlUID);
 
@@ -737,84 +737,6 @@ default:
     }
 #endif
 
-    return 0;
-}
-
-int InitFigureModel(void)
-{
-#if 0
-    int i;
-    int m = NUMCOLORS_SCI;
-    double *colorMap;
-    sciFigure *ppFigure = pFIGURE_FEATURE(pfiguremdl);
-
-    ppFigure->allredraw = FALSE;
-
-    if (sciInitGraphicContext(pfiguremdl) < 0)
-    {
-        return -1;
-    }
-    if (sciInitGraphicMode(pfiguremdl) < 0)
-    {
-        return -1;
-    }
-    if (sciInitFontContext(pfiguremdl) < 0)
-    {
-        /* F.Leray 10.06.04 */
-        return -1;
-    }
-
-    sciInitName(pfiguremdl, _("Graphic window number %d"));
-    pFIGURE_FEATURE(pfiguremdl)->number = 0;
-
-    /* Set figure model attributes */
-    ppFigure->pModelData = newFigureModelData();
-
-    pFIGURE_FEATURE(pfiguremdl)->isselected = TRUE;
-    pFIGURE_FEATURE(pfiguremdl)->rotstyle = 0;
-    pFIGURE_FEATURE(pfiguremdl)->visible = TRUE;
-    /* auto_redraw */
-    sciInitImmediateDrawingMode(pfiguremdl, TRUE);  /* by default, we draw live */
-
-    pFIGURE_FEATURE(pfiguremdl)->user_data = (int *)NULL;   /* pour completude */
-    pFIGURE_FEATURE(pfiguremdl)->size_of_user_data = 0; /* pour completude */
-
-    pFIGURE_FEATURE(pfiguremdl)->numsubwinselected = 0;
-    sciInitPixmapMode(pfiguremdl, FALSE);
-    sciInitInfoMessage(pfiguremdl, "");
-
-    /*
-     ** Must set Event Handler before making it enable
-     ** Otherwise causes a warning.
-     */
-    // sciInitEventHandler(pfiguremdl, "");
-    pFIGURE_FEATURE(pfiguremdl)->eventHandler = strdup("");
-    // sciInitIsEventHandlerEnable( pfiguremdl, FALSE ) ;
-    pFIGURE_FEATURE(pfiguremdl)->isEventHandlerEnable = FALSE;
-
-    pFIGURE_FEATURE(pfiguremdl)->tag = NULL;
-
-    pfiguremdl->pObservers = NULL;
-    pfiguremdl->pDrawer = NULL;
-    colorMap = MALLOC(m * 3 * sizeof(double));
-    if (colorMap == NULL)
-    {
-        sprintf(error_message, _("%s: No more memory.\n"), "InitFigureModel");
-        return -1;
-    }
-
-    for (i = 0; i < m; i++)
-    {
-        colorMap[i] = (double)(defcolors[3 * i] / 255.0);
-        colorMap[i + m] = (double)(defcolors[3 * i + 1] / 255.0);
-        colorMap[i + 2 * m] = (double)(defcolors[3 * i + 2] / 255.0);
-    }
-
-    sciSetColormap(pfiguremdl, colorMap, m, 3);
-    pFIGURE_FEATURE(pfiguremdl)->numcolors = m;
-
-    FREE(colorMap);
-#endif
     return 0;
 }
 

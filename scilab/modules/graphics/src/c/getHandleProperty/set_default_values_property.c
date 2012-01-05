@@ -47,7 +47,8 @@ int set_default_values_property(char* pobjUID, size_t stackPointer, int valueTyp
 
   if ( isFigureModel(pobjUID) )
   {
-    return InitFigureModel();
+      InitFigureModel(pobjUID);
+      return SET_PROPERTY_SUCCEED;
   }
   else if (isAxesModel(pobjUID) )
   {
