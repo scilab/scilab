@@ -129,7 +129,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	@Override
     public void displayAndWait() {
 		JFrame parentFrame = new JFrame();
-        parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
 		int returnValue = 0;
 		if (maskSize > 0) {
                         setFileFilter(getChoosableFileFilters()[maskSize]);

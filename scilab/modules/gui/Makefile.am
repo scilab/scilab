@@ -370,6 +370,9 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/datatips.png \
@@ -379,6 +382,7 @@ images/icons/32x32/apps/scilab.png \
 images/icons/32x32/apps/system-search.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/emblems/emblem-readonly.png \
+images/icons/48x48/emblems/emblem-readonly.png \
 images/icons/64x40/mimetypes/application-x-scilab-champ.png \
 images/icons/64x40/mimetypes/application-x-scilab-contour2d.png \
 images/icons/64x40/mimetypes/application-x-scilab-grayplot.png \

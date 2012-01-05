@@ -87,7 +87,7 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
-    private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage();
+    private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
 
     private static final long serialVersionUID = 1L;
 

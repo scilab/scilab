@@ -99,7 +99,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
-        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table")).getImage());
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
         undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);
         redoButton = RedoAction.createButton(this, UiDataMessages.REDO);

@@ -111,8 +111,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
         this.setTitle("Scilab");
-        setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
-
+        setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+        
         /* defining the Layout */
         super.setLayout(new java.awt.BorderLayout());
 
@@ -163,7 +163,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             // use as delegates for various com.apple.eawt.ApplicationListener methods
             OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
             OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
-            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")));
+            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
         }

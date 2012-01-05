@@ -602,7 +602,7 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("graphic-window")).getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("graphic-window", "256x256")).getImage());
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
