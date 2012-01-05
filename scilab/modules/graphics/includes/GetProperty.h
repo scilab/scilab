@@ -39,7 +39,6 @@ GRAPHICS_IMPEXP sciEntityType sciGetEntityType (sciPointObj * pobj);  /* GET */
 /* Graphic Context Functions */
 GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
-GRAPHICS_IMPEXP int sciGetColormap (sciPointObj * pobj, double rgbmat[] ); /* GET */
 GRAPHICS_IMPEXP int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
 GRAPHICS_IMPEXP int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */

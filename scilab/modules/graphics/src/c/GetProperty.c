@@ -138,26 +138,6 @@ sciGetNumColors (char *pobjUID)
     return -1;
 }
 
-
-/**sciGetColormap
-* This function gets a colormap from the figure. It's the same for all sons
-* Gets the colormap rgbmat must be a m x 3 double RGB matrix:
-* a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
-*/
-int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
-{
-    if ( pobj == getFigureModel() )
-    {
-        doubleArrayCopy( rgbmat, pFIGURE_FEATURE(pobj)->pModelData->colorMap , pFIGURE_FEATURE(pobj)->pModelData->numColors ) ;
-    }
-    else
-    {
-        sciGetJavaColormap( pobj, rgbmat ) ;
-    }
-
-    return 0 ;
-}
-
 /* This function */
 int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
 {
