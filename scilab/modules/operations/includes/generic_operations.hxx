@@ -67,4 +67,12 @@ EXTERN_OP types::InternalType *GenericGreaterEqual(types::InternalType *_pLeftOp
 // <>
 EXTERN_OP types::InternalType* GenericComparisonNonEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
+// .*.
+EXTERN_OP types::InternalType* GenericKrontimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+// ./.
+EXTERN_OP types::InternalType* GenericKronrdivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+// .\.
+EXTERN_OP types::InternalType* GenericKronldivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 #endif /* !__GENERIC_OPERATIONS_HXX__ */

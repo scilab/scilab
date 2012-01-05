@@ -213,10 +213,12 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile Include="src\cpp\types_comparison_eq.cpp" />
     <ClCompile Include="src\cpp\types_comparison_lt_le_gt_ge.cpp" />
     <ClCompile Include="src\cpp\types_comparison_ne.cpp" />
+    <ClCompile Include="src\cpp\types_kronecker.cpp" />
     <ClCompile Include="src\c\doublecomplex.c" />
     <ClCompile Include="src\c\matrix_addition.c" />
     <ClCompile Include="src\c\matrix_division.c" />
     <ClCompile Include="src\c\matrix_finite.c" />
+    <ClCompile Include="src\c\matrix_kronecker.c" />
     <ClCompile Include="src\c\matrix_multiplication.c" />
     <ClCompile Include="src\c\matrix_power.c" />
     <ClCompile Include="src\c\matrix_substraction.c" />
@@ -231,9 +233,12 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\doublecomplex.h" />
+    <ClInclude Include="includes\dynlib_operations.hxx" />
+    <ClInclude Include="includes\generic_operations.hxx" />
     <ClInclude Include="includes\matrix_addition.h" />
     <ClInclude Include="includes\matrix_division.h" />
     <ClInclude Include="includes\matrix_finite.h" />
+    <ClInclude Include="includes\matrix_kronecker.h" />
     <ClInclude Include="includes\matrix_left_division.h" />
     <ClInclude Include="includes\matrix_multiplication.h" />
     <ClInclude Include="includes\matrix_power.h" />
@@ -247,6 +252,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClInclude Include="includes\types_comparison_ne.hxx" />
     <ClInclude Include="includes\types_divide.hxx" />
     <ClInclude Include="includes\types_finite.hxx" />
+    <ClInclude Include="includes\types_kronecker.hxx" />
     <ClInclude Include="includes\types_multiplication.hxx" />
     <ClInclude Include="includes\types_power.hxx" />
     <ClInclude Include="includes\types_substraction.hxx" />
