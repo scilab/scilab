@@ -430,10 +430,11 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
     }
     else if ( strcmp(str,"auto clear")==0)
     {
-        int autoclear;
-        sciPointObj * subwin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
-        //autoclear = !(sciGetAddPlot(subwin));
-        if (autoclear == 1)
+        int iAutoClear = 0;
+        int* piAutoClear = &iAutoClear;
+
+        getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+        if (iAutoClear == 1)
         {
             strncpy(str1,"on",2);
             *len=2;

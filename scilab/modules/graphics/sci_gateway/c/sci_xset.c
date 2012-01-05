@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Fabrice Leray
 * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -89,7 +90,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         /* second argument is not a scalar it must be a string */
         GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
         xsetg(cstk(l1),cstk(l2),m1,m2);
-        LhsVar(1)=0;
+        LhsVar(1) = 0;
         PutLhsVar();
         return 0;
     }
@@ -259,20 +260,8 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if ( strcmp(cstk(l1),"dashes") == 0)
     {
-        sciSetLineStyle(subwin, x[0]);
-    }
-    else if ( strcmp(cstk(l1),"auto clear") == 0)
-    {
-        if ( x[0] == 1 )
-        {
-            //sciSetAddPlot(subwin, TRUE);
-            //sciSetAddPlot(sciGetParent(subwin), TRUE);
-        }
-        else
-        {
-            //sciSetAddPlot(subwin, FALSE);
-            //sciSetAddPlot(sciGetParent(subwin), FALSE);
-        }
+        int lineStyle = (int) x[0];
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
     else if ( strcmp(cstk(l1),"wresize") == 0)
     {
@@ -361,15 +350,14 @@ int xsetg(char * str,char * str1,int lx0,int lx1)
     }
     else if ( strcmp(str,"auto clear")==0)
     {
-        sciPointObj * subwin = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
-        if (strcmp(str1,"on")==0 )
+        int bAutoClear = (int) FALSE;
+
+        if (strcmp(str1,"on") == 0)
         {
-            //sciSetAddPlot( subwin,FALSE);
+            bAutoClear = (int) TRUE;
         }
-        else{
-            //sciSetAddPlot( subwin,TRUE);
-        }
-        forceRedraw(subwin);
+
+        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
     }
     else if ( strcmp(str,"default")==0)
     {
