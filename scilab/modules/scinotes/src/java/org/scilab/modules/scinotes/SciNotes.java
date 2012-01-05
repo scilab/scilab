@@ -604,13 +604,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 public void run() {
                     RestoreOpenedFilesAction.displayDialog((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, SciNotes.this), getUUID().toString());
                     List<File> list = RestoreOpenedFilesAction.getSelectedFiles();
+                    if (list == null) {
+                        return;
+                    }
 
-                    if (list != null && list.size() != 0) {
+                    if (list.size() != 0) {
                         for (File f : list) {
                             openFile(f.getPath(), 0, null);
                         }
                     } else {
-                        if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
+                        if (getTabPane().getTabCount() == 0 || getTextPane(0).getName() == null) {
                             openFile(null, 0, null);
                         }
                     }

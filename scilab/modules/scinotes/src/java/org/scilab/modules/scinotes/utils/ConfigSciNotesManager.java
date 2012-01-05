@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Hashtable;
 import java.util.Properties;
@@ -1749,7 +1750,7 @@ public final class ConfigSciNotesManager {
      */
     public static List<File> getOpenFilesByEditor(UUID editorID) {
         List<File> files = new ArrayList<File>();
-        readDocument();
+	readDocument();
         Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
         if (root != null) {
             NodeList openFiles = root.getElementsByTagName(DOCUMENT);
@@ -1757,16 +1758,16 @@ public final class ConfigSciNotesManager {
             /* Loop through the list and return only the files with a matching hash code. */
             int i = 0;
             for (; i < openFiles.getLength(); i++) {
-                Element style = (Element) openFiles.item(i);
+                Element doc = (Element) openFiles.item(i);
 
-                if (editorID.equals(UUID.fromString(style.getAttribute(EDITORINST)))) {
-                    File temp = new File(style.getAttribute(PATH));
+                if (editorID.equals(UUID.fromString(doc.getAttribute(EDITORINST)))) {
+                    File temp = new File(doc.getAttribute(PATH));
 
                     /* Check that the file exists and add to file list or else remove the node. */
-                    if (temp.exists()) {
+                    if (temp.exists() && !files.contains(temp)) {
                         files.add(temp);
                     } else {
-                        root.removeChild((Node) style);
+                        root.removeChild((Node) doc);
                         i--;  // Adjust index to account for removed item.
                     }
                 }
@@ -1821,6 +1822,7 @@ public final class ConfigSciNotesManager {
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep, int pos) {
         readDocument();
+        removeFromOpenFiles(editorInstance.getUUID(), Arrays.asList(new String[]{filePath}));
         UUID nil = new UUID(0, 0);
 
         // Find the element containing the list of open files
@@ -1838,7 +1840,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PATH, filePath);
         // Record the editor instance's hash code
         newFile.setAttribute(EDITORINST, editorInstance.getUUID().toString());
-        root.appendChild((Node) newFile);
+        //root.appendChild((Node) newFile);
         // Record the text pane's hash code
         newFile.setAttribute(PANEINST, sep.getUUID().toString());
         newFile.setAttribute(PANEINST_EX, nil.toString());
@@ -1867,6 +1869,31 @@ public final class ConfigSciNotesManager {
      */
     public static void removeFromOpenFiles(UUID editorID) {
         removeFromOpenFiles(editorID, new UUID(0, 0) /* nil UUID */);
+    }
+
+    /**
+     * Remove a tab with an open file from the list of open files
+     * @param editorID editor instance identifer
+     * @param sepID editor pane instance identifer. If a nil UUID is passed,
+     * all files with a matching editor instance identifer are removed.
+     */
+    public static void removeFromOpenFiles(UUID editorID, List<String> toRemove) {
+        readDocument();
+
+        Element root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+
+        // Remove item with matching editorID and sepID.
+        for (int i = openFiles.getLength() - 1; i >= 0; i--) {
+            Element doc = (Element) openFiles.item(i);
+            if (editorID.equals(UUID.fromString(doc.getAttribute(EDITORINST)))
+                && toRemove.contains(doc.getAttribute(PATH))) {
+                root.removeChild((Node) doc);
+            }
+        }
+
+        clean(root);
+        writeDocument();
     }
 
     /**
