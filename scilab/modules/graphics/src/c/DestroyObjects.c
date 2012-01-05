@@ -4,7 +4,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -81,12 +81,12 @@ int destroyGraphicsSons(sciPointObj * pthis)
  * consideree comme un des fils.
  */
  /**
-  * This function destroies childs and pthis
-  * @param sciPointObj * pthis: the pointer to the entity
+  * This function destroys childs and pthis
+  * @param char * pthis: the entity's identifier
   */
-int destroyGraphicHierarchy(sciPointObj * pthis)
+int destroyGraphicHierarchy(char * pthis)
 {
-    deleteGraphicObject(pthis->UID);
+    deleteGraphicObject(pthis);
 
     return 0;
 

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2000 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -44,65 +44,56 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
 
 /*--------------------------------------------------------------------------------*/
 /* clear a subwindow from all of its children */
-void clearSubWin( sciPointObj * pSubWin )
+void clearSubWin(char * pSubWinUID)
 {
-    abort();
-// ???
-#if 0
-  sciSons * curSon = sciGetSons (pSubWin);
+    int iChildrenCount = 0;
+    int *piChildrenCount = &iChildrenCount;
+    int i;
+    char **pstChildrenUID;
 
-  while ( curSon != NULL && curSon->pointobj != NULL )
-  {
-    if ( curSon->pointobj->entitytype != SCI_LABEL )
+    // Iterate on children.
+    getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+
+    if (iChildrenCount != 0)
     {
-      destroyGraphicHierarchy (curSon->pointobj) ;
-      curSon = sciGetSons ( pSubWin ) ;
+        getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+
+        for (i = 0 ; i < iChildrenCount ; ++i)
+        {
+            destroyGraphicHierarchy(pstChildrenUID[i]);
+        }
     }
-    else
-    {
-      curSon = curSon->pnext ;
-    }
-  }
-#endif
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit a subwindow (but don't change position ) */
-/*
- * To be implemented using the MVC (clearSubWin)
- */
-void reinitSubWin( sciPointObj * pSubWin )
+void reinitSubWin(char * pSubWinUID)
 {
   int visible;
   int firstPlot;
   int axisLocation;
 
-  /*
-   * Deletes the Axes' hierarchy
-   * To be implemented within the MVC
-   */
-#if 0
-  clearSubWin(pSubWin);
-#endif
+  /* Deletes the Axes' hierarchy */
+  clearSubWin(pSubWinUID);
 
-  initSubWinBounds(pSubWin);
+  initSubWinBounds(pSubWinUID);
 
   /* bottom */
   axisLocation = 0;
-  setGraphicObjectProperty(pSubWin->UID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  setGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
   /* left */
   axisLocation = 4;
-  setGraphicObjectProperty(pSubWin->UID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  setGraphicObjectProperty(pSubWinUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
   visible = 1;
-  setGraphicObjectProperty(pSubWin->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+  setGraphicObjectProperty(pSubWinUID, __GO_VISIBLE__, &visible, jni_bool, 1);
   firstPlot = 1;
-  setGraphicObjectProperty(pSubWin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+  setGraphicObjectProperty(pSubWinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  initSubWinAngles(pSubWin);
+  initSubWinAngles(pSubWinUID);
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the viewing angles of a subwindow */
-void initSubWinAngles( sciPointObj * pSubWin )
+void initSubWinAngles(char * pSubWinUID)
 {
     int iViewType = 0;
     int* piViewType = &iViewType;
@@ -110,16 +101,13 @@ void initSubWinAngles( sciPointObj * pSubWin )
     char* axesModelUID = getAxesModel();
 
     getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, (void **) &piViewType);
-    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, piViewType, jni_int, 1);
+    setGraphicObjectProperty(pSubWinUID, __GO_VIEW__, &iViewType, jni_int, 1);
 
     getGraphicObjectProperty(axesModelUID, __GO_ROTATION_ANGLES__, jni_double_vector, (void **) &rotationAngles);
-    setGraphicObjectProperty(pSubWin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(pSubWinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-   /* To be implemented: last known values of the rotation angles when VIEW was equal to 3D */
-#if 0
-    ppSubWin->alpha_kp = ppAxesMdl->alpha_kp ;
-    ppSubWin->theta_kp = ppAxesMdl->theta_kp ;
-#endif
+    getGraphicObjectProperty(axesModelUID, __GO_ROTATION_ANGLES_3D__, jni_double_vector, (void **) &rotationAngles);
+    setGraphicObjectProperty(pSubWinUID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
 }
 
 /*--------------------------------------------------------------------------------*/
@@ -138,16 +126,17 @@ void initSubWinSize( sciPointObj * pSubWin )
 }
 /*--------------------------------------------------------------------------------*/
 /* set the data_bounds of the axes to the default value */
-void initSubWinBounds( sciPointObj * pSubWin )
+void initSubWinBounds(char * pSubWinUID)
 {
     double* dataBounds;
     double* realDataBounds;   
+    char* axesModelUID = getAxesModel();
 
-    getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
-    setGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+    getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    setGraphicObjectProperty(pSubWinUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
-    getGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
-    setGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
+    getGraphicObjectProperty(axesModelUID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+    setGraphicObjectProperty(pSubWinUID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the selected subwindow if the auto_clear property is set to on */
@@ -165,16 +154,7 @@ BOOL checkRedrawing( void )
 
     if (iAutoClear)
     {
-#if 0
-        reinitSubWin(pSubWin);
-
-        /*
-         * Deactivated for now: forces redrawing by telling the renderer module
-         * that the Axes object has changed
-         * To be implemented
-         */
-        forceRedraw(pSubWin);
-#endif
+        reinitSubWin(pstSubWinID);
         return TRUE;
     }
 

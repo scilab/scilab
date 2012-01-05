@@ -520,7 +520,7 @@ void Objplot3d ( char    * fname ,
     startFigureDataWriting(parentFigure);
 #endif
 
-    //checkRedrawing();
+    checkRedrawing();
 
     /* Force 3D view */
     view = 1;
