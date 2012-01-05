@@ -19,6 +19,26 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* Bug #8744 fixed - Solving the initialization problem more than once crash
+                    Scilab.
+
+* Bug #10081 fixed - Palette configuration saving could produce an invalid
+                     file.
+
+* Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
+                     too large. It has been reduced to 1e-6.
+
+* Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+                     labeling when ports had not the same types.
+
+* Bug #10340 fixed - Exception occured while moving the palette split pane to
+                     hide the block list and while using a palette diagram.
+
+* Bug #10419 fixed - Exception occured while refusing to create a new empty
+                     file.
+
+* Bug #10422 fixed - Exception occured when exporting with an unspecified
+                     format.
 
 
 Unitary testing
@@ -52,31 +72,6 @@ a sparse but not to send it to Scilab).
 
 * Javasci supports struct datatypes under the form of an MList  (Javasci is
 able to retrieve a struct but not to send it to Scilab).
-
-
-Xcos
-====
-
-* Bug #8744 fixed - Solving the initialization problem more than once crash
-                    Scilab.
-
-* Bug #10081 fixed - Palette configuration saving could produce an invalid
-                     file.
-
-* Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
-                     too large. It has been reduced to 1e-6.
-
-* Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
-                     labeling when ports had not the same types.
-
-* Bug #10340 fixed - Exception occured while moving the palette split pane to
-                     hide the block list and while using a palette diagram.
-
-* Bug #10419 fixed - Exception occured while refusing to create a new empty
-                     file.
-
-* Bug #10422 fixed - Exception occured when exporting with an unspecified
-                     format.
 
 
 Signal Processing
