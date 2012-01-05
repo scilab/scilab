@@ -106,6 +106,13 @@ void visitprivate(const AssignExp  &e)
             e.right_exp_get().accept(*this);
             InternalType* pITR = result_get();
 
+            if(pITR == NULL)
+            {// if the right hand is NULL.
+                std::wostringstream os;
+                os << _W("Unable to extract right part expression.\n");
+                throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
+            }
+
             //reset result
             result_set(NULL);
 

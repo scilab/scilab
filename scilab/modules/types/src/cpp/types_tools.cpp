@@ -71,6 +71,9 @@ namespace types
             }
             else if(pIT->isString())
             {//see later for extract from struct or Tlist
+                _pArgsOut->push_back(NULL);
+                bUndefine = true;
+                break;
             }
             else if(pIT->isPoly())
             {//$

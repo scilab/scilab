@@ -198,86 +198,6 @@ void visitprivate(const CallExp &e)
             result_set(pIT);
             return;
         }
-        else if(pIT->isTList())
-        {
-            list<wstring> stFields;
-            list<Exp*>::const_iterator it1;
-
-            types::InternalType::RealType rtIndex = types::InternalType::RealInternal;
-            bool bTypeSet = false;
-            for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
-            {
-                (*it1)->accept(*this);
-
-                if(bTypeSet && result_get()->getType() != rtIndex)
-                {//TODO: error
-                    scilabWriteW(L"merdouille");
-                }
-
-                if(result_get()->isString())
-                {
-                    rtIndex = types::InternalType::RealString;
-                    bTypeSet = true;
-                    types::InternalType* pVar  = result_get();
-                    types::String *pString = pVar->getAs<types::String>();
-                    for(int i = 0 ; i < pString->getSize() ; i++)
-                    {
-                        stFields.push_back(pString->get(i));
-                    }
-                }
-                else if(result_get()->isDouble())
-                {//manage error
-                    rtIndex = types::InternalType::RealDouble;
-                    bTypeSet = true;
-                    break;
-                }
-            }
-            result_set(NULL);
-
-            if(rtIndex  == types::InternalType::RealDouble)
-            {
-                //Create list of indexes
-                //ArrayOf<double>* pArray = pIT->getAs<ArrayOf<double> >();
-                //bool bSeeAsVector   = iArgDim < pArray->getDims();
-                //int *piIndexSeq		= NULL;
-                //int *piMaxDim       = NULL;
-                //int *piDimSize		= new int[iArgDim];
-                //int iDims           = 0;
-                //int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, &iDims, pIT, piDimSize);
-
-                ////types::typed_list *pArgs = GetArgumentList(e.args_get());
-
-                ////check we don't have bad indexes like "< 1"
-                //for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
-                //{
-                //    if(piIndexSeq[i] < 1)
-                //    {
-                //        //manage error
-                //        std::wostringstream os;
-                //        os << _W("Indexes must be positive .\n");
-                //        os << ((Location)e.name_get().location_get()).location_getString() << std::endl;
-                //        throw ScilabError(os.str(), 999, e.name_get().location_get());
-                //    }
-                //}
-                //ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, iDims, piDimSize, bSeeAsVector);
-            }
-            else if(rtIndex  == types::InternalType::RealString)
-            {
-                ResultList = pIT->getAs<types::TList>()->extractStrings(stFields);
-            }
-
-            if(ResultList.size() == 1)
-            {
-                result_set(ResultList[0]);
-            }
-            else
-            {
-                for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
-                {
-                    result_set(i, ResultList[i]);
-                }
-            }
-        }
         else
         {
             //Create list of indexes
@@ -329,10 +249,9 @@ void visitprivate(const CallExp &e)
                     {
                     case 0 :
                         {
-                            //std::wostringstream os;
-                            //os << L"inconsistent dimensions\n";
-                            //throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-                            result_set(NULL);
+                            std::wostringstream os;
+                            os << L"Invalid index.\n";
+                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                         }
                         break;
                     case 1 :
@@ -347,14 +266,84 @@ void visitprivate(const CallExp &e)
                     }
                 }
                 break;
-            case types::InternalType::RealCell :
-                pOut = pIT->getAs<types::Cell>()->extract(pArgs);
+            case InternalType::RealTList :
+                {
+                    list<wstring> stFields;
+                    typed_list iFields;
+                    InternalType::RealType rtIndex = InternalType::RealInternal;
+                    bool bTypeSet = false;
+
+                    if(pArgs->size() != 1)
+                    {
+                        std::wostringstream os;
+                        os << L"Wrong number of input argument(s): 1 expected.\n";
+                        throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                    }
+                    if((*pArgs)[0]->isString())
+                    {
+                        rtIndex = InternalType::RealString;
+                        bTypeSet = true;
+                        String *pString = (*pArgs)[0]->getAs<types::String>();
+                        for(int i = 0 ; i < pString->getSize() ; i++)
+                        {
+                            stFields.push_back(pString->get(i));
+                        }
+                    }
+                    else if((*pArgs)[0]->isDouble())
+                    {
+                        rtIndex = InternalType::RealDouble;
+                        bTypeSet = true;
+                        Double* pDbl = (*pArgs)[0]->getAs<types::Double>();
+                        iFields.push_back(pDbl);
+                    }
+
+                    result_set(NULL);
+
+                    if(rtIndex  == InternalType::RealDouble)
+                    {
+                        ResultList = pIT->getAs<TList>()->extract(&iFields);
+                    }
+                    else if(rtIndex  == InternalType::RealString)
+                    {
+                        ResultList = pIT->getAs<TList>()->extractStrings(stFields);
+                        if(ResultList.empty())
+                        {//call overload %l_e
+                            types::typed_list in;
+
+                            (*pArgs)[0]->IncreaseRef();
+                            in.push_back((*pArgs)[0]);
+                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                            (*pArgs)[0]->DecreaseRef();
+                        }
+                    }
+                    else
+                    {
+                        ResultList = pIT->getAs<TList>()->extract(pArgs);
+                    }
+
+                    switch(ResultList.size())
+                    {
+                    case 0 :
+                        {
+                            std::wostringstream os;
+                            os << L"Invalid index.\n";
+                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                        }
+                        break;
+                    case 1 :
+                        result_set(ResultList[0]);
+                        break;
+                    default :
+                        for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                        {
+                            result_set(i, ResultList[i]);
+                        }
+                        break;
+                    }
+                }
                 break;
-            case types::InternalType::RealSparse :
-                pOut = pIT->getAs<types::Sparse>()->extract(pArgs);
-                break;
-            case types::InternalType::RealSparseBool :
-                //pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
+            case InternalType::RealCell :
+                pOut = pIT->getAs<Cell>()->extract(pArgs);
                 break;
             case types::InternalType::RealStruct :
                 {
