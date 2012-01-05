@@ -311,7 +311,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
      */
     private void initTab() {
         final TextBox infobar = ScilabTextBox.createTextBox();
-        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
+        setWindowIcon("system-search");
         updateUI();
 
         CallBack callback = new CallBack(null) {

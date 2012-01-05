@@ -15,7 +15,6 @@ package org.scilab.modules.ui_data.variableeditor;
 
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -99,7 +98,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
-        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
+        setWindowIcon("rrze_table");
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
         undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);
         redoButton = RedoAction.createButton(this, UiDataMessages.REDO);

@@ -226,6 +226,13 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     }
 
     /**
+     * @param the window icon associated with this tab
+     */
+    public void setWindowIcon(String iconName) {
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon(iconName, "256x256")).getImage());
+    }
+
+    /**
      * @param e the FocusEvent
      */
     @Override

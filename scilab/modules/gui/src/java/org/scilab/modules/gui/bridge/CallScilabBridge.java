@@ -41,7 +41,6 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
-import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -602,7 +601,7 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon("graphic-window", "256x256")).getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon("graphic-window");
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
