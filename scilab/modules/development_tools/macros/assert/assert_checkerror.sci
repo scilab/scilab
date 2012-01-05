@@ -1,4 +1,5 @@
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -16,9 +17,9 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     end
     //
     // Get arguments
-    instr = varargin(1)
-    expectedmsg = varargin(2)
-    expectederrnb = argindefault ( rhs , varargin , 3 , [] )
+    instr = varargin(1);
+    expectedmsg = varargin(2);
+    expectederrnb = argindefault ( rhs , varargin , 3 , [] );
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
@@ -42,8 +43,8 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         error(errmsg)
     end
     if (expectedmsg<>[]) then
-        if ( size(expectedmsg,"*") <> 1 ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 2 , 1 , 1 )
+        if ((size(expectedmsg, "r") > 1) & (size(expectedmsg, "c") > 1))
+            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: A string vector expected.\n") , "assert_checkerror" , 2 );
             error(errmsg)
         end
     end
@@ -82,7 +83,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     end
     //
     // Get the error
-    compmsg = lasterror()
+    compmsg = lasterror();
     //
     // Initialize output arguments
     flag = %t
@@ -94,7 +95,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
       instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
       ierr = execstr(instr,"errcatch")
       if ( ierr <> 0 ) then
-        fmterrmsg = lasterror()
+        fmterrmsg = lasterror();
         localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
         errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
         error(errmsg)
@@ -102,11 +103,24 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     end
     //
     // Check the error message
-    if (expectedmsg<>[]) then
-        if ( expectedmsg <> compmsg ) then
+    if (expectedmsg <> []) then
+        isdifferentmsg = %t;
+        if size(expectedmsg, '*') <> size(compmsg, '*') then
+          isdifferentmsg = expectedmsg <> compmsg;
+        else
+          isdifferentmsg = or(expectedmsg <> compmsg);
+        end
+
+        if (isdifferentmsg) then
             flag = %f
+            if size(compmsg, '*') <> 1 then
+              compmsg = sci2exp(compmsg);
+            end
+            if size(expectedmsg, '*') <> 1 then
+              expectedmsg = sci2exp(expectedmsg);
+            end
             localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
-            errmsg = msprintf(localstr,"assert_checkerror",expectedmsg,compmsg)
+            errmsg = msprintf(localstr,"assert_checkerror", expectedmsg, compmsg)
             if ( lhs < 2 ) then
                 // If no output variable is given, generate an error
                 error ( errmsg )

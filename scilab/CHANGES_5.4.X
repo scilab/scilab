@@ -101,6 +101,8 @@ Bug fixes
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
+* Bug #9572 fixed - assert_checkerror did not check multi lines errors.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
