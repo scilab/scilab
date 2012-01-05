@@ -1,5 +1,5 @@
- 	    Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =========================================================
+            Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
+            =================================================================
 
 
 XML
@@ -67,7 +67,7 @@ Scinotes
 Javasci
 =======
 
-* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve 
+* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
 a sparse but not to send it to Scilab).
 
 * Javasci supports struct datatypes under the form of an MList  (Javasci is
@@ -92,7 +92,7 @@ Compatibility functions
 
 
 Bug fixes
-========= 
+=========
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
@@ -126,6 +126,9 @@ Bug fixes
 
 * Bug #10449 fixed - On restoration, empty tabs could appear if the previous
                      session was not cleanly exited.
+
+* Bug #10450 fixed - Overloading for gamma, dlgamma and gammaln functions for list,
+                     tlist, mlist and hypermatrices types was not allowed.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -328,7 +331,7 @@ Xcos
 
 * Bug #10003 fixed - The MAXMIN block did not update its display according to
 
-* Bug #10048 fixed - Blocks which use superblocks now loop over their children 
+* Bug #10048 fixed - Blocks which use superblocks now loop over their children
 to find the parameters dialog to open.
 
 * Bug #10069 fixed - AFFICH_m block did not update its display at
@@ -400,7 +403,7 @@ Optimization
 
 * neldermead: Added a demonstration - search for largest / smallest polygon.
 
-* Improved clarity of examples in the help pages of 
+* Improved clarity of examples in the help pages of
   optimization module.
   Avoid unnecessary calls to "deff".
   Avoid the "all statements in whole line" style.
@@ -457,7 +460,7 @@ Optimization
 * Bug #8545 fixed - In neldermead, the printing system displayed too long
                    messages.
 
-* Bug #8546 fixed - The neldermead functions might have called f outside 
+* Bug #8546 fixed - The neldermead functions might have called f outside
                    the bounds.
 
 * Bug #8547 fixed - The neldermead function called f outside the constraints.
@@ -466,7 +469,7 @@ Optimization
                    the cost function.
 
 * Bug #8552 fixed - Improved fminsearch to provide Extra Parameters.
-                   Help page updated with new section "The cost function" and new 
+                   Help page updated with new section "The cost function" and new
                    example "Passing extra parameters".
 
 * Bug #8676 fixed - The pack/unpack functions had no help pages.
@@ -537,7 +540,7 @@ Documentation
 =============
 
 * A new system to keep track of the translations of the main documentation
-  has been developed. See http://help.scilab.org/status/fr_FR/, 
+  has been developed. See http://help.scilab.org/status/fr_FR/,
   help.scilab.org/status/pt_BR/ and http://help.scilab.org/status/ja_JP/
   See Bug #5119.
 
@@ -624,7 +627,7 @@ Compilation
   This will avoid an important dependency tree for unitary testing.
 
 * Under GNU/Linux and Mac OS X, for each module, the list of
-  explicit dependencies on the other libraries is no more needed. 
+  explicit dependencies on the other libraries is no more needed.
   Use libscilab-cli.so or libscilab.so to link against Scilab.
 
 * Enforce a minimal version of JRosetta (1.0.4).
@@ -668,7 +671,7 @@ Dynamic Link
 
 * Bug #10320 fixed - libname argument of ilib_for_link did not work.
 
-* Bug #10344 fixed - Windows SDK 7.1 was not detected with VS Express 2010 
+* Bug #10344 fixed - Windows SDK 7.1 was not detected with VS Express 2010
                     under 64-bit platform.
 
 
@@ -783,8 +786,8 @@ returns the value of the ScilabTypeEnum enum.
 CACSD and Signal Processing
 ===========================
 
-* Bug #1635 fixed - iir filter frequency response might have been wrong. 
-                  "pole zero gain" representation added as possible iir function 
+* Bug #1635 fixed - iir filter frequency response might have been wrong.
+                  "pole zero gain" representation added as possible iir function
                   returned value.
 
 * Bug #7895 fixed - fft2() was broken under Windows with MKL wrapper.
@@ -881,7 +884,7 @@ Bug Fixes
 * Bug #7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
 * Bug #7249 fixed - 'string' function did not work as documented
-				with a macro as input argument.
+        with a macro as input argument.
 
 * Bug #7333 fixed - In BrowseVar, variables could have a weird type number.
 
