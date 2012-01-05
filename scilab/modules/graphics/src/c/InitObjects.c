@@ -1670,26 +1670,6 @@ void destroyFigureModelData(FigureModelData * data)
 
 /*---------------------------------------------------------------------------------*/
 /**
- * Set the colormap of a figure to the default one.
- */
-void sciSetDefaultColorMap(sciPointObj * pFigure)
-{
-    int numColor = sciGetNumColors(getFigureModel());
-    double *colorMap = MALLOC(3 * numColor * sizeof(double));
-
-    if (colorMap == NULL)
-    {
-        sciprint(_("%s: No more memory.\n"), "sciSetDefaultColorMap");
-        return;
-    }
-    sciGetColormap(getFigureModel(), colorMap);
-    sciSetColormap(pFigure, colorMap, numColor, 3);
-
-    FREE(colorMap);
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
  * @return TRUE if pObj is one of the model objects, FALSE otherwise
  */
 BOOL isModelObject(sciPointObj * pObj)

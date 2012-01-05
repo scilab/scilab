@@ -55,6 +55,4 @@ GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
 
 GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;
 
-GRAPHICS_IMPEXP void sciSetDefaultColorMap(sciPointObj * pFigure);
-
 #endif /* __SCI_INIT_GRAPHICS__ */
