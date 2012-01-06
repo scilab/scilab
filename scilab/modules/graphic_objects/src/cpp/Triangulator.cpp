@@ -12,7 +12,6 @@
 
 #include "Triangulator.hxx"
 
-
 void Triangulator::determineSmallestAxis(void)
 {
     double minval;
@@ -130,6 +129,8 @@ void Triangulator::fillConvexVerticesList(void)
     double dp;
     std::list<int>::iterator vi, vim1, vip1;
 
+    flagList.resize(vertexIndices.size());
+
     for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
     {
         getAdjacentVertices(vi, vim1, vip1);
@@ -139,12 +140,12 @@ void Triangulator::fillConvexVerticesList(void)
         if (dp >= 0.0)
         {
             convexList.push_back(*vi);
-            flagList.push_back(1);
+            flagList[*vi] = 1;
         }
         else
         {
             reflexList.push_back(*vi);
-            flagList.push_back(0);
+            flagList[*vi] = 0;
         }
     }
 }
@@ -152,10 +153,7 @@ void Triangulator::fillConvexVerticesList(void)
 void Triangulator::fillEarList(void)
 {
     std::list<int>::iterator vi;
-    int index;
     int res;
-
-    index = 0;
 
     for (vi = vertexIndices.begin(); vi != vertexIndices.end(); vi++)
     {
@@ -163,7 +161,7 @@ void Triangulator::fillEarList(void)
 
         getAdjacentVertices(vi, vim1, vip1);
 
-        if (flagList.at(index))
+        if (flagList[*vi])
         {
             res = isAnEar(vi);
 
@@ -172,8 +170,6 @@ void Triangulator::fillEarList(void)
                 earList.push_back(*vi);
             }
         }
-
-        index++;
     }
 }
 
@@ -455,7 +451,6 @@ void Triangulator::triangulate(void)
 
         numDelEars++;
 
-        /* To do: check whether the output vertices' order depends on the contour's direction. */
         triIndex = *pred;
         triangleIndices.push_back(triIndex);
         triIndex = *vertex;
