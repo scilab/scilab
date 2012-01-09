@@ -148,6 +148,9 @@ Bug fixes
 
 * Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
 
+* Bug #10466 fixed - mgetl detected an error but it did not return an error
+                     message in Scilab.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
