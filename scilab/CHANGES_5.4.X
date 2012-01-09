@@ -155,6 +155,9 @@ Bug fixes
 
 * Bug #10475 fixed - Error in perms function help page fixed.
 
+* Bug #10477 fixed - In ilib_for_link, the display of the error message generated
+                     at configure time made mprintf fail.
+
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
 
