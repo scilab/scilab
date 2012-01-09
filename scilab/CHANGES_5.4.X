@@ -151,6 +151,8 @@ Bug fixes
 * Bug #10466 fixed - mgetl detected an error but it did not return an error
                      message in Scilab.
 
+* Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
+
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
 
