@@ -151,6 +151,8 @@ Bug fixes
 * Bug #10466 fixed - mgetl detected an error but it did not return an error
                      message in Scilab.
 
+* Bug #10482 fixed - Wrong error message in format function fixed.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
