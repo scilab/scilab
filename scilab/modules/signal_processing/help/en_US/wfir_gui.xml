@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- * Add some comments about XML file
--->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="wfir_gui">
   <info>
     <pubdate>$LastChangedDate: 30-11-2011 $</pubdate>
   </info>
   <refnamediv>
     <refname>wfir_gui</refname>
-    <refpurpose>A graphical user interface that can be used to interactively design wfir filters</refpurpose>
+    <refpurpose>Graphical user interface that can be used to interactively design wfir filters</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[ftype,forder,cfreq,wtype,fpar] = wfir_gui</synopsis>
+    <synopsis>[ftype,forder,cfreq,wtype,fpar] = wfir_gui()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -62,7 +59,7 @@
   <refsection>
     <title>Description</title>
     <para>
-         This function uses a graphical user interface to allow user
+         This function proposes a graphical user interface to allow user
          interactively select the design parameteres of windowed
          finite impluse response filters (see <link linkend="wfir">wfir</link>). It is called by
          <literal>wfir</literal> when no input arguments are given.
@@ -106,5 +103,14 @@
     <para>
     Based on <link linkend="uicontrol">uicontrol</link> functions.
   </para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function wfir_gui is redesigned from scratch to provide a better user experience.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

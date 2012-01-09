@@ -1494,4 +1494,15 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public String handleRevremark(Map<String, String> attributes, String contents) throws SAXException {
         return encloseContents("td", "revremark", contents);
     }
+
+    /**
+     * Handle a revdescription
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevdescription(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("td", "revdescription", contents);
+    }
 }
