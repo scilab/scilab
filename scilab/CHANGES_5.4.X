@@ -153,6 +153,8 @@ Bug fixes
 
 * Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
 
+* Bug #10475 fixed - Error in perms function help page fixed.
+
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
 
