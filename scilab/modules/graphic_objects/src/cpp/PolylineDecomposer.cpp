@@ -1,7 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Pierre Lando
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -15,6 +15,7 @@
 
 #include "DecompositionUtils.hxx"
 #include "PolylineDecomposer.hxx"
+#include "Triangulator.hxx"
 
 extern "C"
 {
@@ -690,19 +691,13 @@ int PolylineDecomposer::getIndicesSize(char* id)
     /* Segments */
     if (polylineStyle == 1)
     {
-        switch (nPoints)
+        if (nPoints < 3)
         {
-            case 3:
-                nIndices = 3;
-                break;
-            case 4:
-                nIndices = 6;
-                break;
-            default:
-                nIndices = 0;
-                break;
+            return 0;
         }
 
+        /* Maximum number of triangles output by the triangulator */
+        nIndices = 3*(nPoints-2);
     }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
@@ -724,13 +719,10 @@ int PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(int nPoints)
 }
 
 /*
- * This is a preliminary implementation of the index array filling function,
- * and is only currently able to output indices corresponding to 3-sided or convex 4-sided
- * polygons.
- *
- * To do: implementation for more than 4 points (see fillTriangleIndices).
+ * To do:
  * -take into account the polyline style property (note: vertical bars -style 6- are filled
- *  whatever fill_mode's value), by implementing the relevant functions.
+ *  whatever fill_mode's value), by implementing the relevant functions (see fillTriangleIndices),
+ *  as the curve must be filled if fill_mode set to on, whatever its polyline style value.
  */
 int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
@@ -778,10 +770,7 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
 }
 
 /*
- * Implemented as a proof of concept.
- * It is currently able to output indices corresponding to 3 or 4-point polygons.
- * To do: implementation for more than 4 points (correponding to the general fill_mode=on case).
- * -use an actual triangle decomposition algorithm (for non-convex polygons).
+ * To do:
  * -take into account the interpolation color vector for nPoints=3 or 4.
  */
 int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLength,
@@ -790,15 +779,13 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     double coords0[3];
     double coords1[3];
     double coords2[3];
-    double coords3[3];
 
-    int sharedEdgeValid = 0;
     int isValid = 0;
     int tmpValid = 0;
     int nIndices = 0;
 
-    /* Only 3 and 4-point polylines can currently be decomposed into triangles. */
-    if (nPoints != 3 && nPoints != 4)
+    /* At least 3 points needed */
+    if (nPoints < 3)
     {
         return 0;
     }
@@ -808,54 +795,86 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
         return 0;
     }
 
-    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords0[0], &coords0[1], &coords0[2]);
-    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords1[0], &coords1[1], &coords1[2]);
-    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords2[0], &coords2[1], &coords2[2]);
-
-    tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
-    tmpValid &= DecompositionUtils::isValid(coords2[0], coords2[1], coords2[2]);
-    sharedEdgeValid = tmpValid;
-
-    tmpValid &= DecompositionUtils::isValid(coords1[0], coords1[1], coords1[2]);
-
-    isValid = tmpValid;
-
-    if (logMask)
+    /* Perform triangulation only if more than 3 points */
+    if (nPoints > 3)
     {
-        tmpValid = DecompositionUtils::isLogValid(coords0[0], coords0[1], coords0[2], logMask);
-        tmpValid &= DecompositionUtils::isLogValid(coords2[0], coords2[1], coords2[2], logMask);
+        Triangulator triangulator;
+        int numTriangles;
+        int* indices;
 
-        sharedEdgeValid &= tmpValid;
+        isValid = 1;
 
-        tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
-        isValid &= tmpValid;
+        for (int i = 0; i < nPoints; i++)
+        {
+            getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i, &coords0[0], &coords0[1], &coords0[2]);
+
+            tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
+
+            if (logMask)
+            {
+                tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
+            }
+
+            isValid &= tmpValid;
+
+            if (!isValid)
+            {
+                break;
+            }
+
+            triangulator.addPoint(coords0[0], coords0[1], coords0[2]);
+        }
+
+        if (!isValid)
+        {
+            return 0;
+        }
+
+        /* Triangulate */
+        triangulator.initialize();
+        triangulator.triangulate();
+
+        numTriangles = triangulator.getNumberTriangles();
+        indices = triangulator.getIndices();
+
+        for (int i = 0; i < numTriangles; i++)
+        {
+            buffer[3*i] = indices[3*i];
+            buffer[3*i+1] = indices[3*i+1];
+            buffer[3*i+2] = indices[3*i+2];
+            nIndices += 3;
+        }
+
+        triangulator.clear();
+
+        return nIndices;
     }
-
-    if (isValid)
+    else
     {
-        buffer[0] = 0;
-        buffer[1] = 1;
-        buffer[2] = 2;
+        /* 3 points: only one triangle output */
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coords0[0], &coords0[1], &coords0[2]);
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 1, &coords1[0], &coords1[1], &coords1[2]);
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 2, &coords2[0], &coords2[1], &coords2[2]);
 
-        nIndices += 3;
-    }
+        tmpValid = DecompositionUtils::isValid(coords0[0], coords0[1], coords0[2]);
+        tmpValid &= DecompositionUtils::isValid(coords2[0], coords2[1], coords2[2]);
+        tmpValid &= DecompositionUtils::isValid(coords1[0], coords1[1], coords1[2]);
 
-    if (nPoints == 4)
-    {
-        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 3, &coords3[0], &coords3[1], &coords3[2]);
-
-        isValid = sharedEdgeValid & DecompositionUtils::isValid(coords3[0], coords3[1], coords3[2]);
+        isValid = tmpValid;
 
         if (logMask)
         {
-            isValid &= DecompositionUtils::isLogValid(coords3[0], coords3[1], coords3[2], logMask);
+            tmpValid = DecompositionUtils::isLogValid(coords0[0], coords0[1], coords0[2], logMask);
+            tmpValid &= DecompositionUtils::isLogValid(coords2[0], coords2[1], coords2[2], logMask);
+            tmpValid &= DecompositionUtils::isLogValid(coords1[0], coords1[1], coords1[2], logMask);
+            isValid &= tmpValid;
         }
 
         if (isValid)
         {
-            buffer[nIndices+0] = 0;
-            buffer[nIndices+1] = 2;
-            buffer[nIndices+2] = 3;
+            buffer[0] = 0;
+            buffer[1] = 1;
+            buffer[2] = 2;
 
             nIndices += 3;
         }

@@ -178,9 +178,8 @@ private :
     static int getBarsDecompositionTriangleIndicesSize(int nPoints);
 
     /**
-     * Fills a buffer with triangles indices corresponding to 1 or 2 triangles.
-     * Implemented as a proof of concept, since it is only currently able to
-     * process 3- or 4-point polygons.
+     * Fills a buffer with triangles indices obtained by triangulation of a polygon whose contour
+     * is defined by the polyline.
      * @param[in] the id of the polyline.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
