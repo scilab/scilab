@@ -19,7 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA =  license.txt 
+libscigui_la_root_DATA =  license.txt
 
 
 #### gui : init scripts ####
@@ -48,7 +48,6 @@ src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
 src/c/InitWaitBar.c \
-src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
@@ -176,7 +175,7 @@ endif
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i
 
 if SWIG
     BUILT_SOURCES=swig
