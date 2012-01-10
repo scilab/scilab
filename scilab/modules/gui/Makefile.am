@@ -47,7 +47,6 @@ src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
 src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
-src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \

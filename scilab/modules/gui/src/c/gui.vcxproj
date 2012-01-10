@@ -228,7 +228,6 @@
     <ClCompile Include="..\cpp\CheckBox.cpp" />
     <ClCompile Include="checkColorRange.c" />
     <ClCompile Include="..\cpp\ContextMenu.cpp" />
-    <ClCompile Include="CreateUIContextMenu.c" />
     <ClCompile Include="CreateUIControl.c" />
     <ClCompile Include="CreateUimenu.c" />
     <ClCompile Include="..\cpp\DestroyJavaUiobject.cpp" />
@@ -398,7 +397,6 @@
     <ClInclude Include="..\cpp\CheckBox.hxx" />
     <ClInclude Include="..\..\includes\ContextMenu.h" />
     <ClInclude Include="..\cpp\ContextMenu.hxx" />
-    <ClInclude Include="CreateUIContextMenu.h" />
     <ClInclude Include="CreateUIControl.h" />
     <ClInclude Include="CreateUimenu.h" />
     <ClInclude Include="..\..\includes\DestroyJavaUiobject.h" />

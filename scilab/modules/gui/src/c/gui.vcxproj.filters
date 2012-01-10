@@ -71,9 +71,6 @@
     <ClCompile Include="..\cpp\ContextMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CreateUIContextMenu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CreateUIControl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -563,9 +560,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\ContextMenu.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CreateUIContextMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreateUIControl.h">
