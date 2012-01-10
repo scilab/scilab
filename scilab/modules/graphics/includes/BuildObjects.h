@@ -85,6 +85,4 @@ GRAPHICS_IMPEXP char *ConstructCompoundSeq(int number); /* BUILD */
 
 GRAPHICS_IMPEXP char *ConstructLabel(char *pparentsubwinUID, char *text, int type); /* BUILD */
 
-GRAPHICS_IMPEXP void initUserData(sciPointObj * pObj);
-
 #endif /* __SCI_BUILD__ */

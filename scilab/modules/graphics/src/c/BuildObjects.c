@@ -797,14 +797,6 @@ char *allocatePolyline(char *pparentsubwinUID, double *pvecx, double *pvecy, dou
     visible = 1;
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-    /*
-     * Deactivated for now since not fully implemented yet by the MVC
-     * To be implemented
-     */
-#if 0
-    initUserData(pobj);
-#endif
-
     return pobjUID;
 }
 
@@ -2138,14 +2130,6 @@ char *ConstructCompoundSeq(int number)
     /* Sets the parent-child relationship for the Compound */
     setGraphicObjectRelationship(psubwinUID, pobjUID);
 
-    /* set Compound properties */
-    /* To be implemented */
-#if 0
-    initUserData(pobj);
-    ppagr->callback = (char *)NULL;
-    ppagr->callbacklen = 0;
-#endif
-
     /*
      * visibility is obtained from the parent Figure, whereas it is retrieved from the
      * parent Axes in ConstructCompound.
@@ -2219,19 +2203,3 @@ char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
 
     return pobjUID;
 }
-
-/*----------------------------------------------------------------------------*/
-/**
- * Initialize the user data of a graphic obj
- */
-void initUserData(sciPointObj * pObj)
-{
-    int **userData = NULL;
-    int *udSize = NULL;
-
-    sciGetPointerToUserData(pObj, &userData, &udSize);
-    *userData = NULL;
-    *udSize = 0;
-}
-
-/*----------------------------------------------------------------------------*/
