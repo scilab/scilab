@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.graphicController;
 
+import java.awt.GraphicsEnvironment;
 import java.rmi.server.UID;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
@@ -52,8 +53,10 @@ public class GraphicController {
      * Default constructor
      */
     private GraphicController() {
-        register(GuiLogView.createGuiLogView());
-        register(TreeView.createTreeView());
+        if (!GraphicsEnvironment.isHeadless()) {
+            register(GuiLogView.createGuiLogView());
+            register(TreeView.createTreeView());
+        }
     }
 
     /**
