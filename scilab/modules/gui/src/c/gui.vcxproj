@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -270,7 +270,6 @@
     <ClCompile Include="iconifyMainWindow.c" />
     <ClCompile Include="InitializeGUI.c" />
     <ClCompile Include="..\cpp\InitUIMenu.cpp" />
-    <ClCompile Include="InitWaitBar.c" />
     <ClCompile Include="..\jni\Juigetfile.cpp" />
     <ClCompile Include="..\jni\Jxclick.cpp" />
     <ClCompile Include="..\jni\Jxgetmouse.cpp" />
@@ -470,7 +469,6 @@
     <ClInclude Include="..\..\includes\InitializeGUI.h" />
     <ClInclude Include="..\..\includes\InitUIMenu.h" />
     <ClInclude Include="..\cpp\InitUIMenu.hxx" />
-    <ClInclude Include="InitWaitBar.h" />
     <ClInclude Include="..\jni\Jxclick.hxx" />
     <ClInclude Include="..\jni\Jxgetmouse.hxx" />
     <ClInclude Include="..\..\includes\Label.h" />
