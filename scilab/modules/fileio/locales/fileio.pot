@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-12-27 20:11+0100\n"
+"Revision-Date: 2012-01-10 11:38+0100\n"
 
 # File: sci_gateway/c/sci_basename.c, line: 63
 # File: sci_gateway/c/sci_basename.c, line: 113
@@ -73,12 +73,14 @@ msgstr ""
 # File: sci_gateway/c/sci_isfile.c, line: 81
 # File: sci_gateway/c/sci_isfile.c, line: 96
 # File: sci_gateway/c/sci_isfile.c, line: 107
-# File: sci_gateway/c/sci_mgetl.c, line: 64
-# File: sci_gateway/c/sci_mgetl.c, line: 169
-# File: sci_gateway/c/sci_mgetl.c, line: 196
-# File: sci_gateway/c/sci_mgetl.c, line: 218
-# File: sci_gateway/c/sci_mgetl.c, line: 246
-# File: sci_gateway/c/sci_mgetl.c, line: 274
+# File: sci_gateway/c/sci_mgetl.c, line: 65
+# File: sci_gateway/c/sci_mgetl.c, line: 171
+# File: sci_gateway/c/sci_mgetl.c, line: 198
+# File: sci_gateway/c/sci_mgetl.c, line: 220
+# File: sci_gateway/c/sci_mgetl.c, line: 233
+# File: sci_gateway/c/sci_mgetl.c, line: 249
+# File: sci_gateway/c/sci_mgetl.c, line: 262
+# File: sci_gateway/c/sci_mgetl.c, line: 278
 # File: sci_gateway/c/sci_movefile.c, line: 97
 # File: sci_gateway/c/sci_movefile.c, line: 167
 # File: sci_gateway/c/sci_movefile.c, line: 231
@@ -215,7 +217,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fullpath.c, line: 77
 # File: sci_gateway/c/sci_mfscanf.c, line: 120
 # File: sci_gateway/c/sci_mfscanf.c, line: 131
-# File: sci_gateway/c/sci_mgetl.c, line: 146
+# File: sci_gateway/c/sci_mgetl.c, line: 148
 # File: sci_gateway/c/sci_mopen.c, line: 121
 # File: sci_gateway/c/sci_mputl.c, line: 125
 # File: sci_gateway/c/sci_mputl.c, line: 196
@@ -308,7 +310,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_fprintfMat.c, line: 369
 # File: sci_gateway/c/sci_fscanfMat.c, line: 308
-# File: sci_gateway/c/sci_mgetl.c, line: 286
+# File: sci_gateway/c/sci_mgetl.c, line: 290
 #, c-format
 msgid "%s: error.\n"
 msgstr ""
@@ -486,34 +488,41 @@ msgid "%s: Data mismatch.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 54
+# File: sci_gateway/c/sci_mgetl.c, line: 46
+# File: sci_gateway/c/sci_mgetl.c, line: 80
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 55
 # File: sci_gateway/c/sci_mputl.c, line: 70
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 70
+# File: sci_gateway/c/sci_mgetl.c, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 92
+# File: sci_gateway/c/sci_mgetl.c, line: 94
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 131
+# File: sci_gateway/c/sci_mgetl.c, line: 133
 # File: sci_gateway/c/sci_mputl.c, line: 111
 #, c-format
 msgid "%s: Too many files opened!\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 138
+# File: sci_gateway/c/sci_mgetl.c, line: 140
 # File: sci_gateway/c/sci_mopen.c, line: 112
 # File: sci_gateway/c/sci_mputl.c, line: 117
 #, c-format
@@ -521,14 +530,14 @@ msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 152
+# File: sci_gateway/c/sci_mgetl.c, line: 154
 # File: sci_gateway/c/sci_mputl.c, line: 133
 #, c-format
 msgid "%s: invalid filename %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 160
+# File: sci_gateway/c/sci_mgetl.c, line: 162
 # File: sci_gateway/c/sci_mopen.c, line: 135
 # File: sci_gateway/c/sci_mputl.c, line: 146
 #, c-format
@@ -536,16 +545,16 @@ msgid "%s: invalid status.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 190
-# File: src/c/mget.c, line: 82
-# File: src/c/mget.c, line: 197
+# File: sci_gateway/c/sci_mgetl.c, line: 192
+# File: src/c/mget.c, line: 83
+# File: src/c/mget.c, line: 271
 # File: src/c/mput.c, line: 82
 #, c-format
 msgid "%s: No input file associated to logical unit %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mgetl.c, line: 297
+# File: sci_gateway/c/sci_mgetl.c, line: 301
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
@@ -690,20 +699,20 @@ msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 68
+# File: src/c/mget.c, line: 69
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 184
+# File: src/c/mget.c, line: 257
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 193
+# File: src/c/mget.c, line: 267
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""

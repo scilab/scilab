@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-12-27 20:11+0100\n"
+"Revision-Date: 2012-01-10 11:38+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 71
 #, c-format
@@ -1598,17 +1598,17 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2326
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2325
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2345
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2344
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2480
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2479
 msgid "No print service found."
 msgstr ""
 
@@ -1936,19 +1936,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 45
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 44
 #, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 47
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 45
 #, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 48
+# File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 46
 msgid "Exit"
 msgstr ""
 
@@ -2046,7 +2046,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 49
-msgid "Copyright (c) 1989-2011 (INRIA)"
+msgid "Copyright (c) 1989-2012 (INRIA)"
 msgstr ""
 
 #

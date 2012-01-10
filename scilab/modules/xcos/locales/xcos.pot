@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-12-27 20:11+0100\n"
+"Revision-Date: 2012-01-10 11:38+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 49
 #, c-format
@@ -49,7 +49,7 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 101
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 102
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 103
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 104
 #, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
@@ -65,12 +65,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 105
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 106
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 107
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 108
 #, c-format
 msgid ""
 "Unable to load the Batik library. \n"
@@ -78,18 +78,18 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 136
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 139
 msgid "Preview"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 215
-msgid "Please specify a file format"
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 242
+msgid "Error on export"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 216
-msgid "Error on export"
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 242
+msgid "Please specify a valid file format"
 msgstr ""
 
 #
@@ -221,93 +221,98 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
-msgid "Discrete"
+msgid "Discretes"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 52
-msgid "Input"
+msgid "Inputs"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 53
+msgid "Outputs"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 54
 msgid "Solver"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 56
 msgid "Initial computing method"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 57
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 58
 msgid "Parameter embedding"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
 msgid "Generate Jacobian"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Error"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 64
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
 msgid "Unknowns not equals to Equations"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 66
 msgid "Unknowns"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 66
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 67
 msgid "Reduced"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 67
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 68
 msgid "Extended"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 68
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 69
 msgid "Diff. States"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 70
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 71
 msgid "Fixed parameters"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 72
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 73
 msgid "Relaxed parameters"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 74
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 75
 msgid "Fixed variables"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 76
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 77
 msgid "Relaxed variables"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 79
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 80
 msgid "Please take a look into the Scilab console"
 msgstr ""
 
@@ -1288,6 +1293,13 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 388
 msgid "Wrong port number"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 390
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 #

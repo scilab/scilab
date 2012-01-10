@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-01-09 10:17+0100\n"
+"Revision-Date: 2012-01-10 11:38+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -69,10 +69,10 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_errclear.c, line: 56
-# File: sci_gateway/c/sci_format.c, line: 142
-# File: sci_gateway/c/sci_format.c, line: 297
-# File: sci_gateway/c/sci_format.c, line: 358
-# File: sci_gateway/c/sci_format.c, line: 374
+# File: sci_gateway/c/sci_format.c, line: 147
+# File: sci_gateway/c/sci_format.c, line: 301
+# File: sci_gateway/c/sci_format.c, line: 359
+# File: sci_gateway/c/sci_format.c, line: 376
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
@@ -133,9 +133,9 @@ msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 88
-# File: sci_gateway/c/sci_format.c, line: 118
-# File: sci_gateway/c/sci_format.c, line: 422
+# File: sci_gateway/c/sci_format.c, line: 93
+# File: sci_gateway/c/sci_format.c, line: 122
+# File: sci_gateway/c/sci_format.c, line: 423
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 54
 # File: sci_gateway/c/sci_predef.c, line: 121
 #, c-format
@@ -143,13 +143,13 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 124
-# File: sci_gateway/c/sci_format.c, line: 277
-# File: sci_gateway/c/sci_format.c, line: 283
-# File: sci_gateway/c/sci_format.c, line: 340
-# File: sci_gateway/c/sci_format.c, line: 349
-# File: sci_gateway/c/sci_format.c, line: 367
-# File: sci_gateway/c/sci_format.c, line: 380
+# File: sci_gateway/c/sci_format.c, line: 128
+# File: sci_gateway/c/sci_format.c, line: 281
+# File: sci_gateway/c/sci_format.c, line: 287
+# File: sci_gateway/c/sci_format.c, line: 341
+# File: sci_gateway/c/sci_format.c, line: 350
+# File: sci_gateway/c/sci_format.c, line: 369
+# File: sci_gateway/c/sci_format.c, line: 382
 # File: sci_gateway/c/sci_getos.c, line: 49
 # File: sci_gateway/c/sci_getos.c, line: 57
 # File: sci_gateway/c/sci_typename.c, line: 176
@@ -210,35 +210,35 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 153
-# File: sci_gateway/c/sci_format.c, line: 164
-# File: sci_gateway/c/sci_format.c, line: 306
-# File: sci_gateway/c/sci_format.c, line: 317
+# File: sci_gateway/c/sci_format.c, line: 157
+# File: sci_gateway/c/sci_format.c, line: 168
+# File: sci_gateway/c/sci_format.c, line: 309
+# File: sci_gateway/c/sci_format.c, line: 319
 # File: sci_gateway/c/sci_format.c, line: 397
-# File: sci_gateway/c/sci_format.c, line: 410
+# File: sci_gateway/c/sci_format.c, line: 411
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 191
-# File: sci_gateway/c/sci_format.c, line: 201
-# File: sci_gateway/c/sci_format.c, line: 212
+# File: sci_gateway/c/sci_format.c, line: 196
+# File: sci_gateway/c/sci_format.c, line: 205
+# File: sci_gateway/c/sci_format.c, line: 215
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 224
-# File: sci_gateway/c/sci_format.c, line: 258
-# File: sci_gateway/c/sci_format.c, line: 264
+# File: sci_gateway/c/sci_format.c, line: 227
+# File: sci_gateway/c/sci_format.c, line: 263
+# File: sci_gateway/c/sci_format.c, line: 269
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 231
+# File: sci_gateway/c/sci_format.c, line: 234
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a scalar integer value "
@@ -246,13 +246,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 291
+# File: sci_gateway/c/sci_format.c, line: 295
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_format.c, line: 427
+# File: sci_gateway/c/sci_format.c, line: 428
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr ""
@@ -1645,51 +1645,51 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 70
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 71
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 138
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 138
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 139
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 139
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 140
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 140
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 141
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 141
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 142
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 144
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 147
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 150
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 153
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 142
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 144
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 147
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 150
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 153
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 155
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 155
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 156
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 156
 msgid "&Toolboxes"
 msgstr ""
 
