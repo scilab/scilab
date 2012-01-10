@@ -2221,36 +2221,6 @@ char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
 }
 
 /*----------------------------------------------------------------------------*/
-void createDefaultRelationShip(sciPointObj * pObj)
-{
-    /* Create a new relationship structure */
-    sciRelationShip *relationShip = NULL;
-
-    if (sciGetEntityType(pObj) == SCI_LABEL)
-    {
-        /* labels have their relationShip stored in their text objects */
-        return;
-    }
-
-    relationShip = MALLOC(sizeof(sciRelationShip));
-    if (relationShip == NULL)
-    {
-        return;
-    }
-
-    /* Set default values */
-    relationShip->handleIndex = 0;
-    relationShip->plastsons = NULL;
-    relationShip->psons = NULL;
-    relationShip->pparent = NULL;
-    relationShip->pSelectedSon = DoublyLinkedList_new();
-
-    /* Add it to the object */
-    pObj->relationShip = relationShip;
-
-}
-
-/*----------------------------------------------------------------------------*/
 /**
  * Initialize the user data of a graphic obj
  */

@@ -163,12 +163,6 @@ int sciAddNewHandle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-void createDefaultRelationShip(sciPointObj * pObj)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 int sciSetEntityType(char *pobj, sciEntityType value)
 {
     return -1;

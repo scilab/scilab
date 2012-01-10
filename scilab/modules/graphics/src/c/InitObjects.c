@@ -256,43 +256,6 @@ int C2F(graphicsmodels) (void)
     /* Sets the parent-child relationship between the default Figure and Axes */
     setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
 
-    /* Commented out: the equivalent MVC operations are done just above */
-#if 0
-    sciSetEntityType(paxesmdl, SCI_SUBWIN);
-    if ((paxesmdl->pfeatures = MALLOC((sizeof(sciSubWindow)))) == NULL)
-    {
-        FREE(paxesmdl);
-        strcpy(error_message, _("Default axes cannot be create.\n"));
-        return 0;
-    }
-    createDefaultRelationShip(paxesmdl);
-
-    /* add the handle in the handle list */
-    //if ( sciAddNewHandle(paxesmdl) == -1 )
-    //{
-    //    return NULL ;
-    //}
-
-    /* there are properties not initialized bu InitAxesModel */
-    /* Is it a missing ? */
-
-    ppaxesmdl->FirstPlot = TRUE;
-
-    ppaxesmdl->ARect[0] = 0.125;
-    ppaxesmdl->ARect[1] = 0.125;
-    ppaxesmdl->ARect[2] = 0.125;
-    ppaxesmdl->ARect[3] = 0.125;
-
-    ppaxesmdl->clip_region[0] = 0.;
-    ppaxesmdl->clip_region[1] = 0.;
-    ppaxesmdl->clip_region[2] = 0.;
-    ppaxesmdl->clip_region[3] = 0.;
-
-    /* the model has not been changed !!! */
-    ppaxesmdl->clip_region_set = 0;
-
-#endif
-
     return 1;
 }
 
