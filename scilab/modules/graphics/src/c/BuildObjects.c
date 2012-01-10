@@ -2221,45 +2221,6 @@ char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
 }
 
 /*----------------------------------------------------------------------------*/
-/**
- * contains the functions always called when creating an object
- * pObj should have just been allocated.
- * @return the modified object. Should be the same as pObj, unless an error occured.
- *         then it is NULL.
- */
-sciPointObj *sciStandardBuildOperations(sciPointObj * pObj, sciPointObj * parent)
-{
-
-    /* Allocate relationShip */
-    createDefaultRelationShip(pObj);
-
-    /* add the handle in the handle list */
-//  if ( sciAddNewHandle(pObj) == -1 )
-//  {
-//    return NULL ;
-//  }
-
-    /* connect the object under its parent in the hierarchy */
-    //if ( !sciAddThisToItsParent( pObj, parent) )
-    //{
-    //  sciDelHandle(pObj) ;
-    //  return NULL ;
-    //}
-
-    sciInitVisibility(pObj->UID, TRUE);
-
-    initUserData(pObj);
-
-    pObj->pObservers = DoublyLinkedList_new();
-    createDrawingObserver(pObj);
-
-    pObj->pDrawer = NULL;
-
-    return pObj;
-
-}
-
-/*----------------------------------------------------------------------------*/
 void createDefaultRelationShip(sciPointObj * pObj)
 {
     /* Create a new relationship structure */
