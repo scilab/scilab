@@ -55,6 +55,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -62,6 +63,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -72,6 +74,12 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            return 0;
+        }
 
         if ( (m3 != n3) && (n3 != 1) ) 
         {
@@ -102,6 +110,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         {
             if (separator) {FREE(separator); separator = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -110,6 +119,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         {
             if (separator) {FREE(separator); separator = NULL;}
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -121,6 +131,13 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+        if(sciErr.iErr)
+        {
+            if (separator) {FREE(separator); separator = NULL;}
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
         if ( (m2 != n2) && (n2 != 1) ) 
         {
@@ -147,6 +164,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if (separator) {FREE(separator); separator = NULL;}
         if (Format) {FREE(Format); Format = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -156,6 +174,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
         if (separator) {FREE(separator); separator = NULL;}
         if (Format) {FREE(Format); Format = NULL;}
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -168,6 +187,14 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+    if(sciErr.iErr)
+    {
+        if (separator) {FREE(separator); separator = NULL;}
+        if (Format) {FREE(Format); Format = NULL;}
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
 
     if ( (m1 != n1) && (n1 != 1) ) 
     {

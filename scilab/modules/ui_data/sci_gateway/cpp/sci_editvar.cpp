@@ -169,6 +169,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -176,6 +177,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -190,6 +192,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -205,6 +208,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -216,6 +220,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     {
         FREE(pStVarOne);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -253,6 +258,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
     }
@@ -263,6 +269,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             FREE(pStVarOne);
             return 0;
         }
@@ -279,6 +286,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -288,6 +296,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             FREE(pStVarOne);
             return 0;
         }
@@ -304,6 +313,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -318,6 +328,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     {
         FREE(pStVarOne);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -337,6 +348,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             {
                 FREE(pStVarOne);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -390,6 +402,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             {
                 FREE(pStVarOne);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
             /*
@@ -427,6 +440,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -439,6 +453,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             FREE(pStVarOne);
             FREE(piLen);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -455,6 +470,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             FREE(piLen);
             freeArrayOfString(pstData, iRows * iCols);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -495,6 +511,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -533,6 +550,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -543,6 +561,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -574,6 +593,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -605,6 +625,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -636,6 +657,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -667,6 +689,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -698,6 +721,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return -1;
             }
 
@@ -738,6 +762,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -770,6 +795,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             {
                 FREE(pStVarOne);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -803,6 +829,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
             {
                 FREE(pStVarOne);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 

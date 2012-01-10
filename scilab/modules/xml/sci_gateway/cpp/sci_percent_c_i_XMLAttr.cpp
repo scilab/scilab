@@ -55,6 +55,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -84,6 +85,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
             {
                 freeAllocatedSingleString(prefix);
                 printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 0;
             }
 
@@ -110,6 +112,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -125,6 +128,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
         return 0;
     }
 

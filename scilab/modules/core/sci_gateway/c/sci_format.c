@@ -65,6 +65,7 @@ static int sci_format_norhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
     LhsVar(1) = Rhs + 1;
@@ -81,6 +82,7 @@ static int sci_format_onerhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -188,6 +190,7 @@ static int sci_format_onerhs(char *fname)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
 
@@ -248,6 +251,7 @@ static int sci_format_tworhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -255,6 +259,7 @@ static int sci_format_tworhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 

@@ -49,6 +49,7 @@ int sci_xmlValidationFile(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

@@ -16,6 +16,8 @@
 #include "machine.h"
 #include "api_scilab.h"
 #include "stack-c.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intslgamma)(char *id,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
@@ -29,6 +31,7 @@ int sci_lgamma(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -36,6 +39,7 @@ int sci_lgamma(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 

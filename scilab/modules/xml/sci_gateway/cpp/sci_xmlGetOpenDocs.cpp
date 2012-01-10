@@ -21,6 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
+#include "localization.h"
 }
 
 using namespace org_modules_xml;
@@ -42,6 +43,7 @@ int sci_xmlGetOpenDocs(char *fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
