@@ -155,6 +155,9 @@ Bug fixes
 
 * Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
 
+* Bug #10474 fixed - Sometimes an exception was thrown at history browser
+                     restoration.
+
 * Bug #10475 fixed - Error in perms function help page fixed.
 
 * Bug #10477 fixed - In ilib_for_link, the display of the error message generated

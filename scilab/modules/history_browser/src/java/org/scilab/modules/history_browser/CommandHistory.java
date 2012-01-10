@@ -217,8 +217,6 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
             SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         scilabHistoryTree.setVisible(true);
-                        scilabHistoryTree.setRowHeight(16);
-                        scilabHistoryTree.setLargeModel(true);
                         if (!modelLoaded) {
                             scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
                             modelLoaded = true;
@@ -514,6 +512,9 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
 
         HistoryTree(TreeModel model) {
             super(model);
+            setRowHeight(16);
+            setLargeModel(true);
+
             setCellRenderer(new DefaultTreeCellRenderer() {
                         {
                             defaultColor = getTextNonSelectionColor();
