@@ -1,7 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Pierre Lando
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -124,6 +124,10 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
+    {
+        PolylineDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
     }
 }
 

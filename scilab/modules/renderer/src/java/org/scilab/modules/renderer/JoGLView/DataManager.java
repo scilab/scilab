@@ -76,7 +76,9 @@ public class DataManager {
             GraphicObjectProperties.__GO_LINE_MODE__,
             GraphicObjectProperties.__GO_BAR_WIDTH__,
             GraphicObjectProperties.__GO_CLOSED__,
-            GraphicObjectProperties.__GO_FILL_MODE__
+            GraphicObjectProperties.__GO_FILL_MODE__,
+            GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__,
+            GraphicObjectProperties.__GO_INTERP_COLOR_MODE__
     ));
 
     /**

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -352,6 +352,15 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
     static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+
+    /**
+     * Fills the given buffer with color data from the given object.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of components taken by one element in the buffer (3 or 4).
+     */
+    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
 
     /**
      * Returns the number of indices for the given object.
