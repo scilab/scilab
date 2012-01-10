@@ -135,17 +135,17 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	}
 	else if(in[0]->isMacro())
 	{//1st argument is a macro name, execute it in the current environnement
-		pExp = in[0]->getAsMacro()->getBody();
+		pExp = in[0]->getAs<Macro>()->getBody();
 	}
 	else if(in[0]->isMacroFile())
 	{//1st argument is a macro name, parse and execute it in the current environnement
-		if(in[0]->getAsMacroFile()->parse() == false)
+		if(in[0]->getAs<MacroFile>()->parse() == false)
 		{
-            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAsMacroFile()->getName().c_str());
+            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAs<MacroFile>()->getName().c_str());
             mclose(iID);
 			return Function::Error;
 		}
-		pExp = in[0]->getAsMacroFile()->getMacro()->getBody();
+		pExp = in[0]->getAs<MacroFile>()->getMacro()->getBody();
 	}
 	else
 	{
@@ -212,9 +212,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 
             //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
+            if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
             {
-                Callable *pCall = execMe.result_get()->getAsCallable();
+                Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
 
@@ -338,7 +338,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
                     if(ConfigVariable::getLastErrorFunction() == L"")
                     {
-                        ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                        ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
                     }
 
 

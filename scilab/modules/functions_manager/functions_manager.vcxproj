@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -95,7 +95,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -116,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -139,7 +139,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

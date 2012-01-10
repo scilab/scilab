@@ -4,56 +4,57 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-FILEIO_C_SOURCES = src/c/FileExist.c \
-src/c/scanf_functions.c \
-src/c/do_xxscanf.c \
-src/c/findfiles.c \
-src/c/Status2Mode.c \
-src/c/addfile.c \
-src/c/delfile.c \
-src/c/filesmanagement.c \
-src/c/getfiledesc.c \
-src/c/getfileinfo.c \
-src/c/getfiletype.c \
-src/c/mgeti.c \
-src/c/mputi.c \
-src/c/readline.c \
-src/c/getdrives.c \
-src/c/deleteafile.c \
-src/c/getshortpathname.c \
-src/c/getlongpathname.c \
-src/c/FindFileExtension.c \
-src/c/URIFileToFilename.c \
-src/c/createdirectory.c \
-src/c/isdir.c \
-src/c/isDrive.c \
-src/c/removedir.c \
-src/c/cluni0.c \
-src/c/scicurdir.c \
-src/c/fullpath.c \
-src/c/fileinfo.c \
-src/c/getrelativefilename.c \
-src/c/splitpath.c \
-src/c/movefile.c \
-src/c/basename.c \
-src/c/pathconvert.c \
-src/c/copyfile_others.c \
-src/c/getFullFilename.c \
-src/c/os_wfopen.c \
-src/c/fscanfMat.c \
-src/c/fprintfMat.c \
-src/c/createtempfilename.c
+FILEIO_C_SOURCES = \
+    src/c/FileExist.c \
+    src/c/scanf_functions.c \
+    src/c/do_xxscanf.c \
+    src/c/findfiles.c \
+    src/c/Status2Mode.c \
+    src/c/addfile.c \
+    src/c/delfile.c \
+    src/c/filesmanagement.c \
+    src/c/getfiledesc.c \
+    src/c/getfileinfo.c \
+    src/c/getfiletype.c \
+    src/c/mgeti.c \
+    src/c/mputi.c \
+    src/c/readline.c \
+    src/c/getdrives.c \
+    src/c/deleteafile.c \
+    src/c/getshortpathname.c \
+    src/c/getlongpathname.c \
+    src/c/FindFileExtension.c \
+    src/c/URIFileToFilename.c \
+    src/c/createdirectory.c \
+    src/c/isdir.c \
+    src/c/isDrive.c \
+    src/c/removedir.c \
+    src/c/cluni0.c \
+    src/c/scicurdir.c \
+    src/c/fullpath.c \
+    src/c/fileinfo.c \
+    src/c/getrelativefilename.c \
+    src/c/splitpath.c \
+    src/c/movefile.c \
+    src/c/basename.c \
+    src/c/pathconvert.c \
+    src/c/copyfile_others.c \
+    src/c/getFullFilename.c \
+    src/c/os_wfopen.c \
+    src/c/fscanfMat.c \
+    src/c/fprintfMat.c \
+    src/c/createtempfilename.c
 
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_fileio.c \
-sci_gateway/c/sci_fprintfMat.c \
-sci_gateway/c/sci_fscanfMat.c \
-sci_gateway/c/sci_chdir.c \
-sci_gateway/c/sci_pwd.c \
-sci_gateway/c/sci_copyfile.c \
-sci_gateway/c/sci_tempname.c \
-sci_gateway/c/sci_movefile.c
+    sci_gateway/c/gw_fileio.c \
+    sci_gateway/c/sci_fprintfMat.c \
+    sci_gateway/c/sci_fscanfMat.c \
+    sci_gateway/c/sci_chdir.c \
+    sci_gateway/c/sci_pwd.c \
+    sci_gateway/c/sci_copyfile.c \
+    sci_gateway/c/sci_tempname.c \
+    sci_gateway/c/sci_movefile.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
@@ -110,37 +111,42 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/newest.cpp \
 	src/cpp/scilab_sscanf.cpp
 
-libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(srcdir)/src/cpp/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/types/includes \
-				-I$(top_srcdir)/modules/functions_manager/includes \
-				-I$(top_srcdir)/modules/ast/includes \
-				-I$(top_srcdir)/modules/symbol/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/shell/includes \
-				-I$(top_srcdir)/modules/threads/includes \
-				-I$(top_srcdir)/modules/console/includes \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes \
-				$(HDF5_CFLAGS)
+libscifileio_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/io/includes \
+	-I$(top_srcdir)/modules/shell/includes \
+	-I$(top_srcdir)/modules/threads/includes \
+	-I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+	$(HDF5_CFLAGS) \
+    $(EIGEN_CPPFLAGS)
 
-libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/io/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/localization/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				$(HDF5_CFLAGS)
+
+libscifileio_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/io/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	$(HDF5_CFLAGS)
+
 
 noinst_LTLIBRARIES = libscifileio-algo.la
 pkglib_LTLIBRARIES = libscifileio.la

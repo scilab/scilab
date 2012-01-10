@@ -21,6 +21,7 @@
 
 #include <vector>
 
+#include "list.hxx"
 #include "arrayof.hxx"
 #include "dynlib_types.h"
 
@@ -85,4 +86,7 @@ namespace types
     };
 }
 
+#ifdef _MSC_VER
+template class TYPES_IMPEXP types::ArrayOf<types::InternalType*>; //Cell
+#endif
 #endif /* !__CELL_HXX__ */

@@ -487,7 +487,8 @@ libscifunctions_la_CPPFLAGS = \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/threads/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes
+                -I$(top_srcdir)/libs/dynamiclibrary/includes \
+                $(EIGEN_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
 noinst_LTLIBRARIES = libscifunctions-algo.la

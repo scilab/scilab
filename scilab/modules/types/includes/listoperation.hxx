@@ -27,7 +27,6 @@ namespace types
 
         InternalType*           clone();
 
-        ListOperation*          getAsListOperation(void);
         RealType                getType(void);
         bool                    isListOperation() { return true; }
 

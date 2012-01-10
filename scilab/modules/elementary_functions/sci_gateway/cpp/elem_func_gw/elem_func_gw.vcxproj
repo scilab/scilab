@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -142,7 +142,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -179,7 +179,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

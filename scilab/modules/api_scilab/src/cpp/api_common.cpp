@@ -62,8 +62,8 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
     {
-        *_piRows        = ((types::InternalType*)_piAddress)->getAsGenericType()->getRows();
-        *_piCols        = ((types::InternalType*)_piAddress)->getAsGenericType()->getCols();
+        *_piRows        = ((types::InternalType*)_piAddress)->getAs<GenericType>()->getRows();
+        *_piCols        = ((types::InternalType*)_piAddress)->getAs<GenericType>()->getCols();
     }
     else
     {
@@ -211,15 +211,15 @@ SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
     case types::GenericType::RealBool :
         *_piType = sci_boolean;
         break;
-        //case GenericType::RealSparse :
-        //    *_piType = sci_sparse;
-        //    break;
-        //case GenericType::RealBoolSparse :
-        //    *_piType = sci_boolean_sparse;
-        //    break;
-        //case GenericType::RealMatlabSparse :
-        //    *_piType = sci_matlab_sparse;
-        //    break;
+    case GenericType::RealSparse :
+        *_piType = sci_sparse;
+        break;
+    case GenericType::RealSparseBool :
+        *_piType = sci_boolean_sparse;
+        break;
+    //case GenericType::RealMatlabSparse :
+    //    *_piType = sci_matlab_sparse;
+    //    break;
     case GenericType::RealInt8 :
     case GenericType::RealUInt8 :
     case GenericType::RealInt16 :

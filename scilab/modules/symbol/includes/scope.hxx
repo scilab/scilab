@@ -152,7 +152,7 @@ namespace symbol
             {
                 if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
                 {
-                    types::Callable* pC = it_scope->second->getAsCallable();
+                    types::Callable* pC = it_scope->second->getAs<types::Callable>();
                     if(_stModuleName == L""  || pC->getModule() == _stModuleName)
                     {
                         pNames->push_back(it_scope->first);

@@ -52,7 +52,6 @@ namespace types
 
         std::wstring                    toString(int _iPrecision, int _iLineLen);
 
-        List*                           getAsList(void) { return this; }
         bool                            isList() { return true; }
 
         InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);

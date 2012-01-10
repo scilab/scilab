@@ -19,8 +19,9 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_addition.cpp \
 			src/cpp/types_power.cpp \
 			src/cpp/types_finite.cpp \
-			src/cpp/types_comparison_equal.cpp \
-			src/cpp/types_comparison_non_equal.cpp
+			src/cpp/types_comparison_eq.cpp \
+			src/cpp/types_comparison_lt_le_gt_ge.cpp \
+			src/cpp/types_comparison_ne.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 
@@ -35,7 +36,9 @@ libscioperations_la_CXXFLAGS = 	-I$(top_srcdir)/modules/operations/includes \
 						-I$(top_srcdir)/modules/symbol/includes \
 						-I$(top_srcdir)/modules/ast/includes \
 						-I$(top_srcdir)/modules/core/includes \
-						-I$(top_srcdir)/modules/string/includes
+						-I$(top_srcdir)/modules/string/includes \
+						-I$(top_srcdir)/modules/elementary_functions/includes \
+                        $(EIGEN_CPPFLAGS)
 
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)

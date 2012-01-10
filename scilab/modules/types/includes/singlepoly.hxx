@@ -15,7 +15,12 @@
 
 #include <list>
 #include "types.hxx"
+#include "double.hxx"
+
+extern "C"
+{
 #include "dynlib_types.h"
+}
 
 namespace types
 {
@@ -31,7 +36,6 @@ namespace types
         // FIXME : Should not return NULL;
         SinglePoly*             clone();
 
-        SinglePoly*             getAsSinglePoly(void);
         bool                    isSinglePoly() { return true; }
         /*Config management*/
         void                    whoAmI();

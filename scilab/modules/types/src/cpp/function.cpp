@@ -82,11 +82,6 @@ namespace types
         }
     }
 
-    Function* Function::getAsFunction(void)
-    {
-        return this;
-    }
-
     Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         if (m_pLoadDeps != NULL)

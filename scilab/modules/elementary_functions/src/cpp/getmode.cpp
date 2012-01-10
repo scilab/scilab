@@ -76,11 +76,11 @@ int getMode(typed_list &in, int _iProcess, int _iRef)
     if(iMode == -1)
     {
         iMode = 0;
-        if(in[_iRef]->getAsGenericType()->getRows() > 1)
+        if(in[_iRef]->getAs<GenericType>()->getRows() > 1)
         {
             iMode = 1;
         }
-        else if(in[_iRef]->getAsGenericType()->getCols() > 1)
+        else if(in[_iRef]->getAs<GenericType>()->getCols() > 1)
         {
             iMode = 2;
         }

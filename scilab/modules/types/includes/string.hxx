@@ -76,4 +76,8 @@ namespace types
     };
 }
 
+#ifdef _MSC_VER
+template class TYPES_IMPEXP types::ArrayOf<wchar_t*>; //String
+#endif
+
 #endif /* !__STRING_HXX__ */

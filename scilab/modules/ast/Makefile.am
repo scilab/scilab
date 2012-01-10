@@ -35,7 +35,8 @@ libsciast_la_CXXFLAGS = \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    $(EIGEN_CPPFLAGS)
 
 
 libsciast_la_includedir=$(pkgincludedir)/ast

@@ -28,7 +28,6 @@ namespace types
         // FIXME : Should not return NULL;
         InternalType*           clone();
 
-        ListDelete*             getAsListDelete(void);
         RealType                getType(void);
         bool                    isListDelete() { return true; }
 

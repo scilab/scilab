@@ -48,7 +48,7 @@ void visitprivate(const OpExp &e)
 
         if(TypeL == GenericType::RealImplicitList)
         {
-            ImplicitList* pIL = pITL->getAsImplicitList();
+            ImplicitList* pIL = pITL->getAs<ImplicitList>();
             if(pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
@@ -58,7 +58,7 @@ void visitprivate(const OpExp &e)
 
         if(TypeR == GenericType::RealImplicitList)
         {
-            ImplicitList* pIL = pITR->getAsImplicitList();
+            ImplicitList* pIL = pITR->getAs<ImplicitList>();
             if(pIL->isComputable())
             {
                 pITR = pIL->extractFullMatrix();
@@ -251,223 +251,82 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::lt :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+              try
                 {
-                    Double *pL			= pITL->getAs<Double>();
-                    Double *pR			= pITR->getAs<Double>();
-
-                    if(pR->getSize() == 1)
-                    {
-                        pResult				= new Bool(pL->getRows(), pL->getCols());
-                        double dblRef	= pR->getReal(0,0);
-                        for(int i = 0 ; i < pL->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pL->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) < dblRef);
-                            }
-                        }
-                    }
-                    else if(pL->getSize() == 1)
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        double dblRef	= pL->getReal(0,0);
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, dblRef < pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) < pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        pResult = new Bool(false);
-                    }
-
-                    result_set(pResult);
+                    pResult = GenericLess(pITL, pITR);
                 }
-                else
+                catch (ScilabException *pSE)
                 {
-                    result_set(callOverload(e.oper_get(), pITL, pITR));
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
                 }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
+                }
+                result_set(pResult);
                 break;
             }
         case OpExp::le :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+              try
                 {
-                    Double *pL			= pITL->getAs<Double>();
-                    Double *pR			= pITR->getAs<Double>();
-
-                    if(pR->getSize() == 1)
-                    {
-                        pResult				= new Bool(pL->getRows(), pL->getCols());
-                        double dblRef	= pR->getReal(0,0);
-                        for(int i = 0 ; i < pL->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pL->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) <= dblRef);
-                            }
-                        }
-                    }
-                    else if(pL->getSize() == 1)
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        double dblRef	= pL->getReal(0,0);
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, dblRef <= pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) <= pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        pResult = new Bool(false);
-                    }
-
-                    result_set(pResult);
+                    pResult = GenericLessEqual(pITL, pITR);
                 }
-                else
+                catch (ScilabException *pSE)
                 {
-                    result_set(callOverload(e.oper_get(), pITL, pITR));
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
                 }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
+                }
+                result_set(pResult);
                 break;
             }
         case OpExp::gt :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+              try
                 {
-                    Double *pL			= pITL->getAs<Double>();
-                    Double *pR			= pITR->getAs<Double>();
-
-                    if(pR->getSize() == 1)
-                    {
-                        pResult				= new Bool(pL->getRows(), pL->getCols());
-                        double dblRef	= pR->getReal(0,0);
-                        for(int i = 0 ; i < pL->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pL->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) > dblRef);
-                            }
-                        }
-                    }
-                    else if(pL->getSize() == 1)
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        double dblRef	= pL->getReal(0,0);
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, dblRef > pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) > pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        pResult = new Bool(false);
-                    }
-
-                    result_set(pResult);
+                    pResult = GenericGreater(pITL, pITR);
                 }
-                else
+                catch (ScilabException *pSE)
                 {
-                    result_set(callOverload(e.oper_get(), pITL, pITR));
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
                 }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
+                }
+                result_set(pResult);
                 break;
             }
         case OpExp::ge :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+              try
                 {
-                    Double *pL			= pITL->getAs<Double>();
-                    Double *pR			= pITR->getAs<Double>();
-
-                    if(pR->getSize() == 1)
-                    {
-                        pResult				= new Bool(pL->getRows(), pL->getCols());
-                        double dblRef	= pR->getReal(0,0);
-                        for(int i = 0 ; i < pL->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pL->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) >= dblRef);
-                            }
-                        }
-                    }
-                    else if(pL->getSize() == 1)
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        double dblRef	= pL->getReal(0,0);
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, dblRef >= pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        pResult				= new Bool(pR->getRows(), pR->getCols());
-                        for(int i = 0 ; i < pR->getRows() ; i++)
-                        {
-                            for(int j = 0 ; j < pR->getCols() ; j++)
-                            {
-                                pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) >= pR->getReal(i, j));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        pResult = new Bool(false);
-                    }
-
-                    result_set(pResult);
+                    pResult = GenericGreaterEqual(pITL, pITR);
                 }
-                else
+                catch (ScilabException *pSE)
                 {
-                    result_set(callOverload(e.oper_get(), pITL, pITR));
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
                 }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), pITL, pITR);
+                }
+                result_set(pResult);
                 break;
             }
         case OpExp::power :

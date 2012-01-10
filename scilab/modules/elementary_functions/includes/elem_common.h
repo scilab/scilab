@@ -45,7 +45,7 @@
 
 #ifdef __cplusplus
 #define getRelativeMachinePrecision()		C2F(dlamch)(const_cast<char*>("e"), 1L)
-#define isZero(x)							(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision())
+#define isRealZero(x)						(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision())
 #define ZeroIsZero(x)						(fabs(static_cast<double>(x)) <= getRelativeMachinePrecision() ? 0 : static_cast<double>(x))
 #else
 #define getRelativeMachinePrecision()		C2F(dlamch)((char*)"e", 1L)

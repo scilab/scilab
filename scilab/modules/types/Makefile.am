@@ -65,6 +65,7 @@ TYPES_CPP_SOURCES = \
 			src/cpp/uint32.cpp \
 			src/cpp/int64.cpp \
 			src/cpp/uint64.cpp \
+            src/cpp/sparse.cpp \
             src/cpp/types_tools.cpp
 
 if ENABLE_DEBUG
@@ -94,7 +95,18 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mlist.cpp \
 	sci_gateway/cpp/sci_isfield.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
-	sci_gateway/cpp/sci_getfield.cpp
+	sci_gateway/cpp/sci_getfield.cpp \
+	sci_gateway/cpp/sci_adj2sp.cpp \
+	sci_gateway/cpp/sci_full.cpp \
+	sci_gateway/cpp/sci_nnz.cpp \
+	sci_gateway/cpp/sci_sp2adj.cpp \
+	sci_gateway/cpp/sci_sparse.cpp \
+	sci_gateway/cpp/sci_spcompack.cpp \
+	sci_gateway/cpp/sci_spget.cpp \
+	sci_gateway/cpp/sci_spones.cpp
+
+
+
 
 if ENABLE_DEBUG
 GATEWAY_CPP_SOURCES += \
@@ -122,7 +134,8 @@ libscitypes_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes \
-	-I src/cpp
+	-I src/cpp \
+    $(EIGEN_CPPFLAGS)
 
 libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
 

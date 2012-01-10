@@ -47,7 +47,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
 
-            Double* pD = new Double(in[0]->getAsContainer()->getSize());
+            Double* pD = new Double(in[0]->getAs<Container>()->getSize());
             out.push_back(pD);
             break;
         }
@@ -71,8 +71,8 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 }
             }
 
-            int iDims   = in[0]->getAsGenericType()->getDims();
-            int* piDims = in[0]->getAsGenericType()->getDimsArray();
+            int iDims   = in[0]->getAs<GenericType>()->getDims();
+            int* piDims = in[0]->getAs<GenericType>()->getDimsArray();
 
             if(_iRetCount == 1)
             {
@@ -103,7 +103,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                     }
                     break;
                 case 0 : //"*"
-                    pdbl[0] = in[0]->getAsGenericType()->getSize();
+                    pdbl[0] = in[0]->getAs<GenericType>()->getSize();
                     break;
                 default : //"r"
                     if(iMode > iDims)

@@ -48,7 +48,7 @@ namespace types
                 if(pIL->isComputable() == false)
                 {//: or $
                     //evalute polynom with "MaxDim"
-                    int iMaxDim = _pRef->getAsGenericType()->getVarMaxDim(i, iDims);
+                    int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
                     Double dbl(iMaxDim);
                     if(pIL->getStart()->isPoly())
                     {
@@ -79,7 +79,7 @@ namespace types
                 //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
                 if(_pRef)
                 {
-                    iMaxDim     = _pRef->getAsGenericType()->getVarMaxDim(i, iDims);
+                    iMaxDim     = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
                 }
                 Double dbl(iMaxDim); // $
                 pCurrentArg = pMP->evaluate(&dbl);

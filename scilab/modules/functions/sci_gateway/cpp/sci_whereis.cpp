@@ -71,7 +71,7 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 	case InternalType::RealFunction :
 	case InternalType::RealMacro :
 	case InternalType::RealMacroFile :
-		stModule = pIT->getAsCallable()->getModule();
+		stModule = pIT->getAs<Callable>()->getModule();
 		break;
 	default :
 		out.push_back(types::Double::Empty());

@@ -1037,7 +1037,8 @@ libscielementary_functions_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_builddir)/modules/operations/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    $(EIGEN_CPPFLAGS)
 
 
 # Includes need for the compilation

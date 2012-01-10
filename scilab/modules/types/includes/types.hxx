@@ -61,8 +61,6 @@ namespace types
 
         std::wstring                DimToString();
 
-        /* GenericType */
-        GenericType*                getAsGenericType(void) { return this; }
         bool                        isGenericType() { return true; }
 
         /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */

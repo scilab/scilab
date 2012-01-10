@@ -43,9 +43,9 @@ void visitprivate(const AssignExp  &e)
             result_set(NULL);
             if(pIT->isImplicitList())
             {
-                if(pIT->getAsImplicitList()->isComputable())
+                if(pIT->getAs<ImplicitList>()->isComputable())
                 {
-                    InternalType *pTemp = pIT->getAsImplicitList()->extractFullMatrix();
+                    InternalType *pTemp = pIT->getAs<ImplicitList>()->extractFullMatrix();
                     delete pIT;
                     pIT = pTemp;
                 }
@@ -129,7 +129,7 @@ void visitprivate(const AssignExp  &e)
             //fisrt extract implicit list
             if(pITR->isImplicitList())
             {
-                InternalType *pIL = pITR->getAsImplicitList()->extractFullMatrix();
+                InternalType *pIL = pITR->getAs<ImplicitList>()->extractFullMatrix();
                 pITR = pIL;
             }
             else if(pITR->isContainer() && pITR->isRef())
@@ -318,6 +318,10 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<Bool>()->insert(pArgs, pInsert);
                 }
+                else if(pIT->isSparse() && pInsert->isDouble())
+                {
+                    pRet = pIT->getAs<Sparse>()->insert(pArgs, pInsert);
+                }
                 else if(pIT->isPoly() && pInsert->isPoly())
                 {
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pInsert);
@@ -356,7 +360,7 @@ void visitprivate(const AssignExp  &e)
                 }
                 else if(pIT->isList())
                 {
-                    pRet = pIT->getAsList()->insert(pArgs, pInsert);
+                    pRet = pIT->getAs<List>()->insert(pArgs, pInsert);
                 }
                 else if(pIT->isStruct())
                 {
@@ -589,7 +593,7 @@ void visitprivate(const AssignExp  &e)
             //fisrt extract implicit list
             if(result_get()->isImplicitList())
             {
-                InternalType *pIL = result_get()->getAsImplicitList()->extractFullMatrix();
+                InternalType *pIL = ((InternalType*)result_get())->getAs<ImplicitList>()->extractFullMatrix();
                 if(result_get()->isDeletable())
                 {
                     delete result_get();
@@ -716,9 +720,9 @@ void visitprivate(const AssignExp  &e)
             InternalType *pIT = result_get();
             if(pIT->isImplicitList())
             {
-                if(pIT->getAsImplicitList()->isComputable())
+                if(pIT->getAs<ImplicitList>()->isComputable())
                 {
-                    InternalType *pTemp = pIT->getAsImplicitList()->extractFullMatrix();
+                    InternalType *pTemp = pIT->getAs<ImplicitList>()->extractFullMatrix();
                     delete pIT;
                     result_set(NULL);
                     pIT = pTemp;
@@ -740,7 +744,7 @@ void visitprivate(const AssignExp  &e)
             }
             else if(pHead->isTList())
             {
-                TList* pT = pHead->getAsTList();
+                TList* pT = pHead->getAs<TList>();
                 if(pT->exists(pTail->name_get().name_get()))
                 {
                     pT->set(pTail->name_get().name_get(), pIT);

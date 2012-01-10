@@ -82,17 +82,17 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     int iNumberCols = 0;
     if( in.size() > 1 )
     {
-        int iRefRows = in[1]->getAsGenericType()->getRows();
+        int iRefRows = in[1]->getAs<GenericType>()->getRows();
         for(int i = 1 ; i < in.size() ; i++)
         {
             //all arguments must have the same numbers of rows !
-            if(iRefRows != in[i]->getAsGenericType()->getRows())
+            if(iRefRows != in[i]->getAs<GenericType>()->getRows())
             {
                 ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"mprintf");
                 return types::Function::Error;
             }
 
-            iNumberCols += in[i]->getAsGenericType()->getCols();
+            iNumberCols += in[i]->getAs<GenericType>()->getCols();
         }
     }
 
@@ -108,7 +108,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     int idx = 0;
     for(int i = 1 ; i < in.size() ; i++)
     {
-        for(int j = 0 ; j < in[i]->getAsGenericType()->getCols() ; j++)
+        for(int j = 0 ; j < in[i]->getAs<GenericType>()->getCols() ; j++)
         {
             pArgs[idx].iArg = i;
             pArgs[idx].iPos = j;

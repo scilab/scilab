@@ -48,7 +48,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    iSize = in[0]->getAsGenericType()->getSize();
+    iSize = in[0]->getAs<GenericType>()->getSize();
 
     if(in[0]->isDouble())
     {

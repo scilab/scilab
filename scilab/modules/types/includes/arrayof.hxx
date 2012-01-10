@@ -13,10 +13,6 @@
 #ifndef __ARRAYOF_HXX__
 #define __ARRAYOF_HXX__
 
-//#include <vector>
-//#include <iostream>
-//#include <string>
-//#include "anytype.hxx"
 #include <sstream>
 #include <cstdio>
 #include "types.hxx"
@@ -420,7 +416,7 @@ namespace types
                     double* pIdx = getDoubleArrayFromDouble(pArg[pArg.size() - 1]);
                     //InternalType* pVar = pArg[pArg.size() - 1];
                     //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
-                    int iSize = pArg[pArg.size() - 1]->getAsGenericType()->getSize();
+                    int iSize = pArg[pArg.size() - 1]->getAs<GenericType>()->getSize();
                     for(int i = 0 ; i < iSize ; i++)
                     {
                         if(pIdx[i] > iMaxLastDim)
@@ -697,7 +693,7 @@ namespace types
             {
                 pbFull[i]       = false;
                 int iDimToCheck = getVarMaxDim(i, iDims);
-                int iIndexSize  = pArg[i]->getAsGenericType()->getSize();
+                int iIndexSize  = pArg[i]->getAs<GenericType>()->getSize();
 
                 //we can have index more than once
                 if(iIndexSize >= iDimToCheck)
@@ -749,7 +745,7 @@ namespace types
             delete[] pbFull;
 
             //find index to keep
-            int iNotEntireSize          = pArg[iNotEntire]->getAsGenericType()->getSize();
+            int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
             double* piNotEntireIndex    = getDoubleArrayFromDouble(pArg[iNotEntire]);
             int iKeepSize               = getVarMaxDim(iNotEntire, iDims);
             bool* pbKeep                = new bool[iKeepSize];
@@ -977,7 +973,7 @@ namespace types
                     {
                         if(getSize() == 1)
                         {//for extraction on scalar
-                            pOut = createEmpty(pArg[0]->getAsGenericType()->getDims(), pArg[0]->getAsGenericType()->getDimsArray(), isComplex());
+                            pOut = createEmpty(pArg[0]->getAs<GenericType>()->getDims(), pArg[0]->getAs<GenericType>()->getDimsArray(), isComplex());
                         }
                         else
                         {
@@ -1427,19 +1423,4 @@ namespace types
     };
 }
 
-#ifdef _MSC_VER
-template class TYPES_IMPEXP types::ArrayOf<int>;//Bool, Int32
-template class TYPES_IMPEXP types::ArrayOf<types::InternalType*>; //Cell
-template class TYPES_IMPEXP types::ArrayOf<double>; //Double
-template class TYPES_IMPEXP types::ArrayOf<short>; //Int16
-template class TYPES_IMPEXP types::ArrayOf<long long>; //Int64
-template class TYPES_IMPEXP types::ArrayOf<char>; //Int8
-template class TYPES_IMPEXP types::ArrayOf<types::SinglePoly*>; //Polynom
-template class TYPES_IMPEXP types::ArrayOf<wchar_t*>; //String
-template class TYPES_IMPEXP types::ArrayOf<types::SingleStruct*>; //Struct
-template class TYPES_IMPEXP types::ArrayOf<unsigned int>;//UInt32
-template class TYPES_IMPEXP types::ArrayOf<unsigned short>; //UInt16
-template class TYPES_IMPEXP types::ArrayOf<unsigned long long>; //UInt64
-template class TYPES_IMPEXP types::ArrayOf<unsigned char>; //UInt8
-#endif
 #endif /* !__ARRAYOF_HXX__ */

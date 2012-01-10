@@ -3,24 +3,26 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-MEXLIB_CPP_SOURCES = src/cpp/mexlib.cpp \
-src/cpp/sci_gateway.cpp
+MEXLIB_CPP_SOURCES = \
+    src/cpp/mexlib.cpp \
+    src/cpp/sci_gateway.cpp
 
 
-MEXLIB_FLAGS = 	-I$(srcdir)/includes/ \
-		-I$(top_srcdir)/modules/output_stream/includes/ \
-		-I$(top_srcdir)/modules/call_scilab/includes/ \
-		-I$(top_srcdir)/modules/elementary_functions/includes/ \
-		-I$(top_srcdir)/modules/operations/includes/ \
-		-I$(top_srcdir)/modules/string/includes \
-		-I$(top_srcdir)/modules/types/includes \
-		-I$(top_srcdir)/modules/symbol/includes \
-		-I$(top_srcdir)/modules/ast/includes \
-		-I$(top_srcdir)/modules/parse/includes \
-		-I$(top_srcdir)/modules/system_env/includes \
-		-I$(top_srcdir)/modules/threads/includes/ \
-		-I$(top_srcdir)/modules/api_scilab/includes/ \
-        -I$(top_srcdir)/libs/dynamiclibrary/includes
+MEXLIB_FLAGS = \
+    -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/call_scilab/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/parse/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 
@@ -28,7 +30,9 @@ libmex_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmex_la_LIBADD = $(MEXLIB_DEP)
 
-libmex_la_CPPFLAGS=  $(MEXLIB_FLAGS)
+libmex_la_CPPFLAGS =  \
+    $(MEXLIB_FLAGS) \
+    $(EIGEN_CPPFLAGS)
 
 libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -36,7 +40,9 @@ libmat_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmat_la_LIBADD = $(MEXLIB_DEP)
 
-libmat_la_CPPFLAGS=  $(MEXLIB_FLAGS)
+libmat_la_CPPFLAGS = \
+    $(MEXLIB_FLAGS) \
+    $(EIGEN_CPPFLAGS)
 
 libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -44,7 +50,9 @@ libmx_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmx_la_LIBADD = $(MEXLIB_DEP)
 
-libmx_la_CPPFLAGS=  $(MEXLIB_FLAGS)
+libmx_la_CPPFLAGS = \
+    $(MEXLIB_FLAGS) \
+    $(EIGEN_CPPFLAGS)
 
 libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

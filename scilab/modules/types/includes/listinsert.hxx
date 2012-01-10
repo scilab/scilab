@@ -27,7 +27,6 @@ namespace types
 
         InternalType*           clone();
 
-        ListInsert*             getAsListInsert(void);
         RealType                getType(void);
         bool                    isListInsert() { return true; }
 

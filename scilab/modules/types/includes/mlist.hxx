@@ -30,12 +30,6 @@ namespace types
         RealType                        getType(void) { return RealMList; }
         bool                            isMList() { return true; }
 
-//        MList*                          clone();
-
-//        std::string                     toString(int _iPrecision, int _iLineLen);
-
-        MList*                          getAsMList(void) { return this; }
-
         InternalType*                   insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int _iDims, std::vector<types::InternalType*>* _poSource, bool _bAsVector);
         std::vector<InternalType*>      extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int _iDims, int* _piDimSize, bool _bAsVector);
 

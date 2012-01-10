@@ -32,11 +32,6 @@ namespace types
 		return new ListOperation();
 	}
 
-	ListOperation* ListOperation::getAsListOperation(void)
-	{
-		return this;
-	}
-
 	InternalType::RealType ListOperation::getType(void)
 	{
 		return RealListOperation;

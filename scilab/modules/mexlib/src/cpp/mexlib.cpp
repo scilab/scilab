@@ -1523,9 +1523,9 @@ int mexEvalString(const char *name)
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
+            if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
             {
-                Callable *pCall = execMe.result_get()->getAsCallable();
+                Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
                 try
@@ -1643,7 +1643,7 @@ int mexEvalString(const char *name)
 
                         if(ConfigVariable::getLastErrorFunction() == L"")
                         {
-                            ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                            ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
                         }
 
                         //restore previous prompt mode

@@ -21,15 +21,20 @@ function t=sci2exp(a,nom,lmax)
 //  a=[1 2;3 4]
 //  sci2exp(a,'aa')
 //!
+function x=String(a)
+    x=string(a)
+    x=strsubst(x,'Nan','%nan')
+	x=strsubst(x,'Inf','%inf')
+endfunction
 
-  deff('x=String(a)',['x=string(a)'
-		      'x=strsubst(x,''Nan'',''%nan'')'
-		      'x=strsubst(x,''Inf'',''%inf'')'
-		     ])
+//deff('x=String(a)',['x=string(a)'
+    //      'x=strsubst(x,''Nan'',''%nan'')'
+	//      'x=strsubst(x,''Inf'',''%inf'')'
+	//     ])
 
   
 [lhs,rhs]=argn(0)
-$ // import global variable $ in sci2exp context for efficiency
+//$ // import global variable $ in sci2exp context for efficiency
 select rhs
 case 1 then 
   named=%f

@@ -61,8 +61,8 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
             return Function::Error;
         }
 
-        iRows = in[0]->getAsGenericType()->getRows();
-        iCols = in[0]->getAsGenericType()->getCols();
+        iRows = in[0]->getAs<GenericType>()->getRows();
+        iCols = in[0]->getAs<GenericType>()->getCols();
     }
 
     if(in.size() == 0)

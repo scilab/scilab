@@ -32,11 +32,6 @@ namespace types
 		return new ListUndefined();
 	}
 
-	ListUndefined* ListUndefined::getAsListUndefined(void)
-	{
-		return this;
-	}
-
 	InternalType::RealType ListUndefined::getType(void)
 	{
 		return RealListUndefinedOperation;

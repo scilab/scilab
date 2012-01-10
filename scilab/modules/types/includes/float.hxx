@@ -53,7 +53,6 @@ namespace types
         void                whoAmI();
         bool                isComplex();
 
-        Float*				getAsFloat(void);
         bool                isFloat() { return true; }
 
         /* return type as string ( double, int, cell, list, ... )*/

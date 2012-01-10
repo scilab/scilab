@@ -48,11 +48,6 @@ namespace types
         return new ListInsert(m_pInsert);
     }
 
-    ListInsert* ListInsert::getAsListInsert(void)
-    {
-        return this;
-    }
-
     InternalType::RealType ListInsert::getType(void)
     {
         return RealListInsertOperation;

@@ -29,8 +29,6 @@ namespace types
 
         virtual int             getSize() = 0 ;
 
-        virtual Container*      getAsContainer(void) { return this; }
-
         virtual bool            isAssignable(void) { return true; }
 
         virtual RealType        getType(void) { return RealContainer; }

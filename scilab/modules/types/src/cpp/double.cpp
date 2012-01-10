@@ -377,9 +377,9 @@ namespace types
                     getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
 
                     iLen = static_cast<int>(ostemp.str().size());
-                    if(isZero(m_pImgData[iPos]))
+                    if(isRealZero(m_pImgData[iPos]))
                     {
-                        if(isZero(m_pRealData[iPos]))
+                        if(isRealZero(m_pRealData[iPos]))
                         {
                             iLen += 1; //"0"
                         }
@@ -391,7 +391,7 @@ namespace types
                     }
                     else
                     {
-                        if(isZero(m_pRealData[iPos]))
+                        if(isRealZero(m_pRealData[iPos]))
                         {
                             iLen		+= iWidthI + bFPI;
                             iWidthR	= 0;
@@ -807,7 +807,14 @@ namespace types
                 if(isComplex())
                 {
                     C2F(dcopy)(&iSize, pD->get(), &iOne, get(), &iInc);
-                    C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg(), &iInc);
+                    if(pD->isComplex())
+                    {
+                        C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg(), &iInc);
+                    }
+                    else
+                    {
+                        memset(getImg(), 0x00, iSize * sizeof(double));
+                    }
                 }
                 else
                 {
@@ -823,7 +830,14 @@ namespace types
                     {
                         int iOffset = i * getRows();
                         C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
-                        C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                        if(pD->isComplex())
+                        {
+                            C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                        }
+                        else
+                        {
+                            memset(getImg() + iOffset, 0x00, iRows * sizeof(double));
+                        }
                     }
                 }
                 else
@@ -847,21 +861,37 @@ namespace types
             int iOffset =  _iCols * getRows() + _iRows;
             C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
 
-            if(pD->isComplex())
+            if(isComplex())
             {
-                C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
+                int iOffset =  _iCols * getRows() + _iRows;
+                C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
+                if(pD->isComplex())
+                {
+                    C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
+                }
+                else
+                {
+                    memset(getImg() + iOffset, 0x00, iSize * sizeof(double));
+                }
             }
         }
         else 
         {
             //std::cout << "no optimisation" << std::endl;
-            if(pD->isComplex())
+            if(isComplex())
             {
                 for(int i = 0 ; i < iCols ; i++)
                 {
                     int iOffset = (_iCols + i) * getRows() + _iRows;
                     C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
-                    C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                    if(pD->isComplex())
+                    {
+                        C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                    }
+                    else
+                    {
+                        memset(getImg() + iOffset, 0x00, iRows * sizeof(double));
+                    }
                 }
             }
             else

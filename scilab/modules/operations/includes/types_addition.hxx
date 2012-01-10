@@ -19,6 +19,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
+#include "sparse.hxx"
 
 /*
 ** Try to find a good algorithm to perform addition between those 2 datatypes.
@@ -30,9 +31,19 @@
 */
 EXTERN_OP types::InternalType* GenericPlus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
+//Double
 int AddDoubleToDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double** _pDoubleOut);
+
+//Poly
 int AddDoubleToPoly(types::Polynom *_pPoly, types::Double *_pDouble, types::Polynom ** _pPolyOut);
 int AddPolyToPoly(types::Polynom* pPoly1, types::Polynom* _pPoly2, types::Polynom ** _pPolyOut);
+
+//String
 int AddStringToString(types::String *_pString1, types::String *_pString2, types::String** _pStringOut);
+
+//Sparse
+int AddSparseToSparse(types::Sparse *_pSparse1, types::Sparse *_pSparse2, types::Sparse** _pSparseOut);
+int AddSparseToDouble(types::Sparse *_pSparse,  types::Double* _pDouble, types::GenericType** _pDoubleOut);
+int AddDoubleToSparse(types::Double* _pDouble, types::Sparse* _pSparse, types::GenericType** _pDoubleOut);
 
 #endif /* __TYPES_ADD_H__ */

@@ -17,6 +17,7 @@
 #include "dynlib_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "sparse.hxx"
 
 using namespace types;
 /*
@@ -33,5 +34,10 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDou
 int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);
 int SubstractDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom **_pPolyOut);
 int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut);
+
+//Sparse
+int SubstractSparseToSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType **_pSparseOut);
+int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_pDoubleOut);
+int SubstractDoubleToSparse(Double* _pDouble, Sparse* _pSparse, GenericType **_pDoubleOut);
 
 #endif /* __TYPES_SUB_H__ */

@@ -13,7 +13,7 @@
 #ifndef __THREADID_HH__
 #define __THREADID_HH__
 
-#include "types.hxx"
+#include "internal.hxx"
 
 extern "C"
 {
@@ -29,7 +29,6 @@ namespace types
                                 ThreadId(__threadId _id, __threadKey _key);
         virtual                 ~ThreadId();
 
-        ThreadId*               getAsThreadId(void);
         bool                    isThreadId() { return true; }
         std::wstring            toString(int _iPrecision, int _iLineLen);
 

@@ -398,31 +398,31 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 			break;
 		case types::GenericType::RealImplicitList :
 			{
-				if(_poSource->getAsImplicitList()->getStartType() == types::InternalType::RealPoly)
+				if(_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->setStart(_poSource->getAsImplicitList()->getStart());
+					poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
 				}
 				else
 				{
-					poResult->getAsImplicitList()->setStart(_poSource->getAsImplicitList()->getStart());
+					poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
 				}
 
-				if(_poSource->getAsImplicitList()->getStepType() == types::InternalType::RealPoly)
+				if(_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->setStep(_poSource->getAsImplicitList()->getStep());
+					poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
 				}
 				else
 				{
-					poResult->getAsImplicitList()->setStep(_poSource->getAsImplicitList()->getStep());
+					poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
 				}
 
-				if(_poSource->getAsImplicitList()->getEndType() == types::InternalType::RealPoly)
+				if(_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->setEnd(_poSource->getAsImplicitList()->getEnd());
+					poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
 				}
 				else
 				{
-					poResult->getAsImplicitList()->setEnd(_poSource->getAsImplicitList()->getEnd());
+					poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
 				}
 				break;
 			}

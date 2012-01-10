@@ -75,25 +75,19 @@ extern "C"
     extern char *TermReadAndProcess(void);
 }
 
+#include "string.hxx"
+#include "polynom.hxx"
+#include "double.hxx"
+
 #include "scilabWrite.hxx"
 #include "tasks.hxx"
-#include "exit_status.hxx"
 #include "parser.hxx"
 #include "context.hxx"
 #include "configvariable.hxx"
-#include "context.hxx"
 #include "setenvvar.hxx"
 #include "funcmanager.hxx"
-#include "configvariable.hxx"
 #include "filemanager.hxx"
-#include "scilabexception.hxx"
-
 #include "runner.hxx"
-
-#include "banner.hxx"
-
-#include "string.hxx"
-#include "polynom.hxx"
 
 #define INTERACTIVE     -1
 

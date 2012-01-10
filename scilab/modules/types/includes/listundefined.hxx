@@ -28,7 +28,6 @@ namespace types
         // FIXME : Should not return NULL;
         InternalType*           clone();
 
-        ListUndefined*          getAsListUndefined(void);
         RealType                getType(void);
         bool                    isListUndefined() { return true; }
 

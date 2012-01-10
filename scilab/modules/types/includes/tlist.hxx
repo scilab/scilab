@@ -36,8 +36,6 @@ namespace types
 
         InternalType*                   clone();
 
-        TList*                          getAsTList(void) { return this; }
-
         bool                            exists(const std::wstring& _sKey);
         InternalType*                   get(const std::wstring& _sKey);
         int                             getIndexFromString(const std::wstring& _sKey);

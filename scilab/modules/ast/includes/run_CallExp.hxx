@@ -263,7 +263,7 @@ void visitprivate(const CallExp &e)
             }
             else if(rtIndex  == InternalType::RealString)
             {
-                ResultList = pIT->getAsTList()->extractStrings(stFields);
+                ResultList = pIT->getAs<TList>()->extractStrings(stFields);
             }
 
             if(ResultList.size() == 1)
@@ -323,7 +323,7 @@ void visitprivate(const CallExp &e)
                 break;
             case InternalType::RealList :
                 {
-                    ResultList = pIT->getAsList()->extract(pArgs);
+                    ResultList = pIT->getAs<List>()->extract(pArgs);
 
                     switch(ResultList.size())
                     {
@@ -349,6 +349,12 @@ void visitprivate(const CallExp &e)
                 break;
             case InternalType::RealCell :
                 pOut = pIT->getAs<Cell>()->extract(pArgs);
+                break;
+            case InternalType::RealSparse :
+                pOut = pIT->getAs<Sparse>()->extract(pArgs);
+                break;
+            case InternalType::RealSparseBool :
+                //pOut = pIT->getAs<SparseBool>()->extract(pArgs);
                 break;
             case InternalType::RealStruct :
                 {

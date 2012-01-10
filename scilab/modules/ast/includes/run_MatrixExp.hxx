@@ -47,14 +47,22 @@ void visitprivate(const MatrixExp &e)
 
                 (*col)->accept(*this);
 
-                if(result_get()->isGenericType() == false)
+                InternalType *pIT = result_get();
+                if(pIT == NULL)
+                {
+                    continue;
+                }
+
+                //reset result but whitout delete the value
+                result_set(NULL);
+
+                if(pIT->isGenericType() == false)
                 {
                     std::wostringstream os;
                     os << L"unable to concatenate\n";
                     throw ScilabError(os.str(), 999, (*col)->location_get());
                 }
 
-                InternalType *pIT = result_get();
                 GenericType* pGT = pIT->getAs<GenericType>();
                 if(pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
                 {
@@ -99,6 +107,11 @@ void visitprivate(const MatrixExp &e)
                     delete pGT;
                 }
                 poRow = p;
+            }
+
+            if(poRow == NULL)
+            {
+                continue;
             }
 
             GenericType* pGT = poRow->getAs<GenericType>();

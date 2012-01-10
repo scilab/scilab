@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -105,7 +105,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -132,7 +132,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -164,7 +164,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -190,8 +190,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\sci_adj2sp.cpp" />
     <ClCompile Include="..\sci_cell.cpp" />
     <ClCompile Include="..\sci_fieldnames.cpp" />
+    <ClCompile Include="..\sci_full.cpp" />
     <ClCompile Include="..\sci_getfield.cpp" />
     <ClCompile Include="..\sci_insert.cpp" />
     <ClCompile Include="..\sci_inspectorDeleteUnreferencedItems.cpp">
@@ -222,7 +224,13 @@
     <ClCompile Include="..\sci_list.cpp" />
     <ClCompile Include="..\sci_makecell.cpp" />
     <ClCompile Include="..\sci_mlist.cpp" />
+    <ClCompile Include="..\sci_nnz.cpp" />
     <ClCompile Include="..\sci_null.cpp" />
+    <ClCompile Include="..\sci_sp2adj.cpp" />
+    <ClCompile Include="..\sci_sparse.cpp" />
+    <ClCompile Include="..\sci_spcompack.cpp" />
+    <ClCompile Include="..\sci_spget.cpp" />
+    <ClCompile Include="..\sci_spones.cpp" />
     <ClCompile Include="..\sci_struct.cpp" />
     <ClCompile Include="..\sci_tlist.cpp" />
     <ClCompile Include="..\sci_typeof.cpp" />

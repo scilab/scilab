@@ -32,11 +32,6 @@ namespace types
 		return new ListDelete();
 	}
 
-	ListDelete* ListDelete::getAsListDelete(void)
-	{
-		return this;
-	}
-
 	InternalType::RealType ListDelete::getType(void)
 	{
 		return RealListDeleteOperation;

@@ -1,0 +1,36 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Antoine ELIAS
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+//
+
+// sparse function
+
+
+//from dense form
+s=[ 1,0,0,0,0,0,0;
+    0,1,0,0,0,0,0;
+    0,0,1,0,0,0,0;
+    0,0,1,1,0,0,0;
+    0,0,1,1,1,0,0;
+    0,0,1,1,0,1,0;
+    0,0,1,1,0,1,1];
+sp=sparse(s);
+
+assert_checkequal(size(s), size(sp));
+assert_checkequal(full(sp), s);
+
+//from coord
+sp = sparse([1 1;2 2;3 3;4 3;4 4;5 3;5 4;5 5;6 3;6 4;6 6;7 3;7 4;7 6;7 7], [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]);
+assert_checkequal(size(s), size(sp));
+assert_checkequal(full(sp), s);
+
+//with size
+sp = sparse([], [], [10,20]);
+assert_checkequal(size(sp), [10,20]);

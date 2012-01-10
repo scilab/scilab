@@ -37,8 +37,9 @@
 #include "types_substraction.hxx"
 #include "types_divide.hxx"
 #include "types_power.hxx"
-#include "types_comparison_equal.hxx"
-#include "types_comparison_non_equal.hxx"
+#include "types_comparison_eq.hxx"
+#include "types_comparison_ne.hxx"
+#include "types_comparison_lt_le_gt_ge.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
@@ -286,7 +287,7 @@ namespace ast
                     InternalType *pIT = result_get();
                     if(pIT->isImplicitList())
                     {
-                        pIT = pIT->getAsImplicitList()->extractFullMatrix();
+                        pIT = pIT->getAs<ImplicitList>()->extractFullMatrix();
                     }
 
                     pC->set(i,j, pIT);
@@ -370,7 +371,7 @@ namespace ast
             result_set(pI);
             if(pI != NULL)
             {
-                if(e.is_verbose() && pI->getAsCallable() == false)
+                if(e.is_verbose() && pI->isCallable() == false)
                 {
                     std::wostringstream ostr;
                     ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")"<< std::endl;
@@ -496,7 +497,7 @@ namespace ast
                 SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
                 if(psvRightMember != NULL)
                 {
-                    TList* psValue = result_get()->getAsTList();
+                    TList* psValue = ((InternalType*)result_get())->getAs<TList>();
                     result_set(NULL);
                     if(psValue->exists(psvRightMember->name_get().name_get()))
                     {
@@ -541,6 +542,7 @@ namespace ast
             {//condition == true
                 if(e.is_breakable())
                 {
+                    const_cast<IfExp*>(&e)->break_reset();
                     const_cast<Exp*>(&e.then_get())->breakable_set();
                 }
 
@@ -552,6 +554,7 @@ namespace ast
 
                 if(e.is_returnable())
                 {
+                    const_cast<IfExp*>(&e)->return_reset();
                     const_cast<Exp*>(&e.then_get())->returnable_set();
                 }
 
@@ -700,7 +703,7 @@ namespace ast
             if(result_get()->isImplicitList())
             {
                 bool bNeedUpdate = false;
-                ImplicitList* pVar = result_get()->getAsImplicitList();
+                ImplicitList* pVar = ((InternalType*)result_get())->getAs<ImplicitList>();
 
                 InternalType *pIT = NULL;
                 pIT = pVar->extractValue(0);
@@ -1005,9 +1008,9 @@ namespace ast
                     if(result_get() != NULL)
                     {
                         bool bImplicitCall = false;
-                        if(result_get()->getAsCallable())//to manage call without ()
+                        if(result_get()->isCallable())//to manage call without ()
                         {
-                            Callable *pCall = result_get()->getAsCallable();
+                            Callable *pCall = ((InternalType*)result_get())->getAs<Callable>();
                             types::typed_list out;
                             types::typed_list in;
 
@@ -1135,7 +1138,7 @@ namespace ast
                             os << std::endl << std::endl;
                             if(ConfigVariable::getLastErrorFunction() == L"")
                             {
-                                ConfigVariable::setLastErrorFunction(result_get()->getAsCallable()->getName());
+                                ConfigVariable::setLastErrorFunction(((InternalType*)result_get())->getAs<Callable>()->getName());
                             }
                             throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                         }
@@ -1166,7 +1169,7 @@ namespace ast
                                 PrintVisitor printMe(os);
                                 pCall->accept(printMe);
                                 os << std::endl << std::endl;
-                                ConfigVariable::setLastErrorFunction(result_get()->getAsCallable()->getName());
+                                ConfigVariable::setLastErrorFunction(((InternalType*)result_get())->getAs<Callable>()->getName());
                                 scilabErrorW(se.GetErrorMessage().c_str());
                                 throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                             }
@@ -1266,7 +1269,7 @@ namespace ast
 
             if(result_get()->isImplicitList())
             {
-                InternalType *pIT = result_get()->getAsImplicitList()->extractFullMatrix();
+                InternalType *pIT = ((InternalType*)result_get())->getAs<ImplicitList>()->extractFullMatrix();
                 if(result_get()->isDeletable())
                 {
                     delete result_get();

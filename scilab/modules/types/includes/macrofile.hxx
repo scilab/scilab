@@ -29,7 +29,6 @@ namespace types
         //FIXME : Should not return NULL
         InternalType*           clone();
 
-        MacroFile*              getAsMacroFile(void);
         RealType                getType(void);
         bool                    isMacroFile() { return true; }
 

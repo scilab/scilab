@@ -94,11 +94,6 @@ namespace types
 		}
 	}
 
-	SinglePoly* SinglePoly::getAsSinglePoly(void)
-	{
-		return this;
-	}
-
 	int SinglePoly::getRank()
 	{
 		return m_iRank;
@@ -382,7 +377,7 @@ namespace types
 		for(int i = 0 ; i < m_iRank ; i++)
 		{
 			piIndexExp[i] = 0;
-			if(isZero(_pdblVal[i]) == false)
+			if(isRealZero(_pdblVal[i]) == false)
 			{
 				int iWidth = 0, iPrec = 0;
 				bool bFP = false; // FloatingPoint
@@ -398,7 +393,7 @@ namespace types
 						}
 
 						addSpaces(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
-						if(isZero(_pdblVal[j]) == false)
+						if(isRealZero(_pdblVal[j]) == false)
 							ostemp2 << j;
 					}
 					iLastFlush = i;
@@ -432,7 +427,7 @@ namespace types
 				}
 
 				addSpaces(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
-				if(isZero(_pdblVal[j]) == false)
+				if(isRealZero(_pdblVal[j]) == false)
 				{
 					ostemp2 << j;
 				}
@@ -459,7 +454,7 @@ namespace types
 			return false;
 		}
 
-		SinglePoly* pP = const_cast<InternalType &>(it).getAsSinglePoly();
+		SinglePoly* pP = const_cast<InternalType &>(it).getAs<SinglePoly>();
 
 		if(getRank() != pP->getRank())
 		{

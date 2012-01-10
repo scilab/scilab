@@ -18,8 +18,11 @@
 extern "C"
 {
 	#include "matrix_substraction.h"
+    #include <stdio.h>
     #include "localization.h"
     #include "charEncoding.h"
+    #include "os_swprintf.h"
+    #include "elem_common.h" //dset
 }
 
 InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOperand)
@@ -90,6 +93,56 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
         return pResult;
     }
 
+    /*
+    ** SPARSE - SPARSE
+    */
+    else if(_pLeftOperand->isSparse() && _pRightOperand->isSparse())
+    {
+        Sparse *pL	= _pLeftOperand->getAs<Sparse>();
+        Sparse *pR	= _pRightOperand->getAs<Sparse>();
+
+        int iResult = SubstractSparseToSparse(pR, pL, (GenericType**)&pResult);
+        if(iResult != 0)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** SPARSE - DOUBLE
+    */
+    else if(_pLeftOperand->isSparse() && _pRightOperand->isDouble())
+    {
+        Sparse *pL	= _pLeftOperand->getAs<Sparse>();
+        Double *pR	= _pRightOperand->getAs<Double>();
+
+        int iResult = SubstractDoubleToSparse(pR, pL, (GenericType**)&pResult);
+        if(iResult != 0)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** DOUBLE - SPARSE
+    */
+    else if(_pLeftOperand->isDouble() && _pRightOperand->isSparse())
+    {
+        Double *pL	= _pLeftOperand->getAs<Double>();
+        Sparse *pR	= _pRightOperand->getAs<Sparse>();
+
+        int iResult = SubstractSparseToDouble(pR, pL, (GenericType**)&pResult);
+        if(iResult != 0)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
     /*
     ** Default case : Return NULL will Call Overloading.
     */
@@ -819,5 +872,267 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
 	}
 
 	return 0;
+}
+
+//_pSparse2 - _pSparse1
+int SubstractSparseToSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType **_pSparseOut)
+{
+    //check scalar hidden in a sparse ;)
+    if(_pSparse1->getRows() == 1 && _pSparse1->getCols() == 1)
+    {//do scalar - sp
+        Double* pDbl = NULL;
+        if(_pSparse1->isComplex())
+        {
+            std::complex<double> dbl = _pSparse1->getImg(0,0);
+            pDbl = new Double(dbl.real(), dbl.imag());
+        }
+        else
+        {
+            pDbl = new Double(_pSparse1->get(0,0));
+        }
+        
+        SubstractSparseToDouble(_pSparse2, pDbl, (GenericType**)_pSparseOut);
+        delete pDbl;
+        return 0;
+    }
+
+    if(_pSparse2->getRows() == 1 && _pSparse2->getCols() == 1)
+    {//do sp - scalar
+        Double* pDbl = NULL;
+        if(_pSparse2->isComplex())
+        {
+            std::complex<double> dbl = _pSparse2->getImg(0,0);
+            pDbl = new Double(dbl.real(), dbl.imag());
+        }
+        else
+        {
+            pDbl = new Double(_pSparse2->get(0,0));
+        }
+
+        SubstractDoubleToSparse(pDbl, _pSparse1, (GenericType**)_pSparseOut);
+        delete pDbl;
+        return 0;
+    }
+
+    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
+    {//dimensions not match
+        return 1;
+    }
+
+    if(_pSparse1->nonZeros() == 0)
+    {//sp - sp([])
+        *_pSparseOut = new Sparse(*_pSparse2);
+        return 0;
+    }
+
+    if(_pSparse2->nonZeros() == 0)
+    {//sp([]) - sp
+        Sparse* pOut = new Sparse(*_pSparse1);
+        pOut->opposite();
+        *_pSparseOut = pOut;
+        return 0;
+    }
+
+    //copy _pSparse1 in _pSparseOut
+    *_pSparseOut = _pSparse2->substract(*_pSparse1);
+    return 0;
+}
+
+int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_pOut)
+{//D - SP
+    int iOne = 1; //fortran 
+    bool bComplex1 = _pSparse->isComplex();
+    bool bComplex2 = _pDouble->isComplex();
+
+    if(_pDouble->isEmpty())
+    {//[] - SP
+        Sparse* pS = _pSparse->clone();
+        pS->opposite();
+        *_pOut = pS;
+        return 0;
+    }
+
+    if(_pSparse->isScalar() && _pDouble->isScalar())
+    {//d - sp
+        Double* pRes = _pDouble->clone()->getAs<Double>();
+        pRes->setComplex(bComplex1 | bComplex2);
+        if(bComplex1)
+        {
+            std::complex<double> dbl = _pSparse->getImg(0, 0);
+            pRes->set(0, pRes->get(0) - dbl.real());
+            pRes->setImg(0, pRes->getImg(0) - dbl.imag());
+        }
+        else
+        {
+            pRes->set(0, pRes->get(0) - _pSparse->get(0, 0));
+        }
+
+        *_pOut = pRes;
+        return 0;
+    }
+
+    if(_pDouble->isScalar())
+    {//d - SP
+        Double* pRes = new Double(_pSparse->getRows(), _pSparse->getCols(), bComplex1 | bComplex2);
+        int iSize = _pSparse->getSize();
+        double dblVal = _pDouble->get(0);
+        C2F(dset)(&iSize, &dblVal, pRes->get(), &iOne);
+        if(bComplex2)
+        {
+            double dblValI = _pDouble->getImg(0);
+            C2F(dset)(&iSize, &dblValI, pRes->getImg(), &iOne);
+        }
+        else if(bComplex1)
+        {//initialize imag part at 0
+            double dblValI = 0;
+            C2F(dset)(&iSize, &dblValI, pRes->getImg(), &iOne);
+        }
+
+        int nonZeros = static_cast<int>(_pSparse->nonZeros());
+        double* pRows = new double[nonZeros * 2];
+        _pSparse->outputRowCol(pRows);
+        double* pCols = pRows + nonZeros;
+
+        double* pNonZeroR = new double[nonZeros];
+        double* pNonZeroI = new double[nonZeros];
+        _pSparse->outputValues(pNonZeroR, pNonZeroI);
+
+        if(bComplex1)
+        {
+            for(int i = 0 ; i < nonZeros ; i++)
+            {
+                int iRow = static_cast<int>(pRows[i]) - 1;
+                int iCol = static_cast<int>(pCols[i]) - 1;
+                std::complex<double> dbl = _pSparse->getImg(iRow, iCol);
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) - dbl.real());
+                pRes->setImg(iRow, iCol, pRes->getImg(iRow, iCol) - dbl.imag());
+            }
+        }
+        else
+        {
+            for(int i = 0 ; i < nonZeros ; i++)
+            {
+                int iRow = static_cast<int>(pRows[i]) - 1;
+                int iCol = static_cast<int>(pCols[i]) - 1;
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) - _pSparse->get(iRow, iCol));
+            }
+        }
+        *_pOut = pRes;
+
+        //clear
+        delete[] pRows;
+        delete[] pNonZeroR;
+        delete[] pNonZeroI;
+
+        return 0;
+    }
+
+    if(_pSparse->isScalar())
+    {//D - sp
+        Double* pRes = _pDouble->clone()->getAs<Double>();
+        pRes->setComplex(bComplex1 | bComplex2);
+
+        if(bComplex1)
+        {
+            double* pReal = pRes->get();
+            double* pImg = pRes->getImg();
+            for(int i = 0 ; i < pRes->getSize() ; i++)
+            {
+                std::complex<double> dbl = _pSparse->getImg(0, 0);
+                pReal[i] -= dbl.real();
+                pImg[i] -= dbl.imag();
+            }
+        }
+        else
+        {
+            double* pReal = pRes->get();
+            for(int i = 0 ; i < pRes->getSize() ; i++)
+            {
+                pReal[i] -= _pSparse->get(0, 0);
+            }
+        }
+        *_pOut = pRes;
+        return 0;
+    }
+
+
+    if(_pSparse->getRows() == _pDouble->getRows() && _pSparse->getCols() == _pDouble->getCols())
+    {//D - SP
+        Double* pRes = _pDouble->clone()->getAs<Double>();
+        pRes->setComplex(bComplex1 | bComplex2);
+
+        int nonZeros = static_cast<int>(_pSparse->nonZeros());
+        double* pRows = new double[nonZeros * 2];
+        _pSparse->outputRowCol(pRows);
+        double* pCols = pRows + nonZeros;
+
+        double* pNonZeroR = new double[nonZeros];
+        double* pNonZeroI = new double[nonZeros];
+        _pSparse->outputValues(pNonZeroR, pNonZeroI);
+
+        if(bComplex1)
+        {
+            for(int i = 0 ; i < nonZeros ; i++)
+            {
+                int iRow = static_cast<int>(pRows[i]) - 1; 
+                int iCol = static_cast<int>(pCols[i]) - 1;
+                std::complex<double> dbl = _pSparse->getImg(iRow, iCol);
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) - dbl.real());
+                pRes->setImg(iRow, iCol, pRes->getImg(iRow, iCol) - dbl.imag());
+            }
+        }
+        else
+        {
+            for(int i = 0 ; i < nonZeros ; i++)
+            {
+                int iRow = static_cast<int>(pRows[i]) - 1; 
+                int iCol = static_cast<int>(pCols[i]) - 1;
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) - _pSparse->get(iRow, iCol));
+            }
+        }
+
+        //clear
+        delete[] pRows;
+        delete[] pNonZeroR;
+        delete[] pNonZeroI;
+        *_pOut = pRes;
+        return 0;
+    }
+    return 1;
+}
+
+int SubstractDoubleToSparse(Double* _pDouble, Sparse* _pSparse, GenericType **_pOut)
+{//SP - D => -(D - SP)
+    int iRet = SubstractSparseToDouble(_pSparse, _pDouble, _pOut);
+    if(iRet)
+    {
+        return iRet;
+    }
+
+    //compute opposite of result
+    if((*_pOut)->isDouble())
+    {
+        Double* pD          = (*_pOut)->getAs<Double>();
+        int iSize           = pD->getSize();
+        double dblMinusOne  = -1;
+        int iOne            = 1;
+
+        C2F(dscal)(&iSize, &dblMinusOne, pD->get(), &iOne);
+        if(pD->isComplex())
+        {
+            C2F(dscal)(&iSize, &dblMinusOne, pD->getImg(), &iOne);
+        }
+    }
+    else if((*_pOut)->isSparse())
+    {
+        Sparse* pS = (*_pOut)->getAs<Sparse>();
+        pS->opposite();
+    }
+    else
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 

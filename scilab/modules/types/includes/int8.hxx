@@ -68,4 +68,8 @@ namespace types
     };
 }
 
+#ifdef _MSC_VER
+template class TYPES_IMPEXP types::ArrayOf<char>; //Int8
+#endif
+
 #endif /* !__INT8_HXX__ */

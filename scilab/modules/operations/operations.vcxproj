@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPERATIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPERATIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -142,7 +142,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPERATIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -179,7 +179,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../types/includes;../symbol/includes;../ast/includes;../localization/includes;../../libs/intl;../string/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPERATIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -210,8 +210,9 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\types_comparison_equal.cpp" />
-    <ClCompile Include="src\cpp\types_comparison_non_equal.cpp" />
+    <ClCompile Include="src\cpp\types_comparison_eq.cpp" />
+    <ClCompile Include="src\cpp\types_comparison_lt_le_gt_ge.cpp" />
+    <ClCompile Include="src\cpp\types_comparison_ne.cpp" />
     <ClCompile Include="src\c\doublecomplex.c" />
     <ClCompile Include="src\c\matrix_addition.c" />
     <ClCompile Include="src\c\matrix_division.c" />
@@ -241,8 +242,9 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClInclude Include="includes\matrix_transpose.h" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />
-    <ClInclude Include="includes\types_comparison_equal.hxx" />
-    <ClInclude Include="includes\types_comparison_non_equal.hxx" />
+    <ClInclude Include="includes\types_comparison_eq.hxx" />
+    <ClInclude Include="includes\types_comparison_lt_le_gt_ge.hxx" />
+    <ClInclude Include="includes\types_comparison_ne.hxx" />
     <ClInclude Include="includes\types_divide.hxx" />
     <ClInclude Include="includes\types_finite.hxx" />
     <ClInclude Include="includes\types_multiplication.hxx" />

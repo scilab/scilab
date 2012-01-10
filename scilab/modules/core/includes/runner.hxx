@@ -14,6 +14,8 @@
 #define __RUNNER_HXX__
 
 #include <iostream>
+#include "exp.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -21,8 +23,6 @@ extern "C"
 #include "dynlib_core_gw.h"
 }
 
-#include "exp.hxx"
-#include "execvisitor.hxx"
 #include "threadId.hxx"
 
 class CORE_GW_IMPEXP Runner

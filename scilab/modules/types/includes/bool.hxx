@@ -72,4 +72,7 @@ namespace types
     };
 }
 
+#ifdef _MSC_VER
+template class TYPES_IMPEXP types::ArrayOf<int>;//Bool
+#endif
 #endif /* !__BOOL_HXX__ */

@@ -57,7 +57,6 @@ namespace types
 
         InternalType*           clone();
 
-        ImplicitList*           getAsImplicitList(void) { return this; }
         RealType                getType(void) { return RealImplicitList; }
         bool                    isImplicitList() { return true; }
 

@@ -18,6 +18,7 @@
 #include <list>
 #include "internal.hxx"
 #include "dynlib_types.h"
+#include "string.hxx"
 
 namespace types
 {

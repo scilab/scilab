@@ -47,11 +47,6 @@ namespace types
         std::cout << "types::MacroFile";
     }
 
-    MacroFile* MacroFile::getAsMacroFile(void)
-    {
-        return this; 
-    }
-
     InternalType::RealType MacroFile::getType(void)
     { 
         return RealMacroFile; 
@@ -114,7 +109,7 @@ namespace types
                     types::InternalType* pFunc = pContext->get_fun(pFD->name_get());
                     if(pFunc && pFunc->isMacroFile())
                     {
-                        MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
+                        MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAs<MacroFile>();
                         if(pMacro->m_pMacro == NULL)
                         {
                             std::list<Var *>::const_iterator	i;

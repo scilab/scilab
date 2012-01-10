@@ -56,25 +56,29 @@ COMMON_LIBS = \
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
-COMMON_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
-						-I$(top_srcdir)/modules/output_stream/includes/ \
-						-I$(top_srcdir)/modules/parse/includes/ \
-						-I$(top_srcdir)/modules/ast/includes/ \
-						-I$(top_srcdir)/modules/symbol/includes/ \
-						-I$(top_srcdir)/modules/functions_manager/includes/ \
-						-I$(top_srcdir)/modules/types/includes/ \
-						-I$(top_srcdir)/modules/system_env/includes/ \
-						-I$(top_srcdir)/modules/operations/includes/ \
-						-I$(top_srcdir)/modules/elementary_functions/includes/ \
-						-I$(top_srcdir)/modules/fileio/includes/ \
-						-I$(top_srcdir)/modules/string/includes/ \
-						-I$(top_srcdir)/modules/history_manager/includes/ \
-						-I$(top_srcdir)/modules/threads/includes/ \
-						-I$(top_srcdir)/modules/api_scilab/includes/ \
-						-I$(top_srcdir)/libs/dynamiclibrary/includes/
+COMMON_CPPFLAGS = \ 
+    -I$(top_srcdir)/modules/console/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/parse/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/system_env/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+    $(EIGEN_CPPFLAGS)
 
-scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+scilab_bin_SOURCES = \
+    $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+    $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+
 if IS_MACOSX
 scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 endif

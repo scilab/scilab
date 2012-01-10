@@ -10,8 +10,8 @@
  *
  */
 
-#include "types_comparison_non_equal.hxx"
-#include "types_comparison_equal.hxx"
+#include "types_comparison_ne.hxx"
+#include "types_comparison_eq.hxx"
 #include "bool.hxx"
 
 using namespace types;
@@ -24,15 +24,28 @@ InternalType *GenericComparisonNonEqual(InternalType *_pLeftOperand, InternalTyp
         return NULL;
     }
 
-    Bool *pB = pResult->getAs<Bool>();
-    if(pB == NULL)
-    {// Oo
-        return NULL;
+    if(pResult->isBool())
+    {
+        Bool *pB = pResult->getAs<Bool>();
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pB->set(i, pB->get(i) == 0);
+        }
+        return pB;
+    }
+    else if(pResult->isSparseBool())
+    {
+        SparseBool *pSB = pResult->getAs<SparseBool>();
+        for(int i = 0 ; i < pSB->getRows() ; i++)
+        {
+            for(int j = 0 ; j < pSB->getCols() ; j++)
+            {
+                bool b = !pSB->get(i, j);
+                pSB->set(i, j, !pSB->get(i, j));
+            }
+        }
+        return pSB;
     }
 
-    for(int i = 0 ; i < pB->getSize() ; i++)
-    {
-        pB->set(i, pB->get(i) == 0);
-    }
-    return pB;
+    return NULL;
 }

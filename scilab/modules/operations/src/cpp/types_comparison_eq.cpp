@@ -10,12 +10,13 @@
  *
  */
 
-#include "types_comparison_equal.hxx"
+#include "types_comparison_eq.hxx"
 #include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "cell.hxx"
+#include "sparse.hxx"
 
 using namespace types;
 
@@ -291,6 +292,9 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         return pB;
     }
 
+    /*
+    ** CELL == CELL
+    */
     if(TypeL == GenericType::RealCell && TypeR == GenericType::RealCell)
     {
         Cell* pCL = _pLeftOperand->getAs<Cell>();
@@ -332,19 +336,288 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
     {
-        return new types::Bool(0);;
+        return new Bool(0);
     }
 
-   /*
+    /*
     ** STRING == DOUBLE
     */
     if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
     {
-        return new types::Bool(0);;
+        return new Bool(0);;
+    }
+
+    /*
+    ** SPARSE == SPARSE
+    */
+    if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
+    {
+        Sparse* pL = _pLeftOperand->getAs<Sparse>();
+        Sparse* pR = _pRightOperand->getAs<Sparse>();
+
+        int iResult = EqualToSparseAndSparse(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+        
+    /*
+    ** SPARSE == DOUBLE
+    */
+    if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
+    {
+        Sparse* pL = _pLeftOperand->getAs<Sparse>();
+        Double* pR = _pRightOperand->getAs<Double>();
+
+        int iResult = EqualToSparseAndDouble(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** DOUBLE == SPARSE
+    */
+    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
+    {
+        Double* pL = _pLeftOperand->getAs<Double>();
+        Sparse* pR = _pRightOperand->getAs<Sparse>();
+
+        int iResult = EqualToDoubleAndSparse(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** SPARSE BOOL == SPARSE BOOL
+    */
+    if(TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealSparseBool)
+    {
+        SparseBool* pL = _pLeftOperand->getAs<SparseBool>();
+        SparseBool* pR = _pRightOperand->getAs<SparseBool>();
+
+        int iResult = EqualToSparseBoolAndSparseBool(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** SPARSE BOOL == BOOL
+    */
+    if(TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealBool)
+    {
+        SparseBool* pL = _pLeftOperand->getAs<SparseBool>();
+        Bool* pR = _pRightOperand->getAs<Bool>();
+
+        int iResult = EqualToSparseBoolAndBool(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** BOOL == SPARSE BOOL
+    */
+    if(TypeL == GenericType::RealBool && TypeR == GenericType::RealSparseBool)
+    {
+        Bool* pL = _pLeftOperand->getAs<Bool>();
+        SparseBool* pR = _pRightOperand->getAs<SparseBool>();
+
+        int iResult = EqualToBoolAndSparseBool(pL, pR, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
     }
 
     /*
     ** Default case : Return NULL will Call Overloading.
     */
     return NULL;
+}
+
+int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, GenericType** _pOut)
+{
+    SparseBool* pOut = NULL;
+    if(_pSB1->isScalar())
+    {
+        pOut = new SparseBool(_pSB2->getRows(), _pSB2->getCols());
+        bool bVal = _pSB1->get(0, 0);
+        
+        for(int i = 0 ; i < pOut->getRows() ; i++)
+        {
+            for(int j = 0 ; j < pOut->getCols() ; j++)
+            {
+                pOut->set(i, j, bVal == _pSB2->get(i,j));
+            }
+        }
+
+        *_pOut = pOut;
+        return 0;
+    }
+
+    if(_pSB2->isScalar())
+    {
+        pOut = new SparseBool(_pSB1->getRows(), _pSB1->getCols());
+        bool bVal = _pSB2->get(0, 0);
+        
+        for(int i = 0 ; i < pOut->getRows() ; i++)
+        {
+            for(int j = 0 ; j < pOut->getCols() ; j++)
+            {
+                pOut->set(i, j, _pSB1->get(i,j) == bVal);
+            }
+        }
+
+        *_pOut = pOut;
+        return 0;
+    }
+
+    if(_pSB1->getRows() != _pSB2->getRows() || _pSB1->getCols() != _pSB2->getCols())
+    {
+        return 1;
+    }
+
+    pOut = new SparseBool(_pSB1->getRows(), _pSB1->getCols());
+
+    for(int i = 0 ; i < pOut->getRows() ; i++)
+    {
+        for(int j = 0 ; j < pOut->getCols() ; j++)
+        {
+            pOut->set(i, j, _pSB1->get(i,j) == _pSB2->get(i,j));
+        }
+    }
+
+    *_pOut = pOut;
+    return 0;
+}
+
+int EqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _pOut)
+{
+    if(_pSparse1->isScalar())
+    {//sp == SP
+        SparseBool* pSB = new SparseBool(_pSparse2->getRows() , _pSparse2->getCols());
+
+        std::complex<double> dbl = _pSparse1->getImg(0, 0);
+        for(int i = 0 ; i < pSB->getRows() ; i++)
+        {
+            for(int j = 0 ; j < pSB->getCols() ; j++)
+            {
+                if(_pSparse2->getImg(i, j) == dbl)
+                {
+                    pSB->set(i, j, true);
+                }
+            }
+        }
+        
+        *_pOut = pSB;
+        return 0;
+    }
+
+    if(_pSparse2->isScalar())
+    {//SP == sp
+        SparseBool* pSB = new SparseBool(_pSparse1->getRows() , _pSparse1->getCols());
+        std::complex<double> dbl = _pSparse2->getImg(0, 0);
+
+        for(int i = 0 ; i < pSB->getRows() ; i++)
+        {
+            for(int j = 0 ; j < pSB->getCols() ; j++)
+            {
+                if(_pSparse1->getImg(i, j) == dbl)
+                {
+                    pSB->set(i, j, true);
+                }
+            }
+        }
+        
+        *_pOut = pSB;
+        return 0;
+    }
+
+    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
+    {
+        return 1;
+    }
+
+    *_pOut = _pSparse1->newEqualTo(*_pSparse2);
+    return 0;
+}
+
+int EqualToDoubleAndSparse(Double* _pDouble, Sparse* _pSparse, GenericType** _pOut)
+{
+    Sparse* pSparse = NULL;
+    if(_pDouble->isScalar())
+    {
+        pSparse = new Sparse(_pSparse->getRows(), _pSparse->getCols(), _pDouble->isComplex());
+        if(pSparse->isComplex())
+        {
+            std::complex<double> dbl(_pDouble->get(0), _pDouble->getImg(0));
+            for(int i = 0 ; i < pSparse->getRows() ; i++)
+            {
+                for(int j = 0 ; j < pSparse->getCols() ; j++)
+                {
+                    pSparse->set(i, j, dbl);
+                }
+            }
+        }
+        else
+        {
+            double dbl = _pDouble->get(0);
+            for(int i = 0 ; i < pSparse->getRows() ; i++)
+            {
+                for(int j = 0 ; j < pSparse->getCols() ; j++)
+                {
+                    pSparse->set(i, j, dbl);
+                }
+            }
+        }
+    }
+    else
+    {
+        pSparse = new Sparse(*_pDouble);
+    }
+
+    int iRet = EqualToSparseAndSparse(pSparse, _pSparse, _pOut);
+    delete pSparse;
+    return iRet;
+}
+
+int EqualToSparseAndDouble(Sparse* _pSparse, Double* _pDouble, GenericType** _pOut)
+{
+    return EqualToDoubleAndSparse(_pDouble, _pSparse, _pOut);
+}
+
+int EqualToSparseBoolAndBool(SparseBool* _pSB1, Bool* _pB2, GenericType** _pOut)
+{
+    SparseBool* pSB = new SparseBool(*_pB2);
+    int iRet = EqualToSparseBoolAndSparseBool(_pSB1, pSB, _pOut);
+    delete pSB;
+    return iRet;
+}
+
+int EqualToBoolAndSparseBool(Bool* _pB1, SparseBool* _pSB2, GenericType** _pOut)
+{
+    SparseBool* pSB = new SparseBool(*_pB1);
+    int iRet = EqualToSparseBoolAndSparseBool(pSB, _pSB2, _pOut);
+    delete pSB;
+    return iRet;
 }

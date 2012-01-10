@@ -62,14 +62,9 @@ namespace types
         return this;
     }
 
-    ThreadId* ThreadId::getAsThreadId(void)
+    InternalType::RealType ThreadId::getType()
     {
-        return this;
-    }
-
-    GenericType::RealType ThreadId::getType()
-    {
-        return GenericType::RealThreadId;
+        return InternalType::RealThreadId;
     }
 
     std::wstring ThreadId::StatusToString(Status _status)

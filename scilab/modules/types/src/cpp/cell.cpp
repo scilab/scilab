@@ -254,9 +254,9 @@ namespace types
                     {
                         //compute number of digits to write dimensions
                         int iTypeLen = 0;
-                        if(pIT->getAsGenericType())
+                        if(pIT->getAs<GenericType>())
                         {
-                            GenericType* pGT = pIT->getAsGenericType();
+                            GenericType* pGT = pIT->getAs<GenericType>();
                             for(int k = 0 ; k < pGT->getDims() ; k++)
                             {
                                 iTypeLen += static_cast<int>(log10(static_cast<double>(pGT->getDimsArray()[k])) + 1);
@@ -265,7 +265,7 @@ namespace types
                         }
                         else
                         {//types non derived from ArrayOf.
-                            int iSize = static_cast<int>(log10(static_cast<double>(pIT->getAsGenericType()->getRows())) + 1);
+                            int iSize = static_cast<int>(log10(static_cast<double>(pIT->getAs<GenericType>()->getRows())) + 1);
                             piSizeLen[j] = Max(piSizeLen[j], iSize);
                         }
                     }
@@ -292,7 +292,7 @@ namespace types
                     {
                         if(pIT->isGenericType())
                         {//"  ixjxkxl type   "
-                            GenericType* pGT = pIT->getAsGenericType();
+                            GenericType* pGT = pIT->getAs<GenericType>();
                             std::wostringstream ostemp;
                             for(int k = 0 ; k < pGT->getDims() ; k++)
                             {
@@ -310,7 +310,7 @@ namespace types
                             configureStream(&ostr, piSizeLen[j], _iPrecision, ' ');
                             if(pIT->isList())
                             {
-                                ostr << std::right << pIT->getAsList()->getSize();
+                                ostr << std::right << pIT->getAs<List>()->getSize();
                             }
                             else
                             {

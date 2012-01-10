@@ -246,7 +246,7 @@ namespace types
                 throw ast::ScilabError(os.str());
             }
 
-            InternalType* pInsert = _pSource->getAsListInsert()->getInsert();
+            InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
             pInsert->IncreaseRef();
             if(idx > m_plData->size())
             {//try to insert after the last index, increase list size and assign value

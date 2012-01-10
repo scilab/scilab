@@ -15,7 +15,7 @@
 #define __CALLABLE_HXX__
 
 #include <string>
-#include "types.hxx"
+#include "internal.hxx"
 
 #include "visitor.hxx"
 #include "dynlib_types.h"
@@ -36,7 +36,6 @@ namespace types
                             Callable(): InternalType() {}
       virtual               ~Callable() {}
 
-      Callable*             getAsCallable() { return this; }
       bool                  isCallable() { return true; }
 
       virtual ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;

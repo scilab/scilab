@@ -18,8 +18,10 @@
 #include <vector>
 #include <iostream>
 #include <string.h>
-#include "anytype.hxx"
+//#include "anytype.hxx"
 #include "dynlib_types.h"
+
+#define bsiz 4096
 
 namespace types
 {
@@ -69,7 +71,9 @@ namespace types
             RealFile,
             RealColon,
             RealDollar,
-            RealThreadId
+            RealThreadId,
+            RealSparse,
+            RealSparseBool
         };
 
     protected :
@@ -124,18 +128,12 @@ namespace types
         template <class T>
         T*                              getAs(void) { return static_cast<T*>(this); }
 
-        /* GenericType */
         virtual bool                    isGenericType(void);
-        virtual GenericType*            getAsGenericType(void) { return NULL; }
-
         virtual bool                    isString(void) { return false; }
         virtual bool                    isDouble(void) { return false; }
-
-        /* Float */
+        virtual bool                    isSparse(void) {return false;}
+        virtual bool                    isSparseBool(void) {return false;}
         virtual bool                    isFloat(void) { return false; }
-        virtual Float*                  getAsFloat(void) { return NULL; }
-
-        /* Int */
         virtual bool                    isInt(void) { return false; }
         virtual bool                    isInt8(void) { return false; }
         virtual bool                    isUInt8(void) { return false; }
@@ -145,113 +143,28 @@ namespace types
         virtual bool                    isUInt32(void) { return false; }
         virtual bool                    isInt64(void) { return false; }
         virtual bool                    isUInt64(void) { return false; }
-
-        /* Bool */
         virtual bool                    isBool(void) { return false; }
-
-        /* SinglePoly Matrix */
         virtual bool                    isPoly(void) { return false; }
-
-        /* Single SinglePoly */
         virtual bool                    isSinglePoly(void) { return false; }
-        virtual SinglePoly*             getAsSinglePoly(void) { return NULL; }
-
-        /**
-        ** \}
-        */
-
-        /**
-        ** Callable
-        ** \{
-        */
         virtual bool                    isCallable(void) { return false; }
-        virtual Callable*               getAsCallable(void) { return NULL; }
-
-        /* Function */
         virtual bool                    isFunction(void) { return false; }
-        virtual Function*               getAsFunction(void) { return NULL; }
-
-        /* Macro */
         virtual bool                    isMacro(void) { return false; }
-        virtual Macro*                  getAsMacro(void) { return NULL; }
-
-        /* MacroFile */
         virtual bool                    isMacroFile(void) { return false; }
-        virtual MacroFile*              getAsMacroFile(void) { return NULL; }
-
-        /**
-        ** \}
-        */
-
-        /**
-        ** Container
-        ** \{
-        */
         virtual bool                    isContainer(void) { return false; }
-        virtual Container*              getAsContainer(void) { return NULL; }
-
-        /* List */
         virtual bool                    isList(void) { return false; }
-        virtual List*                   getAsList(void) { return NULL; }
-
-        /* Struct */
         virtual bool                    isStruct(void) { return false; }
-
-        /* Cell */
         virtual bool                    isCell(void) { return false; }
-
-        /* TList */
         virtual bool                    isTList(void) { return false; }
-        virtual TList*                  getAsTList(void) { return NULL; }
-
-        /* MList */
         virtual bool                    isMList(void) { return false; }
-        virtual MList*                  getAsMList(void) { return NULL; }
-
-        /**
-        ** \}
-        */
-
-        /* ImplicitList */
         virtual bool                    isImplicitList(void) { return false; }
-        virtual ImplicitList*           getAsImplicitList(void) { return NULL; }
-
-        /* Colon & Dollar */
         virtual bool                    isColon(void) { return false; }
         virtual bool                    isDollar(void) { return false; }
-
-        /* File */
         virtual bool                    isFile(void) { return false; }
-        virtual File*                   getAsFile(void) { return NULL; }
-
-        /* ThreadId */
         virtual bool                    isThreadId(void) { return false; }
-        virtual ThreadId*               getAsThreadId(void) { return NULL; }
-
-        /**
-        ** List Operations
-        ** \{
-        */
-
-        /* ListOperation */
         virtual bool                    isListOperation(void) { return false; }
-        virtual ListOperation*          getAsListOperation(void) { return NULL; }
-
-        /* ListDelete */
         virtual bool                    isListDelete(void) { return false; }
-        virtual ListDelete*             getAsListDelete(void) { return NULL; }
-
-        /* ListAdd */
         virtual bool                    isListInsert(void) { return false; }
-        virtual ListInsert*             getAsListInsert(void) { return NULL; }
-
-        /* ListUndefined */
         virtual bool                    isListUndefined(void) { return false; }
-        virtual ListUndefined*          getAsListUndefined(void) { return NULL; }
-
-        /**
-        ** \}
-        */
 
     protected :
         int                             m_iRef;

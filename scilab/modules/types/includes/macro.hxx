@@ -16,6 +16,7 @@
 #include <list>
 #include "types.hxx"
 #include "callable.hxx"
+#include "double.hxx"
 #include "seqexp.hxx"
 
 using namespace std;
@@ -31,7 +32,6 @@ namespace types
         // FIXME : Should not return NULL;
         InternalType*               clone();
 
-        Macro*                      getAsMacro(void);
         RealType                    getType(void);
         bool                        isMacro() { return true; }
 

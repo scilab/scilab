@@ -76,7 +76,8 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c
 
 if USE_DYNAMIC_STACK
-CORE_C_SOURCES += src/c/scimem64.c
+CORE_C_SOURCES += \
+    src/c/scimem64.c
 endif
 
 CORE_FORTRAN_SOURCES = \
@@ -175,56 +176,58 @@ CORE_CPP_SOURCES = \
 	src/cpp/runner.cpp
 
 if USE_DYNAMIC_STACK
-CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
+CORE_FORTRAN_SOURCES += \
+    src/fortran/relocstack.f
 endif
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_mtlb_mode.c \
-sci_gateway/c/sci_where.c \
-sci_gateway/c/sci_errcatch.c \
-sci_gateway/c/sci_format.c \
-sci_gateway/c/sci_getmemory.c \
-sci_gateway/c/sci_havewindow.c \
-sci_gateway/c/sci_delbpt.c \
-sci_gateway/c/sci_macr2lst.c \
-sci_gateway/c/sci_errclear.c \
-sci_gateway/c/sci_funcprot.c \
-sci_gateway/c/sci_newfun.c \
-sci_gateway/c/sci_dispbpt.c \
-sci_gateway/c/sci_intppty.c \
-sci_gateway/c/sci_ieee.c \
-sci_gateway/c/sci_gstacksize.c \
-sci_gateway/c/sci_funptr.c \
-sci_gateway/c/sci_return.c \
-sci_gateway/c/sci_clearfun.c \
-sci_gateway/c/sci_setbpt.c \
-sci_gateway/c/sci_what.c \
-sci_gateway/c/sci_predef.c \
-sci_gateway/c/sci_type.c \
-sci_gateway/c/sci_typename.c \
-sci_gateway/c/sci_mode.c \
-sci_gateway/c/sci_macr2tree.c \
-sci_gateway/c/sci_iserror.c \
-sci_gateway/c/sci_getdebuginfo.c \
-sci_gateway/c/sci_debug.c \
-sci_gateway/c/gw_core.c \
-sci_gateway/c/gw_user.c \
-sci_gateway/c/gw_user2.c \
-sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c \
-sci_gateway/c/sci_comp.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_mtlb_mode.c \
+    sci_gateway/c/sci_where.c \
+    sci_gateway/c/sci_errcatch.c \
+    sci_gateway/c/sci_format.c \
+    sci_gateway/c/sci_getmemory.c \
+    sci_gateway/c/sci_havewindow.c \
+    sci_gateway/c/sci_delbpt.c \
+    sci_gateway/c/sci_macr2lst.c \
+    sci_gateway/c/sci_errclear.c \
+    sci_gateway/c/sci_funcprot.c \
+    sci_gateway/c/sci_newfun.c \
+    sci_gateway/c/sci_dispbpt.c \
+    sci_gateway/c/sci_intppty.c \
+    sci_gateway/c/sci_ieee.c \
+    sci_gateway/c/sci_gstacksize.c \
+    sci_gateway/c/sci_funptr.c \
+    sci_gateway/c/sci_return.c \
+    sci_gateway/c/sci_clearfun.c \
+    sci_gateway/c/sci_setbpt.c \
+    sci_gateway/c/sci_what.c \
+    sci_gateway/c/sci_predef.c \
+    sci_gateway/c/sci_type.c \
+    sci_gateway/c/sci_typename.c \
+    sci_gateway/c/sci_mode.c \
+    sci_gateway/c/sci_macr2tree.c \
+    sci_gateway/c/sci_iserror.c \
+    sci_gateway/c/sci_getdebuginfo.c \
+    sci_gateway/c/sci_debug.c \
+    sci_gateway/c/gw_core.c \
+    sci_gateway/c/gw_user.c \
+    sci_gateway/c/gw_user2.c \
+    sci_gateway/c/sci_getvariablesonstack.c \
+    sci_gateway/c/sci_readgateway.c \
+    sci_gateway/c/sci_comp.c
 
 GATEWAY_FORTRAN_SOURCES =  \
-sci_gateway/fortran/sci_f_mtlb_mode.f \
-sci_gateway/fortran/sci_f_dispbpt.f \
-sci_gateway/fortran/sci_f_intppty.f \
-sci_gateway/fortran/sci_f_ieee.f \
-sci_gateway/fortran/sci_f_macrovar.f \
-sci_gateway/fortran/sci_f_errcatch.f \
-sci_gateway/fortran/sci_f_setbpt.f \
-sci_gateway/fortran/sci_f_delbpt.f \
-sci_gateway/fortran/where.f \
-sci_gateway/fortran/sci_f_iserror.f \
-sci_gateway/fortran/sci_f_debug.f
+    sci_gateway/fortran/sci_f_mtlb_mode.f \
+    sci_gateway/fortran/sci_f_dispbpt.f \
+    sci_gateway/fortran/sci_f_intppty.f \
+    sci_gateway/fortran/sci_f_ieee.f \
+    sci_gateway/fortran/sci_f_macrovar.f \
+    sci_gateway/fortran/sci_f_errcatch.f \
+    sci_gateway/fortran/sci_f_setbpt.f \
+    sci_gateway/fortran/sci_f_delbpt.f \
+    sci_gateway/fortran/where.f \
+    sci_gateway/fortran/sci_f_iserror.f \
+    sci_gateway/fortran/sci_f_debug.f
 
 GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getmodules.cpp \
@@ -294,12 +297,14 @@ libscicore_la_CPPFLAGS = \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    $(EIGEN_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
-libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
-		                  $(TK_INC_PATH)
+libscicore_la_CFLAGS += \
+    $(TCL_INC_PATH) \
+    $(TK_INC_PATH)
 endif
 
 pkglib_LTLIBRARIES = libscicore.la

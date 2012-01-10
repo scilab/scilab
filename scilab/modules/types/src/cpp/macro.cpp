@@ -60,11 +60,6 @@ namespace types
         std::cout << "types::Macro";
     }
 
-    Macro* Macro::getAsMacro(void)
-    {
-        return this;
-    }
-
     InternalType::RealType Macro::getType(void)
     {
         return RealMacro;
@@ -178,7 +173,7 @@ namespace types
         //common part with or without varargin/varargout
 
         // Declare nargin & nargout in function context.
-        m_pDblArgIn->set(0, in.size());
+        m_pDblArgIn->set(0, static_cast<double>(in.size()));
         m_pDblArgOut->set(0, _iRetCount);
         pContext->put(m_ArgInSymb, *m_pDblArgIn);
         pContext->put(m_ArgOutSymb, *m_pDblArgOut);

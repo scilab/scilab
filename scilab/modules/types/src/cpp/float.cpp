@@ -169,11 +169,6 @@ namespace types
 		std::cout << "types::Float";
 	}
 
-	Float* Float::getAsFloat(void)
-	{
-		return this;
-	}
-
 	GenericType::RealType Float::getType(void)
 	{
 		return RealFloat;
@@ -271,7 +266,7 @@ namespace types
 			return false;
 		}
 
-		Float* pf = const_cast<InternalType &>(it).getAsFloat();
+		Float* pf = const_cast<InternalType &>(it).getAs<Float>();
 
 		if(pf->getRows() != getRows() || pf->getCols() != getCols())
 		{

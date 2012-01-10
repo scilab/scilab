@@ -15,6 +15,8 @@
 
 #include "dynlib_operations.hxx"
 #include "internal.hxx"
+#include "double.hxx"
+#include "sparse.hxx"
 
 /*
 ** Try to find a good algorithm to perform equal comparison between those 2 datatypes.
@@ -25,5 +27,12 @@
 **
 */
 EXTERN_OP types::InternalType* GenericComparisonEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+int EqualToSparseAndSparse(types::Sparse* _pSparse1, types::Sparse* _pSarse2, types::GenericType** _pOut);
+int EqualToDoubleAndSparse(types::Double* _pDouble, types::Sparse* _pSarse, types::GenericType** _pOut);
+int EqualToSparseAndDouble(types::Sparse* _pSparse, types::Double* _pDouble, types::GenericType** _pOut);
+int EqualToSparseBoolAndSparseBool(types::SparseBool* _pSB1, types::SparseBool* _pSB2, types::GenericType** _pOut);
+int EqualToSparseBoolAndBool(types::SparseBool* _pSB1, types::Bool* _pB2, types::GenericType** _pOut);
+int EqualToBoolAndSparseBool(types::Bool* _pB1, types::SparseBool* _pSB2, types::GenericType** _pOut);
 
 #endif /* !__TYPES_COMPARISON_EQUAL_HXX__ */

@@ -66,11 +66,11 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
     }
     else if(in[0]->isGenericType())
     {
-        pOut = lengthMatrix(in[0]->getAsGenericType());
+        pOut = lengthMatrix(in[0]->getAs<GenericType>());
     }
     else if(in[0]->isList())
     {
-        pOut = lengthList(in[0]->getAsList());
+        pOut = lengthList(in[0]->getAs<List>());
     }
     //else if(in[0]->isSparse())
     //{
