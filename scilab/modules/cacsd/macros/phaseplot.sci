@@ -108,5 +108,5 @@ endfunction
 function str=formatPhaseplotTip(curve,pt,index)
 //this function is called by the datatips mechanism to format the tip
 //string for the magnitude bode curves
-  str=msprintf("%.4g"+_("Hz")+"\n%.4g"+_("°"), pt(1),pt(2))
+  str=msprintf("%.4g"+_("Hz")+"\n%.4g"+"°", pt(1),pt(2))
 endfunction
