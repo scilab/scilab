@@ -58,6 +58,7 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -65,6 +66,7 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGraphModel;
@@ -115,6 +117,7 @@ public final class Xcos {
 
     static {
         Scilab.registerInitialHook(new Runnable() {
+                @Override
                 public void run() {
                     /* load scicos libraries (macros) */
                     InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
@@ -430,8 +433,17 @@ public final class Xcos {
             diag = new XcosDiagram();
             diag.installListeners();
 
+            /*
+             * Create a visible window before loading
+             */
+            if (XcosTab.get(diag) == null) {
+                XcosTab.restore(diag);
+            }
+
+            /*
+             * Load the file if applicable
+             */
             if (filename != null) {
-                // wait the end of the load before displaying the tab.
                 diag = diag.openDiagramFromFile(filename);
             }
 
@@ -440,13 +452,9 @@ public final class Xcos {
             }
         }
 
-        /*
-         * Create a visible window
-         */
-        if (XcosTab.get(diag) == null) {
-            XcosTab.restore(diag);
+        if (diag != null) {
+            diag.updateTabTitle();
         }
-
     }
 
     /**
@@ -765,11 +773,11 @@ public final class Xcos {
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
         SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    instance.open(null);
-                }
-            });
+            @Override
+            public void run() {
+                instance.open(null);
+            }
+        });
     }
 
     /**
@@ -788,25 +796,12 @@ public final class Xcos {
         /* load scicos libraries (macros) */
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        instance.open(filename);
-                    }
-                });
-        } catch (final InterruptedException e) {
-            LOG.error(e);
-        } catch (final InvocationTargetException e) {
-            Throwable throwable = e;
-            String firstMessage = null;
-            while (throwable != null) {
-                firstMessage = throwable.getLocalizedMessage();
-                throwable = throwable.getCause();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                instance.open(filename);
             }
-
-            throw new RuntimeException(firstMessage, e);
-        }
+        });
     }
 
     /**
@@ -975,13 +970,21 @@ public final class Xcos {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        final XcosDiagram diagram = new XcosDiagram();
-                        diagram.openDiagramFromFile(file);
-                        diagram.dumpToHdf5File(h5File);
+                @Override
+                public void run() {
+                    final XcosDiagram diagram = new XcosDiagram();
+
+                    final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
+                    if (filetype != null) {
+                        try {
+                            filetype.load(xcosFile, diagram);
+                            new H5RWHandler(h5File).writeDiagram(diagram);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                });
+                }
+            });
         } catch (final InterruptedException e) {
             throw new RuntimeException(e);
         } catch (final InvocationTargetException e) {
