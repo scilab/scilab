@@ -485,6 +485,9 @@
 /* Version number of package */
 #undef VERSION
 
+/* With the EIGEN library */
+#undef WITH_EIGEN
+
 /* With the FFTW library */
 #undef WITH_FFTW
 

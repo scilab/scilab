@@ -718,7 +718,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 
 ###############################
 ### Regenerate the parser files
-### Flex & Yacc
+### Flex & Yacc
 ###############################
 
 if test "$enable_build_parser" = yes; then
@@ -1353,6 +1353,13 @@ fi
 
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
+
+
+#################
+## EIGEN
+#################
+
+AC_EIGEN()
 
 
 #################
@@ -2008,6 +2015,10 @@ if test $FFTW_ENABLE = yes;  then
 else
    echo "Not using FFTW"
 fi
+
+echo ""
+echo "Eigen3 Configuration:"
+echo "  EIGEN CPPFLAGS ...... = $EIGEN_CPPFLAGS"
 
 echo ""
 if test $MATIO_ENABLE = yes;  then
