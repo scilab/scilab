@@ -12183,10 +12183,6 @@ $as_echo_n "checking jgraphx... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgraphx.jar" "$jardir/libjgraphx.jar" "$jardir/libjgraphx-java.jar" "$jardir/jgraphx*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -12194,7 +12190,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12197 "configure"
+// #line 12193 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -12288,7 +12284,7 @@ $as_echo_n "checking minimal version (1.8.0.0) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12291 "configure"
+// #line 12287 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12339,7 +12335,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12342 "configure"
+// #line 12338 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -12405,10 +12401,6 @@ $as_echo_n "checking jhdf5... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -12416,7 +12408,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12419 "configure"
+// #line 12411 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12569,7 +12561,7 @@ $as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12572 "configure"
+// #line 12564 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12624,7 +12616,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12627 "configure"
+// #line 12619 "configure"
 import ncsa.hdf.hdf5lib.H5;
 
 public class conftest {
@@ -12697,10 +12689,6 @@ $as_echo_n "checking flexdock... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/flexdock.jar" "$jardir/libflexdock.jar" "$jardir/libflexdock-java.jar" "$jardir/flexdock*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -12708,7 +12696,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12711 "configure"
+// #line 12699 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12802,7 +12790,7 @@ $as_echo_n "checking minimal version (1.0) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 12805 "configure"
+// #line 12793 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12853,7 +12841,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 12856 "configure"
+// #line 12844 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12915,10 +12903,6 @@ $as_echo_n "checking looks... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/looks.jar" "$jardir/liblooks.jar" "$jardir/liblooks-java.jar" "$jardir/looks*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -12926,7 +12910,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12929 "configure"
+// #line 12913 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13022,10 +13006,6 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jgoodies-looks.jar" "$jardir/libjgoodies-looks.jar" "$jardir/libjgoodies-looks-java.jar" "$jardir/jgoodies-looks*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13033,7 +13013,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13036 "configure"
+// #line 13016 "configure"
 import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
@@ -13130,10 +13110,6 @@ $as_echo_n "checking skinlf... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/skinlf.jar" "$jardir/libskinlf.jar" "$jardir/libskinlf-java.jar" "$jardir/skinlf*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13141,7 +13117,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13144 "configure"
+// #line 13120 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13237,10 +13213,6 @@ $as_echo_n "checking jogl... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jogl.jar" "$jardir/libjogl.jar" "$jardir/libjogl-java.jar" "$jardir/jogl*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13248,7 +13220,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13251 "configure"
+// #line 13223 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13451,10 +13423,6 @@ $as_echo_n "checking gluegen-rt... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/gluegen-rt.jar" "$jardir/libgluegen-rt.jar" "$jardir/libgluegen-rt-java.jar" "$jardir/gluegen-rt*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13462,7 +13430,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13465 "configure"
+// #line 13433 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13614,10 +13582,6 @@ $as_echo_n "checking jhall... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jhall.jar" "$jardir/libjhall.jar" "$jardir/libjhall-java.jar" "$jardir/jhall*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13625,7 +13589,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13628 "configure"
+// #line 13592 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13721,10 +13685,6 @@ $as_echo_n "checking javahelp2... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/javahelp2.jar" "$jardir/libjavahelp2.jar" "$jardir/libjavahelp2-java.jar" "$jardir/javahelp2*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13732,7 +13692,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13735 "configure"
+// #line 13695 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13829,10 +13789,6 @@ $as_echo_n "checking jrosetta-API... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-API.jar" "$jardir/libjrosetta-API.jar" "$jardir/libjrosetta-API-java.jar" "$jardir/jrosetta-API*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13840,7 +13796,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13843 "configure"
+// #line 13799 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13934,10 +13890,6 @@ $as_echo_n "checking jrosetta-api... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-api.jar" "$jardir/libjrosetta-api.jar" "$jardir/libjrosetta-api-java.jar" "$jardir/jrosetta-api*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -13945,7 +13897,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13948 "configure"
+// #line 13900 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -14042,10 +13994,6 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jrosetta-engine.jar" "$jardir/libjrosetta-engine.jar" "$jardir/libjrosetta-engine-java.jar" "$jardir/jrosetta-engine*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14053,7 +14001,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14056 "configure"
+// #line 14004 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -14146,7 +14094,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14149 "configure"
+// #line 14097 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14197,7 +14145,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14200 "configure"
+// #line 14148 "configure"
 import com.artenum.rosetta.util.ConfigurationBuilder;
 
 public class conftest {
@@ -14261,10 +14209,6 @@ $as_echo_n "checking jeuclid-core... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jeuclid-core.jar" "$jardir/libjeuclid-core.jar" "$jardir/libjeuclid-core-java.jar" "$jardir/jeuclid-core*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14272,7 +14216,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14275 "configure"
+// #line 14219 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -14370,10 +14314,6 @@ $as_echo_n "checking fop... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14381,7 +14321,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14384 "configure"
+// #line 14324 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -14477,10 +14417,6 @@ $as_echo_n "checking batik-all... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14488,7 +14424,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14491 "configure"
+// #line 14427 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14584,10 +14520,6 @@ $as_echo_n "checking batik... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14595,7 +14527,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14598 "configure"
+// #line 14530 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -14689,7 +14621,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14692 "configure"
+// #line 14624 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14740,7 +14672,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14743 "configure"
+// #line 14675 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -14802,10 +14734,6 @@ $as_echo_n "checking commons-io... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14813,7 +14741,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14816 "configure"
+// #line 14744 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -14909,10 +14837,6 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -14920,7 +14844,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14923 "configure"
+// #line 14847 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -15016,10 +14940,6 @@ $as_echo_n "checking avalon-framework... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15027,7 +14947,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15030 "configure"
+// #line 14950 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -15123,10 +15043,6 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15134,7 +15050,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15137 "configure"
+// #line 15053 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15230,10 +15146,6 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15241,7 +15153,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15244 "configure"
+// #line 15156 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -15341,10 +15253,6 @@ $as_echo_n "checking commons-logging... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-logging.jar" "$jardir/libcommons-logging.jar" "$jardir/libcommons-logging-java.jar" "$jardir/commons-logging*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15352,7 +15260,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15355 "configure"
+// #line 15263 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15448,10 +15356,6 @@ $as_echo_n "checking jlatexmath... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath.jar" "$jardir/libjlatexmath.jar" "$jardir/libjlatexmath-java.jar" "$jardir/jlatexmath*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15459,7 +15363,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15462 "configure"
+// #line 15366 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15553,7 +15457,7 @@ $as_echo_n "checking minimal version (0.9.4) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15556 "configure"
+// #line 15460 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15604,7 +15508,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15607 "configure"
+// #line 15511 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -15672,10 +15576,6 @@ $as_echo_n "checking checkstyle... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/checkstyle.jar" "$jardir/libcheckstyle.jar" "$jardir/libcheckstyle-java.jar" "$jardir/checkstyle*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15683,7 +15583,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15686 "configure"
+// #line 15586 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -15779,10 +15679,6 @@ $as_echo_n "checking commons-beanutils... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/commons-beanutils.jar" "$jardir/libcommons-beanutils.jar" "$jardir/libcommons-beanutils-java.jar" "$jardir/commons-beanutils*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15790,7 +15686,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15793 "configure"
+// #line 15689 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -15886,10 +15782,6 @@ $as_echo_n "checking antlr... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/antlr.jar" "$jardir/libantlr.jar" "$jardir/libantlr-java.jar" "$jardir/antlr*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -15897,7 +15789,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15900 "configure"
+// #line 15792 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -15993,10 +15885,6 @@ $as_echo_n "checking testng... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -16004,7 +15892,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16007 "configure"
+// #line 15895 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -16100,10 +15988,6 @@ $as_echo_n "checking beust-jcommander... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/beust-jcommander.jar" "$jardir/libbeust-jcommander.jar" "$jardir/libbeust-jcommander-java.jar" "$jardir/beust-jcommander*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -16111,7 +15995,7 @@ $as_echo_n "checking beust-jcommander... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16114 "configure"
+// #line 15998 "configure"
 import com.beust.jcommander.JCommander;
 
 public class conftest {
@@ -16207,10 +16091,6 @@ $as_echo_n "checking qdox... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -16218,7 +16098,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16221 "configure"
+// #line 16101 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -16314,10 +16194,6 @@ $as_echo_n "checking bsh... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -16325,7 +16201,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16328 "configure"
+// #line 16204 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -16421,10 +16297,6 @@ $as_echo_n "checking junit... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -16432,7 +16304,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16435 "configure"
+// #line 16307 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -24295,7 +24167,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24298 "configure"
+#line 24170 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24605,7 +24477,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24608 "configure"
+#line 24480 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25175,10 +25047,6 @@ $as_echo_n "checking saxon... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/saxon.jar" "$jardir/libsaxon.jar" "$jardir/libsaxon-java.jar" "$jardir/saxon*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -25186,7 +25054,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25189 "configure"
+// #line 25057 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -25282,10 +25150,6 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/jlatexmath-fop.jar" "$jardir/libjlatexmath-fop.jar" "$jardir/libjlatexmath-fop-java.jar" "$jardir/jlatexmath-fop*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches
@@ -25293,7 +25157,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25296 "configure"
+// #line 25160 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -31599,7 +31463,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31602 "configure"
+#line 31466 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31705,7 +31569,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31708 "configure"
+#line 31572 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
