@@ -81,6 +81,9 @@ namespace types
         virtual bool resize(int* _piDims, int _iDims){return true;}
         virtual bool resize(int _iNewRows, int _iNewCols){return true;}
 
+        virtual bool reshape(int* _piDims, int _iDims){return true;}
+        virtual bool reshape(int _iNewRows, int _iNewCols){return true;}
+
     };
 
     static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)

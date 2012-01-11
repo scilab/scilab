@@ -1076,6 +1076,33 @@ namespace types
             return pOut;
 	    }
 
+        bool reshape(int _iNewRows, int _iNewCols)
+        {
+            int piDims[2] = {_iNewRows, _iNewCols};
+            return reshape(piDims, 2);
+        }
+
+        bool reshape(int* _piDims, int _iDims)
+        {
+            int iNewSize = get_max_size(_piDims, _iDims);
+            if(iNewSize != m_iSize)
+            {
+                return false;
+            }
+
+            for(int i = 0 ; i < _iDims ; i++)
+            {
+                m_piDims[i] = _piDims[i];
+            }
+
+            m_iRows = m_piDims[0];
+            m_iCols = m_piDims[1];
+            m_iSize = iNewSize;
+            m_iDims = _iDims;
+
+            return true;
+        }
+
         bool resize(int _iNewRows, int _iNewCols)
         {
             int piDims[2] = {_iNewRows, _iNewCols};
