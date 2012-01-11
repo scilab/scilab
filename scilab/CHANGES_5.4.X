@@ -61,6 +61,8 @@ Xcos
 
 * Bug #10486 fixed - importXcosDiagram opened a tab.
 
+* Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
+
 * Bug #10499 fixed - lincos example in help file returned warning and error.
 
 
