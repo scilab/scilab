@@ -45,10 +45,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -1947,27 +1945,6 @@ public class XcosDiagram extends ScilabGraph {
         final DOMSource src = new DOMSource(codec.encode(this));
         final StreamResult result = new StreamResult(file);
         aTransformer.transform(src, result);
-    }
-
-    /**
-     * Load from a file
-     * 
-     * @param file
-     *            the file
-     * @throws TransformerException
-     *             on error
-     */
-    public void load(final File file) throws TransformerException {
-        final XcosCodec codec = new XcosCodec();
-        final TransformerFactory tranFactory = ScilabTransformerFactory
-                .newInstance();
-        final Transformer aTransformer = tranFactory.newTransformer();
-
-        final StreamSource src = new StreamSource(file);
-        final DOMResult result = new DOMResult();
-        aTransformer.transform(src, result);
-
-        codec.decode(result.getNode().getFirstChild(), this);
     }
 
     /**

@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
@@ -32,7 +34,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -52,6 +53,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.xml.sax.SAXException;
 
@@ -416,7 +418,10 @@ public final class ConfigurationManager {
             graph.installListeners();
 
             if (f != null) {
-                graph.load(f);
+                final String filename = f.getCanonicalPath();
+                final XcosFileType filetype = XcosFileType.findFileType(filename);
+
+                filetype.load(filename, graph);
                 graph.postLoad(f);
             }
             Xcos.getInstance().addDiagram(f, graph);
@@ -424,7 +429,8 @@ public final class ConfigurationManager {
             graph = loadPath(doc, graph);
 
             graph.setDiagramTab(doc.getUuid());
-        } catch (TransformerException e) {
+        } catch (Exception e) {
+            Logger.getLogger(ConfigurationManager.class.getName()).log(Level.SEVERE, null, e);
             graph = null;
         }
 
