@@ -124,6 +124,8 @@ Bug fixes
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
 
+* Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
+
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
