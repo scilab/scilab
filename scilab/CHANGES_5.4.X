@@ -193,6 +193,9 @@ Bug fixes
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
 

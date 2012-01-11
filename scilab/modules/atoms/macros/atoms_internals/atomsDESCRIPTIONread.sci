@@ -92,17 +92,25 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
 
     // Operating system detection + Architecture detection
     // =========================================================================
-    [OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
+    [OSNAME, ARCH, LINUX, MACOSX, SOLARIS,BSD] = atomsGetPlatform();
 
     // Start Read the file
     // =========================================================================
+
+    if ~isfile(file_in) then
+       error(msprintf(gettext("%s: The file ""%s"" does not exist.\n"), ..
+                              "atomsDESCRIPTIONread", ..
+                              file_in));
+    end
 
     lines_in         = mgetl(file_in);
     current_toolbox  = struct();
     current_field    = "";
 
     if isempty(lines_in) then
-        return;
+       error(msprintf(gettext("%s: The file ""%s"" is empty.\n"), ..
+                              "atomsDESCRIPTIONread", ..
+                              file_in));
     end
 
     for i=1:(size(lines_in,"*")+1)
