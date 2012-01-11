@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.LogManager;
@@ -458,39 +457,6 @@ public final class Xcos {
     }
 
     /**
-     * Close an opened file
-     *
-     * @param f
-     *            the file to close
-     * @param ask
-     *            ask for exiting and store the window config or not
-     * @return close status (true on success, false on abort)
-     *
-     */
-    private boolean close(final File f, final boolean ask) {
-        final Collection<XcosDiagram> diags = diagrams.get(f);
-        boolean status = true;
-
-        try {
-            onDiagramIteration = true;
-
-            for (Iterator<XcosDiagram> iterator = diags.iterator(); iterator.hasNext() && status;) {
-                final XcosDiagram graph = iterator.next();
-
-                if (graph.isOpened()) {
-                    final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(graph.getDiagramTab());
-
-                    status = ClosingOperationsManager.startClosingOperation(tab, ask, ask);
-                }
-            }
-        } finally {
-            onDiagramIteration = false;
-        }
-
-        return status;
-    }
-
-    /**
      * Get an unmodifiable view of the diagrams for a specific file
      *
      * @param f
@@ -727,24 +693,34 @@ public final class Xcos {
          * Try to close all opened files
          */
         final Xcos instance = sharedInstance;
-        try {
-            instance.onDiagramIteration = true;
 
-            for (Iterator<File> iterator = instance.diagrams.keySet().iterator(); iterator.hasNext();) {
-                File file = iterator.next();
-                instance.close(file, ask);
-                iterator.remove();
+        // get all tabs
+        final List<SwingScilabTab> tabs = new ArrayList<SwingScilabTab>();
+        for (final Collection<XcosDiagram> diags : instance.diagrams.values()) {
+            for (final XcosDiagram diag : diags) {
+                final SwingScilabTab tab = XcosTab.get(diag);
+                if (tab != null) {
+                    tabs.add(tab);
+                }
             }
-        } finally {
-            instance.onDiagramIteration = false;
         }
 
-        /* terminate any remaining simulation */
-        InterpreterManagement.requestScilabExec("haltscicos");
+        // ask to close
+        final boolean status = ClosingOperationsManager.startClosingOperation(tabs, ask, ask);
 
-        /* Saving modified data */
-        instance.palette.saveConfig();
-        instance.configuration.saveConfig();
+        // clear states
+        if (status) {
+            /* reset the shared instance state */
+            instance.diagrams.keySet().clear();
+            instance.addDiagram(null, null);
+
+            /* terminate any remaining simulation */
+            InterpreterManagement.requestScilabExec("haltscicos");
+
+            /* Saving modified data */
+            instance.palette.saveConfig();
+            instance.configuration.saveConfig();
+        }
     }
 
     /*

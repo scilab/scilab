@@ -49,6 +49,8 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
+* Bug #10461 fixed - Canceling a Quit operation did not work.
+
 * Bug #10486 fixed - importXcosDiagram opened a tab.
 
 
