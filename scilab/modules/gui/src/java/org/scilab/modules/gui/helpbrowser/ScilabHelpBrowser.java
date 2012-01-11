@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.ScilabBridge;
@@ -81,6 +82,9 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @param language Scilab current language
      */
     protected ScilabHelpBrowser(String[] helps, String language) {
+        if (language == null) {
+            language = ScilabCommons.getlanguage();
+        }
         component = ScilabBridge.createHelpBrowser(helps, language);
     }
 
@@ -90,7 +94,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      */
     public static SwingScilabTab createHelpBrowserTab() {
         helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"), HELPUUID);
-        String url = restoreHelpBrowserState();
+        String lastID = restoreHelpBrowserState();
 
         instance = new ScilabHelpBrowser(helps, language);
         helpTab.addMember(instance);
@@ -127,7 +131,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             });
 
         SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
-        browser.setCurrentURL(url);
+        browser.setCurrentID(lastID);
         WindowsConfigurationManager.restorationFinished((SwingScilabTab) helpTab.getAsSimpleTab());
 
         return (SwingScilabTab) helpTab.getAsSimpleTab();
@@ -196,6 +200,14 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     public String getCurrentURL() {
         SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         return browser.getCurrentURL();
+    }
+
+    /**
+     * @return the current displayed url as String
+     */
+    public String getCurrentID() {
+        SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
+        return browser.getCurrentID();
     }
 
     /**
@@ -371,7 +383,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Save the state of this help browser
      */
     public void saveHelpBrowserState() {
-        ConfigManager.saveHelpBrowserState(getCurrentURL());
+        ConfigManager.saveHelpBrowserState(getCurrentID());
     }
 
     /**

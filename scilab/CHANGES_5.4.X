@@ -122,6 +122,8 @@ Bug fixes
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
+* Bug #10267 fixed - The help browser did not use the default language on restoration.
+
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
