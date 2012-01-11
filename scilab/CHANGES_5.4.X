@@ -7,6 +7,7 @@ XML
 
 * Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
 
+* Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
 
 Xcos
 ====
