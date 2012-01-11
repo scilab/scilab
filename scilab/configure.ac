@@ -1433,10 +1433,14 @@ ACX_LAPACK(
 AC_MSG_CHECKING([if ARPACK-ng is available])
 echo ""
 ACX_ARPACK(
-        [AC_MSG_RESULT([$ARPACK_TYPE found])],
+        [AC_MSG_RESULT([arpack library found])],
         AC_MSG_ERROR([Impossible to find the ARPACK library. Please note that arpack was bundled with version prior to 5.4.0 and Scilab requires arpack-ng ( http://forge.scilab.org/index.php/p/arpack-ng/ ).])
         )
 
+CHECK_ARPACK_OK(
+[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)à])],
+[AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
+])
 #################
 ## UMFPACK
 #################
