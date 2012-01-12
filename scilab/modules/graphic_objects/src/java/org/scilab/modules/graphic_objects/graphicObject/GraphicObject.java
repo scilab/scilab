@@ -520,7 +520,8 @@ public abstract class GraphicObject implements Cloneable {
             if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
             } else {
-                return null;
+                /* No parent Figure found */
+                return "";
             }
         }
     }
@@ -540,7 +541,8 @@ public abstract class GraphicObject implements Cloneable {
             if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 return GraphicController.getController().getObjectFromId(getParent()).getParentAxes();
             } else {
-                return null;
+                /* No parent Axes found */
+                return "";
             }
         }
     }
