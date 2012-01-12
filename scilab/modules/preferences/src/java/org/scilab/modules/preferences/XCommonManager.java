@@ -29,6 +29,7 @@ import java.util.Hashtable;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -95,53 +96,53 @@ public abstract class XCommonManager {
     protected static XUpdateVisitor visitor;
 
     /** Last current time.
-    */
+     */
     protected static long time = System.currentTimeMillis();
     /** Monitor time between calls.
-    *
-    */
+     *
+     */
     public static void printTimeStamp(final String msg) {
         long nextTime  = System.currentTimeMillis();
         long deltaTime = nextTime - time;
         if (performances) {
             System.out.println(
-                    (msg.startsWith("*")?"":" |  ")
-                    + msg + " in " + deltaTime + " ms."
-            );
+                (msg.startsWith("*")?"":" |  ")
+                + msg + " in " + deltaTime + " ms."
+                );
         }
         time   = nextTime;
     }
 
     /** Launch swing hierarchy update.
-    *
-    * @return whether XSL return a node or not.
-    */
+     *
+     * @return whether XSL return a node or not.
+     */
     public static boolean refreshDisplay() {
-    	// Generate new view DOM.
-       printTimeStamp("Context found");
-       topDOM = generateViewDOM().getNode().getFirstChild();
-       printTimeStamp("View XML generated");
-       if (topDOM == null) {
-           System.err.println("XSL does not give a node!");
-           return false;
-       }
+        // Generate new view DOM.
+        printTimeStamp("Context found");
+        topDOM = generateViewDOM().getNode().getFirstChild();
+        printTimeStamp("View XML generated");
+        if (topDOM == null) {
+            System.err.println("XSL does not give a node!");
+            return false;
+        }
 
-       // Refresh correspondence
-       //    TODO top layout changes
-       visitor = new XUpdateVisitor(correspondance);
-       visitor.visit(topSwing, topDOM, "\t");
-       printTimeStamp("SWING refreshed");
-       setDimension(dialog, topDOM);
-       dialog.pack();
-       printTimeStamp("Packing done");
-       /*
-        *     Control outputs
-        */
+        // Refresh correspondence
+        //    TODO top layout changes
+        visitor = new XUpdateVisitor(correspondance);
+        visitor.visit(topSwing, topDOM, "\t");
+        printTimeStamp("SWING refreshed");
+        setDimension(dialog, topDOM);
+        dialog.pack();
+        printTimeStamp("Packing done");
+        /*
+         *     Control outputs
+         */
 //C       System.out.println(viewDOM());
 //C       System.out.println(swingComposite());
-       return true;
+        return true;
     }
-    
+
     /** Horizontal space between parent and child in String representations.
      *
      */
@@ -189,8 +190,8 @@ public abstract class XCommonManager {
      *
      */
     private static String swingComposite(
-          final Component component,
-          final String indent) {
+        final Component component,
+        final String indent) {
         String signature = indent;
         if (true) {
             signature       += component.toString();
@@ -219,12 +220,12 @@ public abstract class XCommonManager {
      *
      */
     protected static TransformerFactory
-        factory  = ScilabTransformerFactory.newInstance();
+    factory  = ScilabTransformerFactory.newInstance();
     /** XML Document builder factory.
      *
      */
     protected static DocumentBuilderFactory
-        builder  = ScilabDocumentBuilderFactory.newInstance();
+    builder  = ScilabDocumentBuilderFactory.newInstance();
 
     /** XSL Transformer.
      *
@@ -232,18 +233,18 @@ public abstract class XCommonManager {
     protected static Transformer transformer = null;
 
     /** Load XSL as XSL Transformer.
-    *
-    */
+     *
+     */
     protected static void reloadTransformer(String address) {
-       try {
-           StreamSource source = new StreamSource(address);
-           transformer         = factory.newTransformer(source);
-       } catch (TransformerConfigurationException e1) {
-           System.out.println(ERROR_READ + address);
-       } catch (TransformerFactoryConfigurationError e1) {
-           System.out.println(ERROR_READ + address);
-       }
-   }
+        try {
+            StreamSource source = new StreamSource(address);
+            transformer         = factory.newTransformer(source);
+        } catch (TransformerConfigurationException e1) {
+            System.out.println(ERROR_READ + address);
+        } catch (TransformerFactoryConfigurationError e1) {
+            System.out.println(ERROR_READ + address);
+        }
+    }
 
     /** Generate view by application of XSL on XConfiguration file.
      *
@@ -258,7 +259,7 @@ public abstract class XCommonManager {
                 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
                 String [] fonts = ge.getAvailableFontFamilyNames();
                 for (int i=0; i< fonts.length; i++) {
-                   System.out.println("		<option font-family='" + fonts[i] + "'/>");
+                    System.out.println("                <option font-family='" + fonts[i] + "'/>");
                 }
             }
             transformer.transform(source, result);
@@ -270,11 +271,11 @@ public abstract class XCommonManager {
     }
 
     /** Identify an element with its context string.
-    *
-    * @see XConfiguration.xsl#context
-    * @param context : the context string used to catch the element.
-    * @return the corresponding node
-    */
+     *
+     * @see XConfiguration.xsl#context
+     * @param context : the context string used to catch the element.
+     * @return the corresponding node
+     */
     public static Element getElementByContext(final String context) {
         String [] ids    = context.split("/");
         Element element = (Element) document.getDocumentElement();
@@ -287,9 +288,9 @@ public abstract class XCommonManager {
             int j = 0;
             while (index > 0 && j < childNodes.getLength()) {
                 node = childNodes.item(j);
-                if (node.getNodeName() != "#text" 
-                 && node.getNodeName() != "#comment"
-                 ) {
+                if (node.getNodeName() != "#text"
+                    && node.getNodeName() != "#comment"
+                    ) {
                     index--;
                 }
                 j++;
@@ -314,8 +315,8 @@ public abstract class XCommonManager {
      * @return if the event is handled here
      */
     protected static boolean generixEvent(
-            final Node [] actions,
-            final Component source
+        final Node [] actions,
+        final Component source
         ) {
         printTimeStamp("*** Event occured");
 
@@ -325,7 +326,7 @@ public abstract class XCommonManager {
 
         Node action = actions[0];
         // All actions must be of the same kind.
-        
+
         if (differential) {
             System.out.print("*** " + action.getNodeName());
         }
@@ -354,12 +355,12 @@ public abstract class XCommonManager {
                 if (differential) {
                     System.out.println(" hits " + context);
                 }
-                Element element           = getElementByContext(context);            
+                Element element           = getElementByContext(context);
                 String insertValue        = XCommonManager.getAttribute(action, "insert");
                 int insert = 0;
                 try {
                     insert = Integer.decode(insertValue);
-                  
+
                 }
                 catch (NumberFormatException e) {
                     XChooser chooser   = (XChooser) source;
@@ -369,16 +370,16 @@ public abstract class XCommonManager {
                 Node hook = null;
                 NodeList nodelist = element.getChildNodes();
                 for (int xi=0; xi < nodelist.getLength(); xi++) {
-                   Node node = nodelist.item(xi);
-                   if (node.getNodeName() != "#text" 
-                    && node.getNodeName() != "#comment"
-                    ) {
+                    Node node = nodelist.item(xi);
+                    if (node.getNodeName() != "#text"
+                        && node.getNodeName() != "#comment"
+                        ) {
                         if (insert == 1) {
                             hook = node;
                             break;
                         }
-                       insert --;
-                   }
+                        insert --;
+                    }
                 }
                 DocumentFragment fragment = document.createDocumentFragment();
                 while (action.hasChildNodes()) {
@@ -408,7 +409,7 @@ public abstract class XCommonManager {
                 int delete = 0;
                 try {
                     delete = Integer.decode(xDelete);
-                  
+
                 }
                 catch (NumberFormatException e) {
                     if (source==null) {
@@ -422,10 +423,10 @@ public abstract class XCommonManager {
                 Node deleted = null;
                 NodeList nodelist = element.getChildNodes();
                 for (int xi=0; xi < nodelist.getLength(); xi++) {
-                   Node node = nodelist.item(xi);
-                   if (node.getNodeName() != "#text" 
-                    && node.getNodeName() != "#comment"
-                    ) {
+                    Node node = nodelist.item(xi);
+                    if (node.getNodeName() != "#text"
+                        && node.getNodeName() != "#comment"
+                        ) {
                         if (delete == 1) {
                             deleted = node;
                             break;
@@ -443,7 +444,7 @@ public abstract class XCommonManager {
             updated = true;
             return true;
         }
-        
+
         if (!getAttribute(action, "choose").equals(NAV)) {
             String context   = getAttribute(action, "context");
             if (differential) {
@@ -467,7 +468,7 @@ public abstract class XCommonManager {
                 }
             } else {
                 System.err.println("@choose attribute only valid on choosers "
-                                 + "(SELECT, COLOR, FILE, ENTRY,...)");
+                                   + "(SELECT, COLOR, FILE, ENTRY,...)");
             }
             return true;
         }
@@ -486,17 +487,17 @@ public abstract class XCommonManager {
      * @param value : default value
      * @return the consulted value
      */
-   public static String getAttribute(
-           final Node node,
-           final String name,
-           final String value
-           ) {
-       String response = getAttribute(node, name);
-       if (response == NAV) {
-           return value;
-       }
-       return response;
-   }
+    public static String getAttribute(
+        final Node node,
+        final String name,
+        final String value
+        ) {
+        String response = getAttribute(node, name);
+        if (response == NAV) {
+            return value;
+        }
+        return response;
+    }
 
     /** Attribute consulting without default.
      *
@@ -524,10 +525,10 @@ public abstract class XCommonManager {
      * @return the value.
      */
     public static int getInt(
-            final Node node,
-            final String name,
-            final int value
-            ) {
+        final Node node,
+        final String name,
+        final int value
+        ) {
         String response = getAttribute(node, name);
         if (response.equals(NAV)) {
             return value;
@@ -546,7 +547,7 @@ public abstract class XCommonManager {
      * @return the string representation.
      */
     public static String getColor(final Color source) {
-    	String hexStr = Integer.toHexString(source.getRGB());
+        String hexStr = Integer.toHexString(source.getRGB());
         return "#" + hexStr.substring(2);
     }
 
@@ -559,19 +560,19 @@ public abstract class XCommonManager {
         return Color.decode(source);
     }
 
-   /** Get top level window for correct dialog opening.
-    *
-    * @return top-level frame.
-    */
+    /** Get top level window for correct dialog opening.
+     *
+     * @return top-level frame.
+     */
     protected static Frame getTopLevel() {
-       Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
-       return (Frame) main.getParent().getParent().getParent().getParent().getParent().getParent();
-   }
+        Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
+        return (Frame) SwingUtilities.getAncestorOfClass(Frame.class, main);
+    }
 
     /** draw construction borders for layout debug.
-    *
-    * @param component : the marked component.
-    */
+     *
+     * @param component : the marked component.
+     */
     public static void drawConstructionBorders(final JComponent component) {
         if (false) {
             // hard-coded flag.
@@ -586,20 +587,20 @@ public abstract class XCommonManager {
      * @param peer : the node having the dimension information.
      */
     public static void setDimension(
-            final Component component,
-            final Node peer) {
+        final Component component,
+        final Node peer) {
         int      height     = XConfigManager.getInt(peer , "height", 0);
         int       width     = XConfigManager.getInt(peer , "width",  0);
         if (height > 0 && width > 0) {
             //System.err.println("Dimension: " + width + "x" + height);
             Dimension dimension = new Dimension(width, height);
-           component.setPreferredSize(dimension);
+            component.setPreferredSize(dimension);
         }
     }
 
     /** Create a copy of Scilab configuration file in the user directory.
-    *
-    */
+     *
+     */
     public static void createUserCopy(String original, String copy) {
         File fileConfig = new File(copy);
         if (!fileConfig.exists()
@@ -613,13 +614,13 @@ public abstract class XCommonManager {
      *
      */
     public static void refreshUserCopy(String original, String copy) {
-            /* Create a local copy of the configuration file */
-            try {
-                copyFile(new File(original),
-                         new File(copy));
-            } catch (FileNotFoundException e) {
-                System.out.println(ERROR_READ + copy);
-            }
+        /* Create a local copy of the configuration file */
+        try {
+            copyFile(new File(original),
+                     new File(copy));
+        } catch (FileNotFoundException e) {
+            System.out.println(ERROR_READ + copy);
+        }
     }
 
     /**
