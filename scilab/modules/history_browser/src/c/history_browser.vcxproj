@@ -190,16 +190,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\gw_history_browser.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_browsehistory.c" />
     <ClCompile Include="..\jni\CommandHistory.cpp" />
     <ClCompile Include="..\cpp\CommandHistory_Wrap.cpp" />
     <ClCompile Include="DllmainHISTORY_BROWSER.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\gw_history_browser.h" />
     <ClInclude Include="..\jni\CommandHistory.hxx" />
     <ClInclude Include="..\..\includes\CommandHistory_Wrap.h" />
     <ClInclude Include="..\..\includes\dynlib_history_browser.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\sci_gateway\history_browser_gateway.xml" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />

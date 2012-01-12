@@ -373,6 +373,13 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Launch the history browser
+     */
+    public static void launchHistoryBrowser() {
+        setVisible();
+    }
+
+    /**
      * Get History Browser visibility
      * @return visibility status
      */

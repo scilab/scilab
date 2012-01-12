@@ -4,3 +4,9 @@ LIBRARY    LibScilab.dll
 EXPORTS
 ;
 getScilabMode 
+callFunctionFromGateway
+com_
+putlhsvar_ 
+intersci_
+checklhs_
+checkrhs_
