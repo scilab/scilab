@@ -11,6 +11,24 @@
 // <-- Short Description -->
 // Check all the possible errors which should be reported on the diagram.
 
+
+//-----------------------------------------------------------------------------
+// at edition (sb port numbering)
+//-----------------------------------------------------------------------------
+
+// Check the report against wrong port numbering on super block
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.xcos")
+// open the super block
+// check that the second input port report an error
+// change the second input port value (to 2)
+// check that the second input port error is cleared
+// change the second input port value (to 5)
+// check that the second input port report an error
+// change the first output port value (to 3)
+// check that the first output port report an error
+// change the first output port value (to 1)
+// check that the first output port error is cleared
+
 //-----------------------------------------------------------------------------
 // on do_eval (context evaluation)
 //-----------------------------------------------------------------------------
