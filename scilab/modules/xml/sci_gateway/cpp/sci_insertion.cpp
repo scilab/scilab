@@ -15,56 +15,56 @@
 
 int sci_percent_c_i_XMLDoc(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<org_modules_xml::XMLDocument, std::string>(fname, fname_len);
+    return sci_insertion<org_modules_xml::XMLDocument, std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_i_XMLDoc(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<org_modules_xml::XMLDocument, XMLElement>(fname, fname_len);
+    return sci_insertion<org_modules_xml::XMLDocument, XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_c_i_XMLElem(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLElement, std::string>(fname, fname_len);
+    return sci_insertion<XMLElement, std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_i_XMLElem(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLElement, XMLElement>(fname, fname_len);
+    return sci_insertion<XMLElement, XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLAttr_i_XMLElem(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLElement, XMLAttr>(fname, fname_len);
+    return sci_insertion<XMLElement, XMLAttr>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLList_i_XMLElem(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLElement, XMLNodeList>(fname, fname_len);
+    return sci_insertion<XMLElement, XMLNodeList>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLNs_i_XMLElem(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLElement, XMLNs>(fname, fname_len);
+    return sci_insertion<XMLElement, XMLNs>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_i_XMLList(char *fname, unsigned long fname_len)
 {
-    return sci_XMLList_insertion<XMLElement>(fname, fname_len);
+    return sci_XMLList_insertion<XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLDoc_i_XMLList(char *fname, unsigned long fname_len)
 {
-    return sci_XMLList_insertion<org_modules_xml::XMLDocument>(fname, fname_len);
+    return sci_XMLList_insertion<org_modules_xml::XMLDocument>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_c_i_XMLList(char *fname, unsigned long fname_len)
 {
-    return sci_XMLList_insertion<std::string>(fname, fname_len);
+    return sci_XMLList_insertion<std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLList_i_XMLList(char *fname, unsigned long fname_len)
 {
-    return sci_XMLList_insertion<XMLNodeList>(fname, fname_len);
+    return sci_XMLList_insertion<XMLNodeList>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

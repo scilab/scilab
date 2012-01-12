@@ -56,9 +56,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@MAINTAINER_MODE_TRUE@am__append_1 = libscidata_structures-algo.la
+@MAINTAINER_MODE_FALSE@am__append_2 = libscidata_structures-algo.la libscidata_structures.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/data_structures
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -129,6 +131,8 @@ am_libscidata_structures_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscidata_structures_algo_la_OBJECTS =  \
 	$(am_libscidata_structures_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscidata_structures_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscidata_structures_algo_la_rpath =
 libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la \
 	libdummy-data_structures.la
 am__objects_3 = libscidata_structures_la-sci_lsslist.lo \
@@ -155,6 +159,9 @@ libscidata_structures_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
 	$(AM_FFLAGS) $(FFLAGS) $(libscidata_structures_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscidata_structures_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscidata_structures_la_rpath = -rpath \
+@MAINTAINER_MODE_TRUE@	$(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -194,6 +201,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -203,6 +211,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -267,6 +276,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -480,11 +490,11 @@ libscidata_structures_la_CFLAGS = -I$(srcdir)/includes/ \
 
 
 # Disable optimisation of the file intl_e.f
-noinst_LTLIBRARIES = libdummy-data_structures.la \
-	libscidata_structures-algo.la
+noinst_LTLIBRARIES = libdummy-data_structures.la $(am__append_1) \
+	$(am__append_2)
 libdummy_data_structures_la_SOURCES = src/fortran/intl_e.f
 libdummy_data_structures_la_FFLAGS = $(FFLAGS:-O%=)
-pkglib_LTLIBRARIES = libscidata_structures.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidata_structures.la
 libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES)
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -521,7 +531,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -649,9 +659,9 @@ clean-pkglibLTLIBRARIES:
 libdummy-data_structures.la: $(libdummy_data_structures_la_OBJECTS) $(libdummy_data_structures_la_DEPENDENCIES) 
 	$(libdummy_data_structures_la_LINK)  $(libdummy_data_structures_la_OBJECTS) $(libdummy_data_structures_la_LIBADD) $(LIBS)
 libscidata_structures-algo.la: $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscidata_structures_algo_la_rpath) $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_LIBADD) $(LIBS)
 libscidata_structures.la: $(libscidata_structures_la_OBJECTS) $(libscidata_structures_la_DEPENDENCIES) 
-	$(libscidata_structures_la_LINK) -rpath $(pkglibdir) $(libscidata_structures_la_OBJECTS) $(libscidata_structures_la_LIBADD) $(LIBS)
+	$(libscidata_structures_la_LINK) $(am_libscidata_structures_la_rpath) $(libscidata_structures_la_OBJECTS) $(libscidata_structures_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

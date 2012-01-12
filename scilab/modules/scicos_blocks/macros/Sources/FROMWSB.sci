@@ -32,8 +32,14 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  //paths to updatable parameters or states
-  ppath = list(1)
+  // look for the internal edge trigger block
+  for i=1:length(arg1.model.rpar.objs) do
+    o = arg1.model.rpar.objs(i);
+    if typeof(o) == "Block" & o.gui == "FROMWS_c" then
+      ppath = list(i);
+      break;
+    end
+  end
   newpar=list();
   y=0;
   for path=ppath do

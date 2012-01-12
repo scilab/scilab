@@ -49,9 +49,7 @@
 #define COMPN_SOUND 'sound'
 #define COMPN_RANDLIB 'randlib'
 #define COMPN_MEXLIB 'mexlib'
-#define COMPN_TEXMACS 'texmacs'
 #define COMPN_M2SCI 'm2sci'
-#define COMPN_MAP2SCI 'maple2scilab'
 
 #define COMPN_JAVASCI 'javasci'
 #define COMPN_INTERSCI 'intersci'
@@ -118,14 +116,12 @@ Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Ty
 Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: default full custom;
 Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: default full custom;
 ;
-Name: {#COMPN_TEXMACS}; Description: {cm:DescriptionTexmacs}; Types: default full custom;
 Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
 Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
 ;
 Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
 Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
 Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
-Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default full custom;
 ;
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
 ;

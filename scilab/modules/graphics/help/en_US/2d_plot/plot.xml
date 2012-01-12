@@ -131,7 +131,7 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
         totally complete <literal>'diamondred--'</literal> (see
         <link linkend="LineSpec">LineSpec</link>).</para>
           <para>Note that the line style and color, marks color (and sizes) can
-        also be (re-)set throught the polyline entity properties (see
+        also be (re-)set through the polyline entity properties (see
         <link linkend="polyline_properties">polyline_properties</link>).</para>
         </listitem>
       </varlistentry>
@@ -148,7 +148,7 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
         properties available via LineSpec and more : the marker color
         (foreground and background), the visibility, clipping and thickness of
         the curves. (see <link linkend="GlobalProperty">GlobalProperty</link>)</para>
-          <para>Note that all these properties can be (re-)set throught the
+          <para>Note that all these properties can be (re-)set through the
         polyline entity properties (see <link linkend="polyline_properties">polyline_properties</link>).</para>
         </listitem>
       </varlistentry>
@@ -349,7 +349,7 @@ plot(1:10,toto)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

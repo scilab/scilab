@@ -93,6 +93,16 @@ dlgamma(0.5)
   </refsection>
 
   <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Overloading allowed for list, mlist, tlist and hypermatrix types.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+
+  <refsection>
     <title>Authors</title>
 
     <para>W. J. Cody (code from Netlib (specfun))</para>

@@ -128,8 +128,11 @@ libscicommons_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscicommons_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscicommons_la_LIBADD =
 am__libscicommons_la_SOURCES_DIST = src/jni/ScilabCommons_wrap.c \
+	src/jni/CommonFileUtils_wrap.c src/c/fileutils.c \
 	src/fortran/empty.f src/jni/GiwsException.cpp
-am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo
+am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo \
+	libscicommons_la-CommonFileUtils_wrap.lo \
+	libscicommons_la-fileutils.lo
 am__objects_2 = empty.lo
 @NEED_JAVA_TRUE@am__objects_3 = libscicommons_la-GiwsException.lo
 am__objects_4 = $(am__objects_3)
@@ -185,6 +188,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -194,6 +198,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -258,6 +263,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -502,10 +508,15 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c
+COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
+		     src/jni/CommonFileUtils_wrap.c \
+		     src/c/fileutils.c
+
 COMMONS_CPP_SOURCES = $(am__append_2)
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
-libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE)
+libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
+			-I$(srcdir)/includes/
+
 libscicommons_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Isrc/jni/
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
@@ -602,8 +613,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-fileutils.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -632,6 +645,20 @@ libscicommons_la-ScilabCommons_wrap.lo: src/jni/ScilabCommons_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/ScilabCommons_wrap.c' object='libscicommons_la-ScilabCommons_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
+
+libscicommons_la-CommonFileUtils_wrap.lo: src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -MT libscicommons_la-CommonFileUtils_wrap.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/CommonFileUtils_wrap.c' object='libscicommons_la-CommonFileUtils_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+
+libscicommons_la-fileutils.lo: src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -MT libscicommons_la-fileutils.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-fileutils.Tpo -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicommons_la-fileutils.Tpo $(DEPDIR)/libscicommons_la-fileutils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fileutils.c' object='libscicommons_la-fileutils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

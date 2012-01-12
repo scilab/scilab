@@ -1,5 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
+c Copyright (C) - INRIA - Serge Steer
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -31,7 +31,7 @@ c     str : tableau contenant apres execution la suite des codes scilab
 c     des caracteres.taille >= m*n*maxc
 c     istr : tableau donnant la structure de str
 c!    
-      double precision xr(*),xi(*),ar,ai,eps,dlamch
+      double precision xr(*),xi(*),ar,ai,eps,a,dlamch
       integer maxc,mode,fl,typ
       integer str(*),istr(*)
       character cw*256,sgn*1
@@ -54,8 +54,18 @@ c     traitement du coeff (l,k)
             l0=1
             if (ar.ne.0.0d0) then
 c     .        non zero real part
+               a=abs(ar)
                typ=1
-               if(mode.eq.1) call fmt(abs(ar),maxc,typ,n1,n2)
+               if(mode.eq.1) then
+                  call fmt(a,maxc,typ,n1,n2)
+               else
+                  if (isanan(a).eq.1) then
+                     typ=-2
+                  elseif (a.gt.dlamch('o')) then
+                     typ=-1
+                  endif
+               endif
+
                if(typ.eq.2) then
                   ifmt=n2+32*n1
                elseif(typ.lt.0) then
@@ -64,10 +74,10 @@ c     .        non zero real part
                   ifmt=1
                endif
 c
-               call formatnumber(abs(ar),ifmt,maxc,cw(l1:),fl)
+               call formatnumber(a,ifmt,maxc,cw(l1:),fl)
                if (ar.lt.0.0d0)  cw(l1:l1)='-'
                l1=l1+fl
-               if(n2.eq.0) l1=l1-1
+               if(typ.eq.2.and.n2.eq.0) l1=l1-1
                if (ai.ne.0.0d0) then
 c     .           non zero imaginary part
                   sgn='+'
@@ -75,8 +85,18 @@ c     .           non zero imaginary part
                   ai=abs(ai)
                   cw(l1:l1+3)=sgn//'%i*'
                   l1=l1+4
+                  a=abs(ai)
                   typ=1
-                  if(mode.eq.1) call fmt(ai,maxc,typ,n1,n2)
+                  if(mode.eq.1) then
+                     call fmt(a,maxc,typ,n1,n2)
+                  else
+                     if (isanan(a).eq.1) then
+                        typ=-2
+                     elseif (a.gt.dlamch('o')) then
+                        typ=-1
+                     endif
+                  endif
+
                   if(typ.eq.2) then
                      ifmt=n2+32*n1
                   elseif(typ.lt.0) then
@@ -84,17 +104,17 @@ c     .           non zero imaginary part
                   else
                      ifmt=1
                   endif
-                  call formatnumber(ai,ifmt,maxc,cw(l1:),fl)
-                 
+                  call formatnumber(a,ifmt,maxc,cw(l1:),fl)
                   if (cw(l1:l1).eq.' ') then
 c     .              remove leading blanks
                      cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
                      cw(l1+fl-1:l1+fl-1)=' '
                      fl=fl-1
                   endif
+
                   l11=l1
                   l1=l1+fl
-                  if(n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
+                  if(typ.eq.2.and.n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
 c     .              remove the final dot
                      l1=l1-1
                      cw(l1:l1)=' '
@@ -109,15 +129,23 @@ c     .              remove the final dot
 c     .        imaginary case
 
                   if(ai.lt.0) then
-                     ai=abs(ai)
                      cw(l1:l1+3)='-%i*'
                      l1=l1+4
                   else
                      cw(l1:l1+2)='%i*'
                      l1=l1+3
                   endif
+                  a=abs(ai)
                   typ=1
-                  if(mode.eq.1) call fmt(abs(ai),maxc,typ,n1,n2)
+                  if(mode.eq.1) then
+                     call fmt(a,maxc,typ,n1,n2)
+                  else
+                     if (isanan(a).eq.1) then
+                        typ=-2
+                     elseif (a.gt.dlamch('o')) then
+                        typ=-1
+                     endif
+                  endif
                   if(typ.eq.2) then
                      ifmt=n2+32*n1
                   elseif(typ.lt.0) then
@@ -125,7 +153,7 @@ c     .        imaginary case
                   else
                      ifmt=1
                   endif
-                  call formatnumber(ai,ifmt,maxc,cw(l1:),fl)
+                  call formatnumber(a,ifmt,maxc,cw(l1:),fl)
                   if (cw(l1:l1).eq.' ') then
 c     .              remove leading blanks
                      cw(l1:l1+fl-2)=cw(l1+1:l1+fl-1)
@@ -134,7 +162,7 @@ c     .              remove leading blanks
                   endif
                   l11=l1
                   l1=l1+fl
-                  if(n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
+                  if(typ.eq.2.and.n2.eq.0.and.cw(l1-1:l1-1).eq.'.') then
 c     .              remove the final dot
                      l1=l1-1
                      cw(l1:l1)=' '

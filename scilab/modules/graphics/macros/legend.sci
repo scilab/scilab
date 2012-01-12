@@ -67,7 +67,8 @@ function c=legend(varargin)
     if tmpH.type=='Axes' then
       A = tmpH;
     end
-    H=[H;getvalidchildren(tmpH)'];
+    tmpH=tmpH($:-1:1);
+    H=[getvalidchildren(tmpH);H];
     k0 = k0+1;
   end
 

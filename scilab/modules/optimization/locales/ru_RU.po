@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-22 15:18+0000\n"
+"PO-Revision-Date: 2011-10-16 15:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 #, c-format
@@ -124,61 +124,61 @@ msgid "Error in dspev, info = %d.\n"
 msgstr "Ошибка в dspev, info = %d.\n"
 
 msgid "Non linear data fitting"
-msgstr ""
+msgstr "Нелинейное приведение данных в соответствие"
 
 msgid "LQV"
 msgstr ""
 
 msgid "Spaceship landing trajectory"
-msgstr ""
+msgstr "Траектория посадки космического корабля"
 
 msgid "Computation of optimal parameters"
-msgstr ""
+msgstr "Вычисление оптимальных параметров"
 
 msgid "Running optimization ...\n"
-msgstr ""
+msgstr "Идёт оптимизация ...\n"
 
 msgid "fminsearch - Rosenbrock"
-msgstr ""
+msgstr "fminsearch - Розенброк"
 
 msgid "fminsearch - tolx"
 msgstr ""
 
 msgid "fminsearch - Output Function"
-msgstr ""
+msgstr "fminsearch - функция на выходе"
 
 msgid "fminsearch - Option Display"
-msgstr ""
+msgstr "fminsearch - параметры"
 
 msgid "fminsearch - Plot Func Count"
-msgstr ""
+msgstr "fminsearch - график количества выполнения функции"
 
 msgid "fminsearch - Plot F"
-msgstr ""
+msgstr "fminsearch - График F"
 
 msgid "fminsearch - Plot X"
-msgstr ""
+msgstr "fminsearch - График X"
 
 msgid "neldermead - Rosenbrock Variable"
-msgstr ""
+msgstr "neldermead - переменная Розенброка"
 
 msgid "neldermead - Output Command"
 msgstr ""
 
 msgid "neldermead - Dimensionnality"
-msgstr ""
+msgstr "neldermead - число переменных"
 
 msgid "nmplot - Han #1"
-msgstr ""
+msgstr "nmplot - Хан #1"
 
 msgid "nmplot - Han #2"
-msgstr ""
+msgstr "nmplot - Хан #2"
 
 msgid "nmplot - McKinnon #1"
-msgstr ""
+msgstr "nmplot - Маккиннон #1"
 
 msgid "nmplot - McKinnon #2"
-msgstr ""
+msgstr "nmplot - Маккиннон #2"
 
 msgid "nmplot - Quadratic Fixed #1"
 msgstr ""
@@ -219,7 +219,7 @@ msgid ""
 msgstr ""
 
 msgid "Searching (please wait) ...\n"
-msgstr ""
+msgstr "Идёт поиск (пожалуйста, подождите) ...\n"
 
 msgid "...Done\n"
 msgstr "...Сделано.\n"
@@ -249,7 +249,7 @@ msgid "Problem A\n"
 msgstr ""
 
 msgid "Searching (please wait)...\n"
-msgstr ""
+msgstr "Идёт поиск (пожалуйста, подождите)...\n"
 
 #, c-format
 msgid "Relative error on x = %e\n"
@@ -289,43 +289,43 @@ msgid "Column #2: number of function evaluations\n"
 msgstr ""
 
 msgid "Column #3: number of iterations\n"
-msgstr ""
+msgstr "Столбец №3: число итераций\n"
 
 msgid "Column #4: convergence rate (lower is better)\n"
-msgstr ""
+msgstr "Столбец №4: скорость сходимости (чем ниже, тем лучше)\n"
 
 msgid "Number of parameters"
-msgstr ""
+msgstr "Количество параметров"
 
 msgid "Rate of convergence"
-msgstr ""
+msgstr "Скорость сходимости"
 
 msgid "Number of function evaluations"
 msgstr ""
 
 msgid "Initialization\n"
-msgstr ""
+msgstr "Инициализация\n"
 
 msgid "End of Optimization\n"
-msgstr ""
+msgstr "Конец оптимизации\n"
 
 msgid "Defining Rosenbrock function ...\n"
-msgstr ""
+msgstr "Определение функции Розенброка ...\n"
 
 msgid "Illustrates the 1st counter example given by Han et al.\n"
 msgstr ""
 
 msgid "Defining Han function...\n"
-msgstr ""
+msgstr "Определение функции Хэна...\n"
 
 msgid "Defining initial simplex coordinates...\n"
 msgstr ""
 
 msgid "Creating nmplot object...\n"
-msgstr ""
+msgstr "Создание объекта nmplot...\n"
 
 msgid "Configuring nmplot object...\n"
-msgstr ""
+msgstr "Настройка объекта nmplot...\n"
 
 msgid "Setup output files...\n"
 msgstr ""
@@ -337,20 +337,20 @@ msgid "Illustrates the 2nd counter example given by Han et al.\n"
 msgstr ""
 
 msgid "Creating nmplot object ...\n"
-msgstr ""
+msgstr "Создание объекта nmplot ...\n"
 
 msgid "Plotting contour (please wait) ...\n"
 msgstr ""
 
 msgid "Defining McKinnon function...\n"
-msgstr ""
+msgstr "Определение функции Маккиннона...\n"
 
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
 
 msgid "Creating object ...\n"
-msgstr ""
+msgstr "Создание объекта ...\n"
 
 msgid "Plot contour (please wait) ...\n"
 msgstr ""
@@ -1098,7 +1098,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: %s expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидалось %s.\n"
 
 #, c-format
 msgid "%s: The initial simplex has no vertices."
@@ -1162,16 +1162,17 @@ msgstr "%s: Вектор индекса исключений имеет %d ст�
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались неотрицательные целые "
+"числа.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-
-#, c-format
-#~ msgid "%s: Cannot evaluate cost function with %s."
-#~ msgstr "%s: Не удалось вычислить функцию стоимости с помощью  %s."
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"

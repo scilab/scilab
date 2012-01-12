@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,45 +26,45 @@ import com.mxgraph.util.mxConstants;
  * Implement the set link horizontal action
  */
 public class StyleStraightAction extends StyleAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.LINK_STYLE_STRAIGHT;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+    /** Name of the action */
+    public static final String NAME = XcosMessages.LINK_STYLE_STRAIGHT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_S;
 
-	/**
-	 * Default constructor the associated graph
-	 * 
-	 * @param scilabGraph
-	 *            the graph to associate
-	 */
-	public StyleStraightAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Default constructor the associated graph
+     * 
+     * @param scilabGraph
+     *            the graph to associate
+     */
+    public StyleStraightAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * @param scilabGraph
-	 *            graph
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, StyleStraightAction.class);
-	}
+    /**
+     * @param scilabGraph
+     *            graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, StyleStraightAction.class);
+    }
 
-	/**
-	 * Action !!!
-	 * 
-	 * @param e
-	 *            params
-	 * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		BasicLink[] links = getLinks();
-		
-		getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "1", links);
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            params
+     * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        BasicLink[] links = getLinks();
 
-		removePointsOnLinks(links);
-	}
+        getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "1", links);
+
+        removePointsOnLinks(links);
+    }
 }

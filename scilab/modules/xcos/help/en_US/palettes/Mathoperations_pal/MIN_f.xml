@@ -73,6 +73,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_MIN_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Seealso_MIN_f">See also</xref>
             </para>
           </listitem>
@@ -167,7 +172,7 @@
     </itemizedlist>
   </refsection>
   <refsection id="Example_MIN_f">
-    <title>MIN_f Example</title>
+    <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/MIN_f_Example.xcos">
         <inlinemediaobject>

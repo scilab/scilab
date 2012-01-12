@@ -393,9 +393,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zeros.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sdot.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="simple.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -894,9 +891,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zeros.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="sdot.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="simple.f">

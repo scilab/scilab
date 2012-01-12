@@ -27,6 +27,11 @@
 
       do ii = 1, ni
          ia = i(ii)
+         ! Check before the insertion. See bug #10126
+         if ( ia .gt. A_m ) then
+            flag = 0
+            return
+         endif
          do jj = 1, nj
             ! we can not insert a zero so we test if B(ii,jj) = 0 or not.
             ! note : if B is real B_I(ii,jj) = B_R(ii,jj)  so the following bad trick works...

@@ -42,16 +42,17 @@ int sci_xmlGetNsByPrefix(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLElem(addr))
+    if (!isXMLElem(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
 
-    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr));
+    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
         Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
@@ -62,12 +63,13 @@ int sci_xmlGetNsByPrefix(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -82,7 +84,7 @@ int sci_xmlGetNsByPrefix(char * fname, unsigned long fname_len)
     ns = elem->getNamespaceByPrefix((const char *)href);
     freeAllocatedSingleString(href);
 
-    if (!ns->createOnStack(Rhs + 1))
+    if (!ns->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

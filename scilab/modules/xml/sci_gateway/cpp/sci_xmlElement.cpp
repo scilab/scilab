@@ -43,16 +43,17 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -63,12 +64,13 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -77,13 +79,13 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     if (!strlen(name) || xmlValidateName((const xmlChar *)name, 0))
     {
         freeAllocatedSingleString(name);
-        Scierror(999, gettext("%s: Bad input argument #%i: A valid XML name expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Bad input argument #%d: A valid XML name expected.\n"), fname, 2);
         return 0;
     }
 
     elem = new XMLElement(*doc, name);
     freeAllocatedSingleString(name);
-    if (!elem->createOnStack(Rhs + 1))
+    if (!elem->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

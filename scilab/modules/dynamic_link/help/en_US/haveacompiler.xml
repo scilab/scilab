@@ -28,14 +28,15 @@
       <varlistentry>
         <term>bOK</term>
         <listitem>
-          <para>returns %T if you have a C compiler.</para>
+          <para>returns %T a C compiler has been found.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>detect if you have a C compiler.</para>
+    <para>Detect if a C compiler is available on the system.</para>
+    <para>Please note that due to the multi vendors aspect in the Unix world (Mac OS X, Unix or various GNU/Linux distributions), this function always returns True for these operating system.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -44,7 +45,7 @@ bOK = haveacompiler();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="supported_compilers">supported compilers</link>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 
 #, c-format
@@ -505,6 +505,10 @@ msgstr ""
 "文件 %s 不存在\n"
 " 你希望创建它么？"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "确定"
 
@@ -549,13 +553,13 @@ msgid "No block selected"
 msgstr ""
 
 msgid "Export to XML"
-msgstr "导出到XML"
+msgstr ""
 
 msgid "Export in progress"
 msgstr ""
 
 msgid "Import from XML"
-msgstr "从XML导入"
+msgstr ""
 
 msgid "Add to"
 msgstr "添加到"
@@ -788,14 +792,6 @@ msgid "Setting up Modelica Compiler."
 msgstr ""
 
 msgid "Modelica initialize"
-msgstr ""
-
-#, c-format
-msgid "From %s"
-msgstr ""
-
-#, c-format
-msgid "Goto %s"
 msgstr ""
 
 msgid "Error: unable to compile this SuperBlock"
@@ -1158,7 +1154,7 @@ msgstr ""
 msgid "Unable to simulate %s"
 msgstr ""
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format

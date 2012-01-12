@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-03 13:32+0000\n"
+"PO-Revision-Date: 2011-10-29 07:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -61,11 +61,9 @@ msgstr "%s: %d 番目のハンドルはポリラインハンドルではあり�
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 実スカラーを想定します。\n"
 
-#
-# File: sci_gateway/c/sci_StringBox.c, line: 51
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実スカラーを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: 実スカラーを指定してください．\n"
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 79
@@ -177,12 +175,9 @@ msgstr "%s: 入力引数 #%d で不正な型: ハンドルの行列を想定し�
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: %s ベクトル または %s を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_param3d1.c, line: 88
-# File: sci_gateway/c/sci_plot3d.c, line: 92
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: サイズ %d のリストを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: サイズ %d のリストを指定してください．\n"
 
 #
 # File: sci_gateway/c/sci_param3d1.c, line: 97
@@ -197,12 +192,9 @@ msgid ""
 "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr "%s: 必須の入力引数の数に誤りがあります. 最低でも %d 個の引数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_plot2d.c, line: 183
-# File: sci_gateway/c/sci_xfarcs.c, line: 54
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズです。\n"
+msgstr "%s: 入力引数 #%d と #%dの大きさが間違っています.\n"
 
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
@@ -230,11 +222,9 @@ msgid ""
 "use logarithmic mode\n"
 msgstr "%s: 範囲を計算し、対数モードを使用するために最低でも一つの y データが厳密に正である必要があります.\n"
 
-#
-# File: sci_gateway/c/sci_plot3d.c, line: 101
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: %d または %dを想定します。\n"
+msgstr "%s: 入力引数 #%dの大きさが間違っています: %d または %dを指定してください．\n"
 
 #
 # File: sci_gateway/c/sci_plot3d.c, line: 128
@@ -251,11 +241,9 @@ msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s: 入力引数 #%d と #%d で不正な値: 長さに互換性がありません。\n"
 
-#
-# File: sci_gateway/c/sci_plot3d.c, line: 142
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: %s を想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d の大きさが間違っています: %sを指定してください．\n"
 
 #
 # File: sci_gateway/c/sci_relocate_handle.c, line: 50
@@ -273,13 +261,10 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 単一の構成、または、軸ハンドルを想定します。\n"
 
-#
-# File: sci_gateway/c/sci_rubberbox.c, line: 152
-# File: sci_gateway/c/sci_rubberbox.c, line: 206
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: サイズ %d または、%d のベクトルを想定します。\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: サイズ %d または%d のベクトルを指定してください．\n"
 
 #, c-format
 msgid ""
@@ -1685,6 +1670,18 @@ msgstr "複数の曲線を同時にプロットすることができます"
 msgid "Customize your complex function"
 msgstr "複雑関数をカスタマイズして下さい"
 
+msgid "datatips on 2D curves"
+msgstr "2次元曲線上にデータティップ"
+
+msgid "datatips on 3D curves"
+msgstr "3次元曲線上にデータティップ"
+
+msgid "2D curves"
+msgstr "2次元曲線"
+
+msgid "3D curve"
+msgstr "3次元曲線"
+
 #
 # File: etc/graphics.start, line: 20
 msgid "Graphics"
@@ -1713,6 +1710,9 @@ msgstr "複素基本関数"
 
 msgid "bar histogram"
 msgstr "棒ヒストグラム"
+
+msgid "Datatips"
+msgstr "データティップ"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
@@ -1984,10 +1984,6 @@ msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d に�
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　'%s' ハンドルを指定してください.\n"
-
 msgid "Delete all datatips"
 msgstr "データtipsを全て削除"
 
@@ -2000,26 +1996,39 @@ msgstr "最も近いデータtipsを削除"
 msgid "Delete last datatip"
 msgstr "最後のデータtipsを削除"
 
+msgid "Delete selected datatip"
+msgstr "選択されたデータティップを削除"
+
+msgid "Open curve tip style editor"
+msgstr "曲線ティップスタイルエディタをオープン"
+
+msgid "Redraw all datatips"
+msgstr "全てのデータtipsを再描画"
+
 msgid "Edit the curve tip display function"
 msgstr "曲線tip表示関数を編集"
 
 msgid "select the curve tip display function"
 msgstr "曲線tip表示関数を選択"
 
-msgid "Redraw all datatips"
-msgstr "全てのデータtipsを再描画"
+msgid "Enable interpolation"
+msgstr "補間を有効にする"
 
 msgid "Disable interpolation"
 msgstr "補間を無効にする"
-
-msgid "Enable interpolation"
-msgstr "補間を有効にする"
 
 msgid "Multiple datatips mode"
 msgstr "複数データtipsモード"
 
 msgid "Unique datatip mode"
 msgstr "ユニーク データtipモード"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　'%s' ハンドルを指定してください.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: 空のカスケードメニューが見つかりました."
 
 msgid "automatic"
 msgstr "自動"
@@ -2045,27 +2054,168 @@ msgstr "選択されたファイルは実行できません"
 msgid "The selected file defines more than one function"
 msgstr "選択されたファイルでは複数の関数が定義されています"
 
+#
+# File: sci_gateway/c/sci_set.c, line: 198
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+
+#, c-format
 msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
-msgstr "データtipsはこの曲線には付加できません."
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 要素数 %d の配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d(1) の値が間違っています :  %d と %d の間としてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d(2) の値が間違っています :  %d と %d の間としてください.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
 msgstr "%s: 入力引数の数が多すぎます"
 
 msgid ""
+"Datatip manager cannot be enabled, user data figure field is already used"
+msgstr "データティップマネージャを有効にすることができません. ユーザデータ図フィールドがすでに使用されています"
+
+msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr "曲線の左クリックによりデータtipを作成, 右クリックによりコンテキストメニューを開く"
 
-msgid "Left click on a curve to create a datatip, right opens"
-msgstr "datatipを作成するには曲線上で左クリック,右クリックで開きます"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています :  グラフィックハンドルの配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: the handles must have the same "
+"parent.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています :  ハンドルの親は共通である必要があります.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: handle on axes or axes children "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています :  axesまたはaxesの子のハンドルを指定してください.\n"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr "選択された関数は 3個の入力引数 (curve,pt,index) を有する必要があります"
 
 msgid "The selected function must have 1 output parameter (str)"
 msgstr "選択された関数は1 個の出力引数 (str) を有する必要があります"
+
+#, c-format
+msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+msgstr "%s: 曲線 user_dataフィールドの型が間違っています: 構造体を指定してください.\n"
+
+msgid "Square mark, boxed label"
+msgstr "四角, ボックス付きのラベル"
+
+msgid "Square mark, simple label"
+msgstr "四角, 簡単なラベル"
+
+msgid "Square mark, no label"
+msgstr "四角, ラベルなし"
+
+msgid "Directional arrow, boxed label"
+msgstr "方向矢印, 囲い付きラベル"
+
+msgid "Directional arrow, simple label"
+msgstr "方向矢印, 簡易ラベル"
+
+msgid "Directional arrow, no label"
+msgstr "方向矢印, ラベルなし"
+
+msgid "Select tip style"
+msgstr "ティップ形式を選択"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラー論理値を指定してください.\n"
+
+#
+# File: macros/getcolor.sci, line: 74
+# File: macros/getfont.sci, line: 39
+# File: macros/getlinestyle.sci, line: 16
+# File: macros/getmark.sci, line: 22
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: macros/getcolor.sci, line: 75
+# File: macros/getfont.sci, line: 38
+# File: macros/getlinestyle.sci, line: 18
+# File: macros/getmark.sci, line: 24
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+#
+# File: macros/getcolor.sci, line: 76
+# File: macros/getfont.sci, line: 37
+# File: macros/getlinestyle.sci, line: 17
+# File: macros/getmark.sci, line: 23
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: macros/getcolor.sci, line: 77
+# File: macros/getlinestyle.sci, line: 19
+# File: macros/getmark.sci, line: 25
+msgid "&?"
+msgstr "その他(&?)"
+
+msgid "Datatips style"
+msgstr "データティップ形式"
+
+msgid "Marker style:"
+msgstr "マーカ形式:"
+
+msgid "Square"
+msgstr "正方形"
+
+msgid "Arrow"
+msgstr "矢印"
+
+msgid "Labeled?"
+msgstr "ラベル付き?"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Boxed?"
+msgstr "ボックス付き"
+
+msgid "Positionning?"
+msgstr "位置?"
+
+msgid "Knots"
+msgstr "ノット"
+
+msgid "Interpolated"
+msgstr "補完後"
+
+msgid "Allow multiple datatips?"
+msgstr "複数のデータティップは利用可能?"
+
+msgid "Edit label generator"
+msgstr "ラベル生成器を編集"
 
 #
 # File: macros/xbasc.sci, line: 25
@@ -2099,6 +2249,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
 
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
+msgstr "エンティティピッカーは有効にできません, user data figureフィールドはすでに使用されています"
+
 msgid "Left click on a graphic entity to open its property editor"
 msgstr "プロパティエディタを開くには,グラフィックエンティティの上で左クリックしてください"
 
@@ -2116,37 +2270,6 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
-
-#
-# File: macros/getcolor.sci, line: 74
-# File: macros/getfont.sci, line: 39
-# File: macros/getlinestyle.sci, line: 16
-# File: macros/getmark.sci, line: 22
-msgid "&File"
-msgstr "ファイル(&F)"
-
-#
-# File: macros/getcolor.sci, line: 75
-# File: macros/getfont.sci, line: 38
-# File: macros/getlinestyle.sci, line: 18
-# File: macros/getmark.sci, line: 24
-msgid "&Tools"
-msgstr "ツール(&T)"
-
-#
-# File: macros/getcolor.sci, line: 76
-# File: macros/getfont.sci, line: 37
-# File: macros/getlinestyle.sci, line: 17
-# File: macros/getmark.sci, line: 23
-msgid "&Edit"
-msgstr "編集(&E)"
-
-#
-# File: macros/getcolor.sci, line: 77
-# File: macros/getlinestyle.sci, line: 19
-# File: macros/getmark.sci, line: 25
-msgid "&?"
-msgstr "その他(&?)"
 
 #
 # File: macros/getcolor.sci, line: 128
@@ -2254,12 +2377,6 @@ msgstr "%s: '%s' は  '%s' と組み合わせて使用できません.\n"
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr "%s: 入力引数 #%d は軸のハンドルでなければなりません。\n"
-
-#
-# File: sci_gateway/c/sci_set.c, line: 198
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 60

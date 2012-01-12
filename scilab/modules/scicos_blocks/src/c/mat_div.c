@@ -24,6 +24,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
@@ -68,9 +69,9 @@ SCICOS_BLOCKS_IMPEXP void mat_div(scicos_block *block,int flag)
  u2=GetRealInPortPtrs(block,1);
  u1=GetRealInPortPtrs(block,2);
  y=GetRealOutPortPtrs(block,1);
- l=max(mu1,nu);
- lu=max(4*nu,min(mu1,nu)+3*mu1+1);
- lw=max(lu,2*min(mu1,nu)+mu2);
+ l=Max(mu1,nu);
+ lu=Max(4*nu,Min(mu1,nu)+3*mu1+1);
+ lw=Max(lu,2*Min(mu1,nu)+mu2);
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_div_struct*) scicos_malloc(sizeof(mat_div_struct)))==NULL)

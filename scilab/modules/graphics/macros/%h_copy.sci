@@ -12,9 +12,16 @@ function h=%h_copy(h,ax)
   if argn(2)<2 then 
     load(TMPDIR+'/ghdlcopy')
   else
-    a=get('current_axes')
-    set('current_axes', ax)
-    load(TMPDIR+'/ghdlcopy')
-    set('current_axes', a)
+      if ax.type=="Axes"  then
+        a=get('current_axes')
+        set('current_axes', ax)
+        load(TMPDIR+'/ghdlcopy')
+        set('current_axes', a)
+      else
+        a = gcf()
+        scf(ax)
+        load(TMPDIR+'/ghdlcopy')
+        scf(a)
+      end
   end
 endfunction

@@ -100,9 +100,9 @@ scilab-cli &lt;Options&gt;</synopsis>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>-f File</term>
+        <term>-f Fichier</term>
         <listitem>
-          <para>si cette option est présente le script <literal>File</literal>
+          <para>si cette option est présente le script <literal>Fichier</literal>
           est exécuté dans Scilab mmédiatement après les fichiers startup. -f
           et -e ne peuvent pas être utilisée en même temps.</para>
           <para>Un fichier avec l'extension .xcos sera ouvert par Xcos.</para>
@@ -220,6 +220,7 @@ scilab -l ja_JP</programlisting>
         <term>--texmacs</term>
         <listitem>
           <para>Cette option est réservée pour TeXMacs.</para>
+          <para>Veuillez installer le module ATOMS atomsInstall('texmacs')</para>
         </listitem>
       </varlistentry>
       <varlistentry>

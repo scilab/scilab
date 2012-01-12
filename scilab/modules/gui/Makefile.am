@@ -31,7 +31,8 @@ etc/graphics_toolbar.xml \
 etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
-etc/flexdock-themes.xml
+etc/flexdock-themes.xml \
+etc/windowsConfiguration.xml
 
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree
@@ -39,7 +40,6 @@ MACROSDIRSEXT = macros/tree
 include $(top_srcdir)/Makefile.incl.am
 
 GUI_C_SOURCES = \
-src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
@@ -52,7 +52,9 @@ src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c \
+src/c/ScilabTermination.c \
+src/jni/ScilabTermination_wrap.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -68,7 +70,6 @@ src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \
@@ -143,7 +144,6 @@ src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
-
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
@@ -156,6 +156,14 @@ src/jni/ScilabDisplayTree.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+
+if SWIG
+    BUILT_SOURCES=swig
 endif
 
 
@@ -289,67 +297,117 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
-images/icons/32x32/apps/rrze_table.png \
-images/icons/32x32/apps/utilities-system-monitor.png \
-images/icons/32x32/apps/system-search.png \
+nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/document-new.png \
+images/icons/16x16/actions/document-open.png \
+images/icons/16x16/actions/document-open-sci.png \
+images/icons/16x16/actions/document-print.png \
+images/icons/16x16/actions/document-print-preview.png \
+images/icons/16x16/actions/document-save-as.png \
+images/icons/16x16/actions/document-save.png \
+images/icons/16x16/actions/dynamic-blue-up.png \
+images/icons/16x16/actions/edit-clear.png \
+images/icons/16x16/actions/edit-copy.png \
+images/icons/16x16/actions/edit-cut.png \
+images/icons/16x16/actions/edit-delete.png \
+images/icons/16x16/actions/edit-find.png \
+images/icons/16x16/actions/edit-find-replace.png \
+images/icons/16x16/actions/edit-paste.png \
+images/icons/16x16/actions/edit-redo.png \
+images/icons/16x16/actions/edit-select-all.png \
+images/icons/16x16/actions/edit-undo.png \
 images/icons/16x16/actions/execute-all.png \
+images/icons/16x16/actions/filter.png \
+images/icons/16x16/actions/format-text-bold.png \
 images/icons/16x16/actions/go-bottom.png \
+images/icons/16x16/actions/go-next.png \
+images/icons/16x16/actions/go-previous.png \
 images/icons/16x16/actions/go-top.png \
-images/icons/16x16/actions/view-refresh.png \
-images/icons/16x16/search/folder.png \
-images/icons/16x16/search/file.png \
-images/icons/16x16/search/line-found.png \
-images/icons/16x16/search/scilab-file.png \
+images/icons/16x16/actions/list-add.png \
+images/icons/16x16/actions/list-remove.png \
+images/icons/16x16/actions/longe.png \
+images/icons/16x16/actions/long.png \
+images/icons/16x16/actions/media-playback-start.png \
+images/icons/16x16/actions/plot.png \
 images/icons/16x16/actions/save-and-execute.png \
+images/icons/16x16/actions/scilab_search.png \
+images/icons/16x16/actions/shorte.png \
+images/icons/16x16/actions/short.png \
+images/icons/16x16/actions/SizeColumnsToFit.png \
+images/icons/16x16/actions/system-search.png \
+images/icons/16x16/actions/transform-rotate.png \
+images/icons/16x16/actions/variable-from-selection.png \
+images/icons/16x16/actions/variable-new.png \
+images/icons/16x16/actions/view-refresh.png \
+images/icons/16x16/actions/window-new.png \
+images/icons/16x16/actions/zoom-area-cursor.png \
+images/icons/16x16/actions/zoom-fit-drawing.png \
+images/icons/16x16/actions/zoom-fit-selection.png \
+images/icons/16x16/actions/zoom-in.png \
+images/icons/16x16/actions/zoom-original.png \
+images/icons/16x16/actions/zoom-out.png \
+images/icons/16x16/animations/process-working.png \
+images/icons/16x16/apps/accessories-text-editor.png \
+images/icons/16x16/apps/help-browser.png \
+images/icons/16x16/apps/utilities-system-monitor.png \
+images/icons/16x16/categories/applications-system.png \
+images/icons/16x16/devices/media-floppy.png \
+images/icons/16x16/devices/printer.png \
+images/icons/16x16/emblems/emblem-readonly.png \
+images/icons/16x16/mimetypes/application-pdf.png \
+images/icons/16x16/mimetypes/binary.png \
+images/icons/16x16/mimetypes/image-x-generic.png \
+images/icons/16x16/mimetypes/package-x-generic.png \
+images/icons/16x16/mimetypes/text-csv.png \
+images/icons/16x16/mimetypes/text-html.png \
+images/icons/16x16/mimetypes/text-x-generic.png \
+images/icons/16x16/mimetypes/text-xml.png \
+images/icons/16x16/places/folder.png \
+images/icons/16x16/places/folder-saved-search.png \
+images/icons/16x16/places/scilab-folder.png \
+images/icons/16x16/places/user-home.png \
+images/icons/16x16/status/error.png \
+images/icons/16x16/status/folder-open.png \
+images/icons/16x16/status/line-found.png \
+images/icons/16x16/status/scilab-folder-open.png \
+images/icons/16x16/status/user-home-open.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
+images/icons/256x256/apps/system-search.png \
+images/icons/32x32/actions/edit-clear.png \
+images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/apps/datatips.png \
+images/icons/32x32/apps/graphic-window.png \
+images/icons/32x32/apps/rrze_table.png \
+images/icons/32x32/apps/scilab.png \
+images/icons/32x32/apps/system-search.png \
+images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/32x32/emblems/emblem-readonly.png \
+images/icons/48x48/emblems/emblem-readonly.png \
+images/icons/64x40/mimetypes/application-x-scilab-champ.png \
+images/icons/64x40/mimetypes/application-x-scilab-contour2d.png \
+images/icons/64x40/mimetypes/application-x-scilab-grayplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-hist3d.png \
+images/icons/64x40/mimetypes/application-x-scilab-histplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-Matplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-mesh.png \
+images/icons/64x40/mimetypes/application-x-scilab-pie.png \
+images/icons/64x40/mimetypes/application-x-scilab-plot2d.png \
+images/icons/64x40/mimetypes/application-x-scilab-plot3d.png \
+images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
+images/icons/64x40/mimetypes/application-x-scilab-surf.png \
 images/icons/aboutscilab.png \
-images/icons/accessories-text-editor.png \
-images/icons/applications-system.png \
 images/icons/check-icon.png \
+images/icons/close-tab-on.png \
 images/icons/close-tab.png \
-images/icons/datatips.png \
-images/icons/document-new.png \
-images/icons/document-open.png \
-images/icons/document-open-sci.png \
-images/icons/document-print.png \
-images/icons/document-print-preview.png \
-images/icons/document-save-as.png \
-images/icons/document-save.png \
-images/icons/edit-copy.png \
-images/icons/edit-cut.png \
-images/icons/edit-delete.png \
-images/icons/edit-find.png \
-images/icons/edit-find-replace.png \
-images/icons/edit-paste.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
-images/icons/emblem-readonly.png \
-images/icons/folder.png \
-images/icons/format-text-bold.png \
-images/icons/graphic-window.png \
-images/icons/help-browser.png \
-images/icons/media-floppy.png \
-images/icons/media-playback-start.png \
-images/icons/package-x-generic.png \
-images/icons/printer.png \
-images/icons/process-working.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
-images/icons/scilab.png \
-images/icons/transform-rotate.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png \
-images/icons/utilities-system-monitor.png \
-images/icons/window-new.png \
-images/icons/zoom-area-cursor.png \
-images/icons/zoom-fit-drawing.png \
-images/icons/zoom-fit-selection.png \
-images/icons/zoom-in.png \
-images/icons/zoom-original.png \
-images/icons/zoom-out.png
+images/icons/undock_default.png
 
 if GUI
 USEANT=1
 endif
+

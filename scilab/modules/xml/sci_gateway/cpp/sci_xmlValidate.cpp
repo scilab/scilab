@@ -51,6 +51,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -58,9 +59,9 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     {
         getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &path);
     }
-    else if (isXMLDoc(addr))
+    else if (isXMLDoc(addr, pvApiCtx))
     {
-        id = getXMLObjectId(addr);
+        id = getXMLObjectId(addr, pvApiCtx);
         doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
         if (!doc)
         {
@@ -70,7 +71,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
         return 0;
     }
 
@@ -80,16 +81,17 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
-        if (!isXMLValid(addr))
+        if (!isXMLValid(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLValid");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLValid");
             return 0;
         }
 
-        id = getXMLObjectId(addr);
+        id = getXMLObjectId(addr, pvApiCtx);
         validation = XMLObject::getFromId<XMLValidation>(id);
         if (!validation)
         {
@@ -154,6 +156,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

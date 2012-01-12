@@ -21,13 +21,7 @@ import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.TreeSet;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -36,6 +30,10 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.localization.Messages;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * Create a toolBar from an XML file
@@ -129,11 +127,9 @@ public final class ToolBarBuilder {
 		protected static final String TRUE = "true";
 		protected static final String FALSE = "false";
 		protected static final String TOOLTIPTEXT = "tooltiptext";
-		
-		protected static final String DEFAULT_ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/";
 
-		private Document dom;
-		private Collection<String> internalMethodNames;
+		private final Document dom;
+		private final Collection<String> internalMethodNames;
 
 
 		/**
@@ -171,7 +167,8 @@ public final class ToolBarBuilder {
 		 * @throws NoSuchMethodException thrown when invoking a non-existing method
 		 * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
 		 */
-		public Object invoke(Object proxy, Method method, Object[] args) 
+		@Override
+        public Object invoke(Object proxy, Method method, Object[] args) 
 			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 			
 			if (internalMethodNames.contains(method.getName())) {
@@ -208,7 +205,7 @@ public final class ToolBarBuilder {
 					
 						if (buttonAttributes.item(i).getNodeName().equals(ICON)) {
 							// Icon file
-							pushButton.setIcon(DEFAULT_ICON_PATH + buttonAttributes.item(i).getNodeValue());
+                            pushButton.setIcon(ScilabSwingUtilities.findIcon(buttonAttributes.item(i).getNodeValue()));
 						} else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
 							// Enable are disable the button
 							pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));

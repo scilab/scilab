@@ -139,7 +139,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    end
    
    
-   // 2) read the datas
+   // 2) read the data
    
    col_ptr = read(unit,1,n+1,form1)
    ind_row = read(unit,1,nb_nz,form2)

@@ -27,12 +27,12 @@ public class ImplicitOutputPort extends OutputPort {
 
     /** Default constructor */
     public ImplicitOutputPort() {
-	super("ImplicitOutputPort");
+        super("ImplicitOutputPort");
     }
 
     /** @return always Type.IMPLICIT */
-	@Override
+    @Override
     public Type getType() {
-	return Type.IMPLICIT;
+        return Type.IMPLICIT;
     }
 }

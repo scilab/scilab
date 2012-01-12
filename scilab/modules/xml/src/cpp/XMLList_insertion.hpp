@@ -36,7 +36,7 @@ using namespace org_modules_xml;
  * @param fname_len the function name length
  */
 template <class T>
-int sci_XMLList_insertion(char * fname, unsigned long fname_len)
+int sci_XMLList_insertion(char * fname, void* pvApiCtx)
 {
     XMLNodeList * a;
     T * b;
@@ -55,6 +55,7 @@ int sci_XMLList_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -70,6 +71,7 @@ int sci_XMLList_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -77,10 +79,11 @@ int sci_XMLList_insertion(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 
-    lhsid = getXMLObjectId(lhsaddr);
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
     a = XMLObject::getFromId<XMLNodeList>(lhsid);
     if (!a)
     {
@@ -88,7 +91,7 @@ int sci_XMLList_insertion(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    success = XMLRhsValue::get(fname, rhsaddr, &b);
+    success = XMLRhsValue::get(fname, rhsaddr, &b, pvApiCtx);
     if (!success)
     {
         Scierror(999, gettext("%s: Error in getting rhs argument.\n"), fname);
@@ -102,7 +105,7 @@ int sci_XMLList_insertion(char * fname, unsigned long fname_len)
         delete b;
     }
 
-    if (a->createOnStack(Rhs + 1))
+    if (a->createOnStack(Rhs + 1, pvApiCtx))
     {
         LhsVar(1) = Rhs + 1;
     }

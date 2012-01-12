@@ -17,11 +17,11 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -189,6 +189,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -198,6 +199,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -262,6 +264,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -467,7 +470,7 @@ modulename = localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(mydatadir)
-libscilocalization_la_root_DATA = license.txt 
+libscilocalization_la_root_DATA = license.txt
 
 ####localization : init scripts ####
 libscilocalization_la_etcdir = $(mydatadir)/etc

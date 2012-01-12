@@ -116,6 +116,7 @@ dt=getdate(x)</synopsis>
         <term>x=getdate("s")</term>
         <listitem>
           <para> returns a scalar with the number of seconds since Jan 1, 1970, 00:00 UTC (Unix Time Convention)</para>
+          <para>Please note that the return value contains the <ulink url="http://en.wikipedia.org/wiki/Leap_second">leap seconds</ulink>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -138,7 +139,7 @@ getdate(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="date">date</link>

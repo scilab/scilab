@@ -114,6 +114,7 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -158,6 +159,7 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -202,6 +204,7 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -249,6 +252,7 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -376,7 +380,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tril.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_triu.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zeros.c" />
-    <ClCompile Include="sdot.c" />
     <ClCompile Include="simple.c" />
     <ClCompile Include="split.c" />
     <ClCompile Include="urand.c" />
@@ -545,7 +548,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tril.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_triu.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zeros.f" />
-    <f2c_rule Include="sdot.f" />
     <f2c_rule Include="simple.f" />
     <f2c_rule Include="split.f" />
     <f2c_rule Include="urand.f" />

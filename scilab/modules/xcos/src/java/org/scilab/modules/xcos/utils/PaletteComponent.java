@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,6 +21,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Customize the default component
+ * 
  * @see java.awt.Component
  */
 public class PaletteComponent extends ScilabComponent {
@@ -29,47 +30,51 @@ public class PaletteComponent extends ScilabComponent {
 
     /**
      * Construct the component with the associated graph
-     * @param graph The associated graph
+     * 
+     * @param graph
+     *            The associated graph
      */
     public PaletteComponent(XcosDiagram graph) {
-	super(graph);
-	
-	addComponentListener(new ComponentListener() {
-	    
-	    @Override
-		public void componentShown(ComponentEvent arg0) {
-		if (getGraph() instanceof PaletteDiagram) {
-		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
-		}		
-	    }
-	    
-	    @Override
-		public void componentResized(ComponentEvent arg0) {
-		if (getGraph() instanceof PaletteDiagram) {
-		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
-		}		
-	    }
-	    
-	    @Override
-		public void componentMoved(ComponentEvent arg0) {
-	    }
-	    
-	    @Override
-		public void componentHidden(ComponentEvent arg0) {
-	    }
-	});
+        super(graph);
+
+        addComponentListener(new ComponentListener() {
+
+            @Override
+            public void componentShown(ComponentEvent arg0) {
+                if (getGraph() instanceof PaletteDiagram) {
+                    ((PaletteDiagram) getGraph()).updateDiagram(getSize()
+                            .getWidth());
+                }
+            }
+
+            @Override
+            public void componentResized(ComponentEvent arg0) {
+                if (getGraph() instanceof PaletteDiagram) {
+                    ((PaletteDiagram) getGraph()).updateDiagram(getSize()
+                            .getWidth());
+                }
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent arg0) {
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent arg0) {
+            }
+        });
     }
-    
+
     /**
      * @return The filename
      */
-	@Override
+    @Override
     public String toString() {
-	if (getGraph() instanceof PaletteDiagram) {
-	    String fileName = ((PaletteDiagram) getGraph()).getName();
-	    return fileName.substring(0, fileName.lastIndexOf('.'));
-	} else {
-	    return super.toString();
-	}
+        if (getGraph() instanceof PaletteDiagram) {
+            String fileName = ((PaletteDiagram) getGraph()).getName();
+            return fileName.substring(0, fileName.lastIndexOf('.'));
+        } else {
+            return super.toString();
+        }
     }
 }

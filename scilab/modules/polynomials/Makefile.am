@@ -106,8 +106,13 @@ libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscipolynomials.la
 noinst_LTLIBRARIES = libscipolynomials-algo.la
+else
+noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
+endif
+
 
 libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

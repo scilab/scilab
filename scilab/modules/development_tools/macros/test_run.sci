@@ -175,6 +175,7 @@ endfunction
 
 function status = test_single(_module, _testPath, _testName)
   //option flag
+
   skip      = %F;
   interactive   = %F;
   notyetfixed   = %F;
@@ -381,7 +382,7 @@ function status = test_single(_module, _testPath, _testName)
     tail = [ tail; "xdel(winsid());sleep(1000);" ];
   end
 
-  tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
+  tail = [ tail; "exit(0);" ; "// <-- FOOTER END -->" ];
 
   //Build final test
   sciFile = [head ; sciFile ; tail];
@@ -419,12 +420,22 @@ function status = test_single(_module, _testPath, _testName)
   else
     language_arg = "LANG=" + language + " ";
   end
+ 
+  loader_path = pathconvert(fullfile(_module.moduleName, 'loader.sce'), %f);
 
-  //Buld final command
+  // Build final command
   if getos() == 'Windows' then
-    test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+    if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
+      test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"");"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+    else // standard module
+      test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+    end
   else
-    test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+    if (isdir(_module.moduleName) & isfile(loader_path))
+      test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+    else
+      test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+    end
   end
 
   //clean previous tmp files
@@ -478,7 +489,14 @@ function status = test_single(_module, _testPath, _testName)
   //Process output files
 
   //Get the dia file
-  dia = mgetl(tmp_dia);
+  if isfile(tmp_dia) then
+    dia = mgetl(tmp_dia);
+  else
+    status.id = 6;
+    status.message = "failed: the dia file is not correct";
+    status.details = checkthefile(tmp_dia);
+    return;
+  end
 
   // To get TMPDIR value
   tmpdir1_line = grep(dia, "TMPDIR1");

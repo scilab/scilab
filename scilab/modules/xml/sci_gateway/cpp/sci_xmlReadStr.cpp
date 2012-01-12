@@ -44,16 +44,17 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
-    if (!XMLRhsValue::get(fname, addr, &code))
+    if (!XMLRhsValue::get(fname, addr, &code, pvApiCtx))
     {
         return 0;
     }
@@ -65,13 +66,14 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         {
             delete code;
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         if (!isBooleanType(pvApiCtx, addr))
         {
             delete code;
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A boolean expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
 
@@ -89,7 +91,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

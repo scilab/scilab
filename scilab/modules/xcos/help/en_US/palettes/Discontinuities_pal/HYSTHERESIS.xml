@@ -78,6 +78,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_HYSTHERESIS">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_HYSTHERESIS">Authors</xref>
             </para>
           </listitem>
@@ -227,8 +232,8 @@ one input and generates one output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example_HYSTERESIS">
-    <title>Hysteresis Example</title>
+  <refsection id="Example_HYSTHERESIS">
+    <title>Example</title>
     <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.xcos">
       <inlinemediaobject>
         <imageobject>

@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,135 +40,147 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Generate code for the current graph.
  */
 public class CodeGenerationAction extends SuperBlockSelectedAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.CODE_GENERATION;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
+    /** Name of the action */
+    public static final String NAME = XcosMessages.CODE_GENERATION;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
+
     /**
-	 * Constructor
-	 * @param scilabGraph associated Scilab graph
-	 */
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Scilab graph
+     */
     public CodeGenerationAction(ScilabGraph scilabGraph) {
-    	super(scilabGraph);
+        super(scilabGraph);
     }
 
     /**
-	 * Menu for diagram menubar
-	 * @param scilabGraph associated diagram
-	 * @return the menu
-	 */
+     * Menu for diagram menubar
+     * 
+     * @param scilabGraph
+     *            associated diagram
+     * @return the menu
+     */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-    	return createMenu(scilabGraph, CodeGenerationAction.class);
+        return createMenu(scilabGraph, CodeGenerationAction.class);
     }
 
-	/**
-	 * Action !!!
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object selectedObj = getGraph(null).getSelectionCell();
-			if (!(selectedObj instanceof SuperBlock)) {
-				((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
-				return;
-			}
-	
-		((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
-		
-		final SuperBlock block = (SuperBlock) selectedObj;
-		try {
-				/*
-				 * Prepare data
-				 */
-				final String tempOutput = FileUtils.createTempFile();
-				final String tempInput = FileUtils.createTempFile();
-				
-			    /*
-			     * Export data
-			     */
-				new H5RWHandler(tempOutput).writeBlock(block);
-			    
-			    /*
-			     * Prepare command and callback
-			     */
-				String cmd = buildCall("xcosCodeGeneration",
-						tempOutput,
-						tempInput);
-				
-				final ActionListener callback = new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						
-						if (!exists(tempInput)) {
-							((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-							return;
-						}
-						
-						XcosDiagram graph = block.getParentDiagram();
-						if (graph == null) {
-							block.setParentDiagram(Xcos.findParent(block));
-							graph = block.getParentDiagram();
-							LogFactory.getLog(getClass()).error("Parent diagram was null");
-						}
-						
-						graph.getModel().beginUpdate();
-						doAction(block, tempInput);
-						graph.getModel().endUpdate();
-						
-						graph.getView().clear(block, true, false);
-						graph.getView().validate();
-						
-						delete(tempOutput);
-						delete(tempInput);
-						
-						((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-					}
-				};
-				
-				/*
-				 * Execute
-				 */
-				asynchronousScilabExec(callback, cmd);
-				
-		} catch (IOException ex) {
-			LogFactory.getLog(CodeGenerationAction.class).error(ex);
-		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		} catch (InterpreterException ex) {
-			LogFactory.getLog(CodeGenerationAction.class).error(ex);
-			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		}
+    /**
+     * Action !!!
+     * 
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object selectedObj = getGraph(null).getSelectionCell();
+        if (!(selectedObj instanceof SuperBlock)) {
+            ((XcosDiagram) getGraph(null))
+                    .error(XcosMessages.ERROR_GENERATING_C_CODE);
+            return;
+        }
+
+        ((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+
+        final SuperBlock block = (SuperBlock) selectedObj;
+        try {
+            /*
+             * Prepare data
+             */
+            final String tempOutput = FileUtils.createTempFile();
+            final String tempInput = FileUtils.createTempFile();
+
+            /*
+             * Export data
+             */
+            new H5RWHandler(tempOutput).writeBlock(block);
+
+            /*
+             * Prepare command and callback
+             */
+            String cmd = buildCall("xcosCodeGeneration", tempOutput, tempInput);
+
+            final ActionListener callback = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+
+                    if (!exists(tempInput)) {
+                        ((XcosDiagram) getGraph(null))
+                                .info(XcosMessages.EMPTY_INFO);
+                        return;
+                    }
+
+                    XcosDiagram graph = block.getParentDiagram();
+                    if (graph == null) {
+                        block.setParentDiagram(Xcos.findParent(block));
+                        graph = block.getParentDiagram();
+                        LogFactory.getLog(getClass()).error(
+                                "Parent diagram was null");
+                    }
+
+                    graph.getModel().beginUpdate();
+                    doAction(block, tempInput);
+                    graph.getModel().endUpdate();
+
+                    graph.getView().clear(block, true, false);
+                    graph.getView().validate();
+
+                    delete(tempOutput);
+                    delete(tempInput);
+
+                    ((XcosDiagram) getGraph(null))
+                            .info(XcosMessages.EMPTY_INFO);
+                }
+            };
+
+            /*
+             * Execute
+             */
+            asynchronousScilabExec(callback, cmd);
+
+        } catch (IOException ex) {
+            LogFactory.getLog(CodeGenerationAction.class).error(ex);
+            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+        } catch (InterpreterException ex) {
+            LogFactory.getLog(CodeGenerationAction.class).error(ex);
+            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+        }
     }
-    
+
     /**
      * Callback function
      * 
-     * Read the block from the scilab 
+     * Read the block from the scilab
      * 
-     * @param block The block we are working on
-     * @param tempInput Input file
+     * @param block
+     *            The block we are working on
+     * @param tempInput
+     *            Input file
      */
-    private static void doAction(final SuperBlock block,
-			final String tempInput) {
-		try {
-			BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-			
-		    block.updateBlockSettings(modifiedBlock);
-		    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-		    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-		    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-		    block.setChild(null);
-		    
-		    block.setStyle(block.getStyle() + ";blockWithLabel");
-		    block.setValue(block.getSimulationFunctionName());
-		    BlockPositioning.updateBlockView(block);
-		} catch (ScicosFormatException e) {
-			LogFactory.getLog(CodeGenerationAction.class).error(e);
-		}
-	}
+    private static void doAction(final SuperBlock block, final String tempInput) {
+        try {
+            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+
+            block.updateBlockSettings(modifiedBlock);
+            block.setInterfaceFunctionName(modifiedBlock
+                    .getInterfaceFunctionName());
+            block.setSimulationFunctionName(modifiedBlock
+                    .getSimulationFunctionName());
+            block.setSimulationFunctionType(modifiedBlock
+                    .getSimulationFunctionType());
+            block.setChild(null);
+
+            block.setStyle(block.getStyle() + ";blockWithLabel");
+            block.setValue(block.getSimulationFunctionName());
+            BlockPositioning.updateBlockView(block);
+        } catch (ScicosFormatException e) {
+            LogFactory.getLog(CodeGenerationAction.class).error(e);
+        }
+    }
 }

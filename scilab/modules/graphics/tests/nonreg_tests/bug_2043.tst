@@ -4,7 +4,7 @@
 //
 //// This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
+//
 // <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 2043 -->
@@ -19,4 +19,4 @@ plot3d();
 f=gcf();
 a=gca();
 a1=copy(a);
-if size(f.children, '*') <> 2 then pause; end;
+assert_checkequal(size(f.children, '*'),2);

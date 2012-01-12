@@ -41,7 +41,6 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
-import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -52,7 +51,6 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -109,6 +107,7 @@ import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
@@ -121,7 +120,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -603,8 +601,7 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon("graphic-window");
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
@@ -2131,7 +2128,6 @@ public class CallScilabBridge {
      * Close Scilab Help Browser
      */
     public static void closeHelpBrowser() {
-        CallScilabBridge.saveHelpWindowSettings();
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
@@ -2212,10 +2208,24 @@ public class CallScilabBridge {
     }
 
     /**
-     * Open a Browser on Mailing List Archives
+     * Open a Browser on Mailing List info
      */
     public static void openMailingList() {
         WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
+    }
+
+    /**
+     * Open a Browser on Mailing List Archives
+     */
+    public static void openMailingListArchives() {
+        WebBrowser.openUrl("http://mailinglists.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on S/E
+     */
+    public static void openSE() {
+        WebBrowser.openUrl("http://www.scilab-enterprises.com/");
     }
 
     /***************************/
@@ -2300,35 +2310,11 @@ public class CallScilabBridge {
     }
 
     /**
-     * Save the main Window size and position
+     * Unblock the console if it is in "Continue display..." mode
      */
-    public static void saveMainWindowSettings() {
+    public static void unblockConsole() {
         SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-        Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-        ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
-        ConfigManager.saveMainWindowSize(mainWindow.getDims());
-
-    }
-
-    /**
-     * Save the help Window size and position
-     */
-    public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null )  {
-            SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
-            if (sciHelpBrowser != null) {
-                SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
-                if (consoleTab != null) {
-                    Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-                    ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
-                    ConfigManager.saveHelpWindowSize(helpWindow.getDims());
-                }
-            }
-        }
-
+        sciConsole.unblock();
     }
 
     /**
@@ -2850,7 +2836,7 @@ public class CallScilabBridge {
      * Class used to store Images in the clipboard
      */
     public static class ClipboardImage implements Transferable {
-        private Image image;
+        private final Image image;
 
         /**
          * Default constructor
@@ -2864,6 +2850,7 @@ public class CallScilabBridge {
          * DataFlavors of this transferable
          * @return the DataFlavors accepeted
          */
+        @Override
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[]{DataFlavor.imageFlavor};
         }
@@ -2873,6 +2860,7 @@ public class CallScilabBridge {
          * @param flavor the flavor to test
          * @return true if the flavor is supported
          */
+        @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
@@ -2883,6 +2871,7 @@ public class CallScilabBridge {
          * @return the contents
          * @throws UnsupportedFlavorException if the flavor is not supported by this transferable
          */
+        @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
             if (!DataFlavor.imageFlavor.equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);

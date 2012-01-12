@@ -67,23 +67,23 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
         private int elementId;
 
-        private JList fontNameList;
-        private String[] availableFontNames;
+        private final JList fontNameList;
+        private final String[] availableFontNames;
 
-        private JList fontSizeList;
-        private String[] availableFontSizes = {"8", "10", "11", "12",
+        private final JList fontSizeList;
+        private final String[] availableFontSizes = {"8", "10", "11", "12",
                         "13", "14", "16", "18", "20",
                         "24", "30", "36", "40",
                         "48", "60", "72" };
 
-        private boolean calledFromScinotes;
-        private JCheckBox boldCheckbox;
-        private JCheckBox italicCheckbox;
-        private JCheckBox monospacedCheckbox;
+        private final boolean calledFromScinotes;
+        private final JCheckBox boldCheckbox;
+        private final JCheckBox italicCheckbox;
+        private final JCheckBox monospacedCheckbox;
         private JCheckBox scinotesCompatibleCheckbox;
 
-        private JLabel preview;
-        private String previewText = "The Quick Brown Fox Jumps Over The Lazy Dog";
+        private final JLabel preview;
+        private final String previewText = "The Quick Brown Fox Jumps Over The Lazy Dog";
 
         /* User choices */
         private Font selectedFont;
@@ -105,7 +105,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         public SwingScilabFontChooser(JFrame owner, Font font, boolean calledFromScinotes) {
                 super(owner, Messages.gettext("Font Chooser"), true);
                 this.calledFromScinotes = calledFromScinotes;
-                ((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
 
                 getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -166,6 +166,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
                 monospacedCheckbox = new JCheckBox(Messages.gettext("Monospaced"), false);
                 attributes.add(monospacedCheckbox);
                 monospacedCheckbox.addItemListener(new ItemListener() {
+                        @Override
                         public void itemStateChanged(ItemEvent e) {
                                 updateFontNameList();
                         }
@@ -177,6 +178,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
                         scinotesCompatibleCheckbox = new JCheckBox(Messages.gettext("SciNotes compatible"), false);
                         attributes.add(scinotesCompatibleCheckbox);
                         scinotesCompatibleCheckbox.addItemListener(new ItemListener() {
+                                @Override
                                 public void itemStateChanged(ItemEvent e) {
                                         updateFontNameList();
                                 }
@@ -205,6 +207,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
                 buttonsPanel.add(okButton);
                 getRootPane().setDefaultButton(okButton);
                 okButton.addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent e) {
                                 previewFont();
                                 dispose();
@@ -215,6 +218,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
                 JButton canButton = new JButton(Messages.gettext("Cancel"));
                 buttonsPanel.add(canButton);
                 canButton.addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent e) {
                                 selectedFont = null;
                                 dispose();
@@ -226,21 +230,25 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
                 getContentPane().add(buttonsContainer);
 
                 fontSizeList.addListSelectionListener(new ListSelectionListener() {
+                        @Override
                         public void valueChanged(ListSelectionEvent arg0) {
                                 previewFont();
                         }
                 });
                 fontNameList.addListSelectionListener(new ListSelectionListener() {
+                        @Override
                         public void valueChanged(ListSelectionEvent arg0) {
                                 previewFont();
                         }
                 });
                 boldCheckbox.addChangeListener(new ChangeListener() {
+                        @Override
                         public void stateChanged(ChangeEvent arg0) {
                                 previewFont();
                         }
                 });
                 italicCheckbox.addChangeListener(new ChangeListener() {
+                        @Override
                         public void stateChanged(ChangeEvent arg0) {
                                 previewFont();
                         }
@@ -259,6 +267,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Set the element id for this file chooser
          * @param id the id of the corresponding file chooser object
          */
+        @Override
         public void setElementId(int id) {
                 this.elementId = id;
         }
@@ -267,6 +276,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Get the element id for this chooser
          * @return id the id of the corresponding chooser object
          */
+        @Override
         public int getElementId() {
                 return this.elementId;
         }
@@ -275,6 +285,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Retrieve the selected font, or null
          * @return the selected font
          */
+        @Override
         public Font getSelectedFont() {
                 return selectedFont;
         }
@@ -308,6 +319,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Set the default font name
          * @param fontName the default font name
          */
+        @Override
         public void setDefaultFontName(String fontName) {
                 for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
                         if (availableFontNames[fontIndex].equalsIgnoreCase(fontName)) {
@@ -320,6 +332,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Set the default font size
          * @param fontSize the default font size
          */
+        @Override
         public void setDefaultFontSize(int fontSize) {
                 for (int sizeIndex = 0; sizeIndex < availableFontSizes.length; sizeIndex++) {
                         if (availableFontSizes[sizeIndex].equals(Integer.toString(fontSize))) {
@@ -332,6 +345,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Set the default font bold attribute
          * @param bold the default font bold attribute
          */
+        @Override
         public void setDefaultBold(boolean bold) {
                 boldCheckbox.setSelected(bold);
         }
@@ -340,6 +354,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
          * Set the default font italic attribute
          * @param italic the default font italic attribute
          */
+        @Override
         public void setDefaultItalic(boolean italic) {
                 italicCheckbox.setSelected(italic);
         }
@@ -347,6 +362,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
         /**
          * Display the font chooser and wait for a user input
          */
+        @Override
         public void displayAndWait() {
                 setVisible(true);
         }

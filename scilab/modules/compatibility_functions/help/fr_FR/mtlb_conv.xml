@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>mtlb_conv</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab conv</refpurpose>
+    <refpurpose>Fonction d'émulation de la fonction Matlab conv. <emphasis role="bold">Cette fonction est obsolète.</emphasis></refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -64,10 +64,13 @@
     <para>Attention : <literal>mtlb_conv</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="conv">conv</link>
       </member>
     </simplelist>
   </refsection>
@@ -76,5 +79,14 @@
     <simplelist type="vert">
       <member>V.C.</member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Historique</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>La fonction mtlb_conv est obsolète et sera supprimée dans Scilab 5.4.1, utiliser <link linkend="conv">conv</link> en remplacement.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

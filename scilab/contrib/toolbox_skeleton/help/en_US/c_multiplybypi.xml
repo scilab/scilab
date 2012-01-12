@@ -51,6 +51,9 @@
       <member>
         <link linkend="c_sum">c_sum</link>
       </member>
+      <member>
+        <link type="scilab" linkend="scilab.help/sum">Link to the Scilab help page</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

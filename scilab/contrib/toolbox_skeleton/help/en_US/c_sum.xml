@@ -57,6 +57,9 @@
       <member>
         <link linkend="fortran_sum">fortran_sum</link>
       </member>
+      <member>
+        <link type="scilab" linkend="scilab.help/sum">Link to the Scilab help page</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

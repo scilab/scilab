@@ -307,16 +307,22 @@ libscicore_la_CFLAGS +=   $(TCL_INC_PATH) \
 		                  $(TK_INC_PATH)
 endif
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicore.la
 noinst_LTLIBRARIES = libscicore-algo.la
+else
+noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
+endif
+
 
 libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+#-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
 
-libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)  $(JNI_SOURCES)
+libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)
 libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_algo_la_CFLAGS = $(libscicore_la_CFLAGS)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)

@@ -59,12 +59,13 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isDoubleType(pvApiCtx, indexaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -74,6 +75,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -81,10 +83,11 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 
-    lhsid = getXMLObjectId(lhsaddr);
+    lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
     a = XMLObject::getFromId<XMLNodeList>(lhsid);
     if (!a)
     {
@@ -107,6 +110,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iBegin);
             return 0;
         }
 
@@ -121,7 +125,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
         {
             a->setElementAtPosition(index, std::string(retstr));
             freeAllocatedSingleString(retstr);
-            a->createOnStack(Rhs + 1);
+            a->createOnStack(Rhs + 1, pvApiCtx);
             LhsVar(1) = Rhs + 1;
         }
     }

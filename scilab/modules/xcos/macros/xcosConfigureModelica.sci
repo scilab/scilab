@@ -34,13 +34,15 @@ function xcosConfigureModelica()
   
 
   mofile=path+name+'.mo';
-  xmlfile=path+name+'f_init.xml';
+  xmlfile_init=path+name+'f_init.xml';
+  xmlfile_relations=path+name+'f_relations.xml';
   
-  [info,err1]=fileinfo(xmlfile);
-  [info,err2]=fileinfo(mofile);
+  [info,err1]=fileinfo(xmlfile_init);
+  [info,err2]=fileinfo(xmlfile_relations);
+  [info,err3]=fileinfo(mofile);
   
-  if (err1==0 & err2==0) then,   
-    if (newest(xmlfile,mofile)==2) then compile=%t;end;
+  if (err1==0 & err2==0 & err3 == 0) then,   
+    if (newest(xmlfile_init,mofile)==2) then compile=%t;end;
   else 
     compile=%t;
   end
@@ -55,10 +57,11 @@ function xcosConfigureModelica()
     [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m); 
     %Modelica_Init=%f
   end
-  [info,err1]=fileinfo(xmlfile);
+  [info,err1]=fileinfo(xmlfile_init);
+  [info,err2]=fileinfo(xmlfile_relations);
   
-  if err1==0 then 
-    xcosConfigureXmlFile(xmlfile);
+  if err1==0 & err2==0 then 
+    xcosConfigureXmlFile(xmlfile_init, xmlfile_relations);
   end  
 
   // variables needed by compile_init_modelica

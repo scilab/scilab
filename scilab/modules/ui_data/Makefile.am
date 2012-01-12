@@ -28,15 +28,19 @@ libsciui_data_la_etc_DATA = etc/ui_data.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
-					  src/jni/EditVar.cpp
+		      src/jni/EditVar.cpp \
+		      src/jni/FileBrowser.cpp
 
-UI_DATA_C_SOURCES = 
+UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
+                    src/c/PutScilabVariable.c
 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
+UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
-src/jni/EditVar.giws.xml
+src/jni/EditVar.giws.xml \
+src/jni/FileBrowser.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -45,8 +49,11 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
+		      sci_gateway/cpp/sci_browsevar.cpp \
+		      sci_gateway/cpp/sci_filebrowser.cpp \
+			sci_gateway/cpp/sci_updatebrowsevar.cpp
 
 libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -66,7 +73,8 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/commons/src/jni \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/fileio/includes
 
 # Without the ui_data module 
 libsciui_data_disable_la_CFLAGS = -Iincludes/ \
@@ -102,18 +110,29 @@ libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 
 #### ui_data : icons files ####
+#
+# Generated with:
+#    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libsciui_data_la_iconsdir=$(mydatadir)/
-nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
-images/icons/tp01.gif \
-images/icons/tp02.gif \
-images/icons/tp04.gif \
-images/icons/tp05.gif \
-images/icons/tp06.gif \
-images/icons/tp08.gif \
-images/icons/tp10.gif \
-images/icons/tp15.gif \
-images/icons/tp16.gif \
-images/icons/tp17.gif
+nobase_libsciui_data_la_icons_DATA = images/icons/16x16/mimetypes/array_up.png \
+images/icons/16x16/mimetypes/boolean.png \
+images/icons/16x16/mimetypes/cell.png \
+images/icons/16x16/mimetypes/double.png \
+images/icons/16x16/mimetypes/fptr.png \
+images/icons/16x16/mimetypes/function.png \
+images/icons/16x16/mimetypes/handle.png \
+images/icons/16x16/mimetypes/int.png \
+images/icons/16x16/mimetypes/list.png \
+images/icons/16x16/mimetypes/mlist.png \
+images/icons/16x16/mimetypes/noicon.png \
+images/icons/16x16/mimetypes/object.png \
+images/icons/16x16/mimetypes/polynomial.png \
+images/icons/16x16/mimetypes/sparse.png \
+images/icons/16x16/mimetypes/string.png \
+images/icons/16x16/mimetypes/timeseries.png \
+images/icons/16x16/mimetypes/tlist.png \
+images/icons/16x16/mimetypes/uint.png \
+images/icons/16x16/mimetypes/user.png
 
 if GUI
 USEANT=1

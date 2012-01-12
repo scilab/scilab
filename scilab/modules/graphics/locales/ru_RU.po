@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-18 16:34+0000\n"
+"PO-Revision-Date: 2011-12-10 01:48+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -801,7 +801,7 @@ msgstr "Неверный размер свойства «%s»: ожидалос�
 
 #, c-format
 msgid "Wrong value for '%s' property: Smaller values expected.\n"
-msgstr "Неверное значение свойства «%s»:  ожидались меньшее значения.\n"
+msgstr "Неверное значение свойства «%s»:  ожидались меньшие значения.\n"
 
 #, c-format
 msgid ""
@@ -1079,6 +1079,7 @@ msgstr "Нажмите enter, чтобы продолжить..."
 
 msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 msgstr ""
+"polarplot(): Отображены только те квадранты, которые охвачены данными"
 
 msgid "Still a single quadrant..."
 msgstr ""
@@ -1099,7 +1100,7 @@ msgid "Big radii are supported..."
 msgstr "Поддерживаются большие радиусы..."
 
 msgid "even huge radii, with properly formatted labels..."
-msgstr ""
+msgstr "даже огромные радиусы с правильно форматированными подписями..."
 
 msgid "... as well as very tiny radii"
 msgstr "... а также очень маленькие радиусы"
@@ -1109,6 +1110,18 @@ msgstr "Несколько кривых могут быть построены �
 
 msgid "Customize your complex function"
 msgstr "Настройте вашу комплексную функцию"
+
+msgid "datatips on 2D curves"
+msgstr "ярлыки данных на двумерных кривых"
+
+msgid "datatips on 3D curves"
+msgstr "ярлыки данных на трёхмерных кривых"
+
+msgid "2D curves"
+msgstr "двумерные кривые"
+
+msgid "3D curve"
+msgstr "трёхмерные кривые"
 
 msgid "Graphics"
 msgstr "Графика"
@@ -1136,6 +1149,9 @@ msgstr "Комплексные элементарные функции"
 
 msgid "bar histogram"
 msgstr "столбчатая гистограмма"
+
+msgid "Datatips"
+msgstr "Ярлыки данных"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
@@ -1330,10 +1346,6 @@ msgstr "%s: Неверный размер параметра %d: ожидалс�
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался указатель '%s'.\n"
-
 msgid "Delete all datatips"
 msgstr "Удалить все подсказки данных"
 
@@ -1346,26 +1358,39 @@ msgstr "Удалить ближайшую подсказку данных"
 msgid "Delete last datatip"
 msgstr "Удалить последнюю подсказку данных"
 
+msgid "Delete selected datatip"
+msgstr "Удалить выбранный ярлык данных"
+
+msgid "Open curve tip style editor"
+msgstr "Открыть редактор стиля ярлыка кривой"
+
+msgid "Redraw all datatips"
+msgstr "Перерисовать все подсказки данных"
+
 msgid "Edit the curve tip display function"
 msgstr "Изменить функцию отображения подсказок"
 
 msgid "select the curve tip display function"
 msgstr "Выбрать функцию отображения подсказок"
 
-msgid "Redraw all datatips"
-msgstr "Перерисовать все подсказки данных"
+msgid "Enable interpolation"
+msgstr "Включить интерполяцию"
 
 msgid "Disable interpolation"
 msgstr "Выключить интерполяцию"
-
-msgid "Enable interpolation"
-msgstr "Включить интерполяцию"
 
 msgid "Multiple datatips mode"
 msgstr "Режим с несколькими подсказками данных"
 
 msgid "Unique datatip mode"
 msgstr "Режим с одной подсказкой данных"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался указатель '%s'.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: найдено пустое выпадающее меню."
 
 msgid "automatic"
 msgstr "Автоматическое"
@@ -1383,7 +1408,7 @@ msgid "upper right"
 msgstr "Сверху справа"
 
 msgid "Select tip orientation"
-msgstr "Выберете расположение подсказок:"
+msgstr "Выберите расположение подсказок:"
 
 msgid "The selected file cannot be executed"
 msgstr "Не удалось выполнить выбранный файл"
@@ -1391,16 +1416,47 @@ msgstr "Не удалось выполнить выбранный файл"
 msgid "The selected file defines more than one function"
 msgstr "Выбранный файл определяет более чем одну функцию"
 
-msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
-"Не удалось прикрепить точки данных к этой кривой,\n"
-"поле user_data уже используется"
+"%s: Неверный тип входного параметра №%d: ожидался графический дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался массив из %d "
+"элементов.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d(1): оно должно быть между %d и "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d(2): оно должно быть между %d и "
+"%d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
 msgstr "%s: слишком много входных параметров"
+
+msgid ""
+"Datatip manager cannot be enabled, user data figure field is already used"
+msgstr ""
+"Управление ярлыками данных не может быть задействовано, поле "
+"пользовательских данных графического окна уже используется"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
@@ -1408,16 +1464,119 @@ msgstr ""
 "Нажатие левой кнопки мыши - создать подсказку данных; правой кнопки - "
 "открыть контекстное меню."
 
-msgid "Left click on a curve to create a datatip, right opens"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
 msgstr ""
-"Нажатие левой кнопки мыши на кривой - создать подсказку данных; правой "
-"кнопки - открыть"
+"%s: Неверный тип входного аргумента №%d: ожидался массив графического "
+"дескриптора.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: the handles must have the same "
+"parent.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: дескрипторы должны иметь "
+"одного и того же предка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: handle on axes or axes children "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался дескриптор осей или "
+"потомка осей.\n"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr "Выбранная функция должна иметь 3 входных параметра (curve,pt,index)"
 
 msgid "The selected function must have 1 output parameter (str)"
 msgstr "Выбранная функция должна иметь 1 выходной параметр (str)"
+
+#, c-format
+msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+msgstr "%s: Неверный тип для поля user_data кривой: ожидалась структура.\n"
+
+msgid "Square mark, boxed label"
+msgstr "Квадратная метка, подпись в рамке"
+
+msgid "Square mark, simple label"
+msgstr "Квадратная метка, простая подпись"
+
+msgid "Square mark, no label"
+msgstr "Квадратная метка, подписи нет"
+
+msgid "Directional arrow, boxed label"
+msgstr "Указательная стрелка, подпись в рамке"
+
+msgid "Directional arrow, simple label"
+msgstr "Указательная стрелка, простая подпись"
+
+msgid "Directional arrow, no label"
+msgstr "Указательная стрелка,  подписи нет"
+
+msgid "Select tip style"
+msgstr "Выберите стиль ярлыка"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался булевский скаляр.\n"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Инструменты"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&?"
+msgstr "&Справка"
+
+msgid "Datatips style"
+msgstr "Стиль ярлыков данных"
+
+msgid "Marker style:"
+msgstr "Стиль маркера:"
+
+msgid "Square"
+msgstr "Квадрат"
+
+msgid "Arrow"
+msgstr "Стрелка"
+
+msgid "Labeled?"
+msgstr "Подписано?"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Boxed?"
+msgstr "В рамке?"
+
+msgid "Positionning?"
+msgstr "Позиционирование?"
+
+msgid "Knots"
+msgstr "Узлы"
+
+msgid "Interpolated"
+msgstr ""
+
+msgid "Allow multiple datatips?"
+msgstr "Разрешено множество ярлыков данных?"
+
+msgid "Edit label generator"
+msgstr "Править параметры формирования меток"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -1448,6 +1607,12 @@ msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
 
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
+msgstr ""
+"Объектный указатель недоступен, поле пользовательских данных графического "
+"окна уже используется"
+
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 "Нажатие левой кнопки мыши на графическом объекте - открыть окно его свойств"
@@ -1464,18 +1629,6 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Инструменты"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&?"
-msgstr "&Справка"
 
 msgid "Ok"
 msgstr "ОК"
@@ -1558,17 +1711,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
-msgstr "%s: '%s' невозможно использовать с '%s'.\n"
+msgstr "%s: '%s' нельзя использовать с '%s'.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался дескриптор «Axes».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался графический дескриптор.\n"
 
 #, c-format
 msgid ""
@@ -1630,7 +1778,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
-"%s: Неверны тип входного параметра «%s»: ожидалась матрица вещественных "
+"%s: Неверный тип входного параметра «%s»: ожидалась матрица вещественных "
 "чисел.\n"
 
 #, c-format

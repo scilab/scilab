@@ -25,8 +25,13 @@ libsciboolean_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciboolean.la
 noinst_LTLIBRARIES = libsciboolean-algo.la
+else
+noinst_LTLIBRARIES = libsciboolean-algo.la libsciboolean.la
+endif
+
 
 libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

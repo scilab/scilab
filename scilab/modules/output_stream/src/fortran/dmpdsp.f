@@ -1,5 +1,5 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) ????-2008 - INRIA
+c Copyright (C) ????-2011 - INRIA - Serge Steer
 c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -51,6 +51,7 @@ c!
       logical first
       character var*(*),cw*(*),sgn*1,dl*1
       character*10 fexp,expo
+      double precision dlamch
 c
       m=abs(mm)
       n=abs(nn)
@@ -95,13 +96,22 @@ c     traitement du polynome (l,k)
                first=.false.
 c     determination du format devant representer a
                typ=1
-               if(mode.eq.1) call fmt(a,maxc,typ,n1,n2)
+               if(mode.eq.1) then
+                  call fmt(a,maxc,typ,n1,n2)
+               else
+                  if (isanan(a).eq.1) then
+                     typ=-2
+                  elseif (a.gt.dlamch('o')) then
+                     typ=-1
+                  endif
+               endif
+
                if(typ.eq.2) then
                   fl=n1
                   iw(ldef)=n2+32*n1
                elseif(typ.lt.0) then
                   iw(ldef)=typ
-                  fl=3
+                  fl=4
                else
                   iw(ldef)=1
                   fl=maxc

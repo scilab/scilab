@@ -31,7 +31,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_print(char * fname, unsigned long fname_len)
+int sci_print(char * fname, void* pvApiCtx)
 {
     XMLObject * obj;
     int id;
@@ -44,10 +44,11 @@ int sci_print(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
@@ -63,36 +64,36 @@ int sci_print(char * fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLDoc_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLNs_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLList_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLAttr_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLSet_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLValid_p(char *fname, unsigned long fname_len)
 {
-    return sci_print(fname, fname_len);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

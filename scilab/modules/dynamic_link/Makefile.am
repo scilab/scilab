@@ -33,8 +33,13 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(srcdir)/includes/
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidynamic_link.la
 noinst_LTLIBRARIES = libscidynamic_link-algo.la
+else
+noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
+endif
+
 
 
 libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

@@ -196,11 +196,6 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_MAP2SCI}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="maple2scilab" activate="yes"/>'; i := i + 1;
-            end;
-
         if IsComponentSelected( ExpandConstant('{#COMPN_M2SCI}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
@@ -214,11 +209,6 @@ function CreateModulesFile: Boolean;
         if IsComponentSelected( ExpandConstant('{#COMPN_TCLSCI}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
-            end;
-
-        if IsComponentSelected( ExpandConstant('{#COMPN_TEXMACS}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="texmacs" activate="yes"/>'; i := i + 1;
             end;
 
         if IsComponentSelected( ExpandConstant('{#COMPN_SOUND}') ) then
@@ -314,6 +304,11 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
             end;
 #endif
+        if (IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') )) then
+            begin
+                ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
+            end;
+
 
         ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 

@@ -206,8 +206,12 @@ if test "$with_intelcompilers" = yes; then
 fi
 
 if test -z "$F77"; then
-## No Frotran compiler specified... We rely on Autoconf to find the best
-   AC_PROG_F77
+## No Fortran compiler specified... Prefer gfortran and intel compilers
+   AC_PROG_F77([gfortran ifc ifort])
+   if test -z "$F77"; then
+        # Best effort to find a compiler (might be g77)
+	AC_PROG_F77
+   fi
 fi
 
 
@@ -498,7 +502,7 @@ case "$CXX" in
    fi
 
    if test "$enable_debug_CXX" = yes; then
-      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
+      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3 -Wunsafe-loop-optimizations"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -536,7 +540,7 @@ case "$CC" in
    fi
 
    if test "$enable_debug_C" = yes; then
-      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
+      CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
       # used to be -O
       # -D_FORTIFY_SOURCE=2
       case "$host" in
@@ -597,7 +601,10 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-case "$F77" in
+    CFLAGS="$CFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    CXXFLAGS="$CXXFLAGS -no_compact_linkedit -mmacosx-version-min=10.5"
+    FFLAGS="$FFLAGS -mmacosx-version-min=10.5"
+    case "$F77" in
          gfortran-*|gfortran)
              # Extract from gfortran -v the version it has been built for
                MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
@@ -839,7 +846,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
@@ -858,7 +865,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[0.5.2],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.0],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -938,14 +945,19 @@ the the JNI libraries."])],
                 AC_SUBST(JHALL)
 
                 # Console API
-                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 JROSETTA_API=$PACKAGE_JAR_FILE
+		if test -z "$JROSETTA_API"; then
+	                AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+        	        JROSETTA_API=$PACKAGE_JAR_FILE
+		fi
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
                 AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
                 JROSETTA_ENGINE=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_ENGINE)
+                AC_JAVA_CHECK_VERSION_PACKAGE([jrosetta-engine],[import com.artenum.rosetta.util.ConfigurationBuilder;],$JROSETTA_ENGINE,[1.0.4],[ConfigurationBuilder.getVersion()])
 
 
                 # MathML rendering solution
@@ -1038,6 +1050,11 @@ the the JNI libraries."])],
         TESTNG=$PACKAGE_JAR_FILE
         AC_SUBST(TESTNG)
 
+        # JCommander - dependency of TestNG >= 6
+        AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
+        JCOMMANDER=$PACKAGE_JAR_FILE
+        AC_SUBST(JCOMMANDER)
+
         # Qdox (parses declarations and Javadoc) - dependency of TestNG
         AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
         QDOX=$PACKAGE_JAR_FILE
@@ -1083,7 +1100,7 @@ the the JNI libraries."])],
     # Giws is the equivalent of Swig developped by the Scilab team
     # in order to provide a wrapper to Java from C/C++
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
-        AC_GIWS()
+        AC_GIWS([1.3.0])
     fi
 fi
 
@@ -1413,6 +1430,17 @@ ACX_LAPACK(
         AC_MSG_ERROR([Impossible to find the LAPACK library.])
         )
 
+AC_MSG_CHECKING([if ARPACK-ng is available])
+echo ""
+ACX_ARPACK(
+        [AC_MSG_RESULT([arpack library found])],
+        AC_MSG_ERROR([Impossible to find the ARPACK library. Please note that arpack was bundled with version prior to 5.4.0 and Scilab requires arpack-ng ( http://forge.scilab.org/index.php/p/arpack-ng/ ).])
+        )
+
+CHECK_ARPACK_OK(
+[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)à])],
+[AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
+])
 #################
 ## UMFPACK
 #################
@@ -1673,6 +1701,17 @@ AC_BACKTRACE()
 ##########
 AC_PATH_PROG(SPLINT, splint, no)
 
+##########
+##### Detect ccache and use it by default if available
+##########
+
+AC_PATH_PROG(CCACHE, ccache)
+
+if test x"$CCACHE" != x; then
+  CC="ccache $CC"
+  CXX="ccache $CXX"
+fi
+
 #######################
 ###### Creation of the header file (machine.h)
 #######################
@@ -1719,6 +1758,8 @@ libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
+desktop/images/icons/Makefile
+desktop/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
@@ -1759,6 +1800,8 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/prebuildjava/Makefile
+modules/libscilab-cli/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
 modules/types/Makefile
@@ -1771,10 +1814,8 @@ modules/functions/Makefile
 modules/dynamic_link/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
-modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
-modules/texmacs/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1988,7 +2029,7 @@ echo "  BLAS LIBS ............. = $BLAS_LIBS"
 echo "  BLAS TYPE ............. = $BLAS_TYPE"
 echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
-
+echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
 
 #if test "$with_mpi" = yes; then

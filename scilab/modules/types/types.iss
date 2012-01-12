@@ -17,6 +17,8 @@
 ;
 #define TYPES "types"
 ;
+Source: bin\sci{#TYPES}.dll; DestDir: {app}\bin; Components:  {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;
 Source: modules\{#TYPES}\jar\org.scilab.modules.{#TYPES}.jar;DestDir: {app}\modules\{#TYPES}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#TYPES}\license.txt; DestDir: {app}\modules\{#TYPES}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

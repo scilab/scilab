@@ -24,7 +24,7 @@
     <title>Description</title>
     <para>The Surface entity is a leaf of the graphics entities hierarchy. Two
     classes appears under this type of entity : <literal>Plot3d</literal> and
-    <literal>Fac3d</literal> according to the ploting function or the way data is
+    <literal>Fac3d</literal> according to the plotting function or the way data is
     entered. <literal>Fac3d</literal> and <literal>Plo3d</literal> entities are similar
     but <literal>Fac3d</literal> is more complete and accept more options than
     <literal>Plot3d</literal>. To always have <literal>Fac3d</literal> entities, simply
@@ -104,13 +104,13 @@
           depending on the <literal>mark_style</literal> and the
           <literal>mark_foreground</literal> and
           <literal>mark_background</literal> properties.</para>
-	<para>
-	  <inlinemediaobject>
-	    <imageobject>
-	      <imagedata fileref="../../images/marks.svg"/>
-	    </imageobject>
-	  </inlinemediaobject>
-	</para>
+          <para>
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="../../images/marks.svg"/>
+              </imageobject>
+            </inlinemediaobject>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -321,7 +321,7 @@
         single value for each vertex. <literal>cdata_mapping</literal> determines
         wether those indices are scaled to map linearly into the current
         colormap (<literal>'scaled'</literal> mode) or point directly into this
-        colormap (<literal>'direct</literal>' mode). This property is usefull when
+        colormap (<literal>'direct</literal>' mode). This property is useful when
         <literal>color_flag</literal> equals <literal>2</literal>,<literal>3</literal> or
         <literal>4</literal>.</para>
         </listitem>
@@ -418,7 +418,7 @@ e.color_flag= 3; // interpolated shading mode (based on blue default color becau
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

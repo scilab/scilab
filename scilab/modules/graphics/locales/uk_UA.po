@@ -2,19 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-05 04:39+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2011-10-17 18:01+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: uk\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1196,6 +1196,18 @@ msgstr "Можна поєднувати на одному кресленні д�
 msgid "Customize your complex function"
 msgstr "Налаштування вашої комплексної функції"
 
+msgid "datatips on 2D curves"
+msgstr "позначки даних на плоских кривих"
+
+msgid "datatips on 3D curves"
+msgstr "позначки даних на просторових кривих"
+
+msgid "2D curves"
+msgstr "Плоскі криві"
+
+msgid "3D curve"
+msgstr "Просторова крива"
+
 msgid "Graphics"
 msgstr "Графіка"
 
@@ -1222,6 +1234,9 @@ msgstr "Комплексні елементарні функції"
 
 msgid "bar histogram"
 msgstr "стовпчаста діаграма"
+
+msgid "Datatips"
+msgstr "Позначки даних"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
@@ -1432,19 +1447,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr "%s: помилкова розмірність параметра %d: мало бути %d.\n"
+msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
 "%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано дескриптор "
-"«%s».\n"
 
 msgid "Delete all datatips"
 msgstr "Вилучити всі позначки даних"
@@ -1458,26 +1467,41 @@ msgstr "Вилучити найближчу позначку даних"
 msgid "Delete last datatip"
 msgstr "Вилучити останню позначку даних"
 
+msgid "Delete selected datatip"
+msgstr "Вилучити позначену позначку даних"
+
+msgid "Open curve tip style editor"
+msgstr "Відкрити редактор стилів позначок кривих"
+
+msgid "Redraw all datatips"
+msgstr "Оновити всі позначки даних"
+
 msgid "Edit the curve tip display function"
 msgstr "Змінити функцію показу позначок на кривій"
 
 msgid "select the curve tip display function"
 msgstr "вибір функції показу поначок на кривій"
 
-msgid "Redraw all datatips"
-msgstr "Оновити всі позначки даних"
+msgid "Enable interpolation"
+msgstr "Увімкнути інтерполяцію"
 
 msgid "Disable interpolation"
 msgstr "Вимкнути інтерполяцію"
-
-msgid "Enable interpolation"
-msgstr "Увімкнути інтерполяцію"
 
 msgid "Multiple datatips mode"
 msgstr "Режим декільокх позначок даних"
 
 msgid "Unique datatip mode"
 msgstr "Режим єдиної системи позначок даних"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано дескриптор "
+"«%s».\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
 
 msgid "automatic"
 msgstr "автоматично"
@@ -1503,16 +1527,48 @@ msgstr "Вказаний файл неможливо виконати"
 msgid "The selected file defines more than one function"
 msgstr "У вказаному файлі визначено декілька функцій"
 
-msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
-"Не можна долучити позначки даних до цієї кривої,\n"
-"поле user_data вже використано"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
+"дійсних значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
+"з %d елементами.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d(1): слід використовувати "
+"значення між %d та %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d(2): слід використовувати "
+"значення між %d та %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
 msgstr "%s: занадто багато вхідних параметрів"
+
+msgid ""
+"Datatip manager cannot be enabled, user data figure field is already used"
+msgstr ""
+"Вмикання керування позначками даних неможливе, поле даних користувача "
+"рисунка вже використано"
 
 msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
@@ -1520,16 +1576,124 @@ msgstr ""
 "Клацання лівою кнопкою миші на кривій створить позначку даних, клацання "
 "правою — відкриє контекстне меню."
 
-msgid "Left click on a curve to create a datatip, right opens"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
 msgstr ""
-"Клацання лівою на кривій створить позначку даних, правою — відкриє вікно "
-"властивостей"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив з "
+"елементів керування графічним об’єктом.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: the handles must have the same "
+"parent.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: елементи керування повинні "
+"мати один батьківський елемент.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: handle on axes or axes children "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування на вісі або дочірній елемент осей.\n"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr "Вказана функція повинна мати три вихідних параметри (curve,pt,index)"
 
 msgid "The selected function must have 1 output parameter (str)"
 msgstr "Вказана функція повинна мати один вихідний параметр (str)"
+
+#, c-format
+msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+msgstr ""
+"%s: помилковий тип поля кривої user_data: слід використовувати тип "
+"«struct».\n"
+
+msgid "Square mark, boxed label"
+msgstr "Квадратна позначка, мітка у рамці"
+
+msgid "Square mark, simple label"
+msgstr "Квадратна позначка, проста мітка"
+
+msgid "Square mark, no label"
+msgstr "Квадратна позначка, без мітки"
+
+msgid "Directional arrow, boxed label"
+msgstr "Спрямована стрілка, мітка у рамці"
+
+msgid "Directional arrow, simple label"
+msgstr "Спрямована стрілка, проста мітка"
+
+msgid "Directional arrow, no label"
+msgstr "Спрямована стрілка, без мітки"
+
+msgid "Select tip style"
+msgstr "Виберіть тип позначки"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати числове "
+"значення типу «boolean».\n"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Інструменти"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "Datatips style"
+msgstr "Стиль позначок даних"
+
+msgid "Marker style:"
+msgstr "Стиль позначки:"
+
+msgid "Square"
+msgstr "Квадрат"
+
+msgid "Arrow"
+msgstr "Стрілка"
+
+msgid "Labeled?"
+msgstr "З міткою?"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "Boxed?"
+msgstr "У рамці?"
+
+msgid "Positionning?"
+msgstr "Розташування?"
+
+msgid "Knots"
+msgstr "Вузли"
+
+msgid "Interpolated"
+msgstr "Інтерполяція"
+
+msgid "Allow multiple datatips?"
+msgstr "Дозволити декілька позначок даних?"
+
+msgid "Edit label generator"
+msgstr "Змінити параметри створення міток"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -1563,6 +1727,12 @@ msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
 
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
+msgstr ""
+"Вмикання визначення значень неможливе, поле даних користувача рисунка вже "
+"використано"
+
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 "Клацніть лівою кнопкою миші на пункті графіка, щоб відкрити редактор "
@@ -1581,18 +1751,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&?"
-msgstr "&Довідка"
 
 msgid "Ok"
 msgstr "Гаразд"
@@ -1681,12 +1839,6 @@ msgstr "%s: «%s» не можна використовувати разом з 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr "%s: вхідний параметр №%d має бути елементом керування на осі.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
-"керування графічним об’єктом.\n"
 
 #, c-format
 msgid ""

@@ -7,21 +7,23 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 function datatipSetDisplay(curve_handle,fun)
 //Changes the datatips visualisation function for a given curve
   if argn(2)<1 then
-    error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipSetDisplay",1))
+    error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),...
+                   "datatipSetDisplay",1))
   end
-
-  ud=datatipGetStruct(curve_handle)
-  if typeof(ud)<>'datatips' then;
+  if type(curve_handle)<>9|size(curve_handle,'*')<>1|curve_handle.type<>"Polyline" then
+    error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipSetDisplay",1,"Polyline"))
+  end
+  ds=datatipGetStruct(curve_handle)
+  if  typeof(ds)<>'datatips' then;
     if ~datatipInitStruct(curve_handle) then return,end
-    ud=datatipGetStruct(curve_handle)
+    ds=datatipGetStruct(curve_handle)
   end
   if argn(2)==1 then
     // function definition is queried
-    txt=fun2string(ud.formatfunction,'fun')
+    txt=fun2string(ds.formatfunction,'fun')
     while %t then
       txt=x_dialog('Function Editor',txt)
       if txt==[] then ok=%f,break,end
@@ -32,14 +34,15 @@ function datatipSetDisplay(curve_handle,fun)
     if ~ok then return,end
   end
   if ~datatipCheckFunction(fun) then return,end
-  ud.formatfunction=fun
-  datatipSetStruct(curve_handle,ud)
-  for k=1:size(ud.tips,'*')
-    tip_handle=ud.tips(k)
-    point_handle=tip_handle.children(1)
-    string_handle=tip_handle.children(2)
+  ds.formatfunction=fun
+  datatipSetStruct(curve_handle,ds)
+  for k=1:size(ds.tips.children,'*')
+    tip_handle=ds.tips.children(k)
+    point_handle=tip_handle.children(1);
+    string_handle=tip_handle.children(2);
     tip_index=point_handle.user_data(2)
-    string_handle.text=fun(curve_handle,point_handle.data)
+    string_handle.text=fun(curve_handle,point_handle.data,tip_index)
+    datatipSetTipStyle(tip_handle,ds.style)
   end
 
 endfunction

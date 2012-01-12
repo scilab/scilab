@@ -249,6 +249,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -258,6 +259,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -322,6 +324,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -560,7 +563,8 @@ libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/fileio/src/c/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/ui_data/includes/
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 
 
 # Includes need for the compilation
@@ -580,7 +584,8 @@ libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/fileio/src/c/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/ $(am__append_5)
+	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes $(am__append_5)
 
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole-disable.la $(am__append_6)

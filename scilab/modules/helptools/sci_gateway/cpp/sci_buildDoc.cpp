@@ -80,6 +80,7 @@ extern "C"
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -112,6 +113,7 @@ extern "C"
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
                 return 0;
             }
 
@@ -153,6 +155,7 @@ extern "C"
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 0;
             }
             if(!isStringType(pvApiCtx, piAddr))
@@ -180,6 +183,7 @@ extern "C"
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
             if(!isStringType(pvApiCtx, piAddr))

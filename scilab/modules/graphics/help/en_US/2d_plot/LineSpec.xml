@@ -21,7 +21,7 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very usefull to quickly specify such basic line properties.</para>
+    <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very useful to quickly specify such basic line properties.</para>
     <para>To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</para>
     <para>Here is a complete list of the <literal>LineSpec</literal> types you can
     specify (using <link linkend="plot">plot</link>).</para>
@@ -320,7 +320,7 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="GlobalProperty">GlobalProperty</link>

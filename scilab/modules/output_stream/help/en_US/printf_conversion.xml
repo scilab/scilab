@@ -16,13 +16,13 @@
   </info>
   <refnamediv>
     <refname>printf_conversion</refname>
-    <refpurpose>printf, sprintf, fprintf conversion
+    <refpurpose>mprintf, msprintf, mfprintf conversion
     specifications</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Each conversion specification in the <literal>printf</literal> ,
-    <literal>sprintf</literal> , <literal>fprintf</literal>
+    <para>Each conversion specification in the <literal>mprintf</literal> ,
+    <literal>msprintf</literal> , <literal>fprintf</literal>
     <literal>format</literal> parameter has the following syntax:</para>
     <itemizedlist>
       <listitem>
@@ -240,11 +240,11 @@
     field is expanded to contain the converted result.</para>
     <para>The representation of the plus sign depends on whether the
     <literal>+</literal> or (space) formatting option is specified.</para>
-    <para>display of exponential form %e is platform dependant with a different number of digits in exponent.</para>
+    <para>display of exponential form %e is platform dependent with a different number of digits in exponent.</para>
     <informaltable border="1">
       <tr>
         <td>Platform</td>
-        <td>Example: sprintf("%e",1.23e4)</td>
+        <td>Example: msprintf("%e",1.23e4)</td>
       </tr>
       <tr>
         <td>Windows</td>
@@ -259,36 +259,36 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-printf('a string: %s\n', 'Scilab');
-printf('an integer: %d\n', 10);
-printf('an integer: %4d\n', 10);
-printf('a left justified integer: %-4d\n', 10);
-printf('an integer converted to float: %#fd\n',10);
-printf('an integer with a sign: %+4d\n', 10);
-printf('an integer with a sign: %+4d\n', -10);
-printf('an integer padded with zeros: %04d\n', 10);
-printf('an unsigned integer: %u\n', 10);
-printf('an unsigned integer: %4u\n', -10);
-printf('an integer converted to hexadecimal: %x\n', 10);
-printf('a float: %d\n', %pi);
-printf('a float: %3.2d\n', %pi);
-printf('a float (exponential form): %3.2e\n', %pi);
-printf('a float (exponential form): %3.2g\n', %pi);
-printf('a character: %c\n', 'a');
-printf('a character: %c\n', 'aaa');
+mprintf('a string: %s\n', 'Scilab');
+mprintf('an integer: %d\n', 10);
+mprintf('an integer: %4d\n', 10);
+mprintf('a left justified integer: %-4d\n', 10);
+mprintf('an integer converted to float: %#fd\n',10);
+mprintf('an integer with a sign: %+4d\n', 10);
+mprintf('an integer with a sign: %+4d\n', -10);
+mprintf('an integer padded with zeros: %04d\n', 10);
+mprintf('an unsigned integer: %u\n', 10);
+mprintf('an unsigned integer: %4u\n', -10);
+mprintf('an integer converted to hexadecimal: %x\n', 10);
+mprintf('a float: %d\n', %pi);
+mprintf('a float: %3.2d\n', %pi);
+mprintf('a float (exponential form): %3.2e\n', %pi);
+mprintf('a float (exponential form): %3.2g\n', %pi);
+mprintf('a character: %c\n', 'a');
+mprintf('a character: %c\n', 'aaa');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
         <link linkend="fprintf">fprintf</link>
       </member>
       <member>
-        <link linkend="sprintf">sprintf</link>
+        <link linkend="msprintf">msprintf</link>
       </member>
     </simplelist>
   </refsection>

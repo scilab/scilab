@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-23 19:43+0000\n"
+"PO-Revision-Date: 2011-10-04 16:18+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -58,7 +58,7 @@ msgid "Open"
 msgstr "Otevřít"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Otevřít nedávné"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Pracovní adresáře;Přidat adresář;Odstranit poslední adresář"
@@ -193,7 +193,7 @@ msgid "Code Navigator"
 msgstr "Navigátor Kódu"
 
 msgid "Format"
-msgstr ""
+msgstr "Formát"
 
 msgid "Set Colors ..."
 msgstr "Nastavit barvy ..."
@@ -232,7 +232,7 @@ msgid "Uncomment Selection"
 msgstr "Odkomentovat Výběr"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Změnit velikost"
 
 msgid "Make Selection Lowercase"
 msgstr "Změnit výběr na malá písmena"
@@ -260,13 +260,13 @@ msgid "Line Endings"
 msgstr "Konce řádků"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Auto dokončení na"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, funkce, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Číslování řádků;Vypnuto;Normální;Kompatibilní s Whereami"
@@ -891,12 +891,3 @@ msgstr "Zvolte základní adresář hledání"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
-
-#~ msgid "Auto-completion on if, function, ..."
-#~ msgstr "Auto-dokončení u if, funkce, ..."
-
-#~ msgid "Auto-completion on (, [, ..."
-#~ msgstr "Auto-dokončení u (, [, ..."
-
-#~ msgid "Preferences"
-#~ msgstr "Předvolby"

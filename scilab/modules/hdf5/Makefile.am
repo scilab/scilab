@@ -30,7 +30,7 @@ src/jni/jhdf5load.cpp
 else
 
 # This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = 
+FORCE_LOAD_SOURCES =
 endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
@@ -94,17 +94,18 @@ libscihdf5_la_CFLAGS=		-I$(srcdir)/includes/ \
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
-
 pkglib_LTLIBRARIES = libscihdf5.la
+noinst_LTLIBRARIES =
+
 if HDF5
-noinst_LTLIBRARIES = libscihdf5-algo.la
+noinst_LTLIBRARIES += libscihdf5-algo.la
 endif
 
 if HDF5
 # When Scilab is built with HDF5, we need some libraries for a workaround
 
 if NEED_JAVA
-pkglib_LTLIBRARIES += libscihdf5-forceload.la
+noinst_LTLIBRARIES += libscihdf5-forceload.la
 endif
 
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
@@ -113,7 +114,7 @@ endif
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
+libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
@@ -124,8 +125,8 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 # pb of order
 if HDF5
 libscihdf5_la_LIBADD = libscihdf5-algo.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+				$(top_builddir)/libs/MALLOC/libscimalloc.la
+
 else
 libscihdf5_la_LIBADD =
 endif
@@ -136,7 +137,7 @@ modulename=hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA =  license.txt 
+libscihdf5_la_root_DATA =  license.txt
 
 
 #### hdf5 : init scripts ####

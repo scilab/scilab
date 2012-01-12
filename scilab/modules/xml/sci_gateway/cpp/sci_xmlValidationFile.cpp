@@ -34,7 +34,7 @@ using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
 template <class T>
-int sci_xmlValidationFile(char * fname, unsigned long fname_len)
+int sci_xmlValidationFile(char * fname, void* pvApiCtx)
 {
     T * validation = 0;
     SciErr err;
@@ -49,12 +49,13 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
     getAllocatedSingleString(pvApiCtx, addr, &path);
@@ -69,7 +70,7 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!validation->createOnStack(Rhs + 1))
+    if (!validation->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }
@@ -81,16 +82,16 @@ int sci_xmlValidationFile(char * fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_xmlDTD(char * fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationDTD>(fname, fname_len);
+    return sci_xmlValidationFile<XMLValidationDTD>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_xmlRelaxNG(char * fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationRelaxNG>(fname, fname_len);
+    return sci_xmlValidationFile<XMLValidationRelaxNG>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_xmlSchema(char * fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationSchema>(fname, fname_len);
+    return sci_xmlValidationFile<XMLValidationSchema>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

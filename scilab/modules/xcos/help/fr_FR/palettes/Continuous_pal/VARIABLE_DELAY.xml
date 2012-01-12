@@ -67,7 +67,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Example_VARIABLE_DELAY">VARIABLE_DELAY : Exemple</xref>
+              <xref linkend="Example_VARIABLE_DELAY">Exemple</xref>
             </para>
           </listitem>
           <listitem>
@@ -195,22 +195,25 @@ e est
     </itemizedlist>
   </refsection>
   <refsection id="Example_VARIABLE_DELAY">
-    <title>VARIABLE_DELAY Example</title>
+    <title>Exemple</title>
     <para>Dans cet exemple, le temps de retard maximum dans le dialogue des Paramètres de Bloc
     est mis à 4. Le signal d'entrée est une onde sinusoïdale d'amplitude 1 et de fréquence 0,2 Hz.</para>
     <para>Le bloc constant est initialisé à 2 pour introduire un délai de 2 secondes. Les formes d'ondes en entrée et
     en sortie du bloc VARIABLE_DELAY sont montrées ci-dessous :</para>
     <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_diagram_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_plot_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_diagram_fr_FR.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+      <para/>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/continuous_pal/fr_FR/variable_delay_plot_fr_FR.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_VARIABLE_DELAY">
     <title>Fonction d'interfaçage</title>

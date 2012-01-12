@@ -19,8 +19,12 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>y=size(x [,sel])
-[nr,nc]=size(x)</synopsis>
+    <synopsis>
+sz = size(x)
+[n1, n2] = size(x)
+[n1, n2, n3, ...] = size(x)
+n = size(x, sel)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -31,17 +35,16 @@
         <term>x</term>
 
         <listitem>
-          <para>matrice, liste ou liste de type
-          <literal>syslin</literal></para>
+          <para>Un tableau 2D ou nD de tout type ou une liste</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>y</term>
+        <term>sz</term>
 
         <listitem>
-          <para>un entier ou un vecteur d'entiers <literal> 1x2
-          </literal></para>
+          <para>un vecteur <literal>1</literal> par <link
+          linkend="ndims">ndims(x)</link> à éléments entiers entier</para>
         </listitem>
       </varlistentry>
 
@@ -49,15 +52,24 @@
         <term>sel</term>
 
         <listitem>
-          <para>un entier ou une chaîne de caractères</para>
+          <para>un scalaire positif à valeur entière ou l'une chaîne de
+          caractères: 'r', 'c' ou '*'</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>nr,nc</term>
+        <term>n1,n2,...</term>
 
         <listitem>
-          <para>deux entiers</para>
+          <para>des nombres à valeurs entières</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>un nombre à valeur entière</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -72,40 +84,57 @@
 
         <listitem>
           <para>une matrice (constante, polynomiale, de chaînes de caractères,
-          booléenne, rationnelle) <literal>x</literal>, avec un seul argument
-          en sortie, <literal>size</literal> renvoie un vecteur
-          <literal>1</literal>x<literal>2</literal> [nombre de lignes, nombre
-          de colonnes]. Appelée avec deux arguments en sortie, size renvoie
-          <literal>nr,nc</literal> = [nombre de lignes, nombre de colonnes].
-          <literal>sel</literal> peut être utilisé pour indiquer la dimension
-          désirée</para>
+          booléenne, rationnelle)</para>
 
-          <variablelist>
-            <varlistentry>
-              <term>1 ou 'r'</term>
+          <itemizedlist>
+            <listitem>
+               
 
-              <listitem>
-                <para>pour obtenir le nombre de lignes</para>
-              </listitem>
-            </varlistentry>
+              <literal>sz = size(x)</literal>
 
-            <varlistentry>
-              <term>2 ou 'c'</term>
+               retourne un vecteur 
 
-              <listitem>
-                <para>pour obtenir le nombre de colonnes</para>
-              </listitem>
-            </varlistentry>
+              <literal>1</literal>
 
-            <varlistentry>
-              <term>'*'</term>
+               par 
 
-              <listitem>
-                <para>pour obtenir le produit du nombre de lignes et de
-                colonnes</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
+              <literal>ndims(x)</literal>
+
+              . Chaque élément donne la valeur de la dimension correspondante. 
+            </listitem>
+
+            <listitem>
+               
+
+              <literal>[n1, n2, ...] = size(x)</literal>
+
+              , la fonction retourne dans chaque argument la valeur de la dimension correspondante. 
+            </listitem>
+
+            <listitem>
+               La syntaxe 
+
+              <literal>n = size(x, sel)</literal>
+
+               peut-être utilisée pour préciser quelle est la dimension demandée 
+
+              <itemizedlist mark="dash">
+                <listitem>Assigner 1 ou 'r' à <literal>sel</literal> pour
+                obtenir le nombre de lignes</listitem>
+
+                <listitem>Assigner 2 ou 'c' à <literal>sel</literal> pour
+                obtenir le nombre de colonnes</listitem>
+
+                <listitem>Assigner m à <literal>sel</literal> pour obtenir la
+                valeur de la m ième dimension</listitem>
+
+                <listitem>Assigner '*' à <literal>sel</literal> pour obtenir
+                le produit des dimensions</listitem>
+              </itemizedlist>
+
+               
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -114,7 +143,7 @@
 
         <listitem>
           <para>une liste, size en renvoie le nombre d'éléments. Dans ce cas
-          seule la syntaxe <literal>y=size(x)</literal> peut être
+          seule la syntaxe <literal>y = size(x)</literal> peut être
           utilisée.</para>
         </listitem>
       </varlistentry>
@@ -123,30 +152,17 @@
         <term>Appliquée à :</term>
 
         <listitem>
-          <para>un système dynamique linéaire, <literal>y=size(x)</literal>
+          <para>un système dynamique linéaire, <literal>y = size(x)</literal>
           renvoie le vecteur ligne <literal>y</literal> = [nombre de sorties,
           nombre d'entrées] c'est à dire les dimensions de la matrice de
-          transfert correspondante. La syntaxe
-          <literal>[nr,nc]=size(x)</literal> est aussi valide (avec
-          <literal>(nr,nc)=(y(1),y(2)</literal>). Si <literal>x</literal> est
-          un système dynamique linéaire donnée par sa représentation d'état,
-          alors <literal> [nr,nc,nx]=size(x) </literal> renvoie de plus
+          transfert correspondante. La syntaxe <literal>[nr, nc] =
+          size(x)</literal> est aussi valide (avec <literal>(nr, nc) =
+          (y(1),y(2))</literal>. Si <literal>x</literal> est un système
+          dynamique linéaire donnée par sa représentation d'état, alors
+          <literal> [nr, nc, nx] = size(x) </literal> renvoie de plus
           <literal>nx</literal> la dimension de la matrice
           <literal>A</literal> de <literal>x</literal> (la dimension de
           l'état).</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>Appliquée à :</term>
-
-        <listitem>
-          <para>une hypermatrice, <literal> y=size(x) </literal> renvoie le
-          vecteur de ses dimensions. La syntaxe <literal>
-          [n1,n2,...nn]=size(x) </literal> est aussi acceptée. <literal>
-          ni=size(x,i) </literal> renvoie la ième dimension et
-          <literal>size(x,'*') </literal> renvoie le produit des
-          dimensions.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -155,27 +171,30 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"><![CDATA[ 
-[n,m]=size(rand(3,2))
-[n,m]=size(['a','b';'c','d'])
-x=ssrand(3,2,4);[ny,nu]=size(x)
-[ny,nu]=size(ss2tf(x))
-[ny,nu,nx]=size(x)
+    <programlisting role="example">[n, m] = size(rand(3, 2))
+[n, m] = size(['a', 'b'; 'c', 'd'])
+
+x = ssrand(3,2,4);
+[ny, nu] = size(x)
+[ny, nu] = size(ss2tf(x))
+[ny, nu, nx] = size(x)
 
 // Renvoie le nombre de ligne
-n=size(rand(3,2),"r")
+n = size(rand(3, 2), "r")
 // Renvoie le nombre de colonnes
-m=size(rand(3,2),"c")
+m = size(rand(3, 2), "c")
 // Renvoie le produit des dimensions
-nm=size(rand(3,2),"*")
- ]]></programlisting>
+nm = size(rand(3, 2), "*")
+ </programlisting>
   </refsection>
 
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="length">length</link></member>
+
+      <member><link linkend="ndims">ndims</link></member>
 
       <member><link linkend="syslin">syslin</link></member>
     </simplelist>

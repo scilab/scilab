@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 13:25+0000\n"
+"PO-Revision-Date: 2011-10-23 14:44+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1036,6 +1036,16 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "Scilabバージョン情報."
 
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+"使用可能なコンソールがありません!\n"
+"STDモードを使用してください."
+
+msgid "Empty tab"
+msgstr "空のタブ"
+
 msgid "Scilab Console"
 msgstr "Scilabコンソール"
 
@@ -1193,7 +1203,7 @@ msgstr "ユーザー変数:"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "%s個の要素を使用 (全体: %s)"
 
 msgid " by "
 msgstr " by "
@@ -1209,12 +1219,3 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr "%s: 入力引数 #%d に誤りがあります: Scilabスクリプトファイルのパスを指定してください.\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "%s 個の要素メモリを使用中 (全体: %s)"

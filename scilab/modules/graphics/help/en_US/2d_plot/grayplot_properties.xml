@@ -133,7 +133,7 @@ h=a.children
 
 h.data_mapping="direct";
    
-// A 2D ploting of a matrix using colors 
+// A 2D plotting of a matrix using colors 
 clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
@@ -149,7 +149,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

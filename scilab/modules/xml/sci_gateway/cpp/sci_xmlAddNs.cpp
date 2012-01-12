@@ -46,16 +46,17 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLElem(addr))
+    if (!isXMLElem(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
 
-    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr));
+    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
         Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
@@ -68,16 +69,17 @@ int sci_xmlAddNs(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
             return 0;
         }
 
-        if (!isXMLNs(addr))
+        if (!isXMLNs(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, i, "XMLNs");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, i, "XMLNs");
             return 0;
         }
 
-        ns = XMLObject::getFromId<XMLNs>(getXMLObjectId(addr));
+        ns = XMLObject::getFromId<XMLNs>(getXMLObjectId(addr, pvApiCtx));
         if (!ns)
         {
             Scierror(999, gettext("%s: XML Namespace does not exist.\n"), fname);

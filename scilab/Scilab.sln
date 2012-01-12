@@ -208,8 +208,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hashtable", "libs\hashtable
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm", "modules\jvm\libjvm.vcxproj", "{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectFramework", "libs\DetectFrameWork2\DetectFramework.vcxproj", "{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetWindowsVersion", "libs\GetWindowsVersion\GetWindowsVersion.vcxproj", "{982BF37F-42C4-4D37-8D14-60521B141503}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MALLOC", "libs\MALLOC\MALLOC.vcxproj", "{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
@@ -372,16 +370,25 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "norandlib", "modules\randli
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\src\java\jvm-JAVA.vcxproj", "{E9783492-017E-4811-9CC7-6B71856F847C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
 		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcxproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui-Ant", "modules\gui\src\java\gui-JAVA.vcxproj", "{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2911268-79E2-4FE5-AD59-2C3CB7CB794E} = {B2911268-79E2-4FE5-AD59-2C3CB7CB794E}
+		{63965A84-E354-4CBC-BFAC-FDFC8224573F} = {63965A84-E354-4CBC-BFAC-FDFC8224573F}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcxproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "localization-Ant", "modules\localization\src\java\localization-JAVA.vcxproj", "{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographics", "modules\graphics\src\nographics\nographics.vcxproj", "{0AC1142C-0EFF-4406-9E5D-6111A7A8F614}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -404,6 +411,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "completion", "modules\completion\src\c\completion.vcxproj", "{CCCE1EAD-8E62-4DC0-AB17-972C06EF0C89}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "completion-Ant", "modules\completion\src\java\completion-JAVA.vcxproj", "{B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nocompletion", "modules\completion\src\nocompletion\nocompletion.vcxproj", "{D1586C83-3F16-467B-85C6-6A12A08CCB8D}"
 EndProject
@@ -413,8 +423,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager", "modules\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager-Ant", "modules\history_manager\src\java\history_manager-JAVA.vcxproj", "{63965A84-E354-4CBC-BFAC-FDFC8224573F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noconsole", "modules\console\src\noconsole\noconsole.vcxproj", "{A1E6DC43-B0B9-4871-9DE5-7940B80A703E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows_tools", "modules\windows_tools\src\c\windows_tools.vcxproj", "{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}"
 EndProject
@@ -441,6 +457,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_export", "modules\graphic_export\src\nographic_export\nographic_export.vcxproj", "{3411652C-2879-48D0-B5C1-18D546E0A683}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphic_export-Ant", "modules\graphic_export\src\java\graphic_export-JAVA.vcxproj", "{3E4EF47F-2284-4B43-ABBB-20593FF0B51D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "dynamic_link_f", "modules\dynamic_link\src\fortran\dynamic_link_f.vfproj", "{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -479,6 +498,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools", "modules\helptools\src\c\helptools.vcxproj", "{BED4A0F2-5129-487F-9F94-EC09480F04D7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helptools-Ant", "modules\helptools\src\java\helptools-JAVA.vcxproj", "{899DECF1-D4DC-4C84-BB3C-3A343401A5B4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+		{ABCB724E-8534-4420-AC12-7C33A606ABA3} = {ABCB724E-8534-4420-AC12-7C33A606ABA3}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC} = {F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "linpack_f", "modules\elementary_functions\src\fortran\linpack\linpack_f.vfproj", "{F0F55692-0355-4BC3-BE9D-552C8AAC5238}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -512,22 +537,46 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5", "modules\hdf5\src\c\hdf5.vcxproj", "{A824EA62-AF07-4F43-9036-0E63990556BD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5-Ant", "modules\hdf5\src\java\hdf5-JAVA.vcxproj", "{9B6500B0-66F6-44F0-910D-47A1435B4E02}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scinotes-Ant", "modules\scinotes\src\java\scinotes-JAVA.vcxproj", "{43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{63965A84-E354-4CBC-BFAC-FDFC8224573F} = {63965A84-E354-4CBC-BFAC-FDFC8224573F}
+		{251D7C8F-9B69-4CE9-959E-57F343DDC883} = {251D7C8F-9B69-4CE9-959E-57F343DDC883}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
+		{B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D} = {B5E4D0C2-8C6A-4437-81BF-DBFA95900C9D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scinotes", "modules\scinotes\src\c\scinotes.vcxproj", "{BAE68B54-2C1A-44D0-A0E9-05156A784E79}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos", "modules\xcos\src\c\xcos.vcxproj", "{494FA8C9-6C85-4175-BE4C-9A113C7A3278}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos-Ant", "modules\xcos\src\java\xcos-JAVA.vcxproj", "{F6DA4FFA-E405-4DCF-883B-A3C1713F8C5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+		{78D8B862-964A-4D0E-93D2-CA8A25BA1207} = {78D8B862-964A-4D0E-93D2-CA8A25BA1207}
+		{B2911268-79E2-4FE5-AD59-2C3CB7CB794E} = {B2911268-79E2-4FE5-AD59-2C3CB7CB794E}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC} = {F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modelicat", "modules\scicos\src\translator\translator.vcxproj", "{9E0DE362-60A0-4584-9FF1-BB537DA94F40}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml2modelica", "modules\scicos\src\xml2modelica\xml2modelica.vcxproj", "{7CF15086-6DED-4F83-9C40-C4951FD373B3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graph-Ant", "modules\graph\src\java\graph-JAVA.vcxproj", "{968FD6C1-5845-4B22-B61E-F6DE987D47AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43} = {FBA3BC3F-8A2C-4D47-A50D-EB808BE42F43}
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types-Ant", "modules\types\src\java\types-JAVA.vcxproj", "{ABCB724E-8534-4420-AC12-7C33A606ABA3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rename-vc-files", "Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj", "{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}"
 EndProject
@@ -554,8 +603,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nohistory_browser", "modules\history_browser\src\nohistory_browser\nohistory_browser.vcxproj", "{6EA99B1F-99B4-4528-8195-7508EF70CFED}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commons-Ant", "modules\commons\src\java\commons-JAVA.vcxproj", "{9188FA91-E039-485D-AF1D-781CEA92F541}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream-Ant", "modules\output_stream\src\java\output_stream-JAVA.vcxproj", "{F3943691-FF61-48B4-9CA4-10E9D1F600A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD8A0506-8D31-4CF8-856A-C10ECE9C13A4} = {DD8A0506-8D31-4CF8-856A-C10ECE9C13A4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core-Ant", "modules\core\src\java\core-JAVA.vcxproj", "{78D8B862-964A-4D0E-93D2-CA8A25BA1207}"
 EndProject
@@ -579,11 +629,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noui_data", "modules\ui_dat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types-JAVA-tests", "modules\types\tests\java\types-JAVA-tests.vcxproj", "{3F4504A3-1116-40BD-9612-F5E83D09CC99}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "modules\xml\xml.vcxproj", "{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types", "modules\types\types.vcxproj", "{626B9142-13A1-4765-A072-FB08952E7BB8}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences", "modules\preferences\src\c\preferences.vcxproj", "{7B893E9F-D032-44DE-9B71-197A29C4989B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E} = {43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences-Ant", "modules\preferences\src\java\preferences-JAVA.vcxproj", "{32352BC0-9D50-4479-8B77-698287CCB8DE}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "modules\xml\xml.vcxproj", "{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -925,14 +980,6 @@ Global
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Release|Win32.Build.0 = Release|Win32
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Release|x64.ActiveCfg = Release|x64
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Release|x64.Build.0 = Release|x64
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|Win32.Build.0 = Debug|Win32
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|x64.ActiveCfg = Debug|x64
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Debug|x64.Build.0 = Debug|x64
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|Win32.ActiveCfg = Release|Win32
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|Win32.Build.0 = Release|Win32
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|x64.ActiveCfg = Release|x64
-		{7DCD755A-2906-47B8-9084-2FE6D7F5D5C3}.Release|x64.Build.0 = Release|x64
 		{982BF37F-42C4-4D37-8D14-60521B141503}.Debug|Win32.ActiveCfg = Debug|Win32
 		{982BF37F-42C4-4D37-8D14-60521B141503}.Debug|Win32.Build.0 = Debug|Win32
 		{982BF37F-42C4-4D37-8D14-60521B141503}.Debug|x64.ActiveCfg = Debug|x64
@@ -1749,14 +1796,6 @@ Global
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|Win32.Build.0 = Release|Win32
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|x64.ActiveCfg = Release|x64
 		{9188FA91-E039-485D-AF1D-781CEA92F541}.Release|x64.Build.0 = Release|x64
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|Win32.Build.0 = Debug|Win32
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|x64.ActiveCfg = Debug|x64
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Debug|x64.Build.0 = Debug|x64
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|Win32.ActiveCfg = Release|Win32
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|Win32.Build.0 = Release|Win32
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|x64.ActiveCfg = Release|x64
-		{F3943691-FF61-48B4-9CA4-10E9D1F600A6}.Release|x64.Build.0 = Release|x64
 		{78D8B862-964A-4D0E-93D2-CA8A25BA1207}.Debug|Win32.ActiveCfg = Debug|Win32
 		{78D8B862-964A-4D0E-93D2-CA8A25BA1207}.Debug|Win32.Build.0 = Debug|Win32
 		{78D8B862-964A-4D0E-93D2-CA8A25BA1207}.Debug|x64.ActiveCfg = Debug|x64
@@ -1817,6 +1856,22 @@ Global
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Debug|x64.ActiveCfg = Debug|x64
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Release|Win32.ActiveCfg = Release|Win32
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Release|x64.ActiveCfg = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.Build.0 = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.ActiveCfg = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.Build.0 = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.ActiveCfg = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.Build.0 = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.ActiveCfg = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.Build.0 = Release|x64
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Debug|Win32.Build.0 = Debug|Win32
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Debug|x64.ActiveCfg = Debug|x64
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Debug|x64.Build.0 = Debug|x64
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|Win32.ActiveCfg = Release|Win32
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|Win32.Build.0 = Release|Win32
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.ActiveCfg = Release|x64
+		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.Build.0 = Release|x64
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.Build.0 = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|x64.ActiveCfg = Debug|x64
@@ -1833,14 +1888,6 @@ Global
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|Win32.Build.0 = Release|Win32
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.ActiveCfg = Release|x64
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.Build.0 = Release|x64
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.Build.0 = Debug|Win32
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.ActiveCfg = Debug|x64
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.Build.0 = Debug|x64
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.ActiveCfg = Release|Win32
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.Build.0 = Release|Win32
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.ActiveCfg = Release|x64
-		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

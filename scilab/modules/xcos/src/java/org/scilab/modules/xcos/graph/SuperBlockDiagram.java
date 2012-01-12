@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Antoine ELIAS
- * Copyright (C) 2009-2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.graph;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,229 +34,259 @@ import com.mxgraph.util.mxEventObject;
 
 /**
  * @author Antoine ELIAS
- * @author Clément DAVID
+ * @author Clement DAVID
  */
-public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
+public final class SuperBlockDiagram extends XcosDiagram implements
+        Serializable, Cloneable {
 
-	private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
-	private static final long serialVersionUID = -402918614723713301L;
+    private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
+    private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container;
 
     /**
      * Constructor
      */
     public SuperBlockDiagram() {
-	super();
+        super();
     }
 
     /**
-     * @param superBlock parent super block
+     * @param superBlock
+     *            parent super block
      */
     public SuperBlockDiagram(SuperBlock superBlock) {
-	super();
-	this.container = superBlock;
+        super();
+        setContainer(superBlock);
     }
 
     /**
      * @return parent super block
      */
     public SuperBlock getContainer() {
-	return container;
+        return container;
     }
 
     /**
-     * @param container parent super block
+     * @param container
+     *            parent super block
      */
     public void setContainer(SuperBlock container) {
-	this.container = container;
+        this.container = container;
+    }
+
+    @Override
+    public File getSavedFile() {
+        if (getContainer() != null) {
+            XcosDiagram parent = getContainer().getParentDiagram();
+            if (parent != null) {
+                return parent.getSavedFile();
+            }
+        }
+
+        return super.getSavedFile();
     }
 
     /**
      * Concatenate the context with the parent one
+     * 
      * @return the context
      * @see org.scilab.modules.xcos.graph.XcosDiagram#getContext()
      */
     @Override
     public String[] getContext() {
-    	final SuperBlock block = getContainer();
-		XcosDiagram graph = block.getParentDiagram();
-		if (graph == null) {
-			block.setParentDiagram(Xcos.findParent(block));
-			graph = block.getParentDiagram();
-			LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
-		}
-		
-		final String[] parent;
-		if (graph == null) {
-			parent = new String[] {};
-		} else {
-			parent = graph.getContext();
-		}
-		
-    	final String[] current = super.getContext();
-    	
-    	String[] full = new String[current.length + parent.length];
-    	System.arraycopy(parent, 0, full, 0, parent.length);
-    	System.arraycopy(current, 0, full, parent.length, current.length);
-    	return full;
+        final SuperBlock block = getContainer();
+        XcosDiagram graph = block.getParentDiagram();
+        if (graph == null) {
+            block.setParentDiagram(Xcos.findParent(block));
+            graph = block.getParentDiagram();
+            LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
+        }
+
+        final String[] parent;
+        if (graph == null) {
+            parent = new String[] {};
+        } else {
+            parent = graph.getContext();
+        }
+
+        final String[] current = super.getContext();
+
+        String[] full = new String[current.length + parent.length];
+        System.arraycopy(parent, 0, full, 0, parent.length);
+        System.arraycopy(current, 0, full, parent.length, current.length);
+        return full;
     }
-    
+
     /**
      * Listener for SuperBlock diagram events.
      */
-	private static final class GenericSuperBlockListener implements
-			mxIEventListener, Serializable {
-		private static GenericSuperBlockListener instance;
+    private static final class GenericSuperBlockListener implements
+            mxIEventListener, Serializable {
+        private static GenericSuperBlockListener instance;
 
-		/**
-		 * Reduce constructor visibility
-		 */
-		private GenericSuperBlockListener() {
-			super();
-		}
+        /**
+         * Reduce constructor visibility
+         */
+        private GenericSuperBlockListener() {
+            super();
+        }
 
-		/**
-		 * Mono-threaded singleton implementation getter
-		 * 
-		 * @return The unique instance
-		 */
-		public static GenericSuperBlockListener getInstance() {
-			if (instance == null) {
-				instance = new GenericSuperBlockListener();
-			}
-			return instance;
-		}
+        /**
+         * Mono-threaded singleton implementation getter
+         * 
+         * @return The unique instance
+         */
+        public static GenericSuperBlockListener getInstance() {
+            if (instance == null) {
+                instance = new GenericSuperBlockListener();
+            }
+            return instance;
+        }
 
-		/**
-		 * Update the IOPorts colors and values.
-		 * 
-		 * @param arg0
-		 *            the source
-		 * @param arg1
-		 *            the event data
-		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
-		 *      com.mxgraph.util.mxEventObject)
-		 */
-		@Override
-		public void invoke(Object arg0, mxEventObject arg1) {
-			final SuperBlock block = ((SuperBlockDiagram) arg0).getContainer();
-			if (block != null) {
-				block.updateAllBlocksColor();
-				block.updateExportedPort();
-			}
-		}
-	}
-    
-	/**
-	 * Update the diagram labels
-	 */
-    private static final class LabelBlockListener implements mxIEventListener, Serializable {
-    	private static LabelBlockListener instance;
-    	
-    	/**
-		 * Default Constructor
-		 */
-		private LabelBlockListener() {
-			super();
-		}
-		
-		/**
-		 * @return the instance
-		 */
-		public static LabelBlockListener getInstance() {
-			if (instance == null) {
-				instance = new LabelBlockListener();
-			}
-			return instance;
-		}
-
-		/** {@inheritDoc} */
-		@Override
-		public void invoke(Object sender, mxEventObject evt) {
-			final String value = (String) evt.getProperty("value");
-			final Object parent = evt.getProperty("parent");
-			if (parent instanceof ContextUpdate) {
-				final ContextUpdate block = (ContextUpdate) parent;
-				final ScilabDouble data = (ScilabDouble) block.getIntegerParameters();
-				final int index = (int) data.getRealPart()[0][0];
-				
-				final SuperBlock container = ((SuperBlockDiagram) sender).getContainer();
-				if (container == null) {
-					return;
-				}
-				
-				List<mxICell> tmp = IOBlocks.getPorts(container, block.getClass());
-				BasicPort[] ports = new BasicPort[tmp.size()];
-				Arrays.sort(tmp.toArray(ports), new Comparator<BasicPort>() {
-					@Override
-					public int compare(BasicPort o1, BasicPort o2) {
-						return o1.getOrdering() - o2.getOrdering();
-					}
-				});
-				
-				XcosDiagram graph = container.getParentDiagram();
-				if (graph == null) {
-					container.setParentDiagram(Xcos.findParent(container));
-					graph = container.getParentDiagram();
-					LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
-				}
-				container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
-			}
-		}
+        /**
+         * Update the IOPorts colors and values.
+         * 
+         * @param arg0
+         *            the source
+         * @param arg1
+         *            the event data
+         * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+         *      com.mxgraph.util.mxEventObject)
+         */
+        @Override
+        public void invoke(Object arg0, mxEventObject arg1) {
+            final SuperBlock block = ((SuperBlockDiagram) arg0).getContainer();
+            if (block != null) {
+                block.updateAllBlocksColor();
+                block.updateExportedPort();
+            }
+        }
     }
-    
+
+    /**
+     * Update the diagram labels
+     */
+    private static final class LabelBlockListener implements mxIEventListener,
+            Serializable {
+        private static LabelBlockListener instance;
+
+        /**
+         * Default Constructor
+         */
+        private LabelBlockListener() {
+            super();
+        }
+
+        /**
+         * @return the instance
+         */
+        public static LabelBlockListener getInstance() {
+            if (instance == null) {
+                instance = new LabelBlockListener();
+            }
+            return instance;
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public void invoke(Object sender, mxEventObject evt) {
+            final String value = (String) evt.getProperty("value");
+            final Object parent = evt.getProperty("parent");
+            if (parent instanceof ContextUpdate) {
+                final ContextUpdate block = (ContextUpdate) parent;
+                final ScilabDouble data = (ScilabDouble) block
+                        .getIntegerParameters();
+                final int index = (int) data.getRealPart()[0][0];
+
+                final SuperBlock container = ((SuperBlockDiagram) sender)
+                        .getContainer();
+                if (container == null) {
+                    return;
+                }
+
+                List<mxICell> tmp = IOBlocks.getPorts(container,
+                        block.getClass());
+                BasicPort[] ports = new BasicPort[tmp.size()];
+                Arrays.sort(tmp.toArray(ports), new Comparator<BasicPort>() {
+                    @Override
+                    public int compare(BasicPort o1, BasicPort o2) {
+                        return o1.getOrdering() - o2.getOrdering();
+                    }
+                });
+
+                XcosDiagram graph = container.getParentDiagram();
+                if (graph == null) {
+                    container.setParentDiagram(Xcos.findParent(container));
+                    graph = container.getParentDiagram();
+                    LogFactory.getLog(getClass())
+                            .error(PARENT_DIAGRAM_WAS_NULL);
+                }
+                container.getParentDiagram().cellLabelChanged(ports[index - 1],
+                        value, false);
+            }
+        }
+    }
+
     /**
      * Install the specific listeners for {@link SuperBlockDiagram}.
      */
     public void installSuperBlockListeners() {
-    	removeListener(GenericSuperBlockListener.getInstance());
-    	removeListener(LabelBlockListener.getInstance());
-    	
-		addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
-		addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
-		addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-		addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
-	}
+        removeListener(GenericSuperBlockListener.getInstance());
+        removeListener(LabelBlockListener.getInstance());
+
+        addListener(XcosEvent.CELLS_ADDED,
+                GenericSuperBlockListener.getInstance());
+        addListener(XcosEvent.CELLS_REMOVED,
+                GenericSuperBlockListener.getInstance());
+        addListener(XcosEvent.IO_PORT_VALUE_UPDATED,
+                GenericSuperBlockListener.getInstance());
+        addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
+    }
 
     /**
-     * This function set the SuperBlock diagram and all its parents in a 
+     * This function set the SuperBlock diagram and all its parents in a
      * modified state or not.
-     * @param modified status
+     * 
+     * @param modified
+     *            status
      */
-	@Override
+    @Override
     public void setModified(boolean modified) {
         super.setModified(modified);
 
-        if (getContainer() != null
-        		&& getContainer().getParentDiagram() != null) {
+        if (getContainer() != null && getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);
         }
     }
-    
+
     /**
      * This function set the SuperBlock diagram in a modified state or not.
      * 
-     * It doesn't perform recursively on the parent diagrams. If you want such
-     * a behavior use setModified instead.
-     * @param modified status
+     * It doesn't perform recursively on the parent diagrams. If you want such a
+     * behavior use setModified instead.
+     * 
+     * @param modified
+     *            status
      * @see #setModified
      */
     public void setModifiedNonRecursively(boolean modified) {
-	super.setModified(modified);
+        super.setModified(modified);
     }
-    
-    /** {@inheritDoc}} */
+
+    /** {@inheritDoc} */
     // CSOFF: SuperClone
     @Override
     public Object clone() throws CloneNotSupportedException {
-    	final SuperBlockDiagram clone = new SuperBlockDiagram();    	
-    	clone.installListeners();
-    	clone.installSuperBlockListeners();
-    	
-    	clone.setScicosParameters((ScicosParameters) getScicosParameters().clone());
-    	clone.addCells(cloneCells(getChildCells(getDefaultParent())), clone.getDefaultParent());
-    	
-    	return clone;
+        final SuperBlockDiagram clone = new SuperBlockDiagram();
+        clone.installListeners();
+        clone.installSuperBlockListeners();
+
+        clone.setScicosParameters((ScicosParameters) getScicosParameters()
+                .clone());
+        clone.addCells(cloneCells(getChildCells(getDefaultParent())),
+                clone.getDefaultParent());
+
+        return clone;
     }
     // CSON: SuperClone
 }

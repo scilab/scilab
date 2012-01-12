@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:47+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-12-03 13:19+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 #, c-format
@@ -40,6 +40,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: Oczekuje '%s', '%s', "
+"'%s', '%s' lub '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -56,12 +58,14 @@ msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
+"lub '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -107,12 +111,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być w przedziale "
+"[%s, %s].\n"
 
 #, c-format
 msgid ""
@@ -291,14 +297,17 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Niezgodne argumenty wejściowe #%d oraz #%d: Oczekiwany taki sam "
+"rozmiar.\n"
 
 #, c-format
 msgid ""
@@ -522,15 +531,3 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected."
-#~ msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: Oczekiwano %d."
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
-#~ "or %s expected"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa wartość parametru wejściowego nr %d: nieznane rozszerzenie "
-#~ "pliku, oczekiwane %s, %s, %s lub %s"

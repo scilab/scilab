@@ -12,6 +12,8 @@
     <synopsis>
     hzt=trans(hz,tr_type,frq)
     hzt=trans(pd,zd,gd,tr_type,frq)
+    [pt,zt,gt]=trans(hz,tr_type,frq)
+    [pt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -61,6 +63,25 @@
           <para>transformed filter transfert function.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>pt</term>
+        <listitem>
+          <para>vector of transformed filter zeros.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zt</term>
+        <listitem>
+          <para>vector of transformed filter poles.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gt</term>
+        <listitem>
+          <para>a scalar: transformed filter gain.</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
   <refsection>
@@ -113,6 +134,9 @@ Hsb=trans(Hlp,'sb',[0.01 0.1])
 clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
 l=legend(['original low pass';'band pass';'stop band']);
 l.legend_location="in_lower_left";
+
+
+
  ]]></programlisting>
   </refsection>
   <refsection>

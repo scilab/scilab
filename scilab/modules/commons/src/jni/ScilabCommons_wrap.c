@@ -189,8 +189,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 #include "../../../core/includes/SCIHOME.h"
 #include "../../../core/includes/tmpdir.h"
-
 #include "../../../fileio/includes/createtempfilename.h"
+#include "../../../localization/includes/setgetlanguage.h"
 
 
 #ifdef __cplusplus
@@ -216,6 +216,18 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getT
   (void)jenv;
   (void)jcls;
   result = (char *)getTMPDIR();
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getlanguage(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)getlanguage();
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
 }

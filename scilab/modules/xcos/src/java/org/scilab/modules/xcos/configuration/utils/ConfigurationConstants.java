@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,46 +21,45 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
  */
 public final class ConfigurationConstants {
 
-	/**
-	 * Compare {@link DocumentType} per date.
-	 */
-	public static final Comparator<DocumentType> DATE_COMPARATOR = new Comparator<DocumentType>() {
+    /**
+     * Compare {@link DocumentType} per date.
+     */
+    public static final Comparator<DocumentType> DATE_COMPARATOR = new Comparator<DocumentType>() {
 
-		@Override
-		public int compare(DocumentType o1, DocumentType o2) {
-			return o1.getDate().compare(o2.getDate());
-		}
-	};
+        @Override
+        public int compare(DocumentType o1, DocumentType o2) {
+            return o1.getDate().compare(o2.getDate());
+        }
+    };
 
-	/**
-	 * Compare {@link DocumentType} per file name.
-	 */
-	public static final Comparator<DocumentType> FILENAME_COMPARATOR = new Comparator<DocumentType>() {
+    /**
+     * Compare {@link DocumentType} per file name.
+     */
+    public static final Comparator<DocumentType> FILENAME_COMPARATOR = new Comparator<DocumentType>() {
 
-		@Override
-		public int compare(DocumentType o1, DocumentType o2) {
-			return o1.getUrl().compareTo(o2.getUrl());
-		}
-	};
+        @Override
+        public int compare(DocumentType o1, DocumentType o2) {
+            return o1.getUrl().compareTo(o2.getUrl());
+        }
+    };
 
-	/**
-	 * The maximum number of recently opened files
-	 */
-	public static final int MAX_RECENT_FILES = 10;
-	
-	
-	/*
-	 * Properties applicable to the ConfigurationManager change support 
-	 */
+    /**
+     * The maximum number of recently opened files
+     */
+    public static final int MAX_RECENT_FILES = 10;
 
-	/**
-	 * Property fired when the configuration recent file list has changed.
-	 */
-	public static final String RECENT_FILES_CHANGED = "recentFilesHasChanged";
+    /*
+     * Properties applicable to the ConfigurationManager change support
+     */
 
-	/**
-	 * This class is static
-	 */
-	private ConfigurationConstants() {
-	}
+    /**
+     * Property fired when the configuration recent file list has changed.
+     */
+    public static final String RECENT_FILES_CHANGED = "recentFilesHasChanged";
+
+    /**
+     * This class is static
+     */
+    private ConfigurationConstants() {
+    }
 }

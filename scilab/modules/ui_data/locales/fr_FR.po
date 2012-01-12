@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-08 10:04+0000\n"
+"PO-Revision-Date: 2011-11-15 09:18+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: fr\n"
 
 #, c-format
@@ -65,20 +65,29 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "&À propos de Scilab..."
 
-msgid "Icon"
-msgstr "Icône"
-
 msgid "Name"
 msgstr "Nom"
 
-msgid "Bytes"
-msgstr "Octets"
+msgid "Dimension"
+msgstr "Dimension"
 
 msgid "Type"
 msgstr "Type"
 
 msgid "Visibility"
 msgstr "Visibilité"
+
+msgid "Bytes"
+msgstr "Octets"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "Type int value"
+msgstr "Type"
+
+msgid "Feature not available in this mode..."
+msgstr "Fonctionnalité indisponible dans ce mode..."
 
 msgid "File"
 msgstr "Fichier"
@@ -88,6 +97,9 @@ msgstr "Fermer"
 
 msgid "Filter"
 msgstr "Filtre"
+
+msgid "Hide Scilab variables"
+msgstr "Masquer les variables Scilab"
 
 msgid "Double"
 msgstr "Double"
@@ -164,11 +176,83 @@ msgstr "Coller"
 msgid "Cut"
 msgstr "Couper"
 
+msgid "Clear"
+msgstr "Effacer"
+
 msgid "Undo"
 msgstr "Annuler"
 
 msgid "Redo"
 msgstr "Rétablir"
+
+msgid "File Browser"
+msgstr "Navigateur de fichiers"
+
+msgid "Size"
+msgstr "Dimensions"
+
+msgid "Last modified"
+msgstr "Dernière modification"
+
+msgid "Directory"
+msgstr "Répertoire"
+
+#, c-format
+msgid "%s File"
+msgstr "Fichier %s"
+
+msgid "File/directory filter"
+msgstr "Filtre fichier/répertoire"
+
+msgid "Enter your working folder"
+msgstr "Renseigner votre répertoire de travail"
+
+msgid "Case sensitive"
+msgstr "Sensible à la casse"
+
+msgid "Regular expression"
+msgstr "Expression régulière"
+
+msgid "Select a directory"
+msgstr "Sélectionner un répertoire"
+
+msgid "Home"
+msgstr "Répertoire personnel"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr "Impossible d'éditer le fichier %s"
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr "Impossible d'ouvrir le fichier %s"
+
+msgid "Open with SciNotes"
+msgstr "Ouvrir avec Scinotes"
+
+msgid "Execute in Scilab"
+msgstr "Exécuter dans Scilab"
+
+msgid "Open with Xcos"
+msgstr "Ouvrir avec Xcos"
+
+msgid "Load in Scilab"
+msgstr "Charger dans Scilab"
+
+msgid "Edit with default application"
+msgstr "Éditer avec l'application par défaut"
+
+msgid "Open with default application"
+msgstr "Ouvrir avec l'application par défaut"
+
+msgid "Scilab type:"
+msgstr "Type Scilab :"
+
+msgid "Bytes:"
+msgstr "Octets :"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

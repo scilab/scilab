@@ -11,7 +11,7 @@ function datatipManagerMode(varargin)
 //Toggle or sets the interactive mode for datatips edition.;
 //  This function is called by the datatips menu callbacks.;
   global datatipAngles; //to be able to detect that a rotation occurred
-  old=[] //to preserve cuurent figure
+  old=[] //to preserve current figure
   if winsid()<>[] then  old=gcf();end
   select size(varargin)
   case 0 then //toggle mode
@@ -44,8 +44,31 @@ function datatipManagerMode(varargin)
   else
     error(msprintf(_("%s: too many input arguments"),'datatipManagerMode'))
   end
+  fig_ud=get(fig,"user_data")
+  if action =="toggle" then
+    if fig.event_handler <> "datatipEventhandler" then
+      action="on"
+    elseif fig.event_handler_enable == "on"
+      action="off"
+    else
+      action="on"
+    end
+  end
   select action
   case 'on'
+    if fig.event_handler<>""& fig.event_handler<>"datatipEventhandler" then
+      //push current event handler in fig user data if possible
+      if fig_ud==[] then fig_ud=struct();end
+      if typeof(fig_ud)=="st" then
+        if ~isfield(fig_ud,"handlers") then  fig_ud.handlers=[],end
+        fig_ud.handlers=[fig_ud.handlers;
+                         fig.event_handler fig.event_handler_enable]
+        set(fig,"user_data",fig_ud)
+      else
+        warning(_("Datatip manager cannot be enabled, user data figure field is already used" ))
+        return
+      end
+    end
     fig.event_handler_enable = "off" //to prevent against bug 7855
     fig.event_handler = "datatipEventhandler"
     fig.event_handler_enable = "on"
@@ -53,27 +76,15 @@ function datatipManagerMode(varargin)
     show_window(fig)
   case 'off'
     fig.event_handler_enable = "off"
+    if typeof(fig_ud)=="st"&isfield(fig_ud,"handlers")&fig_ud.handlers<>[] then
+      fig.event_handler=fig_ud.handlers($,1)
+      fig.event_handler_enable=fig_ud.handlers($,2)
+      fig_ud.handlers= fig_ud.handlers(1:$-1,:)
+      set(fig,"user_data",fig_ud)
+    else
+      fig.event_handler_enable = "off"
+    end
     clearglobal datatipAngles
     xinfo("")
-  case 'toggle'
-    if  fig.event_handler_enable == "on" then
-      fig.event_handler_enable = "off"
-      if fig.event_handler <> "datatipEventhandler" then
-        fig.event_handler = "datatipEventhandler"
-        fig.event_handler_enable = "on"
-        xinfo(_("Left click on a curve to create a datatip, right opens"+...
-                " contextual menu"))
-      else
-        clearglobal datatipAngles
-        xinfo("")
-      end
-      
-    else
-      fig.event_handler_enable = "off" //to prevent against bug 7855
-      fig.event_handler = "datatipEventhandler"
-      fig.event_handler_enable = "on"
-      xinfo(_("Left click on a curve to create a datatip, right opens contextual menu"))
-      show_window(fig)
-    end
   end
 endfunction

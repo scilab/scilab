@@ -45,6 +45,12 @@ public final class RendererFactory {
             renderer = new ScilabBooleanRenderer();
         } else if (type.equals(EditVar.INTEGER)) {
             renderer = new ScilabIntegerRenderer();
+        } else if (type.equals(EditVar.SPARSE)) {
+            renderer = new ScilabSparseRenderer();
+        } else if (type.equals(EditVar.COMPLEXSPARSE)) {
+            renderer = new ScilabComplexSparseRenderer();
+        } else if (type.equals(EditVar.BOOLEANSPARSE)) {
+            renderer = new ScilabBooleanSparseRenderer();
         }
 
         return renderer;

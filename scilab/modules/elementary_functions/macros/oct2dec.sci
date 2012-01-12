@@ -33,19 +33,6 @@ function d = oct2dec(o)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "oct2dec", 1));
   end
 
-  [nr, nc] = size(o);
-
-  d = [];
-
-  for i = 1:size(o, "*")
-    r = msscanf(o(i), "%o");
-    if r <> [] then
-      d(i) = r;
-    else
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid octal representations expected.\n"),"oct2dec",1));
-    end
-  end
-
-  d = matrix(d, nr, nc);
+  d = base2dec(o, 8);
 
 endfunction

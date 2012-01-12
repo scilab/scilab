@@ -9,7 +9,7 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
-libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
+libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 #### Target ######
 modulename=scicos_blocks
@@ -467,7 +467,7 @@ $(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_B
 	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
-	@echo "-- Generates build/Fblocknames --" 
+	@echo "-- Generates build/Fblocknames --"
 	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
@@ -477,7 +477,7 @@ includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top
 	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
 		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
 	fi
-	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h 
+	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
@@ -490,7 +490,7 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA =  license.txt 
+libsciscicos_blocks_la_root_DATA =  license.txt
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -533,6 +533,7 @@ blocks/ANDLOG_f.h5 \
 blocks/AUTOMAT.h5 \
 blocks/Bache.h5 \
 blocks/BACKLASH.h5 \
+blocks/BARXY.h5 \
 blocks/BIGSOM_f.h5 \
 blocks/BITCLEAR.h5 \
 blocks/BITSET.h5 \
@@ -718,6 +719,7 @@ blocks/SUPER_f.h5 \
 blocks/SWITCH2_m.h5 \
 blocks/SWITCH_f.h5 \
 blocks/Switch.h5 \
+blocks/SELF_SWITCH.h5 \
 blocks/TANBLK_f.h5 \
 blocks/TCLSS.h5 \
 blocks/TEXT_f.h5 \

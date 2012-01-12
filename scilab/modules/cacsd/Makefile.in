@@ -136,6 +136,8 @@ am__objects_2 = sb04pd.lo ib01ad.lo tb01wd.lo ib01py.lo mb01rx.lo \
 	polmc.lo ssxmc.lo ZB03OD.lo riccpack.lo Ex-schur.lo
 am_libscicacsd_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscicacsd_algo_la_OBJECTS = $(am_libscicacsd_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscicacsd_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicacsd_algo_la_rpath =
 libscicacsd_la_DEPENDENCIES = libscicacsd-algo.la
 am__objects_3 = libscicacsd_la-sci_f_hinf.lo \
 	libscicacsd_la-sci_f_zrankqr.lo libscicacsd_la-sci_f_tzer.lo \
@@ -165,6 +167,8 @@ libscicacsd_la_OBJECTS = $(am_libscicacsd_la_OBJECTS)
 libscicacsd_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(libscicacsd_la_FFLAGS) \
 	$(FFLAGS) $(libscicacsd_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicacsd_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicacsd_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -200,6 +204,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -209,6 +214,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -273,6 +279,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -641,8 +648,9 @@ libscicacsd_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
-pkglib_LTLIBRARIES = libscicacsd.la
-noinst_LTLIBRARIES = libscicacsd-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicacsd.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicacsd-algo.la libscicacsd.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicacsd-algo.la
 libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
 libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
 libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
@@ -805,9 +813,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscicacsd-algo.la: $(libscicacsd_algo_la_OBJECTS) $(libscicacsd_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscicacsd_algo_la_OBJECTS) $(libscicacsd_algo_la_LIBADD) $(LIBS)
+	$(F77LINK) $(am_libscicacsd_algo_la_rpath) $(libscicacsd_algo_la_OBJECTS) $(libscicacsd_algo_la_LIBADD) $(LIBS)
 libscicacsd.la: $(libscicacsd_la_OBJECTS) $(libscicacsd_la_DEPENDENCIES) 
-	$(libscicacsd_la_LINK) -rpath $(pkglibdir) $(libscicacsd_la_OBJECTS) $(libscicacsd_la_LIBADD) $(LIBS)
+	$(libscicacsd_la_LINK) $(am_libscicacsd_la_rpath) $(libscicacsd_la_OBJECTS) $(libscicacsd_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

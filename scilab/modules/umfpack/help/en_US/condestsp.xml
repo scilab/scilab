@@ -27,7 +27,7 @@
         <term>LUp  </term>
         <listitem>
           <para>(optional) a pointer to (umf) LU factors of A obtained by a call to umf_lufact ; 
-             if you have already computed the LU (= PAQ) factors it is recommanded to give 
+             if you have already computed the LU (= PAQ) factors it is recommended to give 
 			 this optional parameter (as the factorization may be time consuming)</para>
         </listitem>
       </varlistentry>
@@ -52,7 +52,7 @@
     Give an estimate of the 1-norm condition number of 
     the sparse matrix A by Algorithm 2.4 appearing in :
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 "A block algorithm for matrix 1-norm estimation
  with an application to 1-norm pseudospectra"
  Nicholas J. Higham and Francoise Tisseur
@@ -89,7 +89,7 @@ umf_ludel(Lup)         // clear memory
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umf_lufact">umf_lufact</link>

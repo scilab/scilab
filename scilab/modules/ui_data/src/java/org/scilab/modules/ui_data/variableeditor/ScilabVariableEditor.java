@@ -12,9 +12,10 @@
 package org.scilab.modules.ui_data.variableeditor;
 
 import java.awt.Component;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.WeakHashMap;
 
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
@@ -38,7 +39,7 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
 
     private static final String MENUBARXMLFILE = System.getenv("SCI") + "/modules/ui_data/etc/variableeditor_menubar.xml";
 
-    private static Map<String, Component> map = new WeakHashMap();
+    private static Map<String, Component> map = new HashMap();
 
     private static VariableEditor instance;
 
@@ -57,8 +58,6 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
         tabPane = ((SwingScilabVariableEditor) editorTab).getTabPane();
         editorTab.setCallback(ScilabCallBack.createCallback("org.scilab.modules.ui_data.EditVar.closeVariableEditor",
                                                             ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
-        MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-        editorTab.addMenuBar(menubar);
 
         TextBox infobar = ScilabTextBox.createTextBox();
         editorTab.addInfoBar(infobar);
@@ -80,7 +79,6 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
         editorTab.close();
         instance = null;
         map.clear();
-        CellsUndoableEdit.clear();
     }
 
     /**
@@ -89,7 +87,6 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
      */
     public static void close(String name) {
         map.remove(name);
-        CellsUndoableEdit.removeVar(name);
     }
 
     /**
@@ -104,6 +101,18 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
         } else {
             editorTab.setData(name, type, data);
             map.put(name, tabPane.getSelectedComponent());
+        }
+    }
+
+    /**
+     * Set data displayed in JTable
+     * @param name the variable name
+     * @param type the variable type
+     * @param data : data to be displayed in JTable
+     */
+    public void updateData(String name, String type, Object[][] data, double[] rowsIndex, double[] colsIndex) {
+        if (map.containsKey(name)) {
+            ((SwingScilabVariableEditor) editorTab).updateData(map.get(name), name, type, data, rowsIndex, colsIndex);
         }
     }
 
@@ -130,21 +139,21 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableEditor) editorTab);
             window.setVisible(true);
             window.toFront();
-            int row = -1;
-            int col = -1;
-            SwingEditvarTableModel model = (SwingEditvarTableModel) ((SwingScilabVariableEditor) editorTab).getCurrentModel();
-            if (model != null) {
-                row = model.getCurrentRow();
-                col = model.getCurrentCol();
-            }
-            final int r = row;
-            final int c = col;
-            SwingUtilities.invokeLater(new Thread() {
+            final JTable table = ((SwingScilabVariableEditor) editorTab).getCurrentTable();
+            SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
+                        int r = -1;
+			int c = -1;
+			
+			if (table != null) {
+			    r = table.getSelectedRow();
+			    c = table.getSelectedColumn();
+			}
+                        boolean b = map.containsKey(variableName);
                         instance.updateData(variableName, type, data);
-                        if (r != -1 && c != -1) {
-                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setRowSelectionInterval(r, r);
-                            ((SwingScilabVariableEditor) editorTab).getCurrentTable().setColumnSelectionInterval(c, c);
+                        if (b && r != -1 && c != -1) {
+                            table.setRowSelectionInterval(r, r);
+                            table.setColumnSelectionInterval(c, c);
                         }
                     }
                 });
@@ -152,6 +161,12 @@ public final class ScilabVariableEditor extends ScilabWindow implements Variable
 
         editorTab.setName(Messages.gettext("Variable Editor") + " - " + variableName + "  (" + type + ")");
         return instance;
+    }
+
+    public static void refreshVariableEditor(final String type, final Object[][] data, double[] rowsIndex, double[] colsIndex, final String variableName) {
+        if (instance != null) {
+            instance.updateData(variableName, type, data, rowsIndex, colsIndex);
+        }
     }
 
     /**

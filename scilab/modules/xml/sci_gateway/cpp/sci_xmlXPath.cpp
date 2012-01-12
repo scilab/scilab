@@ -24,6 +24,7 @@ extern "C"
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLElement.hxx"
 #include "XMLXPath.hxx"
 #include "XMLNodeSet.hxx"
 
@@ -35,6 +36,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     org_modules_xml::XMLDocument * doc;
+    XMLElement * where = 0;
     const XMLXPath * xpath;
     int * addr = 0;
     char * query = 0;
@@ -42,6 +44,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     int row = 0;
     int col = 0;
     char ** namespaces = 0;
+    int isElem = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 3);
@@ -50,33 +53,50 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isXMLDoc(addr))
+    isElem = isXMLElem(addr, pvApiCtx);
+
+    if (!isElem && !isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(addr);
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
-    if (!doc)
+    id = getXMLObjectId(addr, pvApiCtx);
+    if (isElem)
     {
-        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
-        return 0;
+        where = XMLObject::getFromId<XMLElement>(id);
+        if (!where)
+        {
+            Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
+            return 0;
+        }
+        doc = const_cast<org_modules_xml::XMLDocument *>(&(where->getXMLDocument()));
+    }
+    else
+    {
+        doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+        if (!doc)
+        {
+            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
+            return 0;
+        }
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
     getAllocatedSingleString(pvApiCtx, addr, &query);
@@ -88,13 +108,14 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(query);
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -103,20 +124,21 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         {
             freeAllocatedSingleString(query);
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         if (col != 2)
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Bad number of columns for argument #%i: two expected.\n"), fname, 3);
+            Scierror(999, gettext("%s: Bad number of columns for argument #%d: two expected.\n"), fname, 3);
             return 0;
         }
 
         getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces);
     }
 
-    xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, &error);
+    xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, where, &error);
     freeAllocatedSingleString(query);
     if (namespaces)
     {
@@ -138,7 +160,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         {
             createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
-        set->createOnStack(Rhs + 1);
+        set->createOnStack(Rhs + 1, pvApiCtx);
         break;
     }
     case XPATH_BOOLEAN :

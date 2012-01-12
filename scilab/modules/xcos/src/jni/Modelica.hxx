@@ -66,7 +66,11 @@ typedef signed char byte;
 #     define GIWSEXPORT __declspec(dllexport)
 #   endif
 # else
+#   if __GNUC__ >= 4
+#     define GIWSEXPORT __attribute__ ((visibility ("default")))
+#   else
 #     define GIWSEXPORT
+#   endif
 # endif
 #endif
 
@@ -77,7 +81,7 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidloadjstringjava_lang_StringID; // cache method id
+jmethodID voidloadjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 
 
 
@@ -134,7 +138,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void load(JavaVM * jvm_, char * fileName);
+static void load(JavaVM * jvm_, char * init, char * relation);
 
 
                         /**

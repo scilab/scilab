@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,14 +21,14 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
  * This class just install a {@link SumPortLabelingListener} on each instance.
  */
 public class Summation extends BasicBlock {
-	/**
-	 * Default constructor
-	 */
-	public Summation() {
-		super();
+    /**
+     * Default constructor
+     */
+    public Summation() {
+        super();
 
-		getParametersPCS().addPropertyChangeListener("integerParameters",
-				SumPortLabelingListener.getInstance());
-	}
+        getParametersPCS().addPropertyChangeListener("integerParameters",
+                SumPortLabelingListener.getInstance());
+    }
 
 }

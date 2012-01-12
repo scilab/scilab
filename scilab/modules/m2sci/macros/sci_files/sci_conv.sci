@@ -14,24 +14,23 @@ function [tree]=sci_conv(tree)
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_conv()
 
-[A,B]=getrhs(tree)
-
-if and([A.dims(1),B.dims(1)]==1) | and([A.dims(2),B.dims(2)]>1) then // A and B row vectors
-  conv=tree
-  conv.name="convol"
-  tree.name="clean"
-  tree.rhs=list(conv)
-  tree.lhs(1).type=Type(Double,Unknown)
-elseif A.dims(1)>1 | A.dims(2)==1 | B.dims(1)>1 | B.dims(2)==1 then // A and/or B is a column vector
-  conv=tree
-  conv.name="convol"
-  tree.name="clean"
-  tree.rhs=list(conv)
-  tree=Operation(".''",list(tree),tree.lhs)
-  tree.out(1).type=Type(Double,Unknown)
-else
-  tree.name="mtlb_conv"
-  tree.lhs(1).type=Type(Double,Unknown)
-end
-
+  if rhs==2 then // conv(u,v)
+    [A,B]=getrhs(tree) // conv(u,v)
+  elseif rhs==3 then 
+    [A,B,shape]=getrhs(tree)
+  end
+  if is_real(A)&is_real(B) then 
+    tree.lhs(1).type=Type(Double,Real)
+  elseif is_complex(A)|is_complex(B) then 
+    tree.lhs(1).type=Type(Double,Complex)
+  else
+    tree.lhs(1).type=Type(Double,Unknown)
+  end
+  if and([A.dims(1),B.dims(1)]==1)|(A.dims(2)==SupToOne&B.dims(2)==SupToOne)|(A.dims(2)>1&B.dims(2)>1) then  //A and B row vectors
+    tree.lhs(1).dims=list(1,Unknown)
+  elseif and([A.dims(2),B.dims(2)]==1)|(A.dims(1)==SupToOne&B.dims(1)==SupToOne)|(A.dims(1)>1&B.dims(1)>1) then // A and B column vectors
+    tree.lhs(1).dims=list(Unknown,1)
+  else
+    tree.lhs(1).dims=list(Unknown,Unknown)
+  end
 endfunction

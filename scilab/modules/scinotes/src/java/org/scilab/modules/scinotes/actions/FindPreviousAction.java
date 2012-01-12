@@ -85,7 +85,6 @@ public final class FindPreviousAction extends DefaultAction {
                 getEditor().getTextPane().select(offsets.get(index)[0], offsets.get(index)[1]);
             }
         } catch (BadLocationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

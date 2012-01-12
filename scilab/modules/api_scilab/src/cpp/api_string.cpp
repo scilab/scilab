@@ -22,6 +22,7 @@
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_string.h"
+#include "api_double.h"
 #include "api_internal_string.h"
 #include "call_scilab.h"
 #include "stack-c.h"
@@ -114,6 +115,18 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
 	sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
@@ -195,13 +208,25 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
 
 	int iTotalLen	= 0;
 
-    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    if(!checkNamedVarFormat(_pvCtx, _pstName))
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedMatrixOfString");
         return sciErr;
     }
 
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
@@ -386,6 +411,18 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char **pStrings = NULL;
 
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
 	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
 
 	for (int i = 0; i < (_iRows * _iCols) ; i++)
@@ -409,7 +446,19 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	char **pStrings = NULL;
 
-	pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
+ 
+    pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
 
 	for (int i = 0; i < (_iRows * _iCols) ; i++)
 	{

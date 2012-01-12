@@ -22,8 +22,6 @@ import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
-import org.scilab.modules.commons.ScilabConstants;
-
 /**
  * This classes intends to wrap Saxon features in a easy-to-use class.
  */

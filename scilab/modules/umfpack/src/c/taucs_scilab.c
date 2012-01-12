@@ -2249,8 +2249,8 @@ taucs_supernodal_factor_to_ccs(void* vL)
 int taucs_get_nnz_from_supernodal_factor(void* vL)
 {
   supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
-  int n,nnz;
-  int jp,sn;
+  int nnz = 0;
+  int jp = 0, sn = 0;
 
   nnz = 0;
 

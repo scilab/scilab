@@ -122,7 +122,7 @@
         <term>x(6)</term>
 
         <listitem>
-          <para>The date of last modification</para>
+          <para>The date of last data modification</para>
         </listitem>
       </varlistentry>
 
@@ -130,7 +130,7 @@
         <term>x(7)</term>
 
         <listitem>
-          <para>The date of last change</para>
+          <para>The date of last file status change</para>
         </listitem>
       </varlistentry>
 

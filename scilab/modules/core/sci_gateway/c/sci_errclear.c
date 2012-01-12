@@ -33,6 +33,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -53,7 +54,7 @@ int C2F(sci_errclear)(char *fname,unsigned long fname_len)
 
              if ((double)iValue != dValue)
              {
-                 Scierror(999,_("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 1);
+                 Scierror(999,_("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                  return 0;
              }
 

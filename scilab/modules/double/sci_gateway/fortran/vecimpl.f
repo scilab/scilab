@@ -15,13 +15,15 @@ c
 c     Copyright INRIA
       include 'stack.h'
 c     
-      double precision e1,e2,st,e1r
+      double precision e1,e2,st,e1r,inf,npt,zero
       double precision dlamch
       integer iadr,sadr
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c     
+      inf=dlamch('o')
+      zero=0.0d0
       if(rhs.eq.2) goto 02
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
@@ -74,17 +76,38 @@ c
          endif
          e2=stk(l3)
          st = stk(l2)
-
       else
          st = 1.0d+0
       endif
-      if (st .eq. 0.0d+0) then
+
+C     If one value is NaN return NaN
+      if(isanan(e1).eq.1.or.isanan(e2).eq.1.or.isanan(st).eq.1) then
+         stk(l1)=e1+st+e2
          istk(il1+1)=1
+         istk(il1+2)=1
+         istk(il1+3)=0
+         lstk(top+1)=l1+1
+         return
+      endif
+
+C     empty answer cases
+      if ((st.eq.0.0d0).or.
+     +     (st.gt.0.0d0.and.e1.gt.e2).or.
+     +     (st.lt.0.0d0.and.e1.lt.e2)) then
          istk(il1+1)=0
          istk(il1+2)=0
          istk(il1+3)=0
          lstk(top+1)=l1
          return
+      endif
+      npt=(e2-e1)/st
+      if(abs(e1).ge.inf.or.abs(e2).ge.inf.or.abs(st).ge.inf) then
+         stk(l1)=zero/zero
+         istk(il1+1)=1
+         istk(il1+2)=1
+         istk(il1+3)=0
+         lstk(top+1)=l1+1
+       return
       endif
 
 c     check for clause
@@ -96,35 +119,12 @@ c     .  for expression
          if (ids(3,pt)+ids(4,pt).eq.pstk(pt))go to 54
       endif
 c
-      if (st .eq. 0.0d+0) then
-         istk(il1+1)=1
-         istk(il1+1)=0
-         istk(il1+2)=0
-         istk(il1+3)=0
-         lstk(top+1)=l1
-         return
-      endif
 
-      if(isanan(e1).eq.1.or.isanan(st).eq.1.or.isanan(e2).eq.1) then
-         stk(l1)=e1+st+e2
-         istk(il1+1)=1
-         istk(il1+2)=1
-         istk(il1+3)=0
-         lstk(top+1)=l1+1
-         return
-      endif
+
+
 
 c     floating point used to avoid integer overflow
-      e1r=dble(l1) + max(3.0d0,(e2-e1)/st) - dble(lstk(bot))
-      if(isanan(e1r).eq.1) then
-        stk(l1)=eiR
-         istk(il1+1)=1
-         istk(il1+2)=1
-         istk(il1+3)=0
-         lstk(top+1)=l1+1
-       return
-      endif
-
+      e1r=dble(l1) + max(3.0d0,npt) - dble(lstk(bot))
       if (e1r .gt. 0.0d0) then
          err=e1r
          call error(17)
@@ -151,19 +151,12 @@ c
       return
 c     
 c     for clause
- 54   if(isanan(e1).eq.1.or.isanan(st).eq.1.or.isanan(e2).eq.1) then
-         stk(l1) = e1+st+e2
-         istk(il1+1)=1
-         istk(il1+2)=1
-         lstk(top+1)=l1+3
-      else
-         stk(l1) = e1
-         stk(l1+1) = st
-         stk(l1+2) = e2
-         istk(il1+1)=-3
-         istk(il1+2)=-1
-         lstk(top+1)=l1+3
-      endif
+ 54   stk(l1) = e1
+      stk(l1+1) = st
+      stk(l1+2) = e2
+      istk(il1+1)=-3
+      istk(il1+2)=-1
+      lstk(top+1)=l1+3
       return
       end
 c			================================================

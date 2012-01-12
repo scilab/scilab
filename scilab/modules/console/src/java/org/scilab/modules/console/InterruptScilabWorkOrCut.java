@@ -59,7 +59,6 @@ public class InterruptScilabWorkOrCut extends AbstractConsoleAction {
 			try {
 				doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
 			} catch (BadLocationException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		} else {

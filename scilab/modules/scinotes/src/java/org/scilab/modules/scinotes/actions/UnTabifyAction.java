@@ -44,6 +44,7 @@ public class UnTabifyAction extends DefaultAction {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end   = sep.getSelectionEnd();
+        int posC = sep.getCaretPosition();
         TabManager tab = sep.getTabManager();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
 
@@ -54,8 +55,11 @@ public class UnTabifyAction extends DefaultAction {
             } else {
                 int[] ret = tab.untabifyLines(start, end - 1);
                 if (ret != null) {
-                    sep.setSelectionStart(ret[0]);
-                    sep.setSelectionEnd(ret[1]);
+                    if (posC == start) {
+                        sep.select(ret[1], ret[0]);
+                    } else {
+                        sep.select(ret[0], ret[1]);
+                    }
                 }
             }
         } else {

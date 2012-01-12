@@ -73,12 +73,12 @@
       truncated when they are longuer than 4093.</para>
     <para>
     Examples for <literal>format</literal>:</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 (1x,e10.3,5x,3(f3.0))
 (10x,a20) 
  ]]></programlisting>
     <para>
-    When format is omitted datas are read using numerical free format: 
+    When format is omitted data are read using numerical free format: 
     blank, comma and slash may be used as data separators, n*v may be use
     to represent n occurrences of value n.</para>
     <para>
@@ -105,7 +105,7 @@ read(%io(1), 1, 1, '(a)')  // waits for user's input
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="write">write</link>

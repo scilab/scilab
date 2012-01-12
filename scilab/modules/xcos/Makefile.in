@@ -194,6 +194,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -203,6 +204,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -267,6 +269,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -441,7 +444,7 @@ modulename = xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA = license.txt 
+libscixcos_la_root_DATA = license.txt
 
 #### xcos : init scripts ####
 libscixcos_la_etcdir = $(mydatadir)/etc
@@ -540,6 +543,7 @@ nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
+images/blocks/BARXY.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
@@ -571,6 +575,9 @@ images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
 images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
+images/blocks/Self_Switch_off.svg \
+images/blocks/Self_Switch_on.svg \
+images/blocks/SELF_SWITCH.svg \
 images/blocks/SourceP.svg \
 images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
@@ -579,20 +586,20 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/align-horizontal-center.png \
-images/icons/align-horizontal-left.png \
-images/icons/align-horizontal-right.png \
-images/icons/align-vertical-bottom.png \
-images/icons/align-vertical-center.png \
-images/icons/align-vertical-top.png \
-images/icons/color-fill.png \
-images/icons/draw-brush.png \
-images/icons/object-group.png \
-images/icons/preferences-desktop.png \
-images/icons/process-stop.png \
-images/icons/select-by-color.png \
-images/icons/transform-flip.png \
-images/icons/transform-mirror.png \
+images/icons/16x16/actions/align-horizontal-center.png \
+images/icons/16x16/actions/align-horizontal-left.png \
+images/icons/16x16/actions/align-horizontal-right.png \
+images/icons/16x16/actions/align-vertical-bottom.png \
+images/icons/16x16/actions/align-vertical-center.png \
+images/icons/16x16/actions/align-vertical-top.png \
+images/icons/16x16/actions/color-fill.png \
+images/icons/16x16/actions/draw-brush.png \
+images/icons/16x16/actions/object-group.png \
+images/icons/16x16/actions/process-stop.png \
+images/icons/16x16/actions/select-by-color.png \
+images/icons/16x16/actions/transform-flip.png \
+images/icons/16x16/actions/transform-mirror.png \
+images/icons/16x16/categories/preferences-desktop.png \
 images/palettes/ABS_VALUE.png \
 images/palettes/AFFICH_m.png \
 images/palettes/ANDBLK.png \
@@ -600,6 +607,7 @@ images/palettes/ANDLOG_f.png \
 images/palettes/AUTOMAT.png \
 images/palettes/Bache.png \
 images/palettes/BACKLASH.png \
+images/palettes/BARXY.png \
 images/palettes/BIGSOM_f.png \
 images/palettes/BITCLEAR.png \
 images/palettes/BITSET.png \
@@ -769,6 +777,9 @@ images/palettes/SATURATION.png \
 images/palettes/SAWTOOTH_f.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
+images/palettes/SELF_SWITCH_off.png \
+images/palettes/SELF_SWITCH_on.png \
+images/palettes/SELF_SWITCH.png \
 images/palettes/SHIFT.png \
 images/palettes/Sigbuilder.png \
 images/palettes/SIGNUM.png \

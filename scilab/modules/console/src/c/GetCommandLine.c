@@ -1,21 +1,21 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
-*
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #ifdef _MSC_VER
 #include <io.h>
-#define isatty	_isatty
-#define fileno	_fileno
+#define isatty  _isatty
+#define fileno  _fileno
 #else
 #include <unistd.h> /* isatty */
 #endif
@@ -32,6 +32,9 @@
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "UpdateBrowseVar.h"
+#include "scicurdir.h"
+#include "FileBrowserChDir.h"
+#include "InitializeJVM.h"
 #ifdef _MSC_VER
 #include "mmapWindows.h"
 #include "strdup_windows.h"
@@ -81,9 +84,11 @@ static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
 
+static BOOL initialJavaHooks = FALSE;
+
 /***********************************************************************
-* line editor
-**********************************************************************/
+ * line editor
+ **********************************************************************/
 static void getCommandLine(void)
 {
     tmpPrompt = GetTemporaryPrompt();
@@ -175,13 +180,19 @@ static void *watchGetCommandLine(void *in) {
 
 /***********************************************************************/
 /*
-* Old zzledt... Called by Fortran...
-* @TODO rename that function !!!
-* @TODO remove unused arg buf_size, menusflag, modex & dummy1
-*/
+ * Old zzledt... Called by Fortran...
+ * @TODO rename that function !!!
+ * @TODO remove unused arg buf_size, menusflag, modex & dummy1
+ */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-    int *menusflag,int * modex,long int dummy1)
+                 int *menusflag,int * modex,long int dummy1)
 {
+    if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
+    {
+	initialJavaHooks = TRUE;
+        // Execute the initial hooks registered in Scilab.java
+	ExecuteInitialHooks();	
+    }
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER
@@ -189,20 +200,20 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     /* example : echo plot3d | scilex -nw -e */
     if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else
-    if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
+        if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
 #endif
-    {
-        /* read a line into the buffer, but not too
-        * big */
-        *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-        *len_line = (int)strlen(buffer);
-        /* remove newline character if there */
-        if(buffer[*len_line - 1] == '\n')
         {
-            (*len_line)--;
+            /* read a line into the buffer, but not too
+             * big */
+            *eof = (fgets(buffer, *buf_size, stdin) == NULL);
+            *len_line = (int)strlen(buffer);
+            /* remove newline character if there */
+            if(buffer[*len_line - 1] == '\n')
+            {
+                (*len_line)--;
+            }
+            return;
         }
-        return;
-    }
 
     if(!initialized)
     {
@@ -228,7 +239,17 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
             }
             if (getScilabMode() != SCILAB_NWNI)
             {
+
+                char *cwd = NULL;
+                int err = 0;
+
                 UpdateBrowseVar(TRUE);
+                cwd = scigetcwd(&err);
+                if (cwd)
+                {
+                    FileBrowserChDir(cwd);
+                    FREE(cwd);
+                }
             }
             __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
             WatchGetCmdLineThreadAlive = TRUE;

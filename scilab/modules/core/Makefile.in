@@ -283,6 +283,8 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 am_libscicore_algo_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
+@MAINTAINER_MODE_FALSE@am_libscicore_algo_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 libscicore_la_DEPENDENCIES = libscicore-algo.la
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
@@ -325,6 +327,8 @@ libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(libscicore_la_LDFLAGS) $(LDFLAGS) -o $@
+@MAINTAINER_MODE_FALSE@am_libscicore_la_rpath =
+@MAINTAINER_MODE_TRUE@am_libscicore_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -370,6 +374,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -379,6 +384,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -443,6 +449,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -786,14 +793,16 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/libs/MALLOC/includes/
 
-pkglib_LTLIBRARIES = libscicore.la
-noinst_LTLIBRARIES = libscicore-algo.la
+@MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
+@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
 libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+#-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
 CHECK_SRC = $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
-libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)  $(JNI_SOURCES)
+libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)
 libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_algo_la_CFLAGS = $(libscicore_la_CFLAGS)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
@@ -992,9 +1001,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscicore-algo.la: $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_DEPENDENCIES) 
-	$(CXXLINK)  $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscicore_algo_la_rpath) $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_LIBADD) $(LIBS)
 libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) 
-	$(libscicore_la_LINK) -rpath $(pkglibdir) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
+	$(libscicore_la_LINK) $(am_libscicore_la_rpath) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

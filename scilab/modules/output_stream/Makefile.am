@@ -78,17 +78,17 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/string/includes
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la
-
-if GUI
-USEANT=1
+else
+noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
 endif
 
 libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
-libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscioutput_stream_algo_la_CFLAGS = $(libscioutput_stream_la_CFLAGS)
 libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
@@ -96,14 +96,14 @@ libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
 
-libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la 
+libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la
 
 #### Target ######
 modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA =  license.txt 
+libscioutput_stream_la_root_DATA =  license.txt
 
 
 #### output_stream : init scripts ####
