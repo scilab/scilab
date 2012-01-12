@@ -53,6 +53,8 @@ Xcos
 
 * Bug #10486 fixed - importXcosDiagram opened a tab.
 
+* Bug #10499 fixed - lincos example in help file returned warning and error.
+
 
 Unitary testing
 ===============
