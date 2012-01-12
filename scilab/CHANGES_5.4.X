@@ -22,6 +22,8 @@ Help
 * Management of Docbook tags <note>, <caution>, <warning>, <important> and
  <tip>. See bug #10505.
 
+* Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
+  <caution>, <warning>, <important> and <tip> tags in examples.
 
 Xcos
 ====
