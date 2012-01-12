@@ -45,6 +45,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i+1);
             return 0;
         }
 

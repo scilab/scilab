@@ -25,7 +25,6 @@ import java.beans.PropertyVetoException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -37,6 +36,7 @@ import javax.swing.ListSelectionModel;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction.DebugLevel;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -67,9 +67,8 @@ public class DebugLevelDialog extends JDialog {
     public DebugLevelDialog(Component parent, ScicosParameters parameters) {
         this.parameters = parameters;
 
-        Icon scilabIcon = new ImageIcon(System.getenv("SCI")
-                + "/modules/gui/images/icons/scilab.png");
-        Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+        ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        Image imageForIcon = scilabIcon.getImage();
         setLayout(new GridBagLayout());
         setIconImage(imageForIcon);
         setTitle(XcosMessages.SET_DEBUG);

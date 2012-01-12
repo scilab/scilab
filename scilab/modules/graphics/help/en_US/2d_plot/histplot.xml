@@ -60,7 +60,7 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
     <title>Description</title>
     <para> This function plot a histogram of the <literal>data</literal> vector using the
         classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
-        instead of <literal>x</literal>, the classes are choosen equally spaced and
+        instead of <literal>x</literal>, the classes are chosen equally spaced and
         <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
         with <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
     </para>

@@ -73,7 +73,7 @@
       <varlistentry>
         <term>reps :</term>
         <listitem>
-          <para>This number determines what the pivot relative threshold will be.  It should be between zero and one.  If it is one then the pivoting method becomes complete pivoting, which is very slow and tends to fill up the matrix.  If it is set close to zero the pivoting method becomes strict Markowitz with no threshold.  The pivot threshold is used to eliminate pivot candidates that would cause excessive element growth if they were used.  Element growth is the cause of roundoff error. Element growth occurs even in well-conditioned matrices. Setting the reps large will reduce element growth and roundoff error, but setting it too large will cause execution time to be excessive and will result in a large number of fill-ins.  If this occurs, accuracy can actually be degraded because of the large number of operations required on the matrix due to the large number of fill-ins.  A good value seems to be 0.001 which is the default value.  The default is chosen by giving a value larger than one or less than or equal to zero.  This value should be increased and the matrix resolved if growth is found to be excessive.  Changing the pivot threshold does not improve performance on matrices where growth is low, as is often the case with ill-conditioned matrices. reps was choosen for use with nearly diagonally dominant matrices such as node- and modified-node admittance matrices.  For these matrices it is usually best to use diagonal pivoting.  For matrices without a strong diagonal, it is usually best to use a larger threshold, such as 0.01 or 0.1.</para>
+          <para>This number determines what the pivot relative threshold will be.  It should be between zero and one.  If it is one then the pivoting method becomes complete pivoting, which is very slow and tends to fill up the matrix.  If it is set close to zero the pivoting method becomes strict Markowitz with no threshold.  The pivot threshold is used to eliminate pivot candidates that would cause excessive element growth if they were used.  Element growth is the cause of roundoff error. Element growth occurs even in well-conditioned matrices. Setting the reps large will reduce element growth and roundoff error, but setting it too large will cause execution time to be excessive and will result in a large number of fill-ins.  If this occurs, accuracy can actually be degraded because of the large number of operations required on the matrix due to the large number of fill-ins.  A good value seems to be 0.001 which is the default value.  The default is chosen by giving a value larger than one or less than or equal to zero.  This value should be increased and the matrix resolved if growth is found to be excessive.  Changing the pivot threshold does not improve performance on matrices where growth is low, as is often the case with ill-conditioned matrices. reps was chosen for use with nearly diagonally dominant matrices such as node- and modified-node admittance matrices.  For these matrices it is usually best to use diagonal pivoting.  For matrices without a strong diagonal, it is usually best to use a larger threshold, such as 0.01 or 0.1.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -88,7 +88,7 @@ ludel(h)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

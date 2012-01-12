@@ -16,7 +16,8 @@ AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
 SUBDIRS= libs \
 	modules \
-	contrib
+	contrib \
+	desktop
 
 ACLOCAL_AMFLAGS = -I m4/
 
@@ -42,14 +43,10 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(LTLIBINTL)
+COMMON_LIBS = $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
+SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
@@ -132,26 +129,8 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.png \
-$(top_srcdir)/desktop/puffin_128.png \
-$(top_srcdir)/desktop/puffin_256.png \
-$(top_srcdir)/desktop/puffin_32.png \
-$(top_srcdir)/desktop/puffin_48.png \
-$(top_srcdir)/desktop/puffin.png \
-$(top_srcdir)/desktop/puffin.icns \
-$(top_srcdir)/desktop/scilab.xml \
-$(top_srcdir)/desktop/scilab.icns
-
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
-
-# Desktop file
-# Note that here, it is datadir and NOT pkgdatadir
-desktopdir = $(datadir)/applications
-desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
-$(top_srcdir)/desktop/scilab-cli.desktop \
-$(top_srcdir)/desktop/scilab.desktop
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
@@ -165,7 +144,7 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 javadoc:
 	$(JAVADOC) -noindex -nohelp -nonavbar -notree \
 	-d $(top_builddir)/modules/javasci/javadoc \
-	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
+	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java::$(top_srcdir)/modules/localization/src/java \
 	org.scilab.modules.javasci org.scilab.modules.types
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli

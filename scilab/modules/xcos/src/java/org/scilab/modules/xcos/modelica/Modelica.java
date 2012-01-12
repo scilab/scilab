@@ -102,15 +102,18 @@ public final class Modelica {
     /**
      * Setup a new modelica settings UI
      * 
-     * @param fileName
-     *            the data file.
+     * @param init
+     *            the initialisation file.
+     * @param relation
+     *            the relation file
      */
     @ScilabExported(module = "xcos", filename = "Modelica.giws.xml")
-    public static void load(final String fileName) {
+    public static void load(final String init, final String relation) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ModelicaController.showDialog(new File(fileName));
+                ModelicaController.showDialog(new File(init),
+                        new File(relation));
             }
         });
     }
@@ -150,7 +153,7 @@ public final class Modelica {
     public void save(Model root, File file) throws JAXBException {
         try {
             final StringWriter strw = new StringWriter();
-            marshaller.marshal(root, strw);
+            marshaller.marshal(unmerge(root), strw);
 
             /*
              * Customize the file to be handled by the xml2modelica tool
@@ -175,5 +178,49 @@ public final class Modelica {
         } catch (IOException e) {
             LogFactory.getLog(Modelica.class).error(e);
         }
+    }
+
+    /**
+     * Merge the models into a single shared model
+     * 
+     * @param initModel
+     *            the initialization model
+     * @param relationModel
+     *            the relation model
+     * @return a new model
+     */
+    public Model merge(Model initModel, Model relationModel) {
+        // merge the relation model into the init model
+
+        initModel.setIdentifiers(relationModel.getIdentifiers());
+        initModel.setModelInfo(relationModel.getModelInfo());
+
+        initModel.setExplicitRelations(relationModel.getExplicitRelations());
+        initModel.setImplicitRelations(relationModel.getImplicitRelations());
+
+        initModel.setOutputs(relationModel.getOutputs());
+        return initModel;
+    }
+
+    /**
+     * Unmerge the model
+     * 
+     * @param model
+     *            the model
+     * @return the unmerged model
+     */
+    public Model unmerge(Model initModel) {
+        final Model model = new Model();
+
+        /*
+         * From xMLTree.ml
+         */
+        model.setName(initModel.getName());
+
+        model.setElements(initModel.getElements());
+        model.setEquations(initModel.getEquations());
+        model.setWhenClauses(initModel.getWhenClauses());
+
+        return model;
     }
 }

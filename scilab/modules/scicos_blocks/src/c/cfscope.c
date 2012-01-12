@@ -32,7 +32,7 @@
 #include "BuildObjects.h"
 #include "AxesModel.h"
 
-extern int C2F(getouttb) ();
+//extern int C2F(getouttb) ();
 
 /*****************************************************************************
  * Internal container structure

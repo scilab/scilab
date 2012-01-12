@@ -29,8 +29,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -59,26 +63,12 @@ public final class PaletteManager {
     private static Marshaller marshaller;
     private static Unmarshaller unmarshaller;
 
-    private PaletteManagerView view;
     private Category root;
     private final PropertyChangeSupport pcs;
 
     /** Default constructor */
     private PaletteManager() {
         pcs = new PropertyChangeSupport(this);
-    }
-
-    /**
-     * @param view
-     *            the view to set
-     */
-    public void setView(final PaletteManagerView view) {
-        this.view = view;
-    }
-
-    /** @return the view */
-    public PaletteManagerView getView() {
-        return view;
     }
 
     /**
@@ -94,6 +84,27 @@ public final class PaletteManager {
      */
     public Category getRoot() {
         return root;
+    }
+
+    /**
+     * Reports a boolean bound property update to listeners that have been
+     * registered to track updates of all properties or a property with the
+     * specified name.
+     * <p>
+     * No event is fired if old and new values are equal.
+     * <p>
+     * This is merely a convenience wrapper around the more general
+     * {@link #firePropertyChange(String, Object, Object)} method.
+     * 
+     * @param propertyName
+     *            the programmatic name of the property that was changed
+     * @param oldValue
+     *            the old value of the property
+     * @param newValue
+     *            the new value of the property
+     */
+    public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
+        pcs.firePropertyChange(propertyName, oldValue, newValue);
     }
 
     /**
@@ -128,23 +139,32 @@ public final class PaletteManager {
 
     /** @return true if the palette window is visible, false otherwise */
     public static boolean isVisible() {
-        return (getInstance().getView() != null)
-                && getInstance().getView().isVisible();
+        return ScilabTabFactory.getInstance().getFromCache(
+                PaletteManagerView.DEFAULT_TAB_UUID) != null;
     }
 
     /**
      * Set visible or hide the palette.
      * 
-     * @param status
-     *            true to set visible, false to hide.
+     * @param new true to set visible, false to hide.
      */
-    public static void setVisible(final boolean status) {
-        if (getInstance().getView() == null) {
-            getInstance().setView(new PaletteManagerView(getInstance()));
-        }
-        getInstance().getView().setVisible(status);
+    public static void setVisible(final boolean newValue) {
+        final PaletteManagerView tab = PaletteManagerView.get();
+        final boolean oldValue = isVisible();
 
-        getInstance().pcs.firePropertyChange("visible", !status, status);
+        if (newValue && tab == null) {
+            final boolean view = WindowsConfigurationManager
+                    .restoreUUID(PaletteManagerView.DEFAULT_TAB_UUID);
+            if (!view) {
+                PaletteManagerView.restore(null, true);
+            }
+        } else if (oldValue) {
+            ClosingOperationsManager
+                    .startClosingOperation((SwingScilabTab) PaletteManagerView
+                            .get());
+        }
+
+        getInstance().firePropertyChange("visible", oldValue, newValue);
     }
 
     /**
@@ -174,7 +194,7 @@ public final class PaletteManager {
                 LOG.warn("user palette configuration file is not valid.\n"
                         + "Switching to the default one." + e);
 
-                ScilabModalDialog.show(getView(),
+                ScilabModalDialog.show(PaletteManagerView.get(),
                         XcosMessages.ERR_CONFIG_PALETTE_INVALID,
                         XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 

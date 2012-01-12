@@ -20,8 +20,8 @@
 %{
 #include "../../../core/includes/SCIHOME.h"
 #include "../../../core/includes/tmpdir.h"
-
 #include "../../../fileio/includes/createtempfilename.h"
+#include "../../../localization/includes/setgetlanguage.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */
@@ -103,6 +103,16 @@ char* getSCIHOME();
    */
 public";
 char *getTMPDIR(void);
+
+
+/* JavaDoc */
+%javamethodmodifiers getScilabLanguage() "
+ /**
+   * returns Scilab current language
+   * @return language
+   */
+public";
+char *getlanguage(void);
 
 
 /* JavaDoc */

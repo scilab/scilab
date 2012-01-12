@@ -496,7 +496,7 @@
               <term>index</term>
               <listitem>
                 <para>
-                  optionnal, a flag to pass to the cost function (default
+                  optional, a flag to pass to the cost function (default
                   = 1). See the section "The cost function" of the neldermead
                   component for available values of index.
                 </para>

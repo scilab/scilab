@@ -1649,6 +1649,10 @@ int writeCommonSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iComp
     //First create a group to store all referenced objects.
     group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
     status = H5Gclose(group);
+    if (status < 0)
+    {
+        return -1;
+    }
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);
@@ -1812,6 +1816,10 @@ int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
     //First create a group to store all referenced objects.
     group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
     status = H5Gclose(group);
+    if (status < 0)
+    {
+        return -1;
+    }
 
     //Create each sub dataset and insert data
     pstRowPath = createPathName(pstGroupName, 0);

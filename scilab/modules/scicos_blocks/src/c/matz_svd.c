@@ -23,6 +23,7 @@
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
 #include "scicos.h"
+#include "core_math.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
@@ -62,8 +63,8 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block,int flag)
 	y1i=GetImagOutPortPtrs(block,1);
 	//y2i=GetImagOutPortPtrs(block,2);
 	y3i=GetImagOutPortPtrs(block,3);
-	lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4);
-	rw=5*min(mu,nu);
+	lwork=Max(3*Min(mu,nu)+Max(mu,nu),5*Min(mu,nu)-4);
+	rw=5*Min(mu,nu);
 
 	/*init : initialization*/
 	if (flag==4)
@@ -95,7 +96,7 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block,int flag)
 			scicos_free(ptr);
 			return;
 		}
-		if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(min(mu,nu))))==NULL)
+		if((ptr->LSV=(double*) scicos_malloc(sizeof(double)*(Min(mu,nu))))==NULL)
 		{
 			set_block_error(-16);
 			scicos_free(ptr->LU);
@@ -175,7 +176,7 @@ SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block,int flag)
 
 		*(ptr->l0)=0;
 		C2F(dlaset)("F",&mu,&nu,ptr->l0,ptr->l0,y2r,&mu);
-		for (i=0;i<min(mu,nu);i++)
+		for (i=0;i<Min(mu,nu);i++)
 		{
 			ii=i+i*mu;
 			*(y2r+ii)=*(ptr->LSV+i);}

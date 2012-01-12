@@ -38,7 +38,7 @@ unsetmenu(gwin,button,[nsub])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    The function allows the user to desactivate  buttons or menus created by
+    The function allows the user to deactivate  buttons or menus created by
     <literal>addmenu</literal> in the main or graphics windows command panels.</para>
   </refsection>
   <refsection>

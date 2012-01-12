@@ -31,7 +31,7 @@ public final class NewDiagramAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.NEW_DIAGRAM;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "document-new.png";
+    public static final String SMALL_ICON = "document-new";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_N;
     /** Accelerator key for the action */

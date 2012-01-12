@@ -26,8 +26,10 @@ public final class ModelStatistics {
     private long relaxedParameters;
     private long fixedVariables;
     private long relaxedVariables;
+    private long expectedRelaxedVariables;
     private long discreteStates;
     private long inputs;
+    private long outputs;
     private long derivativeStates;
 
     private final EventListenerList listenerList = new EventListenerList();
@@ -80,6 +82,13 @@ public final class ModelStatistics {
      */
     public long getInputs() {
         return inputs;
+    }
+
+    /**
+     * @return the outputs
+     */
+    public long getOutputs() {
+        return outputs;
     }
 
     /**
@@ -206,6 +215,23 @@ public final class ModelStatistics {
     }
 
     /**
+     * Increment the outputs
+     */
+    public void incOutputs() {
+        incOutputs(1);
+    }
+
+    /**
+     * Increment the outputs
+     * 
+     * @param increment
+     *            the increment
+     */
+    public void incOutputs(long increment) {
+        outputs += increment;
+    }
+
+    /**
      * Increment the relaxedParameters
      */
     public void incRelaxedParameters() {
@@ -252,7 +278,7 @@ public final class ModelStatistics {
      *            the relaxedVariables to set
      */
     public void setRelaxedVariables(long relaxedVariables) {
-        this.relaxedVariables = relaxedVariables;
+        this.expectedRelaxedVariables = relaxedVariables;
     }
 
     /*
@@ -266,7 +292,8 @@ public final class ModelStatistics {
     public boolean isEmpty() {
         return equations == 0 && fixedParameters == 0 && relaxedParameters == 0
                 && fixedVariables == 0 && relaxedVariables == 0
-                && discreteStates == 0 && inputs == 0 && derivativeStates == 0;
+                && discreteStates == 0 && inputs == 0 && outputs == 0
+                && derivativeStates == 0;
     }
 
     // CSON: BooleanExpressionComplexity
@@ -282,6 +309,7 @@ public final class ModelStatistics {
         relaxedVariables = 0;
         discreteStates = 0;
         inputs = 0;
+        outputs = 0;
         derivativeStates = 0;
     }
 

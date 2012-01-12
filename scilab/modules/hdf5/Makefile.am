@@ -108,7 +108,7 @@ if NEED_JAVA
 noinst_LTLIBRARIES += libscihdf5-forceload.la
 endif
 
-noinst_LTLIBRARIES += libscihdf5-forceload-disable.la
+pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
 endif
 
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)

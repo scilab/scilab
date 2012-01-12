@@ -12,7 +12,6 @@
  */
 package org.scilab.modules.gui.bridge.filechooser;
 
-import java.awt.Component;
 import java.awt.Window;
 import java.io.File;
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         this.figureId = figureId;
 
         for (int i = 0; i < v.size(); i++) {
-            FileMask fm = (FileMask) v.get(i);
+            FileMask fm = v.get(i);
             if (i == v.size() - 1) { /* Last case ... all files, remove the extension */
                 fm.clearExtensions();
             }
@@ -138,7 +137,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         Tab tab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureId).getRendererProperties()).getParentTab();
         Window parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
 
-        int selection = super.showSaveDialog((Component) parentWindow);
+        int selection = super.showSaveDialog(parentWindow);
         if (selection == JFileChooser.APPROVE_OPTION) {
 
             this.exportName = super.getSelectedFile().getAbsolutePath();

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-11-03 10:55+0100\n"
+"Revision-Date: 2012-01-10 11:38+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 128
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1182,7 +1182,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_arc_drawing_method_property.c, line: 30
 # File: src/c/getHandleProperty/get_arrow_size_factor_property.c, line: 32
 # File: src/c/getHandleProperty/get_arrow_size_property.c, line: 32
-# File: src/c/getHandleProperty/get_auto_clear_property.c, line: 33
+# File: src/c/getHandleProperty/get_auto_clear_property.c, line: 32
 # File: src/c/getHandleProperty/get_auto_dimensionning_property.c, line: 41
 # File: src/c/getHandleProperty/get_auto_position_property.c, line: 32
 # File: src/c/getHandleProperty/get_auto_resize_property.c, line: 31
@@ -2147,7 +2147,7 @@ msgid "White"
 msgstr ""
 
 #
-# File: macros/%h_load.sci, line: 492
+# File: macros/%h_load.sci, line: 487
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
@@ -3009,7 +3009,7 @@ msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 
 #
-# File: macros/legend.sci, line: 80
+# File: macros/legend.sci, line: 81
 #, c-format
 msgid "%s: No '%s' handle found.\n"
 msgstr ""
@@ -3193,4 +3193,10 @@ msgstr ""
 # File: macros/xclear.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#
+# File: macros/xload.sci, line: 16
+#, c-format
+msgid "%s: file %s does not exist.\n"
 msgstr ""

@@ -27,7 +27,6 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.regex.Pattern;
 
 import javax.swing.ActionMap;
@@ -314,15 +313,9 @@ public class SwingScilabTreeTable extends JTable {
     public void setFilter(Pattern pat) {
         ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
         TreePath rootPath = new TreePath(model.getRoot());
-        Enumeration<TreePath> en = tree.getExpandedDescendants(rootPath);
         tree.setModel(null);
         model.setFilter(pat);
         reload(model);
-        if (en != null) {
-            while (en.hasMoreElements()) {
-                tree.expandPath(en.nextElement());
-            }
-        }
     }
 
     /**
@@ -337,7 +330,7 @@ public class SwingScilabTreeTable extends JTable {
         ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
         tree.expandPath(path);
         if (getRowCount() >= 1) {
-            repaint(tree.getRowBounds(1));
+            repaint(tree.getRowBounds(0));
         }
         editingRow = 0;
     }

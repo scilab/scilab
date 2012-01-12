@@ -25,6 +25,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.swing.SwingUtilities;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -40,8 +43,6 @@ import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -193,18 +194,25 @@ public class WindowsConfigurationManager {
     }
 
     /**
-     * Restore a window with a given uuid
-     * @param uuid the uuid
-     * @param restoreTab if true the tab is restored too
-     * @return the corresponding window
+     * Create a window according to the uuid.
+     *
+     * This method can be used to create a reference windows.
+     *
+     * @param uuid
+     *            the reference uuid
+     * @param preserveUUID
+     *            if true the uuid will be used on the new windows, generate a
+     *            new uuid otherwise
+     * @return the window
      */
-    public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
+    public static SwingScilabWindow createWindow(final String uuid, final boolean preserveUUID) {
         readDocument();
 
-        Element root = doc.getDocumentElement();
-        Map<String, Object> attrs = new HashMap<String, Object>();
-        boolean nullUUID = uuid.equals(NULLUUID);
+        final Element root = doc.getDocumentElement();
+        final boolean nullUUID = uuid.equals(NULLUUID);
+        final Map<String, Object> attrs = new HashMap<String, Object>();
         Element win = null;
+        boolean containsX = true;
 
         if (!nullUUID) {
             win = getElementWithUUID(root, "Window", uuid);
@@ -212,31 +220,64 @@ public class WindowsConfigurationManager {
                 return null;
             }
 
-            attrs.put("x", int.class);
-            attrs.put("y", int.class);
+            containsX = !win.getAttribute("x").equals("");
+
+            if (containsX) {
+                attrs.put("x", int.class);
+                attrs.put("y", int.class);
+            }
+
             attrs.put("height", int.class);
             attrs.put("width", int.class);
             ScilabXMLUtilities.readNodeAttributes(win, attrs);
         } else {
-            attrs = defaultWinAttributes;
+            attrs.putAll(defaultWinAttributes);
         }
 
-        Window w = ScilabWindow.createWindow();
-        UIElementMapper.add(w);
-        final SwingScilabWindow window = (SwingScilabWindow) w.getAsSimpleWindow();
-        if (!nullUUID) {
-            window.setUUID(uuid);
+        SwingScilabWindow window = new SwingScilabWindow();
+
+        final String localUUID;
+        if (preserveUUID) {
+            localUUID = uuid;
         } else {
-            window.setUUID(UUID.randomUUID().toString());
+            localUUID = UUID.randomUUID().toString();
         }
-        window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+        window.setUUID(localUUID);
+
+        if (containsX) {
+            window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+        }
+
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
 
+        return window;
+    }
+
+    /**
+     * Restore a window with a given uuid
+     *
+     * @param uuid
+     *            the uuid
+     * @param restoreTab
+     *            if true the tab is restored too
+     * @return the corresponding window
+     */
+    public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
+        readDocument();
+
+        final boolean nullUUID = uuid.equals(NULLUUID);
+
+        // create the window and preserve the uuid if not null
+        final SwingScilabWindow window = (SwingScilabWindow) createWindow(uuid, !nullUUID);
+        if (window == null) {
+            return null;
+        }
+
         if (restoreTab) {
-            if (win != null) {
-                LayoutNodeSerializer serializer = new LayoutNodeSerializer();
-                NodeList children = win.getElementsByTagName(PersistenceConstants.DOCKING_PORT_NODE_ELEMENT_NAME);
-                LayoutNode layoutNode = (LayoutNode) serializer.deserialize((Element) children.item(0));
+            if (!nullUUID) {
+                final LayoutNodeSerializer serializer = new LayoutNodeSerializer();
+                final Element dockingPort = getDockingPort(uuid);
+                LayoutNode layoutNode = (LayoutNode) serializer.deserialize(dockingPort);
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
                 SwingScilabTab defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
@@ -293,13 +334,17 @@ public class WindowsConfigurationManager {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
+
+                    @Override
                     public void run() {
                         final Thread t = new Thread(new Runnable() {
+                            @Override
                             public void run() {
                                 while (currentlyRestored.size() != 0) {
                                     try {
                                         Thread.sleep(10);
-                                    } catch (InterruptedException e) { }
+                                    } catch (InterruptedException e) {
+                                    }
                                 }
 
                                 // Be sure that te main tab or one of its subcomponent
@@ -309,7 +354,8 @@ public class WindowsConfigurationManager {
                                     mainTab.requestFocus();
                                     try {
                                         Thread.sleep(100);
-                                    } catch (InterruptedException e) { }
+                                    } catch (InterruptedException e) {
+                                    }
                                     owner = window.getFocusOwner();
                                 }
                                 ActiveDockableTracker.requestDockableActivation(mainTab);
@@ -324,6 +370,20 @@ public class WindowsConfigurationManager {
 
         return window;
     }
+
+    private static final Element getDockingPort(final String winUUID) {
+        readDocument();
+
+        final Element root = doc.getDocumentElement();
+        final Element win = getElementWithUUID(root, "Window", winUUID);
+        if (win == null) {
+            return null;
+        }
+
+        final NodeList children = win.getElementsByTagName(PersistenceConstants.DOCKING_PORT_NODE_ELEMENT_NAME);
+        return (Element) children.item(0);
+    }
+
 
     /**
      * Must be called when the restoration is finished
@@ -558,6 +618,129 @@ public class WindowsConfigurationManager {
     }
 
     /**
+     * Validate all the windows in checking if all the dockable nodes are ok.
+     * If a split node contains an invalid uuid, then the invalid dockable is removed
+     * and the split node is replaced by the valid dockable.
+     */
+    private static final void validateWindows() {
+        // We remove all the blanks and carriage return
+        try {
+            XPath xp = XPathFactory.newInstance().newXPath();
+            NodeList nodes = (NodeList) xp.compile("//text()").evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodes.getLength(); i++) {
+                nodes.item(i).getParentNode().removeChild(nodes.item(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Element root = doc.getDocumentElement();
+        NodeList list = root.getElementsByTagName("Window");
+
+        int length = getNodeListLength(list);
+        for (int i = 0; i < length; i++) {
+            validateWindow(((Element) list.item(i)).getAttribute("uuid"));
+        }
+    }
+
+    /**
+     * Validate a window element.
+     * The window element in the DOM is eventually replaced by a valid one.
+     * @param winuuid the window uuid
+     */
+    private static final void validateWindow(final String winuuid) {
+        if (winuuid == null || winuuid.isEmpty()) {
+            return;
+        }
+
+        Element win = getElementWithUUID(winuuid);
+        if (win == null) {
+            return;
+        }
+
+        Element dp = (Element) win.getFirstChild();
+        Element e = validateDockingPortNode(winuuid, dp);
+        if (e == null) {
+            win.removeChild(dp);
+            return;
+        }
+
+        win.removeChild(dp);
+        win.appendChild(e);
+    }
+
+    /**
+     * Validate a dockingport node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateDockingPortNode(final String winuuid, final Element e) {
+        Element ee = (Element) e.getFirstChild();
+        if (ee.getTagName().equals("DockableNode")) {
+            ee = validateDockableNode(winuuid, ee);
+            if (ee == null) {
+                return null;
+            }
+            return e;
+        } else {
+            ee = validateSplitNode(winuuid, ee);
+            if (ee == null) {
+                return null;
+            }
+            Element eee = (Element) e.cloneNode(false);
+            eee.appendChild(ee);
+
+            return eee;
+        }
+    }
+
+    /**
+     * Validate a dockable node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateDockableNode(final String winuuid, final Element e) {
+        String id = e.getAttribute("dockableId");
+        Element ee = getElementWithUUID(id);
+        if (ee == null || !ee.getAttribute("winuuid").equals(winuuid)) {
+            return null;
+        }
+
+        return e;
+    }
+
+    /**
+     * Validate a split node element.
+     * @param winuuid the window uuid
+     * @param e the element to validate
+     * @return a valid element
+     */
+    private static final Element validateSplitNode(final String winuuid, final Element e) {
+        NodeList set = e.getChildNodes();
+        Element c1 = validateDockingPortNode(winuuid, (Element) set.item(0));
+        Element c2 = validateDockingPortNode(winuuid, (Element) set.item(1));
+
+        if (c1 != null && c2 != null) {
+            Element ee = (Element) e.cloneNode(false);
+            ee.appendChild(c1);
+            ee.appendChild(c2);
+            return ee;
+        }
+
+        if (c1 == null && c2 == null) {
+            return null;
+        }
+
+        if (c1 == null) {
+            return (Element) c2.getFirstChild().cloneNode(true);
+        }
+
+        return (Element) c1.getFirstChild().cloneNode(true);
+    }
+
+    /**
      * Remove a node with a given uuid
      * @param parent the parent element
      * @param nodeName the node name
@@ -625,9 +808,12 @@ public class WindowsConfigurationManager {
 
     /**
      * Clean the document in removing the useless tags
+     * and validate the different windows.
      */
     public static void clean() {
         readDocument();
+
+        validateWindows();
 
         Element root = doc.getDocumentElement();
         NodeList list = root.getElementsByTagName("Window");
@@ -675,18 +861,23 @@ public class WindowsConfigurationManager {
     }
 
     /**
-     * Restore an application by its name
-     * @param name the application name
+     * Restore an application by its uuid
+     * @param uuid the application uuid
      * @return true if the operation succeded
      */
     public static boolean restoreUUID(String uuid) {
         readDocument();
+        clean();
+
         Element elem = getElementWithUUID(uuid);
         if (elem == null) {
             return false;
         }
 
         startRestoration(uuid);
+
+        writeDocument();
+        doc = null;
 
         return true;
     }

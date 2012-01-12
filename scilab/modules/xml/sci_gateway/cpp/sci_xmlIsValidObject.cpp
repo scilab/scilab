@@ -49,6 +49,7 @@ int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -64,6 +65,7 @@ int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
                 delete[] exists;
                 freeAllocatedMatrixOfString(row, col, vars);
                 printError(&err, 0);
+                Scierror(999, _("%s: Can not read named argument %s.\n"), fname, const_cast<const char *>(vars[i]));
                 return 0;
             }
 
@@ -85,6 +87,7 @@ int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

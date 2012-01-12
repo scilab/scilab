@@ -67,7 +67,7 @@
     doc2 = xmlRead(TMPDIR+"/foo.xml");
     doc2.root.children(1).name
 
-    xmlClose("all");
+    xmlDelete("all");
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -25,10 +25,10 @@ assert_checkequal(doc.root.children(1).content,"hello");
 assert_checkequal(doc.root.children(2).name,"b");
 assert_checkequal(doc.root.children(2).content," world");
 xmlWrite(doc);
-xmlClose(doc);
+xmlDelete(doc);
 
 doc2 = xmlRead("TMPDIR/foo.xml");
 assert_checkfalse(execstr("doc2.line","errcatch") == 0);
 assert_checkequal(doc2.root.line,2);
 assert_checkequal(doc2.root.children(1).line,3);
-xmlClose(doc2);
+xmlDelete(doc2);

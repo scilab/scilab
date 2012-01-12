@@ -31,7 +31,7 @@
       <varlistentry>
         <term>sys</term>
         <listitem>
-          <para> <literal>syslin</literal> list : SIMO linear system</para>
+          <para><literal>syslin</literal> list : SIMO linear system</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -82,7 +82,7 @@
     <para>
     If <literal>step</literal> is not given, the output parameter <literal>frq</literal> is calculated by <literal>frq=calfrq(sys,fmin,fmax)</literal>.</para>
     <para>
-    Vector <literal>frq</literal> is splitted into regular parts with the <literal>split</literal> vector.
+    Vector <literal>frq</literal> is split into regular parts with the <literal>split</literal> vector.
     <literal>frq(splitf(k):splitf(k+1)-1)</literal> has no critical frequency. 
     <literal>sys</literal> has a pole in the range <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> and 
     no poles outside.</para>
@@ -107,7 +107,7 @@ repf(2)-x
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bode">bode</link>

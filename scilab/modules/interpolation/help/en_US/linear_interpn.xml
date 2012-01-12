@@ -237,7 +237,7 @@ show_window()
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
 //             tricubic spline interpolation)
-exec("SCI/demos/interp/interp_demo.sci") 
+exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 

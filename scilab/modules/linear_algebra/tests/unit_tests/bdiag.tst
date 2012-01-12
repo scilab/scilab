@@ -11,12 +11,18 @@ rand('normal')
 //==========================================================================
 //==============================   bdiag      ============================== 
 //==========================================================================
-if bdiag([])<>[] then pause,end
+assert_checkequal(bdiag([]),[]);
 [ab,x]=bdiag([]);
-if ab<>[]|x<>[] then pause,end
+assert_checkequal(ab,[]);
+assert_checkequal(x,[]);
+
+
 [ab,x,bs]=bdiag([]);
-if ab<>[]|x<>[]|bs<>[] then pause,end
-if execstr('bdiag([1 2;3 4;5 6])','errcatch')==0 then pause,end
+assert_checkequal(ab,[]);
+assert_checkequal(x,[]);
+assert_checkequal(bs,[]);
+
+assert_checktrue(execstr('bdiag([1 2;3 4;5 6])','errcatch')<>0);
 
 //Small dimension
 //---------------
@@ -33,29 +39,25 @@ X1=[0.5,0.3,0,0.3,0.3,0.2;
    0.7,0.1,0.4,0.6,0.1,1;
    0,0.6,0.2,0.3,0.4,0.5;
    0.6,0.7,0.5,0.7,0.7,0.5;
-   0.3,0.3,0.4,0.5,0.9,0.6]
+   0.3,0.3,0.4,0.5,0.9,0.6];
 A=inv(X1)*A*X1;
 
 Ab1=bdiag(A);
-if or(triu(Ab1,-1)<>Ab1) then pause,end
+assert_checkequal(triu(Ab1,-1),Ab1);
+
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>1d6*%eps then pause,end 
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(inv(X)*A*X,Ab2,sqrt(%eps),0,"matrix");
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>2.d-10 then pause,end 
-if or(size(bs)<>[3,1]) then pause,end
-if sum(bs)<>size(A,1) then pause,end
-if or(bs<=0) then pause,end
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
+assert_checkequal(sum(bs),size(A,1));
+assert_checktrue(and(bs>0));
 
 [Ab2,X,bs]=bdiag(A,1);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>2d-7 then pause,end 
-if or(size(bs)<>[1,1]) then pause,end
-if sum(bs)<>size(A,1) then pause,end
-if or(bs<=0) then pause,end
-
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
+assert_checkequal(bs,size(A,1));
 
 
 //Complex case
@@ -75,47 +77,45 @@ X1=[0.5,0.3,0,0.3,0.3,0.2;
 A=inv(X1)*A*X1;
 
 Ab1=bdiag(A);
-if or(triu(Ab1)<>Ab1) then pause,end
+assert_checkequal(triu(Ab1,-1),Ab1);
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>1.d-8 then pause,end 
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>1.d-8 then pause,end 
-if size(bs,2)<>1 then pause,end
-if sum(bs)<>size(A,1) then pause,end
-if or(bs<=0) then pause,end
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
+assert_checkequal(sum(bs),size(A,1));
+assert_checktrue(and(bs>0));
 //Large dimension
 //---------------
 //Real case
 A=rand(25,25);
 Ab1=bdiag(A);
-if or(triu(Ab1,-1)<>Ab1) then pause,end
+assert_checkequal(triu(Ab1,-1),Ab1);
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
-if size(bs,2)<>1 then pause,end
-if sum(bs)<>size(A,1) then pause,end
-if or(bs<=0) then pause,end
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
+assert_checkequal(size(bs,2),1);
+assert_checkequal(sum(bs),size(A,1));
+assert_checktrue(and(bs>0));
 
 //Complex case
 A=rand(25,25)+%i*rand(25,25);
 Ab1=bdiag(A);
-if or(triu(Ab1)<>Ab1) then pause,end
+assert_checkequal(triu(Ab1,-1),Ab1);
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
+assert_checkalmostequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
-if size(bs,2)<>1 then pause,end
-if sum(bs)<>size(A,1) then pause,end
-if or(bs<=0) then pause,end
-
+assert_checkequal(Ab2,Ab1);
+assert_checkalmostequal(Ab2,inv(X)*A*X,sqrt(%eps),0,"matrix");
+assert_checkequal(size(bs,2),1);
+assert_checkequal(sum(bs),size(A,1));
+assert_checktrue(and(bs>0));
 

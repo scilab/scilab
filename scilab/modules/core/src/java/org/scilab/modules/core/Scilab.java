@@ -28,6 +28,8 @@ import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
+import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
@@ -69,8 +71,6 @@ public class Scilab {
     private static final String OSNAME = "os.name";
     private static final String MACOS = "mac";
 
-    private static String SCIDIR;
-
     private static boolean success;
     private static boolean finish;
     private static boolean exitCalled;
@@ -79,6 +79,10 @@ public class Scilab {
     private static List<Runnable> finalhooks = new ArrayList<Runnable>();
     private static List<Runnable> initialhooks = new ArrayList<Runnable>();
 
+    /**
+     * WARNING : mainView is directly referenced from a JNI even it's private.
+     * TODO : Better add getter for this variable.
+     */
     private SwingScilabWindow mainView;
 
     /**
@@ -86,7 +90,7 @@ public class Scilab {
      * @param mode Mode Scilab -NW -NWNI -STD -API
      */
     public Scilab(int mode) {
-        this.mode = mode;
+        Scilab.mode = mode;
         DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
 
         /*
@@ -95,8 +99,6 @@ public class Scilab {
          * race condition. See bug #4419
          */
         try {
-            SCIDIR = System.getenv("SCI");
-
             /*
              * Set Java directories to Scilab ones
              */
@@ -128,31 +130,31 @@ public class Scilab {
 
                 String scilabLookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-                if (isWindowsPlateform()) {
+                if (OS.get() == OS.WINDOWS) {
                     scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
                 } else if (System.getProperty(OSNAME).toLowerCase().indexOf(MACOS) != -1) {
                     /** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
                     System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
                     scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
                 } else {
-                	scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-                    
+                    scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+
                     /*
                      * Linux specific desktop integration
                      */
-                	if (!GraphicsEnvironment.isHeadless()) {
-	                    try {
-	                        Toolkit xToolkit = Toolkit.getDefaultToolkit();
-	                        java.lang.reflect.Field awtAppClassNameField =
-	                            xToolkit.getClass().getDeclaredField("awtAppClassName");
-	                        awtAppClassNameField.setAccessible(true);
-	                        
-	                        awtAppClassNameField.set(xToolkit, "Scilab");
-	                    } catch (Exception e) {
-	                        System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
-	                        System.err.println("Error: " + e.getLocalizedMessage());
-	                    }
-                	}
+                    if (!GraphicsEnvironment.isHeadless()) {
+                        try {
+                            Toolkit xToolkit = Toolkit.getDefaultToolkit();
+                            java.lang.reflect.Field awtAppClassNameField =
+                                xToolkit.getClass().getDeclaredField("awtAppClassName");
+                            awtAppClassNameField.setAccessible(true);
+
+                            awtAppClassNameField.set(xToolkit, "Scilab");
+                        } catch (Exception e) {
+                            System.err.println("Unable to set WM_CLASS, please report a bug on http://bugzilla.scilab.org/.");
+                            System.err.println("Error: " + e.getLocalizedMessage());
+                        }
+                    }
                 }
 
                 /* Init the LookAndFeelManager all the time since we can
@@ -226,38 +228,14 @@ public class Scilab {
         //System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, ENABLE_WITH_DEBUG);
         System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
 
-        if (isWindowsPlateform()) {
-            if (findWindowsVersion() >= VISTA_VERSION) {
+        if (OS.get() == OS.WINDOWS) {
+            if ((Double) OS.get().getVersion() >= VISTA_VERSION) {
                 // don't enable OpenGL because of aero
                 System.setProperty(ENABLE_JAVA2D_OPENGL_PIPELINE, DISABLE);
             }
             // desactivate direct3d and direct draw under windows
             System.setProperty(DISABLE_DDRAW, ENABLE);
         }
-    }
-
-    /**
-     * @return true if the os is windows, false otherwise
-     */
-    public static boolean isWindowsPlateform() {
-        // get os name
-        return System.getProperty(OSNAME).toLowerCase().contains("windows");
-    }
-
-    /**
-     * Find the verion of windows used on the computer if one
-     * @return negative value if the OS is not windows, the version of windows otherwise
-     */
-    public static double findWindowsVersion() {
-        // default valu enot windows
-        double windowsVersion = -1.0;
-
-        if (isWindowsPlateform()) {
-            // windows plateform
-            return Double.valueOf(System.getProperty("os.version"));
-        }
-
-        return windowsVersion;
     }
 
     /**
@@ -337,14 +315,10 @@ public class Scilab {
      * This method should be called from C (realmain)
      */
     public static void executeInitialHooks() {
+        ScilabCommonsUtils.registerScilabThread();
+
         for (final Runnable hook : initialhooks) {
-            try {
-                SwingUtilities.invokeAndWait(hook);
-            } catch (InterruptedException e) {
-                System.err.println(e);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            hook.run();
         }
     }
 }

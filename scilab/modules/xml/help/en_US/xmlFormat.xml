@@ -61,7 +61,7 @@
     doc.root.children(1.5) = 1.23456;
     xmlDump(doc)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection>

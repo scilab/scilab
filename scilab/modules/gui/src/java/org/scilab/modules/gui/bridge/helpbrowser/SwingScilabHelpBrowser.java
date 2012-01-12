@@ -91,7 +91,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         super(new BorderLayout());
         jhelp = new JHelp();
         add(jhelp);
-	setFocusable(true);
+        setFocusable(true);
         searchField = new HelpSearchField(this, null);
 
         /* Send information to the user using status bar and cursor */
@@ -244,6 +244,36 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      */
     public String getCurrentURL() {
         return ((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).getCurrentURL();
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public String getCurrentID() {
+        String id = jhelp.getModel().getCurrentID().toString();
+        int whitePos = id.indexOf(" ");
+        int commaPos = id.indexOf(",");
+
+        if (whitePos != -1 && commaPos != -1) {
+            id = id.substring(whitePos + 1, commaPos);
+        }
+
+        return id;
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public void setCurrentID(final String id) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        jhelp.setCurrentID(id);
+                    } catch (BadIDException e) {
+                        jhelp.setCurrentURL(homePageURL);
+                    }
+                }
+            });
     }
 
     /**

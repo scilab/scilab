@@ -61,7 +61,6 @@ public final class Jxclick {
 				ClickInfos.getInstance().init();
 				ClickInfos.getInstance().wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

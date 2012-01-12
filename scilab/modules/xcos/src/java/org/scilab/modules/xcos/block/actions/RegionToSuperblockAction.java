@@ -24,6 +24,7 @@ import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -52,7 +53,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "object-group.png";
+    public static final String SMALL_ICON = "object-group";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = 0;
     /** Accelerator key for the action */
@@ -380,12 +381,14 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                     superBlock, brokenLinks, inSelectionCells);
 
             /*
-             * Finish the install on the child and close it.
+             * Finish the install on the child and sync it.
              */
             childGraph.installListeners();
             childGraph.installSuperBlockListeners();
-            superBlock.closeBlockSettings();
+            superBlock.syncParameters();
 
+            Xcos.getInstance().addDiagram(parentGraph.getSavedFile(),
+                    childGraph);
         } finally {
             parentGraph.getModel().endUpdate();
             parentGraph.info(XcosMessages.EMPTY_INFO);
@@ -412,6 +415,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
          */
         final SuperBlockDiagram diag = new SuperBlockDiagram(superBlock);
         superBlock.setChild(diag);
+        superBlock.setParentDiagram(parentGraph);
 
         /*
          * Place the super block

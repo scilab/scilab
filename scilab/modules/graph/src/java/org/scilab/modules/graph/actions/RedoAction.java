@@ -36,7 +36,7 @@ public class RedoAction extends DefaultAction {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.REDO;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "edit-redo.png";
+    public static final String SMALL_ICON = "edit-redo";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_Y;
 	/** Accelerator key for the action */
@@ -87,7 +87,8 @@ public class RedoAction extends DefaultAction {
 		 * @param evt the current event
 		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
 		 */
-		public void invoke(Object sender, mxEventObject evt) {
+		@Override
+        public void invoke(Object sender, mxEventObject evt) {
 			boolean canRedo = scilabGraph.getUndoManager().canRedo();
 			super.setEnabled(canRedo);
 		}
@@ -129,7 +130,8 @@ public class RedoAction extends DefaultAction {
 	 *            the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		final ScilabGraph graph = getGraph(e);
 
 		graph.removeUndoHandler();

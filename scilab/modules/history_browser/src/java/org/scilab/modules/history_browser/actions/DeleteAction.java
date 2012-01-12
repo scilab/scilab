@@ -14,8 +14,8 @@ package org.scilab.modules.history_browser.actions;
 
 import java.lang.reflect.InvocationTargetException;
 
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.KeyStroke;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -24,6 +24,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 import org.scilab.modules.history_manager.HistoryManagement;
@@ -37,7 +38,7 @@ public final class DeleteAction extends CommonCallBack {
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.DELETE;
-    private static final String ICON = System.getenv("SCI") + "/modules/gui/images/icons/edit-delete.png";
+    private static final String ICON = ScilabSwingUtilities.findIcon("edit-delete");
     private static final char MNEMONIC = 'D';
 
     private static final String KEY = "DELETE";
@@ -110,6 +111,7 @@ public final class DeleteAction extends CommonCallBack {
      * Action!
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
+    @Override
     public void callBack() {
         TreePath[] currentSelection = CommandHistory.getTree().getSelectionPaths();
         if (currentSelection != null) {

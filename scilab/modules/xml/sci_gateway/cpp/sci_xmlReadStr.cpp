@@ -44,6 +44,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -65,6 +66,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         {
             delete code;
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 

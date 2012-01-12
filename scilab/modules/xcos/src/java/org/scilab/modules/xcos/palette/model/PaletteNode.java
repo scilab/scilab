@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 /**
  * <p>
@@ -199,8 +199,8 @@ public abstract class PaletteNode implements TreeNode {
      *            the category to refresh
      */
     public static void refreshView(final PaletteNode toBeReloaded) {
-        if (PaletteManager.getInstance().getView() != null) {
-            final JTree tree = PaletteManager.getInstance().getView().getTree();
+        if (PaletteManagerView.get() != null) {
+            final JTree tree = PaletteManagerView.get().getTree();
             final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 
             /*

@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
@@ -226,31 +227,34 @@ public final class SuperBlock extends BasicBlock {
             /*
              * Construct the view or set it visible.
              */
-            if (!getChild().isVisible()) {
-                updateAllBlocksColor();
-                getChild().setModifiedNonRecursively(false);
-
-                new XcosTab(getChild()).setVisible(true);
-                getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
-                getChild().getView().invalidate();
+            if (XcosTab.get(getChild()) == null) {
+                XcosTab.restore(getChild());
+            } else {
+                XcosTab.get(getChild()).setCurrent();
             }
+
+            updateAllBlocksColor();
+            getChild().setModifiedNonRecursively(false);
+
+            getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
+            getChild().getView().invalidate();
 
             /*
              * Update the cells from the context values.
              */
             getChild().updateCellsContext();
-
-            Xcos.getInstance().getDiagrams().add(getChild());
-
         } finally {
             setLocked(false);
         }
     }
 
     /**
-     * Action to be performed when the diagram is closed
+     * Action to be performed when the diagram is closed or whenever we have to
+     * commit a child modification.
+     * 
+     * This method does not handle tab closing operation.
      */
-    public void closeBlockSettings() {
+    public void syncParameters() {
         /*
          * Do not ask the user, the diagram is saved and closed.
          * 
@@ -261,21 +265,6 @@ public final class SuperBlock extends BasicBlock {
             setRealParameters(new DiagramElement().encode(getChild()));
             getChild().setModified(true);
             getChild().setModifiedNonRecursively(false);
-        }
-
-        /*
-         * Hide the current child window
-         */
-        if (getChild().getParentTab() != null) {
-            getChild().getParentTab().close();
-            getChild().setParentTab(null);
-
-            getChild().setComponent(null);
-        }
-
-        /* Remove only when the instance cannot be modified anymore */
-        if (getChild().canClose()) {
-            Xcos.getInstance().close(getChild(), false);
         }
     }
 
@@ -344,6 +333,11 @@ public final class SuperBlock extends BasicBlock {
             // only for loading and generate sub block UID
             if (generatedUID) {
                 child.generateUID();
+            }
+
+            final XcosDiagram parent = Xcos.findParent(this);
+            if (parent != null) {
+                Xcos.getInstance().addDiagram(parent.getSavedFile(), child);
             }
         } else {
             return false;
@@ -469,8 +463,10 @@ public final class SuperBlock extends BasicBlock {
         updateBlocksColor(getAllTypedBlock(EventInBlock.class));
         updateBlocksColor(getAllTypedBlock(EventOutBlock.class));
 
-        child.getAsComponent().validate();
-        child.getView().validate();
+        if (child != null) {
+            child.getAsComponent().validate();
+            child.getView().validate();
+        }
     }
 
     /**
@@ -478,12 +474,12 @@ public final class SuperBlock extends BasicBlock {
      *            block list
      */
     private void updateBlocksColor(List<? extends BasicBlock> blocks) {
+        if (blocks == null || blocks.size() == 0 || child == null) {
+            return;
+        }
 
         try {
             child.getModel().beginUpdate();
-            if (blocks == null || blocks.size() == 0) {
-                return;
-            }
 
             final int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
             boolean[] isDone = new boolean[countUnique];

@@ -43,13 +43,13 @@
   </path>
   <path id="unittest.classpath">
     <pathelement location="${testng.jar}"/>
+    <pathelement location="${jcommander.jar}"/>
     <pathelement location="${bsh.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${qdox.jar}"/>
   </path>
   <path id="compile.classpath">
     <pathelement location="${library.types.dir}/${library.types.name}"/>
-    <pathelement location="${library.types.dir}/${library.output_stream.name}"/>
     <pathelement location="${library.graph.dir}/${library.graph.name}"/>
     <pathelement location="${library.graphic_objects.dir}/${library.graphic_objects.name}"/>
     <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
@@ -88,7 +88,6 @@
     <pathelement location="${fop.jar}"/>
     <pathelement location="${jlatexmath-fop.jar}"/>
     <pathelement location="${avalon-framework.jar}"/>
-    <pathelement location="${avalon-framework-impl.jar}"/>
     <pathelement location="${jeuclid-core.jar}"/>
     <pathelement location="${jlatexmath.jar}"/>
   </path>
@@ -124,7 +123,7 @@
       <!-- Where ${basedir} is the module base directory -->
       <env key="SCI" value="${basedir}/../.."/>
       <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
     </testng>
   </target>
   <target name="validate">

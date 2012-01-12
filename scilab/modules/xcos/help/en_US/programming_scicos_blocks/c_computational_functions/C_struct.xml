@@ -144,7 +144,7 @@ In the current version of Scicos, the <literal>scicos-&gt;block</literal> struct
       </listitem>
       <listitem>
         <para><emphasis role="bold">block-&gt;insz :</emphasis> An array of integers of size that respectively gives the first dimensions, the second dimensions and the type of data driven by regular input ports.</para>
-        <para> Note that this array of size differs from the array and to provide full compatibilty with blocks that only use a single dimension.</para>
+        <para> Note that this array of size differs from the array and to provide full compatibility with blocks that only use a single dimension.</para>
         <para> Suppose that you have a block with three inputs : the first is an int32 matrix of size 3,2, the second a single complex number (matrix of size 1,1) and the last a real matrix of size 4,1.</para>
         <para> In the<link linkend="scicos_model">scicos_model</link> of such a block, the inputs will be defined :
 </para>
@@ -321,7 +321,7 @@ One can also use the set of C macros :
         <para> 
 </para>
         <para>
-to have the appropiate pointer of the data to handle and 
+to have the appropriate pointer of the data to handle and 
 </para>
         <para>                    </para>
         <programlisting role="code"><![CDATA[GetNin(block)]]></programlisting>
@@ -398,7 +398,7 @@ Finally note that the regular input port registers are only accessible for readi
       </listitem>
       <listitem>
         <para><emphasis role="bold">block-&gt;outsz :</emphasis> An array of integers of size that respectively gives the first dimensions, the second dimensions and the type of data driven by regular output ports.</para>
-        <para> Note that this array of size differs from the array and to provide full compatibilty with blocks that only use a single dimension.</para>
+        <para> Note that this array of size differs from the array and to provide full compatibility with blocks that only use a single dimension.</para>
         <para> Suppose that you have a block with two outputs : the first is an int32 matrix of size 3,2, the second a single complex number (matrix of size 1,1) and the last a real matrix of size 4,1.</para>
         <para> In the<link linkend="scicos_model">scicos_model</link> of such a block, the outputs will be defined :
 </para>
@@ -509,7 +509,7 @@ One can also use the set of C macros :
         <para> 
 </para>
         <para>
-to have the appropiate pointer of the data to handle and 
+to have the appropriate pointer of the data to handle and 
 </para>
         <para>                    </para>
         <programlisting role="code"><![CDATA[GetNout(block)]]></programlisting>
@@ -1067,7 +1067,7 @@ One can also use the set of C macros :
         <para>
 </para>
         <para>
-to have the appropiate pointer of the data to handle (<emphasis role="bold">x is numbered from 1 to nopar</emphasis>).
+to have the appropriate pointer of the data to handle (<emphasis role="bold">x is numbered from 1 to nopar</emphasis>).
 </para>
         <para>
 For the previous example that gives :
@@ -1448,7 +1448,7 @@ One can also use the set of C macros :
         <para> 
 </para>
         <para>
-to have the appropiate pointer of the data to handle (<emphasis role="bold">x is numbered from 1 to noz</emphasis>).
+to have the appropriate pointer of the data to handle (<emphasis role="bold">x is numbered from 1 to noz</emphasis>).
 </para>
         <para>
 For the previous example that gives :
@@ -1559,7 +1559,7 @@ The pointer of that array can also be retrieve via the C macro </para>
       <listitem>
         <para><emphasis role="bold">block-&gt;g :</emphasis> Array of double of size ng,1 corresponding to the zero crossing surface register.</para>
         <para> That register is used to detect zero crossing of state variable during time domain integration.</para>
-        <para> Note that it is accessible for writting for = 9.</para>
+        <para> Note that it is accessible for writing for = 9.</para>
         <para> The pointer of that array can also be retrieve via the C macro . </para>
       </listitem>
       <listitem>
@@ -1570,7 +1570,7 @@ The pointer of that array can also be retrieve via the C macro </para>
       <listitem>
         <para><emphasis role="bold">block-&gt;mode :</emphasis> Array of integer of size nmode,1 corresponding to the mode register.</para>
         <para> That register is used to set the mode of state variable during time domain integration.</para>
-        <para> It is typically accessible for writting for = 9.</para>
+        <para> It is typically accessible for writing for = 9.</para>
         <para> The pointer of that array can also be retrieve via the C macro . </para>
       </listitem>
     </itemizedlist>

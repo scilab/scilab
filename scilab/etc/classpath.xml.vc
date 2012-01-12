@@ -28,7 +28,7 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-0.5.4.jar"/>
+<path value="$SCILAB/thirdparty/flexdock-1.0.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
@@ -46,24 +46,24 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- XCOS -->
 <path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 	<load on="HDF5"/>
 </path>
 
@@ -75,11 +75,10 @@ The option is "disableUnderMode" and can be:
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
-<path value="$SCILAB/modules/output_stream/jar/org.scilab.modules.output_stream.jar" load="startup"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <!-- END -->
 
@@ -106,12 +105,12 @@ The option is "disableUnderMode" and can be:
 	<load on="graphics_mathml_textrendering"/>
 	<load on="svg_graphic_export"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- PDF doc generation -->
@@ -127,7 +126,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -138,7 +137,7 @@ The option is "disableUnderMode" and can be:
   	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="Xcos"/>
 </path>
 
 <!-- helptools module doc generation -->

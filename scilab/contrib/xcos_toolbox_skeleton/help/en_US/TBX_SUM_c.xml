@@ -75,21 +75,25 @@
   </refsection>
   <refsection id="SeeAlso_TBX_SUM_c">
     <title>See Also</title>
-    <itemizedlist>
-      <listitem>
-        <para><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding scilab functionnality</para>
-      </listitem>
-    </itemizedlist>
+    <simplelist type="inline">
+      <member><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding scilab functionnality
+      </member>
+      <member>
+        <link type="scilab" linkend="scilab.help/sum">Link to the Scilab help page</link>
+      </member>
+      <member>
+        <link type="scilab" linkend="scilab.help/ABS_VALUE">Link to an Xcos help page</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection id="Authors_TBX_SUM_c">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>
     </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
-      </listitem>
-    </itemizedlist>
+    <simplelist type="inline">
+      <member><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

@@ -31,7 +31,7 @@ public class RotateAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.ROTATE;
     /** Icon name of the action */
-    public static final String SMALL_ICON = "transform-rotate.png";
+    public static final String SMALL_ICON = "transform-rotate";
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_R;
     /** Accelerator key for the action */

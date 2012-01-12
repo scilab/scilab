@@ -36,7 +36,7 @@ doc2 = xmlRead("TMPDIR/plop.xml");
 a2 = doc2.root.children(2).attributes;
 assert_checkequal(a2(1),"123");
 assert_checkequal(a2(2),[]);
-xmlClose(doc2);
+xmlDelete(doc2);
 
 doc2 = xmlRead("TMPDIR/plop.xml");
 doc2.root.children(2).attributes.id="";
@@ -44,14 +44,14 @@ a2 = doc2.root.children(2).attributes;
 assert_checkequal(a2(1),"");
 assert_checkequal(doc2.root.children(2).attributes.id,"");
 assert_checkequal(a2(2),[]);
-xmlClose(doc2);
+xmlDelete(doc2);
 
 doc2 = xmlRead("TMPDIR/plop.xml");
 a2 = doc2.root.children(2).attributes;
 a2.id="";
 doc2.root.children(2).attributes=a2;
 assert_checkequal(doc2.root.children(2).attributes.id,"");
-xmlClose(doc2);
+xmlDelete(doc2);
 
 
 

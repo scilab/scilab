@@ -242,6 +242,12 @@
     <ClCompile Include="xerhlt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="convertbase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_base2dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h">
@@ -284,6 +290,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\xerhlt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="convertbase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

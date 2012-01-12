@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-  <mime-type type="text/sci">
+  <mime-type type="application/x-scilab-sci">
+    <sub-class-of type="text/plain"/>
     <comment xml:lang="en">Scilab macro</comment>
     <glob pattern="*.sci"/>
   </mime-type>
-  <mime-type type="text/sce">
+  <mime-type type="application/x-scilab-sce">
+    <sub-class-of type="text/plain"/>
     <comment xml:lang="en">Scilab script</comment>
     <glob pattern="*.sce"/>
   </mime-type>
-  <mime-type type="text/tst">
+  <mime-type type="application/x-scilab-tst">
+    <sub-class-of type="application/sce"/>
     <comment xml:lang="en">Scilab test</comment>
     <glob pattern="*.tst"/>
   </mime-type>
-  <mime-type type="application/xcos+xml">
+  <mime-type type="application/x-scilab-dem">
+    <sub-class-of type="application/sce"/>
+    <comment xml:lang="en">Scilab demo</comment>
+    <glob pattern="*.dem"/>
+  </mime-type>
+  <mime-type type="application/x-scilab-xcos">
+    <sub-class-of type="text/xml"/>
     <comment xml:lang="en">Scilab/Xcos schema</comment>
     <glob pattern="*.xcos"/>
+  </mime-type>
+  <!-- Deprecated -->
+  <mime-type type="application/x-scilab-bin">
+    <sub-class-of type="application/octet-stream"/>
+    <comment xml:lang="en">Scilab binary</comment>
+    <glob pattern="*.bin"/>
+  </mime-type>
+  <mime-type type="application/x-scilab-cosf">
+    <sub-class-of type="application/x-scilab-sce"/>
+    <comment xml:lang="en">Scicos schema</comment>
+    <glob pattern="*.cosf"/>
+  </mime-type>
+  <mime-type type="application/x-scilab-cos">
+    <sub-class-of type="application/x-scilab-bin"/>
+    <comment xml:lang="en">Scicos binary schema</comment>
+    <glob pattern="*.cos"/>
   </mime-type>
 </mime-info>

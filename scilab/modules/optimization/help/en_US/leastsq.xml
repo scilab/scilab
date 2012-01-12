@@ -446,7 +446,7 @@ xsup = [%inf, %inf];
     <para>
 		Now we want to define fun and dfun in Fortran, then in C. 
           Note that the "compile and link to scilab" method used here
-          is believed to be OS independant (but there are some requirements, 
+          is believed to be OS independent (but there are some requirements, 
           in particular you need a C and a fortran compiler, and they must 
           be compatible with the ones used to build your scilab binary).
 	    </para>

@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.waitbar.SimpleWaitBar;
 
 /**
@@ -44,11 +45,11 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private int elementId;
 
-    private JProgressBar progressBar;
+    private final JProgressBar progressBar;
 
-    private JLabel messageLabel;
+    private final JLabel messageLabel;
 
-    private ImageIcon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+    private final ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     /**
      * Default constructor
@@ -98,6 +99,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
         /* ProgressBar */
         progressBar = new JProgressBar();
+
         c.gridwidth = GridBagConstraints.REMAINDER;
         gridbag.setConstraints(progressBar, c);
         pane.add(progressBar);
@@ -118,6 +120,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the element id for this MessageBox
      * @param id the id of the corresponding MessageBox object
      */
+    @Override
     public void setElementId(int id) {
         elementId = id;
     }
@@ -126,6 +129,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Get the element id for this MessageBox
      * @return id the id of the corresponding MessageBox object
      */
+    @Override
     public int getElementId() {
         return elementId;
     }
@@ -134,6 +138,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the title of the WaitBar
      * @param title the title to set
      */
+    @Override
     public void setTitle(String title) {
         super.setTitle(title);
     }
@@ -142,6 +147,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the message of the WaitBar
      * @param message the message to set
      */
+    @Override
     public void setMessage(String[] message) {
         int line = 0;
         StringBuffer msg = new StringBuffer("<HTML>");
@@ -156,6 +162,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the current value of the WaitBar
      * @param value the value to set
      */
+    @Override
     public void setValue(int value) {
         progressBar.setValue(value);
     }
@@ -163,6 +170,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
     /**
      * Close the WaitBar
      */
+    @Override
     public void close() {
         this.dispose();
     }
@@ -171,6 +179,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Indicates if the total execution time is known
      * @param status true if the total progress time in unknown
      */
+    @Override
     public void setIndeterminateMode(boolean status) {
         progressBar.setIndeterminate(status);
         progressBar.setStringPainted(!status);
@@ -205,5 +214,4 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
             setValue((Integer) value);
         }
     }
-
 }

@@ -55,6 +55,9 @@
     <None Include="..\resources\TST.ICO">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\resources\xcos.ico">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WScilex.rc">

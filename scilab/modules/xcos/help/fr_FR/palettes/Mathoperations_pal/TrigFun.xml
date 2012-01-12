@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) INRIA\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-          version="5.0-subset Scilab"
-          xml:id="TrigFun"
-          xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TrigFun" xml:lang="fr_FR">
   <refnamediv>
     <refname>TrigFun</refname>
     <refpurpose>Fonction trigonométrique</refpurpose>
@@ -98,12 +90,18 @@
       Le bloc Trigonometric Function exécute de nombreuses fonctions trigonométriques communes. Vous pouvez sélectionner
       une fonction parmi celles citées dans ce tableau :
     </para>
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left"><emphasis role="bold">Fonction</emphasis></td>
-        <td align="left"><emphasis role="bold">Définition</emphasis></td>
-        <td align="left"><emphasis role="bold">Sortie</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Fonction</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Définition</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Sortie</emphasis>
+        </td>
       </tr>
       <tr>
         <td align="left">sin</td>
@@ -140,17 +138,17 @@
         <td align="left">Arc tangente quatre quadrants (radians) de l'entrée</td>
         <td align="left">y = atan2(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">sinh</td>
         <td align="left">Sinus hyperbolique de l'entrée</td>
         <td align="left">y = sinh(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">cosh</td>
         <td align="left">Cosinus hyperbolique de l'entrée</td>
         <td align="left">y = cosh(u)</td>
       </tr>
-       <tr>
+      <tr>
         <td align="left">tanh</td>
         <td align="left">Tangente hyperbolique de l'entrée</td>
         <td align="left">y = tanh(u)</td>

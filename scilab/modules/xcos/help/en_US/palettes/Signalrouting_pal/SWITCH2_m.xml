@@ -78,6 +78,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_SWITCH2_m">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_SWITCH2_m">Authors</xref>
             </para>
           </listitem>
@@ -231,14 +236,12 @@ input is passed. Otherwise, the third input is passed.
     </itemizedlist>
   </refsection>
   <refsection id="Example_SWITCH2_m">
-    <title>SWITCH2_m Example</title>
+    <title>Example</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SWITCH2_m_Example.xcos">
         <inlinemediaobject>
           <imageobject>
-            <imagedata align="center"
-                       fileref="../../../examples/signalrouting_pal/SWITCH2_m_Example.png"
-                       valign="middle" />
+            <imagedata align="center" fileref="../../../examples/signalrouting_pal/SWITCH2_m_Example.png" valign="middle"/>
           </imageobject>
         </inlinemediaobject>
       </link>

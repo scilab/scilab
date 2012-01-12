@@ -166,7 +166,8 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
      * {@inheritDoc}
      */
     public int getColumnCount() {
-        return names.length;
+        // TODO : remove the comment and let the choice to the user to remove or not the columns
+        return 1;//names.length;
     }
 
     /**

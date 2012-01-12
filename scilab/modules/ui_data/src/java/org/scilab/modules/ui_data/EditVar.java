@@ -13,6 +13,7 @@
 package org.scilab.modules.ui_data;
 
 import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
+import org.scilab.modules.ui_data.variableeditor.VariableEditor;
 
 /**
  * Static class to open/close Scilab Variable Editor
@@ -30,6 +31,21 @@ public final class EditVar {
      * Double type
      */
     public static final String DOUBLE = "Double";
+
+    /**
+     * Boolean sparse type
+     */
+    public static final String BOOLEANSPARSE = "Boolean Sparse";
+
+    /**
+     * Sparse type
+     */
+    public static final String SPARSE = "Sparse";
+
+    /**
+     * Complex sparse type
+     */
+    public static final String COMPLEXSPARSE = "Complex Sparse";
 
     /**
      * Complex type
@@ -62,26 +78,63 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorDouble(double[][] data, String variableName) {
-        int rows = data.length;
-        int cols = 0;
-        if (rows != 0) { // Not an empty matrix
-            cols = data[0].length;
-        }
-
-        // we need to transpose the matrix as the way to store elements is different in scilab
-        // otherwise
-        //  1  2  3    would be rendered   1  4  2 (for example)
-        //  4  5  6                        5  3  6
-        Double[][] dataDouble = new Double[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataDouble[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Double[][] dataDouble = new Double[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDouble[i][j] = data[i][j];
             }
         }
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(DOUBLE, dataDouble, variableName);
+    }
 
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(DOUBLE, dataDouble, variableName);
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void openVariableEditorBooleanSparse(int[][] data, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Boolean[][] dataBool = new Boolean[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataBool[i][j] = data[i][j] == 1;
+            }
+        }
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(BOOLEANSPARSE, dataBool, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void openVariableEditorSparse(double[][] data, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Double[][] dataDouble = new Double[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDouble[i][j] = data[i][j];
+            }
+        }
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(SPARSE, dataDouble, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void openVariableEditorComplexSparse(double[][] realData, double[][] complexData, String variableName) {
+        int c = realData.length == 0 ? 0 : realData[0].length;
+        Double[][][] dataDoubleComplex = new Double[realData.length][c][2];
+        for (int i = 0; i < realData.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDoubleComplex[i][j][0] = realData[i][j];
+                dataDoubleComplex[i][j][1] = complexData[i][j];
+            }
+        }
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(COMPLEXSPARSE, dataDoubleComplex, variableName);
     }
 
     /**
@@ -90,18 +143,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorInteger8(byte[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Byte[][] dataInteger = new Byte[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Byte[][] dataInteger = new Byte[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -110,18 +159,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorUInteger8(short[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Short[][] dataInteger = new Short[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Short[][] dataInteger = new Short[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -130,18 +175,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorInteger16(short[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Short[][] dataInteger = new Short[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Short[][] dataInteger = new Short[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -150,18 +191,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorUInteger16(int[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Integer[][] dataInteger = new Integer[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Integer[][] dataInteger = new Integer[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -170,18 +207,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorInteger32(int[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Integer[][] dataInteger = new Integer[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Integer[][] dataInteger = new Integer[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -190,18 +223,14 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorUInteger32(long[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Long[][] dataInteger = new Long[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataInteger[k % rows][k / rows] = data[i][j];
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Long[][] dataInteger = new Long[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -210,18 +239,7 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorString(String[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        String[][] dataString = new String[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataString[k % rows][k / rows] = data[i][j];
-                k++;
-            }
-        }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(STRING, dataString, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(STRING, data, variableName);
     }
 
     /**
@@ -231,19 +249,15 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorComplex(double[][] realData, double[][] complexData, String variableName) {
-        int rows = realData.length;
-        int cols = realData[0].length;
-        Double[][][] dataDoubleComplex = new Double[rows][cols][2];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataDoubleComplex[k % rows][k / rows][0] = realData[i][j];
-                dataDoubleComplex[k % rows][k / rows][1] = complexData[i][j];
-                k++;
+        int c = realData.length == 0 ? 0 : realData[0].length;
+        Double[][][] dataDoubleComplex = new Double[realData.length][c][2];
+        for (int i = 0; i < realData.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDoubleComplex[i][j][0] = realData[i][j];
+                dataDoubleComplex[i][j][1] = complexData[i][j];
             }
         }
-
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(COMPLEX, dataDoubleComplex, variableName);
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(COMPLEX, dataDoubleComplex, variableName);
     }
 
     /**
@@ -252,18 +266,219 @@ public final class EditVar {
      * @param variableName : name of the variable being edited.
      */
     public static void openVariableEditorBoolean(int[][] data, String variableName) {
-        int rows = data.length;
-        int cols = data[0].length;
-        Boolean[][] dataBool = new Boolean[rows][cols];
-        int k = 0;
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                dataBool[k % rows][k / rows] = data[i][j] == 1;
-                k++;
+        int c = data.length == 0 ? 0 : data[0].length;
+        Boolean[][] dataBool = new Boolean[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataBool[i][j] = data[i][j] == 1;
             }
         }
+        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(BOOLEAN, dataBool, variableName);
+    }
 
-        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(BOOLEAN, dataBool, variableName);
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorDouble(double[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Double[][] dataDouble = new Double[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDouble[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(DOUBLE, dataDouble, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorBooleanSparse(int[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Boolean[][] dataBool = new Boolean[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataBool[i][j] = data[i][j] == 1;
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(BOOLEANSPARSE, dataBool, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorSparse(double[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Double[][] dataDouble = new Double[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDouble[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(SPARSE, dataDouble, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param realData : real part of scilab double matrix
+     * @param complexData : complex part of scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorComplexSparse(double[][] realData, double[][] complexData, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = realData.length == 0 ? 0 : realData[0].length;
+        Double[][][] dataDoubleComplex = new Double[realData.length][c][2];
+        for (int i = 0; i < realData.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDoubleComplex[i][j][0] = realData[i][j];
+                dataDoubleComplex[i][j][1] = complexData[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(COMPLEXSPARSE, dataDoubleComplex, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorInteger8(byte[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Byte[][] dataInteger = new Byte[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorUInteger8(short[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Short[][] dataInteger = new Short[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorInteger16(short[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Short[][] dataInteger = new Short[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorUInteger16(int[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Integer[][] dataInteger = new Integer[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorInteger32(int[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Integer[][] dataInteger = new Integer[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorUInteger32(long[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Long[][] dataInteger = new Long[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataInteger[i][j] = data[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(INTEGER, dataInteger, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorString(String[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        ScilabVariableEditor.refreshVariableEditor(STRING, data, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param realData : real part of scilab double matrix
+     * @param complexData : complex part of scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorComplex(double[][] realData, double[][] complexData, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = realData.length == 0 ? 0 : realData[0].length;
+        Double[][][] dataDoubleComplex = new Double[realData.length][c][2];
+        for (int i = 0; i < realData.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataDoubleComplex[i][j][0] = realData[i][j];
+                dataDoubleComplex[i][j][1] = complexData[i][j];
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(COMPLEX, dataDoubleComplex, rowsIndex, colsIndex, variableName);
+    }
+
+    /**
+     * Open variable Editor with information given by Scilab
+     * @param data : scilab double matrix
+     * @param variableName : name of the variable being edited.
+     */
+    public static void refreshVariableEditorBoolean(int[][] data, double[] rowsIndex, double[] colsIndex, String variableName) {
+        int c = data.length == 0 ? 0 : data[0].length;
+        Boolean[][] dataBool = new Boolean[data.length][c];
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < c; j++) {
+                dataBool[i][j] = data[i][j] == 1;
+            }
+        }
+        ScilabVariableEditor.refreshVariableEditor(BOOLEAN, dataBool, rowsIndex, colsIndex, variableName);
     }
 
     /**

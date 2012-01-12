@@ -96,7 +96,7 @@
     <para/>
     <para>
       L'invocation de <emphasis>Xcos</emphasis> avec l'icône de la barre d'outils
-      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/16x16/apps/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
       , avec l'item <emphasis>Xcos</emphasis> du menu <emphasis>Applications</emphasis> de la fenêtre principale de 
       Scilab, ou comme dans l'exemple suivant, ouvre la fenêtre <emphasis>Xcos</emphasis> d'édition montrée ci-dessous.
     </para>
@@ -157,10 +157,8 @@ xcos(scs_m);]]></programlisting>
         <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
       </imageobject>
     </mediaobject>
-
     <para>Xcos nécessite un compilateur C pour une accélération des simulations.</para>
     <para>Il est recommandé d'installer un compilateur C sur votre machine.</para>
-
   </refsection>
   <refsection role="see also" id="SeeAlso_xcos">
     <title>Voir Aussi</title>
@@ -177,7 +175,6 @@ xcos(scs_m);]]></programlisting>
       <listitem>
         <link linkend="supported_compilers">Compilateurs supportés</link>
       </listitem>
-      
     </itemizedlist>
   </refsection>
   <refsection>

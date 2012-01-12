@@ -12,9 +12,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include <jni.h> /* JavaVM */
-#endif
 #include "Scierror.h"
 #include "gw_jvm.h"
 #include "dynlib_jvm.h"
@@ -24,56 +21,53 @@
 #include "loadOnUseClassPath.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-JVM_IMPEXP JavaVM *getScilabJavaVM(void)
-{
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
-JVM_IMPEXP jobject getScilabObject(void)
-{
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
-JVM_IMPEXP JNIEnv *getScilabJNIEnv(void)
-{
-    return NULL;
-}
-#endif
-/*--------------------------------------------------------------------------*/
 int gw_jvm(void)
 {
-    Scierror(999,_("Scilab Java module not installed.\n"));
+    Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL InitializeJVM(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL TerminateJVM(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL loadBackGroundClassPath(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char *tag)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL canCloseMainScilabObject(void)
+/* BUG 10325: FORCE EXPORT canCloseMainScilabObject on Windows */
+JVM_IMPEXP BOOL canCloseMainScilabObject(void)
 {
     return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL ExecuteInitialHooks(void)
+BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }
+
+/*--------------------------------------------------------------------------*/
+BOOL isItTheDisabledLib(void)
+{
+    return TRUE;
+}
+
 /*--------------------------------------------------------------------------*/

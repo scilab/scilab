@@ -25,7 +25,8 @@ static gw_generic_table Tab[]=
 {
     {sci_editvar, "editvar"},
     {sci_browsevar, "browsevar"},
-    {sci_filebrowser, "filebrowser"}
+    {sci_filebrowser, "filebrowser"},
+    {sci_updatebrowsevar, "updatebrowsevar"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)

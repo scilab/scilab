@@ -41,8 +41,10 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
@@ -177,25 +179,22 @@ public abstract class ContextUpdate extends BasicBlock {
      */
     public static enum IOBlocks {
         /** Map a control port to an event input block */
-        EventInBlock(EventInBlock.class, ControlPort.class, CommandPort.class),
+        EventInBlock(EventInBlock.class, ControlPort.class, CommandPort.class, ControlPort.class),
         /** Map a command port to an event output block */
-        EventOutBlock(EventOutBlock.class, CommandPort.class, ControlPort.class),
+        EventOutBlock(EventOutBlock.class, CommandPort.class, ControlPort.class, CommandPort.class),
         /** Map an explicit input port to an explicit input block */
-        ExplicitInBlock(ExplicitInBlock.class, ExplicitInputPort.class,
-                ExplicitOutputPort.class),
+        ExplicitInBlock(ExplicitInBlock.class, ExplicitInputPort.class, ExplicitOutputPort.class, InputPort.class),
         /** Map an explicit output port to an explicit output block */
-        ExplicitOutBlock(ExplicitOutBlock.class, ExplicitOutputPort.class,
-                ExplicitInputPort.class),
+        ExplicitOutBlock(ExplicitOutBlock.class, ExplicitOutputPort.class, ExplicitInputPort.class, OutputPort.class),
         /** Map an implicit input port to an implicit input block */
-        ImplicitInBlock(ImplicitInBlock.class, ImplicitInputPort.class,
-                ImplicitOutputPort.class),
+        ImplicitInBlock(ImplicitInBlock.class, ImplicitInputPort.class, ImplicitOutputPort.class, InputPort.class),
         /** Map an implicit output port to an implicit output block */
-        ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class,
-                ImplicitInputPort.class);
+        ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class, ImplicitInputPort.class, OutputPort.class);
 
         private final Class<? extends ContextUpdate> ioBlock;
         private final Class<? extends BasicPort> port;
         private final Class<? extends BasicPort> opposite;
+        private final Class<? extends BasicPort> assignement;
 
         /**
          * @param ioBlock
@@ -205,12 +204,12 @@ public abstract class ContextUpdate extends BasicBlock {
          * @param opposite
          *            the opposite port class
          */
-        private IOBlocks(Class<? extends ContextUpdate> ioBlock,
-                Class<? extends BasicPort> port,
-                Class<? extends BasicPort> opposite) {
+        private IOBlocks(Class<? extends ContextUpdate> ioBlock, Class<? extends BasicPort> port, Class<? extends BasicPort> opposite,
+                Class<? extends BasicPort> assignement) {
             this.ioBlock = ioBlock;
             this.port = port;
             this.opposite = opposite;
+            this.assignement = assignement;
         }
 
         /**
@@ -263,7 +262,7 @@ public abstract class ContextUpdate extends BasicBlock {
             Class<? extends BasicPort> portKlass = null;
             for (IOBlocks b : IOBlocks.values()) {
                 if (b.getReferencedClass().equals(klass)) {
-                    portKlass = b.getReferencedPortClass();
+                    portKlass = b.getAssignementCompatiblePortClass();
                     break;
                 }
             }
@@ -273,6 +272,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
             for (int i = 0; i < childCount; i++) {
                 final mxICell child = parent.getChildAt(i);
+
                 if (portKlass.isInstance(child)) {
                     ret.add(child);
                 }
@@ -382,6 +382,10 @@ public abstract class ContextUpdate extends BasicBlock {
          */
         public Class<? extends BasicPort> getReferencedPortClass() {
             return port;
+        }
+
+        public Class<? extends BasicPort> getAssignementCompatiblePortClass() {
+            return assignement;
         }
 
         /**

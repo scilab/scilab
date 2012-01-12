@@ -43,7 +43,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>When a XML stream has been closed all the attached objects are destroyed, but on the Scilab side the objects are still alive. So this function is useful to know if an object on the Scilab side is valid or not.</para>
+    <para>When a XML document has been deleted all the attached objects are destroyed, but on the Scilab side the objects are still alive. So this function is useful to know if an object on the Scilab side is valid or not.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,8 +53,8 @@
     // must return %T
     xmlIsValidObject(r)
 
-    // We close the doc
-    xmlClose(doc);
+    // We delete the doc
+    xmlDelete(doc);
 
     // must return [%F %F]
     xmlIsValidObject(["doc" "r"])
@@ -67,7 +67,7 @@
         <link linkend="XMLObjects">XML Objects</link>
       </member>
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlDelete">xmlDelete</link>
       </member>
     </simplelist>
   </refsection>

@@ -101,20 +101,21 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     /**
      * Icons
      */
-    private Icon scilabIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/scilab.png");
-    private Icon passwdIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/emblem-readonly.png");
-    private Icon hourglassIcon = new ImageIcon(SCIDIR + "/modules/gui/images/icons/process-working.png");
+    private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "48x48"));
+    private final Icon passwdIcon = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly", "48x48"));
+    private final Icon hourglassIcon = new ImageIcon(ScilabSwingUtilities.findIcon("process-working"));
 
     private int elementId;
 
-    private Icon messageIcon; //= new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+    private Icon messageIcon; // = new
+                              // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
     private Component parentWindow;
 
-    private JButton btnOK = new JButton("OK");
-    private JButton btnCancel = new JButton("Cancel");
+    private final JButton btnOK = new JButton("OK");
+    private final JButton btnCancel = new JButton("Cancel");
 
     /**
      * Used for x_dialog
@@ -158,7 +159,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      */
     private String message;
     private String title;
-    private Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+    private final Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
     private int messageType = -1;
     private Object[] objs;
     private Object[] buttons;
@@ -176,6 +177,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the element id for this MessageBox
      * @param id the id of the corresponding MessageBox object
      */
+    @Override
     public void setElementId(int id) {
         this.elementId = id;
     }
@@ -184,6 +186,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the element id for MessageBox
      * @return id the id of the corresponding MessageBox object
      */
+    @Override
     public int getElementId() {
         return this.elementId;
     }
@@ -192,6 +195,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the title of the MessageBox
      * @param title the title to set
      */
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
@@ -200,6 +204,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the message of the MessageBox
      * @param message the message to set
      */
+    @Override
     public void setMessage(String message) {
         this.message = message;
     }
@@ -208,6 +213,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the message of the MessageBox (multi-line)
      * @param mess the message to set
      */
+    @Override
     public void setMessage(String[] mess) {
         int line = 0;
         message = "<HTML>";
@@ -221,6 +227,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * DefaultValues
      * Display this MessageBox and wait for user selection
      */
+    @Override
     public void displayAndWait() {
 
         // Set the title & icon
@@ -248,6 +255,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
         /* Add a link to make HTML links active */
         messageLabel.addHyperlinkListener(new HyperlinkListener() {
+            @Override
             public void hyperlinkUpdate(HyperlinkEvent e) {
                 if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
                     WebBrowser.openUrl(e.getURL(), e.getDescription());
@@ -602,6 +610,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
 
+    @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == btnOK) {
             // For a x_dialog, get the user answer
@@ -648,6 +657,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the index of the button clicked
      * @return the index of the button clicked
      */
+    @Override
     public int getSelectedButton() {
         return selectedButton;
     }
@@ -656,6 +666,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the indices of the default selected buttons (x_choices)
      * @param indices the indices of the default selected buttons
      */
+    @Override
     public void setDefaultSelectedButtons(int[] indices) {
         defaultSelectedButtons = indices;
         scilabDialogType = X_CHOICES_TYPE;
@@ -665,6 +676,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the indices of the selected buttons (x_choices)
      * @return the indices of the selected buttons
      */
+    @Override
     public int[] getUserSelectedButtons() {
         return userSelectedButtons;
     }
@@ -673,6 +685,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the labels of the buttons in the MessageBox
      * @param labels the labels of the buttons
      */
+    @Override
     public void setButtonsLabels(String[] labels) {
         buttonsLabels = labels;
     }
@@ -681,6 +694,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the initial values of the editable zone in the MessageBox
      * @param value the initial values
      */
+    @Override
     public void setInitialValue(String[] value) {
         int line = 0;
         initialValue = "";
@@ -697,6 +711,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the value of the editable zone in the MessageBox
      * @return the value
      */
+    @Override
     public String[] getValue() {
         if (scilabDialogType == X_MDIALOG_TYPE) {
             return userValues;
@@ -709,6 +724,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the size of the value of the editable zone in the MessageBox
      * @return the value size
      */
+    @Override
     public int getValueSize() {
         if (userValue == null) {
             return 0;
@@ -721,6 +737,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the items of the listbox in the MessageBox
      * @param items the items to set
      */
+    @Override
     public void setListBoxItems(String[] items) {
         listboxItems = items;
 
@@ -731,6 +748,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Get the index of the selected item in the listbox in the MessageBox
      * @return the index
      */
+    @Override
     public int getSelectedItem() {
         return selectedItem;
     }
@@ -746,6 +764,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         listBox.setModel(new DefaultListModel());
         listBox.addMouseListener(new MouseListener() {
 
+            @Override
             public void mouseClicked(MouseEvent arg0) {
                 if (arg0.getClickCount() == 2) {
                     selectedItem = listBox.getSelectedIndex() + 1;
@@ -757,15 +776,19 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 }
             }
 
+            @Override
             public void mouseEntered(MouseEvent arg0) {
             }
 
+            @Override
             public void mouseExited(MouseEvent arg0) {
             }
 
+            @Override
             public void mousePressed(MouseEvent arg0) {
             }
 
+            @Override
             public void mouseReleased(MouseEvent arg0) {
             }
 
@@ -786,6 +809,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the name of the lines labels in the editable zone in the MessageBox
      * @param labels the labels
      */
+    @Override
     public void setLineLabels(String[] labels) {
         scilabDialogType = X_MDIALOG_TYPE;
         lineLabels = labels;
@@ -795,6 +819,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the name of the columns labels in the editable zone in the MessageBox
      * @param labels the labels
      */
+    @Override
     public void setColumnLabels(String[] labels) {
         columnLabels = labels;
     }
@@ -803,6 +828,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the default values of a multi-value editable zone in the MessageBox
      * @param values the values
      */
+    @Override
     public void setDefaultInput(String[] values) {
         defaultInput = values;
     }
@@ -811,6 +837,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set a MessageBox modal or not
      * @param status true to set the MessageBox modal and false else
      */
+    @Override
     public void setModal(boolean status) {
         modal = status;
     }
@@ -820,6 +847,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Set the MessageBox icon
      * @param name the name of the icon
      */
+    @Override
     public void setIcon(String name) {
         if (name.equals("error")) {
             messageType = JOptionPane.ERROR_MESSAGE;

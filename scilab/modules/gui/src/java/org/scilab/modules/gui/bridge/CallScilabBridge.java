@@ -41,7 +41,6 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
-import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -683,8 +682,7 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-                + "/modules/gui/images/icons/graphic-window.png").getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon("graphic-window");
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
@@ -2297,10 +2295,24 @@ public class CallScilabBridge {
     }
 
     /**
-     * Open a Browser on Mailing List Archives
+     * Open a Browser on Mailing List info
      */
     public static void openMailingList() {
         WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
+    }
+
+    /**
+     * Open a Browser on Mailing List Archives
+     */
+    public static void openMailingListArchives() {
+        WebBrowser.openUrl("http://mailinglists.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on S/E
+     */
+    public static void openSE() {
+        WebBrowser.openUrl("http://www.scilab-enterprises.com/");
     }
 
     /***************************/
@@ -2912,7 +2924,7 @@ public class CallScilabBridge {
      * Class used to store Images in the clipboard
      */
     public static class ClipboardImage implements Transferable {
-        private Image image;
+        private final Image image;
 
         /**
          * Default constructor
@@ -2926,6 +2938,7 @@ public class CallScilabBridge {
          * DataFlavors of this transferable
          * @return the DataFlavors accepeted
          */
+        @Override
         public DataFlavor[] getTransferDataFlavors() {
             return new DataFlavor[]{DataFlavor.imageFlavor};
         }
@@ -2935,6 +2948,7 @@ public class CallScilabBridge {
          * @param flavor the flavor to test
          * @return true if the flavor is supported
          */
+        @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
             return DataFlavor.imageFlavor.equals(flavor);
         }
@@ -2945,6 +2959,7 @@ public class CallScilabBridge {
          * @return the contents
          * @throws UnsupportedFlavorException if the flavor is not supported by this transferable
          */
+        @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
             if (!DataFlavor.imageFlavor.equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);

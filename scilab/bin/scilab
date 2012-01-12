@@ -720,8 +720,15 @@ check_macosx_version()
                      if test $macosxBuildVersion -le 7; then
                          # Version <= 10.5.8
                          osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
-                         fi
-                    ;;
+                     fi
+                     # Check if the default java is not 1.5 (magic)
+                     VERSION=$(/usr/libexec/java_home -v 1.5|grep 1.5.0)
+                     if test "$VERSION"; then
+                         open /Applications/Utilities/Java\ Preferences.app/ &
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu." || exit 128
+                     fi
+
+                     ;;
                 *)
                     osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
                     ;;

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,6 +41,10 @@
 #define OS_WIN32_WINDOWS_SEVEN_64			16
 #define OS_WIN32_WINDOWS_SEVEN_SERVER		17
 #define OS_WIN32_WINDOWS_SEVEN_SERVER_64	18
+#define OS_WIN32_WINDOWS_EIGHT				19
+#define OS_WIN32_WINDOWS_EIGHT_64			20
+#define OS_WIN32_WINDOWS_EIGHT_SERVER		21
+#define OS_WIN32_WINDOWS_EIGHT_SERVER_64	22
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void);
 IMPORT_EXPORT_GETWINDOWSVERSION_DLL BOOL IsWow64(void);

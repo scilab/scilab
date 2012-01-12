@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-10 18:42+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2011-10-20 14:00+0000\n"
+"Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 #, c-format
@@ -74,27 +74,27 @@ msgid "Preview"
 msgstr "Podgląd"
 
 msgid "Please specify a file format"
-msgstr ""
+msgstr "Proszę określić format pliku"
 
 msgid "Error on export"
-msgstr ""
+msgstr "Błąd podczas eksportowania"
 
 msgid "Incompatibility detected"
-msgstr ""
+msgstr "Wykryto niekompatybilność"
 
 msgid "Please check the diagram, before trying to simulate it."
-msgstr ""
+msgstr "Proszę sprawdzić diagram przed próbą symulacji."
 
 msgid "Some blocks have been removed to ensure compatibility."
-msgstr ""
+msgstr "Niektóre bloki zostały usunięte w celu zapewnienia zgodności."
 
 #, c-format
 msgid "Unable to decode \"%s\" : invalid data."
-msgstr ""
+msgstr "Nie można zdekodować \"%s\": nieprawidłowe dane."
 
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
-msgstr ""
+msgstr "Nie można zdekodować \"%s.%s\": nieprawidłowe pole."
 
 msgid "Modelica settings"
 msgstr "Ustawienia Modelica"
@@ -179,7 +179,7 @@ msgstr ""
 "ponownej generacji kodu."
 
 msgid "Generate Jacobian"
-msgstr ""
+msgstr "Generuj Jakobian"
 
 msgid "Error"
 msgstr "Błąd"
@@ -415,7 +415,7 @@ msgid "Text settings"
 msgstr "Ustawiwnia tekstu"
 
 msgid "Image path"
-msgstr ""
+msgstr "Scieżka obrazu"
 
 msgid "Tools"
 msgstr "Narzędzia"
@@ -523,6 +523,10 @@ msgstr ""
 "Plik %s nie istnieje\n"
 " Czy chcesz go utworzyć?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "OK"
 
@@ -565,6 +569,15 @@ msgstr "Nie jest w stanie usunąć "
 
 msgid "No block selected"
 msgstr "Nie wybrano bloku"
+
+msgid "Export to XML"
+msgstr ""
+
+msgid "Export in progress"
+msgstr "Trwa eksportowanie…"
+
+msgid "Import from XML"
+msgstr ""
 
 msgid "Add to"
 msgstr "Dodaj do"
@@ -713,20 +726,12 @@ msgstr "Generowanie kodu C dla SuperBlock"
 msgid "A SuperBlock must be selected to generate code"
 msgstr "SuperBlock musi być wybrany aby wygenerować kod"
 
-msgid "Export in progress"
-msgstr "Trwa eksportowanie…"
-
-msgid ""
-"Import in progress, results will be stored through the 'scs_m' variable"
-msgstr ""
-
-#, c-format
-msgid ""
-"Compilation in progress, results will be stored through the '%cpr' variable"
-msgstr ""
-
 msgid "Simulation in progress"
 msgstr "Symulacji w toku"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -829,53 +834,53 @@ msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
 msgid "Wrong port number"
-msgstr ""
+msgstr "Nieprawidłowy numer portu"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
 
 msgid "Basic controller"
-msgstr ""
+msgstr "Sterownik podstawowy"
 
 msgid "Water tank"
-msgstr ""
+msgstr "Zbiornik wody"
 
 msgid "Discrete Controller"
-msgstr ""
+msgstr "Sterownik dyskretny"
 
 msgid "Kalman Filter"
-msgstr ""
+msgstr "Filtr Kalmana"
 
 msgid "Discrete Kalman Filter"
-msgstr ""
+msgstr "Dyskretny filtr Kalmana"
 
 msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
 msgid "Temperature Controller"
-msgstr ""
+msgstr "Sterownik temperatury"
 
 msgid "Inverted Pendulum"
-msgstr ""
+msgstr "Wahadło odwrócone"
 
 msgid "Lorentz butterfly"
-msgstr ""
+msgstr "Motyl Lorenza"
 
 msgid "RLC Circuit"
-msgstr ""
+msgstr "Obwód RLC"
 
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "Prostownik mostkowy"
 
 msgid "Transformer"
-msgstr ""
+msgstr "Transformator"
 
 msgid "Differential amplifier"
-msgstr ""
+msgstr "Wzmacniacz róznicowy"
 
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "Wzmacniacz operacyjny"
 
 msgid "Switched capacitor integrator"
 msgstr ""
@@ -887,46 +892,46 @@ msgid "DC/DC Boost Converter"
 msgstr ""
 
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "Oscylator Colpittsa"
 
 msgid "Logic AND gate"
-msgstr ""
+msgstr "Bramka logiczna AND"
 
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "Bramka logiczna NOR"
 
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "Zawieszenie samochodowe"
 
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "Kula na równi"
 
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "Odbijająca się kula"
 
 msgid "Chaos Modelica"
 msgstr ""
 
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "Bloki hydrauliczne"
 
 msgid "RLC circuit"
-msgstr ""
+msgstr "Obwód RLC"
 
 msgid "Old Gain Block"
 msgstr ""
 
 msgid "Standard demos"
-msgstr ""
+msgstr "Demonstracje standardowe"
 
 msgid "Control Systems"
-msgstr ""
+msgstr "Układy sterowania"
 
 msgid "Electrical Systems"
-msgstr ""
+msgstr "Układy elektryczne"
 
 msgid "Mechanical Systems"
-msgstr ""
+msgstr "Układy mechaniczne"
 
 msgid "Modelica demos"
 msgstr ""
@@ -935,31 +940,31 @@ msgid "Old demos"
 msgstr ""
 
 msgid "Simple Demo"
-msgstr ""
+msgstr "Proste demo"
 
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "Odbijające się kule"
 
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "Prosty termostat"
 
 msgid "Table Lookup"
 msgstr ""
 
 msgid "Signal Builder"
-msgstr ""
+msgstr "Konstruktor sygnałów"
 
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "Liczby Fibonacciego"
 
 msgid "Scilab block"
 msgstr ""
 
 msgid "Xcos data types"
-msgstr ""
+msgstr "Typy danych Xcos"
 
 msgid "Zero Crossing"
-msgstr ""
+msgstr "Przejście przez zero"
 
 msgid "_IF_ Xcos block"
 msgstr ""
@@ -991,6 +996,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
 msgstr ""
+"%s: Nieprawidłowy argument wejściowy %s: oczekiwano svg, gif lub jpg.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
@@ -1055,11 +1061,11 @@ msgstr "Nie mozna otworzyć %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d."
 
 #, c-format
 msgid "%s: Unable to import xcos file %s."
-msgstr ""
+msgstr "%s: Nie można zaimportować pliku xcos: %s."
 
 #, c-format
 msgid ""
@@ -1215,7 +1221,7 @@ msgid "Unable to simulate %s"
 msgstr "Nie mozna symylować %s"
 
 msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
-msgstr ""
+msgstr "Wystąpił błąd w pre_xcos_simulate: Anulowanie symulacji."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1226,23 +1232,7 @@ msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 msgid "Simulation problem"
-msgstr ""
+msgstr "Problem symulacji"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
-
-#~ msgid "Export to XML"
-#~ msgstr "Exportuj do XML"
-
-#~ msgid "Import from XML"
-#~ msgstr "Importuj z XML"
-
-#~ msgid "From %s"
-#~ msgstr "Od %s"
-
-#~ msgid "Goto %s"
-#~ msgstr "Idź do %s"
-
-#~ msgid ""
-#~ "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-#~ msgstr "Kompilacja w toku, wyniki będą przechowywane w zmiennej 'scicos_cpr'"

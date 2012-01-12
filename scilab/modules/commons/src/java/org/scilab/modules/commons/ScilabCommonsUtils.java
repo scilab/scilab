@@ -28,6 +28,7 @@ import java.security.NoSuchAlgorithmException;
 public final class ScilabCommonsUtils {
 
     private static final int BUFFERSIZE = 8192;
+    private static Thread scilabThread;
 
     private static MessageDigest MD5;
     static {
@@ -116,5 +117,21 @@ public final class ScilabCommonsUtils {
         } catch (java.lang.reflect.InvocationTargetException ex) {
             System.err.println("Could not invoke the Scilab method to load the export dependencies: " + ex);
         }
+    }
+
+    /**
+     * Set the scilab thread as the current thread
+     * Called from org.scilab.modules.core.Scilab::executeInitialHooks called itself
+     * in GetCommandLine.c just after the first display of the prompt.
+     */
+    public static void registerScilabThread() {
+        scilabThread = Thread.currentThread();
+    }
+
+    /**
+     * @return true if Thread.currentThread() is the main Scilab thread
+     */
+    public static boolean isScilabThread() {
+        return scilabThread != null && scilabThread == Thread.currentThread();
     }
 }

@@ -101,7 +101,7 @@
     function is periodic.</para>
     <para>The <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (or
     <emphasis role="bold">fast_periodic</emphasis>) type may be useful in some
-    cases, for instance to limit oscillations (<emphasis role="bold">monotone</emphasis> being the most powerfull for that).</para>
+    cases, for instance to limit oscillations (<emphasis role="bold">monotone</emphasis> being the most powerful for that).</para>
     <para>To get the coefficients of the bi-cubic patches in a more friendly
     way you can use <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal> then
     the coefficient <emphasis>(k,l)</emphasis> of the patch

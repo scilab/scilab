@@ -22,15 +22,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
@@ -44,6 +47,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -173,7 +177,7 @@ public final class ExportAction extends DefaultAction {
                 /* Export the file */
                 if (selected.exists()) {
                     final boolean overwrite = ScilabModalDialog.show(
-                            graph.getParentTab(),
+                            XcosTab.get(graph),
                             XcosMessages.OVERWRITE_EXISTING_FILE,
                             XcosMessages.XCOS, IconType.QUESTION_ICON,
                             ButtonType.YES_NO) == AnswerOption.YES_OPTION;
@@ -206,22 +210,51 @@ public final class ExportAction extends DefaultAction {
     private String getFormat(XcosDiagram graph, JFileChooser fc,
             final File selected) {
         final String format;
-        // reference equality works here
-        if (fc.getFileFilter() == fc.getAcceptAllFileFilter()) {
+        final FileFilter fileFilter = fc.getFileFilter();
+
+        // accept all file filter or any custom file filter (generated
+        // by a <TAB> press)
+        if (!(fileFilter instanceof FileMask)) {
+
+            /*
+             * Get the extension from the file name. Fail safely.
+             */
             if (FileMask.getExtension(selected) == null
                     || FileMask.getExtension(selected).isEmpty()) {
-                JOptionPane.showMessageDialog(graph.getAsComponent(),
-                        Messages.gettext("Please specify a file format"),
-                        Messages.gettext("Error on export"),
-                        JOptionPane.ERROR_MESSAGE);
-                return null;
+                format = null;
             } else {
                 format = FileMask.getExtension(selected);
             }
+
         } else {
-            format = ((FileMask) fc.getFileFilter()).getExtensionFromFilter();
+            /*
+             * Get the format from the file mask
+             */
+            format = ((FileMask) fileFilter).getExtensionFromFilter();
+
         }
-        return format;
+        final boolean validFormat = isValidFormat(format);
+
+        /*
+         * When the format is unspecified, popup an error dialog
+         */
+        if (format == null || !validFormat) {
+            JOptionPane.showMessageDialog(graph.getAsComponent(), Messages.gettext("Please specify a valid file format"), Messages.gettext("Error on export"),
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (validFormat) {
+            return format;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean isValidFormat(String format) {
+        Iterator<ImageWriter> it = ImageIO.getImageWritersBySuffix(format);
+        Collection<String> externals = Arrays.asList(SVG, HTML, VML);
+
+        return it.hasNext() || externals.contains(format.toLowerCase());
     }
 
     /**
@@ -281,7 +314,7 @@ public final class ExportAction extends DefaultAction {
         Color bg = null;
 
         if ((!fileFormat.equalsIgnoreCase("png"))
-                || ScilabModalDialog.show(graph.getParentTab(),
+                || ScilabModalDialog.show(XcosTab.get(graph),
                         XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS,
                         IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
             bg = graphComponent.getBackground();

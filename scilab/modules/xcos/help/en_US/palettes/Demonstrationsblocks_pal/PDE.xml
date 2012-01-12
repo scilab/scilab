@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -96,7 +96,7 @@
 This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
 Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
 PDE (Partial Differential Equation) within SCICOS.
-The mathematical framwork was restricts in PDEs linear scalars with maximum order 2 in time and space.
+The mathematical framework was restricts in PDEs linear scalars with maximum order 2 in time and space.
 The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
 graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
 depending on the type of the PDE and runs the solvers.

@@ -13,8 +13,8 @@
 package org.scilab.modules.ui_data.filebrowser;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,28 +22,30 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+
 /**
  * Few file tools
  * @author Calixte DENIZET
  */
 public final class FileUtils {
 
-    private static final Icon SCILABICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/icon_scilab.png");
-    private static final Icon PDFICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/application-pdf.png");
-    private static final Icon BINARYICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/binary.png");
-    private static final Icon IMAGEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/image-x-generic.png");
-    private static final Icon TEXTICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/text-x-generic.png");
-    private static final Icon HTMLICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/text-html.png");
-    private static final Icon XMLICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/text-xml.png");
-    private static final Icon CSVICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/text-csv.png");
-    private static final Icon DIRICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/folder.png");
-    private static final Icon OPENDIRICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/folder-open.png");
-    private static final Icon READONLYICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/emblem-readonly.png");
-    private static final Icon CLOSEDUSERHOMEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/user-home.png");
-    private static final Icon OPENUSERHOMEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/open-user-home.png");
-    private static final Icon UPICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/dynamic-blue-up.png");
-    private static final Icon SCIICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/scilab-folder.png");
-    private static final Icon OPENSCIICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/open-scilab-folder.png");
+    private static final Icon SCILABICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private static final Icon PDFICON = new ImageIcon(ScilabSwingUtilities.findIcon("application-pdf"));
+    private static final Icon BINARYICON = new ImageIcon(ScilabSwingUtilities.findIcon("binary"));
+    private static final Icon IMAGEICON = new ImageIcon(ScilabSwingUtilities.findIcon("image-x-generic"));
+    private static final Icon TEXTICON = new ImageIcon(ScilabSwingUtilities.findIcon("text-x-generic"));
+    private static final Icon HTMLICON = new ImageIcon(ScilabSwingUtilities.findIcon("text-html"));
+    private static final Icon XMLICON = new ImageIcon(ScilabSwingUtilities.findIcon("text-xml"));
+    private static final Icon CSVICON = new ImageIcon(ScilabSwingUtilities.findIcon("text-csv"));
+    private static final Icon DIRICON = new ImageIcon(ScilabSwingUtilities.findIcon("folder"));
+    private static final Icon OPENDIRICON = new ImageIcon(ScilabSwingUtilities.findIcon("folder-open"));
+    private static final Icon READONLYICON = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly"));
+    private static final Icon CLOSEDUSERHOMEICON = new ImageIcon(ScilabSwingUtilities.findIcon("user-home"));
+    private static final Icon OPENUSERHOMEICON = new ImageIcon(ScilabSwingUtilities.findIcon("user-home-open"));
+    private static final Icon UPICON = new ImageIcon(ScilabSwingUtilities.findIcon("dynamic-blue-up"));
+    private static final Icon SCIICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab-folder"));
+    private static final Icon OPENSCIICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab-folder-open"));
 
     private static final int CHARTOREAD = 128;
 

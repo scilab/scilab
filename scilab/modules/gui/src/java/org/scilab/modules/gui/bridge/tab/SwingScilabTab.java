@@ -104,6 +104,7 @@ import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -121,7 +122,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /** Use to put a component below any other object within its layer */
     private static final int BOTTOM_POSITION = -1;
 
-    private static final Image SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
+    private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
 
     private static final long serialVersionUID = 1L;
 
@@ -279,6 +280,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * @param e the FocusEvent
      */
+    @Override
     public void focusGained(FocusEvent e) {
         //ActiveDockableTracker.requestDockableActivation(this);
         if (contentPane != null) {
@@ -314,13 +316,22 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     /**
+     * @param the window icon associated with this tab
+     */
+    public void setWindowIcon(String iconName) {
+        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon(iconName, "256x256")).getImage());
+    }
+
+    /**
      * @param e the FocusEvent
      */
+    @Override
     public void focusLost(FocusEvent e) { }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
         DockingPort port = evt.getNewDockingPort();
@@ -344,6 +355,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param newTabName the Name of the tab
      * @see org.scilab.modules.gui.tab.Tab#setName()
      */
+    @Override
     public void setName(String newTabName) {
         setTitle(newTabName, true);
         getTitlePane().repaint();
@@ -362,6 +374,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return the title of the tab
      * @see org.scilab.modules.gui.tab.Tab#getTitle()
      */
+    @Override
     public String getName() {
         return this.getTitle();
     }
@@ -378,6 +391,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Draws a swing Scilab tab
      * @see org.scilab.modules.gui.uielement.UIElement#draw()
      */
+    @Override
     public void draw() {
         if (SwingUtilities.isEventDispatchThread()) {
             setVisible(true);
@@ -385,6 +399,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
                     public void run() {
                         setVisible(true);
                         paintImmediately();
@@ -404,6 +419,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return the dimensions of the tab
      * @see org.scilab.modules.gui.uielement.UIElement#getDims()
      */
+    @Override
     public Size getDims() {
         return new Size(this.getSize().width, this.getSize().height);
     }
@@ -412,6 +428,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Get the size for the axes
      * @return size of the axes in pixels
      */
+    @Override
     public Size getAxesSize() {
         return new Size(contentPane.getWidth(), contentPane.getHeight());
     }
@@ -419,6 +436,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * @param newSize new size to set for the axes
      */
+    @Override
     public void setAxesSize(Size newSize) {
         contentPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
     }
@@ -428,6 +446,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return the position of the tab
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
+    @Override
     public Position getPosition() {
         return new Position(this.getX(), this.getY());
     }
@@ -437,6 +456,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param newSize the dimensions we want to set to the tab
      * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
      */
+    @Override
     public void setDims(Size newSize) {
         this.setSize(newSize.getWidth(), newSize.getHeight());
     }
@@ -446,6 +466,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param newPosition the position we want to set to the tab
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
+    @Override
     public void setPosition(Position newPosition) {
         this.setLocation(newPosition.getX(), newPosition.getY());
     }
@@ -455,6 +476,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(Canvas member) {
         int result;
 
@@ -463,6 +485,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             final SwingScilabTab thisF = this;
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
                     public void run() {
                         scrolling = new AwtScilabScrollPane(contentPane, thisF);
                         setContentPane(scrolling.getAsContainer());
@@ -489,11 +512,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * We want to be able to remove directly a Canvas from a Tab.
      * @param member canvas to remove
      */
+    @Override
     public void removeMember(Canvas member) {
         contentPane.removeMember(member);
         if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
                     public void run() {
                         scrolling = new SwingScilabScrollPane(contentPane);
                         setContentPane(scrolling.getAsContainer());
@@ -525,6 +550,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(Console member) {
         return this.addMember((SwingScilabConsole) member.getAsSimpleConsole());
     }
@@ -545,6 +571,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(HelpBrowser member) {
         return this.addMember((SwingScilabHelpBrowser) member.getAsSimpleHelpBrowser());
     }
@@ -565,6 +592,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(Frame member) {
         return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
     }
@@ -582,6 +610,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a Frame from its container
      * @param member the Frame to remove
      */
+    @Override
     public void removeMember(Frame member) {
         this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
     }
@@ -599,6 +628,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(PushButton member) {
         return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
     }
@@ -618,6 +648,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a PushButton from its container
      * @param member the PushButton to remove
      */
+    @Override
     public void removeMember(PushButton member) {
         this.removeMember((SwingScilabPushButton) member.getAsSimplePushButton());
     }
@@ -635,6 +666,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(EditBox member) {
         return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
     }
@@ -652,6 +684,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove an EditBox from its container
      * @param member the EditBox to remove
      */
+    @Override
     public void removeMember(EditBox member) {
         this.removeMember((SwingScilabEditBox) member.getAsSimpleEditBox());
     }
@@ -669,6 +702,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(Label member) {
         return this.addMember((SwingScilabLabel) member.getAsSimpleLabel());
     }
@@ -686,6 +720,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a Label from its container
      * @param member the Label to remove
      */
+    @Override
     public void removeMember(Label member) {
         this.removeMember((SwingScilabLabel) member.getAsSimpleLabel());
     }
@@ -703,6 +738,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(CheckBox member) {
         return this.addMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
     }
@@ -720,6 +756,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a CheckBox from its container
      * @param member the CheckBox to remove
      */
+    @Override
     public void removeMember(CheckBox member) {
         this.removeMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
     }
@@ -737,6 +774,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(RadioButton member) {
         return this.addMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
     }
@@ -754,6 +792,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a RadioButton from its container
      * @param member the RadioButton to remove
      */
+    @Override
     public void removeMember(RadioButton member) {
         this.removeMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
     }
@@ -890,6 +929,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a Slider from its container
      * @param member the Slider to remove
      */
+    @Override
     public void removeMember(Slider member) {
         this.removeMember((SwingScilabSlider) member.getAsSimpleSlider());
     }
@@ -907,6 +947,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(ListBox member) {
         return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
     }
@@ -924,6 +965,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a ListBox from its container
      * @param member the ListBox to remove
      */
+    @Override
     public void removeMember(ListBox member) {
         this.removeMember((SwingScilabListBox) member.getAsSimpleListBox());
     }
@@ -941,6 +983,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(PopupMenu member) {
         return this.addMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
     }
@@ -958,6 +1001,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a PopupMenu from its container
      * @param member the PopupMenu to remove
      */
+    @Override
     public void removeMember(PopupMenu member) {
         this.removeMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
     }
@@ -975,6 +1019,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    @Override
     public int addMember(Tree member) {
         return this.addMember((SwingScilabTree) member.getAsSimpleTree());
     }
@@ -1002,6 +1047,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Remove a PopupMenu from its container
      * @param member the PopupMenu to remove
      */
+    @Override
     public void removeMember(Tree member) {
         this.removeMember((SwingScilabTree) member.getAsSimpleTree());
     }
@@ -1028,6 +1074,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Get the current status of the Tab in its parent
      * @return true is the tab is the tab currently "on top" in its parent
      */
+    @Override
     public boolean isCurrentTab() {
         // TODO should not always return TRUE
         return true;
@@ -1037,6 +1084,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Get the parent window id for this tab
      * @return the id of the parent window
      */
+    @Override
     public String getParentWindowId() {
         return this.parentWindowId;
     }
@@ -1045,6 +1093,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Set the parent window id for this tab
      * @param id the id of the parent window
      */
+    @Override
     public void setParentWindowId(String id) {
         this.parentWindowId = id;
     }
@@ -1054,6 +1103,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param newMenuBar : the MenuBar to set.
      * @see org.scilab.modules.gui.tab.SimpleTab#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
      */
+    @Override
     public void setMenuBar(MenuBar newMenuBar) {
         this.menuBar = newMenuBar;
     }
@@ -1064,6 +1114,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return MenuBar : the MenuBar associated to the Tab.
      * @see org.scilab.modules.gui.tab.SimpleTab#getMenuBar()
      */
+    @Override
     public MenuBar getMenuBar() {
         return this.menuBar;
     }
@@ -1073,6 +1124,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param newToolBar : the ToolBar to set.
      * @see org.scilab.modules.gui.tab.SimpleTab#setToolBar(org.scilab.modules.gui.toolbar.ToolBar)
      */
+    @Override
     public void setToolBar(ToolBar newToolBar) {
         this.toolBar = newToolBar;
     }
@@ -1082,6 +1134,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return ToolBar : the ToolBar associated to the Tab.
      * @see org.scilab.modules.gui.tab.SimpleTab#getToolBar()
      */
+    @Override
     public ToolBar getToolBar() {
         return this.toolBar;
     }
@@ -1090,6 +1143,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Setter for InfoBar
      * @param newInfoBar the InfoBar to set.
      */
+    @Override
     public void setInfoBar(TextBox newInfoBar) {
         this.infoBar = newInfoBar;
     }
@@ -1098,6 +1152,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Getter for InfoBar
      * @return the InfoBar associated to the Tab.
      */
+    @Override
     public TextBox getInfoBar() {
         return this.infoBar;
     }
@@ -1106,6 +1161,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Set the callback of the tab
      * @param callback the callback to set.
      */
+    @Override
     public void setCallback(CommonCallBack callback) {
 
         if (closeAction != null) {
@@ -1132,6 +1188,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * Set this tab as the current tab of its parent Window
      */
+    @Override
     public void setCurrent() {
         ActiveDockableTracker.requestDockableActivation(this);
     }
@@ -1142,6 +1199,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param green green channel
      * @param blue blue channel
      */
+    @Override
     public void setBackground(double red, double green, double blue) {
         Color newColor = new Color((float) red, (float) green, (float) blue);
         contentPane.setBackground(red, green, blue);
@@ -1153,6 +1211,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Get the part of the axes which is currently viewed
      * @return [x,y,w,h] array
      */
+    @Override
     public int[] getViewingRegion() {
         return scrolling.getViewingRegion();
     }
@@ -1166,6 +1225,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param width width of the viewport
      * @param height height of the viewport
      */
+    @Override
     public void setViewingRegion(int posX, int posY, int width, int height) {
         // Check that the canvas can be resized
         if (!scrolling.getAutoResizeMode()) {
@@ -1215,6 +1275,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             final Point realPos = new Point(realPosX, realPosY);
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
                     public void run() {
                         scrolling.setViewPosition(realPos.x, realPos.y);
                     }
@@ -1233,6 +1294,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Set the event handler of the Canvas
      * @param funName the name of the Scilab function to call
      */
+    @Override
     public void setEventHandler(String funName) {
         contentPane.setEventHandler(funName);
     }
@@ -1242,6 +1304,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Set the status of the event handler of the Canvas
      * @param status is true to set the event handler active
      */
+    @Override
     public void setEventHandlerEnabled(boolean status) {
         contentPane.setEventHandlerEnabled(status);
     }
@@ -1251,6 +1314,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * (and consequently the scrollpane size) or not
      * @param onOrOff true to enable autoresize mode
      */
+    @Override
     public void setAutoResizeMode(boolean onOrOff) {
         scrolling.setAutoResizeMode(onOrOff);
     }
@@ -1258,6 +1322,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * @return whether the resize mode is on or off
      */
+    @Override
     public boolean getAutoResizeMode() {
         return scrolling.getAutoResizeMode();
     }
@@ -1267,6 +1332,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param displacement out parameter, [x,y] array of displacement in pixels
      * @return true if the displacement recording continue, false otherwise
      */
+    @Override
     public boolean getRotationDisplacement(int[] displacement) {
         return contentPane.getRotationDisplacement(displacement);
     }
@@ -1293,6 +1359,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     /**
      * Asynchronous stop of rotation tracking.
      */
+    @Override
     public void stopRotationRecording() {
         contentPane.stopRotationRecording();
     }
@@ -1301,6 +1368,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Redefine paint children to be sure that AWT components are well painted.
      *  @param g a Graphics
      */
+    @Override
     public void paintChildren(Graphics g) {
         Component[] children = getComponents();
         for (int i = 0; i < children.length; i++) {

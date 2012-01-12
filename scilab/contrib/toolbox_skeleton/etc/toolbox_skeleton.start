@@ -5,7 +5,7 @@
 
 function toolbox_skeletonlib = startModule()
    
-  toolbox_name="Toolbox skeleton"
+  toolbox_name = "Toolbox skeleton"
 
   mprintf("Start " + toolbox_name + "\n");
 

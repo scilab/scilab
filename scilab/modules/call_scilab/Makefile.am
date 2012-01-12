@@ -26,13 +26,8 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphic_objects/includes \
 			-I$(top_srcdir)/modules/core/src/c/
 
-if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscicall_scilab.la
 noinst_LTLIBRARIES = libscicall_scilab-algo.la
-else
-noinst_LTLIBRARIES = libscicall_scilab-algo.la libscicall_scilab.la
-endif
-
 
 libscicall_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

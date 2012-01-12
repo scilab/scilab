@@ -68,7 +68,7 @@
     xmlSetAttributes(doc.root.children(2).attributes, ["truc" "machin"]);
     xmlDump(doc)
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

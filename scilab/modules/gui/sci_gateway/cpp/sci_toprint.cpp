@@ -76,6 +76,7 @@ static int sci_toprint_one_rhs(const char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -192,6 +193,8 @@ static int sci_toprint_two_rhs(const char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+
         return 0;
     }
 
@@ -199,6 +202,7 @@ static int sci_toprint_two_rhs(const char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -221,6 +225,7 @@ static int sci_toprint_two_rhs(const char *fname)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -243,6 +248,7 @@ static int sci_toprint_two_rhs(const char *fname)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 
@@ -286,6 +292,7 @@ static int sci_toprint_two_rhs(const char *fname)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                     return 0;
                 }
 

@@ -84,6 +84,16 @@ gammaln(0.5)
   </refsection>
 
   <refsection>
+    <title>Historique</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Surcharge autorisée pour les types list, mlist, tlist et hypermatrices.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+  
+  <refsection>
     <title>Auteurs</title>
 
     <para>W. J. Cody and L. Stoltz (code from Netlib (specfun))</para>

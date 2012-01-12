@@ -19,9 +19,10 @@ import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -67,12 +68,10 @@ public class CloseAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (getGraph(null) instanceof SuperBlockDiagram) {
-            ((SuperBlockDiagram) getGraph(null)).getContainer()
-                    .closeBlockSettings();
-        } else {
-            Xcos.getInstance().close((XcosDiagram) getGraph(null), false);
-        }
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(
+                graph.getDiagramTab());
+        ClosingOperationsManager.startClosingOperation(tab);
     }
 
 }

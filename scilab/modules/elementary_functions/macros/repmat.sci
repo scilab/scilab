@@ -6,7 +6,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function B = repmat(A,varargin)
-  //ajouter test sur les type des elements de varargin
+//ajouter test sur les type des elements de varargin
   rhs = argn(2);
   if rhs < 2 then
     error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "repmat", 2))
@@ -38,8 +38,9 @@ function B = repmat(A,varargin)
     if typeof(A)=="rational" then
       B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
       return
-    else
+    elseif typeof(A)<>"hypermat" then
       execstr('B=%'+typeof(A)+"_repmat(A,varargin(:))")
+      return
     end
   end
 
@@ -64,26 +65,37 @@ function B = repmat(A,varargin)
       error(msprintf(_("%s: Wrong number of output matrix dimensions required: %d expected for sparse matrices.\n"), "repmat", 2))
     end
   end
+
   for i=size(siz):-1:3
     if siz(i)>1 then break,end
     nd=nd-1
   end
   sizA=size(A)
-
+  nda=size(sizA,'*')
   if and(sizA==1) then //scalar case
+
+    //this case can also be handled by the general one but in a less
+    //efficient way
     if nd<=2 then
       B=A(ones(siz(1:nd)))
     else
-      s=1;for k=1:nd;s=s*siz(i),end
+      s=1;for k=1:nd;s=s*siz(k),end
       B=matrix(A(ones(s,1)),siz(1:nd))
     end
-  else
-    sizA(3:nd)=1;
-    I=list()
+  else //general case
+    if nda<nd then
+      sizA(nda+1:nd)=1;
+    elseif  nda>nd then
+      for k=nd+1:nda
+        siz(k)=1
+      end
+      nd=nda
+    end
+    I=list();
     for i=1:nd
-      ind=matrix(1:sizA(i),-1,1)
-      ind=ind(:,ones(1,siz(i)))
-      I(i)=ind
+      ind=matrix(1:sizA(i),-1,1);
+      ind=ind(:,ones(1,siz(i)));
+      I(i)=ind;
     end
     B=A(I(:))
   end

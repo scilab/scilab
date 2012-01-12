@@ -151,8 +151,11 @@
       <submenu label="&amp;File Exchange">
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openFileExchange" type="3"/>
       </submenu>
-      <submenu label="&amp;Mailing lists">
+      <submenu label="&amp;Mailing Lists">
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingList" type="3"/>
+      </submenu>
+      <submenu label="Mailing Lists &amp;Archives">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListArchives" type="3"/>
       </submenu>
       <separator/>
       <submenu label="&amp;Forge">
@@ -161,6 +164,10 @@
       <submenu label="&amp;Bugs And Requests">
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla" type="3"/>
       </submenu>
+    </submenu>
+    <separator/>
+    <submenu label="&amp;Scilab Enterprises">
+      <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openSE" type="3"/>
     </submenu>
     <separator/>
     <submenu label="&amp;About Scilab..." accelerator="shift F1">

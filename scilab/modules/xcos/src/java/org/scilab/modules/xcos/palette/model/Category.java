@@ -22,6 +22,7 @@ import java.util.Map;
 
 import javax.swing.tree.TreeNode;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -171,7 +172,7 @@ public class Category extends PaletteNode {
     void beforeMarshal(Marshaller m) {
         SAVED_NODELIST.put(getName(), new ArrayList<PaletteNode>(node));
 
-        for (Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
+        for (final Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
             if (it.next() instanceof PreLoaded.Dynamic) {
                 it.remove();
             }
@@ -187,5 +188,27 @@ public class Category extends PaletteNode {
      */
     void afterMarshal(Marshaller m) {
         node = SAVED_NODELIST.get(getName());
+    }
+
+    /**
+     * Invoked by Unmarshaller after unmarshalling
+     * 
+     * @param u
+     *            the unmarshaller
+     * @param parent
+     *            the parent object
+     */
+    @Override
+    void afterUnmarshal(Unmarshaller u, Object parent) {
+        if (node == null) {
+            return;
+        }
+
+        for (final Iterator<PaletteNode> it = node.iterator(); it.hasNext();) {
+            final PaletteNode p = it.next();
+            if (p instanceof Category && p.getChildCount() == 0) {
+                it.remove();
+            }
+        }
     }
 }

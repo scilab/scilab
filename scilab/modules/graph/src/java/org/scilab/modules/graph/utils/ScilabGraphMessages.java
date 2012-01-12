@@ -31,7 +31,7 @@ public final class ScilabGraphMessages {
 	public static final String DELETE = Messages.gettext("Delete");
 	public static final String SELECT_ALL = Messages.gettext("Select all");
 	public static final String INVERT_SELECTION = Messages.gettext("Invert selection");
-	public static final String UNTITLED = Messages.gettext("Untitled");
+	public static final String UNTITLED = Messages.gettext("Untitled %d");
 
 
 	/** This class is a static singleton, thus it must not be instantiated */

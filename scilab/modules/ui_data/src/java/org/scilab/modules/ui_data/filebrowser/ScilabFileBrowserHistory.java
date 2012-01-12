@@ -29,6 +29,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * The File Browser history
@@ -36,15 +37,15 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
  */
 public class ScilabFileBrowserHistory {
 
-    private static final String PREVIOUSICON = System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/go-previous.png";
-    private static final String NEXTICON = System.getenv("SCI") + "/modules/gui/images/icons/16x16/filebrowser/go-next.png";
+    private static final String PREVIOUSICON = ScilabSwingUtilities.findIcon("go-previous");
+    private static final String NEXTICON = ScilabSwingUtilities.findIcon("go-next");
 
-    private SwingScilabTreeTable stt;
-    private List<String> history = new ArrayList<String>();
+    private final SwingScilabTreeTable stt;
+    private final List<String> history = new ArrayList<String>();
     private int position = -1;
-    private PushButton previous;
-    private PushButton next;
-    private JPopupMenu popup;
+    private final PushButton previous;
+    private final PushButton next;
+    private final JPopupMenu popup;
     private Timer timer;
 
     /**
@@ -61,10 +62,12 @@ public class ScilabFileBrowserHistory {
 
         final SwingScilabPushButton swingPrevious = (SwingScilabPushButton) previous.getAsSimplePushButton();
         swingPrevious.addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 if (timer == null) {
                     timer = new Timer();
                     timer.schedule(new TimerTask() {
+                        @Override
                         public void run() {
                             if (!popup.isVisible() || popup.getInvoker() != next) {
                                 showPopup(true);
@@ -74,6 +77,7 @@ public class ScilabFileBrowserHistory {
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 if (timer != null) {
                     timer.cancel();
@@ -81,6 +85,7 @@ public class ScilabFileBrowserHistory {
                 }
             }
 
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e) && previous.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingPrevious)) {
                     showPopup(true);
@@ -96,10 +101,12 @@ public class ScilabFileBrowserHistory {
 
         final SwingScilabPushButton swingNext = (SwingScilabPushButton) next.getAsSimplePushButton();
         swingNext.addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 if (timer == null) {
                     timer = new Timer();
                     timer.schedule(new TimerTask() {
+                        @Override
                         public void run() {
                             if (!popup.isVisible() || popup.getInvoker() != next) {
                                 showPopup(false);
@@ -109,6 +116,7 @@ public class ScilabFileBrowserHistory {
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 if (timer != null) {
                     timer.cancel();
@@ -116,6 +124,7 @@ public class ScilabFileBrowserHistory {
                 }
             }
 
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e) && next.isEnabled() && (!popup.isVisible() || popup.getInvoker() != swingNext)) {
                     showPopup(false);
@@ -140,6 +149,7 @@ public class ScilabFileBrowserHistory {
                 JMenuItem item = new JMenuItem(history.get(i));
                 final int j = i;
                 item.addActionListener(new CommonCallBack(null) {
+                    @Override
                     public void callBack() {
                         ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
                         chDir(history.get(j));
@@ -153,6 +163,7 @@ public class ScilabFileBrowserHistory {
                 JMenuItem item = new JMenuItem(history.get(i));
                 final int j = i;
                 item.addActionListener(new CommonCallBack(null) {
+                    @Override
                     public void callBack() {
                         ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
                         chDir(history.get(j));

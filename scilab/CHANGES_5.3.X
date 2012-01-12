@@ -456,12 +456,12 @@ Documentation:
 
 * Enable the creation of links between an external module and Scilab main documentation
   with the following syntax:
-<link type="scilab" linkend="scilab/help/bvode">bvode</link>
+<link type="scilab" linkend="scilab.help/bvode">bvode</link>
 
 * Enable the execution and the edition of any Scilab example.
 
 * Enable the execution of demos with the following syntax:
-<link type="scilab" linkend="scilab/demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
+<link type="scilab" linkend="scilab.demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link>
 
 * Enable the opening of a Xcos diagram from the help browser:
 <link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.xcos">Open bounce.xcos</link>

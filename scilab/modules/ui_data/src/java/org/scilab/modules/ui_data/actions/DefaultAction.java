@@ -14,12 +14,7 @@ package org.scilab.modules.ui_data.actions;
 
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
@@ -35,17 +30,12 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Default action for a BrowseVar
  */
 public abstract class DefaultAction extends CommonCallBack {
-	private static final Set<String> ICON_PATH = new HashSet<String>();
-
-	static {
-		addIconPath(System.getenv("SCI") + "/modules/gui/images/icons/");
-	}
-
 
 	/**
 	 * Default constructor.
@@ -70,22 +60,13 @@ public abstract class DefaultAction extends CommonCallBack {
 
 		installProperties();
 	}
-	
-	/**
-	 * Add an icon path to the default icon path.
-	 * 
-	 * @param path the icon path (with the trailing /)
-	 */
-	public static void addIconPath(String path) {
-		ICON_PATH.add(path);
-	}
 
 	/**
 	 * Install the static actions properties on the instance
 	 */
 	private void installProperties() {
 		String name = "";
-		String icon = "";
+        ImageIcon icon = null;
 		int mnemonic = 0;
 		int accelerator = 0;
 		try {
@@ -94,13 +75,10 @@ public abstract class DefaultAction extends CommonCallBack {
 			/*
 			 * Getting icon from the registered icon path
 			 */
-			final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
-			for (String path : ICON_PATH) {
-				if (new File(path + iconName).exists()) {
-					icon = path + iconName;
-					break;
-				}
-			}
+            final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
+            if (iconName != null && !iconName.isEmpty()) {
+                icon = new ImageIcon(ScilabSwingUtilities.findIcon(iconName));
+            }
 			
 			mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
 			accelerator = getClass().getField("ACCELERATOR_KEY").getInt(null);
@@ -118,8 +96,8 @@ public abstract class DefaultAction extends CommonCallBack {
 		putValue(Action.NAME, name);
 		putValue(Action.SHORT_DESCRIPTION, name);
 		putValue(Action.LONG_DESCRIPTION, name);
-		if (!ICON_PATH.equals(icon)) {
-			putValue(Action.SMALL_ICON, new ImageIcon(icon));
+        if (icon != null) {
+            putValue(Action.SMALL_ICON, icon);
 		}
 
 		/*

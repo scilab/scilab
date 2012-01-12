@@ -24,7 +24,7 @@ import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 public abstract class JavaCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = -6513057558261299432L;
-    
+
     private static final String DOT = ".";
 
     /**
@@ -54,22 +54,16 @@ public abstract class JavaCallBack extends CommonCallBack {
                     // Only able to launch method Class.
                     runMe.invoke(invokedClass.getClass(), (Object[]) null);
                 } catch (ClassNotFoundException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (SecurityException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (NoSuchMethodException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IllegalArgumentException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -95,16 +89,12 @@ public abstract class JavaCallBack extends CommonCallBack {
                     // Only able to launch method Class.
                     runMe.invoke(invokedClass.getClass(), (Object[]) null);
                 } catch (ClassNotFoundException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (NoSuchMethodException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -116,7 +106,7 @@ public abstract class JavaCallBack extends CommonCallBack {
              */
             public void actionPerformed(ActionEvent e) {
                 callBack();
-            } 
-        });	   
+            }
+        });
     }
 }

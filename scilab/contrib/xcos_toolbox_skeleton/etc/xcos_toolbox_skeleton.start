@@ -37,8 +37,8 @@ function xcos_skeletonlib = startModule()
   pal = xcosPal("Xcos toolbox blocks");
 
   h5Files = gsort(ls(root_tlbx + "/images/h5/*.h5"));
-  gifFiles = gsort(ls(root_tlbx + "/images/gif/*.gif"));
-  svgFiles = gsort(ls(root_tlbx + "/images/svg/*.svg"));
+  gifFiles = gsort(ls(root_tlbx + "/images/gif/*." + ["png" "jpg" "gif"]));
+  svgFiles = gsort(ls(root_tlbx + "/images/svg/*." + ["svg" "png" "jpg" "gif"]));
 
   for i=1:size(h5Files, "*")
     pal = xcosPalAddBlock(pal, h5Files(i), gifFiles(i), svgFiles(i));

@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <stdlib.h>
 #include "MlistGetFieldNumber.h"
 #include "cvstr.h"
 #include "MALLOC.h"

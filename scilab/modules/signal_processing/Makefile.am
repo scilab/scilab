@@ -3,7 +3,8 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
+src/c/conv2.c
 
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
 src/fortran/parcha.f \
@@ -77,7 +78,8 @@ sci_gateway/c/sci_amell.c \
 sci_gateway/c/gw_signal.c \
 sci_gateway/c/sci_delip.c \
 sci_gateway/c/sci_fft.c \
-sci_gateway/c/sci_syredi.c
+sci_gateway/c/sci_syredi.c \
+sci_gateway/c/sci_conv2.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_delip.f \
 sci_gateway/fortran/sci_f_fft.f \
@@ -92,6 +94,7 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes

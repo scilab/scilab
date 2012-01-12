@@ -55,14 +55,13 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -138,10 +137,8 @@ public class XcosDiagram extends ScilabGraph {
     // the scicos engine current status
     private final transient CompilationEngineStatus engine;
 
-    // private Window palette;
-    private SwingScilabTab viewPort;
-
-    private CheckBoxMenuItem viewPortMenu;
+    private transient String viewPortTab;
+    private transient String diagramTab;
 
     /**
      * Constructor
@@ -1558,14 +1555,17 @@ public class XcosDiagram extends ScilabGraph {
         if (cell != null) {
             final Map<String, Object> style = getCellStyle(cell);
 
-            final String customLabel = (String) style.get("displayedLabel");
-            if (customLabel != null && cell instanceof BasicBlock) {
-                try {
-                    ret = String.format(customLabel,
-                            ((BasicBlock) cell).getExprsFormat());
-                } catch (IllegalFormatException e) {
-                    LOG.error(e);
-                    ret = customLabel;
+            final String displayedLabel = (String) style.get("displayedLabel");
+            if (displayedLabel != null) {
+                if (cell instanceof BasicBlock) {
+                    try {
+                        ret = String.format(displayedLabel, ((BasicBlock) cell).getExprsFormat());
+                    } catch (IllegalFormatException e) {
+                        LOG.error(e);
+                        ret = displayedLabel;
+                    }
+                } else {
+                    ret = displayedLabel;
                 }
             } else {
                 final String label = super.convertValueToString(cell);
@@ -1784,52 +1784,41 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Set the associated ViewPort
+     * Get the view port tab uuid
      * 
-     * @param viewPort
-     *            the Viewport
+     * @return the view port tab
      */
-    public void setViewPort(final SwingScilabTab viewPort) {
-        this.viewPort = viewPort;
+    public String getViewPortTab() {
+        return viewPortTab;
     }
 
     /**
-     * Get the associated ViewPort
+     * Set the view port tab uuid
      * 
-     * @return the Viewport
+     * @param uuid
+     *            the view port tab
      */
-    public SwingScilabTab getViewPort() {
-        return viewPort;
+    public void setViewPortTab(String uuid) {
+        this.viewPortTab = uuid;
     }
 
     /**
-     * Manage the visibility of the associated viewport
+     * Get the diagram tab uuid
      * 
-     * @param status
-     *            new status
+     * @return
      */
-    public void setViewPortVisible(final boolean status) {
-        final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-                .get(viewPort.getParentWindowId());
-        // Hide/Show parent window if the viewport is the only tab
-        if (win != null && win.getNbDockedObjects() == 1) {
-            win.setVisible(status);
-        }
-        // Hide/Show viewport tab
-        viewPort.setVisible(status);
-
-        // (Un)Check the corresponding menu
-        viewPortMenu.setChecked(status);
+    public String getDiagramTab() {
+        return diagramTab;
     }
 
     /**
-     * Set menu used to manage Viewport visibility
+     * Set the diagram tab uuid
      * 
-     * @param menu
-     *            the menu
+     * @param uuid
+     *            the diagram tab
      */
-    public void setViewPortMenuItem(final CheckBoxMenuItem menu) {
-        viewPortMenu = menu;
+    public void setDiagramTab(String uuid) {
+        this.diagramTab = uuid;
     }
 
     /**
@@ -1845,77 +1834,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Close the current diagram.
-     * 
-     * This operation doesn't remove the diagram instance from the Xcos session.
-     * To completely close a diagram please use
-     * {@link Xcos#close(XcosDiagram, boolean)} instead.
-     * 
-     * @param force
-     *            true if the close must be forced.
-     * @return status of the close operation (true if the close is successful,
-     *         false otherwise)
-     */
-    public boolean close(final boolean force) {
-
-        if (!canClose()) {
-            close();
-            return false;
-        }
-
-        boolean wantToClose = true;
-        if (isModified()) {
-            // Ask the user want he want to do !
-            final AnswerOption answer;
-            if (force) {
-                answer = ScilabModalDialog.show(getParentTab(),
-                        XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
-                        IconType.QUESTION_ICON, ButtonType.YES_NO);
-            } else {
-                answer = ScilabModalDialog.show(getParentTab(),
-                        XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
-                        IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
-            }
-
-            switch (answer) {
-            case YES_OPTION:
-                if (!saveDiagram()) {
-                    // if save is canceled, cancel close windows
-                    wantToClose = false;
-                }
-                break;
-            case CANCEL_OPTION:
-                wantToClose = false;
-                break;
-            case NO_OPTION:
-            default:
-                break;
-            }
-        }
-
-        if (wantToClose) {
-            close();
-        }
-
-        return wantToClose;
-    }
-
-    /**
-     * Close the current diagram without prompting anything
-     */
-    private void close() {
-        if (getParentTab() != null) {
-            getParentTab().close();
-            setParentTab(null);
-        }
-
-        if (viewPort != null) {
-            viewPort.close();
-            viewPort = null;
-        }
-    }
-
-    /**
      * @return save status
      */
     public boolean saveDiagram() {
@@ -1928,6 +1846,7 @@ public class XcosDiagram extends ScilabGraph {
 
         if (isSuccess) {
             setModified(false);
+            Xcos.getInstance().addDiagram(getSavedFile(), this);
         }
 
         return isSuccess;
@@ -2034,7 +1953,7 @@ public class XcosDiagram extends ScilabGraph {
      * @throws TransformerException
      *             on error
      */
-    private void load(final File file) throws TransformerException {
+    public void load(final File file) throws TransformerException {
         final XcosCodec codec = new XcosCodec();
         final TransformerFactory tranFactory = ScilabTransformerFactory
                 .newInstance();
@@ -2053,13 +1972,15 @@ public class XcosDiagram extends ScilabGraph {
      * @param file
      *            the loaded file
      */
-    private void postLoad(final File file) {
+    public void postLoad(final File file) {
         final String name = file.getName();
 
         setModified(false);
         setSavedFile(file);
         setTitle(name.substring(0, name.lastIndexOf('.')));
         generateUID();
+
+        fireEvent(new mxEventObject(mxEvent.ROOT));
     }
 
     /**
@@ -2110,8 +2031,10 @@ public class XcosDiagram extends ScilabGraph {
                 .append(title).append(formattedPath).append(" - ")
                 .append(product).toString();
 
-        if (getParentTab() != null) {
-            getParentTab().setName(tabTitle);
+        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(
+                getDiagramTab());
+        if (tab != null) {
+            tab.setName(tabTitle);
         }
     }
 
@@ -2193,22 +2116,27 @@ public class XcosDiagram extends ScilabGraph {
         } else {
             AnswerOption answer;
             try {
-                answer = ScilabModalDialog.show(
-                        getParentTab(),
-                        String.format(XcosMessages.FILE_DOESNT_EXIST,
-                                diagram.getCanonicalFile()), XcosMessages.XCOS,
-                        IconType.QUESTION_ICON, ButtonType.YES_NO);
+                answer = ScilabModalDialog.show(getAsComponent(),
+                        new String[] { String.format(
+                                XcosMessages.FILE_DOESNT_EXIST,
+                                diagram.getCanonicalFile()) },
+                        XcosMessages.XCOS, IconType.QUESTION_ICON,
+                        ButtonType.YES_NO);
             } catch (final IOException e) {
                 LOG.error(e);
                 answer = AnswerOption.YES_OPTION;
             }
 
             if (answer == AnswerOption.YES_OPTION) {
-                saveDiagramAs(diagram);
-                getParentTab().setVisible(true);
-            } else {
-                return null;
+                final boolean status = saveDiagramAs(diagram);
+                if (status) {
+                    Xcos.getInstance().addDiagram(diagram, this);
+                    XcosTab.restore(this);
+                } else {
+                    return null;
+                }
             }
+
         }
         info(XcosMessages.EMPTY_INFO);
         getUndoManager().clear();
@@ -2262,14 +2190,14 @@ public class XcosDiagram extends ScilabGraph {
                 File f = new File(theFile);
                 if (getModel().getChildCount(getDefaultParent()) == 0) {
                     load(f);
+                    XcosTab.restore(this);
                     postLoad(f);
-                    setVisible(true);
                 } else {
                     info(XcosMessages.LOADING_DIAGRAM);
                     final XcosDiagram xcosDiagram = new XcosDiagram();
                     xcosDiagram.load(f);
+                    XcosTab.restore(xcosDiagram);
                     xcosDiagram.postLoad(f);
-                    new XcosTab(xcosDiagram).setVisible(true);
                     info(XcosMessages.EMPTY_INFO);
                 }
                 result = true;
@@ -2284,7 +2212,7 @@ public class XcosDiagram extends ScilabGraph {
             handler.readDiagram(this);
             generateUID();
             updateTabTitle();
-            setVisible(true);
+            XcosTab.restore(this);
             result = true;
             break;
 
@@ -2382,9 +2310,10 @@ public class XcosDiagram extends ScilabGraph {
      *            Informations
      */
     public void info(final String message) {
-        final String localMessage = message;
-        if (getParentTab() != null && getParentTab().getInfoBar() != null) {
-            getParentTab().getInfoBar().setText(localMessage);
+        final XcosTab tab = XcosTab.get(this);
+
+        if (tab != null && tab.getInfoBar() != null) {
+            tab.getInfoBar().setText(message);
         }
     }
 
@@ -2414,16 +2343,14 @@ public class XcosDiagram extends ScilabGraph {
             return;
         }
 
+        // open the tab
+        if (XcosTab.get(this) == null) {
+            XcosTab.restore(this);
+        }
+
         if (message.isEmpty()) {
-            if (isVisible()) {
-                getAsComponent().clearCellOverlays(cell);
-            }
+            getAsComponent().clearCellOverlays(cell);
         } else {
-            if (getParentTab() == null) {
-                // Open a new tab
-                new XcosTab(this);
-                setVisible(true);
-            }
             getAsComponent().setCellWarning(cell, message, null, true);
         }
     }
@@ -2508,7 +2435,7 @@ public class XcosDiagram extends ScilabGraph {
                                 .getChildById(uid);
 
                         if (created) { // if temporary, destroy it
-                            ((SuperBlock) block).closeBlockSettings();
+                            ((SuperBlock) block).syncParameters();
                         }
                     } else if (block.getRealParameters() instanceof ScilabMList) {
                         // we have a hidden SuperBlock, create a real one
@@ -2519,7 +2446,7 @@ public class XcosDiagram extends ScilabGraph {
                         newSP.createChildDiagram();
                         // search in child
                         returnBlock = newSP.getChild().getChildById(uid);
-                        newSP.closeBlockSettings();
+                        newSP.syncParameters();
                         newSP = null;
                     }
                 }
@@ -2553,18 +2480,24 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @return child visibility
      */
+    @Deprecated
     public boolean isChildVisible() {
-        for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-            final Object child = getModel().getChildAt(getDefaultParent(), i);
-            if (child instanceof SuperBlock) {
-                final XcosDiagram diag = ((SuperBlock) child).getChild();
-                if (diag != null && (diag.isChildVisible() || diag.isVisible())) {
-                    // if child or sub child is visible
-                    return true;
-                }
-            }
-        }
+        // FIXME check
+
         return false;
+
+        // for (int i = 0; i < getModel().getChildCount(getDefaultParent());
+        // i++) {
+        // final Object child = getModel().getChildAt(getDefaultParent(), i);
+        // if (child instanceof SuperBlock) {
+        // final XcosDiagram diag = ((SuperBlock) child).getChild();
+        // if (diag != null && (diag.isChildVisible() || diag.isVisible())) {
+        // // if child or sub child is visible
+        // return true;
+        // }
+        // }
+        // }
+        // return false;
     }
 
     /**
@@ -2575,22 +2508,6 @@ public class XcosDiagram extends ScilabGraph {
             return true;
         }
         return false;
-    }
-
-    /**
-     * close children diagram
-     */
-    public void closeChildren() {
-        for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-            final Object child = getModel().getChildAt(getDefaultParent(), i);
-            if (child instanceof SuperBlock) {
-                final SuperBlock diag = (SuperBlock) child;
-
-                if (diag.getChild() != null) {
-                    diag.closeBlockSettings();
-                }
-            }
-        }
     }
 
     /**

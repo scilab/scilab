@@ -32,7 +32,7 @@
       <varlistentry>
         <term>num</term>
         <listitem>
-          <para>integer, choosen item number or 0 if dialog resumed with "Cancel" button</para>
+          <para>integer, chosen item number or 0 if dialog resumed with "Cancel" button</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,7 +50,7 @@ n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_choose">x_choose</link>

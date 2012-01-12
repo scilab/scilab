@@ -19,6 +19,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
+import org.scilab.modules.xcos.ViewPortTab;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -63,9 +66,18 @@ public final class ViewViewportAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        SwingScilabTab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
-        ((XcosDiagram) getGraph(null))
-                .setViewPortVisible(!viewPort.isVisible());
+        final XcosTab tab = XcosTab.get(graph);
+        final ViewPortTab viewport = ViewPortTab.get(graph);
+
+        final boolean status = tab.isViewportChecked();
+
+        if (status) {
+            ViewPortTab.restore(graph);
+        } else {
+            ClosingOperationsManager
+                    .startClosingOperation((SwingScilabTab) viewport);
+        }
     }
 }

@@ -193,6 +193,8 @@ public final class XcosMessages {
 
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");
+    public static final String RESET = Messages.gettext("Reset to default");
+
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"
             + Messages
                     .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK and every time the diagram is loaded).")
@@ -384,6 +386,8 @@ public final class XcosMessages {
             .gettext("Error: unable to compile this SuperBlock");
     public static final String WRONG_PORT_NUMBER = Messages
             .gettext("Wrong port number");
+    public static final String LINK_NOT_CONNECTED = Messages
+            .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 
     // CSON: JavadocVariable
     // CSON: LineLength

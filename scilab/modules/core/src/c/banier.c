@@ -34,7 +34,7 @@ void banner(void)
     sciprint("\n\n");
 
     centerPrint(_("Consortium Scilab (DIGITEO)\n"));
-    centerPrint(_("Copyright (c) 1989-2011 (INRIA)\n"));
+    centerPrint(_("Copyright (c) 1989-2012 (INRIA)\n"));
     centerPrint(_("Copyright (c) 1989-2007 (ENPC)\n"));
 
     sciprint("%s\n",line);

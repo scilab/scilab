@@ -27,10 +27,10 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Palette;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -55,8 +55,10 @@ public class PaletteManagerMouseListener implements MouseListener {
         if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
                 || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
 
-            final PaletteManager manager = PaletteManager.getInstance();
-            final JTree paletteTree = manager.getView().getTree();
+            if (PaletteManagerView.get() == null) {
+                PaletteManagerView.restore(null);
+            }
+            final JTree paletteTree = PaletteManagerView.get().getTree();
             final TreePath path = paletteTree.getPathForLocation(e.getX(),
                     e.getY());
             paletteTree.setSelectionPath(path);

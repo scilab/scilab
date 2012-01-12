@@ -2194,7 +2194,7 @@ int C2F(getonepoly) (char *fname, int *topk, int *lw, int *it, int *md, char *na
 
     if (m * n != 1)
     {
-        Scierror(998, _("%s: Wrong type for argument %d : Polygon expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(998, _("%s: Wrong type for argument %d: Polynomial expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     *md = *istk(ilp + 1) - *istk(ilp) - 1;
@@ -2291,7 +2291,7 @@ int C2F(pmatj) (char *fname, int *lw, int *j, unsigned long fname_len)
 
 int C2F(crewmat) (char *fname, int *lw, int *m, int *lr, unsigned long fname_len)
 {
-    int il, ix1;
+    int il = 0;
 
     if (*lw + 1 >= Bot)
     {

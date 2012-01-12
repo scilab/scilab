@@ -30,7 +30,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
@@ -219,21 +218,11 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 inputCmdView.setEditable(true);
                 ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
                 ((JTextPane) inputCmdView).getCaret().setVisible(true);
+                setToHome();
             }
         });
 
-        // Remove last line returned given by Scilab (carriage return)
-        try {
-            Document doc = ((JEditorPane) this.getConfiguration().getOutputView()).getDocument();
-            int lastEOL = doc.getText(0, doc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
-
-            // Condition added to avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
-            if (lastEOL > 1 && (doc.getLength() - lastEOL) == 1) {
-                doc.remove(lastEOL, doc.getLength() - lastEOL);
-            }
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
+        ((SciOutputView) this.getConfiguration().getOutputView()).resetLastEOL();
 
         updateScrollPosition();
     }
@@ -261,7 +250,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         try {
             ((SciConsole) this).getCanReadUserInputValue().acquire();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -421,7 +409,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
             try {
                 doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
             } catch (BadLocationException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -430,7 +417,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
             doc.insertString(((JTextPane) this.getConfiguration().getInputCommandView()).getCaretPosition(),
                     clipboardContents, doc.getStyle(StyleContext.DEFAULT_STYLE));
         } catch (BadLocationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -531,7 +517,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 /* Remove selected text */
                 doc.remove(input.getSelectionStart(), input.getSelectionEnd() - input.getSelectionStart());
             } catch (BadLocationException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

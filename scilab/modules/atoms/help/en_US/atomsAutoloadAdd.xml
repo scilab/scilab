@@ -30,91 +30,76 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			
-			<!-- 1st input parameter -->
-			
-			<varlistentry>
+      <!-- 1st input parameter -->
+      <varlistentry>
         <term>modules</term>
         <listitem>
-					
           <para>
 						mx1, mx2 or mx3 Matrix of strings:
 					</para>
-					
-					<informaltable border="1">
-						
-						<!-- Technical name -->
-						
-						<tr>
-							<td>
-								<emphasis>1st Col.</emphasis>
-							</td>
-							<td>
-								<emphasis role="strong">Technical name</emphasis>
-							</td>
-							<td>
+          <informaltable border="1">
+            <!-- Technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Technical name</emphasis>
+              </td>
+              <td>
 								Mandatory
 							</td>
-							<td>
+              <td>
 							</td>
-						</tr>
-						
-						<!-- Version -->
-						
-						<tr>
-							<td>
-								<emphasis>2nd Col.</emphasis>
+            </tr>
+            <!-- Version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Version</emphasis>
+              </td>
+              <td>
+								Optional
 							</td>
-							<td>
-								<emphasis role="strong">Version</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
+              <td>
 								If this field is empty or is not present,
 								the most recent	version is used
 							</td>
-						</tr>
-						
-						<!-- Section -->
-						
-						<tr>
-							<td>
-								<emphasis>3rd Col.</emphasis>
+            </tr>
+            <!-- Section -->
+            <tr>
+              <td>
+                <emphasis>3rd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Installed section</emphasis>
+              </td>
+              <td>
+								Optional
 							</td>
-							<td>
-								<emphasis role="strong">Installed section</emphasis>
-							</td>
-							<td>
-								Optionnal
-							</td>
-							<td>
+              <td>
 								If this field is empty or is not present,
 								and <literal>module</literal> is installed in both "user" and
 								"allusers" sections, the section of autoload list is used.
 							</td>
-						</tr>
-						
-					</informaltable>
-				</listitem>
+            </tr>
+          </informaltable>
+        </listitem>
       </varlistentry>
-			
-			<!-- 2nd input parameter -->
-			
-			<varlistentry>
+      <!-- 2nd input parameter -->
+      <varlistentry>
         <term>section</term>
         <listitem>
           <para>
 						This argument controls which autoload list is changed.
 					</para>
-          <para>
-						<literal>section</literal> is a single-string and its value should be :
+          <para><literal>section</literal> is a single-string and its value should be :
 					</para>
           <itemizedlist>
             <listitem>
-              <para>
-								<literal>"allusers"</literal>: modules are added to the
+              <para><literal>"allusers"</literal>: modules are added to the
 								"allusers" autoload list and all users of scilab are affected.
 							</para>
             </listitem>
@@ -124,15 +109,13 @@
 							</para>
             </listitem>
           </itemizedlist>
-					<para>
+          <para>
 						If SCI/contrib is write accessible, "allusers" is the default value.
 						Otherwise, the default value is "user".
 					</para>
         </listitem>
-			</varlistentry>
-			
-			<!-- output parameter -->
-			
+      </varlistentry>
+      <!-- output parameter -->
       <varlistentry>
         <term>nbAdd</term>
         <listitem>
@@ -141,7 +124,6 @@
 					</para>
         </listitem>
       </varlistentry>
-			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -189,7 +171,7 @@ atomsAutoloadList()
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>

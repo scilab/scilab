@@ -1467,7 +1467,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
         ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-        final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
+        final List<XcosDiagram> allDiagrams = Xcos.getInstance()
+                .openedDiagrams();
 
         if (allDiagrams.size() == 0) {
             // No diagram opened: should never happen if Xcos opens an empty
@@ -1488,7 +1489,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
                     setDefaultPosition(geom);
                     theDiagram.getModel().setGeometry(block, geom);
 
-                    new XcosTab(theDiagram).setVisible(true);
+                    XcosTab.get(theDiagram).setVisible(true);
                     BlockPositioning.updateBlockView(block);
                 }
             });
@@ -1500,7 +1501,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             MenuItem addTo = ScilabMenuItem.createMenuItem();
 
             addTo.setText(XcosMessages.ADDTO + " "
-                    + allDiagrams.get(0).getParentTab().getName());
+                    + XcosTab.get(allDiagrams.get(0)).getName());
             final XcosDiagram theDiagram = allDiagrams.get(0);
             addTo.setCallback(new CommonCallBack(theDiagram.getTitle()) {
                 private static final long serialVersionUID = -99601763227525686L;
@@ -1530,7 +1531,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             for (int i = 0; i < allDiagrams.size(); i++) {
                 MenuItem diagram = ScilabMenuItem.createMenuItem();
                 final XcosDiagram theDiagram = allDiagrams.get(i);
-                diagram.setText(allDiagrams.get(i).getParentTab().getName());
+                diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
                 diagram.setCallback(new CommonCallBack(theDiagram.getTitle()) {
                     private static final long serialVersionUID = 3345416658377835057L;
 

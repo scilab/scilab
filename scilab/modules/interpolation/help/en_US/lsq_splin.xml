@@ -50,7 +50,7 @@
     <emphasis>s</emphasis> for the data <literal>xd, yd, wd</literal> (in the
     following <emphasis>m</emphasis> is supposed to be the length of these
     vectors) and from a choice of the spline breakpoints <literal>x</literal>
-    (for instance if you want n breakpoints uniformly choosen you may use
+    (for instance if you want n breakpoints uniformly chosen you may use
     <literal>x=linspace(min(xd),max(xd),n))</literal>). If
     <emphasis>S</emphasis> is the space of all cubic splines functions with
     breakpoints <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis> then the
@@ -65,7 +65,7 @@
     <para>for all <emphasis>f in S</emphasis>, i.e. realizes the minimum of
     the sum of the squared errors over all functions of
     <emphasis>S</emphasis>.</para>
-    <para>The spline <emphasis>s</emphasis> is completly defined by the
+    <para>The spline <emphasis>s</emphasis> is completely defined by the
     triplet <literal>(x,y,d)</literal> (<literal>y</literal> and
     <literal>d</literal> are the vectors of the spline ordinates and first
     derivatives at the xi 's : <emphasis>yi=s(xi)</emphasis> and
@@ -95,7 +95,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-// this is an artifical example where the data xd and yd
+// this is an artificial example where the data xd and yd
 // are build from a perturbed sin function
 a = 0; b = 2*%pi;
 sigma = 0.1;  // standard deviation of the gaussian noise

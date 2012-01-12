@@ -20,6 +20,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 
@@ -32,7 +33,7 @@ public final class CutAction extends CommonCallBack {
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.CUT;
-    private static final String ICON = System.getenv("SCI") + "/modules/gui/images/icons/edit-cut.png";
+    private static final String ICON = ScilabSwingUtilities.findIcon("edit-cut");
     private static final char MNEMONIC = 'U';
 
     private static final String KEY = "OSSCKEY X";
@@ -105,6 +106,7 @@ public final class CutAction extends CommonCallBack {
      * Action!
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
+    @Override
     public void callBack() {
         CommonCallBack copyAction = new CopyAction();
         copyAction.callBack();

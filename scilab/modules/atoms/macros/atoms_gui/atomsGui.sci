@@ -327,10 +327,10 @@ function elements = getHomeListboxElements()
         MRVersionInstalled = MRVersionInstalled(1);
         if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
             // Not up-to-date
-            icon = "notuptodate.png";
+            icon = "software-update-notinstalled.png";
         else
             // The Most Recent Version is already installed
-            icon = "installed.png";
+            icon = "software-update-installed.png";
         end
 
         if modulo(i,2) == 0 then
@@ -342,7 +342,7 @@ function elements = getHomeListboxElements()
         thisItem =            "<html>";
 
         thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+        thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
         thisItem = thisItem + "<td>";
         thisItem = thisItem + "  <div style=""width:383px;text-align:left;"">";
         thisItem = thisItem + "    <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";

@@ -29,7 +29,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -159,6 +158,7 @@ public class SearchFile extends SwingScilabTab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
         changeToolBar();
@@ -169,7 +169,7 @@ public class SearchFile extends SwingScilabTab {
      */
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-        Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+        Set<SwingScilabTab> set = win.getDockingPort().getDockables();
         for (SwingScilabTab tab : set) {
             if (tab == editor) {
                 addToolBar(editor.getToolBar());
@@ -191,6 +191,7 @@ public class SearchFile extends SwingScilabTab {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void undockingComplete(DockingEvent evt) {
         super.undockingComplete(evt);
         addToolBar(null);
@@ -299,14 +300,16 @@ public class SearchFile extends SwingScilabTab {
      */
     private void initTab() {
         final TextBox infobar = ScilabTextBox.createTextBox();
-        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
+        setWindowIcon("system-search");
         updateUI();
 
         CommonCallBack callback = new CommonCallBack(null) {
+            @Override
             public void callBack() {
                 ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
             }
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 callBack();
             }
@@ -371,6 +374,7 @@ public class SearchFile extends SwingScilabTab {
         files.setRoot();
         final JTree tree = new JTree(files.toDefaultMutableTreeNode());
         MouseListener ml = new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 int row = tree.getRowForLocation(e.getX(), e.getY());
                 if(row != -1) {
@@ -393,6 +397,7 @@ public class SearchFile extends SwingScilabTab {
         });
         tree.addMouseListener(ml);
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+            @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
                     boolean expanded, boolean leaf, int row, boolean hasFocus) {
                 super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
@@ -404,6 +409,7 @@ public class SearchFile extends SwingScilabTab {
         };
         if (statusbar != null) {
             tree.addTreeSelectionListener(new TreeSelectionListener() {
+                @Override
                 public void valueChanged(TreeSelectionEvent e) {
                     TreePath path = e.getNewLeadSelectionPath();
                     Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
@@ -500,6 +506,7 @@ public class SearchFile extends SwingScilabTab {
                 final ScilabEditorPane sep = editor.getTextPane();
                 if (sep.getName().equals(fileName)) {
                     SwingUtilities.invokeLater(new Runnable() {
+                        @Override
                         public void run() {
                             sep.highlightWords(pat, fline);
                             if (ln != 0) {
@@ -571,6 +578,7 @@ public class SearchFile extends SwingScilabTab {
         /**
          * Stop the search and fire a propertyChange
          */
+        @Override
         synchronized public void stop() {
             super.stop();
             if (component != null) {
@@ -581,6 +589,7 @@ public class SearchFile extends SwingScilabTab {
         /**
          * Called when the results are available
          */
+        @Override
         synchronized public void done() {
             SearchManager.MatchingPositions pos = getResults();
             if (pos == null) {
@@ -603,6 +612,7 @@ public class SearchFile extends SwingScilabTab {
             sf.setMyBackgroundSearch(this);
 
             SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     sf.getJTree().addSelectionRow(0);
                     sf.getJTree().requestFocus();

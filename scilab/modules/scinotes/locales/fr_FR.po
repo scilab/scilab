@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-22 14:54+0000\n"
+"PO-Revision-Date: 2011-11-15 09:23+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14157)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: fr\n"
 
 #, c-format
@@ -63,7 +63,7 @@ msgid "Open"
 msgstr "Ouvrir"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Ouvrir récent"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
@@ -199,7 +199,7 @@ msgid "Code Navigator"
 msgstr "Navigateur de code"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Set Colors ..."
 msgstr "Définir les couleurs..."
@@ -238,7 +238,7 @@ msgid "Uncomment Selection"
 msgstr "Décommenter la sélection"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Changer la casse"
 
 msgid "Make Selection Lowercase"
 msgstr "Transformer la sélection en minuscules"
@@ -263,19 +263,19 @@ msgstr ""
 "Encodage du fichier par défaut SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
 
 msgid "Line Endings"
-msgstr "Fins de ligne"
+msgstr "Fin de lignes"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Complétion automatique sur"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numérotation de ligne;Désactivée;Normale;Compatible Whereami"
+msgstr "Numérotation de lignes;Désactivée;Normale;Compatible whereami"
 
 msgid "Highlight current line"
 msgstr "Mettre en surbrillance la ligne actuelle"
@@ -408,13 +408,13 @@ msgid "Word Wrap"
 msgstr "Césure des lignes"
 
 msgid "Whereami Line Numbering"
-msgstr "Numérotation de ligne 'où-suis-je'"
+msgstr "Numérotation de lignes whereami"
 
 msgid "Normal Line Numbering"
-msgstr "Numérotation de ligne normale"
+msgstr "Numérotation de lignes normale"
 
 msgid "No Line Numbering"
-msgstr "Non-numérotation des lignes"
+msgstr "Non-numérotation de lignes"
 
 msgid "Set Colors"
 msgstr "Définir les couleurs"

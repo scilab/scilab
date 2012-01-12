@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "core_math.h"
 #include "scicos.h"
 #include "dynlib_scicos_blocks.h"
@@ -33,8 +34,8 @@
 /*------------------------------------------------
  *     Scicos block simulator 
  *     Dead Band, 
- *     if u(i)<0 ,y(i)=min(0,u+DB(i)/2) 
- *     else       y(i)=max(0,u-DB(i)/2) 
+ *     if u(i)<0 ,y(i)=Min(0,u+DB(i)/2) 
+ *     else       y(i)=Max(0,u-DB(i)/2) 
  *     DB(i)=rpar(i) 
  *------------------------------------------------*/
 

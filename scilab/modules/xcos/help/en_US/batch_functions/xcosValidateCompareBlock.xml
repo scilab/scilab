@@ -33,7 +33,7 @@
     <para>
       Function will go through each block field and compare the two values.
       The function returns true if the two blocks are equal, false otherwise.
-      <literal>message</literal> will contain some informations about non-homogeneous fields.
+      <literal>message</literal> will contain some information about non-homogeneous fields.
     </para>
   </refsection>
   <refsection id="Filecontent_xcosValidateCompareBlock">

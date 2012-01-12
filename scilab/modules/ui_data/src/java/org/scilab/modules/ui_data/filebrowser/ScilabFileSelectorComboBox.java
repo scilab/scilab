@@ -38,8 +38,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -55,7 +55,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
         }
     };
 
-    private static boolean isWindows = Scilab.isWindowsPlateform();
+    private static boolean isWindows = (OS.get() == OS.WINDOWS);
 
     private int lastSize = -1;
     private String oldName = "";

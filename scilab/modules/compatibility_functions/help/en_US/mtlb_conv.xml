@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>mtlb_conv</refname>
-    <refpurpose>Matlab conv emulation function</refpurpose>
+    <refpurpose>Matlab conv emulation function. <emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -61,10 +61,13 @@
     <para>Caution: <literal>mtlb_conv</literal> has not to be used for hand coded functions.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="conv">conv</link>
       </member>
     </simplelist>
   </refsection>
@@ -73,5 +76,14 @@
     <simplelist type="vert">
       <member>V.C.</member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function mtlb_conv is obsolete and will be removed in Scilab 5.4.1, use <link linkend="conv">conv</link> instead.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

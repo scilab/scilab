@@ -143,7 +143,8 @@ libscihdf5_forceload_disable_la_LINK = $(LIBTOOL) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libscihdf5_forceload_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-@HDF5_TRUE@am_libscihdf5_forceload_disable_la_rpath =
+@HDF5_TRUE@am_libscihdf5_forceload_disable_la_rpath = -rpath \
+@HDF5_TRUE@	$(pkglibdir)
 libscihdf5_forceload_la_LIBADD =
 am__libscihdf5_forceload_la_SOURCES_DIST = src/cpp/forceJHDF5load.cpp \
 	src/jni/jhdf5load.hxx src/jni/jhdf5load.cpp
@@ -213,6 +214,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -287,6 +289,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -518,8 +521,8 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 #### hdf5 : gateway declaration ####
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
-pkglib_LTLIBRARIES = libscihdf5.la
-noinst_LTLIBRARIES = $(am__append_1) $(am__append_2) $(am__append_3)
+pkglib_LTLIBRARIES = libscihdf5.la $(am__append_3)
+noinst_LTLIBRARIES = $(am__append_1) $(am__append_2)
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
