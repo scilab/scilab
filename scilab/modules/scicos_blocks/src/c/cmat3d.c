@@ -10,10 +10,14 @@
  *
  */
 
+#include <stdlib.h>
+#include <math.h>
+
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
 #include "MALLOC.h"
+#include "core_math.h"
 #include "elementary_functions.h"
 
 #include "getGraphicObjectProperty.h"
@@ -25,7 +29,6 @@
 
 #include "scicos_block4.h"
 #include "scicos.h"
-#include "math.h"
 
 #include "localization.h"
 
@@ -497,7 +500,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pPlot3dUID)
     }
     result = setGraphicObjectProperty(pPlot3dUID, __GO_DATA_MODEL_Z__, values, jni_double_vector, m * n);
 
-    len = max(m, n);
+    len = Max(m, n);
     for (i = 1; i <= len; i++)
     {
         values[i] = (double)i;

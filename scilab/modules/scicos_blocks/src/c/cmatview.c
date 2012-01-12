@@ -10,10 +10,14 @@
  *
  */
 
+#include <stdlib.h>
+#include <math.h>
+
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
 
 #include "MALLOC.h"
+#include "core_math.h"
 #include "elementary_functions.h"
 
 #include "getGraphicObjectProperty.h"
@@ -469,7 +473,7 @@ static BOOL setDefaultValues(scicos_block * block, char *pGrayplotUID)
     m = GetInPortSize(block, 1, 1);
     n = GetInPortSize(block, 1, 2);
 
-    len = max(m, n);
+    len = Max(m, n);
 
     values = (double *)CALLOC(n * m, sizeof(double));
     if (values == NULL)
