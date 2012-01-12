@@ -21,12 +21,75 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>Opens the history browser</para>
+    <para>Open the history browser</para>
+    <para>
+      <literal>browsehistory</literal> lists all the commands typed by the user during its various Scilab sessions.
+    </para>
+    <para>
+      <literal>browsehistory</literal> has several features: 
+      <itemizedlist>
+        <listitem><para>
+            A simple and comprehensive list
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsehistory_list.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Quick actions on the history items (copy / paste, evaluation, edition in SciNotes, etc)
+            <para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsehistory_action.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Multiple selection on history items<para/>
+            <para>
+              <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/browsehistory_multiple.png"/>
+                </imageobject>
+              </inlinemediaobject>
+            </para>
+            <para/>
+          </para>
+        </listitem>
+        <listitem><para>
+            Copy and paste from the history browser to the other Scilab components (console, SciNotes, etc)
+          </para>
+        </listitem>
+        <listitem><para>
+            Real time refresh
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
   </refsection>
   <refsection>
     <title>Author</title>
     <simplelist type="vert">
       <member>Calixte DENIZET</member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function browsehistory introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>
