@@ -138,6 +138,10 @@ Bug fixes
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
 
+* Bug #10303 fixed - test_run ignored "enable_lt" option.
+
+* Bug #10304 fixed - test_run did not return an error when using an invalid option.
+
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
