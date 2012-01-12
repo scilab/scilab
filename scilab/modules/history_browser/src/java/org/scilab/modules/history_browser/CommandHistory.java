@@ -105,6 +105,7 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
      */
     private CommandHistory() {
         super(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
+        setAssociatedXMLIDForHelp("historybrowser");
         initialize();
         addMenuBar(createMenuBar());
         addToolBar(createToolBar());

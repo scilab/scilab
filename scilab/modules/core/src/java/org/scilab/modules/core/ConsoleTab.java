@@ -65,6 +65,7 @@ public class ConsoleTab {
             JTextArea textarea = new JTextArea(NOCONSOLE);
             textarea.setEditable(false);
             ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(textarea);
+            ((SwingScilabTab) tab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
 
             ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperationsManager.ClosingOperation() {
 
@@ -80,7 +81,7 @@ public class ConsoleTab {
 
                     @Override
                     public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
+                                                   ListIterator<SwingScilabTab> it) {
                     }
                 });
 
@@ -125,7 +126,7 @@ public class ConsoleTab {
 
                     @Override
                     public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
+                                                   ListIterator<SwingScilabTab> it) {
                     }
                 });
 
@@ -148,6 +149,7 @@ public class ConsoleTab {
         ScilabConsole.getConsole().addInfoBar(infoBar);
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
+        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
         WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
 
         return consoleTab;

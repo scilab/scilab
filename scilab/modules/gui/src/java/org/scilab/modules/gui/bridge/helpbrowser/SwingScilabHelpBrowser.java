@@ -358,6 +358,11 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      * @param keyword the keyword
      */
     public void searchKeywork(String keyword) {
+	if (keyword == null) {
+            displayHomePage();
+	    return;
+        }
+
         if (keyword.length() > 0 && keyword.charAt(0) == '%') {
             keyword = keyword.replace("%", "percent");
         }

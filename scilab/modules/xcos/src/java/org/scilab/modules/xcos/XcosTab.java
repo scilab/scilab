@@ -235,6 +235,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
      */
     private XcosTab(XcosDiagram graph, String uuid) {
         super(XcosMessages.XCOS, uuid);
+	
+	setAssociatedXMLIDForHelp("xcos");
 
         /** tab association */
         graph.setDiagramTab(uuid);

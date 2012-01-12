@@ -134,8 +134,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
     public SwingScilabVariableBrowser(String[] columnsName) {
         super(UiDataMessages.VARIABLE_BROWSER, VARBROWSERUUID);
 
-        buildMenuBar();
+        setAssociatedXMLIDForHelp("browsevar");
 
+        buildMenuBar();
         addMenuBar(menuBar);
 
         ToolBar toolBar = ScilabToolBar.createToolBar();

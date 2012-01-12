@@ -2,6 +2,12 @@
             =================================================================
 
 
+Scilab Desktop
+==============
+
+* Add a button in dockbar to get the help about the component.
+
+
 XML
 ===
 

@@ -73,6 +73,7 @@ import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
+import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
@@ -94,16 +95,17 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     private static final int VIEWPORT_SIZE = 4;
 
     private static final String UNDOCK = "undock";
+    private static final String HELP = "help";
 
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
     }
 
     private int parentWindowId;
-    private String appNameOnClose;
     private MenuBar menuBar;
     private ToolBar toolBar;
     private TextBox infoBar;
+    private String helpID;
 
     /** Contains the canvas and widgets */
     private SwingScilabAxes contentPane;
@@ -173,6 +175,22 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      */
     public SwingScilabTab(String name) {
         this(name, name);
+    }
+
+    /**
+     * Set the associated help page
+     * @param helpID the xml id of the associated help page
+     */
+    public void setAssociatedXMLIDForHelp(String helpID) {
+        this.helpID = helpID;
+    }
+
+    /**
+     * Get the associated help page
+     * @return the xml id of the associated help page
+     */
+    public String getAssociatedXMLIDForHelp() {
+        return helpID;
     }
 
     public static void removeActions(SwingScilabTab tab) {
@@ -976,6 +994,12 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         undockAction.putValue(Action.NAME, UNDOCK);
         ((Titlebar) getTitlePane()).removeAction(UNDOCK);
         addAction(undockAction);
+
+        /* Help button */
+        SciHelpOnComponentAction helpAction = new SciHelpOnComponentAction(this);
+        helpAction.putValue(Action.NAME, HELP);
+        ((Titlebar) getTitlePane()).removeAction(HELP);
+        addAction(helpAction);
     }
 
     /**
