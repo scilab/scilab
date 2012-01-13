@@ -242,6 +242,7 @@ public static final String __GO_DATA_MAPPING__ =           "DataMapping";
 
 public static final String __GO_FONT_ANGLE__ =             "FontAngle";
 public static final String __GO_AUTO_POSITION__ =          "AutoPosition";
+public static final String __GO_CORNERS__ =                "Corners";
 public static final String __GO_AUTO_ROTATION__ =          "AutoRotation";
 
 public static final String __GO_LINKS__ =                  "Links";

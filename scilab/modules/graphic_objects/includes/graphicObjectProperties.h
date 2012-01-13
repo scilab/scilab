@@ -241,6 +241,7 @@
 
 #define __GO_FONT_ANGLE__                  "FontAngle"
 #define __GO_AUTO_POSITION__               "AutoPosition"
+#define __GO_CORNERS__                     "Corners"
 #define __GO_AUTO_ROTATION__               "AutoRotation"
 
 #define __GO_LINKS__                       "Links"
