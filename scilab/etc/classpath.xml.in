@@ -52,7 +52,7 @@ The option is "disableUnderMode" and can be:
 <path value="@SCIRENDERER@" load="onUse">
 	<load on="graphics"/>
     <load on="graphic_ojects"/>
-    <load on="XCos"/>
+    <load on="Xcos"/>
 </path>
 
 <path value="@JOGL@" load="onUse">
