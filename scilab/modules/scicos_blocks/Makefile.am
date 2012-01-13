@@ -493,7 +493,7 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA =  license.txt 
+libsciscicos_blocks_la_root_DATA =  license.txt
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -722,6 +722,7 @@ blocks/SUPER_f.h5 \
 blocks/SWITCH2_m.h5 \
 blocks/SWITCH_f.h5 \
 blocks/Switch.h5 \
+blocks/SELF_SWITCH.h5 \
 blocks/TANBLK_f.h5 \
 blocks/TCLSS.h5 \
 blocks/TEXT_f.h5 \

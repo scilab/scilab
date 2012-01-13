@@ -24,7 +24,12 @@ MEXLIB_FLAGS = \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
+else
+noinst_LTLIBRARIES = libmat.la libmex.la libmx.la
+endif
+
 
 libmex_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 

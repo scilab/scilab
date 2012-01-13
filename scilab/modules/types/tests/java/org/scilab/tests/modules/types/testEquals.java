@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2011 - Scilab Enterprises - Sylvestre LEDRU
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +18,7 @@ import java.util.Arrays;
 
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabSparse;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabIntegerTypeEnum;
 import org.scilab.modules.types.ScilabBoolean;
@@ -42,9 +44,29 @@ public class testEquals {
 		assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
 		assert aMatrix.toString().equals("[21.2, 22.0, 42.0, 39.0 ; 23.2, 24.0, 44.0, 40.0]") == true;
 		assert cMatrix.toString().equals("[42.0, 43.0 ; 21.0, 22.0]") == true;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_matrix;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_matrix;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_matrix;
+	}
+	@Test
+	public void compareSparseTest() throws NullPointerException {
+		double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+		double [][]b={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+		double [][]c={{42,43},{21,22}};
+		ScilabSparse aMatrix = new ScilabSparse(a);
+		ScilabSparse bMatrix = new ScilabSparse(b);
+		ScilabSparse cMatrix = new ScilabSparse(c);
+		ScilabSparse matrixComplex = new ScilabSparse(a,b);
+		assert aMatrix.equals(bMatrix) == true;
+		assert bMatrix.equals(aMatrix) == true;
+		assert cMatrix.equals(aMatrix) == false;
+		assert Arrays.deepEquals(aMatrix.getFullRealPart(), bMatrix.getFullRealPart()) == true;
+		assert aMatrix.toString().equals("sparse([1, 1 ; 1, 2 ; 1, 3 ; 1, 4 ; 2, 1 ; 2, 2 ; 2, 3 ; 2, 4], [21.2 ; 22.0 ; 42.0 ; 39.0 ; 23.2 ; 24.0 ; 44.0 ; 40.0], [2, 4])") == true;
+		assert cMatrix.toString().equals("sparse([1, 1 ; 1, 2 ; 2, 1 ; 2, 2], [42.0 ; 43.0 ; 21.0 ; 22.0], [2, 2])") == true;
+		assert matrixComplex.toString().equals("sparse([1, 1 ; 1, 2 ; 1, 3 ; 1, 4 ; 2, 1 ; 2, 2 ; 2, 3 ; 2, 4], [21.2+21.2*%i ; 22.0+22.0*%i ; 42.0+42.0*%i ; 39.0+39.0*%i ; 23.2+23.2*%i ; 24.0+24.0*%i ; 44.0+44.0*%i ; 40.0+40.0*%i], [2, 4])");
+		assert aMatrix.getType() == ScilabTypeEnum.sci_sparse;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_sparse;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_sparse;
 	}
 
 	@Test
@@ -57,12 +79,12 @@ public class testEquals {
 		assert emptyMatrix.toString().equals("[]") == true;
 		emptyMatrix.setRealPart(a);
 		emptyMatrix.setImaginaryPart(a);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_matrix;
 
 		ScilabBoolean aMatrix = new ScilabBoolean(true);
 		assert aMatrix.equals(emptyMatrix) == false;
 		assert emptyMatrix.equals(aMatrix) == false;
-        assert aMatrix.getType() != ScilabTypeEnum.sci_matrix;
+		assert aMatrix.getType() != ScilabTypeEnum.sci_matrix;
 	}
 
 
@@ -80,9 +102,9 @@ public class testEquals {
 		assert aMatrix.equals(bMatrix) == true;
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_matrix;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_matrix;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_matrix;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_matrix;
 
 		assert Arrays.deepEquals(aMatrix.getRealPart(), bMatrix.getRealPart()) == true;
 		assert Arrays.deepEquals(aMatrix.getImaginaryPart(), bMatrix.getImaginaryPart()) == true;
@@ -95,6 +117,36 @@ public class testEquals {
 		ScilabDouble scalarComplex = new ScilabDouble(1,2);
 		assert aMatrix.equals(scalarComplex) == false;
 		assert aMatrix.equals(bMatrix) == true;
+	}
+
+
+
+	@Test
+	public void sparseTest() throws NullPointerException {
+		double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+		double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
+		double [][]b={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
+		double [][]bImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};
+		double [][]c={{42,43},{21,22}};
+		double [][]cImg={{420,430},{210,220}};
+		ScilabSparse aMatrix = new ScilabSparse(a, aImg);
+		ScilabSparse bMatrix = new ScilabSparse(b, bImg);
+		ScilabSparse cMatrix = new ScilabSparse(c, cImg);
+		assert aMatrix.equals(bMatrix) == true;
+		assert bMatrix.equals(aMatrix) == true;
+		assert cMatrix.equals(aMatrix) == false;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_sparse;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_sparse;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_sparse;
+
+		assert Arrays.deepEquals(aMatrix.getFullRealPart(), bMatrix.getFullRealPart()) == true;
+		assert Arrays.deepEquals(aMatrix.getFullImaginaryPart(), bMatrix.getFullImaginaryPart()) == true;
+		assert aMatrix.toString().equals("sparse([1, 1 ; 1, 2 ; 1, 3 ; 1, 4 ; 2, 1 ; 2, 2 ; 2, 3 ; 2, 4], [21.2+210.2*%i ; 22.0+220.0*%i ; 42.0+420.0*%i ; 39.0+390.0*%i ; 23.2+230.2*%i ; 24.0+240.0*%i ; 44.0+440.0*%i ; 40.0+400.0*%i], [2, 4])");
+		assert cMatrix.toString().equals("sparse([1, 1 ; 1, 2 ; 2, 1 ; 2, 2], [42.0+420.0*%i ; 43.0+430.0*%i ; 21.0+210.0*%i ; 22.0+220.0*%i], [2, 2])");
+
+		ScilabSparse mySparse = new ScilabSparse(100, 100, 5, new int[] { 1, 1, 1, 1, 1}, new int[]{ 1, 25, 50, 75, 99}, new double[] { 1.0, 2.0, 3.0, 4.0, 5.0});
+        String ref="sparse([1, 2 ; 2, 26 ; 3, 51 ; 4, 76 ; 5, 100], [1.0 ; 2.0 ; 3.0 ; 4.0 ; 5.0], [100, 100])";
+		assert mySparse.toString().equals(ref);
 	}
 
 
@@ -111,10 +163,10 @@ public class testEquals {
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
 		assert cMatrix.equals(dMatrix) == true;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
-        
+		assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
+		
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("uint8([32, 42, 41 ; 12, 13, 32])") == true;
 		assert cMatrix.toString().equals("uint8([42, 43 ; 21, 22])") == true;
@@ -143,9 +195,9 @@ public class testEquals {
 		assert emptyMatrix.getWidth() == 0;
 		assert emptyMatrix.isEmpty() == true;
 		assert emptyMatrix.toString().equals("int([])") == true;
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 		emptyMatrix.setData(a, true);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		ScilabBoolean aMatrix = new ScilabBoolean(true);
 		assert aMatrix.equals(emptyMatrix) == false;
@@ -167,9 +219,9 @@ public class testEquals {
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
 		assert cMatrix.equals(dMatrix) == true;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("uint16([32, 42, 41 ; 12, 13, 32])") == true;
@@ -194,9 +246,9 @@ public class testEquals {
 	public void integer16MatrixTests() {
 		short [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
 		ScilabInteger emptyMatrix = new ScilabInteger();
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 		emptyMatrix.setData(a, true);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		ScilabBoolean aMatrix = new ScilabBoolean(true);
 		assert aMatrix.equals(emptyMatrix) == false;
@@ -217,9 +269,9 @@ public class testEquals {
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
 		assert cMatrix.equals(dMatrix) == true;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("uint32([32, 42, 41 ; 12, 13, 32])") == true;
@@ -244,9 +296,9 @@ public class testEquals {
 	public void integer32MatrixTests() {
 		int [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
 		ScilabInteger emptyMatrix = new ScilabInteger();
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 		emptyMatrix.setData(a, true);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		ScilabBoolean aMatrix = new ScilabBoolean(true);
 		assert aMatrix.equals(emptyMatrix) == false;
@@ -267,9 +319,9 @@ public class testEquals {
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
 		assert cMatrix.equals(dMatrix) == true;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("uint64([32, 42, 41 ; 12, 13, 32])") == true;
@@ -294,9 +346,9 @@ public class testEquals {
 	public void integer64MatrixTests() {
 		long [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
 		ScilabInteger emptyMatrix = new ScilabInteger();
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 		emptyMatrix.setData(a, true);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_ints;
 
 		ScilabBoolean aMatrix = new ScilabBoolean(true);
 		assert aMatrix.equals(emptyMatrix) == false;
@@ -316,9 +368,9 @@ public class testEquals {
 		assert aMatrix.equals(bMatrix) == true;
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_boolean;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_boolean;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_boolean;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_boolean;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_boolean;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_boolean;
 
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("[%t, %f, %t ; %t, %t, %t]") == true;
@@ -333,9 +385,9 @@ public class testEquals {
 		assert emptyMatrix.getWidth() == 0;
 		assert emptyMatrix.isEmpty() == true;
 		assert emptyMatrix.toString().equals("[]") == true;
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_boolean;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_boolean;
 		emptyMatrix.setData(a);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_boolean;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_boolean;
 
 		ScilabDouble aMatrix = new ScilabDouble(2);
 		assert aMatrix.equals(emptyMatrix) == false;
@@ -353,9 +405,9 @@ public class testEquals {
 		assert aMatrix.equals(bMatrix) == true;
 		assert bMatrix.equals(aMatrix) == true;
 		assert cMatrix.equals(aMatrix) == false;
-        assert aMatrix.getType() == ScilabTypeEnum.sci_strings;
-        assert bMatrix.getType() == ScilabTypeEnum.sci_strings;
-        assert cMatrix.getType() == ScilabTypeEnum.sci_strings;
+		assert aMatrix.getType() == ScilabTypeEnum.sci_strings;
+		assert bMatrix.getType() == ScilabTypeEnum.sci_strings;
+		assert cMatrix.getType() == ScilabTypeEnum.sci_strings;
 
 		assert Arrays.deepEquals(aMatrix.getData(), bMatrix.getData()) == true;
 		assert aMatrix.toString().equals("[\"This\", \"is\", \"my\", \"string\" ; \"and\", \"I want to\", \"compare\", \" them\"]") == true;
@@ -371,9 +423,9 @@ public class testEquals {
 		assert emptyMatrix.getWidth() == 0;
 		assert emptyMatrix.isEmpty() == true;
 		assert emptyMatrix.toString().equals("[]") == true;
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_strings;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_strings;
 		emptyMatrix.setData(a);
-        assert emptyMatrix.getType() == ScilabTypeEnum.sci_strings;
+		assert emptyMatrix.getType() == ScilabTypeEnum.sci_strings;
 		ScilabDouble aMatrix = new ScilabDouble(2);
 		assert aMatrix.equals(emptyMatrix) == false;
 		assert emptyMatrix.equals(aMatrix) == false;
@@ -388,7 +440,7 @@ public class testEquals {
 	@Test
 	public void compareListTest() throws NullPointerException {
 		ScilabList data = new ScilabList();
-        assert data.getType() == ScilabTypeEnum.sci_list;
+		assert data.getType() == ScilabTypeEnum.sci_list;
 		assert data.getHeight() == 0;
 		assert data.getWidth() == 0;
 		assert data.toString().equals("list()");
@@ -415,7 +467,7 @@ public class testEquals {
 
 		ScilabList data4 = new ScilabList(data3);
 		assert data4.equals(data3) == true;
-        assert data4.getType() == ScilabTypeEnum.sci_list;
+		assert data4.getType() == ScilabTypeEnum.sci_list;
 
 	}
 
@@ -423,7 +475,7 @@ public class testEquals {
 	@Test
 	public void compareTListTest() throws NullPointerException {
 		ScilabTList data = new ScilabTList();
-        assert data.getType() == ScilabTypeEnum.sci_tlist;
+		assert data.getType() == ScilabTypeEnum.sci_tlist;
 		assert data.getHeight() == 0;
 		assert data.getWidth() == 0;
 		assert data.toString().equals("tlist()");
@@ -460,14 +512,14 @@ public class testEquals {
 		assert tlistFromAnOther.getHeight() == 1;
 		assert tlistFromAnOther.getWidth() == 4;
 		assert tlistFromAnOther.toString().equals("tlist([\"a\", \"b\", \"c\"], [\"hello\"], [2.0], [51.0])");
-        assert tlist.getType() == ScilabTypeEnum.sci_tlist;
+		assert tlist.getType() == ScilabTypeEnum.sci_tlist;
 	}
 
 
 	@Test
 	public void compareMListTest() throws NullPointerException {
 		ScilabMList data = new ScilabMList();
-        assert data.getType() == ScilabTypeEnum.sci_mlist;
+		assert data.getType() == ScilabTypeEnum.sci_mlist;
 		assert data.getHeight() == 0;
 		assert data.getWidth() == 0;
 		assert data.toString().equals("mlist()");
@@ -489,7 +541,7 @@ public class testEquals {
 		data3.add(new ScilabDouble(2));
 		data3.add(new ScilabDouble(42));
 		data3.add(new ScilabBoolean(true));
-        assert data3.getType() == ScilabTypeEnum.sci_mlist;
+		assert data3.getType() == ScilabTypeEnum.sci_mlist;
 		assert data.equals(data2) == true;
 		assert data.equals(data3) == false;
 		assert data.toString().equals("mlist([\"hello\"], [2.0], [51.0])") == true;

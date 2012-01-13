@@ -52,19 +52,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
   end
 //  mprintf('----------------------------- %s ----------------------\n',typ)
-  select typ
-  case "Figure"
-    xload_mode = %f;
-
     // Determines whether %h_load has been called by the xload macro
     // in which case xload_mode is set to true
     [lnums, fnames] = where();
     ind = grep(fnames, 'xload');
+    xload_mode = (ind ~= []);
 
-    if (ind <> []) then
-      xload_mode = %t;
-    end;
-
+  select typ
+  case "Figure"
     if xload_mode then
       h=gcf()
       visible=toggle(mget(1,characterFormat,fd)); // visible
@@ -595,9 +590,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
 
     if is_higher_than([3 1 0 1]) then
-      set(h,"interp_color_mode",interp_color_mode);
-      if interp_color_mode == 'on' then
-	set(h,"interp_color_vector",interp_color_vector);
+      if interp_color_mode == 'on' & interp_color_vector~=[] then
+          set(h,"interp_color_vector",interp_color_vector);
+          set(h,"interp_color_mode","on");
+      else
+          if interp_color_vector~=[]
+              h.interp_color_vector = interp_color_vector
+          end
+          h.interp_color_mode = interp_color_mode
       end
       set(h,"bar_width",bar_width);
     end

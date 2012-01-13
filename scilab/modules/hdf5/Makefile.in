@@ -60,13 +60,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@HDF5_TRUE@am__append_1 = libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
-@HDF5_TRUE@@NEED_JAVA_TRUE@am__append_1 = libscihdf5-forceload.la
-@HDF5_TRUE@am__append_2 = libscihdf5-forceload-disable.la
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__append_2 = libscihdf5-forceload.la
+@HDF5_TRUE@am__append_3 = libscihdf5-forceload-disable.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/hdf5
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -154,11 +155,9 @@ libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscihdf5_forceload_la_LDFLAGS) $(LDFLAGS) -o \
 	$@
-@HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath = -rpath \
-@HDF5_TRUE@@NEED_JAVA_TRUE@	$(pkglibdir)
+@HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath =
 @HDF5_TRUE@libscihdf5_la_DEPENDENCIES = libscihdf5-algo.la \
-@HDF5_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@HDF5_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+@HDF5_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__libscihdf5_la_SOURCES_DIST = sci_gateway/cpp/sci_no_hdf5.cpp \
 	sci_gateway/cpp/sci_export_to_hdf5.cpp \
 	sci_gateway/cpp/sci_import_from_hdf5.cpp \
@@ -213,6 +212,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -222,6 +222,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -287,6 +288,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -536,8 +538,8 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 #### hdf5 : gateway declaration ####
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
-pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
-@HDF5_TRUE@noinst_LTLIBRARIES = libscihdf5-algo.la
+pkglib_LTLIBRARIES = libscihdf5.la $(am__append_3)
+noinst_LTLIBRARIES = $(am__append_1) $(am__append_2)
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_algo_la_SOURCES = $(HDF5_CPP_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
@@ -551,8 +553,7 @@ INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order
 @HDF5_TRUE@libscihdf5_la_LIBADD = libscihdf5-algo.la \
-@HDF5_TRUE@				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@HDF5_TRUE@				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+@HDF5_TRUE@				$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
 #### Target ######
@@ -577,7 +578,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro

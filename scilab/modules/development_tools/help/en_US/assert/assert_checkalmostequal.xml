@@ -47,13 +47,13 @@
       <varlistentry>
         <term>computed:</term>
         <listitem>
-          <para> a 1-by-1 matrix of doubles, the computed result</para>
+          <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the computed result</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>expected :</term>
         <listitem>
-          <para> a 1-by-1 matrix of doubles, the expected result</para>
+          <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the expected result</para>
         </listitem>
       </varlistentry>
       <varlistentry>

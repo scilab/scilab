@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,23 +11,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_checkerror" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_checkerror" xml:lang="en">
   <refnamediv>
     <refname>assert_checkerror</refname>
     <refpurpose>Check that an instruction produces the expected error.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
@@ -39,7 +26,6 @@
 
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -52,7 +38,7 @@
       <varlistentry>
         <term>expectedmsg :</term>
         <listitem>
-          <para> a 1-by-1 matrix of strings, the error message to be produced</para>
+          <para> a string or a string vector, the error message to be produced</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,50 +69,41 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
       If the expression does not generate an error, then <literal>assert_checkerror</literal> generates an error.
       Performs silently if the evaluated expression generates the expected error message.
-      If the error number is provided, we additionnally check that the generated error number matches the
+    </para>
+    <para>
+      If the error message <literal>expectedmsg</literal> is provided and is not the empty matrix <literal>[]</literal>, 
+      we check that the generated error number matches the
       expected one.
+      If the error number <literal>expectederrnb</literal> is provided and is not the empty matrix <literal>[]</literal>, 
+      we check that the generated error number matches the
+      expected one.
+      If the error message <literal>expectedmsg</literal> and the error number <literal>expectederrnb</literal> 
+      cannot be equal to the empty matrix <literal>[]</literal> at the same time: at least one of them 
+      must be provided.
     </para>
     <para>
       The string matching is strict string equality: no pattern or regular expression can be used.
     </para>
     <para>
       If the error message is not expected or the error number is not expected,
-      <itemizedlist>
-        <listitem>
-          <para>if the errmsg output variable is not used, an error is generated,</para>
-        </listitem>
-        <listitem>
-          <para>if the errmsg output variable is used, no error is generated.</para>
-        </listitem>
-      </itemizedlist>
+      <itemizedlist><listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem><listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem></itemizedlist>
     </para>
     <para>
       The goal of this function is to enable the tester to check the error
       cases in a simplified framework.
         Checking the error messages of a function has the following advantages:
-        <itemizedlist>
-          <listitem>
-            <para>
+        <itemizedlist><listitem><para>
               it checks that the correct error is generated when needed,
-            </para>
-          </listitem>
-          <listitem>
-            <para>
+            </para></listitem><listitem><para>
               it checks that the error message is correctly formatted,
-            </para>
-          </listitem>
-          <listitem>
-            <para>
+            </para></listitem><listitem><para>
               it checks that the error message is correctly localized.
-            </para>
-          </listitem>
-        </itemizedlist>
+            </para></listitem></itemizedlist>
     </para>
     <para>
       The expected message can be a localized message.
@@ -141,33 +118,32 @@
       the computed error message.
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <para>
       We give several examples of using the <literal>assert_checkerror</literal> function. 
       We first have to define a function to be tested. 
+    </para>
+    <para>
       The following function <literal>f</literal> generates an error when
       the number of input arguments in wrong or the type of <literal>x</literal> is wrong.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 function y = f(x)
   [lhs,rhs]=argn()
   if ( rhs <> 1 ) then
     lstr=gettext("%s: Wrong number of input argument: %d expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg)
   end
   if ( typeof(x) <> "constant" ) then
     lstr=gettext("%s: Wrong type for argument %d: Matrix expected.\n")
-    errmsg = sprintf ( lstr , "f" , 1 )
+    errmsg = msprintf ( lstr , "f" , 1 )
     error(errmsg,123456789)
   end
   y = x
 endfunction
-   ]]>
-    </programlisting>
+   ]]></programlisting>
     <para>
       Our task is to check the error messages produced by this function.
       The two following tests pass: the error message is the expected one. 
@@ -179,62 +155,52 @@ endfunction
 	  to format the message and to convert the "%s" and "%d" formats into 
 	  their actual values.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 lcl1="%s: Wrong number of input argument: %d expected.\n";
 assert_checkerror ( "y=f()"      , lcl1 , [] , "f" , 1);
 lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
 assert_checkerror ( "y=f(""a"")" , lcl2 , [] , "f" , 1);
-   ]]>
-    </programlisting>
+   ]]></programlisting>
     <para>
       On the other hand, if we make the assumption that the current locale language 
       is english, we could as well use the following statement. 
       But this is not a recommended practice, since the test will 
       fail if the current locale is French, for example. 
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 assert_checkerror ( "y=f()" , "f: Wrong number of input argument: 1 expected." );
-   ]]>
-    </programlisting>
+   ]]></programlisting>
     <para>
       In the following test, we also check the error number.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 lcl1="%s: Wrong number of input argument: %d expected.\n";
 assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
 lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
 assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);
-   ]]>
-    </programlisting>
+   ]]></programlisting>
     <para>
       The two following tests fail.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 assert_checkerror ( "y=f()" , "oups" );
 msg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"f",1);
 assert_checkerror ( "y=f()" , msg1 , 12 );
-   ]]>
-    </programlisting>
+   ]]></programlisting>
     <para>
        When errmsg is given as output argument, no error is generated, as in the 
 	   following example. 
 	   Notice the content of the <literal>flag</literal> and <literal>errmsg</literal> 
 	   variables.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // A test which pass: flag is %t, errmsg is empty
 msg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"f",1);
 [flag,errmsg] = assert_checkerror ( "y=f()" , msg1 )
 // A test which fail: flag is %f, errmsg is not empty
 [flag,errmsg] = assert_checkerror ( "y=f()" , "oups" )
 
-]]>
-    </programlisting>
+]]></programlisting>
     <para>
       The messages in the two following tests 
 	  are localized, so that they can work whatever the current language is. 
@@ -242,16 +208,21 @@ msg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"f",
 	  we directly localize the message, which is less short, but 
 	  is a perfectly valid code.
     </para>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 msg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"f",1);
 assert_checkerror ( "y=f()"      , msg1 );
 msg2=msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"f",1);
 assert_checkerror ( "y=f(""a"")" , msg2 );
-   ]]>
-    </programlisting>
+   ]]><para>
+    It may happen that we want to just test the error number, but not the 
+    error message. 
+The following script just checks that the generated error number is 123456789 
+when the first argument is not a matrix of doubles: 
+we do not check the error message.
+    </para><programlisting role="example"><![CDATA[
+assert_checkerror("f(""foo"")",[],123456789);
+]]></programlisting></programlisting>
   </refsection>
-
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

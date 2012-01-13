@@ -66,7 +66,6 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xpoly(x,y,"lines",1) // デフォルトで閉じられます
 
-// News graphics only
 e=gce(); // カレントのエンティティを取得 (the last created: here the polyline)
 e.closed = 'off' // ポリラインはオープンになります
  ]]></programlisting>

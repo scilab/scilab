@@ -35,6 +35,9 @@ int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
     int id;
     SciErr err;
     int * prefixaddr = 0;
+    double * indexes = 0;
+    int rows;
+    int cols;
     int * nameaddr = 0;
     int * mlistaddr = 0;
     char * name = 0;
@@ -48,46 +51,64 @@ int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, prefixaddr))
+    if (Rhs == 2 && isDoubleType(pvApiCtx, prefixaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
-        return 0;
+        err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
+        if (rows != 1 || cols != 1)
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a real expected.\n"), fname, 1);
+            return 0;
+        }
     }
-
-    getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
-
-    if (Rhs == 3)
+    else
     {
-        err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
-        if (err.iErr)
+        if (!isStringType(pvApiCtx, prefixaddr))
         {
-            freeAllocatedSingleString(prefix);
-            printError(&err, 0);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, nameaddr))
-        {
-            freeAllocatedSingleString(prefix);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
-            return 0;
-        }
+        getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
 
-        getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+        if (Rhs == 3)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
+            if (err.iErr)
+            {
+                freeAllocatedSingleString(prefix);
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                return 0;
+            }
+
+            if (!isStringType(pvApiCtx, nameaddr))
+            {
+                freeAllocatedSingleString(prefix);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                return 0;
+            }
+
+            getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+        }
     }
 
     err = getVarAddressFromPosition(pvApiCtx, Rhs, &mlistaddr);
     if (err.iErr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
         return 0;
     }
 
@@ -96,7 +117,10 @@ int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
 
     if (!attr)
     {
-        freeAllocatedSingleString(prefix);
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
         if (name)
         {
             freeAllocatedSingleString(name);
@@ -111,10 +135,20 @@ int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
     }
     else
     {
-        value = attr->getAttributeValue(const_cast<const char *>(prefix));
+        if (indexes)
+        {
+            value = attr->getAttributeValue((int)(*indexes));
+        }
+        else
+        {
+            value = attr->getAttributeValue(const_cast<const char *>(prefix));
+        }
     }
 
-    freeAllocatedSingleString(prefix);
+    if (prefix)
+    {
+        freeAllocatedSingleString(prefix);
+    }
     if (name)
     {
         freeAllocatedSingleString(name);
@@ -132,6 +166,7 @@ int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

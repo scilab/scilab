@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:34+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-12-03 13:54+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1121,10 +1121,10 @@ msgid "Plot with 3 different Y scales at shared X"
 msgstr ""
 
 msgid "Common X axis"
-msgstr ""
+msgstr "Wspólna oś X"
 
 msgid "Scale n1"
-msgstr ""
+msgstr "Skala n1"
 
 msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
@@ -1166,35 +1166,50 @@ msgstr ""
 msgid "Customize your complex function"
 msgstr "Dostosowywanie funkcji zespolonej"
 
+msgid "datatips on 2D curves"
+msgstr ""
+
+msgid "datatips on 3D curves"
+msgstr ""
+
+msgid "2D curves"
+msgstr "Krzywe 2D"
+
+msgid "3D curve"
+msgstr "Krzywe 3D"
+
 msgid "Graphics"
 msgstr "Grafika"
 
 msgid "2D and 3D plots"
-msgstr ""
+msgstr "Wykresy 2D i 3D"
 
 msgid "Basic functions"
-msgstr ""
+msgstr "Funkcje posdstawowe"
 
 msgid "Animation"
-msgstr ""
+msgstr "Animacja"
 
 msgid "Finite Elements"
-msgstr ""
+msgstr "Elementy skończone"
 
 msgid "Bezier curves and surfaces"
-msgstr ""
+msgstr "Krzywe i powierzchnie Beziera"
 
 msgid "More surfaces"
-msgstr ""
+msgstr "Więcej powierzchni"
 
 msgid "Complex elementary functions"
 msgstr ""
 
 msgid "bar histogram"
+msgstr "histogram słupkowy"
+
+msgid "Datatips"
 msgstr ""
 
 msgid "LaTeX/MathML"
-msgstr ""
+msgstr "LaTeX/MathML"
 
 msgid "Misc"
 msgstr "Pozostałe"
@@ -1272,7 +1287,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -1283,10 +1298,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano wartości "
+"całkowitej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano "
+"wartości całkowitej.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -1368,10 +1387,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ parametru %d: oczekiwano wektora liczb rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ argumentu %d: Oczekiwano skalara typu rzeczywistego.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
@@ -1380,25 +1401,25 @@ msgstr ""
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: oczekiwany taki sam "
+"rozmiar.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: oczekiwano jednakową "
+"ilość wierszy.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr ""
+msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
 "%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
 
 msgid "Delete all datatips"
 msgstr ""
@@ -1412,26 +1433,41 @@ msgstr ""
 msgid "Delete last datatip"
 msgstr ""
 
+msgid "Delete selected datatip"
+msgstr ""
+
+msgid "Open curve tip style editor"
+msgstr ""
+
+msgid "Redraw all datatips"
+msgstr ""
+
 msgid "Edit the curve tip display function"
 msgstr ""
 
 msgid "select the curve tip display function"
 msgstr ""
 
-msgid "Redraw all datatips"
-msgstr ""
+msgid "Enable interpolation"
+msgstr "Włącz interpolację"
 
 msgid "Disable interpolation"
 msgstr "Wyłącz interpolację"
-
-msgid "Enable interpolation"
-msgstr "Włącz interpolację"
 
 msgid "Multiple datatips mode"
 msgstr ""
 
 msgid "Unique datatip mode"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s:Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) '%s'.\n"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: znaleziono puste menu kaskadowe"
 
 msgid "automatic"
 msgstr "automatyczne"
@@ -1457,9 +1493,33 @@ msgstr ""
 msgid "The selected file defines more than one function"
 msgstr "Wybrany plik definiuje więcej niz jedną funkcję"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
+"(handle) graficznego.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz "
+"typu real.\n"
+
+#, c-format
 msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano tablicy z "
+"%d elementów.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
@@ -1467,10 +1527,28 @@ msgid "%s: too many input arguments"
 msgstr "%s: zbyt duzo parametrów wejściowych"
 
 msgid ""
+"Datatip manager cannot be enabled, user data figure field is already used"
+msgstr ""
+
+msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
-msgid "Left click on a curve to create a datatip, right opens"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: the handles must have the same "
+"parent.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: handle on axes or axes children "
+"expected.\n"
 msgstr ""
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
@@ -1478,6 +1556,93 @@ msgstr "Wybrana funkcja musi mieć 3 parametry wejściowe (curve,pt,index)"
 
 msgid "The selected function must have 1 output parameter (str)"
 msgstr "Wybrana funkcja musi mieć 1 parametr wyjściowy (str)"
+
+#, c-format
+msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+msgstr ""
+
+msgid "Square mark, boxed label"
+msgstr ""
+
+msgid "Square mark, simple label"
+msgstr ""
+
+msgid "Square mark, no label"
+msgstr ""
+
+msgid "Directional arrow, boxed label"
+msgstr ""
+
+msgid "Directional arrow, simple label"
+msgstr ""
+
+msgid "Directional arrow, no label"
+msgstr ""
+
+msgid "Select tip style"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano skalara.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano skalara "
+"logicznego.\n"
+
+msgid "&File"
+msgstr "&Plik"
+
+msgid "&Tools"
+msgstr "&Narzędzia"
+
+msgid "&Edit"
+msgstr "&Edycja"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Datatips style"
+msgstr ""
+
+msgid "Marker style:"
+msgstr "Styl markera:"
+
+msgid "Square"
+msgstr "Kwadrat"
+
+msgid "Arrow"
+msgstr "Strzałka"
+
+msgid "Labeled?"
+msgstr ""
+
+msgid "Yes"
+msgstr "Tak"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "Boxed?"
+msgstr ""
+
+msgid "Positionning?"
+msgstr ""
+
+msgid "Knots"
+msgstr ""
+
+msgid "Interpolated"
+msgstr "Interpolowany"
+
+msgid "Allow multiple datatips?"
+msgstr ""
+
+msgid "Edit label generator"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -1491,11 +1656,11 @@ msgid ""
 msgstr ""
 
 msgid "Tcl/Tk interface not installed."
-msgstr ""
+msgstr "Interfejs Tcl/Tk nie zainstalowany."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -1508,6 +1673,10 @@ msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano wartości "
 "typu real.\n"
+
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
+msgstr ""
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
@@ -1527,18 +1696,6 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
 "wartości typu real.\n"
-
-msgid "&File"
-msgstr "&Plik"
-
-msgid "&Tools"
-msgstr "&Narzędzia"
-
-msgid "&Edit"
-msgstr "&Edycja"
-
-msgid "&?"
-msgstr "&?"
 
 msgid "Ok"
 msgstr "OK"
@@ -1568,16 +1725,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano wartości "
+"całkowitej.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
 "order.\n"
 msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być "
+"uporządkowane rosnąco.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
-msgstr ""
+msgstr "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d."
 
 #, c-format
 msgid "%s: No '%s' handle found.\n"
@@ -1619,18 +1780,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
-msgstr ""
+msgstr "%s: '%s' nie może byż użyte z '%s'.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr ""
 "%s: Parametr wejściowy nr %d musi być uchwytem (handle) typy 'axes'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
-"(handle) graficznego.\n"
 
 #, c-format
 msgid ""

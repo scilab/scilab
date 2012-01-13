@@ -44,7 +44,7 @@ typedef struct {
 */
 FILEIO_IMPEXP fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL asDouble);
 
-void freeFscanfMatResult(fscanfMatResult *resultStruct);
+FILEIO_IMPEXP void freeFscanfMatResult(fscanfMatResult *resultStruct);
 
 #endif /* __FSCANFMAT_H__ */
 /*--------------------------------------------------------------------------*/

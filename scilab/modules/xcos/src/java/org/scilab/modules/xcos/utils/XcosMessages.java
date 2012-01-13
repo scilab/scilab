@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) Scilab Enterprises - 2011 - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -187,8 +188,13 @@ public final class XcosMessages {
     public static final String FILE_DOESNT_EXIST = Messages
             .gettext("The file %s doesn't exist\n Do you want to create it?");
 
+    public static final String IMAGE_URL_DOESNT_EXIST = Messages
+            .gettext("Unable to decode the URI : %s .");
+
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");
+    public static final String RESET = Messages.gettext("Reset to default");
+
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"
             + Messages
                     .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK and every time the diagram is loaded).")
@@ -214,6 +220,13 @@ public final class XcosMessages {
             .gettext("Unable to delete ");
     public static final String NO_BLOCK_SELECTED = Messages
             .gettext("No block selected");
+
+    public static final String EXPORT_TO_XML = Messages
+            .gettext("Export to XML") + DOTS;
+    public static final String EXPORT_IN_PROGRESS = Messages
+            .gettext("Export in progress") + DOTS;
+    public static final String IMPORT_FROM_XML = Messages
+            .gettext("Import from XML") + DOTS;
 
     public static final String ADDTO = Messages.gettext("Add to");
     public static final String ADDTO_NEW_DIAGRAM = Messages
@@ -285,7 +298,7 @@ public final class XcosMessages {
 
     /* About box */
     public static final String CONSORTIUM = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT_INRIA = "Copyright © 1989-2009 (INRIA)";
+    public static final String COPYRIGHT_INRIA = "Copyright (c) 1989-2009 (INRIA)";
     public static final String SCICOS_BASED = Messages
             .gettext("Based on Scicos");
 
@@ -303,17 +316,11 @@ public final class XcosMessages {
             .gettext("Generating C Code for SuperBlock") + DOTS;
     public static final String ERROR_GENERATING_C_CODE = Messages
             .gettext("A SuperBlock must be selected to generate code");
-    public static final String EXPORT_IN_PROGRESS = Messages
-            .gettext("Export in progress") + DOTS;
-    public static final String IMPORT_IN_PROGRESS = Messages
-            .gettext("Import in progress, results will be stored through the 'scs_m' variable")
-            + DOTS;
-    public static final String COMPILATION_IN_PROGRESS = Messages
-            .gettext("Compilation in progress, results will be stored through the '%cpr' variable")
-            + DOTS;
     public static final String SIMULATION_IN_PROGRESS = Messages
             .gettext("Simulation in progress") + DOTS;
-
+    public static final String COMPILATION_IN_PROGRESS = Messages
+            .gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable")
+            + DOTS;
     public static final String GENERATE_SUPERBLOCK = Messages
             .gettext("Generate SuperBlock, please wait") + DOTS;
     public static final String DRAW_LINK = Messages
@@ -379,6 +386,8 @@ public final class XcosMessages {
             .gettext("Error: unable to compile this SuperBlock");
     public static final String WRONG_PORT_NUMBER = Messages
             .gettext("Wrong port number");
+    public static final String LINK_NOT_CONNECTED = Messages
+            .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 
     // CSON: JavadocVariable
     // CSON: LineLength
@@ -390,8 +399,7 @@ public final class XcosMessages {
 
     /**
      * This function checks for the popup menu activation under MacOS with Java
-     * version 1.5
-     * Related to Scilab bug #5190
+     * version 1.5 Related to Scilab bug #5190
      * 
      * @param e
      *            Click event

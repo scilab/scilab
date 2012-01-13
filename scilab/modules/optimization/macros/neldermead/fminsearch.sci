@@ -32,6 +32,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     x0t = size(x0,"*");
     x0 = matrix(x0,x0t,1);
     defaultoptions = optimset ("fminsearch");
+    msg="";
     if rhs==2 then
         // No options on the command line
         // Set default values
@@ -135,7 +136,15 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
         exitflag = 0;
     case "tolsizedeltafv" then
         exitflag = 1;
+        msg = sprintf("%s\n%s %s\n%s %s", "Optimization terminated:",...
+        " the current x satisfies the termination criteria using OPTIONS.TolX of",...
+        string(TolX),...
+        " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
+        string(TolFun));
     case "userstop" then
+         msg = sprintf("%s\n%s\n%s", "Optimization terminated:",...
+        " ",...
+        " User Stop");
         exitflag = -1;
     else
         errmsg = msprintf(gettext("%s: Unknown status %s"), "fminsearch", status)
@@ -149,11 +158,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     output.algorithm = 'Nelder-Mead simplex direct search';
     output.funcCount = neldermead_get(nm,"-funevals");
     output.iterations = neldermead_get(nm,"-iterations");
-    output.message = sprintf("%s\n%s %s\n%s %s", "Optimization terminated:",...
-    " the current x satisfies the termination criteria using OPTIONS.TolX of",...
-    string(TolX),...
-    " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
-    string(TolFun));
+    output.message = msg;
     if ( ( Display == "final" ) | ( Display == "iter" ) ) then
         if ( ( exitflag == 1 ) ) then
             mprintf( "%s\n" , output.message(1) );

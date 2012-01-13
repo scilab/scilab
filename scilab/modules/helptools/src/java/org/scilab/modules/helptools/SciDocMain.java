@@ -12,18 +12,11 @@
 
 package org.scilab.modules.helptools;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.helptools.BuildJavaHelp;
-import org.scilab.modules.helptools.Helpers;
-
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.helptools.external.HTMLMathMLHandler;
 import org.scilab.modules.helptools.external.HTMLSVGHandler;
 
@@ -128,27 +121,27 @@ public final class SciDocMain {
             converter.registerExternalXMLHandler(new HTMLMathMLHandler(outputDirectory, imagedir));
             converter.registerExternalXMLHandler(new HTMLSVGHandler(outputDirectory, imagedir));
             converter.convert();
-            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
-            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
-            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
-            Helpers.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
-            Helpers.copyFile(new File(SCI + "/modules/gui/images/icons/media-playback-start.png"), new File(outputDirectory + "/ScilabExecute.png"));
-            Helpers.copyFile(new File(SCI + "/modules/gui/images/icons/accessories-text-editor.png"), new File(outputDirectory + "/ScilabEdit.png"));
+            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
+            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
+            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
+            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("media-playback-start")), new File(outputDirectory + "/ScilabExecute.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("accessories-text-editor")), new File(outputDirectory + "/ScilabEdit.png"));
             if (format.equalsIgnoreCase("javahelp")) {
                 if (!isToolbox) {
-                    Helpers.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outputDirectory + "/ScilabErrorPage.html"));
+                    ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outputDirectory + "/ScilabErrorPage.html"));
                     File homepage = new File(SCI + "/modules/helptools/data/pages/homepage-" + language + ".html");
                     if (!homepage.isFile()) {
                         /* could not find the localized homepage. Switch to english */
                         homepage = new File(SCI + "/modules/helptools/data/pages/homepage-en_US.html");
                     }
-                    Helpers.copyFile(homepage, new File(outputDirectory + "/ScilabHomePage.html"));
+                    ScilabCommonsUtils.copyFile(homepage, new File(outputDirectory + "/ScilabHomePage.html"));
 
                     File homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-" + language + ".png");
                     if (!homepageImage.isFile()) {
                         homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-en_US.png");
                     }
-                    Helpers.copyFile(homepageImage, new File(outputDirectory + "/ban_en_US.png"));
+                    ScilabCommonsUtils.copyFile(homepageImage, new File(outputDirectory + "/ban_en_US.png"));
                 }
                 BuildJavaHelp.buildJavaHelp(outputDirectory, language);
             }

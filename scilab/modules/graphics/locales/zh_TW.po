@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -977,6 +977,18 @@ msgstr ""
 msgid "Customize your complex function"
 msgstr ""
 
+msgid "datatips on 2D curves"
+msgstr ""
+
+msgid "datatips on 3D curves"
+msgstr ""
+
+msgid "2D curves"
+msgstr ""
+
+msgid "3D curve"
+msgstr ""
+
 msgid "Graphics"
 msgstr ""
 
@@ -1002,6 +1014,9 @@ msgid "Complex elementary functions"
 msgstr ""
 
 msgid "bar histogram"
+msgstr ""
+
+msgid "Datatips"
 msgstr ""
 
 msgid "LaTeX/MathML"
@@ -1180,10 +1195,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 多個輸入參數的個數錯誤: 應該至少有 %d 個.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-
 msgid "Delete all datatips"
 msgstr ""
 
@@ -1196,25 +1207,38 @@ msgstr ""
 msgid "Delete last datatip"
 msgstr ""
 
+msgid "Delete selected datatip"
+msgstr ""
+
+msgid "Open curve tip style editor"
+msgstr ""
+
+msgid "Redraw all datatips"
+msgstr ""
+
 msgid "Edit the curve tip display function"
 msgstr ""
 
 msgid "select the curve tip display function"
 msgstr ""
 
-msgid "Redraw all datatips"
+msgid "Enable interpolation"
 msgstr ""
 
 msgid "Disable interpolation"
-msgstr ""
-
-msgid "Enable interpolation"
 msgstr ""
 
 msgid "Multiple datatips mode"
 msgstr ""
 
 msgid "Unique datatip mode"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+
+msgid "createPopupItems: found an empty cascading menu."
 msgstr ""
 
 msgid "automatic"
@@ -1241,9 +1265,27 @@ msgstr ""
 msgid "The selected file defines more than one function"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
@@ -1251,16 +1293,118 @@ msgid "%s: too many input arguments"
 msgstr "%s: 輸入參數過多"
 
 msgid ""
+"Datatip manager cannot be enabled, user data figure field is already used"
+msgstr ""
+
+msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
-msgid "Left click on a curve to create a datatip, right opens"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: the handles must have the same "
+"parent.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: handle on axes or axes children "
+"expected.\n"
 msgstr ""
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
 
 msgid "The selected function must have 1 output parameter (str)"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
+msgstr ""
+
+msgid "Square mark, boxed label"
+msgstr ""
+
+msgid "Square mark, simple label"
+msgstr ""
+
+msgid "Square mark, no label"
+msgstr ""
+
+msgid "Directional arrow, boxed label"
+msgstr ""
+
+msgid "Directional arrow, simple label"
+msgstr ""
+
+msgid "Directional arrow, no label"
+msgstr ""
+
+msgid "Select tip style"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
+
+msgid "&File"
+msgstr "檔案(&F)"
+
+msgid "&Tools"
+msgstr "工具(&T)"
+
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Datatips style"
+msgstr ""
+
+msgid "Marker style:"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Arrow"
+msgstr ""
+
+msgid "Labeled?"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Boxed?"
+msgstr ""
+
+msgid "Positionning?"
+msgstr ""
+
+msgid "Knots"
+msgstr ""
+
+msgid "Interpolated"
+msgstr ""
+
+msgid "Allow multiple datatips?"
+msgstr ""
+
+msgid "Edit label generator"
 msgstr ""
 
 #, c-format
@@ -1288,6 +1432,10 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一實數.\n"
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
 
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
+msgstr ""
+
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 
@@ -1302,18 +1450,6 @@ msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&?"
-msgstr "&?"
 
 msgid "Ok"
 msgstr ""
@@ -1393,10 +1529,6 @@ msgstr "%s: 「 %s 」無法被「 %s 」使用。\n"
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
 msgstr "%s: 第 #%d 輸入參數必須為 axes 的代碼 (handle).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
 
 #, c-format
 msgid ""

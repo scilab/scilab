@@ -47,35 +47,35 @@ static void getString(int *fd,short *count, short *Len, int flag,char **str,int 
 /*------------------------------------------------------------------*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err)
 {
-  /*---------------D�claration Des Variables*--------------------*/
-  unsigned short Opcode, Len;   /*Code Operationnel et Longueur du tag a lire*/
-  double *valeur;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
+  /*---------------Declaration Des Variables*--------------------*/
+  unsigned short Opcode = 0, Len = 0;   /*Code Operationnel et Longueur du tag a lire*/
+  double *valeur = NULL;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
   double pos = 0;
 
-  int one=1;
-  int three=3;
+  int one = 1;
+  int three = 3;
 
-  int i;  /*Variables de boucle*/
-  int hauteur=0, longueur=0, capacite;   /*Hauteur, longueur de la feuille,  */
-  int taille; /*Nombre de types de caract�ers a enregistrer*/
-  char *sheetname;   /*Nom de la feuille*/
-  int rkvalue; /*RK value*/
+  int i = 0;  /*Variables de boucle*/
+  int hauteur = 0, longueur = 0, capacite = 0;   /*Hauteur, longueur de la feuille,  */
+  /*int taille = 0; Nombre de types de caract�ers a enregistrer*/
+  char *sheetname = NULL;   /*Nom de la feuille*/
+  int rkvalue = 0; /*RK value*/
   /*for RK */
-  unsigned short row, col, xf;/*Index to row, to column, and to XF record*/
+  unsigned short row = 0, col = 0, xf = 0;/*Index to row, to column, and to XF record*/
   /*for MULRK */
-  unsigned short ixfe;
-  short colFirst,colLast,ncol;/*Index to rox, to first column (fc)*/
+  unsigned short ixfe = 0;
+  short colFirst = 0,colLast = 0,ncol = 0;/*Index to rox, to first column (fc)*/
   /* for LABELSST */
   short labelsst1[3];
-  int indsst;/*Index to SST record*/
+  int indsst = 0; /*Index to SST record*/
   /* for DIMENSIONS */
-  int f_row,l_row;
-  unsigned short f_col, l_col, notused;
+  int f_row = 0, l_row = 0;
+  unsigned short f_col = 0, l_col = 0, notused = 0;
   /* for FORMULA */
-  double resultat;/*Result of the formula*/
-  short optionflag;/*Option flags*/
-  int formula_notused; /*Not used*/
-  double NaN=C2F(returnanan)();
+  double resultat = 0.;/*Result of the formula*/
+  short optionflag = 0;/*Option flags*/
+  int formula_notused = 0; /*Not used*/
+  double NaN = C2F(returnanan)();
 
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   /* initialization of pointers corresponding to malloc's */

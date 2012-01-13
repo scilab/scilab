@@ -105,7 +105,7 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
     </itemizedlist>
     <para>Color entry specification :</para>
     <para>As stated before, the surface is created over a rectangular grid
-    support. Let consider two independant variables <literal>i</literal> and
+    support. Let consider two independent variables <literal>i</literal> and
     <literal>j</literal> such as :</para>
     <para>
       <inlinemediaobject>
@@ -163,7 +163,7 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
         color data, color data mapping, marker color (foreground and
         background), the visibility, clipping and thickness of the edges of
         the surface... (see <link linkend="GlobalProperty">GlobalProperty</link> )</para>
-          <para>Note that all these properties can be (re-)set throught the surface
+          <para>Note that all these properties can be (re-)set through the surface
         entity properties (see <link linkend="surface_properties">surface_properties</link>).</para>
         </listitem>
       </varlistentry>
@@ -269,7 +269,7 @@ xdel(winsid())
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

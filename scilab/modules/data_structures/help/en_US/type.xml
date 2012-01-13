@@ -33,6 +33,8 @@
     <para><literal>type(x)</literal>  returns an integer which is the type of <literal>x</literal> as following:</para>
 
    <variablelist>
+
+
       <varlistentry>
         <term>1</term>
         <listitem>
@@ -155,11 +157,36 @@
       <varlistentry>
         <term>130</term>
         <listitem>
-            <para>built-in Scilab function, called also gateway (C, C++ or Fortran code).</para>
+            <para>built-in Scilab function, called also gateway (C,
+            C++ or Fortran code).</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>0</term>
+        <listitem>
+            <para>null variable. It is mainly used internally by
+            Scilab. If a function has no declared returned argument
+            like <literal>disp</literal> when it is called it returns
+            a null variable. If a function is called with an omitted
+            argument in the argument list like
+            <literal>foo(a,,b)</literal> the missing argument is
+            assigned to a null variable.</para>
+            <para>
+              Note that is a null variable is assigned to a name, it is removed.
+              <literal>x=disp(1)</literal> deletes <literal>x</literal> 
+            </para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
-   <para>Please note that, for some variables, type will return tlist or mlist due to the internal data structure. This is the case of <emphasis role="italic">rational</emphasis>, <emphasis role="italic">state-space</emphasis>, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of <link linkend="typeof">typeof</link> instead.
+    <para>Please note that, for some variables, type will return tlist
+    or mlist due to the internal data structure. This is the case of
+    <emphasis role="italic">rational</emphasis>, <emphasis
+    role="italic">state-space</emphasis>, <emphasis
+    role="italic">hypermat</emphasis> and <emphasis
+    role="italic">struct</emphasis>. Please considering the use of
+    <link linkend="typeof">typeof</link> instead.
    </para>
   </refsection>
   

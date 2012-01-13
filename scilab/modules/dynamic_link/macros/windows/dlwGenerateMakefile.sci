@@ -11,7 +11,6 @@ function Makename = dlwGenerateMakefile(name, ..
                                  files, ..
                                  libs, ..
                                  libname, ..
-                                 makename, ..
                                  with_gateway, ..
                                  ldflags, ..
                                  cflags, ..

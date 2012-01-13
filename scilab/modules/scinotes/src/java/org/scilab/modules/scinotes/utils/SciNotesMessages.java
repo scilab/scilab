@@ -206,7 +206,7 @@ public class SciNotesMessages {
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2011";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2012";
 
     public static final String SCINOTES_ERROR = Messages.gettext("SciNotes error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");

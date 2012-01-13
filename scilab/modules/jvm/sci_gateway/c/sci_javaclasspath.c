@@ -52,6 +52,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -59,6 +60,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -75,6 +77,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -91,6 +94,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             {
                 if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -113,6 +117,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
                 freeArrayOfString(pStVarOne, m1 * n1);
                 if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 

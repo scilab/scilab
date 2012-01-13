@@ -36,8 +36,12 @@ libscitime_la_CPPFLAGS= \
 	-I$(top_srcdir)/modules/ast/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscitime.la
 noinst_LTLIBRARIES = libscitime-algo.la
+else
+noinst_LTLIBRARIES = libscitime-algo.la libscitime.la
+endif
 
 libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

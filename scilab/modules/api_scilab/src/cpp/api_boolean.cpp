@@ -121,7 +121,18 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piBool		= NULL;
 
-	sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    sciErr = allocMatrixOfBoolean(_pvCtx, _iVar, _iRows, _iCols, &piBool);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
@@ -135,44 +146,64 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	//int iVarID[nsiz];
-	//int iSaveRhs			= api_Rhs((int*)_pvCtx);
-	//int iSaveTop			= api_Top((int*)_pvCtx);
-	//int* piBool				= NULL;
-	//int *piAddr				= NULL;
+#if 0
+	int iVarID[nsiz];
+	int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	int* piBool				= NULL;
+	int *piAddr				= NULL;
 
-	//C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-	////Top = Top + Nbvars + 1;
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
-	//int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
-	//int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-	//if (iMemSize > iFreeSpace)
-	//{
-	//	addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-	//	return sciErr;
-	//}
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedMatrixOfBoolean");
+        return sciErr;
+    }
 
-	//getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+	Top = Top + Nbvars + 1;
 
-	////write matrix information
-	//sciErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
-	//if(sciErr.iErr)
-	//{
-	//	addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
-	//	return sciErr;
-	//}
+	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
+	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+	if (iMemSize > iFreeSpace)
+	{
+		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		return sciErr;
+	}
 
-	////copy data in stack
-	//memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
+	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-	//updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
+	//write matrix information
+	sciErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
+		return sciErr;
+	}
 
-	////Rhs = 0;
-	////Add name in stack reference list
-	//createNamedVariable(iVarID);
+	//copy data in stack
+	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
 
-	//Top = iSaveTop;
-	//Rhs = iSaveRhs;
+	updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
+
+	Rhs = 0;
+	//Add name in stack reference list
+	createNamedVariable(iVarID);
+
+	Top = iSaveTop;
+	Rhs = iSaveRhs;
+#endif
 	return sciErr;
 }
 

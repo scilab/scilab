@@ -28,7 +28,7 @@ function demo_plotyy()
   y1=sind(x);
   plot2d(x,y1);
   a=gca();
-  a.tight_limits=["on" "on"]; 
+  a.tight_limits="on";
   a.font_size=fs;
   ylabel([" ";"$\sin(\alpha)$"])
   // --------------------------------------------------------------------------
@@ -48,7 +48,7 @@ function demo_plotyy()
   a.font_color=red;                               // sets color for ticks labels
   plot2d(x,y2,logflag="nl",axesflag=3,style=red); // plots new data. axesflag=3
   a.axes_visible(1)="off";                        // cancels x axis (else red)
-  a.tight_limits=["on" "off"];
+  a.tight_limits="on";
 
   a.y_label.font_foreground=red;  // sets color for y-label
   ylabel("$(1.1+\cos(\alpha))*800$")

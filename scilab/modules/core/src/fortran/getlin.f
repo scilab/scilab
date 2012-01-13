@@ -242,9 +242,10 @@ c
          mlhs=istk(ilk+1)
          mrhs=istk(ilk+1+nsiz*mlhs+1)
          ll=ilk+4+nsiz*(mlhs+mrhs)
-         lf= ll+istk(ll-1)+1
+         lf= ll+istk(ll-1)-1
       endif
       il=lin(k+7)
+
       if(il.gt.lf) then
          eof=.true.
          goto 45

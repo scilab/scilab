@@ -23,7 +23,7 @@
     <title>Description</title>
     <para> In Scilab,
     graphics window and the drawing it contains are represented by hierchical
-    entities. The hierachy top level is the Figure. Each Figure defines at
+    entities. The hierarchy top level is the Figure. Each Figure defines at
     least one child of type Axes. Each Axes entity contains a set of leaf
     entities which are the basic graphics objects like Polylines, Rectangles,
     Arcs, Segs,... It can also contain an Compound type which are recursive
@@ -227,7 +227,7 @@ plot2d(x,x^3)  //the drawing are sent to the initial figure
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

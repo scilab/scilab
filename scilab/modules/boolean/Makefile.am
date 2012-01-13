@@ -48,8 +48,13 @@ libsciboolean_la_CPPFLAGS = \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciboolean.la
 noinst_LTLIBRARIES = libsciboolean-algo.la
+else
+noinst_LTLIBRARIES = libsciboolean-algo.la libsciboolean.la
+endif
+
 
 libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

@@ -13,17 +13,7 @@
 #ifndef __TYPES_COMPARISON_NON_EQUAL_HXX__
 #define __TYPES_COMPARISON_NON_EQUAL_HXX__
 
-#include "dynlib_operations.hxx"
-#include "internal.hxx"
+#include "generic_operations.hxx"
 
-/*
-** Try to find a good algorithm to perform non equal comparison between those 2 datatypes.
-** If none is find, this will return NULL. Overload can then be performed by caller.
-** @param _pLeftOperand, the left comparison operand
-** @param _pRightOperand, the rightt comparison operand
-** @return comparison result
-**
-*/
-EXTERN_OP types::InternalType* GenericComparisonNonEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 #endif /* !__TYPES_COMPARISON_NON_EQUAL_HXX__ */

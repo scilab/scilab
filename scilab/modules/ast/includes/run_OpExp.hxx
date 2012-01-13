@@ -166,7 +166,7 @@ void visitprivate(const OpExp &e)
                 }
                 result_set(pResult);
                 break;
-            }        
+            }
         case OpExp::dottimes :
             {
                 try
@@ -382,7 +382,7 @@ void visitprivate(const LogicalOpExp &e)
     InternalType *pITR = NULL;
 
     GenericType::RealType TypeL = pITL->getType();
-    
+
     InternalType *pResult = NULL;
 
     if(TypeL != GenericType::RealBool)
@@ -572,7 +572,7 @@ void visitprivate(const LogicalOpExp &e)
     result_set(pResult);
 }
 
-InternalType* callOverload(OpExp::Oper _oper, InternalType* _paramL, InternalType* _paramR)
+types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR)
 {
     types::typed_list in;
     types::typed_list out;

@@ -51,6 +51,7 @@ int sci_xmlValidate(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -70,7 +71,7 @@ int sci_xmlValidate(char * fname, int* pvApiCtx)
     }
     else
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
         return 0;
     }
 
@@ -80,12 +81,13 @@ int sci_xmlValidate(char * fname, int* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         if (!isXMLValid(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLValid");
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLValid");
             return 0;
         }
 
@@ -154,6 +156,7 @@ int sci_xmlValidate(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

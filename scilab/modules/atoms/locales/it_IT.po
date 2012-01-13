@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 10:45+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2011-11-11 14:58+0000\n"
+"Last-Translator: Guybrush88 <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: it\n"
 
 #, c-format
@@ -211,7 +211,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: Era attesa una "
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "categoria valida.\n"
 
 #, c-format
@@ -374,6 +374,8 @@ msgid ""
 "Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
+"L'opzione offLine della configurazione di ATOMS è impostata come vera. "
+"atomsSystemUpdate non ha controllato gli ultimi moduli disponibili."
 
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
@@ -648,23 +650,23 @@ msgstr "%s: Non è stato trovato né Wget né Curl: installare uno dei due\n"
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: Errore:URL non valido.\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: Errore: internet aperto.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: Errore: URL aperto.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: Errore: crea il file.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: Errore: la dimensione del file non è valida.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
@@ -672,15 +674,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: Errore: scrivi il file.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: Errore: fallimento.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: Errore: memoria esaurita.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -688,7 +690,7 @@ msgstr "%s: Il seguente file non è stato scaricato:\n"
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t - URL : '%s'\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -700,7 +702,7 @@ msgstr "%s: Il seguente file non è stato copiato:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t - fonte    : '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -712,7 +714,7 @@ msgstr "%s: Il file scaricato non verifica lo MD5SUM:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t - file : '%s'\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
@@ -753,7 +755,7 @@ msgstr "%s: L'estrazione dell'archivio '%s' è fallita.\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: Era attesa una "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe 1x1 o 1x2.\n"
 
 #, c-format
@@ -894,15 +896,3 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ASC o "
 "DESC.\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - URL  : '%s'\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - file : '%s'\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - origine  : '%s'\n"

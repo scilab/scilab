@@ -46,7 +46,8 @@ int sci_winqueryreg(char *fname,int *_piKey)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return 1;
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            return 0;
         }
 
         if (!isStringType(_piKey, piAddressVarThree))
@@ -72,7 +73,8 @@ int sci_winqueryreg(char *fname,int *_piKey)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
     }
 
     if (!isStringType(_piKey, piAddressVarOne))
@@ -91,7 +93,8 @@ int sci_winqueryreg(char *fname,int *_piKey)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 1;
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        return 0;
     }
 
     if (!isStringType(_piKey, piAddressVarTwo))
@@ -161,6 +164,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
                     }
                     else
                     {

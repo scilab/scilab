@@ -117,10 +117,36 @@ function ged(k,win)
 
     ged_axes(gca())
   case 10 then //start Entity picker
-    seteventhandler("ged_eventhandler")
+    fig=ged_cur_fig_handle
+    fig_ud=get(fig,"user_data")
+    if fig.event_handler<>""& fig.event_handler<>"ged_eventhandler" then
+      //push current event handler in fig user data if possible
+      if fig_ud==[] then fig_ud=struct();end
+      if typeof(fig_ud)=="st" then
+        if ~isfield(fig_ud,"handlers") then  fig_ud.handlers=[],end
+        fig_ud.handlers=[fig_ud.handlers;
+                         fig.event_handler fig.event_handler_enable]
+        set(fig,"user_data",fig_ud)
+      else
+        warning(_("Entity picker cannot be enabled, user data figure field is already used" ))
+        return
+      end
+      fig.event_handler_enable = "off" //to prevent against bug 7855
+      fig.event_handler="ged_eventhandler"
+      fig.event_handler_enable="on"
+    end
     ged_cur_fig_handle.info_message=_("Left click on a graphic entity to open its property editor");
   case 11 then //stop Entity picker
     seteventhandler("")
+    fig.event_handler_enable = "off"
+    if typeof(fig_ud)=="st"&isfield(fig_ud,"handlers")&fig_ud.handlers<>[] then
+      fig.event_handler=fig_ud.handlers($,1)
+      fig.event_handler_enable=fig_ud.handlers($,2)
+      fig_ud.handlers= fig_ud.handlers(1:$-1,:)
+      set(fig,"user_data",fig_ud)
+    else
+      fig.event_handler_enable = "off"
+    end
   end
   scf(ged_current_figure)
 endfunction

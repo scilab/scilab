@@ -160,6 +160,9 @@ call ant clean
       <Project>{b2911268-79e2-4fe5-ad59-2c3cb7cb794e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\java\core-JAVA.vcxproj">
+      <Project>{78d8b862-964a-4d0e-93d2-ca8a25ba1207}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\gui\src\java\gui-JAVA.vcxproj">
       <Project>{f01c26e3-e409-4e74-ba84-c7c4a71a7fdc}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

@@ -21,6 +21,7 @@ extern "C"
 	#include "matrix_finite.h"
 }
 
+// FIXME : Remove using namespace.
 using namespace types;
 
 EXTERN_OP bool isDoubleFinite(Double *_pDouble);

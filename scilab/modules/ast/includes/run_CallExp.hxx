@@ -23,8 +23,8 @@ void visitprivate(const CallExp &e)
     e.name_get().accept(*this);
     if(result_get() != NULL && result_get()->isCallable())
     {//function call
-        InternalType* pIT = result_get();
-        Callable *pCall = pIT->getAs<Callable>();
+        types::InternalType* pIT = result_get();
+        types::Callable *pCall = pIT->getAs<types::Callable>();
         types::typed_list out;
         types::typed_list in;
 
@@ -45,10 +45,10 @@ void visitprivate(const CallExp &e)
             pIT = result_get();
             if(result_get()->isImplicitList())
             {
-                ImplicitList* pIL = pIT->getAs<ImplicitList>();
+                types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
                 if(pIL->isComputable() == false)
                 {
-                    Double* pVal = new Double(-1, -1);
+                    types::Double* pVal = new types::Double(-1, -1);
                     pVal->getReal()[0] = 1;
                     result_set(pVal);
                 }
@@ -80,10 +80,10 @@ void visitprivate(const CallExp &e)
         {
             expected_size_set(iRetCount);
             iRetCount = Max(1, iRetCount);
-            Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
+            types::Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
             //reset result
             result_clear();
-            if(Ret == Callable::OK)
+            if(Ret == types::Callable::OK)
             {
                 if(expected_getSize() == 1 && out.size() == 0) //some function have no returns
                 {
@@ -117,7 +117,7 @@ void visitprivate(const CallExp &e)
                     }
                 }
             }
-            else if(Ret == Callable::Error)
+            else if(Ret == types::Callable::Error)
             {
                 ConfigVariable::setLastErrorFunction(pCall->getName());
                 ConfigVariable::setLastErrorLine(e.location_get().first_line);
@@ -146,7 +146,7 @@ void visitprivate(const CallExp &e)
                 throw sm;
             }
         }
-        
+
         //clear input parameters but take care in case of in[k] == out[i]
         for(unsigned int k = 0; k < in.size(); k++)
         {
@@ -175,7 +175,7 @@ void visitprivate(const CallExp &e)
     {//a(xxx) with a variable, extraction
 
         //get symbol of variable
-        InternalType *pIT = NULL;
+        types::InternalType *pIT = NULL;
 
         //WARNING can be a fieldexp
         const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
@@ -189,8 +189,8 @@ void visitprivate(const CallExp &e)
         }
 
         int iArgDim = static_cast<int>(e.args_get().size());
-        InternalType *pOut = NULL;
-        std::vector<InternalType*> ResultList;
+        types::InternalType *pOut = NULL;
+        std::vector<types::InternalType*> ResultList;
 
         //To manage extraction without parameter like SCI()
         if(iArgDim == 0)
@@ -203,7 +203,7 @@ void visitprivate(const CallExp &e)
             list<wstring> stFields;
             list<Exp*>::const_iterator it1;
 
-            InternalType::RealType rtIndex = InternalType::RealInternal;
+            types::InternalType::RealType rtIndex = types::InternalType::RealInternal;
             bool bTypeSet = false;
             for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
             {
@@ -216,10 +216,10 @@ void visitprivate(const CallExp &e)
 
                 if(result_get()->isString())
                 {
-                    rtIndex = InternalType::RealString;
+                    rtIndex = types::InternalType::RealString;
                     bTypeSet = true;
-                    InternalType* pVar  = result_get();
-                    String *pString = pVar->getAs<types::String>();
+                    types::InternalType* pVar  = result_get();
+                    types::String *pString = pVar->getAs<types::String>();
                     for(int i = 0 ; i < pString->getSize() ; i++)
                     {
                         stFields.push_back(pString->get(i));
@@ -227,14 +227,14 @@ void visitprivate(const CallExp &e)
                 }
                 else if(result_get()->isDouble())
                 {//manage error
-                    rtIndex = InternalType::RealDouble;
+                    rtIndex = types::InternalType::RealDouble;
                     bTypeSet = true;
                     break;
                 }
             }
             result_set(NULL);
 
-            if(rtIndex  == InternalType::RealDouble)
+            if(rtIndex  == types::InternalType::RealDouble)
             {
                 //Create list of indexes
                 //ArrayOf<double>* pArray = pIT->getAs<ArrayOf<double> >();
@@ -245,7 +245,7 @@ void visitprivate(const CallExp &e)
                 //int iDims           = 0;
                 //int iTotalCombi		= GetIndexList(pIT, e.args_get(), &piIndexSeq, &piMaxDim, &iDims, pIT, piDimSize);
 
-                ////typed_list *pArgs = GetArgumentList(e.args_get());
+                ////types::typed_list *pArgs = GetArgumentList(e.args_get());
 
                 ////check we don't have bad indexes like "< 1"
                 //for(int i = 0 ; i < iTotalCombi * iArgDim; i++)
@@ -261,9 +261,9 @@ void visitprivate(const CallExp &e)
                 //}
                 //ResultList = pIT->getAsTList()->extract(iTotalCombi, piIndexSeq, piMaxDim, iDims, piDimSize, bSeeAsVector);
             }
-            else if(rtIndex  == InternalType::RealString)
+            else if(rtIndex  == types::InternalType::RealString)
             {
-                ResultList = pIT->getAs<TList>()->extractStrings(stFields);
+                ResultList = pIT->getAs<types::TList>()->extractStrings(stFields);
             }
 
             if(ResultList.size() == 1)
@@ -281,49 +281,49 @@ void visitprivate(const CallExp &e)
         else
         {
             //Create list of indexes
-            typed_list *pArgs = GetArgumentList(e.args_get());
+            types::typed_list *pArgs = GetArgumentList(e.args_get());
 
             switch(pIT->getType())
             {
-            case InternalType::RealDouble :
-                pOut = pIT->getAs<Double>()->extract(pArgs);
+            case types::InternalType::RealDouble :
+                pOut = pIT->getAs<types::Double>()->extract(pArgs);
                 break;
-            case InternalType::RealString :
-                pOut = pIT->getAs<String>()->extract(pArgs);
+            case types::InternalType::RealString :
+                pOut = pIT->getAs<types::String>()->extract(pArgs);
                 break;
-            case InternalType::RealBool :
-                pOut = pIT->getAs<Bool>()->extract(pArgs);
+            case types::InternalType::RealBool :
+                pOut = pIT->getAs<types::Bool>()->extract(pArgs);
                 break;
-            case InternalType::RealPoly :
-                pOut = pIT->getAs<Polynom>()->extract(pArgs);
+            case types::InternalType::RealPoly :
+                pOut = pIT->getAs<types::Polynom>()->extract(pArgs);
                 break;
-            case InternalType::RealInt8 :
-                pOut = pIT->getAs<Int8>()->extract(pArgs);
+            case types::InternalType::RealInt8 :
+                pOut = pIT->getAs<types::Int8>()->extract(pArgs);
                 break;
-            case InternalType::RealUInt8 :
-                pOut = pIT->getAs<UInt8>()->extract(pArgs);
+            case types::InternalType::RealUInt8 :
+                pOut = pIT->getAs<types::UInt8>()->extract(pArgs);
                 break;
-            case InternalType::RealInt16 :
-                pOut = pIT->getAs<Int16>()->extract(pArgs);
+            case types::InternalType::RealInt16 :
+                pOut = pIT->getAs<types::Int16>()->extract(pArgs);
                 break;
-            case InternalType::RealUInt16 :
-                pOut = pIT->getAs<UInt16>()->extract(pArgs);
+            case types::InternalType::RealUInt16 :
+                pOut = pIT->getAs<types::UInt16>()->extract(pArgs);
                 break;
-            case InternalType::RealInt32 :
-                pOut = pIT->getAs<Int32>()->extract(pArgs);
+            case types::InternalType::RealInt32 :
+                pOut = pIT->getAs<types::Int32>()->extract(pArgs);
                 break;
-            case InternalType::RealUInt32 :
-                pOut = pIT->getAs<UInt32>()->extract(pArgs);
+            case types::InternalType::RealUInt32 :
+                pOut = pIT->getAs<types::UInt32>()->extract(pArgs);
                 break;
-            case InternalType::RealInt64 :
-                pOut = pIT->getAs<Int64>()->extract(pArgs);
+            case types::InternalType::RealInt64 :
+                pOut = pIT->getAs<types::Int64>()->extract(pArgs);
                 break;
-            case InternalType::RealUInt64 :
-                pOut = pIT->getAs<UInt64>()->extract(pArgs);
+            case types::InternalType::RealUInt64 :
+                pOut = pIT->getAs<types::UInt64>()->extract(pArgs);
                 break;
-            case InternalType::RealList :
+            case types::InternalType::RealList :
                 {
-                    ResultList = pIT->getAs<List>()->extract(pArgs);
+                    ResultList = pIT->getAs<types::List>()->extract(pArgs);
 
                     switch(ResultList.size())
                     {
@@ -347,22 +347,22 @@ void visitprivate(const CallExp &e)
                     }
                 }
                 break;
-            case InternalType::RealCell :
-                pOut = pIT->getAs<Cell>()->extract(pArgs);
+            case types::InternalType::RealCell :
+                pOut = pIT->getAs<types::Cell>()->extract(pArgs);
                 break;
-            case InternalType::RealSparse :
-                pOut = pIT->getAs<Sparse>()->extract(pArgs);
+            case types::InternalType::RealSparse :
+                pOut = pIT->getAs<types::Sparse>()->extract(pArgs);
                 break;
-            case InternalType::RealSparseBool :
-                //pOut = pIT->getAs<SparseBool>()->extract(pArgs);
+            case types::InternalType::RealSparseBool :
+                //pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
                 break;
-            case InternalType::RealStruct :
+            case types::InternalType::RealStruct :
                 {
-                    Struct* pStr = pIT->getAs<Struct>();
+                    types::Struct* pStr = pIT->getAs<types::Struct>();
                     if(pArgs->size() == 1 && (*pArgs)[0]->isString())
                     {//s(["x","xx"])
-                        list<wstring> wstFields;
-                        String *pS = (*pArgs)[0]->getAs<types::String>();
+                        std::list<wstring> wstFields;
+                        types::String *pS = (*pArgs)[0]->getAs<types::String>();
                         for(int i = 0 ; i < pS->getSize() ; i++)
                         {
                             wstring wstField(pS->get(i));
@@ -379,9 +379,9 @@ void visitprivate(const CallExp &e)
                         }
 
                         ResultList = pStr->extractFields(wstFields);
-                        if(ResultList.size() == 1 && ResultList[0]->getAs<List>()->getSize() == 1)
+                        if(ResultList.size() == 1 && ResultList[0]->getAs<types::List>()->getSize() == 1)
                         {
-                            result_set(ResultList[0]->getAs<List>()->get(0));
+                            result_set(ResultList[0]->getAs<types::List>()->get(0));
                         }
                         else
                         {
@@ -394,7 +394,7 @@ void visitprivate(const CallExp &e)
                     }
                     else
                     {
-                        pOut = pIT->getAs<Struct>()->extract(pArgs);
+                        pOut = pIT->getAs<types::Struct>()->extract(pArgs);
                     }
                 }
             default :
@@ -418,9 +418,9 @@ void visitprivate(const CallExp &e)
             if(pOut == NULL)
             {
                 // Special case, try to extract from an empty matrix.
-                if (pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0)
+                if (pIT->isDouble() && pIT->getAs<types::Double>()->getSize() == 0)
                 {
-                    pOut = Double::Empty();
+                    pOut = types::Double::Empty();
                 }
                 else
                 {
@@ -467,7 +467,7 @@ void visitprivate(const CellCallExp &e)
 
     if(execMeCell.result_get() != NULL)
     {//a{xxx} with a variable, extraction
-        InternalType *pIT = NULL;
+        types::InternalType *pIT = NULL;
 
         pIT = execMeCell.result_get();
 
@@ -479,9 +479,9 @@ void visitprivate(const CellCallExp &e)
                 throw ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.args_get().begin())->location_get());
             }
             //Create list of indexes
-            typed_list *pArgs = GetArgumentList(e.args_get());
+            types::typed_list *pArgs = GetArgumentList(e.args_get());
 
-            List* pList = pIT->getAs<Cell>()->extractCell(pArgs);
+            types::List* pList = pIT->getAs<types::Cell>()->extractCell(pArgs);
 
             if(pList == NULL)
             {

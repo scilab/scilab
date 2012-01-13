@@ -148,8 +148,13 @@ libscifileio_la_CFLAGS = \
 	$(HDF5_CFLAGS)
 
 
-noinst_LTLIBRARIES = libscifileio-algo.la
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifileio.la
+noinst_LTLIBRARIES = libscifileio-algo.la
+else
+noinst_LTLIBRARIES = libscifileio-algo.la libscifileio.la
+endif
+
 
 libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

@@ -40,44 +40,46 @@ int sci_copyfile(char *fname, int* _piKey)
     wchar_t *pStVarTwo = NULL;
 
     /* Check Input & Output parameters */
-    CheckRhs(2,2);
-    CheckLhs(1,2);
+    CheckRhs(2, 2);
+    CheckLhs(1, 2);
 
     sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarOne))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarOne))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
     sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -103,7 +105,7 @@ int sci_copyfile(char *fname, int* _piKey)
             freeAllocatedSingleWideString(pStVarTwo);
             pStVarTwo = NULL;
         }
-        Scierror(999,_("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -114,18 +116,18 @@ int sci_copyfile(char *fname, int* _piKey)
             freeAllocatedSingleWideString(pStVarOne);
             pStVarOne = NULL;
         }
-        Scierror(999,_("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
-    if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
+    if (isdirW(pStVarOne) || FileExistW(pStVarOne))
     {
         int ierrCopy = 0;
 
-        if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
+        if (isdirW(pStVarOne) || FileExistW(pStVarOne))
         {
 
-            if ( isdirW(pStVarOne)  )
+            if (isdirW(pStVarOne))
             {
                 /* copy a directory into a directory */
                 ierrCopy = CopyDirectoryFunction(pStVarTwo, pStVarOne);
@@ -135,21 +137,21 @@ int sci_copyfile(char *fname, int* _piKey)
                 if (isdirW(pStVarTwo))
                 {
                     /* copy file into a existing directory */
-                    wchar_t* filename = getFilenameWithExtension(pStVarOne);
+                    wchar_t *filename = getFilenameWithExtension(pStVarOne);
+
                     if (filename)
                     {
 #define FORMAT_FULLFILENAME "%s/%s"
-                        wchar_t* destFullFilename = NULL;
+                        wchar_t *destFullFilename = NULL;
 
                         /* remove last file separator if it exists */
-                        if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') ||
-                            (pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
+                        if ((pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || (pStVarTwo[wcslen(pStVarTwo) - 1] == L'/'))
                         {
                             pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
                         }
 
-                        destFullFilename = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(pStVarTwo) +
-                            (int)wcslen(filename) + (int)wcslen(L"/") + 1));
+                        destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwo) +
+                                                                                 (int)wcslen(filename) + (int)wcslen(L"/") + 1));
                         wcscpy(destFullFilename, pStVarTwo);
                         wcscat(destFullFilename, L"/");
                         wcscat(destFullFilename, filename);
@@ -176,7 +178,7 @@ int sci_copyfile(char *fname, int* _piKey)
                             pStVarTwo = NULL;
                         }
 
-                        Scierror(999,_("%s: Memory allocation error.\n"),fname);
+                        Scierror(999, _("%s: Memory allocation error.\n"),fname);
                         return 1;
                     }
                 }
@@ -199,7 +201,7 @@ int sci_copyfile(char *fname, int* _piKey)
                     freeAllocatedSingleWideString(pStVarTwo);
                     pStVarTwo = NULL;
                 }
-                Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
                 return 1;
             }
         }
@@ -217,7 +219,7 @@ int sci_copyfile(char *fname, int* _piKey)
                 pStVarTwo = NULL;
             }
 
-            Scierror(999,_("%s: Wrong value(s) for input argument(s).\n"), fname);
+            Scierror(999, _("%s: Wrong value(s) for input argument(s).\n"), fname);
             return 1;
         }
 
@@ -225,7 +227,7 @@ int sci_copyfile(char *fname, int* _piKey)
     }
     else
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
         return 1;
     }
 
@@ -243,18 +245,20 @@ int sci_copyfile(char *fname, int* _piKey)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
+static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
 {
-    wchar_t* wcfilename = NULL;
+    wchar_t *wcfilename = NULL;
 
     if (wcFullFilename)
     {
-        wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcdir = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcname = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcext = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wcfilename = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdrv = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdir = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcname = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcext = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
+
+        wcfilename = MALLOC(sizeof(wchar_t *) * ((int)wcslen(wcFullFilename) + 1));
 
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
@@ -287,12 +291,12 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
     }
     return wcfilename;
 }
+
 /*--------------------------------------------------------------------------*/
 static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
 {
     double dError = 0.;
     wchar_t *sciError = NULL;
-
 
 #ifdef _MSC_VER
     if (ierr)
@@ -302,19 +306,19 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
         wchar_t buffer[BUFFER_SIZE];
 
         if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-            dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),buffer, BUFFER_SIZE, NULL) == 0)
+                           dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
         {
             wcscpy(buffer, L"Unknown Error");
         }
 
         // Compatibility with previous version , we return 0
         //dError = (double) dw;
-        dError = (double) 0.;
+        dError = (double)0.;
 
-        sciError = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
         if (sciError == NULL)
         {
-            Scierror(999,_("%s: Memory allocation error.\n"),fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
@@ -323,10 +327,10 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
     else
     {
         dError = 1.;
-        sciError = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
         wcscpy(sciError, L"");
@@ -340,18 +344,18 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
         sciError = to_wide_string(strerror(errno));
         if (sciError == NULL)
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
     else
     {
         dError = 1.;
-        sciError = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
+        sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
-            return;
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
         }
         wcscpy(sciError, L"");
     }
@@ -392,5 +396,5 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------*/

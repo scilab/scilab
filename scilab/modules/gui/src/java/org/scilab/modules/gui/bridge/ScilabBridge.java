@@ -593,6 +593,16 @@ public class ScilabBridge {
     }
 
     /**
+     * Creates a Scilab tab
+     * @param name the name of the tab
+     * @param uuid an uuid to identify the tab
+     * @return the created tab
+     */
+    public static SimpleTab createTab(String name, String uuid) {
+        return ScilabTabBridge.createTab(name, uuid);
+    }
+
+    /**
      * Creates a Scilab tab able to create graphics
      * @param name the name of the tab (used to identify it)
      * @param figureId index of the created figure

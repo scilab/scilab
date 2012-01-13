@@ -55,6 +55,7 @@ int sci_beep(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -62,6 +63,7 @@ int sci_beep(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -75,6 +77,7 @@ int sci_beep(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -95,6 +98,7 @@ int sci_beep(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -132,6 +136,7 @@ int sci_beep(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 

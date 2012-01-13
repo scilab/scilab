@@ -27,7 +27,8 @@ src/c/isalphanum.c \
 src/c/StringConvert.c \
 src/c/os_wcsdup.c \
 src/c/os_wcstok.c \
-src/c/scistrtostr.c
+src/c/scistrtostr.c \
+src/c/stringToDouble.c
 
 STRING_FORTRAN_SOURCES =
 
@@ -98,8 +99,13 @@ libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscistring.la
 noinst_LTLIBRARIES = libscistring-algo.la
+else
+noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
+endif
+
 
 libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 

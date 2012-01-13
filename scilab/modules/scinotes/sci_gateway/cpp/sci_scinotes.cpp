@@ -67,6 +67,7 @@ int sci_scinotes(char * fname, int *_piKey)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -74,6 +75,7 @@ int sci_scinotes(char * fname, int *_piKey)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -88,6 +90,7 @@ int sci_scinotes(char * fname, int *_piKey)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -103,6 +106,7 @@ int sci_scinotes(char * fname, int *_piKey)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             FREE(lenStVarOne);
             return 0;
         }
@@ -135,6 +139,7 @@ int sci_scinotes(char * fname, int *_piKey)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             freeArrayOfWideString(pStVarOne, m1 * n1);
             FREE(lenStVarOne);
             return 0;
@@ -151,6 +156,7 @@ int sci_scinotes(char * fname, int *_piKey)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -160,6 +166,7 @@ int sci_scinotes(char * fname, int *_piKey)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -183,6 +190,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -210,6 +218,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
@@ -242,6 +251,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(pStVarTwo);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -288,6 +298,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -309,6 +320,7 @@ int sci_scinotes(char * fname, int *_piKey)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
                         return 0;
                     }
 

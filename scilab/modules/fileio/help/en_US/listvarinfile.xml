@@ -10,7 +10,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>listvarinfile(filename)
-[nams,typs,dims,vols]=listvarinfile(filename)</synopsis>
+[names,typs,dims,vols]=listvarinfile(filename)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -77,7 +77,7 @@ listvarinfile("vals.dat")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

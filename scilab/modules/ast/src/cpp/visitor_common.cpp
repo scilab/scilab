@@ -23,6 +23,8 @@
 
 #include "alltypes.hxx"
 
+using namespace types;
+
 bool bConditionState(types::InternalType *_pITResult)
 {
 	if(_pITResult->isDouble() &&
@@ -506,7 +508,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
 
             //clone _pIT BEFORE addField in case of st.b = st
             types::InternalType* pIT = _pIT ? _pIT->clone() : NULL;
-            
+
             //create field "x"
             std::wstring var = pVar->name_get().name_get();
             bool bOK = pCurrent->addField(pVar->name_get().name_get());
@@ -705,7 +707,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 {
                     pStr = pCurrent;
                 }
-                
+
                 SingleStruct* pSS = pStr->get(0);
 
                 //check if field already exists

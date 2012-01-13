@@ -20,6 +20,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.awt.GraphicsEnvironment;
+
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.InitializationException;
@@ -62,7 +64,9 @@ public class testBug9544 {
 
     @Test(sequential = true) 
     public void nonRegBug9544Working() throws NullPointerException, JavasciException, IOException {
-        x = new Test_sci();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x = new Test_sci();
+        }
     }
 
     /**
@@ -70,7 +74,9 @@ public class testBug9544 {
      */
     @AfterMethod
     public void close() {
-        x.dispose();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x.dispose();
+        }
         sci.close();
         
     }

@@ -22,6 +22,8 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
+#include <stdlib.h> /* min max */
+
 #ifndef NULL
 #define NULL 0
 #endif 
@@ -90,23 +92,5 @@ int rho_( double *, double *,double *,double *,double *, int *);
 int fx_( double *, double *);
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
 int write_xml_states(int,const char *, char **, double *);
-
-#if _MSC_VER
-#ifdef min
-#undef min
-#endif 
-#ifdef max 
-#undef max
-#endif 
-#endif 
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif 
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
 
 #endif /* __SCICOS_BLOCK_H__ */

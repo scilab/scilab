@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,55 +47,56 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PreLoaded", propOrder = { "block" })
 public class PreLoaded extends Palette {
-	
-	/**
-	 * Not marshalled {@link PreLoaded} class
-	 */
-	@XmlTransient
-	public static class Dynamic extends PreLoaded {
-		/**
-		 * Default constructor.
-		 */
-		public Dynamic() {
-		}
-	}
-	
-	@XmlElement(nillable = true)
-	private List<PaletteBlock> block;
 
-	/**
-	 * Default constructor
-	 */
-	public PreLoaded() { }
-	
-	/**
-	 * Gets the value of the block property.
-	 * 
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a
-	 * snapshot. Therefore any modification you make to the returned list will
-	 * be present inside the JAXB object. This is why there is not a
-	 * <CODE>set</CODE> method for the block property.
-	 * 
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getBlock().add(newItem);
-	 * </pre>
-	 * 
-	 * 
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list
-	 * {@link PaletteBlock }
-	 * 
-	 * @return the non-null block list
-	 */
-	public List<PaletteBlock> getBlock() {
-		if (block == null) {
-			block = new ArrayList<PaletteBlock>();
-		}
-		return block;
-	}
+    /**
+     * Not marshalled {@link PreLoaded} class
+     */
+    @XmlTransient
+    public static class Dynamic extends PreLoaded {
+        /**
+         * Default constructor.
+         */
+        public Dynamic() {
+        }
+    }
+
+    @XmlElement(nillable = true)
+    private List<PaletteBlock> block;
+
+    /**
+     * Default constructor
+     */
+    public PreLoaded() {
+    }
+
+    /**
+     * Gets the value of the block property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the block property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * 
+     * <pre>
+     * getBlock().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PaletteBlock }
+     * 
+     * @return the non-null block list
+     */
+    public List<PaletteBlock> getBlock() {
+        if (block == null) {
+            block = new ArrayList<PaletteBlock>();
+        }
+        return block;
+    }
 
 }

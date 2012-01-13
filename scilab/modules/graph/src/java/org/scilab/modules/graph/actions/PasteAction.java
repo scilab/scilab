@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +36,7 @@ public final class PasteAction extends DefaultAction {
 	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.PASTE;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "edit-paste.png";
+    public static final String SMALL_ICON = "edit-paste";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_V;
 	/** Accelerator key for the action */
@@ -66,7 +66,8 @@ public final class PasteAction extends DefaultAction {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		mxGraphTransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));
 	}

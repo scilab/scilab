@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-10 18:59+0000\n"
+"PO-Revision-Date: 2011-12-03 14:24+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 #, c-format
@@ -646,6 +646,9 @@ msgstr "Przeglądarka zmiennych"
 msgid "&Command History"
 msgstr "Historia poleceń"
 
+msgid "&File Browser"
+msgstr ""
+
 msgid "Scilab &Help"
 msgstr "&Pomoc Scilab"
 
@@ -708,9 +711,6 @@ msgstr "Kopiuj"
 
 msgid "Paste"
 msgstr "Wklej"
-
-msgid "Change Current Directory"
-msgstr "Zmień katalog bieżący"
 
 msgid "Choose Font..."
 msgstr "Wybierz czcionkę..."
@@ -1104,7 +1104,7 @@ msgid "Please specify a file format"
 msgstr "Proszę określić format pliku"
 
 msgid "Error on export"
-msgstr "Błąd podczas exportowania"
+msgstr "Błąd podczas eksportowania"
 
 msgid "Unrecognized extension '"
 msgstr "Nierozpoznane rozszerzenie '"
@@ -1181,14 +1181,31 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "No"
-msgstr "Nie"
-
 msgid "Yes"
 msgstr "Tak"
 
+msgid "No"
+msgstr "Nie"
+
 msgid "Save and execute"
 msgstr "Zapisz i wykonaj"
+
+msgid "Empty tab"
+msgstr ""
+
+msgid ""
+"The tab with uuid %s cannot be restored.\n"
+"Please report a bug with the previous message and in attaching the file %s."
+msgstr ""
+
+msgid "Are you sure you want to close %s ?"
+msgstr ""
+
+msgid "Are you sure you want to close %s and %s ?"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
 
 msgid "An error occured: "
 msgstr "Wystąpił błąd: "
@@ -1291,32 +1308,14 @@ msgstr "Zawartość okna graficznego zapisana\n"
 msgid "Select a file name"
 msgstr "Podaj nazwę pliku"
 
-msgid "Select a file to execute"
-msgstr "Wybierz plik do wykonania"
-
-msgid "Execution done.\n"
-msgstr "Wykonywanie zakończono .\n"
-
 msgid "Select a file to open with SciNotes"
 msgstr "Zaznacz plik do otwarcia razem ze SciNotes"
-
-msgid "Environment loaded.\n"
-msgstr "Środowisko załadowane.\n"
-
-msgid "Environment saved.\n"
-msgstr "Środowisko zapisane\n"
-
-msgid "Select a directory"
-msgstr "Wybierz katalog"
 
 msgid "Control Plot3d"
 msgstr "Sterowanie Plot3d"
 
 msgid "File"
 msgstr "Plik"
-
-msgid "SNECMA EDTEX Processing platform"
-msgstr ""
 
 msgid "GUI"
 msgstr "GUI"
@@ -1655,39 +1654,3 @@ msgstr "%s: Nieprawidłowy typ dla %s: Oczekiwano wartości typu real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar dla %s: Oczekiwano wartości typu real .\n"
-
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Autorzy:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr ""
-#~ "Scilab 5.0 oraz przyszłe wersję są wydawane na warunkach licencji CeCILL.\n"
-
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Uczestnicy projektu"
-
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Niektóre moduły programu Scilab są wydane pod licencją GPLv2.\n"
-#~ "\n"
-
-#, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Wersja: %s (%s)\n"
-#~ "\n"
-
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"

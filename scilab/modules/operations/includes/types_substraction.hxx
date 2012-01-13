@@ -14,21 +14,13 @@
 #ifndef __TYPES_SUB_H__
 #define __TYPES_SUB_H__
 
-#include "dynlib_operations.hxx"
+#include "generic_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
 
+// FIXME : remove using namespace
 using namespace types;
-/*
-** Try to find a good algorithm to perform subtraction between those 2 datatypes.
-** If none is find, this will return NULL. Overload can then be performed by caller.
-** @param _pLeftOperand, the left subtraction operand
-** @param _pRightOperand, the rightt subtraction operand
-** @return subtraction result
-**
-*/
-EXTERN_OP InternalType* GenericMinus(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 
 int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
 int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);

@@ -106,8 +106,10 @@ libscistatistics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
+
 
 libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

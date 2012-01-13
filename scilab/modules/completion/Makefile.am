@@ -15,21 +15,20 @@ USEANT=1
 endif
 
 # List of the c files
-COMPLETION_C_SOURCES = \
-    src/c/completion.c \
-    src/c/completion_generic.c \
-    src/c/getfilesdictionary.c \
-    src/c/getfieldsdictionary.c \
-    src/c/toolsdictionary.c \
-    src/c/completion_wrap_java.c \
-    src/c/getPartLine.c \
-    src/c/getCommonPart.c \
-    src/c/completeLine.c \
-    src/c/completeLine_wrap_java.c
+COMPLETION_C_SOURCES = src/c/completion.c \
+src/c/completion_generic.c \
+src/c/getfilesdictionary.c \
+src/c/getfieldsdictionary.c \
+src/c/toolsdictionary.c \
+src/c/completion_wrap_java.c \
+src/c/getPartLine.c \
+src/c/getCommonPart.c \
+src/c/completeLine.c \
+src/c/completeLine_wrap_java.c
 
 # List of the c++ file
 COMPLETION_CPP_SOURCES = \
-    src/cpp/completionDictionary.cpp
+src/cpp/completionDictionary.cpp
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = \

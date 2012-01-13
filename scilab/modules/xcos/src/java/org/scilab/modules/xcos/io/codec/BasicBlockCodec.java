@@ -118,6 +118,11 @@ public class BasicBlockCodec extends XcosObjectCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE,
                 String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
+
+        if (obj instanceof SuperBlock) {
+            ((SuperBlock) obj).syncParameters();
+        }
+
         return super.beforeEncode(enc, obj, node);
     }
 
@@ -233,9 +238,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
         if (!map.containsKey(name)) {
             map.put(name, null);
         }
-
-        // Remove the abstract blockWithLabel (set as defaultVertex)
-        map.remove("blockWithLabel");
 
         // Remove a custom shape value
         // This is used for pre-5.2 schema with TEXT_f block with a custom

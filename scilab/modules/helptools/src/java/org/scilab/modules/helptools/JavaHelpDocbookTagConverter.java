@@ -12,22 +12,11 @@
 
 package org.scilab.modules.helptools;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
 import org.xml.sax.SAXException;
 
@@ -38,7 +27,6 @@ import org.xml.sax.SAXException;
 public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private static final String XMLSTRING = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n";
-    private static final String WHATSNEW = "What's new ?";
 
     private StringBuilder buffer = new StringBuilder(8192);
 

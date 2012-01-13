@@ -13,6 +13,8 @@ package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
 
+import java.awt.GraphicsEnvironment;
+
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.JavasciException.UndefinedVariableException;
@@ -36,8 +38,10 @@ public class testGraphics {
 
     @Test(sequential = true) 
     public void isGraphicOpenedTest() throws NullPointerException, JavasciException {
-        sci.exec("plot3d();");
-        assert sci.isGraphicOpened() == true;
+        if (!GraphicsEnvironment.isHeadless()) {
+            sci.exec("plot3d();");
+            assert sci.isGraphicOpened() == true;
+        }
     }
 
     @Test(sequential = true) 

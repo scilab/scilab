@@ -60,6 +60,7 @@ libscispecial_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/
 
+
 pkglib_LTLIBRARIES = libscispecial_functions.la
 noinst_LTLIBRARIES = libscispecial_functions-algo.la
 

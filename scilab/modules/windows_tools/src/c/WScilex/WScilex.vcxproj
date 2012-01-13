@@ -178,6 +178,7 @@
     <None Include="..\resources\SCI.ICO" />
     <None Include="..\resources\scilab.ico" />
     <None Include="..\resources\TST.ICO" />
+    <None Include="..\resources\xcos.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WScilex.rc" />

@@ -26,7 +26,7 @@ extern "C" {
 #define SESSION_PRAGMA_BEGIN    "// -- "
 #define SESSION_PRAGMA_END      " -- //"
 /*------------------------------------------------------------------------*/
-HISTORY_MANAGER_IMPEXP char *getCommentDateSession(void);
+HISTORY_MANAGER_IMPEXP char *getCommentDateSession(BOOL longFormat);
 /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }

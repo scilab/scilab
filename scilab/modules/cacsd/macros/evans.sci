@@ -76,31 +76,31 @@ function evans(n,d,kmax)
       if k>klim(ilim) then ilim=min(ilim+1,size(klim,"*"));end
       point=%t
     else //Too big step or incorrect root order
-      // look for a root order that minimize the distance
-      ix=1:md
-      ord1=[]
-      for ky=1:md
-        yy=r(ky)
-        mn=10*dist*nrm
-        for kx=1:md
-          if ix(kx)>0 then
-            if  abs(yy-racines(kx,nr)) < mn then
-              mn=abs(yy-racines(kx,nr))
-              kmn=kx
-            end
-          end
-        end
-        ix(kmn)=0
-        ord1=[ord1 kmn]
-      end
-      r(ord1)=r
-      dist=max(abs(racines(:,nr)-r))/nrm
-      if dist <smax then
-        point=%t,
-        ord(ord1)=ord
-      else
-        k=k-pas,pas=pas/2.5
-      end
+         // look for a root order that minimize the distance
+         ix=1:md
+         ord1=[]
+         for ky=1:md
+           yy=r(ky)
+           mn=10*dist*nrm
+           for kx=1:md
+             if ix(kx)>0 then
+               if  abs(yy-racines(kx,nr)) < mn then
+                 mn=abs(yy-racines(kx,nr))
+                 kmn=kx
+               end
+             end
+           end
+           ix(kmn)=0
+           ord1=[ord1 kmn]
+         end
+         r(ord1)=r
+         dist=max(abs(racines(:,nr)-r))/nrm
+         if dist <smax then
+           point=%t,
+           ord(ord1)=ord
+         else
+           k=k-pas,pas=pas/2.5
+         end
     end
     if dist<smin then
       //KToo small step
@@ -132,9 +132,11 @@ function evans(n,d,kmax)
     a.title.text=_("Evans root locus");
     a.x_label.text=_("Real axis");
     a.y_label.text=_("Imaginary axis");
+    axes.clip_state = "clipgrf";
   else //enlarge the boundaries
     a.data_bounds=[min(a.data_bounds(1,:),[rect(1) rect(2)]);
                    max(a.data_bounds(2,:),[rect(3) rect(4)])];
+
   end
   if nroots<>[] then
     xpoly(real(nroots),imag(nroots))
@@ -150,7 +152,6 @@ function evans(n,d,kmax)
     legs=[legs;_("open loop poles")]
     lhandle=[lhandle; e];
   end
-
   dx=max(abs(xmax-xmin),abs(ymax-ymin));
   //plot the zeros locations
 
@@ -177,14 +178,12 @@ function evans(n,d,kmax)
       e=gce();
       legs=[legs;_("asymptotic directions")]
       lhandle=[lhandle; e];
-      axes = gca();
-      axes.clip_state = "clipgrf";
-      for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
 
-      axes.clip_state = "off";
+      a.clip_state = "clipgrf";
+      for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
+      //      a.clip_state = "off";
     end
   end;
-
 
   [n1,n2]=size(racines);
 
@@ -201,7 +200,6 @@ function evans(n,d,kmax)
 
   //draw the root locus
   xpolys(real(racines)',imag(racines)',cols)
-
   //set info for datatips
   E=gce();
 
@@ -217,6 +215,7 @@ function evans(n,d,kmax)
     warning(msprintf(gettext("%s: Curve truncated to the first %d discretization points.\n"),"evans",nptmax))
   end
 endfunction
+
 function str=formatEvansTip(curve,pt,index)
 //this function is called by the datatip mechanism to format the tip
 //string for the evans root loci curves

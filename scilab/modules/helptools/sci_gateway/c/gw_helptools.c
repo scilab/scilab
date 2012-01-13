@@ -21,15 +21,33 @@
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{NULL, ""}, // buildDoc
 	{NULL, ""} // buildDocv2
 };
+
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
-	return 0;
+    Rhs = Max(0, Rhs);
+
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "helptools");
+        return 0;
+    }
+
+    if (!loadedDep)
+    {
+        loadOnUseClassPath("documentationGeneration");
+        loadedDep = TRUE;
+    }
+
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/

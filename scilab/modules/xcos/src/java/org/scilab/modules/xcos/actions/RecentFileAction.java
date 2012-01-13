@@ -37,133 +37,142 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
  * 
  * This class doesn't follow standard action implementation.
  */
-public final class RecentFileAction extends DefaultAction implements PropertyChangeListener {
-	/** Name of the action */
-	public static final String NAME = "";
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = 0;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
-	
-	private static final Map<URI, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URI, RecentFileAction>();
+public final class RecentFileAction extends DefaultAction implements
+        PropertyChangeListener {
+    /** Name of the action */
+    public static final String NAME = "";
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = 0;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	private File recentFile;
-	private MenuItem menu;
+    private static final Map<URI, RecentFileAction> INSTANCE_REGISTRY = new HashMap<URI, RecentFileAction>();
 
-	/**
-	 * @param file new recent file
-	 */
-	private RecentFileAction(File file) {
-		super(null);
-		recentFile = file;
-	}
-	
-	/**
-	 * @param menu the menu to set
-	 */
-	private void setMenu(MenuItem menu) {
-		this.menu = menu;
-	}
-	
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Xcos.getInstance().open(recentFile);
-	};
+    private File recentFile;
+    private MenuItem menu;
 
-	/**
-	 * @param file new recent file
-	 * @return menu item
-	 */
-	public static MenuItem createMenu(URL file) {
-		URI fileURI;
-		File f;
-		try {
-			fileURI = file.toURI();
-			f = new File(fileURI);
-		} catch (URISyntaxException e) {
-			LogFactory.getLog(RecentFileAction.class).error(e);
-			return null;
-		}
-		
-		RecentFileAction action = INSTANCE_REGISTRY.get(fileURI);
-		if (action == null) {
-			action = new RecentFileAction(f);
-		}
-		
-		ConfigurationManager manager = ConfigurationManager.getInstance();
-		manager.addPropertyChangeListener(ConfigurationConstants.RECENT_FILES_CHANGED, action);
-		
-		MenuItem m = ScilabMenuItem.createMenuItem();
-		m.setCallback(action);
-		m.setText(f.getName());
-		
-		action.setMenu(m);
-		return m;
-	}
+    /**
+     * @param file
+     *            new recent file
+     */
+    private RecentFileAction(File file) {
+        super(null);
+        recentFile = file;
+    }
 
-	/**
-	 * Update the file association when it has been moved on the configuration 
-	 * @param evt the event data
-	 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
-	 */
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		assert evt.getPropertyName().equals(ConfigurationConstants.RECENT_FILES_CHANGED);
-		
-		/*
-		 * This is the case where a new menu will be created.
-		 * That's not our job there.
-		 */
-		if (evt.getOldValue() == null) {
-			return;
-		}
-		
-		/*
-		 * Create URL instance;
-		 */
-		final String oldURL = ((DocumentType) evt.getOldValue()).getUrl();
-		final String newURL = ((DocumentType) evt.getNewValue()).getUrl();
-		
-		URL old;
-		URL current;
-		try {
-			old = new URL(oldURL);
-			current = recentFile.toURI().toURL();
-		} catch (MalformedURLException e) {
-			LogFactory.getLog(RecentFileAction.class).error(e);
-			return;
-		}
-		
-		/*
-		 * Return when it is not our associated file.
-		 */
-		if (!current.sameFile(old)) {
-			return;
-		}
-		
-		/*
-		 * Our job then
-		 */
-		try {
-			URL newUrl = new URL(newURL);
-			final URI newURI = newUrl.toURI();
-			
-			recentFile = new File(newURI);
-			menu.setText(recentFile.getName());
-			
-			INSTANCE_REGISTRY.remove(old.toURI());
-			INSTANCE_REGISTRY.put(newURI, this);
-			
-		} catch (URISyntaxException e) {
-			LogFactory.getLog(RecentFileAction.class).error(e);
-		} catch (MalformedURLException e) {
-			LogFactory.getLog(RecentFileAction.class).error(e);
-		}
-	}
+    /**
+     * @param menu
+     *            the menu to set
+     */
+    private void setMenu(MenuItem menu) {
+        this.menu = menu;
+    }
+
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Xcos.getInstance().open(recentFile);
+    };
+
+    /**
+     * @param file
+     *            new recent file
+     * @return menu item
+     */
+    public static MenuItem createMenu(URL file) {
+        URI fileURI;
+        File f;
+        try {
+            fileURI = file.toURI();
+            f = new File(fileURI);
+        } catch (URISyntaxException e) {
+            LogFactory.getLog(RecentFileAction.class).error(e);
+            return null;
+        }
+
+        RecentFileAction action = INSTANCE_REGISTRY.get(fileURI);
+        if (action == null) {
+            action = new RecentFileAction(f);
+        }
+
+        ConfigurationManager manager = ConfigurationManager.getInstance();
+        manager.addPropertyChangeListener(
+                ConfigurationConstants.RECENT_FILES_CHANGED, action);
+
+        MenuItem m = ScilabMenuItem.createMenuItem();
+        m.setCallback(action);
+        m.setText(f.getName());
+
+        action.setMenu(m);
+        return m;
+    }
+
+    /**
+     * Update the file association when it has been moved on the configuration
+     * 
+     * @param evt
+     *            the event data
+     * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
+     */
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        assert evt.getPropertyName().equals(
+                ConfigurationConstants.RECENT_FILES_CHANGED);
+
+        /*
+         * This is the case where a new menu will be created. That's not our job
+         * there.
+         */
+        if (evt.getOldValue() == null) {
+            return;
+        }
+
+        /*
+         * Create URL instance;
+         */
+        final String oldURL = ((DocumentType) evt.getOldValue()).getUrl();
+        final String newURL = ((DocumentType) evt.getNewValue()).getUrl();
+
+        URL old;
+        URL current;
+        try {
+            old = new URL(oldURL);
+            current = recentFile.toURI().toURL();
+        } catch (MalformedURLException e) {
+            LogFactory.getLog(RecentFileAction.class).error(e);
+            return;
+        }
+
+        /*
+         * Return when it is not our associated file.
+         */
+        if (!current.sameFile(old)) {
+            return;
+        }
+
+        /*
+         * Our job then
+         */
+        try {
+            URL newUrl = new URL(newURL);
+            final URI newURI = newUrl.toURI();
+
+            recentFile = new File(newURI);
+            menu.setText(recentFile.getName());
+
+            INSTANCE_REGISTRY.remove(old.toURI());
+            INSTANCE_REGISTRY.put(newURI, this);
+
+        } catch (URISyntaxException e) {
+            LogFactory.getLog(RecentFileAction.class).error(e);
+        } catch (MalformedURLException e) {
+            LogFactory.getLog(RecentFileAction.class).error(e);
+        }
+    }
 }

@@ -23,6 +23,7 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static DynLibHandle hLibJVM = NULL;
+static BOOL bSymbolsLoaded = FALSE;
 /*--------------------------------------------------------------------------*/
 typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args);
 typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
@@ -60,6 +61,7 @@ BOOL FreeDynLibJVM(void)
             ptr_JNI_CreateJavaVM = NULL;
             ptr_JNI_GetCreatedJavaVMs = NULL;
             hLibJVM = NULL;
+            bSymbolsLoaded = FALSE;
             return TRUE;
         }
     }
@@ -69,12 +71,19 @@ BOOL FreeDynLibJVM(void)
 BOOL LoadFunctionsJVM(char *filedynlib)
 {
 #ifdef _MSC_VER
-    wchar_t * wcfiledynlib = to_wide_string(filedynlib);
-    if (wcfiledynlib)
+    if (filedynlib == NULL)
     {
-        hLibJVM = LoadDynLibraryW(wcfiledynlib);
-        FREE(wcfiledynlib);
-        wcfiledynlib = NULL;
+        hLibJVM = LoadDynLibraryW(L"jvm.dll");
+    }
+    else
+    {
+        wchar_t * wcfiledynlib = to_wide_string(filedynlib);
+        if (wcfiledynlib)
+        {
+            hLibJVM = LoadDynLibraryW(wcfiledynlib);
+            FREE(wcfiledynlib);
+            wcfiledynlib = NULL;
+        }
     }
 #else
     #ifdef __APPLE__
@@ -84,7 +93,14 @@ BOOL LoadFunctionsJVM(char *filedynlib)
     */
     hLibJVM = LoadDynLibrary(NULL);
     #else
-    hLibJVM = LoadDynLibrary(filedynlib);
+    if (filedynlib == NULL)
+    {
+        hLibJVM = LoadDynLibrary(NULL);
+    }
+    else
+    {
+        hLibJVM = LoadDynLibrary(filedynlib);
+    }
     #endif
 #endif
 
@@ -94,7 +110,11 @@ BOOL LoadFunctionsJVM(char *filedynlib)
         ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" );
         ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" );
 
-        if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) return TRUE;
+        if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) 
+        {
+            bSymbolsLoaded = TRUE;
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -132,5 +152,10 @@ char *getJniErrorFromStatusCode(long status){
             return _("Undefined error code in the JNI. Weird problem");
             break;
     }
+}
+/*--------------------------------------------------------------------------*/
+BOOL hasJvmSymbolsLoaded(void)
+{
+    return bSymbolsLoaded;
 }
 /*--------------------------------------------------------------------------*/

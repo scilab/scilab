@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: de\n"
 
 #, c-format
@@ -985,6 +985,14 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "Scilab Version Information"
 
+msgid ""
+"No available console !\n"
+"Please use STD mode."
+msgstr ""
+
+msgid "Empty tab"
+msgstr ""
+
 msgid "Scilab Console"
 msgstr "Scilab-Konsole"
 
@@ -1129,14 +1137,3 @@ msgstr "Größe"
 
 msgid "Bytes"
 msgstr "Bytes"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-#~ msgstr ""
-#~ "%s: falsches Eingangsargument #%d: Pfad zu einer Scilab Skript Datei "
-#~ "erwartet.\n"
-
-#, c-format
-#~ msgid "Using %s elements ouf of %s"
-#~ msgstr "Verwende %s aus %s Elementen"

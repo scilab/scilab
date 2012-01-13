@@ -85,7 +85,7 @@ modulename=localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(mydatadir)
-libscilocalization_la_root_DATA =  license.txt 
+libscilocalization_la_root_DATA =  license.txt
 
 
 ####localization : init scripts ####

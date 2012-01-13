@@ -13,14 +13,10 @@
 #define __TYPES_COMPARAISON_LT_LE_HXX__
 
 #include "dynlib_operations.hxx"
+#include "generic_operations.hxx"
 #include "double.hxx"
 #include "sparse.hxx"
 #include "bool.hxx"
-
-EXTERN_OP types::InternalType *GenericLess(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
-EXTERN_OP types::InternalType *GenericLessEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
-EXTERN_OP types::InternalType *GenericGreater(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
-EXTERN_OP types::InternalType *GenericGreaterEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 int DoubleLessDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Bool** _pOut);
 int DoubleLessEqualDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Bool** _pOut);

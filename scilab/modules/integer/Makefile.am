@@ -141,8 +141,13 @@ libsciinteger_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
                 -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
 noinst_LTLIBRARIES = libsciinteger-algo.la
+else
+noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
+endif
+
 
 libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

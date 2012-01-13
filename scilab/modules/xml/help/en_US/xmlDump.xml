@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      str = xmlDump(xmlObj)
+      str = xmlDump(xmlObj [, indent])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -34,6 +34,12 @@
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>indent</term>
+        <listitem>
+          <para>indent, a boolean</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>str</term>
         <listitem>
           <para>str, a matrix of strings</para>
@@ -43,7 +49,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Dump a XML object. The objects which are dumpable are XMLDoc, XMLElement or XMLList.</para>
+    <para>Dump a XML object. The objects which are dumpable are XMLDoc, XMLElement or XMLList. If indent is false (by default it is true), no indentation and carriage return will be added.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,13 +58,16 @@
     // Dump a document
     xmlDump(doc)
 
+    // Dump a document without indentation
+    xmlDump(doc, %f)
+
     // Dump a node list
     xmlDump(doc.root.children)
 
     //Dump an element
     xmlDump(doc.root.children(1))
 
-    xmlClose(doc);
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -72,5 +81,14 @@
   <refsection>
     <title>Author</title>
     <para>Calixte DENIZET</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

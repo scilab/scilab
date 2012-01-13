@@ -1,5 +1,5 @@
 #
- Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 #
@@ -15,73 +15,75 @@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 
+
 SUBDIRS = \
+prebuildjava \
 threads \
 operations \
 output_stream \
 arnoldi \
 elementary_functions \
-matio \
 functions_manager \
-string \
-api_scilab \
-dynamic_link \
 fileio \
+mexlib \
+functions \
+parameters \
+boolean \
+cacsd \
+signal_processing \
+core \
+call_scilab \
+api_scilab \
+data_structures \
+differential_equations \
+double \
+elementary_functions \
+integer \
+intersci \
+io \
+linear_algebra \
+localization \
+polynomials \
+special_functions \
+time \
+windows_tools \
+sparse \
+completion \
 history_manager \
+output_stream \
+string \
+hdf5 \
+fftw \
+statistics \
+dynamic_link \
+console \
+arnoldi \
 spreadsheet \
 tclsci \
-localization \
 commons \
 jvm \
 action_binding \
 renderer \
-completion \
-console \
 graphic_export \
 gui \
 graphics \
 optimization \
 symbolic \
 randlib \
-statistics \
-special_functions \
-interpolation \
-linear_algebra \
-integer \
-data_structures \
-mexlib \
-differential_equations \
-cacsd \
-polynomials \
-boolean \
-double \
-io \
-intersci \
-signal_processing \
-core \
-call_scilab \
 interpolation \
 sound \
-time \
-randlib \
-sparse \
-windows_tools \
-functions \
 overloading \
-maple2scilab \
 m2sci \
-texmacs \
 development_tools \
 compatibility_functions \
 helptools \
-fftw \
 umfpack \
 demo_tools \
 genetic_algorithms \
 simulated_annealing \
 parameters \
+matio \
 atoms \
-types \
 hdf5 \
 graph \
 xcos \
@@ -94,13 +96,9 @@ parallel \
 modules_manager \
 ui_data \
 history_browser \
-xml
-
-#umfpack
-
-#if MPI
-#SUBDIRS += mpi
-#endif
+xml \
+types \
+libscilab-cli
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -121,12 +119,12 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab.la libscilab-cli.la
+pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES =
-libscilab_cli_la_SOURCES =
+#libscilab_cli_la_SOURCES =
 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
+#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
@@ -171,8 +169,10 @@ if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
 # HDF5 is here because it needs the JVM (see bug #5481)
 endif
+
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
+	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/parameters/libsciparameters.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -183,7 +183,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
@@ -198,7 +197,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/ast/libsciast.la \
@@ -217,10 +215,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/xml/libscixml.la
 
-# Temporary workaround to make the linker happy. signal_processing and
-# scimatio should moved to ENGINE_LIBS_DYNAMIC_LOAD
-
-
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
@@ -237,11 +231,14 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+libscilab_la_LIBADD = $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
 if GUI
 libscilab_la_LIBADD += $(GUI_LIBS)
@@ -250,13 +247,11 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 if ENABLE_STATIC
 libscilab_la_LIBADD += $(ALL_LIBS)
 
 endif
-
-#if MPI
-#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
-#endif

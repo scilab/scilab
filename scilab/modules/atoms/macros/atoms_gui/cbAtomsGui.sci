@@ -502,18 +502,18 @@ function updateStatusBar(status,msg)
     select status
         case "warning" then
             fontcolor = "#ff0000"; // red
-            icon      = "software-update-available.png";
+            icon      = "status/software-update-available.png";
         case "success" then
             fontcolor = "#009a1b"; // dark green
-            icon      = "emblem-default.png";
+            icon      = "emblems/emblem-default.png";
         case "info" then
             fontcolor = "#7d7d7d"; // dark green
-            icon      = "dialog-information.png";
+            icon      = "status/dialog-information.png";
     end
 
     str =       "<html>";
     str = str + "<table><tr>";
-    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/"+icon+""" /></td>";
+    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/"+icon+""" /></td>";
     str = str + "<td><div style=""color:"+fontcolor+";font-style:italic;"">"+msg+"</div></td>";
     str = str + "</tr></table>";
     str = str + "</html>";

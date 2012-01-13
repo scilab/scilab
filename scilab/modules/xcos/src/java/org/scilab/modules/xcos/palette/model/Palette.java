@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -44,66 +44,66 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Palette")
 @XmlSeeAlso({ Custom.class, PreLoaded.class, PreLoaded.Dynamic.class })
 public abstract class Palette extends PaletteNode {
-	
-	/*
-	 * TreeNode method implementation
-	 */
 
-	/**
-	 * @return null
-	 * @see javax.swing.tree.TreeNode#children()
-	 */
-	@Override
-	public Enumeration<Object> children() {
-		return null;
-	}
+    /*
+     * TreeNode method implementation
+     */
 
-	/**
-	 * @return false
-	 * @see javax.swing.tree.TreeNode#getAllowsChildren()
-	 */
-	@Override
-	public boolean getAllowsChildren() {
-		return false;
-	}
+    /**
+     * @return null
+     * @see javax.swing.tree.TreeNode#children()
+     */
+    @Override
+    public Enumeration<Object> children() {
+        return null;
+    }
 
-	/**
-	 * @param childIndex
-	 *            not used
-	 * @return null
-	 * @see javax.swing.tree.TreeNode#getChildAt(int)
-	 */
-	@Override
-	public TreeNode getChildAt(int childIndex) {
-		return null;
-	}
+    /**
+     * @return false
+     * @see javax.swing.tree.TreeNode#getAllowsChildren()
+     */
+    @Override
+    public boolean getAllowsChildren() {
+        return false;
+    }
 
-	/**
-	 * @return 0
-	 * @see javax.swing.tree.TreeNode#getChildCount()
-	 */
-	@Override
-	public int getChildCount() {
-		return 0;
-	}
+    /**
+     * @param childIndex
+     *            not used
+     * @return null
+     * @see javax.swing.tree.TreeNode#getChildAt(int)
+     */
+    @Override
+    public TreeNode getChildAt(int childIndex) {
+        return null;
+    }
 
-	/**
-	 * @param node
-	 *            not used
-	 * @return 0
-	 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
-	 */
-	@Override
-	public int getIndex(TreeNode node) {
-		return 0;
-	}
+    /**
+     * @return 0
+     * @see javax.swing.tree.TreeNode#getChildCount()
+     */
+    @Override
+    public int getChildCount() {
+        return 0;
+    }
 
-	/**
-	 * @return true
-	 * @see javax.swing.tree.TreeNode#isLeaf()
-	 */
-	@Override
-	public boolean isLeaf() {
-		return true;
-	}
+    /**
+     * @param node
+     *            not used
+     * @return 0
+     * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
+     */
+    @Override
+    public int getIndex(TreeNode node) {
+        return 0;
+    }
+
+    /**
+     * @return true
+     * @see javax.swing.tree.TreeNode#isLeaf()
+     */
+    @Override
+    public boolean isLeaf() {
+        return true;
+    }
 }

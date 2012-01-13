@@ -15,21 +15,11 @@
 #define __TYPES_ADD_H__
 
 #include "dynlib_operations.hxx"
-#include "internal.hxx"
+#include "generic_operations.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
-
-/*
-** Try to find a good algorithm to perform addition between those 2 datatypes.
-** If none is find, this will return NULL. Overload can then be performed by caller.
-** @param _pLeftOperand, the left addition operand
-** @param _pRightOperand, the rightt addition operand
-** @return addition result
-**
-*/
-EXTERN_OP types::InternalType* GenericPlus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 //Double
 int AddDoubleToDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double** _pDoubleOut);

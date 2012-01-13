@@ -16,7 +16,8 @@ AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
 SUBDIRS= libs \
 	modules \
-	contrib
+	contrib \
+	desktop
 
 ACLOCAL_AMFLAGS = -I m4/
 
@@ -30,8 +31,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 		=
-scilab_cli_bin_LDFLAGS		=
+scilab_bin_LDFLAGS 	    =
+scilab_cli_bin_LDFLAGS  =
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -42,21 +43,12 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = \
-    $(top_builddir)/modules/threads/libscithreads.la \
-    $(top_builddir)/modules/core/libscicore.la \
-    $(top_builddir)/modules/completion/libscicompletion.la \
-    $(top_builddir)/modules/localization/libscilocalization.la \
-    $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-    $(top_builddir)/modules/io/libsciio.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/types/libscitypes.la \
-    $(LTLIBINTL)
+COMMON_LIBS = $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
+SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
-COMMON_CPPFLAGS = \ 
+COMMON_CPPFLAGS = \
     -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/parse/includes/ \
@@ -83,7 +75,7 @@ if IS_MACOSX
 scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 endif
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
 
 scilab_bin_CPPFLAGS		= $(COMMON_CPPFLAGS)
 
@@ -93,7 +85,7 @@ scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
 
 scilab_cli_bin_CPPFLAGS	= -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 
@@ -166,25 +158,8 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/desktop/
-icons_DATA = $(top_srcdir)/desktop/scilab.png \
-$(top_srcdir)/desktop/puffin_128.png \
-$(top_srcdir)/desktop/puffin_256.png \
-$(top_srcdir)/desktop/puffin_32.png \
-$(top_srcdir)/desktop/puffin_48.png \
-$(top_srcdir)/desktop/puffin.png \
-$(top_srcdir)/desktop/puffin.icns \
-$(top_srcdir)/desktop/scilab.icns
-
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
-
-# Desktop file
-# Note that here, it is datadir and NOT pkgdatadir
-desktopdir = $(datadir)/applications
-desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
-$(top_srcdir)/desktop/scilab-cli.desktop \
-$(top_srcdir)/desktop/scilab.desktop
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
@@ -197,7 +172,7 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 javadoc:
 	$(JAVADOC) -noindex -nohelp -nonavbar -notree \
 	-d $(top_builddir)/modules/javasci/javadoc \
-	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
+	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java::$(top_srcdir)/modules/localization/src/java \
 	org.scilab.modules.javasci org.scilab.modules.types
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
@@ -373,14 +348,16 @@ localization:
 
 localization-status:
 	@for LOCALE in $(ALL_LINGUAS_DOC); do \
-		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
-		if test ! -d $$PATHTO; then \
-			echo "        Creating $$PATHTO"; \
-			mkdir -p $$PATHTO; \
+		if test "$$LOCALE" != "en_US"; then \
+			PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+			if test ! -d $$PATHTO; then \
+				echo "        Creating $$PATHTO"; \
+				mkdir -p $$PATHTO; \
+			fi; \
+			echo "Building status for $$LOCALE"; \
+			echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+			SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 		fi; \
-		echo "Building status for $$LOCALE"; \
-		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
-		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 	done;
 
 endif

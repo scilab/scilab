@@ -1,4 +1,4 @@
- Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
@@ -97,11 +97,11 @@ libscioutput_stream_la_CPPFLAGS=  \
     -I$(top_srcdir)/libs/dynamiclibrary/includes \
     $(EIGEN_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la
-
-if GUI
-USEANT=1
+else
+noinst_LTLIBRARIES = libscioutput_stream-algo.la libscioutput_stream.la
 endif
 
 libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)

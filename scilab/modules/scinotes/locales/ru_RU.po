@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-13 16:14+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2011-10-27 09:21+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ru\n"
 
 #, c-format
@@ -61,7 +61,7 @@ msgid "Open"
 msgstr "Открыть"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Открыть последние"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Рабочие каталоги;Добавить каталог;Удалить последний каталог"
@@ -196,7 +196,7 @@ msgid "Code Navigator"
 msgstr "Обозреватель кода"
 
 msgid "Format"
-msgstr ""
+msgstr "Формат"
 
 msgid "Set Colors ..."
 msgstr "Цвета ..."
@@ -235,7 +235,7 @@ msgid "Uncomment Selection"
 msgstr "Удалить комментарии"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Сменить регистр"
 
 msgid "Make Selection Lowercase"
 msgstr "Изменить на строчные буквы"
@@ -262,13 +262,13 @@ msgid "Line Endings"
 msgstr "Конец строки"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Включить автозавершение для"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Нумерация строк;Нет;Абсолютная;Относительная"
@@ -893,12 +893,3 @@ msgstr "Выберите базовый каталог для поиска"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» не установлен.\n"
-
-#~ msgid "Preferences"
-#~ msgstr "Настройки"
-
-#~ msgid "Auto-completion on if, function, ..."
-#~ msgstr "Автозавершение для if, function, ..."
-
-#~ msgid "Auto-completion on (, [, ..."
-#~ msgstr "Автозавершение для (, [, ..."

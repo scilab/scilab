@@ -83,7 +83,6 @@ public final class Jxgetmouse {
 				ClickInfos.getInstance().init();
 				ClickInfos.getInstance().wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

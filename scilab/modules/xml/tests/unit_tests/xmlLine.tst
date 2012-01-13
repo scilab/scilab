@@ -1,0 +1,29 @@
+// ===========================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
+//
+//  This file is distributed under the same license as the Scilab package.
+// ===========================================================================
+
+XMLStream="<?xml version=""1.0""?>";
+XMLStream=XMLStream+"<root attr=""value""><a>hello</a>";
+XMLStream=XMLStream+"<b id=""123""> world</b></root>";
+
+fd_w = mopen(TMPDIR+'/plop.xml','w+');
+mputl(XMLStream, fd_w);
+mclose(fd_w);
+
+doc2 = xmlRead("TMPDIR/plop.xml");
+assert_checkequal(doc2.root.line,1);
+assert_checkequal(doc2.root.children(1).line,1);
+assert_checkequal(doc2.root.children(2).line,1);
+xmlDelete(doc2);
+
+doc3 = xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
+assert_checkequal(doc3.root.line,3);
+assert_checkequal(doc3.root.children(1).line,4);
+assert_checkequal(doc3.root.children(2).line,10);
+assert_checkequal(doc3.root.children(3).line,16);
+assert_checkequal(doc3.root.children(3).children(1).line,17);
+assert_checkequal(doc3.root.children(3).children(2).line,18);
+xmlDelete(doc3);

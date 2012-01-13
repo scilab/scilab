@@ -23,6 +23,8 @@ checkstyle.jar=@CHECKSTYLE@
 
 testng.jar=@TESTNG@
 
+jcommander.jar=@JCOMMANDER@
+
 qdox.jar=@QDOX@
 
 bsh.jar=@BSH@
@@ -99,4 +101,10 @@ library.history_browser.name=org.scilab.modules.history_browser.jar
 
 library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
 library.output_stream.name=org.scilab.modules.output_stream.jar
+
+build_hdf5=@HDF5_ENABLE@
+
+build_javasci=@JAVASCI_ENABLE@
+
+build_xcos=@xcos_ENABLE@
 

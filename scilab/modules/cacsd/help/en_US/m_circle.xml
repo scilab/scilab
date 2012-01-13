@@ -49,10 +49,10 @@ m_circle(gain)</synopsis>
     plane (Re,Im).</para>
     <para>The default value for <literal>gain</literal> is:</para>
     <para>
-    <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+      <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
     </para>
     <para><literal>m_circle</literal> is used with <literal>nyquist</literal>.</para>
-   <para>This function is superseeded by the <link linkend="hallchart">hallchart</link> function.</para>
+    <para>This function is superseded by the <link linkend="hallchart">hallchart</link> function.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +70,7 @@ m_circle([-8 -6 -4]);
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="nyquist">nyquist</link>

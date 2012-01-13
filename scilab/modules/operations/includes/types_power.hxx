@@ -13,20 +13,19 @@
 #ifndef __TYPES_POWER_HXX__
 #define __TYPES_POWER_HXX__
 
-#include "dynlib_operations.hxx"
+#include "generic_operations.hxx"
 #include "internal.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 
+// FIXME : remove using namespace.
 using namespace types;
 
 //power operations
-EXTERN_OP InternalType* GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
 int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut);
 
 //dot power operations
-EXTERN_OP InternalType* GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
 
 extern "C"

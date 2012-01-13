@@ -15,6 +15,22 @@
 
 @SET_MAKE@
 
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
+# Copyright (C) INRIA   - 2007 - Vincent COUVERT
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# Copyright (C) DIGITEO - 2011 - Allan CORNET
+# Copyright (C) DIGITEO - 2011 - Antoine ELIAS
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -238,6 +254,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -247,6 +264,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -312,6 +330,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -486,19 +505,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
-# Copyright (C) INRIA   - 2007 - Vincent COUVERT
-# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# Copyright (C) DIGITEO - 2011 - Allan CORNET
-# Copyright (C) DIGITEO - 2011 - Antoine ELIAS
-#
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-#
 
 #### Target ######
 modulename = console
@@ -564,26 +570,22 @@ libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
 	src/c/others/zzledt.c src/c/others/gotoxy_nw.c \
 	src/c/others/clrscr_nw.c src/c/prompt.c src/c/promptecho.c \
 	$(am__append_4)
-libsciconsole_disable_la_CFLAGS = \
-    -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/fileio/src/c/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/ 
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/history_manager/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/core/includes \
+				-I$(top_srcdir)/modules/completion/includes \
+				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/fileio/src/c/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 
 
 # Includes need for the compilation
@@ -643,10 +645,19 @@ libsciconsole_disable_la_CPPFLAGS = \
 # Includes need for the compilation
 libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/string/includes $(am__append_5)
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/fileio/src/c/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes $(am__append_5)
 
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole-disable.la $(am__append_6)
@@ -1570,20 +1581,6 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 	uninstall-libsciconsole_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-
-#
- Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/fileio/src/c/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

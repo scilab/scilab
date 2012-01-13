@@ -43,6 +43,7 @@ int sci_isascii(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -50,6 +51,7 @@ int sci_isascii(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -78,6 +80,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -88,6 +91,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -108,6 +112,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -136,6 +141,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -156,6 +162,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -177,6 +184,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 			}
 
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -212,6 +220,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 
 			freeArrayOfWideString(pwcStVarOne, m1 * n1);
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -249,6 +258,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 

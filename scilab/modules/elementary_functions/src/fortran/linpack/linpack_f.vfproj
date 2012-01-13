@@ -101,7 +101,6 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<File RelativePath=".\hhdml.f"/>
 		<File RelativePath=".\icopy.f"/>
 		<File RelativePath=".\pade.f"/>
-		<File RelativePath=".\spofa.f"/>
 		<File RelativePath=".\util.f"/>
 		<File RelativePath=".\wcopy.f"/>
 		<File RelativePath=".\wgeco.f"/>

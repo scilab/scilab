@@ -77,4 +77,5 @@ testControlExp_SOURCES 	= src/cpp/testControlExp.cpp
 testControlExp_CXXFLAGS = $(check_INCLUDES)
 testControlExp_LDADD	= $(check_LDADD)
 
+include $(top_srcdir)/Makefile.incl.am
 

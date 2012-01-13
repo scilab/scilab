@@ -155,7 +155,6 @@ LINPACK_SOURCES = \
     src/fortran/linpack/dqrsl.f \
     src/fortran/linpack/dqrsm.f \
     src/fortran/linpack/hhdml.f \
-    src/fortran/linpack/spofa.f \
     src/fortran/linpack/wgeco.f \
     src/fortran/linpack/wgefa.f \
     src/fortran/linpack/wgesl.f \
@@ -275,8 +274,7 @@ ELEMENTARY_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wsqrt.f \
     src/fortran/israt.f \
     src/fortran/rat.f \
-    src/fortran/old_pythag.f \
-    src/fortran/sdot.f
+    src/fortran/old_pythag.f
 
 ELEMENTARY_FUNCTIONS_CPP_SOURCES = \
     src/cpp/getmode.cpp
@@ -386,8 +384,7 @@ EISPACK_SOURCES = \
 	src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
-noinst_LTLIBRARIES = \
-	libdummy-elementary_functions.la
+noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
 libdummy_elementary_functions_la_SOURCES = \
 	src/fortran/eispack/hqror2.f \
@@ -445,8 +442,14 @@ libscielementary_functions_algo_la_CFLAGS = \
 libscielementary_functions_algo_la_CPPFLAGS = \
     $(libscielementary_functions_la_CPPFLAGS)
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscielementary_functions.la
 noinst_LTLIBRARIES += libscielementary_functions-algo.la
+else
+noinst_LTLIBRARIES += libscielementary_functions-algo.la libscielementary_functions.la
+endif
+
+
 
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

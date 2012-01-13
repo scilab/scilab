@@ -202,6 +202,7 @@ scilab -l ja_JP
         <term>--texmacs</term>
         <listitem>
           <para>This option is reserved for TeXMacs.</para>
+          <para>Please install ATOMS module atomsInstall('texmacs')</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -283,7 +284,7 @@ scilab -l ja_JP
         <term>-verbose:jni / -Xcheck:jni</term>
         <listitem>
           <para>These options enable more checks and output from the JNI
-          calls. These options are usefull in case of debugging and are
+          calls. These options are useful in case of debugging and are
           disabled by default since they decreases performances.</para>
         </listitem>
       </varlistentry>

@@ -21,7 +21,12 @@ libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/string/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciparameters.la
+else
+noinst_LTLIBRARIES = libsciparameters.la
+endif
+
 
 libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

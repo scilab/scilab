@@ -1,6 +1,6 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - ClÃ©ment DAVID
+// Copyright (C) 2010 - DIGITEO - Clément DAVID
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 //
 // This file must be used under the terms of the CeCILL.
@@ -15,7 +15,7 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
     message = "";
 
     if typeof(interfFunctionName) <> "string" | size(interfFunctionName) <> [1, 1]
-        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidate_blockSet", 1))
+        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidateBlockSet", 1))
     end
 
     // Check function is defined
@@ -46,20 +46,20 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
             vSize = size(labelsv, '*');
             hSize = size(labelsh, '*');
             if size(default_inputs_vector) <> [vSize, hSize] then
-                error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
+                error(999, sprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "x_mdialog", 4, vSize, hSize));
             end;
             result = default_inputs_vector;
         else
-            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
-        end;
+            error(999, sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "x_mdialog", 3, 4));
+        end
     endfunction
 
     // Stubbing the x_dialog method
     // checking it's arguments size only
     function [result]=x_dialog(labels, default_inputs_vector)
-        if(or(size(labels) <> size(default_inputs_vector))) then
-            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
-        end;
+        if (or(size(labels) <> size(default_inputs_vector))) then
+           error(999, sprintf(_("%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"), "x_dialog", 1, 2));
+        end
         result = default_inputs_vector;
     endfunction
 
@@ -87,8 +87,10 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
 
     ierr=execstr("scs_m = "+interfFunctionName+"(""set"", scs_m, [])",'errcatch')
     if ierr <> 0
+        errmsg = lasterror();
         status = %f;
         message = sprintf(_("Block configuration with function [%s] failed."), interfFunctionName);
+        message = [message;errmsg];
         return
     end
 

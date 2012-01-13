@@ -20,6 +20,8 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include <stdlib.h>
+#include "core_math.h"
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
@@ -65,11 +67,11 @@ SCICOS_BLOCKS_IMPEXP void minmax(scicos_block *block,int flag)
 				{
 					if(block->ipar[0]==1)
 					{
-						block->outptr[0][i]=min(block->inptr[0][i],block->inptr[1][i]);
+						block->outptr[0][i]=Min(block->inptr[0][i],block->inptr[1][i]);
 					} 
 					else 
 					{
-						block->outptr[0][i]=max(block->inptr[0][i],block->inptr[1][i]);
+						block->outptr[0][i]=Max(block->inptr[0][i],block->inptr[1][i]);
 					}
 				}
 				else

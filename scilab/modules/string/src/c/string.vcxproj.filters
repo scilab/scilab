@@ -92,6 +92,9 @@
     <ClCompile Include="os_wcstok.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stringToDouble.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convstr.h">

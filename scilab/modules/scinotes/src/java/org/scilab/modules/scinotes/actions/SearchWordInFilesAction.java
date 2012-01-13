@@ -13,20 +13,18 @@
 package org.scilab.modules.scinotes.actions;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -50,27 +48,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.ScilabLexer;
-import org.scilab.modules.scinotes.ScilabLexerConstants;
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.SearchFile;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * SearchWordInFilesAction Class
@@ -129,6 +119,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     /**
      * doAction
      */
+    @Override
     public void doAction() {
         current = this;
         openSearchWindow();
@@ -197,6 +188,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     /**
      * {@inheritedDoc}
      */
+    @Override
     public void windowGainedFocus(WindowEvent e) {
         if (e.getWindow() == getEditor().getSwingParentWindow()) {
             mainFrame.setAlwaysOnTop(true);
@@ -206,6 +198,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     /**
      * {@inheritedDoc}
      */
+    @Override
     public void windowLostFocus(WindowEvent e) {
         if (e.getOppositeWindow() != mainFrame && e.getOppositeWindow() != getEditor().getSwingParentWindow()) {
             mainFrame.setAlwaysOnTop(false);
@@ -227,12 +220,13 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         mainFrame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     closeWindow();
                 }
             });
         mainFrame.setTitle(SciNotesMessages.SEARCHINFILES);
-        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
+        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
 
         getEditor().getSwingParentWindow().addWindowFocusListener(this);
         mainFrame.addWindowFocusListener(this);
@@ -375,56 +369,70 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         mainFrame.setContentPane(panelFrame);
 
         mainFrame.addWindowListener(new WindowListener() {
+                @Override
                 public void windowClosed(WindowEvent arg0) { }
+                @Override
                 public void windowDeiconified(WindowEvent arg0) { }
+                @Override
                 public void windowActivated(WindowEvent arg0) { }
 
+                @Override
                 public void windowClosing(WindowEvent arg0) {
                     closeWindow();
                 }
 
+                @Override
                 public void windowDeactivated(WindowEvent arg0) { }
+                @Override
                 public void windowIconified(WindowEvent arg0) { };
+                @Override
                 public void windowOpened(WindowEvent arg0) { }
             });
 
         checkWordCase.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveCaseSensitive(checkWordCase.isSelected());
                 }
             });
 
         checkFileCase.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveFileCase(checkFileCase.isSelected());
                 }
             });
 
         checkWhole.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
                 }
             });
 
         checkRecursive.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveRecursive(checkRecursive.isSelected());
                 }
             });
 
         checkRegular.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
                 }
             });
 
         checkLineByLine.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     ConfigSciNotesManager.saveLineByLine(checkLineByLine.isSelected());
                 }
             });
 
         chooseBaseDirButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
                     fileChooser.setDialogTitle(SciNotesMessages.CHOOSEBASEDIR);
@@ -442,6 +450,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             });
 
         buttonFind.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     updateCombos();
                     startSearch();
@@ -449,6 +458,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             });
 
         buttonStop.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     stopSearch();
                 }
@@ -456,6 +466,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             });
 
         buttonStop.addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
                 public void propertyChange(PropertyChangeEvent e) {
                     if (mainFrame.isVisible() && e.getPropertyName().equals(SearchFile.SEARCHDONE)) {
                         boolean newValue = (Boolean) e.getNewValue();
@@ -471,6 +482,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             });
 
         buttonClose.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     closeWindow();
                 }
@@ -478,23 +490,29 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             });
 
         comboBaseDir.addItemListener(new ItemListener() {
+                @Override
                 public void itemStateChanged(ItemEvent e) {
                     updateFindButtonStatus(true);
                 }
             });
 
         comboBaseDir.addPopupMenuListener(new PopupMenuListener() {
+                @Override
                 public void popupMenuCanceled(PopupMenuEvent e) {
                     comboBaseDirCanceled = true;
                 }
 
+                @Override
                 public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
+                @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboBaseDir.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                @Override
                 public void keyTyped(KeyEvent e) { }
+                @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         if (comboBaseDirCanceled) {
@@ -506,27 +524,34 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
                     updateFindButtonStatus(true);
                 }
 
+                @Override
                 public void keyPressed(KeyEvent e) { }
             });
 
         comboFilePattern.addItemListener(new ItemListener() {
+                @Override
                 public void itemStateChanged(ItemEvent e) {
                     updateFindButtonStatus(false);
                 }
             });
 
         comboFilePattern.addPopupMenuListener(new PopupMenuListener() {
+                @Override
                 public void popupMenuCanceled(PopupMenuEvent e) {
                     comboFilePatternCanceled = true;
                 }
 
+                @Override
                 public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
+                @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboFilePattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                @Override
                 public void keyTyped(KeyEvent e) { }
+                @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         if (comboFilePatternCanceled) {
@@ -538,21 +563,27 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
                     updateFindButtonStatus(false);
                 }
 
+                @Override
                 public void keyPressed(KeyEvent e) { }
             });
 
         comboWordPattern.addPopupMenuListener(new PopupMenuListener() {
+                @Override
                 public void popupMenuCanceled(PopupMenuEvent e) {
                     comboWordPatternCanceled = true;
                 }
 
+                @Override
                 public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
+                @Override
                 public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
             });
 
         comboWordPattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                @Override
                 public void keyTyped(KeyEvent e) { }
+                @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         if (comboWordPatternCanceled) {
@@ -573,6 +604,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
                     }
                 }
 
+                @Override
                 public void keyPressed(KeyEvent e) { }
             });
 

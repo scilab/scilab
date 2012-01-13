@@ -79,6 +79,14 @@ BOOL setlanguage(wchar_t *lang)
                 char *pstLang = wide_string_to_UTF8(lang);
                 char *pstRet = setlocale(LC_CTYPE, pstLang);
                 wchar_t *ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));
+
+                if (ret == NULL)
+                {
+                    fprintf(stderr,
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?",
+                            lang, pstRet, setlocale(LC_CTYPE, NULL));
+                }
+
                 //for gettext
                 pstRet =  setlocale(LC_MESSAGES, pstLang);
                 ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));

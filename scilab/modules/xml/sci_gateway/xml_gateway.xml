@@ -30,9 +30,9 @@
 
 -->
 <PRIMITIVE gatewayId="68" primitiveId="1" primitiveName="xmlRead" />
-<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlClose" />
+<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlDelete" />
 <PRIMITIVE gatewayId="68" primitiveId="3" primitiveName="xmlDump" />
-<PRIMITIVE gatewayId="68" primitiveId="4" primitiveName="xmlGetOpenStreams" />
+<PRIMITIVE gatewayId="68" primitiveId="4" primitiveName="xmlGetOpenDocs" />
 <PRIMITIVE gatewayId="68" primitiveId="5" primitiveName="xmlXPath" />
 <PRIMITIVE gatewayId="68" primitiveId="6" primitiveName="%XMLDoc_e" />
 <PRIMITIVE gatewayId="68" primitiveId="7" primitiveName="%XMLElem_e" />
@@ -102,4 +102,9 @@
 <PRIMITIVE gatewayId="68" primitiveId="71" primitiveName="xmlRelaxNG" />
 <PRIMITIVE gatewayId="68" primitiveId="72" primitiveName="xmlValidate" />
 <PRIMITIVE gatewayId="68" primitiveId="73" primitiveName="%XMLValid_p" />
+<PRIMITIVE gatewayId="68" primitiveId="74" primitiveName="xmlIsValidObject" />
+<PRIMITIVE gatewayId="68" primitiveId="75" primitiveName="xmlAsNumber" />
+<PRIMITIVE gatewayId="68" primitiveId="76" primitiveName="xmlAsText" />
+<PRIMITIVE gatewayId="68" primitiveId="77" primitiveName="xmlRemove" />
+<PRIMITIVE gatewayId="68" primitiveId="78" primitiveName="xmlSetAttributes" />
 </GATEWAY>

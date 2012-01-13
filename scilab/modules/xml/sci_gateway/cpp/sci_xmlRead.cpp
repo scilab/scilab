@@ -47,12 +47,13 @@ int sci_xmlRead(char * fname, int* _piKey)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isStringType(_piKey, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
     getAllocatedSingleString(_piKey, addr, &path);
@@ -64,13 +65,14 @@ int sci_xmlRead(char * fname, int* _piKey)
         {
             freeAllocatedSingleString(path);
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         if (!isBooleanType(_piKey, addr))
         {
             freeAllocatedSingleString(path);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A boolean expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
 

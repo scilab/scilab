@@ -38,21 +38,21 @@ extern "C"
 /*------------------------------------------------------------------------*/
 HistoryManager* HistoryManager::m_pHM = NULL;
 /*------------------------------------------------------------------------*/
-HistoryManager* HistoryManager::getInstance() 
+HistoryManager* HistoryManager::getInstance()
 {
-    if(m_pHM == NULL) 
+    if(m_pHM == NULL)
     {
         m_pHM = new HistoryManager();
 
         /* add date & time @ begin session */
-        char *commentbeginsession = getCommentDateSession();
+        char *commentbeginsession = getCommentDateSession(FALSE);
         if (commentbeginsession)
         {
             appendLineToScilabHistory(commentbeginsession);
             FREE(commentbeginsession);
             commentbeginsession=NULL;
         }
-        
+
         m_pHM->setToken("");
 
     }
@@ -440,7 +440,7 @@ BOOL HistoryManager::loadFromFile(char* _pstFilename)
         }
 
         /* add date & time @ begin session */
-        pstCommentBeginSession = getCommentDateSession();
+        pstCommentBeginSession = getCommentDateSession(FALSE);
         appendLine(pstCommentBeginSession);
         FREE(pstCommentBeginSession);
         pstCommentBeginSession = NULL;
@@ -470,7 +470,7 @@ BOOL HistoryManager::reset(void)
     CommandHistoryReset();
 
     /* Add date & time begin session */
-    pstCommentBeginSession = getCommentDateSession();
+    pstCommentBeginSession = getCommentDateSession(FALSE);
     if (pstCommentBeginSession)
     {
         appendLine(pstCommentBeginSession);
@@ -478,7 +478,7 @@ BOOL HistoryManager::reset(void)
         pstCommentBeginSession = NULL;
         return TRUE;
     }
-    
+
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -500,7 +500,7 @@ char** HistoryManager::getAllLines(int* _piLines)
         {
             pstLines[(*_piLines)++] = os_strdup((*it).c_str());
         }
-    
+
         /* SWIG need array finish with NULL */
         pstLines[(*_piLines)] = NULL;
     }
@@ -660,11 +660,11 @@ BOOL HistoryManager::isBeginningSessionLine(char* _pstLine)
     {
         if (strlen(_pstLine) > strlen(SESSION_PRAGMA_BEGIN) + strlen(SESSION_PRAGMA_END))
         {
-            if ((strncmp(   _pstLine, 
-                            SESSION_PRAGMA_BEGIN, 
+            if ((strncmp(   _pstLine,
+                            SESSION_PRAGMA_BEGIN,
                             strlen(SESSION_PRAGMA_BEGIN)) == 0) &&
                 (strncmp(    _pstLine + strlen(_pstLine) - strlen(SESSION_PRAGMA_END),
-                            SESSION_PRAGMA_END, 
+                            SESSION_PRAGMA_END,
                             strlen(SESSION_PRAGMA_END)) == 0))
             {
                 return TRUE;
@@ -677,7 +677,7 @@ BOOL HistoryManager::isBeginningSessionLine(char* _pstLine)
 void HistoryManager::fixHistorySession(void)
 {
     /* add date & time @ begin session */
-    char* pstCommentBeginSession = getCommentDateSession();
+    char* pstCommentBeginSession = getCommentDateSession(FALSE);
     if (pstCommentBeginSession)
     {
         m_Commands.push_front(pstCommentBeginSession);

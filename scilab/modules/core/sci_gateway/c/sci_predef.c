@@ -100,6 +100,7 @@ int C2F(sci_predef)(char *fname, int* _piKey)
                         if(sciErr.iErr)
                         {
                             printError(&sciErr, 0);
+                            Scierror(999,_("%s: Memory allocation error.\n"), fname);
                         }
                         else
                         {

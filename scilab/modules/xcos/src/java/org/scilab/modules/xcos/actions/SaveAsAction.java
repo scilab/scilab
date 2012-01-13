@@ -20,59 +20,70 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Management of "Diagram Saving"
+ * 
  * @author Vincent COUVERT
  */
 public final class SaveAsAction extends DefaultAction {
-	/** Name of the action */
-	public static final String NAME = XcosMessages.SAVE_AS;
-	/** Icon name of the action */
-	public static final String SMALL_ICON = "document-save-as.png";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK
-			| Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    /** Name of the action */
+    public static final String NAME = XcosMessages.SAVE_AS;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "document-save-as";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK
+            | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-	/**
-	 * Constructor
-	 * @param scilabGraph associated Xcos diagram
-	 */
-	public SaveAsAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     */
+    public SaveAsAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create menu for saving
-	 * @param scilabGraph associated Xcos diagram
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SaveAsAction.class);
-	}
+    /**
+     * Create menu for saving
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, SaveAsAction.class);
+    }
 
-	/**
-	 * Create toolbar button for saving
-	 * @param scilabGraph associated Xcos diagram
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, SaveAsAction.class);
-	}
+    /**
+     * Create toolbar button for saving
+     * 
+     * @param scilabGraph
+     *            associated Xcos diagram
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, SaveAsAction.class);
+    }
 
-	/**
-	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (((XcosDiagram) getGraph(null)).saveDiagramAs(null)) {
-			((XcosDiagram) getGraph(null)).setModified(false);
-		}
-		
-	}
+    /**
+     * @param e
+     *            parameter
+     * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(null);
+        if (graph.saveDiagramAs(null)) {
+            graph.setModified(false);
+            Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
+        }
+
+    }
 }

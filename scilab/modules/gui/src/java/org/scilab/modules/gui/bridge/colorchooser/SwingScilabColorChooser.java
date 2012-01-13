@@ -47,7 +47,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
 
         private Color selectedColor;
 
-        private JColorChooser colorChooser;
+        private final JColorChooser colorChooser;
 
         /**
          * Default constructor
@@ -55,7 +55,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          */
         public SwingScilabColorChooser(Color color) {
                 super(new JFrame(), "Color Chooser", true);
-                ((JFrame) getParent()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
 
                 getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -80,7 +80,8 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
             buttonsPanel.add(okButton);
             getRootPane().setDefaultButton(okButton);
             okButton.addActionListener(new ActionListener() {
-              public void actionPerformed(ActionEvent e) {
+              @Override
+            public void actionPerformed(ActionEvent e) {
                 selectedColor = colorChooser.getColor();
                 dispose();
                 setVisible(false);
@@ -90,7 +91,8 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
             JButton canButton = new JButton("Cancel");
             buttonsPanel.add(canButton);
             canButton.addActionListener(new ActionListener() {
-              public void actionPerformed(ActionEvent e) {
+              @Override
+            public void actionPerformed(ActionEvent e) {
                 selectedColor = null;
                 dispose();
                 setVisible(false);
@@ -109,6 +111,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          * Set the element id for this file chooser
          * @param id the id of the corresponding color chooser object
          */
+        @Override
         public void setElementId(int id) {
                 this.elementId = id;
         }
@@ -117,6 +120,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          * Get the element id for this chooser
          * @return id the id of the corresponding chooser object
          */
+        @Override
         public int getElementId() {
                 return this.elementId;
         }
@@ -125,6 +129,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          * Retrieve the selected color, or null
          * @return the selected color
          */
+        @Override
         public Color getSelectedColor() {
                 return selectedColor;
         }
@@ -133,6 +138,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
          * Set the default color
          * @param color the default color
          */
+        @Override
         public void setDefaultColor(Color color) {
                 colorChooser.setColor(color);
         }
@@ -140,6 +146,7 @@ public class SwingScilabColorChooser extends JDialog implements SimpleColorChoos
         /**
          * Display the font chooser and wait for a user input
          */
+        @Override
         public void displayAndWait() {
                 setVisible(true);
         }

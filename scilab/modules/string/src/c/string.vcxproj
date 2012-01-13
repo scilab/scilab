@@ -276,6 +276,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="stringsCompare.c" />
     <ClCompile Include="stringsstrrev.c" />
     <ClCompile Include="..\cpp\stripblanks.cpp" />
+    <ClCompile Include="stringToDouble.c" />
     <ClCompile Include="strsplitfunction.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />

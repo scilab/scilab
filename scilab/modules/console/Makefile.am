@@ -1,5 +1,5 @@
 #
- Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
@@ -119,26 +119,22 @@ libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_disable_la_CFLAGS = \
-    -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/fileio/src/c/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/ 
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/history_manager/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/core/includes \
+				-I$(top_srcdir)/modules/completion/includes \
+				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/fileio/src/c/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = \
@@ -192,29 +188,25 @@ libsciconsole_disable_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
-    
-# Includes need for the compilation
-libsciconsole_la_CFLAGS= \
-    $(JAVA_JNI_INCLUDE) \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/string/includes
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/fileio/src/c/ \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/
 
+# Includes need for the compilation
+libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/history_manager/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/core/includes \
+				-I$(top_srcdir)/modules/completion/includes \
+				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/fileio/src/c/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/ui_data/includes/ \
+				-I$(top_srcdir)/modules/jvm/includes
 if IS_MACOSX
 libsciconsole_la_CFLAGS += -msse2
 endif

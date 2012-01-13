@@ -138,8 +138,13 @@ libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 						-I$(top_srcdir)/modules/dynamic_link/includes
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 noinst_LTLIBRARIES = libscidifferential_equations-algo.la
+else
+noinst_LTLIBRARIES = libscidifferential_equations-algo.la libscidifferential_equations.la
+endif
+
 
 libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

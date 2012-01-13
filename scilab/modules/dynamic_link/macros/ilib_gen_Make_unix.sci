@@ -279,7 +279,7 @@ function generateConfigure(workingPath, ..
 
     if ierr <> 0 then
       if ( ilib_verbose() <> 0 ) then
-          mprintf(msg + " " + stderr);
+          mprintf("%s\n", msg + " " + stderr);
         end
         error(msprintf(gettext("%s: An error occurred during the detection of the compiler(s). Set ilib_verbose(2) for more information.\n"), "ilib_gen_Make"));
         return;

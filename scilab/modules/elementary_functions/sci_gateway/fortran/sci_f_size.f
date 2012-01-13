@@ -67,10 +67,6 @@ c
 c     matrix type variable type
 c     -------------------------
 
-         if(lhs.gt.2) then
-            call error(41)
-            return
-         endif
          if(rhs.eq.2) then
             if(lhs.ne.1) then
                call error(41)
@@ -111,6 +107,13 @@ c     -------------------------
                istk(ilr+3)=0
                stk(lr) = m*n
                lstk(top+1)=lr+1
+            else
+               istk(ilr)=1
+               istk(ilr+1)=1
+               istk(ilr+2)=1
+               istk(ilr+3)=0
+               stk(lr) = 1.0D0
+               lstk(top+1)=lr+1
             endif
          else
             istk(ilr)=1
@@ -133,6 +136,26 @@ c     -------------------------
             istk(ilr+3)=0
             stk(lr) = n
             lstk(top+1)=lr+1
+
+         if(lhs.gt.2) then
+            do k=3,lhs
+               top = top + 1
+               ilr=iadr(lr+1)
+               lr=sadr(ilr+4)
+               err=lr+1-lstk(bot)
+               if(err.gt.0) then
+                  call error(17)
+                  return
+               endif
+               istk(ilr)=1
+               istk(ilr+1)=1
+               istk(ilr+2)=1
+               istk(ilr+3)=0
+               stk(lr) = 1.0d0
+               lstk(top+1)=lr+1
+            enddo
+         endif
+
          endif
       else
 c     other cases

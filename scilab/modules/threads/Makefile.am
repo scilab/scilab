@@ -12,8 +12,11 @@ THREADS_CPP_SOURCES = \
 
 libscithreads_la_CPPFLAGS= \
 	-I$(srcdir)/includes/
-
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscithreads.la
+else
+noinst_LTLIBRARIES = libscithreads.la
+endif
 
 libscithreads_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread
 

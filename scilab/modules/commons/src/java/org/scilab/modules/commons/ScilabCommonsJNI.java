@@ -46,5 +46,6 @@ public class ScilabCommonsJNI {
 
   public final static native String getSCIHOME();
   public final static native String getTMPDIR();
+  public final static native String getlanguage();
   public final static native String createtempfilename(String jarg1, int jarg2);
 }

@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>isreal</refname>
 
-    <refpurpose>check if a variable as real or complex entries</refpurpose>
+    <refpurpose>check if a variable has real or complex entries</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

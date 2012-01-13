@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosValidateCompareBlock">
+  <refnamediv>
+    <refname>xcosValidateCompareBlock</refname>
+    <refpurpose>Function to compare two Xcos Blocks.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[status, message] = xcosValidateCompareBlock(block1, block2)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Parameters_xcosValidateCompareBlock">
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry><term>block1</term>: An Xcos block.
+      </varlistentry>
+      <varlistentry><term>block2</term>: An Xcos block.
+     </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection id="Module_xcosValidateCompareBlock">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_xcosValidateCompareBlock"><title>Description</title>
+    This function is used to compare two Blocks.
+
+    <para>
+      Function will go through each block field and compare the two values.
+      The function returns true if the two blocks are equal, false otherwise.
+      <literal>message</literal> will contain some information about non-homogeneous fields.
+    </para>
+  </refsection>
+  <refsection id="Filecontent_xcosValidateCompareBlock">
+    <title>File content</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/xcos/macros/xcosValidateCompareBlock.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Examples_xcosValidateCompareBlock">
+    <title>Examples</title>
+    <para>
+      <programlisting role="example"><![CDATA[
+      loadXcosLibs();
+      block1 = CONST_m("define");
+      block2 = CONST_m("define");
+      [status, message] = xcosValidateCompareBlock(block1,block2)
+
+      block2.model.rpar = 42;
+      [status, message] = xcosValidateCompareBlock(block1,block2)
+      ]]></programlisting>
+    </para>
+  </refsection>
+  <refsection id="SeeAlso_xcosValidateCompareBlock">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scicos_diagram">scs_m structure</link>
+      </member>
+      <member>
+        <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function xcosValidateCompareBlock introduced.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+</refentry>

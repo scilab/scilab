@@ -51,12 +51,13 @@ int sci_percent_s_i_XMLList(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isDoubleType(pvApiCtx, indexaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -66,6 +67,7 @@ int sci_percent_s_i_XMLList(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -73,6 +75,7 @@ int sci_percent_s_i_XMLList(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 
@@ -88,6 +91,7 @@ int sci_percent_s_i_XMLList(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -107,6 +111,7 @@ int sci_percent_s_i_XMLList(char * fname, int* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iBegin);
             return 0;
         }
 

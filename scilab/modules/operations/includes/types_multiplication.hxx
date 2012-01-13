@@ -12,15 +12,13 @@
 #ifndef __TYPES_MULTIPLICATION_HXX__
 #define __TYPES_MULTIPLICATION_HXX__
 
-#include "dynlib_operations.hxx"
+#include "generic_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
 
+// FIXME : remove using namespace.
 using namespace types;
-
-EXTERN_OP types::InternalType *GenericDotTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
-EXTERN_OP types::InternalType *GenericTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 int MultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
 int MultiplyDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);

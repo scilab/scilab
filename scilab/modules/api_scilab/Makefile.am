@@ -52,7 +52,12 @@ libsciapi_scilab_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciapi_scilab.la
+else
+noinst_LTLIBRARIES = libsciapi_scilab.la
+endif
+
 
 libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

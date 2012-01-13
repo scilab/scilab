@@ -32,8 +32,17 @@ function [x,y,typ] = SRFLIPFLOP(job,arg1,arg2)
    case 'getorigin' then
     [x,y]=standard_origin(arg1)
    case 'set' then
+    // look for the 1/z block
+    for i=1:length(arg1.model.rpar.objs) do
+      o = arg1.model.rpar.objs(i);
+      if typeof(o) == "Block" & o.gui == "DOLLAR_m" then
+        path = i;
+        break;
+      end
+    end
+
     newpar=list()
-    xx=arg1.model.rpar.objs(2)// get the 1/z block
+    xx=arg1.model.rpar.objs(path)// get the 1/z block
     exprs=xx.graphics.exprs(1)
     model=xx.model;
     init_old= model.odstate(1)
@@ -52,14 +61,14 @@ function [x,y,typ] = SRFLIPFLOP(job,arg1,arg2)
     xx.graphics.exprs(1)=exprs0
     model.odstate(1)=init
     xx.model=model
-    arg1.model.rpar.objs(2)=xx// Update
+    arg1.model.rpar.objs(path)=xx// Update
     break
       end
     end
     needcompile=0
     if init_old<>init then
       // parameter  changed
-      newpar(size(newpar)+1)=1// Notify modification
+      newpar(size(newpar)+1)=path// Notify modification
       needcompile=2
     end
     x=arg1

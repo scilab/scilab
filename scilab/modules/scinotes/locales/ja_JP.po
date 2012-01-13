@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-02 02:05+0000\n"
+"PO-Revision-Date: 2011-10-05 14:17+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: ja\n"
 
 #, c-format
@@ -56,7 +56,7 @@ msgid "Open"
 msgstr "開く"
 
 msgid "Open recent"
-msgstr ""
+msgstr "最近使ったファイルを開く"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "ワーキングディレクトリ;ディレクトリを追加;直近のディレクトリを削除"
@@ -191,7 +191,7 @@ msgid "Code Navigator"
 msgstr "コードナビゲータ"
 
 msgid "Format"
-msgstr ""
+msgstr "書式"
 
 msgid "Set Colors ..."
 msgstr "色を設定 ..."
@@ -230,7 +230,7 @@ msgid "Uncomment Selection"
 msgstr "選択部のコメントを外す"
 
 msgid "Change the case"
-msgstr ""
+msgstr "大文字/小文字を変更"
 
 msgid "Make Selection Lowercase"
 msgstr "選択部を小文字にする"
@@ -257,13 +257,13 @@ msgid "Line Endings"
 msgstr "行末コード"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "自動補完"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行番号付け; オフ;通常; whereami 互換"
@@ -881,12 +881,3 @@ msgstr "検索用基本ディレクトリを選択"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
-
-#~ msgid "Preferences"
-#~ msgstr "設定"
-
-#~ msgid "Auto-completion on if, function, ..."
-#~ msgstr "if, function, ...自動補完"
-
-#~ msgid "Auto-completion on (, [, ..."
-#~ msgstr "(, [,  ... を自動補完"

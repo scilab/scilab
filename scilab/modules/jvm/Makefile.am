@@ -55,7 +55,7 @@ pkglib_LTLIBRARIES += libscijvm.la
 noinst_LTLIBRARIES = libscijvm-algo.la
 endif
 
-libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS)
 
 if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM

@@ -23,12 +23,12 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.event.MouseEvent;
-import java.util.Map;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -44,19 +44,20 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.scinotes.ScilabEditorKit;
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.KeywordAdaptater;
 import org.scilab.modules.scinotes.KeywordEvent;
+import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabEditorKit;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -120,6 +121,7 @@ public final class SetColorsAction extends DefaultAction {
     /**
      * Displays the customization window
      */
+    @Override
     public void doAction() {
         if (!windowAlreadyExist) {
             windowAlreadyExist = true;
@@ -152,7 +154,7 @@ public final class SetColorsAction extends DefaultAction {
 
         /* Main frame = Window */
         dialog = new JDialog((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTabPane()), true);
-        dialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         dialog.setTitle(SciNotesMessages.SET_COLORS);
 
@@ -176,6 +178,7 @@ public final class SetColorsAction extends DefaultAction {
         stylesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         stylesList.addListSelectionListener(new ListSelectionListener() {
 
+                @Override
                 public void valueChanged(ListSelectionEvent arg0) {
                     /* Update the GUI */
                     settingsUpdate();
@@ -197,6 +200,7 @@ public final class SetColorsAction extends DefaultAction {
         colorButton.setOpaque(true);
         colorButton.addActionListener(new ActionListener() {
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedStyleIndex = 0;
 
@@ -239,6 +243,7 @@ public final class SetColorsAction extends DefaultAction {
         bgColorButton.setBackground(ConfigSciNotesManager.getSciNotesBackgroundColor());
         bgColorButton.addActionListener(new ActionListener() {
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     Color previousColor = bgColorButton.getBackground();
                     SwingScilabColorChooser colorChooser = new SwingScilabColorChooser(previousColor);
@@ -265,6 +270,7 @@ public final class SetColorsAction extends DefaultAction {
         fgColorButton.setBackground(ConfigSciNotesManager.getSciNotesForegroundColor());
         fgColorButton.addActionListener(new ActionListener() {
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     Color previousColor = fgColorButton.getBackground();
                     SwingScilabColorChooser colorChooser = new SwingScilabColorChooser(previousColor);
@@ -290,6 +296,7 @@ public final class SetColorsAction extends DefaultAction {
         gbc.anchor = GridBagConstraints.LINE_START;
         boldCheckBox = new JCheckBox(SciNotesMessages.BOLD);
         boldCheckBox.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedStyleIndex = stylesList.getSelectedIndex();
                     String styleName = listStylesName.get(selectedStyleIndex);
@@ -302,6 +309,7 @@ public final class SetColorsAction extends DefaultAction {
         gbc.gridy = THREE;
         italicCheckBox = new JCheckBox(SciNotesMessages.ITALIC);
         italicCheckBox.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedStyleIndex = stylesList.getSelectedIndex();
                     String styleName = listStylesName.get(selectedStyleIndex);
@@ -314,6 +322,7 @@ public final class SetColorsAction extends DefaultAction {
         gbc.gridy = FOUR;
         strikethroughCheckBox = new JCheckBox(SciNotesMessages.STRIKETHROUGH);
         strikethroughCheckBox.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedStyleIndex = stylesList.getSelectedIndex();
                     String styleName = listStylesName.get(selectedStyleIndex);
@@ -331,6 +340,7 @@ public final class SetColorsAction extends DefaultAction {
         gbc.gridy = FIVE;
         underlineCheckBox = new JCheckBox(SciNotesMessages.UNDERLINE);
         underlineCheckBox.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     int selectedStyleIndex = stylesList.getSelectedIndex();
                     String styleName = listStylesName.get(selectedStyleIndex);
@@ -370,6 +380,7 @@ public final class SetColorsAction extends DefaultAction {
         previewEditorPane.setBackground(bgColorButton.getBackground());
         previewEditorPane.setFont(ConfigSciNotesManager.getFont());
         previewEditorPane.setCaret(new DefaultCaret() {
+                @Override
                 public void mouseDragged(MouseEvent e) {
                     e.consume();
                 }
@@ -379,11 +390,13 @@ public final class SetColorsAction extends DefaultAction {
         previewEditorPane.getCaret().setVisible(true);
         previewEditorPane.setEditable(false);
         previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
+                @Override
                 public void caughtKeyword(KeywordEvent e) {
                     previewEditorPane.setToolTipText(ScilabLexerConstants.getStringRep(e.getType()));
                 }
             });
         previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseClickedAdaptater() {
+                @Override
                 public void caughtKeyword(KeywordEvent e) {
                     stylesList.setSelectedValue(ScilabLexerConstants.getStringRep(e.getType()), true);
                 }
@@ -398,6 +411,7 @@ public final class SetColorsAction extends DefaultAction {
 
         okButton  = new JButton(SciNotesMessages.OK);
         okButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     /* Apply all new settings */
                     int numberOfTab = getEditor().getTabPane().getTabCount();
@@ -442,6 +456,7 @@ public final class SetColorsAction extends DefaultAction {
 
         cancelButton = new JButton(SciNotesMessages.CANCEL);
         cancelButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     windowAlreadyExist = false;
                     dialog.dispose();
@@ -450,6 +465,7 @@ public final class SetColorsAction extends DefaultAction {
 
         defaultButton  = new JButton(SciNotesMessages.DEFAULT);
         defaultButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     settingsDefault();
                 }
@@ -465,20 +481,27 @@ public final class SetColorsAction extends DefaultAction {
 
         dialog.setContentPane(contentPanel);
         dialog.addWindowListener(new WindowListener() {
+                @Override
                 public void windowClosed(WindowEvent arg0) {
                 }
+                @Override
                 public void windowDeiconified(WindowEvent arg0) {
                 }
+                @Override
                 public void windowActivated(WindowEvent arg0) {
                 }
+                @Override
                 public void windowClosing(WindowEvent arg0) {
                     SetColorsAction.windowAlreadyExist = false;
                     dialog.dispose();
                 }
+                @Override
                 public void windowDeactivated(WindowEvent arg0) {
                 }
+                @Override
                 public void windowIconified(WindowEvent arg0) {
                 };
+                @Override
                 public void windowOpened(WindowEvent arg0) {
                 }
             });

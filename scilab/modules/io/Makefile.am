@@ -73,8 +73,13 @@ libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
 			$(XML_FLAGS)
 
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciio.la
 noinst_LTLIBRARIES = libsciio-algo.la
+else
+noinst_LTLIBRARIES = libsciio-algo.la libsciio.la
+endif
+
 
 libsciio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

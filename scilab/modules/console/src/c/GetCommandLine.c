@@ -14,8 +14,8 @@
 #include <stdlib.h>
 #ifdef _MSC_VER
 #include <io.h>
-#define isatty	_isatty
-#define fileno	_fileno
+#define isatty  _isatty
+#define fileno  _fileno
 #else
 #include <unistd.h> /* isatty */
 #endif
@@ -33,7 +33,9 @@
 #include "TermReadAndProcess.h"
 #include "os_strdup.h"
 #include "UpdateBrowseVar.h"
-
+#include "scicurdir.h"
+#include "FileBrowserChDir.h"
+#include "InitializeJVM.h"
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
@@ -83,6 +85,8 @@ static BOOL WatchGetCmdLineThreadAlive = FALSE;
 static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
+
+static BOOL initialJavaHooks = FALSE;
 
 /***********************************************************************
  * line editor
@@ -181,10 +185,16 @@ static void *watchGetCommandLine(void *in) {
  * Old zzledt... Called by Fortran...
  * @TODO rename that function !!!
  * @TODO remove unused arg buf_size, menusflag, modex & dummy1
-*/
+ */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
-         int *menusflag,int * modex,long int dummy1)
+                 int *menusflag,int * modex,long int dummy1)
 {
+    if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
+    {
+	initialJavaHooks = TRUE;
+        // Execute the initial hooks registered in Scilab.java
+	ExecuteInitialHooks();
+    }
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER
@@ -192,80 +202,89 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     /* example : echo plot3d | scilex -nw -e */
     if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else
-    if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
+        if ( !isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD )
 #endif
-    {
-        /* read a line into the buffer, but not too
-        * big */
-        *eof = (fgets(buffer, *buf_size, stdin) == NULL);
-        *len_line = (int)strlen(buffer);
-        /* remove newline character if there */
-        if(buffer[*len_line - 1] == '\n')
         {
-            (*len_line)--;
+            /* read a line into the buffer, but not too
+             * big */
+            *eof = (fgets(buffer, *buf_size, stdin) == NULL);
+            *len_line = (int)strlen(buffer);
+            /* remove newline character if there */
+            if(buffer[*len_line - 1] == '\n')
+            {
+                (*len_line)--;
+            }
+            return;
         }
-        return;
-    }
 
-  if(!initialized)
+    if(!initialized)
     {
-      initAll();
+        initAll();
     }
 
-  __LockSignal(pReadyForLaunch);
+    __LockSignal(pReadyForLaunch);
 
-  if (__CommandLine)
-  {
-      FREE(__CommandLine);
-      __CommandLine = NULL;
-  }
-  __CommandLine = os_strdup("");
+    if (__CommandLine)
+    {
+        FREE(__CommandLine);
+        __CommandLine = NULL;
+    }
+    __CommandLine = os_strdup("");
 
-  if (ismenu() == 0)
-  {
-      __threadKey key;
-      if (!WatchGetCmdLineThreadAlive)
-      {
-          if (WatchGetCmdLineThread)
-          {
-              __WaitThreadDie(WatchGetCmdLineThread);
-          }
-	  if (getScilabMode() != SCILAB_NWNI)
-	  {
-              UpdateBrowseVar(TRUE);
-	  }
-          __CreateThread(&WatchGetCmdLineThread, &key, &watchGetCommandLine);
+    if (ismenu() == 0)
+    {
+        __threadKey key;
+        if (!WatchGetCmdLineThreadAlive)
+        {
+            if (WatchGetCmdLineThread)
+            {
+                __WaitThreadDie(WatchGetCmdLineThread);
+            }
+            if (getScilabMode() != SCILAB_NWNI)
+            {
 
-          WatchGetCmdLineThreadAlive = TRUE;
-      }
-      if (!WatchStoreCmdThreadAlive)
-      {
-          if (WatchStoreCmdThread)
-          {
-              __WaitThreadDie(WatchStoreCmdThread);
-          }
-          __CreateThread(&WatchStoreCmdThread, &key, &watchStoreCommand);
-          WatchStoreCmdThreadAlive = TRUE;
-      }
+                char *cwd = NULL;
+                int err = 0;
 
-      __Wait(&TimeToWork, pReadyForLaunch);
-  }
-  __UnLockSignal(pReadyForLaunch);
+                UpdateBrowseVar(TRUE);
+                cwd = scigetcwd(&err);
+                if (cwd)
+                {
+                    FileBrowserChDir(cwd);
+                    FREE(cwd);
+                }
+            }
+            __CreateThread(&WatchGetCmdLineThread, &key, &watchGetCommandLine);
+            WatchGetCmdLineThreadAlive = TRUE;
+        }
+        if (!WatchStoreCmdThreadAlive)
+        {
+            if (WatchStoreCmdThread)
+            {
+                __WaitThreadDie(WatchStoreCmdThread);
+            }
+            __CreateThread(&WatchStoreCmdThread, &key, &watchStoreCommand);
+            WatchStoreCmdThreadAlive = TRUE;
+        }
 
-  /*
-  ** WARNING : Old crappy f.... code
-  ** do not change reference to buffer
-  ** or fortran will be lost !!!!
-  */
-  if (__CommandLine)
-  {
-    strcpy(buffer, __CommandLine);
-  }
-  else
-  {
-      strcpy(buffer,"");
-  }
-  *len_line = (int)strlen(buffer);
+        __Wait(&TimeToWork, pReadyForLaunch);
+    }
+    __UnLockSignal(pReadyForLaunch);
 
-  *eof = FALSE;
+    /*
+    ** WARNING : Old crappy f.... code
+    ** do not change reference to buffer
+    ** or fortran will be lost !!!!
+    */
+    if (__CommandLine)
+    {
+        strcpy(buffer, __CommandLine);
+    }
+    else
+    {
+        strcpy(buffer,"");
+    }
+    *len_line = (int)strlen(buffer);
+
+    *eof = FALSE;
 }

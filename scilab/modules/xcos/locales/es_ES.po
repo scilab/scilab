@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:51+0000\n"
-"Last-Translator: Sergio I. <korgzak@gmail.com>\n"
+"PO-Revision-Date: 2011-10-21 22:53+0000\n"
+"Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: es\n"
 
 #, c-format
@@ -520,6 +520,10 @@ msgstr ""
 "El archivo %s no existe\n"
 " ¿Desea crearlo?"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -564,13 +568,13 @@ msgid "No block selected"
 msgstr "No hay ningún bloque seleccionado"
 
 msgid "Export to XML"
-msgstr "Exportar a XML"
+msgstr ""
 
 msgid "Export in progress"
 msgstr "Realizando exportación"
 
 msgid "Import from XML"
-msgstr "Importar de XML"
+msgstr ""
 
 msgid "Add to"
 msgstr "Añadir a"
@@ -726,8 +730,6 @@ msgstr "Simulación en progreso"
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
-"Compilado en progreso, los resultados serán almacenados en la variable "
-"'scicos_cpr'"
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -824,14 +826,6 @@ msgstr "Configurando el compilador de Modelica."
 msgid "Modelica initialize"
 msgstr "Inicializar Modelica"
 
-#, c-format
-msgid "From %s"
-msgstr "Desde %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Ir a %s"
-
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
@@ -876,7 +870,7 @@ msgid "Bridge Rectifer"
 msgstr ""
 
 msgid "Transformer"
-msgstr ""
+msgstr "Transformador"
 
 msgid "Differential amplifier"
 msgstr ""
@@ -1229,7 +1223,7 @@ msgstr "Las bibliotecas Scicos no están cargadas"
 msgid "Unable to simulate %s"
 msgstr "No se puede simular %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format

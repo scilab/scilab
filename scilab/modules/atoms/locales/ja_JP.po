@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 13:24+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-10-05 14:36+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -565,39 +565,39 @@ msgstr "%s: Wget または Curl が見つかりました: どちらかひとつ�
 
 #, c-format
 msgid "%s: Error: Invalid URL.\n"
-msgstr ""
+msgstr "%s: エラー: URLが無効です.\n"
 
 #, c-format
 msgid "%s: Error: Internet Open.\n"
-msgstr ""
+msgstr "%s: エラー: インターネットのオープン.\n"
 
 #, c-format
 msgid "%s: Error: URL Open.\n"
-msgstr ""
+msgstr "%s: エラー: URLのオープン.\n"
 
 #, c-format
 msgid "%s: Error: Createfile.\n"
-msgstr ""
+msgstr "%s: エラー: ファイル作成.\n"
 
 #, c-format
 msgid "%s: Error: Invalid File size.\n"
-msgstr ""
+msgstr "%s: エラー: ファイルの大きさが不正です.\n"
 
 #, c-format
 msgid "%s: Error: Internet Read file.\n"
-msgstr ""
+msgstr "%s: エラー: インターネット上のファイル読み込み.\n"
 
 #, c-format
 msgid "%s: Error: Write file.\n"
-msgstr ""
+msgstr "%s: エラー: ファイル書き込み.\n"
 
 #, c-format
 msgid "%s: Error: Failure.\n"
-msgstr ""
+msgstr "%s: エラー: 失敗.\n"
 
 #, c-format
 msgid "%s: Error: Out Of Memory.\n"
-msgstr ""
+msgstr "%s: エラー: メモリが足りません.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
@@ -605,7 +605,7 @@ msgstr "%s: 以下のファイルは、ダウンロードできませんでし�
 
 #, c-format
 msgid "\t - URL      : '%s'\n"
-msgstr ""
+msgstr "\t - URL : '%s'\n"
 
 #, c-format
 msgid "\t - Local location : '%s'\n"
@@ -617,7 +617,7 @@ msgstr "%s: 以下のファイルは、コピーできませんでした:\n"
 
 #, c-format
 msgid "\t - source    : '%s'\n"
-msgstr ""
+msgstr "\t - ソース : '%s'\n"
 
 #, c-format
 msgid "\t - destination : '%s'\n"
@@ -629,7 +629,7 @@ msgstr "%s: ダウンロードされたファイルは、MD５SUMで確認でき
 
 #, c-format
 msgid "\t - file      : '%s'\n"
-msgstr ""
+msgstr "\t - ファイル : '%s'\n"
 
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
@@ -774,15 +774,3 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 有効なバージ�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"
-
-#, c-format
-#~ msgid "\t - URL            : '%s'\n"
-#~ msgstr "\t - URL            : '%s'\n"
-
-#, c-format
-#~ msgid "\t - file            : '%s'\n"
-#~ msgstr "\t - ファイル : '%s'\n"
-
-#, c-format
-#~ msgid "\t - source      : '%s'\n"
-#~ msgstr "\t - ソース : '%s'\n"

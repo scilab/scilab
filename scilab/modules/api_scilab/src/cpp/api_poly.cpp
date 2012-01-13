@@ -163,6 +163,24 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     InternalType** out = pStr->m_pOut;
+	int *piAddr     = NULL;
+    int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	int iSize       = _iRows * _iCols;
+	int iTotalLen   = 0;
+
+    //return empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        Double *pDbl = new Double(_iRows, _iCols);
+        if (pDbl == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+            return sciErr;
+        }
+
+        out[rhs - 1] = pDbl;
+        return sciErr;
+    }
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
     Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
@@ -178,7 +196,6 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
         pP->setComplex(true);
     }
 
-    int rhs = _iVar - api_Rhs((int*)_pvCtx);
     out[rhs - 1] = pP;
 
     for(int i = 0 ; i < pP->getSize() ; i++)
@@ -266,37 +283,35 @@ SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, const char* _pstName, char* 
 
 SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-    //int iVarID[nsiz];
-    //int iSaveRhs			= api_Rhs((int*)_pvCtx);
-    //int iSaveTop			= api_Top((int*)_pvCtx);
-    //int *piAddr				= NULL;
-    //int iTotalLen			= 0;
+	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+#if 0
+	int iVarID[nsiz];
+    int iSaveRhs    = Rhs;
+	int iSaveTop    = Top;
+	int *piAddr     = NULL;
+	int iTotalLen   = 0;
 
-    //C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-    //Top = Top + Nbvars + 1;
+    //return named empty matrix
+    if(_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+        }
+        return sciErr;
+    }
 
-    //getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfPoly");
+        return sciErr;
+    }
 
-    ////write matrix information
-    //sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
-    //if(sciErr.iErr)
-    //{
-    //    addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POLY, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexMatrixOfPoly" : "createNamedMatrixOfPoly", _("matrix of double"), _pstName);
-    //    return sciErr;
-    //}
-
-
-    ////update "variable index"
-    //updateLstk(Top, *Lstk(Top) + 4, iTotalLen);
-
-    ////Rhs = 0;
-    ////Add name in stack reference list
-    //createNamedVariable(iVarID);
-
-    //Top = iSaveTop;
-    //Rhs = iSaveRhs;
-
+	Top = iSaveTop;
+    Rhs = iSaveRhs;
+#endif
     return sciErr;
 }
 

@@ -18,6 +18,7 @@ function B=%sp_p_s(A,p)
    end
    if p == 0 then
       B = speye(A)
+      return
    elseif p < 0 then
       A = inv(A)
       p = -p

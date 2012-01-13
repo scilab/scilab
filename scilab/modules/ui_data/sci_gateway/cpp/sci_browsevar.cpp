@@ -17,15 +17,9 @@ extern "C"
 #include "gw_ui_data.h"
 #include "BOOL.h"
 #include "stack-c.h"
-#include "stackinfo.h"
-#include "api_scilab.h"
-#include "Scierror.h"
-#include "freeArrayOfString.h"
-#include "os_strdup.h"
-
 }
 /*--------------------------------------------------------------------------*/
-int sci_browsevar(char * fname, int *_piKey)
+int sci_browsevar(char *fname, int *_piKey)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);
@@ -34,6 +28,6 @@ int sci_browsevar(char * fname, int *_piKey)
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
 }
-/*--------------------------------------------------------------------------*/

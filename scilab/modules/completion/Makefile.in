@@ -191,6 +191,7 @@ AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
 AR = @AR@
+ARPACK_LIBS = @ARPACK_LIBS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -200,6 +201,7 @@ BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
 CC = @CC@
+CCACHE = @CCACHE@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -265,6 +267,7 @@ JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
+JCOMMANDER = @JCOMMANDER@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JGRAPHX = @JGRAPHX@
@@ -445,22 +448,21 @@ yacc_present = @yacc_present@
 @GUI_TRUE@USEANT = 1
 
 # List of the c files
-COMPLETION_C_SOURCES = \
-    src/c/completion.c \
-    src/c/completion_generic.c \
-    src/c/getfilesdictionary.c \
-    src/c/getfieldsdictionary.c \
-    src/c/toolsdictionary.c \
-    src/c/completion_wrap_java.c \
-    src/c/getPartLine.c \
-    src/c/getCommonPart.c \
-    src/c/completeLine.c \
-    src/c/completeLine_wrap_java.c
+COMPLETION_C_SOURCES = src/c/completion.c \
+src/c/completion_generic.c \
+src/c/getfilesdictionary.c \
+src/c/getfieldsdictionary.c \
+src/c/toolsdictionary.c \
+src/c/completion_wrap_java.c \
+src/c/getPartLine.c \
+src/c/getCommonPart.c \
+src/c/completeLine.c \
+src/c/completeLine_wrap_java.c
 
 
 # List of the c++ file
 COMPLETION_CPP_SOURCES = \
-    src/cpp/completionDictionary.cpp
+src/cpp/completionDictionary.cpp
 
 
 # List of the gateway c files

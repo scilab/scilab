@@ -28,18 +28,9 @@
 #include "printvisitor.hxx"
 #include "mutevisitor.hxx"
 
-#include "alltypes.hxx"
-
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
-#include "types_multiplication.hxx"
-#include "types_addition.hxx"
-#include "types_substraction.hxx"
-#include "types_divide.hxx"
-#include "types_power.hxx"
-#include "types_comparison_eq.hxx"
-#include "types_comparison_ne.hxx"
-#include "types_comparison_lt_le_gt_ge.hxx"
+#include "generic_operations.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
@@ -58,7 +49,10 @@ extern "C" {
 
 #include "all.hxx"
 #include "types.hxx"
+#include "alltypes.hxx"
 
+// FIXME : remove those using
+using namespace types;
 
 namespace ast
 {
@@ -226,9 +220,9 @@ namespace ast
         {
         }
 
-        typed_list* GetArgumentList(std::list<ast::Exp *>const& _plstArg)
+        types::typed_list* GetArgumentList(std::list<ast::Exp *>const& _plstArg)
         {
-            typed_list* pArgs = new typed_list();
+            types::typed_list* pArgs = new types::typed_list();
             std::list<ast::Exp *>::const_iterator it;
             for(it = _plstArg.begin() ; it != _plstArg.end() ; it++)
             {
@@ -273,7 +267,7 @@ namespace ast
             }
 
             //alloc result cell
-            Cell *pC = new Cell(static_cast<int>(e.lines_get().size()), iColMax);
+            types::Cell *pC = new types::Cell(static_cast<int>(e.lines_get().size()), iColMax);
 
             int i = 0;
             int j = 0;
@@ -306,7 +300,7 @@ namespace ast
         {
             if(e.getBigString() == NULL)
             {
-                String *psz = new String(e.value_get().c_str());
+                types::String *psz = new types::String(e.value_get().c_str());
                 (const_cast<StringExp *>(&e))->setBigString(psz);
 
             }
@@ -840,8 +834,8 @@ namespace ast
                 //{
                 //    //compute and display mean of time
                 //    long long llMean =  llTotal / pVar->getSize();
-                //    std::cout << L"Total time (ms): " << (((double)llTotal /  (double)liFresquency.QuadPart) * 1000) << std::endl; 
-                //    std::cout << L"Mean time (ms): " << (((double)llMean /  (double)liFresquency.QuadPart) * 1000) << std::endl; 
+                //    std::cout << L"Total time (ms): " << (((double)llTotal /  (double)liFresquency.QuadPart) * 1000) << std::endl;
+                //    std::cout << L"Mean time (ms): " << (((double)llMean /  (double)liFresquency.QuadPart) * 1000) << std::endl;
                 //}
             }
             else
@@ -1366,8 +1360,8 @@ namespace ast
             else if(result_get()->isString())
             {
                 InternalType* pVar  = result_get();
-                String *pS          = pVar->getAs<types::String>();
-                String* pReturn     = new String(pS->getCols(), pS->getRows());
+                types::String *pS          = pVar->getAs<types::String>();
+                types::String* pReturn     = new types::String(pS->getCols(), pS->getRows());
 
                 for(int i = 0 ; i < pS->getRows() ; i++)
                 {

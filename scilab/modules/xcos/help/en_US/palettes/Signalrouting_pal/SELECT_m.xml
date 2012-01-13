@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_SELECT_m">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_SELECT_m">Interfacing function</xref>
             </para>
           </listitem>
@@ -198,6 +203,16 @@ slightly, depending on the type of input.
         </para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_SELECT_m">
+    <title>Example</title>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELECT_m_Example.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/signalrouting_pal/SELECT_m_Example.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_SELECT_m">
     <title>Interfacing function</title>

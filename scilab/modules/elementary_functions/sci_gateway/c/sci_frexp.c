@@ -40,6 +40,7 @@ int sci_frexp(char *fname, int* _piKey)
 	CheckLhs(2,2);
 
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

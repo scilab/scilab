@@ -41,6 +41,7 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
         ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
+        int pos = sep.getCaretPosition();
         TrailingWhiteManager trailing = sep.getTrailingWhiteManager();
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
 
@@ -54,8 +55,11 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
             int[] ret = new int[2];
             ret = trailing.removeTrailingWhite(start, end - 1);
             if (ret != null) {
-                sep.setSelectionStart(ret[0]);
-                sep.setSelectionEnd(ret[1]);
+                if (pos == start) {
+                    sep.select(ret[1], ret[0]);
+                } else {
+                    sep.select(ret[0], ret[1]);
+                }
             }
         }
         doc.mergeEditsEnd();

@@ -15,25 +15,26 @@ package org.scilab.modules.xcos.link.commandcontrol;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
- * An command control link connect an {@link org.scilab.modules.xcos.port.control.ControlPort} to an
+ * An command control link connect an
+ * {@link org.scilab.modules.xcos.port.control.ControlPort} to an
  * {@link org.scilab.modules.xcos.port.command.CommandPort}.
  */
 public class CommandControlLink extends BasicLink {
-    
-    private static final long serialVersionUID = 5092221307994387276L;
-	// 5 means red color
-	// -1 means activation link
-	private static final double[][] COLOR_AND_TYPE = {{5.0, -1.0}};
 
-	/** Default constructor */
+    private static final long serialVersionUID = 5092221307994387276L;
+    // 5 means red color
+    // -1 means activation link
+    private static final double[][] COLOR_AND_TYPE = { { 5.0, -1.0 } };
+
+    /** Default constructor */
     public CommandControlLink() {
-	super("CommandControlLink");
+        super("CommandControlLink");
     }
 
     /** @return A red colored activation link identifier */
-	@Override
+    @Override
     public double[][] getColorAndType() {
-	return COLOR_AND_TYPE;
+        return COLOR_AND_TYPE;
     }
-    
+
 }

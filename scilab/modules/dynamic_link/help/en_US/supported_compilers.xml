@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO - 2010 - Allan CORNET
+ * Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +17,7 @@
   </info>
   <refnamediv>
     <refname>Supported and compatible compilers</refname>
+    <refpurpose>supported and compatible compilers by Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Scilab supported and compatible compilers</title>
@@ -25,8 +26,7 @@
   </refsection>
   <refsection>
     <title>Windows</title>
-    <para>-- Visual studio C++ 2005, 2008, 2010 Professionnal 32 and 64
-    bits</para>
+    <para>-- Visual studio C++ 2005, 2008, 2010 Professionnal 32 and 64 bits</para>
     <para>-- Visual studio C++ 2008, 2010 Express Edition (available at no
     charge)</para>
     <para>On 64-bit Windows, Visual Studio C++ 2008/2010 Express Edition

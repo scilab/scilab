@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-08-22 16:07+0000\n"
+"PO-Revision-Date: 2011-12-03 14:45+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: pl\n"
 
 #, c-format
@@ -24,7 +24,7 @@ msgstr "Moduł '%s' Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
+"%s: Nieprawidłowy typ parametru %d: Oczekiwana macierz ciągów znaków.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -51,7 +51,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
+msgstr "%s: Nieprawidłowy typ dla argumentu %d: Pojedynczy łańcuch.\n"
 
 msgid "File"
 msgstr "Plik"
@@ -63,7 +63,7 @@ msgid "Open"
 msgstr "Otwórz"
 
 msgid "Open recent"
-msgstr ""
+msgstr "Ostatnio otwierane"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Katalog roboczy;Dodaj katalog;Usuń ostatni katalog"
@@ -153,7 +153,7 @@ msgid "Paste Column"
 msgstr "Wklej kolumnę"
 
 msgid "Repeat on the Column"
-msgstr ""
+msgstr "Powtórz na kolumnie"
 
 msgid "Select All"
 msgstr "Zaznacz wszystko"
@@ -198,7 +198,7 @@ msgid "Code Navigator"
 msgstr "Nawigator kodu"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Set Colors ..."
 msgstr "Ustaw kolory ..."
@@ -210,10 +210,10 @@ msgid "Reset default font"
 msgstr "Przywróć domyślną czcionkę"
 
 msgid "Shift Right"
-msgstr "Prawy Shift"
+msgstr "Zwiększ wcięcie"
 
 msgid "Shift Left"
-msgstr "Lewy Shift"
+msgstr "Zminiejsz wcięcie"
 
 msgid "Configure Tabulation"
 msgstr "Konfiguracja tabulacji"
@@ -237,7 +237,7 @@ msgid "Uncomment Selection"
 msgstr "Odkomentuj zaznaczone"
 
 msgid "Change the case"
-msgstr ""
+msgstr "Zmień wielkość liter"
 
 msgid "Make Selection Lowercase"
 msgstr "Zmień litery w zaznaczeniu na małe"
@@ -265,7 +265,7 @@ msgid "Line Endings"
 msgstr "Zakończenie linii"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "Autouzupełnianie włączone"
 
 msgid "(, [, ..."
 msgstr ""
@@ -292,7 +292,7 @@ msgid "Copy tab in new window"
 msgstr "Skopiuj zaznaczenie do nowego okna"
 
 msgid "Detach tab in new window"
-msgstr ""
+msgstr "Otwórz zakładkę w nowym oknie"
 
 msgid "Copy selection in a new tab"
 msgstr "Skopiuj zaznaczenie do nowej zakładki"
@@ -337,10 +337,10 @@ msgid "Complete"
 msgstr "Zakończ"
 
 msgid "Graphics handle field"
-msgstr ""
+msgstr "Pole uchwytu graficznego"
 
 msgid "No help"
-msgstr ""
+msgstr "Brak pomocy"
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -363,7 +363,7 @@ msgstr ""
 "do odczytu\""
 
 msgid "You do not have the permissions to write this file"
-msgstr ""
+msgstr "Nie masz uprawnień aby zapisywać z tym pliku"
 
 msgid "You do not have the permissions to read this file"
 msgstr "Nie masz uprawnień do odczytu tego pliku"
@@ -658,7 +658,7 @@ msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Linia %s,  kolumna %s. funkcja '%s' w wierszu %s."
 
 msgid "Unknown function"
-msgstr ""
+msgstr "Nieznana funkcja"
 
 #, c-format
 msgid "Line %s, Column %s."
@@ -748,7 +748,7 @@ msgid "Bold"
 msgstr "Pogrubiony"
 
 msgid "Absolute"
-msgstr ""
+msgstr "Bezwzględnie"
 
 msgid "Relative"
 msgstr "Względny"
@@ -820,10 +820,10 @@ msgid "Double chevrons"
 msgstr "Podwójne nawiasy kątowe"
 
 msgid "Copy full path"
-msgstr ""
+msgstr "Kopiuj pełną ścieżkę"
 
 msgid "Exact"
-msgstr ""
+msgstr "Dokładnie"
 
 msgid "Search Files..."
 msgstr "Znajdź pliki..."
@@ -847,16 +847,16 @@ msgid "Base directory:"
 msgstr "Katalog bazowy:"
 
 msgid "Recursive"
-msgstr ""
+msgstr "Rekursywnie"
 
 msgid "File pattern"
 msgstr ""
 
 msgid "(* for any string and ? for any character)"
-msgstr ""
+msgstr "(* oznacza dowolny łańcuch, ? - dowolny znak)"
 
 msgid "(~ for user home dir. and SCI for Scilab base dir.)"
-msgstr ""
+msgstr "(~ oznacza katalog domowy wuzytk., SCI - katalog intalacyjny Scilab)"
 
 msgid "Word pattern"
 msgstr ""
@@ -868,7 +868,7 @@ msgid "Choose..."
 msgstr "Wybierz..."
 
 msgid "Stop"
-msgstr ""
+msgstr "Zatrzymaj"
 
 msgid "Regex"
 msgstr "Wyrażenia regularne"
@@ -883,7 +883,7 @@ msgid "Case-sensitivity (File name)"
 msgstr ""
 
 msgid "Recursive search"
-msgstr ""
+msgstr "Szukanie rekursywne"
 
 msgid "Line by line"
 msgstr "Wiersz po wierszu"
@@ -897,6 +897,3 @@ msgstr "Wybierz katalog bazowy do wyszukiwania"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
-
-#~ msgid "Preferences"
-#~ msgstr "Ustawienia"

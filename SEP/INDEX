@@ -67,3 +67,6 @@ SEP #067: lines() default value
 SEP #068: Tempname
 SEP #069: Extend predef to get protected variable names
 SEP #070: Xcos validation functions
+SEP #071: Modify atomsRemove to delete tarball
+SEP #072: Extend fullpath to manage matrix of string as input argument
+SEP #073: New convolution functions

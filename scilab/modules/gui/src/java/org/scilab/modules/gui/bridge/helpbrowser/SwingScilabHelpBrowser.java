@@ -91,6 +91,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         super(new BorderLayout());
         jhelp = new JHelp();
         add(jhelp);
+        setFocusable(true);
         searchField = new HelpSearchField(this, null);
 
         /* Send information to the user using status bar and cursor */
@@ -239,6 +240,43 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     }
 
     /**
+     * @return the current URL as String being displayed
+     */
+    public String getCurrentURL() {
+        return ((SwingScilabHelpBrowserViewer) jhelp.getContentViewer().getUI()).getCurrentURL();
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public String getCurrentID() {
+        String id = jhelp.getModel().getCurrentID().toString();
+        int whitePos = id.indexOf(" ");
+        int commaPos = id.indexOf(",");
+
+        if (whitePos != -1 && commaPos != -1) {
+            id = id.substring(whitePos + 1, commaPos);
+        }
+
+        return id;
+    }
+
+    /**
+     * @return the current id as String being displayed
+     */
+    public void setCurrentID(final String id) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        jhelp.setCurrentID(id);
+                    } catch (BadIDException e) {
+                        jhelp.setCurrentURL(homePageURL);
+                    }
+                }
+            });
+    }
+
+    /**
      * Show the search field
      */
     public void showSearchField() {
@@ -279,8 +317,35 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      */
     public void displayHomePage() {
         if (homePageURL != null) {
-            jhelp.setCurrentURL(homePageURL);
+            setCurrentURL(homePageURL);
         }
+    }
+
+    /**
+     * Sets the current URL
+     * @param url the URL to display
+     */
+    public void setCurrentURL(final URL url) {
+        SwingUtilities.invokeLater(new Runnable() {
+
+                public void run() {
+                    jhelp.setCurrentURL(url);
+                }
+            });
+    }
+
+    /**
+     * Sets the current url
+     * @param url the url as String to display
+     */
+    public void setCurrentURL(String url) {
+        URL u = homePageURL;
+        try {
+            if (url != null) {
+                u = new URL(url);
+            }
+        } catch (MalformedURLException e) { }
+        setCurrentURL(u);
     }
 
     /**

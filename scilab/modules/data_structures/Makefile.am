@@ -41,10 +41,15 @@ libscidata_structures_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
 noinst_LTLIBRARIES = libscidata_structures-algo.la
+else
+noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
+endif
 
 libscidata_structures_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

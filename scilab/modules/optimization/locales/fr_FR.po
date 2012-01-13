@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-12 07:43+0000\n"
-"Last-Translator: Michaël Baudin <Unknown>\n"
+"PO-Revision-Date: 2011-11-10 13:07+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: fr\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
-"%s : Dimension erroné de l'argument d'entrée n°%d : Nombre de colonnes %d "
+"%s : Dimension erronée de l'argument d'entrée n°%d : Nombre de colonnes %d "
 "attendu.\n"
 
 #, c-format
@@ -937,11 +937,15 @@ msgid ""
 "%s: The initial simplex method %s is not compatible with the restart simplex "
 "method %s"
 msgstr ""
+"%s : La méthode de simplexe initial %s n'est pas compatible avec la méthode "
+"de redémarrage du simplexe %s"
 
 #, c-format
 msgid ""
 "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
+"%s : Le calcul du simplexe de redémarrage fondé sur un tirage aléatoire des "
+"contraintes de bornes n'est pas possible s'il n'y a pas de bornes."
 
 #, c-format
 msgid "%s: Unknown restart simplex method %s"
@@ -1018,7 +1022,7 @@ msgstr "%s : Impossible de vérifier la fonction cost lorsque x0 est vide"
 
 #, c-format
 msgid "%s: Cannot evaluate cost function with %s: %s"
-msgstr ""
+msgstr "%s : Impossible d'évaluer la fonction de coût avec %s : %s"
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
@@ -1246,17 +1250,17 @@ msgstr "%s : Le vecteur d'index d'exclusion a %d lignes au lieu de 1."
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Des entiers positifs "
+"attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-
-#, c-format
-#~ msgid "%s: Cannot evaluate cost function with %s."
-#~ msgstr "%s : Impossible d'évaluer la fonction cost avec %s."
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
+"attendue.\n"

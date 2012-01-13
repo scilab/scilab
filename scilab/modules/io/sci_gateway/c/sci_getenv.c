@@ -26,8 +26,10 @@ int sci_getenv(char *fname, int* _piKey)
 {
 	SciErr sciErr;
 	int ierr = 0;
+	char *default_env_value = NULL;
 	char *env_value = NULL;
 	int length_env = 0;
+	char *env_name = NULL;
 
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -41,51 +43,122 @@ int sci_getenv(char *fname, int* _piKey)
 	char *pStVarTwo = NULL;
 	int lenStVarTwo = 0;
 
+	//Rhs = Max(Rhs,0);
+
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	if(Rhs == 2)
-	{//second parameter
+	if (Rhs == 2)
+	{
 		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 1;
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+			return 0;
 		}
 
-        if(isStringType(_piKey, piAddressVarTwo) == FALSE || isScalar(_piKey, piAddressVarTwo) == FALSE)
+		sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+			return 0;
+		}
+
+		if (iType2  != sci_strings )
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
-			return 1;
+			return 0;
 		}
 
-        if(getAllocatedSingleString(_piKey, piAddressVarTwo, &pStVarTwo))
-        {
-            return 1;
-        }
+		sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+			return 0;
+		}
+
+		if ( (m2 != n2) && (n2 != 1) )
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+			return 0;
+		}
+
+		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
+		if (pStVarTwo)
+		{
+			sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
+			return 0;
+		}
 	}
 
-    //first parameter
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
-        freeAllocatedSingleString(pStVarTwo);
-		return 1;
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+		return 0;
 	}
 
-    if(isStringType(_piKey, piAddressVarOne) == FALSE || isScalar(_piKey, piAddressVarOne) == FALSE)
-    {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        freeAllocatedSingleString(pStVarTwo);
-        return 1;
-    }
+	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+		return 0;
+	}
 
-    if(getAllocatedSingleString(_piKey, piAddressVarOne, &pStVarOne))
-    {
-        freeAllocatedSingleString(pStVarTwo);
-        return 1;
-    }
+	if (iType1  != sci_strings )
+	{
+		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+		return 0;
+	}
+
+	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+		return 0;
+	}
+
+	if ( (m1 != n1) && (n1 != 1) )
+	{
+		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+		return 0;
+	}
+
+	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
+	if (pStVarOne)
+	{
+		sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+			return 0;
+		}
+	}
+	else
+	{
+		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
+		return 0;
+	}
 
 	#ifdef _MSC_VER
 	length_env = _MAX_ENV;
@@ -93,31 +166,34 @@ int sci_getenv(char *fname, int* _piKey)
 	length_env = bsiz;
 	#endif
 
+	default_env_value =  pStVarTwo;
+	env_name = pStVarOne;
+
 	env_value = (char*)MALLOC( (length_env + 1) *sizeof(char) );
 
-	if(env_value == NULL)
+	if (env_value == NULL)
 	{
-        freeAllocatedSingleString(pStVarTwo);
-        freeAllocatedSingleString(pStVarOne);
+		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
+		if (env_name) {FREE(env_name); env_name = NULL;}
+
 		Scierror(999,_("%s: No more memory.\n"), fname);
-		return 1;
+		return 0;
 	}
 	else
 	{
 		int m_out = 1, n_out = 1;
 		int iflag = 0;
 
-		getenvc(&ierr, pStVarOne, env_value, &length_env, &iflag);
+		getenvc(&ierr, env_name, env_value, &length_env, &iflag);
 
-		if(ierr == 0)
+		if (ierr == 0)
 		{
 			sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &env_value);
 			if(sciErr.iErr)
 			{
-                freeAllocatedSingleString(pStVarTwo);
-                freeAllocatedSingleString(pStVarOne);
 				printError(&sciErr, 0);
-				return 1;
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+				return 0;
 			}
 
 			LhsVar(1) = Rhs + 1;
@@ -125,15 +201,14 @@ int sci_getenv(char *fname, int* _piKey)
 		}
 		else
 		{
-			if(pStVarTwo)
+			if (default_env_value)
 			{
-				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &pStVarTwo);
+				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &default_env_value);
 				if(sciErr.iErr)
 				{
-                    freeAllocatedSingleString(pStVarTwo);
-                    freeAllocatedSingleString(pStVarOne);
 					printError(&sciErr, 0);
-					return 1;
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+					return 0;
 				}
 
 				LhsVar(1) = Rhs + 1;
@@ -141,16 +216,14 @@ int sci_getenv(char *fname, int* _piKey)
 			}
 			else
 			{
-                freeAllocatedSingleString(pStVarTwo);
-                freeAllocatedSingleString(pStVarOne);
-				Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, pStVarOne);
-                return 1;
+				Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, env_name);
 			}
 		}
 
-        freeAllocatedSingleString(pStVarTwo);
-        freeAllocatedSingleString(pStVarOne);
-        if(env_value) {FREE(env_value); env_value = NULL;}
+		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
+		if (env_name) {FREE(env_name); env_name = NULL;}
+		if (env_value) {FREE(env_value); env_value = NULL;}
+
 	}
 	return 0;
 }

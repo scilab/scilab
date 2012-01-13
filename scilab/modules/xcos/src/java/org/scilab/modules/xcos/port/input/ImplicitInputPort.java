@@ -27,13 +27,13 @@ public class ImplicitInputPort extends InputPort {
 
     /** Default constructor */
     public ImplicitInputPort() {
-	super("ImplicitInputPort");
+        super("ImplicitInputPort");
     }
 
     /** @return always Type.IMPLICIT */
-	@Override
+    @Override
     public Type getType() {
-	return Type.IMPLICIT;
+        return Type.IMPLICIT;
     }
-    
+
 }

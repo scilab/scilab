@@ -21,6 +21,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+
 /**
  * Class define the Scilab tree renderer
  * @author Sylvestre Koumar
@@ -34,20 +36,17 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
      * Images
      */
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
-    public static Image plus = toolkit.getImage(System.getenv("SCI") + "/modules/gui/images/icons/list-add.png");
-    public static Image minus = toolkit.getImage(System.getenv("SCI") + "/modules/gui/images/icons/list-remove.png");
-    public static Image scilab = toolkit.getImage(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
-    public static Image puff = toolkit.getImage(System.getenv("SCI") + "/modules/gui/images/icons/puff.png");
+    public static Image plus = toolkit.getImage(ScilabSwingUtilities.findIcon("list-add"));
+    public static Image minus = toolkit.getImage(ScilabSwingUtilities.findIcon("list-remove"));
+    public static Image scilab = toolkit.getImage(ScilabSwingUtilities.findIcon("scilab"));
 
     public static Image myNewPlus = plus.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
     public static Image myNewMinus = minus.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
     public static Image myNewScilab = scilab.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
-    public static Image myNewPuff = puff.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
 
     public static Icon iconPlus = new ImageIcon(myNewPlus);
     public static Icon iconMinus = new ImageIcon(myNewMinus);        
     public static Icon iconScilab = new ImageIcon(myNewScilab);
-    public static Icon iconPuff = new ImageIcon(myNewPuff);
 
     public static Image defaut = toolkit.getImage("");
     public static Image myNewDefaut = defaut.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
@@ -74,6 +73,7 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
      * @param hasFocus boolean
      * @return component renderer
      */
+    @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, 
     											  boolean sel, boolean expanded, boolean leaf, 
     											  int row, boolean hasFocus) {

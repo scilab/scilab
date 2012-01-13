@@ -10,10 +10,16 @@
 
 modulename=fftw
 
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifftw.la
+noinst_LTLIBRARIES =
+else
+noinst_LTLIBRARIES = libscifftw.la
+endif
+
 
 if FFTW
-noinst_LTLIBRARIES = libscifftw-algo.la
+noinst_LTLIBRARIES += libscifftw-algo.la
 endif
 
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)

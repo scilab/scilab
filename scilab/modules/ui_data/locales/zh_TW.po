@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 
 #, c-format
@@ -61,19 +61,28 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "有關 Scilab( &A)"
 
-msgid "Icon"
-msgstr ""
-
 msgid "Name"
 msgstr ""
 
-msgid "Bytes"
-msgstr "位元組"
+msgid "Dimension"
+msgstr ""
 
 msgid "Type"
 msgstr ""
 
 msgid "Visibility"
+msgstr ""
+
+msgid "Bytes"
+msgstr "位元組"
+
+msgid "User"
+msgstr ""
+
+msgid "Type int value"
+msgstr ""
+
+msgid "Feature not available in this mode..."
 msgstr ""
 
 msgid "File"
@@ -83,6 +92,9 @@ msgid "Close"
 msgstr "關閉"
 
 msgid "Filter"
+msgstr ""
+
+msgid "Hide Scilab variables"
 msgstr ""
 
 msgid "Double"
@@ -160,10 +172,82 @@ msgstr ""
 msgid "Cut"
 msgstr "剪下"
 
+msgid "Clear"
+msgstr ""
+
 msgid "Undo"
 msgstr ""
 
 msgid "Redo"
+msgstr ""
+
+msgid "File Browser"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Last modified"
+msgstr ""
+
+msgid "Directory"
+msgstr ""
+
+#, c-format
+msgid "%s File"
+msgstr ""
+
+msgid "File/directory filter"
+msgstr ""
+
+msgid "Enter your working folder"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
+
+msgid "Regular expression"
+msgstr ""
+
+msgid "Select a directory"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Scilab"
+msgstr ""
+
+#, c-format
+msgid "Cannot edit the file %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot open the file %s"
+msgstr ""
+
+msgid "Open with SciNotes"
+msgstr ""
+
+msgid "Execute in Scilab"
+msgstr ""
+
+msgid "Open with Xcos"
+msgstr ""
+
+msgid "Load in Scilab"
+msgstr ""
+
+msgid "Edit with default application"
+msgstr ""
+
+msgid "Open with default application"
+msgstr ""
+
+msgid "Scilab type:"
+msgstr ""
+
+msgid "Bytes:"
 msgstr ""
 
 #, c-format

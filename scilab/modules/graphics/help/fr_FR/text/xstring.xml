@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>xstring(x,y,str,[angle,box])</synopsis>
+    <synopsis>xstring(x,y,str,[angle,[box]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -79,7 +79,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>

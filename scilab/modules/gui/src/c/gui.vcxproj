@@ -248,7 +248,6 @@
     <ClCompile Include="..\cpp\CallJuigetfile.cpp" />
     <ClCompile Include="..\cpp\CallJxclick.cpp" />
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp" />
-    <ClCompile Include="..\cpp\CallMainWindow.cpp" />
     <ClCompile Include="..\cpp\CallMessageBox.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
     <ClCompile Include="..\cpp\CallWaitBar.cpp" />
@@ -376,7 +375,6 @@
     <ClCompile Include="..\cpp\SetUiobjectVisible.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
     <ClCompile Include="..\cpp\Slider.cpp" />
-    <ClCompile Include="TerminateGui.c" />
     <ClCompile Include="..\cpp\Toolbar.cpp" />
     <ClCompile Include="UicontrolStyleToString.c" />
     <ClCompile Include="..\jni\UIElementMapper.cpp" />
@@ -475,7 +473,6 @@
     <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
     <ClInclude Include="..\..\includes\CallJxclick.h" />
     <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
-    <ClInclude Include="..\..\includes\CallMainWindow.h" />
     <ClInclude Include="..\..\includes\CallMessageBox.h" />
     <ClInclude Include="..\..\includes\CallWaitBar.h" />
     <ClInclude Include="..\..\includes\CheckBox.h" />
@@ -550,7 +547,6 @@
     <ClInclude Include="..\..\includes\SetUiobjectTag.h" />
     <ClInclude Include="..\..\includes\SetUiobjectVisible.h" />
     <ClInclude Include="..\..\includes\Slider.h" />
-    <ClInclude Include="..\..\includes\TerminateGui.h" />
     <ClInclude Include="..\..\includes\Toolbar.h" />
     <ClInclude Include="..\..\includes\Widget.h" />
   </ItemGroup>

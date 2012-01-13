@@ -80,6 +80,18 @@ public abstract class JavasciException extends Exception {
 
     }
 
+/**
+ * This class provides a exception class when a Scilab error occurs
+ * @since 5.4.0
+ */
+    public static class ScilabErrorException extends JavasciException {
+
+        public ScilabErrorException(String message, int errorCode) {
+            super(message + "\nCode: " +errorCode);
+        }
+
+    }
+
 
 /**
  * This class provides a exception class when an non-existing variable is

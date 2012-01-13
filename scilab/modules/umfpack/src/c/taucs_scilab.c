@@ -1,8 +1,8 @@
 /*
  *   This big file contains all the taucs routines needed for the
- *   scilab interface onto the taucs supernodal multi-frontal choleski 
+ *   scilab interface onto the taucs supernodal multi-frontal choleski
  *   solver :
- *        - internal structures used by the solver 
+ *        - internal structures used by the solver
  *        - genmmd interface
  *        - create / free taucs matrices routines
  *        - permutations routines
@@ -15,7 +15,7 @@
  *    lib from Sivan Toledo (see the TAUCS_license.txt file).
  *
  *    Very minor modifs have been done (Bruno) :
- *        - replace the _ for calling fortran routine by the 
+ *        - replace the _ for calling fortran routine by the
  *          scilab macro F2C  (call to genmmd and calls to blas
  *          routines)
  *        - the print messages that I have stayed are redirected
@@ -74,7 +74,7 @@ typedef struct {
   int     n_sn;     /* number of supernodes */
 
   int* parent;      /* supernodal elimination tree */
-  int* first_child; 
+  int* first_child;
   int* next_child;
 
   int* sn_size;     /* size of supernodes (diagonal block) */
@@ -83,7 +83,7 @@ typedef struct {
 
   int* sn_blocks_ld;  /* lda of supernode blocks */
   double** sn_blocks; /* supernode blocks        */
-    
+
   int* up_blocks_ld;  /* lda of update blocks    */
   double** up_blocks; /* update blocks           */
 } supernodal_factor_matrix;
@@ -122,8 +122,8 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   int* next;
 
   int  nnz,i,j,ip;
-  
-  if (!(m->flags & TAUCS_SYMMETRIC)) 
+
+  if (!(m->flags & TAUCS_SYMMETRIC))
   {
 	sciprint("%s: %s","taucs_ccs_genmmd",_("GENMMD ordering only works on symmetric matrices.\n"));
     *perm    = NULL;
@@ -131,7 +131,7 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
     return;
   }
   /* this routine may actually work on UPPER as well */
-  if (!(m->flags & TAUCS_LOWER)) 
+  if (!(m->flags & TAUCS_LOWER))
   {
 	sciprint("%s: %s","taucs_ccs_genmmd",_("The lower part of the matrix must be represented.\n"));
     *perm    = NULL;
@@ -144,7 +144,7 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
 
   n   = m->n;
   nnz = (m->colptr)[n];
-  
+
   /* I copied the value of delta and the size of */
   /* from SuperLU. Sivan                         */
 
@@ -165,8 +165,8 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   llist  = (int*) MALLOC(n         * sizeof(int));
   marker = (int*) MALLOC(n         * sizeof(int));
 
-  if (!xadj || !adjncy || !invp || !prm 
-      || !dhead || !qsize || !llist || !marker) 
+  if (!xadj || !adjncy || !invp || !prm
+      || !dhead || !qsize || !llist || !marker)
   {
     FREE(xadj  );
     FREE(adjncy);
@@ -186,10 +186,10 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
 
   for (j=0; j<n; j++)
   {
-	for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++) 
+	for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++)
     {
 		i = (m->rowind)[ip];
-		if (i != j) 
+		if (i != j)
 		{
 			len[i] ++;
 			len[j] ++;
@@ -199,18 +199,18 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
   xadj[0] = 1;
   for (i=1; i<=n; i++) xadj[i] = xadj[i-1] + len[i-1];
 
-  
+
   /* use degree as a temporary */
   for (i=0; i<n; i++) next[i] = xadj[i] - 1;
 
   for (j=0; j<n; j++)
   {
-    for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++) 
+    for (ip = (m->colptr)[j]; ip < (m->colptr)[j+1]; ip++)
     {
 		i = (m->rowind)[ip];
 		assert( next[i] < 2*nnz-n );
 		assert( next[j] < 2*nnz-n );
-		if (i != j) 
+		if (i != j)
 		{
 			adjncy[ next[i] ] = j+1;
 			adjncy[ next[j] ] = i+1;
@@ -245,16 +245,16 @@ void taucs_ccs_genmmd(taucs_ccs_matrix* m, int** perm, int** invperm)
 /* CCS : create free taucs matrix routines               */
 /*********************************************************/
 
-taucs_ccs_matrix* 
+taucs_ccs_matrix*
 taucs_ccs_create(int m, int n, int nnz)
 {
   taucs_ccs_matrix* matrix;
 
   matrix = (taucs_ccs_matrix*) MALLOC(sizeof(taucs_ccs_matrix));
-  if (!matrix) 
-  { 
+  if (!matrix)
+  {
 	sciprint(_("%s: No more memory.\n"),"taucs_ccs_create");
-    return NULL; 
+    return NULL;
   }
   matrix->flags = 0;
   matrix->n = n;
@@ -262,16 +262,16 @@ taucs_ccs_create(int m, int n, int nnz)
   matrix->colptr = (int*)    MALLOC((n+1) * sizeof(int));
   matrix->rowind = (int*)    MALLOC(nnz   * sizeof(int));
   matrix->values = (double*) MALLOC(nnz   * sizeof(double));
-  if (!(matrix->colptr) || !(matrix->rowind)) 
+  if (!(matrix->colptr) || !(matrix->rowind))
   {
     sciprint(_("%s: No more memory (n=%d, nnz=%d).\n"),"taucs_ccs_create",n,nnz);
     FREE(matrix->colptr); FREE(matrix->rowind); FREE(matrix->values);
     FREE (matrix);
-    return NULL; 
+    return NULL;
   }
 
   return matrix;
-} 
+}
 
 void taucs_ccs_free(taucs_ccs_matrix* matrix)
 {
@@ -285,7 +285,7 @@ void taucs_ccs_free(taucs_ccs_matrix* matrix)
 /* CCS : permutation routines                            */
 /*********************************************************/
 
-taucs_ccs_matrix* 
+taucs_ccs_matrix*
 taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
 {
   taucs_ccs_matrix* PAPT;
@@ -311,9 +311,9 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
 
   for (j=0; j<n; j++) len[j] = 0;
 
-  for (j=0; j<n; j++) 
+  for (j=0; j<n; j++)
   {
-    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) 
+    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++)
 	{
       /*i = (A->rowind)[ip] - (A->indshift);*/
       i = (A->rowind)[ip];
@@ -321,9 +321,9 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
       I = invperm[i];
       J = invperm[j];
 
-      if (I < J) 
+      if (I < J)
 	  {
-		int T = I; 
+		int T = I;
 		J = T;
       }
       len[J] ++;
@@ -334,10 +334,10 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
   for (j=1; j<=n; j++) (PAPT->colptr)[j] = (PAPT->colptr)[j-1] + len[j-1];
 
   for (j=0; j<n; j++) len[j] = (PAPT->colptr)[j];
-  
-  for (j=0; j<n; j++) 
+
+  for (j=0; j<n; j++)
   {
-    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++) 
+    for (ip = (A->colptr)[j]; ip < (A->colptr)[j+1]; ip++)
 	{
       /*i   = (A->rowind)[ip] - (A->indshift);*/
       i   = (A->rowind)[ip];
@@ -346,9 +346,9 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
       I = invperm[i];
       J = invperm[j];
 
-      if (I < J) 
+      if (I < J)
 	  {
-		int T = I; 
+		int T = I;
 		I = J;
 		J = T;
       }
@@ -370,13 +370,13 @@ void taucs_vec_permute(int n, double v[], double pv[], int p[])
 {
   int i;
   for (i=0; i<n; i++) pv[i] = v[p[i]];
-} 
+}
 
 void taucs_vec_ipermute(int n, double pv[], double v[], int invp[])
 {
   int i;
   for (i=0; i<n; i++) v[invp[i]] = pv[i];
-} 
+}
 
 
 /*************************************************************/
@@ -387,7 +387,7 @@ static supernodal_factor_matrix*
 multifrontal_supernodal_create(void)
 {
   supernodal_factor_matrix* L;
-  
+
   L = (supernodal_factor_matrix*) MALLOC(sizeof(supernodal_factor_matrix));
   if (!L) return NULL;
   L->uplo      = 'l';
@@ -411,7 +411,7 @@ void taucs_supernodal_factor_free(void* vL)
 {
   supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
   int sn;
-  
+
   FREE(L->parent);
   FREE(L->first_child);
   FREE(L->next_child);
@@ -420,19 +420,19 @@ void taucs_supernodal_factor_free(void* vL)
   FREE(L->sn_up_size);
   FREE(L->sn_blocks_ld);
   FREE(L->up_blocks_ld);
-  if (L->sn_struct)   
+  if (L->sn_struct)
     for (sn=0; sn<L->n_sn; sn++)
       FREE(L->sn_struct[sn]);
 
-  if (L->sn_blocks)   
+  if (L->sn_blocks)
     for (sn=0; sn<L->n_sn; sn++)
       FREE(L->sn_blocks[sn]);
 
-  if (L->up_blocks)   
+  if (L->up_blocks)
     for (sn=0; sn<L->n_sn; sn++)
       FREE(L->up_blocks[sn]);
   /*
-  for (sn=0; sn<L->n_sn; sn++) 
+  for (sn=0; sn<L->n_sn; sn++)
   {
     FREE(L->sn_struct[sn]);
     FREE(L->sn_blocks[sn]);
@@ -450,10 +450,10 @@ void taucs_supernodal_factor_free(void* vL)
 /* create and free frontal matrices                          */
 /*************************************************************/
 
-static supernodal_frontal_matrix* 
+static supernodal_frontal_matrix*
 supernodal_frontal_create(int* firstcol_in_supernode,
 			  int sn_size,
-			  int n, 
+			  int n,
 			  int* rowind)
 {
   supernodal_frontal_matrix* tmp;
@@ -495,7 +495,7 @@ supernodal_frontal_create(int* firstcol_in_supernode,
 	iDontCheckf2 = 1;
 	tmp->f2 = NULL;
   }
-  
+
   if (tmp->up_size > 0)
   {
 	  tmp->u  = (double*)CALLOC((tmp->up_size)*(tmp->up_size),sizeof(double));
@@ -507,9 +507,9 @@ supernodal_frontal_create(int* firstcol_in_supernode,
   }
 
   /*check allocation only if size is > 0 */
-  if( (tmp->f1 == NULL && iDontCheckf1 == 0) || 
-	  (tmp->f2 == NULL && iDontCheckf2 == 0) || 
-	  (tmp->u  == NULL && iDontChecku  == 0)) 
+  if( (tmp->f1 == NULL && iDontCheckf1 == 0) ||
+	  (tmp->f2 == NULL && iDontCheckf2 == 0) ||
+	  (tmp->u  == NULL && iDontChecku  == 0))
   {
 	  FREE(tmp->u);
 	  FREE(tmp->f1);
@@ -555,11 +555,11 @@ multifrontal_supernodal_front_factor(int sn,
   for(i=0;i<mtr->up_size;i++) bitmap[mtr->up_vertices[i]] = mtr->sn_size + i;
 
   /* adding sn_size column of A to first sn_size column of frontal matrix */
-  for(j=0;j<(mtr->sn_size);j++) 
+  for(j=0;j<(mtr->sn_size);j++)
   {
     ind = &(A->rowind[A->colptr[*(firstcol_in_supernode+j)]]);
-    re  = &(A->values[A->colptr[*(firstcol_in_supernode+j)]]); 
-    for(i=0;i < A->colptr[*(firstcol_in_supernode+j)+1]- A->colptr[*(firstcol_in_supernode+j)];	i++) 
+    re  = &(A->values[A->colptr[*(firstcol_in_supernode+j)]]);
+    for(i=0;i < A->colptr[*(firstcol_in_supernode+j)+1]- A->colptr[*(firstcol_in_supernode+j)];	i++)
 	{
       if (bitmap[ind[i]] < mtr->sn_size)
 	  {
@@ -583,7 +583,7 @@ multifrontal_supernodal_front_factor(int sn,
 		&INFO);
   }
 
-  if (INFO && INFO != -1)  /* INFO = -1 if not initialized */ 
+  if (INFO && INFO != -1)  /* INFO = -1 if not initialized */
   {
 	sciprint(_("    CC^T Factorization: Matrix is not positive definite.\n"));
     sciprint(_("                        nonpositive pivot in column %d\n"),mtr->sn_vertices[INFO-1]);
@@ -628,7 +628,7 @@ multifrontal_supernodal_front_factor(int sn,
 /* extend-add                                                */
 /*************************************************************/
 
-static void 
+static void
 multifrontal_supernodal_front_extend_add(
 					 supernodal_frontal_matrix* parent_mtr,
 					 supernodal_frontal_matrix* my_mtr,
@@ -641,14 +641,14 @@ multifrontal_supernodal_front_extend_add(
   for(i=0;i<parent_mtr->up_size;i++) bitmap[parent_mtr->up_vertices[i]] = (parent_mtr->sn_size)+i;
 
   /* extend add operation for update matrix */
-  for(j=0;j<my_mtr->up_size;j++) 
+  for(j=0;j<my_mtr->up_size;j++)
   {
-    for(i=j;i<my_mtr->up_size;i++) 
+    for(i=j;i<my_mtr->up_size;i++)
 	{
       parent_j = bitmap[ my_mtr->up_vertices[j] ];
       parent_i = bitmap[ my_mtr->up_vertices[i] ];
       /* we could skip this if indices were sorted */
-      if (parent_j>parent_i) 
+      if (parent_j>parent_i)
 	  {
 		int tmp = parent_j;
 		parent_j = parent_i;
@@ -657,18 +657,18 @@ multifrontal_supernodal_front_extend_add(
 
       v = (my_mtr->u)[(my_mtr->up_size)*j+i];
 
-      if (parent_j < parent_mtr->sn_size) 
+      if (parent_j < parent_mtr->sn_size)
 	  {
-		if (parent_i < parent_mtr->sn_size) 
+		if (parent_i < parent_mtr->sn_size)
 		{
 			(parent_mtr->f1)[ (parent_mtr->sn_size)*parent_j + parent_i] += v;
-		} 
-		else 
+		}
+		else
 		{
 			(parent_mtr->f2)[ (parent_mtr->up_size)*parent_j + (parent_i-parent_mtr->sn_size)] += v;
 		}
-      } 
-	  else 
+      }
+	  else
 	  {
 		(parent_mtr->u)[ (parent_mtr->up_size)*(parent_j-parent_mtr->sn_size) + (parent_i-parent_mtr->sn_size)] += v;
       }
@@ -683,23 +683,23 @@ multifrontal_supernodal_front_extend_add(
 /* UNION FIND ROUTINES */
 
 static int uf_makeset(int* uf, int i)        { uf[i] = i; return i; }
-static int uf_find   (int* uf, int i)        
-{ 
-	if (uf[i] != i) uf[i] = uf_find(uf,uf[i]); 
-	return uf[i]; 
+static int uf_find   (int* uf, int i)
+{
+	if (uf[i] != i) uf[i] = uf_find(uf,uf[i]);
+	return uf[i];
 }
 
 static int uf_union  (int* uf, int s, int t) {
-  
-  if (uf_find(uf,s) < uf_find(uf,t)) 
+
+  if (uf_find(uf,s) < uf_find(uf,t))
   {
-    uf[uf_find(uf,s)] = uf_find(uf,t); 
-    return (uf_find(uf,t)); 
+    uf[uf_find(uf,s)] = uf_find(uf,t);
+    return (uf_find(uf,t));
   }
   else
   {
-    uf[uf_find(uf,s)] = uf_find(uf,t); 
-    return (uf_find(uf,t)); 
+    uf[uf_find(uf,s)] = uf_find(uf,t);
+    return (uf_find(uf,t));
   }
 }
 
@@ -712,7 +712,7 @@ void recursive_postorder(int  j,
 			 int* next)
 {
   int c;
-  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  for (c=first_child[j]; c != -1; c = next_child[c])
   {
     recursive_postorder(c,first_child,next_child,
 			postorder,ipostorder,next);
@@ -729,35 +729,35 @@ void recursive_postorder(int  j,
 #undef GILBERT_NG_PEYTON_ANALYSIS_SUP
 
 static int ordered_uf_makeset(int* uf, int i)
-{ 
-  uf[i] = i; 
-  return i; 
+{
+  uf[i] = i;
+  return i;
 }
-static int ordered_uf_find   (int* uf, int i) 
-{ 
-  if (uf[i] != i) uf[i] = uf_find(uf,uf[i]); 
-  return uf[i]; 
+static int ordered_uf_find   (int* uf, int i)
+{
+  if (uf[i] != i) uf[i] = uf_find(uf,uf[i]);
+  return uf[i];
 }
-static int ordered_uf_union  (int* uf, int s, int t) 
+static int ordered_uf_union  (int* uf, int s, int t)
 {
   assert(uf[t] == t);
   assert(uf[s] == s);
   assert(t > s);
-  if (t > s) 
+  if (t > s)
   {
-    uf[s] = t; 
-    return t; 
+    uf[s] = t;
+    return t;
   }
   else
   {
     uf[t] = s;
   }
-	return s; 
+	return s;
 }
 
-static void 
+static void
 tree_level(int j,
-	   int isroot, 
+	   int isroot,
 	   int first_child[],
 	   int next_child[],
 	   int level[],
@@ -765,7 +765,7 @@ tree_level(int j,
 {
   int c;
   if (!isroot) level[j] = level_j;
-  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  for (c=first_child[j]; c != -1; c = next_child[c])
   {
     tree_level(c,
 	       FALSE,
@@ -778,7 +778,7 @@ tree_level(int j,
 
 static void
 tree_first_descendant(int j,
-		      int isroot, 
+		      int isroot,
 		      int first_child[],
 		      int next_child[],
 		      int ipostorder[],
@@ -786,7 +786,7 @@ tree_first_descendant(int j,
 {
   int c;
   int fd = ipostorder[j];
-  for (c=first_child[j]; c != -1; c = next_child[c]) 
+  for (c=first_child[j]; c != -1; c = next_child[c])
   {
     tree_first_descendant(c,
 			  FALSE,
@@ -794,7 +794,7 @@ tree_first_descendant(int j,
 			  next_child,
 			  ipostorder,
 			  first_descendant);
-    if (first_descendant[c] < fd) fd = first_descendant[c]; 
+    if (first_descendant[c] < fd) fd = first_descendant[c];
   }
   if (!isroot) first_descendant[j] = fd;
 }
@@ -829,7 +829,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
   /* we need the row structures for the lower triangle */
 
   nnz = (A->colptr)[n];
-  
+
   uf       = (int*)MALLOC(n     * sizeof(int));
   rowcount = (int*)MALLOC((n+1) * sizeof(int));
   rowptr   = (int*)MALLOC((n+1) * sizeof(int));
@@ -890,7 +890,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
   FREE(colind);
   FREE(rowptr);
   FREE(rowcount);
-  
+
   /* compute column counts */
 
   if (l_colcount || l_rowcount || l_nnz) {
@@ -913,20 +913,20 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
 
 
     /* compute the postorder */
-    
+
     for (j=0; j<=n; j++) first_child[j] = -1;
     for (j=n-1; j>=0; j--) {
       next_child[j] = first_child[parent[j]];
       first_child[parent[j]] = j;
     }
-    
+
     {
       int next = 0;
       recursive_postorder(n,first_child,next_child,
 			  postorder,
 			  ipostorder,&next);
     }
-    
+
     /* we allocate scratch vectors to avoid conditionals */
     /* in the inner loop.                                */
 
@@ -942,7 +942,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
 
     tree_level(n,TRUE,first_child,next_child,
 	       level,-1);
-    
+
     for (u=0; u < n; u++) prev_p  [u] = -1;
     for (u=0; u < n; u++) l_rc    [u] =  1;
     for (u=0; u < n; u++) ordered_uf_makeset(uf,u);
@@ -977,7 +977,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
 #endif
 	  wt[jp] ++;
 	  pprime = prev_p[ju];
-	  if (pprime == -1) 
+	  if (pprime == -1)
 	    l_rc[ju] += level[jp] - level[ju];
 	  else {
 	    q = ordered_uf_find(uf,pprime);
@@ -1024,7 +1024,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
     FREE(wt);
     FREE(level);
     FREE(prev_p);
-    
+
 #ifdef GILBERT_NG_PEYTON_ANALYSIS_SUP
     FREE(prev_nbr);
     FREE(first_descendant);
@@ -1036,7 +1036,7 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
 }
 
 
-int 
+int
 taucs_ccs_etree_liu(taucs_ccs_matrix* A,
 		    int* parent,
 		    int* l_colcount,
@@ -1061,7 +1061,7 @@ taucs_ccs_etree_liu(taucs_ccs_matrix* A,
   /* we need the row structures for the lower triangle */
 
   nnz = (A->colptr)[n];
-  
+
   uf       = (int*)MALLOC(n     * sizeof(int));
   rowcount = (int*)MALLOC((n+1) * sizeof(int));
   rowptr   = (int*)MALLOC((n+1) * sizeof(int));
@@ -1070,7 +1070,7 @@ taucs_ccs_etree_liu(taucs_ccs_matrix* A,
   for (i=0; i <=n; i++) rowcount[i] = 0;
 
   for (j=0; j < n; j++) {
-    
+
     jnnz = (A->colptr)[j+1] - (A->colptr)[j];
 
     for (ip=0; ip<jnnz; ip++) {
@@ -1140,12 +1140,12 @@ taucs_ccs_etree_liu(taucs_ccs_matrix* A,
     else            l_nz = &tmp;
 
     marker = rowcount; /* we reuse the space */
-    
+
     for (j=0; j < n; j++) l_cc[j] = 1;
     *l_nz = n;
-    
+
     for (i=0; i<n; i++) marker[i] = n; /* clear the array */
-    
+
     for (i=0; i<n; i++) {
       l_rc[i] = 1;
       marker[ i ] = i;
@@ -1184,8 +1184,8 @@ recursive_symbolic_elimination(int            j,
 			       int            sn_size[],
 			       int            sn_up_size[],
 			       int*           sn_rowind[],
-			       int            sn_first_child[], 
-			       int            sn_next_child[], 
+			       int            sn_first_child[],
+			       int            sn_next_child[],
 			       int            rowind[],
 			       int            column_to_sn_map[],
 			       int            map[],
@@ -1196,7 +1196,7 @@ recursive_symbolic_elimination(int            j,
   int  i,ip,c,c_sn;
   int  in_previous_sn;
   int  nnz;
-  
+
   for (c=first_child[j]; c != -1; c = next_child[c]) {
     recursive_symbolic_elimination(c,A,
 				   first_child,next_child,
@@ -1211,13 +1211,13 @@ recursive_symbolic_elimination(int            j,
   }
 
   in_previous_sn = 1;
-  if (j == A->n) 
+  if (j == A->n)
     in_previous_sn = 0; /* this is not a real column */
-  else if (first_child[j] == -1) 
+  else if (first_child[j] == -1)
     in_previous_sn = 0; /* this is a leaf */
-  else if (next_child[first_child[j]] != -1) 
+  else if (next_child[first_child[j]] != -1)
     in_previous_sn = 0; /* more than 1 child */
-  else { 
+  else {
     /* check that the structure is nested */
     /* map contains child markers         */
 
@@ -1235,14 +1235,14 @@ recursive_symbolic_elimination(int            j,
 
     /* swap row indices so j is at the end of the */
     /* supernode, not in the update indices       */
-    for (ip=sn_size[c_sn]; ip<sn_up_size[c_sn]; ip++) 
+    for (ip=sn_size[c_sn]; ip<sn_up_size[c_sn]; ip++)
       if (sn_rowind[c_sn][ip] == j) break;
     assert(ip<sn_up_size[c_sn]);
     sn_rowind[c_sn][ip] = sn_rowind[c_sn][sn_size[c_sn]];
     sn_rowind[c_sn][sn_size[c_sn]] = j;
 
     /* mark the nonzeros in the map */
-    for (ip=sn_size[c_sn]; ip<sn_up_size[c_sn]; ip++) 
+    for (ip=sn_size[c_sn]; ip<sn_up_size[c_sn]; ip++)
       map[ sn_rowind[c_sn][ip] ] = j;
 
     sn_size   [c_sn]++;
@@ -1256,7 +1256,7 @@ recursive_symbolic_elimination(int            j,
     nnz = 1;
     rowind[0] = j;
     map[j]    = j;
-    
+
     for (c=first_child[j]; c != -1; c = next_child[c]) {
       c_sn = column_to_sn_map[c];
       for (ip=sn_size[c_sn]; ip<sn_up_size[c_sn]; ip++) {
@@ -1268,7 +1268,7 @@ recursive_symbolic_elimination(int            j,
 	}
       }
     }
-    
+
     for (ip=(A->colptr)[j]; ip<(A->colptr)[j+1]; ip++) {
       i = (A->rowind)[ip];
       if (map[i] != j) { /* new row index */
@@ -1278,7 +1278,7 @@ recursive_symbolic_elimination(int            j,
       }
     }
   }
-    
+
   /*printf("children of sn %d: ",*n_sn);*/
   for (c=first_child[j]; c != -1; c = next_child[c]) {
     c_sn = column_to_sn_map[c];
@@ -1329,8 +1329,8 @@ recursive_amalgamate_supernodes(int           sn,
 				int            sn_size[],
 				int            sn_up_size[],
 				int*           sn_rowind[],
-				int            sn_first_child[], 
-				int            sn_next_child[], 
+				int            sn_first_child[],
+				int            sn_next_child[],
 				int            rowind[],
 				int            column_to_sn_map[],
 				int            map[],
@@ -1347,7 +1347,7 @@ recursive_amalgamate_supernodes(int           sn,
   int new_sn_size, new_sn_up_size;
 
   sn_znz.zeros    = 0.0;
-  sn_znz.nonzeros = (double) (((sn_up_size[sn] - sn_size[sn]) * sn_size[sn]) 
+  sn_znz.nonzeros = (double) (((sn_up_size[sn] - sn_size[sn]) * sn_size[sn])
                               + (sn_size[sn] * (sn_size[sn] + 1))/2);
 
   if (sn_first_child[sn] == -1) { /* leaf */
@@ -1366,7 +1366,7 @@ recursive_amalgamate_supernodes(int           sn,
 
   i = 0;
   for (c_sn=sn_first_child[sn]; c_sn != -1; c_sn = sn_next_child[c_sn]) {
-    c_znz[i] = 
+    c_znz[i] =
       recursive_amalgamate_supernodes(c_sn,
 				      n_sn,
 				      sn_size,sn_up_size,sn_rowind,
@@ -1377,14 +1377,14 @@ recursive_amalgamate_supernodes(int           sn,
 				      do_order,ipostorder
 				      );
     assert(c_znz[i].zeros + c_znz[i].nonzeros ==
-	   (double) (((sn_up_size[c_sn] - sn_size[c_sn]) * sn_size[c_sn]) 
+	   (double) (((sn_up_size[c_sn] - sn_size[c_sn]) * sn_size[c_sn])
 		     + (sn_size[c_sn] * (sn_size[c_sn] + 1))/2 ));
     i++;
   }
 
   merged_znz.nonzeros = sn_znz.nonzeros;
   merged_znz.zeros    = sn_znz.zeros;
-                   
+
   for (i=0; i<nchildren; i++) {
     merged_znz.nonzeros += (c_znz[i]).nonzeros;
     merged_znz.zeros    += (c_znz[i]).zeros;
@@ -1434,7 +1434,7 @@ recursive_amalgamate_supernodes(int           sn,
       nnz++;
     }
   }
-  
+
   new_sn_up_size = nnz;
 
   if (do_order) {
@@ -1456,7 +1456,7 @@ recursive_amalgamate_supernodes(int           sn,
 
     zcount = (double*) alloca(n * sizeof(double));
     assert(zcount);
-    
+
     for (ip=0; ip<new_sn_size; ip++) {
       i = rowind[ip]; assert(i<n);
       zcount[i] = (double) (ip+1);
@@ -1467,10 +1467,10 @@ recursive_amalgamate_supernodes(int           sn,
     }
 
     /*
-    for (ip=0; ip<new_sn_up_size; ip++) 
+    for (ip=0; ip<new_sn_up_size; ip++)
       printf("row %d zcount = %.0f\n",rowind[ip],zcount[rowind[ip]]);
     */
-    
+
     for (c_sn=sn_first_child[sn]; c_sn != -1; c_sn = sn_next_child[c_sn]) {
       for (ip=0; ip<sn_size[c_sn]; ip++) {
 	i = sn_rowind[c_sn][ip]; assert(i<n);
@@ -1492,11 +1492,11 @@ recursive_amalgamate_supernodes(int           sn,
     }
 
     /*
-    for (ip=0; ip<new_sn_up_size; ip++) 
+    for (ip=0; ip<new_sn_up_size; ip++)
       printf("ROW %d zcount = %.0f\n",rowind[ip],zcount[rowind[ip]]);
     printf("zeros before merging %.0f\n",merged_znz.zeros);
     */
-    
+
     for (ip=0; ip<new_sn_up_size; ip++) {
       i = rowind[ip]; assert(i<n);
       assert(zcount[i] >= 0.0);
@@ -1534,7 +1534,7 @@ recursive_amalgamate_supernodes(int           sn,
 
   sn_size[sn]    = new_sn_size;
   sn_up_size[sn] = new_sn_up_size;
-  sn_rowind[sn]  = (int*) REALLOC(sn_rowind[sn], 
+  sn_rowind[sn]  = (int*) REALLOC(sn_rowind[sn],
 				  new_sn_up_size * sizeof(int));
   for (ip=0; ip<new_sn_up_size; ip++) sn_rowind[sn][ip] = rowind[ip];
 
@@ -1566,7 +1566,7 @@ recursive_amalgamate_supernodes(int           sn,
   for (i=0; i<nchildren; i++) {
     sn_next_child[ rowind[i] ] = sn_first_child[sn];
     sn_first_child[sn] = rowind[i];
-  }    
+  }
 
   /*
   printf("supernode %d out of %d (done)\n",sn,*n_sn);
@@ -1575,7 +1575,7 @@ recursive_amalgamate_supernodes(int           sn,
   return merged_znz;
 }
 
-int      
+int
 taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
 			       void* vL,
 			       int do_order
@@ -1594,17 +1594,17 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
   L->n         = A->n;
   L->sn_struct = (int**)MALLOC((A->n  )*sizeof(int*));
   L->sn_size   = (int*) MALLOC((A->n+1)*sizeof(int));
-  
+
   L->sn_up_size   = (int*) MALLOC((A->n+1)*sizeof(int));
   L->first_child = (int*) MALLOC((A->n+1)*sizeof(int));
   L->next_child  = (int*) MALLOC((A->n+1)*sizeof(int));
-  
+
   column_to_sn_map = (int*)MALLOC((A->n+1)*sizeof(int));
   map              = (int*) MALLOC((A->n+1)*sizeof(int));
 
   first_child = (int*) MALLOC(((A->n)+1)*sizeof(int));
   next_child  = (int*) MALLOC(((A->n)+1)*sizeof(int));
-    
+
   rowind      = (int*) MALLOC((A->n)*sizeof(int));
 
   /* compute the vertex elimination tree */
@@ -1639,7 +1639,7 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
     }
 
     if (nnz1!=nnz2) sciprint("nnz1=%d nnz2=%d\n",nnz1,nnz2);
-    
+
     FREE(cc1); FREE(cc2); FREE(rc1); FREE(rc2);
   }
 
@@ -1652,7 +1652,7 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
   FREE(parent);
 
   ipostorder = (int*)MALLOC((A->n+1)*sizeof(int));
-  { 
+  {
     int next = 0;
     /*int* postorder = (int*)MALLOC((A->n+1)*sizeof(int));*/
     recursive_postorder(A->n,first_child,next_child,
@@ -1671,7 +1671,7 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
   L->n_sn = 0;
   for (j=0; j < (A->n); j++) map[j] = -1;
   for (j=0; j <= (A->n); j++) (L->first_child)[j] = (L->next_child)[j] = -1;
-  
+
   recursive_symbolic_elimination(A->n,
 				 A,
 				 first_child,next_child,
@@ -1689,8 +1689,8 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
     double flops = 0.0;
     int sn,i,colnnz;
     for (sn=0; sn<(L->n_sn); sn++) {
-      for (i=0, colnnz = (L->sn_up_size)[sn]; 
-	   i<(L->sn_size)[sn]; 
+      for (i=0, colnnz = (L->sn_up_size)[sn];
+	   i<(L->sn_size)[sn];
 	   i++, colnnz--) {
 	flops += ((double)(colnnz) - 1.0) * ((double)(colnnz) + 2.0) / 2.0;
 	nnz   += (double) (colnnz);
@@ -1718,8 +1718,8 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
     double flops = 0.0;
     int sn,i,colnnz;
     for (sn=0; sn<(L->n_sn); sn++) {
-      for (i=0, colnnz = (L->sn_up_size)[sn]; 
-	   i<(L->sn_size)[sn]; 
+      for (i=0, colnnz = (L->sn_up_size)[sn];
+	   i<(L->sn_size)[sn];
 	   i++, colnnz--) {
 	flops += ((double)(colnnz) - 1.0) * ((double)(colnnz) + 2.0) / 2.0;
 	nnz   += (double) (colnnz);
@@ -1737,12 +1737,12 @@ taucs_ccs_symbolic_elimination(taucs_ccs_matrix* A,
     printf("\n");
   }
   */
-  
+
 
 
   L->sn_blocks_ld  = (int*)MALLOC((L->n_sn) * sizeof(int));
   L->sn_blocks     = (double**)CALLOC((L->n_sn), sizeof(double*)); /* so we can free before allocation */
-  
+
   L->up_blocks_ld  = (int*)MALLOC((L->n_sn) * sizeof(int));
   L->up_blocks     = (double**)CALLOC((L->n_sn), sizeof(double*));
 
@@ -1772,7 +1772,7 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
   supernodal_frontal_matrix* my_matrix=NULL;
   supernodal_frontal_matrix* child_matrix=NULL;
   int child;
-  int* v; 
+  int* v;
   int  sn_size;
   int* first_child   = snL->first_child;
   int* next_child    = snL->next_child;
@@ -1785,12 +1785,12 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
     sn_size = -1;
 
   for (child = first_child[sn]; child != -1; child = next_child[child]) {
-    child_matrix = 
+    child_matrix =
       recursive_multifrontal_supernodal_factor_llt(child,
 						   FALSE,
 						   bitmap,
 						   A,snL,fail);
-    if (*fail) { 
+    if (*fail) {
       if (child_matrix) supernodal_frontal_free(child_matrix);
       return NULL;
     }
@@ -1813,7 +1813,7 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
   }
 
   /* in case we have no children, we allocate now */
-  if (!is_root && !my_matrix) 
+  if (!is_root && !my_matrix)
     my_matrix =  supernodal_frontal_create(v,sn_size,
 					   snL->sn_up_size[sn],
 					   snL->sn_struct[sn]);
@@ -1824,7 +1824,7 @@ recursive_multifrontal_supernodal_factor_llt(int sn,       /* this supernode */
 					     A,
 					     my_matrix,
 					     bitmap,
-					     snL)) { 
+					     snL)) {
       /* nonpositive pivot */
       *fail = TRUE;
       supernodal_frontal_free(my_matrix);
@@ -1848,8 +1848,8 @@ void* taucs_ccs_factor_llt_mf(taucs_ccs_matrix* A)
   map = (int*)MALLOC((A->n+1)*sizeof(int));
 
   fail = FALSE;
-  recursive_multifrontal_supernodal_factor_llt((L->n_sn),  
-					       TRUE, 
+  recursive_multifrontal_supernodal_factor_llt((L->n_sn),
+					       TRUE,
 					       map,
 					       A,L,&fail);
 
@@ -1868,7 +1868,7 @@ void* taucs_ccs_factor_llt_mf(taucs_ccs_matrix* A)
 /* supernodal solve routines                                 */
 /*************************************************************/
 
-static void 
+static void
 recursive_supernodal_solve_l(int sn,       /* this supernode */
 			     int is_root,  /* is v the root? */
 			     int* first_child, int* next_child,
@@ -1904,18 +1904,18 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
     sn_size = sn_sizes[sn];
     up_size = sn_up_sizes[sn] - sn_sizes[sn];
 
-    flops = ((double)sn_size)*((double)sn_size) 
+    flops = ((double)sn_size)*((double)sn_size)
       + 2.0*((double)sn_size)*((double)up_size);
 
     if (flops > BLAS_FLOPS_CUTOFF) {
       xdense = t;
       bdense = t + sn_size;
-      
+
       for (i=0; i<sn_size; i++)
 	xdense[i] = b[ sn_struct[ sn ][ i ] ];
       for (i=0; i<up_size; i++)
 	bdense[i] = 0.0;
-      
+
       F2C(dtrsm)("Left",
 		 "Lower",
 		 "No Transpose",
@@ -1924,7 +1924,7 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
 		 &done,
 		 sn_blocks[sn],&(sn_blocks_ld[sn]),
 		 xdense       ,&sn_size);
-      
+
       if ((up_size > 0) & (sn_size > 0)) {
 	F2C(dgemm)("No Transpose","No Transpose",
 		   &up_size, &ione, &sn_size,
@@ -1934,7 +1934,7 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
 		   &dzero,
 		   bdense       ,&up_size);
       }
-      
+
       for (i=0; i<sn_size; i++)
 	x[ sn_struct[ sn][ i ] ]  = xdense[i];
       for (i=0; i<up_size; i++)
@@ -1944,12 +1944,12 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
 
       xdense = t;
       bdense = t + sn_size;
-      
+
       for (i=0; i<sn_size; i++)
 	xdense[i] = b[ sn_struct[ sn ][ i ] ];
       for (i=0; i<up_size; i++)
 	bdense[i] = 0.0;
-      
+
       for (jp=0; jp<sn_size; jp++) {
 	xdense[jp] = xdense[jp] / sn_blocks[sn][ sn_blocks_ld[sn]*jp + jp];
 
@@ -1968,7 +1968,7 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
 	x[ sn_struct[ sn][ i ] ]  = xdense[i];
       for (i=0; i<up_size; i++)
 	b[ sn_struct[ sn ][ sn_size + i ] ] -= bdense[i];
-      
+
     } else {
 
       for (jp=0; jp<sn_size; jp++) {
@@ -1989,7 +1989,7 @@ recursive_supernodal_solve_l(int sn,       /* this supernode */
   }
 }
 
-static void 
+static void
 recursive_supernodal_solve_lt(int sn,       /* this supernode */
  			      int is_root,  /* is v the root? */
 			      int* first_child, int* next_child,
@@ -2014,20 +2014,20 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
 
     sn_size = sn_sizes[sn];
     up_size = sn_up_sizes[sn]-sn_sizes[sn];
-    
-    flops = ((double)sn_size)*((double)sn_size) 
+
+    flops = ((double)sn_size)*((double)sn_size)
       + 2.0*((double)sn_size)*((double)up_size);
 
     if (flops > BLAS_FLOPS_CUTOFF) {
 
       bdense = t;
       xdense = t + sn_size;
-      
+
       for (i=0; i<sn_size; i++)
 	bdense[i] = b[ sn_struct[ sn][ i ] ];
       for (i=0; i<up_size; i++)
 	xdense[i] = x[ sn_struct[sn][sn_size+i] ];
-      
+
       if ((up_size > 0) & (sn_size > 0))
 	F2C(dgemm)("Transpose","No Transpose",
 		   &sn_size, &ione, &up_size,
@@ -2036,7 +2036,7 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
 		   xdense       ,&up_size,
 		   &done,
 		   bdense       ,&sn_size);
-      
+
       F2C(dtrsm)("Left",
 		 "Lower",
 		 "Transpose",
@@ -2045,20 +2045,20 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
 		 &done,
 		 sn_blocks[sn],&(sn_blocks_ld[sn]),
 		 bdense       ,&sn_size);
-      
+
       for (i=0; i<sn_size; i++)
 	x[ sn_struct[ sn][ i ] ]  = bdense[i];
-    
+
     } else if (sn_size > SOLVE_DENSE_CUTOFF) {
 
       bdense = t;
       xdense = t + sn_size;
-      
+
       for (i=0; i<sn_size; i++)
 	bdense[i] = b[ sn_struct[ sn][ i ] ];
       for (i=0; i<up_size; i++)
 	xdense[i] = x[ sn_struct[sn][sn_size+i] ];
-      
+
       for (ip=sn_size-1; ip>=0; ip--) {
 	for (jp=0; jp<up_size; jp++) {
 	  bdense[ip] -= xdense[jp] * up_blocks[sn][ up_blocks_ld[sn]*ip + jp];
@@ -2074,7 +2074,7 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
 
       for (i=0; i<sn_size; i++)
 	x[ sn_struct[ sn][ i ] ]  = bdense[i];
-    
+
     } else {
 
       for (ip=sn_size-1; ip>=0; ip--) {
@@ -2114,7 +2114,7 @@ int taucs_supernodal_solve_llt(void* vL,
   double* y;
   double* t; /* temporary vector */
   int     i;
-  
+
   y = MALLOC((L->n) * sizeof(double));
   t = MALLOC((L->n) * sizeof(double));
   if (!y || !t) {
@@ -2144,7 +2144,7 @@ int taucs_supernodal_solve_llt(void* vL,
 
   FREE(y);
   FREE(t);
-    
+
   return 0;
 }
 
@@ -2177,7 +2177,7 @@ taucs_supernodal_factor_to_ccs(void* vL)
       for (ip=jp; ip<(L->sn_size)[sn]; ip++) {
 	v = (L->sn_blocks)[sn][ jp*(L->sn_blocks_ld)[sn] + ip ];
 
-	if (v) { 
+	if (v) {
 	  len[j] ++;
 	  nnz ++;
 	}
@@ -2185,7 +2185,7 @@ taucs_supernodal_factor_to_ccs(void* vL)
       for (ip=(L->sn_size)[sn]; ip<(L->sn_up_size)[sn]; ip++) {
 	v = (L->up_blocks)[sn][ jp*(L->up_blocks_ld)[sn] + (ip-(L->sn_size)[sn]) ];
 
-	if (v) { 
+	if (v) {
 	  len[j] ++;
 	  nnz ++;
 	}
@@ -2238,7 +2238,7 @@ taucs_supernodal_factor_to_ccs(void* vL)
   return C;
 }
 
-/* 
+/*
  *   from the preeeding routine here is a small one to get only
  *   the number of non zero elements of the factor (Bruno le 29/11/2001)
  *   In fact the supernodal struct keeps on some exact zeros and so the
@@ -2249,13 +2249,11 @@ taucs_supernodal_factor_to_ccs(void* vL)
 int taucs_get_nnz_from_supernodal_factor(void* vL)
 {
   supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
-  int nnz;
-  int jp,sn;
-
-  nnz = 0;
+  int nnz = 0;
+  int jp = 0, sn = 0;
 
   for (sn=0; sn<L->n_sn; sn++)
-    for (jp=0; jp<(L->sn_size)[sn]; jp++) 
+    for (jp=0; jp<(L->sn_size)[sn]; jp++)
       nnz += (L->sn_up_size)[sn] - jp;
 
   return ( nnz );

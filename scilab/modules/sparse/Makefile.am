@@ -162,8 +162,13 @@ libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes \
 				-I$(top_srcdir)/modules/operations/includes
 #-Isrc/c/
+if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscisparse.la
 noinst_LTLIBRARIES = libscisparse-algo.la
+else
+noinst_LTLIBRARIES = libscisparse-algo.la libscisparse.la
+endif
+
 
 libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

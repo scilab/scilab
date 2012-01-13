@@ -14,6 +14,7 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLAttr.hxx"
 #include "XMLElement.hxx"
 #include "XMLNodeList.hxx"
 #include "VariableScope.hxx"
@@ -35,6 +36,64 @@ namespace org_modules_xml
     {
         scope->unregisterNodeListPointer(parent->children);
         scope->removeId(id);
+    }
+
+    void * XMLNodeList::getRealXMLPointer() const
+    {
+        return static_cast<void *>(parent->children);
+    }
+
+    const char ** XMLNodeList::getContentFromList() const
+    {
+        const char ** list = new const char*[size];
+        int i = 0;
+        for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
+        {
+            list[i] = (const char *)xmlNodeGetContent(cur);
+        }
+
+        return list;
+    }
+
+    const char ** XMLNodeList::getNameFromList() const
+    {
+        const char ** list = new const char*[size];
+        int i = 0;
+        for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
+        {
+            list[i] = cur->name ? (const char *)cur->name : "";
+        }
+
+        return list;
+    }
+
+    void XMLNodeList::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    {
+        for (xmlNode * cur = parent->children; cur; cur = cur->next)
+        {
+            XMLAttr::setAttributeValue(cur, prefix, name, value, lsize);
+        }
+    }
+
+    void XMLNodeList::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    {
+        for (xmlNode * cur = parent->children; cur; cur = cur->next)
+        {
+            XMLAttr::setAttributeValue(cur, name, value, lsize);
+        }
+    }
+
+    void XMLNodeList::remove() const
+    {
+        xmlNode * cur = parent->children;
+
+        while (cur != NULL)
+        {
+            xmlNode * nxt = cur->next;
+            xmlUnlinkNode(cur);
+            xmlFreeNode(cur);
+            cur = nxt;
+        }
     }
 
     const XMLObject * XMLNodeList::getXMLObjectParent() const
@@ -89,6 +148,7 @@ namespace org_modules_xml
                     parent->children = 0;
                 }
                 prevNode = parent->children;
+                scope->registerPointers(parent->children, this);
                 prev = 1;
             }
             else
@@ -143,7 +203,7 @@ namespace org_modules_xml
 
     void XMLNodeList::setElementAtPosition(double index, const std::string & xmlCode)
     {
-	std::string error;
+        std::string error;
         XMLDocument document = XMLDocument(xmlCode, false, &error);
 
         if (error.empty())

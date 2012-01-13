@@ -10,33 +10,22 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlValidate" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xmlValidate" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>xmlValidate</refname>
     <refpurpose>Validate a document in using a DTD, a Relax NG or a Schema.</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
       error = xmlValidate(docs [, valid])
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>docs</term>
@@ -44,14 +33,12 @@
           <para>a mlist typed XMLDoc or a matrix of string containing path to XML documents</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>valid</term>
         <listitem>
           <para>a mlist typed XMLValid.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>error</term>
         <listitem>
@@ -60,15 +47,12 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Validate a already parsed document or a set of documents with given paths with a DTD, a Relax NG or a Schema. If the document is valid, then the returned error is an empty matrix, else a matrix of strings is returned with the error message.</para>
     <para>Validate a document with its path can improve performance and reduce the memory consumption.</para>
     <para>It is not possible for the moment to validate a document against an external DTD. The only way to do this is to include in your XML file someting like <![CDATA[<!DOCTYPE foo SYSTEM "foo.dtd">]]> and to use xmlValidate without second argument.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
@@ -104,12 +88,10 @@
     xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
     xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
 
-    // We close the all the open streams
-    xmlClose(doc, dtd, schema, rng);
+    // We delete the all the open documents
+    xmlDelete(doc, dtd, schema, rng);
     ]]></programlisting>
-
   </refsection>
-
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -124,9 +106,17 @@
       </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Author</title>
     <para>Calixte DENIZET</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>XML module introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

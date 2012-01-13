@@ -2,16 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "createMainScilabObject.h"
 #include "getScilabObject.h"
 #include "getScilabJNIEnv.h"
@@ -19,9 +19,9 @@
 #include "catchIfJavaException.h"
 #include "sci_mode.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static jobject ScilabObject = NULL;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL createMainScilabObject(void)
 {
     BOOL bOK = FALSE;
@@ -40,9 +40,10 @@ BOOL createMainScilabObject(void)
             if (mid)
             {
                 jint ScilabMode = getScilabMode();
-                ScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode); 
-                /* Catch the exception and display an human-reading error message 
-                */
+                jobject localScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode);
+                ScilabObject = (*currentENV)->NewGlobalRef(currentENV, localScilabObject);
+                /* Catch the exception and display an human-reading error message
+                 */
                 bOK=catchIfJavaException(_("Could not create a Scilab main class. Error:\n"));
             }
         }
@@ -50,24 +51,65 @@ BOOL createMainScilabObject(void)
 
     return bOK;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 jobject getScilabObject(void)
 {
     return ScilabObject;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL finishMainScilabObject(void)
 {
     JNIEnv * currentENV = getScilabJNIEnv();
     JavaVM * currentJVM = getScilabJavaVM();
 
-    jint result = (*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
-    if (result == 0) 
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
+    if (result == 0)
     {
-        (*currentENV)->DeleteLocalRef(currentENV, ScilabObject);
-        ScilabObject = NULL;
-        return TRUE;
+        jclass cls = NULL;
+        cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/core/Scilab");
+        catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
+        if (cls)
+        {
+            jmethodID mid = NULL;
+            mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "executeFinalHooks", "()V");
+            if (mid)
+            {
+                (*currentENV)->CallStaticVoidMethod(currentENV, cls, mid);
+            }
+            catchIfJavaException(_("Cannot execute final hooks. Error:\n"));
+
+            (*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
+            ScilabObject = NULL;
+            return TRUE;
+        }
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+BOOL canCloseMainScilabObject(void)
+{
+    JNIEnv * currentENV = getScilabJNIEnv();
+    JavaVM * currentJVM = getScilabJavaVM();
+
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
+    if (result == 0)
+    {
+        jclass cls = NULL;
+        cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/core/Scilab");
+        catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
+        if (cls)
+        {
+            jmethodID mid = NULL;
+            mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "canClose", "()Z");
+            if (mid)
+            {
+                return (*currentENV)->CallStaticBooleanMethod(currentENV, cls, mid);
+            }
+            catchIfJavaException(_("Error with Scilab.canClose():\n"));
+        }
+    }
+
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+

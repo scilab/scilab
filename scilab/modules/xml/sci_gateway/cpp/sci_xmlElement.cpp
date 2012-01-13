@@ -43,12 +43,13 @@ int sci_xmlElement(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
@@ -63,12 +64,13 @@ int sci_xmlElement(char * fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -77,7 +79,7 @@ int sci_xmlElement(char * fname, int* pvApiCtx)
     if (!strlen(name) || xmlValidateName((const xmlChar *)name, 0))
     {
         freeAllocatedSingleString(name);
-        Scierror(999, gettext("%s: Bad input argument #%i: A valid XML name expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Bad input argument #%d: A valid XML name expected.\n"), fname, 2);
         return 0;
     }
 

@@ -218,7 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\alltypes.hxx" />
-    <ClInclude Include="includes\anytype.hxx" />
     <ClInclude Include="includes\arrayof.hxx" />
     <ClInclude Include="includes\bool.hxx" />
     <ClInclude Include="includes\callable.hxx" />

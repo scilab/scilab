@@ -22,6 +22,7 @@
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
     {NULL, ""}, //xcos
@@ -43,24 +44,28 @@ int gw_xcos(void)
 {
     Rhs = Max(0, Rhs);
 
-    if  ( getScilabMode() == SCILAB_NWNI)
+    if (getScilabMode() == SCILAB_NWNI)
     {
-        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
         return 0;
     }
 
-    //if (!loadedDep                                      // never reload
-    //    && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
-    //{
-    //    loadOnUseClassPath("XCos");
-    //    loadedDep = TRUE;
-    //}
-    callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
+#if 0
+    if (!loadedDep              // never reload
+        && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
+    {
+        loadOnUseClassPath("Xcos");
+        loadedDep = TRUE;
+    }
+#endif
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 int xcosStarted(void)
 {
     return loadedDep;
 }
+
 /*--------------------------------------------------------------------------*/

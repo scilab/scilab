@@ -103,6 +103,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -120,6 +121,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 			LhsVar(1) = Rhs + 1;
@@ -149,6 +151,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -165,6 +168,7 @@ static int sci_diary_no_rhs(char *fname, int* _piKey)
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
 					return 0;
 				}
 
@@ -198,6 +202,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 	}
 
@@ -205,6 +210,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 	}
 
@@ -260,6 +266,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 				if(sciErr.iErr)
 				{
 						printError(&sciErr, 0);
+                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 						return 0;
 				}
 
@@ -273,6 +280,7 @@ static int sci_diary_one_rhs(char *fname, int* _piKey)
 					if(sciErr.iErr)
 					{
 							printError(&sciErr, 0);
+                            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 							return 0;
 					}
 
@@ -322,6 +330,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 	}
 
@@ -336,6 +345,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -356,6 +366,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -381,6 +392,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -406,6 +418,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -430,6 +443,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -452,6 +466,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -474,6 +489,7 @@ static int sci_diary_two_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -569,6 +585,7 @@ static int sci_diary_three_rhs(char *fname, int* _piKey)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -579,6 +596,7 @@ static int sci_diary_three_rhs(char *fname, int* _piKey)
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 					return 0;
 				}
 
@@ -600,6 +618,7 @@ static int sci_diary_three_rhs(char *fname, int* _piKey)
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 					return 0;
 				}
 
@@ -646,6 +665,7 @@ static double *getInputArgumentOneIDs(char *fname, int* _piKey,int *sizeReturned
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -654,6 +674,7 @@ static double *getInputArgumentOneIDs(char *fname, int* _piKey,int *sizeReturned
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -663,6 +684,7 @@ static double *getInputArgumentOneIDs(char *fname, int* _piKey,int *sizeReturned
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -704,6 +726,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -712,6 +735,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -723,6 +747,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -745,6 +770,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 					return 0;
 				}
 
@@ -770,6 +796,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, int* _piKey,int *size
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 						return 0;
 					}
 
@@ -803,6 +830,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int* _piKey, int *ierror)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -811,6 +839,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int* _piKey, int *ierror)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -837,6 +866,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int* _piKey, int *ierror)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 				return 0;
 			}
 
@@ -852,6 +882,7 @@ static wchar_t *getInputArgumentTwo(char *fname, int* _piKey, int *ierror)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 				return 0;
 			}
 		}
@@ -877,6 +908,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 		return 0;
 	}
 
@@ -885,6 +917,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 		return 0;
 	}
 
@@ -896,6 +929,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -918,6 +952,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 					return 0;
 				}
 
@@ -938,6 +973,7 @@ static wchar_t** getInputArgumentThree(char *fname, int* _piKey,int *sizeReturne
 					if(sciErr.iErr)
 					{
 						printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 						return 0;
 					}
 
@@ -1206,6 +1242,7 @@ static int ExistByFilenames(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 
@@ -1248,6 +1285,7 @@ static int ExistByIds(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
 		return 0;
 	}
 
@@ -1301,6 +1339,7 @@ static int AppendByFilenames(char *fname, int* _piKey,
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 
@@ -1314,6 +1353,7 @@ static int AppendByFilenames(char *fname, int* _piKey,
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -1381,6 +1421,7 @@ static int NewByFilenames(char *fname, int* _piKey,
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 

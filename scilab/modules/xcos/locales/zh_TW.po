@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Generator: Launchpad (build 14487)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -504,6 +504,10 @@ msgid ""
 " Do you want to create it?"
 msgstr "檔案 %s 不存在"
 
+#, c-format
+msgid "Unable to decode the URI : %s ."
+msgstr ""
+
 msgid "Ok"
 msgstr "確定"
 
@@ -548,13 +552,13 @@ msgid "No block selected"
 msgstr "未選擇任何區塊"
 
 msgid "Export to XML"
-msgstr "匯出至 XML 檔案"
+msgstr ""
 
 msgid "Export in progress"
 msgstr ""
 
 msgid "Import from XML"
-msgstr "從 XML 檔案匯入"
+msgstr ""
 
 msgid "Add to"
 msgstr "加入到"
@@ -698,7 +702,7 @@ msgstr "模擬處理中"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "編譯執行中, 結果將存在 'scicos_cpr' 變數"
+msgstr ""
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
@@ -788,14 +792,6 @@ msgstr ""
 
 msgid "Modelica initialize"
 msgstr ""
-
-#, c-format
-msgid "From %s"
-msgstr "寄件者 %s"
-
-#, c-format
-msgid "Goto %s"
-msgstr "Goto %s"
 
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
@@ -1160,7 +1156,7 @@ msgstr "Scicos 函式庫沒載入"
 msgid "Unable to simulate %s"
 msgstr "無法模擬 %s"
 
-msgid "Error occured in pre_xcos_simulate: Cancelling simulation."
+msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
 msgstr ""
 
 #, c-format

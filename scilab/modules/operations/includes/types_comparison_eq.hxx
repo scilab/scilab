@@ -14,19 +14,10 @@
 #define __TYPES_COMPARISON_EQUAL_HXX__
 
 #include "dynlib_operations.hxx"
+#include "generic_operations.hxx"
 #include "internal.hxx"
 #include "double.hxx"
 #include "sparse.hxx"
-
-/*
-** Try to find a good algorithm to perform equal comparison between those 2 datatypes.
-** If none is find, this will return NULL. Overload can then be performed by caller.
-** @param _pLeftOperand, the left comparison operand
-** @param _pRightOperand, the rightt comparison operand
-** @return comparison result
-**
-*/
-EXTERN_OP types::InternalType* GenericComparisonEqual(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 int EqualToSparseAndSparse(types::Sparse* _pSparse1, types::Sparse* _pSarse2, types::GenericType** _pOut);
 int EqualToDoubleAndSparse(types::Double* _pDouble, types::Sparse* _pSarse, types::GenericType** _pOut);
