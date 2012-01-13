@@ -22571,8 +22571,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
   if test "$cv_lib_arpack_ok" = "yes"; then
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: Working ARPACK library found (probably arpack-ng or a patched version of arpack)à" >&5
-$as_echo "Working ARPACK library found (probably arpack-ng or a patched version of arpack)à" >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: Working ARPACK library found (probably arpack-ng or a patched version of arpack)" >&5
+$as_echo "Working ARPACK library found (probably arpack-ng or a patched version of arpack)" >&6; }
   else
     as_fn_error $? "ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng" "$LINENO" 5
 
