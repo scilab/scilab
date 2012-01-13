@@ -138,6 +138,24 @@ public class ClosingOperationsManager {
     }
 
     /**
+     * Start a closing operation on multiple tabs
+     *
+     * @param tabs
+     *            the tabs to close
+     * @return true if the closing operation succeeded
+     */
+    public static boolean startClosingOperation(List<SwingScilabTab> tabs, boolean askToExit, boolean mustSave) {
+        final SwingScilabWindow win;
+        if (tabs.isEmpty()) {
+            // use the null window to select the console tab.
+            win = null;
+        } else {
+            win = getWindow(tabs.get(0));
+        }
+        return close(collectTabsToClose(tabs), win, askToExit, mustSave);
+    }
+
+    /**
      * Start a closing operation on a tab
      *
      * @param tab
@@ -178,13 +196,23 @@ public class ClosingOperationsManager {
      *            the window to close
      */
     public static boolean startClosingOperation(SwingScilabWindow window) {
-        if (window != null) {
-            List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
-            Object[] dockArray = window.getDockingPort().getDockables().toArray();
-            for (int i = 0; i < dockArray.length; i++) {
-                collectTabsToClose((SwingScilabTab) dockArray[i], list);
+        // Put the closing operation in a try/catch to avoid that an exception
+        // blocks the shutting down. If it is not done, the Scilab process could stay alive.
+        try {
+            if (window != null) {
+                List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+                if (window.getDockingPort() != null) {
+                    Object[] dockArray = window.getDockingPort().getDockables().toArray();
+                    for (int i = 0; i < dockArray.length; i++) {
+                        collectTabsToClose((SwingScilabTab) dockArray[i], list);
+                    }
+                    return close(list, window, true, true);
+                } else {
+                    return true;
+                }
             }
-            return close(list, window, true, true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return true;
@@ -631,6 +659,21 @@ public class ClosingOperationsManager {
         SwingScilabTab tab) {
         final List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
         collectTabsToClose(tab, list);
+        return list;
+    }
+
+    /**
+     * Collect the tabs and their children to close (recursive function)
+     *
+     * @param tabs
+     *            the current tabs
+     * @return the list of the tabs to close
+     */
+    private static final List<SwingScilabTab> collectTabsToClose(List<SwingScilabTab> tabs) {
+        final List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+        for (final SwingScilabTab tab : tabs) {
+            collectTabsToClose(tab, list);
+        }
         return list;
     }
 

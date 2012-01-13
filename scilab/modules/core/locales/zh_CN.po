@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -38,7 +38,7 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
@@ -71,30 +71,12 @@ msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该是一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为一个整数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s：输入参数 #%d 的值出错：必须在区间［%d，%d］中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串或标量。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“0”或“1”。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
 
 #, c-format
 msgid ""
@@ -102,8 +84,22 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：必须位于区间［%d，%d］中。\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s：输入参数的大小出错。\n"
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“0”或“1”。\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -136,14 +132,6 @@ msgstr "%s：输入参数 #%d 或 #%d 的类型出错：应该为字符串。\n"
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "警告：%s 发生问题。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -188,6 +176,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -291,7 +283,7 @@ msgstr "出错：不能定义环境变量 %s。\n"
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab协会 (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr ""
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
@@ -586,8 +578,8 @@ msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为多项式矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s：参数 %d 的类型出错：应该为多边形。\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -871,6 +863,12 @@ msgstr ""
 
 #, c-format
 msgid "Unqueuing %s - seq.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
 msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."

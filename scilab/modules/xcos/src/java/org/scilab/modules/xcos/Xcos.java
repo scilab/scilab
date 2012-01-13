@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.LogManager;
@@ -58,6 +57,7 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -65,6 +65,7 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGraphModel;
@@ -115,6 +116,7 @@ public final class Xcos {
 
     static {
         Scilab.registerInitialHook(new Runnable() {
+                @Override
                 public void run() {
                     /* load scicos libraries (macros) */
                     InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
@@ -412,14 +414,19 @@ public final class Xcos {
 
         if (filename != null && filename.exists()) {
             configuration.addToRecentFiles(filename);
+        }
 
-            /*
-             * looking for an already opened diagram
-             */
-            final Collection<XcosDiagram> diags = diagrams.get(filename);
-            if (diags != null && !diags.isEmpty()) {
-                diag = diags.iterator().next();
-            }
+        /*
+         * looking for an already opened diagram
+         */
+        final Collection<XcosDiagram> diags = diagrams.get(filename);
+        if (diags != null && !diags.isEmpty()) {
+            diag = diags.iterator().next();
+        }
+        // if unsaved and empty, reuse it. Allocate otherwise.
+        if (filename == null && diag != null && 
+        		diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
+            diag = null;
         }
 
         if (diag == null) {
@@ -430,8 +437,17 @@ public final class Xcos {
             diag = new XcosDiagram();
             diag.installListeners();
 
+            /*
+             * Create a visible window before loading
+             */
+            if (XcosTab.get(diag) == null) {
+                XcosTab.restore(diag);
+            }
+
+            /*
+             * Load the file if applicable
+             */
             if (filename != null) {
-                // wait the end of the load before displaying the tab.
                 diag = diag.openDiagramFromFile(filename);
             }
 
@@ -440,46 +456,9 @@ public final class Xcos {
             }
         }
 
-        /*
-         * Create a visible window
-         */
-        if (XcosTab.get(diag) == null) {
-            XcosTab.restore(diag);
+        if (diag != null) {
+            diag.updateTabTitle();
         }
-
-    }
-
-    /**
-     * Close an opened file
-     *
-     * @param f
-     *            the file to close
-     * @param ask
-     *            ask for exiting and store the window config or not
-     * @return close status (true on success, false on abort)
-     *
-     */
-    private boolean close(final File f, final boolean ask) {
-        final Collection<XcosDiagram> diags = diagrams.get(f);
-        boolean status = true;
-
-        try {
-            onDiagramIteration = true;
-
-            for (Iterator<XcosDiagram> iterator = diags.iterator(); iterator.hasNext() && status;) {
-                final XcosDiagram graph = iterator.next();
-
-                if (graph.isOpened()) {
-                    final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(graph.getDiagramTab());
-
-                    status = ClosingOperationsManager.startClosingOperation(tab, ask, ask);
-                }
-            }
-        } finally {
-            onDiagramIteration = false;
-        }
-
-        return status;
     }
 
     /**
@@ -719,24 +698,34 @@ public final class Xcos {
          * Try to close all opened files
          */
         final Xcos instance = sharedInstance;
-        try {
-            instance.onDiagramIteration = true;
 
-            for (Iterator<File> iterator = instance.diagrams.keySet().iterator(); iterator.hasNext();) {
-                File file = iterator.next();
-                instance.close(file, ask);
-                iterator.remove();
+        // get all tabs
+        final List<SwingScilabTab> tabs = new ArrayList<SwingScilabTab>();
+        for (final Collection<XcosDiagram> diags : instance.diagrams.values()) {
+            for (final XcosDiagram diag : diags) {
+                final SwingScilabTab tab = XcosTab.get(diag);
+                if (tab != null) {
+                    tabs.add(tab);
+                }
             }
-        } finally {
-            instance.onDiagramIteration = false;
         }
 
-        /* terminate any remaining simulation */
-        InterpreterManagement.requestScilabExec("haltscicos");
+        // ask to close
+        final boolean status = ClosingOperationsManager.startClosingOperation(tabs, ask, ask);
 
-        /* Saving modified data */
-        instance.palette.saveConfig();
-        instance.configuration.saveConfig();
+        // clear states
+        if (status) {
+            /* reset the shared instance state */
+            instance.diagrams.keySet().clear();
+            instance.addDiagram(null, null);
+
+            /* terminate any remaining simulation */
+            InterpreterManagement.requestScilabExec("haltscicos");
+
+            /* Saving modified data */
+            instance.palette.saveConfig();
+            instance.configuration.saveConfig();
+        }
     }
 
     /*
@@ -765,11 +754,11 @@ public final class Xcos {
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
         SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    instance.open(null);
-                }
-            });
+            @Override
+            public void run() {
+                instance.open(null);
+            }
+        });
     }
 
     /**
@@ -788,25 +777,12 @@ public final class Xcos {
         /* load scicos libraries (macros) */
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        instance.open(filename);
-                    }
-                });
-        } catch (final InterruptedException e) {
-            LOG.error(e);
-        } catch (final InvocationTargetException e) {
-            Throwable throwable = e;
-            String firstMessage = null;
-            while (throwable != null) {
-                firstMessage = throwable.getLocalizedMessage();
-                throwable = throwable.getCause();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                instance.open(filename);
             }
-
-            throw new RuntimeException(firstMessage, e);
-        }
+        });
     }
 
     /**
@@ -975,13 +951,21 @@ public final class Xcos {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        final XcosDiagram diagram = new XcosDiagram();
-                        diagram.openDiagramFromFile(file);
-                        diagram.dumpToHdf5File(h5File);
+                @Override
+                public void run() {
+                    final XcosDiagram diagram = new XcosDiagram();
+
+                    final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
+                    if (filetype != null) {
+                        try {
+                            filetype.load(xcosFile, diagram);
+                            new H5RWHandler(h5File).writeDiagram(diagram);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                });
+                }
+            });
         } catch (final InterruptedException e) {
             throw new RuntimeException(e);
         } catch (final InvocationTargetException e) {

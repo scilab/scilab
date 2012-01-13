@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-12-03 14:46+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2012-01-05 22:17+0000\n"
+"Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: pl\n"
 
 #, c-format
@@ -46,7 +46,7 @@ msgid "Flat systems"
 msgstr ""
 
 msgid "Tracking"
-msgstr ""
+msgstr "Śledzenie"
 
 msgid "Robust control"
 msgstr "Sterowanie krzepkie"
@@ -834,6 +834,9 @@ msgid ""
 msgstr ""
 "%s: Zły typ parametru wejściowego nr %d: Oczekiwano dynamicznego liniowego "
 "układu.\n"
+
+msgid "Phase ()"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-09 09:05+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: ru\n"
 
 #, c-format
@@ -190,7 +190,7 @@ msgstr "Несогласованное количество строк или с
 
 msgid "Dot cannot be used as modifier for this operator.\n"
 msgstr ""
-"Точка не может быть использовака в качестве модификатора этого оператора.\n"
+"Точка не может быть использована в качестве модификатора этого оператора.\n"
 
 msgid "Inconsistent addition.\n"
 msgstr "Некорректное суммирование.\n"
@@ -217,13 +217,13 @@ msgid "Submatrix incorrectly defined.\n"
 msgstr "Подматрица задана некорректно.\n"
 
 msgid "Incorrect command!\n"
-msgstr "Некорректная комманда!\n"
+msgstr "Некорректная команда!\n"
 
 msgid "stack size exceeded!\n"
 msgstr "достигнут предел размера стека!\n"
 
 msgid "Use stacksize function to increase it.\n"
-msgstr "Используйте функцию stacksize для увеличения его.\n"
+msgstr "Используйте функцию stacksize для увеличения размера стека.\n"
 
 #, c-format
 msgid "Memory used for variables: %d\n"
@@ -426,14 +426,13 @@ msgstr "Неизвестный формат файла.\n"
 
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
-msgstr ""
-"Неустранимая ошибка!!! Your variables have been saved in the file: %s\n"
+msgstr "Неустранимая ошибка!!! Ваши переменные сохранены в файле: %s\n"
 
 msgid "Bad call to a scilab function ?\n"
 msgstr "Неверный вызов к функции scilab?\n"
 
 msgid "Otherwise, send a bug report to :"
-msgstr "Иначе, отправьте отчет об ошибке:"
+msgstr "В противном случае отправьте отчёт об ошибке:"
 
 msgid "Floating point exception.\n"
 msgstr "Исключение операции с плавающей точкой.\n"
@@ -510,7 +509,7 @@ msgstr "%s: вырожденная или асимметричная задач�
 
 #, c-format
 msgid "Wrong size for argument %d.\n"
-msgstr "Неверный размера параметра %d.\n"
+msgstr "Неверный размер параметра %d.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: Transfer matrix expected.\n"
@@ -715,7 +714,7 @@ msgstr "%s: Некорректные параметры остановки.\n"
 
 #, c-format
 msgid "%s: Incorrect bounds.\n"
-msgstr "%s: Некорректные граничные учловия.\n"
+msgstr "%s: Некорректные граничные условия.\n"
 
 #, c-format
 msgid "Variable : %s must be a list\n"
@@ -1163,11 +1162,11 @@ msgstr "Остановка после строки %s в функции %s.\n"
 
 #, c-format
 msgid "The identifier : %s\n"
-msgstr "Идентификатор : %s\n"
+msgstr "Идентификатор: %s\n"
 
 #, c-format
 msgid " has been truncated to: %s.\n"
-msgstr " было усечено до %s.\n"
+msgstr " был усечён до %s.\n"
 
 msgid "Real part\n"
 msgstr "Вещественная часть\n"

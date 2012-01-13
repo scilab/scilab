@@ -18,6 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\history_browser.vcxproj">
+      <Project>{ab1eeb8f-86f7-45b7-8cec-b18c8e97eeff}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>history_browser-Ant</ProjectName>
     <ProjectGuid>{95C21D50-FFD1-4FCE-A545-49FA1F825B28}</ProjectGuid>
@@ -150,27 +155,6 @@ call ant clean
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\core\src\java\core-JAVA.vcxproj">
-      <Project>{78d8b862-964a-4d0e-93d2-ca8a25ba1207}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\gui\src\java\gui-JAVA.vcxproj">
-      <Project>{f01c26e3-e409-4e74-ba84-c7c4a71a7fdc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\history_manager\src\java\history_manager-JAVA.vcxproj">
-      <Project>{63965a84-e354-4cbc-bfac-fdfc8224573f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

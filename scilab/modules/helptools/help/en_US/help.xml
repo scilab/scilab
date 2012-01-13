@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="help">
-  <info>
-    <pubdate>January 2002</pubdate>
-  </info>
   <refnamediv>
     <refname>help</refname>
     <refpurpose> on-line help command</refpurpose>
@@ -29,7 +26,7 @@ help</synopsis>
       <varlistentry>
         <term>key</term>
         <listitem>
-          <para>character string. Gives the help page to be found</para>
+          <para>character string. The requested help page</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,18 +37,18 @@ help</synopsis>
       containing the list of help chapters.</para>
     <para><literal>help(key)</literal> displays the Scilab help file associated with the
       given  <literal>key</literal>. If no help file is found, <literal>help(key)</literal>
-      automatically call <literal>apropos(key)</literal>.</para>
+      automatically launches a search with the <literal>key</literal> word as search arguments.</para>
     <para> See  <link linkend="man">man</link> for more explanation on how to write new help
       pages .</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="apropos">apropos</link>
       </member>
       <member>
-        <link linkend="man">man</link>
+        <link linkend="man">Scilab documentation format</link>
       </member>
     </simplelist>
   </refsection>

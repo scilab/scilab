@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-22 16:25+0000\n"
+"PO-Revision-Date: 2012-01-10 04:17+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: ru\n"
 
 #, c-format
@@ -39,9 +39,10 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -76,37 +77,13 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Неверные значения входного параметра №%d: ожидалось «%s» или «%s».\n"
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Неверные значения входного параметра №%d: Ожидались целые числа.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr ""
-"%s: Неверные значения входного параметра №%d: должны быть в интервале [%d, "
-"%d].\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась строка или скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «0» или «1».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid ""
@@ -116,8 +93,25 @@ msgstr ""
 "%d].\n"
 
 #, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: Неверный размер входных параметров.\n"
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась строка или целочисленный "
+"скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «0» или «1».\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -151,15 +145,6 @@ msgstr "%s: Неверный тип входного параметра №%d и
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Внимание: Проблема с %s.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -206,6 +191,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -315,8 +305,8 @@ msgstr "Ошибка: Не могу определить переменную о
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Консорциум Scilab (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Авторское право (c) 1989-2011 (INRIA)\n"
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr "Авторское право (c) 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
@@ -651,8 +641,8 @@ msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась полиномиальная матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидался многоугольник.\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s:Неверный тип аргумента %d: Ожидался полином.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -957,6 +947,14 @@ msgstr "Удаление из очереди %s: параметр не зада�
 msgid "Unqueuing %s - seq.\n"
 msgstr "Удаление из очереди %s: последовательность.\n"
 
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
+msgstr ""
+"Пожалуйста, установите ATOMS-модуль texmacs: atomsInstall('texmacs')\n"
+"\n"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не удалось найти каталог хранения временных файлов Windows (1)."
 
@@ -1063,7 +1061,7 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидался double(число двойной "
+"%s: Неверный тип входного аргумента №%d: Ожидался double (число двойной "
 "точности).\n"
 
 #, c-format

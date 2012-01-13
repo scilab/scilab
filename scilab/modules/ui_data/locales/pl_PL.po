@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: pl\n"
 
 #, c-format
@@ -22,8 +22,8 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Moduł '%s' Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -45,8 +45,14 @@ msgid "%s: Undefined variable %s.\n"
 msgstr "%s: Niezdefiniowana zmienna %s.\n"
 
 #, c-format
-msgid "%s: Java memory problem, cannot edit %s\n"
-msgstr "%s: Problem a pamięcią Java, brak możliwości edycji %s\n"
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Java exception arisen:\n"
+"%s\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Type not handle yet"
@@ -163,6 +169,9 @@ msgstr "Przegladarka zmiennych"
 msgid "Global variables can not be edited."
 msgstr "Nie można edytawać zmienne globalne"
 
+msgid "Edition"
+msgstr ""
+
 msgid "Refresh the variable "
 msgstr ""
 
@@ -183,6 +192,75 @@ msgstr "Cofnij"
 
 msgid "Redo"
 msgstr "Ponów"
+
+msgid "Size columns to fit"
+msgstr ""
+
+msgid "Copy as Scilab command"
+msgstr ""
+
+msgid "Copy as Scilab matrix"
+msgstr ""
+
+msgid "Copy as Scilab matrix with CR"
+msgstr ""
+
+msgid "Short format"
+msgstr ""
+
+msgid "ShortE format"
+msgstr ""
+
+msgid "Long format"
+msgstr ""
+
+msgid "LongE format"
+msgstr ""
+
+msgid "Create variable from selection"
+msgstr ""
+
+msgid "Insert a row"
+msgstr ""
+
+msgid "Remove rows"
+msgstr ""
+
+msgid "Insert a column"
+msgstr ""
+
+msgid "Remove columns"
+msgstr ""
+
+msgid "Plot the selection"
+msgstr ""
+
+msgid "Plot the matrix"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Variable name"
+msgstr ""
+
+msgid "Create new variable"
+msgstr ""
+
+msgid "Duplicate the variable"
+msgstr ""
+
+msgid "Rows number"
+msgstr ""
+
+msgid "Columns number"
+msgstr ""
+
+msgid "Fill with"
+msgstr ""
 
 msgid "File Browser"
 msgstr "Przeglądarka plików"

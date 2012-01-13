@@ -9,6 +9,14 @@ XML
 
 * Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
 
+
+Help
+====
+
+* Management of Docbook tags <note>, <caution>, <warning>, <important> and
+ <tip>. See bug #10505.
+
+
 Xcos
 ====
 
@@ -19,6 +27,8 @@ Xcos
   - CLSS - Continuous state-space system
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
+
+* Bug #6733 fixed - Each call to xcos created an empty diagram.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
@@ -40,6 +50,12 @@ Xcos
 
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
+
+* Bug #10461 fixed - Canceling a Quit operation did not work.
+
+* Bug #10486 fixed - importXcosDiagram opened a tab.
+
+* Bug #10499 fixed - lincos example in help file returned warning and error.
 
 
 Unitary testing
@@ -124,6 +140,13 @@ Bug fixes
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
 
+* Bug #10303 fixed - test_run ignored "enable_lt" option.
+
+* Bug #10304 fixed - test_run did not return an error when using an invalid option.
+
+* Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
+                     but 'lasterror' returned vector of strings.
+
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
@@ -171,6 +194,11 @@ Bug fixes
                      at configure time made mprintf fail.
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
+
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
+* Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab

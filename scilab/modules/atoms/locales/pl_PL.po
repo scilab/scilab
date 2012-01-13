@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-03 14:27+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2012-01-05 21:22+0000\n"
+"Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: pl\n"
 
 #, c-format
@@ -249,11 +249,32 @@ msgstr "%s: Wystąpił błąd podczas ładowania '%s-%s':\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: oczekiwano 'user' lub 'allusers' "
 "lub 'all'\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: Oczekiwano typ boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -265,6 +286,12 @@ msgid ""
 msgstr ""
 "%s: Nie masz wystarczających uprawnień, aby usunąć którąkolwiek wersję "
 "pakietu %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -289,6 +316,12 @@ msgid ""
 msgstr ""
 "%s: katalog główny dla tego pakietu (%s-%s) nie może zostać usunięty, "
 "sprawdź czy masz prawo dostępu do zapisu do tego katalogu : %s.\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -610,6 +643,22 @@ msgstr "%s: Plik '%s' nie może być zapisany.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s usunięto.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s nie istnieje.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -738,17 +787,6 @@ msgid ""
 msgstr ""
 "%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierz "
 "łańcuchów 1x1 lub 1x2\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: Oczekiwano typ boolean.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
-"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

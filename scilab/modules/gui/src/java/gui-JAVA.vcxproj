@@ -315,25 +315,8 @@ call ant clean
     <None Include="..\..\build.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\console\src\java\console-JAVA.vcxproj">
-      <Project>{251d7c8f-9b69-4ce9-959e-57f343ddc883}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\graphic_export\src\java\graphic_export-JAVA.vcxproj">
-      <Project>{3e4ef47f-2284-4b43-abbb-20593ff0b51d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\renderer\src\java\renderer-JAVA.vcxproj">
-      <Project>{4235a847-ed0e-43a3-b62b-e59cb857ede9}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\c\gui.vcxproj">
+      <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: de\n"
 
 #, c-format
@@ -249,11 +249,31 @@ msgstr "%s: Beim Laden von '%s-%s' ist ein Fehler aufgetreten:\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: 'user' oder 'allusers' oder "
 "'all' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -266,6 +286,12 @@ msgid ""
 msgstr ""
 "%s: Sie haben keine ausreichende Berechtigung, um jede Version des Pakets %s "
 "zu entfernen.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -293,6 +319,12 @@ msgstr ""
 "%s: Das Basisverzeichnis des Pakets (%s - %s) kann nicht gelöscht werden, "
 "überprüfen Sie bitte, ob Sie Schreibberechtigung zu diesem Verzeichnis "
 "haben: %s.\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -617,6 +649,18 @@ msgstr "%s: Die Datei '%s' kann nicht geschrieben werden.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -746,16 +790,6 @@ msgid ""
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: eine 1x1 oder 1x2 "
 "Zeichenkettenmatrix erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Falscher Typ für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Falsche Größe für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

@@ -45,7 +45,7 @@ function message(str)
     uid = [full_uids uid];
 
     html = "<html><body>";
-    html = html + "<em>" + gettext("Evaluation problem: value not updated from context." + "<br/>") + "</em>";
+    html = html + "<em>" + gettext("Evaluation problem: value not updated from context.") + "</em><br/>";
     html = html + strcat(str, "<br/>") + "<br/>"; 
     html = html + "</body></html>";
     warnBlockByUID(uid, html);

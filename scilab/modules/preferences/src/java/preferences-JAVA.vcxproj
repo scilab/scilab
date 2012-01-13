@@ -158,15 +158,8 @@ call ant clean
     <None Include="..\..\build.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\commons\src\java\commons-JAVA.vcxproj">
-      <Project>{9188fa91-e039-485d-af1d-781cea92f541}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
+    <ProjectReference Include="..\c\preferences.vcxproj">
+      <Project>{7b893e9f-d032-44de-9b71-197a29c4989b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

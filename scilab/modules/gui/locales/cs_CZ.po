@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-14 22:54+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2012-01-10 21:07+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -643,14 +643,20 @@ msgstr "Internetová Stránka Scilab &ATOMS"
 msgid "&File Exchange"
 msgstr "&Výměna souboru"
 
-msgid "&Mailing lists"
-msgstr "&Poštovní adresáře"
+msgid "&Mailing Lists"
+msgstr "&Emailové konference"
+
+msgid "Mailing Lists &Archives"
+msgstr "&Archivy emailové konference"
 
 msgid "&Forge"
 msgstr "&Kovárna"
 
 msgid "&Bugs And Requests"
 msgstr "&Chyba a Žádosti"
+
+msgid "&Scilab Enterprises"
+msgstr "&Scilab Enterprises"
 
 msgid "Rotate"
 msgstr "Otočit"
@@ -959,6 +965,13 @@ msgid "No print service found."
 msgstr "Žádná služba tisku nenalezena."
 
 msgid ""
+"disp(\"In some cases, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+msgstr ""
+"disp(\"V některých případech, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" problém opraví\")"
+
+msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
@@ -1147,6 +1160,7 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1154,9 +1168,11 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1211,14 +1227,15 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Konsorcium Scilab (DIGITEO)"
 
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Všechna práva vyhrazena (c) 1989-2011 (INRIA)"
+msgid "Copyright (c) 1989-2012 (INRIA)"
+msgstr "Všechna práva vyhrazena (c) 1989-2012 (INRIA)"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Všechna práva vyhrazena (c) 1989-2007 (ENPC)"
@@ -1227,7 +1244,7 @@ msgid "CeCILL License"
 msgstr "Licence CeCILL"
 
 msgid "About Scilab..."
-msgstr "O aplikaci..."
+msgstr "O Scilab..."
 
 msgid "Acknowledgements"
 msgstr "Poděkování"
@@ -1263,9 +1280,6 @@ msgstr "Obrazec uložen.\n"
 
 msgid "Select a file name"
 msgstr "Vyberte jméno souboru"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Vyberte soubor k otevení pomocí SciNotes"
 
 msgid "Control Plot3d"
 msgstr "Kontrola Plot3d"

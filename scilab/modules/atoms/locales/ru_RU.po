@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-21 17:41+0000\n"
+"PO-Revision-Date: 2012-01-10 09:07+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: ru\n"
 
 #, c-format
@@ -236,11 +236,31 @@ msgstr "%s: Ошибка при загрузке «%s-%s»:\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
 "или «all».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -251,6 +271,14 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 "%s: У вас недостаточно прав для удаления какой-либо версии пакета %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"Удаление %s (%s)(%s).\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -275,6 +303,14 @@ msgid ""
 msgstr ""
 "%s: Не удалось удалить корневой каталог данного пакета (%s-%s), проверьте, "
 "имеете ли вы доступ для записи в данный каталог: %s.\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"Удаление файлов архивов для %s.\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -594,6 +630,22 @@ msgstr "%s: Не удалось записать файл «%s».\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s удалено.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s не существует.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -721,16 +773,6 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась (1 x 1) или (1 x 2)-"
 "матрица строк.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

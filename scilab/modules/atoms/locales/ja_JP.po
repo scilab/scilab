@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-05 14:36+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2011-12-30 06:23+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -212,10 +212,28 @@ msgstr "%s: '%s-%s' をロード中にエラーが起こりました:\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値または文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値または文字列を指定してください.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  または 'all' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -225,6 +243,14 @@ msgstr "%s: パッケージ  %s (%s) を取り除く権限を持ちません。\
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr "%s: パッケージ  %s のどんなバージョンも取り除く権限を持ちません。\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"%s (%s)(%s) を削除中.\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -248,6 +274,14 @@ msgid ""
 msgstr ""
 "%s: このパッケージ(%s-%s)のルート・ディレクトリを削除できません、このディレクトリーで書き込みアクセス権を持つかどうか確かめて下さい : "
 "%s\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"%s のアーカイブファイルを削除中.\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -548,6 +582,22 @@ msgstr "%s: ファイル '%s' を書き込めません。\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s を削除しました.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s は存在しません.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -666,14 +716,6 @@ msgstr "%s: アーカイブ '%s' の抽出に失敗しました。\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2 の文字列行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

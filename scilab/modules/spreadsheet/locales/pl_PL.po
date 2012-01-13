@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: pl\n"
 
 #, c-format
@@ -289,6 +289,9 @@ msgstr "ripOLE: dekodowanie %s zakończyło się błędem %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Moduł arkusza kalkulacyjnego Scilab nie zainstalowany.\n"
+
+msgid "Spreadsheet"
+msgstr ""
 
 msgid "Read a xls file"
 msgstr "Odczytaj plik xls"
