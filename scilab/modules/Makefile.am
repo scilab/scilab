@@ -86,7 +86,6 @@ modules_manager \
 ui_data \
 history_browser \
 xml \
-libscilab-cli \
 types
 
 if XCOS
@@ -108,7 +107,7 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab.la 
+pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 #libscilab_cli_la_SOURCES =
 
@@ -212,7 +211,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 #libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
-libscilab_la_LIBADD = $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
+libscilab_la_LIBADD = #$(top_builddir)/modules/libscilab-cli.la
 
 if GUI
 libscilab_la_LIBADD += $(GUI_LIBS)
@@ -221,9 +220,15 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli/libscilab-cli.la $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la $(top_builddir)/modules/libscilab-cli.la
 
-if ENABLE_STATIC
-libscilab_la_LIBADD += $(ALL_LIBS)
 
-endif
+################## libscilab-cli  ##################
+
+libscilab_cli_la_SOURCES =
+
+libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+
+# Core modules
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+

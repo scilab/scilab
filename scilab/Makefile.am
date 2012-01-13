@@ -45,19 +45,15 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
-
-
 scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 
 if NEED_JAVA
