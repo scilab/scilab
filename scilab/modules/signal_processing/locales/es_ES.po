@@ -14,8 +14,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: es\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
 
 msgid "Simulation of an ARMAX process:"
 msgstr "Simulación de un proceso ARMAX:"
@@ -53,6 +69,24 @@ msgstr "espectro estimado"
 msgid "Press Return to continue ... \n"
 msgstr "Presione Enter para continuar... \n"
 
+msgid "filtered signal"
+msgstr ""
+
+msgid "given noisy signal"
+msgstr ""
+
+msgid "Signal"
+msgstr ""
+
+msgid "2 points convolution"
+msgstr ""
+
+msgid "3 points convolution"
+msgstr ""
+
+msgid "Signal derivative estimate"
+msgstr ""
+
 msgid "Minimax FIR filter"
 msgstr "Filtro FIR Minimax"
 
@@ -85,6 +119,12 @@ msgstr "Diagramas de Bode"
 
 msgid "Window FIR filters"
 msgstr "Filtros FIR Ventana"
+
+msgid "1-D convolution"
+msgstr ""
+
+msgid "2-D convolution"
+msgstr ""
 
 msgid "Arma simulation and identification"
 msgstr "Arma de simulación e identificación"
@@ -182,6 +222,18 @@ msgstr ""
 "suficientemente alto.\n"
 
 #, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: Los argumentos #%d y #%d deben tener el mismo tamaño.\n"
 
@@ -210,6 +262,10 @@ msgid ""
 msgstr ""
 "%s: tipo incorrecto de argumento del entrada #%d:  Se esperaba un sistema "
 "lineal dinámico o un vector fila de decimales.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -303,62 +359,41 @@ msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 "%s: Los elementos del argumento (%d) deben estar en orden creciente.\n"
 
-msgid "low pass"
-msgstr "pasa bajos"
-
-msgid "high pass"
-msgstr "pasa altos"
-
-msgid "band pass"
-msgstr "pasa banda"
-
-msgid "Choose type of filter to be designed"
-msgstr "Seleccione el tipo de filtro a diseñar"
-
-msgid "stop band"
-msgstr "para banda"
-
-msgid "Input filter characteristics"
-msgstr "Características del filtro de entrada"
-
-msgid "cut-off frequency (0.<frequ<.5):"
-msgstr "recortar frecuencias (0.<frec<.5):"
-
-msgid "filter length"
-msgstr "longitud del filtro"
-
-msgid "Incorrect filter order"
-msgstr "Orden incorrecto de filtro"
-
-msgid "Incorrect cut-off frequency"
-msgstr "Frecuencia de recortado incorrecta"
-
-msgid "filter length (odd value)"
-msgstr "longitud del filtro (valor impar)"
-
-msgid "low cut-off frequency (0.<flow<.5):"
+msgid "&File"
 msgstr ""
 
-msgid "high cut-off frequency (0.<flow<fhi<.5):"
+msgid "&Tools"
 msgstr ""
 
-msgid "Incorrect low cut-off frequency"
+msgid "&Edit"
 msgstr ""
 
-msgid "Incorrect high cut-off frequency"
+msgid "&?"
 msgstr ""
 
-msgid "Even length high pass and stop band filters not allowed"
+msgid "WFIR settings"
 msgstr ""
 
-msgid "---Filter order is being incremented by 1"
+msgid "Filter type"
 msgstr ""
 
-msgid "Kaiser"
-msgstr "Kaiser"
+msgid "Band pass"
+msgstr ""
 
-msgid "Chebyshev"
-msgstr "Chebyshev"
+msgid "High pass"
+msgstr ""
+
+msgid "Low pass"
+msgstr ""
+
+msgid "Stop Band"
+msgstr ""
+
+msgid "Window type"
+msgstr ""
+
+msgid "Hanning"
+msgstr ""
 
 msgid "Rectangular"
 msgstr "Rectangular"
@@ -366,43 +401,58 @@ msgstr "Rectangular"
 msgid "Triangular"
 msgstr "Triangular"
 
+msgid "Chebychev main lobe"
+msgstr ""
+
+msgid "Chebychev side lobe"
+msgstr ""
+
 msgid "Hamming"
 msgstr "Hamming"
 
-msgid "Input window type"
-msgstr "Tipo de ventana de entrada"
+msgid "Kaiser"
+msgstr "Kaiser"
 
-msgid "Input window characteristics"
-msgstr "Características de la ventana de entrada"
-
-msgid "Incorrect beta value"
-msgstr "Valor beta incorrecto"
-
-msgid "Input window characteristics:"
-msgstr "Características de la ventana de entrada:"
-
-msgid "dp (dp>0)   : the maximum value of the window side-lobe height"
+msgid "Sampling Frequency (Hz)"
 msgstr ""
 
-msgid "df (0<df<.5): the width of the window main lobe"
+msgid "Filter Order"
 msgstr ""
 
-msgid "only one of this two values is to be defined,"
-msgstr "solo uno de estos dos valor debe ser definido,"
-
-msgid "the other one is automatically deduced"
-msgstr "el otro se deduce automáticamente"
-
-msgid "name of specified value"
+msgid "Low cutoff frequency (Hz)"
 msgstr ""
 
-msgid "value"
+msgid "High cutoff frequency (Hz)"
 msgstr ""
 
-msgid "Incorrect name of specified value"
+msgid "Parameter"
 msgstr ""
 
-msgid "Incorrect  value"
+msgid "View"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Window main lobe width"
+msgstr ""
+
+msgid "maximum side-lobe height"
+msgstr ""
+
+msgid "frequency (Hz)"
+msgstr ""
+
+msgid "Magnitude (dB)"
 msgstr ""
 
 #, c-format

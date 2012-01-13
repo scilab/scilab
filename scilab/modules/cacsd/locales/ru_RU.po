@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-12-09 15:29+0000\n"
+"PO-Revision-Date: 2012-01-10 16:19+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: ru\n"
 
 #, c-format
@@ -46,7 +46,7 @@ msgid "Flat systems"
 msgstr "плоские системы"
 
 msgid "Tracking"
-msgstr ""
+msgstr "Слежение"
 
 msgid "Robust control"
 msgstr "Устойчивое управление"
@@ -782,7 +782,7 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: Вычисленное значение || G || может быть неточным.\n"
 
 msgid "G is all-pass"
-msgstr ""
+msgstr "G пропускает все частоты"
 
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
@@ -792,8 +792,8 @@ msgstr "%s: %s не нуль! (Установлено в нуль)"
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: временная область должна "
-"быть'c' (непрерывное время) или 'd' (дискретное время).\n"
+"%s: Неверное значение входного параметра №%d: временная область должна быть "
+"'c' (непрерывное время) или 'd' (дискретное время).\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -849,6 +849,9 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась линейная динамическая "
 "система.\n"
+
+msgid "Phase ()"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:40+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-11 14:57+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: fr\n"
 
 #, c-format
@@ -306,8 +306,8 @@ msgid "X0 is empty\n"
 msgstr "X0 est vide\n"
 
 #, c-format
-msgid "%s: X0(%d) must be in the range [1,%d]\n"
-msgstr "%s : X0(%d) doit être dans la plage [1,%d]\n"
+msgid "%s: X0(%d) must be in the range [1,%d[\n"
+msgstr "%s : X0(%d) doit être dans l'intervalle [1,%d[\n"
 
 #, c-format
 msgid "P(%d,%d) < 0\n"
