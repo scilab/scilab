@@ -16,6 +16,8 @@ package org.scilab.modules.xcos.graph;
 import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
@@ -37,14 +39,14 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -1946,27 +1948,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Load from a file
-     * 
-     * @param file
-     *            the file
-     * @throws TransformerException
-     *             on error
-     */
-    public void load(final File file) throws TransformerException {
-        final XcosCodec codec = new XcosCodec();
-        final TransformerFactory tranFactory = ScilabTransformerFactory
-                .newInstance();
-        final Transformer aTransformer = tranFactory.newTransformer();
-
-        final StreamSource src = new StreamSource(file);
-        final DOMResult result = new DOMResult();
-        aTransformer.transform(src, result);
-
-        codec.decode(result.getNode().getFirstChild(), this);
-    }
-
-    /**
      * Perform post loading initialization.
      * 
      * @param file
@@ -1976,11 +1957,16 @@ public class XcosDiagram extends ScilabGraph {
         final String name = file.getName();
 
         setModified(false);
-        setSavedFile(file);
+        if (name.endsWith(XcosFileType.getDefault().getExtension())) {
+            setSavedFile(file);
+            Xcos.getInstance().addDiagram(file, this);
+        }
         setTitle(name.substring(0, name.lastIndexOf('.')));
         generateUID();
 
         fireEvent(new mxEventObject(mxEvent.ROOT));
+
+        info(XcosMessages.EMPTY_INFO);
     }
 
     /**
@@ -2109,7 +2095,7 @@ public class XcosDiagram extends ScilabGraph {
 
         if (diagram.exists()) {
             try {
-                transformAndLoadFile(diagram.getCanonicalPath(), false);
+                transformAndLoadFile(diagram.getCanonicalPath());
             } catch (IOException e) {
                 LogFactory.getLog(XcosDiagram.class).error(e);
             }
@@ -2128,17 +2114,11 @@ public class XcosDiagram extends ScilabGraph {
             }
 
             if (answer == AnswerOption.YES_OPTION) {
-                final boolean status = saveDiagramAs(diagram);
-                if (status) {
-                    Xcos.getInstance().addDiagram(diagram, this);
-                    XcosTab.restore(this);
-                } else {
-                    return null;
-                }
+                saveDiagramAs(diagram);
             }
 
+            info(XcosMessages.EMPTY_INFO);
         }
-        info(XcosMessages.EMPTY_INFO);
         getUndoManager().clear();
 
         return this;
@@ -2147,80 +2127,63 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Load a file with different method depending on it extension
      * 
-     * @param theFile
+     * @param file
      *            File to load
      * @param wait
      *            wait end transform
      * @return the status of the operation
      */
-    protected boolean transformAndLoadFile(final String theFile,
-            final boolean wait) {
-        final String fileToLoad = theFile;
-        final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
-        boolean result = false;
+    protected boolean transformAndLoadFile(final String file) {
+        final XcosFileType filetype = XcosFileType.findFileType(file);
 
-        if (!exists(fileToLoad) || filetype == null) {
+        if (!exists(file) || filetype == null) {
             XcosDialogs.couldNotLoadFile(this);
             return false;
         }
 
-        switch (filetype) {
-        case COSF:
-        case COS:
-            if (wait) {
-                String newFile;
-                newFile = filetype.exportToHdf5(fileToLoad);
-                result = transformAndLoadFile(newFile, wait);
-            } else {
-                final Thread transformAction = new Thread() {
-                    @Override
-                    public void run() {
-                        String newFile;
-                        newFile = filetype.exportToHdf5(fileToLoad);
-                        transformAndLoadFile(newFile, false);
-                    }
-                };
-                transformAction.start();
-                result = true;
-            }
-            break;
-
-        case XCOS:
-            try {
-                File f = new File(theFile);
-                if (getModel().getChildCount(getDefaultParent()) == 0) {
-                    load(f);
-                    XcosTab.restore(this);
-                    postLoad(f);
-                } else {
-                    info(XcosMessages.LOADING_DIAGRAM);
-                    final XcosDiagram xcosDiagram = new XcosDiagram();
-                    xcosDiagram.load(f);
-                    XcosTab.restore(xcosDiagram);
-                    xcosDiagram.postLoad(f);
-                    info(XcosMessages.EMPTY_INFO);
+        new SwingWorker<XcosDiagram, ActionEvent>() {
+            int counter = 0;
+            final Timer t = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    publish(e);
                 }
-                result = true;
-            } catch (final TransformerException e) {
-                LOG.error(e);
-                result = false;
+            });
+            
+            @Override
+            protected XcosDiagram doInBackground() throws Exception {
+                t.start();
+                XcosDiagram.this.setReadOnly(true);
+
+                /*
+                 * Load
+                 */
+                filetype.load(file, XcosDiagram.this);
+                return XcosDiagram.this;
             }
-            break;
 
-        case HDF5:
-            final H5RWHandler handler = new H5RWHandler(fileToLoad);
-            handler.readDiagram(this);
-            generateUID();
-            updateTabTitle();
-            XcosTab.restore(this);
-            result = true;
-            break;
+            @Override
+            protected void process(List<ActionEvent> chunks) {
+                counter = (counter + 1) % (XcosMessages.DOTS.length() + 1);
+                String str = XcosMessages.LOADING_DIAGRAM + XcosMessages.DOTS.substring(0, counter);
 
-        default:
-            XcosDialogs.couldNotLoadFile(this);
-            break;
-        }
-        return result;
+                XcosDiagram.this.info(str);
+            }
+            
+            @Override
+            protected void done() {
+                t.stop();
+                XcosDiagram.this.setReadOnly(false);
+
+                /*
+                 * Load has finished
+                 */
+                postLoad(new File(file));
+                XcosDiagram.this.info(XcosMessages.EMPTY_INFO);
+            }
+
+        }.execute();
+        return true;
     }
 
     /**

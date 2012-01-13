@@ -138,6 +138,24 @@ public class ClosingOperationsManager {
     }
 
     /**
+     * Start a closing operation on multiple tabs
+     * 
+     * @param tabs
+     *            the tabs to close
+     * @return true if the closing operation succeeded
+     */
+    public static boolean startClosingOperation(List<SwingScilabTab> tabs, boolean askToExit, boolean mustSave) {
+        final SwingScilabWindow win;
+        if (tabs.isEmpty()) {
+            // use the null window to select the console tab.
+            win = null;
+        } else {
+            win = getWindow(tabs.get(0));
+        }
+        return close(collectTabsToClose(tabs), win, askToExit, mustSave);
+    }
+
+    /**
      * Start a closing operation on a tab
      *
      * @param tab
@@ -635,8 +653,23 @@ public class ClosingOperationsManager {
     }
 
     /**
+     * Collect the tabs and their children to close (recursive function)
+     * 
+     * @param tabs
+     *            the current tabs
+     * @return the list of the tabs to close
+     */
+    private static final List<SwingScilabTab> collectTabsToClose(List<SwingScilabTab> tabs) {
+        final List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+        for (final SwingScilabTab tab : tabs) {
+            collectTabsToClose(tab, list);
+        }
+        return list;
+    }
+
+    /**
      * Get the window containing the given tab
-     *
+     * 
      * @param tab
      *            the tab
      * @return the corresponding window

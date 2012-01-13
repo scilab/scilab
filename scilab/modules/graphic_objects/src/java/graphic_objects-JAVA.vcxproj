@@ -153,6 +153,11 @@ call ant clean
   <ItemGroup>
     <None Include="..\..\build.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

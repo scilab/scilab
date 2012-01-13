@@ -9,9 +9,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>error(message [,n])
+    <synopsis>error(message)
+error(message, n)
 error(n)
-error(n,pos)</synopsis>
+error(n, message)
+error(n, pos)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -19,7 +21,7 @@ error(n,pos)</synopsis>
       <varlistentry>
         <term>message</term>
         <listitem>
-          <para>a character string. The error message to be displayed.</para>
+          <para>a string or a vector of strings. The error message to be displayed.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,7 +53,7 @@ error(n,pos)</synopsis>
     <para><literal>error(n)</literal> prints the predefined error message associated with
       the error number <literal>n</literal>. </para>
     <para>Some predefined error messages  require a parameter (see
-      <link linkend="error_table">error_table</link>). In this case the <literal>pos</literal> 
+      <link linkend="error_table">error_table</link>). In this case the <literal>pos</literal>
       argument must be used <literal>error(n,pos)</literal> to give the parameter
       value. In the other cases the <literal>pos</literal>  argument is ignored.</para>
     <para> see <link linkend="error_table">error_table</link> for a list of error messages and the
@@ -59,11 +61,11 @@ error(n,pos)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-error('my error message')
+    <programlisting role="example"><![CDATA[error('my error message')
 error(43)
-error(52,3)
- ]]></programlisting>
+error(52, 3)
+error(10001, ['A'; 'multi';'line';'error';'message'])
+lasterror()]]></programlisting>
   </refsection>
   <refsection role="see also">
 <title>See Also</title>
@@ -81,5 +83,14 @@ error(52,3)
         <link linkend="lasterror">lasterror</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>Historique</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>The error function can take vector of strings as input argument.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

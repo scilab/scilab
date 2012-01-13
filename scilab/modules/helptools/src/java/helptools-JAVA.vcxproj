@@ -164,9 +164,8 @@ call ant clean
     <None Include="..\..\build.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\c\helptools.vcxproj">
+      <Project>{bed4a0f2-5129-487f-9f94-ec09480f04d7}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

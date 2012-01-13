@@ -826,10 +826,6 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
     DEFAULT_JAR_DIR="/usr/share/java /usr/lib/java /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/* 2>/dev/null) $(ls -d /usr/lib64/* 2>/dev/null) $(ls -d /usr/lib/* 2>/dev/null)  $(ls -d /usr/share/*/lib 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
-#    jar=`echo $jar|sed -e 's/ /\\ /'`
-#    echo "protected $jar"
-#    jar_resolved=`ls $jar 2>/dev/null`
-#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
     jars_resolved=`ls $jar 2>/dev/null`
     for jar_resolved in $jars_resolved; do # If several jars matches

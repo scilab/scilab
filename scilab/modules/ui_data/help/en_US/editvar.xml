@@ -45,6 +45,8 @@ Matrix visualisation
 <para/><para><inlinemediaobject><imageobject><imagedata fileref="../images/editvar_default.png"/></imageobject></inlinemediaobject></para><para/>
 
 </para></listitem><listitem><para>
+Undo/redo capabilities
+</para></listitem><listitem><para>
 Cell editing
 </para></listitem><listitem><para>
 Expression evaluation. Please note that editvar will not store the expression. Only the value.

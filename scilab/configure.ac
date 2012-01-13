@@ -1446,7 +1446,7 @@ ACX_ARPACK(
         )
 
 CHECK_ARPACK_OK(
-[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)à])],
+[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)])],
 [AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
 ])
 #################

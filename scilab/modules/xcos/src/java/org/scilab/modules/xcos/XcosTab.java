@@ -49,6 +49,7 @@ import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
@@ -285,15 +286,18 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
             uuid = UUID.randomUUID().toString();
         }
 
-        XcosTab tab = new XcosTab(graph, uuid);
-        if (visible) {
-            tab.createDefaultWindow().setVisible(true);
-            graph.updateTabTitle();
-        }
+        final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
         Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         graph.setOpened(true);
+
+        if (visible) {
+            tab.createDefaultWindow().setVisible(true);
+
+            graph.updateTabTitle();
+            BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
+        }
 
         ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
