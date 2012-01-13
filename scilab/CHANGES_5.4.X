@@ -25,6 +25,7 @@ Help
 * Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
   <caution>, <warning>, <important> and <tip> tags in examples.
 
+
 Xcos
 ====
 
@@ -216,6 +217,8 @@ Bug fixes
                      error message.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
+
+* Bug #10518 fixed - odeoptions help page was inaccurate.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
