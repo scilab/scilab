@@ -70,6 +70,9 @@ Xcos
 
 * Bug #10499 fixed - lincos example in help file returned warning and error.
 
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
 
 Unitary testing
 ===============
