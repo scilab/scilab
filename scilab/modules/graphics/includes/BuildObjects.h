@@ -85,8 +85,6 @@ GRAPHICS_IMPEXP char *ConstructCompoundSeq(int number); /* BUILD */
 
 GRAPHICS_IMPEXP char *ConstructLabel(char *pparentsubwinUID, char *text, int type); /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *sciStandardBuildOperations(sciPointObj * pObj, sciPointObj * parent);
-
 GRAPHICS_IMPEXP void createDefaultRelationShip(sciPointObj * pObj);
 
 GRAPHICS_IMPEXP void initUserData(sciPointObj * pObj);

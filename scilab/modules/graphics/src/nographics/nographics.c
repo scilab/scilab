@@ -58,917 +58,1076 @@
 
 int gw_graphics(void)
 {
-  Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-  if ( (Fin==DELETE_INDEX || Fin==GET_INDEX || Fin==SET_INDEX) &&
-       (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
+    if ((Fin == DELETE_INDEX || Fin == GET_INDEX || Fin == SET_INDEX) && (VarType(1) == sci_tlist || VarType(1) == sci_mlist))
     {
-      int lw = 1 + Top - Rhs;
-      if (Fin==DELETE_INDEX) C2F(overload)(&lw,"delete",6);
-      if (Fin==GET_INDEX) C2F(overload)(&lw,"get",3);
-      if (Fin==SET_INDEX) C2F(overload)(&lw,"set",3);
+        int lw = 1 + Top - Rhs;
+
+        if (Fin == DELETE_INDEX)
+            C2F(overload) (&lw, "delete", 6);
+        if (Fin == GET_INDEX)
+            C2F(overload) (&lw, "get", 3);
+        if (Fin == SET_INDEX)
+            C2F(overload) (&lw, "set", 3);
     }
-  else
+    else
     {
-      Scierror(999,_("Scilab Graphics module not installed.\n"));
+        Scierror(999, _("Scilab Graphics module not installed.\n"));
     }
-  return 0;
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/
-void loadGraphicModule( void )
+void loadGraphicModule(void)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL TerminateGraphics(void)
 {
-	return TRUE;
+    return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetViewport(  char * pObj, const int viewport[4] )
+int sciSetViewport(char *pObj, const int viewport[4])
 {
-	return 0;
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetViewport( sciPointObj * pObj, int viewport[4] )
+void sciGetViewport(sciPointObj * pObj, int viewport[4])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 double Maxi(const double vect[], int n)
 {
-	return 0.0;
+    return 0.0;
 }
+
 /*--------------------------------------------------------------------------*/
 double Mini(const double vect[], int n)
 {
-	return 0.0;
+    return 0.0;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciHasFigures( void )
+BOOL sciHasFigures(void)
 {
-  return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 char **getDictionaryGetProperties(int *sizearray)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
 char **getDictionarySetProperties(int *sizearray)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetHeight (sciPointObj * pobj)
+int sciGetHeight(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetNum (sciPointObj * pobj)
+int sciGetNum(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
+BOOL sciAddThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
 {
-	return FALSE ;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentFigure( void )
+sciPointObj *sciGetCurrentFigure(void)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciAddNewHandle (sciPointObj * pobj)
+int sciAddNewHandle(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
 void createDefaultRelationShip(sciPointObj * pObj)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetEntityType (char* pobj, sciEntityType value)
+int sciSetEntityType(char *pobj, sciEntityType value)
 {
-	return -1 ;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-void sciInitSelectedSons(sciPointObj * pObj )
+void sciInitSelectedSons(sciPointObj * pObj)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParent (sciPointObj * pobj)
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetPointerFromHandle (long handle)
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-unsigned long getHandleFromStack( size_t stackPointer )
-{
-	return 	(unsigned long)(-1);
-}
-/*--------------------------------------------------------------------------*/
-int callSetProperty(char * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-sciEntityType sciGetEntityType (sciPointObj * pobj)
-{
-	return (sciEntityType)0;
-}
-/*--------------------------------------------------------------------------*/
-int sciStandardDestroyOperations( sciPointObj * pThis )
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentFigure (sciPointObj * pobj)
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-int sciGetWidth (sciPointObj * pobj)
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int sciSetDimension(  char * pobj, int newWidth, int newHeight )
-{
-	return -1 ;
-}
-/*--------------------------------------------------------------------------*/
-int sciInitScreenPosition(char * pobj, int pposx, int pposy)
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
-{
-	return FALSE;
-}
-/*--------------------------------------------------------------------------*/
-char * getStringFromStack( size_t stackPointer )
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-double * getDoubleMatrixFromStack( size_t stackPointer )
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-double getDoubleFromStack( size_t stackPointer )
-{
-	return 0.;
-}
-/*--------------------------------------------------------------------------*/
-char * getFigureFromIndex(int figNum)
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-char ** getStringMatrixFromStack( size_t stackPointer )
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-sciPointObj *sciGetPointerFromJavaIndex (int javaIndex)
-{
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-long sciGetHandle (sciPointObj * pobj)
-{
-	return (long)0;
-}
-/*--------------------------------------------------------------------------*/
-int sciInitForeground( char * pobj, int colorindex )
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-int sciInitFontForeground(char * pobj, int colorindex )
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-int sciGetFontForeground (sciPointObj * pobj)
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-int sciInitFontSize(char * pobj, double fontSize)
-{
-	return -1;
-}
-/*--------------------------------------------------------------------------*/
-char * allocateText( char        * pparentsubwinUID,
-										   char             ** text          ,
-										   int                 nbRow         ,
-										   int                 nbCol         ,
-										   double              x             ,
-										   double              y             ,
-										   BOOL                autoSize      ,
-										   double              userSize[2]   ,
-										   BOOL                centerPos     ,
-										   int               * foreground    ,
-										   int               * background    ,
-										   BOOL                isboxed       ,
-										   BOOL                isline        ,
-										   BOOL                isfilled      ,
-										   sciTextAlignment    align          )
+sciPointObj *sciGetParent(sciPointObj * pobj)
 {
     return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetForeground (sciPointObj * pobj)
+sciPointObj *sciGetPointerFromHandle(long handle)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetBackground (sciPointObj * pobj)
+unsigned long getHandleFromStack(size_t stackPointer)
 {
-	return -1;
+    return (unsigned long)(-1);
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitIsFilled(char * pobj, BOOL isfilled)
+int callSetProperty(char *pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char *propertyName)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitIsLine(char * pobj, BOOL isline)
+sciEntityType sciGetEntityType(sciPointObj * pobj)
 {
-	return -1;
+    return (sciEntityType) 0;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitLineStyle( char * pobj, int linestyle )
+int sciStandardDestroyOperations(sciPointObj * pThis)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitLineWidth( char * pobj, double linewidth )
+sciPointObj *sciGetParentFigure(sciPointObj * pobj)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitBackground( char * pobj, int colorindex )
+int sciGetWidth(sciPointObj * pobj)
 {
-	return -1;
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitMarkStyle(char * pobj, int markstyle)
+int sciSetDimension(char *pobj, int newWidth, int newHeight)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitIsMark(char * pobj, BOOL ismark)
+int sciInitScreenPosition(char *pobj, int pposx, int pposy)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitMarkBackground(char * pobj, int colorindex)
+BOOL sciDelThisToItsParent(sciPointObj * pthis, sciPointObj * pparent)
 {
-	return -1;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetMarkBackground (sciPointObj * pobj)
+char *getStringFromStack(size_t stackPointer)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitMarkForeground(char * pobj, int colorindex)
+double *getDoubleMatrixFromStack(size_t stackPointer)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetMarkForeground (sciPointObj * pobj)
+double getDoubleFromStack(size_t stackPointer)
 {
-	return -1;
+    return 0.;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitMarkSizeUnit(char * pobj, int marksizeunit)
+char *getFigureFromIndex(int figNum)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
+char **getStringMatrixFromStack(size_t stackPointer)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitArrowSize( char * pobj, double size )
+sciPointObj *sciGetPointerFromJavaIndex(int javaIndex)
 {
-	return -1;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitPolylineStyle( char * pobj, int plot )
+long sciGetHandle(sciPointObj * pobj)
 {
-	return -1;
+    return (long)0;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetNumColors (char *pobjUID)
+int sciInitForeground(char *pobj, int colorindex)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int deallocateText( sciPointObj * pthis )
+int sciInitFontForeground(char *pobj, int colorindex)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitFontBackground(char * pobj, int color)
+int sciGetFontForeground(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetLegendPos (sciPointObj * pobj, double position[2])
+int sciInitFontSize(char *pobj, double fontSize)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+char *allocateText(char *pparentsubwinUID,
+                   char **text,
+                   int nbRow,
+                   int nbCol,
+                   double x,
+                   double y,
+                   BOOL autoSize,
+                   double userSize[2],
+                   BOOL centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+{
+    return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetForeground(sciPointObj * pobj)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetBackground(sciPointObj * pobj)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitIsFilled(char *pobj, BOOL isfilled)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitIsLine(char *pobj, BOOL isline)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitLineStyle(char *pobj, int linestyle)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitLineWidth(char *pobj, double linewidth)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitBackground(char *pobj, int colorindex)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkStyle(char *pobj, int markstyle)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitIsMark(char *pobj, BOOL ismark)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkBackground(char *pobj, int colorindex)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetMarkBackground(sciPointObj * pobj)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkForeground(char *pobj, int colorindex)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetMarkForeground(sciPointObj * pobj)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkSizeUnit(char *pobj, int marksizeunit)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetNbTypedObjects(sciPointObj * pObj, sciEntityType type)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitArrowSize(char *pobj, double size)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitPolylineStyle(char *pobj, int plot)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciGetNumColors(char *pobjUID)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int deallocateText(sciPointObj * pthis)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitFontBackground(char *pobj, int color)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+void sciGetLegendPos(sciPointObj * pobj, double position[2])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 char sciGetxLocation(sciPointObj * pObj)
 {
-	return 0;
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 char sciGetyLocation(sciPointObj * pObj)
 {
-	return 0;
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-sciLegendPlace sciGetLegendPlace (sciPointObj * pobj)
+sciLegendPlace sciGetLegendPlace(sciPointObj * pobj)
 {
-	return (sciLegendPlace)0;
+    return (sciLegendPlace) 0;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
+void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height)
+void sciGetViewingArea(sciPointObj * pObj, int *xPos, int *yPos, int *width, int *height)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-void destroyGraphicPointer(void * pointer)
+void destroyGraphicPointer(void *pointer)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim )
+int ComputeXIntervals(char *pobjUID, char xy_type, double **vector, int *N, int checkdim)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-void deleteMatrix( sciMatrix * mat )
+void deleteMatrix(sciMatrix * mat)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-char * getStrMatElement( const StringMatrix * mat, int row, int col )
+char *getStrMatElement(const StringMatrix * mat, int row, int col)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-StringMatrix * computeDefaultTicsLabels( char * pobjUID )
+StringMatrix *computeDefaultTicsLabels(char *pobjUID)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-void rotate2D( double from[2], double center[2], double angle, double dest[2] )
+void rotate2D(double from[2], double center[2], double angle, double dest[2])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoRotation ( sciPointObj * pObj )
+BOOL sciGetAutoRotation(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL needsDisplay(sciPointObj * pFigure)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
+BOOL sciGetIsAutoDrawable(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-void stringArrayCopy( char * dest[], char * src[], int nbElement )
+void stringArrayCopy(char *dest[], char *src[], int nbElement)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetVisibility (sciPointObj * pobj)
+BOOL sciGetVisibility(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetLogFlags(char *pObjUID, char flags[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetFontOrientation (char * pobj, double textorientation)
+int sciSetFontOrientation(char *pobj, double textorientation)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoPosition ( sciPointObj * pObj )
+BOOL sciGetAutoPosition(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetFontStyle (char * pobj, int iAttributes )
+int sciSetFontStyle(char *pobj, int iAttributes)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitIsClipping(char * pobj, int value)
+int sciInitIsClipping(char *pobj, int value)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetLegendPos (char * pobj, double position[])
+int sciSetLegendPos(char *pobj, double position[])
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetClipping (char * pobj, double pclip[4] )
+int sciSetClipping(char *pobj, double pclip[4])
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetTextPos( char * pObj, double posX, double posY, double posZ)
+int sciSetTextPos(char *pObj, double posX, double posY, double posZ)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
+void sciGetUserSize(sciPointObj * pObj, double *width, double *height)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsBoxed (sciPointObj * pobj)
+BOOL sciGetIsBoxed(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsLine (sciPointObj * pobj)
+BOOL sciGetIsLine(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoSize( sciPointObj * pObj )
+BOOL sciGetAutoSize(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetCenterPos( sciPointObj * pObj )
+BOOL sciGetCenterPos(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciisTextEmpty( char* identifier )
+BOOL sciisTextEmpty(char *identifier)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-double sciGetFontOrientation (sciPointObj * pobj)
+double sciGetFontOrientation(sciPointObj * pobj)
 {
-	return 0.;
+    return 0.;
 }
+
 /*--------------------------------------------------------------------------*/
-sciTextAlignment sciGetAlignment( sciPointObj * pObj )
+sciTextAlignment sciGetAlignment(sciPointObj * pObj)
 {
-	return (sciTextAlignment)0;
+    return (sciTextAlignment) 0;
 }
+
 /*--------------------------------------------------------------------------*/
-StringMatrix * sciGetText (sciPointObj * pobj)
+StringMatrix *sciGetText(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int getMatNbCol( const sciMatrix * mat )
+int getMatNbCol(const sciMatrix * mat)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int getMatNbRow( const sciMatrix * mat )
+int getMatNbRow(const sciMatrix * mat)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-char ** getStrMatData(  const StringMatrix * mat )
+char **getStrMatData(const StringMatrix * mat)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetUseNurbs(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL isFigureModel(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-sciFont *sciGetFontContext (sciPointObj * pobj)
+sciFont *sciGetFontContext(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
- int sciGetFontStyle (sciPointObj * pobj)
+int sciGetFontStyle(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yStyle, int * zStyle )
+void sciGetGridStyle(sciPointObj * pObj, int *xStyle, int *yStyle, int *zStyle)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetAutoSubticks(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetGridFront(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIs3d( sciPointObj * pObj )
+BOOL sciGetIs3d(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 int sciGetSubwinIndex(sciPointObj * pSubwin)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-EAxesBoxType sciGetBoxType( sciPointObj * pobj )
+EAxesBoxType sciGetBoxType(sciPointObj * pobj)
 {
-	return (EAxesBoxType)0;
+    return (EAxesBoxType) 0;
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetTextPos(sciPointObj * pObj, double position[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetRealVisibility (sciPointObj * pobj)
+BOOL sciGetRealVisibility(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-int getPixelModeIndex( const char * modeName )
+int getPixelModeIndex(const char *modeName)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetXorMode (char * pobj, int value)
+int sciSetXorMode(char *pobj, int value)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetVisibility (char * pobj, BOOL value)
+int sciSetVisibility(char *pobj, BOOL value)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetZooming (sciPointObj * pobj)
+BOOL sciGetZooming(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetTightLimitsOn(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetRealDataBounds(char * pObj, const double bounds[6])
+int sciSetRealDataBounds(char *pObj, const double bounds[6])
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void setToIdentity(double mat4D[4][4])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsIsoView(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void vectAdd3D(const double v1[3], const double v2[3], double res[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-char *ConstructPolyline (char * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
-                         int closed, int n1, int plot, int *foreground, int *background,
-                         int *mark_style, int *mark_foreground, int *mark_background,
-                         BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+char *ConstructPolyline(char *pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+                        int closed, int n1, int plot, int *foreground, int *background,
+                        int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetIsClipping (char * pobj, int value)
+int sciSetIsClipping(char *pobj, int value)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL isPointInTriangle(const double point[2], const double a[2],
-					   const double b[2], const double c[2])
+BOOL isPointInTriangle(const double point[2], const double a[2], const double b[2], const double c[2])
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void scalarMult2D(const double v[2], const double scalar, double res[2])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void vectAdd2D(const double v1[2], const double v2[2], double res[2])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int sciSetZoomBox(char * pObj, const double zoomBox[6])
+int sciSetZoomBox(char *pObj, const double zoomBox[6])
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-double *sciGetMargins( sciPointObj * pObj )
+double *sciGetMargins(sciPointObj * pObj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-double * sciGetAxesBounds( sciPointObj * pObj )
+double *sciGetAxesBounds(sciPointObj * pObj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
+void sciGetViewingAngles(sciPointObj * pObj, double *alpha, double *theta)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void sciGetAxesReverse(sciPointObj * pObj, BOOL axesReverse[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsCubeScaled(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-void normalize3D( double vect[3] )
+void normalize3D(double vect[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void scalarMult3D(const double v[3], double scalar, double res[3])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int TheTicks( double * xminv ,
-			 double * xmaxv ,
-			 double * grads ,
-			 int    * ngrads,
-			 int      compNgrads )
+int TheTicks(double *xminv, double *xmaxv, double *grads, int *ngrads, int compNgrads)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
 void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int GradLog( double _min, double _max, double *_grads, int * n_grads, int compNgrads)
+int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgrads)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input)
+int ComputeNbSubTics(char *pobjUID, int nbtics, char logflag, const double *grads, int nbsubtics_input)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetMarkStyle (sciPointObj * pobj)
+int sciGetMarkStyle(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetMarkSize (sciPointObj * pobj)
+int sciGetMarkSize(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetMarkSizeUnit (sciPointObj * pobj)
+int sciGetMarkSizeUnit(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetLineStyle (sciPointObj * pobj)
+int sciGetLineStyle(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-double sciGetLineWidth (sciPointObj * pobj)
+double sciGetLineWidth(sciPointObj * pobj)
 {
-	return 0.;
+    return 0.;
 }
+
 /*--------------------------------------------------------------------------*/
-double sciGetArrowSize (sciPointObj * pobj)
+double sciGetArrowSize(sciPointObj * pobj)
 {
-	return 0.;
+    return 0.;
 }
+
 /*--------------------------------------------------------------------------*/
-sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj)
+sciGraphicContext *sciGetGraphicContext(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-int * sciGetInterpVector(sciPointObj * pobj)
+int *sciGetInterpVector(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-void intArrayCopy( int dest[], const int src[], int nbElement )
+void intArrayCopy(int dest[], const int src[], int nbElement)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsClosed(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsFilled (sciPointObj * pobj)
+BOOL sciGetIsFilled(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsColorInterpolated(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciGetIsDisplayingLines(sciPointObj * pObj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsMark (sciPointObj * pobj)
+BOOL sciGetIsMark(sciPointObj * pobj)
 {
-	return FALSE;
+    return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 int sciGetNbPoints(sciPointObj * pObj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-void doubleArrayCopy( double dest[], const double src[], int nbElement )
+void doubleArrayCopy(double dest[], const double src[], int nbElement)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-void setDoubleArraySingleValue( double dest[], double value, int nbElement )
+void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 int sciGetPolylineStyle(sciPointObj * pObj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
 void unzoomSubwin(sciPointObj * pSubwin)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
 void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
+sciPointObj *getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
 void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta)
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int deallocatePolyline (sciPointObj * pthis)
+int deallocatePolyline(sciPointObj * pthis)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetXorMode (sciPointObj * pobj)
+int sciGetXorMode(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-sciSons *sciGetLastSons (sciPointObj * pobj)
+sciSons *sciGetLastSons(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
 {
-	return TRUE;
+    return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/
-int sciGetIsClipping (sciPointObj * pobj)
+int sciGetIsClipping(sciPointObj * pobj)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-sciPointObj *sciGetParentSubwin (sciPointObj * pobj)
+sciPointObj *sciGetParentSubwin(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
-void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
+void sciGetRealDataBounds(sciPointObj * pObj, double bounds[6])
 {
 
 }
+
 /*--------------------------------------------------------------------------*/
-int sciInitMarkSize(char * pobj, int marksize)
+int sciInitMarkSize(char *pobj, int marksize)
 {
-	return -1;
+    return -1;
 }
+
 /*--------------------------------------------------------------------------*/
-double *sciGetClipping (sciPointObj * pobj)
+double *sciGetClipping(sciPointObj * pobj)
 {
-	return NULL;
+    return NULL;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL sciIsExistingFigure(int figNum)
 {
-	return FALSE;
+    return FALSE;
 }

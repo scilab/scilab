@@ -128,10 +128,10 @@ GRAPHICS_IMPEXP void cloneMenus(char *pModelUID, char *pCloneUID)
     char *pChildType = NULL;
 
     getGraphicObjectProperty(pModelUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piNbChildren);
-    getGraphicObjectProperty(pModelUID, __GO_CHILDREN__, jni_string_vector, (void **) &pChildren);
+    getGraphicObjectProperty(pModelUID, __GO_CHILDREN__, jni_string_vector, (void **)&pChildren);
     for (iChild = iNbChildren - 1; iChild >= 0; iChild--)
     {
-        getGraphicObjectProperty(pChildren[iChild], __GO_TYPE__, jni_string, (void **) &pChildType);
+        getGraphicObjectProperty(pChildren[iChild], __GO_TYPE__, jni_string, (void **)&pChildType);
         if (strcmp(pChildType, __GO_UIMENU__) == 0)
         {
             pChildUID = cloneGraphicObject(pChildren[iChild]);
@@ -1701,7 +1701,7 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
     int iClipState = 0;
     int *piClipState = &iClipState;
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **) &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, (void **)&parentType);
 
     /* test using sciGetEntityType replaced by a test on the type string */
     if (strcmp(parentType, __GO_AXES__) != 0)
@@ -1776,7 +1776,7 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
 
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **) &piParentVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
     /* Clipping: to be checked */
@@ -1789,13 +1789,13 @@ char *ConstructFec(char *pparentsubwinUID, double *pvecx, double *pvecy, double 
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **) &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **) &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **) &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &iClipState, jni_int, 1);
 
     /* Initializes the default Contour values */
@@ -1866,13 +1866,13 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
      * Clip state and region
      * To be checked for consistency
      */
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **) &clipRegion);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **) &piClipRegionSet);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **) &piClipState);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (type == 1)
@@ -2029,7 +2029,7 @@ char *ConstructCompound(long *handelsvalue, int number) /* Conflicting types wit
 
     compoundUID = createGraphicObject(__GO_COMPOUND__);
 
-    /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
+    /* Add the Compound's handle */
 //  if (sciAddNewHandle(compound) == -1)
 //  {
 //    deleteGraphicObject(compound->UID);
@@ -2109,7 +2109,7 @@ char *ConstructCompoundSeq(int number)
     /* Creates the Compound object A */
     pobjUID = createGraphicObject(__GO_COMPOUND__);
 
-    /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
+    /* Add the Compound's handle */
 //    if (sciAddNewHandle(pobj) == -1)
 //    {
 //        deleteGraphicObject(pobj->UID);
@@ -2117,9 +2117,9 @@ char *ConstructCompoundSeq(int number)
 //        return NULL;
 //    }
 
-    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piNumberChildren);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piNumberChildren);
 
-    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, (void **) &children);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, (void **)&children);
 
     /*
      * Remove the last "number" created objects (located at the children list's head)
