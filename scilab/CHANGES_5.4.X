@@ -220,6 +220,9 @@ Bug fixes
 
 * Bug #10518 fixed - odeoptions help page was inaccurate.
 
+* Bug #10519 fixed - spec returned a wrong error message when a input argument
+                     was not square.
+
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
 
 
