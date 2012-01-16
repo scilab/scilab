@@ -369,6 +369,7 @@ images/icons/16x16/categories/applications-system.png \
 images/icons/16x16/devices/media-floppy.png \
 images/icons/16x16/devices/printer.png \
 images/icons/16x16/emblems/emblem-readonly.png \
+images/icons/16x16/emblems/emblem-important.png \
 images/icons/16x16/mimetypes/application-pdf.png \
 images/icons/16x16/mimetypes/binary.png \
 images/icons/16x16/mimetypes/image-x-generic.png \
@@ -386,6 +387,8 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
+images/icons/16x16/status/dialog-information.png \
+images/icons/16x16/status/dialog-warning.png \
 images/icons/256x256/apps/accessories-text-editor.png \
 images/icons/256x256/apps/rrze_table.png \
 images/icons/256x256/apps/utilities-system-monitor.png \
@@ -421,7 +424,9 @@ images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png
+images/icons/undock_default.png \
+images/icons/dock_help_active.png \
+images/icons/dock_help_default.png
 
 if GUI
 USEANT=1

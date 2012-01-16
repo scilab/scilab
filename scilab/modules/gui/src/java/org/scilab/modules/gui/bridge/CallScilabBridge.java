@@ -46,6 +46,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
@@ -2122,6 +2123,17 @@ public class CallScilabBridge {
                 helpBrowser.searchKeywork(keyword);
             }
         }
+    }
+
+    /**
+     * Open HelpBrowser on the page with the given xmlID
+     * @param xmlID the xml id
+     */
+    public static void openHelp(String xmlID) {
+	HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
+	if (helpBrowser != null) {
+	    helpBrowser.searchKeywork(xmlID);
+	}
     }
 
     /**

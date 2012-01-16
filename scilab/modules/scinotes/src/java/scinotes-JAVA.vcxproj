@@ -155,27 +155,6 @@ call ant clean
     <None Include="org\scilab\modules\scinotes\ScilabKeywordsJNI.java" />
     <None Include="..\..\build.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\action_binding\src\java\action_binding-JAVA.vcxproj">
-      <Project>{b2911268-79e2-4fe5-ad59-2c3cb7cb794e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\core\src\java\core-JAVA.vcxproj">
-      <Project>{78d8b862-964a-4d0e-93d2-ca8a25ba1207}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\gui\src\java\gui-JAVA.vcxproj">
-      <Project>{f01c26e3-e409-4e74-ba84-c7c4a71a7fdc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\helptools\src\java\helptools-JAVA.vcxproj">
-      <Project>{899decf1-d4dc-4c84-bb3c-3a343401a5b4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

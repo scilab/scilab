@@ -127,6 +127,11 @@ public final class SciDocMain {
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
             ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("media-playback-start")), new File(outputDirectory + "/ScilabExecute.png"));
             ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("accessories-text-editor")), new File(outputDirectory + "/ScilabEdit.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outputDirectory + "/ScilabNote.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outputDirectory + "/ScilabWarning.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outputDirectory + "/ScilabCaution.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outputDirectory + "/ScilabTip.png"));
+            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("emblem-important")), new File(outputDirectory + "/ScilabImportant.png"));
             if (format.equalsIgnoreCase("javahelp")) {
                 if (!isToolbox) {
                     ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outputDirectory + "/ScilabErrorPage.html"));

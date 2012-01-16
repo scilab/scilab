@@ -896,7 +896,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.0],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.1.1],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -1055,7 +1055,7 @@ the the JNI libraries."])],
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.9.4],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.9.7],[TeXFormula.VERSION])
 
                 AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1476,7 +1476,7 @@ ACX_ARPACK(
         )
 
 CHECK_ARPACK_OK(
-[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)à])],
+[AC_MSG_RESULT([Working ARPACK library found (probably arpack-ng or a patched version of arpack)])],
 [AC_MSG_ERROR([ARPACK library found, but seems not to work properly. Please make sure you are using arpack-ng])
 ])
 #################
@@ -1851,7 +1851,6 @@ modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
 modules/prebuildjava/Makefile
-modules/libscilab-cli/Makefile
 modules/api_scilab/Makefile
 modules/call_scilab/Makefile
 modules/types/Makefile

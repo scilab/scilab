@@ -157,24 +157,6 @@ call ant clean
   <ItemGroup>
     <None Include="..\..\build.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\graph\src\java\graph-JAVA.vcxproj">
-      <Project>{968fd6c1-5845-4b22-b61e-f6de987d47ad}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\hdf5\src\java\hdf5-JAVA.vcxproj">
-      <Project>{9b6500b0-66f6-44f0-910d-47a1435b4e02}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\src\java\types-JAVA.vcxproj">
-      <Project>{abcb724e-8534-4420-ac12-7c33a606aba3}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

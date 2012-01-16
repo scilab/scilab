@@ -172,12 +172,6 @@ call ant clean
     <None Include="javasci\SciStringArray.java" />
     <None Include="..\..\build.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Javasci.vcxproj">
-      <Project>{0bd503ef-5cb6-4277-bac4-8955c97f247d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

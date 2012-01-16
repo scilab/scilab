@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-14 22:54+0000\n"
+"PO-Revision-Date: 2012-01-10 17:55+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: uk\n"
 
 #, c-format
@@ -688,14 +688,20 @@ msgstr "В&еб-сайт ATOMS Scilab"
 msgid "&File Exchange"
 msgstr "&Обмін файлами"
 
-msgid "&Mailing lists"
+msgid "&Mailing Lists"
 msgstr "Списки &листування"
+
+msgid "Mailing Lists &Archives"
+msgstr "&Архіви списків листування"
 
 msgid "&Forge"
 msgstr "&Forge"
 
 msgid "&Bugs And Requests"
 msgstr "&База даних вад і запитів"
+
+msgid "&Scilab Enterprises"
+msgstr "&Комерційні проекти Scilab"
 
 msgid "Rotate"
 msgstr "Обернути"
@@ -1040,6 +1046,13 @@ msgid "No print service found."
 msgstr "Не виявлено служби друку."
 
 msgid ""
+"disp(\"In some cases, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+msgstr ""
+"disp(\"Іноді проблему можна виправити за допомогою "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\".\")"
+
+msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
@@ -1232,6 +1245,7 @@ msgstr "Зберегти і виконати"
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1240,9 +1254,11 @@ msgstr ""
 "Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
 "долученим файлом %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Ви справді бажаєте закрити %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Ви справді бажаєте закрити %s і %s ?"
 
@@ -1297,14 +1313,15 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорціум Scilab (DIGITEO)"
 
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "© INRIA, 1989–2011"
+msgid "Copyright (c) 1989-2012 (INRIA)"
+msgstr "© INRIA, 1989–2012"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
@@ -1349,9 +1366,6 @@ msgstr "Рисунок збережено.\n"
 
 msgid "Select a file name"
 msgstr "Вкажіть назву файла"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Виберіть файл, який слід відкрити у SciNotes"
 
 msgid "Control Plot3d"
 msgstr "Керування Plot3d"

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -36,8 +36,8 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr "%s：第 %d 個輸入參數形式錯誤： 應為整數值。\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -69,74 +69,8 @@ msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是整數．\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 輸入參數值錯誤：應該是 '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 的輸入參數值錯誤: 應該是 int 整數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 必須是在 [%d, %d] 的範圍區間內.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s: 第 %d 的輸入參數型態錯誤: 應該是字串或是純量.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: 第 %d 輸入參數值錯誤: 應該是 '0' 或 '1' 的數值.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
-
-#, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: 輸入參數的資料型態大小錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong type for inputs arguments.\n"
-msgstr "%s: 輸入參數的資料型態錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
-
-#
-# File: macros/add_demo.sci, line: 4
-# File: sci_gateway/c/sci_getmd5.c, line: 56
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Memory 分配有誤.\n"
-
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
-
-#, c-format
-msgid "Warning: Problems with %s.\n"
-msgstr "警告: %s 的問題.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'.\n"
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -187,8 +121,62 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體不夠.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 應該是 '0' 或 '1' 的數值.\n"
+
+#, c-format
+msgid "%s: Wrong type for inputs arguments.\n"
+msgstr "%s: 輸入參數的資料型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
+
+#
+# File: macros/add_demo.sci, line: 4
+# File: sci_gateway/c/sci_getmd5.c, line: 56
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
+msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
+
+#, c-format
+msgid "Warning: Problems with %s.\n"
+msgstr "警告: %s 的問題.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -240,6 +228,10 @@ msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是布林值.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是布林值.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -355,8 +347,8 @@ msgstr "錯誤: 無法定義環境變數 %s.\n"
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab 協會 (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2011 (INRIA)\n"
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr ""
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "版權 (c) 1989-2007 (ENPC)\n"
@@ -751,8 +743,8 @@ msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為多項式矩陣 (Polynomial matrix).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為多邊形.\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -1203,6 +1195,12 @@ msgstr "移除 (Unqueuing) %s - 無選項.\n"
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr "移除 (Unqueuing) %s - seq(選項).\n"
+
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
+msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "找不到 Windows 的暫存目錄 (1)."

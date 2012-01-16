@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- TEST WITH CONSOLE -->
+//
+// <-- Non-regression test for bug 10379 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/10379
+//
+// <-- Short Description -->
+// lines did not manage a 1x2 vector [nc, nl] as input argument
+
+old_lines_value = lines();
+assert_checkequal(old_lines_value(2), 0);
+
+new_lines_value = [70 30];
+lines(new_lines_value);
+
+modified_lines_value = lines();
+assert_checkequal(modified_lines_value, new_lines_value);
+
+// we restore default values
+lines(old_lines_value);
+modified_lines_value = lines();
+assert_checkequal(modified_lines_value, old_lines_value);

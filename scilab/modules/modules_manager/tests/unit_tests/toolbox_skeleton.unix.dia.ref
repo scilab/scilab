@@ -9,6 +9,7 @@
 // Test the toolbox skeleton in SCI/contrib/
 //  - Building/Compilation
 //  - Loading
+//  - Tests
 // Scilab external module skeleton
 status = copyfile(SCI + "/contrib/toolbox_skeleton/", TMPDIR + "/toolbox_skeleton/");
 assert_checkequal(status, 1);
@@ -87,3 +88,16 @@ Start Toolbox skeleton
 	Load gateways
 	Load help
 	Load demos
+test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
+   TMPDIR = TMPDIR
+
+   001/001 - [TMPDIR/toolbox_skeleton/] : 
+
+   001/003 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
+   002/003 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
+   003/003 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
+
+
+   --------------------------------------------------------------------------
+   Tests:    3,    Passed:    3,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------

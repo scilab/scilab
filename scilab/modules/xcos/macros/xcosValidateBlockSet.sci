@@ -58,7 +58,7 @@ function [status, message] = xcosValidateBlockSet(interfFunctionName)
     // checking it's arguments size only
     function [result]=x_dialog(labels, default_inputs_vector)
         if (or(size(labels) <> size(default_inputs_vector))) then
-           error(999, sprintf(_("%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"), "x_dialog", 1, 2));
+           error(999, sprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"), "x_dialog", 1, 2));
         end
         result = default_inputs_vector;
     endfunction

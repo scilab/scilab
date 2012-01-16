@@ -105,6 +105,7 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
      */
     private CommandHistory() {
         super(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
+        setAssociatedXMLIDForHelp("historybrowser");
         initialize();
         addMenuBar(createMenuBar());
         addToolBar(createToolBar());
@@ -369,6 +370,13 @@ public final class CommandHistory extends SwingScilabTab implements Tab {
         }
         browserTab.setVisible(true);
         expandAll();
+    }
+
+    /**
+     * Launch the history browser
+     */
+    public static void launchHistoryBrowser() {
+        setVisible();
     }
 
     /**

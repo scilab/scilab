@@ -31,6 +31,8 @@ HISTORY_BROWSER_IMPEXP void CommandHistoryReset(void);
 
 HISTORY_BROWSER_IMPEXP void CommandHistoryDeleteLine(int lineNumber);
 
+HISTORY_BROWSER_IMPEXP void CommandHistoryLaunch(void);
+
 #ifdef __cplusplus
 }; 
 #endif

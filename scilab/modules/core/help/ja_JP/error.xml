@@ -9,9 +9,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>error(message [,n])
+    <synopsis>error(message)
+error(message, n)
 error(n)
-error(n,pos)</synopsis>
+error(n, message)
+error(n, pos)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -66,11 +68,11 @@ error(n,pos)</synopsis>
   </refsection>
   <refsection>
     <title>例</title>
-    <programlisting role="example"><![CDATA[ 
-error('my error message')
+    <programlisting role="example"><![CDATA[error('my error message')
 error(43)
-error(52,3)
- ]]></programlisting>
+error(52, 3)
+error(10001, ['A'; 'multi';'line';'error';'message'])
+lasterror()]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

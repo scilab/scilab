@@ -31,6 +31,8 @@ Source: modules\{#HISTORY_BROWSER}\macros\buildmacros.sce; DestDir: {app}\module
 Source: modules\{#HISTORY_BROWSER}\macros\buildmacros.bat; DestDir: {app}\modules\{#HISTORY_BROWSER}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#HISTORY_BROWSER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HISTORY_BROWSER}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: modules\{#HISTORY_BROWSER}\sci_gateway\{#HISTORY_BROWSER}_gateway.xml; DestDir: {app}\modules\{#HISTORY_BROWSER}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;
 Source: modules\{#HISTORY_BROWSER}\tests\*.*; DestDir: {app}\modules\{#HISTORY_BROWSER}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS} and {#COMPN_JVM_MODULE}
 ;
 ;

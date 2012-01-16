@@ -97,8 +97,8 @@ modules_manager \
 ui_data \
 history_browser \
 xml \
-types \
-libscilab-cli
+types
+
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -119,7 +119,7 @@ libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab.la
+pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 #libscilab_cli_la_SOURCES =
 
@@ -213,7 +213,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/xml/libscixml.la
+	$(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/types/libscitypes.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -238,7 +239,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 #libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
-libscilab_la_LIBADD = $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
+libscilab_la_LIBADD = #$(top_builddir)/modules/libscilab-cli.la
 
 if GUI
 libscilab_la_LIBADD += $(GUI_LIBS)
@@ -247,11 +248,14 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes-java.la $(top_builddir)/modules/libscilab-cli.la
 
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
+################## libscilab-cli  ##################
 
-libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
-if ENABLE_STATIC
-libscilab_la_LIBADD += $(ALL_LIBS)
+libscilab_cli_la_SOURCES =
 
-endif
+libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+
+# Core modules
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+

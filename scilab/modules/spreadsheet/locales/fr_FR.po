@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:42+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-11 15:00+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: fr\n"
 
 #, c-format
@@ -275,6 +275,9 @@ msgstr "ripOLE : Le décodage de %s s'est terminé par une erreur %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Le module spreadsheet de Scilab n'est pas installé.\n"
+
+msgid "Spreadsheet"
+msgstr "Feuille de calcul"
 
 msgid "Read a xls file"
 msgstr "Lire un fichier xls"

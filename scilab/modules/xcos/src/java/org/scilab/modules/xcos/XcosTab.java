@@ -50,6 +50,7 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -234,6 +235,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
      */
     private XcosTab(XcosDiagram graph, String uuid) {
         super(XcosMessages.XCOS, uuid);
+	
+	setAssociatedXMLIDForHelp("xcos");
 
         /** tab association */
         graph.setDiagramTab(uuid);
@@ -288,15 +291,18 @@ public class XcosTab extends SwingScilabTab implements Tab {
             uuid = UUID.randomUUID().toString();
         }
 
-        XcosTab tab = new XcosTab(graph, uuid);
-        if (visible) {
-            tab.createDefaultWindow().setVisible(true);
-            graph.updateTabTitle();
-        }
+        final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
         Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
         graph.setOpened(true);
+
+        if (visible) {
+            tab.createDefaultWindow().setVisible(true);
+
+            graph.updateTabTitle();
+            BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
+        }
 
         ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) tab);
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,

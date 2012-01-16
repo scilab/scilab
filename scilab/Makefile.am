@@ -46,7 +46,6 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 COMMON_LIBS = $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 
 COMMON_CPPFLAGS = \
     -I$(top_srcdir)/modules/console/includes/ \
@@ -75,7 +74,7 @@ if IS_MACOSX
 scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 endif
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 scilab_bin_CPPFLAGS		= $(COMMON_CPPFLAGS)
 
@@ -85,7 +84,7 @@ scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 scilab_cli_bin_CPPFLAGS	= -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 

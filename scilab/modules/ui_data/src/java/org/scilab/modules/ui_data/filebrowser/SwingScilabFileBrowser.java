@@ -52,6 +52,7 @@ public final class SwingScilabFileBrowser extends SwingScilabTab implements Tab 
      */
     public SwingScilabFileBrowser() {
         super(UiDataMessages.FILE_BROWSER, FILEBROWSERUUID);
+        setAssociatedXMLIDForHelp("filebrowser");
         addMenuBar(createMenuBar());
         filebrowser = new ScilabFileBrowserComponent();
 

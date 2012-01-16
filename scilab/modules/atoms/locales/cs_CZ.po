@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-05 15:41+0000\n"
+"PO-Revision-Date: 2011-12-27 20:49+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -232,11 +232,33 @@ msgstr "%s: Při načítání '%s-%s' se stala chyba:\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván jeden řetězec nebo "
+"boolean.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec nebo "
+"boolean.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno 'user' nebo 'allusers' "
 "nebo 'all'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -247,6 +269,14 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 "%s: Nemáte dostatečná práva k odstranění jakékoliv verze v baličku %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
+"Odstraňování %s (%s)(%s).\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -271,6 +301,14 @@ msgid ""
 msgstr ""
 "%s: Kořenový adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, "
 "prosím, zdali máte přístup pro zápis do tohoto adresáře : %s.\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+"Mazání souborů archivu pro %s.\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -591,6 +629,22 @@ msgstr "%s: Do souboru '%s' nelze zapsat.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"smazáno %s%s.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s neexistuje.\n"
+"\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -719,14 +773,6 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána matice řetězců 1x1 "
 "nebo 1x2.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

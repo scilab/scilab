@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: ca\n"
 
 #, c-format
@@ -251,11 +251,31 @@ msgstr "%s: S'ha produït un error en carregar el '%s-%s':\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser 'user', "
 "'allusers' o 'all'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -265,6 +285,12 @@ msgstr "%s: No teniu permisos per eliminar el paquet %s (%s).\n"
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr "%s: No teniu permisos per eliminar cap versió del paquet %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -289,6 +315,12 @@ msgid ""
 msgstr ""
 "%s: No es pot eliminar el directori arrel d'aquest paquet (%s-%s) comproveu "
 "que teniu accés d'escriptura a aquest directori: %s.\n"
+
+#, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -614,6 +646,18 @@ msgstr "%s: No es pot escriure el fitxer '%s'.\n"
 
 #, c-format
 msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
@@ -742,16 +786,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "text de 1x1 o 1x2.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

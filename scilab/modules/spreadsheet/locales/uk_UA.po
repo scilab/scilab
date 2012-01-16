@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:32+0000\n"
+"PO-Revision-Date: 2011-12-27 15:11+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: uk\n"
 
 #, c-format
@@ -278,6 +278,9 @@ msgstr "ripOLE: спроба декодування %s призвела до п�
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Модуль електронних таблиць Scilab не встановлено.\n"
+
+msgid "Spreadsheet"
+msgstr "Електронні таблиці"
 
 msgid "Read a xls file"
 msgstr "Читання з файла xls"

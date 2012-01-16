@@ -205,16 +205,16 @@ am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) \
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_LIB) \
-	$(am__DEPENDENCIES_1)
+scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
 am_scilab_cli_bin_OBJECTS = scilab_cli_bin-scilab.$(OBJEXT) \
 	scilab_cli_bin-tasks.$(OBJEXT)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
-scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB) \
-	$(am__DEPENDENCIES_1)
+scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1)
 scilab_cli_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -625,7 +625,6 @@ scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 SCILAB_LIB = $(top_builddir)/modules/libscilab.la
-SCILAB_CLI_LIB = $(top_builddir)/modules/libscilab-cli/libscilab-cli.la
 COMMON_CPPFLAGS = \
     -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -647,7 +646,7 @@ COMMON_CPPFLAGS = \
 
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 	$(top_srcdir)/modules/core/src/cpp/tasks.cpp $(am__append_3)
-scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB) $(FLIBS)
+scilab_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 scilab_bin_CPPFLAGS = $(COMMON_CPPFLAGS)
 
 # Match scilab -nwni (ie command line without graphics)
@@ -655,7 +654,7 @@ scilab_cli_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CFLAGS = -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(FLIBS)
+scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`

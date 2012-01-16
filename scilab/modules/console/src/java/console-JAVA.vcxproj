@@ -198,28 +198,6 @@ call ant clean
     <None Include="org\scilab\modules\console\ValidationAction.java" />
     <None Include="..\..\build.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\action_binding\src\java\action_binding-JAVA.vcxproj">
-      <Project>{b2911268-79e2-4fe5-ad59-2c3cb7cb794e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\commons\src\java\commons-JAVA.vcxproj">
-      <Project>{9188fa91-e039-485d-af1d-781cea92f541}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\completion\src\java\completion-JAVA.vcxproj">
-      <Project>{b5e4d0c2-8c6a-4437-81bf-dbfa95900c9d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\history_manager\src\java\history_manager-JAVA.vcxproj">
-      <Project>{63965a84-e354-4cbc-bfac-fdfc8224573f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -307,7 +307,7 @@ public final class XcosMessages {
     public static final String SAVING_DIAGRAM = Messages
             .gettext("Saving diagram") + DOTS;
     public static final String LOADING_DIAGRAM = Messages
-            .gettext("Loading diagram") + DOTS;
+            .gettext("Loading diagram");
     public static final String LOADING_PALETTES = Messages
             .gettext("Loading palettes") + DOTS;
     public static final String LOADING_USER_DEFINE = Messages

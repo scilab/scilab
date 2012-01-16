@@ -163,12 +163,6 @@ call ant clean
     <None Include="org\scilab\modules\helptools\HelpViewer.java" />
     <None Include="..\..\build.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

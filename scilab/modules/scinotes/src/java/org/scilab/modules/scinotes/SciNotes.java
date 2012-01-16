@@ -170,6 +170,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public SciNotes(String uuid) {
         super(SCINOTES, uuid);
+	setAssociatedXMLIDForHelp("scinotes");
         this.uuid = UUID.fromString(uuid);
         editor = this;
         scinotesList.add(this);
@@ -604,11 +605,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 public void run() {
                     RestoreOpenedFilesAction.displayDialog((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, SciNotes.this), getUUID().toString());
                     List<File> list = RestoreOpenedFilesAction.getSelectedFiles();
-                    if (list == null) {
-                        return;
-                    }
 
-                    if (list.size() != 0) {
+                    if (list != null && list.size() != 0) {
                         for (File f : list) {
                             openFile(f.getPath(), 0, null);
                         }

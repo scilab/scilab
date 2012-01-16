@@ -162,12 +162,6 @@ call ant clean
     <None Include="org\scilab\modules\action_binding\InterpreterManagement.java" />
     <None Include="org\scilab\modules\action_binding\InterpreterManagementJNI.java" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

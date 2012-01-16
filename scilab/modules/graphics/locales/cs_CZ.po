@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-10-17 12:31+0000\n"
+"PO-Revision-Date: 2011-12-27 20:56+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -1756,3 +1756,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: soubor %s neexistuje.\n"

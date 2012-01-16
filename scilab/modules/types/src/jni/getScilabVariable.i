@@ -49,12 +49,16 @@ class%}
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary("scilab");
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+           System.loadLibrary("scitypes");
+        } else {
+           System.loadLibrary("scilab");
+        }
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
         e.printStackTrace(System.err);
     } catch (UnsatisfiedLinkError e)    {
-        System.err.println("The native library commons does not exist or cannot be found.");
+        System.err.println("The native library libscilab does not exist or cannot be found.");
         e.printStackTrace(System.err);
     }
   }
