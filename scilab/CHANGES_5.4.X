@@ -220,6 +220,8 @@ Bug fixes
 
 * Bug #10518 fixed - odeoptions help page was inaccurate.
 
+* Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
