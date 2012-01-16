@@ -236,6 +236,9 @@ Bug fixes
 
 * Bug #10521 fixed - frexp returned an wrong error message.
 
+* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
+                     not clearly stated in the documentation.
+
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
 
 * Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
