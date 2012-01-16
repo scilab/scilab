@@ -42,7 +42,7 @@ libscifunctions_manager_la_CXXFLAGS	= \
 	$(XML_FLAGS) \
     $(EIGEN_CPPFLAGS)
 
-libscifunctions_manager_la_includedir=$(pkgincludedir)/Types
+libscifunctions_manager_la_includedir=$(pkgincludedir)
 
 libscifunctions_manager_la_include_HEADERS =
 

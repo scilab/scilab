@@ -39,7 +39,7 @@ libsciast_la_CXXFLAGS = \
     $(EIGEN_CPPFLAGS)
 
 
-libsciast_la_includedir=$(pkgincludedir)/ast
+libsciast_la_includedir=$(pkgincludedir)
 libsciast_la_include_HEADERS =
 
 ####################

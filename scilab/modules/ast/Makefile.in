@@ -442,7 +442,7 @@ libsciast_la_CXXFLAGS = \
     -I$(top_srcdir)/libs/dynamiclibrary/includes \
     $(EIGEN_CPPFLAGS)
 
-libsciast_la_includedir = $(pkgincludedir)/ast
+libsciast_la_includedir = $(pkgincludedir)
 libsciast_la_include_HEADERS = 
 
 ####################
