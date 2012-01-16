@@ -2120,7 +2120,6 @@ public class XcosDiagram extends ScilabGraph {
 
             info(XcosMessages.EMPTY_INFO);
         }
-        getUndoManager().clear();
 
         return this;
     }
@@ -2170,6 +2169,7 @@ public class XcosDiagram extends ScilabGraph {
             protected void done() {
                 t.stop();
                 XcosDiagram.this.setReadOnly(false);
+                XcosDiagram.this.getUndoManager().clear();
 
                 /*
                  * Load has finished
