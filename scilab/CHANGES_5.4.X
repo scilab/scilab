@@ -157,7 +157,7 @@ Bug fixes
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
-* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve 
+* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
                      parent axes.
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
@@ -230,6 +230,8 @@ Bug fixes
 
 * Bug #10519 fixed - spec returned a wrong error message when a input argument
                      was not square.
+
+* Bug #10521 fixed - frexp returned an wrong error message.
 
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
 
