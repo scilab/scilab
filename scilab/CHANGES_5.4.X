@@ -70,9 +70,6 @@ Xcos
 
 * Bug #10499 fixed - lincos example in help file returned warning and error.
 
-* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
-                     matrices was not clearly stated in the documentation.
-
 
 Unitary testing
 ===============
@@ -234,9 +231,15 @@ Bug fixes
 * Bug #10519 fixed - spec returned a wrong error message when a input argument
                      was not square.
 
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
 * Bug #10521 fixed - frexp returned an wrong error message.
 
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
+* Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
+                     Scilab types.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
