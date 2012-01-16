@@ -90,7 +90,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
+      msg = msprintf(gettext("%s: Error during block parameters evaluation.\n"), "Xcos");
+      messagebox(msg, "Xcos", "error");
+      error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
   end
 
   //** update parameters or compilation results

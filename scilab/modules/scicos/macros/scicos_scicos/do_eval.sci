@@ -109,7 +109,16 @@ for %kk=1:%nx
     elseif o.model.sim(1)=='asuper' then
     else
       model=o.model
-// should we generate a message here?
+        if ~isdef(o.gui) | ~or(type(evstr(o.gui) == [13 11])) then
+            uid = o.doc(1)
+            uid = [full_uids uid];
+            
+            html = "<html><body>";
+            html = html + "<em>" + gettext("Evaluation problem: Unknown block") + "</em><br/>";
+            html = html + "</body></html>";
+            warnBlockByUID(uid, html);
+        end
+
       %scicos_prob=%f
       ier=execstr('o='+o.gui+'(''set'',o)','errcatch')
       if ier==0& %scicos_prob==%f then
