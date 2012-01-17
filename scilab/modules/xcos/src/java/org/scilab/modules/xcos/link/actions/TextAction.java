@@ -15,8 +15,10 @@ package org.scilab.modules.xcos.link.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -61,11 +63,19 @@ public class TextAction extends StyleAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         BasicLink[] links = getLinks();
 
         if (links.length == 1) {
             BasicLink link = links[0];
-            getGraph(e).getAsComponent().startEditingAtCell(link, e);
+            comp.startEditingAtCell(link, e);
         }
     }
 

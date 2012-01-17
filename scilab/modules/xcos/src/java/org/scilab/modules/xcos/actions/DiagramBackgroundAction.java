@@ -18,9 +18,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JColorChooser;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -66,17 +68,24 @@ public class DiagramBackgroundAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        mxGraphComponent graphComponent = getGraph(null).getAsComponent();
-        Color newColor = JColorChooser.showDialog(graphComponent,
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        Color newColor = JColorChooser.showDialog(comp,
                 XcosMessages.DIAGRAM_BACKGROUND, null);
 
         if (newColor != null) {
-            graphComponent.getViewport().setOpaque(false);
-            graphComponent.setBackground(newColor);
+            comp.getViewport().setOpaque(false);
+            comp.setBackground(newColor);
         }
 
         // Forces a repaint of the outline
-        graphComponent.getGraph().repaint();
+        graph.repaint();
     }
 
 }

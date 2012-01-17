@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -82,13 +83,19 @@ public class InitModelicaAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        String temp;
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        String temp;
         try {
-            ((XcosDiagram) getGraph(null))
-                    .info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
+            graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
             temp = FileUtils.createTempFile();
-            ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp);
+            graph.getRootDiagram().dumpToHdf5File(temp);
 
             String cmd = buildCall("import_from_hdf5", temp);
             cmd += buildCall("xcosConfigureModelica");
@@ -97,8 +104,7 @@ public class InitModelicaAction extends DefaultAction {
             final ActionListener action = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ((XcosDiagram) getGraph(null))
-                            .info(XcosMessages.EMPTY_INFO);
+                    graph.info(XcosMessages.EMPTY_INFO);
                 }
             };
 

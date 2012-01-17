@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -81,7 +82,14 @@ public final class ViewGridAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        (getGraph(e)).setGridEnabled(!((XcosDiagram) getGraph(e))
-                .isGridEnabled());
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        graph.setGridEnabled(!graph.isGridEnabled());
     }
 }

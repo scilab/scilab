@@ -16,8 +16,10 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -80,12 +82,19 @@ public final class BlockDocumentationAction extends
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
-        if (selectedBlock != null) {
-            ScilabInterpreterManagement.requestScilabExec("help "
-                    + selectedBlock.getInterfaceFunctionName());
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        Object selected = graph.getSelectionCell();
+        if (selected instanceof BasicBlock) {
+            CallScilabBridge.openHelp(((BasicBlock) selected).getInterfaceFunctionName());
         } else {
-            XcosDialogs.noBlockSelected((XcosDiagram) getGraph(e));
+            XcosDialogs.noBlockSelected(graph);
         }
     }
 

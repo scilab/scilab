@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -92,17 +93,24 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
-                .getSelectionCell();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        SuperBlock block = (SuperBlock) graph.getSelectionCell();
         block.createChildDiagram(); // assert that diagram is an xcos one
 
-        XcosDiagram graph = block.getParentDiagram();
-        if (graph == null) {
+        XcosDiagram parentGraph = block.getParentDiagram();
+        if (parentGraph == null) {
             block.setParentDiagram(Xcos.findParent(block));
-            graph = block.getParentDiagram();
+            parentGraph = block.getParentDiagram();
             LogFactory.getLog(getClass()).error("Parent diagram was null");
         }
-        CustomizeFrame frame = new CustomizeFrame(graph);
+        CustomizeFrame frame = new CustomizeFrame(parentGraph);
         CustomizeFrame.CustomizeFrameModel model = frame.getController()
                 .getModel();
         model.setBlock(block);

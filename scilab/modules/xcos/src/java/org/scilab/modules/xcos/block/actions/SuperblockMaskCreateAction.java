@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
@@ -66,8 +67,15 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
-                .getSelectionCell();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        SuperBlock block = (SuperBlock) graph.getSelectionCell();
 
         block.mask();
 
@@ -93,7 +101,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
             /*
              * Open the customization UI on a new mask creation
              */
-            GraphActionManager.getInstance(getGraph(e),
+            GraphActionManager.getInstance(graph,
                     SuperblockMaskCustomizeAction.class).actionPerformed(e);
         }
     }

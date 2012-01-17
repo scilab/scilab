@@ -72,6 +72,9 @@ Xcos
 
 * Bug #10499 fixed - lincos example in help file returned warning and error.
 
+* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
+                     block.
+
 
 Unitary testing
 ===============
