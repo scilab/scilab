@@ -13,17 +13,10 @@
 // <-- Short Description -->
 // "format" doesn't check input value 
 
-txt=[sci2map([1 2;3 4],'a');sci2map(%s^2+3*%s+4,'p')];
-
-ref_txt = [ 'a := array(1..2,1..2);';
-'a[1,1] := 1;';
-'a[1,2] := 2;';
-'a[2,1] := 3;';
-'a[2,2] := 4;';
-'p := 4+s*(3+s) ;'];
-if and(txt <> ref_txt) then pause,end
-
 fmt = format();
+assert_checkequal(fmt, [1 10]);
 format(fmt(2),fmt(1));
 fmt2 = format();
-if  fmt <> fmt2 then pause,end
+assert_checkequal(fmt, fmt2);
+msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),"format",1,2,25);
+assert_checkerror ("format(0)", msgerr);
