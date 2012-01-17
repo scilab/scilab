@@ -244,6 +244,8 @@ Bug fixes
 * Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
                      Scilab types.
 
+* Bug #10536 fixed - A string was in French in the English help page of cumsum.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
