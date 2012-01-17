@@ -97,6 +97,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
+	setAssociatedXMLIDForHelp("editvar");
         setWindowIcon("rrze_table");
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
         undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);

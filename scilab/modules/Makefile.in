@@ -60,7 +60,6 @@ host_triplet = @host@
 @HDF5_TRUE@am__append_4 = $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
 @GUI_TRUE@am__append_5 = $(GUI_LIBS)
 @GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
-@ENABLE_STATIC_TRUE@am__append_7 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -109,12 +108,16 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
-libscilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(am__append_5) $(am__append_6) \
-	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
+libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
+	$(EXTERNAL_LIBS)
+am_libscilab_cli_la_OBJECTS =
+libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
+libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
+libscilab_la_DEPENDENCIES = $(am__append_5) $(am__append_6) \
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -130,8 +133,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscilab_la_SOURCES)
-DIST_SOURCES = $(libscilab_la_SOURCES)
+SOURCES = $(libscilab_cli_la_SOURCES) $(libscilab_la_SOURCES)
+DIST_SOURCES = $(libscilab_cli_la_SOURCES) $(libscilab_la_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -159,7 +162,7 @@ DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
 	scinotes parallel modules_manager ui_data history_browser xml \
-	libscilab-cli types scicos_blocks scicos . javasci
+	types scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -451,15 +454,14 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms hdf5 graph \
 	xcos scinotes parallel modules_manager ui_data history_browser \
-	xml libscilab-cli types $(am__append_1) scicos . \
-	$(am__append_2)
+	xml types $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
 
 # libscilab is the full library with the GUI
 # libscilab-cli is for scilab-cli (without GUI)
-pkglib_LTLIBRARIES = libscilab.la 
+pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
 #libscilab_cli_la_SOURCES =
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
@@ -555,11 +557,16 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 #libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 # Core modules
-libscilab_la_LIBADD =  \
-	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(am__append_5) $(am__append_6) \
-	$(top_builddir)/modules/libscilab-cli/libscilab-cli.la \
-	$(OTHER_LIBS) $(EXTERNAL_LIBS) $(am__append_7)
+libscilab_la_LIBADD = $(am__append_5) $(am__append_6) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/libscilab-cli.la
+
+################## libscilab-cli  ##################
+libscilab_cli_la_SOURCES = 
+libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+
+# Core modules
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 all: all-recursive
 
 .SUFFIXES:
@@ -624,6 +631,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscilab-cli.la: $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_DEPENDENCIES) 
+	$(libscilab_cli_la_LINK) -rpath $(pkglibdir) $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_LIBADD) $(LIBS)
 libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
 	$(libscilab_la_LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
 

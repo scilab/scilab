@@ -82,6 +82,7 @@ jmethodID voidloadFromFileID; // cache method id
 jmethodID voidinitializeID; // cache method id
 jmethodID voidresetID; // cache method id
 jmethodID voiddeleteLinejintintID; // cache method id
+jmethodID voidlaunchHistoryBrowserID; // cache method id
 
 
 
@@ -147,6 +148,8 @@ static void initialize(JavaVM * jvm_);
 static void reset(JavaVM * jvm_);
 
 static void deleteLine(JavaVM * jvm_, int lineNumber);
+
+static void launchHistoryBrowser(JavaVM * jvm_);
 
 
                         /**

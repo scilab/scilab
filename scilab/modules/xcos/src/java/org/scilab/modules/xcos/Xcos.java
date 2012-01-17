@@ -414,14 +414,19 @@ public final class Xcos {
 
         if (filename != null && filename.exists()) {
             configuration.addToRecentFiles(filename);
+        }
 
-            /*
-             * looking for an already opened diagram
-             */
-            final Collection<XcosDiagram> diags = diagrams.get(filename);
-            if (diags != null && !diags.isEmpty()) {
-                diag = diags.iterator().next();
-            }
+        /*
+         * looking for an already opened diagram
+         */
+        final Collection<XcosDiagram> diags = diagrams.get(filename);
+        if (diags != null && !diags.isEmpty()) {
+            diag = diags.iterator().next();
+        }
+        // if unsaved and empty, reuse it. Allocate otherwise.
+        if (filename == null && diag != null && 
+        		diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
+            diag = null;
         }
 
         if (diag == null) {

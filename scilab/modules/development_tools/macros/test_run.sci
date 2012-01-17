@@ -799,6 +799,7 @@ function test_run(varargin)
     params.test_passed_percent    = 0;
     params.test_failed_percent    = 0;
     params.test_skipped_percent   = 0;
+    params.full_summary           = %t;
 
     // =======================================================
     // Gestion des types de tests à lancer et des options
@@ -849,6 +850,10 @@ function test_run(varargin)
 
         params.longtime     = assign_option(option_mat, "enable_lt", %t, params.longtime);
         option_mat          = clean_option(option_mat, "enable_lt");
+
+        // Summary display management
+        params.full_summary = assign_option(option_mat, "short_summary", %f, params.full_summary);
+        option_mat          = clean_option(option_mat, "short_summary");
 
         if option_mat <> [] then
             printf("\nUnrecognized option(s): \n\n");
@@ -994,20 +999,30 @@ function test_run(varargin)
         test_failed_percent  = 0;
     end
 
-    printf("\n");
-    printf("   --------------------------------------------------------------------------\n");
-    printf("   Summary\n\n");
-    printf("   tests           %4d - 100 %% \n", status.test_count);
-    printf("   passed          %4d - %3d %% \n", status.test_passed_count , test_passed_percent);
-    printf("   failed          %4d - %3d %% \n", status.test_failed_count , test_failed_percent);
-    printf("   skipped           %4d - %3d %% \n", status.test_skipped_count, test_skipped_percent);
-    printf("   length              %4.2f sec \n", status.totalTime);
-    printf("   --------------------------------------------------------------------------\n");
-
-    if status.test_failed_count > 0 then
-        printf("   Details\n\n");
-        printf("%s\n",status.details_failed);
+    if params.full_summary then
         printf("\n");
+        printf("   --------------------------------------------------------------------------\n");
+        printf("   Summary\n\n");
+        printf("   tests           %4d - 100 %% \n", status.test_count);
+        printf("   passed          %4d - %3d %% \n", status.test_passed_count , test_passed_percent);
+        printf("   failed          %4d - %3d %% \n", status.test_failed_count , test_failed_percent);
+        printf("   skipped         %4d - %3d %% \n", status.test_skipped_count, test_skipped_percent);
+        printf("   length             %4.2f sec \n", status.totalTime);
+        printf("   --------------------------------------------------------------------------\n");
+
+        if status.test_failed_count > 0 then
+            printf("   Details\n\n");
+            printf("%s\n",status.details_failed);
+            printf("\n");
+            printf("   --------------------------------------------------------------------------\n");
+        end
+    else
+        printf("\n");
+        printf("   --------------------------------------------------------------------------\n");
+        printf("   Tests: %4d, ", status.test_count);
+        printf("   Passed: %4d, ", status.test_passed_count);
+        printf("   Failed: %4d, ", status.test_failed_count);
+        printf("   Skipped: %4d\n", status.test_skipped_count);
         printf("   --------------------------------------------------------------------------\n");
     end
 endfunction

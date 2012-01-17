@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:43+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-09 14:26+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -38,7 +38,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: グラフィ�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 1文字（文字列）を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -59,13 +59,14 @@ msgid "%s: %s\n"
 msgstr "%s: %s\n"
 
 msgid "Scilab Graphic export module not installed.\n"
-msgstr "Scilabグラフィック エクスポート モジュールはインストールされていません。\n"
+msgstr "Scilabグラフィックエクスポートモジュールはインストールされていません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています : '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -81,7 +82,7 @@ msgstr "%s: 入力引数の数が間違っています: '%s' または '%s' ド�
 msgid ""
 "%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
 "'%s' drivers.\n"
-msgstr "%s: 入力引数で不正な数: '%s', '%s', '%s' または '%s' ドライバで文字列を想定します。\n"
+msgstr "%s: 入力引数の数が間違っています:  '%s', '%s', '%s' または '%s' ドライバでは文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

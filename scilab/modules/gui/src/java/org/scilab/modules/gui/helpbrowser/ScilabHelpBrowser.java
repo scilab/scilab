@@ -129,6 +129,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
         SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.setCurrentID(lastID);
+        ((SwingScilabTab) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("helpbrowser");
         WindowsConfigurationManager.restorationFinished((SwingScilabTab) helpTab.getAsSimpleTab());
 
         return (SwingScilabTab) helpTab.getAsSimpleTab();

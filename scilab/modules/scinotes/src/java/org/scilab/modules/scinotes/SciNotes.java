@@ -166,6 +166,7 @@ public class SciNotes extends SwingScilabTab {
      */
     public SciNotes(String uuid) {
         super(SCINOTES, uuid);
+	setAssociatedXMLIDForHelp("scinotes");
         this.uuid = UUID.fromString(uuid);
         editor = this;
         scinotesList.add(this);

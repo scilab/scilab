@@ -25,6 +25,12 @@
 		<property name="tooltip" value="Undock" handler="string" />
 	</icon-resource>
 
+        <icon-resource name="scilab.help">
+		<property name="default" value="dock_help_default.png" />
+		<property name="active" value="dock_help_active.png" />
+		<property name="tooltip" value="Help on component" handler="string" />
+	</icon-resource>
+
 	<icon-resource name="scilab.close" extends="win32.close">
 		<property name="default" value="scilab_close_default.png" />
 		<property name="active" value="scilab_close_active.png" />
@@ -35,6 +41,7 @@
             <property name="close" value="scilab.close" />
             <property name="pin" value="win32.pin" />
             <property name="undock" value="scilab.undock" />
+            <property name="help" value="scilab.help" />
         </icon-map>
     </theme>
     <!-- End Scilab -->

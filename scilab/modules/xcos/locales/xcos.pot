@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-01-10 11:38+0100\n"
+"Revision-Date: 2012-01-11 09:41+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 49
 #, c-format
@@ -22,35 +22,72 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_Xcos.cpp, line: 78
-# File: sci_gateway/cpp/sci_Xcos.cpp, line: 95
-# File: sci_gateway/cpp/sci_Xcos.cpp, line: 104
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 51
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 59
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 74
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 91
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 125
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 64
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 73
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 87
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 97
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 106
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 115
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 129
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 139
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 149
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 157
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 165
+# File: src/cpp/xcosUtilities.cpp, line: 44
+# File: src/cpp/xcosUtilities.cpp, line: 53
+# File: src/cpp/xcosUtilities.cpp, line: 68
+# File: src/cpp/xcosUtilities.cpp, line: 100
+# File: src/cpp/xcosUtilities.cpp, line: 109
+# File: src/cpp/xcosUtilities.cpp, line: 124
+# File: src/cpp/xcosUtilities.cpp, line: 136
+# File: src/cpp/xcosUtilities.cpp, line: 170
+# File: src/cpp/xcosUtilities.cpp, line: 179
+# File: src/cpp/xcosUtilities.cpp, line: 195
+# File: src/cpp/xcosUtilities.cpp, line: 217
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 81
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 99
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 108
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_Xcos.cpp, line: 145
-# File: src/cpp/xcosUtilities.cpp, line: 110
+# File: sci_gateway/cpp/sci_Xcos.cpp, line: 150
+# File: src/cpp/xcosUtilities.cpp, line: 115
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/xcosUtilities.cpp, line: 57
+# File: sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp, line: 208
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: src/cpp/xcosUtilities.cpp, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/xcosUtilities.cpp, line: 176
+# File: src/cpp/xcosUtilities.cpp, line: 185
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/Xcos.java, line: 102
-#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -58,7 +95,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/Xcos.java, line: 104
-#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -71,7 +107,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/Xcos.java, line: 108
-#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -109,13 +144,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
-#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 26
-#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
@@ -318,26 +351,22 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 58
-#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
-#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 64
-#, c-format
 msgid "Unable to import %s .\n"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 64
-#, c-format
 msgid "Unable to load block from %s ."
 msgstr ""
 
@@ -808,7 +837,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 189
-#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -816,7 +844,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 192
-#, c-format
 msgid "Unable to decode the URI : %s ."
 msgstr ""
 
@@ -1853,7 +1880,7 @@ msgstr ""
 #
 # File: macros/xcosValidateBlockSet.sci, line: 61
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #

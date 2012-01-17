@@ -29,10 +29,11 @@ int sci_frexp(char *fname,unsigned long fname_len)
     CheckLhs(2, 2);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+    
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: pl\n"
 
 #, c-format
@@ -673,14 +673,20 @@ msgstr "Strona internetowa Scilab &ATOMS"
 msgid "&File Exchange"
 msgstr "&File Exchange"
 
-msgid "&Mailing lists"
-msgstr "Lista dyskusyjna"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr "&Forge"
 
 msgid "&Bugs And Requests"
 msgstr "&Zawiadomienie o błędzie"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "Obróć"
@@ -1004,6 +1010,11 @@ msgid "No print service found."
 msgstr "Nie znaleziono usługi drukowania."
 
 msgid ""
+"disp(\"In some cases, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+msgstr ""
+
+msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
@@ -1193,14 +1204,17 @@ msgstr "Zapisz i wykonaj"
 msgid "Empty tab"
 msgstr ""
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1255,14 +1269,15 @@ msgstr "Wszystkie pliki PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Wszystkie pliki RTF"
 
+#, c-format
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Konsorcjum Scilab (DIGITEO)"
 
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2011 (INRIA)"
+msgid "Copyright (c) 1989-2012 (INRIA)"
+msgstr ""
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
@@ -1307,9 +1322,6 @@ msgstr "Zawartość okna graficznego zapisana\n"
 
 msgid "Select a file name"
 msgstr "Podaj nazwę pliku"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Zaznacz plik do otwarcia razem ze SciNotes"
 
 msgid "Control Plot3d"
 msgstr "Sterowanie Plot3d"

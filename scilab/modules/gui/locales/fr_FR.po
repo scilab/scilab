@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-15 09:52+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2012-01-11 14:55+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14664)\n"
 "Language: fr\n"
 
 #, c-format
@@ -672,14 +672,20 @@ msgstr "Portail Web &ATOMS"
 msgid "&File Exchange"
 msgstr "&File Exchange"
 
-msgid "&Mailing lists"
+msgid "&Mailing Lists"
 msgstr "&Listes de diffusion"
+
+msgid "Mailing Lists &Archives"
+msgstr "&Archives des listes de diffusion"
 
 msgid "&Forge"
 msgstr "&Forge"
 
 msgid "&Bugs And Requests"
 msgstr "Gestionnaire de &Bugs"
+
+msgid "&Scilab Enterprises"
+msgstr "&Scilab Enterprises"
 
 msgid "Rotate"
 msgstr "Rotation"
@@ -1005,13 +1011,21 @@ msgid "No print service found."
 msgstr "Aucun service d'impression n'a été trouvé."
 
 msgid ""
+"disp(\"In some cases, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+msgstr ""
+"disp(\"Dans certains cas, "
+"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" corrige le "
+"problème\")"
+
+msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
 msgstr ""
 "disp(\"ATTENTION : À cause des limitations de votre configuration, Scilab "
 "est passé dans un mode dans lequel mélanger des uicontrols et des graphiques "
-"n''est pas possible. Tapez \"\"help usecanvas\"\" pour plus d''informations.\")"
+"n'est pas possible. Tapez \"\"help usecanvas\"\" pour plus d'informations.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
@@ -1194,6 +1208,7 @@ msgstr "Enregistrer et exécuter"
 msgid "Empty tab"
 msgstr "Onglet vide"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1202,9 +1217,11 @@ msgstr ""
 "Veuillez signaler un bug avec le message précédent et en joignant le fichier "
 "%s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
 
@@ -1259,14 +1276,15 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Consortium Scilab (DIGITEO)"
 
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2011 (INRIA)"
+msgid "Copyright (c) 1989-2012 (INRIA)"
+msgstr "Copyright (c) 1989-2012 (INRIA)"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
@@ -1311,9 +1329,6 @@ msgstr "Figure enregistrée.\n"
 
 msgid "Select a file name"
 msgstr "Sélectionner un nom de fichier"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Sélectionner un fichier à ouvrir avec SciNotes"
 
 msgid "Control Plot3d"
 msgstr "Contrôles Plot3d"

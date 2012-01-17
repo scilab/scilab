@@ -424,6 +424,22 @@ int gw_dynamic_graphic_objects(void)
                               &ptr_gw_graphic_objects);
 }
 /*--------------------------------------------------------------------------*/
+/* history_browser module */
+#define HISTORY_BROWSER_MODULE_NAME "history_browser"
+static DynLibHandle hHistory_browserLib = NULL;
+static PROC_GATEWAY ptr_gw_history_browser = NULL;
+static char* dynlibname_history_browser = NULL;
+static char* gatewayname_history_browser = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_history_browser(void)
+{
+    return gw_dynamic_generic(HISTORY_BROWSER_MODULE_NAME,
+        &dynlibname_history_browser,
+        &gatewayname_history_browser,
+        &hHistory_browserLib,
+        &ptr_gw_history_browser);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -541,6 +557,12 @@ void freeAllDynamicGateways(void)
         &gatewayname_graphic_objects,
         &hGraphic_objectsLib,
         &ptr_gw_graphic_objects);
+
+    freeDynamicGateway(&dynlibname_history_browser,
+        &gatewayname_history_browser,
+        &hHistory_browserLib,
+        &ptr_gw_history_browser);
+
 }
 /*--------------------------------------------------------------------------*/
 
