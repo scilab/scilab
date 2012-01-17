@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Serge Steer - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -148,11 +148,11 @@
       <listitem>
         <para>For arrays of integers,</para>
         <para>
-           if <literal>outtype="native"</literal> the evaluation is done using integer
+          if <literal>outtype="native"</literal> the evaluation is done using integer
           computations (modulo 2^b, where b is the number of bits used),
         </para>
         <para>
-           if <literal>outtype="double"</literal> the evaluation is done using floating point
+          if <literal>outtype="double"</literal> the evaluation is done using floating point
           computations.
         </para>
         <para>
@@ -162,11 +162,11 @@
       <listitem>
         <para>For arrays of booleans,</para>
         <para>
-           if <literal>outtype="native"</literal> the evaluation is done using boolean
-          computations ( + is replaced by |),
+          if <literal>outtype="native"</literal> the evaluation is done using boolean
+          computations (* is replaced by &amp;),
         </para>
         <para>
-           if <literal>outtype="double"</literal> the evaluation is done using floating point
+          if <literal>outtype="double"</literal> the evaluation is done using floating point
           computations (%t values are replaced by 1 and %f values by 0).
         </para>
         <para>

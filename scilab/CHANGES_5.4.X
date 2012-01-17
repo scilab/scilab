@@ -256,6 +256,8 @@ Bug fixes
 
 * Bug #10536 fixed - A string was in French in the English help page of cumsum.
 
+* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
