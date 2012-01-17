@@ -13,7 +13,9 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabComponent;
@@ -37,9 +39,9 @@ public final class BlockDocumentationAction extends
     /** Icon name of the action */
     public static final String SMALL_ICON = "help-browser";
     /** Mnemonic key of the action */
-    public static final int MNEMONIC_KEY = 0;
+    public static final int MNEMONIC_KEY = KeyEvent.VK_H;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = 0;
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor

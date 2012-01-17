@@ -37,6 +37,8 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* Bug #6201 fixed - Block help menu had no shortcut.
+
 * Bug #6733 fixed - Each call to xcos created an empty diagram.
 
 * Bug #7863 fixed - Default path for code generation was SCI.
