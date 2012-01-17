@@ -13,6 +13,7 @@
 // <-- Short Description -->
 //Variables whose name starts by a $  cannot be retreived in libraries
 //create a library of variables
+warning("off");
 Dir = TMPDIR + "/bug_6726/";
 mkdir(Dir);
 function y=$a(x)

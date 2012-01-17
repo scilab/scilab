@@ -21,6 +21,7 @@ for i=1:1000
   t = [t string(i)];
 end
 t = t';
+warning("off");
 save(TMPDIR + filesep() + 'pb.dat',t);
 clear t;
 

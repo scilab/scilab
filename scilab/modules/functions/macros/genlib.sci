@@ -199,10 +199,14 @@ function [success, funcs, success_files, failed_files] = genlib(nam, path, force
     execstr(nam+'=lib('''+getshortpathname(path1)+''')')
     //save it
 
+    warnMode = warning("query");
+    warning("off");
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
       success = %f;
+      warning(warnMode);
       error(msprintf(gettext("%s: %s file cannot be created\n"),"genlib",path+'lib'));
     end
+    warning(warnMode);
   else
     execstr(nam+'=lib('''+path1+''')')
   end
@@ -261,7 +265,10 @@ function result = getsave(scifile)
 
     if new<>[] then
       result = new($:-1:1)';
+      warnMode = warning("query");
+      warning("off");
       execstr('save(u,'+strcat(new($:-1:1),',')+')');
+      warning(warnMode);
     else
       msprintf(gettext("%s: File %s does not contain any function.\n"),"genlib",binfile)
       result = %f;

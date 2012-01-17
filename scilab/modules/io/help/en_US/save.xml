@@ -58,10 +58,6 @@
       current variables in a binary file. If a variable is a graphic handle, the
       <literal>save</literal> function saves all the corresponding <link linkend="graphics_entities">graphics_entities</link> definition.
     </para>
-    <para>
-      Since Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved by this
-      function.
-    </para>
     <para>The file can be given either by its paths or by its descriptor
       previously given by <literal>mopen</literal>.
     </para>
@@ -74,9 +70,10 @@
       defined by the descriptor <literal>fd</literal>.
     </para>
     <para>
-      <literal>save(filename,x,y)</literal> or
-      <literal>save(fd,x,y)</literal> saves only named variables
-      <literal>x</literal> and <literal>y</literal>.
+      <literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> (with <literal>x</literal> and <literal>y</literal> variables of your environment) saves only named variables <literal>x</literal> and <literal>y</literal>.
+    </para>
+    <para>
+      <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data in HDF5, format that will be readable by Scilab 6 family.
     </para>
     <para>
       Saved variables can be reloaded by the 
@@ -85,13 +82,13 @@
       </literal>
       command.
     </para>
-    <para>Note that the written file is portable to other operating systems
-      and architectures (little and big endian).
+    <para>Note that the written file is portable to other operating systems and architectures (little and big endian).
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
+// Binary format readable up to Scilab 5 family
 a=eye(2,2);b=ones(a);
 save('val.dat',a,b);
 clear a
@@ -112,6 +109,13 @@ mseek(0,fd,'end')
 lst=list(1,2,3)
 save(fd,lst)
 mclose(fd)
+
+// Binary format readable by Scilab 5.4.X and Scilab 6 family
+a=eye(2,2);b=ones(a);
+save("val.h5", "a", "b");
+clear a
+clear b
+load("val.dat", "a", "b");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -130,5 +134,20 @@ mclose(fd)
         <link linkend="mopen">mopen</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.0.0</revnumber>
+        <revremark>
+          All <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved by this function.
+        </revremark>
+      </revision>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>When called with variables names (character string) as input, variables are saved in HDF5 format, format that will be readable by Scilab 6 family.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

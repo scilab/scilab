@@ -17,7 +17,7 @@
 //
 
 nm = neldermead_new ();
-save(fullfile(TMPDIR,"pb.dat"),nm)
+save(fullfile(TMPDIR,"pb.dat"),"nm")
 clear
 load(fullfile(TMPDIR,"pb.dat"))
 computed = exists("nm");

@@ -8,6 +8,11 @@ Scilab
 * Update the default size of the Scilab stack to 100 M elements (instead of 50M).
   See stacksize for more information.
 
+* save/load functions can now export/import Scilab data to HDF5 format:
+ - Graphic handles can be saved as HDF5 data
+ - 'save' displays a message when using old calling sequence save(filename, a, b, c) and writes data in old Scilab binary format. This format will not be readable by Scilab 6 family.
+ - 'save' writes data to HDF5 format when using new calling sequence save(filename, "a", "b", "c"). This format is Scilab 6 compatible.
+
 
 Scilab Desktop
 ==============

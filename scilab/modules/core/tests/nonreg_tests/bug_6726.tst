@@ -14,6 +14,8 @@
 // <-- Short Description -->
 //Variables whose name starts by a $  cannot be retreived in libraries
 
+warning("off");
+
 //create a library of variables
 Dir = TMPDIR + "/bug_6726/";
 mkdir(Dir);

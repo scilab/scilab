@@ -17,6 +17,8 @@ predef("clear"); //unprotect all variables
 clear  // erase all variables
 clearglobal();
 
+load = %_load;
+
 // Set stack size   ===================================================
 function setStackSize()
   defaultstacksize = 10000000;
@@ -96,6 +98,8 @@ if with_module("atoms") then
   end
   clear atomsSystemInit;
 end
+
+clear load
 
 // Protect variable previously defined  ================================
 predef("all");

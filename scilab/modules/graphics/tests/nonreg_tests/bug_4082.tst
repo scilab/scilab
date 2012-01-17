@@ -19,7 +19,8 @@
 t=0:0.01:10;
 subplot(211),plot2d(t,sin(t))
 subplot(212),plot2d(t,sin(3*t))
-save(TMPDIR+'/foo.scg',gcf()) //or xsave
+f = gcf();
+save(TMPDIR+'/foo.scg',"f") //or xsave
 clf()
 load(TMPDIR+'/foo.scg') //or xload
 
