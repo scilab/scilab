@@ -12,6 +12,8 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -59,7 +61,7 @@ public class testBug9544 {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab(true);
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
@@ -129,7 +131,7 @@ public class testBug9544 {
                 commands.add("X = [1,2];");
                 commands.add("Y = [3,4];");
                 commands.add("plot(X,Y);");
-                assert sci.exec(commands.toArray(new String[commands.size()])) == true;
+                assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
             }
                 
         }
