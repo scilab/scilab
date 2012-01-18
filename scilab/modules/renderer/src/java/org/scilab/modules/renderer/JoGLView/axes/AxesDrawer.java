@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
- * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -85,6 +85,9 @@ public class AxesDrawer {
     /** The current reversed bounds intervals. */
     private double[] reversedBoundsIntervals;
 
+    /** The current projection (from object to window coordinates) used when drawing objects. */
+    private Transformation currentProjection;
+
     /**
      * Default constructor.
      * @param visitor the parent {@see DrawerVisitor}.
@@ -128,6 +131,16 @@ public class AxesDrawer {
         // Set box projection.
         Transformation transformation = computeBoxTransformation(axes, canvas);
         modelViewStack.pushRightMultiply(transformation);
+
+        /* Compute the data scale and translate transformation. */
+        Transformation dataTransformation = computeDataTransformation(axes);
+
+        /* Compute the object to window coordinates projection. */
+        currentProjection = zoneProjection.rightTimes(transformation);
+        currentProjection = currentProjection.rightTimes(dataTransformation);
+
+        Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+        currentProjection = windowTrans.rightTimes(currentProjection);
 
         /**
          * Draw the axes background.
@@ -180,7 +193,6 @@ public class AxesDrawer {
          * Scale and translate for data fitting.
          * And draw data.
          */
-        Transformation dataTransformation = computeDataTransformation(axes);
         modelViewStack.pushRightMultiply(dataTransformation);
 
         // TODO implement clipgrf
@@ -540,6 +552,14 @@ public class AxesDrawer {
         objectCoordinates[2] = 0.5*(1.0-point.getZ())*(reversedBounds[5]-reversedBounds[4]) + reversedBounds[4];
 
         return new Vector3d(objectCoordinates);
+    }
+
+    /**
+     * Returns the current projection from object to window coordinates.
+     * @return the projection.
+     */
+    public Transformation getProjection() {
+        return currentProjection;
     }
 
     /**

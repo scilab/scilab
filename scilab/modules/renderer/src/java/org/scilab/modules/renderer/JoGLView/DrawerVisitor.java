@@ -822,7 +822,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(Text text) {
         if (text.getVisible()) {
-            textManager.draw(drawingTools, colorMap, text);
+            textManager.draw(drawingTools, colorMap, text, axesDrawer);
         }
     }
 

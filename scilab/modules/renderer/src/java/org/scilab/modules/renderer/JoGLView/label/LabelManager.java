@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
- * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -111,6 +111,17 @@ public class LabelManager {
             label.setAutoPosition(true);
         }
 
+        /* Compute and set the label's corners */
+        Transformation projection = axesDrawer.getProjection();
+
+        Vector3d[] projCorners = labelPositioner.getProjCorners();
+
+        Vector3d[] corners = computeCorners(projection, projCorners);
+        Double[] coordinates = cornersToCoordinateArray(corners);
+
+        /* Set the computed coordinates */
+        label.setCorners(coordinates);
+
 
         double rotationAngle = 0.0;
 
@@ -148,6 +159,52 @@ public class LabelManager {
             }
         }
 
+    }
+
+    /**
+     * Computes and returns the corners (in object coordinates) of a label's bounding box.
+     * @param projection the projection from object coordinates to window coordinates.
+     * @param projCorners the corners of the label's bounding box in window coordinates (4-element array).
+     * @return the corners of the label's bounding box in object coordinates (4-element array).
+     */
+    private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners) {
+        Vector3d[] corners = new Vector3d[4];
+
+        corners[0] = projection.unproject(projCorners[0]);
+        corners[1] = projection.unproject(projCorners[1]);
+        corners[2] = projection.unproject(projCorners[2]);
+        corners[3] = projection.unproject(projCorners[3]);
+
+        return corners;
+    }
+
+    /**
+     * Returns the positions of a bounding box's corners as an array of (x,y,z) coordinate triplets.
+     * The output corners are reordered to match their order in the {@see Label} object's
+     * equivalent array, respectively: lower-left, lower-right, upper-left, upper-right in the input array,
+     * starting from the lower-left and going in clockwise order in the returned array.
+     * @param corners of the bounding box (4-element array).
+     * @return the corners' coordinates (12-element array).
+     */
+    private Double[] cornersToCoordinateArray(Vector3d[] corners) {
+        Double[] coordinates = new Double[12];
+        coordinates[0] = corners[0].getX();
+        coordinates[1] = corners[0].getY();
+        coordinates[2] = corners[0].getZ();
+
+        coordinates[3] = corners[2].getX();
+        coordinates[4] = corners[2].getY();
+        coordinates[5] = corners[2].getZ();
+
+        coordinates[6] = corners[3].getX();
+        coordinates[7] = corners[3].getY();
+        coordinates[8] = corners[3].getZ();
+
+        coordinates[9] = corners[1].getX();
+        coordinates[10] = corners[1].getY();
+        coordinates[11] = corners[1].getZ();
+
+        return coordinates;
     }
 
     /**

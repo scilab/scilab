@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -86,7 +86,7 @@ public abstract class LabelPositioner {
         /** The current drawing tools. */
         protected DrawingTools drawingTools;
 
-        /** The label's current parent Axes */
+        /** The label's current parent Axes. */
         protected Axes parentAxes;
 
         /**
@@ -94,6 +94,21 @@ public abstract class LabelPositioner {
          * or window coordinates (true).
          */
         protected boolean useWindowCoordinates;
+
+        /** The label's anchor point position in window coordinates. */
+        protected Vector3d projAnchorPoint;
+
+        /** The label's half-width vector in window coordinates. */
+        protected Vector3d projHalfWidth;
+
+        /** The label's half-height vector in window coordinates. */
+        protected Vector3d projHalfHeight;
+
+        /**
+         * The positions of the corners of the label's bounding box in window coordinates,
+         * stored in the following order: lower-left, lower-right, upper-left, upper-right.
+         */
+        protected Vector3d[] projCornerCoordinates;
 
         /**
          * Constructor.
@@ -113,6 +128,10 @@ public abstract class LabelPositioner {
                 parentAxes = null;
                 /* Labels are drawn in box coordinates as a default. */
                 useWindowCoordinates = false;
+                projAnchorPoint = new Vector3d(0.0, 0.0, 0.0);
+                projHalfWidth = new Vector3d(0.0, 0.0, 0.0);
+                projHalfHeight = new Vector3d(0.0, 0.0, 0.0);
+                projCornerCoordinates = new Vector3d[4];
         }
 
         /**
@@ -286,6 +305,9 @@ public abstract class LabelPositioner {
 
                 /* Depends on the rotation angle and must therefore be computed afterwards. */
                 computeAnchorPosition();
+
+                /* Computes the label's bounding box's corners (in window coordinates) */
+                computeCorners();
         }
 
         /**
@@ -361,14 +383,15 @@ public abstract class LabelPositioner {
         }
 
         /**
-         * Computes and returns the position of the label's lower-left corner in box coordinates
-         * from the label's position and half-width/-height vectors (specified in box coordinates).
+         * Computes and returns the position of the label's lower-left corner either in box or window coordinates
+         * from the label's position and half-width/-height vectors (also specified either in box or window coordinates).
          * The label's anchor point and anchor position must have been determined beforehand.
+         * @param anchorPoint the position of the label's anchor point.
          * @param halfWidth the displacement vector corresponding to half the label's width.
          * @param halfHeight the displacement vector corresponding to half the label's height.
          * @return the position of the label's lower-left corner.
          */
-        private Vector3d computeLowerLeftCornerPosition(Vector3d halfWidth, Vector3d halfHeight) {
+        private Vector3d computeLowerLeftCornerPosition(Vector3d anchorPoint, Vector3d halfWidth, Vector3d halfHeight) {
                 Vector3d returnedPosition = new Vector3d(anchorPoint);
 
                 if (anchorPosition == SpriteAnchorPosition.LEFT) {
@@ -398,8 +421,9 @@ public abstract class LabelPositioner {
         /**
          * Computes and returns the position of the label's lower-left corner in box coordinates.
          * It projects the label's anchor point to compute the points located from it at
-         * respectively half the sprite width and half its height, taking into account the label's rotation angle,
-         * which are then used to obtain the label's half-width and half-height vectors in box coordinates.
+         * respectively half the sprite width and half its height, using the previously computed
+         * projected anchor point, half-width and half-height vectors, finally computing the half-vectors
+         * in box coordinates to obtain the lower-left corner's position.
          * The label's anchor point and anchor position, rotation angle, associated sprite, and drawing tools
          * must have been initialized beforehand.
          * @return the label's lower-left corner position.
@@ -408,20 +432,7 @@ public abstract class LabelPositioner {
                 Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                 Vector3d labelPoint = new Vector3d(anchorPoint);
 
-                /*
-                 * Ought to be -rotationAngle as positive angle values are measured clockwise for labels.
-                 * Apparently uses the same convention as the labels (clockwise positive directions).
-                 * To be verified.
-                 */
-                Transformation winRotation = TransformationFactory.getRotationTransformation(rotationAngle, 0.0, 0.0, 1.0);
-
-                Vector3d projHalfWidth = new Vector3d(0.5 * (double) labelSprite.getWidth(), 0.0, 0.0);
-                Vector3d projHalfHeight = new Vector3d(0.0, 0.5 * (double) labelSprite.getHeight(), 0.0);
-
-                projHalfWidth = winRotation.projectDirection(projHalfWidth);
-                projHalfHeight = winRotation.projectDirection(projHalfHeight);
-
-                Vector3d projLabelPoint = canvasProjection.project(labelPoint);
+                Vector3d projLabelPoint = new Vector3d(projAnchorPoint);
 
                 Vector3d projRightPoint = projLabelPoint.plus(projHalfWidth);
                 Vector3d unprojRightPoint = canvasProjection.unproject(projRightPoint);
@@ -433,10 +444,52 @@ public abstract class LabelPositioner {
 
                 Vector3d halfHeight = unprojUpperPoint.minus(labelPoint);
 
-                Vector3d cornerPosition = computeLowerLeftCornerPosition(halfWidth, halfHeight);
+                Vector3d cornerPosition = computeLowerLeftCornerPosition(labelPoint, halfWidth, halfHeight);
 
                 return cornerPosition;
         }
 
+        /**
+         * Computes the corners of the label's bounding box, in window coordinates.
+         * The label's point, rotation angle and anchor position must have been determined beforehand.
+         * It also computes the anchor point, half-width and half-height vectors in window coordinates.
+         */
+         private void computeCorners() {
+                Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
+                Vector3d labelPoint = new Vector3d(anchorPoint);
+
+                /*
+                 * Ought to be -rotationAngle as positive angle values are measured clockwise for labels.
+                 * Apparently uses the same convention as the labels (clockwise positive directions).
+                 * To be verified.
+                 */
+                Transformation winRotation = TransformationFactory.getRotationTransformation(rotationAngle, 0.0, 0.0, 1.0);
+
+                projHalfWidth = new Vector3d(0.5 * (double) labelSprite.getWidth(), 0.0, 0.0);
+                projHalfHeight = new Vector3d(0.0, 0.5 * (double) labelSprite.getHeight(), 0.0);
+
+                projHalfWidth = winRotation.projectDirection(projHalfWidth);
+                projHalfHeight = winRotation.projectDirection(projHalfHeight);
+
+                projAnchorPoint = canvasProjection.project(labelPoint);
+
+                /* Compute the corners of the label's bounding box in window coordinates */
+                Vector3d projCornerPosition = computeLowerLeftCornerPosition(projAnchorPoint, projHalfWidth, projHalfHeight);
+
+                projCornerCoordinates[0] = new Vector3d(projCornerPosition);
+                projCornerCoordinates[1] = projCornerPosition.plus(projHalfWidth.times(2.0));
+                projCornerCoordinates[2] = projCornerPosition.plus(projHalfHeight.times(2.0));
+                projCornerCoordinates[3] = projCornerCoordinates[2].plus(projHalfWidth.times(2.0));
+         }
+
+        /**
+         * Returns the positions of the label's corners (in window coordinates).
+         * The returned corners are in the following order: lower-left, lower-right,
+         * upper-left and upper-right.
+         * @return the corners' window coordinates (4-element array).
+         */
+        public Vector3d[] getProjCorners() {
+                return projCornerCoordinates;
+        }
 }
 
