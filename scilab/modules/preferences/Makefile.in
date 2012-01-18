@@ -137,8 +137,8 @@ libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_4 = libscipreferences_la-gw_preferences.lo
-am__objects_5 = libscipreferences_la-sci_addToolboxInfos.lo \
-	libscipreferences_la-sci_removeToolboxInfos.lo
+am__objects_5 = libscipreferences_la-sci_addModulePreferences.lo \
+	libscipreferences_la-sci_removeModulePreferences.lo
 am_libscipreferences_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscipreferences_la_OBJECTS = $(am_libscipreferences_la_OBJECTS)
 libscipreferences_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -508,8 +508,8 @@ GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addToolboxInfos.cpp \
-                      sci_gateway/cpp/sci_removeToolboxInfos.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
+                      sci_gateway/cpp/sci_removeModulePreferences.cpp
 
 libscipreferences_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -655,8 +655,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_algo_la-ScilabPreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_disable_la-nopreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-gw_preferences.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_addToolboxInfos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_removeToolboxInfos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -721,19 +721,19 @@ libscipreferences_algo_la-ScilabPreferences.lo: src/jni/ScilabPreferences.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_algo_la-ScilabPreferences.lo `test -f 'src/jni/ScilabPreferences.cpp' || echo '$(srcdir)/'`src/jni/ScilabPreferences.cpp
 
-libscipreferences_la-sci_addToolboxInfos.lo: sci_gateway/cpp/sci_addToolboxInfos.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-sci_addToolboxInfos.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-sci_addToolboxInfos.Tpo -c -o libscipreferences_la-sci_addToolboxInfos.lo `test -f 'sci_gateway/cpp/sci_addToolboxInfos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addToolboxInfos.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-sci_addToolboxInfos.Tpo $(DEPDIR)/libscipreferences_la-sci_addToolboxInfos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_addToolboxInfos.cpp' object='libscipreferences_la-sci_addToolboxInfos.lo' libtool=yes @AMDEPBACKSLASH@
+libscipreferences_la-sci_addModulePreferences.lo: sci_gateway/cpp/sci_addModulePreferences.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-sci_addModulePreferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Tpo -c -o libscipreferences_la-sci_addModulePreferences.lo `test -f 'sci_gateway/cpp/sci_addModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addModulePreferences.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Tpo $(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_addModulePreferences.cpp' object='libscipreferences_la-sci_addModulePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_addToolboxInfos.lo `test -f 'sci_gateway/cpp/sci_addToolboxInfos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addToolboxInfos.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_addModulePreferences.lo `test -f 'sci_gateway/cpp/sci_addModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addModulePreferences.cpp
 
-libscipreferences_la-sci_removeToolboxInfos.lo: sci_gateway/cpp/sci_removeToolboxInfos.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-sci_removeToolboxInfos.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-sci_removeToolboxInfos.Tpo -c -o libscipreferences_la-sci_removeToolboxInfos.lo `test -f 'sci_gateway/cpp/sci_removeToolboxInfos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removeToolboxInfos.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-sci_removeToolboxInfos.Tpo $(DEPDIR)/libscipreferences_la-sci_removeToolboxInfos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_removeToolboxInfos.cpp' object='libscipreferences_la-sci_removeToolboxInfos.lo' libtool=yes @AMDEPBACKSLASH@
+libscipreferences_la-sci_removeModulePreferences.lo: sci_gateway/cpp/sci_removeModulePreferences.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscipreferences_la-sci_removeModulePreferences.lo -MD -MP -MF $(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Tpo -c -o libscipreferences_la-sci_removeModulePreferences.lo `test -f 'sci_gateway/cpp/sci_removeModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removeModulePreferences.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Tpo $(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_removeModulePreferences.cpp' object='libscipreferences_la-sci_removeModulePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_removeToolboxInfos.lo `test -f 'sci_gateway/cpp/sci_removeToolboxInfos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removeToolboxInfos.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscipreferences_la-sci_removeModulePreferences.lo `test -f 'sci_gateway/cpp/sci_removeModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removeModulePreferences.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

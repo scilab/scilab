@@ -40,8 +40,8 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addToolboxInfos.cpp \
-                      sci_gateway/cpp/sci_removeToolboxInfos.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
+                      sci_gateway/cpp/sci_removeModulePreferences.cpp
 
 libscipreferences_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \

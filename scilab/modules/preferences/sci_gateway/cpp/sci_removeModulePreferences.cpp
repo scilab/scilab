@@ -21,59 +21,40 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "getScilabJavaVM.h"
-#include "expandPathVariable.h"
-#include "MALLOC.h"
 }
 
 using namespace org_scilab_modules_preferences;
 
 /*--------------------------------------------------------------------------*/
-int sci_addToolboxInfos(char * fname, unsigned long fname_len)
+int sci_removeModulePreferences(char * fname, unsigned long fname_len)
 {
     SciErr err;
     int * addr = 0;
     char * tbxName = 0;
-    char * tbxPath = 0;
-    char * expTbxPath = 0;
-    char * tbxPrefFile = 0;
-    char * expTbxPrefFile = 0;
-    char ** array[] = {&tbxName, &tbxPath, &tbxPrefFile};
     bool error = false;
 
     CheckLhs(1, 1);
-    CheckRhs(3, 3);
+    CheckRhs(1, 1);
 
-    for (int i = 0; i < Rhs; i++)
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+    if (err.iErr)
     {
-        err = getVarAddressFromPosition(pvApiCtx, i + 1, &addr);
-        if (err.iErr)
-        {
-            printError(&err, 0);
-            return 0;
-        }
-
-        if (!isStringType(pvApiCtx, addr))
-        {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, i + 1);
-            for (int j = 0; j < i; j++)
-            {
-                if (array[j])
-                {
-                    freeAllocatedSingleString(*(array[j]));
-                }
-            }
-            return 0;
-	}
-	
-	getAllocatedSingleString(pvApiCtx, addr, array[i]);
+        printError(&err, 0);
+        return 0;
     }
 
-    expTbxPath = expandPathVariable(const_cast<char *>(tbxPath));
-    expTbxPrefFile = expandPathVariable(const_cast<char *>(tbxPrefFile));
+    if (!isEmptyMatrix(pvApiCtx, addr))
+    {
+        if (!isStringType(pvApiCtx, addr))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        }
+        getAllocatedSingleString(pvApiCtx, addr, &tbxName);
+    }
 
     try
     {
-        ScilabPreferences::addToolboxInfos(getScilabJavaVM(), tbxName, expTbxPath, expTbxPrefFile);
+        ScilabPreferences::removeToolboxInfos(getScilabJavaVM(), tbxName);
     }
     catch (const GiwsException::JniException & e)
     {
@@ -81,15 +62,10 @@ int sci_addToolboxInfos(char * fname, unsigned long fname_len)
         error = true;
     }
 
-    for (int i = 0; i < Rhs; i++)
+    if (tbxName)
     {
-        if (array[i])
-        {
-            freeAllocatedSingleString(*(array[i]));
-        }
+        freeAllocatedSingleString(tbxName);
     }
-    FREE(expTbxPath);
-    FREE(expTbxPrefFile);
 
     if (!error)
     {

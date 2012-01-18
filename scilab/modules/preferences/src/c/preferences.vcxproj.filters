@@ -51,10 +51,10 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_preferences.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_addToolboxInfos.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_addModulePreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_removeToolboxInfos.cpp">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

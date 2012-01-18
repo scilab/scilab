@@ -50,7 +50,11 @@ function toolbox_skeletonlib = startModule()
     add_demo(toolbox_name, pathdemos);
   end
 
-  addToolboxInfos(toolbox_name, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
+// Load Preferences GUI
+// =============================================================================
+  if getscilabmode() == "STD" then
+    addModulePreferences(toolbox_name, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
+  end
 
 endfunction
 

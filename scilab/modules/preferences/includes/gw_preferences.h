@@ -16,8 +16,8 @@
 #include "dynlib_preferences_scilab.h"
 /*--------------------------------------------------------------------------*/
 PREFERENCES_SCILAB_IMPEXP int gw_preferences(void);
-int sci_addToolboxInfos(char * fname, unsigned long l);
-int sci_removeToolboxInfos(char * fname, unsigned long l);
+int sci_addModulePreferences(char * fname, unsigned long l);
+int sci_removeModulePreferences(char * fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_PREFERENCES__ */
 /*--------------------------------------------------------------------------*/

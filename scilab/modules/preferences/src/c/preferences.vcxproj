@@ -263,8 +263,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_addToolboxInfos.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_removeToolboxInfos.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_addModulePreferences.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_preferences.c" />
     <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="..\jni\ScilabPreferences.cpp" />
