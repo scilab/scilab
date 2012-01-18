@@ -142,6 +142,9 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
+* Bug #8682 fixed - funcprot did not return the previous value when called with
+                    an argument.
+
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
 
