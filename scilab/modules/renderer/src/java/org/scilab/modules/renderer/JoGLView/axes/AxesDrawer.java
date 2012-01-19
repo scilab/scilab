@@ -198,7 +198,7 @@ public class AxesDrawer {
         modelViewStack.pushRightMultiply(dataTransformation);
 
         // TODO implement clipgrf
-        Double[] bounds = getCurrentBounds(axes);
+        Double[] bounds = axes.computeDisplayedBounds();
         Vector4d[] equations = new Vector4d[]{
                 new Vector4d(+1, 0, 0, -bounds[0]),
                 new Vector4d(-1, 0, 0, +bounds[1]),
@@ -344,20 +344,6 @@ public class AxesDrawer {
     }
 
     /**
-     * Return the current visible bounds of the given axes.
-     * // TODO : tight limit.
-     * @param axes the given axes.
-     * @return the current visible bounds of the given axes.
-     */
-    private Double[] getCurrentBounds(Axes axes) {
-        if (axes.getZoomEnabled()) {
-            return axes.getZoomBox();
-        } else {
-            return axes.getDataBounds();
-        }
-    }
-
-    /**
      * Compute data transformation for the given {@see Axes}.
      *
      * The data transformation is applied to data to fit in axes box.
@@ -367,7 +353,7 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are not corrects.
      */
     private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
-        Double[] bounds = getCurrentBounds(axes);
+        Double[] bounds = axes.computeDisplayedBounds();
 
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
@@ -407,7 +393,7 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are incorrect or canvas with or length are zero.
      */
     private Transformation computeBoxTransformation(Axes axes, Canvas canvas) throws DegenerateMatrixException {
-        Double[] bounds = getCurrentBounds(axes);
+        Double[] bounds = axes.computeDisplayedBounds();
 
         double tmpX;
         double tmpY;
@@ -465,7 +451,7 @@ public class AxesDrawer {
      * @param axes the given {@see Axes}.
      */
     private void computeReversedBounds(Axes axes) {
-        Double[] currentBounds = getCurrentBounds(axes);
+        Double[] currentBounds = axes.computeDisplayedBounds();
 
         /* Reverse */
         if (axes.getAxes()[0].getReverse()) {

@@ -13,8 +13,6 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.arc.Arc.ArcProperty;
 import org.scilab.modules.graphic_objects.axes.AxisProperty.AxisLocation;
@@ -26,13 +24,14 @@ import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkPropertyType;
 import org.scilab.modules.graphic_objects.contouredObject.Mark.MarkSizeUnitType;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
+
+import java.util.ArrayList;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -41,6 +40,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Axes extends GraphicObject {
+
     /** Axes properties names */
     private enum AxesProperty {
         XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
@@ -1780,6 +1780,28 @@ public class Axes extends GraphicObject {
          */
         public void setRealDataBounds(Double[] realDataBounds) {
             box.setRealDataBounds(realDataBounds);
+        }
+
+        /**
+         * Return the current visible bounds.
+         * // TODO : tight limit.
+         * @return the current visible bounds of the axes.
+         */
+        public Double[] computeDisplayedBounds() {
+            Double[] bounds;
+            if (getZoomEnabled()) {
+                bounds = getZoomBox();
+            } else {
+                bounds = getDataBounds();
+                for (int i = 0 ; i < 6 ; i += 2) {
+                    if (bounds[i].equals(bounds[i + 1])) {
+                        bounds[i]--;
+                        bounds[i + 1]++;
+                    }
+                }
+                // TODO : tight limit.
+            }
+            return bounds;
         }
 
         /**
