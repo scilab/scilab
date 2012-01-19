@@ -14,14 +14,19 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.w3c.dom.Node;
 
-import com.mxgraph.io.mxCellCodec;
+import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
-public class BasicLinkCodec extends mxCellCodec {
+public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
         BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
@@ -35,19 +40,38 @@ public class BasicLinkCodec extends mxCellCodec {
         mxCodecRegistry.register(commandControllinkCodec);
     }
 
-    /*
-     * Inherit all constructors
-     */
-
-    public BasicLinkCodec() {
-    }
-
-    public BasicLinkCodec(Object template) {
-        super(template);
-    }
-
     public BasicLinkCodec(Object template, String[] exclude, String[] idrefs,
             Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
+    }
+
+    @Override
+    public Object beforeEncode(mxCodec enc, Object obj, Node node) {
+
+        /*
+         * Log some informations
+         */
+        final BasicLink l = (BasicLink) obj;
+
+        if (!(l.getSource() instanceof BasicPort)) {
+            trace(enc, node, "Invalid source");
+        } else {
+            final BasicPort p = (BasicPort) l.getSource();
+
+            if (!(p.getParent() instanceof BasicBlock)) {
+                trace(enc, node, "Invalid source parent");
+            }
+        }
+        if (!(l.getTarget() instanceof BasicPort)) {
+            trace(enc, node, "Invalid target");
+        } else {
+            final BasicPort p = (BasicPort) l.getTarget();
+
+            if (!(p.getParent() instanceof BasicBlock)) {
+                trace(enc, node, "Invalid target parent");
+            }
+        }
+
+        return super.beforeEncode(enc, obj, node);
     }
 }

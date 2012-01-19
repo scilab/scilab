@@ -1316,8 +1316,14 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   okk=%f;
   rdnom='foo';
   rpat=pwd();
+  [x,ierr] = fileinfo(rpat);
+  S_IWRITE = 128; // mask write permission
+  if (ierr <> 0 | bitand(x(2), S_IWRITE) == 0) then
+    rpat = TMPDIR;
+  end
+
   libs='';
-  label1=[hname;pwd()+'/'+hname;''];
+  label1=[hname;rpat+'/'+hname;''];
 
   while %t do
     ok=%t  // to avoid infinite loop

@@ -37,7 +37,11 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* Bug #6201 fixed - Block help menu had no shortcut.
+
 * Bug #6733 fixed - Each call to xcos created an empty diagram.
+
+* Bug #7863 fixed - Default path for code generation was SCI.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
@@ -69,6 +73,9 @@ Xcos
 * Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
 
 * Bug #10499 fixed - lincos example in help file returned warning and error.
+
+* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
+                     block.
 
 
 Unitary testing
@@ -139,6 +146,9 @@ Bug fixes
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8682 fixed - funcprot did not return the previous value when called with
+                    an argument.
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
@@ -226,14 +236,29 @@ Bug fixes
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
+* Bug #10506 fixed - ssprint did not check input arguments.
+
 * Bug #10518 fixed - odeoptions help page was inaccurate.
 
 * Bug #10519 fixed - spec returned a wrong error message when a input argument
                      was not square.
 
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
 * Bug #10521 fixed - frexp returned an wrong error message.
 
+* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
+                     not clearly stated in the documentation.
+
 * Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
+* Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
+                     Scilab types.
+
+* Bug #10536 fixed - A string was in French in the English help page of cumsum.
+
+* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab

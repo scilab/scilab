@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -68,27 +69,34 @@ public class ShowHideShadowAction extends VertexSelectionDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                    .getSelectionCells();
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        if (graph.getSelectionCells().length != 0) {
+
+            Object[] allCells = graph.getSelectionCells();
 
             for (int i = 0; i < allCells.length; ++i) {
                 if (allCells[i] instanceof BasicBlock) {
                     // ((BasicBlock) allCells[i])
-                    mxCellState state = getGraph(null).getView().getState(
+                    mxCellState state = graph.getView().getState(
                             allCells[i]);
                     Map<String, Object> style;
                     if (state != null) {
                         style = state.getStyle();
                     } else {
-                        style = getGraph(null).getCellStyle(allCells[i]);
+                        style = graph.getCellStyle(allCells[i]);
                     }
 
                     if (style != null) {
                         String value = Boolean.toString(mxUtils.isTrue(style,
                                 mxConstants.STYLE_SHADOW, false));
-                        getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW,
+                        graph.setCellStyles(mxConstants.STYLE_SHADOW,
                                 value, new Object[] { allCells[i] });
                     }
                 }

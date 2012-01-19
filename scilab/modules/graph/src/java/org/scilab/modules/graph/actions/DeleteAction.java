@@ -16,6 +16,7 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
@@ -26,49 +27,57 @@ import org.scilab.modules.gui.pushbutton.PushButton;
  * Delete manager
  */
 public final class DeleteAction extends OneSelectionDependantAction {
-	/** Name of the action */
-	public static final String NAME = ScilabGraphMessages.DELETE;
-	/** Icon name of the action */
+    /** Name of the action */
+    public static final String NAME = ScilabGraphMessages.DELETE;
+    /** Icon name of the action */
     public static final String SMALL_ICON = "edit-delete";
-	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_DELETE;
-	/** Accelerator key for the action */
-	public static final int ACCELERATOR_KEY = 0;
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_DELETE;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = 0;
 
-	/**
-	 * Constructor
-	 * @param scilabGraph corresponding Scilab Graph
-	 */
-	public DeleteAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
-	}
+    /**
+     * Constructor
+     * @param scilabGraph corresponding Scilab Graph
+     */
+    public DeleteAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
 
-	/**
-	 * Create a menu for a graph menubar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the menu
-	 */
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, DeleteAction.class);
-	}
-	
-	/**
-	 * Create a button for a graph toolbar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the button
-	 */
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, DeleteAction.class);
-	}
-	
-	/**
-	 * Action associated
-	 * @param e the event
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
+    /**
+     * Create a menu for a graph menubar
+     * @param scilabGraph corresponding Scilab Graph
+     * @return the menu
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+        return createMenu(scilabGraph, DeleteAction.class);
+    }
+    
+    /**
+     * Create a button for a graph toolbar
+     * @param scilabGraph corresponding Scilab Graph
+     * @return the button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, DeleteAction.class);
+    }
+    
+    /**
+     * Action associated
+     * @param e the event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
     public void actionPerformed(ActionEvent e) {
-    	getGraph(e).removeCells(getGraph(e).getSelectionCells());
-	}
+        final ScilabGraph graph = getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+
+        graph.removeCells(graph.getSelectionCells());
+    }
 
 }

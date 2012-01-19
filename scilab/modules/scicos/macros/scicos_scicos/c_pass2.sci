@@ -515,9 +515,7 @@ function ok=is_alg_event_loop(typ_l,clkconnect)
   end  
 endfunction
 
-function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
-          dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,..
-	  connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
+function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
 
   ordclk=[];ordptr=1;cord=[];
   lordclk=list()
@@ -553,8 +551,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  primary0=[]
 	end
 
-	if  show_comment then mprintf('Processing blk '+string(blk)+' port"+...
-				   " '+string(port)),end
+	if  show_comment then mprintf("Processing blk " + string(blk) + " port "+...
+				   + string(port) + "\n"),end
 	  
 	  if primary0<>[] then  // delete redundant links
 	    [jj,k]=unique(primary0*(1+max(prt0))+prt0)
@@ -588,7 +586,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
                if bouclalg then break,end
             end
    
-            if show_comment&bouclalg then mprintf('found intersect'),end
+            if show_comment&bouclalg then mprintf('found intersect \n'),end
 
             if ~bouclalg then
 	      [bouclalg,Vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
@@ -596,7 +594,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		clkconnect,connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,..
                 corinv,clkptr,cliptr,critev)
 	      if bouclalg then
-                if show_comment then mprintf('found non convergence'),pause,end
+                if show_comment then mprintf('found non convergence\n'),pause,end
                 i=lp(1)  // first typ_l
                 if i==[] then 
                   messagebox(_('Algebraic loop.'),"modal","error")
@@ -619,7 +617,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		nblock=nblock+1
 		clkconnect(f,3)=nblock
 		if  show_comment then   
-                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
+                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock) + "\n"),
                 end
 		[typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
 		 corinv,clkptr,cliptr,critev]=duplicate_block(bl,typ_l,clkconnect,..
@@ -646,8 +644,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		for jj=2:nout
                     if  show_comment then  
                        mprintf('No block duplication but link between '+string(blk)+..
-                            ' and '+string(bli)+'replaced with links from '+..
-                                                 string(bl)+' to '+string(bli)),
+                            ' and '+string(bli)+' replaced with links from '+..
+                                                 string(bl)+' to '+string(bli) + "\n"),
                     end
 		    xx(:,2)=jj;
 		    clkconnect=[clkconnect;xx]
@@ -679,7 +677,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
 		if  show_comment then  
                       mprintf('for blk port '+string(blk)+' '+string(port)+..
-                               ' ordclk is'),mprintf(lordclk(clkptr(blk)+port-1)),
+                               ' ordclk is :\n'), disp(lordclk(clkptr(blk)+port-1)),
                 end
 	      else
 		cord=[primary0(In),prt0(In)]
@@ -699,7 +697,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      lordclk(J)=[]
 	      if  show_comment then   
                   mprintf('for blk port '+string(blk)+' '+string(port)+..
-                                  ' ordclk is'), mprintf(lordclk(J)),
+                                  ' ordclk is'), mprintf(lordclk(J) + "\n"),
               end
 	    else
 	      cord=[]
@@ -765,9 +763,9 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
 	f=find(par1==parents(:,1))
 	if size(f,2)==n_out then
 	  if show_comment then
-	    mprintf('del_inutile:')
-	    mprintf('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
-                 ' sont supprim�s')
+	    mprintf('find_del_inutile:')
+	    mprintf('link between blocks '+string(par1)+' and '+string(blk)+..
+                 ' are deleted\n')
 	    pause
 	  end
 	  [clkconnect]=del_inutile(clkconnect,par1,n_out,blk,port)

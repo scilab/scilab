@@ -16,7 +16,8 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
+extern "C"
+{
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -26,11 +27,11 @@ extern "C" {
 namespace org_modules_xml
 {
 
-    XMLValidationRelaxNG::XMLValidationRelaxNG(const char * path, std::string * error) : XMLValidation()
+    XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error):XMLValidation()
     {
-        char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        xmlRelaxNGParserCtxt * pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
-        FREE(expandedPath);
+        char *expandedPath = expandPathVariable(const_cast < char *>(path));
+        xmlRelaxNGParserCtxt *pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
+          FREE(expandedPath);
         if (!pctxt)
         {
             if (errorBuffer)
@@ -38,6 +39,7 @@ namespace org_modules_xml
                 delete errorBuffer;
             }
             errorBuffer = new std::string(gettext("Cannot create a validation context"));
+
             *error = *errorBuffer;
         }
         else
@@ -68,7 +70,7 @@ namespace org_modules_xml
         scope->removeId(id);
         if (validationFile)
         {
-            xmlRelaxNGFree((xmlRelaxNG *)validationFile);
+            xmlRelaxNGFree((xmlRelaxNG *) validationFile);
             openValidationFiles.remove(this);
             if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
             {
@@ -79,6 +81,7 @@ namespace org_modules_xml
         if (errorBuffer)
         {
             delete errorBuffer;
+
             errorBuffer = 0;
         }
     }
@@ -86,7 +89,7 @@ namespace org_modules_xml
     bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error) const
     {
         bool ret;
-        xmlRelaxNGValidCtxt * vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *)validationFile);
+        xmlRelaxNGValidCtxt *vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *) validationFile);
 
         if (errorBuffer)
         {
@@ -101,7 +104,7 @@ namespace org_modules_xml
             return false;
         }
 
-        xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
+        xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc) XMLValidation::errorFunction, 0, 0);
 
         ret = BOOLtobool(xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument()));
 
@@ -127,10 +130,10 @@ namespace org_modules_xml
         }
         errorBuffer = new std::string();
 
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc)XMLValidation::errorFunction, 0);
-        xmlTextReaderRelaxNGSetSchema(reader, getValidationFile<xmlRelaxNG>());
+        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorFunction, 0);
+        xmlTextReaderRelaxNGSetSchema(reader, getValidationFile < xmlRelaxNG > ());
 
-        while ((last = xmlTextReaderRead(reader)) == 1);
+        while ((last = xmlTextReaderRead(reader)) == 1) ;
         valid = xmlTextReaderIsValid(reader);
 
         xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -147,6 +150,6 @@ namespace org_modules_xml
 
     const std::string XMLValidationRelaxNG::toString() const
     {
-        return std::string("XML Relax NG\nNo public informations");
+        return std::string("XML Relax NG\nNo public information");
     }
 }

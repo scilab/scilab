@@ -23,6 +23,7 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -30,6 +31,7 @@ import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
 
 /**
  * Codec for any Block.
@@ -121,6 +123,33 @@ public class BasicBlockCodec extends XcosObjectCodec {
 
         if (obj instanceof SuperBlock) {
             ((SuperBlock) obj).syncParameters();
+        }
+
+        /*
+         * Log some informations
+         */
+        final BasicBlock b = (BasicBlock) obj;
+
+        for (int i = 0; i < b.getChildCount(); i++) {
+            final mxICell o = b.getChildAt(i);
+
+            // switch instanceof(o)
+            if (o instanceof BasicPort) {
+                if (o.getParent() != b) {
+                    trace(enc, node, "Inconsistent parent");
+                }
+                continue;
+            }
+            if (o instanceof mxCell) {
+                // this is a comment
+                continue;
+            }
+
+            trace(enc, node, "Inconsistent child %s at %d", o, i);
+        }
+
+        if (b.getEdgeCount() > 0) {
+            trace(enc, node, "Has %d links", b.getEdgeCount());
         }
 
         return super.beforeEncode(enc, obj, node);

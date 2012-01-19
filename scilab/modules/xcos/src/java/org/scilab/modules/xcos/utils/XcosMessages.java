@@ -41,6 +41,7 @@ public final class XcosMessages {
     public static final String NEW_PALETTE = Messages.gettext("New palette")
             + DOTS;
     public static final String OPEN = Messages.gettext("Open") + DOTS;
+    public static final String OPEN_IN = Messages.gettext("Open file in Scilab current directory");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String EXPORT = Messages.gettext("Export") + DOTS;
@@ -384,8 +385,8 @@ public final class XcosMessages {
     /* Errors */
     public static final String ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK = Messages
             .gettext("Error: unable to compile this SuperBlock");
-    public static final String WRONG_PORT_NUMBER = Messages
-            .gettext("Wrong port number");
+    public static final String WRONG_PORT_NUMBER = Messages.gettext("Evaluation problem: wrong port number.");
+    public static final String EXPECTING_NUMBER = Messages.gettext("Expecting '%d'.");
     public static final String LINK_NOT_CONNECTED = Messages
             .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 

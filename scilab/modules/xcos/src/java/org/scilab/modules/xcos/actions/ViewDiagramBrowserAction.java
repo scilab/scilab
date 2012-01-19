@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -68,10 +69,18 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         try {
             String temp = FileUtils.createTempFile();
             new File(temp).deleteOnExit();
-            ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
+            graph.dumpToHdf5File(temp);
             try {
                 String cmd = ScilabInterpreterManagement.buildCall(
                         "import_from_hdf5", temp);

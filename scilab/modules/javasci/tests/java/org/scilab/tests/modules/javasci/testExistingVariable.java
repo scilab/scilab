@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -33,7 +34,7 @@ public class testExistingVariable {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
@@ -41,22 +42,22 @@ public class testExistingVariable {
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
         sci.put("a",aOriginal);
-        assert sci.isExistingVariable("a") == true;
+        assertTrue(sci.isExistingVariable("a"));
     }
 
     @Test(sequential = true) 
     public void notExistVariableTest() throws NullPointerException, JavasciException {
-        assert sci.isExistingVariable("a") == false;
-        assert sci.isExistingVariable("b") == false;
+        assertEquals(sci.isExistingVariable("a"), false);
+        assertEquals(sci.isExistingVariable("b"), false);
     }
 
 
     @Test(sequential = true) 
     public void existVariableAfterExecTest() throws NullPointerException, JavasciException {
-        assert sci.exec("a=rand(20,20);") == true;
-        assert sci.isExistingVariable("a") == true;
-        assert sci.exec("b='test variable';") == true;
-        assert sci.isExistingVariable("b") == true;
+        assertTrue(sci.exec("a=rand(20,20);"));
+        assertTrue(sci.isExistingVariable("a"));
+        assertTrue(sci.exec("b='test variable';"));
+        assertTrue(sci.isExistingVariable("b"));
     }
 
 

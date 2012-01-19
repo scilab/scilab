@@ -12,6 +12,8 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -57,12 +59,12 @@ public class testBug9149 {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true, expectedExceptions = ScilabErrorException.class)
     public void nonRegBug9149Working() throws NullPointerException, ScilabErrorException {
-        assert sci.isGraphicOpened() == false;
+        assertEquals(sci.isGraphicOpened(), false);
         sci.execException("plot3d();");
     }
 

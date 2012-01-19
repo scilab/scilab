@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.types.ScilabDouble;
@@ -33,47 +34,47 @@ public class testErrorManagement {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
 
     @Test(sequential = true)
     public void getLastErrorCodeTest() throws NullPointerException, JavasciException {
-        assert sci.getLastErrorCode() == 0; // No error
+        assertEquals(sci.getLastErrorCode(), 0); // No error
         sci.close();
 
-        assert sci.open("a=1+") == false;
-        assert sci.getLastErrorCode() == 2;
+        assertEquals(sci.open("a=1+"), false);
+        assertEquals(sci.getLastErrorCode(), 2);
         sci.exec("errclear();");
         sci.exec("a+b");
-        assert sci.getLastErrorCode() == 4;
+        assertEquals(sci.getLastErrorCode(), 4);
         sci.exec("errclear();");
     }
 
     @Test(sequential = true)
     public void getLastErrorMessageTest() throws NullPointerException, JavasciException {
         sci.exec("errclear();"); // No error by default
-        assert sci.getLastErrorMessage().equals("");
-        assert sci.getLastErrorMessage().length() == 0;
+        assertTrue(sci.getLastErrorMessage().equals(""));
+        assertEquals(sci.getLastErrorMessage().length(), 0);
 
         sci.exec("errclear();");
         sci.close();
 
-        assert sci.open("a=1+") == false;
-        assert sci.getLastErrorMessage().length() > 0;
+        assertEquals(sci.open("a=1+"), false);
+        assertTrue(sci.getLastErrorMessage().length() > 0);
         sci.exec("errclear();");
         sci.exec("a+b"); //undefined a & b
-        assert sci.getLastErrorMessage().length() > 0;
+        assertTrue(sci.getLastErrorMessage().length() > 0);
         sci.exec("errclear();");
         sci.exec("a=rand(10,10);");//no error
-        assert sci.getLastErrorMessage().length() == 0;
+        assertEquals(sci.getLastErrorMessage().length(), 0);
     }
 
     @Test(sequential = true)
     public void getLastErrorMessageWithExceptionNonErrorTest() throws NullPointerException, JavasciException {
         sci.execException("errclear();"); // No error by default
-        assert sci.getLastErrorMessage().equals("");
-        assert sci.getLastErrorMessage().length() == 0;
+        assertTrue(sci.getLastErrorMessage().equals(""));
+        assertEquals(sci.getLastErrorMessage().length(), 0);
 
         sci.execException("errclear();");
     }
@@ -81,10 +82,10 @@ public class testErrorManagement {
     @Test(sequential = true)
     public void getLastErrorMessageWithExceptionNonError2Test() throws NullPointerException, JavasciException {
         sci.execException("errclear();"); // No error by default
-        assert sci.getLastErrorMessage().equals("");
-        assert sci.getLastErrorMessage().length() == 0;
+        assertTrue(sci.getLastErrorMessage().equals(""));
+        assertEquals(sci.getLastErrorMessage().length(), 0);
         sci.execException("a=rand(10,10);");//no error
-        assert sci.getLastErrorMessage().length() == 0;
+        assertEquals(sci.getLastErrorMessage().length(), 0);
     }
     
     
