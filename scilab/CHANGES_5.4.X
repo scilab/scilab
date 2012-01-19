@@ -236,6 +236,8 @@ Bug fixes
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
+* Bug #10506 fixed - ssprint did not check input arguments.
+
 * Bug #10518 fixed - odeoptions help page was inaccurate.
 
 * Bug #10519 fixed - spec returned a wrong error message when a input argument
