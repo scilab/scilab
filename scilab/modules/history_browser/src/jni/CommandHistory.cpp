@@ -109,6 +109,7 @@ voidloadFromFileID=NULL;
 voidinitializeID=NULL;
 voidresetID=NULL;
 voiddeleteLinejintintID=NULL;
+voidlaunchHistoryBrowserID=NULL;
 
 
 }
@@ -136,6 +137,7 @@ voidloadFromFileID=NULL;
 voidinitializeID=NULL;
 voidresetID=NULL;
 voiddeleteLinejintintID=NULL;
+voidlaunchHistoryBrowserID=NULL;
 
 
 }
@@ -247,6 +249,24 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "deleteLine");
 }
 
                          curEnv->CallStaticVoidMethod(cls, voiddeleteLinejintintID ,lineNumber);
+                        curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CommandHistory::launchHistoryBrowser (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidlaunchHistoryBrowserID = curEnv->GetStaticMethodID(cls, "launchHistoryBrowser", "()V" ) ;
+if (voidlaunchHistoryBrowserID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "launchHistoryBrowser");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidlaunchHistoryBrowserID );
                         curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

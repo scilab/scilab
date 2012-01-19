@@ -24,6 +24,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
@@ -79,14 +80,21 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object selectedObj = getGraph(null).getSelectionCell();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        Object selectedObj = graph.getSelectionCell();
         if (!(selectedObj instanceof SuperBlock)) {
-            ((XcosDiagram) getGraph(null))
-                    .error(XcosMessages.ERROR_GENERATING_C_CODE);
+            graph.error(XcosMessages.ERROR_GENERATING_C_CODE);
             return;
         }
 
-        ((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+        graph.info(XcosMessages.GENERATING_C_CODE);
 
         final SuperBlock block = (SuperBlock) selectedObj;
         try {
@@ -111,31 +119,29 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
                 public void actionPerformed(ActionEvent arg0) {
 
                     if (!exists(tempInput)) {
-                        ((XcosDiagram) getGraph(null))
-                                .info(XcosMessages.EMPTY_INFO);
+                        graph.info(XcosMessages.EMPTY_INFO);
                         return;
                     }
 
-                    XcosDiagram graph = block.getParentDiagram();
-                    if (graph == null) {
+                    XcosDiagram parent = block.getParentDiagram();
+                    if (parent == null) {
                         block.setParentDiagram(Xcos.findParent(block));
-                        graph = block.getParentDiagram();
+                        parent = block.getParentDiagram();
                         LogFactory.getLog(getClass()).error(
                                 "Parent diagram was null");
                     }
 
-                    graph.getModel().beginUpdate();
+                    parent.getModel().beginUpdate();
                     doAction(block, tempInput);
-                    graph.getModel().endUpdate();
+                    parent.getModel().endUpdate();
 
-                    graph.getView().clear(block, true, false);
-                    graph.getView().validate();
+                    parent.getView().clear(block, true, false);
+                    parent.getView().validate();
 
                     delete(tempOutput);
                     delete(tempInput);
 
-                    ((XcosDiagram) getGraph(null))
-                            .info(XcosMessages.EMPTY_INFO);
+                    graph.info(XcosMessages.EMPTY_INFO);
                 }
             };
 
@@ -146,10 +152,10 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
         } catch (IOException ex) {
             LogFactory.getLog(CodeGenerationAction.class).error(ex);
-            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+            graph.info(XcosMessages.EMPTY_INFO);
         } catch (InterpreterException ex) {
             LogFactory.getLog(CodeGenerationAction.class).error(ex);
-            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+            graph.info(XcosMessages.EMPTY_INFO);
         }
     }
 

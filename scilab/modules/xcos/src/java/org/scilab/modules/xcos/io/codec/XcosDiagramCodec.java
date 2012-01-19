@@ -282,11 +282,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         final Package p = Package.getPackage("org.scilab.modules.xcos");
 
-        node.appendChild(enc.getDocument().createComment(
-                new StringBuilder().append(Xcos.TRADENAME).append(SEP)
-                        .append(Xcos.VERSION).append(SEP)
-                        .append(p.getSpecificationVersion()).append(SEP)
-                        .append(p.getImplementationVersion()).toString()));
+        trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion())
+                .append(SEP).append(p.getImplementationVersion()).toString());
 
         return super.beforeEncode(enc, obj, node);
     }

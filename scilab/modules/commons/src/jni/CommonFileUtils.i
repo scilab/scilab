@@ -19,7 +19,10 @@
 %module CommonFileUtils
 %{
 #include "../../includes/fileutils.h"
+#include "MALLOC.h"
 %}
+
+%include "../../../jvm/src/jni/scilab_typemaps.i"
 
 /* JavaDoc for CommonFileUtilsJNI class */
 %pragma(java) jniclassclassmodifiers=%{
@@ -91,3 +94,13 @@ public class";
    */
 public";
 int isEmptyDirectory(char * dirName);
+
+/* JavaDoc */
+%javamethodmodifiers getCWD() "
+ /**
+   * Get the current working directory
+   * @return the Scilab CWD
+   */
+public";
+char * getCWD();
+

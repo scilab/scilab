@@ -81,7 +81,12 @@ public class ShowParentAction extends DefaultAction {
                 LogFactory.getLog(getClass()).error("Parent diagram was null");
             }
 
-            XcosTab.restore(graph);
+            final XcosTab tab = XcosTab.get(graph);
+            if (tab == null) {
+                XcosTab.restore(graph);
+            } else {
+                tab.setCurrent();
+            }
         }
     }
 }

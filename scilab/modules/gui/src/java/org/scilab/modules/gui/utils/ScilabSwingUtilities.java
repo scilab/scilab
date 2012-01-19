@@ -247,20 +247,20 @@ public final class ScilabSwingUtilities {
 
         final String filename = findIconHelper(icon, size, "Tango");
         if (filename != null) {
-            if (LOG.isLoggable(Level.INFO)) {
-                LOG.info(icon + '[' + size + ']' + " i " + filename);
+            if (LOG.isLoggable(Level.FINER)) {
+                LOG.finer(icon + '[' + size + ']' + " i " + filename);
             }
             return filename;
         }
 
         final String fallback = lookupFallbackIcon(icon);
         if (fallback == null) {
-            LOG.severe("Unable to found icon: " + icon + '[' + size + ']');
+            LOG.warning("Unable to found icon: " + icon + '[' + size + ']');
             return System.getenv("SCI") + "/modules/gui/images/icons/16x16/status/error.png";
         }
 
-        if (LOG.isLoggable(Level.INFO)) {
-            LOG.info(icon + '[' + size + ']' + " f " + fallback);
+        if (LOG.isLoggable(Level.FINER)) {
+            LOG.finer(icon + '[' + size + ']' + " f " + fallback);
         }
         return fallback;
     }

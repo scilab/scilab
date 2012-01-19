@@ -13,11 +13,15 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -35,9 +39,9 @@ public final class BlockDocumentationAction extends
     /** Icon name of the action */
     public static final String SMALL_ICON = "help-browser";
     /** Mnemonic key of the action */
-    public static final int MNEMONIC_KEY = 0;
+    public static final int MNEMONIC_KEY = KeyEvent.VK_H;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = 0;
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
@@ -80,12 +84,19 @@ public final class BlockDocumentationAction extends
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
-        if (selectedBlock != null) {
-            ScilabInterpreterManagement.requestScilabExec("help "
-                    + selectedBlock.getInterfaceFunctionName());
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        Object selected = graph.getSelectionCell();
+        if (selected instanceof BasicBlock) {
+            CallScilabBridge.openHelp(((BasicBlock) selected).getInterfaceFunctionName());
         } else {
-            XcosDialogs.noBlockSelected((XcosDiagram) getGraph(e));
+            XcosDialogs.noBlockSelected(graph);
         }
     }
 

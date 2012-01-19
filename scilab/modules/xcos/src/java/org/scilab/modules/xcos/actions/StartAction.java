@@ -24,6 +24,7 @@ import java.io.IOException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
@@ -82,14 +83,20 @@ public class StartAction extends OneBlockDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        final XcosDiagram diagram = ((XcosDiagram) getGraph(e))
-                .getRootDiagram();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         String cmd;
 
         updateUI(true);
 
         try {
-            cmd = createSimulationCommand(diagram);
+            cmd = createSimulationCommand(graph);
         } catch (IOException ex) {
             LogFactory.getLog(StartAction.class).error(ex);
             updateUI(false);
@@ -100,7 +107,7 @@ public class StartAction extends OneBlockDependantAction {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateUI(false);
-                diagram.getEngine().setCompilationNeeded(false);
+                graph.getEngine().setCompilationNeeded(false);
             }
         };
 

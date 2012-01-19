@@ -64,6 +64,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -598,6 +599,8 @@ public class XcosDiagram extends ScilabGraph {
                 BlockPositioning.updateBlockView(updatedBlock);
 
                 diagram.getView().clear(updatedBlock, true, true);
+
+                diagram.getAsComponent().validateGraph();
                 diagram.getView().validate();
             } finally {
                 diagram.getModel().endUpdate();
@@ -2119,7 +2122,6 @@ public class XcosDiagram extends ScilabGraph {
 
             info(XcosMessages.EMPTY_INFO);
         }
-        getUndoManager().clear();
 
         return this;
     }
@@ -2146,7 +2148,10 @@ public class XcosDiagram extends ScilabGraph {
             final Timer t = new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    publish(e);
+                	counter = (counter + 1) % (XcosMessages.DOTS.length() + 1);
+                    String str = XcosMessages.LOADING_DIAGRAM + XcosMessages.DOTS.substring(0, counter);
+
+                    XcosDiagram.this.info(str);
                 }
             });
             
@@ -2161,19 +2166,12 @@ public class XcosDiagram extends ScilabGraph {
                 filetype.load(file, XcosDiagram.this);
                 return XcosDiagram.this;
             }
-
-            @Override
-            protected void process(List<ActionEvent> chunks) {
-                counter = (counter + 1) % (XcosMessages.DOTS.length() + 1);
-                String str = XcosMessages.LOADING_DIAGRAM + XcosMessages.DOTS.substring(0, counter);
-
-                XcosDiagram.this.info(str);
-            }
             
             @Override
             protected void done() {
                 t.stop();
                 XcosDiagram.this.setReadOnly(false);
+                XcosDiagram.this.getUndoManager().clear();
 
                 /*
                  * Load has finished

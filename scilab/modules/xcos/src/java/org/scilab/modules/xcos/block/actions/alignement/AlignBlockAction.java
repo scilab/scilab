@@ -15,8 +15,10 @@ package org.scilab.modules.xcos.block.actions.alignement;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.MultiSelectionDependantAction;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Align selected blocks on axes (left-right-centered-top-bottom-middle)
@@ -42,6 +44,14 @@ public abstract class AlignBlockAction extends MultiSelectionDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        getGraph(e).alignCells(align);
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        graph.alignCells(align);
     }
 }

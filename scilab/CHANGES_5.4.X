@@ -2,6 +2,12 @@
             =================================================================
 
 
+Scilab Desktop
+==============
+
+* Add a button in dockbar to get the help about the component.
+
+
 XML
 ===
 
@@ -16,6 +22,9 @@ Help
 * Management of Docbook tags <note>, <caution>, <warning>, <important> and
  <tip>. See bug #10505.
 
+* Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
+  <caution>, <warning>, <important> and <tip> tags in examples.
+
 
 Xcos
 ====
@@ -28,7 +37,11 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* Bug #6201 fixed - Block help menu had no shortcut.
+
 * Bug #6733 fixed - Each call to xcos created an empty diagram.
+
+* Bug #7863 fixed - Default path for code generation was SCI.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
@@ -51,11 +64,18 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
+* Bug #10423 fixed - The function browsehistory() to open history browser was missing.
+
 * Bug #10461 fixed - Canceling a Quit operation did not work.
 
 * Bug #10486 fixed - importXcosDiagram opened a tab.
 
+* Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
+
 * Bug #10499 fixed - lincos example in help file returned warning and error.
+
+* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
+                     block.
 
 
 Unitary testing
@@ -109,6 +129,14 @@ Compatibility Functions
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
 
 
+Compilation
+===========
+
+* Enforce a minimal version of JLaTeXMath (0.9.7).
+
+* Enforce a minimal version of Flexdock (1.1.1).
+
+
 Bug fixes
 =========
 
@@ -118,6 +146,9 @@ Bug fixes
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8682 fixed - funcprot did not return the previous value when called with
+                    an argument.
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
@@ -136,6 +167,9 @@ Bug fixes
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
+* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
+                     parent axes.
+
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
@@ -151,6 +185,8 @@ Bug fixes
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
+
+* Bug #10396 fixed - Display of a structure with large matrix took a long time.
 
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
@@ -199,6 +235,30 @@ Bug fixes
                      error message.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
+
+* Bug #10506 fixed - ssprint did not check input arguments.
+
+* Bug #10518 fixed - odeoptions help page was inaccurate.
+
+* Bug #10519 fixed - spec returned a wrong error message when a input argument
+                     was not square.
+
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
+* Bug #10521 fixed - frexp returned an wrong error message.
+
+* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
+                     not clearly stated in the documentation.
+
+* Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
+* Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
+                     Scilab types.
+
+* Bug #10536 fixed - A string was in French in the English help page of cumsum.
+
+* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab

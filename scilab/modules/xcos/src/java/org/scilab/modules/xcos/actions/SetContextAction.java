@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.actions.dialog.SetContextDialog;
@@ -64,9 +65,16 @@ public class SetContextAction extends SimulationNotRunningAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        final XcosDiagram diag = (XcosDiagram) getGraph(e);
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         final SetContextDialog dialog = new SetContextDialog(
-                diag.getAsComponent(), diag.getScicosParameters());
+                comp, graph.getScicosParameters());
 
         dialog.pack();
         dialog.setVisible(true);

@@ -69,6 +69,7 @@ function tip_handle=datatipCreate(curve,index,ax)
 
   id=fig.immediate_drawing;
   fig.immediate_drawing="off"
+  curax=gca();sca(ax)
   //create the curve marker
   xpoly(0,0);point_handle=gce();
   point_handle.user_data=list(curve,l)
@@ -86,6 +87,6 @@ function tip_handle=datatipCreate(curve,index,ax)
 
   datatipSetTipPosition(ud,tip_handle,pt,l)
   fig.immediate_drawing=id
-
+  sca(curax)
 
 endfunction

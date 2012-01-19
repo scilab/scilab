@@ -34,6 +34,8 @@ import org.w3c.dom.Node;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
+import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxConstants;
 
 /**
@@ -110,6 +112,42 @@ public class BasicPortCodec extends XcosObjectCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         ((Element) node).setAttribute(DATA_TYPE,
                 String.valueOf(((BasicPort) obj).getDataType()));
+
+        /*
+         * Log some informations
+         */
+        final BasicPort b = (BasicPort) obj;
+
+        if (b.getParent() == null) {
+            trace(enc, node, "Invalid parent");
+        }
+
+        for (int i = 0; i < b.getChildCount(); i++) {
+            final mxICell o = b.getChildAt(i);
+
+            // switch instanceof(o)
+            if (o instanceof mxCell) {
+                // this is a comment
+                continue;
+            }
+
+            trace(enc, node, "Inconsistent child %s at %d", o, i);
+        }
+
+        switch (b.getEdgeCount()) {
+        case 0:
+            break;
+        case 1:
+            final mxCell link = (mxCell) b.getEdgeAt(0);
+            if (link.getSource() != b && link.getTarget() != b) {
+                trace(enc, node, "Inconsistent source or target at %s", link);
+            }
+            break;
+        default:
+            trace(enc, node, "Too much links");
+            break;
+        }
+
         return super.beforeEncode(enc, obj, node);
     }
 

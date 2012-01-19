@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -67,6 +68,12 @@ public final class ViewViewportAction extends DefaultAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
 
         final XcosTab tab = XcosTab.get(graph);
         final ViewPortTab viewport = ViewPortTab.get(graph);

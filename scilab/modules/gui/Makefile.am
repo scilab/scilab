@@ -408,7 +408,9 @@ images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png
+images/icons/undock_default.png \
+images/icons/dock_help_active.png \
+images/icons/dock_help_default.png
 
 if GUI
 USEANT=1
