@@ -11,11 +11,11 @@
 
 package org.scilab.modules.renderer.JoGLView.label;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * AxisLabelPositioner class.

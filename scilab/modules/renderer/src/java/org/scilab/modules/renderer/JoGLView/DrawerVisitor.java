@@ -20,6 +20,7 @@ import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -125,7 +126,12 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(Axes axes) {
         if (axes.getVisible()) {
-            axesDrawer.draw(axes);
+            try {
+                axesDrawer.draw(axes);
+            } catch (DegenerateMatrixException e) {
+                // TODO : warm the user that this axes can't be visible due to
+                //        bad data bounds or axes position (margins) values.
+            }
         }
     }
 

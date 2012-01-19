@@ -21,6 +21,7 @@ import org.scilab.forge.scirenderer.ruler.RulerModel;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
+import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
@@ -150,11 +151,17 @@ public class AxesRulerDrawer {
                 FloatBuffer vertexData = getXGridData(values, rulerModel);
                 vertexBuffer.setData(vertexData, 4);
 
-                Transformation mirror = TransformationFactory.getScaleTransformation(
-                        1,
-                        matrix[6] < 0 ? gridPosition : -gridPosition,
-                                matrix[10] < 0 ? gridPosition : -gridPosition
-                );
+                Transformation mirror;
+                try {
+                    mirror = TransformationFactory.getScaleTransformation(
+                            1,
+                            matrix[6] < 0 ? gridPosition : -gridPosition,
+                            matrix[10] < 0 ? gridPosition : -gridPosition
+                    );
+                } catch (DegenerateMatrixException ignored) {
+                    // Should never happens as long as gridPosition the value 1 or -1
+                    mirror = TransformationFactory.getIdentity();
+                }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
@@ -225,11 +232,17 @@ public class AxesRulerDrawer {
                 FloatBuffer vertexData = getYGridData(values, rulerModel);
                 vertexBuffer.setData(vertexData, 4);
 
-                Transformation mirror = TransformationFactory.getScaleTransformation(
-                        matrix[2] < 0 ? gridPosition : -gridPosition,
-                                1,
-                                matrix[10] < 0 ? gridPosition : -gridPosition
-                );
+                Transformation mirror;
+                try {
+                    mirror = TransformationFactory.getScaleTransformation(
+                            matrix[2] < 0 ? gridPosition : -gridPosition,
+                            1,
+                            matrix[10] < 0 ? gridPosition : -gridPosition
+                    );
+                } catch (DegenerateMatrixException ignored) {
+                    // Should never happens as long as gridPosition the value 1 or -1
+                    mirror = TransformationFactory.getIdentity();
+                }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
@@ -285,15 +298,21 @@ public class AxesRulerDrawer {
                 zAxisLabelPositioner.setDistanceRatio(distanceRatio);
                 zAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(zticksdir[0], zticksdir[1], 0.0));
 
-                if (axes.getZAxisGridColor() != -1 || axes.getZAxisVisible() == false) {
+                if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
                     FloatBuffer vertexData = getZGridData(values, rulerModel);
                     vertexBuffer.setData(vertexData, 4);
 
-                    Transformation mirror = TransformationFactory.getScaleTransformation(
-                            matrix[2] < 0 ? gridPosition : -gridPosition,
-                                    matrix[6] < 0 ? gridPosition : -gridPosition,
-                                            1
-                    );
+                    Transformation mirror;
+                    try {
+                        mirror = TransformationFactory.getScaleTransformation(
+                                matrix[2] < 0 ? gridPosition : -gridPosition,
+                                matrix[6] < 0 ? gridPosition : -gridPosition,
+                                1
+                        );
+                    } catch (DegenerateMatrixException ignored) {
+                        // Should never happens as long as gridPosition the value 1 or -1
+                        mirror = TransformationFactory.getIdentity();
+                    }
 
                     gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
                     drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);

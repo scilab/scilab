@@ -17,6 +17,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry.FaceCullingMode;
+import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -113,8 +114,9 @@ public class AxesDrawer {
     /**
      * Draw the given {@see Axes}.
      * @param axes {@see Axes} to draw.
+     * @throws DegenerateMatrixException if the axes is not representable.
      */
-    public void draw(Axes axes) {
+    public void draw(Axes axes) throws DegenerateMatrixException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         Canvas canvas = visitor.getCanvas();
         ColorMap colorMap = visitor.getColorMap();
@@ -293,11 +295,16 @@ public class AxesDrawer {
      */
     private Transformation computeCubeMirroring(Transformation transformation) {
         double[] matrix = transformation.getMatrix();
-        return TransformationFactory.getScaleTransformation(
-                matrix[2] < 0 ? 1 : -1,
-                matrix[6] < 0 ? 1 : -1,
-                matrix[10] < 0 ? 1 : -1
-        );
+        try {
+            return TransformationFactory.getScaleTransformation(
+                    matrix[2] < 0 ? 1 : -1,
+                    matrix[6] < 0 ? 1 : -1,
+                    matrix[10] < 0 ? 1 : -1
+            );
+        } catch (DegenerateMatrixException e) {
+            // Should never happen.
+            return TransformationFactory.getIdentity();
+        }
     }
 
 
@@ -324,8 +331,9 @@ public class AxesDrawer {
      * Compute the projection for the given axes.
      * @param axes the given axes.
      * @return the projection matrix.
+     * @throws DegenerateMatrixException if axes represent a nul area.
      */
-    private Transformation computeZoneProjection(Axes axes) {
+    private Transformation computeZoneProjection(Axes axes) throws DegenerateMatrixException {
         Rectangle2D zone = computeZone(axes);
         Transformation zoneTranslation = TransformationFactory.getTranslateTransformation(zone.getMaxX(), zone.getMaxY(), 0);
 
@@ -356,8 +364,9 @@ public class AxesDrawer {
      *
      * @param axes the given {@see Axes}
      * @return data transformation.
+     * @throws DegenerateMatrixException if data bounds are not corrects.
      */
-    private Transformation computeDataTransformation(Axes axes) {
+    private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
         Double[] bounds = getCurrentBounds(axes);
 
         // Reverse data if needed.
@@ -395,8 +404,9 @@ public class AxesDrawer {
      * @param axes the given {@see Axes}.
      * @param canvas the current {@see Canvas}
      * @return box transformation for the given axes.
+     * @throws DegenerateMatrixException if data bounds are incorrect or canvas with or length are zero.
      */
-    private Transformation computeBoxTransformation(Axes axes, Canvas canvas) {
+    private Transformation computeBoxTransformation(Axes axes, Canvas canvas) throws DegenerateMatrixException {
         Double[] bounds = getCurrentBounds(axes);
 
         double tmpX;
