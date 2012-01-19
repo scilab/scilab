@@ -145,17 +145,8 @@ call ant test
     <None Include="org\scilab\tests\modules\hdf5\testScilabString.java" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
-      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">
-      <Project>{fba3bc3f-8a2c-4d47-a50d-eb808be42f43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\java\hdf5-JAVA.vcxproj">
-      <Project>{9b6500b0-66f6-44f0-910d-47a1435b4e02}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\Visual-Studio-settings\ant-all\ant-all.vcxproj">
+      <Project>{a9a2020d-5541-44f2-b080-df3c9426c409}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
