@@ -1799,9 +1799,35 @@ public class Axes extends GraphicObject {
                         bounds[i + 1]++;
                     }
                 }
-                // TODO : tight limit.
+                if (!getTightLimits()) {
+                    for (int i = 0 ; i < 6 ; i++) {
+                        bounds[i] = round(bounds[i]);
+                    }
+                }
             }
             return bounds;
+        }
+
+        /**
+         * If value is in scientific notation s*a*10^n with :
+         *   s = +1 or -1
+         *   a is in [1, 10[
+         *   n an integer
+         * Round return s*ceil(a)*10^n
+         * @param value the given value.
+         * @return the 'rounded' value.
+         */
+        private double round(Double value) {
+            if ((value == 0) || value.isNaN() || value.isInfinite()) {
+                return value;
+            } else {
+                double s = Math.signum(value);
+                double log10 = Math.log10(s*value);
+                double n = Math.floor(log10);
+                double tenPowN = Math.pow(10, n);
+                double a = s * value / tenPowN;
+                return s * Math.ceil(a) * tenPowN;
+            }
         }
 
         /**
