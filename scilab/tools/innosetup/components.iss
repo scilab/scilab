@@ -116,12 +116,12 @@ Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Ty
 Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: full;
 Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: full;
 ;
-Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
-Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
+Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: full;
+Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: full;
 ;
-Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
-Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
-Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
+Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: full;
+Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: full;
+Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: full;
 ;
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
 ;
