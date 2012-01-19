@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -33,7 +34,7 @@ public class testReadWriteInteger {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true)
@@ -42,11 +43,11 @@ public class testReadWriteInteger {
         byte [][]a={{21, 22, 42, 39},{23, 24, 44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
         sci.put("b",aOriginal);
-        //        assert sci.exec("somme = sum(a);") == true;
+        //        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
         // Test values
         byte [][]z={{-1, -128, 0}};
@@ -55,7 +56,7 @@ public class testReadWriteInteger {
         sci.exec("sumElements=sum(z);");
 
         ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
-        assert zFromScilab.equals(zMatrix);
+        assertTrue(zFromScilab.equals(zMatrix));
     }
 
     @Test(sequential = true)
@@ -63,7 +64,7 @@ public class testReadWriteInteger {
         byte [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-        //        assert sci.exec("somme = sum(a);") == true;
+        //        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
@@ -71,9 +72,9 @@ public class testReadWriteInteger {
         ScilabInteger zMatrix = new ScilabInteger(z, false);
         sci.put("z",zMatrix);
         ScilabInteger zFromScilab = (ScilabInteger)sci.get("z");
-        assert zFromScilab.equals(zMatrix);
+        assertTrue(zFromScilab.equals(zMatrix));
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
 
@@ -85,7 +86,7 @@ public class testReadWriteInteger {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
 
@@ -94,11 +95,11 @@ public class testReadWriteInteger {
         short [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-        //        assert sci.exec("somme = sum(a);") == true;
+        //        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
 
@@ -109,11 +110,11 @@ public class testReadWriteInteger {
         ScilabInteger aOriginal = new ScilabInteger(a, true); /* unsigned */
 
         sci.put("b",aOriginal);
-        //        assert sci.exec("somme = sum(a);") == true;
+        //        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
 
@@ -122,11 +123,11 @@ public class testReadWriteInteger {
         int [][]a={{-21, 22, -42, 39},{23, -24, -44, 40}};
         ScilabInteger aOriginal = new ScilabInteger(a, false); /* signed */
         sci.put("b",aOriginal);
-        //        assert sci.exec("somme = sum(a);") == true;
+        //        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
 
@@ -139,7 +140,7 @@ public class testReadWriteInteger {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
     }
 
     @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
@@ -151,7 +152,7 @@ public class testReadWriteInteger {
 
         ScilabInteger aFromScilab = (ScilabInteger)sci.get("b");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
 
     }
     

@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -37,13 +38,13 @@ public class testBug4211 {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
     public void nonRegBug4211() throws NullPointerException, JavasciException {
-        assert sci.exec("disp(plop);") == false;
-        assert sci.getLastErrorCode() == 4;
+        assertEquals(sci.exec("disp(plop);"), false);
+        assertEquals(sci.getLastErrorCode(), 4);
         sci.close();
 
     }

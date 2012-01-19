@@ -13,8 +13,6 @@
 package org.scilab.modules.xcos.block;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -33,12 +31,6 @@ import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
-import org.scilab.modules.xcos.block.io.EventInBlock;
-import org.scilab.modules.xcos.block.io.EventOutBlock;
-import org.scilab.modules.xcos.block.io.ExplicitInBlock;
-import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ImplicitInBlock;
-import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -233,9 +225,9 @@ public final class SuperBlock extends BasicBlock {
                 XcosTab.get(getChild()).setCurrent();
             }
 
-            updateAllBlocksColor();
             getChild().setModifiedNonRecursively(false);
 
+            getChild().getAsComponent().validateGraph();
             getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
             getChild().getView().invalidate();
 
@@ -329,7 +321,6 @@ public final class SuperBlock extends BasicBlock {
             }
 
             child.installSuperBlockListeners();
-            updateAllBlocksColor();
             // only for loading and generate sub block UID
             if (generatedUID) {
                 child.generateUID();
@@ -359,157 +350,6 @@ public final class SuperBlock extends BasicBlock {
      */
     public void setChild(SuperBlockDiagram child) {
         this.child = child;
-    }
-
-    /**
-     * @param <T>
-     *            The type to work on
-     * @param klass
-     *            the class instance to work on
-     * @return list of typed block
-     */
-    @SuppressWarnings("unchecked")
-    protected <T extends BasicBlock> List<T> getAllTypedBlock(Class<T> klass) {
-        List<T> list = new ArrayList<T>();
-        if (child == null) {
-            return list;
-        }
-
-        int blockCount = child.getModel().getChildCount(
-                child.getDefaultParent());
-
-        for (int i = 0; i < blockCount; i++) {
-            Object cell = child.getModel().getChildAt(child.getDefaultParent(),
-                    i);
-            if (klass.isInstance(cell)) {
-                // According to the test we are sure that the cell is an
-                // instance of T. Thus we can safely cast it.
-                list.add((T) cell);
-            }
-        }
-        return list;
-    }
-
-    /**
-     * @param <T>
-     *            The type to work on
-     * @param klasses
-     *            the class instance list to work on
-     * @return list of typed block
-     */
-    protected <T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
-        final List<T> list = new ArrayList<T>();
-        for (Class<T> klass : klasses) {
-            list.addAll(getAllTypedBlock(klass));
-        }
-        return list;
-    }
-
-    /**
-     * @param blocks
-     *            in/output blocks
-     * @return greater block value
-     */
-    protected int getBlocksConsecutiveUniqueValueCount(
-            List<? extends BasicBlock> blocks) {
-        if (blocks == null) {
-            return 0;
-        }
-
-        int count = blocks.size();
-        int[] array = new int[blocks.size()];
-
-        // initialize
-        for (int i = 0; i < array.length; i++) {
-            array[i] = 0;
-        }
-
-        // populate
-        for (int i = 0; i < array.length; i++) {
-            final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks
-                    .get(i)).getIntegerParameters();
-
-            if (data.getWidth() < 1 || data.getHeight() < 1) {
-                continue;
-            }
-            final int index = (int) data.getRealPart()[0][0];
-
-            if (index <= array.length) {
-                array[index - 1] = 1;
-            }
-        }
-
-        // parse
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == 0) {
-                count = i;
-                break;
-            }
-        }
-
-        return count;
-    }
-
-    /**
-     * force blocks update
-     */
-    @SuppressWarnings("unchecked")
-    public void updateAllBlocksColor() {
-        updateBlocksColor(getAllTypedBlock(new Class[] { ExplicitInBlock.class,
-                ImplicitInBlock.class }));
-        updateBlocksColor(getAllTypedBlock(new Class[] {
-                ExplicitOutBlock.class, ImplicitOutBlock.class }));
-
-        updateBlocksColor(getAllTypedBlock(EventInBlock.class));
-        updateBlocksColor(getAllTypedBlock(EventOutBlock.class));
-
-        if (child != null) {
-            child.getAsComponent().validate();
-            child.getView().validate();
-        }
-    }
-
-    /**
-     * @param blocks
-     *            block list
-     */
-    private void updateBlocksColor(List<? extends BasicBlock> blocks) {
-        if (blocks == null || blocks.size() == 0 || child == null) {
-            return;
-        }
-
-        try {
-            child.getModel().beginUpdate();
-
-            final int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
-            boolean[] isDone = new boolean[countUnique];
-
-            // Initialize
-            Arrays.fill(isDone, false);
-
-            for (int i = 0; i < blocks.size(); i++) {
-                final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks
-                        .get(i)).getIntegerParameters();
-
-                if (data.getWidth() < 1 || data.getHeight() < 1) {
-                    continue;
-                }
-                final int index = (int) data.getRealPart()[0][0];
-
-                if (index > countUnique || isDone[index - 1]) {
-                    child.getAsComponent().setCellWarning(blocks.get(i),
-                            XcosMessages.WRONG_PORT_NUMBER);
-                    child.getView().invalidate(blocks.get(i));
-                } else {
-                    isDone[index - 1] = true;
-                    child.getAsComponent().setCellWarning(blocks.get(i), null);
-                    child.getView().invalidate(blocks.get(i));
-                }
-            }
-
-        } finally {
-            child.getModel().endUpdate();
-        }
     }
 
     /**

@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 
 import javax.swing.JColorChooser;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -67,7 +68,14 @@ public final class BorderColorAction extends VertexSelectionDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        XcosDiagram graph = (XcosDiagram) getGraph(null);
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         Object[] selectedCells = graph.getSelectionCells();
 
         // if no cells are selected : Do nothing

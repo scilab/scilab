@@ -25,12 +25,12 @@
 #include <libintl.h>
 
 #if defined(__linux__)
-#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
+#define __USE_FORTIFY_LEVEL 0   /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
 #endif
-#include <setjmp.h> /* this declaration should remain close the __USE_FORTIFY_LEVEL define */
+#include <setjmp.h>             /* this declaration should remain close the __USE_FORTIFY_LEVEL define */
 
-#include <sys/types.h> /* getpid */
-#include <unistd.h> /* gethostname */
+#include <sys/types.h>          /* getpid */
+#include <unistd.h>             /* gethostname */
 
 #include "csignal.h"
 #include "localization.h"
@@ -39,6 +39,7 @@
 #include "machine.h"
 #include "Scierror.h"
 extern jmp_buf jmp_env;
+
 /*----------------------------------------------------------------------------
  * Print a stack trace
  *----------------------------------------------------------------------------*/
@@ -47,7 +48,7 @@ static char *backtrace_print(int niv_debut)
 {
     size_t ind;
     sci_backtrace_t *tr = NULL;
-    char print_buffer[4096]; /* TODO: make it dynamic */
+    char print_buffer[4096];    /* TODO: make it dynamic */
 
     int size = sizeof(print_buffer);
     char *tmp = print_buffer;
@@ -65,8 +66,8 @@ static char *backtrace_print(int niv_debut)
         const char *s_addr;
 
         const char s_unknown[] = "?";
-        const char s_vide[] = "";
-        const char *s_prefix = s_vide;
+        const char s_empty[] = "";
+        const char *s_prefix = s_empty;
 
         size_t nbr = sci_backtrace_size(tr);
 
@@ -147,7 +148,6 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     fflush(stdout);
     memset(print_buffer, 0, sizeof(print_buffer));
-
 
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
@@ -437,7 +437,7 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
         case SIGCHLD:
             {
                 snprintf(tmp, size, HOSTFORMAT "Sending PID: %d, Sending UID: %d, Status: %d\n",
-                               stacktrace_hostname, getpid(), info->si_pid, info->si_uid, info->si_status);
+                         stacktrace_hostname, getpid(), info->si_pid, info->si_uid, info->si_status);
                 break;
             }
 #ifdef SIGPOLL
@@ -458,8 +458,10 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     {
         snprintf(tmp, size, HOSTFORMAT "siginfo is NULL, additional information unavailable\n", stacktrace_hostname, getpid());
     }
-    Scierror(42, _("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with the following\ninformation:\n%s %s\n"), PACKAGE_BUGREPORT, print_buffer,
-             backtrace_print(0));
+    Scierror(42,
+             _
+             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with the following\ninformation:\n%s %s\n"),
+             PACKAGE_BUGREPORT, print_buffer, backtrace_print(0));
 
     longjmp(&jmp_env, 1);
 }
@@ -509,10 +511,9 @@ void base_error_init(void)
     {
         if (0 != sigaction(signals[j], &act, NULL))
         {
-            fprintf(stderr,"Could not set handler for signal %d\n",signals[j]);
+            fprintf(stderr, "Could not set handler for signal %d\n", signals[j]);
         }
     }
 }
-
 
 /*--------------------------------------------------------------------------*/

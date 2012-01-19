@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class testReadWrite {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
@@ -50,11 +51,11 @@ public class testReadWrite {
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
         sci.put("a",aOriginal);
-        assert sci.exec("somme = sum(a);") == true;
+        assertTrue(sci.exec("somme = sum(a);"));
 
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
     }
 
     @Test(sequential = true) 
@@ -67,7 +68,7 @@ public class testReadWrite {
 
         ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
     }
 
 
@@ -80,7 +81,7 @@ public class testReadWrite {
 
         ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
     }
 
     @Test(sequential = true) 
@@ -90,31 +91,31 @@ public class testReadWrite {
         ScilabString aOriginal = new ScilabString(a);
         sci.put("a",aOriginal);
 
-        assert sci.exec("checksize = and(size(a)==[2,4]);") == true;
+        assertTrue(sci.exec("checksize = and(size(a)==[2,4]);"));
 
         ScilabBoolean checksize = (ScilabBoolean)sci.get("checksize");
-        assert checksize.getData()[0][0] == true;
+        assertTrue(checksize.getData()[0][0]);
 
         ScilabString aFromScilab = (ScilabString)sci.get("a");
 
-        assert aFromScilab.equals(aOriginal);
+        assertTrue(aFromScilab.equals(aOriginal));
     }
 
 //    @Test(sequential = true, expectedExceptions = UnsupportedTypeException.class)
     @Test(sequential = true)
     public void ReadSparseTypeTest() throws NullPointerException, JavasciException {
-        assert sci.exec("W=sparse([1,2;4,5;3,10],[1,2,3]);") == true;
-        assert sci.getVariableType("W") == ScilabTypeEnum.sci_sparse;
+        assertTrue(sci.exec("W=sparse([1,2;4,5;3,10],[1,2,3]);"));
+        assertEquals(sci.getVariableType("W"), ScilabTypeEnum.sci_sparse);
         ScilabSparse aFromScilab = (ScilabSparse)sci.get("W");
-        assert aFromScilab.toString().equals("sparse([1, 2 ; 3, 10 ; 4, 5], [1.0 ; 3.0 ; 2.0], [4, 10])");
-        assert sci.exec("AZE= "+aFromScilab.toString());
+        assertTrue(aFromScilab.toString().equals("sparse([1, 2 ; 3, 10 ; 4, 5], [1.0 ; 3.0 ; 2.0], [4, 10])"));
+        assertTrue(sci.exec("AZE= "+aFromScilab.toString()));
         ScilabSparse aFromScilab2 = (ScilabSparse)sci.get("AZE");
 
-		assert Arrays.deepEquals(aFromScilab.getFullRealPart(), aFromScilab2.getFullRealPart()) == true;
+		assertTrue(Arrays.deepEquals(aFromScilab.getFullRealPart(), aFromScilab2.getFullRealPart()));
 
 		ScilabSparse mySparse = new ScilabSparse(100, 100, 5, new int[] { 1, 1, 1, 1, 1}, new int[]{ 1, 25, 50, 75, 99}, new double[] { 1.0, 2.0, 3.0, 4.0, 5.0});
         // sci.put with a sparse is not yet functionnal
-//        assert sci.put("mySparse", mySparse) == true;
+//        assertTrue(sci.put("mySparse", mySparse));
 //        String ref="mySparseRef = sparse([1, 2 ; 2, 26 ; 3, 51 ; 4, 76 ; 5, 100], [1.0 ; 2.0 ; 3.0 ; 4.0 ; 5.0], [100, 100]);";
 //        sci.exec("isEqual=(mySparseRef==mySparse)");
 //        ScilabBoolean isEqual = (ScilabBoolean)sci.get("isEqual");
@@ -125,22 +126,22 @@ public class testReadWrite {
 
     @Test(sequential = true)
     public void ReadStructTest() throws NullPointerException, JavasciException {
-        assert sci.exec("myDate=struct('day',25,'month' ,'DEC','year',2006)") == true;
-        assert sci.getVariableType("myDate") == ScilabTypeEnum.sci_mlist;
+        assertTrue(sci.exec("myDate=struct('day',25,'month' ,'DEC','year',2006)"));
+        assertEquals(sci.getVariableType("myDate"), ScilabTypeEnum.sci_mlist);
 
         ScilabMList myDate = (ScilabMList)sci.get("myDate");
-        assert myDate.toString().equals("mlist([\"st\", \"dims\", \"day\", \"month\", \"year\"], int32([1, 1]), [25.0], [\"DEC\"], [2006.0])");
-        assert myDate.getHeight() == 1;
-        assert myDate.getWidth() == 5;
-        assert myDate.getVarName().equals("myDate");
-        assert myDate.getMListType().equals("st");
+        assertTrue(myDate.toString().equals("mlist([\"st\", \"dims\", \"day\", \"month\", \"year\"], int32([1, 1]), [25.0], [\"DEC\"], [2006.0])"));
+        assertEquals(myDate.getHeight(), 1);
+        assertEquals(myDate.getWidth(), 5);
+        assertTrue(myDate.getVarName().equals("myDate"));
+        assertTrue(myDate.getMListType().equals("st"));
         Map<String, ScilabType> listFields = myDate.getMListFields();
         ScilabString month = (ScilabString)listFields.get("month");
-        assert month.getData()[0][0].equals("DEC");
+        assertTrue(month.getData()[0][0].equals("DEC"));
         ScilabDouble year = (ScilabDouble)listFields.get("year");
-        assert year.getRealPart()[0][0] == 2006.0;
+        assertEquals(year.getRealPart()[0][0], 2006.0);
         ScilabDouble day = (ScilabDouble)listFields.get("day");
-        assert day.getRealPart()[0][0] == 25.0;
+        assertEquals(day.getRealPart()[0][0], 25.0);
 
     }
 

@@ -25,6 +25,7 @@ import javax.swing.SwingWorker;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -72,6 +73,14 @@ public class CompileAction extends SimulationNotRunningAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         ((XcosDiagram) getGraph(null)).info(XcosMessages.EXPORT_IN_PROGRESS);
 
         final String temp;

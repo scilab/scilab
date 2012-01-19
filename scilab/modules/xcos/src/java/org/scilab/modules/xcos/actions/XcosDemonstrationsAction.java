@@ -16,10 +16,12 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -76,6 +78,14 @@ public final class XcosDemonstrationsAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
         ScilabInterpreterManagement.requestScilabExec("exec(\""
                 + System.getenv("SCI")
                 + "/modules/xcos/demos/xcos_demos.sce\", -1)");

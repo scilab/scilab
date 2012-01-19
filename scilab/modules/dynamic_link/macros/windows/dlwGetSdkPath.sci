@@ -32,6 +32,7 @@ function SDKpath = dlwGetSdkPath()
         end
       end
     catch
+      lasterror(%t);
     end
 
   end

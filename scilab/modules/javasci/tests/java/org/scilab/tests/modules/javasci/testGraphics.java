@@ -12,6 +12,7 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
 
 import java.awt.GraphicsEnvironment;
 
@@ -33,14 +34,14 @@ public class testGraphics {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab(true); // True = enable advanced mode
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
     public void isGraphicOpenedTest() throws NullPointerException, JavasciException {
         if (!GraphicsEnvironment.isHeadless()) {
             sci.exec("plot3d();");
-            assert sci.isGraphicOpened() == true;
+            assertTrue(sci.isGraphicOpened());
         }
     }
 
@@ -48,7 +49,7 @@ public class testGraphics {
     public void isGraphicNotOpenedTest() throws NullPointerException, JavasciException {
 
         sci.exec("a=1+1;");
-        assert sci.isGraphicOpened() == false;
+        assertEquals(sci.isGraphicOpened(), false);
     }
 
     /**

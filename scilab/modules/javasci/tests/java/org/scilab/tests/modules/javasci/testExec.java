@@ -12,6 +12,8 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -37,37 +39,37 @@ public class testExec {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab();
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true)
     public void execAndReadTest() throws NullPointerException, JavasciException {
 
         /* Scalar test */
-        assert sci.exec("a = 1+1") == true;
+        assertTrue(sci.exec("a = 1+1"));
         ScilabType a = sci.get("a");
         double[][] aReal = ((ScilabDouble)a).getRealPart();
 
-        assert a.getHeight() == 1;
-        assert a.getWidth() == 1;
+        assertEquals(a.getHeight(), 1);
+        assertEquals(a.getWidth(), 1);
 
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 2.0;
+        assertEquals(((ScilabDouble)a).getRealPart()[0][0], 2.0);
 
         /* Matrix 10x10 */
-        assert sci.exec("b = matrix(1:100,10,10)") == true;
+        assertTrue(sci.exec("b = matrix(1:100,10,10)"));
 
         ScilabType b = sci.get("b");
 
-        assert b.getHeight() == 10;
-        assert b.getWidth() == 10;
+        assertEquals(b.getHeight(), 10);
+        assertEquals(b.getWidth(), 10);
 
         /* Check results of the addition of two matrixes */
-        assert sci.exec("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);") == true;
+        assertTrue(sci.exec("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);"));
         ScilabType c = sci.get("c");
 
-        assert c.getHeight() == 2;
+        assertEquals(c.getHeight(), 2);
 
-        assert c.getWidth() == 2;
+        assertEquals(c.getWidth(), 2);
 
         double sum = 0;
         /* Compute ourself the sum of all matrices elements */
@@ -78,13 +80,13 @@ public class testExec {
         }
         ScilabType sumMatrix = sci.get("sumMatrix");
         /* Compare if they match */
-        assert ((ScilabDouble)sumMatrix).getRealPart()[0][0] == sum;
+        assertEquals(((ScilabDouble)sumMatrix).getRealPart()[0][0], sum);
         sci.exec("b = matrix(1:100,10,10)") ;
         ScilabType b2 = sci.get("b");
         b2.getHeight(); // 10 
         b2.getWidth(); // 10
         ScilabDouble b3 = (ScilabDouble)sci.get("b");
-        assert b3.equals(b2);
+        assertTrue(b3.equals(b2));
     }
 
 
@@ -101,12 +103,12 @@ public class testExec {
             out.write("a=4+42;");
             out.close();
             
-            assert sci.open(tempScript) == true;
+            assertTrue(sci.open(tempScript));
 
             ScilabType a = sci.get("a");
             double[][] aReal = ((ScilabDouble)a).getRealPart();
 
-            assert ((ScilabDouble)a).getRealPart()[0][0] == 46.0;
+            assertEquals(((ScilabDouble)a).getRealPart()[0][0], 46.0);
             tempScript.delete();
 
         } catch (IOException e) {
@@ -129,7 +131,7 @@ public class testExec {
         ScilabType a = sci.get("toto");
         double[][] aReal = ((ScilabDouble)a).getRealPart();
         
-        assert ((ScilabDouble)a).getRealPart()[0][0] == 111.0;
+        assertEquals(((ScilabDouble)a).getRealPart()[0][0], 111.0);
     }
 
     /**

@@ -21,6 +21,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -75,14 +76,18 @@ public final class FitDiagramToViewAction extends OneBlockDependantAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // If diagram is empty (has one default child) : do nothing.
-        if (getGraph(null).getModel().getChildCount(
-                getGraph(null).getDefaultParent()) < 1) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
             return;
         }
-
-        ScilabComponent comp = ((ScilabComponent) getGraph(null)
-                .getAsComponent());
+        
+        // If diagram is empty (has one default child) : do nothing.
+        if (graph.getModel().getChildCount(graph.getDefaultParent()) < 1) {
+            return;
+        }
 
         /* Save the configuration */
         double oldZoomFactor = comp.getZoomFactor();

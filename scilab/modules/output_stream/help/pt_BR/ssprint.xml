@@ -30,7 +30,9 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>ssprint(sl [,out])</synopsis>
+    <synopsis>ssprint(sl)
+ssprint(sl, out]
+</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -65,11 +67,21 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"><![CDATA[ 
-a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
-ssprint(syslin('c',a,b,c,d))
-ssprint(syslin('d',a,b,c,d))
- ]]></programlisting>
+<programlisting role="example"><![CDATA[a = [1 1;0 1];
+b = [0 1;1 0];
+c = [1, 1];
+d = [3, 2];
+modelC = syslin('c', a, b, c, d)
+modelD = syslin('d', a, b, c, d)
+ssprint(modelC)
+ssprint(modelD)]]></programlisting>
   </refsection>
-
+  
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link></member>
+      <member><link linkend="prettyprint">prettyprint</link></member>
+    </simplelist>
+  </refsection>
 </refentry>

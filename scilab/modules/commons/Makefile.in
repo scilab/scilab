@@ -516,7 +516,8 @@ COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
 COMMONS_CPP_SOURCES = $(am__append_2)
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/
+			-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/
 
 libscicommons_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -Isrc/jni/
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
