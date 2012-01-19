@@ -250,7 +250,7 @@ static int setStacksizeMax(char *fname)
     {
         LhsVar(1) = 0;
         C2F(putlhsvar) ();
-        return 1;
+        return 0;
     }
 
     /* we do a stacksize('min') */
@@ -270,7 +270,7 @@ static int setStacksizeMax(char *fname)
         }
 
         setStacksize(newMemSizeMax);
-        return 1;
+        return 0;
     }
     else
     {
