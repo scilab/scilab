@@ -29,11 +29,16 @@ function y = linspace(d1, d2, n)
   if rhs == 2 then
     n = 100;
   else
-    if type(n)<>1|size(n,'*')<>1|int(n)<>n then
+    if type(n)<>1 | size(n,'*')<>1 then
       error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer >= %d expected.\n"),"linspace",3, 2));
-  end
+    end
 
+    if int(n) <> n then
+      warning(msprintf('%s: Using a non integer value for input argument #%d is deprecated and will produce an error in version 5.4.1.\n',"linspace",3));
+    end
+  
   end
+  
   if (n - 1) <= 0 then
     y = d2;
   else

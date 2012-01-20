@@ -80,6 +80,12 @@ Xcos
                      block.
 
 
+Elementary functions
+====================
+
+* linspace deprecates the usage of non integer values as third input argument.
+
+
 Unitary testing
 ===============
 
@@ -265,6 +271,9 @@ Bug fixes
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
+
+* Bug #10564 fixed - atan graphic demo was failing due to a too strong test 
+                     in the linspace function.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
