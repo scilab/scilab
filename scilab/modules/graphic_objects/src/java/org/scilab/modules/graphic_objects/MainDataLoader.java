@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,7 +39,8 @@ public class MainDataLoader {
          */
         private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
                 GraphicObjectProperties.__GO_ARC__,
-                GraphicObjectProperties.__GO_RECTANGLE__
+                GraphicObjectProperties.__GO_RECTANGLE__,
+                GraphicObjectProperties.__GO_SEGS__
         ));
 
         /**

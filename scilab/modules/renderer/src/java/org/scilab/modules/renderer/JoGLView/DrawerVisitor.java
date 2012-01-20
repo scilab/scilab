@@ -844,10 +844,70 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         System.out.println("How can I draw a champ ?");
     }
 
+    /*
+     * To do: -arrow tip rendering.
+     */
     @Override
-    public void visit(Segs segs) {
-        // TODO
-        System.out.println("How can I draw a segs ?");
+    public void visit(final Segs segs) {
+        if (segs.getVisible()) {
+            Geometry segments = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(segs.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return dataManager.getColorBuffer(segs.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(segs.getIdentifier());
+                    return indices;
+                }
+
+                @Override
+                public IndicesBuffer getEdgesIndices() {
+                    return null;
+                }
+
+                @Override
+                public FaceCullingMode getFaceCullingMode() {
+                    return FaceCullingMode.BOTH;
+                }
+            };
+
+            if (segs.getLineMode())
+            {
+                Appearance segmentAppearance = new Appearance();
+                segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, segs.getLineColor()));
+                segmentAppearance.setLineWidth(segs.getLineThickness().floatValue());
+                segmentAppearance.setLinePattern(segs.getLineStyleAsEnum().asPattern());
+                drawingTools.draw(segments, segmentAppearance);
+            }
+
+            /*
+             * Segs does not derive from ContouredObject but Arrow does, hence we have to get the former's first Arrow
+             * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
+             */
+            if (segs.getMarkMode()) {
+                Sprite sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
+                ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());  // TODO : getMarkVertexBuffer
+                drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
+            }
+        }
+
     }
 
 

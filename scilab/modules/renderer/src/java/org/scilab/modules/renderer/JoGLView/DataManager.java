@@ -108,6 +108,15 @@ public class DataManager {
             GraphicObjectProperties.__GO_HEIGHT__
     ));
 
+    /**
+     * Set of properties that affect Segs data.
+     */
+    private static final Set<String> SEGS_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_BASE__,
+            GraphicObjectProperties.__GO_DIRECTION__,
+            GraphicObjectProperties.__GO_SEGS_COLORS__
+    ));
+
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
     private static final double[] DEFAULT_TRANSLATE = new double[] {0, 0, 0};
 
@@ -210,7 +219,8 @@ public class DataManager {
                || (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_ARC__) && ARC_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))) {
+               || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))
+               || (type.equals(GraphicObjectProperties.__GO_SEGS__) && SEGS_DATA_PROPERTIES.contains(property))) {
                 fillBuffers(id);
             }
         }

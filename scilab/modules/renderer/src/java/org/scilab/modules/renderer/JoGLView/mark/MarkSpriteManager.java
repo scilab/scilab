@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.mark;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
@@ -22,7 +23,7 @@ import java.util.Map;
 
 /**
  *
- * This class maintain a mark sprite for graphic entities.
+ * This class maintains a mark sprite for graphic entities.
  *
  * @author Pierre Lando
  */
@@ -60,6 +61,22 @@ public class MarkSpriteManager {
         Sprite sprite = spriteMap.get(id);
         if (sprite == null) {
             sprite = MarkSpriteFactory.getMarkSprite(spriteManager, contouredObject.getMark(), colorMap);
+            spriteMap.put(id, sprite);
+        }
+        return sprite;
+    }
+
+    /**
+     * Return the mark sprite for the given contoured object.
+     * @param id the given contoured object's identifier.
+     * @param mark the given contoured object's Mark.
+     * @param colorMap the current color map.
+     * @return the mark sprite for the given contoured object.
+     */
+    public Sprite getMarkSprite(String id, Mark mark, ColorMap colorMap) {
+        Sprite sprite = spriteMap.get(id);
+        if (sprite == null) {
+            sprite = MarkSpriteFactory.getMarkSprite(spriteManager, mark, colorMap);
             spriteMap.put(id, sprite);
         }
         return sprite;

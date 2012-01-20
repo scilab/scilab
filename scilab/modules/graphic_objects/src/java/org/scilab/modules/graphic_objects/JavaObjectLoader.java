@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,6 +19,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.arc.ArcDecomposer;
 import org.scilab.modules.graphic_objects.rectangle.RectangleDecomposer;
+import org.scilab.modules.graphic_objects.vectfield.SegsDecomposer;
 
 /**
  * Class JavaObjectLoader
@@ -39,6 +40,8 @@ public class JavaObjectLoader {
                         return ArcDecomposer.getDataSize();
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.getDataSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        return SegsDecomposer.getDataSize(id);
                 }
 
                 return 0;
@@ -62,6 +65,8 @@ public class JavaObjectLoader {
                         ArcDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         RectangleDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        SegsDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
                 }
         }
 
@@ -73,7 +78,11 @@ public class JavaObjectLoader {
          * @param the number of components taken by one element in the buffer (3 or 4).
          */
         public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
+                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
+                if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        SegsDecomposer.fillColors(buffer, id, elementsSize);
+                }
         }
 
         /**
@@ -124,6 +133,8 @@ public class JavaObjectLoader {
                         return ArcDecomposer.getWireIndicesSize();
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.getWireIndicesSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        return SegsDecomposer.getWireIndicesSize(id);
                 }
 
                 return 0;
@@ -143,6 +154,8 @@ public class JavaObjectLoader {
                         return ArcDecomposer.fillWireIndices(buffer, id, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.fillWireIndices(buffer, id, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        return SegsDecomposer.fillWireIndices(buffer, id, logMask);
                 }
 
                 return 0;
