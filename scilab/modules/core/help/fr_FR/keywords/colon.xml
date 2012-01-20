@@ -18,72 +18,74 @@
         <term>j:k</term>
         <listitem>
           <para> 
-	  est le vecteur <literal>[j, j+1,...,k]</literal>
-	  (ou la matrice vide si <literal>j&gt;k</literal>).
-	</para>
+            est le vecteur <literal>[j, j+1,...,k]</literal>
+            (ou la matrice vide si <literal>j&gt;k</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j:d:k</term>
         <listitem>
           <para>
-	   est le vecteur <literal>[j, j+d, ..., j+m*d]  </literal>
-	</para>
+            est le vecteur <literal>[j, j+d, ..., j+m*d]  </literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>Cet opérateur peut aussi être utilisé pour sélectionner des lignes
-    ou des colonnes d'une matrice, ou bien des sous-matrices (voir aussi
-    <link linkend="extraction">extraction</link>,  <link linkend="insertion">insertion</link>).</para>
+      ou des colonnes d'une matrice, ou bien des sous-matrices (voir aussi
+      <link linkend="extraction">extraction</link>,  <link linkend="insertion">insertion</link>).
+    </para>
     <variablelist>
       <varlistentry>
         <term>A(:)</term>
         <listitem>
           <para>
-	  est le vecteur de tous les éléments de la matrice <literal>A</literal>,
-	  considérée comme un vecteur colonne (les colonnes sont mises bout à
-	  bout).
-	</para>
+            est le vecteur de tous les éléments de la matrice <literal>A</literal>,
+            considérée comme un vecteur colonne (les colonnes sont mises bout à
+            bout).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A(:,j)</term>
         <listitem>
           <para>
-	  est la <literal>j</literal>-ème colonne de <literal>A</literal>
-	</para>
+            est la <literal>j</literal>-ème colonne de <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A(j:k)</term>
         <listitem>
           <para>
-	  est égal à <literal>[A(j),A(j+1),...,A(k)]</literal>
-	</para>
+            est égal à <literal>[A(j),A(j+1),...,A(k)]</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A(:,j:k)</term>
         <listitem>
           <para>
-	  est égal à <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal>
-	</para>
+            est égal à <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A(:)=w</term>
         <listitem>
           <para>
-	  remplit la matrice <literal>A</literal> avec les composantes de
-	  <literal>w</literal> (prises colonne par colonne si <literal>w</literal> est une
-	  matrice).
-	</para>
+            remplit la matrice <literal>A</literal> avec les composantes de
+            <literal>w</literal> (prises colonne par colonne si <literal>w</literal> est une
+            matrice).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
+    <para>Merci de noter que même si j, k ou d ont une partie décimale, seule la partie entière sera utilisée.</para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="matrix">matrix</link>
