@@ -206,6 +206,8 @@ Bug fixes
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
 
+* Bug #10444 fixed - fullfile did not manage string matrix as last input argument.
+
 * Bug #10449 fixed - On restoration, empty tabs could appear if the previous
                      session was not cleanly exited.
 

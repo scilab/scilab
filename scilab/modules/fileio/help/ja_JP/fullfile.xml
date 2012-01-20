@@ -52,10 +52,9 @@
   </refsection>
   <refsection>
     <title>例</title>
-    <programlisting role="example"><![CDATA[ 
-f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
-f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
- ]]></programlisting>
+    <programlisting role="example"><![CDATA[f = fullfile("/home/", "\scilab", "macros", "\util", "fullfile.sci")
+f = fullfile("C:", "\scilab", "macros", "\util", "fullfile.sci")
+r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
