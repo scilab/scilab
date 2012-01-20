@@ -43,6 +43,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
+import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
 
 /**
@@ -169,6 +170,21 @@ public final class Palette {
                     } catch (final ScicosFormatException e) {
                         throw new RuntimeException(e);
                     }
+                    
+                    // reload all the opened diagram (clear states)
+                    for (final XcosDiagram d : Xcos.getInstance().openedDiagrams()) {
+                    	if (d != null) {
+                    		final mxGraphView view = d.getView();
+                    		if (view != null) {
+                    			view.reload();
+                    		}
+                    		
+                    		final mxGraphComponent comp = d.getAsComponent();
+                    		if (comp != null) {
+                    			comp.refresh();
+                    		}
+                    	}
+					}
 
                     final PaletteNode node = getPathNode(category, true);
                     if (!(node instanceof Category)) {

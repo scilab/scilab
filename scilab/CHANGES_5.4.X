@@ -58,6 +58,8 @@ Xcos
 * Bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
 
+* Bug #10393 fixed - Block style was not updated on palette loading.
+
 * Bug #10419 fixed - Exception occured while refusing to create a new empty
                      file.
 
