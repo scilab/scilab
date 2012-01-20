@@ -1,3 +1,4 @@
+#include "common-ripole.h"
 
 /* Abstract logging system used to facilitate multiple modes*/
 /* of logging*/

@@ -1,3 +1,4 @@
+#include "common-ripole.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,8 +15,6 @@
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
-
-
 #define DUW if (oleuw->debug)
 
 struct OLE10_header{

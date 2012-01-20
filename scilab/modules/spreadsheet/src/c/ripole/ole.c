@@ -1,3 +1,4 @@
+#include "common-ripole.h"
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
@@ -15,6 +16,7 @@
 #include "ole.h"
 #include "localization.h"
 #include "charEncoding.h"
+
 /** Sector ID values (predefined) **/
 #define OLE_SECTORID_FREE	-1 /** Unallocated sector **/
 #define OLE_SECTORID_ENDOFCHAIN	-2 /** Sector marks the end of the a sector-ID chain **/

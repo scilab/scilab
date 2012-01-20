@@ -1,3 +1,4 @@
+#include "common-ripole.h"
 
 /* Microsoft OLE2 stream parser.*/
 
@@ -15,7 +16,6 @@
 #undef WITHMAIN
 
 #include "MALLOC.h"
-
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
