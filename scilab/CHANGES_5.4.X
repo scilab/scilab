@@ -449,6 +449,8 @@ CACSD & Signal Processing
 
 * 'mtlb_conv' compatibility function is now obsolete. Please use 'conv' instead.
 
+* Bug #10562 fixed - The "CACSD/Robust Control" demo failed.
+
 
 ATOMS
 =======

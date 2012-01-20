@@ -66,4 +66,31 @@
       <literal>Sl</literal>.
     </para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+    MAC-FARLANE PROBLEM for G=1/s^3;
+    <programlisting role="example"><![CDATA[ 
+    G=syslin("c",1/%s^3);
+    [P,r]=macglov(G);
+
+    //K Optimal controller , ro = gamaopt^-2;
+    [K,ro]=h_inf(P,r,0,1,30);
+
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark> <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+        This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink></revremark> 
+
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>

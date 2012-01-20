@@ -93,4 +93,15 @@
       </member>
     </simplelist>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark> <literal>Sl</literal> is now checked for continuous time linear dynamical system.
+        This modification has been introduced by this  <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink></revremark> 
+
+      </revision>
+    </revhistory>
+  </refsection>
 </refentry>
