@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicClippableObject;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
+import org.scilab.modules.graphic_objects.contouredObject.Line.LineType;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -472,6 +473,18 @@ public abstract class VectField extends GraphicClippableObject {
 		for (int i = 0; i < arrows.size(); i++) {
 			arrows.get(i).setLineStyle(lineStyle);
 		}
+	}
+
+	/**
+	 * All arrows are supposed to have the same line style
+	 * To be done: return an array of LineType
+	 * @return the arrow line style
+	 */
+	public LineType getLineStyleAsEnum() {
+		LineType retLineStyle;
+
+		retLineStyle = arrows.get(0).getLineStyleAsEnum();
+		return retLineStyle;
 	}
 
 	/**
