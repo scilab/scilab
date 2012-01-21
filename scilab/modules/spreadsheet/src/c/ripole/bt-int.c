@@ -1,4 +1,3 @@
-#include "common-ripole.h"
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>

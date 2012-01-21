@@ -1,4 +1,3 @@
-#include "common-ripole.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -12,6 +11,7 @@
 #include "pldstr.h"
 #include "MALLOC.h"
 #include "localization.h"
+
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 	#define vsnprintf _vsnprintf

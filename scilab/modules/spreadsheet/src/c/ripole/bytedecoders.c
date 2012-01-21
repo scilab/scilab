@@ -1,6 +1,6 @@
-#include "common-ripole.h"
 #include <stdio.h>
 #include "bytedecoders.h"
+
 /*-----------------------------------------------------------------\
  Function Name	: int
  Returns Type	: unsigned
