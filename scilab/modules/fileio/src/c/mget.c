@@ -137,7 +137,6 @@ void C2F(mgetnc) (int *fd, void *res, int *n1, char *type, int *ierr)
         default:
             *ierr = 1;
             return;
-            break;
         }
         break;
     default:
@@ -229,7 +228,6 @@ void mget2(FILE * fa, int swap2, double *res, int n, char *type, int *ierr)
         default:
             *ierr = 1;
             return;
-            break;
         }
         break;
     default:
