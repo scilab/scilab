@@ -41,14 +41,20 @@ endfunction
 // This function is used to alert the user on setvalue
 // (invalid exprs we keep the previous parameters)
 function message(str)
-    uid = arg1.doc(1);
-    uid = [full_uids uid];
+    if length(arg1.doc) >= 1 then
+        uid = arg1.doc(1);
+        uid = [full_uids uid];
 
-    html = "<html><body>";
-    html = html + "<em>" + gettext("Evaluation problem: value not updated from context.") + "</em><br/>";
-    html = html + strcat(str, "<br/>") + "<br/>"; 
-    html = html + "</body></html>";
-    warnBlockByUID(uid, html);
+        html = "<html><body>";
+        html = html + "<em>" + gettext("Evaluation problem: value not updated from context.") + "</em><br/>";
+        html = html + strcat(str, "<br/>") + "<br/>"; 
+        html = html + "</body></html>";
+        warnBlockByUID(uid, html);
+    else
+        txt = gettext("Evaluation problem: value not updated from context.");
+        txt = [txt ; str];
+        disp(txt);
+    end
 
     %scicos_prob = resume(%t)
 endfunction
@@ -96,7 +102,9 @@ for %kk=1:%nx
     xset('window',%now_win)
       else
         previous_full_uids = full_uids;
-        full_uids = [full_uids o.doc(1)];
+        if length(o.doc) >= 1 then
+            full_uids = [full_uids o.doc(1)];
+        end
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context1)
         needcompile1=max(needcompile1,needcompile2)
 	full_uids = previous_full_uids;
