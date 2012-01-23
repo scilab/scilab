@@ -1124,7 +1124,7 @@ Bug Fixes
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
 
-* Bug #9682 fixed \D0 3-D assignment into a 2-D array of integers issued an error.
+* Bug #9682 fixed - 3-D assignment into a 2-D array of integers issued an error.
 
 * Bug #9696 fixed - An error in an if expression inside a try make Scilab froze.
 
