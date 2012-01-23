@@ -157,6 +157,7 @@ namespace org_modules_xml
         xmlXPathObject * xpath = xmlXPathCompiledEval(expr, ctxt);
         xmlSetStructuredErrorFunc(ctxt, 0);
         xmlXPathFreeContext(ctxt);
+        xmlXPathFreeCompExpr(expr);
         if (!xpath)
         {
             *error = *errorXPathBuffer;

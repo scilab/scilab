@@ -44,6 +44,7 @@ namespace org_modules_xml
     {
         scope->unregisterPointer(nodeSet);
         scope->removeId(id);
+        xmlXPathFreeObject(xpath);
     }
 
     void * XMLNodeSet::getRealXMLPointer() const

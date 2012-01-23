@@ -45,6 +45,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     int col = 0;
     char ** namespaces = 0;
     int isElem = 0;
+    bool mustDelete = true;
 
     CheckLhs(1, 1);
     CheckRhs(2, 3);
@@ -161,6 +162,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
             createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
         set->createOnStack(Rhs + 1, pvApiCtx);
+        mustDelete = false;
         break;
     }
     case XPATH_BOOLEAN :
@@ -187,7 +189,16 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    delete xpath;
+    if (mustDelete)
+    {
+        xmlXPathObject * real = static_cast<xmlXPathObject *>(xpath->getRealXMLPointer());
+        delete xpath;
+        xmlXPathFreeObject(real);
+    }
+    else
+    {
+        delete xpath;
+    }
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();

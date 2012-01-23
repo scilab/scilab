@@ -67,6 +67,7 @@ int sci_xmlAsNumber(char * fname, unsigned long fname_len)
     {
         stringToDoubleError convErr = STRINGTODOUBLE_NO_ERROR;
         pdblReal[i] = stringToDouble(contents[i], TRUE, &convErr);
+        xmlFree(const_cast<char *>(contents[i]));
     }
 
     delete[] contents;
