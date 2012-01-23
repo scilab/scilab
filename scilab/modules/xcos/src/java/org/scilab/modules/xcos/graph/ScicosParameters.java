@@ -22,9 +22,9 @@ import java.io.Serializable;
 
 /**
  * Contains Scicos specific parameters.
- * 
+ *
  * This class is a java beans and follow standard properties accessors.
- * 
+ *
  * @see <a
  *      href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans
  *      Bound Properties</a>
@@ -74,7 +74,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      * The context is any Scilab expression evaluated at the start of the
      * simulation.
      */
-    public static final String[] CONTEXT = new String[] { "" };
+    public static final String[] CONTEXT = new String[] {};
     /**
      * The current Scicos simulator version.
      */
@@ -147,7 +147,7 @@ public class ScicosParameters implements Serializable, Cloneable {
 
     /**
      * Default constructor
-     * 
+     *
      * Initialize parameters with their default values.
      */
     public ScicosParameters() {
@@ -177,14 +177,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setFinalIntegrationTime(double finalIntegrationTime)
-            throws PropertyVetoException {
+    public void setFinalIntegrationTime(double finalIntegrationTime) throws PropertyVetoException {
         double oldValue = this.finalIntegrationTime;
-        vcs.fireVetoableChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue,
-                finalIntegrationTime);
+        vcs.fireVetoableChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue, finalIntegrationTime);
         this.finalIntegrationTime = finalIntegrationTime;
-        pcs.firePropertyChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue,
-                finalIntegrationTime);
+        pcs.firePropertyChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue, finalIntegrationTime);
     }
 
     /**
@@ -200,14 +197,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setIntegratorAbsoluteTolerance(
-            double integratorAbsoluteTolerance) throws PropertyVetoException {
+    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) throws PropertyVetoException {
         double oldValue = this.integratorAbsoluteTolerance;
-        vcs.fireVetoableChange(INTEGRATOR_ABSOLUTE_TOLERANCE_CHANGE, oldValue,
-                integratorAbsoluteTolerance);
+        vcs.fireVetoableChange(INTEGRATOR_ABSOLUTE_TOLERANCE_CHANGE, oldValue, integratorAbsoluteTolerance);
         this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
-        pcs.firePropertyChange(INTEGRATOR_ABSOLUTE_TOLERANCE_CHANGE, oldValue,
-                integratorAbsoluteTolerance);
+        pcs.firePropertyChange(INTEGRATOR_ABSOLUTE_TOLERANCE_CHANGE, oldValue, integratorAbsoluteTolerance);
     }
 
     /**
@@ -223,14 +217,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setIntegratorRelativeTolerance(
-            double integratorRelativeTolerance) throws PropertyVetoException {
+    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) throws PropertyVetoException {
         double oldValue = this.integratorRelativeTolerance;
-        vcs.fireVetoableChange(INTEGRATOR_RELATIVE_TOLERANCE_CHANGE, oldValue,
-                integratorRelativeTolerance);
+        vcs.fireVetoableChange(INTEGRATOR_RELATIVE_TOLERANCE_CHANGE, oldValue, integratorRelativeTolerance);
         this.integratorRelativeTolerance = integratorRelativeTolerance;
-        pcs.firePropertyChange(INTEGRATOR_RELATIVE_TOLERANCE_CHANGE, oldValue,
-                integratorRelativeTolerance);
+        pcs.firePropertyChange(INTEGRATOR_RELATIVE_TOLERANCE_CHANGE, oldValue, integratorRelativeTolerance);
     }
 
     /**
@@ -246,14 +237,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setMaximumStepSize(double maximumStepSize)
-            throws PropertyVetoException {
+    public void setMaximumStepSize(double maximumStepSize) throws PropertyVetoException {
         double oldValue = this.maximumStepSize;
-        vcs.fireVetoableChange(MAXIMUM_STEP_SIZE_CHANGE, oldValue,
-                maximumStepSize);
+        vcs.fireVetoableChange(MAXIMUM_STEP_SIZE_CHANGE, oldValue, maximumStepSize);
         this.maximumStepSize = maximumStepSize;
-        pcs.firePropertyChange(MAXIMUM_STEP_SIZE_CHANGE, oldValue,
-                maximumStepSize);
+        pcs.firePropertyChange(MAXIMUM_STEP_SIZE_CHANGE, oldValue, maximumStepSize);
     }
 
     /**
@@ -269,14 +257,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setMaxIntegrationTimeInterval(double maxIntegrationTimeinterval)
-            throws PropertyVetoException {
+    public void setMaxIntegrationTimeInterval(double maxIntegrationTimeinterval) throws PropertyVetoException {
         double oldValue = this.maxIntegrationTimeInterval;
-        vcs.fireVetoableChange(MAX_INTEGRATION_TIME_INTERVAL_CHANGE, oldValue,
-                maxIntegrationTimeinterval);
+        vcs.fireVetoableChange(MAX_INTEGRATION_TIME_INTERVAL_CHANGE, oldValue, maxIntegrationTimeinterval);
         this.maxIntegrationTimeInterval = maxIntegrationTimeinterval;
-        pcs.firePropertyChange(MAX_INTEGRATION_TIME_INTERVAL_CHANGE, oldValue,
-                maxIntegrationTimeinterval);
+        pcs.firePropertyChange(MAX_INTEGRATION_TIME_INTERVAL_CHANGE, oldValue, maxIntegrationTimeinterval);
     }
 
     /**
@@ -292,14 +277,11 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setRealTimeScaling(double realTimeScaling)
-            throws PropertyVetoException {
+    public void setRealTimeScaling(double realTimeScaling) throws PropertyVetoException {
         double oldValue = this.realTimeScaling;
-        vcs.fireVetoableChange(REAL_TIME_SCALING_CHANGE, oldValue,
-                realTimeScaling);
+        vcs.fireVetoableChange(REAL_TIME_SCALING_CHANGE, oldValue, realTimeScaling);
         this.realTimeScaling = realTimeScaling;
-        pcs.firePropertyChange(REAL_TIME_SCALING_CHANGE, oldValue,
-                realTimeScaling);
+        pcs.firePropertyChange(REAL_TIME_SCALING_CHANGE, oldValue, realTimeScaling);
     }
 
     /**
@@ -335,19 +317,16 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setToleranceOnTime(double toleranceOnTime)
-            throws PropertyVetoException {
+    public void setToleranceOnTime(double toleranceOnTime) throws PropertyVetoException {
         double oldValue = this.toleranceOnTime;
-        vcs.fireVetoableChange(TOLERANCE_ON_TIME_CHANGE, oldValue,
-                toleranceOnTime);
+        vcs.fireVetoableChange(TOLERANCE_ON_TIME_CHANGE, oldValue, toleranceOnTime);
         this.toleranceOnTime = toleranceOnTime;
-        pcs.firePropertyChange(TOLERANCE_ON_TIME_CHANGE, oldValue,
-                toleranceOnTime);
+        pcs.firePropertyChange(TOLERANCE_ON_TIME_CHANGE, oldValue, toleranceOnTime);
     }
 
     /**
      * Set the associated context if there is noticeable changes.
-     * 
+     *
      * @param context
      *            set context
      * @throws PropertyVetoException
@@ -430,7 +409,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     /**
      * Each setXXX method fire a property change event. This method register a
      * new listener for all events.
-     * 
+     *
      * @param listener
      *            A listener
      */
@@ -442,21 +421,20 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Each setXXX method fire a property change event. This method register a
      * new listener for a specific event. Each event name is equal to the field
      * name.
-     * 
+     *
      * @param propertyName
      *            the property name
      * @param listener
      *            A listener
      */
-    public void addPropertyChangeListener(String propertyName,
-            PropertyChangeListener listener) {
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(propertyName, listener);
     }
 
     /**
      * Each setXXX method fire a property change event. This method remove a
      * listener for all events.
-     * 
+     *
      * @param listener
      *            A listener
      */
@@ -468,14 +446,13 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Each setXXX method fire a property change event. This method remove a
      * listener for a specific event. Each event name is equal to the field
      * name.
-     * 
+     *
      * @param propertyName
      *            the property name
      * @param listener
      *            A listener
      */
-    public void removePropertyChangeListener(String propertyName,
-            PropertyChangeListener listener) {
+    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         this.pcs.removePropertyChangeListener(propertyName, listener);
     }
 
@@ -486,7 +463,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     /**
      * Each setXXX method fire a vetoable change event. This method register a
      * new listener for all events.
-     * 
+     *
      * @param listener
      *            A listener
      */
@@ -498,21 +475,20 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Each setXXX method fire a vetoable change event. This method register a
      * new listener for a specific event. Each event name is equal to the field
      * name.
-     * 
+     *
      * @param propertyName
      *            the property name
      * @param listener
      *            A listener
      */
-    public void addVetoableChangeListener(String propertyName,
-            VetoableChangeListener listener) {
+    public void addVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
         this.vcs.addVetoableChangeListener(propertyName, listener);
     }
 
     /**
      * Each setXXX method fire a vetoable change event. This method remove a
      * listener for all events.
-     * 
+     *
      * @param listener
      *            A listener
      */
@@ -524,14 +500,13 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Each setXXX method fire a vetoable change event. This method remove a
      * listener for a specific event. Each event name is equal to the field
      * name.
-     * 
+     *
      * @param propertyName
      *            the property name
      * @param listener
      *            A listener
      */
-    public void removeVetoableChangeListener(String propertyName,
-            VetoableChangeListener listener) {
+    public void removeVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
         this.vcs.removeVetoableChangeListener(propertyName, listener);
     }
 

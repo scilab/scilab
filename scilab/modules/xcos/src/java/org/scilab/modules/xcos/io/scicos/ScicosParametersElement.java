@@ -32,9 +32,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
  * Default element used to handle Scicos simulation parameters
  */
 public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
-    private static final List<String> DATA_FIELD_NAMES = asList("params",
-            "wpar", "title", "tol", "tf", "context", "void1", "options",
-            "void2", "void3", "doc");
+    private static final List<String> DATA_FIELD_NAMES = asList("params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc");
 
     private static final int TOL_INDEX = 3;
     private static final int TF_INDEX = 4;
@@ -44,7 +42,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Mutable field which contains the current working data.
-     * 
+     *
      * This field must be modified on each read/write call.
      */
     private ScilabTList data;
@@ -57,7 +55,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Decode the element into the instance
-     * 
+     *
      * @param element
      *            the element to be decoded
      * @param into
@@ -69,8 +67,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
      *      java.lang.Object)
      */
     @Override
-    public ScicosParameters decode(ScilabType element, ScicosParameters into)
-            throws ScicosFormatException {
+    public ScicosParameters decode(ScilabType element, ScicosParameters into) throws ScicosFormatException {
         data = (ScilabTList) element;
         ScicosParameters local = into;
 
@@ -86,8 +83,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         fillWithThirdFields(local);
 
         try {
-            local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX))
-                    .getRealPart()[0][0]);
+            local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
         } catch (PropertyVetoException e) {
             LogFactory.getLog(ScicosParametersElement.class).error(e);
         }
@@ -101,11 +97,11 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -173,8 +169,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
         // context
         field++;
-        if (!(data.get(field) instanceof ScilabString)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabString) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
@@ -204,8 +199,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
         // doc
         field++;
-        if (!(data.get(field) instanceof ScilabList)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabList) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
@@ -215,15 +209,13 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Fill the object with the data third field
-     * 
+     *
      * @param into
      *            the current object to put data into.
      */
     private void fillWithThirdFields(ScicosParameters into) {
-        final boolean isColumnDominant = data.get(TOL_INDEX).getHeight() >= data
-                .get(TOL_INDEX).getWidth();
-        final double[][] realPart = ((ScilabDouble) data.get(TOL_INDEX))
-                .getRealPart();
+        final boolean isColumnDominant = data.get(TOL_INDEX).getHeight() >= data.get(TOL_INDEX).getWidth();
+        final double[][] realPart = ((ScilabDouble) data.get(TOL_INDEX)).getRealPart();
 
         // global index used to get the data
         int[] indexes = { 0, 0 };
@@ -289,7 +281,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Fill the object with the context (5th) field
-     * 
+     *
      * @param into
      *            the current object to put data into.
      */
@@ -311,8 +303,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         /*
          * Normal case
          */
-        final boolean isColumnDominant = contextType.getHeight() >= contextType
-                .getWidth();
+        final boolean isColumnDominant = contextType.getHeight() >= contextType.getWidth();
         final String[][] str = ((ScilabString) contextType).getData();
         final int length = contextType.getHeight() + contextType.getWidth() - 1;
 
@@ -333,7 +324,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Test if the element can be decoded with this instance implementation.
-     * 
+     *
      * @param element
      *            the element
      * @return true when the implementation can be used to decode the element.
@@ -349,7 +340,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -394,7 +385,11 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         /*
          * fill the context
          */
-        data.set(CONTEXT_INDEX, new ScilabString(from.getContext()));
+        if (from.getContext().length > 0) {
+            data.set(CONTEXT_INDEX, new ScilabString(from.getContext()));
+        } else {
+            data.set(CONTEXT_INDEX, new ScilabDouble());
+        }
 
         data = (ScilabTList) afterEncode(from, data);
 

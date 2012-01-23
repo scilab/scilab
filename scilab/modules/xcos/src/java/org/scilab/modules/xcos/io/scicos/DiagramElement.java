@@ -54,10 +54,9 @@ import com.mxgraph.model.mxICell;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 public class DiagramElement extends AbstractElement<XcosDiagram> {
-    private static final List<String> BASE_FIELD_NAMES = asList("diagram",
-            "props", "objs");
-    private static final List<String> VERSIONS = Arrays.asList("", "scicos4.2",
-            "scicos4.3", "scicos4.4");
+    private static final List<String> MINIMAL_BASE_FIELD_NAMES = asList("diagram", "props", "objs");
+    private static final List<String> BASE_FIELD_NAMES = asList("diagram", "props", "objs", "version", "contrib");
+    private static final List<String> VERSIONS = asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 
     private static final int OBJS_INDEX = 2;
     private static final int VERSION_INDEX = 3;
@@ -66,18 +65,16 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     private static final double V_MARGIN = 40.0;
 
     /** Diagram properties MList header (scs_m.props) */
-    private static final String[] PROPS_FIELDS = { "params", "wpar", "title",
-            "tol", "tf", "context", "void1", "options", "void2", "void3", "doc" };
+    private static final String[] PROPS_FIELDS = { "params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc" };
 
     /** Index of the title in the props field */
     private static final int TITLE_INDEX = 2;
 
     /** Diagram options MList header (scs_m.props.options) */
-    private static final String[] OPTS_FIELDS = { "scsopt", "3D", "Background",
-            "Link", "ID", "Cmap" };
+    private static final String[] OPTS_FIELDS = { "scsopt", "3D", "Background", "Link", "ID", "Cmap" };
     /**
      * Window properties (scs_m.props.wpar).
-     * 
+     *
      * This property has no impact among simulation
      */
     private static final double[][] WPAR = { { 600, 450, 0, 0, 600, 450 } };
@@ -86,19 +83,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     // thus we set it to default values.
     // As the values are scicos dependent we avoid using constant references.
     // CSOFF: MagicNumber
-    private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
-            OPTS_FIELDS, Arrays.asList(
-                    new ScilabList(// 3D
-                            Arrays.asList(new ScilabBoolean(true),
-                                    new ScilabDouble(33))),
-                    new ScilabDouble(new double[][] { { 8, 1 } }), // Background
-                    new ScilabDouble(new double[][] { { 1, 5 } }), // Link
-                    new ScilabList(// ID
-                            Arrays.asList(new ScilabDouble(new double[][] { {
-                                    5, 1 } }), new ScilabDouble(
-                                    new double[][] { { 4, 1 } }))),
-                    new ScilabDouble(new double[][] { { 0.8, 0.8, 0.8 } }) // Cmap
-                    ));
+    private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(OPTS_FIELDS, Arrays.asList(new ScilabList(// 3D
+    Arrays.asList(new ScilabBoolean(true), new ScilabDouble(33))), new ScilabDouble(new double[][] { { 8, 1 } }), // Background
+    new ScilabDouble(new double[][] { { 1, 5 } }), // Link
+            new ScilabList(// ID
+    Arrays.asList(new ScilabDouble(new double[][] { { 5, 1 } }), new ScilabDouble(new double[][] { { 4, 1 } }))), new ScilabDouble(
+    new double[][] { { 0.8, 0.8, 0.8 } }) // Cmap
+                                                                                                 ));
     // CSON: MagicNumber
 
     private ScilabMList base;
@@ -115,7 +106,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Decode the diagram with version validation.
-     * 
+     *
      * @param element
      *            the diagram Scicos element
      * @param into
@@ -127,14 +118,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      *      java.lang.Object)
      */
     @Override
-    public XcosDiagram decode(ScilabType element, XcosDiagram into)
-            throws ScicosFormatException {
+    public XcosDiagram decode(ScilabType element, XcosDiagram into) throws ScicosFormatException {
         return decode(element, into, true);
     }
 
     /**
      * Decode the diagram
-     * 
+     *
      * @param element
      *            the diagram Scicos element
      * @param into
@@ -147,8 +137,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
      * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
      *      java.lang.Object)
      */
-    public XcosDiagram decode(ScilabType element, XcosDiagram into,
-            boolean validate) throws ScicosFormatException {
+    public XcosDiagram decode(ScilabType element, XcosDiagram into, boolean validate) throws ScicosFormatException {
         base = (ScilabMList) element;
 
         XcosDiagram diag = into;
@@ -183,7 +172,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Reassociate the children with the current diagram.
-     * 
+     *
      * @param element
      *            the encoded element
      * @param into
@@ -200,7 +189,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Decode the diagram
-     * 
+     *
      * @param diag
      *            the current diagram
      * @throws ScicosFormatException
@@ -209,8 +198,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     private void decodeDiagram(XcosDiagram diag) throws ScicosFormatException {
         // Fill the local parameters
         // NOTE: the title field is checked on the ScicosParametersElement
-        final String title = ((ScilabString) ((ScilabTList) base.get(1)).get(2))
-                .getData()[0][0];
+        final String title = ((ScilabString) ((ScilabTList) base.get(1)).get(2)).getData()[0][0];
         diag.setTitle(title);
 
         // Fill the diagram attributes
@@ -223,7 +211,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Decode the objs list into cells
-     * 
+     *
      * @param diag
      *            the target instance
      * @throws ScicosFormatException
@@ -241,8 +229,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
          * Decode blocks
          */
         for (int i = 0; i < nbOfObjs; i++) {
-            final ScilabMList data = (ScilabMList) ((ScilabList) base
-                    .get(OBJS_INDEX)).get(i);
+            final ScilabMList data = (ScilabMList) ((ScilabList) base.get(OBJS_INDEX)).get(i);
             Object cell = null;
 
             if (blockElement.canDecode(data)) {
@@ -252,13 +239,11 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
                 BlockPositioning.updateBlockView(block);
 
-                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell)
-                        .getGeometry().getY());
+                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
             } else if (labelElement.canDecode(data)) {
                 cell = labelElement.decode(data, null);
 
-                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell)
-                        .getGeometry().getY());
+                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
             }
 
             if (cell != null) {
@@ -270,16 +255,14 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
          * Decode links
          */
         for (int i = 0; i < nbOfObjs; i++) {
-            final ScilabMList data = (ScilabMList) ((ScilabList) base
-                    .get(OBJS_INDEX)).get(i);
+            final ScilabMList data = (ScilabMList) ((ScilabList) base.get(OBJS_INDEX)).get(i);
             Object cell = null;
 
             if (linkElement.canDecode(data)) {
                 BasicLink link = linkElement.decode(data, null);
                 cell = link;
 
-                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell)
-                        .getGeometry().getY());
+                minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
             }
 
             if (cell != null) {
@@ -293,29 +276,27 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Translate the y axis for blocks and links
         final double minY = -minimalYaxisValue + V_MARGIN;
-        mxGraphModel.filterDescendants(diag.getModel(),
-                new mxGraphModel.Filter() {
-                    @Override
-                    public boolean filter(Object cell) {
-                        mxGeometry geom = ((mxICell) cell).getGeometry();
-                        if (geom != null
-                                && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
-                            geom.translate(H_MARGIN, minY);
-                        }
+        mxGraphModel.filterDescendants(diag.getModel(), new mxGraphModel.Filter() {
+            @Override
+            public boolean filter(Object cell) {
+                mxGeometry geom = ((mxICell) cell).getGeometry();
+                if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
+                    geom.translate(H_MARGIN, minY);
+                }
 
-                        // never store the cell
-                        return false;
-                    }
-                });
+                // never store the cell
+                return false;
+            }
+        });
     }
 
     /**
      * Check that the current ScilabType is a valid Diagram.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @param checkVersion
      *            true, when the check validate the version
      * @throws ScicosFormatException
@@ -326,8 +307,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     private void validate(boolean checkVersion) throws ScicosFormatException {
 
         // Have we enough fields ?
-        if (base.size() < BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(BASE_FIELD_NAMES);
+        if (base.size() < MINIMAL_BASE_FIELD_NAMES.size()) {
+            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
         }
 
         int field = 0;
@@ -338,19 +319,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Check the first field
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
         }
         String[] header = ((ScilabString) base.get(field)).getData()[0];
 
         // Check the number of fields
-        if (header.length < BASE_FIELD_NAMES.size()) {
-            throw new WrongStructureException(BASE_FIELD_NAMES);
+        if (header.length < MINIMAL_BASE_FIELD_NAMES.size()) {
+            throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
         }
 
         // Check the first fields values
-        for (int i = 0; i < BASE_FIELD_NAMES.size(); i++) {
-            if (!header[i].equals(BASE_FIELD_NAMES.get(i))) {
-                throw new WrongStructureException(BASE_FIELD_NAMES);
+        for (int i = 0; i < MINIMAL_BASE_FIELD_NAMES.size(); i++) {
+            if (!header[i].equals(MINIMAL_BASE_FIELD_NAMES.get(i))) {
+                throw new WrongStructureException(MINIMAL_BASE_FIELD_NAMES);
             }
         }
 
@@ -361,13 +342,13 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         // the second field must contain list of props
         field++;
         if (!(base.get(field) instanceof ScilabTList)) {
-            throw new WrongTypeException(BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
         }
 
         // the third field must contains lists of blocks and links
         field++;
         if (!(base.get(field) instanceof ScilabList)) {
-            throw new WrongTypeException(BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
         }
 
         // the last field must contain the scicos version used
@@ -379,7 +360,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         }
 
         if (!(base.get(field) instanceof ScilabString)) {
-            throw new WrongTypeException(BASE_FIELD_NAMES, field);
+            throw new WrongTypeException(MINIMAL_BASE_FIELD_NAMES, field);
         }
 
         /*
@@ -414,20 +395,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
          * Checking header
          */
         final String type = ((ScilabString) base.get(0)).getData()[0][0];
-        final boolean typeIsValid = type.equals(BASE_FIELD_NAMES.get(0));
+        final boolean typeIsValid = type.equals(MINIMAL_BASE_FIELD_NAMES.get(0));
 
         /*
          * Check the version if applicable
          */
-        final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX))
-                .getData()[0][0];
+        final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
         final boolean versionIsValid = VERSIONS.contains(scicosVersion);
         return typeIsValid && versionIsValid;
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * Clear cell warnings before encoding
      */
     @Override
@@ -440,7 +420,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -474,21 +454,21 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Allocate the a new element
-     * 
+     *
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList data = new ScilabMList(
-                BASE_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList data = new ScilabMList(BASE_FIELD_NAMES.toArray(new String[0]));
         data.add(allocatePropsField()); // props
         data.add(new ScilabList()); // objs
         data.add(new ScilabString(VERSIONS.get(0))); // official version
+        data.add(new ScilabList()); // contrib
         return data;
     }
 
     /**
      * Allocate the props field
-     * 
+     *
      * @return the new props field
      */
     private ScilabTList allocatePropsField() {
@@ -497,7 +477,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         data.add(new ScilabString("")); // title
         data.add(new ScilabDouble()); // tol
         data.add(new ScilabDouble()); // tf
-        data.add(new ScilabString("")); // context
+        data.add(new ScilabDouble()); // context
         data.add(new ScilabDouble()); // void1
         data.add(DIAGRAM_OPTIONS); // options
         data.add(new ScilabDouble()); // void2
@@ -509,7 +489,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
     /**
      * Fill the params field
-     * 
+     *
      * @param from
      *            the source instance
      * @param field
@@ -522,17 +502,14 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         data = paramsElement.encode(from.getScicosParameters(), data);
 
         // set the title as it is need for generating files
-        ((ScilabTList) data)
-                .set(TITLE_INDEX,
-                        new ScilabString(FileUtils.toValidCIdentifier(from
-                                .getTitle())));
+        ((ScilabTList) data).set(TITLE_INDEX, new ScilabString(FileUtils.toValidCIdentifier(from.getTitle())));
 
         base.set(field, data);
     }
 
     /**
      * Fill the objs field
-     * 
+     *
      * @param from
      *            the source instance
      * @param field
@@ -552,8 +529,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         final Filter filter = new Filter() {
             @Override
             public boolean filter(Object current) {
-                if (current instanceof BasicBlock
-                        && !(current instanceof TextBlock)) {
+                if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
                     filterBlocks(blockList, linkList, (BasicBlock) current);
                 } else if (current instanceof BasicLink) {
                     filterLink(linkList, (BasicLink) current);
@@ -564,7 +540,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
             /**
              * Filter blocks
-             * 
+             *
              * @param blockList
              *            the current block list
              * @param linkList
@@ -572,8 +548,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
              * @param block
              *            the block to filter
              */
-            private void filterBlocks(final List<BasicBlock> blockList,
-                    final List<BasicLink> linkList, final BasicBlock block) {
+            private void filterBlocks(final List<BasicBlock> blockList, final List<BasicLink> linkList, final BasicBlock block) {
                 blockList.add(block);
 
                 //
@@ -585,8 +560,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
                         final BasicLink link = (BasicLink) block.getChildAt(j);
 
                         // do not add the link if not connected
-                        if (link.getSource() != null
-                                && link.getTarget() != null) {
+                        if (link.getSource() != null && link.getTarget() != null) {
                             linkList.add(link);
                         }
                     }
@@ -596,7 +570,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 
             /**
              * Filter links
-             * 
+             *
              * @param linkList
              *            the current link list
              * @param link
@@ -621,8 +595,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
             Collections.sort(linkList, new Comparator<BasicLink>() {
                 @Override
                 public int compare(BasicLink o1, BasicLink o2) {
-                    return ((ScilabGraphUniqueObject) o1.getSource())
-                            .compareTo((ScilabGraphUniqueObject) o2.getSource());
+                    return ((ScilabGraphUniqueObject) o1.getSource()).compareTo((ScilabGraphUniqueObject) o2.getSource());
                 }
             });
         }
@@ -651,8 +624,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
             if (link != null) {
                 data.add(link);
             } else {
-                from.warnCellByUID(linkList.get(i).getId(),
-                        XcosMessages.LINK_NOT_CONNECTED);
+                from.warnCellByUID(linkList.get(i).getId(), XcosMessages.LINK_NOT_CONNECTED);
             }
         }
     }
