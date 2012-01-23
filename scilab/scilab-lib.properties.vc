@@ -1,4 +1,4 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
@@ -6,7 +6,7 @@ flexdock.jar=${thirdparty.dir}/flexdock-1.1.1.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
-scirenderer.jar=${thirdparty.dir}/scirenderer-0.2.5.jar
+scirenderer.jar=${thirdparty.dir}/scirenderer-0.2.6.jar
 
 jogl.jar=${thirdparty.dir}/jogl.jar
 

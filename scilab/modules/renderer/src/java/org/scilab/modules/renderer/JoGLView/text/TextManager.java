@@ -16,6 +16,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
@@ -65,8 +66,9 @@ public class TextManager {
      * @param drawingTools the given {@see DrawingTools}.
      * @param colorMap the current {@see ColorMap}
      * @param text the given Scilab {@see Text}
+     * @throws DegenerateMatrixException 
      */
-    public final void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Text text, final AxesDrawer axesDrawer) {
+    public final void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Text text, final AxesDrawer axesDrawer) throws DegenerateMatrixException {
         Sprite sprite = getSprite(colorMap, text);
 
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
@@ -93,8 +95,9 @@ public class TextManager {
      * @param spriteWidth the text sprite's width (in pixels).
      * @param spriteHeight the text sprite's height (in pixels).
      * @return the corners' window coordinates (4-element array).
+     * @throws DegenerateMatrixException 
      */
-    private Vector3d[] computeProjCorners(DrawingTools drawingTools, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) {
+    private Vector3d[] computeProjCorners(DrawingTools drawingTools, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
         Transformation canvasProj = drawingTools.getTransformationManager().getCanvasProjection();
 
         Vector3d[] projCorners = new Vector3d[4];

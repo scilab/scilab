@@ -828,7 +828,12 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(Text text) {
         if (text.getVisible()) {
-            textManager.draw(drawingTools, colorMap, text, axesDrawer);
+            try {
+                textManager.draw(drawingTools, colorMap, text, axesDrawer);
+            } catch (DegenerateMatrixException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
