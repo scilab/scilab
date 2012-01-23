@@ -27,6 +27,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class VectFieldDecomposer {
 
+    /** The default z-coordinate value when the logarithmic scale is used. */
+    protected static final double DEFAULT_LOG_COORD_Z = 1.0;
+
     /**
      * @param id the object id.
      * @return the number of data elements.
