@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Champ extends VectField {
 	/** Champ properties names */
-	private enum ChampProperty { DIMENSIONS, COLORED, BOUNDINGBOX };
+	private enum ChampProperty { DIMENSIONS, COLORED, BOUNDINGBOX, MAXLENGTH, MAXUSABLELENGTH };
 
 	/** Dimensions: 2-element array (number of columns Ni, number of rows Nj) */
 	private int[] dimensions;
@@ -62,6 +62,10 @@ public class Champ extends VectField {
 			return ChampProperty.COLORED;
 		} else if (propertyName.equals(__GO_BOUNDING_BOX__)) {
 			return ChampProperty.BOUNDINGBOX;
+		} else if (propertyName.equals(__GO_MAX_LENGTH__)) {
+			return ChampProperty.MAXLENGTH;
+		} else if (propertyName.equals(__GO_MAX_USABLE_LENGTH__)) {
+			return ChampProperty.MAXUSABLELENGTH;
 		} else {
 			return super.getPropertyFromName(propertyName);
 		}
@@ -83,6 +87,10 @@ public class Champ extends VectField {
 			return getColored();
 		} else if (property == ChampProperty.BOUNDINGBOX) {
 			return getBoundingBox();
+		} else if (property == ChampProperty.MAXLENGTH) {
+			return getMaxLength();
+		} else if (property == ChampProperty.MAXUSABLELENGTH) {
+			return getMaxUsableLength();
 		} else {
 			return super.getProperty(property);
 		}
@@ -222,6 +230,30 @@ public class Champ extends VectField {
 		retBoundingBox = computeBoundingBox();
 
 		return retBoundingBox;
+	}
+
+	/**
+	 * Returns the champ's maximum vector length
+	 * @return the maximum length
+	 */
+	public Double getMaxLength() {
+		Double retMaxLength;
+
+		retMaxLength = computeMaxLength();
+
+		return retMaxLength;
+	}
+
+	/**
+	 * Returns the champ's maximum usable vector length
+	 * @return the maximum usable length
+	 */
+	public Double getMaxUsableLength() {
+		Double retMaxUsableLength;
+
+		retMaxUsableLength = computeMaxUsableLength();
+
+		return retMaxUsableLength;
 	}
 
 	/**

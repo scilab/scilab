@@ -290,6 +290,8 @@
 #define __GO_NUMBER_ARROWS__               "NumberArrows"
 #define __GO_CHAMP_DIMENSIONS__            "ChampDimensions"
 #define __GO_BOUNDING_BOX__                "BoundingBox"
+#define __GO_MAX_LENGTH__                  "MaxLength"
+#define __GO_MAX_USABLE_LENGTH__           "MaxUsableLength"
 
 #define __GO_HIDDEN_COLOR__                "HiddenColor"
 

@@ -291,6 +291,8 @@ public static final String __GO_ARROWS__ =                 "Arrows";
 public static final String __GO_NUMBER_ARROWS__ =          "NumberArrows";
 public static final String __GO_CHAMP_DIMENSIONS__ =       "ChampDimensions";
 public static final String __GO_BOUNDING_BOX__ =           "BoundingBox";
+public static final String __GO_MAX_LENGTH__ =             "MaxLength";
+public static final String __GO_MAX_USABLE_LENGTH__ =      "MaxUsableLength";
 
 public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 
