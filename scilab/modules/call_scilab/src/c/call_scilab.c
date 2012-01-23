@@ -89,7 +89,7 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup, int Stacksize)
 */
 int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
-    #define FORMAT_SCRIPT_STARTUP "exec(\"%s\",-1);quit;"
+    #define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1); exit(_errorCall_ScilabOpen);"
     char *ScilabStartupUsed = NULL;
     char *InitStringToScilab = NULL;
     int StacksizeUsed = 0;
@@ -179,12 +179,17 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     InitStringToScilab = (char*)MALLOC(lengthStringToScilab*sizeof(char));
     sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartupUsed);
 
-    C2F(scirun)(InitStringToScilab, (long int)strlen(InitStringToScilab));
-
+    ierr = C2F(scirun)(InitStringToScilab, (long int)strlen(InitStringToScilab));
     if (ScilabStartupUsed) {FREE(ScilabStartupUsed); ScilabStartupUsed = NULL;}
     if (InitStringToScilab) {FREE(InitStringToScilab); InitStringToScilab = NULL;}
+    
+    if (ierr)
+    {
+        return ierr;
+    }
 
     setCallScilabEngineState(CALL_SCILAB_ENGINE_STARTED);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/
