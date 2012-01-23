@@ -40,7 +40,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
-import com.mxgraph.util.mxConstants;
 
 /**
  * A palette block is the representation of the block in the palette. All the
@@ -238,7 +237,7 @@ public final class PaletteBlockCtrl {
                     Transferable transfer = getTransferable();
 
                     if (transfer != null) {
-                        event.startDrag(null, mxConstants.EMPTY_IMAGE,
+                        event.startDrag(null, null,
                                 new Point(), transfer, null);
                     } else {
                         throw new InvalidDnDOperationException();
