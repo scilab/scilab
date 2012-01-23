@@ -16,12 +16,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -37,8 +41,8 @@ msgid "%s: Error while building documentation: %s.\n"
 msgstr "%s: Ошибка при сборке документации: %s.\n"
 
 #, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Выполнение стека Java %s.\n"
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s: Выполнение стека Java: %s.\n"
 
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
@@ -47,10 +51,6 @@ msgstr ""
 "Если Scilab запущен с изменённым корневым каталогом (chroot), то можно "
 "попробовать задать две переменные окружения: SCI_DISABLE_TK=1 "
 "SCI_JAVA_ENABLE_HEADLESS=1\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Выполнение стека Java: %s.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -162,6 +162,14 @@ msgstr "%02d-%02d-%04d"
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr ""
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr ""
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
@@ -295,3 +303,7 @@ msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr ""
 "%s: Два типизированных списка на основе матриц не должны иметь одинаковых "
 "полей.\n"
+
+#, c-format
+#~ msgid "%s: Execution Java stack %s.\n"
+#~ msgstr "%s: Выполнение стека Java %s.\n"

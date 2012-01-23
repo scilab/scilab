@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-10-13 15:07+0000\n"
+"PO-Revision-Date: 2012-01-16 17:25+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -132,7 +132,7 @@ msgid "delayed time=%f but last stored time=%f \n"
 msgstr "задержанное время=%f, но последнее сохранённое время=%f \n"
 
 msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
+msgstr "Следует учесть увеличение длины буфера в блоке задержки \n"
 
 #, c-format
 msgid "Error when opening file '%s'.\n"
@@ -203,7 +203,7 @@ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Тип на выходе (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
 msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
-msgstr ""
+msgstr "Делать при переполнении (0:Ничего, 1:Ограничение, 2:Ошибка)"
 
 msgid "Do on Overflow"
 msgstr "Делать при переполнении"
@@ -319,7 +319,7 @@ msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "Принимает унаследованные события (0:Нет, 1:Да)"
 
 msgid "Truth Table (matrix of outputs)"
-msgstr ""
+msgstr "Таблица истинности (матрица значений на выходе)"
 
 msgid "Truth Table"
 msgstr "Таблица истинности"
@@ -365,7 +365,7 @@ msgid "Finite differences"
 msgstr "Конечные разности"
 
 msgid "Finite elements"
-msgstr ""
+msgstr "Конечные элементы"
 
 msgid "negative"
 msgstr "отрицательный"

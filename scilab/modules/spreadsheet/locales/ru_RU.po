@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: ru\n"
 
 #, c-format
@@ -226,39 +226,12 @@ msgstr ""
 "замены «%s» на «%s»"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Неверный параметр «%s«\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Декодирование файла %s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE требуется входной файл для декодирования.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: Не удалось выделать память для OLE-объекта."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Не удалось найти входной файл «%s»"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "Файл «%s» не является файлом формата OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "Неверный входной OLE-файл «%s»"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: декодирование %s завершилось ошибкой %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
@@ -293,3 +266,30 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+#~ msgid "ripOLE: decoding of %s resulted in error %d\n"
+#~ msgstr "ripOLE: декодирование %s завершилось ошибкой %d\n"
+
+#~ msgid "ripOLE: Cannot allocate memory for OLE object."
+#~ msgstr "ripOLE: Не удалось выделать память для OLE-объекта."
+
+#, c-format
+#~ msgid "OLE input file '%s' is insane"
+#~ msgstr "Неверный входной OLE-файл «%s»"
+
+#, c-format
+#~ msgid "File '%s' is not OLE2 format"
+#~ msgstr "Файл «%s» не является файлом формата OLE2"
+
+#, c-format
+#~ msgid "Cannot locate input file '%s'"
+#~ msgstr "Не удалось найти входной файл «%s»"
+
+#, c-format
+#~ msgid ""
+#~ "Cannot interpret option \"%s\"\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Неверный параметр «%s«\n"
+#~ "%s\n"

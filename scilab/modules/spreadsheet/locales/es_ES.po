@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: es\n"
 
 #, c-format
@@ -231,39 +231,12 @@ msgstr ""
 "reemplazaba '%s' con '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"No se puede interpretar la opción \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Decodificando archivo=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE requiere un archivo de entrada para decodificar.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: No puede asignar memoria para un objeto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "No se pudo localizar el archivo de entrada '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "El archivo '%s' no está en formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "El archivo de entrada OLE '%s' es loco"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: la decodificación de %s terminó en un error %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
@@ -301,3 +274,30 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
+
+#, c-format
+#~ msgid "File '%s' is not OLE2 format"
+#~ msgstr "El archivo '%s' no está en formato OLE2"
+
+#, c-format
+#~ msgid "Cannot locate input file '%s'"
+#~ msgstr "No se pudo localizar el archivo de entrada '%s'"
+
+#, c-format
+#~ msgid ""
+#~ "Cannot interpret option \"%s\"\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "No se puede interpretar la opción \"%s\"\n"
+#~ "%s\n"
+
+#, c-format
+#~ msgid "ripOLE: decoding of %s resulted in error %d\n"
+#~ msgstr "ripOLE: la decodificación de %s terminó en un error %d\n"
+
+#, c-format
+#~ msgid "OLE input file '%s' is insane"
+#~ msgstr "El archivo de entrada OLE '%s' es loco"
+
+#~ msgid "ripOLE: Cannot allocate memory for OLE object."
+#~ msgstr "ripOLE: No puede asignar memoria para un objeto OLE."

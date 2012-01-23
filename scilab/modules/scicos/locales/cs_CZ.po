@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -1370,6 +1370,9 @@ msgstr "Nerozpoznaný typ"
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "Problém s vyhodnocením: hodnota není aktualizována z kontextu."
+
+msgid "Evaluation problem: Unknown block"
+msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Je nám líto: Jsou podporovány pouze jazyky C nebo FORTRAN"

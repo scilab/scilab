@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: fr\n"
 
 #, c-format
@@ -235,39 +235,12 @@ msgstr ""
 "remplacement de '%s' par '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Impossible d'interpréter l'option \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Décoder le nom de fichier=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE nécessite un fichier à décoder en entrée.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE : Impossible d'allouer de la mémoire pour l'objet OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Impossible de localiser le fichier d'entrée '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "Le fichier '%s' n'est pas au format OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "Le fichier d'entrée OLE '%s' est erroné"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE : Le décodage de %s s'est terminé par une erreur %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
@@ -307,3 +280,30 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+
+#, c-format
+#~ msgid "File '%s' is not OLE2 format"
+#~ msgstr "Le fichier '%s' n'est pas au format OLE2"
+
+#, c-format
+#~ msgid "Cannot locate input file '%s'"
+#~ msgstr "Impossible de localiser le fichier d'entrée '%s'"
+
+#, c-format
+#~ msgid ""
+#~ "Cannot interpret option \"%s\"\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Impossible d'interpréter l'option \"%s\"\n"
+#~ "%s\n"
+
+#, c-format
+#~ msgid "OLE input file '%s' is insane"
+#~ msgstr "Le fichier d'entrée OLE '%s' est erroné"
+
+#~ msgid "ripOLE: Cannot allocate memory for OLE object."
+#~ msgstr "ripOLE : Impossible d'allouer de la mémoire pour l'objet OLE."
+
+#, c-format
+#~ msgid "ripOLE: decoding of %s resulted in error %d\n"
+#~ msgstr "ripOLE : Le décodage de %s s'est terminé par une erreur %d\n"

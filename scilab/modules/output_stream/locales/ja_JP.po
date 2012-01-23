@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -26,6 +26,10 @@ msgstr "%s: 入力引数の数が間違っています: 最大でも%d 個とし
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr "%s: 入力引数の数が間違っています: フォーマットにデータが整合していません.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -1444,6 +1448,23 @@ msgstr "%s: エクスポートフォーマットが違います: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: 型 %s は処理できません: 関数 %s2%s を定義してください"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

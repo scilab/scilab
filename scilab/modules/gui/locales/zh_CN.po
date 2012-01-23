@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: \n"
 
 #, c-format
@@ -273,6 +273,10 @@ msgstr "%s：发生一个错误：%s。\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "不能得到目前的界面风格"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1049,17 +1053,14 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1114,7 +1115,6 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 

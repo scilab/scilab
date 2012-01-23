@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -40,21 +40,16 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -65,8 +60,25 @@ msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 入力引数の型が間違っています.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -77,10 +89,6 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲としてください.\n"
@@ -88,10 +96,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲�
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
 msgid ""
@@ -114,10 +118,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 1,2 または 3 を
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -191,6 +191,10 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 関数名が間違っています.\n"
 
@@ -212,6 +216,23 @@ msgstr "%s: %s ゲートウエイを読み込むことができません.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: モジュール名が間違っています: %s.\n"
+
+#, c-format
+msgid "%s: Cannot allocate this quantity of memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The requested size is smaller than the minimal one.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unable to create (or resize) the stack (probably a malloc error)\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

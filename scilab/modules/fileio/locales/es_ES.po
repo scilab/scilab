@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: es\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -29,14 +33,14 @@ msgstr ""
 "booleano.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de asignación de memoria.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
 "string.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de asignación de memoria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -47,6 +51,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Can not read named argument %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
@@ -264,10 +272,6 @@ msgstr ""
 #, c-format
 msgid "%s: Data mismatch.\n"
 msgstr "%s: Los datos no coinciden.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"

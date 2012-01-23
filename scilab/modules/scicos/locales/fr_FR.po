@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: fr\n"
 
 #, c-format
@@ -1444,6 +1444,9 @@ msgstr "Type non reconnu"
 msgid "Evaluation problem: value not updated from context."
 msgstr ""
 "Problème d'évaluation : La valeur n'est pas mise à jour à partir du contexte."
+
+msgid "Evaluation problem: Unknown block"
+msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Seuls les langages C et Fortran sont pris en charge"

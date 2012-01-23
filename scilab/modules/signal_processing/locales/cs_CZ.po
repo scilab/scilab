@@ -14,7 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -34,6 +38,10 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 msgid "Simulation of an ARMAX process:"
 msgstr "Simulace procesu ARMAX:"

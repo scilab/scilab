@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14700)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -26,6 +26,10 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути 1, 2 або 4 параметри.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
