@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.vectfield;
 
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.utils.Utils;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -357,13 +358,15 @@ public class Champ extends VectField {
 		if (dimensions[0] < 2) {
 			minX = 1.0;
 		} else {
-			minX = Math.abs(arrows.get(1).getBase()[0] - arrows.get(0).getBase()[0]);
+			minX = Double.MAX_VALUE;
 
-			for (int i = 1; i < dimensions[0] - 1; i++) {
+			for (int i = 0; i < dimensions[0] - 1; i++) {
 				double length = Math.abs(getArrow(i+1, 0).getBase()[0] - getArrow(i, 0).getBase()[0]);
 
-				if (length < minX) {
-					minX = length;
+				if (Utils.isValid(length)) {
+					if (length < minX) {
+						minX = length;
+					}
 				}
 			}
 
@@ -376,13 +379,15 @@ public class Champ extends VectField {
 		if (dimensions[1] < 2) {
 			minY = 1.0;
 		} else {
-			minY = Math.abs(getArrow(0, 1).getBase()[1] - getArrow(0, 0).getBase()[1]);
+			minY = Double.MAX_VALUE;
 
-			for (int j = 1; j < dimensions[1] - 1; j++) {
+			for (int j = 0; j < dimensions[1] - 1; j++) {
 				double length = Math.abs(getArrow(0, j+1).getBase()[1] - getArrow(0, j).getBase()[1]);
 
-				if (length < minY) {
-					minY = length;
+				if (Utils.isValid(length)) {
+					if (length < minY) {
+						minY = length;
+					}
 				}
 			}
 
