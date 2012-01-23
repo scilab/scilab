@@ -602,14 +602,11 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
              * @param link
              *            the link to filter
              */
-            private void filterLink(final List<BasicLink> linkList,
-                    final BasicLink link) {
+            private void filterLink(final List<BasicLink> linkList, final BasicLink link) {
                 // Only add connected links
                 final mxICell source = link.getSource();
                 final mxICell target = link.getTarget();
-                if (source != null && target != null
-                        && source.getParent() instanceof BasicBlock
-                        && target.getParent() instanceof BasicBlock) {
+                if (source != null && target != null) {
                     linkList.add(link);
                 }
             }
