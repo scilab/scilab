@@ -117,4 +117,15 @@ length(a)
       <member><link linkend="size">size</link></member>
     </simplelist>
   </refsection>
+
+ <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>This function allows overloading for mlist type.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>  
+  
 </refentry>
