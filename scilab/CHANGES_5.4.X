@@ -113,10 +113,13 @@ Javasci
 =======
 
 * Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-a sparse but not to send it to Scilab).
+  a sparse but not to send it to Scilab).
 
-* Javasci supports struct datatypes under the form of an MList  (Javasci is
-able to retrieve a struct but not to send it to Scilab).
+* Javasci supports struct datatypes under the form of an MList (Javasci is
+  able to retrieve a struct but not to send it to Scilab).
+
+* If Scilab fails to start because of a memory issues (stacksize), triggers an
+  InitializationException Java exception.
 
 
 CACSD & Signal Processing

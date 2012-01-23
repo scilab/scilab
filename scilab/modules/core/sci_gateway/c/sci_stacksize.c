@@ -132,8 +132,8 @@ static int sci_stacksizeOneRhs(char *fname)
                         {
                             /* restore previous size */
                             setStacksize(backupSize);
-                            Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
-                            Scierror(999, getStackCreationErrorMessage(errCode), fname);
+                            Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
+                            Scierror(10001, getStackCreationErrorMessage(errCode), fname);
 
                         }
                     }
@@ -141,8 +141,8 @@ static int sci_stacksizeOneRhs(char *fname)
                     {
                         /* restore previous size */
                         setStacksize(backupSize);
-                        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
-                        Scierror(999, getStackCreationErrorMessage(errCode), fname);
+                        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
+                        Scierror(10001, getStackCreationErrorMessage(errCode), fname);
 
                     }
 
@@ -198,7 +198,7 @@ static int sci_stacksizeMax(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }
@@ -213,7 +213,7 @@ static int sci_stacksizeMin(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }
@@ -277,7 +277,7 @@ static int setStacksizeMax(char *fname)
         /* stacksize('min') fails */
         /* restore previous size */
         setStacksize(backupSize);
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }

@@ -160,6 +160,8 @@ public class Scilab {
     public boolean open() throws JavasciException {
         int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
         switch (res) {
+        case 0: /* Success */
+            return true;
         case -1:
             throw new AlreadyRunningException("Javasci already running.");
         case -2:
@@ -167,8 +169,11 @@ public class Scilab {
             throw new InitializationException("Could not find SCI.");
         case -3:
             throw new InitializationException("No existing directory.");
+        case 10001:
+            throw new InitializationException("Stacksize failed (not enought memory ?).");
+        default:
+            throw new InitializationException("Unknown startup error: " + res);
         }
-        return true;
     }
 
     /**
