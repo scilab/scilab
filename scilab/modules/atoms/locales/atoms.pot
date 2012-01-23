@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-01-10 11:38+0100\n"
+"Revision-Date: 2012-01-23 11:06+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -1166,8 +1166,20 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 126
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 170
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 101
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 111
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 134
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 178
 #, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
@@ -1175,20 +1187,20 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 228
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 248
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 236
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 256
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 266
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 274
 #, c-format
 msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 344
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 352
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' is not a registered category"
