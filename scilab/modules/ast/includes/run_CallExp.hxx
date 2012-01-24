@@ -18,7 +18,6 @@
 
 void visitprivate(const CallExp &e)
 {
-    wchar_t pwstLog[200];
     std::list<Exp *>::const_iterator	itExp;
 
     e.name_get().accept(*this);
@@ -29,22 +28,7 @@ void visitprivate(const CallExp &e)
         types::typed_list out;
         types::typed_list in;
 
-        //iLevel++;
-        //for(int i = 0 ; i < iLevel ; i++)
-        //{
-        //    scilabForcedWriteW(L"\t");
-        //}
-        //os_swprintf(pwstLog, 200, L"************  DEBUT %s ***************\n", pCall->getName().c_str());
-        //scilabForcedWriteW(pwstLog);
-
         int iRetCount = expected_getSize();
-
-        //for(int i = 0 ; i < iLevel ; i++)
-        //{
-        //    scilabForcedWriteW(L"\t");
-        //}
-        //os_swprintf(pwstLog, 200, L"expected_getSize : %d\n", expected_getSize());
-        //scilabForcedWriteW(pwstLog);
 
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
@@ -89,47 +73,15 @@ void visitprivate(const CallExp &e)
             }
         }
 
-        //for(int i = 0 ; i < iLevel ; i++)
-        //{
-        //    scilabForcedWriteW(L"\t");
-        //}
-        //os_swprintf(pwstLog, 200, L"After inputs %d\n", expected_getSize());
-        //scilabForcedWriteW(pwstLog);
-
-        ////reset result
-        //result_clear();
-
         try
         {
             int iSaveExpectedSize = iRetCount;
             expected_size_set(iSaveExpectedSize);
             iRetCount = Max(1, iRetCount);
 
-            //for(int i = 0 ; i < iLevel ; i++)
-            //{
-            //    scilabForcedWriteW(L"\t");
-            //}
-            //os_swprintf(pwstLog, 200, L"Before call : %d\n", expected_getSize());
-            //scilabForcedWriteW(pwstLog);
-
             types::Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
 
-            //for(int i = 0 ; i < iLevel ; i++)
-            //{
-            //    scilabForcedWriteW(L"\t");
-            //}
-            //os_swprintf(pwstLog, 200, L"After call : %d\n", expected_getSize());
-            //scilabForcedWriteW(pwstLog);
-
-            //for(int i = 0 ; i < iLevel ; i++)
-            //{
-            //    scilabForcedWriteW(L"\t");
-            //}
-            //os_swprintf(pwstLog, 200, L"************  FIN %s ***************\n\n\n", pCall->getName().c_str());
-            //scilabForcedWriteW(pwstLog);
-            //iLevel--;
-            //reset result
             result_clear();
             if(Ret == types::Callable::OK)
             {
@@ -315,6 +267,7 @@ void visitprivate(const CallExp &e)
                 }
                 break;
             case InternalType::RealTList :
+            case InternalType::RealMList :
                 {
                     list<wstring> stFields;
                     typed_list iFields;
@@ -349,19 +302,56 @@ void visitprivate(const CallExp &e)
 
                     if(rtIndex  == InternalType::RealDouble)
                     {
-                        ResultList = pIT->getAs<TList>()->extract(&iFields);
+                        if(pIT->isTList())
+                        {
+                            ResultList = pIT->getAs<TList>()->extract(&iFields);
+                        }
+                        else
+                        {//try to call extraction function %MList_type_e
+                            types::typed_list in;
+
+                            (*pArgs)[0]->IncreaseRef();
+                            pIT->IncreaseRef();
+                            in.push_back((*pArgs)[0]);
+                            in.push_back(pIT);
+
+                            //try to call specific exrtaction function
+                            try
+                            {
+                                Overload::call(L"%" + pIT->getAs<MList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                            }
+                            catch(ScilabError /*&e*/)
+                            {//if call failed try to call generic extraction function
+                                Overload::call(L"%l_e", in, 1, ResultList, this);
+                            }
+
+                            (*pArgs)[0]->DecreaseRef();
+                            pIT->DecreaseRef();
+                        }
                     }
                     else if(rtIndex  == InternalType::RealString)
-                    {
+                    {//TList::extractStrings can be call on TList or MList
                         ResultList = pIT->getAs<TList>()->extractStrings(stFields);
                         if(ResultList.empty())
                         {//call overload %l_e
                             types::typed_list in;
 
                             (*pArgs)[0]->IncreaseRef();
+                            pIT->IncreaseRef();
                             in.push_back((*pArgs)[0]);
-                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                            in.push_back(pIT);
+                            //try to call specific exrtaction function
+                            try
+                            {
+                                Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                            }
+                            catch(ScilabError /*&e*/)
+                            {//if call failed try to call generic extraction function
+                               Overload::call(L"%l_e", in, 1, ResultList, this);
+                            }
+
                             (*pArgs)[0]->DecreaseRef();
+                            pIT->DecreaseRef();
                         }
                     }
                     else

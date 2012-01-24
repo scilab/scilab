@@ -19,20 +19,4 @@
 
 namespace types
 {
-    /**
-    ** Constructor & Destructor (public)
-    */
-    MList::MList() : List()
-    {
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    MList::~MList()
-    {
-#ifndef NDEBUG
-        Inspector::removeItem(this);
-#endif
-    }
 }

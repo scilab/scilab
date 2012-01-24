@@ -245,14 +245,14 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             //update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
-				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-				if( (*j)->is_verbose() &&
-                    bErrCatch == false)
+                InternalType* pITAns = execMe.result_get()->clone();
+				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
+				if( (*j)->is_verbose() && bErrCatch == false)
 				{
 					std::wostringstream ostr;
 					ostr << L"ans = " << std::endl;
 					ostr << std::endl;
-					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+					ostr << pITAns->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
 					scilabWriteW(ostr.str().c_str());
 				}
 			}

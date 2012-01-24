@@ -370,8 +370,8 @@ namespace ast
                     std::wostringstream ostr;
                     ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
-                    ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     scilabWriteW(ostr.str().c_str());
+                    VariableToString(pI);
                 }
             }
             else
@@ -471,6 +471,32 @@ namespace ast
                             InternalType* pIT = psValue->get(0)->get(psvRightMember->name_get().name_get())->clone();
                             result_set(pIT);
                         }
+                    }
+                    else
+                    {
+                        wchar_t szError[bsiz];
+                        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
+                        throw ScilabError(szError, 999, psvRightMember->location_get());
+                    }
+                }
+                else
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+                    throw ScilabError(szError, 999, e.location_get());
+                }
+            }
+            else if(result_get() != NULL && result_get()->isMList())
+            {
+                SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+                if(psvRightMember != NULL)
+                {
+                    TList* psValue = ((InternalType*)result_get())->getAs<MList>();
+                    result_set(NULL);
+                    if(psValue->exists(psvRightMember->name_get().name_get()))
+                    {
+                        InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
+                        result_set(pIT);
                     }
                     else
                     {
@@ -1078,14 +1104,13 @@ namespace ast
                         if(result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
                             //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-                            symbol::Context::getInstance()->put(*m_pAns, *result_get());
+                            InternalType* pITAns = result_get()->clone();
+                            symbol::Context::getInstance()->put(*m_pAns, *pITAns);
                             if((*itExp)->is_verbose())
                             {
                                 //TODO manage multiple returns
-                                std::wostringstream ostr;
-                                ostr << L"ans = " << std::endl << std::endl;
-                                ostr << result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                                scilabWriteW(ostr.str().c_str());
+                                scilabWriteW(L"ans = \n\n");
+                                VariableToString(pITAns);
                             }
                         }
                     }
@@ -1550,6 +1575,37 @@ namespace ast
                 throw error;
             }
         }
+
+        void VariableToString(types::InternalType* pIT)
+        {
+            std::wostringstream ostr;
+            if(pIT->isMList() || pIT->isTList())
+            {//call overload %type_p
+                types::typed_list in;
+                types::typed_list out;
+
+                pIT->IncreaseRef();
+                in.push_back(pIT);
+
+                try
+                {
+                    Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_p", in, 1, out, this);
+                }
+                catch(ScilabError /*&e*/)
+                {
+                    ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+                }
+                
+                pIT->DecreaseRef();
+            }
+            else
+            {
+                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
+            }
+
+            scilabWriteW(ostr.str().c_str());
+        }
+
         /** \} */
 
         #include "run_AssignExp.hxx"

@@ -14,29 +14,22 @@
 #define __MLIST_HH__
 
 #include <vector>
-#include "list.hxx"
+#include "tlist.hxx"
 #include "dynlib_types.h"
 
 namespace types
 {
-    class TYPES_IMPEXP MList : public List
+    class TYPES_IMPEXP MList : public TList
     {
     public :
-                                        MList();
-                                        ~MList();
+                                        MList() : TList() {}
+                                        //Destructor uses ~TList()
 
         void                            whoAmI(void) { std::cout << "types::MList"; };
 
         RealType                        getType(void) { return RealMList; }
         bool                            isMList() { return true; }
-
-        InternalType*                   insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int _iDims, std::vector<types::InternalType*>* _poSource, bool _bAsVector);
-        std::vector<InternalType*>      extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int _iDims, int* _piDimSize, bool _bAsVector);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring            getTypeStr() {return L"mlist";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring            getShortTypeStr() {return L"mlist";}
+        bool                            isTList() { return false; }
     };
 }
 

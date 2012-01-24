@@ -66,8 +66,8 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream ostr;
                 ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
-                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 scilabWriteW(ostr.str().c_str());
+                VariableToString(pIT);
             }
             return;
         }
@@ -481,9 +481,10 @@ void visitprivate(const AssignExp  &e)
                     {
                         ostr << *getStructNameFromExp(&pCall->name_get()) << L"  = " << std::endl;
                     }
+
                     ostr << std::endl;
-                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     scilabWriteW(ostr.str().c_str());
+                    VariableToString(pOut);
                 }
             }
             else
@@ -537,8 +538,8 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
                     ostr << std::endl;
-                    ostr << result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     scilabWriteW(ostr.str().c_str());
+                    VariableToString(result_get(i));
                 }
                 //clear result to take care of [n,n]
                 result_set(i, NULL);
@@ -654,8 +655,7 @@ void visitprivate(const AssignExp  &e)
                         ostr << L"???" << L"  = " << std::endl;
                     }
                     ostr << std::endl;
-                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                    scilabWriteW(ostr.str().c_str());
+                    VariableToString(pOut);
                 }
             }
             else
@@ -772,10 +772,11 @@ void visitprivate(const AssignExp  &e)
             {
                 const wstring *pstName = getStructNameFromExp(pField);
 
+                types::InternalType* pPrint = symbol::Context::getInstance()->get(symbol::Symbol(*pstName));
                 std::wostringstream ostr;
                 ostr << *pstName << L"  = " << std::endl << std::endl;
-                ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 scilabWriteW(ostr.str().c_str());
+                VariableToString(pPrint);
             }
 
             result_clear();
