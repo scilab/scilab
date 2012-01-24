@@ -167,11 +167,11 @@
       <listitem>
         <para>For arrays of integers,</para>
         <para>
-           if <literal>outtype="native"</literal> the evaluation is done using integer
+          if <literal>outtype="native"</literal> the evaluation is done using integer
           computations (modulo 2^b, where b is the number of bits used),
         </para>
         <para>
-           if <literal>outtype="double"</literal> the evaluation is done using floating point
+          if <literal>outtype="double"</literal> the evaluation is done using floating point
           computations.
         </para>
         <para>
@@ -181,11 +181,11 @@
       <listitem>
         <para>For arrays of booleans,</para>
         <para>
-           if <literal>outtype="native"</literal> the evaluation is done using boolean
+          if <literal>outtype="native"</literal> the evaluation is done using boolean
           computations (* is replaced by &amp;),
         </para>
         <para>
-           if <literal>outtype="double"</literal> the evaluation is done using floating point
+          if <literal>outtype="double"</literal> the evaluation is done using floating point
           computations (%t values are replaced by 1 and %f values by 0).
         </para>
         <para>The default value is
@@ -226,7 +226,7 @@ prod(P,2)
 
 B=[%t %t %f %f];
 prod(B) //evaluation in float
-prod(B,"native") //similar to or(B)
+prod(B,"native") //similar to and(B)
  ]]></programlisting>
   </refsection>
   

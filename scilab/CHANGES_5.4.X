@@ -279,6 +279,9 @@ Bug fixes
 
 * Bug #10577 fixed - getdate did not check input argument.
 
+* Bug #10579 fixed - Wrong reference to and function in the help page of prod
+                     and cumprod fixed.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
