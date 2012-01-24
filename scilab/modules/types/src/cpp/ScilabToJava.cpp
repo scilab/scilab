@@ -436,12 +436,12 @@ namespace org_modules_types
     // Lists
     inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, char type, int handlerId)
     {
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), type, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), type, handlerId);
     }
 
     inline void ScilabToJava::closeList(std::vector<int> & indexes, int handlerId)
     {
-        ScilabVariables::closeList(getScilabJavaVM(), &(indexes[0]), indexes.size(), handlerId);
+        ScilabVariables::closeList(getScilabJavaVM(), &(indexes[0]), (int)indexes.size(), handlerId);
     }
 
     // Sparse
@@ -453,7 +453,7 @@ namespace org_modules_types
         {
             colPos_[i] = colPos[i] - 1;
         }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, data, nbItem, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, data, nbItem, handlerId);
         delete[] colPos_;
     }
 
@@ -462,7 +462,7 @@ namespace org_modules_types
     inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, int handlerId)
     {
         T ** addr = getMatrix<T>(row, col, data, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), addr, row, col, swaped, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), addr, row, col, swaped, handlerId);
         deleteMatrix<T>(addr, swaped);
     }
 
@@ -474,7 +474,7 @@ namespace org_modules_types
         {
             colPos_[i] = colPos[i] - 1;
         }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, handlerId);
         delete[] colPos_;
     }
 
@@ -484,7 +484,7 @@ namespace org_modules_types
     inline void ScilabToJava::sendUnsignedVariableWithCast(const std::string & name, std::vector<int> & indexes, int row, int col, U * data, bool swaped, int handlerId)
     {
         T ** addr = getConvertedMatrix<T, U>(row, col, data, swaped);
-        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), addr, row, col, swaped, handlerId);
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), addr, row, col, swaped, handlerId);
         deleteMatrix<T>(addr, swaped);
     }
 
@@ -493,7 +493,7 @@ namespace org_modules_types
     inline void ScilabToJava::sendUnsignedVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, int handlerId)
     {
         T ** addr = getMatrix<T>(row, col, data, swaped);
-        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), addr, row, col, swaped, handlerId);
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), addr, row, col, swaped, handlerId);
         deleteMatrix<T>(addr, swaped);
     }
 
@@ -501,7 +501,7 @@ namespace org_modules_types
     inline void ScilabToJava::sendConvertedBooleanVariable(const std::string & name, std::vector<int> & indexes, int row, int col, int * data, bool swaped, int handlerId)
     {
         bool ** addr = getConvertedMatrix<bool, int>(row, col, data, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), addr, row, col, swaped, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), addr, row, col, swaped, handlerId);
         deleteMatrix<bool>(addr, swaped);
     }
 
@@ -514,7 +514,7 @@ namespace org_modules_types
         {
             colPos_[i] = colPos[i] - 1;
         }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(),  row, col, nbItem, nbItemRow, row, colPos_, nbItem, real, nbItem, img, nbItem, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(),  row, col, nbItem, nbItemRow, row, colPos_, nbItem, real, nbItem, img, nbItem, handlerId);
         delete[] colPos_;
     }
 
@@ -524,7 +524,7 @@ namespace org_modules_types
     {
         T ** re = getMatrix<T>(row, col, real, swaped);
         T ** im = getMatrix<T>(row, col, img, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), re, row, col, im, row, col, swaped, handlerId);
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), re, row, col, im, row, col, swaped, handlerId);
         deleteMatrix<T>(re, swaped);
         deleteMatrix<T>(im, swaped);
     }
@@ -535,7 +535,7 @@ namespace org_modules_types
     {
         T *** addr = getMatrix<T*>(row, col, data, swaped);
         int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
-        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), (char *)varName, addr, row, col, nbc, swaped, handlerId);
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), (char *)varName, addr, row, col, nbc, swaped, handlerId);
         deleteMatrix<T*>(addr, swaped);
         deleteMatrix<int>(nbc, swaped);
     }
@@ -547,7 +547,7 @@ namespace org_modules_types
         T *** re = getMatrix<T*>(row, col, real, swaped);
         T *** im = getMatrix<T*>(row, col, img, swaped);
         int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
-        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), indexes.size(), (char *)varName, re, im, row, col, nbc, swaped, handlerId);
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), &(indexes[0]), (int)indexes.size(), (char *)varName, re, im, row, col, nbc, swaped, handlerId);
         deleteMatrix<T*>(re, swaped);
         deleteMatrix<T*>(im, swaped);
         deleteMatrix<int>(nbc, swaped);

@@ -12,11 +12,10 @@ c
        character*(*) fname
        include 'stack.h'
 c
-       integer iadr, sadr
+       integer iadr
        integer topk,rhsk,topl
        logical checkrhs,checklhs,getvectrow,getscalar,checkval,cremat
        iadr(l)=l+l-1
-       sadr(l)=(l/2)+1
        rhs = max(0,rhs)
 c
        topk = top 
