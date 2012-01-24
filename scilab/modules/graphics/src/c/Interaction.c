@@ -416,6 +416,17 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     double* pdblData;
     char* pstType;
 
+    double* dataX = NULL;
+    double* dataY = NULL;
+    double* dataZ = NULL;
+
+    int iNumX = 0;
+    int iNumY = 0;
+    int iNumZ = 0;
+    int *piNumX = &iNumX;
+    int *piNumY = &iNumY;
+    int *piNumZ = &iNumZ;
+
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
     char **pstChildrenUID;
@@ -443,6 +454,40 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         pdblData[1] += y;
         pdblData[2] += z;
         setGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, pdblData, jni_double_vector, 3);
+
+        return 0;
+    }
+    // Plot3d.
+    else if (strcmp(pstType, __GO_PLOT3D__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, &piNumZ);
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+
+        for (i = 0; i < iNumX; i++)
+        {
+            dataX[i] += x;
+        }
+
+        for (i = 0; i < iNumY; i++)
+        {
+            dataY[i] += y;
+        }
+
+        for (i = 0; i < iNumZ; i++)
+        {
+            dataZ[i] += z;
+        }
+
+        /*
+         * Perform only one set call to trigger geometry data update within the renderer module.
+         * Model data has been updated above by direct pointer access.
+         */
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, dataZ, jni_double_vector, iNumZ);
 
         return 0;
     }
