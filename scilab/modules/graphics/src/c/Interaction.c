@@ -4,6 +4,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2012 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -434,14 +435,36 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     // Get type
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
 
-    // Rectangle.
-    if (strcmp(pstType, __GO_RECTANGLE__) == 0)
+    // Arc.
+    if (strcmp(pstType, __GO_ARC__) == 0)
     {
         getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &pdblData);
         pdblData[0] += x;
         pdblData[1] += y;
         pdblData[2] += z;
         setGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, pdblData, jni_double_vector, 3);
+
+        return 0;
+    }
+    // Rectangle.
+    else if (strcmp(pstType, __GO_RECTANGLE__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &pdblData);
+        pdblData[0] += x;
+        pdblData[1] += y;
+        pdblData[2] += z;
+        setGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, pdblData, jni_double_vector, 3);
+
+        return 0;
+    }
+    // Text.
+    else if (strcmp(pstType, __GO_TEXT__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &pdblData);
+        pdblData[0] += x;
+        pdblData[1] += y;
+        pdblData[2] += z;
+        setGraphicObjectProperty(pobjUID, __GO_POSITION__, pdblData, jni_double_vector, 3);
 
         return 0;
     }
