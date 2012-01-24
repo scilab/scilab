@@ -39,6 +39,7 @@ public class MainDataLoader {
          */
         private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
                 GraphicObjectProperties.__GO_ARC__,
+                GraphicObjectProperties.__GO_CHAMP__,
                 GraphicObjectProperties.__GO_RECTANGLE__,
                 GraphicObjectProperties.__GO_SEGS__
         ));

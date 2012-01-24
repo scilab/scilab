@@ -18,6 +18,7 @@ import java.nio.IntBuffer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.arc.ArcDecomposer;
+import org.scilab.modules.graphic_objects.vectfield.ChampDecomposer;
 import org.scilab.modules.graphic_objects.rectangle.RectangleDecomposer;
 import org.scilab.modules.graphic_objects.vectfield.SegsDecomposer;
 
@@ -38,6 +39,8 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         return ArcDecomposer.getDataSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        return ChampDecomposer.getDataSize(id);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.getDataSize();
                 } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
@@ -63,6 +66,8 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         ArcDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        ChampDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         RectangleDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
@@ -80,7 +85,9 @@ public class JavaObjectLoader {
         public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
                 String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        ChampDecomposer.fillColors(buffer, id, elementsSize);
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
                         SegsDecomposer.fillColors(buffer, id, elementsSize);
                 }
         }
@@ -131,6 +138,8 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         return ArcDecomposer.getWireIndicesSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        return ChampDecomposer.getWireIndicesSize(id);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.getWireIndicesSize();
                 } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
@@ -152,6 +161,8 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         return ArcDecomposer.fillWireIndices(buffer, id, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        return ChampDecomposer.fillWireIndices(buffer, id, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.fillWireIndices(buffer, id, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {

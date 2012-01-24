@@ -100,6 +100,19 @@ public class DataManager {
     ));
 
     /**
+     * Set of properties that affect Champ data.
+     */
+    private static final Set<String> CHAMP_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_BASE_X__,
+            GraphicObjectProperties.__GO_BASE_Y__,
+            GraphicObjectProperties.__GO_BASE_Z__,
+            GraphicObjectProperties.__GO_DIRECTION_X__,
+            GraphicObjectProperties.__GO_DIRECTION_Y__,
+            GraphicObjectProperties.__GO_DIRECTION_Z__,
+            GraphicObjectProperties.__GO_COLORED__
+    ));
+
+    /**
      * Set of properties that affect Rectangle data.
      */
     private static final Set<String> RECTANGLE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
@@ -210,7 +223,6 @@ public class DataManager {
      */
     public void update(String id, String property) {
         String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-
         if (vertexBufferMap.containsKey(id)) {
             if ((type.equals(GraphicObjectProperties.__GO_FAC3D__) && FAC3D_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_FEC__) && FEC_DATA_PROPERTIES.contains(property))
@@ -219,6 +231,7 @@ public class DataManager {
                || (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_ARC__) && ARC_DATA_PROPERTIES.contains(property))
+               || (type.equals(GraphicObjectProperties.__GO_CHAMP__) && CHAMP_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_SEGS__) && SEGS_DATA_PROPERTIES.contains(property))) {
                 fillBuffers(id);

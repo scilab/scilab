@@ -843,10 +843,69 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         System.out.println("How can I draw an arrow ?");
     }
 
+    /*
+     * To do: -arrow tip rendering.
+     */
     @Override
-    public void visit(Champ champ) {
-        // TODO
-        System.out.println("How can I draw a champ ?");
+    public void visit(final Champ champ) {
+        if (champ.getVisible()) {
+            Geometry segments = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(champ.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    if (champ.getColored()) {
+                        return dataManager.getColorBuffer(champ.getIdentifier());
+                    } else {
+                        return null;
+                    }
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(champ.getIdentifier());
+                    return indices;
+                }
+
+                @Override
+                public IndicesBuffer getEdgesIndices() {
+                    return null;
+                }
+
+                @Override
+                public FaceCullingMode getFaceCullingMode() {
+                    return FaceCullingMode.BOTH;
+                }
+            };
+
+            if (champ.getLineMode())
+            {
+                Appearance segmentAppearance = new Appearance();
+
+                /* If not colored, all segments have the same color. */
+                if (!champ.getColored()) {
+                    segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, champ.getLineColor()));
+                }
+
+                segmentAppearance.setLineWidth(champ.getLineThickness().floatValue());
+                segmentAppearance.setLinePattern(champ.getLineStyleAsEnum().asPattern());
+                drawingTools.draw(segments, segmentAppearance);
+            }
+        }
+
     }
 
     /*
