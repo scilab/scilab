@@ -226,6 +226,8 @@ Bug fixes
 
 * Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
 
+* Bug #10439 fixed - stacksize('max') crashed on Windows 64 bit.
+
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
 

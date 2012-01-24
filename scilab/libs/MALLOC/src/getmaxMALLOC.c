@@ -37,12 +37,17 @@
 #ifdef _MSC_VER
 IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 {
-#define SECURITY_FREE_MEMORY 240000
-
 #if _WIN64
     /* we need to limit values to 32 bits for Scilab :( */
-    return MAXLONG32;
+
+    /* Bug 10439 JVM reserves some space in 32 bit space */
+    /* "Empiric" value for a Java Heap space to 256mb */
+    /* It is not really a good workaround :/ */
+    #define SECURITY_FREE_MEMORY 355483647 
+
+    return MAXLONG32 - SECURITY_FREE_MEMORY;
 #else
+    #define SECURITY_FREE_MEMORY 1040000
     SYSTEM_INFO systemInfo;
     VOID *p = 0;
     MEMORY_BASIC_INFORMATION mbi;
