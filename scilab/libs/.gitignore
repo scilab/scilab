@@ -15,4 +15,4 @@ zlib
 hdf5
 gl2ps
 *.lib
-
+Eigen
