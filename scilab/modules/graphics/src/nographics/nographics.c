@@ -163,12 +163,6 @@ int sciAddNewHandle(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetEntityType(char *pobj, sciEntityType value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 void sciInitSelectedSons(sciPointObj * pObj)
 {
 

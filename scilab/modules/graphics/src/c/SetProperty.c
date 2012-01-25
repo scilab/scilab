@@ -162,32 +162,6 @@ void Obj_RedrawNewAngle(char * pSubwin, double alpha, double theta)
 #endif
 }
 
-
-
-
-
-/**sciSetEntityType
- * Sets the type of this Scilab graphic object (pobjUID)
- */
-int
-sciSetEntityType (char * pobjUID, sciEntityType value)
-{
-// FIXME
-    abort();
-#if 0
-    if (pobj != (sciPointObj *) NULL)
-    {
-        pobj->entitytype = value ;
-        return 0 ;
-    }
-    else
-    {
-        return -1 ;
-    }
-#endif
-    return -1;
-}
-
 void sciRecursiveUpdateBaW(char *pobjUID, int old_m, int m)
 {
     // FIXME
