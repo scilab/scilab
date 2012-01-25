@@ -459,6 +459,31 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
         return 0;
     }
+    // Fac3d.
+    else if (strcmp(pstType, __GO_FAC3D__) == 0)
+    {
+        int iNumVPG = 0;
+        int* piNumVPG = &iNumVPG;
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNumVPG);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNum);
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+
+        for (i = 0; i < iNumVPG*iNum; i++)
+        {
+            dataX[i] += x;
+            dataY[i] += y;
+            dataZ[i] += z;
+        }
+
+        /* Model data has been updated by direct pointer access, trigger update within the renderer. */
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, dataZ, jni_double_vector, iNumVPG*iNum);
+
+        return 0;
+    }
     // Plot3d.
     else if (strcmp(pstType, __GO_PLOT3D__) == 0)
     {
