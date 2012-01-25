@@ -27,6 +27,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFO_MESSAGE__;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -1455,6 +1456,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
                         new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
             }
+        } else if (property.equals(__GO_INFO_MESSAGE__)) {
+            getInfoBar().setText((String) value);
         }
     }
 
