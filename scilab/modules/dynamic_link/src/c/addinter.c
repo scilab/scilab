@@ -15,6 +15,9 @@
 #include <string.h> 
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 
 #include "core_math.h"
 #include "dynamic_link.h"

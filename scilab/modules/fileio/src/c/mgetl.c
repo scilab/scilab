@@ -11,15 +11,16 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#include "strdup_windows.h"
+#endif
 #include "mgetl.h"
 #include "filesmanagement.h"
 #include "mopen.h"
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "strsubst.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define LINE_MAX 4096

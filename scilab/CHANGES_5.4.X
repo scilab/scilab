@@ -244,6 +244,9 @@ ATOMS
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
+* Bug #10372 fixed - remove dependencies of MALLOC.h on Windows.h and machine.h
+                     on Windows.
+
 
 Bug fixes
 =========

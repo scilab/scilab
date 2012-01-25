@@ -11,6 +11,7 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <windows.h>
 #include <string.h>
 #include "gw_windows_tools.h"
 #include "MALLOC.h" 

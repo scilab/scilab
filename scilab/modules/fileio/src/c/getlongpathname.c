@@ -10,13 +10,14 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include <windows.h>
+#include "strdup_windows.h"
+#endif
 #include <string.h>
 #include "getlongpathname.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_LONG

@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <errno.h>
+#else
+#include <windows.h>
 #endif
 #include "gw_fileio.h"
 #include "MALLOC.h"

@@ -13,6 +13,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif 
 #include "BOOL.h"
 #include "call_scilab.h"
 #include "lasterror.h"          /* clearLastError */

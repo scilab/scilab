@@ -11,11 +11,12 @@
  *
  */
 
-#include "CreateMatlabVariable.h"
 #ifdef _MSC_VER
+#include <windows.h>
 #include "strdup_Windows.h"
 #endif
 
+#include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 

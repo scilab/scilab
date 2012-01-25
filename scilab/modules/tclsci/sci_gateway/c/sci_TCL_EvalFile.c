@@ -11,13 +11,14 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "TCL_Command.h"
+#include "TCL_Global.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "GlobalTclInterp.h"
-#include "TCL_Command.h"
+
 #include "FileExist.h"
 #include "TCL_getErrorLine.h"
 #include "getshortpathname.h"

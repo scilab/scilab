@@ -13,15 +13,16 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#if _MSC_VER
+#include <windows.h>
+#include "strdup_windows.h"
+#endif
 #include "gw_sound.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "BOOL.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
 /*--------------------------------------------------------------------------*/
 #define BEEP_ON "on"
 #define BEEP_OFF "off"
