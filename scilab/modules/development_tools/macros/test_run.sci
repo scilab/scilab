@@ -815,9 +815,9 @@ function test_run(varargin)
             params.testTypes = "nonreg_tests";
         end
 
-        clean_option(option_mat, "unit_tests");
-        clean_option(option_mat, "nonreg_tests");
-        clean_option(option_mat, "all_tests");
+        option_mat = clean_option(option_mat, "unit_tests");
+        option_mat = clean_option(option_mat, "nonreg_tests");
+        option_mat = clean_option(option_mat, "all_tests");
 
         // Skip tests
         params.skip_mat     = assign_option(option_mat, "skip_tests", varargin(2), params.skip_mat);
