@@ -155,9 +155,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     updateInfosWhenFocused();
-                    NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
-                    if (nav != null) {
-                        nav.update((ScilabDocument) getDocument());
+                    if (ScilabEditorPane.this.editor != null) {
+                        NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
+                        if (nav != null) {
+                            nav.update((ScilabDocument) getDocument());
+                        }
                     }
                 }
 
@@ -235,9 +237,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             ctrlHit = false;
                             infoBarChanged = false;
                             setCursor(TEXTCURSOR);
-			    if (ScilabEditorPane.this.editor != null) {
-				ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
-			    }
+                            if (ScilabEditorPane.this.editor != null) {
+                                ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
+                            }
                             String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
                             if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
                                 WebBrowser.openUrl(url);
@@ -462,13 +464,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         focused = this;
         doc.getUndoManager().enableUndoRedoButtons();
 
-	if (editor != null) {
-	    if (checkExternalModif()) {
-		editor.getInfoBar().setText(SciNotesMessages.EXTERNAL_MODIFICATION_INFO);
-	    } else {
-		editor.getInfoBar().setText(getInfoBarText());
-	    }
-	}
+        if (editor != null) {
+            if (checkExternalModif()) {
+                editor.getInfoBar().setText(SciNotesMessages.EXTERNAL_MODIFICATION_INFO);
+            } else {
+                editor.getInfoBar().setText(getInfoBarText());
+            }
+        }
     }
 
     /**
@@ -499,9 +501,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setInfoBarText(String text) {
         this.infoBar = text;
-	if (editor != null) {
-	    editor.getInfoBar().setText(getInfoBarText());
-	}
+        if (editor != null) {
+            editor.getInfoBar().setText(getInfoBarText());
+        }
     }
 
     /**
@@ -658,8 +660,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void updateTitle() {
         if (editor != null) {
-	    editor.updateTabTitle();
-	}
+            editor.updateTabTitle();
+        }
     }
 
     /**
@@ -1501,9 +1503,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         edComponent.getScrollPane().setRowHeaderView(xln);
         doc.setEditorPane(this);
 
-        NavigatorWindow nav = editor.getNavigator();
-        if (nav != null) {
-            nav.addEditorPane(this);
+        if (editor != null) {
+            NavigatorWindow nav = editor.getNavigator();
+            if (nav != null) {
+                nav.addEditorPane(this);
+            }
         }
     }
 }
