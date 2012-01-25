@@ -2966,75 +2966,7 @@ int sciSetViewport( char * pobjUID, const int viewport[4] )
 #endif
         return -1;
 }
-/*-----------------------------------------------------------------------------------*/
-int sciInitInfoMessage(char * pobjUID, const char * newMessage)
-{
-    // FIXME
-    abort();
-#if 0
-    	if ( sciGetEntityType( pobjUID ) == SCI_FIGURE)
-	{
 
-		/* first case newName is NULL */
-		if (newMessage == NULL)
-		{
-			/* Just set an empty title for the physical window if needed */
-			if(isFigureModel(pobjUID))
-			{
-				pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage = NULL;
-			}
-			else
-			{
-				sciSetJavaInfoMessage(pobjUID, "");
-			}
-
-			return 0;
-		}
-
-		if (isFigureModel(pobjUID))
-		{
-			/* Copy the message into the special data */
-			int newMessageLength = (int) strlen(newMessage);
-			pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage = MALLOC((newMessageLength + 1) * sizeof(char));
-			if (pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage != NULL)
-			{
-				strcpy(pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage, newMessage);
-			}
-		}
-		else
-		{
-			/* Copy in the Java data */
-			sciSetJavaInfoMessage(pobjUID, newMessage);
-		}
-
-		return 0 ;
-	}
-	else
-	{
-		printSetGetErrorMessage("info_message");
-		return -1;
-	}
-#endif
-        return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * Modify the string in the info bar of the graphic window
- */
-int sciSetInfoMessage( char * pobjUID, const char * newMessage )
-{
-    // FIXME
-    abort();
-#if 0
-        if (isFigureModel(pobjUID) && pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage != NULL)
-	{
-		FREE(pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage);
-		pFIGURE_FEATURE(pobjUID)->pModelData->infoMessage = NULL;
-	}
-	return sciInitInfoMessage(pobjUID, newMessage);
-#endif
-    return -1;
-}
 /*-----------------------------------------------------------------------------------*/
 int sciInitEventHandler( char * pobjUID, char * name )
 {
@@ -3196,67 +3128,6 @@ int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
         return -1 ;
 
     }
-#endif
-    return -1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/**
- * Set the info message of a figure with the information about rotation angles
- */
-int setInfoMessageWithRotationAngles(char * pFigure, double alpha, double theta)
-{
-    // FIXME
-    abort();
-#if 0
-        /* keep this lower than 10*/
-#define ANGLE_DECIMAL_NUMBERS 1
-    char angleDisplayFormat[5];
-    int returnStatus = -1;
-    double intPart;
-    char * infoMessage = NULL;
-    char formatedInfoMessage[29];
-
-    /* Size without numbers is 8 for "alpha = ", 10 for ", theta = " and 1 for the null terminating character */
-    int infoMessageSize = 19;
-
-    /* set number of digits so format is %.xf where x is ANGLE_DECIMAL_NUMBERS */
-    sprintf(angleDisplayFormat, "%%.%df", ANGLE_DECIMAL_NUMBERS);
-
-    /* compute size of alpha wich is the length of its int part plus 1 for the dot */
-    /* and the number of decimals */
-    modf(alpha, &intPart); /* get int part of alpha */
-    infoMessageSize += GET_NB_DIGITS(intPart) + 1 + ANGLE_DECIMAL_NUMBERS;
-
-    /* same for theta */
-    modf(theta, &intPart);
-    infoMessageSize += GET_NB_DIGITS(intPart) + 1 + ANGLE_DECIMAL_NUMBERS;
-
-    /* We use also infomessage string to store the formated massage */
-    /* The needed size might be 19 plus twice the format length so 8 => 27 */
-
-    /* Add alpha size, which is the size of its int part plus 1 for the dot and only  */
-
-    infoMessage = MALLOC(infoMessageSize * sizeof(char));
-    if (infoMessage == NULL)
-    {
-        /* no more memory */
-        return -1;
-    }
-
-    /* Put the formats in the string */
-    sprintf(formatedInfoMessage, "alpha = %s, theta = %s", angleDisplayFormat, angleDisplayFormat);
-
-    /* convert the formats into the angle values */
-    sprintf(infoMessage, formatedInfoMessage, alpha, theta);
-
-    returnStatus = sciSetInfoMessage(pFigure, infoMessage) ;
-
-    FREE(infoMessage);
-
-    return returnStatus;
-
-#undef ANGLE_DECIMAL_NUMBERS
 #endif
     return -1;
 }

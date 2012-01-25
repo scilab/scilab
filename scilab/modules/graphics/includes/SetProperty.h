@@ -206,9 +206,6 @@ GRAPHICS_IMPEXP int sciSetGridStyle( char* pObj, int xStyle, int yStyle, int zSt
 
 GRAPHICS_IMPEXP int sciSetViewport(  char* pObj, const int viewport[4] ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitInfoMessage(char* pObj, const char * newMessage);
-GRAPHICS_IMPEXP int sciSetInfoMessage( char* pObj, const char * newMessage ) ; /* SET */
-
 GRAPHICS_IMPEXP int sciInitEventHandler( char* pObj, char * name ) ;
 GRAPHICS_IMPEXP int sciSetEventHandler(  char* pObj, char * name ) ;
 
@@ -217,8 +214,6 @@ GRAPHICS_IMPEXP int sciSetIsEventHandlerEnable(  char* pObj, BOOL enable ) ;
 
 GRAPHICS_IMPEXP int sciSetDataBounds( char* pObj, double bounds[6] ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetRealDataBounds(char* pObj, const double bounds[6]); /* SET */
-
-GRAPHICS_IMPEXP int setInfoMessageWithRotationAngles(char* pFigure, double alpha, double theta);
 
 GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);
 GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */

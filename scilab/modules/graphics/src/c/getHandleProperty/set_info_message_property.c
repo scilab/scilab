@@ -41,14 +41,6 @@ int set_info_message_property(char* pobjUID, size_t stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"info_message");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   status = setGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, getStringFromStack( stackPointer ), jni_string, 1);
 
   if (status == TRUE)
@@ -60,17 +52,5 @@ int set_info_message_property(char* pobjUID, size_t stackPointer, int valueType,
       Scierror(999, _("'%s' property does not exist for this handle.\n"),"info_message");
       return SET_PROPERTY_ERROR;
   }
-
-  /* deactivated for now since it involves drawing operations, to be implemented */
-#if 0
-  /* disable protection since this function will call Java */
-  //disableFigureSynchronization(pobj);
-  status = sciSetInfoMessage( pobjUID, getStringFromStack( stackPointer ) ) ;
-  //enableFigureSynchronization(pobj);
-
-	/* return set property unchanged since repaint is not really needed */
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
-#endif
-
 }
 /*------------------------------------------------------------------------*/
