@@ -1049,12 +1049,6 @@ sciPointObj *getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 }
 
 /*--------------------------------------------------------------------------*/
-void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 int deallocatePolyline(sciPointObj * pthis)
 {
     return -1;

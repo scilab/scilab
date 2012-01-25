@@ -21,7 +21,6 @@ sciGetNbTypedObjects
 sciGetXorMode
 sciGetHandle
 getFigureFromIndex
-updateViewingAngles
 sciGetPointerFromHandle
 getClickedSubwin
 sciZoomObject
@@ -73,7 +72,7 @@ sciSetXorMode
 getPixelModeIndex
 sciGetRealVisibility
 sciGetTextPos
-sciGetBoxType 
+sciGetBoxType
 sciGetSubwinIndex
 sciGetIs3d
 sciGetGridFront
@@ -96,9 +95,9 @@ getMatNbCol
 sciGetText
 sciGetAlignment
 sciGetFontOrientation
-sciisTextEmpty 
+sciisTextEmpty
 sciGetCenterPos
-sciGetAutoSize 
+sciGetAutoSize
 sciGetIsLine
 sciGetIsBoxed
 sciGetUserSize
@@ -123,7 +122,7 @@ sciInitIsLine
 sciInitLineStyle
 sciInitLineWidth
 sciInitBackground
-sciInitForeground 
+sciInitForeground
 sciInitMarkStyle
 sciInitIsMark
 sciInitMarkBackground
@@ -140,7 +139,7 @@ deallocateText
 sciSetLegendPos
 sciGetLegendPos
 sciGetParent
-sciGetxLocation 
+sciGetxLocation
 sciGetyLocation
 sciGetLegendPlace
 sciGetDataBounds

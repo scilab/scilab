@@ -810,23 +810,4 @@ void showWindow(char * pFigureUID)
 {
     // @TODO: Call SwingView to raise window.
 }
-/*---------------------------------------------------------------------------------*/
-void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta)
-{
-	double newAlpha;
-	double newTheta;
-
-	/* Get current angles */
-	sciGetViewingAngles(pSubwin, &newAlpha, &newTheta);
-
-	/* update them */
-	newAlpha += deltaAlpha;
-	newTheta += deltaTheta;
-
-	Obj_RedrawNewAngle(pSubwin, newAlpha, newTheta);
-
-	/* Update info message */
-	setInfoMessageWithRotationAngles(sciGetParentFigure(pSubwin), newAlpha, newTheta);
-}
-/*---------------------------------------------------------------------------------*/
 

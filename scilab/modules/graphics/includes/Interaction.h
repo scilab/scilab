@@ -95,10 +95,4 @@ GRAPHICS_IMPEXP void interactiveSubwinRotation(sciPointObj * pSubwin);
  */
 GRAPHICS_IMPEXP void showWindow(char* pFigureUID);
 
-/**
- * Modify a subwin viewing angles by a certain amount.
- */
-GRAPHICS_IMPEXP void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta);
-
-
 #endif /* __SCI_INTERACTION__ */
