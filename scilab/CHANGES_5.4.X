@@ -189,6 +189,8 @@ Bug fixes
 * Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
                      but 'lasterror' returned vector of strings.
 
+* Bug #10342 fixed - assert_checkerror help file had a wrong format.
+
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
@@ -272,7 +274,7 @@ Bug fixes
 
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
-* Bug #10564 fixed - atan graphic demo was failing due to a too strong test 
+* Bug #10564 fixed - atan graphic demo was failing due to a too strong test
                      in the linspace function.
 
 * Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
