@@ -607,12 +607,9 @@ int sciInitForeground( char * pobjUID, int colorindex )
 int
 sciSetForeground (char * pobjUID, int colorindex)
 {
-    if ( sciGetForeground( pobjUID ) == colorindex )
-    {
-        return 1 ;
-    }
-    return sciInitForeground( pobjUID, colorindex ) ;
-
+    // FIXME
+    abort();
+    return 0;
 }
 
 int sciSetLineWidth( char * pobjUID, double linewidth )

@@ -41,11 +41,9 @@ GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /*
 GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 GRAPHICS_IMPEXP int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
-GRAPHICS_IMPEXP int sciGetForegroundToDisplay (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
 
 GRAPHICS_IMPEXP int sciGetBackground (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetForeground (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP double sciGetLineWidth (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
 GRAPHICS_IMPEXP BOOL sciGetIsDisplayingLines(sciPointObj * pObj);

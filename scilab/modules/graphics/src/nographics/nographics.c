@@ -321,12 +321,6 @@ char *allocateText(char *pparentsubwinUID,
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetForeground(sciPointObj * pobj)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetBackground(sciPointObj * pobj)
 {
     return -1;

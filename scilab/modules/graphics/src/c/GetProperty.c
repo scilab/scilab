@@ -152,47 +152,6 @@ int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
 }
 
 
-
-/**sciGetForeground
-* Gets the color number of the Foreground
-*/
-int
-sciGetForeground (sciPointObj * pobj)
-{
-
-    int colorindex = -999;
-
-    if(sciGetGraphicContext(pobj) != NULL)
-    {
-        colorindex = (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-    }
-    else
-    {
-        /*printSetGetErrorMessage("foreground");*/ /* rewrite updatebaw to renable this message */
-        return -999;
-    }
-
-    colorindex = sciGetGoodIndex(pobj, colorindex);
-
-    return colorindex;
-}
-
-
-int
-sciGetForegroundToDisplay (sciPointObj * pobj)
-{
-
-    int colorindex = -999;
-    int m = sciGetNumColors(pobj);
-
-    colorindex = sciGetForeground(pobj);
-
-    if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
-
-    return colorindex;
-}
-
-
 /**sciGetBackground
 * Gets the color number of the Background. Be carreful the return of the subwindow
 * is the feature of its parent figure.

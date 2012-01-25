@@ -53,31 +53,10 @@ int sci_xarc(char *fname,unsigned long fname_len)
     angle1 = DEG2RAD(*istk(l5) / 64.0); /* convert to radian */
     angle2 = DEG2RAD(*istk(l6) / 64.0);
 
-    /* Deactivated (synchronization) */
-#if 0
-    startGraphicDataWriting();
-#endif
-
     psubwinUID = getOrCreateDefaultSubwin();
-
-    /* Deactivated (synchronization) */
-#if 0
-    endGraphicDataWriting();
-#endif
-
-    /* Deactivated (synchronization) */
-#if 0
-    startFigureDataReading(pFigure);
-    curcolor = sciGetForeground(psubwin); /* current color equivalent for new graphics mode */
-    endFigureDataReading(pFigure);
-#endif
 
     getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
 
-    /* Deactivated (synchronization) */
-#if 0
-    startFigureDataWriting(pFigure);
-#endif
     if ( strcmp(fname,"xarc") == 0 )
     {
         Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),&curcolor,NULL,FALSE,TRUE,&hdl);
@@ -86,18 +65,6 @@ int sci_xarc(char *fname,unsigned long fname_len)
     {
         Objarc (&angle1,&angle2,stk(l1),stk(l2),stk(l3),stk(l4),NULL,&curcolor,TRUE,FALSE,&hdl);
     }
-    /* Deactivated (synchronization) */
-#if 0
-    endFigureDataWriting(pFigure);
-#endif
-
-    /*
-     * Deactivated, sinces it performs drawing
-     * To be implemented
-     */
-#if 0
-    sciDrawObj(sciGetCurrentObj());
-#endif
 
     LhsVar(1)=0;
     PutLhsVar();

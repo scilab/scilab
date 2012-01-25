@@ -44,21 +44,5 @@ int get_tics_color_property(char *pobjUID)
     }
 
     return sciReturnDouble(iTicksColor);
-
-/* Deactivated for now since it involves color range checks, to be implemented. */
-#if 0
-    return sciReturnDouble( sciGetForegroundToDisplay(pobj) ) ;
-#endif
-
-
-    /* To be implemented using the MVC framework */
-#if 0
-    if (sciGetEntityType (pobj) == SCI_SUBWIN)
-    {
-        Scierror(999, _("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"'tics_color'","'foreground'");
-        return sciReturnDouble( pSUBWIN_FEATURE(pobj)->axes.ticscolor );
-    }
-#endif
-
 }
 /*------------------------------------------------------------------------*/

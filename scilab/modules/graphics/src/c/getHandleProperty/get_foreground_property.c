@@ -45,10 +45,5 @@ int get_foreground_property(char *pobjUID)
     }
 
     return sciReturnDouble(iLineColor);
-
-/* to be implemented later since it involves color index range checks */
-#if 0
-  return sciReturnDouble( sciGetForegroundToDisplay( pobj ) ) ;
-#endif
 }
 /*------------------------------------------------------------------------*/

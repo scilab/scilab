@@ -217,8 +217,8 @@ namespace sciGraphics
 		char ** textMat = getStrMatData(sciGetText(m_pDrawed));
 
 		// create a text object and set its data from the legend object
-		int background = sciGetBackground(m_pDrawed);
-		int foreground = sciGetForeground(m_pDrawed);
+		//int background = sciGetBackground(m_pDrawed);
+		//int foreground = sciGetForeground(m_pDrawed);
 
                 /* Deactivated as allocateText's prototype has changed */
 #if 0

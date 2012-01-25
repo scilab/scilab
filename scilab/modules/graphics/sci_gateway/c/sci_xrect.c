@@ -43,28 +43,13 @@ int sci_xrect( char *fname, unsigned long fname_len )
 
     CheckRhs(1,4);
 
-    /* Deactivated (synchronization) */
-#if 0
-    startGraphicDataWriting();
-#endif
-
     psubwinUID = getOrCreateDefaultSubwin();
-
-    /* Deactivated (synchronization) */
-#if 0
-    endGraphicDataWriting();
-#endif
 
     switch( Rhs )
     {
     case 1 :
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
         CheckLength(1,m1*n1,4);
-
-        /* Deactivated (synchronization) */
-#if 0
-        startFigureDataWriting(pFigure);
-#endif
 
         getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
 
@@ -79,33 +64,13 @@ int sci_xrect( char *fname, unsigned long fname_len )
                      NULL,&foreground,TRUE,FALSE,&hdl);
         }
 
-        /* Deactivated (synchronization) */
-#if 0
-        endFigureDataWriting(pFigure);
-#endif
-
         if ( hdl < 0 )
         {
             break;
         }
 
-        /* Deactivated (synchronization and drawing) */
-#if 0
-        startFigureDataReading(pFigure);
-        sciDrawObjIfRequired(sciGetCurrentObj ());
-        endFigureDataReading(pFigure);
-#endif
-
         break;
     case 4 :
-    {
-        /* Deactivated (synchronization) */
-#if 0
-        startFigureDataReading(pFigure);
-        foreground = sciGetForeground(psubwin);
-        endFigureDataReading(pFigure);
-#endif
-
         getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piForeground);
 
         GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); CheckScalar(1,m1,n1);
@@ -113,10 +78,6 @@ int sci_xrect( char *fname, unsigned long fname_len )
         GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3);
         GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4);
 
-        /* Deactivated (synchronization) */
-#if 0
-        startFigureDataWriting(pFigure);
-#endif
         if (strcmp(fname,"xrect")==0)
         {
             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
@@ -128,27 +89,12 @@ int sci_xrect( char *fname, unsigned long fname_len )
                      NULL,&foreground,TRUE,FALSE,&hdl);
         }
 
-        /* Deactivated (synchronization) */
-#if 0
-        endFigureDataWriting(pFigure);
-#endif
-
         if ( hdl < 0 )
         {
             break;
         }
 
-        /*
-         * Deactivated (drawing)
-         * To be implemented
-         */
-#if 0
-        startFigureDataReading(pFigure);
-        sciDrawObjIfRequired(sciGetCurrentObj ());
-        endFigureDataReading(pFigure);
-#endif
-    }
-    break;
+        break;
     default :
         Scierror(999,_("%s: Wrong number of input argument(s): %d or %d expected.\n"),fname, 1,4);
         break ;
@@ -157,7 +103,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     if ( hdl > 0 )
     {
         LhsVar(1)=0;
-       PutLhsVar();
+        PutLhsVar();
     }
     return 0;
 }
