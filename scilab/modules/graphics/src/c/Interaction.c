@@ -484,6 +484,23 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
         return 0;
     }
+    // Fec.
+    else if (strcmp(pstType, __GO_FEC__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, &piNum);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, &pdblData);
+
+        for (i = 0; i < iNum; i++)
+        {
+            pdblData[3*i] += x;
+            pdblData[3*i+1] += y;
+            pdblData[3*i+2] += z;
+        }
+
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, pdblData, jni_double_vector, 3*iNum);
+
+        return 0;
+    }
     // Plot3d.
     else if (strcmp(pstType, __GO_PLOT3D__) == 0)
     {
