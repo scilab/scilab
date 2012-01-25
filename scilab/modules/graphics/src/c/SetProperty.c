@@ -124,44 +124,6 @@ int setSubWinAngles( char *psubwin, double theta, double alpha )
     return 0 ;
 }
 
-/*---------------------------------------------------------------------------*/
-/* Obj_RedrawNewAngle                                                                 */
-/* Modify the viewing angles of a subwindow and the one of its brothers id necessary  */
-/*---------------------------------------------------------------------------*/
-
-void Obj_RedrawNewAngle(char * pSubwin, double alpha, double theta)
-{
-// FIXME
-    abort();
-#if 0
-    /* check if all the axis must be turned */
-    sciPointObj * pParentFigure = sciGetParentFigure( pSubwin ) ;
-    if ( pFIGURE_FEATURE(pParentFigure)->rotstyle == 1 )
-    {
-        /* every axes has the same angles */
-        sciSons * subWins = sciGetSons( pParentFigure ) ;
-
-        /* modify each axis */
-        while ( subWins != NULL )
-        {
-            sciPointObj * curSubWin = subWins->pointobj ;
-            if ( curSubWin->entitytype == SCI_SUBWIN )
-            {
-                setSubWinAngles( curSubWin, theta, alpha ) ;
-                forceRedraw(curSubWin);
-            }
-            subWins = subWins->pnext ;
-        }
-    }
-    else
-    {
-        /* modify angles only for this axes */
-        setSubWinAngles( pSubwin, theta, alpha ) ;
-        forceRedraw(pSubwin);
-    }
-#endif
-}
-
 int sciInitNumColors( char * pobjUID, int numcolors)
 {
     // FIXME
@@ -2861,63 +2823,6 @@ int sciSetCenterPos( char * pobjUID, BOOL newCP )
         return 1 ;
     }
     return sciInitCenterPos( pobjUID, newCP ) ;
-}
-/*-----------------------------------------------------------------------------------*/
-int sciInitIs3d(  char * pobjUID, BOOL is3d )
-{
-    // FIXME
-    abort();
-#if 0
-        switch( sciGetEntityType( pobjUID ) )
-    {
-    case SCI_SUBWIN:
-        if ( is3d )
-        {
-            pSUBWIN_FEATURE (pobjUID)->is3d = TRUE ;
-            Obj_RedrawNewAngle( pobjUID,
-                                pSUBWIN_FEATURE (pobjUID)->alpha_kp,
-                                pSUBWIN_FEATURE (pobjUID)->theta_kp ) ;
-        }
-        else
-        {
-            /* switch to 2d */
-            if ( sciGetSurface(pobjUID) == NULL)
-            {
-                pSUBWIN_FEATURE (pobjUID)->is3d = FALSE;
-                pSUBWIN_FEATURE (pobjUID)->project[2]= 0;
-            }
-            pSUBWIN_FEATURE (pobjUID)->theta_kp = pSUBWIN_FEATURE (pobjUID)->theta;
-            pSUBWIN_FEATURE (pobjUID)->alpha_kp = pSUBWIN_FEATURE (pobjUID)->alpha;
-            pSUBWIN_FEATURE (pobjUID)->alpha = 0.0;
-            pSUBWIN_FEATURE (pobjUID)->theta = 270.0;
-            pSUBWIN_FEATURE(pobjUID)->is3d = FALSE;
-            return 0 ;
-        }
-        return 0 ;
-    case SCI_TEXT:
-        pTEXT_FEATURE( pobjUID )->is3d = is3d ;
-        return 0 ;
-    case SCI_LABEL:
-        return sciInitIs3d( pLABEL_FEATURE( pobjUID )->text, is3d ) ;
-    default:
-        printSetGetErrorMessage("view");
-        return -1 ;
-    }
-#endif
-        return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * Force an object to be displayed in 2d or 3d mode.
- */
-int sciSetIs3d( char * pobjUID, BOOL is3d )
-{
-    if ( sciGetIs3d( pobjUID ) == is3d )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitIs3d( pobjUID, is3d ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciInitHiddenColor( char * pobjUID, int newColor )

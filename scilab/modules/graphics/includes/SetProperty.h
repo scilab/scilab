@@ -35,8 +35,6 @@
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP void Obj_RedrawNewAngle(char* pSubwin, double alpha, double theta); /* SET  */
-
 GRAPHICS_IMPEXP int sciInitNumColors( char* pobj, int numcolors ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetNumColors ( char* pobj, int numcolors ) ; /* SET */
 
@@ -188,9 +186,6 @@ GRAPHICS_IMPEXP int sciSetUserSize(  char* pObj, double width, double height ) ;
 
 GRAPHICS_IMPEXP int sciInitCenterPos( char* pObj, BOOL newCP ) ;
 GRAPHICS_IMPEXP int sciSetCenterPos(  char* pObj, BOOL newCP ) ;
-
-GRAPHICS_IMPEXP int sciInitIs3d( char* pObj, BOOL is3d ) ;
-GRAPHICS_IMPEXP int sciSetIs3d(  char* pObj, BOOL is3d ) ;
 
 GRAPHICS_IMPEXP int sciInitSelectedObject( char* pObj ) ;
 GRAPHICS_IMPEXP int sciSetSelectObject(    char* pObj ) ;

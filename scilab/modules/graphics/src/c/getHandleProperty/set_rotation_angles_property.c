@@ -32,42 +32,25 @@
 /*------------------------------------------------------------------------*/
 int set_rotation_angles_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  BOOL status;
-  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+    BOOL status;
+    double * values = getDoubleMatrixFromStack( stackPointer ) ;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
+        return SET_PROPERTY_ERROR ;
+    }
 
-#if 0
-  /* DJ.A 2003 */
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles") ;
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
+    status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
 
-  status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
-
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles") ;
-    return SET_PROPERTY_ERROR;
-  }
-
-  /* deactivated for now since it involves re-drawing operations, to be implemented */
-  #if 0
-  Obj_RedrawNewAngle( pobj, values[0], values[1] ) ;
-  #endif
-
-  return SET_PROPERTY_SUCCEED ;
-
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles") ;
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/
