@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,20 +34,20 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
+int sci_percent_foo_i_XMLList(char *fname, unsigned long fname_len)
 {
-    XMLNodeList * a;
+    XMLNodeList *a;
     int lhsid;
     double index;
     SciErr err;
-    char * prefix = 0;
-    char * underscore = 0;
-    char * format = 0;
-    int * indexaddr = 0;
-    int * rhsaddr = 0;
-    int * lhsaddr = 0;
-    int * retaddr = 0;
-    char * retstr = 0;
+    char *prefix = 0;
+    char *underscore = 0;
+    char *format = 0;
+    int *indexaddr = 0;
+    int *rhsaddr = 0;
+    int *lhsaddr = 0;
+    int *retaddr = 0;
+    char *retstr = 0;
     int iBegin = 2;
     int mrhs = 1;
     int mlhs = 1;
@@ -88,7 +88,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
     }
 
     lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
-    a = XMLObject::getFromId<XMLNodeList>(lhsid);
+    a = XMLObject::getFromId < XMLNodeList > (lhsid);
     if (!a)
     {
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);

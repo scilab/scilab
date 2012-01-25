@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,20 +29,20 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
+int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
 {
-    XMLAttr * attr;
+    XMLAttr *attr;
     int id;
     SciErr err;
-    int * prefixaddr = 0;
-    double * indexes = 0;
+    int *prefixaddr = 0;
+    double *indexes = 0;
     int rows;
     int cols;
-    int * nameaddr = 0;
-    int * mlistaddr = 0;
-    char * name = 0;
-    char * prefix = 0;
-    const char * value;
+    int *nameaddr = 0;
+    int *mlistaddr = 0;
+    char *name = 0;
+    char *prefix = 0;
+    const char *value;
 
     CheckLhs(1, 1);
     CheckRhs(2, 3);
@@ -113,7 +113,7 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(mlistaddr, pvApiCtx);
-    attr = XMLObject::getFromId<XMLAttr>(id);
+    attr = XMLObject::getFromId < XMLAttr > (id);
 
     if (!attr)
     {
@@ -131,7 +131,7 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
 
     if (Rhs == 3)
     {
-        value = attr->getAttributeValue(const_cast<const char *>(prefix), const_cast<const char *>(name));
+        value = attr->getAttributeValue(const_cast < const char *>(prefix), const_cast < const char *>(name));
     }
     else
     {
@@ -141,7 +141,7 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
         }
         else
         {
-            value = attr->getAttributeValue(const_cast<const char *>(prefix));
+            value = attr->getAttributeValue(const_cast < const char *>(prefix));
         }
     }
 
@@ -160,13 +160,13 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     }
     else
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast<const char * const *>(&value));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast < const char *const *>(&value));
     }
 
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

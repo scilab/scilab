@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,13 +27,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAsNumber(char * fname, unsigned long fname_len)
+int sci_xmlAsNumber(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    int * addr = 0;
-    XMLList * list = 0;
-    double * pdblReal = 0;
+    int *addr = 0;
+    XMLList *list = 0;
+    double *pdblReal = 0;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -53,7 +53,7 @@ int sci_xmlAsNumber(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    list = XMLObject::getFromId<XMLList>(id);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XMLSet or XMLList does not exist.\n"), fname);
@@ -61,19 +61,21 @@ int sci_xmlAsNumber(char * fname, unsigned long fname_len)
     }
 
     err = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, list->getSize(), &pdblReal);
-    const char ** contents = list->getContentFromList();
+    const char **contents = list->getContentFromList();
 
     for (int i = 0; i < list->getSize(); i++)
     {
         stringToDoubleError convErr = STRINGTODOUBLE_NO_ERROR;
+
         pdblReal[i] = stringToDouble(contents[i], TRUE, &convErr);
-        xmlFree(const_cast<char *>(contents[i]));
+        xmlFree(const_cast < char *>(contents[i]));
     }
 
-    delete[] contents;
+    delete[]contents;
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,8 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
+extern "C"
+{
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -26,11 +27,11 @@ extern "C" {
 namespace org_modules_xml
 {
 
-    XMLValidationSchema::XMLValidationSchema(const char * path, std::string * error) : XMLValidation()
+    XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):XMLValidation()
     {
-        char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        xmlSchemaParserCtxt * pctxt = xmlSchemaNewParserCtxt(expandedPath);
-        FREE(expandedPath);
+        char *expandedPath = expandPathVariable(const_cast < char *>(path));
+        xmlSchemaParserCtxt *pctxt = xmlSchemaNewParserCtxt(expandedPath);
+          FREE(expandedPath);
         if (!pctxt)
         {
             if (errorBuffer)
@@ -38,6 +39,7 @@ namespace org_modules_xml
                 delete errorBuffer;
             }
             errorBuffer = new std::string(gettext("Cannot create a validation context"));
+
             *error = *errorBuffer;
         }
         else
@@ -68,7 +70,7 @@ namespace org_modules_xml
         scope->removeId(id);
         if (validationFile)
         {
-            xmlSchemaFree((xmlSchema *)validationFile);
+            xmlSchemaFree((xmlSchema *) validationFile);
             openValidationFiles.remove(this);
             if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
             {
@@ -79,6 +81,7 @@ namespace org_modules_xml
         if (errorBuffer)
         {
             delete errorBuffer;
+
             errorBuffer = 0;
         }
     }
@@ -86,7 +89,7 @@ namespace org_modules_xml
     bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error) const
     {
         bool ret;
-        xmlSchemaValidCtxt * vctxt = xmlSchemaNewValidCtxt((xmlSchema *)validationFile);
+        xmlSchemaValidCtxt *vctxt = xmlSchemaNewValidCtxt((xmlSchema *) validationFile);
 
         if (errorBuffer)
         {
@@ -101,7 +104,7 @@ namespace org_modules_xml
             return false;
         }
 
-        xmlSchemaSetValidErrors(vctxt, (xmlSchemaValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
+        xmlSchemaSetValidErrors(vctxt, (xmlSchemaValidityErrorFunc) XMLValidation::errorFunction, 0, 0);
 
         ret = BOOLtobool(xmlSchemaValidateDoc(vctxt, doc.getRealDocument()));
 
@@ -118,7 +121,7 @@ namespace org_modules_xml
 
     bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) const
     {
-        xmlSchemaValidCtxt * vctxt = 0;
+        xmlSchemaValidCtxt *vctxt = 0;
         int last;
         int valid;
 
@@ -135,7 +138,7 @@ namespace org_modules_xml
             return false;
         }
 
-        vctxt = xmlSchemaNewValidCtxt(getValidationFile<xmlSchema>());
+        vctxt = xmlSchemaNewValidCtxt(getValidationFile < xmlSchema > ());
         if (!vctxt)
         {
             errorBuffer->append(gettext("Cannot create a validation context"));
@@ -143,11 +146,11 @@ namespace org_modules_xml
             return false;
         }
 
-        xmlSchemaSetValidErrors(vctxt, (xmlSchemaValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc)XMLValidation::errorFunction, 0);
+        xmlSchemaSetValidErrors(vctxt, (xmlSchemaValidityErrorFunc) XMLValidation::errorFunction, 0, 0);
+        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorFunction, 0);
         xmlTextReaderSchemaValidateCtxt(reader, vctxt, 0);
 
-        while ((last = xmlTextReaderRead(reader)) == 1);
+        while ((last = xmlTextReaderRead(reader)) == 1) ;
         valid = xmlTextReaderIsValid(reader);
 
         xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -167,14 +170,14 @@ namespace org_modules_xml
     const std::string XMLValidationSchema::toString() const
     {
         std::ostringstream oss;
-        xmlSchema * schema = getValidationFile<xmlSchema>();
+        xmlSchema *schema = getValidationFile < xmlSchema > ();
 
-        oss << "XML Schema" << std::endl;
-        oss << "name: " << (schema->name ? (const char * )schema->name : "") << std::endl;
-        oss << "target namespace: " << (schema->targetNamespace ? (const char * )schema->targetNamespace : "") << std::endl;
-        oss << "version: " << (schema->version ? (const char * )schema->version : "");
+          oss << "XML Schema" << std::endl;
+          oss << "name: " << (schema->name ? (const char *)schema->name : "") << std::endl;
+          oss << "target namespace: " << (schema->targetNamespace ? (const char *)schema->targetNamespace : "") << std::endl;
+          oss << "version: " << (schema->version ? (const char *)schema->version : "");
 
-        return oss.str();
+          return oss.str();
     }
 
 }

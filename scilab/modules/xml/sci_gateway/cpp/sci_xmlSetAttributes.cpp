@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,7 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 
 extern "C"
 {
@@ -27,13 +26,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
+int sci_xmlSetAttributes(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    int * addr = 0;
-    XMLObject * obj = 0;
-    char ** keyValue = 0;
+    int *addr = 0;
+    XMLObject *obj = 0;
+    char **keyValue = 0;
     int rows;
     int cols;
 
@@ -55,7 +54,7 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    obj = XMLObject::getFromId<XMLObject>(id);
+    obj = XMLObject::getFromId < XMLObject > (id);
     if (!obj)
     {
         Scierror(999, gettext("%s: XML attributes does not exist.\n"), fname);
@@ -90,11 +89,12 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
 
     if (cols == 2)
     {
-        obj->setAttributeValue(const_cast<const char **>(keyValue), const_cast<const char **>(keyValue + rows), rows);
+        obj->setAttributeValue(const_cast < const char **>(keyValue), const_cast < const char **>(keyValue + rows), rows);
     }
     else
     {
-        obj->setAttributeValue(const_cast<const char **>(keyValue), const_cast<const char **>(keyValue + rows), const_cast<const char **>(keyValue + 2 * rows), rows);
+        obj->setAttributeValue(const_cast < const char **>(keyValue), const_cast < const char **>(keyValue + rows),
+                               const_cast < const char **>(keyValue + 2 * rows), rows);
     }
     freeAllocatedMatrixOfString(rows, cols, keyValue);
 

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,7 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 
 extern "C"
 {
@@ -31,19 +30,21 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlXPath(char * fname, unsigned long fname_len)
+int sci_xmlXPath(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
+
     org_modules_xml::XMLDocument * doc;
-    XMLElement * where = 0;
-    const XMLXPath * xpath;
-    int * addr = 0;
-    char * query = 0;
+    XMLElement *where = 0;
+    const XMLXPath *xpath;
+    int *addr = 0;
+    char *query = 0;
+
     std::string error;
     int row = 0;
     int col = 0;
-    char ** namespaces = 0;
+    char **namespaces = 0;
     int isElem = 0;
     bool mustDelete = true;
 
@@ -69,17 +70,17 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     id = getXMLObjectId(addr, pvApiCtx);
     if (isElem)
     {
-        where = XMLObject::getFromId<XMLElement>(id);
+        where = XMLObject::getFromId < XMLElement > (id);
         if (!where)
         {
             Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
             return 0;
         }
-        doc = const_cast<org_modules_xml::XMLDocument *>(&(where->getXMLDocument()));
+        doc = const_cast < org_modules_xml::XMLDocument * >(&(where->getXMLDocument()));
     }
     else
     {
-        doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+        doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
             Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
@@ -139,7 +140,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces);
     }
 
-    xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, where, &error);
+    xpath = doc->makeXPathQuery(const_cast < const char *>(query), namespaces, row, where, &error);
     freeAllocatedSingleString(query);
     if (namespaces)
     {
@@ -154,36 +155,40 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 
     switch (xpath->getResultType())
     {
-    case XPATH_NODESET :
-    {
-        const XMLNodeSet * set = xpath->getNodeSet();
-        if (set->getSize() == 0)
+    case XPATH_NODESET:
         {
-            createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+            const XMLNodeSet *set = xpath->getNodeSet();
+
+            if (set->getSize() == 0)
+            {
+                createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+            }
+            set->createOnStack(Rhs + 1, pvApiCtx);
+            mustDelete = false;
+            break;
         }
-        set->createOnStack(Rhs + 1, pvApiCtx);
-        mustDelete = false;
-        break;
-    }
-    case XPATH_BOOLEAN :
-    {
-        int b = xpath->getBooleanValue();
-        createScalarBoolean(pvApiCtx, Rhs + 1, b);
-        break;
-    }
-    case XPATH_NUMBER :
-    {
-        double d = xpath->getFloatValue();
-        createScalarDouble(pvApiCtx, Rhs + 1, d);
-        break;
-    }
-    case XPATH_STRING :
-    {
-        const char * str = xpath->getStringValue();
-        createSingleString(pvApiCtx, Rhs + 1, str);
-        break;
-    }
-    default :
+    case XPATH_BOOLEAN:
+        {
+            int b = xpath->getBooleanValue();
+
+            createScalarBoolean(pvApiCtx, Rhs + 1, b);
+            break;
+        }
+    case XPATH_NUMBER:
+        {
+            double d = xpath->getFloatValue();
+
+            createScalarDouble(pvApiCtx, Rhs + 1, d);
+            break;
+        }
+    case XPATH_STRING:
+        {
+            const char *str = xpath->getStringValue();
+
+            createSingleString(pvApiCtx, Rhs + 1, str);
+            break;
+        }
+    default:
         delete xpath;
         Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());
         return 0;
@@ -191,8 +196,9 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 
     if (mustDelete)
     {
-        xmlXPathObject * real = static_cast<xmlXPathObject *>(xpath->getRealXMLPointer());
+        xmlXPathObject *real = static_cast < xmlXPathObject * >(xpath->getRealXMLPointer());
         delete xpath;
+
         xmlXPathFreeObject(real);
     }
     else
@@ -204,4 +210,5 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

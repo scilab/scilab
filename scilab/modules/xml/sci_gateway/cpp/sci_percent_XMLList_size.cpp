@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,13 +26,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_size(char * fname, unsigned long fname_len)
+int sci_percent_XMLList_size(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    double d[2] = {1, 0};
-    int * addr = 0;
-    XMLList * list;
+    double d[2] = { 1, 0 };
+    int *addr = 0;
+    XMLList *list;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -53,7 +53,7 @@ int sci_percent_XMLList_size(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    list = XMLObject::getFromId<XMLList>(id);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XMLList does not exist.\n"), fname);
@@ -65,7 +65,7 @@ int sci_percent_XMLList_size(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -73,4 +73,5 @@ int sci_percent_XMLList_size(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,8 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
+extern "C"
+{
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -25,12 +26,12 @@ extern "C" {
 namespace org_modules_xml
 {
 
-    XMLValidationDTD::XMLValidationDTD(const char * path, std::string * error) : XMLValidation()
+    XMLValidationDTD::XMLValidationDTD(const char *path, std::string * error):XMLValidation()
     {
         internalValidate = false;
-        char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
-        FREE(expandedPath);
+        char *expandedPath = expandPathVariable(const_cast < char *>(path));
+          validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
+          FREE(expandedPath);
         if (!validationFile)
         {
             if (errorBuffer)
@@ -38,6 +39,7 @@ namespace org_modules_xml
                 delete errorBuffer;
             }
             errorBuffer = new std::string(gettext("Cannot parse the DTD"));
+
             *error = *errorBuffer;
         }
         else
@@ -48,7 +50,7 @@ namespace org_modules_xml
         id = scope->getVariableId(*this);
     }
 
-    XMLValidationDTD::XMLValidationDTD() : XMLValidation()
+XMLValidationDTD::XMLValidationDTD():XMLValidation()
     {
         validationFile = 0;
         internalValidate = true;
@@ -63,7 +65,7 @@ namespace org_modules_xml
 
         if (validationFile)
         {
-            xmlFreeDtd(getValidationFile<xmlDtd>());
+            xmlFreeDtd(getValidationFile < xmlDtd > ());
         }
 
         if (validationFile || internalValidate)
@@ -78,6 +80,7 @@ namespace org_modules_xml
         if (errorBuffer)
         {
             delete errorBuffer;
+
             errorBuffer = 0;
         }
     }
@@ -85,7 +88,7 @@ namespace org_modules_xml
     bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) const
     {
         bool ret;
-        xmlValidCtxt * vctxt = xmlNewValidCtxt();
+        xmlValidCtxt *vctxt = xmlNewValidCtxt();
 
         if (errorBuffer)
         {
@@ -100,9 +103,9 @@ namespace org_modules_xml
             return false;
         }
 
-        vctxt->error = (xmlValidityErrorFunc)XMLValidation::errorFunction;
+        vctxt->error = (xmlValidityErrorFunc) XMLValidation::errorFunction;
 
-        ret = xmlValidateDtd(vctxt, doc.getRealDocument(), getValidationFile<xmlDtd>()) == 1;
+        ret = xmlValidateDtd(vctxt, doc.getRealDocument(), getValidationFile < xmlDtd > ()) == 1;
 
         vctxt->error = 0;
         xmlFreeValidCtxt(vctxt);
@@ -128,14 +131,15 @@ namespace org_modules_xml
 
         if (!internalValidate)
         {
-            errorBuffer->append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
+            errorBuffer->append(gettext
+                                ("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
             *error = *errorBuffer;
             return false;
         }
 
         xmlTextReaderSetParserProp(reader, XML_PARSER_VALIDATE, 1);
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc)XMLValidation::errorFunction, 0);
-        while ((last = xmlTextReaderRead(reader)) == 1);
+        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorFunction, 0);
+        while ((last = xmlTextReaderRead(reader)) == 1) ;
         valid = xmlTextReaderIsValid(reader);
 
         xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -153,13 +157,13 @@ namespace org_modules_xml
     const std::string XMLValidationDTD::toString() const
     {
         std::ostringstream oss;
-        xmlDtd * dtd = getValidationFile<xmlDtd>();
+        xmlDtd *dtd = getValidationFile < xmlDtd > ();
 
-        oss << "XML DTD" << std::endl;
-        oss << "name: " << (dtd->name ? (const char * )dtd->name : "") << std::endl;
-        oss << "external ID: " << (dtd->ExternalID ? (const char * )dtd->ExternalID : "") << std::endl;
-        oss << "system ID: " << (dtd->SystemID ? (const char * )dtd->SystemID : "");
+          oss << "XML DTD" << std::endl;
+          oss << "name: " << (dtd->name ? (const char *)dtd->name : "") << std::endl;
+          oss << "external ID: " << (dtd->ExternalID ? (const char *)dtd->ExternalID : "") << std::endl;
+          oss << "system ID: " << (dtd->SystemID ? (const char *)dtd->SystemID : "");
 
-        return oss.str();
+          return oss.str();
     }
 }

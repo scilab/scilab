@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,17 +30,19 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlValidate(char * fname, unsigned long fname_len)
+int sci_xmlValidate(char *fname, unsigned long fname_len)
 {
-    XMLValidation * validation = 0;
+    XMLValidation *validation = 0;
+
     org_modules_xml::XMLDocument * doc = 0;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
+
     std::string error;
     std::string msg;
     int id;
     bool isValid;
-    char ** path = 0;
+    char **path = 0;
     int row = 0;
     int col = 0;
 
@@ -62,7 +64,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     else if (isXMLDoc(addr, pvApiCtx))
     {
         id = getXMLObjectId(addr, pvApiCtx);
-        doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+        doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
             Scierror(999, gettext("%s: XML document does not exist\n"), fname);
@@ -92,7 +94,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
         }
 
         id = getXMLObjectId(addr, pvApiCtx);
-        validation = XMLObject::getFromId<XMLValidation>(id);
+        validation = XMLObject::getFromId < XMLValidation > (id);
         if (!validation)
         {
             Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
@@ -112,10 +114,11 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
             isValid = validation->validate(path[i], &error);
             if (!isValid)
             {
-                char * s = new char[strlen(gettext("The file %s is not valid:\n%s\n")) + strlen(path[i]) + error.size() + 1];
+                char *s = new char[strlen(gettext("The file %s is not valid:\n%s\n")) + strlen(path[i]) + error.size() + 1];
+
                 sprintf(s, gettext("The file %s is not valid:\n%s\n"), path[i], error.c_str());
                 msg.append(s);
-                delete [] s;
+                delete[]s;
             }
         }
     }
@@ -130,9 +133,9 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
 
     if (!msg.empty())
     {
-        std::vector<std::string> lines = std::vector<std::string>();
+        std::vector < std::string > lines = std::vector < std::string > ();
         SplitString::split(msg, lines);
-        std::vector<const char *> clines = std::vector<const char *>(lines.size());
+        std::vector < const char *>clines = std::vector < const char *>(lines.size());
 
         for (unsigned int i = 0; i < lines.size(); i++)
         {
@@ -141,7 +144,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
 
         if (clines.size())
         {
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
         }
         else
         {
@@ -156,7 +159,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -165,4 +168,5 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

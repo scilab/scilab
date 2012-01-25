@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,13 +27,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetNsByHref(char * fname, unsigned long fname_len)
+int sci_xmlGetNsByHref(char *fname, unsigned long fname_len)
 {
-    XMLElement * elem = 0;
-    const XMLNs * ns = 0;
-    char * href = 0;
+    XMLElement *elem = 0;
+    const XMLNs *ns = 0;
+    char *href = 0;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);
@@ -52,7 +52,7 @@ int sci_xmlGetNsByHref(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr, pvApiCtx));
+    elem = XMLObject::getFromId < XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
         Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);

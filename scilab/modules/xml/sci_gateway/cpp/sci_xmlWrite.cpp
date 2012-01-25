@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,14 +34,14 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlWrite(char * fname, unsigned long fname_len)
+int sci_xmlWrite(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc = 0;
-    xmlDoc * document = 0;
+    xmlDoc *document = 0;
     SciErr err;
-    int * addr = 0;
-    char * path = 0;
-    const char * expandedPath = 0;
+    int *addr = 0;
+    char *path = 0;
+    const char *expandedPath = 0;
     int indent = 1;
     int ret = 0;
 
@@ -62,7 +62,7 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
+    doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -103,19 +103,20 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
                 return 0;
             }
 
-            expandedPath = const_cast<const char *>(expandPathVariable(path));
+            expandedPath = const_cast < const char *>(expandPathVariable(path));
+
             freeAllocatedSingleString(path);
         }
         else
         {
 
-	    if (!document->URL)
-	    {
-		Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
-		return 0;
-	    }
-	    expandedPath = strdup((const char *)document->URL);
-	    getScalarBoolean(pvApiCtx, addr, &indent);
+            if (!document->URL)
+            {
+                Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
+                return 0;
+            }
+            expandedPath = strdup((const char *)document->URL);
+            getScalarBoolean(pvApiCtx, addr, &indent);
         }
 
         if (Rhs == 3)
@@ -163,4 +164,5 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

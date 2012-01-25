@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>                                      
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -65,9 +65,18 @@
   <refsection id="XMLDocument">
     <title>XML Document</title>
     <para>A XML Document has two properties: root and url
-    <itemizedlist><listitem><para><emphasis role="bold">root</emphasis>: the root element of the document, it is a XML Element;
-    </para></listitem><listitem><para><emphasis role="bold">url</emphasis>: the url, as a string, of the document if it exist or an empty string if it is undefined.
-    </para></listitem></itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">root</emphasis>: the root element of the document, it is a XML Element;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">url</emphasis>: the url, as a string, of the document if it exist or an empty string if it is undefined.
+          </para>
+        </listitem>
+      </itemizedlist>
     </para>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
@@ -82,16 +91,49 @@
   <refsection id="XMLElement">
     <title>XML Element</title>
     <para>A XML Element has seven properties:
-    <itemizedlist><listitem><para><emphasis role="bold">name</emphasis>: the tag name;
-    </para></listitem><listitem><para><emphasis role="bold">namespace</emphasis>: a XML Namespace object;
-    </para></listitem><listitem><para><emphasis role="bold">content</emphasis>: the node content as a string. For example, the content of the node A in &lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; will be the string "hello world";
-    </para></listitem><listitem><para><emphasis role="bold">type</emphasis>: the type of the node as a string. It can be on of the following values: "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
-    </para></listitem><listitem><para><emphasis role="bold">parent</emphasis>: the parent XML Element;
-    </para></listitem><listitem><para><emphasis role="bold">attributes</emphasis>: the node attributes as a XML Attributes object;
-    </para></listitem><listitem><para><emphasis role="bold">children</emphasis>: the children elements as a XML Node List object.
-    </para></listitem><listitem><para><emphasis role="bold">line</emphasis>: the line definition of this XML Element.
-    </para></listitem></itemizedlist>
-    <programlisting role="example"><![CDATA[
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">name</emphasis>: the tag name;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">namespace</emphasis>: a XML Namespace object;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">content</emphasis>: the node content as a string. For example, the content of the node A in &lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; will be the string "hello world";
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">type</emphasis>: the type of the node as a string. It can be on of the following values: "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">parent</emphasis>: the parent XML Element;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">attributes</emphasis>: the node attributes as a XML Attributes object;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">children</emphasis>: the children elements as a XML Node List object.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">line</emphasis>: the line definition of this XML Element.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
     first = doc.root.children(1);
     b = first.children(1);
@@ -149,9 +191,18 @@
   <refsection id="XMLNamespace">
     <title>XML Namespace</title>
     <para>A XML Namespace has two properties: href and prefix
-    <itemizedlist><listitem><para><emphasis role="bold">href</emphasis>: the namespace href as a string;
-    </para></listitem><listitem><para><emphasis role="bold">prefix</emphasis>: the prefix to use for this namespace, as a string.
-    </para></listitem></itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">href</emphasis>: the namespace href as a string;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">prefix</emphasis>: the prefix to use for this namespace, as a string.
+          </para>
+        </listitem>
+      </itemizedlist>
     </para>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");

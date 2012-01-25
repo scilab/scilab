@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,13 +33,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-template <class T>
-int sci_xmlValidationFile(char * fname, void* pvApiCtx)
+template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 {
-    T * validation = 0;
+    T *validation = 0;
     SciErr err;
-    int * addr = 0;
-    char * path = 0;
+    int *addr = 0;
+    char *path = 0;
+
     std::string error;
 
     CheckLhs(1, 1);
@@ -66,6 +66,7 @@ int sci_xmlValidationFile(char * fname, void* pvApiCtx)
     if (!error.empty())
     {
         delete validation;
+
         Scierror(999, gettext("%s: Cannot read the file:\n%s"), fname, error.c_str());
         return 0;
     }
@@ -79,19 +80,23 @@ int sci_xmlValidationFile(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlDTD(char * fname, unsigned long fname_len)
+int sci_xmlDTD(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationDTD>(fname, pvApiCtx);
+    return sci_xmlValidationFile < XMLValidationDTD > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlRelaxNG(char * fname, unsigned long fname_len)
+int sci_xmlRelaxNG(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationRelaxNG>(fname, pvApiCtx);
+    return sci_xmlValidationFile < XMLValidationRelaxNG > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/
-int sci_xmlSchema(char * fname, unsigned long fname_len)
+int sci_xmlSchema(char *fname, unsigned long fname_len)
 {
-    return sci_xmlValidationFile<XMLValidationSchema>(fname, pvApiCtx);
+    return sci_xmlValidationFile < XMLValidationSchema > (fname, pvApiCtx);
 }
+
 /*--------------------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +24,7 @@
 namespace org_modules_xml
 {
 
-    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLList(), doc(_doc), xpath(_xpath)
+    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlXPathObject * _xpath):XMLList(), doc(_doc), xpath(_xpath)
     {
         nodeSet = xpath->nodesetval;
         if (nodeSet)
@@ -47,14 +47,14 @@ namespace org_modules_xml
         xmlXPathFreeObject(xpath);
     }
 
-    void * XMLNodeSet::getRealXMLPointer() const
+    void *XMLNodeSet::getRealXMLPointer() const
     {
-        return static_cast<void *>(nodeSet);
+        return static_cast < void *>(nodeSet);
     }
 
-    const char ** XMLNodeSet::getContentFromList() const
+    const char **XMLNodeSet::getContentFromList() const
     {
-        const char ** list = new const char*[size];
+        const char **list = new const char *[size];
         for (int i = 0; i < size; i++)
         {
             list[i] = (const char *)xmlNodeGetContent(nodeSet->nodeTab[i]);
@@ -63,9 +63,9 @@ namespace org_modules_xml
         return list;
     }
 
-    const char ** XMLNodeSet::getNameFromList() const
+    const char **XMLNodeSet::getNameFromList() const
     {
-        const char ** list = new const char*[size];
+        const char **list = new const char *[size];
         for (int i = 0; i < size; i++)
         {
             list[i] = nodeSet->nodeTab[i]->name ? (const char *)nodeSet->nodeTab[i]->name : "";
@@ -74,7 +74,7 @@ namespace org_modules_xml
         return list;
     }
 
-    void XMLNodeSet::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    void XMLNodeSet::setAttributeValue(const char **prefix, const char **name, const char **value, int lsize) const
     {
         for (int i = 0; i < size; i++)
         {
@@ -82,7 +82,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLNodeSet::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    void XMLNodeSet::setAttributeValue(const char **name, const char **value, int lsize) const
     {
         for (int i = 0; i < size; i++)
         {
@@ -94,60 +94,61 @@ namespace org_modules_xml
     {
         for (int i = 0; i < size; i++)
         {
-            xmlNode * node = nodeSet->nodeTab[i];
-            xmlUnlinkNode(node);
-            xmlFreeNode(node);
+            xmlNode *node = nodeSet->nodeTab[i];
+              xmlUnlinkNode(node);
+              xmlFreeNode(node);
         }
     }
 
-    const XMLObject * XMLNodeSet::getXMLObjectParent() const
+    const XMLObject *XMLNodeSet::getXMLObjectParent() const
     {
         return &doc;
     }
 
-    const XMLObject * XMLNodeSet::getListElement(int index)
+    const XMLObject *XMLNodeSet::getListElement(int index)
     {
         if (nodeSet && index >= 1 && index <= size)
         {
-            XMLObject * obj = 0;
-            XMLElement * e = 0;
-            xmlNode * node = nodeSet->nodeTab[index - 1];
+            XMLObject *obj = 0;
+            XMLElement *e = 0;
+            xmlNode *node = nodeSet->nodeTab[index - 1];
+
             switch (node->type)
             {
-            case XML_ELEMENT_NODE :
-            case XML_TEXT_NODE :
-            case XML_CDATA_SECTION_NODE :
-            case XML_COMMENT_NODE :
-            case XML_ATTRIBUTE_NODE :
+            case XML_ELEMENT_NODE:
+            case XML_TEXT_NODE:
+            case XML_CDATA_SECTION_NODE:
+            case XML_COMMENT_NODE:
+            case XML_ATTRIBUTE_NODE:
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
                 {
-                    return static_cast<XMLElement *>(obj);
+                    return static_cast < XMLElement * >(obj);
                 }
 
                 return new XMLElement(doc, node);
-            case XML_NAMESPACE_DECL :
+            case XML_NAMESPACE_DECL:
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
                 {
-                    return static_cast<XMLNs *>(obj);
+                    return static_cast < XMLNs * >(obj);
                 }
 
-                return new XMLNs(doc, (xmlNs *)node);
-            case XML_ELEMENT_DECL :
-            case XML_ATTRIBUTE_DECL :
-            case XML_ENTITY_DECL :
-            case XML_XINCLUDE_START :
-            case XML_XINCLUDE_END :
-            case XML_DOCUMENT_NODE :
+                return new XMLNs(doc, (xmlNs *) node);
+            case XML_ELEMENT_DECL:
+            case XML_ATTRIBUTE_DECL:
+            case XML_ENTITY_DECL:
+            case XML_XINCLUDE_START:
+            case XML_XINCLUDE_END:
+            case XML_DOCUMENT_NODE:
                 obj = scope->getXMLObjectFromLibXMLPtr(node);
                 if (obj)
                 {
-                    return static_cast<XMLNotHandledElement *>(obj);
+                    return static_cast < XMLNotHandledElement * >(obj);
                 }
 
                 return new XMLNotHandledElement(doc, node);
-            default :
+            default:
                 break;
             }
         }
