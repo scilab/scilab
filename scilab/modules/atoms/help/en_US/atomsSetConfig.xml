@@ -173,7 +173,7 @@
 				</tr>
 				
 				<tr>
-					<td>verbose</td>
+					<td>Verbose</td>
 					<td>Display or not extra-informations</td>
 					<td>True/<emphasis role="strong">False</emphasis></td>
 				</tr>

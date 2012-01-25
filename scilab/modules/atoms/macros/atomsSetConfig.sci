@@ -49,6 +49,38 @@ function nbChanges = atomsSetConfig(field,value)
     if or( size(field) <> size(value) ) then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsSetConfig",1,2));
     end
+    i=1;
+    for element = field(:)
+        if strcmpi("verbose",element) == 0 then
+            field(i)=convstr(part(element,1),'u')+part(element,2:length(element));
+        else
+            field(i)=convstr(part(element,1),'l')+part(element,2:length(element));
+        end
+        element=field(i);   
+
+        if element == "useProxy"..
+            | element == "offLine"..
+            | element == "autoload"..
+            | element == "autoloadAddAfterInstall"..
+            | element == "Verbose"..
+        then
+            select value(i)
+            case "True" then,
+            case "False" then,
+            case "true" then value(i)="True",
+            case "false" then value(i)="False",
+            else error(msprintf(gettext("%s: Wrong value for input configuration argument : True or False expected.\n"),value(i)));
+            end
+        elseif element == "proxyHost"..
+            | element == "proxyPort"..
+            | element == "proxyUser"..
+            | element == "proxyPassword"..
+            | element == "downloadTool"..
+            then continue;
+        else error(msprintf(gettext("%s: Wrong key for input configuration argument.\n"),element));
+        end
+        i=i+1;
+    end
 
     // Define the path of the file that will record the change
     // =========================================================================
