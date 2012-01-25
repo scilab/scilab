@@ -41,7 +41,6 @@ GRAPHICS_IMPEXP int sciInitNumColors( char* pobj, int numcolors ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetNumColors ( char* pobj, int numcolors ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetGoodIndex(char* pobj, int colorindex);  /* SET */
-GRAPHICS_IMPEXP int sciUpdateBaW (char* pobj, int flag, int value ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciInitBackground( char* pobj, int colorindex ) ;
 GRAPHICS_IMPEXP int sciSetBackground ( char* pobj, int colorindex ) ; /* SET */
