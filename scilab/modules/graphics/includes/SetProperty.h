@@ -218,9 +218,6 @@ GRAPHICS_IMPEXP int sciSetIsEventHandlerEnable(  char* pObj, BOOL enable ) ;
 GRAPHICS_IMPEXP int sciSetDataBounds( char* pObj, double bounds[6] ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetRealDataBounds(char* pObj, const double bounds[6]); /* SET */
 
-GRAPHICS_IMPEXP int sciInitViewingAngles( char* pObj, double alpha, double theta) ;
-GRAPHICS_IMPEXP int sciSetViewingAngles( char* pObj, double alpha, double theta); /* SET */
-
 GRAPHICS_IMPEXP int setInfoMessageWithRotationAngles(char* pFigure, double alpha, double theta);
 
 GRAPHICS_IMPEXP int sciInitPixmapMode(char* pObj, BOOL onOrOff);

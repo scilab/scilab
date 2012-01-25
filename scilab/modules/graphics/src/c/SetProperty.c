@@ -3199,43 +3199,7 @@ int sciSetRealDataBounds(char * pobjUID, const double bounds[6])
 #endif
     return -1;
 }
-/*--------------------------------------------------------------------------------------------*/
-int sciInitViewingAngles( char * pobjUID, double alpha, double theta)
-{
-     // FIXME
-    abort();
-#if 0
-       switch(sciGetEntityType(pobjUID))
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->alpha = alpha;
-        pSUBWIN_FEATURE(pobjUID)->theta = theta;
-        return 0;
-    default:
-        printSetGetErrorMessage("rotation_angles");
-        return -1;
-    }
-#endif
-       return -1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * Set the viewing angles (in degrees) of a subwindow
- */
-int sciSetViewingAngles( char * pobjUID, double alpha, double theta)
-{
-    double curAlpha;
-    double curTheta;
-    sciGetViewingAngles(pobjUID, &curAlpha, &curTheta);
-    if ( curAlpha == alpha && curTheta == theta )
-    {
-        /* nothing to do */
-        return 1;
-    }
 
-    return sciInitViewingAngles(pobjUID, alpha, theta) ;
-
-}
 /*-----------------------------------------------------------------------------------*/
 /**
  * Set the info message of a figure with the information about rotation angles
