@@ -530,7 +530,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		  src/c/GetStructVariable.c \
 @MATIO_TRUE@		  src/c/GetSparseVariable.c
 
-@MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIBS)
+@MATIO_TRUE@libscimatio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(MATIO_LIBS)
 libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/matio/ \
