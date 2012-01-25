@@ -127,6 +127,12 @@ public abstract class VectField extends GraphicClippableObject {
 			setNumberArrows((Integer) value);
 		} else if (property == Arrow.ArrowProperty.BASE) {
 			setBase((Double[]) value);
+		} else if (property == Arrow.ArrowProperty.BASEX) {
+			setBaseX((Double[]) value);
+		} else if (property == Arrow.ArrowProperty.BASEY) {
+			setBaseY((Double[]) value);
+		} else if (property == Arrow.ArrowProperty.BASEZ) {
+			setBaseZ((Double[]) value);
 		} else if (property == Arrow.ArrowProperty.DIRECTION) {
 			setDirection((Double[]) value);
 		} else if (property == Arrow.ArrowProperty.DIRECTIONX) {
@@ -255,6 +261,18 @@ public abstract class VectField extends GraphicClippableObject {
 	}
 
 	/**
+	 * @param baseX the arrow base x coordinates to set
+	 */
+	public void setBaseX(Double[] baseX) {
+		final int len = Math.min(baseX.length, arrows.size());
+		for (int i = 0; i < len; i++) {
+			Double[] base = arrows.get(i).getBase();
+			base[0] = baseX[i];
+			arrows.get(i).setBase(base);
+		}
+	}
+
+	/**
 	 * @return the arrow bases y coordinates
 	 */
 	public Double[] getBaseY() {
@@ -271,6 +289,18 @@ public abstract class VectField extends GraphicClippableObject {
 	}
 
 	/**
+	 * @param baseY the arrow base y coordinates to set
+	 */
+	public void setBaseY(Double[] baseY) {
+		final int len = Math.min(baseY.length, arrows.size());
+		for (int i = 0; i < len; i++) {
+			Double[] base = arrows.get(i).getBase();
+			base[1] = baseY[i];
+			arrows.get(i).setBase(base);
+		}
+	}
+
+	/**
 	 * @return the arrow bases z coordinates
 	 */
 	public Double[] getBaseZ() {
@@ -284,6 +314,18 @@ public abstract class VectField extends GraphicClippableObject {
 		}
 
 		return retArrowBaseZ;
+	}
+
+	/**
+	 * @param baseZ the arrow base z coordinates to set
+	 */
+	public void setBaseZ(Double[] baseZ) {
+		final int len = Math.min(baseZ.length, arrows.size());
+		for (int i = 0; i < len; i++) {
+			Double[] base = arrows.get(i).getBase();
+			base[2] = baseZ[i];
+			arrows.get(i).setBase(base);
+		}
 	}
 
 	/**
