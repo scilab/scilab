@@ -62,20 +62,24 @@
     <title>例</title>
     <programlisting role="example">// 行列をCSVファイル形式で保存
 A = [1:10] * 0.1;
-write_csv(A, TMPDIR + '/data.csv');
+write_csv(A, TMPDIR + '/data.tsv');
 
 // テキストとして読み込む
-mgetl(TMPDIR + '/data.csv')
+mgetl(TMPDIR + '/data.tsv')
 
-r = read_csv(TMPDIR + '/data.csv',ascii(9));
-r = strsubst(r,',','.');
+r = read_csv(TMPDIR + '/data.tsv', ascii(9));
+r = strsubst(r, ',' , '.');
 evstr(r)
 
 A = [1:10] * 0.1; 
 write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
 mgetl(TMPDIR+'/foo.csv')
 
-</programlisting>
+// tab-separated values
+write_csv(A, TMPDIR + '/datas.tsv');
+
+//coma-separated values
+write_csv(A, TMPDIR + '/datas.csv', ';');</programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
