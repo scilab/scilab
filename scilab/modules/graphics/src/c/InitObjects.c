@@ -1255,7 +1255,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 
   /** Initialize the colormap */
     /* try to install the colormap in the graphic context */
-    sciSetColormap(pobj, pFIGURE_FEATURE(pfiguremdl)->pModelData->colorMap, sciGetNumColors(pfiguremdl), 3);
+    //sciSetColormap(pobj, pFIGURE_FEATURE(pfiguremdl)->pModelData->colorMap, sciGetNumColors(pfiguremdl), 3);
 
     /* initialisation de context et mode graphique par defaut (figure model) */
     if (sciInitGraphicContext(pobj) == -1)

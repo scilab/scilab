@@ -38,8 +38,6 @@
 GRAPHICS_IMPEXP void Obj_RedrawNewAngle(char* pSubwin, double alpha, double theta); /* SET  */
 
 GRAPHICS_IMPEXP int sciSetEntityType (char* pobj, sciEntityType value); /* SET */
-GRAPHICS_IMPEXP int sciSetColormap (char* pobj, double *rgbmat,
-			   int m, int n); /* SET */
 GRAPHICS_IMPEXP int sciInitNumColors( char* pobj, int numcolors ) ; /* SET */
 GRAPHICS_IMPEXP int sciSetNumColors ( char* pobj, int numcolors ) ; /* SET */
 

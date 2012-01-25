@@ -188,53 +188,6 @@ sciSetEntityType (char * pobjUID, sciEntityType value)
     return -1;
 }
 
-
-
-/**sciSetColormap
- * This function sets a colormap to the figure. It's the same for all sons.
- * Setting the colormap a must be a m x 3 double RGB matrix:
- * a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
- */
-int
-sciSetColormap ( char * pobjUID, double *rgbmat, int m, int n )
-{
-    // FIXME
-    abort();
-#if 0
-    int oldNbColors = sciGetNumColors(pobjUID) ;
-
-    if ( n != 3 )
-    {
-        Scierror(999, _("%s: Number of columns must be %d.\n"),"colormap",3);
-        return -1 ;
-    }
-
-    if ( SCI_FIGURE != sciGetEntityType(pobjUID) )
-    {
-        Scierror(999, _("%s: Object must be a %s.\n"),"sciSetColormap","SCI_FIGURE");
-        return -1 ;
-    }
-
-
-    pFIGURE_FEATURE(pobjUID)->numcolors = m ;
-
-    if ( pobjUID == getFigureModel() )
-    {
-        /* colormap is stored in the object */
-        FREE(pFIGURE_FEATURE(pobjUID)->pModelData->colorMap) ;
-        pFIGURE_FEATURE(pobjUID)->pModelData->colorMap = createDoubleArrayCopy(rgbmat, m * n ) ;
-        pFIGURE_FEATURE(pobjUID)->pModelData->numColors = m * n ;
-    }
-    else
-    {
-        sciSetJavaColormap( pobjUID, rgbmat, m * n ) ;
-        sciRecursiveUpdateBaW( pobjUID, oldNbColors, m ) ; /* missing line F.Leray */
-    }
-#endif
-    return 0;
-}
-
-
 void sciRecursiveUpdateBaW(char *pobjUID, int old_m, int m)
 {
     // FIXME
