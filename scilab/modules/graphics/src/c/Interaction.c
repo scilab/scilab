@@ -553,6 +553,17 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         }
         return 0;
     }
+    // Label.
+    else if (strcmp(pstType, __GO_LABEL__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &pdblData);
+        pdblData[0] += x;
+        pdblData[1] += y;
+        pdblData[2] += z;
+        setGraphicObjectProperty(pobjUID, __GO_POSITION__, pdblData, jni_double_vector, 3);
+
+        return 0;
+    }
     // Rectangle.
     else if (strcmp(pstType, __GO_RECTANGLE__) == 0)
     {
