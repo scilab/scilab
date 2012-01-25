@@ -53,7 +53,8 @@ static void SetSciEnv(void)
 
     if (ScilabDirectory == NULL)
     {
-        MessageBox (NULL, "getScilabDirectory()", "Error" , MB_ICONSTOP | MB_OK);
+        // This message must never occur, but ...
+        MessageBox (NULL, "ERROR" , "Cannot determine the Scilab directory (SCI).", MB_ICONSTOP | MB_OK);
         exit(1);
     }
     SetScilabEnvironmentVariables(ScilabDirectory);
