@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -37,6 +37,14 @@ protected :
 
     /** The z coordinates array */
     double* zCoordinates;
+
+    /**
+     * The z coordinates shift value
+     * It is used exclusively to modify the z-position of Grayplot and Matplot objects,
+     * as their z coordinates actually correspond to data values, and must be set to 0
+     * in any other case.
+     */
+    double zCoordinatesShift;
 
     /** The grid x size */
     int xSize;
@@ -152,6 +160,12 @@ public :
     void setDataZ(double* data, int numElements);
 
     /**
+     * Sets the grid's z coordinates shift
+     * @param[in] data a pointer to the z shift value
+     */
+    void setZCoordinatesShift(double* data);
+
+    /**
      * Returns the grid's x data
      * @return a pointer to the grid's x data
      */
@@ -168,6 +182,12 @@ public :
      * @return a pointer to the grid's z data
      */
     double* getDataZ(void);
+
+    /**
+     * Returns the grid's z coordinates shift
+     * @return the z shift value
+     */
+    double getZCoordinatesShift(void);
 };
 
 #endif

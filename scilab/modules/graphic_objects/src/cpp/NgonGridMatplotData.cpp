@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -38,6 +38,10 @@ int NgonGridMatplotData::getPropertyFromName(char* propertyName)
     else if (strcmp(propertyName, __GO_DATA_MODEL_MATPLOT_BOUNDS__) == 0)
     {
         return MATPLOT_BOUNDS;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_MATPLOT_TYPE__) == 0)
+    {
+        return MATPLOT_TYPE;
     }
     else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
     {
@@ -77,6 +81,10 @@ void NgonGridMatplotData::getDataProperty(int property, void **_pvData)
     if (property == MATPLOT_BOUNDS)
     {
         *_pvData = getBounds();
+    }
+    else if (property == MATPLOT_TYPE)
+    {
+        ((int *) *_pvData)[0] = getType();
     }
     else if (property == Z_COORDINATES)
     {
@@ -349,4 +357,9 @@ void NgonGridMatplotData::setDataZ(double* data, int numElements)
     {
         zCoordinates[i] = data[i];
     }
+}
+
+int NgonGridMatplotData::getType(void)
+{
+    return type;
 }

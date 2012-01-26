@@ -98,6 +98,7 @@ public static final String __GO_DATA_MODEL_X_DIMENSIONS__ =            "DataMode
 public static final String __GO_DATA_MODEL_Y_DIMENSIONS__ =            "DataModelYDimensions";
 
 public static final String __GO_DATA_MODEL_MATPLOT_BOUNDS__ =          "DataModelMatplotBounds";
+public static final String __GO_DATA_MODEL_MATPLOT_TYPE__ =            "DataModelMatplotType";
 
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";

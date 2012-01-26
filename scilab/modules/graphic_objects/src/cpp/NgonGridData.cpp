@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -38,6 +38,9 @@ NgonGridData::NgonGridData(void)
 
     yDimensions[0] = 0;
     yDimensions[1] = 0;
+
+    /* Set to 0 as a default */
+    zCoordinatesShift = 0.0;
 }
 
 NgonGridData::~NgonGridData(void)
@@ -96,6 +99,10 @@ int NgonGridData::getPropertyFromName(char* propertyName)
     {
         return Z_COORDINATES;
     }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__) == 0)
+    {
+        return Z_COORDINATES_SHIFT;
+    }
     else
     {
         return NgonData::getPropertyFromName(propertyName);
@@ -120,6 +127,10 @@ int NgonGridData::setDataProperty(int property, void* value, int numElements)
     else if (property == Z_COORDINATES)
     {
         setDataZ((double*) value, numElements);
+    }
+    else if (property == Z_COORDINATES_SHIFT)
+    {
+        setZCoordinatesShift((double*) value);
     }
     else
     {
@@ -162,6 +173,10 @@ void NgonGridData::getDataProperty(int property, void **_pvData)
     else if (property == Z_COORDINATES)
     {
         *_pvData = getDataZ();
+    }
+    else if (property == Z_COORDINATES_SHIFT)
+    {
+        ((double *) *_pvData)[0] = getZCoordinatesShift();
     }
     else
     {
@@ -376,6 +391,11 @@ void NgonGridData::setDataZ(double* data, int numElements)
     }
 }
 
+void NgonGridData::setZCoordinatesShift(double* data)
+{
+    zCoordinatesShift = *data;
+}
+
 double* NgonGridData::getDataX(void)
 {
     return xCoordinates;
@@ -389,4 +409,9 @@ double* NgonGridData::getDataY(void)
 double* NgonGridData::getDataZ(void)
 {
     return zCoordinates;
+}
+
+double NgonGridData::getZCoordinatesShift(void)
+{
+    return zCoordinatesShift;
 }

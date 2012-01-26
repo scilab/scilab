@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -57,5 +57,6 @@
 #define NUM_COLORS              28
 
 #define MATPLOT_BOUNDS          30
+#define MATPLOT_TYPE            31
 
 #endif
