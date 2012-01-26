@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_or.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_find.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\boolean_gw.hxx">

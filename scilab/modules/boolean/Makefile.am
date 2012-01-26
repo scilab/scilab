@@ -19,7 +19,8 @@ BOOLEAN_FORTRAN_SOURCES = \
     src/fortran/find.f
 
 GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/sci_bool2s.cpp
+    sci_gateway/cpp/sci_bool2s.cpp \
+    sci_gateway/cpp/sci_find.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_and.c \
@@ -45,6 +46,10 @@ libsciboolean_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/libs/Eigen/includes \
+    -I$(top_srcdir)/modules/system_env/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
 

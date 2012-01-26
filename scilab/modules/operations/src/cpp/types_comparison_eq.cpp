@@ -58,52 +58,61 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         if(pR->getSize() == 0 && pL->getSize() == 0)
         {
-            pResult = new Bool(true);
+            return new Bool(true);
         }
         else if(pL->getSize() == 0  || pR->getSize() == 0)
         {
-            pResult = new Bool(false);
+            return new Bool(false);
         }
         else if(pR->getSize() == 1)
         {
-            pResult				= new Bool(pL->getRows(), pL->getCols());
-            double dblRef	= pR->getReal(0,0);
-            for(int i = 0 ; i < pL->getRows() ; i++)
+            Bool* pB = new Bool(pL->getDims(), pL->getDimsArray());
+            double dblRef	= pR->get(0);
+            for(int i = 0 ; i < pL->getSize() ; i++)
             {
-                for(int j = 0 ; j < pL->getCols() ; j++)
-                {
-                    pResult->getAs<Bool>()->set(i, j, pL->getReal(i, j) == dblRef);
-                }
+                pB->getAs<Bool>()->set(i, pL->get(i) == dblRef);
             }
+            pResult = pB;
         }
         else if(pL->getSize() == 1)
         {
-            pResult				= new Bool(pR->getRows(), pR->getCols());
-            double dblRef	= pL->getReal(0,0);
-            for(int i = 0 ; i < pR->getRows() ; i++)
+            Bool* pB = new Bool(pR->getDims(), pR->getDimsArray());
+            double dblRef	= pL->get(0);
+            for(int i = 0 ; i < pR->getSize() ; i++)
             {
-                for(int j = 0 ; j < pR->getCols() ; j++)
-                {
-                    pResult->getAs<Bool>()->set(i, j, dblRef == pR->getReal(i, j));
-                }
+                pB->getAs<Bool>()->set(i, dblRef == pR->get(i));
             }
-        }
-        else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-        {
-            pResult				= new Bool(pR->getRows(), pR->getCols());
-            for(int i = 0 ; i < pR->getRows() ; i++)
-            {
-                for(int j = 0 ; j < pR->getCols() ; j++)
-                {
-                    pResult->getAs<Bool>()->set(i, j, pL->getReal(i, j) == pR->getReal(i, j));
-                }
-            }
+
+            pResult = pB;
         }
         else
         {
-            pResult = new Bool(false);
-        }
+            if(pL->getDims() != pR->getDims())
+            {
+                return new Bool(false);
+            }
+            else
+            {
+                int* piDimsL = pL->getDimsArray();
+                int* piDimsR = pR->getDimsArray();
 
+                for(int i = 0 ; i < pL->getDims() ; i++)
+                {
+                    if(piDimsL[i] != piDimsR[i])
+                    {
+                        return new Bool(false);
+                    }
+                }
+
+                Bool* pB = new Bool(pR->getRows(), pR->getCols());
+                for(int i = 0 ; i < pL->getSize() ; i++)
+                {
+                    pB->set(i, pL->get(i) == pR->get(i));
+                }
+
+                pResult = pB;
+            }
+        }
         return pResult;
     }
 

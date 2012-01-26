@@ -328,7 +328,7 @@ void visitprivate(const CallExp &e)
 
                         try
                         {//try to call specific exrtaction function
-                            Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                            Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
                         catch(ScilabError /*&e*/)
                         {//if call failed try to call generic extraction function
@@ -413,7 +413,7 @@ void visitprivate(const CallExp &e)
 
                         try
                         {//try to call specific exrtaction function
-                            Overload::call(L"%" + pIT->getAs<MList>()->getTypeStr() + L"_e", in, 1, ResultList, this);
+                            Overload::call(L"%" + pIT->getAs<MList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
                         catch(ScilabError /*&e*/)
                         {//if call failed try to call generic extraction function

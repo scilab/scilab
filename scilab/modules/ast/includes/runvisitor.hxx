@@ -1599,7 +1599,7 @@ namespace ast
 
                 try
                 {
-                    Overload::call(L"%" + pIT->getAs<TList>()->getTypeStr() + L"_p", in, 1, out, this);
+                    Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this);
                 }
                 catch(ScilabError /*&e*/)
                 {

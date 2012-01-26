@@ -1553,6 +1553,10 @@ namespace types
     }
 
 
+    double* SparseBool::outputRowCol(double* out)const
+    {
+        return sparseTransform(*matrixBool, sparseTransform(*matrixBool, out, GetRow<BoolSparse_t>()), GetCol<BoolSparse_t>());
+    }
 
     bool SparseBool::operator==(const InternalType& it) CONST
     {

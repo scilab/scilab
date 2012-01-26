@@ -489,6 +489,8 @@ namespace types
            @return past-the-end output iterator after ouput is done
          */
 
+        double* outputRowCol(double* out)const;
+
         bool operator==(const InternalType& it) CONST;
         bool operator!=(const InternalType& it) CONST;
 

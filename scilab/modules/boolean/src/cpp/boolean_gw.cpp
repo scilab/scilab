@@ -27,6 +27,7 @@ int BooleanModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"or", &sci_or, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"and", &sci_and, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"bool2s", &sci_bool2s, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"find", &sci_find, MODULE_NAME));
 	return 1;
 }
 

@@ -30,5 +30,6 @@ public :
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_bool2s);
+CPP_GATEWAY_PROTOTYPE(sci_find);
 
 #endif /* __BOOLEAN_GW_HXX__ */
