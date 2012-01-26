@@ -501,6 +501,45 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
         return 0;
     }
+    // Polyline.
+    else if (strcmp(pstType, __GO_POLYLINE__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNum);
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+
+        for (i = 0; i < iNum; i++)
+        {
+            dataX[i] += x;
+            dataY[i] += y;
+        }
+
+        if (displacementSize == 3)
+        {
+            int zCoordinatesSet = 1;
+
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+
+            for (i = 0; i < iNum; i++)
+            {
+                dataZ[i] += z;
+            }
+
+            /* The z coordinates flag must be set explicitely for now. */
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+
+            /* Model data has been updated by direct pointer access, trigger update within the renderer. */
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, dataZ, jni_double_vector, iNum);
+        }
+        else
+        {
+            /* Trigger update, see above. */
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, iNum);
+        }
+
+        return 0;
+    }
     // Plot3d.
     else if (strcmp(pstType, __GO_PLOT3D__) == 0)
     {
