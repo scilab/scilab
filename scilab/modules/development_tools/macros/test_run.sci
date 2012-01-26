@@ -13,7 +13,8 @@
 // test_run  --
 //   Launch unit tests.
 
-function test_run(varargin)
+function status = test_run(varargin)
+ 
     function status = test_module(_params)
         name = splitModule(_params.moduleName);
         if with_module(name(1)) then
@@ -1025,5 +1026,10 @@ function test_run(varargin)
         printf("   Skipped: %4d\n", status.test_skipped_count);
         printf("   --------------------------------------------------------------------------\n");
     end
+    
+//   Returns %t if no error has been detected
+//   Returns %f if any error has been detected
+    status = (status.test_failed_count == 0);
+    
 endfunction
 

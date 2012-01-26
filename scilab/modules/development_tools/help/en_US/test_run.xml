@@ -28,10 +28,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-      test_run()
-      test_run(module)
-      test_run(module,test_name)
-      test_run(module,test_name,options)
+      status = test_run()
+      status = test_run(module)
+      status = test_run(module,test_name)
+      status = test_run(module,test_name,options)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -110,6 +110,17 @@
           </itemizedlist>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>
+            Boolean value
+            Returns %t if no error has been detected
+            Returns %f if any error has been detected
+          </para>
+        </listitem>
+      </varlistentry>
+      
     </variablelist>
   </refsection>
   <refsection>
@@ -393,12 +404,23 @@ test_run([],[],['no_check_ref','mode_nw']);
     </para>
     
   </refsection>
-  
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre Maréchal</member>
-      <member>Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>test_run returns a status:
+          <itemizedlist>
+            <listitem>
+              Returns %t if no error has been detected
+            </listitem>
+            <listitem>
+              Returns %f if any error has been detected
+            </listitem>
+          </itemizedlist>
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
+  
 </refentry>
