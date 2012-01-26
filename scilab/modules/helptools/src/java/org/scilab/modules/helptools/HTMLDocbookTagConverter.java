@@ -529,7 +529,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleBook(final Map<String, String> attributes, final String contents) throws SAXException {
         String str = encloseContents("ul", "list-part", contents);
-        String btitle = bookTitle.replaceFirst("Scilab", version);
+        String btitle;
+        if (bookTitle.trim().equalsIgnoreCase("Scilab")) {
+            btitle = version;
+        } else {
+            btitle = bookTitle;
+        }
         String title = encloseContents("h3", "book-title", btitle);
         createHTMLFile("index", indexFilename, btitle, title + "\n" + str);
 
