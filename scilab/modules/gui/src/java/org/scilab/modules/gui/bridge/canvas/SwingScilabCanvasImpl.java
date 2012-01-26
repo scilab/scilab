@@ -20,8 +20,8 @@ import java.awt.Event;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.MenuComponent;
 import java.awt.MenuContainer;
 import java.awt.event.ComponentListener;
@@ -87,11 +87,15 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
                 }
             }
 
-	    if (noGLJPanel) {
-		/** Inform the users */
-            InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
-	    }
-
+            if (noGLJPanel) {
+                /** Inform the users */
+                InterpreterManagement.requestScilabExec(
+                    String.format("disp(\"%s\"), disp(\"%s\")", 
+                        String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""), 
+                        String.format(Messages.gettext("In some cases, %s fixes the issue"),"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                    )
+                );
+            }
         }
 
         /*
@@ -163,16 +167,26 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
                     }
 	        }
 
-	        if (noGLJPanel) {
-                    /** Inform the users */
-                    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
-	        }
-	    }
-	    catch (GLException e) {
-	        noGLJPanel = true;
-	        /** Inform the users */
-	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")") + "; " + Messages.gettext("disp(\"In some cases, \"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"));
-	    }
+            if (noGLJPanel) {
+                /** Inform the users */
+                InterpreterManagement.requestScilabExec(
+                    String.format("disp(\"%s\"), disp(\"%s\")", 
+                        String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""), 
+                        String.format(Messages.gettext("In some cases, %s fixes the issue"),"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                    )
+                );
+            }
+        }
+        catch (GLException e) {
+            noGLJPanel = true;
+            /** Inform the users */
+            InterpreterManagement.requestScilabExec(
+                String.format("disp(\"%s\"), disp(\"%s\")", 
+                    Messages.gettext("Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver."), 
+                    String.format(Messages.gettext("In some cases, %s fixes the issue"),"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                )
+            );
+        }
         catch (HeadlessException e) {
             // do not print anything on a CLI only environment
             noGLJPanel = true;
