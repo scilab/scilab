@@ -20,15 +20,15 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-
-
+  
+  
   <refnamediv>
     <refname>assert_checkalmostequal</refname>
     <refpurpose>Check that computed and expected are numerically close.</refpurpose>
   </refnamediv>
-
-
-
+  
+  
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
@@ -37,10 +37,10 @@
       flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
       flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
       [flag,errmsg] = assert_checkalmostequal ( ... )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
+  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -88,7 +88,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
+  
   <refsection>
     <title>Description</title>
     <para>
@@ -183,7 +183,7 @@
     <para>
     </para>
   </refsection>
-
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
@@ -277,7 +277,18 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
    ]]>
     </programlisting>
   </refsection>
-
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

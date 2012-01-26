@@ -20,25 +20,25 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-
-
+  
+  
   <refnamediv>
     <refname>assert_checktrue</refname>
     <refpurpose>Check that condition is true.</refpurpose>
   </refnamediv>
-
-
-
+  
+  
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       flag = assert_checktrue ( condition )
       flag = assert_checktrue ( condition )
       [flag,errmsg] = assert_checktrue ( condition )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
+  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -62,7 +62,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
+  
   <refsection>
     <title>Description</title>
     <para>
@@ -76,14 +76,18 @@
     <para>
       If any entry in condition is false,
       <itemizedlist>
-        <listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem>
-        <listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem>
+        <listitem>
+          <para>if the errmsg output variable is not used, an error is generated,</para>
+        </listitem>
+        <listitem>
+          <para>if the errmsg output variable is used, no error is generated.</para>
+        </listitem>
       </itemizedlist>
     </para>
     <para>
     </para>
   </refsection>
-
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
@@ -106,7 +110,18 @@ assert_checktrue ( "a" )
    ]]>
     </programlisting>
   </refsection>
-
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">
