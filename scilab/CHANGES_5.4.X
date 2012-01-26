@@ -15,6 +15,8 @@ XML
 
 * Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
 
+* Bug #10594 fixed - size could not be used with two arguments on XMLList.
+
 
 Help
 ====
