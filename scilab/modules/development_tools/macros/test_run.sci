@@ -865,7 +865,7 @@ function test_run(varargin)
     end
 
 
-    if params.reference <> "list"
+    if params.reference <> "list" & params.full_summary then
         printf("   TMPDIR = %s\n",TMPDIR);
         printf("\n");
     end
