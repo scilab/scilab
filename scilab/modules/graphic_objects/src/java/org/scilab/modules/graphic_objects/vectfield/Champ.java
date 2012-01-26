@@ -160,7 +160,7 @@ public class Champ extends VectField {
 	 * The arrows part of column i have the same base x-coordinate
 	 * @param baseX the array of x coordinates (Ni elements)
 	 */
-	void setBaseX(Double[] baseX) {
+	public void setBaseX(Double[] baseX) {
 		for (int j = 0; j < dimensions[1]; j++) {
 			for (int i = 0; i < dimensions[0]; i++) {
 				Double[] base = getArrow(i, j).getBase();
@@ -193,7 +193,7 @@ public class Champ extends VectField {
 	 * The arrows part of row j have the same base y-coordinate
 	 * @param baseY the array of y coordinates (Nj elements)
 	 */
-	void setBaseY(Double[] baseY) {
+	public void setBaseY(Double[] baseY) {
 		for (int j = 0; j < dimensions[1]; j++) {
 			for (int i = 0; i < dimensions[0]; i++) {
 				Double[] base = getArrow(i, j).getBase();
