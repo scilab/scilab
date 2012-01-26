@@ -17,6 +17,7 @@ extern "C"
 {
 #include "expandPathVariable.h"
 #include "MALLOC.h"
+#include "localization.h"
 }
 
 #define BUFFER_SIZE 1024
@@ -25,7 +26,7 @@ namespace org_modules_xml
 {
 
     std::string * XMLValidation::errorBuffer = 0;
-    std::list < XMLValidation * >&XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
+    std::list<XMLValidation *>& XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
 
     XMLValidation::XMLValidation():XMLObject()
     {
@@ -49,22 +50,42 @@ namespace org_modules_xml
 
     bool XMLValidation::validate(const std::string & xmlCode, std::string * error) const
     {
-        xmlParserInputBuffer *buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), (int)xmlCode.size(), (xmlCharEncoding) 0);
-        bool valid = validate(xmlNewTextReader(buffer, 0), error);
-          xmlFreeParserInputBuffer(buffer);
+        xmlParserInputBuffer * buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), (int)xmlCode.size(), (xmlCharEncoding) 0);
+        if (!buffer)
+        {
+            error->append(gettext("Cannot create a buffer"));
+            return false;
+        }
 
-          return valid;
+        xmlTextReader * reader = xmlNewTextReader(buffer, 0);
+        if (!reader)
+        {
+            xmlFreeParserInputBuffer(buffer);
+            error->append(gettext("Cannot create a reader"));
+            return false;
+        }
+
+        bool valid = validate(reader, error);
+        xmlFreeParserInputBuffer(buffer);
+
+        return valid;
     }
 
     bool XMLValidation::validate(const char *path, std::string * error)const
     {
-        char *expandedPath = expandPathVariable(const_cast < char *>(path));
+        char *expandedPath = expandPathVariable(const_cast<char *>(path));
         xmlTextReader *reader = xmlNewTextReaderFilename(expandedPath);
-          FREE(expandedPath);
-          return validate(reader, error);
+        FREE(expandedPath);
+        if (!reader)
+        {
+            error->append(gettext("Invalid file"));
+            return false;
+        }
+
+        return validate(reader, error);
     }
 
-    const std::list < XMLValidation * >&XMLValidation::getOpenValidationFiles()
+    const std::list<XMLValidation *>& XMLValidation::getOpenValidationFiles()
     {
         return openValidationFiles;
     }

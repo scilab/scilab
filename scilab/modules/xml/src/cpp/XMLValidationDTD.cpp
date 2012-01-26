@@ -29,9 +29,9 @@ namespace org_modules_xml
     XMLValidationDTD::XMLValidationDTD(const char *path, std::string * error):XMLValidation()
     {
         internalValidate = false;
-        char *expandedPath = expandPathVariable(const_cast < char *>(path));
-          validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
-          FREE(expandedPath);
+        char *expandedPath = expandPathVariable(const_cast<char *>(path));
+        validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
+        FREE(expandedPath);
         if (!validationFile)
         {
             if (errorBuffer)
@@ -50,7 +50,7 @@ namespace org_modules_xml
         id = scope->getVariableId(*this);
     }
 
-XMLValidationDTD::XMLValidationDTD():XMLValidation()
+    XMLValidationDTD::XMLValidationDTD():XMLValidation()
     {
         validationFile = 0;
         internalValidate = true;
@@ -131,8 +131,7 @@ XMLValidationDTD::XMLValidationDTD():XMLValidation()
 
         if (!internalValidate)
         {
-            errorBuffer->append(gettext
-                                ("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
+            errorBuffer->append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
             *error = *errorBuffer;
             return false;
         }
@@ -159,11 +158,11 @@ XMLValidationDTD::XMLValidationDTD():XMLValidation()
         std::ostringstream oss;
         xmlDtd *dtd = getValidationFile < xmlDtd > ();
 
-          oss << "XML DTD" << std::endl;
-          oss << "name: " << (dtd->name ? (const char *)dtd->name : "") << std::endl;
-          oss << "external ID: " << (dtd->ExternalID ? (const char *)dtd->ExternalID : "") << std::endl;
-          oss << "system ID: " << (dtd->SystemID ? (const char *)dtd->SystemID : "");
+        oss << "XML DTD" << std::endl;
+        oss << "name: " << (dtd->name ? (const char *)dtd->name : "") << std::endl;
+        oss << "external ID: " << (dtd->ExternalID ? (const char *)dtd->ExternalID : "") << std::endl;
+        oss << "system ID: " << (dtd->SystemID ? (const char *)dtd->SystemID : "");
 
-          return oss.str();
+        return oss.str();
     }
 }

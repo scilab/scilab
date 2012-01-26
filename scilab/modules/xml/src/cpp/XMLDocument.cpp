@@ -36,9 +36,9 @@ namespace org_modules_xml
 
     XMLDocument::XMLDocument(const char *path, bool validate, std::string * error):XMLObject()
     {
-        char *expandedPath = expandPathVariable(const_cast < char *>(path));
-          document = readDocument(const_cast < const char *>(expandedPath), validate, error);
-          FREE(expandedPath);
+        char *expandedPath = expandPathVariable(const_cast<char *>(path));
+        document = readDocument(const_cast<const char *>(expandedPath), validate, error);
+        FREE(expandedPath);
         if (document)
         {
             openDocs.push_back(this);
@@ -193,11 +193,11 @@ namespace org_modules_xml
     {
         xmlChar *buffer = 0;
         int size = 0;
-          xmlDocDumpFormatMemory(document, &buffer, &size, indent ? 1 : 0);
-          std::string str = std::string((const char *)buffer);
-          xmlFree(buffer);
+        xmlDocDumpFormatMemory(document, &buffer, &size, indent ? 1 : 0);
+        std::string str = std::string((const char *)buffer);
+        xmlFree(buffer);
 
-          return str;
+        return str;
     }
 
     const XMLElement *XMLDocument::getRoot() const
@@ -224,8 +224,8 @@ namespace org_modules_xml
         if (root != elem.getRealNode())
         {
             xmlNode *cpy = xmlCopyNodeList(elem.getRealNode());
-              xmlUnlinkNode(cpy);
-              xmlDocSetRootElement(document, cpy);
+            xmlUnlinkNode(cpy);
+            xmlDocSetRootElement(document, cpy);
         }
     }
 
@@ -255,15 +255,15 @@ namespace org_modules_xml
     {
         char *expandedPath = 0;
         char *newURL = 0;
-          expandedPath = expandPathVariable(const_cast < char *>(url.c_str()));
+        expandedPath = expandPathVariable(const_cast < char *>(url.c_str()));
 
         if (expandedPath)
         {
             xmlFree((void *)document->URL);
             newURL = (char *)xmlMalloc(sizeof(char *) * (strlen(expandedPath) + 1));
-              memcpy(newURL, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
-              document->URL = (xmlChar *) newURL;
-              FREE(expandedPath);
+            memcpy(newURL, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
+            document->URL = (xmlChar *) newURL;
+            FREE(expandedPath);
         }
     }
 
