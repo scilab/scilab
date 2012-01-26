@@ -70,3 +70,4 @@ SEP #070: Xcos validation functions
 SEP #071: Modify atomsRemove to delete tarball
 SEP #072: Extend fullpath to manage matrix of string as input argument
 SEP #073: New convolution functions
+SEP #074: Atoms configuration files management

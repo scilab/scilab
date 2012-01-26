@@ -10,26 +10,22 @@
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 // If previous test did not end properly, restore, else backup config file
-config_downloadTool = atomsGetConfig("downloadTool");
-if isfile(atomsPath("system","user")+"config.bak") then
-	movefile(atomsPath("system","user")+"config.bak",atomsPath("system","user")+"config");
-end
-if isfile(atomsPath("system","user")+"config") then
-	movefile(atomsPath("system","user")+"config",atomsPath("system","user")+"config.bak");
-end
+atomsRestoreConfig(%T);
+atomsSaveConfig();
 
 // Do not use the autoload system
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
+config_downloadTool = atomsGetConfig("downloadTool");
 
 // Start config
 // =============================================================================
-ref=struct("autoloadAddAfterInstall","False","Verbose","False");
+ref=struct("downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","False");
 assert_checkequal(atomsGetConfig(),ref);
 
 // CamelCase test
 // =============================================================================
-ref=struct("autoloadAddAfterInstall","False","Verbose","True");
+ref=struct("downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","True");
 assert_checkequal(string(atomsSetConfig("Verbose","True")),"1");
 assert_checkequal(atomsGetConfig(),ref);
 assert_checkequal(string(atomsSetConfig("verbose","true")),"0");
@@ -66,7 +62,7 @@ assert_checkequal(string(atomsSetConfig("proxyHost","myproxy")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPort","42")),"1");
 assert_checkequal(string(atomsSetConfig("proxyUser","scilab")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPassword","scilab")),"1");
-assert_checkequal(string(atomsSetConfig("downloadTool",config_downloadTool)),"1");
+assert_checkequal(string(atomsSetConfig("downloadTool",config_downloadTool)),"0");
 assert_checkequal(string(atomsSetConfig("offLine","False")),"1");
 assert_checkequal(string(atomsSetConfig("autoload","True")),"1");
 assert_checkequal(atomsGetConfig(),ref);
@@ -74,11 +70,4 @@ assert_checkequal(atomsGetConfig(),ref);
 
 // Restore original values
 // =============================================================================
-if isfile(atomsPath("system","user")+"config.bak") then
-	movefile(atomsPath("system","user")+"config.bak",atomsPath("system","user")+"config");
-else
-	deletefile(atomsPath("system","user")+"config");
-end
-if isfile(atomsPath("system","user")+"config.bak") then
-	deletefile(atomsPath("system","user")+"config.bak");
-end
+atomsRestoreConfig(%T);
