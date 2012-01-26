@@ -546,6 +546,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "modules\xml\xml.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types", "modules\types\types.vcxproj", "{626B9142-13A1-4765-A072-FB08952E7BB8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio-settings\test-level\test-level.vcxproj", "{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1622,6 +1624,10 @@ Global
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|Win32.Build.0 = Release|Win32
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.ActiveCfg = Release|x64
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.Build.0 = Release|x64
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|x64.ActiveCfg = Debug|x64
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|Win32.ActiveCfg = Release|Win32
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

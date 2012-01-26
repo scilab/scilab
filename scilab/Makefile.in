@@ -1691,11 +1691,13 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	fi
 
 check-recursive: check-local
+	@echo "Check resursive disabled"
 check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="try test_run();catch exit(-1);end;exit(0)";\
+		COMMAND="try test_run_level(1);catch exit(-1);end;exit(0)";\
 		export LANG=C;\
-		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
+		echo "$(top_builddir)/bin/scilab-cli -nb -e \"$$COMMAND\""; \
+		time $(top_builddir)/bin/scilab-cli -nb -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
