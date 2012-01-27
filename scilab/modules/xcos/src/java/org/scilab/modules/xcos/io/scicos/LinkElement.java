@@ -279,10 +279,14 @@ public class LinkElement extends AbstractElement<BasicLink> {
                     index = endPortIndex;
                 }
 
-                LOG.debug("Unable to get " + block.getSimulationFunctionName()
-                        + '.' + current.getSimpleName() + "[" + index + "]");
+                if (block != null) {
+	                LOG.debug("Unable to get " + block.getSimulationFunctionName()
+	                        + '.' + current.getSimpleName() + "[" + index + "]");
+	            } else {
+	            	return;
+	            }
             }
-
+            
             startKlass = LinkPortMap.getPortClass(link.getClass(),
                     !startPortIsStart);
             start = BasicBlockInfo.getAllTypedPorts(startBlock, false,
