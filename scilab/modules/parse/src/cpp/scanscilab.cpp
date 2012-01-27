@@ -2915,6 +2915,7 @@ case 135:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
+        scan_step();
         return scan_throw(SEMI);
     }
 	YY_BREAK
@@ -2922,6 +2923,7 @@ case 136:
 YY_RULE_SETUP
 {
         BEGIN(INITIAL);
+        scan_step();
         return scan_throw(COMMA);
     }
 	YY_BREAK

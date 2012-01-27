@@ -1203,11 +1203,13 @@ assign			"="
 
     {semicolon}                 {
         BEGIN(INITIAL);
+        scan_step();
         return scan_throw(SEMI);
     }
 
     {comma}                     {
         BEGIN(INITIAL);
+        scan_step();
         return scan_throw(COMMA);
     }
 
