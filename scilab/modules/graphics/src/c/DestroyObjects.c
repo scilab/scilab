@@ -234,54 +234,6 @@ int DestroyFigure (sciPointObj * pthis)
   return 0;
 }
 
-
-
-/**DestroySubWin
- * @memo This function destroies the Subwindow (the Axes) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroySubWin (sciPointObj * pthis)
-{
-  /* Add. grads arrays */ /* F.Leray 11.10.04 */
-  /* specific user arrays */
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pthis);
-
-  FREE( ppsubwin->axes.u_xgrads); ppsubwin->axes.u_xgrads = (double *) NULL;
-  FREE( ppsubwin->axes.u_ygrads); ppsubwin->axes.u_ygrads = (double *) NULL;
-  FREE( ppsubwin->axes.u_zgrads); ppsubwin->axes.u_zgrads = (double *) NULL;
-  ppsubwin->axes.u_xlabels = FreeUserLabels(ppsubwin->axes.u_xlabels, &ppsubwin->axes.u_nxgrads);
-  ppsubwin->axes.u_ylabels = FreeUserLabels(ppsubwin->axes.u_ylabels, &ppsubwin->axes.u_nygrads);
-  ppsubwin->axes.u_zlabels = FreeUserLabels(ppsubwin->axes.u_zlabels, &ppsubwin->axes.u_nzgrads);
-
-  ppsubwin->axes.u_xlabels = NULL;
-  ppsubwin->axes.u_ylabels = NULL;
-  ppsubwin->axes.u_zlabels = NULL;
-
-  ppsubwin->axes.u_nxgrads = 0;
-  ppsubwin->axes.u_nygrads = 0;
-  ppsubwin->axes.u_nzgrads = 0;
-
-
-  /* auto (computed) arrays are defined with max. length == 20 */
-  ppsubwin->axes.nxgrads = 0;
-  ppsubwin->axes.nygrads = 0;
-  ppsubwin->axes.nzgrads = 0;
-
-  if ( sciGetCallback(pthis) != (char *)NULL)
-	{
-    FREE(sciGetCallback(pthis));
-	}
-
-	return sciStandardDestroyOperations(pthis) ;
-
-}
-
-
-
-
-
-
 /**
  * free the structure used by the text object but does not remove the relationship links.
  */

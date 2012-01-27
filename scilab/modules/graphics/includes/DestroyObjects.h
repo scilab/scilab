@@ -39,7 +39,6 @@ GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 GRAPHICS_IMPEXP int C2F(scigerase)( void ) ;
 
 GRAPHICS_IMPEXP int DestroyFigure (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroySubWin (sciPointObj * pthis); /* DESTROY */
 GRAPHICS_IMPEXP int deallocateText( sciPointObj * pthis ) ;
 GRAPHICS_IMPEXP int DestroyText (sciPointObj * pthis); /* DESTROY */
 GRAPHICS_IMPEXP int DestroyLegend (sciPointObj * pthis); /* DESTROY */
