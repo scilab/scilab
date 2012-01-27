@@ -35,6 +35,10 @@
 <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
 <path value="/usr/lib/jni/"/>
 
+<!-- Standard path for %{_jnidir} rpm macro (jpackage) -->
+<path value="/usr/lib/java/"/>
+<path value="/usr/lib64/java/"/>
+
 <!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
 <path value="/usr/lib/jogl/"/>
 <path value="/usr/lib64/jogl/"/>
