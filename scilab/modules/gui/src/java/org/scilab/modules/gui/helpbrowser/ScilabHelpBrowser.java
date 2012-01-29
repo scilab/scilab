@@ -96,6 +96,11 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
         helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"), HELPUUID);
         String lastID = restoreHelpBrowserState();
 
+        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
+            System.err.println("No help file available.");
+            return null;
+        }
+
         instance = new ScilabHelpBrowser(helps, language);
         helpTab.addMember(instance);
 
@@ -145,6 +150,11 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * @return the created Help Browser
      */
     public static HelpBrowser createHelpBrowser(String[] helps, String language) {
+        if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
+            System.err.println("No help file available.");
+            return null;
+        }
+
         if (instance == null) {
             ScilabHelpBrowser.language = language;
             ScilabHelpBrowser.helps = helps;

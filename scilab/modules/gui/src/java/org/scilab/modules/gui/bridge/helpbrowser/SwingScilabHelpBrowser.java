@@ -55,9 +55,10 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
 
     private static final long serialVersionUID = 5306766011092074961L;
 
-    private String jarExtension = "_help.jar";
-    private String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
-    private String defaultLanguage = "en_US";
+    private static String defaultLanguage = "en_US";
+    private static String jarExtension = "_help.jar";
+    private static String mainJarPath = System.getenv("SCI") + "/modules/helptools/jar/scilab_";
+
     private String currentLanguage = "";
     private JHelp jhelp;
     private HelpSet helpSet;
@@ -116,8 +117,8 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         }
 
         if (!mainJar.exists()) {
-            String message = "'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. "
-                + "" + "Are you sure you built it? The help will not be available.";
+            String message = "'SCI/modules/helptools/jar/scilab_" + defaultLanguage + jarExtension + "' has not been found on the system.\n"
+                + "" + "Are you sure you built it?\nThe help will not be available.";
             if (ScilabConsole.isExistingConsole()) {
                 MessageBox messageBox = ScilabMessageBox.createMessageBox();
                 messageBox.setMessage(message);
@@ -240,6 +241,22 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     }
 
     /**
+     * @param language the preferred language
+     * @return true if the main help jar file exists
+     */
+    public static boolean isMainJarExists(String language) {
+        File mainJar = new File(mainJarPath + language + jarExtension);
+        if (!mainJar.exists()) {
+            mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
+            if (!mainJar.exists()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * @return the current URL as String being displayed
      */
     public String getCurrentURL() {
@@ -358,9 +375,9 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      * @param keyword the keyword
      */
     public void searchKeywork(String keyword) {
-	if (keyword == null) {
+        if (keyword == null) {
             displayHomePage();
-	    return;
+            return;
         }
 
         if (keyword.length() > 0 && keyword.charAt(0) == '%') {
