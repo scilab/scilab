@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -40,8 +40,10 @@ protected :
     /**
      * Determines whether the left edge of a facet is valid.
      * The left edge is between the lower-left corner (i,j) and the
-     * upper-left corner (i,j+1).
+     * upper-left corner (i,j+1). The edge's validity depends on its
+     * endpoints' z coordinates and grid values.
      * @param[in] the grid z-coordinate array.
+     * @param[in] the grid value array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -49,7 +51,7 @@ protected :
      * @param[in] a flag specifying whether logarithmic coordinates are used.
      * @return 1 if the edge is valid, 0 if it is not.
      */
-    virtual int isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed);
+    virtual int isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed);
 
 public :
 

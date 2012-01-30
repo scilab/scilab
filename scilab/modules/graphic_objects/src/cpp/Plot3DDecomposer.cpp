@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -150,7 +150,7 @@ int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int l
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, numX, numY);
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, numX, numY);
 
     return numberIndices;
 }

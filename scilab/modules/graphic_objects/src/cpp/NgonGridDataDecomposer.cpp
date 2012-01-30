@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -45,6 +45,8 @@ void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLen
 {
     double* x;
     double* y;
+    double zShift;
+    double* pdZShift = &zShift;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -55,11 +57,12 @@ void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLen
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &x);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
 
-    decomposer->fillGridVertices(buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, x, y, NULL, numX, numY);
+    decomposer->fillGridVertices(buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask, x, y, &zShift, numX, numY);
 }
 
 void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
@@ -327,7 +330,7 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
 
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j)
 {
-    return 0.0;
+    return *z;
 }
 
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j, int logUsed)
@@ -336,19 +339,20 @@ double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int
 
     if (logUsed)
     {
-        zij = 1.0;
+        /* If the logarithmic scale is used, add the default offset */
+        zij = *z + DEFAULT_LOG_COORD_Z;
     }
     else
     {
-        zij = 0.0;
+        zij = *z;
     }
 
     return zij;
 }
 
-double NgonGridDataDecomposer::getZValue(double* z, int numX, int numY, int i, int j)
+double NgonGridDataDecomposer::getValue(double* values, int numX, int numY, int i, int j)
 {
-    return z[numX*j +i];
+    return values[numX*j +i];
 }
 
 int NgonGridDataDecomposer::getIndicesSize(char* id)
@@ -398,7 +402,7 @@ int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength,
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, numX, numY);
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, z, numX, numY);
 
     return numberIndices;
 }
@@ -406,7 +410,7 @@ int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength,
 /*
  * To do: merge with Plot3DDecomposer::fillWireIndices, as these functions perform a lot of redundant work.
  */
-int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, int numX, int numY)
+int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY)
 {
     int i;
     int j;
@@ -472,7 +476,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
         ij = getPointIndex(numX, numY, 0, j);
         ijp1 = getPointIndex(numX, numY, 0, j+1);
 
-        currentEdgeValid = isFacetEdgeValid(z, numX, numY, 0, j, logMask & 0x4);
+        currentEdgeValid = isFacetEdgeValid(z, values, numX, numY, 0, j, logMask & 0x4);
 
         for (i = 0; i < numX-1; i++)
         {
@@ -486,7 +490,7 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
             ip1j = getPointIndex(numX, numY, i+1, j);
             ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
 
-            currentFacetValid = isFacetValid(z, numX, numY, i, j, logMask & 0x4, currentEdgeValid, &nextEdgeValid);
+            currentFacetValid = isFacetValid(z, values, numX, numY, i, j, logMask & 0x4, currentEdgeValid, &nextEdgeValid);
 
             if (currentColumnValid && nextColumnValid && (currentFacetValid))
             {
@@ -528,9 +532,9 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
     return bufferOffset;
 }
 
-int NgonGridDataDecomposer::isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
-    *nextEdgeValid = isFacetEdgeValid(z, numX, numY, i+1, j, logUsed);
+    *nextEdgeValid = isFacetEdgeValid(z, values, numX, numY, i+1, j, logUsed);
 
     if (currentEdgeValid && *nextEdgeValid)
     {
@@ -542,7 +546,7 @@ int NgonGridDataDecomposer::isFacetValid(double* z, int numX, int numY, int i, i
     }
 }
 
-int NgonGridDataDecomposer::isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed)
+int NgonGridDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
 {
     double zij;
     double zijp1;

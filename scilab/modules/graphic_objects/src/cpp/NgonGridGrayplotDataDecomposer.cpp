@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -85,15 +85,13 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
     }
 }
 
-/*
- * To do: take into account invalid colors when filling indices (by not outputting triangles
- * having invalid colors)
- */
 int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
     double* x;
     double* y;
     double* z;
+    double zShift = 0.0;
+    double* pdZShift = &zShift;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -117,7 +115,9 @@ int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int buffe
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, numX, numY);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
+
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, &zShift, z, numX, numY);
 
     return numberIndices;
 }
@@ -125,7 +125,7 @@ int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int buffe
 /*
  * To be merged with its parent's isFacetEdgeValid function.
  */
-int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed)
+int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
 {
     double zij;
     double zijp1;
@@ -134,8 +134,8 @@ int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, int numX, int nu
     int upperZValid;
 
     /* First, z-coordinate values are tested */
-    zij = getZCoordinate(z, numX, numY, i, j);
-    zijp1 = getZCoordinate(z, numX, numY, i, j+1);
+    zij = getZCoordinate(z, numX, numY, i, j, logUsed);
+    zijp1 = getZCoordinate(z, numX, numY, i, j+1, logUsed);
 
     lowerZValid = DecompositionUtils::isValid(zij);
     upperZValid = DecompositionUtils::isValid(zijp1);
@@ -147,8 +147,8 @@ int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, int numX, int nu
     }
 
     /* Then the actual grid values */
-    zij = getZValue(z, numX, numY, i, j);
-    zijp1 = getZValue(z, numX, numY, i, j+1);
+    zij = getValue(values, numX, numY, i, j);
+    zijp1 = getValue(values, numX, numY, i, j+1);
 
     lowerZValid &= DecompositionUtils::isValid(zij);
     upperZValid &= DecompositionUtils::isValid(zijp1);

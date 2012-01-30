@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -160,6 +160,8 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
     double* x;
     double* y;
     double* z;
+    double zShift = 0.0;
+    double* pdZShift = &zShift;
 
     int numX = 0;
     int* piNumX = &numX;
@@ -183,17 +185,29 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, numX, numY);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
+
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, &zShift, z, numX, numY);
 
     return numberIndices;
 }
 
-int NgonGridMatplotDataDecomposer::isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+int NgonGridMatplotDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
+    double zij;
     int facetValid;
 
+    zij = getZCoordinate(z, numX, numY, i, j, logUsed);
+
+    facetValid = DecompositionUtils::isValid(zij);
+
+    if (logUsed)
+    {
+        facetValid &= DecompositionUtils::isLogValid(zij);
+    }
+
     /* Transposed relative to Grayplot */
-    facetValid = DecompositionUtils::isValid(z[getPointIndex(numY-1, numX-1, numY-2-j, i)]);
+    facetValid &= DecompositionUtils::isValid(values[getPointIndex(numY-1, numX-1, numY-2-j, i)]);
 
     /* Edge validity is always 1 since it is not used at all to determine facet validity for Matplot decomposition */
     *nextEdgeValid = 1;
@@ -201,7 +215,7 @@ int NgonGridMatplotDataDecomposer::isFacetValid(double* z, int numX, int numY, i
     return facetValid;
 }
 
-int NgonGridMatplotDataDecomposer::isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed)
+int NgonGridMatplotDataDecomposer::isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed)
 {
     /* Always considered valid since not used at all to determine facet validity */
     return 1;

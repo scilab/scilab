@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -87,6 +87,7 @@ protected :
 
     /**
      * Returns the z-coordinate of the (i,j) grid point.
+     * It treats z as a 1-element array, hence all grid points have the same z-value.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid's number of points along the x-axis.
      * @param[in] the grid's number of points along the y-axis.
@@ -99,6 +100,7 @@ protected :
     /**
      * Returns the z-coordinate of the (i,j) grid point, taking
      * into account logarithmic scaling.
+     * It treats z as a 1-element array, hence all grid points have the same z-value.
      * @param[in] the grid z-coordinate array.
      * @param[in] the grid's number of points along the x-axis.
      * @param[in] the grid's number of points along the y-axis.
@@ -111,14 +113,14 @@ protected :
 
     /**
      * Returns the value of the (i,j) grid point.
-     * @param[in] the grid z-value array.
+     * @param[in] the grid value array.
      * @param[in] the grid's number of points along the x-axis.
      * @param[in] the grid's number of points along the y-axis.
      * @param[in] the point's x index.
      * @param[in] the point's y index.
      * @return the (i,j) grid point's value.
      */
-    virtual double getZValue(double* z, int numX, int numY, int i, int j);
+    virtual double getValue(double* values, int numX, int numY, int i, int j);
 
     /**
      * Fills a buffer with triangle indices from a decomposed grid.
@@ -128,11 +130,12 @@ protected :
      * @param[in] the grid x-coordinate array.
      * @param[in] the grid y-coordinate array.
      * @param[in] the grid z-coordinate array.
+     * @param[in] the grid value array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @return the number of indices actually written.
      */
-    int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, int numX, int numY);
+    int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY);
 
     /**
      * Determines whether a facet is valid.
@@ -140,6 +143,7 @@ protected :
      * as an input which indicates whether the (i,j) to (i,j+1) edge is valid or not, and outputs
      * another flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid or not.
      * @param[in] the grid z-coordinate array.
+     * @param[in] the grid value array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -149,13 +153,15 @@ protected :
      * @param[out] a pointer to the output flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid.
      * @return 1 if the facet is valid, 0 if it is not.
      */
-    virtual int isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
+    virtual int isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
 
     /**
      * Determines whether the left edge of a facet is valid.
      * The left edge is between the lower-left corner (i,j) and the
-     * upper-left corner (i,j+1).
+     * upper-left corner (i,j+1). The edge's validity depends only
+     * on its endpoints' z coordinates.
      * @param[in] the grid z-coordinate array.
+     * @param[in] the grid value array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      * @param[in] the lower-left corner's x index.
@@ -163,7 +169,7 @@ protected :
      * @param[in] a flag specifying whether logarithmic coordinates are used.
      * @return 1 if the edge valid, 0 if it is not.
      */
-    virtual int isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed);
+    virtual int isFacetEdgeValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed);
 
     /**
      * Returns a 1D vertex index from its x and y indices.
@@ -283,5 +289,12 @@ public :
  * object type.
  */
 #define PER_VERTEX_VALUES    0
+
+/**
+ * The default z-coordinate value for plane grid objects
+ * (Grayplot and Matplot) when the logarithmic scale is used.
+ * It is added to their z-shift value to obtain the actual z-coordinate.
+ */
+#define DEFAULT_LOG_COORD_Z 1.0
 
 #endif
