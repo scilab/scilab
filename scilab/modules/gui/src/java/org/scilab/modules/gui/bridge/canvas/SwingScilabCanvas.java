@@ -26,7 +26,6 @@ import java.awt.image.BufferedImage;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLJPanel;
 import javax.swing.JPanel;
 
@@ -56,7 +55,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 	
-	public SwingScilabCanvas(int figureId, Figure figure)
+    public SwingScilabCanvas(int figureId, Figure figure)
 	{
 	    super(new PanelLayout());
 	    
@@ -68,7 +67,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	    if (OS.get() == OS.MAC) {
 		    GLJPanel glCanvas = new GLJPanel();
 		    add(glCanvas, PanelLayout.GL_CANVAS);
-	        
+		    	    
 	        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
 	        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
 	        FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
@@ -77,6 +76,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 	    }
 	    else {
 	    	GLCanvas glCanvas = new GLCanvas();
+	    	glCanvas.setEnabled(true);
 	    	add(glCanvas, PanelLayout.GL_CANVAS);
 
 	    	Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);

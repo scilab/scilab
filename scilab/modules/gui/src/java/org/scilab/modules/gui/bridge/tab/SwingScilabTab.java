@@ -1433,7 +1433,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                             +      "  delete(get_figure_handle(" + figureId + "));"
                             +      "end;";
             setCallback(null);
-            setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
+            setCallback(ScilabCloseCallBack.create(getId(), closingCommand));
             /* Update menus callbacks */
             String[] children = (String[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
             updateChildrenCallbacks(children, figureId);

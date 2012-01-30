@@ -80,7 +80,7 @@ protected:
 jmethodID voidxgetmouseID; // cache method id
 jmethodID voidxgetmousejbooleanbooleanjbooleanbooleanID; // cache method id
 jmethodID jintgetMouseButtonNumberID; // cache method id
-jmethodID jintgetWindowsIDID; // cache method id
+jmethodID jstringgetWindowsIDID; // cache method id
 jmethodID jdoublegetXCoordinateID; // cache method id
 jmethodID jdoublegetYCoordinateID; // cache method id
 
@@ -145,7 +145,7 @@ static void xgetmouse(JavaVM * jvm_, bool withMotion, bool withRelease);
 
 static int getMouseButtonNumber(JavaVM * jvm_);
 
-static int getWindowsID(JavaVM * jvm_);
+static char * getWindowsID(JavaVM * jvm_);
 
 static double getXCoordinate(JavaVM * jvm_);
 

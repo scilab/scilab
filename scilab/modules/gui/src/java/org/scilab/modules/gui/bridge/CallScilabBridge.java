@@ -679,7 +679,7 @@ public class CallScilabBridge {
                         +      "  end;"
                         +      "  delete(get_figure_handle(" + figureIndex + "));"
                         +      "end;";
-        graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
+        //graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);

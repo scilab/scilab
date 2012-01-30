@@ -108,7 +108,7 @@ voidxclickID=NULL;
 jintgetMouseButtonNumberID=NULL;
 jdoublegetXCoordinateID=NULL;
 jdoublegetYCoordinateID=NULL;
-jintgetWindowIDID=NULL;
+jstringgetWindowIDID=NULL;
 jstringgetMenuCallbackID=NULL;
 
 
@@ -136,7 +136,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 jintgetMouseButtonNumberID=NULL;
 jdoublegetXCoordinateID=NULL;
 jdoublegetYCoordinateID=NULL;
-jintgetWindowIDID=NULL;
+jstringgetWindowIDID=NULL;
 jstringgetMenuCallbackID=NULL;
 
 
@@ -235,23 +235,33 @@ return res;
 
 }
 
-int Jxclick::getWindowID (JavaVM * jvm_){
+char * Jxclick::getWindowID (JavaVM * jvm_){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintgetWindowIDID = curEnv->GetStaticMethodID(cls, "getWindowID", "()I" ) ;
-if (jintgetWindowIDID == NULL) {
+jmethodID jstringgetWindowIDID = curEnv->GetStaticMethodID(cls, "getWindowID", "()Ljava/lang/String;" ) ;
+if (jstringgetWindowIDID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "getWindowID");
 }
 
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintgetWindowIDID ));
-                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringgetWindowIDID ));
+                        if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
-return res;
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
 
 }
 

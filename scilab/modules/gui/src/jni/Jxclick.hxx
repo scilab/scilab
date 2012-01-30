@@ -81,7 +81,7 @@ jmethodID voidxclickID; // cache method id
 jmethodID jintgetMouseButtonNumberID; // cache method id
 jmethodID jdoublegetXCoordinateID; // cache method id
 jmethodID jdoublegetYCoordinateID; // cache method id
-jmethodID jintgetWindowIDID; // cache method id
+jmethodID jstringgetWindowIDID; // cache method id
 jmethodID jstringgetMenuCallbackID; // cache method id
 
 
@@ -147,7 +147,7 @@ static double getXCoordinate(JavaVM * jvm_);
 
 static double getYCoordinate(JavaVM * jvm_);
 
-static int getWindowID(JavaVM * jvm_);
+static char * getWindowID(JavaVM * jvm_);
 
 static char * getMenuCallback(JavaVM * jvm_);
 

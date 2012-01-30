@@ -25,6 +25,10 @@
 #include "FigureList.h"
 #include "axesScale.h"
 #include "HandleManagement.h"
+#include "BuildObjects.h"
+
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
@@ -36,8 +40,12 @@ int sci_xclick(char *fname,unsigned long fname_len)
   int mouseButtonNumber = 0;
   int windowID = 0;
   char * menuCallback;
+  char *pstWindowUID;
   int pixelCoords[2];
   double userCoords2D[2];
+
+  int iFigureId = 0;
+  int *piFigureId = &iFigureId;
 
   CheckRhs(-1,1) ;
   CheckLhs(1,5) ;
@@ -45,7 +53,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
   //iflag = ( Rhs >= 1) ? 1 :0;
 
   // Select current figure or create it
-  sciGetCurrentFigure();
+  getOrCreateDefaultSubwin();
 
   // Call Java xclick
   CallJxclick();
@@ -54,22 +62,22 @@ int sci_xclick(char *fname,unsigned long fname_len)
   mouseButtonNumber = getJxclickMouseButtonNumber();
   pixelCoords[0] = (int) getJxclickXCoordinate();
   pixelCoords[1] = (int) getJxclickYCoordinate();
-  windowID = getJxclickWindowID();
+  pstWindowUID = getJxclickWindowID();
   menuCallback = getJxclickMenuCallback();
 
   // Convert pixel coordinates to user coordinates
   // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
-  if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
-    {
-      sciPointObj * clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN);
-      updateSubwinScale(clickedSubwin);
-      sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
-    }
-  else
-    {
+  //if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
+  //  {
+  //    sciPointObj * clickedSubwin = sciGetFirstTypedSelectedSon(getFigureFromIndex(windowID), SCI_SUBWIN);
+  //    updateSubwinScale(clickedSubwin);
+  //    sciGet2dViewCoordFromPixel(clickedSubwin, pixelCoords, userCoords2D);
+  //  }
+  //else
+  //  {
       userCoords2D[0] = pixelCoords[0];
       userCoords2D[1] = pixelCoords[1];
-    }
+      //  }
 
   if (Lhs == 1)
   {
@@ -104,7 +112,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
   {
     LhsVar(4) = Rhs+4;
     CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
-    *stk(rep) = (double) windowID;
+    getGraphicObjectProperty(pstWindowUID, __GO_ID__, jni_int, &piFigureId);
+    *stk(rep) = (double) iFigureId;
   }
 
   if (Lhs >= 5)
@@ -115,7 +124,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
     strncpy(cstk(rep),menuCallback,istr);
   }
 
-  deleteMenuCallBack(menuCallback);
+  deleteJxclickString(menuCallback);
+  deleteJxclickString(pstWindowUID);
 
   PutLhsVar();
 

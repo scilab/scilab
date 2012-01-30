@@ -31,16 +31,16 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = 7712036428657481222L;
 
-    private int figureIndex;
+    private String figureUID;
 
     /**
      * Constructor
      * @param figureIndex : the figure ID where callback occured.
      * @param command : the command to execute.
      */
-    private ScilabCloseCallBack(int figureIndex, String command) {
+    private ScilabCloseCallBack(String figureUID, String command) {
         super(command, CallBack.UNTYPED);
-        this.figureIndex = figureIndex;
+        this.figureUID = figureUID;
     }
 
     /**
@@ -50,8 +50,8 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
      * @param command : the command to execute.
      * @return a usable Scilab callback
      */
-    public static ScilabCloseCallBack create(int figureIndex, String command) {
-        return (new ScilabCloseCallBack(figureIndex, command) {
+    public static ScilabCloseCallBack create(String figureUID, String command) {
+        return (new ScilabCloseCallBack(figureUID, command) {
 
             private static final long serialVersionUID = -7286803341046313407L;
 
@@ -83,7 +83,7 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
         callBack();
         if (GlobalEventWatcher.isActivated()) {
             if (getCommand() != null) {
-                GlobalEventFilter.filterCallback(getCommand(), SciTranslator.SCICLOSE, figureIndex);
+                GlobalEventFilter.filterCallback(getCommand(), SciTranslator.SCICLOSE, figureUID);
             }
         }
     }
