@@ -46,11 +46,11 @@ libsciboolean_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
-    -I$(top_srcdir)/libs/Eigen/includes \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    $(EIGEN_CPPFLAGS)
 
 
 if MAINTAINER_MODE
