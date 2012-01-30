@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-13 20:20+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2012-01-24 21:59+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14700)\n"
+"X-Generator: Launchpad (build 14727)\n"
 "Language: pl\n"
 
 #, c-format
@@ -24,7 +24,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
@@ -273,10 +273,10 @@ msgid "Auto-completion on"
 msgstr "Autouzupełnianie włączone"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeracja wierszy;Brak;Zwykła;Whereami compatible"
@@ -846,7 +846,7 @@ msgstr ""
 
 #, c-format
 msgid "Elapsed time: %s sec."
-msgstr ""
+msgstr "Minęło: %s sec."
 
 msgid "Base directory:"
 msgstr "Katalog bazowy:"
@@ -882,10 +882,10 @@ msgid "Word"
 msgstr "Słowo"
 
 msgid "Case-sensitivity (Word)"
-msgstr ""
+msgstr "Rozróżnienie wielkości liter (słowo)"
 
 msgid "Case-sensitivity (File name)"
-msgstr ""
+msgstr "Rozróżnienie wielkości liter (nazwa pliku)"
 
 msgid "Recursive search"
 msgstr "Szukanie rekursywne"

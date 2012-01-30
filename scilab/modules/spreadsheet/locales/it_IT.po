@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14700)\n"
+"X-Generator: Launchpad (build 14727)\n"
 "Language: it\n"
 
 #, c-format
@@ -287,30 +287,3 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
 "'%s'.\n"
-
-#, c-format
-#~ msgid ""
-#~ "Cannot interpret option \"%s\"\n"
-#~ "%s\n"
-#~ msgstr ""
-#~ "Non è possibile interpretare l'opzione \"%s\"\n"
-#~ "%s\n"
-
-#, c-format
-#~ msgid "ripOLE: decoding of %s resulted in error %d\n"
-#~ msgstr "ripOLE: la decodifica di %s ha portato all'errore %d\n"
-
-#~ msgid "ripOLE: Cannot allocate memory for OLE object."
-#~ msgstr "ripOLE: non è possibile allocare della memoria per l'oggetto OLE."
-
-#, c-format
-#~ msgid "Cannot locate input file '%s'"
-#~ msgstr "Non è possibile trovare il file in ingresso '%s'"
-
-#, c-format
-#~ msgid "File '%s' is not OLE2 format"
-#~ msgstr "Il file '%s' non è in formato OLE2"
-
-#, c-format
-#~ msgid "OLE input file '%s' is insane"
-#~ msgstr "Il file OLE '%s' in ingresso è insensato"

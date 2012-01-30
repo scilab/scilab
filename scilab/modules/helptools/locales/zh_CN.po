@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14700)\n"
+"X-Generator: Launchpad (build 14727)\n"
 "Language: \n"
 
 #, c-format
@@ -275,7 +275,3 @@ msgstr "%s：输入参数#%d的值错误：应该为matrix oriented typed list�
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
-
-#, c-format
-#~ msgid "%s: Execution Java stack %s.\n"
-#~ msgstr "%s：执行Java stack %s。\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14700)\n"
+"X-Generator: Launchpad (build 14727)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -299,41 +299,3 @@ msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
-
-#
-# File: src/c/ripole/ripole.c, line: 130
-# File: src/c/ripole/ripole.c, line: 139
-#, c-format
-#~ msgid ""
-#~ "Cannot interpret option \"%s\"\n"
-#~ "%s\n"
-#~ msgstr ""
-#~ "オプション \"%s\" を解釈することができません\n"
-#~ "%s\n"
-
-#
-# File: src/c/ripole/ripole.c, line: 319
-#~ msgid "ripOLE: Cannot allocate memory for OLE object."
-#~ msgstr "ripOLE: OLDオブジェクトへメモリの割り当てができません。"
-
-#
-# File: src/c/ripole/ripole.c, line: 346
-#, c-format
-#~ msgid "Cannot locate input file '%s'"
-#~ msgstr "入力ファイル '%s' を置くことができません"
-
-#
-# File: src/c/ripole/ripole.c, line: 349
-#, c-format
-#~ msgid "File '%s' is not OLE2 format"
-#~ msgstr "ファイル '%s' は、OLE2フォーマットではありません"
-
-#
-# File: src/c/ripole/ripole.c, line: 352
-#, c-format
-#~ msgid "OLE input file '%s' is insane"
-#~ msgstr "OLE入力ファイル '%s' は、正しくありません"
-
-#, c-format
-#~ msgid "ripOLE: decoding of %s resulted in error %d\n"
-#~ msgstr "ripOLE: %s のデコード時にエラー %d を発生しました\n"

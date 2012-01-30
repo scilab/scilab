@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-14 07:57+0000\n"
+"PO-Revision-Date: 2012-01-23 17:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14700)\n"
+"X-Generator: Launchpad (build 14727)\n"
 "Language: uk\n"
 
 #, c-format
@@ -270,7 +270,7 @@ msgid "Open"
 msgstr "Відкрити"
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "Відкрити файл у поточному каталозі Scilab"
 
 msgid "Save"
 msgstr "Зберегти"
@@ -853,11 +853,11 @@ msgid "Error: unable to compile this SuperBlock"
 msgstr "Помилка: не вдалося зібрати цей суперблок"
 
 msgid "Evaluation problem: wrong port number."
-msgstr ""
+msgstr "Помилка обчислень: помилковий номер порту"
 
 #, c-format
 msgid "Expecting '%d'."
-msgstr ""
+msgstr "Мало бути вказано «%d»."
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. "
@@ -1102,11 +1102,11 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Unable to import file %s ."
-msgstr ""
+msgstr "%s: не вдалося імпортувати файл %s ."
 
 #, c-format
 msgid "%s: Unable to import file %s from %s ."
-msgstr ""
+msgstr "%s: не вдалося імпортувати файл %s з %s ."
 
 #, c-format
 msgid ""
@@ -1303,10 +1303,3 @@ msgstr "Проблема імітації:"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "Помилка у post_xcos_simulate: завершуємо імітацію."
-
-#~ msgid "Wrong port number"
-#~ msgstr "Помилковий номер порту"
-
-#, c-format
-#~ msgid "%s: Unable to import xcos file %s."
-#~ msgstr "%s: не вдалося імпортувати файл xcos %s."
