@@ -433,6 +433,16 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     int *piChildrenCount = &iChildrenCount;
     char **pstChildrenUID;
 
+    // Get type
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
+
+    // If a Figure, neither the object nor its children are moved.
+    if ((strcmp(pstType, __GO_FIGURE__) == 0))
+    {
+        Scierror(999, _("This object can not be moved.\n"));
+        return -1;
+    }
+
     // Iterate on children.
     getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
 
@@ -444,9 +454,6 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
             moveObj(pstChildrenUID[i], displacement, displacementSize);
         }
     }
-
-    // Get type
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
 
     // Arc.
     if (strcmp(pstType, __GO_ARC__) == 0)
@@ -758,7 +765,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
 
-    if (strcmp(pstType, __GO_COMPOUND__) == 0)
+    if ((strcmp(pstType, __GO_AXES__) == 0) || (strcmp(pstType, __GO_COMPOUND__) == 0))
     {
         // Children already moved: Done.
         return 0;
