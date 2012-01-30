@@ -51,7 +51,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode  = 0;//default value
+    int promptMode  = 3;//default value
     int iErr        = 0;
 	bool bErrCatch	= false;
 	Exp* pExp		= NULL;
@@ -434,7 +434,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 		//bypass previous lines
 		for(int i = *_piLine ; i < loc.first_line - 1; i++)
 		{
+
 			(*_piLine)++;
+            if((*_piLine) != (loc.first_line - 1))
+            {//empty line but not sequential lines
+                printLine("", "", true);
+            }
 			_pFile->getline(_pstPreviousBuffer, 1024);
 		}
 	}
@@ -450,14 +455,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
         if(loc.first_column == 1 && iExpLen == iLineLen)
         {//entire line
-            printLine("", "", true);
             printLine(_pstPrompt, strLastLine, true);
         }
         else
         {
             if(loc.first_column == 1)
             {//begin of line
-                printLine("", "", true);
                 printLine(_pstPrompt, strLastLine, false);
             }
             else
@@ -478,7 +481,6 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
         if(loc.first_column == 1)
         {
-            printLine("", "", true);
             printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
         }
         else
@@ -502,7 +504,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
         strLastLine[loc.last_column] = 0;
         int iLineLen = (int)strlen(_pstPreviousBuffer);
-        if(iLineLen == loc.last_column)
+        if(iLineLen == (loc.last_column-1))
         {
             printLine(_pstPrompt, strLastLine, true);
         }
