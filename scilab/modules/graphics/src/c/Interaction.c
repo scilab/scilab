@@ -501,6 +501,93 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
         return 0;
     }
+    // Grayplot.
+    else if (strcmp(pstType, __GO_GRAYPLOT__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+
+        for (i = 0; i < iNumX; i++)
+        {
+            dataX[i] += x;
+        }
+
+        for (i = 0; i < iNumY; i++)
+        {
+            dataY[i] += y;
+        }
+
+        if (displacementSize == 3)
+        {
+            double zShift = 0.0;
+            double* pdZshift = &zShift;
+
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, &pdZshift);
+            zShift += z;
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, &zShift, jni_double, 1);
+        }
+        else
+        {
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, iNumY);
+        }
+
+        return 0;
+    }
+    // Matplot.
+    else if (strcmp(pstType, __GO_MATPLOT__) == 0)
+    {
+        double zShift = 0.0;
+        double* pdZShift = &zShift;
+        double* bounds = NULL;
+        int type;
+        int* itype = &type;
+
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_TYPE__, jni_int, &itype);
+
+        /* Only type 1 Matplot objects can be moved. */
+        if (type == 1)
+        {
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+
+            for (i = 0; i < iNumX; i++)
+            {
+                dataX[i] += x;
+            }
+
+            for (i = 0; i < iNumY; i++)
+            {
+                dataY[i] += y;
+            }
+
+            /* Bounds must be updated. */
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_BOUNDS__, jni_double_vector, &bounds);
+
+            bounds[0] += x;
+            bounds[1] += x;
+            bounds[2] += y;
+            bounds[3] += y;
+
+            if (displacementSize == 3)
+            {
+                getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_int, &pdZShift);
+                zShift += z;
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, &zShift, jni_double, 1);
+            }
+            else
+            {
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, iNumY);
+            }
+
+            return 0;
+        }
+    }
     // Polyline.
     else if (strcmp(pstType, __GO_POLYLINE__) == 0)
     {
