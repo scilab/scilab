@@ -52,7 +52,7 @@ public class LatexTextShape implements mxITextShape {
     public void paintShape(mxGraphics2DCanvas canvas, String text, mxCellState state, Map<String, Object> style) {
 
         CellRendererPane rendererPane = canvas.getRendererPane();
-        Rectangle rect = state.getRectangle();
+        Rectangle rect = state.getLabelBounds().getRectangle();
         if (rect.isEmpty()) {
             rect.grow(1, 1);
         }
