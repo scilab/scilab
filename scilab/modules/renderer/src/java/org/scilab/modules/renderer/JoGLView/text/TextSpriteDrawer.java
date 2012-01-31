@@ -11,6 +11,9 @@
 
 package org.scilab.modules.renderer.JoGLView.text;
 
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
@@ -22,6 +25,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
+import javax.swing.Icon;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -39,7 +43,7 @@ class TextSpriteDrawer implements SpriteDrawer {
     private final SpriteManager spriteManager;
     private final Appearance appearance;
     private final int thickness;
-    private final TextEntity[][] entities;
+    private final Object[][] entities;
     private final float alignmentFactor;
     private final int spaceWidth;
 
@@ -71,7 +75,7 @@ class TextSpriteDrawer implements SpriteDrawer {
 
         this.lineHeight = new int[lineNumber];
         this.columnWidth = new int[columnNumber];
-        this.entities = new TextEntity[columnNumber][lineNumber];
+        this.entities = new Object[columnNumber][lineNumber];
 
         boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
@@ -82,23 +86,52 @@ class TextSpriteDrawer implements SpriteDrawer {
             int column = 0;
             for (String text : textLine) {
                 if (text != null) {
-                    TextEntity textEntity = new TextEntity(text);
-                    textEntity.setTextUseFractionalMetrics(fractionalFont);
-                    textEntity.setTextAntiAliased(false);
-                    textEntity.setTextColor(textColor);
-                    textEntity.setFont(font);
-                    entities[column][line] = textEntity;
-                    Dimension dimension = spriteManager.getSize(textEntity);
-                    columnWidth[column] = Math.max(columnWidth[column], dimension.width);
-                    lineHeight[line] = Math.max(lineHeight[line], dimension.height);
+                    Dimension dimension = null;
+                    if (isLatex(text)) {
+                        TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
+                        TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, font.getSize());
+                        dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
+                        entities[column][line] = icon;
+                    } else {
+                        TextEntity textEntity = new TextEntity(text);
+                        textEntity.setTextUseFractionalMetrics(fractionalFont);
+                        textEntity.setTextAntiAliased(false);
+                        textEntity.setTextColor(textColor);
+                        textEntity.setFont(font);
+                        entities[column][line] = textEntity;
+                        dimension = spriteManager.getSize(textEntity);
+                    }
+
+                    if (dimension != null) {
+                        columnWidth[column] = Math.max(columnWidth[column], dimension.width);
+                        lineHeight[line] = Math.max(lineHeight[line], dimension.height);
+                    }
                 }
                 column++;
             }
             line++;
         }
 
-        this.width  = sum(columnWidth) + MARGIN * (columnNumber + 1) + 2 * thickness + spaceWidth * (columnNumber - 1);
+    this.width  = sum(columnWidth) + MARGIN * (columnNumber + 1) + 2 * thickness + spaceWidth * (columnNumber - 1);
         this.height = sum(lineHeight)  + MARGIN * (lineNumber + 1) + 2 * thickness;
+    }
+
+    /**
+     * Return true if the given string represent a latex entity.
+     * @param string the given string.
+     * @return true if the given string represent a latex entity.
+     */
+    private boolean isLatex(String string) {
+        return (string.length() >= 2) && string.endsWith("$") && string.startsWith("$");
+    }
+
+    /**
+     * Return true if the given string represent a MathML entity.
+     * @param string the given string.
+     * @return true if the given string represent a MathML entity.
+     */
+    private boolean isMathML(String string) {
+        return (string.length() >= 2) && string.endsWith("<") && string.startsWith(">");
     }
 
     @Override
@@ -111,16 +144,25 @@ class TextSpriteDrawer implements SpriteDrawer {
         // Draw text.
         int x = MARGIN + thickness;
         int column = 0;
-        for (TextEntity[] entitiesLine : entities) {
+        for (Object[] entitiesLine : entities) {
             int y = MARGIN + thickness;
             int line = 0;
-            for (TextEntity entity : entitiesLine) {
-                double deltaX = alignmentFactor * (columnWidth[column] - spriteManager.getSize(entity).getWidth());
+            for (Object entity : entitiesLine) {
                 if (entity != null) {
-                    drawingTools.draw(entity, (int) (x + deltaX), y);
+                    if (entity instanceof TextEntity) {
+                        TextEntity textEntity = (TextEntity) entity;
+                        double deltaX = alignmentFactor * (columnWidth[column] - spriteManager.getSize(textEntity).getWidth());
+                        drawingTools.draw(textEntity, (int) (x + deltaX), y);
+                        y += lineHeight[line] + MARGIN;
+                        line++;
+                    } else if (entity instanceof Icon) {
+                        Icon icon = (Icon) entity;
+                        double deltaX = alignmentFactor * (columnWidth[column] - icon.getIconWidth());
+                        drawingTools.draw(icon, (int) (x + deltaX), y);
+                        y += lineHeight[line] + MARGIN;
+                        line++;
+                    }
                 }
-                y += lineHeight[line] + MARGIN;
-                line++;
             }
             x += columnWidth[column] + MARGIN + spaceWidth;
             column++;
