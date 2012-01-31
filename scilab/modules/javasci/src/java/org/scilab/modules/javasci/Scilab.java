@@ -48,588 +48,589 @@ import org.scilab.modules.javasci.JavasciException.ScilabErrorException;
  */
 public class Scilab {
 
-    private String SCI = null;
-    private boolean advancedMode = false;
+	private String SCI = null;
+	private boolean advancedMode = false;
+	private int notHandledError = -999;
 
-    /**
-     * Creator of the Scilab Javasci object. <br />
-     * Scilab data path is autodetected and advanced features disabled
-     */
-    public Scilab() throws InitializationException {
-        this(null, false);
-    }
+	/**
+	 * Creator of the Scilab Javasci object. <br />
+	 * Scilab data path is autodetected and advanced features disabled
+	 */
+	public Scilab() throws InitializationException {
+		this(null, false);
+	}
 
-    /**
-     * Creator of the Scilab Javasci object with a specific Scilab path.<br />
-     * Advanced features are disabled (faster)
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/");<br />
-     * <br />
-     * </code>
-     * @param SCI provide the path to Scilab data
-     */
-    public Scilab(String SCI) throws InitializationException {
-        this(SCI, false);
-    }
+	/**
+	 * Creator of the Scilab Javasci object with a specific Scilab path.<br />
+	 * Advanced features are disabled (faster)
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab("/path/to/Scilab/data/dir/");<br />
+	 * <br />
+	 * </code>
+	 * @param SCI provide the path to Scilab data
+	 */
+	public Scilab(String SCI) throws InitializationException {
+		this(SCI, false);
+	}
 
-    /**
-     * Creator of the Scilab Javasci object in advanced mode<br />
-     * Scilab data path is autodetected
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab(true); // Starts in advanced mode<br />
-     * <br />
-     * </code>
-     * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
-     */
-    public Scilab(boolean advancedMode) throws InitializationException {
-        this(null, advancedMode);
-    }
+	/**
+	 * Creator of the Scilab Javasci object in advanced mode<br />
+	 * Scilab data path is autodetected
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab(true); // Starts in advanced mode<br />
+	 * <br />
+	 * </code>
+	 * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
+	 */
+	public Scilab(boolean advancedMode) throws InitializationException {
+		this(null, advancedMode);
+	}
 
-    /**
-     * Creator of the Scilab Javasci object. <br />
-     * Under GNU/Linux / Mac OS X, try to detect Scilab base path<br />
-     * if the property SCI is set, use it<br />
-     * if not, try with the global variable SCI<br />
-     * if not, throws a new exception<br />
-     * Under Windows, use also the registery<br />
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab("/path/to/Scilab/data/dir/",true); // Starts in advanced mode<br />
-     * <br />
-     * </code>
-     * @param SCIPath the path to Scilab data
-     * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
-     */
-    public Scilab(String SCIPath, boolean advancedMode) throws InitializationException {
-        String SCI = SCIPath;
-        if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-            if (SCI==null) {
-                // Auto detect
-                try {
-                    SCI = System.getProperty("SCI");
-                    if (SCI == null || SCI.length() == 0) {
-                        SCI = System.getenv("SCI");
-                        if (SCI == null || SCI.length() == 0) {
-                            throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
-                        }
-                    }
-                } catch (Exception e) {
-                    throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
-                }
-            }
-        }
-        this.advancedMode = advancedMode;
-        this.initScilab(SCI);
+	/**
+	 * Creator of the Scilab Javasci object. <br />
+	 * Under GNU/Linux / Mac OS X, try to detect Scilab base path<br />
+	 * if the property SCI is set, use it<br />
+	 * if not, try with the global variable SCI<br />
+	 * if not, throws a new exception<br />
+	 * Under Windows, use also the registery<br />
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab("/path/to/Scilab/data/dir/",true); // Starts in advanced mode<br />
+	 * <br />
+	 * </code>
+	 * @param SCIPath the path to Scilab data
+	 * @param advancedMode true enables the advanced mode (GUI, graphics, Tcl/Tk, sciNotes...). Smaller.
+	 */
+	public Scilab(String SCIPath, boolean advancedMode) throws InitializationException {
+		String SCI = SCIPath;
+		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
+			if (SCI == null) {
+				// Auto detect
+				try {
+					SCI = System.getProperty("SCI");
+					if (SCI == null || SCI.length() == 0) {
+						SCI = System.getenv("SCI");
+						if (SCI == null || SCI.length() == 0) {
+							throw new InitializationException("Auto detection of SCI failed.\nSCI empty.");
+						}
+					}
+				} catch (Exception e) {
+					throw new InitializationException("Auto detection of SCI failed.\nCould not retrieve the variable SCI.", e);
+				}
+			}
+		}
+		this.advancedMode = advancedMode;
+		this.initScilab(SCI);
 
-    }
-
-
-    private void initScilab(String SCI) throws InitializationException {
-        /* Let Scilab engine knows that he is run through the Javasci API */
-        Call_Scilab.SetFromJavaToON();
-        if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-            File f = new File(SCI);
-            if (!f.isDirectory()) {
-                throw new InitializationException("Could not find directory " + f.getAbsolutePath());
-            }
-            this.SCI = SCI;
-        }
-    }
-
-    /**
-     * Open a connection to the Scilab engine<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open();<br />
-     * <br />
-     * </code>
-     * @return if the operation is successful
-     * @throws AlreadyRunningException Scilab is already running
-     * @throws InitializationException Cannot start Scilab
-     */
-    public boolean open() throws JavasciException {
-        int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
-        switch (res) {
-        case 0: /* Success */
-            return true;
-        case -1:
-            throw new AlreadyRunningException("Javasci already running.");
-        case -2:
-            /* Should not occurd (processed before) */
-            throw new InitializationException("Could not find SCI.");
-        case -3:
-            throw new InitializationException("No existing directory.");
-        case 10001:
-            throw new InitializationException("Stacksize failed (not enought memory ?).");
-        default:
-            throw new InitializationException("Unknown startup error: " + res);
-        }
-    }
-
-    /**
-     * Open a connection to the Scilab engine and run the command job<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open("a=%pi;");<br />
-     * <br />
-     * </code>
-     * @param job The job to run on startup
-     * @return if the operation is successful
-     */
-    public boolean open(String job) throws JavasciException {
-        if (!this.open()) {
-            return false;
-        }
-
-        return this.exec(job);
-    }
-
-    /**
-     * Open a connection to the Scilab engine and run commands job<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
-     * </code>
-     * @param jobs The serie of jobs to run on startup
-     * @return if the operation is successful
-     */
-    public boolean open(String jobs[]) throws JavasciException {
-        if (!this.open()) {
-            return false;
-        }
-
-        return this.exec(jobs);
-    }
+	}
 
 
-    /**
-     * Open a connection to the Scilab engine and run thefile scriptFilename<br />
-     * This function is based on Call_ScilabOpen from call_scilab<br />
-     * Note: For now, only one instance of Scilab can be launched<br />
-     * A second launch will return FALSE<br />
-     * <br />
-     * Example:<br />
-     * <code>
-     * Scilab sci = new Scilab();<br />
-     * sci.open(new File("/tmp/myscript.sce"));<br />
-     * <br />
-     * </code>
-     * @param scriptFilename The script to execute on startup
-     * @return if the operation is successful
-     */
-    public boolean open(File scriptFilename) throws JavasciException, FileNotFoundException {
-        if (!this.open()) {
-            return false;
-        }
+	private void initScilab(String SCI) throws InitializationException {
+		/* Let Scilab engine knows that he is run through the Javasci API */
+		Call_Scilab.SetFromJavaToON();
+		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
+			File f = new File(SCI);
+			if (!f.isDirectory()) {
+				throw new InitializationException("Could not find directory " + f.getAbsolutePath());
+			}
+			this.SCI = SCI;
+		}
+	}
 
-        return this.exec(scriptFilename);
-    }
+	/**
+	 * Open a connection to the Scilab engine<br />
+	 * This function is based on Call_ScilabOpen from call_scilab<br />
+	 * Note: For now, only one instance of Scilab can be launched<br />
+	 * A second launch will return FALSE<br />
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab();<br />
+	 * sci.open();<br />
+	 * <br />
+	 * </code>
+	 * @return if the operation is successful
+	 * @throws AlreadyRunningException Scilab is already running
+	 * @throws InitializationException Cannot start Scilab
+	 */
+	public boolean open() throws JavasciException {
+		int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
+		switch (res) {
+			case 0: /* Success */
+				return true;
+			case -1:
+				throw new AlreadyRunningException("Javasci already running.");
+			case -2:
+				/* Should not occurd (processed before) */
+				throw new InitializationException("Could not find SCI.");
+			case -3:
+				throw new InitializationException("No existing directory.");
+			case 10001:
+				throw new InitializationException("Stacksize failed (not enought memory ?).");
+			default:
+				throw new InitializationException("Unknown startup error: " + res);
+		}
+	}
 
+	/**
+	 * Open a connection to the Scilab engine and run the command job<br />
+	 * This function is based on Call_ScilabOpen from call_scilab<br />
+	 * Note: For now, only one instance of Scilab can be launched<br />
+	 * A second launch will return FALSE<br />
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab();<br />
+	 * sci.open("a=%pi;");<br />
+	 * <br />
+	 * </code>
+	 * @param job The job to run on startup
+	 * @return if the operation is successful
+	 */
+	public boolean open(String job) throws JavasciException {
+		if (!this.open()) {
+			return false;
+		}
 
-    /**
-     * Execute a single command in Scilab<br />
-     * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec("a=2*%pi");<br />
-     * <br />
-     * </code>
-     * @param job the job to execute
-     * @return if the operation is successful
-     */
-    public boolean exec(String job) {
-        try {
-            this.execException(job);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+		return this.exec(job);
+	}
 
-
-    /**
-     * Execute a single command in Scilab<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
-     * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec("a=2*%pi");<br />
-     * <br />
-     * </code>
-     * @param job the job to execute
-     * @return if the operation is successful
-     * @since 5.4.0
-     */
-    public void execException(String job) throws ScilabErrorException {
-        int result = Call_Scilab.SendScilabJob(job);
-        if (result != 0) {
-            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
-        }
-    }
-
-
-    /**
-     * Execute several commands in Scilab<br />
-     * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
-     * </code>
-     * @param jobs the serie of job to execute
-     * @return if the operation is successful
-     */
-    public boolean exec(String jobs[]) {
-        try {
-            this.execException(jobs);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
-     * Execute several commands in Scilab<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
-     * This function is based on SendScilabJob from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
-     * <br />
-     * </code>
-     * @param jobs the serie of job to execute
-     * @return if the operation is successful
-     * @since 5.4.0
-     */
-    public void execException(String jobs[]) throws ScilabErrorException {
-        int result = Call_Scilab.SendScilabJobs(jobs, jobs.length);
-        if (result != 0) {
-            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
-        }
-    }
-
-    /**
-     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
-     * of a Scilab error<br />
-     * Returns a ScilabErrorException in case of Scilab problem<br />
-     * This function is based on SendScilabJob from call_scilab<br />
-     * Note that this function is a direct call on the Scilab function exec:
-     * <code> this.exec("exec('" + scriptFilename + "');");</code>
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec(new File("/tmp/myscript.sci"));<br />
-     * <br />
-     * </code>
-     * @param scriptFilename the script to execute
-     * @return if the operation is successful
-     * @since 5.4.0
-     */
-    public void execException(File scriptFilename) throws FileNotFoundException, ScilabErrorException {
-        if (!scriptFilename.exists()) {
-            throw new FileNotFoundException("Could not find " + scriptFilename);
-        }
-        this.execException("exec('" + scriptFilename + "');");
-    }
-
-    /**
-     * Execute a Scilab script .sce/.sci and throws an exception in case<br />
-     * the file is not found<br />
-     * This function is based on SendScilabJob from call_scilab<br />
-     * Note that this function is a direct call on the Scilab function exec:
-     * <code> this.exec("exec('" + scriptFilename + "');");</code>
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec(new File("/tmp/myscript.sci"));<br />
-     * <br />
-     * </code>
-     * @param scriptFilename the script to execute
-     * @return if the operation is successful
-     */
-    public boolean exec(File scriptFilename) throws FileNotFoundException {
-        if (!scriptFilename.exists()) {
-            throw new FileNotFoundException("Could not find " + scriptFilename);
-        }
-        return this.exec("exec('" + scriptFilename + "');");
-    }
+	/**
+	 * Open a connection to the Scilab engine and run commands job<br />
+	 * This function is based on Call_ScilabOpen from call_scilab<br />
+	 * Note: For now, only one instance of Scilab can be launched<br />
+	 * A second launch will return FALSE<br />
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab();<br />
+	 * sci.open(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
+	 * <br />
+	 * </code>
+	 * @param jobs The serie of jobs to run on startup
+	 * @return if the operation is successful
+	 */
+	public boolean open(String jobs[]) throws JavasciException {
+		if (!this.open()) {
+			return false;
+		}
+		return this.exec(jobs);
+	}
 
 
-    /**
-     * Detect if a variable (varname) exists in Scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a);<br />
-     * sci.put("a",aOriginal);<br />
-     * assert sci.isExistingVariable("a") == true;<br />
-     * <br />
-     * </code>
-     * @param varname the variable to check
-     * @return if the variable exists or not
-     */
-    public boolean isExistingVariable(String varname) {
-        return Call_Scilab.isExistingVariable(varname);
-    }
+	/**
+	 * Open a connection to the Scilab engine and run thefile scriptFilename<br />
+	 * This function is based on Call_ScilabOpen from call_scilab<br />
+	 * Note: For now, only one instance of Scilab can be launched<br />
+	 * A second launch will return FALSE<br />
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * Scilab sci = new Scilab();<br />
+	 * sci.open(new File("/tmp/myscript.sce"));<br />
+	 * <br />
+	 * </code>
+	 * @param scriptFilename The script to execute on startup
+	 * @return if the operation is successful
+	 */
+	public boolean open(File scriptFilename) throws JavasciException, FileNotFoundException {
+		if (!this.open()) {
+			return false;
+		}
+
+		return this.exec(scriptFilename);
+	}
 
 
-    /**
-     * Shutdown Scilab<br />
-     * This function is based on TerminateScilab from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.close();<br />
-     * <br />
-     * </code>
-     * @return if the operation is successful
-     */
-    public boolean close() {
-        return Call_Scilab.TerminateScilab(null);
-    }
+	/**
+	 * Execute a single command in Scilab<br />
+	 * This function is based on SendScilabJob from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec("a=2*%pi");<br />
+	 * <br />
+	 * </code>
+	 * @param job the job to execute
+	 * @return if the operation is successful
+	 */
+	public boolean exec(String job) {
+		try {
+			this.execException(job);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 
-    /**
-     * Return the last error code
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.open("a=1+"); // Wrong operation<br />
-     * sci.getLastErrorCode() // Returns 2<br />
-     * <br />
-     * </code>
-     * @return the error code
-     */
-    public int getLastErrorCode() {
-        return Call_Scilab.GetLastErrorCode();
-    }
+	/**
+	 * Execute a single command in Scilab<br />
+	 * Returns a ScilabErrorException in case of Scilab problem<br />
+	 * This function is based on SendScilabJob from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec("a=2*%pi");<br />
+	 * <br />
+	 * </code>
+	 * @param job the job to execute
+	 * @return if the operation is successful
+	 * @since 5.4.0
+	 */
+	public void execException(String job) throws ScilabErrorException {
+		int result = Call_Scilab.SendScilabJob(job);
+		if (result != 0) {
+			throw new ScilabErrorException("A Scilab error occurred: " + this.getLastErrorMessage(), this.getLastErrorCode());
+		}
+	}
 
 
-    /**
-     * Return the last error message
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.open("a=1+");<br />
-     * System.err.println(sci.getLastErrorMessage());<br />
-     * <br />
-     * </code>
-     * @return the error message itself
-     */
-    public String getLastErrorMessage() {
-        return Call_Scilab.getLastErrorMessage();
-    }
+	/**
+	 * Execute several commands in Scilab<br />
+	 * This function is based on SendScilabJob from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
+	 * <br />
+	 * </code>
+	 * @param jobs the serie of job to execute
+	 * @return if the operation is successful
+	 */
+	public boolean exec(String jobs[]) {
+		try {
+			this.execException(jobs);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Execute several commands in Scilab<br />
+	 * Returns a ScilabErrorException in case of Scilab problem<br />
+	 * This function is based on SendScilabJob from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec(new String[]{"a=42*2;","b=44*2", "c=(a==b)"});<br />
+	 * <br />
+	 * </code>
+	 * @param jobs the serie of job to execute
+	 * @return if the operation is successful
+	 * @since 5.4.0
+	 */
+	public void execException(String jobs[]) throws ScilabErrorException {
+		int result = Call_Scilab.SendScilabJobs(jobs, jobs.length);
+		if (result != 0) {
+			throw new ScilabErrorException("A Scilab error occurred: " + this.getLastErrorMessage(), this.getLastErrorCode());
+		}
+	}
+
+	/**
+	 * Execute a Scilab script .sce/.sci and throws an exception in case<br />
+	 * of a Scilab error<br />
+	 * Returns a ScilabErrorException in case of Scilab problem<br />
+	 * This function is based on SendScilabJob from call_scilab<br />
+	 * Note that this function is a direct call on the Scilab function exec:
+	 * <code> this.exec("exec('" + scriptFilename + "');");</code>
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec(new File("/tmp/myscript.sci"));<br />
+	 * <br />
+	 * </code>
+	 * @param scriptFilename the script to execute
+	 * @return if the operation is successful
+	 * @since 5.4.0
+	 */
+	public void execException(File scriptFilename) throws FileNotFoundException, ScilabErrorException {
+		if (!scriptFilename.exists()) {
+			throw new FileNotFoundException("Could not find " + scriptFilename);
+		}
+		this.execException("exec('" + scriptFilename + "');");
+	}
+
+	/**
+	 * Execute a Scilab script .sce/.sci and throws an exception in case<br />
+	 * the file is not found<br />
+	 * This function is based on SendScilabJob from call_scilab<br />
+	 * Note that this function is a direct call on the Scilab function exec:
+	 * <code> this.exec("exec('" + scriptFilename + "');");</code>
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec(new File("/tmp/myscript.sci"));<br />
+	 * <br />
+	 * </code>
+	 * @param scriptFilename the script to execute
+	 * @return if the operation is successful
+	 */
+	public boolean exec(File scriptFilename) throws FileNotFoundException {
+		if (!scriptFilename.exists()) {
+			throw new FileNotFoundException("Could not find " + scriptFilename);
+		}
+		return this.exec("exec('" + scriptFilename + "');");
+	}
 
 
-    /**
-     * Detect if a Scilab graphic window is still opened<br />
-     * This function is based on ScilabHaveAGraph from call_scilab
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec("plot3d();");<br />
-     * sci.isGraphicOpened();<br />
-     * <br />
-     * </code>
-     * @return if the graphic is open or not
-     */
-    public boolean isGraphicOpened() {
-        return Call_Scilab.isGraphicOpened();
-    }
-
-    /**
-     * Return the code type of a variable varname
-     * <br />
-     * Example:<br />
-     * <code>
-     * sci.exec("a = 2*%pi");<br />
-     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
-     *      System.out.println("a is a double matrix");<br />
-     * }<br />
-     * <br />
-     * </code>
-     * @param varName the name of the variable
-     * @return the type of the variable
-     * @throws UndefinedVariableException The variable does not exist
-     * @throws UnknownTypeException Cannot find the type
-     */
-    public ScilabTypeEnum getVariableType(String varName) throws JavasciException {
-        ScilabTypeEnum variableType = null;
-        try {
-            variableType = Call_Scilab.getVariableType(varName);
-            if (variableType == null ) {
-                throw new UndefinedVariableException("Could not find the type of the variable '"+varName+"'");
-            }
-        } catch (IllegalArgumentException e) {
-            String lastWord = e.getMessage().substring(e.getMessage().lastIndexOf(' ')+1);
-            if (lastWord.equals("-2")) { /* Crappy workaround. Parse the exception */
-                throw new UndefinedVariableException("Could not find variable '"+varName+"'");
-            }
-            throw new UnknownTypeException("Type of "+varName+" unknown");
-
-        }
-        return variableType;
-    }
-
-    /**
-     * Returns a variable named varname<br />
-     * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
-     * <code>
-     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
-     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
-     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
-     * <br />
-     * </code>
-     * @param varname the name of the variable
-     * @return return the variable
-     * @throws UnsupportedTypeException Type not managed yet.
-     */
-    public ScilabType get(String varname) throws JavasciException {
-        ScilabTypeEnum sciType = this.getVariableType(varname);
-        switch (sciType) {
-        case sci_matrix:
-        case sci_boolean:
-        case sci_strings:
-        case sci_poly:
-        case sci_sparse:
-        case sci_boolean_sparse:
-        case sci_list:
-        case sci_tlist:
-        case sci_mlist:
-            return ScilabVariablesJavasci.getScilabVariable(varname);
-        case sci_ints:
-            ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
-
-            switch (typeInt) {
-            case sci_int8:
-            case sci_uint8:
-            case sci_int16:
-            case sci_uint16:
-            case sci_int32:
-            case sci_uint32:
-                return ScilabVariablesJavasci.getScilabVariable(varname);
-            case sci_int64:
-            case sci_uint64:
-                // will be available in Scilab 6
-                throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
-
-            }
-
-        default:
-            throw new UnsupportedTypeException("Type not managed: " + sciType);
-        }
-    }
+	/**
+	 * Detect if a variable (varname) exists in Scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+	 * ScilabDouble aOriginal = new ScilabDouble(a);<br />
+	 * sci.put("a",aOriginal);<br />
+	 * assert sci.isExistingVariable("a") == true;<br />
+	 * <br />
+	 * </code>
+	 * @param varname the variable to check
+	 * @return if the variable exists or not
+	 */
+	public boolean isExistingVariable(String varname) {
+		return Call_Scilab.isExistingVariable(varname);
+	}
 
 
+	/**
+	 * Shutdown Scilab<br />
+	 * This function is based on TerminateScilab from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.close();<br />
+	 * <br />
+	 * </code>
+	 * @return if the operation is successful
+	 */
+	public boolean close() {
+		return Call_Scilab.TerminateScilab(null);
+	}
 
-    /**
-     * Send to Scilab a variable theVariable named varname<br />
-     * Throws an exception if the datatype is not managed or if the variable is not available
-     * <br />
-     * Example:<br />
-     * <code>
-     * boolean [][]a={{true, true, false, false},{true, false, true, false}};<br />
-     * ScilabBoolean aOriginal = new ScilabBoolean(a);<br />
-     * sci.put("a",aOriginal);<br />
-     * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<br />
-     * <br />
-     * </code>
-     * @param varname the name of the variable
-     * @param theVariable the variable itself
-     * @return true if the operation is successful
-     * @throws UnsupportedTypeException Type not managed yet.
-     */
-    public boolean put(String varname, ScilabType theVariable) throws JavasciException {
-        int err = -999; /* -999: if the type is not handled */
 
-        if (theVariable instanceof ScilabDouble) {
-            ScilabDouble sciDouble = (ScilabDouble)theVariable;
-            if (sciDouble.isReal()) {
-                err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
-            } else {
-                // Special case. Serialize the matrix from Scilab same way
-                //  Scilab stores them (columns by columns)
-                // plus the complex values at the second part of the array
-                err = Call_Scilab.putDoubleComplex(varname,sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
-            }
-        }
+	/**
+	 * Return the last error code
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.open("a=1+"); // Wrong operation<br />
+	 * sci.getLastErrorCode() // Returns 2<br />
+	 * <br />
+	 * </code>
+	 * @return the error code
+	 */
+	public int getLastErrorCode() {
+		return Call_Scilab.GetLastErrorCode();
+	}
 
-        if (theVariable instanceof ScilabInteger) {
-            ScilabInteger sciInteger = (ScilabInteger)theVariable;
-            switch (sciInteger.getPrec()) {
-            case sci_uint8:
-                err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
-                break;
-            case sci_int8:
-                err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
-                break;
-            case sci_uint16:
-                err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
-                break;
-            case sci_int16:
-                err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
-                break;
-            case sci_uint32:
-                err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
-                break;
-            case sci_int32:
-                err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
-                break;
-            case sci_uint64:
-//                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
-            case sci_int64:
-//                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
-                break;
-            }
-        }
 
-        if (theVariable instanceof ScilabBoolean) {
-            ScilabBoolean sciBoolean = (ScilabBoolean)theVariable;
-            err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
-        }
+	/**
+	 * Return the last error message
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.open("a=1+");<br />
+	 * System.err.println(sci.getLastErrorMessage());<br />
+	 * <br />
+	 * </code>
+	 * @return the error message itself
+	 */
+	public String getLastErrorMessage() {
+		return Call_Scilab.getLastErrorMessage();
+	}
 
-        if (theVariable instanceof ScilabString) {
-            ScilabString sciString = (ScilabString)theVariable;
-            err = Call_Scilab.putString(varname, sciString.getData());
-        }
 
-        if (err == -999) {
-            throw new UnsupportedTypeException("Type not managed: " + theVariable.getClass());
-        } else {
-            if (err != 0) {
-                throw new ScilabInternalException("Storage of the variable '"+varname+"' ("+theVariable.getClass()+") failed.");
-            }
-        }
-        return true;
-    }
+	/**
+	 * Detect if a Scilab graphic window is still opened<br />
+	 * This function is based on ScilabHaveAGraph from call_scilab
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec("plot3d();");<br />
+	 * sci.isGraphicOpened();<br />
+	 * <br />
+	 * </code>
+	 * @return if the graphic is open or not
+	 */
+	public boolean isGraphicOpened() {
+		return Call_Scilab.isGraphicOpened();
+	}
+
+	/**
+	 * Return the code type of a variable varname
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * sci.exec("a = 2*%pi");<br />
+	 * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
+	 *      System.out.println("a is a double matrix");<br />
+	 * }<br />
+	 * <br />
+	 * </code>
+	 * @param varName the name of the variable
+	 * @return the type of the variable
+	 * @throws UndefinedVariableException The variable does not exist
+	 * @throws UnknownTypeException Cannot find the type
+	 */
+	public ScilabTypeEnum getVariableType(String varName) throws JavasciException {
+		ScilabTypeEnum variableType = null;
+		try {
+			variableType = Call_Scilab.getVariableType(varName);
+			if (variableType == null ) {
+				throw new UndefinedVariableException("Could not find the type of the variable '" + varName + "'");
+			}
+		} catch (IllegalArgumentException e) {
+			String lastWord = e.getMessage().substring(e.getMessage().lastIndexOf(' ') + 1);
+			if (lastWord.equals("-2")) { /* Crappy workaround. Parse the exception */
+				throw new UndefinedVariableException("Could not find variable '" + varName + "'");
+			}
+			throw new UnknownTypeException("Type of " + varName + " unknown");
+
+		}
+		return variableType;
+	}
+
+	/**
+	 * Returns a variable named varname<br />
+	 * Throws an exception if the datatype is not managed or if the variable is not available
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+	 * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
+	 * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
+	 * sci.put("a",aOriginal);<br />
+	 * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
+	 * <br />
+	 * </code>
+	 * @param varname the name of the variable
+	 * @return return the variable
+	 * @throws UnsupportedTypeException Type not managed yet.
+	 */
+	public ScilabType get(String varname) throws JavasciException {
+		ScilabTypeEnum sciType = this.getVariableType(varname);
+		switch (sciType) {
+			case sci_matrix:
+			case sci_boolean:
+			case sci_strings:
+
+			case sci_poly:
+			case sci_sparse:
+			case sci_boolean_sparse:
+			case sci_list:
+			case sci_tlist:
+			case sci_mlist:
+				return ScilabVariablesJavasci.getScilabVariable(varname);
+			case sci_ints:
+				ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
+
+				switch (typeInt) {
+					case sci_int8:
+					case sci_uint8:
+					case sci_int16:
+					case sci_uint16:
+					case sci_int32:
+					case sci_uint32:
+						return ScilabVariablesJavasci.getScilabVariable(varname);
+					case sci_int64:
+					case sci_uint64:
+						// will be available in Scilab 6
+						throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
+
+				}
+
+			default:
+				throw new UnsupportedTypeException("Type not managed: " + sciType);
+		}
+	}
+
+
+
+	/**
+	 * Send to Scilab a variable theVariable named varname<br />
+	 * Throws an exception if the datatype is not managed or if the variable is not available
+	 * <br />
+	 * Example:<br />
+	 * <code>
+	 * boolean [][]a={{true, true, false, false},{true, false, true, false}};<br />
+	 * ScilabBoolean aOriginal = new ScilabBoolean(a);<br />
+	 * sci.put("a",aOriginal);<br />
+	 * ScilabBoolean aFromScilab = (ScilabBoolean)sci.get("a");<br />
+	 * <br />
+	 * </code>
+	 * @param varname the name of the variable
+	 * @param theVariable the variable itself
+	 * @return true if the operation is successful
+	 * @throws UnsupportedTypeException Type not managed yet.
+	 */
+	public boolean put(String varname, ScilabType theVariable) throws JavasciException {
+		int err = notHandledError; /* -999: if the type is not handled */
+
+		if (theVariable instanceof ScilabDouble) {
+			ScilabDouble sciDouble = (ScilabDouble)theVariable;
+			if (sciDouble.isReal()) {
+				err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
+			} else {
+				// Special case. Serialize the matrix from Scilab same way
+				//  Scilab stores them (columns by columns)
+				// plus the complex values at the second part of the array
+				err = Call_Scilab.putDoubleComplex(varname, sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
+			}
+		}
+
+		if (theVariable instanceof ScilabInteger) {
+			ScilabInteger sciInteger = (ScilabInteger)theVariable;
+			switch (sciInteger.getPrec()) {
+				case sci_uint8:
+					err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
+					break;
+				case sci_int8:
+					err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
+					break;
+				case sci_uint16:
+					err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
+					break;
+				case sci_int16:
+					err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
+					break;
+				case sci_uint32:
+					err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+					break;
+				case sci_int32:
+					err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
+					break;
+				case sci_uint64:
+					//                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+				case sci_int64:
+					//                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
+					break;
+			}
+		}
+
+		if (theVariable instanceof ScilabBoolean) {
+			ScilabBoolean sciBoolean = (ScilabBoolean)theVariable;
+			err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
+		}
+
+		if (theVariable instanceof ScilabString) {
+			ScilabString sciString = (ScilabString)theVariable;
+			err = Call_Scilab.putString(varname, sciString.getData());
+		}
+
+		if (err == notHandledError) {
+			throw new UnsupportedTypeException("Type not managed: " + theVariable.getClass());
+		} else {
+			if (err != 0) {
+				throw new ScilabInternalException("Storage of the variable '" + varname + "' (" + theVariable.getClass() + ") failed.");
+			}
+		}
+		return true;
+	}
 }
