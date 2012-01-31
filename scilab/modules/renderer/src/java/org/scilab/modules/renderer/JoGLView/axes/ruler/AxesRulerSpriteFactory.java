@@ -28,7 +28,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 
 /**
  * This implementation of {@see RulerSpriteFactory} create ruler labels for the given {@see Axes}.
@@ -65,11 +64,12 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     @Override
-    public Sprite create(double value, NumberFormat adaptedFormat, SpriteManager spriteManager) {
+    public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
 
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        ((DecimalFormat) adaptedFormat).setDecimalFormatSymbols(dfs);
+        DecimalFormatSymbols decimalFormatSymbols = adaptedFormat.getDecimalFormatSymbols();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        decimalFormatSymbols.setExponentSeparator("e");
+        adaptedFormat.setDecimalFormatSymbols(decimalFormatSymbols);
 
         String text = adaptedFormat.format(value).replaceAll("E", "e");
         final TextEntity textEntity = new TextEntity(text);

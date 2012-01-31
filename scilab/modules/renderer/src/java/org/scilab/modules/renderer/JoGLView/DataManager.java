@@ -16,8 +16,8 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.MainDataLoader;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -237,6 +237,32 @@ public class DataManager {
                 fillBuffers(id);
             }
         }
+        if (property.equals(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__)) {
+            updateChildrenVertex(id, 0x01);
+        }
+
+        if (property.equals(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)) {
+            updateChildrenVertex(id, 0x02);
+        }
+
+        if (property.equals(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)) {
+            updateChildrenVertex(id, 0x04);
+        }
+    }
+
+    /**
+     * Update vertex buffer of the given object and is descendant.
+     * @param id the id of the object.
+     * @param coordinateMask the coordinateMask to use.
+     */
+    private void updateChildrenVertex(String id, int coordinateMask) {
+        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
+        if (vertexBuffer != null) {
+            updateVertexBuffer(vertexBuffer, id, coordinateMask);
+        }
+        for (String childId : (String []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
+            updateChildrenVertex(childId, coordinateMask);
+        }
     }
 
     /**
@@ -301,10 +327,23 @@ public class DataManager {
     }
 
     private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) {
-            int length = MainDataLoader.getDataSize(id);
-            FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
-            MainDataLoader.fillVertices(id, data, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE, DEFAULT_LOG_MASK);
-            vertexBuffer.setData(data, 4);
+        fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08);
+    }
+
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) {
+        int logMask = MainDataLoader.getLogMask(id);
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        vertexBuffer.setData(data, 4);
+    }
+
+    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) {
+        int logMask = MainDataLoader.getLogMask(id);
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = vertexBuffer.getData();
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        vertexBuffer.setData(data, 4);
     }
 
     private void fillColorBuffer(ElementsBuffer colorBuffer, String id) {

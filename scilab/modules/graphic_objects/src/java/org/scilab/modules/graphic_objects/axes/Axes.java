@@ -1793,18 +1793,39 @@ public class Axes extends GraphicObject {
                 bounds = getZoomBox();
             } else {
                 bounds = getDataBounds();
+
+                /**
+                 * Remove 0 sized bounds
+                 */
                 for (int i = 0 ; i < 6 ; i += 2) {
                     if (bounds[i].equals(bounds[i + 1])) {
                         bounds[i]--;
                         bounds[i + 1]++;
                     }
                 }
+
                 if (!getTightLimits()) {
                     for (int i = 0 ; i < 6 ; i++) {
                         bounds[i] = round(bounds[i]);
                     }
                 }
             }
+
+            if (getXAxisLogFlag()) {
+                bounds[0] = Math.log10(bounds[0]);
+                bounds[1] = Math.log10(bounds[1]);
+            }
+
+            if (getYAxisLogFlag()) {
+                bounds[2] = Math.log10(bounds[2]);
+                bounds[3] = Math.log10(bounds[3]);
+            }
+
+            if (getZAxisLogFlag()) {
+                bounds[4] = Math.log10(bounds[4]);
+                bounds[5] = Math.log10(bounds[5]);
+            }
+
             return bounds;
         }
 

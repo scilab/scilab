@@ -12,11 +12,10 @@
 
 package org.scilab.modules.graphic_objects;
 
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
-import org.scilab.modules.graphic_objects.DataLoader;
-import org.scilab.modules.graphic_objects.JavaObjectLoader;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -182,4 +181,25 @@ public class MainDataLoader {
         {
                 return 0;
         }
+
+    public static int getLogMask(String id) {
+        try {
+            GraphicObject object = GraphicController.getController().getObjectFromId(id);
+            String parentAxesId = object.getParentAxes();
+            Axes axes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+            int mask = 0;
+            if (axes.getXAxisLogFlag()) {
+                mask += 1;
+            }
+            if (axes.getYAxisLogFlag()) {
+                mask += 2;
+            }
+            if (axes.getZAxisLogFlag()) {
+                mask += 4;
+            }
+            return mask;
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
 }

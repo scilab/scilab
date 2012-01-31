@@ -11,7 +11,7 @@
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
 
-import org.scilab.forge.scirenderer.ruler.RulerSpriteManager;
+import org.scilab.forge.scirenderer.ruler.RulerDrawer;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -28,7 +28,7 @@ import java.util.Set;
  *
  * @author Pierre Lando
  */
-public class RulerSpriteManagerSet {
+public class RulerDrawerManager {
 
     /**
      * Set of properties that affect ruler sprites.
@@ -44,7 +44,7 @@ public class RulerSpriteManagerSet {
      * Map of up to date {@see RulerSpriteManager}
      * The key are the {@see Axes} id.
      */
-    private final Map<String, RulerSpriteManager> rulerSpriteManagerMap = new HashMap<String, RulerSpriteManager>();
+    private final Map<String, RulerDrawer> rulerSpriteManagerMap = new HashMap<String, RulerDrawer>();
 
     /**
      * The {@see SpriteManager} of the current {@see Canvas}.
@@ -55,19 +55,19 @@ public class RulerSpriteManagerSet {
      * Default constructor.
      * @param spriteManager the {@see SpriteManager} of the current {@see Canvas}.
      */
-    public RulerSpriteManagerSet(SpriteManager spriteManager) {
+    public RulerDrawerManager(SpriteManager spriteManager) {
         this.spriteManager = spriteManager;
     }
 
     /**
-     * Return the {@see RulerSpriteManager} for the rulers of the given {@see Axes}.
+     * Return the {@see RulerDrawer} for the rulers of the given {@see Axes}.
      * @param axes the given {@see Axes}
      * @return the {@see RulerSpriteManager} for the rulers of the given {@see Axes}.
      */
-    public RulerSpriteManager get(Axes axes) {
-        RulerSpriteManager rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
+    public RulerDrawer get(Axes axes) {
+        RulerDrawer rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
         if (rulerSpriteManager == null) {
-            rulerSpriteManager = new RulerSpriteManager(spriteManager);
+            rulerSpriteManager = new RulerDrawer(spriteManager);
             rulerSpriteManager.setSpriteFactory(new AxesRulerSpriteFactory(axes));
             rulerSpriteManagerMap.put(axes.getIdentifier(), rulerSpriteManager);
         }
@@ -95,9 +95,9 @@ public class RulerSpriteManagerSet {
      * @param id the {@see Axes} id.
      */
     public void dispose(String id) {
-        RulerSpriteManager spriteManager = rulerSpriteManagerMap.get(id);
+        RulerDrawer spriteManager = rulerSpriteManagerMap.get(id);
         if (spriteManager != null) {
-            spriteManager.clear();
+            spriteManager.disposeResources();
         }
         rulerSpriteManagerMap.remove(id);
     }
@@ -106,8 +106,8 @@ public class RulerSpriteManagerSet {
      * Dispose all the {@see RulerSpriteManager}.
      */
     public void disposeAll() {
-        for (RulerSpriteManager spriteManager : rulerSpriteManagerMap.values()) {
-            spriteManager.clear();
+        for (RulerDrawer spriteManager : rulerSpriteManagerMap.values()) {
+            spriteManager.disposeResources();
         }
         rulerSpriteManagerMap.clear();
     }

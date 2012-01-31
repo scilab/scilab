@@ -43,10 +43,10 @@ public class AxesRulerDrawer {
     private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
     private static final double TICKS_SIZE = .1;
 
-    private final RulerSpriteManagerSet rulerSpriteManagerSet;
+    private final RulerDrawerManager rulerDrawerManager;
 
     public AxesRulerDrawer(Canvas canvas) {
-        this.rulerSpriteManagerSet = new RulerSpriteManagerSet(canvas.getSpriteManager());
+        this.rulerDrawerManager = new RulerDrawerManager(canvas.getSpriteManager());
     }
 
     /**
@@ -63,7 +63,7 @@ public class AxesRulerDrawer {
         RulerDrawingResult rulerDrawingResult;
         double[] values;
 
-        RulerDrawer rulerDrawer = new RulerDrawer(rulerSpriteManagerSet.get(axes));
+        RulerDrawer rulerDrawer = rulerDrawerManager.get(axes);
         RulerModel rulerModel = new RulerModel();
 
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
@@ -115,11 +115,24 @@ public class AxesRulerDrawer {
         rulerModel.setFirstPoint(new Vector3d(1, ys, zs));
         rulerModel.setSecondPoint(new Vector3d(-1, ys, zs));
 
+        double min, max;
         if (axes.getAxes()[0].getReverse()) {
-            rulerModel.setValues(bounds[0], bounds[1]);
+            min = bounds[0];
+            max = bounds[1];
         } else {
-            rulerModel.setValues(bounds[1], bounds[0]);
+            min = bounds[1];
+            max = bounds[0];
         }
+
+        if (axes.getAxes()[0].getLogFlag()) {
+            rulerModel.setLogarithmic(true);
+            min = Math.pow(10, min);
+            max = Math.pow(10, max);
+        } else {
+            rulerModel.setLogarithmic(false);
+        }
+
+        rulerModel.setValues(min, max);
 
         double [] midpoints = new double[]{0.0, 0.0, 0.0};
         double [] otherbounds = new double[2];
@@ -199,10 +212,22 @@ public class AxesRulerDrawer {
 
 
         if (axes.getAxes()[1].getReverse()) {
-            rulerModel.setValues(bounds[2], bounds[3]);
+            min = bounds[2];
+            max = bounds[3];
         } else {
-            rulerModel.setValues(bounds[3], bounds[2]);
+            min = bounds[3];
+            max = bounds[2];
         }
+
+        if (axes.getAxes()[1].getLogFlag()) {
+            rulerModel.setLogarithmic(true);
+            min = Math.pow(10, min);
+            max = Math.pow(10, max);
+        } else {
+            rulerModel.setLogarithmic(false);
+        }
+
+        rulerModel.setValues(min, max);
 
         otherbounds[0] = (xs > 0) ? +1 : -1;
         otherbounds[1] = (zs > 0) ? +1 : -1;
@@ -270,11 +295,25 @@ public class AxesRulerDrawer {
             rulerModel.setFirstPoint(new Vector3d(xs, ys, 1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, -1));
             rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
+
+
             if (axes.getAxes()[2].getReverse()) {
-                rulerModel.setValues(bounds[4], bounds[5]);
+                min = bounds[4];
+                max = bounds[5];
             } else {
-                rulerModel.setValues(bounds[5], bounds[4]);
+                min = bounds[5];
+                max = bounds[4];
             }
+
+            if (axes.getAxes()[2].getLogFlag()) {
+                rulerModel.setLogarithmic(true);
+                min = Math.pow(10, min);
+                max = Math.pow(10, max);
+            } else {
+                rulerModel.setLogarithmic(false);
+            }
+
+            rulerModel.setValues(min, max);
 
             otherbounds[0] = (xs > 0) ? +1 : -1;
             otherbounds[1] = (ys > 0) ? +1 : -1;
@@ -411,14 +450,14 @@ public class AxesRulerDrawer {
     }
 
     public void disposeAll() {
-        this.rulerSpriteManagerSet.disposeAll();
+        this.rulerDrawerManager.disposeAll();
     }
 
     public void update(String id, String property) {
-        this.rulerSpriteManagerSet.update(id, property);
+        this.rulerDrawerManager.update(id, property);
     }
 
     public void dispose(String id) {
-        this.rulerSpriteManagerSet.dispose(id);
+        this.rulerDrawerManager.dispose(id);
     }
 }
