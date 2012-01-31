@@ -149,7 +149,7 @@ Compilation
 
 * Enforce a minimal version of Flexdock (1.1.1).
 
-* "make check" will now launched the most important unitary tests (level 1).
+* "make check" will now launch the most important unitary tests (level 1).
 
 Bug fixes
 =========
