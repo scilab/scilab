@@ -709,7 +709,7 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     //set prompt value
     C2F(setprlev) (&pause);
 
-    ConfigVariable::setPromptMode(-1);
+    ConfigVariable::setPromptMode(0);
     try
     {
         if (execCommand)

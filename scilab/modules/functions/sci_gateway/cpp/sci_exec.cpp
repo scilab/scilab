@@ -51,11 +51,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode  = 3;//default value
-    int iErr        = 0;
-	bool bErrCatch	= false;
-	Exp* pExp		= NULL;
-    int iID         = 0;
+    int promptMode      = 3;//default value
+    bool bPromptMode    = false;
+    int iErr            = 0;
+	bool bErrCatch	    = false;
+	Exp* pExp		    = NULL;
+    int iID             = 0;
     Parser parser;
 
 
@@ -89,6 +90,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				}
 
                 promptMode = (int)in[2]->getAs<Double>()->getReal()[0];
+                bPromptMode = true;
 			}
 		}
 		else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
@@ -179,7 +181,10 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     //fprintf(f1, "promptMode = %d\n", promptMode);
     //if(promptMode != -4)
     //{
+    if(bPromptMode)
+    {//change mode only if mode is in the call
         ConfigVariable::setPromptMode(promptMode);
+    }
         //fprintf(f1, "NEW mode = %d\n", promptMode);
     //}
 
