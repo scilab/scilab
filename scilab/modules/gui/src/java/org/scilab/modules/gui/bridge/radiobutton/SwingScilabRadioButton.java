@@ -13,10 +13,18 @@
 
 package org.scilab.modules.gui.bridge.radiobutton;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JRadioButton;
 
-import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
@@ -41,6 +49,8 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
     private String uid;
 
     private CommonCallBack callback;
+
+    private ActionListener actListener;
 
     /**
      * Constructor
@@ -100,14 +110,28 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
 
     /**
      * Add a callback to the RadioButton
-     * @param callback the callback to set.
+     * @param cb the callback to set.
      */
-    public void setCallback(CommonCallBack callback) {
-        if (this.callback != null) {
-            removeActionListener(this.callback);
+    public void setCallback(CommonCallBack cb) {
+        if (actListener != null) {
+            removeActionListener(actListener);
         }
-        this.callback = callback;
-        addActionListener(this.callback);
+
+        callback = cb;
+
+        actListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer[] value = new Integer[1];
+                value[0] = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+                if (isSelected()) {
+                    value[0] = (Integer) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                }
+                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
+                callback.actionPerformed(e);
+            }
+        };
+        addActionListener(actListener);
     }
 
     /**
@@ -168,15 +192,15 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      */
     public void setChecked(boolean status) {
         /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            removeActionListener(this.callback);
+        if (actListener != null) {
+            removeActionListener(actListener);
         }
 
         setSelected(status);
 
         /* Put back the listener */
-        if (this.callback != null) {
-            addActionListener(this.callback);
+        if (actListener != null) {
+            addActionListener(actListener);
         }
     }
 
