@@ -46,6 +46,13 @@ namespace org_modules_types
         static int refreshId;
 
         /**
+         * Get the pointer on the indexes
+         * @param indexes a vector containing indexes
+         * @return the pointer
+         */
+        static int * getIndexesPointer(std::vector<int> & indexes);
+
+        /**
          * Get a double dimension matrix from a one dimension one
          * The result must be delete in using deleteMatrix
          *
