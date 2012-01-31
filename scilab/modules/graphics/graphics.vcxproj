@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -230,7 +230,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_clip_box_property.c" />
@@ -451,7 +450,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_callbackmevent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_cdata_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_children_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_clip_box_property.c" />

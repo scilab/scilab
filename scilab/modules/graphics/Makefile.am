@@ -118,7 +118,6 @@ src/c/getHandleProperty/get_clip_state_property.c \
 src/c/getHandleProperty/get_callback_property.c \
 src/c/getHandleProperty/get_auto_position_property.c \
 src/c/getHandleProperty/get_closed_property.c \
-src/c/getHandleProperty/get_callbackmevent_property.c \
 src/c/getHandleProperty/get_text_property.c \
 src/c/getHandleProperty/get_margins_property.c \
 src/c/getHandleProperty/get_view_property.c \
@@ -250,7 +249,6 @@ src/c/getHandleProperty/set_z_label_property.c \
 src/c/getHandleProperty/set_auto_rotation_property.c \
 src/c/getHandleProperty/set_callback_property.c \
 src/c/getHandleProperty/set_closed_property.c \
-src/c/getHandleProperty/set_callbackmevent_property.c \
 src/c/getHandleProperty/set_cdata_mapping_property.c \
 src/c/getHandleProperty/set_y_ticks_property.c \
 src/c/getHandleProperty/set_z_bounds_property.c \

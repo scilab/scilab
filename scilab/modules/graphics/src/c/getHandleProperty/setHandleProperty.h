@@ -115,7 +115,6 @@ int set_data_property(char *pobj, size_t stackPointer, int valueType, int nbRow,
 int set_x_label_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_y_label_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_z_label_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
-int set_callbackmevent_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_callback_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_title_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_tics_direction_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);

@@ -114,7 +114,6 @@ int get_zoom_state_property(char *pobjUID);
 int get_clip_box_property(char *pobjUID);
 int get_clip_state_property(char *pobjUID);
 int get_data_property(char *pobjUID);
-int get_callbackmevent_property(char *pobjUID);
 int get_callback_property(char *pobjUID);
 int get_x_label_property(char *pobjUID);
 int get_y_label_property(char *pobjUID);

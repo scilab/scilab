@@ -51,7 +51,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 162
+#define NB_PROPERTIES 161
 
 /**
 * list of all property names and associated functions in scilab
@@ -120,7 +120,6 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] = {
     {"clip_box", set_clip_box_property},
     {"clip_state", set_clip_state_property},
     {"data", set_data_property},
-    {"callbackmevent", set_callbackmevent_property},
     {"callback", set_callback_property},
     {"x_label", set_x_label_property},
     {"y_label", set_y_label_property},
