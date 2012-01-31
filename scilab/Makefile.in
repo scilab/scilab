@@ -1696,7 +1696,7 @@ check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
 		COMMAND="try test_run_level(1);catch exit(-1);end;exit(0)";\
 		export LANG=C;\
-		echo "$(top_builddir)/bin/scilab-cli -nb -e \"$$COMMAND\""; \
+		echo "LANG=C $(top_builddir)/bin/scilab-cli -nb -e \"$$COMMAND\""; \
 		time $(top_builddir)/bin/scilab-cli -nb -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
