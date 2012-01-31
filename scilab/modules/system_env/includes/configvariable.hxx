@@ -291,6 +291,14 @@ public :
 
     static void setCurrentClcg4(int _currentClcg4);
     static int getCurrentClcg4();
+
+    //Start finish flag
+private :
+    static bool m_bStartFinished;
+
+public :
+    static void setStartFinished(bool _bStartFinished);
+    static bool getStartFinished();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

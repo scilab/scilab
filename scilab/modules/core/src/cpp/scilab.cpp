@@ -731,6 +731,7 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
         scilabErrorW(se.GetErrorMessage().c_str());
     }
 
+    ConfigVariable::setStartFinished(true);
     ConfigVariable::setPromptMode(2);
     if (!parseFile)
     {

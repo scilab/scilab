@@ -852,8 +852,21 @@ int ConfigVariable::getCurrentClcg4()
 ** \}
 */
 
+/*
+** Start finish flag
+** \{
+*/
+bool ConfigVariable::m_bStartFinished = false;
 
+void ConfigVariable::setStartFinished(bool _bStartFinished)
+{
+    m_bStartFinished = _bStartFinished;
+}
 
-
-
-
+bool ConfigVariable::getStartFinished()
+{
+    return m_bStartFinished;
+}
+/*
+** \}
+*/

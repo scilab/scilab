@@ -51,7 +51,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode      = 3;//default value
+    int promptMode      = 0;//default value at startup, overthise 3
     bool bPromptMode    = false;
     int iErr            = 0;
 	bool bErrCatch	    = false;
@@ -59,6 +59,10 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     int iID             = 0;
     Parser parser;
 
+    if(ConfigVariable::getStartFinished())
+    {
+        promptMode = 3;
+    }
 
 	if(in.size() < 1 || in.size() > 3)
 	{
@@ -96,6 +100,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
         {//mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
+            bPromptMode = true;
 		}
 		else
 		{//not managed
@@ -176,32 +181,12 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
 
-    //FILE* f1 = fopen("d:\\log.txt", "a");
-    //fprintf(f1, "mode = %d\n", oldVal);
-    //fprintf(f1, "promptMode = %d\n", promptMode);
-    //if(promptMode != -4)
-    //{
-    if(bPromptMode)
-    {//change mode only if mode is in the call
-        ConfigVariable::setPromptMode(promptMode);
-    }
-        //fprintf(f1, "NEW mode = %d\n", promptMode);
-    //}
+    ConfigVariable::setPromptMode(promptMode);
 
-    //fclose(f1);
-	for(j = LExp.begin() ; j != LExp.end() ; j++)
+    for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
 		{
-			//if(checkPrompt(iMode, EXEC_MODE_MUTE))
-			//{
-			//	//manage mute option
-			//	(*j)->mute();
-			//	MuteVisitor mute;
-			//	(*j)->accept(mute);
-			//}
-            //exec3 ou normal prompt mode
-
             //mode == 0, print new variable but not command
             if(ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
 			{
@@ -310,11 +295,6 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 					scilabWriteW(ostr.str().c_str());
 				}
 			}
-
-			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) && bErrCatch == false)
-			//{
-			//	scilabWriteW(L"\n");
-			//}
 		}
         catch(ScilabMessage sm)
         {
