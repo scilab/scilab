@@ -6,8 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-
-
+// <-- ENGLISH IMPOSED -->
 
 function checkMeanVariance2arg ( m , n , name , A , B , mu , va , rtol )
   // Check the mean and variance of random numbers.
