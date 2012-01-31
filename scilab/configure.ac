@@ -1055,6 +1055,11 @@ the the JNI libraries."])],
         # JCommander - dependency of TestNG >= 6
         AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
         JCOMMANDER=$PACKAGE_JAR_FILE
+
+        if test -z "$JCOMMANDER"; then
+                AC_JAVA_CHECK_PACKAGE([jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
+                JCOMMANDER=$PACKAGE_JAR_FILE
+        fi
         AC_SUBST(JCOMMANDER)
 
         # Qdox (parses declarations and Javadoc) - dependency of TestNG
@@ -1062,15 +1067,15 @@ the the JNI libraries."])],
         QDOX=$PACKAGE_JAR_FILE
         AC_SUBST(QDOX)
 
-                # bsh (Java scripting environment) - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
-                BSH=$PACKAGE_JAR_FILE
-                AC_SUBST(BSH)
+        # bsh (Java scripting environment) - dependency of TestNG
+        AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+        BSH=$PACKAGE_JAR_FILE
+        AC_SUBST(BSH)
 
-                # Junit - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
-                JUNIT=$PACKAGE_JAR_FILE
-                AC_SUBST(JUNIT)
+        # Junit - dependency of TestNG
+        AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+        JUNIT=$PACKAGE_JAR_FILE
+        AC_SUBST(JUNIT)
 
 
     else
