@@ -175,7 +175,7 @@ __indent_C() {
 # Indent the file with `astyle' if this is a Java file
 __indent_java() {
 	__pre_indent
-	astyle $COMMON_ASTYLE_ARGS --style=java --indent=tab "$file"
+	astyle $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file"
 	__post_indent
 
 }
