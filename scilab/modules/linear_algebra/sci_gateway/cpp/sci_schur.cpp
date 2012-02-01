@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     bool bIsDiscreteStr             = false;
 
 // *** check number of input args. ***
-    if(in.size() < 1 && in.size() > 3)
+    if(in.size() < 1 || in.size() > 3)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"schur", 1, 3);
         return types::Function::Error;
