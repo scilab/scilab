@@ -37,6 +37,10 @@ function atomsSaveConfig(force)
     elseif isfile(pathsystemuser + "config") then
       copyfile(pathsystemuser + "config", pathsystemuser + "config.bak");
       msprintf(gettext("config file saved to %s"), pathsystemuser + "config.bak");
+    elseif ~isdir(atomsPath("system","user")) then
+        mkdir(atomsPath("system","user"))
+        mputl("",atomsPath("system","user")+'config');
+        mputl("",atomsPath("system","user")+'config.bak');
     else
       mputl("", pathsystemuser + 'config');
       mputl("", pathsystemuser + 'config.bak');
