@@ -269,7 +269,8 @@ src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
+src/jni/CallRenderer.cpp
 
 # Includes need for the compilation
 libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
@@ -348,7 +349,8 @@ src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
-src/jni/SubwinBackgroundDrawerGL.giws.xml
+src/jni/SubwinBackgroundDrawerGL.giws.xml \
+src/jni/renderer.giws.xml
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

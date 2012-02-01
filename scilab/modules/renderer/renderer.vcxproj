@@ -223,6 +223,7 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\cpp\rendererBasicAlgos.cpp" />
     <ClCompile Include="src\cpp\RendererFontManager.cpp" />
     <ClCompile Include="src\cpp\SetJavaProperty.cpp" />
+    <ClCompile Include="src\jni\CallRenderer.cpp" />
     <ClCompile Include="src\jni\XlFontManager.cpp" />
     <ClCompile Include="src\cpp\polylineDrawing\BarDecomposition.cpp" />
     <ClCompile Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp" />
@@ -476,6 +477,7 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="includes\rendererBasicAlgos.h" />
     <ClInclude Include="includes\RendererFontManager.h" />
     <ClInclude Include="includes\SetJavaProperty.h" />
+    <ClInclude Include="src\jni\CallRenderer.hxx" />
     <ClInclude Include="src\jni\XlFontManager.hxx" />
     <ClInclude Include="src\cpp\polylineDrawing\BarDecomposition.hxx" />
     <ClInclude Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.hxx" />

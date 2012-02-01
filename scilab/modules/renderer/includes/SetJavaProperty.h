@@ -109,12 +109,12 @@ RENDERER_IMPEXP void sciSetJavaTitle( sciPointObj * pFigure, const char * title 
 /**
  * Update subwin size and scale
  */
-RENDERER_IMPEXP void sciJavaUpdateSubwinScale(sciPointObj * pSubwin);
+RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
 
 /**
- * Update bounding box of a text objectr if needed
+ * Update bounding box of a text object if needed
  */
-RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(sciPointObj * pText);
+RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
 
 #ifdef __cplusplus
 }

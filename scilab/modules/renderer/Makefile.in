@@ -359,7 +359,8 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-rendererBasicAlgos.lo \
 	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
 	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
-	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo
+	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo \
+	libscirenderer_la-CallRenderer.lo
 am_libscirenderer_la_OBJECTS = $(am__objects_1)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
 libscirenderer_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -894,7 +895,8 @@ src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
+src/jni/CallRenderer.cpp
 
 
 # Includes need for the compilation
@@ -972,7 +974,8 @@ src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
-src/jni/SubwinBackgroundDrawerGL.giws.xml
+src/jni/SubwinBackgroundDrawerGL.giws.xml \
+src/jni/renderer.giws.xml
 
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@pkglib_LTLIBRARIES = libscirenderer.la
@@ -1137,6 +1140,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BuildDrawingObserver.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CallRenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Camera.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
@@ -3088,6 +3092,13 @@ libscirenderer_la-SubwinBackgroundDrawerJoGL.lo: src/cpp/subwinDrawing/SubwinBac
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' object='libscirenderer_la-SubwinBackgroundDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+
+libscirenderer_la-CallRenderer.lo: src/jni/CallRenderer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CallRenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CallRenderer.Tpo -c -o libscirenderer_la-CallRenderer.lo `test -f 'src/jni/CallRenderer.cpp' || echo '$(srcdir)/'`src/jni/CallRenderer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-CallRenderer.Tpo $(DEPDIR)/libscirenderer_la-CallRenderer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/CallRenderer.cpp' object='libscirenderer_la-CallRenderer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CallRenderer.lo `test -f 'src/jni/CallRenderer.cpp' || echo '$(srcdir)/'`src/jni/CallRenderer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -80,7 +80,7 @@ SetUiobjectRotate
 SetUimenuChecked
 setFigureEventHandler
 setFigureEventHandlerEnabled
-deleteMenuCallBack
+deleteJxclickString
 destroyUiobjectTag
 GetUiobjectTableData
 GetUiobjectColumnNames

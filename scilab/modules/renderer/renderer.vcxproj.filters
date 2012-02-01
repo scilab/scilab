@@ -852,6 +852,9 @@
     <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJoGL.cpp">
       <Filter>Source Files\AxesDrawing</Filter>
     </ClCompile>
+    <ClCompile Include="src\jni\CallRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx">
@@ -1702,6 +1705,9 @@
     </ClInclude>
     <ClInclude Include="src\cpp\axesDrawing\DrawableAxesJoGL.hxx">
       <Filter>Header Files\AxesDrawing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\CallRenderer.hxx">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

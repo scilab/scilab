@@ -17,13 +17,18 @@
 #include "subwinDrawing/DrawableSubwin.h"
 #include "GiwsException.hxx"
 
+
 extern "C"
 {
 #include "Scierror.h"
 #include "sciprint.h"
+#include "getScilabJavaVM.h"
 }
 
+#include "CallRenderer.hxx"
+
 using namespace sciGraphics;
+using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaColormap(sciPointObj * pFigure, const double rgbMat[], int nbColor)
@@ -131,15 +136,15 @@ void sciSetJavaTitle(sciPointObj * pFigure, const char *title)
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)
+void sciJavaUpdateSubwinScale(char * pSubwinUID)
 {
-    getSubwinDrawer(pSubwin)->updateScale();
+    CallRenderer::updateSubwinScale(getScilabJavaVM(), pSubwinUID);
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateTextBoundingBox(sciPointObj * pText)
+void sciJavaUpdateTextBoundingBox(char * pTextUID)
 {
-    getTextDrawer(pText)->updateTextBox();
+    CallRenderer::updateTextBounds(getScilabJavaVM(), pTextUID);
 }
 
 /*---------------------------------------------------------------------------------*/
