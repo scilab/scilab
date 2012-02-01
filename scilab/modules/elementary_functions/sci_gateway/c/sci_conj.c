@@ -18,10 +18,10 @@
 
 extern int C2F(dscal)();
 
-SciErr conj_double(int*_piKey, int* _piAddress);
-SciErr conj_poly(int*_piKey, int* _piAddress);
+SciErr conj_double(void* pvApiCtx, int* _piAddress);
+SciErr conj_poly(void* pvApiCtx, int* _piAddress);
 
-int sci_conj(char *fname, int* _piKey)
+int sci_conj(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iType 		= 0;
@@ -30,14 +30,14 @@ int sci_conj(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -47,10 +47,10 @@ int sci_conj(char *fname, int* _piKey)
 	switch(iType)
 	{
 	case sci_matrix :
-		sciErr = conj_double(_piKey, piAddr);
+		sciErr = conj_double(pvApiCtx, piAddr);
 		break;
 	case sci_poly :
-		sciErr = conj_poly(_piKey, piAddr);
+		sciErr = conj_poly(pvApiCtx, piAddr);
 		break;
 	default :
 		OverLoad(1);
@@ -67,7 +67,7 @@ int sci_conj(char *fname, int* _piKey)
 	return 0;
 }
 
-SciErr conj_double(int*_piKey, int* _piAddress)
+SciErr conj_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int iRows						= 0;
@@ -81,9 +81,9 @@ SciErr conj_double(int*_piKey, int* _piAddress)
 	int iSize						= 0;
 	double dblCoef			= -1;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -91,7 +91,7 @@ SciErr conj_double(int*_piKey, int* _piAddress)
 
 		iSize = iRows * iCols;
 
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -104,13 +104,13 @@ SciErr conj_double(int*_piKey, int* _piAddress)
 	}
 	else
 	{//do nothing, just copy in a new variable
-		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, pdblReal);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -119,7 +119,7 @@ SciErr conj_double(int*_piKey, int* _piAddress)
 	return sciErr;
 }
 
-SciErr conj_poly(int*_piKey, int* _piAddress)
+SciErr conj_poly(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -136,16 +136,16 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 	int iSize							= 0;
 	double dblCoef				= -1;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -164,7 +164,7 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 			pdblImgRet[i]		= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -177,7 +177,7 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 			C2F(dscal)(&piCoeff[i], &dblCoef, pdblImgRet[i], &iOne);
 		}
 
-		sciErr = createComplexMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
+		sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -185,14 +185,14 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 	}
 	else
 	{
-		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -204,13 +204,13 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = createMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -226,7 +226,7 @@ SciErr conj_poly(int*_piKey, int* _piAddress)
 	}
 	free(pdblReal);
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{

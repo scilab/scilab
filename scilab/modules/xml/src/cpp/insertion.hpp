@@ -161,7 +161,7 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
  * @param fname_len the function name length
  */
 template<class T, class U>
-int sci_insertion(char * fname, int* pvApiCtx)
+int sci_insertion(char * fname, void* pvApiCtx)
 {
     T * a;
     U * b;

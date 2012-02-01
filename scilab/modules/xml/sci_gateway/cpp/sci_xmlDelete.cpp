@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDelete(char * fname, int* _piKey)
+int sci_xmlDelete(char * fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -44,7 +44,7 @@ int sci_xmlDelete(char * fname, int* _piKey)
         return 0;
     }
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -52,9 +52,9 @@ int sci_xmlDelete(char * fname, int* _piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, addr))
+    if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedSingleString(_piKey, addr, &com);
+        getAllocatedSingleString(pvApiCtx, addr, &com);
         if (!strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
@@ -66,7 +66,7 @@ int sci_xmlDelete(char * fname, int* _piKey)
     {
         for (int pos = 1; pos <= Rhs; pos++)
         {
-            err = getVarAddressFromPosition(_piKey, pos, &addr);
+            err = getVarAddressFromPosition(pvApiCtx, pos, &addr);
             if (err.iErr)
             {
                 printError(&err, 0);
@@ -74,9 +74,9 @@ int sci_xmlDelete(char * fname, int* _piKey)
                 return 0;
             }
 
-            if (isXMLDoc(addr, _piKey))
+            if (isXMLDoc(addr, pvApiCtx))
             {
-                id = getXMLObjectId(addr, _piKey);
+                id = getXMLObjectId(addr, pvApiCtx);
                 doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
                 if (!doc)
                 {
@@ -85,9 +85,9 @@ int sci_xmlDelete(char * fname, int* _piKey)
                 }
                 delete doc;
             }
-            else if (isXMLValid(addr, _piKey))
+            else if (isXMLValid(addr, pvApiCtx))
             {
-                id = getXMLObjectId(addr, _piKey);
+                id = getXMLObjectId(addr, pvApiCtx);
                 vf = XMLObject::getFromId<XMLValidation>(id);
                 if (!vf)
                 {

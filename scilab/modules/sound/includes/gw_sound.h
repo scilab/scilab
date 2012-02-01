@@ -19,8 +19,8 @@
 /*--------------------------------------------------------------------------*/ 
 SOUND_IMPEXP int gw_sound(void);
 /*--------------------------------------------------------------------------*/ 
-SOUND_IMPEXP int sci_beep(char *fname, int* _piKey);
-SOUND_IMPEXP int sci_Playsound(char *fname, int* _piKey);
+SOUND_IMPEXP int sci_beep(char *fname, void* pvApiCtx);
+SOUND_IMPEXP int sci_Playsound(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SOUND__ */
 /*--------------------------------------------------------------------------*/

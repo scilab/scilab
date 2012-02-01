@@ -83,14 +83,14 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 	//CheckRhs(1,1);
 	//CheckLhs(1,1);
 
-	//sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	//sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
 	//	return 0;
 	//}
 
-	//sciErr = getVarType(_piKey, piAddressVarOne, &iType);
+	//sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -103,7 +103,7 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 	//	return 0;
 	//}
 
-	//sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	//sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -127,7 +127,7 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 	//	return 0;
 	//}
 
-	//sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -154,7 +154,7 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 	//	}
 	//}
 
-	//sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -178,7 +178,7 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 	//if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 	//freeArrayOfWideString(pStVarOne, m1 * n1);
 
-	//sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m1, n1, results);
+	//sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, results);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);

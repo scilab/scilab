@@ -28,7 +28,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalLoad(char *fname, int* _piKey)
+int sci_xcosPalLoad(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 2);
     CheckLhs(0, 1);
@@ -39,13 +39,13 @@ int sci_xcosPalLoad(char *fname, int* _piKey)
     char **category = NULL;
 
     /* path setup */
-    if(readSingleString(_piKey,1, &path, fname))
+    if(readSingleString(pvApiCtx,1, &path, fname))
     {
         return 0;
     }
 
     /* category setup */
-    if (Rhs == 2 && readVectorString(_piKey,2, &category, &lenCategory, fname))
+    if (Rhs == 2 && readVectorString(pvApiCtx,2, &category, &lenCategory, fname))
     {
         FREE(path);
         return 0;

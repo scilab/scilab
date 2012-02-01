@@ -25,7 +25,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_chdir(char *fname ,int* _piKey)
+int sci_chdir(char *fname ,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int *piAddressVarOne = NULL;
@@ -49,7 +49,7 @@ int sci_chdir(char *fname ,int* _piKey)
 	}
 	else
 	{
-		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -57,7 +57,7 @@ int sci_chdir(char *fname ,int* _piKey)
 			return 0;
 		}
 
-		sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -72,7 +72,7 @@ int sci_chdir(char *fname ,int* _piKey)
 		}
 
 		// get value of lenStVarOne
-		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -93,7 +93,7 @@ int sci_chdir(char *fname ,int* _piKey)
 			return 0;
 		}
 
-		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -110,7 +110,7 @@ int sci_chdir(char *fname ,int* _piKey)
 		/* get value of PWD scilab variable (compatiblity scilab 4.x) */
 		if (wcscmp(expandedPath, L"PWD") == 0)
 		{
-			sciErr = getNamedVarType(_piKey, "PWD", &iType1);
+			sciErr = getNamedVarType(pvApiCtx, "PWD", &iType1);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -123,7 +123,7 @@ int sci_chdir(char *fname ,int* _piKey)
 				wchar_t *VARVALUE = NULL;
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
-				sciErr = readNamedMatrixOfWideString(_piKey, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
+				sciErr = readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -136,7 +136,7 @@ int sci_chdir(char *fname ,int* _piKey)
 					VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
 					if (VARVALUE)
 					{
-						readNamedMatrixOfWideString(_piKey, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
+						readNamedMatrixOfWideString(pvApiCtx, "PWD", &m, &n, &VARVALUElen, &VARVALUE);
 						FREE(expandedPath);
 						expandedPath = VARVALUE;
 					}
@@ -153,7 +153,7 @@ int sci_chdir(char *fname ,int* _piKey)
 			if (ierr) bOutput[0] = FALSE;
 			else bOutput[0] = TRUE;
 
-			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, bOutput);
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOutput);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -176,11 +176,11 @@ int sci_chdir(char *fname ,int* _piKey)
 				wchar_t *currentDir = scigetcwdW(&ierr);
 				if ( (ierr == 0) && currentDir)
 				{
-					sciErr = createMatrixOfWideString(_piKey, Rhs + 1, 1, 1, &currentDir);
+					sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, &currentDir);
 				}
 				else
 				{
-					sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 0, 0, NULL);
+					sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
 				}
 
 				if(sciErr.iErr)

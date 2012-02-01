@@ -21,11 +21,11 @@
 #include "ScilabLinesUpdate.h"
 #include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
-static int sci_lines_no_rhs(char *fname, int *_piKey);
-static int sci_lines_one_rhs(char *fname, int *_piKey);
-static int sci_lines_two_rhs(char *fname, int *_piKey);
+static int sci_lines_no_rhs(char *fname, void* pvApiCtx);
+static int sci_lines_one_rhs(char *fname, void* pvApiCtx);
+static int sci_lines_two_rhs(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_lines(char *fname, int *_piKey)
+int sci_lines(char *fname, void* pvApiCtx)
 {
     CheckRhs(0,2);
     CheckLhs(1,1);
@@ -33,19 +33,19 @@ int sci_lines(char *fname, int *_piKey)
     switch(Rhs)
     {
     case 0:
-        sci_lines_no_rhs(fname, _piKey);
+        sci_lines_no_rhs(fname, pvApiCtx);
         break;
     case 1:
-        sci_lines_one_rhs(fname, _piKey);
+        sci_lines_one_rhs(fname, pvApiCtx);
         break;
     case 2:
-        sci_lines_two_rhs(fname, _piKey);
+        sci_lines_two_rhs(fname, pvApiCtx);
         break;
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int sci_lines_no_rhs(char *fname, int *_piKey)
+static int sci_lines_no_rhs(char *fname, void* pvApiCtx)
 {
     /* ncl = lines() */
     /* with ncl a 1x2 vector [nc , nl] */
@@ -59,7 +59,7 @@ static int sci_lines_no_rhs(char *fname, int *_piKey)
     returnedDouble[1] = (double)getLinesSize();
 
     n1 = 1; m1 = 2;
-    sciErr = createMatrixOfDouble(_piKey, Rhs + 1, n1, m1, returnedDouble);
+    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, n1, m1, returnedDouble);
 
     if (sciErr.iErr)
     {
@@ -74,7 +74,7 @@ static int sci_lines_no_rhs(char *fname, int *_piKey)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int sci_lines_one_rhs(char *fname, int *_piKey)
+static int sci_lines_one_rhs(char *fname, void* pvApiCtx)
 {
     /* lines(nb_lines) */
     /* nb_lines == -1 auto */
@@ -84,7 +84,7 @@ static int sci_lines_one_rhs(char *fname, int *_piKey)
     int *piAddressVarOne = NULL;
     int iParam1 = 0;
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -93,21 +93,21 @@ static int sci_lines_one_rhs(char *fname, int *_piKey)
     }
 
     /* compatibility with previous version manages int32 and double */
-    if (!(isDoubleType(_piKey, piAddressVarOne) || isIntegerType(_piKey, piAddressVarOne)))
+    if (!(isDoubleType(pvApiCtx, piAddressVarOne) || isIntegerType(pvApiCtx, piAddressVarOne)))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 1);
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);
         return 0;
     }
 
-    if (isIntegerType(_piKey, piAddressVarOne))
+    if (isIntegerType(pvApiCtx, piAddressVarOne))
     {
-        if (getScalarInteger32(_piKey, piAddressVarOne, &iParam1) != 0)
+        if (getScalarInteger32(pvApiCtx, piAddressVarOne, &iParam1) != 0)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 1);
             return 0;
@@ -116,7 +116,7 @@ static int sci_lines_one_rhs(char *fname, int *_piKey)
     else // double
     {
         double dParam1 = 0.;
-        if (getScalarDouble(_piKey,piAddressVarOne, &dParam1) == 0)
+        if (getScalarDouble(pvApiCtx,piAddressVarOne, &dParam1) == 0)
         {
             iParam1 = (int)dParam1;
         }
@@ -148,7 +148,7 @@ static int sci_lines_one_rhs(char *fname, int *_piKey)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int sci_lines_two_rhs(char *fname, int *_piKey)
+static int sci_lines_two_rhs(char *fname, void* pvApiCtx)
 {
     /* lines (nl, nc) */
     SciErr sciErr;
@@ -158,7 +158,7 @@ static int sci_lines_two_rhs(char *fname, int *_piKey)
     int iParam1 = 0;
     int iParam2 = 0;
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -166,7 +166,7 @@ static int sci_lines_two_rhs(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -175,33 +175,33 @@ static int sci_lines_two_rhs(char *fname, int *_piKey)
     }
 
     /* compatibility with previous version manages int32 and double */
-    if (!(isDoubleType(_piKey, piAddressVarOne) || isIntegerType(_piKey, piAddressVarOne)))
+    if (!(isDoubleType(pvApiCtx, piAddressVarOne) || isIntegerType(pvApiCtx, piAddressVarOne)))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 1);
         return 0;
     }
 
-    if (!(isDoubleType(_piKey, piAddressVarTwo) || isIntegerType(_piKey, piAddressVarTwo)))
+    if (!(isDoubleType(pvApiCtx, piAddressVarTwo) || isIntegerType(pvApiCtx, piAddressVarTwo)))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 2);
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarTwo))
+    if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 2);
         return 0;
     }
 
-    if (isIntegerType(_piKey, piAddressVarOne))
+    if (isIntegerType(pvApiCtx, piAddressVarOne))
     {
-        if (getScalarInteger32(_piKey, piAddressVarOne, &iParam1) != 0)
+        if (getScalarInteger32(pvApiCtx, piAddressVarOne, &iParam1) != 0)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 1);
             return 0;
@@ -210,15 +210,15 @@ static int sci_lines_two_rhs(char *fname, int *_piKey)
     else // double
     {
         double dParam1 = 0.;
-        if (getScalarDouble(_piKey,piAddressVarOne, &dParam1) == 0)
+        if (getScalarDouble(pvApiCtx,piAddressVarOne, &dParam1) == 0)
         {
             iParam1 = (int)dParam1;
         }
     }
 
-    if (isIntegerType(_piKey, piAddressVarTwo))
+    if (isIntegerType(pvApiCtx, piAddressVarTwo))
     {
-        if (getScalarInteger32(_piKey, piAddressVarTwo, &iParam2) != 0)
+        if (getScalarInteger32(pvApiCtx, piAddressVarTwo, &iParam2) != 0)
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname, 2);
             return 0;
@@ -227,7 +227,7 @@ static int sci_lines_two_rhs(char *fname, int *_piKey)
     else // double
     {
         double dParam2 = 0.;
-        if (getScalarDouble(_piKey,piAddressVarTwo, &dParam2) == 0)
+        if (getScalarDouble(pvApiCtx,piAddressVarTwo, &dParam2) == 0)
         {
             iParam2 = (int)dParam2;
         }

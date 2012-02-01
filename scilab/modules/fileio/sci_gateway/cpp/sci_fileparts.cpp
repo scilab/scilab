@@ -182,14 +182,14 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	return 0;
 	//}
 
-	//sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	//sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
 	//	return 0;
 	//}
 
-	//sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	//sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -203,7 +203,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//}
 
 	//// get value of lenStVarOne
-	//sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	//sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -223,7 +223,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	return 0;
 	//}
 
-	//sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	//sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -233,7 +233,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
 	//if (Rhs == 2)
 	//{
-	//	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -241,7 +241,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -257,7 +257,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	}
 
 	//	// get value of lenStVarTwo
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -280,7 +280,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//		return 0;
 	//	}
 	//
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -346,7 +346,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	}
 
 	//	m_out = 1; n_out = 1;
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 1, m_out, n_out, &output_value);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &output_value);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -370,7 +370,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 	//	wcscpy(path_out, drv);
 	//	wcscat(path_out, dir);
 
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 1, m_out, n_out, &path_out);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, &path_out);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -386,7 +386,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
 	//	LhsVar(1) = Rhs + 1;
 
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 2, m_out, n_out, &name);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, &name);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -402,7 +402,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
 	//	LhsVar(2) = Rhs + 2;
 
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 3, m_out, n_out, &ext);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 3, m_out, n_out, &ext);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);

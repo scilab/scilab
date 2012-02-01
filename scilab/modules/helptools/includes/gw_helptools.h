@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 HELPTOOLS_IMPEXP int gw_helptools(void);
 /*--------------------------------------------------------------------------*/
-HELPTOOLS_IMPEXP int sci_buildDocv2(char *fname, int* _piKey);
+HELPTOOLS_IMPEXP int sci_buildDocv2(char *fname, void* pvApiCtx);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_HELPTOOLS__ */

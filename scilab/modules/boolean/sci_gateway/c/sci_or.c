@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : or */
 /*--------------------------------------------------------------------------*/
-int sci_or(char *fname, int* _piKey)
+int sci_or(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet			= 0;
@@ -41,14 +41,14 @@ int sci_or(char *fname, int* _piKey)
 	CheckLhs(1,1);
 
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(!isBooleanType(_piKey, piAddr1))
+	if(!isBooleanType(pvApiCtx, piAddr1))
 	{
 		OverLoad(1);
 		return 0;
@@ -56,7 +56,7 @@ int sci_or(char *fname, int* _piKey)
 
 	if(Rhs == 2)
 	{
-		sciErr = getProcessMode(_piKey, 2, piAddr1, &iMode);
+		sciErr = getProcessMode(pvApiCtx, 2, piAddr1, &iMode);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -64,7 +64,7 @@ int sci_or(char *fname, int* _piKey)
 		}
 	}
 
-	sciErr = getMatrixOfBoolean(_piKey, piAddr1, &iRows, &iCols, &piBool1);
+	sciErr = getMatrixOfBoolean(pvApiCtx, piAddr1, &iRows, &iCols, &piBool1);
 	if(iRet)
 	{
 		return 1;
@@ -91,14 +91,14 @@ int sci_or(char *fname, int* _piKey)
 	switch(iMode)
 	{
 	case BY_ALL :
-		iRet = createScalarBoolean(_piKey, Rhs + 1, *piBool3);
+		iRet = createScalarBoolean(pvApiCtx, Rhs + 1, *piBool3);
 		if(iRet)
 		{
 			return 0;
 		}
 		break;
 	case BY_ROWS :
-		sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, 1, iCols, piBool3);
+		sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, iCols, piBool3);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -106,7 +106,7 @@ int sci_or(char *fname, int* _piKey)
 		}
 		break;
 	case BY_COLS :
-		sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, iRows, 1, piBool3);
+		sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, iRows, 1, piBool3);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

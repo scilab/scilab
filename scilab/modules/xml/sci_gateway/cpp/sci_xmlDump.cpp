@@ -33,7 +33,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDump(char *fname, int* pvApiCtx)
+int sci_xmlDump(char *fname, void* pvApiCtx)
 {
     XMLObject * obj = 0;
     int id;

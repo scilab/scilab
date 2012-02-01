@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_funcprot)(char *fname, int* _piKey)
+int C2F(sci_funcprot)(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	CheckLhs(1,1);
@@ -31,7 +31,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;
-		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m_out, n_out, &dOut);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -51,7 +51,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 		double *pdVarOne			= NULL;
 
 		/* get Address of inputs */
-		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -59,7 +59,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -74,7 +74,7 @@ int C2F(sci_funcprot)(char *fname, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getMatrixOfDouble(_piKey, piAddressVarOne,&m1,&n1,&pdVarOne);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

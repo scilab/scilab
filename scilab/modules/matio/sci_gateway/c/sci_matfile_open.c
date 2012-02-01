@@ -31,7 +31,7 @@
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
-int sci_matfile_open(char *fname, int *_piKey)
+int sci_matfile_open(char *fname, void* pvApiCtx)
 {
   int nbRow = 0, nbCol = 0;
   mat_t *matfile;
@@ -45,13 +45,13 @@ int sci_matfile_open(char *fname, int *_piKey)
   CheckRhs(1, 2);
   CheckLhs(1, 1);
   
-  _SciErr = getVarAddressFromPosition(_piKey, 1, &filename_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, filename_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &filename_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, filename_addr, &var_type); MATIO_ERROR;
   
   if (var_type == sci_strings)
     {
-      getAllocatedSingleString(_piKey, filename_addr, &filename);
-      _SciErr = getVarDimension(_piKey, filename_addr, &nbRow, &nbCol); 
+      getAllocatedSingleString(pvApiCtx, filename_addr, &filename);
+      _SciErr = getVarDimension(pvApiCtx, filename_addr, &nbRow, &nbCol); 
       MATIO_ERROR;
       
       if (nbCol != 1) 
@@ -74,14 +74,14 @@ int sci_matfile_open(char *fname, int *_piKey)
   
   if (Rhs == 2)
     {
-      _SciErr = getVarAddressFromPosition(_piKey, 2, &option_addr); MATIO_ERROR;
+      _SciErr = getVarAddressFromPosition(pvApiCtx, 2, &option_addr); MATIO_ERROR;
       
-      _SciErr = getVarType(_piKey, option_addr, &var_type); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, option_addr, &var_type); MATIO_ERROR;
       
       if (var_type == sci_strings)
 	{
-	  getAllocatedSingleString(_piKey, option_addr, &optionStr);
-	  _SciErr = getVarDimension(_piKey, option_addr, &nbRow, &nbCol); MATIO_ERROR;
+	  getAllocatedSingleString(pvApiCtx, option_addr, &optionStr);
+	  _SciErr = getVarDimension(pvApiCtx, option_addr, &nbRow, &nbCol); MATIO_ERROR;
 	  
 	  if (nbCol != 1) 
 	    {
@@ -149,7 +149,7 @@ int sci_matfile_open(char *fname, int *_piKey)
     }
   
   /* Return the index */
-  createScalarDouble(_piKey, Rhs+1, (double)fileIndex);
+  createScalarDouble(pvApiCtx, Rhs+1, (double)fileIndex);
   
   freeAllocatedSingleString(filename);
   freeAllocatedSingleString(optionStr);

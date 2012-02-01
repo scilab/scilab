@@ -24,7 +24,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
-int sci_isalphanum(char *fname, int* _piKey)
+int sci_isalphanum(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -32,7 +32,7 @@ int sci_isalphanum(char *fname, int* _piKey)
     CheckRhs(1, 1);
     CheckLhs(1, 1);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -40,13 +40,13 @@ int sci_isalphanum(char *fname, int* _piKey)
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
-    if (!isStringType(_piKey, piAddressVarOne))
+    if (!isStringType(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
     }
@@ -54,7 +54,7 @@ int sci_isalphanum(char *fname, int* _piKey)
     {
         wchar_t *pStVarOne = NULL;
 
-        if (getAllocatedSingleWideString(_piKey, piAddressVarOne, &pStVarOne) != 0)
+        if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne) != 0)
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -71,7 +71,7 @@ int sci_isalphanum(char *fname, int* _piKey)
             {
                 int m1 = 1;
                 int n1 = valuesSize;
-                sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m1, n1, values);
+                sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, values);
 
                 FREE(values);
                 values = NULL;
@@ -85,7 +85,7 @@ int sci_isalphanum(char *fname, int* _piKey)
             }
             else
             {
-                createEmptyMatrix(_piKey, Rhs + 1);
+                createEmptyMatrix(pvApiCtx, Rhs + 1);
             }
 
             LhsVar(1) = Rhs+1;

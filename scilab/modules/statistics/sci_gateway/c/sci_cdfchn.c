@@ -20,7 +20,7 @@ extern int C2F(cdfchn)(int *,double *,double *,double*,double *,double *, int *,
  * SUBROUTINE CDFCHN( WHICH, P, Q, X, DF, PNONC, STATUS, BOUND )
  * Cumulative Distribution Function, CHi-square Non-central 
  */
-int sci_cdfchn(char* fname, int* _piKey) 
+int sci_cdfchn(char* fname, void* pvApiCtx) 
 { 
   struct cdf_item items[] =
     {{"PQ"   , 3, 2, 2},
@@ -28,5 +28,5 @@ int sci_cdfchn(char* fname, int* _piKey)
      {"Df"   , 4, 1, 4},
      {"Pnonc", 4, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfchn, 4, 5, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf);
+  return cdf_generic(fname, pvApiCtx, &cdf);
 } 

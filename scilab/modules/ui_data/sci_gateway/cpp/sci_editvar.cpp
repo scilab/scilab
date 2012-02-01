@@ -99,7 +99,7 @@ void clearWrap(T ** x, int r)
     delete x;
 }
 /*--------------------------------------------------------------------------*/
-int sci_editvar(char * fname, int* _piKey)
+int sci_editvar(char * fname, void* pvApiCtx)
 {
     CheckRhs(1, 4); /* TODO change this in the future */
     CheckLhs(0, 1);
@@ -165,7 +165,7 @@ int sci_editvar(char * fname, int* _piKey)
     }
 
     /* get address */
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -173,7 +173,7 @@ int sci_editvar(char * fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarOne, &iType);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -188,7 +188,7 @@ int sci_editvar(char * fname, int* _piKey)
     }
 
     /* get dimensions */
-    sciErr = getMatrixOfString(_piKey,  piAddressVarOne, &m1, &n1, NULL, NULL);
+    sciErr = getMatrixOfString(pvApiCtx,  piAddressVarOne, &m1, &n1, NULL, NULL);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -204,7 +204,7 @@ int sci_editvar(char * fname, int* _piKey)
     }
 
     /* get lengths */
-    sciErr = getMatrixOfString(_piKey,  piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
+    sciErr = getMatrixOfString(pvApiCtx,  piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -215,7 +215,7 @@ int sci_editvar(char * fname, int* _piKey)
     pStVarOne = (char*)MALLOC(sizeof(char*) * (lenStVarOne + 1));
 
     /* get variable name to edit */
-    sciErr = getMatrixOfString(_piKey,  piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+    sciErr = getMatrixOfString(pvApiCtx,  piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
     if(sciErr.iErr)
     {
         FREE(pStVarOne);
@@ -232,7 +232,7 @@ int sci_editvar(char * fname, int* _piKey)
     }
 
     /* get address of the variable*/
-    sciErr = getVarAddressFromName(_piKey,  pStVarOne, &piAddr);
+    sciErr = getVarAddressFromName(pvApiCtx,  pStVarOne, &piAddr);
     if(sciErr.iErr)
     {
         Scierror(4, _("%s: Undefined variable %s.\n"), fname, pStVarOne);
@@ -243,7 +243,7 @@ int sci_editvar(char * fname, int* _piKey)
     if (Rhs == 1)
     {
         /* get address of the variable*/
-        sciErr = getVarAddressFromName(_piKey, pStVarOne, &piAddr);
+        sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
         if(sciErr.iErr)
         {
             Scierror(4, _("%s: Undefined variable %s.\n"), fname, pStVarOne);
@@ -253,7 +253,7 @@ int sci_editvar(char * fname, int* _piKey)
     }
     else
     {
-        sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
         if(sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -265,7 +265,7 @@ int sci_editvar(char * fname, int* _piKey)
 
     if (Rhs == 4)
     {
-        sciErr = getVarAddressFromPosition(_piKey, 3, &addr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &addr);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -274,14 +274,14 @@ int sci_editvar(char * fname, int* _piKey)
             return 0;
         }
 
-        if (!isDoubleType(_piKey, addr))
+        if (!isDoubleType(pvApiCtx, addr))
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 3);
             FREE(pStVarOne);
             return 0;
         }
 
-        sciErr = getMatrixOfDouble(_piKey, addr, &iRows, &iCols, &rowsIndex);
+        sciErr = getMatrixOfDouble(pvApiCtx, addr, &iRows, &iCols, &rowsIndex);
         if (sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -292,7 +292,7 @@ int sci_editvar(char * fname, int* _piKey)
 
         nbRowsIndex = iRows * iCols;
 
-        sciErr = getVarAddressFromPosition(_piKey, 4, &addr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &addr);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -301,14 +301,14 @@ int sci_editvar(char * fname, int* _piKey)
             return 0;
         }
 
-        if (!isDoubleType(_piKey, addr))
+        if (!isDoubleType(pvApiCtx, addr))
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 4);
             FREE(pStVarOne);
             return 0;
         }
 
-        sciErr = getMatrixOfDouble(_piKey, addr, &iRows, &iCols, &colsIndex);
+        sciErr = getMatrixOfDouble(pvApiCtx, addr, &iRows, &iCols, &colsIndex);
         if (sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -320,10 +320,10 @@ int sci_editvar(char * fname, int* _piKey)
         nbColsIndex = iRows * iCols;
     }
 
-    //org_modules_commons::ScilabToJava::sendVariable(std::string(pStVarOne), true, _piKey);
+    //org_modules_commons::ScilabToJava::sendVariable(std::string(pStVarOne), true, pvApiCtx);
 
     /* get type of the named variable */
-    sciErr = getVarType(_piKey, piAddr, &iType);
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
     if(sciErr.iErr)
     {
         FREE(pStVarOne);
@@ -337,13 +337,13 @@ int sci_editvar(char * fname, int* _piKey)
     case sci_matrix :
 
         /* get complexity */
-        iComplex    = isVarComplex(_piKey,  piAddr);
+        iComplex    = isVarComplex(pvApiCtx,  piAddr);
 
         /* check complexity */
         if (iComplex)
         {
             /* get size and data from Scilab memory */
-            sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+            sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
             if(sciErr.iErr)
             {
                 FREE(pStVarOne);
@@ -397,7 +397,7 @@ int sci_editvar(char * fname, int* _piKey)
         else
         {
             /* get size and data from Scilab memory */
-            sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
             if(sciErr.iErr)
             {
                 FREE(pStVarOne);
@@ -435,7 +435,7 @@ int sci_editvar(char * fname, int* _piKey)
     case sci_strings :
 
         //fisrt call to retrieve dimensions
-        sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, NULL, NULL);
+        sciErr = getMatrixOfString(pvApiCtx,  piAddr, &iRows, &iCols, NULL, NULL);
         if(sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -447,7 +447,7 @@ int sci_editvar(char * fname, int* _piKey)
         piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 
         //second call to retrieve length of each string
-        sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, piLen, NULL);
+        sciErr = getMatrixOfString(pvApiCtx,  piAddr, &iRows, &iCols, piLen, NULL);
         if(sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -463,7 +463,7 @@ int sci_editvar(char * fname, int* _piKey)
             pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
         //third call to retrieve data
-        sciErr = getMatrixOfString(_piKey,  piAddr, &iRows, &iCols, piLen, pstData);
+        sciErr = getMatrixOfString(pvApiCtx,  piAddr, &iRows, &iCols, piLen, pstData);
         if(sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -506,7 +506,7 @@ int sci_editvar(char * fname, int* _piKey)
 
     case sci_boolean :
         //get size and data from Scilab memory
-        sciErr = getMatrixOfBoolean(_piKey, piAddr, &iRows, &iCols, &piBool);
+        sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
         if(sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -545,7 +545,7 @@ int sci_editvar(char * fname, int* _piKey)
     case sci_ints :
         //get size and data from Scilab memory
         int prec;
-        sciErr = getMatrixOfIntegerPrecision(_piKey, piAddr, &prec);
+        sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &prec);
         if (sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -557,7 +557,7 @@ int sci_editvar(char * fname, int* _piKey)
         switch (prec)
         {
         case SCI_INT8 :
-            sciErr = getMatrixOfInteger8(_piKey, piAddr, &iRows, &iCols, &piInt8);
+            sciErr = getMatrixOfInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piInt8);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -589,7 +589,7 @@ int sci_editvar(char * fname, int* _piKey)
             break;
 
         case SCI_UINT8 :
-            sciErr = getMatrixOfUnsignedInteger8(_piKey, piAddr, &iRows, &iCols, &piUInt8);
+            sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piUInt8);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -621,7 +621,7 @@ int sci_editvar(char * fname, int* _piKey)
             break;
 
         case SCI_INT16 :
-            sciErr = getMatrixOfInteger16(_piKey, piAddr, &iRows, &iCols, &piInt16);
+            sciErr = getMatrixOfInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piInt16);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -653,7 +653,7 @@ int sci_editvar(char * fname, int* _piKey)
             break;
 
         case SCI_UINT16 :
-            sciErr = getMatrixOfUnsignedInteger16(_piKey, piAddr, &iRows, &iCols, &piUInt16);
+            sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piUInt16);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -685,7 +685,7 @@ int sci_editvar(char * fname, int* _piKey)
             break;
 
         case SCI_INT32 :
-            sciErr = getMatrixOfInteger32(_piKey, piAddr, &iRows, &iCols, &piInt32);
+            sciErr = getMatrixOfInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piInt32);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -717,7 +717,7 @@ int sci_editvar(char * fname, int* _piKey)
             break;
 
         case SCI_UINT32 :
-            sciErr = getMatrixOfUnsignedInteger32(_piKey, piAddr, &iRows, &iCols, &piUInt32);
+            sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piUInt32);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -757,7 +757,7 @@ int sci_editvar(char * fname, int* _piKey)
         break;
 
     case sci_boolean_sparse :
-        sciErr = getBooleanSparseMatrix(_piKey, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos);
+        sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos);
         if (sciErr.iErr)
         {
             FREE(pStVarOne);
@@ -788,9 +788,9 @@ int sci_editvar(char * fname, int* _piKey)
         clearWrap<int>(ppiBool, iRows);
         break;
     case sci_sparse :
-        if (isVarComplex(_piKey, piAddr))
+        if (isVarComplex(pvApiCtx, piAddr))
         {
-            sciErr = getComplexSparseMatrix(_piKey, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+            sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
             if (sciErr.iErr)
             {
                 FREE(pStVarOne);
@@ -824,7 +824,7 @@ int sci_editvar(char * fname, int* _piKey)
         }
         else
         {
-            sciErr = getSparseMatrix(_piKey, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal);
+            sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal);
             if (sciErr.iErr)
             {
                 FREE(pStVarOne);

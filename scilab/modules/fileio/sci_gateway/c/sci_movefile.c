@@ -27,10 +27,10 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename);
-static int returnMoveFileResultOnStack(int ierr, char *fname, int* _piKey);
+static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx);
 
 /*--------------------------------------------------------------------------*/
-int sci_movefile(char *fname, int* _piKey)
+int sci_movefile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -49,7 +49,7 @@ int sci_movefile(char *fname, int* _piKey)
     CheckRhs(2, 2);
     CheckLhs(1, 2);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -57,7 +57,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -71,7 +71,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+    sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -86,7 +86,7 @@ int sci_movefile(char *fname, int* _piKey)
     }
 
     // get lenStVarOne
-    sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -102,7 +102,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -110,7 +110,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -118,7 +118,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+    sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -137,7 +137,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarDimension(_piKey, piAddressVarTwo, &m2, &n2);
+    sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -156,7 +156,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -177,7 +177,7 @@ int sci_movefile(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+    sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -264,7 +264,7 @@ int sci_movefile(char *fname, int* _piKey)
             return 0;
         }
 
-        returnMoveFileResultOnStack(ierrMove, fname, _piKey);
+        returnMoveFileResultOnStack(ierrMove, fname, pvApiCtx);
     }
     else
     {
@@ -329,7 +329,7 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
 }
 
 /*--------------------------------------------------------------------------*/
-static int returnMoveFileResultOnStack(int ierr, char *fname, int *_piKey)
+static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
     wchar_t **sciError = NULL;
@@ -406,12 +406,12 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, int *_piKey)
     }
 #endif
 
-    createMatrixOfDouble(_piKey, Rhs + 1, m_out, n_out, &dError);
+    createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dError);
     LhsVar(1) = Rhs + 1;
 
     if (Lhs == 2)
     {
-        createMatrixOfWideString(_piKey, Rhs + 2, m_out, n_out, sciError);
+        createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, sciError);
         LhsVar(2) = Rhs + 2;
     }
 

@@ -23,7 +23,7 @@
 #include "os_strdup.h"
 #include "fscanfMat.h"
 /*--------------------------------------------------------------------------*/
-int sci_fscanfMat(char *fname, int* _piKey)
+int sci_fscanfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -48,7 +48,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         int m3 = 0, n3 = 0;
         int iType3 = 0;
 
-        sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -56,7 +56,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+        sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -70,7 +70,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarDimension(_piKey, piAddressVarThree, &m3, &n3);
+        sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -84,7 +84,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarThree, &separator))
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &separator))
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -102,7 +102,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         int m2 = 0, n2 = 0;
         int iType2 = 0;
 
-        sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if(sciErr.iErr)
         {
             if (separator) {FREE(separator); separator = NULL;}
@@ -111,7 +111,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+        sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
         if(sciErr.iErr)
         {
             if (separator) {FREE(separator); separator = NULL;}
@@ -127,7 +127,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarDimension(_piKey, piAddressVarTwo, &m2, &n2);
+        sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
         if(sciErr.iErr)
         {
             if (separator) {FREE(separator); separator = NULL;}
@@ -143,7 +143,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarTwo, &Format))
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &Format))
         {
             if (separator) {FREE(separator); separator = NULL;}
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
@@ -155,7 +155,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         Format = os_strdup(DEFAULT_FSCANFMAT_FORMAT);
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         if (separator) {FREE(separator); separator = NULL;}
@@ -165,7 +165,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
     if(sciErr.iErr)
     {
         if (separator) {FREE(separator); separator = NULL;}
@@ -183,7 +183,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+    sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
     if(sciErr.iErr)
     {
         if (separator) {FREE(separator); separator = NULL;}
@@ -201,7 +201,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
         return 0;
     }
 
-    if (getAllocatedSingleString(_piKey, piAddressVarOne, &filename))
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
         if (separator) {FREE(separator); separator = NULL;}
         if (Format) {FREE(Format); Format = NULL;}
@@ -245,7 +245,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
             {
                 if ( (results->values) && (results->m > 0) && (results->n > 0))
                 {
-                    sciErr = createMatrixOfDouble(_piKey, Rhs + 1, results->m, results->n, results->values);
+                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
                     if(sciErr.iErr)
                     {
                         freeFscanfMatResult(results);
@@ -260,7 +260,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
                 }
                 else
                 {
-                    if (createEmptyMatrix(_piKey, Rhs + 1) == 0)
+                    if (createEmptyMatrix(pvApiCtx, Rhs + 1) == 0)
                     {
                         LhsVar(1) = Rhs + 1;
                     }
@@ -270,7 +270,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
                 {
                     if (results->text)
                     {
-                        sciErr = createMatrixOfString(_piKey, Rhs + 2, results->sizeText, 1, results->text);
+                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
 
                         freeFscanfMatResult(results);
                         results = NULL;
@@ -290,7 +290,7 @@ int sci_fscanfMat(char *fname, int* _piKey)
                         char *emptryStr = os_strdup("");
                         if (emptryStr)
                         {
-                            createSingleString(_piKey, Rhs + 2, emptryStr);
+                            createSingleString(pvApiCtx, Rhs + 2, emptryStr);
                             FREE(emptryStr);
                             emptryStr = NULL;
                         }

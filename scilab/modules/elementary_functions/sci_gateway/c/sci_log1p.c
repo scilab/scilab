@@ -20,7 +20,7 @@
 #include "msgs.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_log1p(char *fname, int* _piKey)
+int sci_log1p(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -37,14 +37,14 @@ int sci_log1p(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -57,14 +57,14 @@ int sci_log1p(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piKey, piAddr))
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
 		SciError(43);
 		return 0;
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -87,7 +87,7 @@ int sci_log1p(char *fname, int* _piKey)
 			}
 		}
 
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

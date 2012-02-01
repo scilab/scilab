@@ -36,7 +36,7 @@ using namespace org_modules_xml;
  * @param fname_len the function name length
  */
 template <class T>
-int sci_XMLList_insertion(char * fname, int* pvApiCtx)
+int sci_XMLList_insertion(char * fname, void* pvApiCtx)
 {
     XMLNodeList * a;
     T * b;

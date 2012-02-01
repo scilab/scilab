@@ -18,7 +18,7 @@
 #include "api_oldstack.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int sci_realtimeinit(char *fname, int* _piKey)
+int sci_realtimeinit(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
   int m1 = 0,n1 = 0;
@@ -33,8 +33,8 @@ int sci_realtimeinit(char *fname, int* _piKey)
 
   CheckScalar(1,m1,n1);
 
-  sciErr = getVarAddressFromPosition(_piKey, 1, &p1_in_address);
-  sciErr = getMatrixOfDouble(_piKey, p1_in_address, &m1, &n1, &pDblReal);
+  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+  sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
   /* cross variable size checking */
   C2F(realtimeinit)(&zer,pDblReal);
@@ -44,7 +44,7 @@ int sci_realtimeinit(char *fname, int* _piKey)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_realtime(char *fname, int* _piKey)
+int sci_realtime(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
   int m1 = 0,n1 = 0;
@@ -57,8 +57,8 @@ int sci_realtime(char *fname, int* _piKey)
   /*  checking variable t */
   CheckScalar(1,m1,n1);
 
-  sciErr = getVarAddressFromPosition(_piKey, 1, &p1_in_address);
-  sciErr = getMatrixOfDouble(_piKey, p1_in_address, &m1, &n1, &pDblReal);
+  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+  sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
   /* cross variable size checking */
   C2F(realtime)(pDblReal);

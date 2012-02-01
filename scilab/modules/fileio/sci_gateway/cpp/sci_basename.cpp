@@ -105,14 +105,14 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//	int iType3	= 0;
 	//	int m3 = 0, n3 = 0;
 
-	//	sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -125,14 +125,14 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfBoolean(_piKey, piAddressVarThree, &m3, &n3,  &piData);
+	//	sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarThree, &m3, &n3,  &piData);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarThree, &m3, &n3);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -155,14 +155,14 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//	int iType2	= 0;
 	//	int m2 = 0, n2 = 0;
 
-	//	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -175,7 +175,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarTwo, &m2, &n2);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
 
 	//	if ( (m2 != n2) && (n2 != 1) )
 	//	{
@@ -183,7 +183,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfBoolean(_piKey, piAddressVarTwo, &m2, &n2,  &piData);
+	//	sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarTwo, &m2, &n2,  &piData);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -193,14 +193,14 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//	flag = piData[0];
 	//}
 
-	//sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	//sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
 	//	return 0;
 	//}
 
-	//sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	//sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -209,7 +209,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
 	//if (iType1 == sci_matrix)
 	//{
-	//	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -218,7 +218,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
 	//	if ( (m1 == n1) && (m1 == 0) )
 	//	{
-	//		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m1, n1, NULL);
+	//		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
 	//		if(sciErr.iErr)
 	//		{
 	//			printError(&sciErr, 0);
@@ -237,7 +237,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//{
 	//	int i = 0;
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -252,7 +252,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//	}
 
 	//	// get lenStVarOne value
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//	if(sciErr.iErr)
 	//	{
 	//		freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -282,7 +282,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//	}
 
 	//	// get pStVarOne
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//	if(sciErr.iErr)
 	//	{
 	//		freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -305,7 +305,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 	//		pStResult[i] = basenameW(pStVarOne[i], flagexpand);
 	//	}
 
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 1, m1, n1, pStResult);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, pStResult);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);

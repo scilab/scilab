@@ -23,7 +23,7 @@
 #include "os_strdup.h"
 #include "fprintfMat.h"
 /*--------------------------------------------------------------------------*/
-int sci_fprintfMat(char *fname, int *_piKey)
+int sci_fprintfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -55,7 +55,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         int iType3	= 0;
         int m3 = 0, n3 = 0;
 
-        sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -63,7 +63,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+        sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -77,7 +77,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarDimension(_piKey, piAddressVarThree, &m3, &n3);
+        sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
 
         if ( (m3 != n3) && (n3 != 1) )
         {
@@ -85,7 +85,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarThree, &Format))
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &Format))
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -103,7 +103,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         int iType4	= 0;
         int m4 = 0, n4 = 0;
 
-        sciErr = getVarAddressFromPosition(_piKey, 4, &piAddressVarFour);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
         if(sciErr.iErr)
         {
             if (Format) {FREE(Format); Format = NULL;}
@@ -112,7 +112,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarFour, &iType4);
+        sciErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
         if(sciErr.iErr)
         {
             if (Format) {FREE(Format); Format = NULL;}
@@ -128,7 +128,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarDimension(_piKey, piAddressVarFour, &m4, &n4);
+        sciErr = getVarDimension(pvApiCtx, piAddressVarFour, &m4, &n4);
         if(sciErr.iErr)
         {
             if (Format) {FREE(Format); Format = NULL;}
@@ -153,7 +153,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         }
 
         // get lengthStrings value
-        sciErr = getMatrixOfString(_piKey, piAddressVarFour, &m4, &n4, lengthStrings, NULL);
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &m4, &n4, lengthStrings, NULL);
         if(sciErr.iErr)
         {
             if (Format) {FREE(Format); Format = NULL;}
@@ -186,7 +186,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         }
 
         // get textAdded
-        sciErr = getMatrixOfString(_piKey, piAddressVarFour, &m4, &n4, lengthStrings, textAdded);
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarFour, &m4, &n4, lengthStrings, textAdded);
         if (lengthStrings) {FREE(lengthStrings); lengthStrings = NULL;}
         if(sciErr.iErr)
         {
@@ -206,7 +206,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         int iType5	= 0;
         int m5 = 0, n5 = 0;
 
-        sciErr = getVarAddressFromPosition(_piKey, 5, &piAddressVarFive);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddressVarFive);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -214,7 +214,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarFive, &iType5);
+        sciErr = getVarType(pvApiCtx, piAddressVarFive, &iType5);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -228,7 +228,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarDimension(_piKey, piAddressVarFive, &m5, &n5);
+        sciErr = getVarDimension(pvApiCtx, piAddressVarFive, &m5, &n5);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -242,7 +242,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarFive, &separator))
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarFive, &separator))
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 0;
@@ -253,7 +253,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         separator = os_strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
@@ -264,7 +264,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+    sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
     if(sciErr.iErr)
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
@@ -284,7 +284,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    if (isVarComplex(_piKey, piAddressVarTwo))
+    if (isVarComplex(pvApiCtx, piAddressVarTwo))
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
         if (Format) {FREE(Format); Format = NULL;}
@@ -293,7 +293,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2, &dValues);
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &dValues);
     if(sciErr.iErr)
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
@@ -304,7 +304,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
@@ -315,7 +315,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
     if(sciErr.iErr)
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
@@ -335,7 +335,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+    sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 
     if ( (m1 != n1) && (n1 != 1) )
     {
@@ -346,7 +346,7 @@ int sci_fprintfMat(char *fname, int *_piKey)
         return 0;
     }
 
-    if (getAllocatedSingleString(_piKey, piAddressVarOne, &filename))
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
         if (textAdded) freeArrayOfString(textAdded, m4n4);
         if (Format) {FREE(Format); Format = NULL;}

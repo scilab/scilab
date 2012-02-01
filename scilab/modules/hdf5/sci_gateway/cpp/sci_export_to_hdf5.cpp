@@ -47,14 +47,14 @@ static bool export_poly(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
 static bool export_boolean(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
 static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
 //static bool export_boolean_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
-//static bool export_matlab_sparse(int* _piKey, int *_piVar, char* _pstName);
+//static bool export_matlab_sparse(void* pvApiCtx, int *_piVar, char* _pstName);
 static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
-//static bool export_handles(int* _piKey, int *_piVar, char* _pstName);
+//static bool export_handles(void* pvApiCtx, int *_piVar, char* _pstName);
 static bool export_strings(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
-//static bool export_u_function(int* _piKey, int *_piVar, char* _pstName);
-//static bool export_c_function(int* _piKey, int *_piVar, char* _pstName);
-//static bool export_lib(int* _piKey, int *_piVar, char* _pstName);
-//static bool export_lufact_pointer(int* _piKey, int *_piVar, char* _pstName);
+//static bool export_u_function(void* pvApiCtx, int *_piVar, char* _pstName);
+//static bool export_c_function(void* pvApiCtx, int *_piVar, char* _pstName);
+//static bool export_lib(void* pvApiCtx, int *_piVar, char* _pstName);
+//static bool export_lufact_pointer(void* pvApiCtx, int *_piVar, char* _pstName);
 
 static bool export_void(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName);
 
@@ -168,7 +168,7 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
         }
     case sci_matlab_sparse :
         {
-            bReturn = export_matlab_sparse(_piKey, _piVar, _pwstName);
+            bReturn = export_matlab_sparse(pvApiCtx, _piVar, _pwstName);
             break;
         }
      */
@@ -187,7 +187,7 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
         /*
     case sci_handles :
         {
-            bReturn = export_handles(_piKey, _piVar, _pwstName);
+            bReturn = export_handles(pvApiCtx, _piVar, _pwstName);
             break;
         }
         */
@@ -199,17 +199,17 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
         /*
     case types::Function :
         {
-            bReturn = export_u_function(_piKey, _piVar, _pwstName);
+            bReturn = export_u_function(pvApiCtx, _piVar, _pwstName);
             break;
         }
     case sci_c_function :
         {
-            bReturn = export_c_function(_piKey, _piVar, _pwstName);
+            bReturn = export_c_function(pvApiCtx, _piVar, _pwstName);
             break;
         }
     case sci_lib :
         {
-            bReturn = export_lib(_piKey, _piVar, _pwstName);
+            bReturn = export_lib(pvApiCtx, _piVar, _pwstName);
             break;
         }
         */
@@ -223,7 +223,7 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
         /*
     case sci_lufact_pointer :
         {
-            bReturn = export_lufact_pointer(_piKey, _piVar, _pwstName);
+            bReturn = export_lufact_pointer(pvApiCtx, _piVar, _pwstName);
             break;
         }
         */
@@ -431,7 +431,7 @@ static bool export_boolean_sparse(int _iH5File, types::InternalType* pIT,wchar_t
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
 
-    SciErr sciErr = getBooleanSparseMatrix(_piKey, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
+    SciErr sciErr = getBooleanSparseMatrix(pvApiCtx, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -463,9 +463,9 @@ static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
     double* pdblImg		= NULL;
     SciErr sciErr;
 
-    if(isVarComplex(_piKey, _piVar))
+    if(isVarComplex(pvApiCtx, _piVar))
     {
-        sciErr = getComplexSparseMatrix(_piKey, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+        sciErr = getComplexSparseMatrix(pvApiCtx, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -476,7 +476,7 @@ static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
     }
     else
     {
-        sciErr = getSparseMatrix(_piKey, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+        sciErr = getSparseMatrix(pvApiCtx, _piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -497,7 +497,7 @@ static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
     return true;
 }
 /*
-static bool export_matlab_sparse(int* _piKey, int *_piVar, char* _pstName)
+static bool export_matlab_sparse(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;
@@ -574,7 +574,7 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
     return true;
 }
 /*
-static bool export_handles(int* _piKey, int *_piVar, char* _pstName)
+static bool export_handles(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;
@@ -610,25 +610,25 @@ static bool export_strings(int _iH5File, types::InternalType* pIT,wchar_t* _pwst
     return true;
 }
 /*
-static bool export_u_function(int* _piKey, int *_piVar, char* _pstName)
+static bool export_u_function(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;
 }
 /*
-static bool export_c_function(int* _piKey, int *_piVar, char* _pstName)
+static bool export_c_function(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;
 }
 /*
-static bool export_lib(int* _piKey, int *_piVar, char* _pstName)
+static bool export_lib(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;
 }
 /*
-static bool export_lufact_pointer(int* _piKey, int *_piVar, char* _pstName)
+static bool export_lufact_pointer(void* pvApiCtx, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
     return false;

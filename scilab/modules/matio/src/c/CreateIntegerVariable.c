@@ -22,7 +22,7 @@
       return 0;			     \
     }
 
-int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position)
+int CreateIntegerVariable(void* pvApiCtx, int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow, nbCol, i;
   SciErr _SciErr;

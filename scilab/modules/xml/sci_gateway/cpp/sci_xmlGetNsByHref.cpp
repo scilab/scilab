@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetNsByHref(char * fname, int* pvApiCtx)
+int sci_xmlGetNsByHref(char * fname, void* pvApiCtx)
 {
     XMLElement * elem = 0;
     const XMLNs * ns = 0;

@@ -20,8 +20,8 @@
 SPARSE_IMPEXP int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
 //YaSp
-SPARSE_IMPEXP int sci_spmin (char *fname, int* _piKey);
-SPARSE_IMPEXP int sci_spmax (char *fname, int* _piKey);
+SPARSE_IMPEXP int sci_spmin (char *fname, void* pvApiCtx);
+SPARSE_IMPEXP int sci_spmax (char *fname, void* pvApiCtx);
 
 int sci_sparsefunc (char *fname,unsigned long fname_len);
 int sci_spget (char *fname,unsigned long fname_len);

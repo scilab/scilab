@@ -25,7 +25,7 @@
 #include "getdynamicdebuginfo.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int sci_getdebuginfo(char *fname, int* _piKey)
+int sci_getdebuginfo(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	char **outputDynamicList = NULL;
@@ -37,14 +37,14 @@ int sci_getdebuginfo(char *fname, int* _piKey)
 	CheckLhs(0,2);
 
 #ifdef _MSC_VER
-	outputDynamicList = getDynamicDebugInfo_Windows(&m1, _piKey);
+	outputDynamicList = getDynamicDebugInfo_Windows(&m1, pvApiCtx);
 	outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
-	outputDynamicList = getDynamicDebugInfo(&m1, _piKey);
+	outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);
 	outputStaticList = getStaticDebugInfo(&m2);
 #endif
 
-	sciErr = createMatrixOfString(_piKey, Rhs + 1, m1, n1, outputDynamicList);
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, outputDynamicList);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -55,7 +55,7 @@ int sci_getdebuginfo(char *fname, int* _piKey)
 
 	if (Lhs == 2)
 	{
-		sciErr = createMatrixOfString(_piKey, Rhs + 2, m2, n2, outputStaticList);
+		sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, outputStaticList);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

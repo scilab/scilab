@@ -15,7 +15,7 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int sci_type(char *fname, int* _piKey)
+int sci_type(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int* piAddr	= NULL;
@@ -25,21 +25,21 @@ int sci_type(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	iRet = createMatrixOfDoubleFromInteger(_piKey, Rhs + 1, 1, 1, &iType);
+	iRet = createMatrixOfDoubleFromInteger(pvApiCtx, Rhs + 1, 1, 1, &iType);
 	if(iRet)
 	{
 		return 0;

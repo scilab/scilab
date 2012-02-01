@@ -147,14 +147,14 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//	int lenStVarFour = 0;
 	//	int m4 = 0, n4 = 0;
 
-	//	sciErr = getVarAddressFromPosition(_piKey, 4, &piAddressVarFour);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddressVarFour);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarFour, &iType4);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarFour, &iType4);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -167,7 +167,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarFour, &m4, &n4);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarFour, &m4, &n4);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -180,7 +180,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -194,7 +194,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarFour, &m4, &n4, &lenStVarFour, &pStVarFour);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -229,14 +229,14 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//	int iType3	= 0;
 	//	int m3 = 0, n3 = 0;
 
-	//	sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -249,7 +249,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarThree, &m3, &n3);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -263,7 +263,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfBoolean(_piKey, piAddressVarThree, &m3, &n3,  &piData);
+	//	sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarThree, &m3, &n3,  &piData);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -280,14 +280,14 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//	int iType2	= 0;
 	//	int m2 = 0, n2 = 0;
 
-	//	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+	//	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+	//	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -300,7 +300,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getVarDimension(_piKey, piAddressVarTwo, &m2, &n2);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -313,7 +313,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfBoolean(_piKey, piAddressVarTwo, &m2, &n2,  &piData);
+	//	sciErr = getMatrixOfBoolean(pvApiCtx, piAddressVarTwo, &m2, &n2,  &piData);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -323,14 +323,14 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//	flagtrail = piData[0];
 	//}
 
-	//sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	//sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
 	//	return 0;
 	//}
 
-	//sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	//sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	//if(sciErr.iErr)
 	//{
 	//	printError(&sciErr, 0);
@@ -339,7 +339,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
 	//if (iType1 == sci_matrix)
 	//{
-	//	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -348,7 +348,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
 	//	if ( (m1 == n1) && (m1 == 0) )
 	//	{
-	//		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m1, n1, NULL);
+	//		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
 	//		if(sciErr.iErr)
 	//		{
 	//			printError(&sciErr, 0);
@@ -365,7 +365,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//}
 	//else if (iType1 == sci_strings)
 	//{
-	//	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	//	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -389,7 +389,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		return 0;
 	//	}
 
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -416,7 +416,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		}
 	//	}
 
-	//	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	//	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);
@@ -428,7 +428,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 	//		results[i] = pathconvertW(pStVarOne[i], flagtrail, flagexpand, PType);
 	//	}
 
-	//	sciErr = createMatrixOfWideString(_piKey, Rhs + 1, m1, n1, results);
+	//	sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m1, n1, results);
 	//	if(sciErr.iErr)
 	//	{
 	//		printError(&sciErr, 0);

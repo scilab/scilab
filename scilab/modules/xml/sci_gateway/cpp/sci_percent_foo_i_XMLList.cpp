@@ -32,7 +32,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_foo_i_XMLList(char * fname, int* pvApiCtx)
+int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
 {
     XMLNodeList * a;
     int lhsid;

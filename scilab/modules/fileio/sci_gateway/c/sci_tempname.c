@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/
-int sci_tempname(char *fname,int* _piKey)
+int sci_tempname(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
     wchar_t *wcprefix = NULL;
@@ -41,7 +41,7 @@ int sci_tempname(char *fname,int* _piKey)
     {
         int *piAddressVarOne = NULL;
 
-        sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -49,15 +49,15 @@ int sci_tempname(char *fname,int* _piKey)
             return 0;
         }
 
-        if (!isScalar(_piKey, piAddressVarOne))
+        if (!isScalar(pvApiCtx, piAddressVarOne))
         {
             Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
             return 0;
         }
 
-        if (isStringType(_piKey,piAddressVarOne))
+        if (isStringType(pvApiCtx,piAddressVarOne))
         {
-            if (getAllocatedSingleWideString(_piKey, piAddressVarOne, &wcprefix) != 0)
+            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix) != 0)
             {
                 Scierror(999,_("%s: Memory allocation error.\n"), fname);
                 return 0;
@@ -91,7 +91,7 @@ int sci_tempname(char *fname,int* _piKey)
 
     if (wcTempFilename)
     {
-        if (createSingleWideString(_piKey, Rhs + 1, wcTempFilename) == 0)
+        if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename) == 0)
         {
             FREE(wcTempFilename);
             wcTempFilename = NULL;

@@ -25,9 +25,9 @@ int sci_besselk(char *fname,unsigned long fname_len);
 int sci_bessely(char *fname,unsigned long fname_len);
 int sci_beta(char *fname,unsigned long fname_len);
 int sci_legendre(char *fname,unsigned long fname_len);
-int sci_gamma(char *fname, int* _piKey);
-int sci_lgamma(char *fname, int* _piKey);
-int sci_dlgamma(char *fname, int* _piKey);
+int sci_gamma(char *fname, void* pvApiCtx);
+int sci_lgamma(char *fname, void* pvApiCtx);
+int sci_dlgamma(char *fname, void* pvApiCtx);
 int sci_calerf(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_SPECIAL_FUNCTIONS_H__ */

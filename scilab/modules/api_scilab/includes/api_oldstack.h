@@ -23,50 +23,50 @@ static int api_fake_int = 0;
 /*  TOP  */
 #ifdef Top
 #undef Top
-#define Top api_Top(_piKey)
+#define Top api_Top(pvApiCtx)
 #endif
-int api_Top(int* _piKey);
+int api_Top(void* pvApiCtx);
 
 /*  RHS  */
 #ifdef Rhs
 #undef Rhs
-#define Rhs api_Rhs(_piKey)
+#define Rhs api_Rhs(pvApiCtx)
 #endif
-int api_Rhs(int* _piKey);
+int api_Rhs(void* pvApiCtx);
 
 /*  LHS  */
 #ifdef Lhs
 #undef Lhs
-#define Lhs api_Lhs(_piKey)
+#define Lhs api_Lhs(pvApiCtx)
 #endif
-int api_Lhs(int* _piKey);
+int api_Lhs(void* pvApiCtx);
 
 /*  CheckRhs  */
 #ifdef CheckRhs
 #undef CheckRhs
 #define CheckRhs(a,b) \
-	if(api_CheckRhs(a,b, _piKey) == 0) \
+	if(api_CheckRhs(a,b, pvApiCtx) == 0) \
 	{ \
 		return 1; \
 	}
 #endif
-int api_CheckRhs(int _iMin, int _iMax, int* _piKey);
+int api_CheckRhs(int _iMin, int _iMax, void* pvApiCtx);
 
 /*  CheckLhs  */
 #ifdef CheckLhs
 #undef CheckLhs
 #define CheckLhs(a,b) \
-	if(api_CheckLhs(a,b, _piKey) == 0) \
+	if(api_CheckLhs(a,b, pvApiCtx) == 0) \
 	{ \
 		return 1; \
 	}
 #endif
-int api_CheckLhs(int _iMin, int _iMax, int* _piKey);
+int api_CheckLhs(int _iMin, int _iMax, void* pvApiCtx);
 
 //LhsVar(1) = Rhs + 1;
 #ifdef LhsVar
 #undef LhsVar
-#define LhsVar(x) *api_LhsVar(x, _piKey)
+#define LhsVar(x) *api_LhsVar(x, pvApiCtx)
 #endif
 int* api_LhsVar(int _iVal, void* _pvCtx);
 
@@ -77,9 +77,9 @@ int* api_LhsVar(int _iVal, void* _pvCtx);
 
 #ifdef OverLoad
 #undef OverLoad
-#define OverLoad(x) api_OverLoad(x, _piKey)
+#define OverLoad(x) api_OverLoad(x, pvApiCtx)
 #endif
-void api_OverLoad(int _iVal, int *_piKey);
+void api_OverLoad(int _iVal, void* pvApiCtx);
 
 #ifdef __cplusplus
 }

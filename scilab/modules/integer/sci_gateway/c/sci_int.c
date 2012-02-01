@@ -14,28 +14,28 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
-int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData);
+int get_int(void* pvApiCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData);
 
-int int8_from_double(int* _piKey, int* _piAddress);
-int uint8_from_double(int* _piKey, int* _piAddress);
-int int16_from_double(int* _piKey, int* _piAddress);
-int uint16_from_double(int* _piKey, int* _piAddress);
-int int32_from_double(int* _piKey, int* _piAddress);
-int uint32_from_double(int* _piKey, int* _piAddress);
-int int64_from_double(int* _piKey, int* _piAddress);
-int uint64_from_double(int* _piKey, int* _piAddress);
+int int8_from_double(void* pvApiCtx, int* _piAddress);
+int uint8_from_double(void* pvApiCtx, int* _piAddress);
+int int16_from_double(void* pvApiCtx, int* _piAddress);
+int uint16_from_double(void* pvApiCtx, int* _piAddress);
+int int32_from_double(void* pvApiCtx, int* _piAddress);
+int uint32_from_double(void* pvApiCtx, int* _piAddress);
+int int64_from_double(void* pvApiCtx, int* _piAddress);
+int uint64_from_double(void* pvApiCtx, int* _piAddress);
 
-int int8_from_int(int* _piKey, int* _piAddress);
-int uint8_from_int(int* _piKey, int* _piAddress);
-int int16_from_int(int* _piKey, int* _piAddress);
-int uint16_from_int(int* _piKey, int* _piAddress);
-int int32_from_int(int* _piKey, int* _piAddress);
-int uint32_from_int(int* _piKey, int* _piAddress);
-int int64_from_int(int* _piKey, int* _piAddress);
-int uint64_from_int(int* _piKey, int* _piAddress);
+int int8_from_int(void* pvApiCtx, int* _piAddress);
+int uint8_from_int(void* pvApiCtx, int* _piAddress);
+int int16_from_int(void* pvApiCtx, int* _piAddress);
+int uint16_from_int(void* pvApiCtx, int* _piAddress);
+int int32_from_int(void* pvApiCtx, int* _piAddress);
+int uint32_from_int(void* pvApiCtx, int* _piAddress);
+int int64_from_int(void* pvApiCtx, int* _piAddress);
+int uint64_from_int(void* pvApiCtx, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int sci_int8(char *fname, int* _piKey)
+int sci_int8(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -46,29 +46,29 @@ int sci_int8(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = int8_from_double(_piKey, piAddr);
+		iRet = int8_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = int8_from_int(_piKey, piAddr);
+		iRet = int8_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -86,7 +86,7 @@ int sci_int8(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_uint8(char *fname, int* _piKey)
+int sci_uint8(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -97,29 +97,29 @@ int sci_uint8(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = uint8_from_double(_piKey, piAddr);
+		iRet = uint8_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = uint8_from_int(_piKey, piAddr);
+		iRet = uint8_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -137,7 +137,7 @@ int sci_uint8(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_int16(char *fname, int* _piKey)
+int sci_int16(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -148,29 +148,29 @@ int sci_int16(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = int16_from_double(_piKey, piAddr);
+		iRet = int16_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = int16_from_int(_piKey, piAddr);
+		iRet = int16_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -188,7 +188,7 @@ int sci_int16(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_uint16(char *fname, int* _piKey)
+int sci_uint16(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -199,29 +199,29 @@ int sci_uint16(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = uint16_from_double(_piKey, piAddr);
+		iRet = uint16_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = uint16_from_int(_piKey, piAddr);
+		iRet = uint16_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -239,7 +239,7 @@ int sci_uint16(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_int32(char *fname, int* _piKey)
+int sci_int32(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -250,29 +250,29 @@ int sci_int32(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = int32_from_double(_piKey, piAddr);
+		iRet = int32_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = int32_from_int(_piKey, piAddr);
+		iRet = int32_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -290,7 +290,7 @@ int sci_int32(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_uint32(char *fname, int* _piKey)
+int sci_uint32(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -301,29 +301,29 @@ int sci_uint32(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = uint32_from_double(_piKey, piAddr);
+		iRet = uint32_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = uint32_from_int(_piKey, piAddr);
+		iRet = uint32_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -341,7 +341,7 @@ int sci_uint32(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_int64(char *fname, int* _piKey)
+int sci_int64(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -352,29 +352,29 @@ int sci_int64(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = int64_from_double(_piKey, piAddr);
+		iRet = int64_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = int64_from_int(_piKey, piAddr);
+		iRet = int64_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -392,7 +392,7 @@ int sci_int64(char *fname, int* _piKey)
 	return 0;
 }
 
-int sci_uint64(char *fname, int* _piKey)
+int sci_uint64(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -403,29 +403,29 @@ int sci_uint64(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isEmptyMatrix(_piKey, piAddr))
+	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 0;
 		}
 	}
 
-	if(isDoubleType(_piKey, piAddr))
+	if(isDoubleType(pvApiCtx, piAddr))
 	{
-		iRet = uint64_from_double(_piKey, piAddr);
+		iRet = uint64_from_double(pvApiCtx, piAddr);
 	}
-	else if(isIntegerType(_piKey, piAddr))
+	else if(isIntegerType(pvApiCtx, piAddr))
 	{
-		iRet = uint64_from_int(_piKey, piAddr);
+		iRet = uint64_from_int(pvApiCtx, piAddr);
 	}
 	else
 	{
@@ -443,7 +443,7 @@ int sci_uint64(char *fname, int* _piKey)
 	return 0;
 }
 
-int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData)
+int get_int(void* pvApiCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData)
 {
 	SciErr sciErr;
 	int iRet				= 0;
@@ -451,7 +451,7 @@ int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPr
 
 	char* pcOut			= NULL;
 
-	sciErr = getMatrixOfIntegerPrecision(_piKey, _piAddress, _piPrecision);
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddress, _piPrecision);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -462,35 +462,35 @@ int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPr
 	{
 	case SCI_INT8 : 
 		{
-			sciErr = getMatrixOfInteger8(_piKey, _piAddress, _piRows, _piCols, (char**)pvData);
+			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddress, _piRows, _piCols, (char**)pvData);
 		}
 	case SCI_UINT8 : 
 		{
-			sciErr = getMatrixOfUnsignedInteger8(_piKey, _piAddress, _piRows, _piCols, (unsigned char**)pvData);
+			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned char**)pvData);
 		}
 	case SCI_INT16 : 
 		{
-			sciErr = getMatrixOfInteger16(_piKey, _piAddress, _piRows, _piCols, (short**)pvData);
+			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddress, _piRows, _piCols, (short**)pvData);
 		}
 	case SCI_UINT16 : 
 		{
-			sciErr = getMatrixOfUnsignedInteger16(_piKey, _piAddress, _piRows, _piCols, (unsigned short**)pvData);
+			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned short**)pvData);
 		}
 	case SCI_INT32 : 
 		{
-			sciErr = getMatrixOfInteger32(_piKey, _piAddress, _piRows, _piCols, (int**)pvData);
+			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddress, _piRows, _piCols, (int**)pvData);
 		}
 	case SCI_UINT32 : 
 		{
-			sciErr = getMatrixOfUnsignedInteger32(_piKey, _piAddress, _piRows, _piCols, (unsigned int**)pvData);
+			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned int**)pvData);
 		}
 	case SCI_INT64 : 
 		{
-			sciErr = getMatrixOfInteger64(_piKey, _piAddress, _piRows, _piCols, (long long**)pvData);
+			sciErr = getMatrixOfInteger64(pvApiCtx, _piAddress, _piRows, _piCols, (long long**)pvData);
 		}
 	case SCI_UINT64 : 
 		{
-			sciErr = getMatrixOfUnsignedInteger64(_piKey, _piAddress, _piRows, _piCols, (unsigned long long**)pvData);
+			sciErr = getMatrixOfUnsignedInteger64(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned long long**)pvData);
 		}
 	default :
 		{
@@ -510,7 +510,7 @@ int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPr
 }
 
 
-int int8_from_double(int* _piKey, int* _piAddress)
+int int8_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -520,14 +520,14 @@ int int8_from_double(int* _piKey, int* _piAddress)
 
 	char* pcOut			= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfInteger8(_piKey, Rhs + 1, iRows, iCols, &pcOut);
+	sciErr = allocMatrixOfInteger8(pvApiCtx, Rhs + 1, iRows, iCols, &pcOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -542,7 +542,7 @@ int int8_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint8_from_double(int* _piKey, int* _piAddress)
+int uint8_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -552,14 +552,14 @@ int uint8_from_double(int* _piKey, int* _piAddress)
 
 	unsigned char* pucOut	= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger8(_piKey, Rhs + 1, iRows, iCols, &pucOut);
+	sciErr = allocMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 1, iRows, iCols, &pucOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -574,7 +574,7 @@ int uint8_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int16_from_double(int* _piKey, int* _piAddress)
+int int16_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -584,14 +584,14 @@ int int16_from_double(int* _piKey, int* _piAddress)
 
 	short* psOut		= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfInteger16(_piKey, Rhs + 1, iRows, iCols, &psOut);
+	sciErr = allocMatrixOfInteger16(pvApiCtx, Rhs + 1, iRows, iCols, &psOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -606,7 +606,7 @@ int int16_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint16_from_double(int* _piKey, int* _piAddress)
+int uint16_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -616,14 +616,14 @@ int uint16_from_double(int* _piKey, int* _piAddress)
 
 	unsigned short* pusOut	= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger16(_piKey, Rhs + 1, iRows, iCols, &pusOut);
+	sciErr = allocMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 1, iRows, iCols, &pusOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -638,7 +638,7 @@ int uint16_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int32_from_double(int* _piKey, int* _piAddress)
+int int32_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -648,14 +648,14 @@ int int32_from_double(int* _piKey, int* _piAddress)
 
 	int* piOut			= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfInteger32(_piKey, Rhs + 1, iRows, iCols, &piOut);
+	sciErr = allocMatrixOfInteger32(pvApiCtx, Rhs + 1, iRows, iCols, &piOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -670,7 +670,7 @@ int int32_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint32_from_double(int* _piKey, int* _piAddress)
+int uint32_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -680,14 +680,14 @@ int uint32_from_double(int* _piKey, int* _piAddress)
 
 	unsigned int* puiOut	= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger32(_piKey, Rhs + 1, iRows, iCols, &puiOut);
+	sciErr = allocMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 1, iRows, iCols, &puiOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -702,7 +702,7 @@ int uint32_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int64_from_double(int* _piKey, int* _piAddress)
+int int64_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -712,14 +712,14 @@ int int64_from_double(int* _piKey, int* _piAddress)
 
 	long long* pllOut	= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfInteger64(_piKey, Rhs + 1, iRows, iCols, &pllOut);
+	sciErr = allocMatrixOfInteger64(pvApiCtx, Rhs + 1, iRows, iCols, &pllOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -734,7 +734,7 @@ int int64_from_double(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint64_from_double(int* _piKey, int* _piAddress)
+int uint64_from_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -744,14 +744,14 @@ int uint64_from_double(int* _piKey, int* _piAddress)
 
 	unsigned long long* pullOut	= NULL;
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblIn);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return sciErr.iErr;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger64(_piKey, Rhs + 1, iRows, iCols, &pullOut);
+	sciErr = allocMatrixOfUnsignedInteger64(pvApiCtx, Rhs + 1, iRows, iCols, &pullOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -767,7 +767,7 @@ int uint64_from_double(int* _piKey, int* _piAddress)
 }
 
 /*from int*/
-int int8_from_int(int* _piKey, int* _piAddress)
+int int8_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -779,13 +779,13 @@ int int8_from_int(int* _piKey, int* _piAddress)
 
 	char* pcOut		= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfInteger8(_piKey, Rhs + 1, iRows, iCols, &pcOut);
+	sciErr = allocMatrixOfInteger8(pvApiCtx, Rhs + 1, iRows, iCols, &pcOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -800,7 +800,7 @@ int int8_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint8_from_int(int* _piKey, int* _piAddress)
+int uint8_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -812,13 +812,13 @@ int uint8_from_int(int* _piKey, int* _piAddress)
 
 	unsigned char* pucOut		= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger8(_piKey, Rhs + 1, iRows, iCols, &pucOut);
+	sciErr = allocMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 1, iRows, iCols, &pucOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -833,7 +833,7 @@ int uint8_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int16_from_int(int* _piKey, int* _piAddress)
+int int16_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -845,13 +845,13 @@ int int16_from_int(int* _piKey, int* _piAddress)
 
 	short* psOut	= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfInteger16(_piKey, Rhs + 1, iRows, iCols, &psOut);
+	sciErr = allocMatrixOfInteger16(pvApiCtx, Rhs + 1, iRows, iCols, &psOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -866,7 +866,7 @@ int int16_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint16_from_int(int* _piKey, int* _piAddress)
+int uint16_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -878,13 +878,13 @@ int uint16_from_int(int* _piKey, int* _piAddress)
 
 	unsigned short* pusOut	= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger16(_piKey, Rhs + 1, iRows, iCols, &pusOut);
+	sciErr = allocMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 1, iRows, iCols, &pusOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -899,7 +899,7 @@ int uint16_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int32_from_int(int* _piKey, int* _piAddress)
+int int32_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -911,13 +911,13 @@ int int32_from_int(int* _piKey, int* _piAddress)
 
 	int* piOut		= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfInteger32(_piKey, Rhs + 1, iRows, iCols, &piOut);
+	sciErr = allocMatrixOfInteger32(pvApiCtx, Rhs + 1, iRows, iCols, &piOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -932,7 +932,7 @@ int int32_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint32_from_int(int* _piKey, int* _piAddress)
+int uint32_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -944,13 +944,13 @@ int uint32_from_int(int* _piKey, int* _piAddress)
 
 	unsigned int* puiOut		= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger32(_piKey, Rhs + 1, iRows, iCols, &puiOut);
+	sciErr = allocMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 1, iRows, iCols, &puiOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -965,7 +965,7 @@ int uint32_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int int64_from_int(int* _piKey, int* _piAddress)
+int int64_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -977,13 +977,13 @@ int int64_from_int(int* _piKey, int* _piAddress)
 
 	long long* pllOut	= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfInteger64(_piKey, Rhs + 1, iRows, iCols, &pllOut);
+	sciErr = allocMatrixOfInteger64(pvApiCtx, Rhs + 1, iRows, iCols, &pllOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -998,7 +998,7 @@ int int64_from_int(int* _piKey, int* _piAddress)
 	return 0;
 }
 
-int uint64_from_int(int* _piKey, int* _piAddress)
+int uint64_from_int(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -1010,13 +1010,13 @@ int uint64_from_int(int* _piKey, int* _piAddress)
 
 	unsigned long long* pullOut	= NULL;
 
-	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(pvApiCtx, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	sciErr = allocMatrixOfUnsignedInteger64(_piKey, Rhs + 1, iRows, iCols, &pullOut);
+	sciErr = allocMatrixOfUnsignedInteger64(pvApiCtx, Rhs + 1, iRows, iCols, &pullOut);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

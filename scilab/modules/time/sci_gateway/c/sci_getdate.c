@@ -35,7 +35,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_getdate(char *fname, int* _piKey)
+int sci_getdate(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
   int n1 = 0,m1 = 0, type = 0;
@@ -65,22 +65,22 @@ int sci_getdate(char *fname, int* _piKey)
 	  convertdate(&dt,DATEMATRIX);
 	  m1=1;
 	  n1=10;
-	  sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEMATRIX);
+	  sciErr = createMatrixOfDouble(pvApiCtx, Rhs+1, m1, n1, DATEMATRIX);
 	}
 
     }
   else /* Rhs == 1 */
     {
-      sciErr = getVarAddressFromPosition(_piKey, 1, &p1_in_address);
-			sciErr = getVarType(_piKey, p1_in_address, &type);
+      sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+			sciErr = getVarType(pvApiCtx, p1_in_address, &type);
       if (type == sci_strings)
 	{
 	  char *Param1=NULL;
 	  int size_Param1 = 0;
 
-	  sciErr = getMatrixOfString(_piKey, p1_in_address, &m1, &n1, &size_Param1, NULL);
+	  sciErr = getMatrixOfString(pvApiCtx, p1_in_address, &m1, &n1, &size_Param1, NULL);
 	  Param1 = (char *)MALLOC(size_Param1*sizeof(char));
-	  sciErr = getMatrixOfString(_piKey, p1_in_address, &m1, &n1, &size_Param1, &Param1);
+	  sciErr = getMatrixOfString(pvApiCtx, p1_in_address, &m1, &n1, &size_Param1, &Param1);
 
 	  if (strcmp("s",Param1)==0)
 	    {
@@ -90,7 +90,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      DATEMATRIX[0]=(int)dt;
 	      m1=1;
 	      n1=1;
-	      sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEMATRIX);
+	      sciErr = createMatrixOfDouble(pvApiCtx, Rhs+1, m1, n1, DATEMATRIX);
 	      if (Param1) FREE(Param1);
 	    }
 	  else
@@ -112,7 +112,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      double *DATEARRAY=NULL;
 	      double *DATEARRAYtmp=NULL;
 
-	      sciErr = getMatrixOfDouble(_piKey, p1_in_address, &m1, &n1, &param);
+	      sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &param);
 
 	      l=10*m1*n1;
 	      DATEARRAY=(double *)MALLOC( (l)*sizeof(double) );
@@ -139,7 +139,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      n1=10;
 	      DATEARRAYtmp=DATEARRAY;
 	      DATEARRAY = transposeMatrixDouble(n1,m1,DATEARRAY);
-	      sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEARRAY);
+	      sciErr = createMatrixOfDouble(pvApiCtx, Rhs+1, m1, n1, DATEARRAY);
 
 	      LhsVar(1)=Rhs+1;
 	      PutLhsVar();

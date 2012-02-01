@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetOpenDocs(char *fname, int *_piKey)
+int sci_xmlGetOpenDocs(char *fname, void* pvApiCtx)
 {
     int j = 1;
     SciErr err;
@@ -39,7 +39,7 @@ int sci_xmlGetOpenDocs(char *fname, int *_piKey)
     const std::list<org_modules_xml::XMLDocument *> & openDocs = org_modules_xml::XMLDocument::getOpenDocuments();
     const std::list<org_modules_xml::XMLValidation *> & openValidationFiles = org_modules_xml::XMLValidation::getOpenValidationFiles();
 
-    err = createList(_piKey, Rhs + 1, (int)openDocs.size() + (int)openValidationFiles.size(), &addr);
+    err = createList(pvApiCtx, Rhs + 1, (int)openDocs.size() + (int)openValidationFiles.size(), &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -49,12 +49,12 @@ int sci_xmlGetOpenDocs(char *fname, int *_piKey)
 
     for (std::list<org_modules_xml::XMLDocument *>::const_iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
     {
-        createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId(), _piKey);
+        createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId(), pvApiCtx);
     }
 
     for (std::list<org_modules_xml::XMLValidation *>::const_iterator i = openValidationFiles.begin(); i != openValidationFiles.end(); i++, j++)
     {
-        createXMLObjectAtPosInList(addr, Rhs + 1, XMLVALID, j, (*i)->getId(), _piKey);
+        createXMLObjectAtPosInList(addr, Rhs + 1, XMLVALID, j, (*i)->getId(), pvApiCtx);
     }
 
     LhsVar(1) = Rhs + 1;

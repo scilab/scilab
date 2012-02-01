@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlReadStr(char * fname, int* pvApiCtx)
+int sci_xmlReadStr(char * fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;

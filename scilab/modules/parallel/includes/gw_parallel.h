@@ -16,8 +16,8 @@
 /*--------------------------------------------------------------------------*/
 PARALLEL_IMPEXP int gw_parallel(void);
 /*--------------------------------------------------------------------------*/
-int sci_parallel_run(char *fname, int *_piKey);
-int sci_parallel_concurrency(char *fname, int *_piKey);
+int sci_parallel_run(char *fname, void* pvApiCtx);
+int sci_parallel_concurrency(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_PARALLEL_H__ */
 /*--------------------------------------------------------------------------*/

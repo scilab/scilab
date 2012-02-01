@@ -21,10 +21,10 @@ MATIO_IMPEXP int gw_matio(void);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-MATIO_IMPEXP int sci_matfile_open(char* fname, int* _piKey);
-MATIO_IMPEXP int sci_matfile_close(char* fname, int* _piKey);
-MATIO_IMPEXP int sci_matfile_listvar(char* fname, int* _piKey);
-MATIO_IMPEXP int sci_matfile_varreadnext(char* fname, int* _piKey);
-MATIO_IMPEXP int sci_matfile_varwrite(char* fname, int* _piKey);
+MATIO_IMPEXP int sci_matfile_open(char* fname, void* pvApiCtx);
+MATIO_IMPEXP int sci_matfile_close(char* fname, void* pvApiCtx);
+MATIO_IMPEXP int sci_matfile_listvar(char* fname, void* pvApiCtx);
+MATIO_IMPEXP int sci_matfile_varreadnext(char* fname, void* pvApiCtx);
+MATIO_IMPEXP int sci_matfile_varwrite(char* fname, void* pvApiCtx);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __GW_MATIO_H__ */

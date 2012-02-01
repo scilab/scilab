@@ -28,9 +28,9 @@
 #include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename);
-static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKEy);
+static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_copyfile(char *fname, int* _piKey)
+int sci_copyfile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -43,7 +43,7 @@ int sci_copyfile(char *fname, int* _piKey)
     CheckRhs(2, 2);
     CheckLhs(1, 2);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -51,19 +51,19 @@ int sci_copyfile(char *fname, int* _piKey)
         return 1;
     }
 
-    if (!isStringType(_piKey, piAddressVarOne))
+    if (!isStringType(pvApiCtx, piAddressVarOne))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -71,24 +71,24 @@ int sci_copyfile(char *fname, int* _piKey)
         return 1;
     }
 
-    if (!isStringType(_piKey, piAddressVarTwo))
+    if (!isStringType(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
-    if (!isScalar(_piKey, piAddressVarTwo))
+    if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
 
-    if (getAllocatedSingleWideString(_piKey, piAddressVarOne, &pStVarOne))
+    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
         return 1;
     }
 
-    if (getAllocatedSingleWideString(_piKey, piAddressVarTwo, &pStVarTwo))
+    if (getAllocatedSingleWideString(pvApiCtx, piAddressVarTwo, &pStVarTwo))
     {
         if (pStVarOne)
         {
@@ -223,7 +223,7 @@ int sci_copyfile(char *fname, int* _piKey)
             return 1;
         }
 
-        returnCopyFileResultOnStack(ierrCopy, fname, _piKey);
+        returnCopyFileResultOnStack(ierrCopy, fname, pvApiCtx);
     }
     else
     {
@@ -293,7 +293,7 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
 }
 
 /*--------------------------------------------------------------------------*/
-static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
+static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
     wchar_t *sciError = NULL;
@@ -361,7 +361,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
     }
 #endif
 
-    if (createScalarDouble(_piKey, Rhs + 1, dError))
+    if (createScalarDouble(pvApiCtx, Rhs + 1, dError))
     {
         if (sciError)
         {
@@ -375,7 +375,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKey)
 
     if (Lhs == 2)
     {
-        if (createSingleWideString(_piKey, Rhs + 2, sciError))
+        if (createSingleWideString(pvApiCtx, Rhs + 2, sciError))
         {
             if (sciError)
             {

@@ -28,7 +28,7 @@ struct string_matrix {
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-struct string_matrix *create_string_matrix(int* _piKey, int arg);
+struct string_matrix *create_string_matrix(void* pvApiCtx, int arg);
 
 /**
  * Free string matrix
@@ -42,7 +42,7 @@ void destroy_string_matrix(struct string_matrix *mat);
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-STATISTICS_IMPEXP char *create_string(int* _piKey, int arg);
+STATISTICS_IMPEXP char *create_string(void* pvApiCtx, int arg);
 
 /**
  * Free string

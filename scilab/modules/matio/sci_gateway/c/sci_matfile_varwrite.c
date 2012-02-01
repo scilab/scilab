@@ -30,7 +30,7 @@ enum matfile_errors {
   UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varwrite(char* fname, int* _piKey)
+int sci_matfile_varwrite(char* fname, void* pvApiCtx)
 {
   int nbRow = 0, nbCol = 0;
   mat_t *matfile = NULL;
@@ -49,13 +49,13 @@ int sci_matfile_varwrite(char* fname, int* _piKey)
 
   /* Input argument is the index of the file to write */
 
-  _SciErr = getVarAddressFromPosition(_piKey, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, fd_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
 
   if (var_type == sci_matrix)
     {
-      getScalarDouble(_piKey, fd_addr, &tmp_dbl);
-      if (!isScalar(_piKey, fd_addr))
+      getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
+      if (!isScalar(pvApiCtx, fd_addr))
 	{
 	  Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
 	  return 1;
@@ -73,13 +73,13 @@ int sci_matfile_varwrite(char* fname, int* _piKey)
 
   /* Second argument is the variable name */
 
-  _SciErr = getVarAddressFromPosition(_piKey, 2, &name_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, name_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 2, &name_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, name_addr, &var_type); MATIO_ERROR;
 
   if (var_type == sci_strings)
     {
-      getAllocatedSingleString(_piKey, name_addr, &varname);
-      _SciErr = getVarDimension(_piKey, name_addr, &nbRow, &nbCol); MATIO_ERROR;
+      getAllocatedSingleString(pvApiCtx, name_addr, &varname);
+      _SciErr = getVarDimension(pvApiCtx, name_addr, &nbRow, &nbCol); MATIO_ERROR;
       if (nbCol != 1)
 	{
 	  Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
@@ -99,17 +99,17 @@ int sci_matfile_varwrite(char* fname, int* _piKey)
     }
 
   /* Third argument is the variable data */
-  matvar = GetMatlabVariable(_piKey, 3, varname, matfile->version, NULL, -1);
+  matvar = GetMatlabVariable(pvApiCtx, 3, varname, matfile->version, NULL, -1);
 
   /* Fourth argument is the compression flag */
 
-  _SciErr = getVarAddressFromPosition(_piKey, 4, &cp_flag_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, cp_flag_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 4, &cp_flag_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, cp_flag_addr, &var_type); MATIO_ERROR;
 
   if (var_type == sci_boolean)
     {
-      getScalarBoolean(_piKey, cp_flag_addr, &compressionFlag);
-      if (!isScalar(_piKey, cp_flag_addr))
+      getScalarBoolean(pvApiCtx, cp_flag_addr, &compressionFlag);
+      if (!isScalar(pvApiCtx, cp_flag_addr))
 	{
 	  Scierror(999, _("%s: Wrong size for fourth input argument: Single boolean expected.\n"), fname);
 
@@ -131,7 +131,7 @@ int sci_matfile_varwrite(char* fname, int* _piKey)
 
   /* Return execution flag */
   var_type = (flag==0);
-  createScalarBoolean(_piKey, Rhs+1, var_type);
+  createScalarBoolean(pvApiCtx, Rhs+1, var_type);
 
   freeAllocatedSingleString(varname);
   LhsVar(1) = Rhs+1;

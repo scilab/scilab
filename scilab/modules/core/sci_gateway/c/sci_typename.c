@@ -20,19 +20,19 @@
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-static int sci_typename_two_rhs(char *fname, int* _piKey);
-static int sci_typename_no_rhs(char *fname, int* _piKey);
+static int sci_typename_two_rhs(char *fname, void* pvApiCtx);
+static int sci_typename_no_rhs(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_typename)(char *fname, int *_piKey)
+int C2F(sci_typename)(char *fname, void* pvApiCtx)
 {
 	CheckLhs(1,2); 
 	switch (Rhs)
 	{
 	case 0:
-		sci_typename_no_rhs(fname, _piKey);
+		sci_typename_no_rhs(fname, pvApiCtx);
 		break;
 	case 2:
-		sci_typename_two_rhs(fname, _piKey);
+		sci_typename_two_rhs(fname, pvApiCtx);
 		break;
 	default:
 		Scierror(999,_("%s: Wrong number of input arguments: %d or %d expected.\n"),fname,0,2);
@@ -41,7 +41,7 @@ int C2F(sci_typename)(char *fname, int *_piKey)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_typename_two_rhs(char *fname, int* _piKey)
+int sci_typename_two_rhs(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;
@@ -55,7 +55,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -64,7 +64,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	}
 
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -73,7 +73,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	}
 
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -81,7 +81,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -101,7 +101,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo,&m2,&n2,&pdVarTwo);
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -115,7 +115,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -130,7 +130,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	}
 	
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -142,7 +142,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	if (pStVarOne)
 	{
 		int ierr = 0;
-		sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -186,7 +186,7 @@ int sci_typename_two_rhs(char *fname, int* _piKey)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_typename_no_rhs(char *fname, int* _piKey)
+int sci_typename_no_rhs(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int numberOfTypes = 0;
@@ -198,7 +198,7 @@ int sci_typename_no_rhs(char *fname, int* _piKey)
 	m_out1 = numberOfTypes;
 	n_out1 = 1;
 
-	sciErr = createMatrixOfInteger32(_piKey, Rhs + 1,m_out1,n_out1,TypesNumbers);
+	sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1,m_out1,n_out1,TypesNumbers);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -218,7 +218,7 @@ int sci_typename_no_rhs(char *fname, int* _piKey)
 		m_out2 = numberOfTypes;
 		n_out2 = 1;
 		
-		sciErr = createMatrixOfString(_piKey, Rhs + 2, m_out2, n_out2, TypesNames);
+		sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out2, n_out2, TypesNames);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

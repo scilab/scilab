@@ -32,7 +32,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlWrite(char * fname, int* _piKey)
+int sci_xmlWrite(char * fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc = 0;
     xmlDoc * document = 0;
@@ -46,7 +46,7 @@ int sci_xmlWrite(char * fname, int* _piKey)
     CheckLhs(1, 1);
     CheckRhs(1, 3);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -54,13 +54,13 @@ int sci_xmlWrite(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!isXMLDoc(addr, _piKey))
+    if (!isXMLDoc(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument %i: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, _piKey));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -70,7 +70,7 @@ int sci_xmlWrite(char * fname, int* _piKey)
 
     if (Rhs >= 2)
     {
-        err = getVarAddressFromPosition(_piKey, 2, &addr);
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
         {
             printError(&err, 0);
@@ -78,21 +78,21 @@ int sci_xmlWrite(char * fname, int* _piKey)
             return 0;
         }
 
-        if (Rhs == 2 && !isStringType(_piKey, addr) && !isBooleanType(_piKey, addr))
+        if (Rhs == 2 && !isStringType(pvApiCtx, addr) && !isBooleanType(pvApiCtx, addr))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), fname, 2);
             return 0;
         }
 
-        if (Rhs == 3 && !isStringType(_piKey, addr))
+        if (Rhs == 3 && !isStringType(pvApiCtx, addr))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
-        if (isStringType(_piKey, addr))
+        if (isStringType(pvApiCtx, addr))
         {
-            getAllocatedSingleString(_piKey, addr, &path);
+            getAllocatedSingleString(pvApiCtx, addr, &path);
 
             if (!strlen(path))
             {
@@ -113,12 +113,12 @@ int sci_xmlWrite(char * fname, int* _piKey)
                 return 0;
             }
             expandedPath = strdup((const char *)document->URL);
-            getScalarBoolean(_piKey, addr, &indent);
+            getScalarBoolean(pvApiCtx, addr, &indent);
         }
 
         if (Rhs == 3)
         {
-            err = getVarAddressFromPosition(_piKey, 3, &addr);
+            err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
             if (err.iErr)
             {
                 printError(&err, 0);
@@ -126,13 +126,13 @@ int sci_xmlWrite(char * fname, int* _piKey)
                 return 0;
             }
 
-            if (!isBooleanType(_piKey, addr))
+            if (!isBooleanType(pvApiCtx, addr))
             {
                 Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                 return 0;
             }
 
-            getScalarBoolean(_piKey, addr, &indent);
+            getScalarBoolean(pvApiCtx, addr, &indent);
         }
     }
     else

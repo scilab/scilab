@@ -25,16 +25,16 @@
 #define mode_variable 1
 #define mode_e 0
 /*--------------------------------------------------------------------------*/
-static int sci_format_tworhs(char *fname, int* _piKey);
-static int sci_format_onerhs(char *fname, int* _piKey);
-static int sci_format_norhs(char *fname, int* _piKey);
+static int sci_format_tworhs(char *fname, void* pvApiCtx);
+static int sci_format_onerhs(char *fname, void* pvApiCtx);
+static int sci_format_norhs(char *fname, void* pvApiCtx);
 static void setVariableFormat(int numberDigits);
 static void set_e_Format(int numberDigits);
 static void getFormat(double *e_mode, double *numberDigits);
 static void setVariableMode(void);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_format) (char *fname, int *_piKey)
+int C2F(sci_format) (char *fname, void* pvApiCtx)
 {
     Rhs = Max(0, Rhs);
 
@@ -44,25 +44,25 @@ int C2F(sci_format) (char *fname, int *_piKey)
     switch (Rhs)
     {
     case 2:
-        return sci_format_tworhs(fname, _piKey);
+        return sci_format_tworhs(fname, pvApiCtx);
     case 1:
-        return sci_format_onerhs(fname, _piKey);
+        return sci_format_onerhs(fname, pvApiCtx);
         break;
     case 0:
     default:
-        return sci_format_norhs(fname, _piKey);
+        return sci_format_norhs(fname, pvApiCtx);
     }
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_format_norhs(char *fname, int *_piKey)
+static int sci_format_norhs(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     double dParamout[2];
 
     getFormat(&dParamout[0], &dParamout[1]);
 
-    sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 1, 2, dParamout);
+    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 2, dParamout);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -75,10 +75,10 @@ static int sci_format_norhs(char *fname, int *_piKey)
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_format_onerhs(char *fname, int* _piKey)
+static int sci_format_onerhs(char *fname, void* pvApiCtx)
 {
     int *piAddressVarOne = NULL;
-    SciErr sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 
     if (sciErr.iErr)
     {
@@ -87,17 +87,17 @@ static int sci_format_onerhs(char *fname, int* _piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne))
     {
         char *param = NULL;
 
-        if (!isScalar(_piKey, piAddressVarOne))
+        if (!isScalar(pvApiCtx, piAddressVarOne))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, e_type_format, v_type_format);
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarOne, &param) == 0)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &param) == 0)
         {
             if ((strcmp(e_type_format, param) == 0) || (strcmp(v_type_format, param) == 0))
             {
@@ -132,13 +132,13 @@ static int sci_format_onerhs(char *fname, int* _piKey)
             return 0;
         }
     }
-    else if (isDoubleType(_piKey, piAddressVarOne))
+    else if (isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        if (isScalar(_piKey, piAddressVarOne))
+        if (isScalar(pvApiCtx, piAddressVarOne))
         {
             double dValue = 0.;
 
-            if (getScalarDouble(_piKey, piAddressVarOne, &dValue) == 0)
+            if (getScalarDouble(pvApiCtx, piAddressVarOne, &dValue) == 0)
             {
                 double mode = 0.;
                 double previous_numberDigits = 0.;
@@ -181,13 +181,13 @@ static int sci_format_onerhs(char *fname, int* _piKey)
         }
         else
         {
-            if (checkVarDimension(_piKey, piAddressVarOne, 1, 2) || checkVarDimension(_piKey, piAddressVarOne, 2, 1))
+            if (checkVarDimension(pvApiCtx, piAddressVarOne, 1, 2) || checkVarDimension(pvApiCtx, piAddressVarOne, 2, 1))
             {
                 int nbRowsOne = 0;
                 int nbColsOne = 0;
                 double *pDouble = NULL;
 
-                sciErr = getMatrixOfDouble(_piKey, piAddressVarOne, &nbRowsOne, &nbColsOne, &pDouble);
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &nbRowsOne, &nbColsOne, &pDouble);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -241,13 +241,13 @@ static int sci_format_onerhs(char *fname, int* _piKey)
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_format_tworhs(char *fname, int* _piKey)
+static int sci_format_tworhs(char *fname, void* pvApiCtx)
 {
     /* format(1, 10) */
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
 
-    SciErr sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 
     if (sciErr.iErr)
     {
@@ -256,7 +256,7 @@ static int sci_format_tworhs(char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -264,31 +264,31 @@ static int sci_format_tworhs(char *fname, int* _piKey)
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (!isScalar(_piKey, piAddressVarTwo))
+    if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
         return 0;
     }
 
-    if (isDoubleType(_piKey, piAddressVarOne) && isDoubleType(_piKey, piAddressVarTwo))
+    if (isDoubleType(pvApiCtx, piAddressVarOne) && isDoubleType(pvApiCtx, piAddressVarTwo))
     {
         double type_value_d = 0.;
         double v_value_d = 0.;
         int v_value = 0;
 
-        if (getScalarDouble(_piKey, piAddressVarOne, &v_value_d) != 0)
+        if (getScalarDouble(pvApiCtx, piAddressVarOne, &v_value_d) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        if (getScalarDouble(_piKey, piAddressVarTwo, &type_value_d) != 0)
+        if (getScalarDouble(pvApiCtx, piAddressVarTwo, &type_value_d) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
@@ -332,23 +332,23 @@ static int sci_format_tworhs(char *fname, int* _piKey)
         PutLhsVar();
     }
     /* format('e',10) & format(10,'e') syntax */
-    else if ((isStringType(_piKey, piAddressVarOne) &&
-              (isDoubleType(_piKey, piAddressVarTwo)) || (isDoubleType(_piKey, piAddressVarOne) && isStringType(_piKey, piAddressVarTwo))))
+    else if ((isStringType(pvApiCtx, piAddressVarOne) &&
+              (isDoubleType(pvApiCtx, piAddressVarTwo)) || (isDoubleType(pvApiCtx, piAddressVarOne) && isStringType(pvApiCtx, piAddressVarTwo))))
     {
         char *param = NULL;
         unsigned int value = 0;
 
-        if (isStringType(_piKey, piAddressVarOne))
+        if (isStringType(pvApiCtx, piAddressVarOne))
         {
             double dvalue = 0;
 
-            if (getAllocatedSingleString(_piKey, piAddressVarOne, &param) != 0)
+            if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &param) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
 
-            if (getScalarDouble(_piKey, piAddressVarTwo, &dvalue) != 0)
+            if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dvalue) != 0)
             {
                 freeAllocatedSingleString(param);
                 param = NULL;
@@ -370,7 +370,7 @@ static int sci_format_tworhs(char *fname, int* _piKey)
         {
             double dvalue = 0;
 
-            if (getScalarDouble(_piKey, piAddressVarOne, &dvalue) != 0)
+            if (getScalarDouble(pvApiCtx, piAddressVarOne, &dvalue) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
@@ -383,7 +383,7 @@ static int sci_format_tworhs(char *fname, int* _piKey)
                 return 0;
             }
 
-            if (getAllocatedSingleString(_piKey, piAddressVarTwo, &param) != 0)
+            if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &param) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;

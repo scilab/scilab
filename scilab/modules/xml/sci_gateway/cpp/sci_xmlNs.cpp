@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlNs(char * fname, int* pvApiCtx)
+int sci_xmlNs(char * fname, void* pvApiCtx)
 {
     int * addr = 0;
     SciErr err;

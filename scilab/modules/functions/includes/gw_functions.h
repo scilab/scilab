@@ -27,7 +27,7 @@ FUNCTIONS_SCILAB_IMPEXP int sci_librarieslist(char *fname,unsigned long fname_le
 FUNCTIONS_SCILAB_IMPEXP int sci_libraryinfo(char *fname,unsigned long fname_len);
 
 //YaSp
-FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, int* _piKey);
+FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

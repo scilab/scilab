@@ -18,7 +18,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_prod(char *fname, int* _piKey)
+int sci_prod(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRows						= 0;
@@ -36,7 +36,7 @@ int sci_prod(char *fname, int* _piKey)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -45,7 +45,7 @@ int sci_prod(char *fname, int* _piKey)
 
 	if(Rhs == 2)
 	{
-		sciErr = getProcessMode(_piKey, 2, piAddr, &iMode);
+		sciErr = getProcessMode(pvApiCtx, 2, piAddr, &iMode);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -53,7 +53,7 @@ int sci_prod(char *fname, int* _piKey)
 		}
 	}
 
-	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
+	sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -75,7 +75,7 @@ int sci_prod(char *fname, int* _piKey)
 			iCols = 0;
 		}
 
-		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 1, 1, &dblVal);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dblVal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -104,16 +104,16 @@ int sci_prod(char *fname, int* _piKey)
 	}
 
 
-	if(isVarComplex(_piKey, piAddr))
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -124,14 +124,14 @@ int sci_prod(char *fname, int* _piKey)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRemove(char * fname, int *_piKey)
+int sci_xmlRemove(char * fname, void* pvApiCtx)
 {
     XMLRemovable * rem;
     SciErr err;
@@ -37,7 +37,7 @@ int sci_xmlRemove(char * fname, int *_piKey)
     CheckLhs(1, 1);
     CheckRhs(1, 1);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -45,13 +45,13 @@ int sci_xmlRemove(char * fname, int *_piKey)
         return 0;
     }
 
-    if (!isXMLElem(addr, _piKey) && !isXMLList(addr, _piKey) && !isXMLSet(addr, _piKey))
+    if (!isXMLElem(addr, pvApiCtx) && !isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet expected.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(addr, _piKey);
+    id = getXMLObjectId(addr, pvApiCtx);
     rem = dynamic_cast<XMLRemovable *>(XMLObject::getFromId<XMLObject>(id));
     if (!rem)
     {

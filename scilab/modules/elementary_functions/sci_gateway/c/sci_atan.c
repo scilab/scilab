@@ -21,7 +21,7 @@
 #include "msgs.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_atan(char *fname, int*_piKey)
+int sci_atan(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -45,14 +45,14 @@ int sci_atan(char *fname, int*_piKey)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -67,16 +67,16 @@ int sci_atan(char *fname, int*_piKey)
 
 	if(Rhs == 1)
 	{
-		if(isVarComplex(_piKey, piAddr1))
+		if(isVarComplex(pvApiCtx, piAddr1))
 		{// case complex
-			sciErr = getComplexMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+			sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
 				return 0;
 			}
 
-			sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+			sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -97,14 +97,14 @@ int sci_atan(char *fname, int*_piKey)
 		}
 		else
 		{// case real
-			sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+			sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
 				return 0;
 			}
 
-			sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet);
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet);
 			for(i = 0 ; i < iRows1 * iCols1 ; i++)
 			{
 				pdblRealRet[i] = datans(pdblReal1[i]);
@@ -113,23 +113,23 @@ int sci_atan(char *fname, int*_piKey)
 	}
 	else
 	{//Rhs == 2
-		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		if(isVarComplex(_piKey, piAddr1) == FALSE && isVarComplex(_piKey, piAddr2) == FALSE)
+		if(isVarComplex(pvApiCtx, piAddr1) == FALSE && isVarComplex(pvApiCtx, piAddr2) == FALSE)
 		{//Only works with real matrix
-			sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+			sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
 				return 0;
 			}
 
-			sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+			sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -138,7 +138,7 @@ int sci_atan(char *fname, int*_piKey)
 
 			if(iRows1 * iCols1 == iRows2 * iCols2)
 			{
-				sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet);
+				sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet);
 				for(i = 0 ; i < iRows1 * iCols1 ; i++)
 				{
 					pdblRealRet[i] = datan2s(pdblReal1[i], pdblReal2[i]);

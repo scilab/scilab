@@ -38,7 +38,7 @@ namespace org_modules_xml
         return scope->getVariableFromId(id);
     }
 
-    int XMLObject::createOnStack(int pos, int* pvApiCtx) const
+    int XMLObject::createOnStack(int pos, void* pvApiCtx) const
     {
         if (scilabType != -1)
         {

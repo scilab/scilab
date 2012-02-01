@@ -22,7 +22,7 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int sci_getenv(char *fname, int* _piKey)
+int sci_getenv(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int ierr = 0;
@@ -50,7 +50,7 @@ int sci_getenv(char *fname, int* _piKey)
 
 	if (Rhs == 2)
 	{
-		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -58,7 +58,7 @@ int sci_getenv(char *fname, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -72,7 +72,7 @@ int sci_getenv(char *fname, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -89,7 +89,7 @@ int sci_getenv(char *fname, int* _piKey)
 		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 		if (pStVarTwo)
 		{
-			sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -104,7 +104,7 @@ int sci_getenv(char *fname, int* _piKey)
 		}
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -112,7 +112,7 @@ int sci_getenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -127,7 +127,7 @@ int sci_getenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -145,7 +145,7 @@ int sci_getenv(char *fname, int* _piKey)
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	if (pStVarOne)
 	{
-		sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -188,7 +188,7 @@ int sci_getenv(char *fname, int* _piKey)
 
 		if (ierr == 0)
 		{
-			sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &env_value);
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &env_value);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -203,7 +203,7 @@ int sci_getenv(char *fname, int* _piKey)
 		{
 			if (default_env_value)
 			{
-				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &default_env_value);
+				sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);

@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_ilib_verbose(types::typed_list &in, int _iRetCo
 
     //if(Rhs == 0)
     //{
-    //    if(createScalarDouble(_piKey, Rhs + 1, (double)getIlibVerboseLevel()))
+    //    if(createScalarDouble(pvApiCtx, Rhs + 1, (double)getIlibVerboseLevel()))
     //    {
     //        return 1;
     //    }
@@ -78,20 +78,20 @@ types::Function::ReturnValue sci_ilib_verbose(types::typed_list &in, int _iRetCo
     //}
     //else
     //{
-    //    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddress);
+    //    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddress);
     //    if(sciErr.iErr)
     //    {
     //        printError(&sciErr, 0);
     //        return sciErr.iErr;
     //    }
 
-    //    if(isDoubleType(_piKey, piAddress) == 0)
+    //    if(isDoubleType(pvApiCtx, piAddress) == 0)
     //    {
     //        Scierror(999,_("%s: Wrong type for input argument #%d: A int expected.\n"),fname,1);
     //        return 1;
     //    }
 
-    //    if(getScalarDouble(_piKey, piAddress, &dblLevel))
+    //    if(getScalarDouble(pvApiCtx, piAddress, &dblLevel))
     //    {
     //        return 1;
     //    }

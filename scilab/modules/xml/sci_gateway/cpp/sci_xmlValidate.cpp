@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlValidate(char * fname, int* pvApiCtx)
+int sci_xmlValidate(char * fname, void* pvApiCtx)
 {
     XMLValidation * validation = 0;
     org_modules_xml::XMLDocument * doc = 0;

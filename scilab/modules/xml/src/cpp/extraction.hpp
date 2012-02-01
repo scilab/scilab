@@ -44,7 +44,7 @@ using namespace org_modules_xml;
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createStringOnStack(char * fname, const char * str, int pos, int* pvApiCtx)
+int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 {
     SciErr err;
 
@@ -99,7 +99,7 @@ int createStringOnStack(char * fname, const char * str, int pos, int* pvApiCtx)
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos, int* pvApiCtx)
+int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("root", field))
     {
@@ -131,7 +131,7 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos, int* pvApiCtx)
+int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("name", field))
     {
@@ -211,7 +211,7 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos, int* pvApiCtx)
+int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos, void* pvApiCtx)
 {
     if (!strcmp("href", field))
     {
@@ -235,7 +235,7 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos,
  * @param fname_len the function name length
  */
 template<class T>
-int sci_extraction(char * fname, int *pvApiCtx)
+int sci_extraction(char * fname, void* pvApiCtx)
 {
     T * t;
     int id;

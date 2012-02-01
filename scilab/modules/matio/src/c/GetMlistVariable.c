@@ -28,7 +28,7 @@
 
 #define DEBUG 1
 
-matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetMlistVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   char **fieldNames = NULL;
   int * pilen = NULL;

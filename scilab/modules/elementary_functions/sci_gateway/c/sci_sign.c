@@ -18,7 +18,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_sign(char *fname,int* _piKey)
+int sci_sign(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -35,14 +35,14 @@ int sci_sign(char *fname,int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -55,16 +55,16 @@ int sci_sign(char *fname,int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piKey, piAddr))
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -88,14 +88,14 @@ int sci_sign(char *fname,int* _piKey)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

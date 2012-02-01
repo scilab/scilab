@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_libraryinfo(char *fname, int *_piKey)
+int sci_libraryinfo(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -28,7 +28,7 @@ int sci_libraryinfo(char *fname, int *_piKey)
     CheckRhs(1,1);
     CheckLhs(1,2);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -36,17 +36,17 @@ int sci_libraryinfo(char *fname, int *_piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne))
     {
         char *libraryname = NULL;
 
-        if (!isScalar(_piKey, piAddressVarOne))
+        if (!isScalar(pvApiCtx, piAddressVarOne))
         {
             Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
             return 0;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarOne, &libraryname) == 0)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &libraryname) == 0)
         {
             if (libraryname)
             {
@@ -60,7 +60,7 @@ int sci_libraryinfo(char *fname, int *_piKey)
                         int m = sizemacrosarray;
                         int n = 1;
 
-                        sciErr = createMatrixOfString(_piKey, Rhs + 1, m, n, macros);
+                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, macros);
                         if(sciErr.iErr)
                         {
                             freeArrayOfString(macros, sizemacrosarray);
@@ -82,7 +82,7 @@ int sci_libraryinfo(char *fname, int *_piKey)
                     }
                     else
                     {
-                        createEmptyMatrix(_piKey, Rhs + 1);
+                        createEmptyMatrix(pvApiCtx, Rhs + 1);
                     }
                     LhsVar(1) = Rhs+1;
 
@@ -90,7 +90,7 @@ int sci_libraryinfo(char *fname, int *_piKey)
 
                     if (Lhs == 2)
                     {
-                        createSingleString(_piKey, Rhs + 2, pathlibrary);
+                        createSingleString(pvApiCtx, Rhs + 2, pathlibrary);
                         LhsVar(2) = Rhs+2;
                     }
 

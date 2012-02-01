@@ -31,7 +31,7 @@
 Interface for MATIO function called Mat_Close
 Scilab function name : matfile_close
 *******************************************************************************/
-int sci_matfile_close(char* fname, int* _piKey)
+int sci_matfile_close(char* fname, void* pvApiCtx)
 {
   mat_t * matfile = NULL;
   int fileIndex = 0; 
@@ -46,12 +46,12 @@ int sci_matfile_close(char* fname, int* _piKey)
   
   /* First Rhs is the index of the file to close */
   
-  _SciErr = getVarAddressFromPosition(_piKey, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, fd_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
   
   if (var_type == sci_matrix)
     {
-      _SciErr = getMatrixOfDouble(_piKey, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
+      _SciErr = getMatrixOfDouble(pvApiCtx, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
       if (nbRow * nbCol != 1)
 	{
 	  Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
@@ -79,7 +79,7 @@ int sci_matfile_close(char* fname, int* _piKey)
   
   /* Return execution flag */
   var_type = (flag == 0);
-  createScalarBoolean(_piKey, Rhs+1, var_type); MATIO_ERROR;
+  createScalarBoolean(pvApiCtx, Rhs+1, var_type); MATIO_ERROR;
   
   LhsVar(1) = Rhs+1;
   

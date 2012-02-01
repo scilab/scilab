@@ -20,12 +20,12 @@ extern int C2F(cdft)(int *, double *, double *, double *, double *, int *, doubl
  * SUBROUTINE CDFT( WHICH, P, Q, T, DF, STATUS, BOUND )
  * Cumulative Distribution Function, T distribution
  */
-int sci_cdft(char* fname, int* _piKey)
+int sci_cdft(char* fname, void* pvApiCtx)
 {
   struct cdf_item items[] =
     {{"PQ", 2, 2, 2},
      {"T" , 3, 1, 3},
      {"Df", 3, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdft, 3, 4, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf);
+  return cdf_generic(fname, pvApiCtx, &cdf);
 } 

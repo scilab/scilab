@@ -23,7 +23,7 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int sci_javaclasspath(char *fname, int* _piKey)
+int sci_javaclasspath(char *fname, void* pvApiCtx)
 {
     int *piAddressVarOne = NULL;
     int iType = 0;
@@ -40,7 +40,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
         char **Strings=NULL;
 
         Strings = getClasspath(&nbRow);
-        createMatrixOfString(_piKey, Rhs+1, nbRow, nbCol, Strings);
+        createMatrixOfString(pvApiCtx, Rhs+1, nbRow, nbCol, Strings);
 
         LhsVar(1) = Rhs+1;
         PutLhsVar();
@@ -48,7 +48,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
     }
     else
     {
-        sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -56,7 +56,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarOne, &iType);
+        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -73,7 +73,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             char **classPaths=NULL;
 
             /* get dimensions */
-            sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -89,7 +89,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             }
 
             /* get lengths */
-            sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
             if(sciErr.iErr)
             {
                 if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
@@ -111,7 +111,7 @@ int sci_javaclasspath(char *fname, int* _piKey)
             }
 
             /* get strings */
-            sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+            sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
             if(sciErr.iErr)
             {
                 freeArrayOfString(pStVarOne, m1 * n1);

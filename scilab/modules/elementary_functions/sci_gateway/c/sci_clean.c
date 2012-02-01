@@ -23,11 +23,11 @@ extern int sci_spclean (char *fname,unsigned long fname_len);
 extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
-SciErr clean_double(int* _piKey, int* _piAddress);
-int clean_poly(int* _piKey, int* _piAddress);
-int clean_sparse(int* _piKey, int* _piAddress);
+SciErr clean_double(void* pvApiCtx, int* _piAddress);
+int clean_poly(void* pvApiCtx, int* _piAddress);
+int clean_sparse(void* pvApiCtx, int* _piAddress);
 
-int sci_clean(char *fname, int*_piKey)
+int sci_clean(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 
@@ -37,14 +37,14 @@ int sci_clean(char *fname, int*_piKey)
 	CheckRhs(1,3);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr1, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -54,7 +54,7 @@ int sci_clean(char *fname, int*_piKey)
 	switch(iType)
 	{
 	case sci_matrix :
-		sciErr = clean_double(_piKey, piAddr1);
+		sciErr = clean_double(pvApiCtx, piAddr1);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -64,10 +64,10 @@ int sci_clean(char *fname, int*_piKey)
 		PutLhsVar();
 		break;
 	case sci_poly :
-		clean_poly(_piKey, piAddr1);
+		clean_poly(pvApiCtx, piAddr1);
 		break;
 	case sci_sparse :
-		clean_sparse(_piKey, piAddr1);
+		clean_sparse(pvApiCtx, piAddr1);
 		break;
 	default :
 		OverLoad(1);
@@ -77,20 +77,20 @@ int sci_clean(char *fname, int*_piKey)
 	return 0;
 }
 
-int clean_poly(int* _piKey, int* _piAddress)
+int clean_poly(void* pvApiCtx, int* _piAddress)
 {
 	sci_cleanp("clean", 5);
 	return 0;
 }
 
-int clean_sparse(int* _piKey, int* _piAddress)
+int clean_sparse(void* pvApiCtx, int* _piAddress)
 {
 	C2F(ref2val)();
 	sci_spclean("clean", 5);
 	return 0;
 }
 
-SciErr clean_double(int* _piKey, int* _piAddress)
+SciErr clean_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i;
@@ -121,13 +121,13 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 
 	if(Rhs == 3)
 	{
-		sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr3);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = getMatrixOfDouble(_piKey, piAddr3, &iRows3, &iCols3, &pdblReal3);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, &pdblReal3);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -143,13 +143,13 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 
 	if(Rhs >= 2)
 	{
-		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -163,9 +163,9 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 		dblEpsA = pdblReal2[0];
 	}
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -174,7 +174,7 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 
 		dblNorm = wasums(iRows1 * iCols1, pdblReal1, pdblImg1);
 
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -193,7 +193,7 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 		int iOne	= 1;
 		int iSize1	= 0;
 
-		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows1, &iCols1, &pdblReal1);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -204,7 +204,7 @@ SciErr clean_double(int* _piKey, int* _piAddress)
 		dblNorm			= C2F(dasum)(&iSize1, pdblReal1, &iOne);
 
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			return sciErr;

@@ -26,7 +26,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_sleep(char *fname, int* _piKey)
+int sci_sleep(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
   int m1 = 0, n1 = 0, sec=0;
@@ -38,8 +38,8 @@ int sci_sleep(char *fname, int* _piKey)
 
   if (Rhs == 1)
     {
-      sciErr = getVarAddressFromPosition(_piKey, 1, &p1_in_address);
-      sciErr = getMatrixOfDouble(_piKey, p1_in_address, &m1, &n1, &pDblReal);
+      sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+      sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
       CheckScalar(1,m1,n1);
 

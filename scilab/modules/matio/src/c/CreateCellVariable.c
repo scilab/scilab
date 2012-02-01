@@ -20,7 +20,7 @@
       return 0;			     \
     }
 
-int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateCellVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   static const char *fieldNames[] = {"ce", "dims","entries"};
   int nbFields = 3;

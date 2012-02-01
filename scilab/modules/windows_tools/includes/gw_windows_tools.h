@@ -32,9 +32,9 @@ WINDOWS_TOOLS_IMPEXP int sci_getsystemmetrics(char *fname,unsigned long l);
 WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname,unsigned long l);
 
 //YaSp
-WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname, int* _piKey);
-WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname,int* _piKey);
-WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,int *_piKey);
+WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname, void* pvApiCtx);
+WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname,void* pvApiCtx);
+WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

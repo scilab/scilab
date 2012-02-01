@@ -31,7 +31,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlIsValidObject(char * fname, int *_piKey)
+int sci_xmlIsValidObject(char * fname, void* pvApiCtx)
 {
     XMLObject * obj = 0;
     int id;
@@ -45,7 +45,7 @@ int sci_xmlIsValidObject(char * fname, int *_piKey)
     CheckLhs(1, 1);
     CheckRhs(1, 1);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -53,13 +53,13 @@ int sci_xmlIsValidObject(char * fname, int *_piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, addr))
+    if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedMatrixOfString(_piKey, addr, &row, &col, &vars);
+        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &vars);
         exists = new int[row * col];
         for (int i = 0; i < row * col; i++)
         {
-            err = getVarAddressFromName(_piKey, const_cast<const char *>(vars[i]), &addr);
+            err = getVarAddressFromName(pvApiCtx, const_cast<const char *>(vars[i]), &addr);
             if (err.iErr)
             {
                 delete[] exists;
@@ -69,7 +69,7 @@ int sci_xmlIsValidObject(char * fname, int *_piKey)
                 return 0;
             }
 
-            id = getXMLObjectId(addr, _piKey);
+            id = getXMLObjectId(addr, pvApiCtx);
             exists[i] = XMLObject::getFromId<XMLObject>(id) != 0;
         }
 
@@ -78,11 +78,11 @@ int sci_xmlIsValidObject(char * fname, int *_piKey)
     else
     {
         exists = new int[1];
-        id = getXMLObjectId(addr, _piKey);
+        id = getXMLObjectId(addr, pvApiCtx);
         exists[0] = XMLObject::getFromId<XMLObject>(id) != 0;
     }
 
-    err = createMatrixOfBoolean(_piKey, Rhs + 1, row, col, exists);
+    err = createMatrixOfBoolean(pvApiCtx, Rhs + 1, row, col, exists);
     delete[] exists;
     if (err.iErr)
     {

@@ -20,12 +20,12 @@ extern int C2F(cdfchi)(int *, double *, double *, double *, double *, int *, dou
  * SUBROUTINE CDFCHI( WHICH, P, Q, X, DF, STATUS, BOUND )
  * Cumulative Distribution Function, CHI-square distribution
  */
-int sci_cdfchi(char *fname, int* _piKey)
+int sci_cdfchi(char *fname, void* pvApiCtx)
 {
   struct cdf_item items[] = 
     {{"PQ", 2, 2, 2},
      {"X" , 3, 1, 3},
      {"Df", 3, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfchi, 3, 4, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf); 
+  return cdf_generic(fname, pvApiCtx, &cdf); 
 }

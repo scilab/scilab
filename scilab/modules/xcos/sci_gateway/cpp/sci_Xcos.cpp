@@ -25,7 +25,7 @@ extern "C"
 #include "loadOnUseClassPath.h"
 }
 /*--------------------------------------------------------------------------*/
-int sci_Xcos(char *fname, int* _piKey)
+int sci_Xcos(char *fname, void* pvApiCtx)
 {
 	CheckRhs(0,1);
 	CheckLhs(0,1);
@@ -44,7 +44,7 @@ int sci_Xcos(char *fname, int* _piKey)
 		int iType = 0;
 		SciErr sciErr;
 
-		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -52,7 +52,7 @@ int sci_Xcos(char *fname, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getVarType(_piKey, piAddressVarOne, &iType);
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -67,7 +67,7 @@ int sci_Xcos(char *fname, int* _piKey)
 			char **pStFullFilenames = NULL;
 
 			/* get dimensions */
-			sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -83,7 +83,7 @@ int sci_Xcos(char *fname, int* _piKey)
 			}
 
 			/* get lengths */
-			sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(sciErr.iErr)
 			{
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
@@ -115,7 +115,7 @@ int sci_Xcos(char *fname, int* _piKey)
 			}
 
 			/* get strings */
-			sciErr = getMatrixOfString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 			if(sciErr.iErr)
 			{
 				freeArrayOfString(pStFullFilenames, m1 * n1);

@@ -20,7 +20,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_number_properties(char *fname, int* _piKey)
+int sci_number_properties(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -39,14 +39,14 @@ int sci_number_properties(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	iRet = getAllocatedMatrixOfString(_piKey, piAddr, &iRows, &iCols, &pstData);
+	iRet = getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstData);
 	if(iRet)
 	{
 		freeAllocatedMatrixOfString(iRows, iCols, pstData);
@@ -114,11 +114,11 @@ int sci_number_properties(char *fname, int* _piKey)
 
 	if(bBoolFlag)
 	{
-		iRet = createScalarBoolean(_piKey, Rhs + 1, bRet);
+		iRet = createScalarBoolean(pvApiCtx, Rhs + 1, bRet);
 	}
 	else
 	{
-		iRet = createScalarDouble(_piKey, Rhs + 1, dblRet);
+		iRet = createScalarDouble(pvApiCtx, Rhs + 1, dblRet);
 	}
 
 	if(iRet)

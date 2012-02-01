@@ -20,7 +20,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_pwd(char *fname,int *_piKey)
+int sci_pwd(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
 	int ierr = 0;
@@ -43,7 +43,7 @@ int sci_pwd(char *fname,int *_piKey)
 		int m1 = (int)strlen(path);
 
 		n1 = 1;
-        sciErr = createMatrixOfString(_piKey, Rhs + 1, 1, 1, &path);
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &path);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);

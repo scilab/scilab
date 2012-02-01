@@ -44,32 +44,32 @@ namespace org_modules_xml
          * @param obj a pointer to the object to retrieve
          * @return true if all is ok
          */
-        static bool get(char * fname, int * addr, XMLDocument ** obj, int* pvApiCtx) { return get<XMLDocument>(fname, addr, obj, pvApiCtx); }
+        static bool get(char * fname, int * addr, XMLDocument ** obj, void* pvApiCtx) { return get<XMLDocument>(fname, addr, obj, pvApiCtx); }
 
         /**
          * @ref get
          */
-        static bool get(char * fname, int * addr, XMLElement ** obj, int* pvApiCtx) { return get<XMLElement>(fname, addr, obj, pvApiCtx); }
+        static bool get(char * fname, int * addr, XMLElement ** obj, void* pvApiCtx) { return get<XMLElement>(fname, addr, obj, pvApiCtx); }
 
         /**
          * @ref get
          */
-        static bool get(char * fname, int * addr, XMLAttr ** obj, int* pvApiCtx) { return get<XMLAttr>(fname, addr, obj, pvApiCtx); }
+        static bool get(char * fname, int * addr, XMLAttr ** obj, void* pvApiCtx) { return get<XMLAttr>(fname, addr, obj, pvApiCtx); }
 
         /**
          * @ref get
          */
-        static bool get(char * fname, int * addr, XMLNs ** obj, int* pvApiCtx) { return get<XMLNs>(fname, addr, obj, pvApiCtx); }
+        static bool get(char * fname, int * addr, XMLNs ** obj, void* pvApiCtx) { return get<XMLNs>(fname, addr, obj, pvApiCtx); }
 
         /**
          * @ref get
          */
-        static bool get(char * fname, int * addr, XMLNodeList ** obj, int* pvApiCtx) { return get<XMLNodeList>(fname, addr, obj, pvApiCtx); }
+        static bool get(char * fname, int * addr, XMLNodeList ** obj, void* pvApiCtx) { return get<XMLNodeList>(fname, addr, obj, pvApiCtx); }
 
         /**
          * @ref get
          */
-        static bool get(char * fname, int * addr, std::string ** obj, int* pvApiCtx)
+        static bool get(char * fname, int * addr, std::string ** obj, void* pvApiCtx)
             {
                 char ** str = 0;
                 int row = 0;
@@ -105,7 +105,7 @@ namespace org_modules_xml
          * @ref get
          */
         template <class T>
-        static bool get(char * fname, int * addr, T ** obj, int* pvApiCtx)
+        static bool get(char * fname, int * addr, T ** obj, void* pvApiCtx)
             {
                 int id = getXMLObjectId(addr, pvApiCtx);
                 *obj = XMLObject::getFromId<T>(id);

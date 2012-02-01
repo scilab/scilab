@@ -31,7 +31,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlXPath(char * fname, int *_piKey)
+int sci_xmlXPath(char * fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -49,7 +49,7 @@ int sci_xmlXPath(char * fname, int *_piKey)
     CheckLhs(1, 1);
     CheckRhs(2, 3);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -57,15 +57,15 @@ int sci_xmlXPath(char * fname, int *_piKey)
         return 0;
     }
 
-    isElem = isXMLElem(addr, _piKey);
+    isElem = isXMLElem(addr, pvApiCtx);
 
-    if (!isElem && !isXMLDoc(addr, _piKey))
+    if (!isElem && !isXMLDoc(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(addr, _piKey);
+    id = getXMLObjectId(addr, pvApiCtx);
     if (isElem)
     {
         where = XMLObject::getFromId<XMLElement>(id);
@@ -86,7 +86,7 @@ int sci_xmlXPath(char * fname, int *_piKey)
         }
     }
 
-    err = getVarAddressFromPosition(_piKey, 2, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -94,16 +94,16 @@ int sci_xmlXPath(char * fname, int *_piKey)
         return 0;
     }
 
-    if (!isStringType(_piKey, addr))
+    if (!isStringType(pvApiCtx, addr))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
-    getAllocatedSingleString(_piKey, addr, &query);
+    getAllocatedSingleString(pvApiCtx, addr, &query);
 
     if (Rhs == 3)
     {
-        err = getVarAddressFromPosition(_piKey, 3, &addr);
+        err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
         if (err.iErr)
         {
             freeAllocatedSingleString(query);
@@ -112,14 +112,14 @@ int sci_xmlXPath(char * fname, int *_piKey)
             return 0;
         }
 
-        if (!isStringType(_piKey, addr))
+        if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
-        err = getMatrixOfString(_piKey, addr, &row, &col, 0, 0);
+        err = getMatrixOfString(pvApiCtx, addr, &row, &col, 0, 0);
         if (err.iErr)
         {
             freeAllocatedSingleString(query);
@@ -135,7 +135,7 @@ int sci_xmlXPath(char * fname, int *_piKey)
             return 0;
         }
 
-        getAllocatedMatrixOfString(_piKey, addr, &row, &col, &namespaces);
+        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces);
     }
 
     xpath = doc->makeXPathQuery(const_cast<const char *>(query), namespaces, row, where, &error);
@@ -158,27 +158,27 @@ int sci_xmlXPath(char * fname, int *_piKey)
         const XMLNodeSet * set = xpath->getNodeSet();
         if (set->getSize() == 0)
         {
-            createMatrixOfDouble(_piKey, Rhs + 1, 0, 0, 0);
+            createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
-        set->createOnStack(Rhs + 1, _piKey);
+        set->createOnStack(Rhs + 1, pvApiCtx);
         break;
     }
     case XPATH_BOOLEAN :
     {
         int b = xpath->getBooleanValue();
-        createScalarBoolean(_piKey, Rhs + 1, b);
+        createScalarBoolean(pvApiCtx, Rhs + 1, b);
         break;
     }
     case XPATH_NUMBER :
     {
         double d = xpath->getFloatValue();
-        createScalarDouble(_piKey, Rhs + 1, d);
+        createScalarDouble(pvApiCtx, Rhs + 1, d);
         break;
     }
     case XPATH_STRING :
     {
         const char * str = xpath->getStringValue();
-        createSingleString(_piKey, Rhs + 1, str);
+        createSingleString(pvApiCtx, Rhs + 1, str);
         break;
     }
     default :

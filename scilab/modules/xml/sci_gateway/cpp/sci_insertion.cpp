@@ -13,58 +13,58 @@
 #include "insertion.hpp"
 #include "XMLList_insertion.hpp"
 
-int sci_percent_c_i_XMLDoc(char *fname, int* _piKey)
+int sci_percent_c_i_XMLDoc(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<org_modules_xml::XMLDocument, std::string>(fname, _piKey);
+    return sci_insertion<org_modules_xml::XMLDocument, std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_i_XMLDoc(char *fname, int* _piKey)
+int sci_percent_XMLElem_i_XMLDoc(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<org_modules_xml::XMLDocument, XMLElement>(fname, _piKey);
+    return sci_insertion<org_modules_xml::XMLDocument, XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLElem(char *fname, int* _piKey)
+int sci_percent_c_i_XMLElem(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<XMLElement, std::string>(fname, _piKey);
+    return sci_insertion<XMLElement, std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_i_XMLElem(char *fname, int* _piKey)
+int sci_percent_XMLElem_i_XMLElem(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<XMLElement, XMLElement>(fname, _piKey);
+    return sci_insertion<XMLElement, XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_i_XMLElem(char *fname, int* _piKey)
+int sci_percent_XMLAttr_i_XMLElem(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<XMLElement, XMLAttr>(fname, _piKey);
+    return sci_insertion<XMLElement, XMLAttr>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_i_XMLElem(char *fname, int* _piKey)
+int sci_percent_XMLList_i_XMLElem(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<XMLElement, XMLNodeList>(fname, _piKey);
+    return sci_insertion<XMLElement, XMLNodeList>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLNs_i_XMLElem(char *fname, int* _piKey)
+int sci_percent_XMLNs_i_XMLElem(char *fname, void* pvApiCtx)
 {
-    return sci_insertion<XMLElement, XMLNs>(fname, _piKey);
+    return sci_insertion<XMLElement, XMLNs>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_i_XMLList(char *fname, int* _piKey)
+int sci_percent_XMLElem_i_XMLList(char *fname, void* pvApiCtx)
 {
-    return sci_XMLList_insertion<XMLElement>(fname, _piKey);
+    return sci_XMLList_insertion<XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLDoc_i_XMLList(char *fname, int* _piKey)
+int sci_percent_XMLDoc_i_XMLList(char *fname, void* pvApiCtx)
 {
-    return sci_XMLList_insertion<org_modules_xml::XMLDocument>(fname, _piKey);
+    return sci_XMLList_insertion<org_modules_xml::XMLDocument>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLList(char *fname, int* _piKey)
+int sci_percent_c_i_XMLList(char *fname, void* pvApiCtx)
 {
-    return sci_XMLList_insertion<std::string>(fname, _piKey);
+    return sci_XMLList_insertion<std::string>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_i_XMLList(char *fname, int* _piKey)
+int sci_percent_XMLList_i_XMLList(char *fname, void* pvApiCtx)
 {
-    return sci_XMLList_insertion<XMLNodeList>(fname, _piKey);
+    return sci_XMLList_insertion<XMLNodeList>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

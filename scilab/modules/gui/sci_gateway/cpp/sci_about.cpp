@@ -27,7 +27,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_about( char * fname, int *_piKey )
+int sci_about( char * fname, void* pvApiCtx )
 {
     try
     {

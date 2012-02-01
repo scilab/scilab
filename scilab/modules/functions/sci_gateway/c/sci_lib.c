@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
-int sci_libfunc(char *fname, int*_piKey)
+int sci_libfunc(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;
@@ -45,7 +45,7 @@ int sci_libfunc(char *fname, int*_piKey)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -53,7 +53,7 @@ int sci_libfunc(char *fname, int*_piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -67,7 +67,7 @@ int sci_libfunc(char *fname, int*_piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -91,7 +91,7 @@ int sci_libfunc(char *fname, int*_piKey)
 	}
 
 	/* get string One */
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

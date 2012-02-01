@@ -18,9 +18,9 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
-int triu_matrix(int* _piKey, int* _piAddress, int _iOffset);
+int triu_matrix(void* pvApiCtx, int* _piAddress, int _iOffset);
 /*--------------------------------------------------------------------------*/
-int sci_triu(char *fname,int* _piKey)
+int sci_triu(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet			= 0;
@@ -36,14 +36,14 @@ int sci_triu(char *fname,int* _piKey)
 		int* piAddr2			= 0;
 		double dblReal		= 0;
 
-		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		iRet = getScalarDouble(_piKey, piAddr2, &dblReal);
+		iRet = getScalarDouble(pvApiCtx, piAddr2, &dblReal);
 		if(iRet)
 		{
 			return 1;
@@ -52,18 +52,18 @@ int sci_triu(char *fname,int* _piKey)
 		iOffset = (int)dblReal;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	if(isDoubleType(_piKey, piAddr1))
+	if(isDoubleType(pvApiCtx, piAddr1))
 	{
-		iRet = triu_matrix(_piKey, piAddr1, iOffset);
+		iRet = triu_matrix(pvApiCtx, piAddr1, iOffset);
 	}
-	else if(isPolyType(_piKey, piAddr1))
+	else if(isPolyType(pvApiCtx, piAddr1))
 	{
 		//call sci_ptriu
 	}
@@ -82,7 +82,7 @@ int sci_triu(char *fname,int* _piKey)
 	return 0;
 }
 
-int triu_matrix(int* _piKey, int* _piAddress, int _iOffset)
+int triu_matrix(void* pvApiCtx, int* _piAddress, int _iOffset)
 {
 	SciErr sciErr;
 	int i;
@@ -96,16 +96,16 @@ int triu_matrix(int* _piKey, int* _piAddress, int _iOffset)
 	double *pdblRealRet	= NULL;
 	double *pdblImgRet	= NULL;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return sciErr.iErr;
 		}
 
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -124,14 +124,14 @@ int triu_matrix(int* _piKey, int* _piAddress, int _iOffset)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return sciErr.iErr;
 		}
 
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

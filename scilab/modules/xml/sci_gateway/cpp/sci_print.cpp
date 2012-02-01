@@ -31,7 +31,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_print(char * fname, int* _piKey)
+int sci_print(char * fname, void* pvApiCtx)
 {
     XMLObject * obj;
     int id;
@@ -40,7 +40,7 @@ int sci_print(char * fname, int* _piKey)
 
     CheckRhs(1, 1);
 
-    err = getVarAddressFromPosition(_piKey, 1, &mlistaddr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &mlistaddr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -48,7 +48,7 @@ int sci_print(char * fname, int* _piKey)
         return 0;
     }
 
-    id = getXMLObjectId(mlistaddr, _piKey);
+    id = getXMLObjectId(mlistaddr, pvApiCtx);
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
@@ -62,38 +62,38 @@ int sci_print(char * fname, int* _piKey)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLDoc_p(char *fname, int* _piKey)
+int sci_percent_XMLDoc_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_p(char *fname, int* _piKey)
+int sci_percent_XMLElem_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLNs_p(char *fname, int* _piKey)
+int sci_percent_XMLNs_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_p(char *fname, int* _piKey)
+int sci_percent_XMLList_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_p(char *fname, int* _piKey)
+int sci_percent_XMLAttr_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLSet_p(char *fname, int* _piKey)
+int sci_percent_XMLSet_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLValid_p(char *fname, int* _piKey)
+int sci_percent_XMLValid_p(char *fname, void* pvApiCtx)
 {
-    return sci_print(fname, _piKey);
+    return sci_print(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

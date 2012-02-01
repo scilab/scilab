@@ -28,7 +28,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalMove(char *fname, int* _piKey)
+int sci_xcosPalMove(char *fname, void* pvApiCtx)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
@@ -40,13 +40,13 @@ int sci_xcosPalMove(char *fname, int* _piKey)
     int targetLength = 0;
 
     /* source setup */
-    if (readVectorString(_piKey,1, &source, &sourceLength, fname))
+    if (readVectorString(pvApiCtx,1, &source, &sourceLength, fname))
     {
         return 0;
     }
 
     /* target setup */
-    if (readVectorString(_piKey,2, &target, &targetLength, fname))
+    if (readVectorString(pvApiCtx,2, &target, &targetLength, fname))
     {
         return 0;
     }

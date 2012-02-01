@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlSetAttributes(char * fname, int* _piKey)
+int sci_xmlSetAttributes(char * fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -40,7 +40,7 @@ int sci_xmlSetAttributes(char * fname, int* _piKey)
     CheckLhs(1, 1);
     CheckRhs(2, 2);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -48,13 +48,13 @@ int sci_xmlSetAttributes(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!isXMLAttr(addr, _piKey) && !isXMLElem(addr, _piKey) && !isXMLList(addr, _piKey) && !isXMLSet(addr, _piKey))
+    if (!isXMLAttr(addr, pvApiCtx) && !isXMLElem(addr, pvApiCtx) && !isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList or a XMLSet expected.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(addr, _piKey);
+    id = getXMLObjectId(addr, pvApiCtx);
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
@@ -62,7 +62,7 @@ int sci_xmlSetAttributes(char * fname, int* _piKey)
         return 0;
     }
 
-    err = getVarAddressFromPosition(_piKey, 2, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -70,13 +70,13 @@ int sci_xmlSetAttributes(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!isStringType(_piKey, addr))
+    if (!isStringType(pvApiCtx, addr))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 2);
         return 0;
     }
 
-    if (getAllocatedMatrixOfString(_piKey, addr, &rows, &cols, &keyValue))
+    if (getAllocatedMatrixOfString(pvApiCtx, addr, &rows, &cols, &keyValue))
     {
         return 0;
     }
@@ -98,7 +98,7 @@ int sci_xmlSetAttributes(char * fname, int* _piKey)
     }
     freeAllocatedMatrixOfString(rows, cols, keyValue);
 
-    obj->createOnStack(Rhs + 1, _piKey);
+    obj->createOnStack(Rhs + 1, pvApiCtx);
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
 

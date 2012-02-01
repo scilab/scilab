@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspmax)(char *minmax,int *id);
 /*--------------------------------------------------------------------------*/
-int sci_spmin(char *fname, int* _piKey)
+int sci_spmin(char *fname, void* pvApiCtx)
 {
 	static int id[6];
 	char job[]="min";

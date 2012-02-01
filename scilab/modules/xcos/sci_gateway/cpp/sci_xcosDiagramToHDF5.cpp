@@ -30,7 +30,7 @@ extern "C"
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
+int sci_xcosDiagramToHDF5(char *fname, void* pvApiCtx)
 {
     CheckRhs(3, 3);
     CheckLhs(0, 1);
@@ -57,7 +57,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     bool bForceWrite = false;
 
     //get xcos filename
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -66,7 +66,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     }
 
     //get xcos filename matrix dimension
-    sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, NULL, NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -80,7 +80,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     }
 
     //get xcos filename length
-    sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, &iLen1, NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -90,7 +90,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
 
     pstXcosFile = (char *)MALLOC(sizeof(char *) * (iLen1 + 1)); //+ 1 for null termination
     //get xcos filename
-    sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, &iLen1, &pstXcosFile);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, &pstXcosFile);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -99,7 +99,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     }
 
     //get h5 filename
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -108,7 +108,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     }
 
     //get h5 filename matrix dimension
-    sciErr = getMatrixOfString(_piKey, piAddr2, &iRows2, &iCols2, NULL, NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -122,7 +122,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
     }
 
     //get xcos filename length
-    sciErr = getMatrixOfString(_piKey, piAddr2, &iRows2, &iCols2, &iLen2, NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -132,7 +132,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
 
     pstH5File = (char *)MALLOC(sizeof(char *) * (iLen2 + 1));   //+ 1 for null termination
     //get xcos filename
-    sciErr = getMatrixOfString(_piKey, piAddr2, &iRows2, &iCols2, &iLen2, &pstH5File);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, &pstH5File);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -142,7 +142,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
 
     //get force writing flag
     //get h5 filename
-    sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr3);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -150,7 +150,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getVarDimension(_piKey, piAddr3, &iRows3, &iCols3);
+    sciErr = getVarDimension(pvApiCtx, piAddr3, &iRows3, &iCols3);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -158,7 +158,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
         return 0;
     }
 
-    sciErr = getMatrixOfBoolean(_piKey, piAddr3, &iRows3, &iCols3, &piForceWrite);
+    sciErr = getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, &piForceWrite);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -201,7 +201,7 @@ int sci_xcosDiagramToHDF5(char *fname, int *_piKey)
 
     double dblResult = iRet;
 
-    sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 1, 1, &dblResult);
+    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dblResult);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

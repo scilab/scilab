@@ -20,13 +20,13 @@
 /*--------------------------------------------------------------------------*/ 
 TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/ 
-int sci_xpause(char *fname, int* _piKey);
-int sci_sleep(char *fname, int* _piKey);
-int sci_realtimeinit(char *fname, int* _piKey);
-int sci_realtime(char *fname, int* _piKey);
-int sci_getdate(char *fname, int* _piKey);
-int sci_calendar(char *fname, int* _piKey);
-int sci_timer(char *fname,int* _piKey);
+int sci_xpause(char *fname, void* pvApiCtx);
+int sci_sleep(char *fname, void* pvApiCtx);
+int sci_realtimeinit(char *fname, void* pvApiCtx);
+int sci_realtime(char *fname, void* pvApiCtx);
+int sci_getdate(char *fname, void* pvApiCtx);
+int sci_calendar(char *fname, void* pvApiCtx);
+int sci_timer(char *fname,void* pvApiCtx);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

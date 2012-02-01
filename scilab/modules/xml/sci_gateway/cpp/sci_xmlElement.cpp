@@ -28,7 +28,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlElement(char * fname, int* pvApiCtx)
+int sci_xmlElement(char * fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc = 0;
     XMLElement * elem = 0;

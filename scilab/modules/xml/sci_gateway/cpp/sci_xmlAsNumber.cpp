@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAsNumber(char * fname, int* _piKey)
+int sci_xmlAsNumber(char * fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -38,7 +38,7 @@ int sci_xmlAsNumber(char * fname, int* _piKey)
     CheckLhs(1, 1);
     CheckRhs(1, 1);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -46,13 +46,13 @@ int sci_xmlAsNumber(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!isXMLList(addr, _piKey) && !isXMLSet(addr, _piKey))
+    if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"), fname, 1);
         return 0;
     }
 
-    id = getXMLObjectId(addr, _piKey);
+    id = getXMLObjectId(addr, pvApiCtx);
     list = XMLObject::getFromId<XMLList>(id);
     if (!list)
     {
@@ -60,7 +60,7 @@ int sci_xmlAsNumber(char * fname, int* _piKey)
         return 0;
     }
 
-    err = allocMatrixOfDouble(_piKey, Rhs + 1, 1, list->getSize(), &pdblReal);
+    err = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, list->getSize(), &pdblReal);
     const char ** contents = list->getContentFromList();
 
     for (int i = 0; i < list->getSize(); i++)

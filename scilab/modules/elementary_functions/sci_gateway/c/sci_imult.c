@@ -17,7 +17,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_imult(char *fname,int* _piKey)
+int sci_imult(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -35,14 +35,14 @@ int sci_imult(char *fname,int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -55,9 +55,9 @@ int sci_imult(char *fname,int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piKey, piAddr))
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -69,7 +69,7 @@ int sci_imult(char *fname,int* _piKey)
 			pdblImg[i] *= -1;
 		}
 
-		sciErr = createComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -78,7 +78,7 @@ int sci_imult(char *fname,int* _piKey)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -88,7 +88,7 @@ int sci_imult(char *fname,int* _piKey)
 		pdblRealRet = (double*)malloc(sizeof(double) * iRows * iCols);
 		memset(pdblRealRet, 0x00, sizeof(double) * iRows * iCols);
 
-		sciErr = createComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, pdblRealRet, pdblReal);
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblRealRet, pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

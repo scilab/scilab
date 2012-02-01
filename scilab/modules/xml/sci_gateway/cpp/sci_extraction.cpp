@@ -14,18 +14,18 @@
 #include "gw_xml.h"
 using namespace org_modules_xml;
 
-int sci_percent_XMLDoc_e(char *fname, int* _piKey)
+int sci_percent_XMLDoc_e(char *fname, void* pvApiCtx)
 {
-    return sci_extraction<org_modules_xml::XMLDocument>(fname, _piKey);
+    return sci_extraction<org_modules_xml::XMLDocument>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_e(char *fname, int* _piKey)
+int sci_percent_XMLElem_e(char *fname, void* pvApiCtx)
 {
-    return sci_extraction<XMLElement>(fname, _piKey);
+    return sci_extraction<XMLElement>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLNs_e(char *fname, int* _piKey)
+int sci_percent_XMLNs_e(char *fname, void* pvApiCtx)
 {
-    return sci_extraction<XMLNs>(fname, _piKey);
+    return sci_extraction<XMLNs>(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

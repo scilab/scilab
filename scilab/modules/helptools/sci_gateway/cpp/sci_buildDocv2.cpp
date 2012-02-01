@@ -51,7 +51,7 @@ extern "C"
     }
 #endif
     /*--------------------------------------------------------------------------*/
-    int sci_buildDocv2(char *fname, int *_piKey)
+    int sci_buildDocv2(char *fname, void* pvApiCtx)
     {
         std::string exportFormat;
         std::string SciPath = getSCI(); /* Scilab path */
@@ -77,7 +77,7 @@ extern "C"
         else
         {
             char* pstData = NULL;
-            sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 
             if(sciErr.iErr)
             {
@@ -86,14 +86,14 @@ extern "C"
                 return 0;
             }
 
-            if(!isStringType(_piKey, piAddr))
+            if(!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 1);
                 return 0;
                 // Wrong type string
             }
 
-            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
             if(iRet)
             {
                 freeAllocatedSingleString(pstData);
@@ -112,7 +112,7 @@ extern "C"
         else
         {
             char* pstData = NULL;
-            sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
 
             if(sciErr.iErr)
             {
@@ -121,20 +121,20 @@ extern "C"
                 return 0;
             }
 
-            if(!isStringType(_piKey, piAddr))
+            if(!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 3);
                 return 0;
                 // Wrong type string
             }
 
-            if(!isScalar(_piKey, piAddr))
+            if(!isScalar(pvApiCtx, piAddr))
             {
                 language = wide_string_to_UTF8(getlanguage());
             }
             else
             {
-                iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+                iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
                 if(iRet)
                 {
                     freeAllocatedSingleString(pstData);
@@ -156,7 +156,7 @@ extern "C"
         else
         {
             char* pstData = NULL;
-            sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
 
             if(sciErr.iErr)
             {
@@ -164,7 +164,7 @@ extern "C"
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 0;
             }
-            if(!isStringType(_piKey, piAddr))
+            if(!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
                 return 0;
@@ -172,7 +172,7 @@ extern "C"
             }
 
 
-            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
             if(iRet)
             {
                 freeAllocatedSingleString(pstData);
@@ -185,7 +185,7 @@ extern "C"
         if (Rhs == 4)
         {
             char* pstData = NULL;
-            sciErr = getVarAddressFromPosition(_piKey, 4, &piAddr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr);
 
             if(sciErr.iErr)
             {
@@ -193,14 +193,14 @@ extern "C"
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
-            if(!isStringType(_piKey, piAddr))
+            if(!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 4);
                 return 0;
                 // Wrong type string
             }
 
-            iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+            iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
             if(iRet)
             {
                 freeAllocatedSingleString(pstData);

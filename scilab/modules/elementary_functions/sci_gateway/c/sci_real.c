@@ -18,12 +18,12 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-SciErr real_poly(int* _piKey, int* _piAddress);
-SciErr real_sparse(int* _piKey, int* _piAddress);
-SciErr real_double(int* _piKey, int* _piAddress);
+SciErr real_poly(void* pvApiCtx, int* _piAddress);
+SciErr real_sparse(void* pvApiCtx, int* _piAddress);
+SciErr real_double(void* pvApiCtx, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int sci_real(char *fname, int* _piKey)
+int sci_real(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iType 		= 0;
@@ -32,14 +32,14 @@ int sci_real(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -49,13 +49,13 @@ int sci_real(char *fname, int* _piKey)
 	switch(iType)
 	{
 	case sci_matrix :
-		sciErr = real_double(_piKey, piAddr);
+		sciErr = real_double(pvApiCtx, piAddr);
 		break;
 	case sci_poly :
-		sciErr = real_poly(_piKey, piAddr);
+		sciErr = real_poly(pvApiCtx, piAddr);
 		break;
 	case sci_sparse :
-		sciErr = real_sparse(_piKey, piAddr);
+		sciErr = real_sparse(pvApiCtx, piAddr);
 		break;
 	default:
 		OverLoad(1);
@@ -73,7 +73,7 @@ int sci_real(char *fname, int* _piKey)
 	return 0;
 }
 
-SciErr real_poly(int* _piKey, int* _piAddress)
+SciErr real_poly(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i,j;
@@ -87,7 +87,7 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 	double** pdblImg			= NULL;
 	double** pdblRealRet	= NULL;
 
-	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
 	if(sciErr.iErr)
 	{
 		return sciErr;
@@ -95,22 +95,22 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 
 	pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
 
-	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
 	if(sciErr.iErr)
 	{
 		return sciErr;
 	}
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -125,7 +125,7 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 			pdblImg[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -147,7 +147,7 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 			}
 		}
 
-		sciErr = createMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -155,14 +155,14 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 	}
 	else
 	{
-		sciErr  = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL);
+		sciErr  = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -175,13 +175,13 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = createMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -190,7 +190,7 @@ SciErr real_poly(int* _piKey, int* _piAddress)
 	return sciErr;
 }
 
-SciErr real_sparse(int* _piKey, int* _piAddress)
+SciErr real_sparse(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int i,j,x,y;
@@ -208,9 +208,9 @@ SciErr real_sparse(int* _piKey, int* _piAddress)
 	double *pdblImg			= 0;
 	double *pdblRealRet	= NULL;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		sciErr = getComplexSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -224,7 +224,7 @@ SciErr real_sparse(int* _piKey, int* _piAddress)
 			}
 		}
 
-		sciErr = allocSparseMatrix(_piKey, Rhs + 1, iRows, iCols, iNbItemNew, &piNbItemRowNew, &piColPosNew, &pdblRealRet);
+		sciErr = allocSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItemNew, &piNbItemRowNew, &piColPosNew, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -250,13 +250,13 @@ SciErr real_sparse(int* _piKey, int* _piAddress)
 	}
 	else
 	{
-		sciErr = getSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		sciErr = getSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = createSparseMatrix(_piKey, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+		sciErr = createSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -265,7 +265,7 @@ SciErr real_sparse(int* _piKey, int* _piAddress)
 	return sciErr;
 }
 
-SciErr real_double(int* _piKey, int* _piAddress)
+SciErr real_double(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int iRows						= 0;
@@ -274,9 +274,9 @@ SciErr real_double(int* _piKey, int* _piAddress)
 	double *pdblImg			= NULL;
 	double *pdblRealRet = NULL;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -284,14 +284,14 @@ SciErr real_double(int* _piKey, int* _piAddress)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 	}
 
-	sciErr = createMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, pdblReal);
+	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
 	if(sciErr.iErr)
 	{
 		return sciErr;

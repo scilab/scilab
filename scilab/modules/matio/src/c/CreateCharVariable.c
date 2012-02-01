@@ -23,7 +23,7 @@
       return 0;				     \
     }
 
-int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateCharVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   char **charData = NULL;

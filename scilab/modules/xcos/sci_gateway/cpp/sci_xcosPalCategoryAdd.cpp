@@ -29,7 +29,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalCategoryAdd(char *fname, int* _piKey)
+int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 2);
     CheckLhs(0, 1);
@@ -39,7 +39,7 @@ int sci_xcosPalCategoryAdd(char *fname, int* _piKey)
     bool visible = false;
 
     /* name setup */
-    if (readVectorString(_piKey,1, &name, &nameLength, fname))
+    if (readVectorString(pvApiCtx,1, &name, &nameLength, fname))
     {
         return 0;
     }
@@ -47,7 +47,7 @@ int sci_xcosPalCategoryAdd(char *fname, int* _piKey)
     /* visible setup */
     if (Rhs > 2)
     {
-        if (readSingleBoolean(_piKey,2, &visible, fname))
+        if (readSingleBoolean(pvApiCtx,2, &visible, fname))
         {
             return 0;
         }

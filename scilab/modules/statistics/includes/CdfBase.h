@@ -54,7 +54,7 @@ struct cdf_descriptor {
  * @param[in] fname scilab caller function name
  * @param[in] cdf's description, @see struct cdf_descriptor
  */
-STATISTICS_IMPEXP int cdf_generic(char *fname, int* _piKey, struct cdf_descriptor *cdf);
+STATISTICS_IMPEXP int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf);
 
 
 /**

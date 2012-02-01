@@ -22,7 +22,7 @@
 #include "PATH_MAX.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_winqueryreg(char *fname,int *_piKey)
+int sci_winqueryreg(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr                = 0;
@@ -42,7 +42,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
 
     if (Rhs == 3)
     {
-        sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -50,26 +50,26 @@ int sci_winqueryreg(char *fname,int *_piKey)
             return 0;
         }
 
-        if (!isStringType(_piKey, piAddressVarThree))
+        if (!isStringType(pvApiCtx, piAddressVarThree))
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
             return 1;
         }
 
-        if (!isScalar(_piKey, piAddressVarThree))
+        if (!isScalar(pvApiCtx, piAddressVarThree))
         {
             Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 3);
             return 1;
         }
 
-        if (getAllocatedSingleString(_piKey, piAddressVarThree, &pStrParamThree) != 0)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &pStrParamThree) != 0)
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
             return 1;
         }
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -77,19 +77,19 @@ int sci_winqueryreg(char *fname,int *_piKey)
         return 0;
     }
 
-    if (!isStringType(_piKey, piAddressVarOne))
+    if (!isStringType(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return 1;
     }
 
-    if (!isScalar(_piKey, piAddressVarOne))
+    if (!isScalar(pvApiCtx, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
         return 1;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -97,19 +97,19 @@ int sci_winqueryreg(char *fname,int *_piKey)
         return 0;
     }
 
-    if (!isStringType(_piKey, piAddressVarTwo))
+    if (!isStringType(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
         return 1;
     }
 
-    if (!isScalar(_piKey, piAddressVarTwo))
+    if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
         return 1;
     }
 
-    if (getAllocatedSingleString(_piKey, piAddressVarTwo, &pStrParamTwo) != 0)
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pStrParamTwo) != 0)
     {
         if (pStrParamThree)
         {
@@ -120,7 +120,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
         return 1;
     }
 
-    if (getAllocatedSingleString(_piKey, piAddressVarOne, &pStrParamOne) != 0)
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStrParamOne) != 0)
     {
         if (pStrParamThree)
         {
@@ -160,7 +160,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
                 if (WindowsQueryRegistryList(pStrParamTwo, pStrParamThree, NumbersElm, ListKeysName))
                 {
                     int nOne = 1;
-                    sciErr = createMatrixOfString(_piKey, Rhs + 1, NumbersElm, nOne, ListKeysName);
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, NumbersElm, nOne, ListKeysName);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
@@ -182,7 +182,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
             }
             else
             {
-                createEmptyMatrix(_piKey, Rhs + 1);
+                createEmptyMatrix(pvApiCtx, Rhs + 1);
                 LhsVar(1) = Rhs + 1;
                 PutLhsVar();
             }
@@ -217,11 +217,11 @@ int sci_winqueryreg(char *fname,int *_piKey)
         {
             if (OuputIsREG_SZ)
             {
-                createSingleString(_piKey, Rhs + 1, pStrOutput);
+                createSingleString(pvApiCtx, Rhs + 1, pStrOutput);
             }
             else
             {
-                createScalarDouble(_piKey, Rhs + 1, (double)iOutput);
+                createScalarDouble(pvApiCtx, Rhs + 1, (double)iOutput);
             }
 
             LhsVar(1) = Rhs+1;

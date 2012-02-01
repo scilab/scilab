@@ -22,28 +22,28 @@
 #include "localization.h"
 #include "api_oldstack.h"
 
-int func_comp(char* fname, int _iMini, int* _piKey);
+int func_comp(char* fname, int _iMini, void* pvApiCtx);
 
-SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini);
-SciErr compare_multiple_double(int* _piKey, char* _pstName, int _iIsMini);
-SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iMode);
+SciErr compare_list(void* pvApiCtx, char* _pstName, int* _piAddress, int _iIsMini);
+SciErr compare_multiple_double(void* pvApiCtx, char* _pstName, int _iIsMini);
+SciErr compare_double_inside(void* pvApiCtx, int* _piAddress, int _iIsMini, int _iMode);
 
-static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbItem);
+static SciErr compare_double(void* pvApiCtx, int _iIsMini, int** _piAddr, int _iNbItem);
 
 /*--------------------------------------------------------------------------*/
 
-int sci_maxi(char *fname, int* _piKey)
+int sci_maxi(char *fname, void* pvApiCtx)
 {
-	return func_comp(fname, 0, _piKey);
+	return func_comp(fname, 0, pvApiCtx);
 }
 
-int sci_mini(char *fname, int* _piKey)
+int sci_mini(char *fname, void* pvApiCtx)
 {
-	return func_comp(fname, 1, _piKey);
+	return func_comp(fname, 1, pvApiCtx);
 }
 
 
-int func_comp(char* fname, int _iMini, int* _piKey)
+int func_comp(char* fname, int _iMini, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -54,14 +54,14 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 
 	CheckLhs(1,2);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -80,14 +80,14 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 			return 0;
 		}
 
-		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		sciErr = getVarType(_piKey, piAddr2, &iType2);
+		sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -96,7 +96,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 
 		if(iType2 == sci_strings)
 		{
-			sciErr = getProcessMode(_piKey, 2, piAddr1, &iMode);
+			sciErr = getProcessMode(pvApiCtx, 2, piAddr1, &iMode);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -111,7 +111,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 	case sci_matrix :
 		if(Rhs == 1 || (Rhs == 2 && iModeActive))
 		{
-			sciErr = compare_double_inside(_piKey, piAddr1, _iMini, iMode);
+			sciErr = compare_double_inside(pvApiCtx, piAddr1, _iMini, iMode);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -124,14 +124,14 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 			{
 				int* piAddr		= NULL;
 				int iType = 0;
-				sciErr = getVarAddressFromPosition(_piKey, i, &piAddr);
+				sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddr);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
 					return 0;
 				}
 
-				sciErr = getVarType(_piKey, piAddr, &iType);
+				sciErr = getVarType(pvApiCtx, piAddr, &iType);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -144,7 +144,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 					return 0;
 				}
 			}
-			sciErr = compare_multiple_double(_piKey, fname, _iMini);
+			sciErr = compare_multiple_double(pvApiCtx, fname, _iMini);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -153,7 +153,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 		}
 		break;
 	case sci_list :
-		sciErr = compare_list(_piKey, fname, piAddr1, _iMini);
+		sciErr = compare_list(pvApiCtx, fname, piAddr1, _iMini);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -163,9 +163,9 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 	case sci_sparse:
 		Fin -= 6; //Ugly !!!
 		if(iModeActive)
-			sci_spmin(fname,_piKey);
+			sci_spmin(fname,pvApiCtx);
 		else
-			sci_spmax(fname,_piKey);
+			sci_spmax(fname,pvApiCtx);
 		break;
 	default:
 		OverLoad(1);
@@ -177,7 +177,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 	return 0;
 }
 
-SciErr compare_multiple_double(int* _piKey, char* _pstName, int _iIsMini)
+SciErr compare_multiple_double(void* pvApiCtx, char* _pstName, int _iIsMini)
 {
 	SciErr sciErr;
 	int i;
@@ -189,13 +189,13 @@ SciErr compare_multiple_double(int* _piKey, char* _pstName, int _iIsMini)
 	for(i = 0 ; i < Rhs ; i++)
 	{
 		int iType = 0;
-		sciErr = getVarAddressFromPosition(_piKey, i + 1, &piItem[i]);
+		sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piItem[i]);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = getVarType(_piKey, piItem[i], &iType);
+		sciErr = getVarType(pvApiCtx, piItem[i], &iType);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -208,10 +208,10 @@ SciErr compare_multiple_double(int* _piKey, char* _pstName, int _iIsMini)
 		}
 	}
 
-	return compare_double(_piKey, _iIsMini, piItem, iNbItem);
+	return compare_double(pvApiCtx, _iIsMini, piItem, iNbItem);
 }
 
-SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iMode)
+SciErr compare_double_inside(void* pvApiCtx, int* _piAddress, int _iIsMini, int _iMode)
 {
 	SciErr sciErr;
 	int i;
@@ -226,14 +226,14 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 
 	sciErr.iErr						= 0;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
 		Err = 1;
 		SciError(202);
 		return sciErr;
 	}
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
 	if(sciErr.iErr)
 	{
 		return sciErr;
@@ -243,7 +243,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 	{
 		iRows = 0;
 		iCols = 0;
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, 0, 0, &pdblRealRet1);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, &pdblRealRet1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -252,7 +252,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 		LhsVar(1) = Rhs + 1;
 		if(Lhs == 2)
 		{
-			sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, 0, 0, &pdblRealRet2);
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, 0, 0, &pdblRealRet2);
 			if(sciErr.iErr)
 			{
 				return sciErr;
@@ -266,7 +266,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 	switch(_iMode)
 	{
 	case BY_ALL :
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, 1, 1, &pdblRealRet1);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &pdblRealRet1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -290,7 +290,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 		{
 			if(iRows == 1 || iCols == 1)
 			{
-				sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, 1, 1, &pdblRealRet2);
+				sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, 1, &pdblRealRet2);
 				if(sciErr.iErr)
 				{
 					return sciErr;
@@ -300,7 +300,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 			}
 			else
 			{
-				sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, 1, 2, &pdblRealRet2);
+				sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, 2, &pdblRealRet2);
 				if(sciErr.iErr)
 				{
 					return sciErr;
@@ -313,7 +313,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 		}
 		break;
 	case BY_ROWS :
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, 1, iCols, &pdblRealRet1);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, iCols, &pdblRealRet1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -321,7 +321,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 
 		if(Lhs == 2)
 		{
-			sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, 1, iCols, &pdblRealRet2);
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, iCols, &pdblRealRet2);
 			if(sciErr.iErr)
 			{
 				return sciErr;
@@ -360,7 +360,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 		}
 		break;
 	case BY_COLS :
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, 1, &pdblRealRet1);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, 1, &pdblRealRet1);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -368,7 +368,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 
 		if(Lhs == 2)
 		{
-			sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, iRows, 1, &pdblRealRet2);
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, 1, &pdblRealRet2);
 			if(sciErr.iErr)
 			{
 				return sciErr;
@@ -412,7 +412,7 @@ SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iM
 	return sciErr;
 }
 
-SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini)
+SciErr compare_list(void* pvApiCtx, char* _pstName, int* _piAddress, int _iIsMini)
 {
 	SciErr sciErr;
 	int i;
@@ -420,7 +420,7 @@ SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini)
 	int iNbItem		= 0;
 	int **piItem	= NULL;
 
-	sciErr = getListItemNumber(_piKey, _piAddress, &iNbItem);
+	sciErr = getListItemNumber(pvApiCtx, _piAddress, &iNbItem);
 	if(sciErr.iErr)
 	{
 		return sciErr;
@@ -431,13 +431,13 @@ SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini)
 	for(i = 0 ; i < iNbItem ; i++)
 	{
 		int iType = 0;
-		sciErr = getListItemAddress(_piKey, _piAddress, i+1, &piItem[i]);
+		sciErr = getListItemAddress(pvApiCtx, _piAddress, i+1, &piItem[i]);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		sciErr = getVarType(_piKey, piItem[i], &iType);
+		sciErr = getVarType(pvApiCtx, piItem[i], &iType);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -450,10 +450,10 @@ SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini)
 		}
 	}
 
-	return compare_double(_piKey, _iIsMini, piItem, iNbItem);
+	return compare_double(pvApiCtx, _iIsMini, piItem, iNbItem);
 }
 
-static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbItem)
+static SciErr compare_double(void* pvApiCtx, int _iIsMini, int** _piAddr, int _iNbItem)
 {
 	SciErr sciErr;
 	int i,j;
@@ -471,14 +471,14 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		int iRhsRows	= 0;
 		int iRhsCols	= 0;
 
-		if(isVarComplex(_piKey, _piAddr[i]))
+		if(isVarComplex(pvApiCtx, _piAddr[i]))
 		{
 			Err = i;
 			SciError(202);
 			return sciErr;
 		}
 
-		sciErr = getVarDimension(_piKey, _piAddr[i], &iRhsRows, &iRhsCols);
+		sciErr = getVarDimension(pvApiCtx, _piAddr[i], &iRhsRows, &iRhsCols);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -518,7 +518,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		}
 	}//for
 
-	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet1);
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet1);
 	if(sciErr.iErr)
 	{
 		return sciErr;
@@ -526,7 +526,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 
 	if(Lhs == 2)
 	{
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, iRows, iCols, &pdblRealRet2);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblRealRet2);
 		if(sciErr.iErr)
 		{
 			return sciErr;
@@ -535,7 +535,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		vDset(iRows * iCols, 1, pdblRealRet2, 1);
 	}
 
-	sciErr = getMatrixOfDouble(_piKey, _piAddr[0], &iRefRows, &iRefCols, &pdblReal);
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddr[0], &iRefRows, &iRefCols, &pdblReal);
 	if(sciErr.iErr)
 	{
 		return sciErr;
@@ -561,7 +561,7 @@ static SciErr compare_double(int* _piKey, int _iIsMini, int** _piAddr, int _iNbI
 		int iIndex2			= 0;
 		int iIndex3			= 0;
 
-		sciErr = getMatrixOfDouble(_piKey, _piAddr[i], &iCurRows, &iCurCols, &pdblCur);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddr[i], &iCurRows, &iCurCols, &pdblCur);
 		if(sciErr.iErr)
 		{
 			return sciErr;

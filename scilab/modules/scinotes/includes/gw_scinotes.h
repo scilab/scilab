@@ -16,8 +16,8 @@
 #include "dynlib_scinotes.h"
 /*--------------------------------------------------------------------------*/
 SCINOTES_IMPEXP int gw_scinotes(void);
-SCINOTES_IMPEXP int sci_scinotes(char* fname, int* _piKey);
-SCINOTES_IMPEXP int sci_closeSciNotesFromScilab(char *fname, int* _piKey);
+SCINOTES_IMPEXP int sci_scinotes(char* fname, void* pvApiCtx);
+SCINOTES_IMPEXP int sci_closeSciNotesFromScilab(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_SCINOTES__ */
 /*--------------------------------------------------------------------------*/

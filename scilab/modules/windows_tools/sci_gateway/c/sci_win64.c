@@ -19,7 +19,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_win64(char *fname, int* _piKey)
+int sci_win64(char *fname, void* pvApiCtx)
 {
 	BOOL Status = FALSE;
 
@@ -30,7 +30,7 @@ int sci_win64(char *fname, int* _piKey)
 	Status = TRUE;
 #endif
 
-    if(createScalarBoolean(_piKey, Rhs + 1, Status) != 0)
+    if(createScalarBoolean(pvApiCtx, Rhs + 1, Status) != 0)
     {
         return 1;
     }

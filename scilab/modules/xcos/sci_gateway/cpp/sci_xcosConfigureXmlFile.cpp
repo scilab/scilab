@@ -28,7 +28,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_modelica;
 
-int sci_xcosConfigureXmlFile(char *fname, int *_piKey)
+int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 2);
     CheckLhs(0, 1);
@@ -37,12 +37,12 @@ int sci_xcosConfigureXmlFile(char *fname, int *_piKey)
     char *relations = NULL;
 
     /* first file setup */
-    if (readSingleString(_piKey, 1, &init, fname))
+    if (readSingleString(pvApiCtx, 1, &init, fname))
     {
         return 0;
     }
     /* second file setup */
-    if (readSingleString(_piKey, 2, &relations, fname))
+    if (readSingleString(pvApiCtx, 2, &relations, fname))
     {
         return 0;
     }

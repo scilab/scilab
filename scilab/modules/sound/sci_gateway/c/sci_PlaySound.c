@@ -29,7 +29,7 @@ static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/
 /* private function called by playsnd */
 /*--------------------------------------------------------------------------*/
-int sci_Playsound (char *fname, int* _piKey)
+int sci_Playsound (char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int *piAddressVarOne = NULL;
@@ -42,7 +42,7 @@ int sci_Playsound (char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -50,7 +50,7 @@ int sci_Playsound (char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -70,7 +70,7 @@ int sci_Playsound (char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -85,7 +85,7 @@ int sci_Playsound (char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

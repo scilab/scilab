@@ -24,7 +24,7 @@
       return 0;			     \
     }
 
-matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetCellVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   int nbFields = 0;
   int K = 0;

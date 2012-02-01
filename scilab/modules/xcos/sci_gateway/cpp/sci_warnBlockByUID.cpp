@@ -28,7 +28,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
-int sci_warnBlockByUID(char *fname, int* _piKey)
+int sci_warnBlockByUID(char *fname, void* pvApiCtx)
 {
 	int i;
 
@@ -41,13 +41,13 @@ int sci_warnBlockByUID(char *fname, int* _piKey)
 	char* msg;
 
 	/** read UID **/
-    if (readVectorString(_piKey, 1, &path, &pathLength, fname))
+    if (readVectorString(pvApiCtx, 1, &path, &pathLength, fname))
     {
         return 0;
     }
 
 	/* read msg */
-    if (readSingleString(_piKey, 2, &msg, fname)) {
+    if (readSingleString(pvApiCtx, 2, &msg, fname)) {
     	for (i=0; i<pathLength; i++) {
     		FREE(path[i]);
     	}

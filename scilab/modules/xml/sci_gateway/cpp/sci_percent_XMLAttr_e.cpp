@@ -29,7 +29,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_e(char * fname, int* pvApiCtx)
+int sci_percent_XMLAttr_e(char * fname, void* pvApiCtx)
 {
     XMLAttr * attr;
     int id;

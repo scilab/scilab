@@ -21,10 +21,10 @@
 #define FRK_LETTER		'f'
 #define HILB_LETTER		'h'
 
-char getGenerateMode(int* _piKey, int* _piAddress);
-int getGenerateSize(int* _piKey, int* _piAddress);
+char getGenerateMode(void* pvApiCtx, int* _piAddress);
+int getGenerateSize(void* pvApiCtx, int* _piAddress);
 /*--------------------------------------------------------------------------*/
-int sci_testmatrix(char *fname, int* _piKey)
+int sci_testmatrix(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet						= 0;
@@ -46,28 +46,28 @@ int sci_testmatrix(char *fname, int* _piKey)
 	CheckLhs(1,1);
 
 	/*check input 1*/
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	cMode = getGenerateMode(_piKey, piAddr1);
+	cMode = getGenerateMode(pvApiCtx, piAddr1);
 
 	if(cMode == -1)
 	{
 		return 1;
 	}
 
-	iDim = getGenerateSize(_piKey, piAddr2);
+	iDim = getGenerateSize(pvApiCtx, piAddr2);
 
 
 	if(cMode != FRK_LETTER && cMode != HILB_LETTER && iDim == 2)
@@ -77,7 +77,7 @@ int sci_testmatrix(char *fname, int* _piKey)
 
 	if(iDim == 0)
 	{
-		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
 		if(iRet)
 		{
 			return 1;
@@ -87,7 +87,7 @@ int sci_testmatrix(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iDim, iDim, &pdblRealRet);
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iDim, iDim, &pdblRealRet);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -112,13 +112,13 @@ int sci_testmatrix(char *fname, int* _piKey)
 	return 0;
 }
 
-char getGenerateMode(int* _piKey, int* _piAddress)
+char getGenerateMode(void* pvApiCtx, int* _piAddress)
 {
 	int iRet = 0;
 
 	char* pstData;
 
-	iRet = getAllocatedSingleString(_piKey, _piAddress, &pstData);
+	iRet = getAllocatedSingleString(pvApiCtx, _piAddress, &pstData);
 	if(iRet)
 	{
 		return -1;
@@ -127,7 +127,7 @@ char getGenerateMode(int* _piKey, int* _piAddress)
 	return pstData[0];
 }
 
-int getGenerateSize(int* _piKey, int* _piAddress)
+int getGenerateSize(void* pvApiCtx, int* _piAddress)
 {
 	SciErr sciErr;
 	int iRet = 0;
@@ -137,9 +137,9 @@ int getGenerateSize(int* _piKey, int* _piAddress)
 	double* pdblReal = NULL;
 	double* pdblImg	 = NULL;
 
-	if(isVarComplex(_piKey, _piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -148,7 +148,7 @@ int getGenerateSize(int* _piKey, int* _piAddress)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

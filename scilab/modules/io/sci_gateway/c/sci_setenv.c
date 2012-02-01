@@ -22,7 +22,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_setenv(char *fname, int* _piKey)
+int sci_setenv(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;
@@ -44,7 +44,7 @@ int sci_setenv(char *fname, int* _piKey)
 	CheckRhs(2,2);
 	CheckLhs(0,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -52,7 +52,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -60,7 +60,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -74,7 +74,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -88,7 +88,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -102,7 +102,7 @@ int sci_setenv(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -119,7 +119,7 @@ int sci_setenv(char *fname, int* _piKey)
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	if (pStVarOne)
 	{
-		sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -137,7 +137,7 @@ int sci_setenv(char *fname, int* _piKey)
 	pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 	if (pStVarTwo)
 	{
-		sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -159,7 +159,7 @@ int sci_setenv(char *fname, int* _piKey)
 	FREE(pStVarTwo); pStVarTwo = NULL;
 
 	m_out1 = 1; n_out1 = 1;
-	sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m_out1, n_out1, &result);
+	sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out1, n_out1, &result);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

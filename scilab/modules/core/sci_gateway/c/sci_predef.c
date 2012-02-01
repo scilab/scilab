@@ -19,7 +19,7 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_predef)(char *fname, int* _piKey)
+int C2F(sci_predef)(char *fname, void* pvApiCtx)
 {
     int previous_n_var_protected = 0;
 
@@ -94,7 +94,7 @@ int C2F(sci_predef)(char *fname, int* _piKey)
                     char **variablesPredef = getPredefinedVariablesName(&nbElements);
                     if (variablesPredef && (nbElements > 0))
                     {
-                        SciErr sciErr = createMatrixOfString(_piKey, Rhs + 1, nbElements, 1, variablesPredef);
+                        SciErr sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbElements, 1, variablesPredef);
                         freeArrayOfString(variablesPredef, nbElements);
                         variablesPredef = NULL;
                         if(sciErr.iErr)
@@ -111,7 +111,7 @@ int C2F(sci_predef)(char *fname, int* _piKey)
                     }
                     else
                     {
-                        createEmptyMatrix(_piKey, Rhs + 1);
+                        createEmptyMatrix(pvApiCtx, Rhs + 1);
                         LhsVar(1) = Rhs + 1;
                         PutLhsVar();
                         return 0;

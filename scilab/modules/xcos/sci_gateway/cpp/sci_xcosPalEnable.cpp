@@ -29,7 +29,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalEnable(char *fname, int* _piKey)
+int sci_xcosPalEnable(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 1);
     CheckLhs(0, 1);
@@ -38,7 +38,7 @@ int sci_xcosPalEnable(char *fname, int* _piKey)
     int nameLength = 0;
 
     /* name setup */
-    if (readVectorString(_piKey,1, &name, &nameLength, fname))
+    if (readVectorString(pvApiCtx,1, &name, &nameLength, fname))
     {
         return 0;
     }

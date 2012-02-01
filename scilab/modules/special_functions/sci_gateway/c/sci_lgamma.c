@@ -22,13 +22,13 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intslgamma)(char *id,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_lgamma(char *fname, int* _piKey)
+int sci_lgamma(char *fname, void* pvApiCtx)
 {
     if (Rhs == 1)
     {
         int *piAddressVarOne = NULL;
         int iType1 = 0;
-        SciErr sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+        SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -36,7 +36,7 @@ int sci_lgamma(char *fname, int* _piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);

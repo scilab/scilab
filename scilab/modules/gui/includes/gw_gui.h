@@ -56,7 +56,7 @@ GUI_IMPEXP int sci_uiputfile( char * fname, unsigned long fname_len ) ;
 GUI_IMPEXP int sci_raise_window ( char * fname, unsigned long fname_len ) ;
 
 // YaSp
-GUI_IMPEXP int sci_about(char* fname, int* _piKey);
+GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

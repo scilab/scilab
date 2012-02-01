@@ -20,7 +20,7 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_frexp(char *fname, int* _piKey)
+int sci_frexp(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -39,7 +39,7 @@ int sci_frexp(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(2,2);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 	if(sciErr.iErr)
 	{
@@ -47,7 +47,7 @@ int sci_frexp(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr, &iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -60,27 +60,27 @@ int sci_frexp(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piKey, piAddr))
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
         return 0;
 	}
 
-	sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblCoef);
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblCoef);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, iRows, iCols, &pdblExp);
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblExp);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

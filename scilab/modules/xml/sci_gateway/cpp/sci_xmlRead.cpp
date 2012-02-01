@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char * fname, int* _piKey)
+int sci_xmlRead(char * fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;
@@ -43,7 +43,7 @@ int sci_xmlRead(char * fname, int* _piKey)
     CheckLhs(1, 1);
     CheckRhs(1, 2);
 
-    err = getVarAddressFromPosition(_piKey, 1, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -51,16 +51,16 @@ int sci_xmlRead(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!isStringType(_piKey, addr))
+    if (!isStringType(pvApiCtx, addr))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
-    getAllocatedSingleString(_piKey, addr, &path);
+    getAllocatedSingleString(pvApiCtx, addr, &path);
 
     if (Rhs == 2)
     {
-        err = getVarAddressFromPosition(_piKey, 2, &addr);
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
         {
             freeAllocatedSingleString(path);
@@ -69,14 +69,14 @@ int sci_xmlRead(char * fname, int* _piKey)
             return 0;
         }
 
-        if (!isBooleanType(_piKey, addr))
+        if (!isBooleanType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(path);
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
 
-        getScalarBoolean(_piKey, addr, &validateParam);
+        getScalarBoolean(pvApiCtx, addr, &validateParam);
         validate = validateParam != 0;
     }
 
@@ -90,7 +90,7 @@ int sci_xmlRead(char * fname, int* _piKey)
         return 0;
     }
 
-    if (!doc->createOnStack(Rhs + 1, _piKey))
+    if (!doc->createOnStack(Rhs + 1, pvApiCtx))
     {
         return 0;
     }

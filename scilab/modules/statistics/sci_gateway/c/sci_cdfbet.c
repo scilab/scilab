@@ -20,7 +20,7 @@ extern int C2F(cdfbet)(int *,double *,double *,double *,double *,double *,double
  * SUBROUTINE CDFBET( WHICH, P, Q, X, Y, A, B, STATUS, BOUND )
  * Cumulative Distribution Function, BETa Distribution
  */
-int sci_cdfbet(char* fname, int* _piKey) 
+int sci_cdfbet(char* fname, void* pvApiCtx) 
 {
   struct cdf_item items[] =
     {{"PQ", 4, 2, 2},
@@ -28,5 +28,5 @@ int sci_cdfbet(char* fname, int* _piKey)
      {"A" , 5, 1, 5},
      {"B" , 5, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfbet, 5, 6, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf);
+  return cdf_generic(fname, pvApiCtx, &cdf);
 } 

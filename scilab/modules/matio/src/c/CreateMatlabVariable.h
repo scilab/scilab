@@ -33,7 +33,7 @@
  *
  * @return TRUE if the variable has been written without problem
  */
-MATIO_IMPEXP int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+MATIO_IMPEXP int CreateMatlabVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 
 /*
@@ -47,7 +47,7 @@ MATIO_IMPEXP int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVar
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position);
+int CreateIntegerVariable(void* pvApiCtx, int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab HyperMatrix variable on stack from a Matlab variable
@@ -64,7 +64,7 @@ int CreateIntegerVariable(void *pvApiCtx, int iVar, int integerType, matvar_t *m
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position);
+int CreateHyperMatrixVariable(void* pvApiCtx, int iVar, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position);
 
 /*
  * Create a Scilab Struct variable on stack from a Matlab variable
@@ -76,7 +76,7 @@ int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, const char *type, int *i
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab Cell variable on stack from a Matlab variable
@@ -88,7 +88,7 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateCellVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab Char variable on stack from a Matlab variable
@@ -100,7 +100,7 @@ int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateCharVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab Sparse variable on stack from a Matlab variable
@@ -112,7 +112,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateSparseVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab Double variable on stack from a Matlab variable
@@ -124,7 +124,7 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateDoubleVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
  * Create a Scilab Boolean variable on stack from a Matlab variable
@@ -136,6 +136,6 @@ int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
  *
  * @return TRUE if the variable has been written without problem
  */
-int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateBooleanVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 #endif /* !__CREATEMATLABVARIABLE_H__ */

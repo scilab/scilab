@@ -15,7 +15,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 
-int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
+int CreateHyperMatrixVariable(void* pvApiCtx, int iVar, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
 {
 /*
 **   !!!! In scilab6 HyperMatrix are no more Tlist !!!!

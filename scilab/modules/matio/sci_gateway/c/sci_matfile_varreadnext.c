@@ -30,7 +30,7 @@ enum matfile_errors {
   UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varreadnext(char* fname, int* _piKey)
+int sci_matfile_varreadnext(char* fname, void* pvApiCtx)
 {
   mat_t *matfile = NULL;
   matvar_t *matvar = NULL;
@@ -45,13 +45,13 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
 
   /* Input argument is the index of the file to read */
 
-  _SciErr = getVarAddressFromPosition(_piKey, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(_piKey, fd_addr, &var_type); MATIO_ERROR;
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
 
   if (var_type == sci_matrix)
     {
-      getScalarDouble(_piKey, fd_addr, &tmp_dbl);
-      if (!isScalar(_piKey, fd_addr))
+      getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
+      if (!isScalar(pvApiCtx, fd_addr))
 	{
 	  Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
 	  return 1;
@@ -77,20 +77,20 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
   if ((matvar == NULL) || (matvar->name == NULL))
     {
       /* Return empty name */
-      createSingleString(_piKey, Rhs+1, "\0");
+      createSingleString(pvApiCtx, Rhs+1, "\0");
       LhsVar(1) = Rhs+1;
 
       if (Lhs >= 2)
 	{
 	  /* Return empty value */
-	  createEmptyMatrix(_piKey, Rhs+2);
+	  createEmptyMatrix(pvApiCtx, Rhs+2);
 	  LhsVar(2) = Rhs+2;
 	}
 
       if (Lhs == 3)
 	{
 	  /* Return error flag instead of variable class */
-	  createScalarDouble(_piKey, Rhs+3, NO_MORE_VARIABLES);
+	  createScalarDouble(pvApiCtx, Rhs+3, NO_MORE_VARIABLES);
 	  LhsVar(3) = Rhs+3;
 	}
 
@@ -103,7 +103,7 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
   matvar->isComplex =  matvar->isComplex != 0;
 
   /* Return the variable name */
-  createSingleString(_piKey, Rhs+1, matvar->name);
+  createSingleString(pvApiCtx, Rhs+1, matvar->name);
   LhsVar(1) = Rhs+1;
 
   returnedClass = matvar->class_type;
@@ -111,7 +111,7 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
   if (Lhs >= 2)
     {
       /* Return the values */
-      if (!CreateMatlabVariable(_piKey, Rhs+2, matvar, NULL, -1)) /* Could not Create Variable */
+      if (!CreateMatlabVariable(pvApiCtx, Rhs+2, matvar, NULL, -1)) /* Could not Create Variable */
 	{
 	  sciprint("Do not know how to read a variable of class %d.\n", matvar->class_type);
 	  returnedClass = UNKNOWN_VARIABLE_TYPE;
@@ -122,7 +122,7 @@ int sci_matfile_varreadnext(char* fname, int* _piKey)
   if (Lhs == 3)
     {
       /* Create class return value */
-      createScalarDouble(_piKey, Rhs+3, returnedClass);
+      createScalarDouble(pvApiCtx, Rhs+3, returnedClass);
       LhsVar(3) = Rhs+3;
     }
 

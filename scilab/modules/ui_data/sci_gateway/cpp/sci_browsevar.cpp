@@ -19,7 +19,7 @@ extern "C"
 #include "stack-c.h"
 }
 /*--------------------------------------------------------------------------*/
-int sci_browsevar(char *fname, int *_piKey)
+int sci_browsevar(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

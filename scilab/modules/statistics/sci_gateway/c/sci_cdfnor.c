@@ -20,7 +20,7 @@ extern int C2F(cdfnor)(int *,double *,double *,double*,double *,double *, int *,
  * SUBROUTINE CDFNOR ( WHICH, P, Q, X, MEAN, SD, STATUS, BOUND )
  * Cumulative Distribution Function, NORmal distribution
  */
-int sci_cdfnor(char* fname, int* _piKey)
+int sci_cdfnor(char* fname, void* pvApiCtx)
 {
   struct cdf_item items[] =
     {{"PQ"  , 3, 2, 2},
@@ -28,5 +28,5 @@ int sci_cdfnor(char* fname, int* _piKey)
      {"Mean", 4, 1, 4},
      {"Std" , 4, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfnor, 4, 5, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf); 
+  return cdf_generic(fname, pvApiCtx, &cdf); 
 } 

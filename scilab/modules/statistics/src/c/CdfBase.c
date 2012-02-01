@@ -28,9 +28,9 @@ int mod(int a, int b);
 int rotate(int i, int step, int length);
 char *cdf_options(struct cdf_descriptor const * const desc);
 void cdf_error(char const * const fname, int status, double bound);
-int CdfBase(char const * const fname, int* _piKey, int inarg, int oarg, int shift, int which, int (*fun)(int *, ...));
+int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int shift, int which, int (*fun)(int *, ...));
 
-int cdf_generic(char *fname, int* _piKey, struct cdf_descriptor *cdf)
+int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf)
 {
     int iErr = 0;
     struct cdf_item const * it;
@@ -38,13 +38,13 @@ int cdf_generic(char *fname, int* _piKey, struct cdf_descriptor *cdf)
 
     CheckRhs(cdf->minrhs, cdf->maxrhs);
     CheckLhs(cdf->minlhs, cdf->maxlhs);
-    option = create_string(_piKey, 1);
+    option = create_string(pvApiCtx, 1);
     for (it = cdf->items; it != cdf->end_item; ++it)
     {
         if(strcmp(option, it->option) == 0)
         {
             /* "which" argument (5th) inferred from position in item list */
-            iErr = CdfBase(fname, _piKey, it->inarg, it->oarg, it->shift, it - cdf->items + 1, cdf->fun);
+            iErr = CdfBase(fname, pvApiCtx, it->inarg, it->oarg, it->shift, it - cdf->items + 1, cdf->fun);
             break;
         }
     }
@@ -174,7 +174,7 @@ void cdf_error(char const * const fname, int status, double bound)
  * @param fun actual computation function
  * @return error code
  */
-int CdfBase(char const * const fname, int* _piKey, int inarg, int oarg, int shift, int which, int (*fun)(int*, ...))
+int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int shift, int which, int (*fun)(int*, ...))
 {
 #define MAXARG 6
     double *data[MAXARG];
@@ -194,8 +194,8 @@ int CdfBase(char const * const fname, int* _piKey, int inarg, int oarg, int shif
 
     for (i = 0; i < inarg; ++i)
     {
-        getVarAddressFromPosition(_piKey, i + 2, &p);
-        getMatrixOfDouble(_piKey, p, &rows[i], &cols[i], &data[i]);
+        getVarAddressFromPosition(pvApiCtx, i + 2, &p);
+        getMatrixOfDouble(pvApiCtx, p, &rows[i], &cols[i], &data[i]);
     }
     for (i = 1; i < inarg ; ++i)
     {
@@ -208,7 +208,7 @@ int CdfBase(char const * const fname, int* _piKey, int inarg, int oarg, int shif
         
     for (i = 0; i < oarg; ++i)
     {
-            allocMatrixOfDouble(_piKey, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
+            allocMatrixOfDouble(pvApiCtx, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
     }
 #define callpos(i) rotate(i, shift, inarg + oarg)
     for (i = 0; i < rows[0] * cols[0]; ++i)

@@ -132,7 +132,7 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     return types::Function::OK;
 }
 
-//static types::InternalType* import_data(int* _piKey, int _iDatasetId)
+//static types::InternalType* import_data(void* pvApiCtx, int _iDatasetId)
 static types::InternalType* import_data(int _iDatasetId)
 {
     types::InternalType* pIT = NULL;
@@ -176,12 +176,12 @@ static types::InternalType* import_data(int _iDatasetId)
         /*
     case sci_sparse :
         {
-            pIT = import_sparse(_piKey, _iDatasetId);
+            pIT = import_sparse(pvApiCtx, _iDatasetId);
             break;
         }
     case sci_boolean_sparse :
         {
-            pIT = import_boolean_sparse(_piKey, _iDatasetId);
+            pIT = import_boolean_sparse(pvApiCtx, _iDatasetId);
             break;
         }
         */
@@ -217,7 +217,7 @@ static types::InternalType* import_void(int _iDatasetId)
 
     if(_piAddress)
     {
-        sciErr = createVoidInNamedList(_piKey);
+        sciErr = createVoidInNamedList(pvApiCtx);
     }
     else
     {
@@ -586,7 +586,7 @@ static types::InternalType* import_poly(int _iDatasetId)
     return pPoly;
 }
 /*
-static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
+static types::InternalType* import_sparse(void* pvApiCtx, int _iDatasetId)
 {
     int iRet						= 0;
     int	iRows						= 0;
@@ -633,22 +633,22 @@ static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
     {
         if(iComplex)
         {
-            sciErr = createNamedComplexSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+            sciErr = createNamedComplexSparseMatrix(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
         }
         else
         {
-            sciErr = createNamedSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+            sciErr = createNamedSparseMatrix(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
         }
     }
     else //if not null this variable is in a list
     {
         if(iComplex)
         {
-            sciErr = createComplexSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+            sciErr = createComplexSparseMatrixInNamedList(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
         }
         else
         {
-            sciErr = createSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+            sciErr = createSparseMatrixInNamedList(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
         }
     }
 
@@ -681,7 +681,7 @@ static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
     return true;
 }
 
-static types::InternalType* import_boolean_sparse(int* _piKey, int _iDatasetId)
+static types::InternalType* import_boolean_sparse(void* pvApiCtx, int _iDatasetId)
 {
     int iRet						= 0;
     int	iRows						= 0;
@@ -708,11 +708,11 @@ static types::InternalType* import_boolean_sparse(int* _piKey, int _iDatasetId)
 
     if(_piAddress == NULL)
     {
-        sciErr					= createNamedBooleanSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+        sciErr					= createNamedBooleanSparseMatrix(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     }
     else //if not null this variable is in a list
     {
-        sciErr					= createBooleanSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+        sciErr					= createBooleanSparseMatrixInNamedList(pvApiCtx, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     }
 
     if(sciErr.iErr)

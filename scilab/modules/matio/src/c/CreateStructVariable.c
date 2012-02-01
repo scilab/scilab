@@ -24,7 +24,7 @@
       return 0;			     \
     }
 
-int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   char **fieldNames = NULL;
   int nbFields = 0;

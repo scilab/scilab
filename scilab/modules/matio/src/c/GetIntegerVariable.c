@@ -22,7 +22,7 @@
       return 0;			     \
     }
 
-matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position)
+matvar_t *GetIntegerVariable(void* pvApiCtx, int iVar, const char *name, int * parent, int item_position)
 {
   int rank = 0;
   int *dims = NULL;

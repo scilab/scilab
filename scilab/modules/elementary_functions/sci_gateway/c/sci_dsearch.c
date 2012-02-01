@@ -19,11 +19,11 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-static int getMode(int* _piKey, int _iPos, char *_pcMode);
+static int getMode(void* pvApiCtx, int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
 
-int sci_dsearch(char *fname, int* _piKey)
+int sci_dsearch(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -52,28 +52,28 @@ int sci_dsearch(char *fname, int* _piKey)
 	CheckRhs(2,3);
 	CheckLhs(1,3);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr2, &iType2);
+	sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -89,7 +89,7 @@ int sci_dsearch(char *fname, int* _piKey)
 	//get ch
 	if(Rhs == 3)
 	{
-		int iRet = getMode(_piKey, 3, &cMode);
+		int iRet = getMode(pvApiCtx, 3, &cMode);
 		if(iRet)
 		{
 			return 0;
@@ -107,14 +107,14 @@ int sci_dsearch(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piKey, piAddr1) || isVarComplex(_piKey, piAddr2))
+	if(isVarComplex(pvApiCtx, piAddr1) || isVarComplex(pvApiCtx, piAddr2))
 	{
 		SciError(202);
 		return 0;
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -163,7 +163,7 @@ int sci_dsearch(char *fname, int* _piKey)
 	}
 
 	//Get X
-	sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -172,7 +172,7 @@ int sci_dsearch(char *fname, int* _piKey)
 
 	if(Lhs >= 1)
 	{
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealInd);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealInd);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -182,7 +182,7 @@ int sci_dsearch(char *fname, int* _piKey)
 
 	if(Lhs >= 2)
 	{
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -192,7 +192,7 @@ int sci_dsearch(char *fname, int* _piKey)
 
 	if(Lhs >= 3)
 	{
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 3, 1, 1, &pdblRealInfo);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 3, 1, 1, &pdblRealInfo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -240,7 +240,7 @@ int sci_dsearch(char *fname, int* _piKey)
 	return 0;
 }
 
-static int getMode(int* _piKey, int _iPos, char *_pcMode)
+static int getMode(void* pvApiCtx, int _iPos, char *_pcMode)
 {
 	SciErr sciErr;
 	int iRows			= 0;
@@ -251,7 +251,7 @@ static int getMode(int* _piKey, int _iPos, char *_pcMode)
 	int iLen			= 0;
 	char *pstMode	= NULL;
 
-	sciErr = getVarAddressFromPosition(_piKey, _iPos, &piAddr);
+	sciErr = getVarAddressFromPosition(pvApiCtx, _iPos, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -259,7 +259,7 @@ static int getMode(int* _piKey, int _iPos, char *_pcMode)
 	}
 
 
-	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
+	sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -268,8 +268,8 @@ static int getMode(int* _piKey, int _iPos, char *_pcMode)
 
 	if(iRows == 1 && iCols == 1)
 	{
-		int iRet = getAllocatedSingleString(_piKey, piAddr, &pstMode);
-		//sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, &pstMode);
+		int iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstMode);
+		//sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstMode);
 		if(iRet)
 		{
 			return iRet;

@@ -19,12 +19,12 @@
 * returns non zero when called from a concurrent execution context
 */
 
-int sci_parallel_concurrency(char *fname, int* _piKey)
+int sci_parallel_concurrency(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(1, 1);
 
-    createScalarDouble(_piKey, Rhs + 1, (double)parallelConcurrency());
+    createScalarDouble(pvApiCtx, Rhs + 1, (double)parallelConcurrency());
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();

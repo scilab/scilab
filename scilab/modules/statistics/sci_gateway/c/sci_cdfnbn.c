@@ -20,7 +20,7 @@ extern int C2F(cdfnbn)(int *, double *, double *, double *, double *, double *, 
  * SUBROUTINE CDFNBN ( WHICH, P,Q, S, XN, PR, STATUS, BOUND )
  * Cumulative Distribution Function, Negative BiNomial distribution
  */
-int sci_cdfnbn(char* fname, int* _piKey)
+int sci_cdfnbn(char* fname, void* pvApiCtx)
 {
   struct cdf_item items[] =
     {{"PQ"    , 4, 2, 2},
@@ -28,5 +28,5 @@ int sci_cdfnbn(char* fname, int* _piKey)
      {"Xn"    , 5, 1, 4},
      {"PrOmpr", 4, 2, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfnbn, 5, 6, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf); 
+  return cdf_generic(fname, pvApiCtx, &cdf); 
 } 

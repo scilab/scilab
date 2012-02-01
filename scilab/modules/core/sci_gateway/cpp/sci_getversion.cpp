@@ -28,9 +28,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 #define VERSION_STRING L"string_info"
 /*--------------------------------------------------------------------------*/
-static int getversion_no_rhs(char *fname, int* _piKey);
-static int getversion_one_rhs(char *fname, int* _piKey);
-static int getversion_two_rhs(char *fname, int* _piKey);
+static int getversion_no_rhs(char *fname, void* pvApiCtx);
+static int getversion_one_rhs(char *fname, void* pvApiCtx);
+static int getversion_two_rhs(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 
 using namespace types;
@@ -135,27 +135,27 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //	if (Rhs == 0)
 //	{
 //		CheckLhs(1,2);
-//		getversion_no_rhs(fname, _piKey);
+//		getversion_no_rhs(fname, pvApiCtx);
 //	}
 //	else if (Rhs == 1)
 //	{
 //		CheckLhs(1,1);
-//		getversion_one_rhs(fname, _piKey);
+//		getversion_one_rhs(fname, pvApiCtx);
 //	}
 //	else /* Rhs == 2 */
 //	{
 //		CheckLhs(1,1);
-//		getversion_two_rhs(fname, _piKey);
+//		getversion_two_rhs(fname, pvApiCtx);
 //	}
 //	return 0;
 //}
 ///*--------------------------------------------------------------------------*/
-//int getversion_no_rhs(char *fname, int* _piKey)
+//int getversion_no_rhs(char *fname, void* pvApiCtx)
 //{
 //	char *version = getScilabVersionAsString();
 //	if (version)
 //	{
-//		createSingleString(_piKey, Rhs + 1, version);
+//		createSingleString(pvApiCtx, Rhs + 1, version);
 //		LhsVar(1) = Rhs + 1;
 //		FREE(version);
 //		version = NULL;
@@ -176,7 +176,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //			SciErr sciErr;
 //			int m = 1;
 //			int n = sizeOptions;
-//			sciErr = createMatrixOfString(_piKey, Rhs + 2, m, n, ScilabOptions);
+//			sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m, n, ScilabOptions);
 //			freeArrayOfString(ScilabOptions, sizeOptions);
 //
 //			if(sciErr.iErr)
@@ -199,29 +199,29 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //	return 0;
 //}
 ///*--------------------------------------------------------------------------*/
-//int getversion_one_rhs(char *fname, int* _piKey)
+//int getversion_one_rhs(char *fname, void* pvApiCtx)
 //{
 //	SciErr sciErr;
 //	int *piAddressVarOne = NULL;
 //
-//	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+//	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 //	if(sciErr.iErr)
 //	{
 //		printError(&sciErr, 0);
 //		return 0;
 //	}
 //
-//	if (isStringType(_piKey, piAddressVarOne))
+//	if (isStringType(pvApiCtx, piAddressVarOne))
 //	{
 //		char *modulename = NULL;
 //
-//		if (!isScalar(_piKey, piAddressVarOne))
+//		if (!isScalar(pvApiCtx, piAddressVarOne))
 //		{
 //			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
 //			return 0;
 //		}
 //
-//		if (getAllocatedSingleString(_piKey, piAddressVarOne, &modulename) == 0)
+//		if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &modulename) == 0)
 //		{
 //			if (modulename)
 //			{
@@ -248,7 +248,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //							freeAllocatedSingleString(modulename);
 //							modulename = NULL;
 //
-//							sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m, n, versionAsDouble);
+//							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m, n, versionAsDouble);
 //							FREE(versionAsDouble);
 //							versionAsDouble = NULL;
 //
@@ -309,45 +309,45 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //	return 0;
 //}
 ///*--------------------------------------------------------------------------*/
-//int getversion_two_rhs(char *fname, int* _piKey)
+//int getversion_two_rhs(char *fname, void* pvApiCtx)
 //{
 //	SciErr sciErr;
 //	int *piAddressVarOne = NULL;
 //	int *piAddressVarTwo = NULL;
 //
-//	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+//	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 //	if(sciErr.iErr)
 //	{
 //		printError(&sciErr, 0);
 //		return 0;
 //	}
 //
-//	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+//	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
 //	if(sciErr.iErr)
 //	{
 //		printError(&sciErr, 0);
 //		return 0;
 //	}
 //
-//	if (isStringType(_piKey, piAddressVarOne) && isStringType(_piKey, piAddressVarTwo))
+//	if (isStringType(pvApiCtx, piAddressVarOne) && isStringType(pvApiCtx, piAddressVarTwo))
 //	{
 //		char *modulename = NULL;
 //		char *optionname = NULL;
 //
-//		if (!isScalar(_piKey, piAddressVarOne))
+//		if (!isScalar(pvApiCtx, piAddressVarOne))
 //		{
 //			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
 //			return 0;
 //		}
 //
-//		if (!isScalar(_piKey, piAddressVarTwo))
+//		if (!isScalar(pvApiCtx, piAddressVarTwo))
 //		{
 //			Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
 //			return 0;
 //		}
 //
-//		if ( (getAllocatedSingleString(_piKey, piAddressVarOne, &modulename) == 0) &&
-//			(getAllocatedSingleString(_piKey, piAddressVarTwo, &optionname) == 0) )
+//		if ( (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &modulename) == 0) &&
+//			(getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &optionname) == 0) )
 //		{
 //			if ( (modulename) && (optionname) )
 //			{
@@ -359,7 +359,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 //
 //						if (versionInfo)
 //						{
-//							createSingleString(_piKey, Rhs + 1, versionInfo);
+//							createSingleString(pvApiCtx, Rhs + 1, versionInfo);
 //
 //							FREE(versionInfo);
 //							versionInfo = NULL;

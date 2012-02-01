@@ -31,7 +31,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_scinotes(char * fname, int *_piKey)
+int sci_scinotes(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -63,7 +63,7 @@ int sci_scinotes(char * fname, int *_piKey)
         int iType1 = 0;
         char *functionName = NULL;
 
-        sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -71,7 +71,7 @@ int sci_scinotes(char * fname, int *_piKey)
             return 0;
         }
 
-        sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -86,7 +86,7 @@ int sci_scinotes(char * fname, int *_piKey)
         }
 
         /* get dimensions */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
+        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -102,7 +102,7 @@ int sci_scinotes(char * fname, int *_piKey)
         }
 
         /* get lengths */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -135,7 +135,7 @@ int sci_scinotes(char * fname, int *_piKey)
         }
 
         /* get strings */
-        sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+        sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -152,7 +152,7 @@ int sci_scinotes(char * fname, int *_piKey)
             double *pdblVarTwo = NULL;
             int iType2 = 0;
 
-            sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -162,7 +162,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 return 0;
             }
 
-            sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+            sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -186,7 +186,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 wchar_t **pStVarTwo = NULL;
                 int *lenStVarTwo = NULL;
 
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, NULL);
+                sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, lenStVarTwo, NULL);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -214,7 +214,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 }
 
                 /* get lengths */
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
+                sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -247,7 +247,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 }
 
                 /* get strings */
-                sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
+                sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, lenStVarTwo, pStVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -286,7 +286,7 @@ int sci_scinotes(char * fname, int *_piKey)
             }
             else
             {
-                if (isVarComplex(_piKey, piAddressVarTwo) == 1)
+                if (isVarComplex(pvApiCtx, piAddressVarTwo) == 1)
                 {
                     Scierror(999, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -294,7 +294,7 @@ int sci_scinotes(char * fname, int *_piKey)
                     return 0;
                 }
 
-                sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2, &pdblVarTwo);
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdblVarTwo);
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -316,7 +316,7 @@ int sci_scinotes(char * fname, int *_piKey)
                 {
                     int *piAddressVarThree = NULL;
 
-                    sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
@@ -324,7 +324,7 @@ int sci_scinotes(char * fname, int *_piKey)
                         return 0;
                     }
 
-                    if (!isStringType(_piKey, piAddressVarThree))
+                    if (!isStringType(pvApiCtx, piAddressVarThree))
                     {
                         Scierror(999, _("%s: Wrong type for argument %d: A single string.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -332,7 +332,7 @@ int sci_scinotes(char * fname, int *_piKey)
                         return 0;
                     }
 
-                    int ret = getAllocatedSingleString(_piKey, piAddressVarThree, &functionName);
+                    int ret = getAllocatedSingleString(pvApiCtx, piAddressVarThree, &functionName);
 
                     if (ret)
                     {

@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_errclear(char *fname, int *_piKey)
+int sci_errclear(char *fname, void* pvApiCtx)
 {
     //Rhs = Max(0,Rhs);
     CheckRhs(0,2);
@@ -30,7 +30,7 @@ int sci_errclear(char *fname, int *_piKey)
         SciErr sciErr;
         int *piAddressVarOne = NULL;
 
-        sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -38,20 +38,20 @@ int sci_errclear(char *fname, int *_piKey)
             return 0;
         }
 
-        if (isDoubleType(_piKey, piAddressVarOne))
+        if (isDoubleType(pvApiCtx, piAddressVarOne))
         {
             double dValue = 0.;
             int iValue = 0;
             int iLastErrorValue = 0;
             //int iLastErrorValue = getLastErrorValue();
 
-            if (!isScalar(_piKey, piAddressVarOne))
+            if (!isScalar(pvApiCtx, piAddressVarOne))
             {
                 Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
                 return 0;
             }
 
-             getScalarDouble(_piKey, piAddressVarOne, &dValue);
+             getScalarDouble(pvApiCtx, piAddressVarOne, &dValue);
              iValue = (int)dValue;
 
              if ((double)iValue != dValue)

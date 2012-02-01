@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_getdynlibext(types::typed_list &in, int _iRetCo
 	//CheckRhs(0,0);
 	//CheckLhs(1,1);
 
- //   createSingleString(_piKey, Rhs + 1, SHARED_LIB_EXT);
+ //   createSingleString(pvApiCtx, Rhs + 1, SHARED_LIB_EXT);
 
 	//LhsVar(1) = Rhs+1;
 	//PutLhsVar();

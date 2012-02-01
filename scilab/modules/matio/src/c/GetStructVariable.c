@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
 
-matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position)
+matvar_t *GetStructVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position)
 {
     int fieldIndex = 0;
     int valueIndex = 0;

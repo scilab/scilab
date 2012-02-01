@@ -28,7 +28,7 @@ extern void C2F(remez)(int *ngrid, int *nc, int *iext,
 int remez_buffered(int ngrid, int nc, int *iext,
 		   float *des, float *grid, float *wt, double *output);
 
-int sci_remez(char *fname, int* _piKey)
+int sci_remez(char *fname, void* pvApiCtx)
 {
   /************************************************
    * Warning : bug 4189                           *
@@ -48,35 +48,35 @@ int sci_remez(char *fname, int* _piKey)
   CheckLhs(1,1);
 
   // GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
-  getVarAddressFromPosition(_piKey, 1, &p);
-  getMatrixOfDouble(_piKey, p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 1, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   iext = (int *)argument;
   nc = cols * rows;
   C2F(entier)(&nc, argument, iext);
 
   // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
-  getVarAddressFromPosition(_piKey, 2, &p);
-  getMatrixOfDouble(_piKey, p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 2, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   des = (float *)argument;
   ngrid = cols * rows;
   length = rows;
   C2F(simple)(&ngrid, argument, des);
 
   // GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
-  getVarAddressFromPosition(_piKey, 3, &p);
-  getMatrixOfDouble(_piKey, p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 3, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   grid = (float *)argument;
   C2F(simple)(&ngrid, argument, grid);
 
   // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
-  getVarAddressFromPosition(_piKey, 4, &p);
-  getMatrixOfDouble(_piKey, p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 4, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   wt = (float *)argument;
   C2F(simple)(&ngrid, argument, wt);
 
   // iAllocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
-  allocMatrixOfDouble(_piKey, Rhs + 1, rows, nc - 1, &output);
-  //createMatrixOfDouble(_piKey, Rhs + 1, rows, nc - 1, output);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 1, rows, nc - 1, &output);
+  //createMatrixOfDouble(pvApiCtx, Rhs + 1, rows, nc - 1, output);
 
   error = remez_buffered(ngrid, nc - 2, iext, des, grid, wt, output);
   if (error) {

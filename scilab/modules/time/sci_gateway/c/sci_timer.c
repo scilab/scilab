@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int sci_timer(char *fname,int* _piKey)
+int sci_timer(char *fname,void* pvApiCtx)
 {
   double timerval = 0;
 
@@ -36,7 +36,7 @@ int sci_timer(char *fname,int* _piKey)
       int n1 = 1;
       double * pDblReal = NULL;
 
-      sciErr = allocMatrixOfDouble(_piKey, Rhs+1, n1, n1, &pDblReal);
+      sciErr = allocMatrixOfDouble(pvApiCtx, Rhs+1, n1, n1, &pDblReal);
 
       *pDblReal = (double)timerval;
 

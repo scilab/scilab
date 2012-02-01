@@ -18,7 +18,7 @@
 #include "api_oldstack.h"
 
 
-int sci_nearfloat(char *fname, int* _piKey)
+int sci_nearfloat(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
@@ -44,28 +44,28 @@ int sci_nearfloat(char *fname, int* _piKey)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddr2, &iType2);
+	sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -86,7 +86,7 @@ int sci_nearfloat(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, NULL, NULL);
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, NULL, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -99,7 +99,7 @@ int sci_nearfloat(char *fname, int* _piKey)
 	}
 
 	piLen = (int*)malloc(sizeof(int) * iRows1 * iCols1);
-	sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, piLen, NULL);
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, piLen, NULL);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -112,14 +112,14 @@ int sci_nearfloat(char *fname, int* _piKey)
 		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+1 for null termination
 	}
 
-	sciErr = getMatrixOfString(_piKey, piAddr1, &iRows1, &iCols1, piLen, pstData);
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, piLen, pstData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal);
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -140,7 +140,7 @@ int sci_nearfloat(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows2, iCols2, &pdblRealRet);
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, &pdblRealRet);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

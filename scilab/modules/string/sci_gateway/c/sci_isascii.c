@@ -27,10 +27,10 @@
 #define iswascii(x) isascii(wctob(x))
 #endif
 /*----------------------------------------------------------------------------*/
-static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne);
-static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne);
+static int isasciiStrings(char *fname, void* pvApiCtx, int *piAddressVarOne);
+static int isasciiMatrix(char *fname, void* pvApiCtx, int *piAddressVarOne);
 /*----------------------------------------------------------------------------*/
-int sci_isascii(char *fname, int* _piKey)
+int sci_isascii(char *fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int *piAddressVarOne = NULL;
@@ -39,7 +39,7 @@ int sci_isascii(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -47,7 +47,7 @@ int sci_isascii(char *fname, int* _piKey)
 		return 0;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -57,11 +57,11 @@ int sci_isascii(char *fname, int* _piKey)
 
 	if (iType1 == sci_matrix)
 	{
-		return isasciiMatrix(fname, _piKey, piAddressVarOne);
+		return isasciiMatrix(fname, pvApiCtx, piAddressVarOne);
 	}
 	else if (iType1 == sci_strings)
 	{
-		return isasciiStrings(fname, _piKey, piAddressVarOne);
+		return isasciiStrings(fname, pvApiCtx, piAddressVarOne);
 	}
 	else
 	{
@@ -70,13 +70,13 @@ int sci_isascii(char *fname, int* _piKey)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
+static int isasciiMatrix(char *fname, void* pvApiCtx, int *piAddressVarOne)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	double *pdVarOne = NULL;
 
-	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -87,7 +87,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 	if (m1 * n1 > 0)
 	{
 		BOOL *bOutputMatrix = NULL;
-		sciErr = getMatrixOfDouble(_piKey, piAddressVarOne, &m1, &n1, &pdVarOne);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m1, &n1, &pdVarOne);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -108,7 +108,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 				else bOutputMatrix[i] = (int)FALSE;
 			}
 
-			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m1, n1, bOutputMatrix);
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, bOutputMatrix);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -137,7 +137,7 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 		m1 = 0;
 		n1 = 0;
 
-		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m1, n1, NULL);
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -151,14 +151,14 @@ static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
+static int isasciiStrings(char *fname, void* pvApiCtx, int *piAddressVarOne)
 {
 	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	wchar_t **pwcStVarOne = NULL;
 	int *lenStVarOne = NULL;
 
-	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -174,7 +174,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 		int i = 0;
 		int lengthAllStrings = 0;
 
-		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
 		if(sciErr.iErr)
 		{
 			if (lenStVarOne)
@@ -209,7 +209,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 			}
 		}
 
-		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
 		if(sciErr.iErr)
 		{
 			if (lenStVarOne)
@@ -254,7 +254,7 @@ static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 			mOut = 1;
 			nOut = lengthAllStrings;
 
-			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, mOut, nOut, bOutputMatrix);
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, mOut, nOut, bOutputMatrix);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);

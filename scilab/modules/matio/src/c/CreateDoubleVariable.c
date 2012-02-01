@@ -21,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateDoubleVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   struct ComplexSplit *mat5ComplexData = NULL;

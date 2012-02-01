@@ -40,10 +40,10 @@ static BOOL loadedDep = FALSE;
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname, int* _piKey);
-static int sci_toprint_two_rhs(const char *fname, int* _piKey);
+static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx);
+static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_toprint(char *fname, int* _piKey)
+int sci_toprint(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 2);
     CheckLhs(0, 1);
@@ -56,22 +56,22 @@ int sci_toprint(char *fname, int* _piKey)
 
     if (Rhs == 1)
     {
-        return sci_toprint_one_rhs(fname, _piKey);
+        return sci_toprint_one_rhs(fname, pvApiCtx);
     }
     else
     {
-        return sci_toprint_two_rhs(fname, _piKey);
+        return sci_toprint_two_rhs(fname, pvApiCtx);
     }
     return 0;
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_one_rhs(const char *fname, int* _piKey)
+static int sci_toprint_one_rhs(const char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -79,12 +79,12 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne))
     {
         char *fileName = NULL;
         BOOL iRet = FALSE;
 
-        if (getAllocatedSingleString(_piKey, piAddressVarOne, &fileName) == 0)
+        if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &fileName) == 0)
         {
             char *fullName = getFullFilename(fileName);
 
@@ -118,7 +118,7 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
                 fullName = NULL;
             }
 
-            createScalarBoolean(_piKey, Rhs + 1, iRet);
+            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
             LhsVar(1) = Rhs + 1;
             PutLhsVar();
         }
@@ -127,12 +127,12 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
-    else if (isDoubleType(_piKey, piAddressVarOne))
+    else if (isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        if (isScalar(_piKey, piAddressVarOne))
+        if (isScalar(pvApiCtx, piAddressVarOne))
         {
             double dValue = 0.;
-            if (!getScalarDouble(_piKey, piAddressVarOne, &dValue))
+            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
             {
                 int num_win = (int)dValue;
                 BOOL iRet = FALSE;
@@ -159,7 +159,7 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
                     return 0;
                 }
 
-                createScalarBoolean(_piKey, Rhs + 1, iRet);
+                createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
                 LhsVar(1) = Rhs + 1;
                 PutLhsVar();
             }
@@ -181,13 +181,13 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
 }
 
 /*--------------------------------------------------------------------------*/
-static int sci_toprint_two_rhs(const char *fname, int* _piKey)
+static int sci_toprint_two_rhs(const char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -196,7 +196,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
         return 0;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -204,11 +204,11 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
         return 0;
     }
 
-    if (isStringType(_piKey, piAddressVarOne))
+    if (isStringType(pvApiCtx, piAddressVarOne))
     {
-        if (isScalar(_piKey, piAddressVarTwo))
+        if (isScalar(pvApiCtx, piAddressVarTwo))
         {
-            if (isStringType(_piKey, piAddressVarTwo))
+            if (isStringType(pvApiCtx, piAddressVarTwo))
             {
                 char *pageHeader = NULL;
                 char **pStVarOne = NULL;
@@ -220,7 +220,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                 char *lines = NULL;
 
 
-                sciErr = getMatrixOfString(_piKey, piAddressVarOne,&mOne, &nOne, NULL, NULL);
+                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, NULL, NULL);
                 if(sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -243,7 +243,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                     return 0;
                 }
 
-                sciErr = getMatrixOfString(_piKey, piAddressVarOne,&mOne, &nOne, lenStVarOne, NULL);
+                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, lenStVarOne, NULL);
                 if(sciErr.iErr)
                 {
                     printError(&sciErr, 0);
@@ -281,7 +281,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                     }
                 }
 
-                sciErr = getMatrixOfString(_piKey, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
+                sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
                 if (lenStVarOne)
                 {
                     FREE(lenStVarOne);
@@ -316,7 +316,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                 }
                 freeArrayOfString(pStVarOne, mnOne);
 
-                if (getAllocatedSingleString(_piKey, piAddressVarTwo, &pageHeader) == 0)
+                if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pageHeader) == 0)
                 {
                     BOOL iRet = FALSE;
 
@@ -345,7 +345,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                         lines = NULL;
                     }
 
-                    createScalarBoolean(_piKey, Rhs + 1, iRet);
+                    createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
                     LhsVar(1) = Rhs + 1;
                     PutLhsVar();
                 }
@@ -372,14 +372,14 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
             return 0;
         }
     }
-    else if (isDoubleType(_piKey, piAddressVarOne))
+    else if (isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        if (isScalar(_piKey, piAddressVarOne))
+        if (isScalar(pvApiCtx, piAddressVarOne))
         {
             int num_win = 0;
             double dValue = 0.;
 
-            if (!getScalarDouble(_piKey, piAddressVarOne, &dValue))
+            if (!getScalarDouble(pvApiCtx, piAddressVarOne, &dValue))
             {
                 num_win = (int)dValue;
 
@@ -401,14 +401,14 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                 return 0;
             }
 
-            if (isStringType(_piKey, piAddressVarTwo))
+            if (isStringType(pvApiCtx, piAddressVarTwo))
             {
                 BOOL iRet = FALSE;
 
-                if (isScalar(_piKey, piAddressVarTwo))
+                if (isScalar(pvApiCtx, piAddressVarTwo))
                 {
                     char *outputType = NULL;
-                    if (getAllocatedSingleString(_piKey, piAddressVarTwo, &outputType) == 0)
+                    if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &outputType) == 0)
                     {
                         if ((strcmp(outputType, "pos") == 0) || (strcmp(outputType, "gdi") == 0))
                         {
@@ -431,7 +431,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                                 return 0;
                             }
 
-                            createScalarBoolean(_piKey, Rhs + 1, iRet);
+                            createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
                             LhsVar(1) = Rhs + 1;
                             PutLhsVar();
                         }

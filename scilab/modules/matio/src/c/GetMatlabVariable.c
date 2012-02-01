@@ -22,7 +22,7 @@
       return 0;			     \
     }
 
-matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetMatlabVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
     int * var_addr = NULL;
     int var_type;

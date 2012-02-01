@@ -28,14 +28,14 @@ extern "C"
 
 using namespace types;
 
-int api_Top(int* _piKey)
+int api_Top(void* pvApiCtx)
 {
-	return api_Rhs(_piKey);
+	return api_Rhs(pvApiCtx);
 }
 
-int api_Rhs(int* _piKey)
+int api_Rhs(void* pvApiCtx)
 {
-	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
+	GatewayStruct *pStr =  (GatewayStruct*)pvApiCtx;
 
 	if(pStr == NULL)
 	{
@@ -52,9 +52,9 @@ int api_Rhs(int* _piKey)
 	return (int)pStr->m_pIn->size();
 }
 
-int api_Lhs(int* _piKey)
+int api_Lhs(void* pvApiCtx)
 {
-	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
+	GatewayStruct *pStr =  (GatewayStruct*)pvApiCtx;
 
 	if(pStr == NULL)
 	{
@@ -69,10 +69,10 @@ int api_Lhs(int* _piKey)
 	return abs(*pStr->m_piRetCount);
 }
 
-int api_CheckRhs(int _iMin, int _iMax, int* _piKey)
+int api_CheckRhs(int _iMin, int _iMax, void* pvApiCtx)
 {
-    GatewayStruct *pStr = (GatewayStruct*)_piKey;
-    int iRhs            = api_Rhs(_piKey);
+    GatewayStruct *pStr = (GatewayStruct*)pvApiCtx;
+    int iRhs            = api_Rhs(pvApiCtx);
 
     if(iRhs > _iMax || iRhs < _iMin)
     {
@@ -89,10 +89,10 @@ int api_CheckRhs(int _iMin, int _iMax, int* _piKey)
     return 1;
 }
 
-int api_CheckLhs(int _iMin, int _iMax, int* _piKey)
+int api_CheckLhs(int _iMin, int _iMax, void* pvApiCtx)
 {
-    GatewayStruct *pStr = (GatewayStruct*)_piKey;
-	int iLhs = api_Lhs(_piKey);
+    GatewayStruct *pStr = (GatewayStruct*)pvApiCtx;
+	int iLhs = api_Lhs(pvApiCtx);
 
 	if(iLhs > _iMax || iLhs < _iMin)
 	{
@@ -129,9 +129,9 @@ int* api_LhsVar(int _iVal, void* _pvCtx)
 	return pVal;
 }
 
-void api_OverLoad(int _iVal, int* _piKey)
+void api_OverLoad(int _iVal, void* pvApiCtx)
 {
-    GatewayStruct* pStr = (GatewayStruct*)_piKey;
+    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
     Function::ReturnValue callResult;
     typed_list tlReturnedValues;
 

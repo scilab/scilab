@@ -17,13 +17,13 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal);
-int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal);
-int isreal_sparse(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal);
+int isreal_double(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal);
+int isreal_poly(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal);
+int isreal_sparse(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal);
 int isreal_common(double *_pdblData, int _iSize, double _dblRef, int* _piIsReal);
 
 /*--------------------------------------------------------------------------*/
-int sci_isreal(char *fname,int* _piKey)
+int sci_isreal(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRet			= 0;
@@ -39,7 +39,7 @@ int sci_isreal(char *fname,int* _piKey)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	sciErr  = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr  = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -47,7 +47,7 @@ int sci_isreal(char *fname,int* _piKey)
 	}
 
 
-	if(!isDoubleType(_piKey, piAddr1) && !isPolyType(_piKey, piAddr1) && !isSparseType(_piKey, piAddr1))
+	if(!isDoubleType(pvApiCtx, piAddr1) && !isPolyType(pvApiCtx, piAddr1) && !isSparseType(pvApiCtx, piAddr1))
 	{
 		OverLoad(1);
 		return 0;
@@ -55,14 +55,14 @@ int sci_isreal(char *fname,int* _piKey)
 
 	if(Rhs == 1)
 	{
-		if(isVarComplex(_piKey, piAddr1))
+		if(isVarComplex(pvApiCtx, piAddr1))
 			iBool = 0;
 		else
 			iBool = 1;
 	}
 	else //Rhs == 2
 	{
-		if(!isVarComplex(_piKey, piAddr1)) //Not complex
+		if(!isVarComplex(pvApiCtx, piAddr1)) //Not complex
 		{
 			iBool = 1;
 		}
@@ -71,20 +71,20 @@ int sci_isreal(char *fname,int* _piKey)
 			int iType1 			= 0;
 			double dblPrec 	= 0;
 			
-			sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+			sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
 				return 0;
 			}
 
-			iRet = getScalarDouble(_piKey, piAddr2, &dblPrec);
+			iRet = getScalarDouble(pvApiCtx, piAddr2, &dblPrec);
 			if(iRet)
 			{
 				return 0;
 			}
 
-			sciErr = getVarType(_piKey, piAddr1, &iType1);
+			sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -94,13 +94,13 @@ int sci_isreal(char *fname,int* _piKey)
 			switch(iType1)
 			{
 			case sci_matrix :
-				iRet = isreal_double(_piKey, piAddr1, dblPrec, &iBool);
+				iRet = isreal_double(pvApiCtx, piAddr1, dblPrec, &iBool);
 				break;
 			case sci_poly :
-				iRet = isreal_poly(_piKey, piAddr1, dblPrec, &iBool);
+				iRet = isreal_poly(pvApiCtx, piAddr1, dblPrec, &iBool);
 				break;
 			case sci_sparse :
-				iRet = isreal_sparse(_piKey, piAddr1, dblPrec, &iBool);
+				iRet = isreal_sparse(pvApiCtx, piAddr1, dblPrec, &iBool);
 				break;
 			default: //never come here
 				break;
@@ -113,7 +113,7 @@ int sci_isreal(char *fname,int* _piKey)
 		return 1;
 	}
 
-	iRet = createScalarBoolean(_piKey, Rhs + 1, iBool);
+	iRet = createScalarBoolean(pvApiCtx, Rhs + 1, iBool);
 	if(iRet)
 	{
 		return 1;
@@ -124,7 +124,7 @@ int sci_isreal(char *fname,int* _piKey)
 	return 0;
 }
 
-int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
+int isreal_double(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal)
 {
 	SciErr sciErr;
 	int iRet					= 0;
@@ -135,7 +135,7 @@ int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+	sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -151,7 +151,7 @@ int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	return 0;
 }
 
-int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
+int isreal_poly(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal)
 {
 	int i;
 	int iRet					= 0;
@@ -162,7 +162,7 @@ int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	double** pdblReal	= NULL;
 	double** pdblImg	= NULL;
 
-	iRet = getAllocatedMatrixOfComplexPoly(_piKey, _piAddress, &iRows, &iCols, &piCoeff, &pdblReal, &pdblImg);
+	iRet = getAllocatedMatrixOfComplexPoly(pvApiCtx, _piAddress, &iRows, &iCols, &piCoeff, &pdblReal, &pdblImg);
 	if(iRet)
 	{
 		freeAllocatedMatrixOfComplexPoly(iRows, iCols, piCoeff, pdblReal, pdblImg);
@@ -188,7 +188,7 @@ int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	return 0;
 }
 
-int isreal_sparse(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
+int isreal_sparse(void* pvApiCtx, int* _piAddress, double _dblRef, int* _piIsReal)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -200,7 +200,7 @@ int isreal_sparse(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	iRet = getAllocatedComplexSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+	iRet = getAllocatedComplexSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	if(iRet)
 	{
 		return iRet;

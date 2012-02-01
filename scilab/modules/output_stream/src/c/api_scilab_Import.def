@@ -2,7 +2,6 @@
 
 
 EXPORTS
-pvApiCtx DATA
 createMatrixOfWideString
 printError
 createMatrixOfDouble

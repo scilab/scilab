@@ -20,7 +20,7 @@ extern int C2F(cdfgam)(int *, double *, double *, double*, double *, double *, i
  * SUBROUTINE CDFGAM( WHICH, P, Q, X, SHAPE, SCALE, STATUS, BOUND )
  * Cumulative Distribution Function, GAMma distribution
  */
-int sci_cdfgam(char* fname, int* _piKey)
+int sci_cdfgam(char* fname, void* pvApiCtx)
 {
   struct cdf_item items[] =
     {{"PQ",    3, 2, 2},
@@ -28,5 +28,5 @@ int sci_cdfgam(char* fname, int* _piKey)
      {"Shape", 4, 1, 4},
      {"Rate", 4, 1, 0}};
   struct cdf_descriptor cdf = mkcdf(cdfgam, 4, 5, 1, 2, items);
-  return cdf_generic(fname, _piKey, &cdf);
+  return cdf_generic(fname, pvApiCtx, &cdf);
 }

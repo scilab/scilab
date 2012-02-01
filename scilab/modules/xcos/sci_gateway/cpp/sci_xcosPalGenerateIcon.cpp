@@ -28,7 +28,7 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalGenerateIcon(char *fname, int* _piKey)
+int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
@@ -37,13 +37,13 @@ int sci_xcosPalGenerateIcon(char *fname, int* _piKey)
     char *iconPath = NULL;
 
     /* blockPath setup */
-    if(readSingleString(_piKey, 1, &blockPath, fname))
+    if(readSingleString(pvApiCtx, 1, &blockPath, fname))
     {
         return 0;
     }
 
     /* iconPath setup */
-    if(readSingleString(_piKey, 2, &iconPath, fname))
+    if(readSingleString(pvApiCtx, 2, &iconPath, fname))
     {
         FREE(blockPath);
         return 0;

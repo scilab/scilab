@@ -25,7 +25,7 @@ extern int C2F(dcopy)();
 extern int C2F(dscal)();
 
 /*--------------------------------------------------------------------------*/
-int sci_kron(char *fname,int* _piKey)
+int sci_kron(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iRows1					= 0;
@@ -52,28 +52,28 @@ int sci_kron(char *fname,int* _piKey)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	iComplex1 = isVarComplex(_piKey, piAddr1);
-	iComplex2 = isVarComplex(_piKey, piAddr2);
+	iComplex1 = isVarComplex(pvApiCtx, piAddr1);
+	iComplex2 = isVarComplex(pvApiCtx, piAddr2);
 	iComplexRet = iComplex1 | iComplex2;
 
 	/*get first parameter*/
-	if(isVarComplex(_piKey, piAddr1))
+	if(isVarComplex(pvApiCtx, piAddr1))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -82,7 +82,7 @@ int sci_kron(char *fname,int* _piKey)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &iRows1, &iCols1, &pdblReal1);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -91,9 +91,9 @@ int sci_kron(char *fname,int* _piKey)
 	}
 
 	/*get second parameter*/
-	if(isVarComplex(_piKey, piAddr2))
+	if(isVarComplex(pvApiCtx, piAddr2))
 	{
-		sciErr = getComplexMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2, &pdblImg2);
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2, &pdblImg2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -102,7 +102,7 @@ int sci_kron(char *fname,int* _piKey)
 	}
 	else
 	{
-		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -114,7 +114,7 @@ int sci_kron(char *fname,int* _piKey)
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -125,7 +125,7 @@ int sci_kron(char *fname,int* _piKey)
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
