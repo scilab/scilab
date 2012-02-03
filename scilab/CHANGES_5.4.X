@@ -17,6 +17,8 @@ XML
 
 * Bug #10594 fixed - size could not be used with two arguments on XMLList.
 
+* Bug #10630 fixed - Fix a typo in one of the error message.
+
 
 Help
 ====

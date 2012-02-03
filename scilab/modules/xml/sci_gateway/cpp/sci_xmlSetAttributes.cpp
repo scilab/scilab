@@ -57,7 +57,7 @@ int sci_xmlSetAttributes(char *fname, unsigned long fname_len)
     obj = XMLObject::getFromId < XMLObject > (id);
     if (!obj)
     {
-        Scierror(999, gettext("%s: XML attributes does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML attribute does not exist.\n"), fname);
         return 0;
     }
 

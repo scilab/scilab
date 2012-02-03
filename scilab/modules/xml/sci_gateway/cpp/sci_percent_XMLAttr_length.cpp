@@ -56,7 +56,7 @@ int sci_percent_XMLAttr_length(char *fname, unsigned long fname_len)
     attrs = XMLObject::getFromId < XMLAttr > (id);
     if (!attrs)
     {
-        Scierror(999, gettext("%s: XML Attributes does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML attribute does not exist.\n"), fname);
         return 0;
     }
 
