@@ -306,6 +306,8 @@ Bug fixes
 
 * Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
 
+* Bug #10631 fixed - The # sign was missing in some error cases.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
