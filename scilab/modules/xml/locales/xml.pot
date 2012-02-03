@@ -156,6 +156,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_percent_XMLAttr_length.cpp, line: 59
 # File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 59
+# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 61
 #, c-format
 msgid "%s: XML attribute does not exist.\n"
 msgstr ""
@@ -364,12 +365,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
 "or a XMLSet expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_xmlSetAttributes.cpp, line: 61
-#, c-format
-msgid "%s: XML attribute does not exist.\n"
 msgstr ""
 
 #
