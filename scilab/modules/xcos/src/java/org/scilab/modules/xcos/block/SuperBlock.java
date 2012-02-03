@@ -52,15 +52,15 @@ import com.mxgraph.util.mxEventObject;
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
  * customized by the user.
- * 
+ *
  * A SuperBlock can be created from any part of the diagram y selecting blocks
  * and applying the
  * {@link org.scilab.modules.xcos.block.actions.RegionToSuperblockAction}.
- * 
+ *
  * It can also appear to users as a normal block by applying a mask on it. In
  * this case the creator can use any SuperBlock context defined variable on a
  * prompt to the user.
- * 
+ *
  * @see SuperBlockDiagram
  * @see SuperblockMaskCreateAction
  * @see SuperblockMaskCustomizeAction
@@ -149,7 +149,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * openBlockSettings this method is called when a double click occurred on a
      * super block
-     * 
+     *
      * @param context
      *            parent diagram context
      * @see BasicBlock#openBlockSettings(String[])
@@ -174,7 +174,7 @@ public final class SuperBlock extends BasicBlock {
          */
         if (getChild() == null
                 && getSimulationFunctionType().compareTo(
-                        SimulationFunctionType.DEFAULT) != 0) {
+                    SimulationFunctionType.DEFAULT) != 0) {
             return;
         }
 
@@ -192,16 +192,16 @@ public final class SuperBlock extends BasicBlock {
 
             /*
              * Compatibility with older diagrams.
-             * 
+             *
              * Before Scilab 5.2.2, saved diagrams don't contains XML children
              * but use a pseudo scs_m structure instead.
-             * 
+             *
              * In this case child was null and we need to reconstruct child
              * diagram from scs_m.
              */
             if (getChild() == null
                     || getChild().getChildVertices(
-                            getChild().getDefaultParent()).length == 0) {
+                        getChild().getDefaultParent()).length == 0) {
                 child = null;
                 createChildDiagram();
             } else {
@@ -243,17 +243,21 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Action to be performed when the diagram is closed or whenever we have to
      * commit a child modification.
-     * 
+     *
      * This method does not handle tab closing operation.
      */
     public void syncParameters() {
         /*
          * Do not ask the user, the diagram is saved and closed.
-         * 
+         *
          * By this way we are sure that the main scs_m structure is always
          * valid.
+         *
+         * The child can be null in case of a block conversion (to native code or other)
          */
-        if (getChild().isModified()) {
+        if (getChild() != null && getChild().isModified()) {
+            // normal hierarchy case
+
             setRealParameters(new DiagramElement().encode(getChild()));
             getChild().setModified(true);
             getChild().setModifiedNonRecursively(false);
@@ -392,8 +396,8 @@ public final class SuperBlock extends BasicBlock {
             }
         }
         getParentDiagram().fireEvent(
-                new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-                        XcosConstants.EVENT_BLOCK_UPDATED, this));
+            new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+                              XcosConstants.EVENT_BLOCK_UPDATED, this));
     }
 
     /**
@@ -423,7 +427,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Customize the parent diagram on name change
-     * 
+     *
      * @param value
      *            the new name
      * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
@@ -444,7 +448,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Clone the child safely.
-     * 
+     *
      * @return a new clone instance
      * @throws CloneNotSupportedException
      *             never
@@ -470,7 +474,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Encode the block as xml
-     * 
+     *
      * @param out
      *            the output stream
      * @throws IOException
@@ -482,7 +486,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Decode the block as xml
-     * 
+     *
      * @param in
      *            the input stream
      * @throws IOException
@@ -491,7 +495,7 @@ public final class SuperBlock extends BasicBlock {
      *             on error
      */
     private void readObject(java.io.ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+        ClassNotFoundException {
         new XcosCodec().decode((Node) in.readObject(), this);
 
         /*
