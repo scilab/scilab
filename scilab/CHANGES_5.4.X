@@ -302,6 +302,8 @@ Bug fixes
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
 
+* Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
