@@ -430,17 +430,20 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
   List_free(redrawnFigures);
 }
 /*--------------------------------------------------------------------------------*/
-void updateSubwinScale(sciPointObj * pSubwin)
+void updateSubwinScale(char * pSubwinUID)
 {
-  sciJavaUpdateSubwinScale(pSubwin);
+    sciJavaUpdateSubwinScale(pSubwinUID);
 }
 /*------------------------------------------------------------------------------*/
-void updateTextBounds(sciPointObj * pText)
+void updateTextBounds(char * pTextUID)
 {
-  /* update coordinates transformation if needed */
-  updateSubwinScale(sciGetParentSubwin(pText));
+    char* parentAxes = NULL;
 
-  /* compute the boundign box of the text */
-  sciJavaUpdateTextBoundingBox(pText);
+    /* Update coordinate transformation if needed */
+    getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+    updateSubwinScale(parentAxes);
+
+    /* Compute the bounding box of the text */
+    sciJavaUpdateTextBoundingBox(pTextUID);
 }
 /*------------------------------------------------------------------------------*/

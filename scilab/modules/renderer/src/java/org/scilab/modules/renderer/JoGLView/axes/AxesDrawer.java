@@ -40,6 +40,8 @@ import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -88,6 +90,9 @@ public class AxesDrawer {
 
     /** The current projection (from object to window coordinates) used when drawing objects. */
     private Transformation currentProjection;
+
+    /** The set of object to window coordinate projections associated to all the Axes drawn by this drawer. */
+    private final Map<String, Transformation> projectionMap = new HashMap<String, Transformation>();
 
     /**
      * Default constructor.
@@ -143,6 +148,9 @@ public class AxesDrawer {
 
         Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
         currentProjection = windowTrans.rightTimes(currentProjection);
+
+        /* Update the projection map with the resulting projection. */
+        addProjection(axes.getIdentifier(), currentProjection);
 
         /**
          * Draw the axes background.
@@ -551,11 +559,88 @@ public class AxesDrawer {
     }
 
     /**
+     * Computes and return the object to window coordinate projection corresponding to the given Axes object.
+     * @param axes the given Axes.
+     * @param drawingTools the drawing tools.
+     * @param canvas the current canvas.
+     * @return the projection
+     */
+    private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Canvas canvas) {
+        Transformation currentProjection;
+
+        try {
+            /* Compute the zone projection. */
+            Transformation zoneProjection = computeZoneProjection(axes);
+
+            /* Compute the box transformation. */
+            Transformation transformation = computeBoxTransformation(axes, canvas);
+
+            /* Compute the data scale and translate transformation. */
+            Transformation dataTransformation = computeDataTransformation(axes);
+
+            /* Compute the object to window coordinates projection. */
+            currentProjection = zoneProjection.rightTimes(transformation);
+            currentProjection = currentProjection.rightTimes(dataTransformation);
+
+            Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+            currentProjection = windowTrans.rightTimes(currentProjection);
+        } catch (DegenerateMatrixException e) {
+            return TransformationFactory.getIdentity();
+        }
+
+        return currentProjection;
+    }
+
+    /**
      * Returns the current projection from object to window coordinates.
      * @return the projection.
      */
     public Transformation getProjection() {
         return currentProjection;
+    }
+
+    /**
+     * Adds the projection from object to window coordinates corresponding to a given Axes object
+     * to the projection map.
+     * @param axesId the identifier of the given Axes.
+     * @param projection the corresponding projection.
+     */
+    public synchronized void addProjection(String axesId, Transformation projection) {
+        projectionMap.put(axesId, projection);
+    }
+
+    /**
+     * Returns the projection from object to window coordinates corresponding
+     * to a given Axes object.
+     * @param id the identifier of the given Axes.
+     * @return the projection.
+     */
+    public Transformation getProjection(String id) {
+        return projectionMap.get(id);
+    }
+
+    /**
+     * Removes the object to window coordinate projection corresponding to a given Axes from
+     * the projection map.
+     */
+    public void removeProjection(String axesId) {
+        projectionMap.remove(axesId);
+    }
+
+    /**
+     * Updates the projection from object to window coordinates for the given Axes object.
+     * @param axes the given Axes.
+     */
+    public static void updateAxesTransformation(Axes axes) {
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        Transformation transformation = currentVisitor.getAxesDrawer().getProjection(axes.getIdentifier());
+
+        /* The projection must be updated */
+        if (transformation == null) {
+            Transformation projection = currentVisitor.getAxesDrawer().computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas());
+
+            currentVisitor.getAxesDrawer().addProjection(axes.getIdentifier(), projection);
+        }
     }
 
     /**
@@ -608,6 +693,7 @@ public class AxesDrawer {
 
     public void disposeAll() {
         this.rulerDrawer.disposeAll();
+        this.projectionMap.clear();
     }
 
     public void update(String id, String property) {

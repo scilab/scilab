@@ -53,6 +53,11 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Pierre Lando
  */
@@ -70,6 +75,13 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private ColorMap colorMap;
     private DrawingTools drawingTools = null;
 
+    /**
+     * The map between the existing Figures' identifiers and their corresponding Visitor.
+     * Used to get access to the DrawerVisitor corresponding to a given Figure when the
+     * renderer module is accessed from another thread than the AWT's.
+     */
+    private final static Map<String, DrawerVisitor> visitorMap = new HashMap<String, DrawerVisitor>();
+
     public DrawerVisitor(Canvas canvas, Figure figure) {
         GraphicController.getController().register(this);
 
@@ -83,6 +95,15 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.axesDrawer = new AxesDrawer(this, this.labelManager);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
+
+        /*
+         * Forces font loading from the main thread. This is done because
+         * if getSciFontManager (thus, font loading) is concurrently accessed from
+         * 2 different threads (the AWT's and the main one), freezing may occur.
+         */
+        FontManager.getSciFontManager();
+
+        visitorMap.put(figure.getIdentifier(), this);
     }
 
     public DrawingTools getDrawingTools() {
@@ -93,8 +114,31 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         return canvas;
     }
 
+    /**
+     * @return the TextManager
+     */
+    public TextManager getTextManager() {
+        return textManager;
+    }
+
+    /**
+     * @return the AxeDrawer
+     */
+    public AxesDrawer getAxesDrawer() {
+        return axesDrawer;
+    }
+
     public ColorMap getColorMap() {
         return colorMap;
+    }
+
+    /**
+     * Returns the visitor corresponding to the Figure identifier.
+     * @param figureId the figure identifier.
+     * @return the visitor.
+     */
+    public static DrawerVisitor getVisitor(String figureId) {
+        return visitorMap.get(figureId);
     }
 
     @Override
@@ -1012,6 +1056,12 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         labelManager.dispose(id);
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
+
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Figure && visitorMap.containsKey(id)) {
+            visitorMap.remove(id);
+        }
+
         canvas.redraw();
     }
 

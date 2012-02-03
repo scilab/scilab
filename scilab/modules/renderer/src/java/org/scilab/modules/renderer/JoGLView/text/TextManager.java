@@ -23,6 +23,8 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -100,6 +102,21 @@ public class TextManager {
     private Vector3d[] computeProjCorners(DrawingTools drawingTools, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
         Transformation canvasProj = drawingTools.getTransformationManager().getCanvasProjection();
 
+        return computeProjCorners(canvasProj, position, fontAngle, spriteWidth, spriteHeight);
+    }
+
+    /**
+     * Computes and returns the corners of a {@see Text} object's bounding box, in window coordinates.
+     * The returned corners are in the following order: lower-left, lower-right, upper-left and upper-right.
+     * @param canvasProj the projection from object coordinates to window coordinates.
+     * @param position the text's position.
+     * @param fontAngle the text's font angle (radians).
+     * @param spriteWidth the text sprite's width (in pixels).
+     * @param spriteHeight the text sprite's height (in pixels).
+     * @return the corners' window coordinates (4-element array).
+     * @throws DegenerateMatrixException
+     */
+    private Vector3d[] computeProjCorners(Transformation canvasProj, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
         Vector3d[] projCorners = new Vector3d[4];
 
         /*
@@ -198,6 +215,29 @@ public class TextManager {
     }
 
     /**
+     * Returns the dimensions of the SciRenderer {@see Sprite} corresponding to the given Scilab {@see Text}.
+     * The dimensions are in pixels (width, height).
+     * @param colorMap the current color map.
+     * @param text the given Scilab {@see Text}.
+     * @return the sprite's dimensions (2-element array)
+     */
+    private int[] getSpriteDims(final ColorMap colorMap, final Text text) {
+        int[] spriteDims = new int[2];
+        Sprite sprite = spriteMap.get(text.getIdentifier());
+        if (sprite == null) {
+            TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(spriteManager, colorMap, text);
+
+            spriteDims[0] = spriteDrawer.getWidth();
+            spriteDims[1] = spriteDrawer.getHeight();
+        } else {
+            spriteDims[0] = sprite.getWidth();
+            spriteDims[1] = sprite.getHeight();
+        }
+
+        return spriteDims;
+    }
+
+    /**
      * Create a sprite for the given text object.
      * @param colorMap the current colormap.
      * @param textObject the given text object.
@@ -228,5 +268,33 @@ public class TextManager {
     public void disposeAll() {
         spriteManager.dispose(spriteMap.values());
         spriteMap.clear();
+    }
+
+    /**
+     * Computes and updates the corners of the given Scilab {@see Text}.
+     * @param text the given Scilab {@see Text}.
+     */
+    public static void updateTextCorners(Text text) {
+        Vector3d[] projCorners = null;
+
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFigure());
+        Transformation currentProj = currentVisitor.getAxesDrawer().getProjection(text.getParentAxes());
+
+        int[] spriteDims = currentVisitor.getTextManager().getSpriteDims(currentVisitor.getColorMap(), text);
+        Vector3d textPosition = new Vector3d(text.getPosition());
+
+        /* Compute the corners */
+        try {
+            projCorners = currentVisitor.getTextManager().computeProjCorners(currentProj, textPosition, text.getFontAngle(), spriteDims[0], spriteDims[1]);
+        } catch (DegenerateMatrixException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Vector3d[] corners = currentVisitor.getTextManager().computeCorners(currentProj, projCorners);
+        Double[] coordinates = currentVisitor.getTextManager().cornersToCoordinateArray(corners);
+
+        /* Set the computed coordinates */
+        text.setCorners(coordinates);
     }
 }

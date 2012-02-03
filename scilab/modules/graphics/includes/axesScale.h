@@ -38,12 +38,12 @@ GRAPHICS_IMPEXP void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbSubwin)
 /**
  * Update subwin size and scale if needed
  */
-GRAPHICS_IMPEXP void updateSubwinScale(sciPointObj * pSubwin);
+GRAPHICS_IMPEXP void updateSubwinScale(char * pSubwinUID);
 
 /**
  * Update text bounds if needed
  */
-GRAPHICS_IMPEXP void updateTextBounds(sciPointObj * pText);
+GRAPHICS_IMPEXP void updateTextBounds(char * pTextUID);
 
 /**
  * Zoom an object using a rectangular selection given in pixels.
