@@ -190,6 +190,19 @@ public class ScilabBooleanSparse implements ScilabType {
     }
 
     /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
+    }
+
+    /**
      * Get the real part of the data.
      *
      * @return the real part.
@@ -282,6 +295,13 @@ public class ScilabBooleanSparse implements ScilabType {
         } else {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        return new Object[]{new int[]{rows, cols}, nbItemRow, getScilabColPos()};
     }
 
     /**

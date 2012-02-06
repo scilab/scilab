@@ -32,7 +32,7 @@ public class ScilabPolynomial implements ScilabType {
     private double[][][] imaginaryPart;
 
     private String varName;
-    private String polyVarName;
+    private String polyVarName = "x";
     private boolean swaped;
 
     /**
@@ -55,6 +55,16 @@ public class ScilabPolynomial implements ScilabType {
     }
 
     /**
+     * Constructor with a unique polynomial.
+     *
+     * @param data the unique polynomial
+     */
+    public ScilabPolynomial(double[] data, String polyVarName) {
+        this(data);
+        setPolyVarName(polyVarName);
+    }
+
+    /**
      * Constructor with a unique complex polynomial.
      *
      * @param realData the real part
@@ -68,6 +78,17 @@ public class ScilabPolynomial implements ScilabType {
     }
 
     /**
+     * Constructor with a unique complex polynomial.
+     *
+     * @param realData the real part
+     * @param imagData the complex part
+     */
+    public ScilabPolynomial(double[] realData, double[] imagData, String polyVarName) {
+        this(realData, imagData);
+        setPolyVarName(polyVarName);
+    }
+
+    /**
      * Constructor with a matrix of real polynomials.
      *
      * @param data the data
@@ -75,6 +96,16 @@ public class ScilabPolynomial implements ScilabType {
     public ScilabPolynomial(double[][][] data) {
         realPart = data;
         imaginaryPart = null;
+    }
+
+    /**
+     * Constructor with a matrix of real polynomials.
+     *
+     * @param data the data
+     */
+    public ScilabPolynomial(double[][][] data, String polyVarName) {
+        this(data);
+        setPolyVarName(polyVarName);
     }
 
     /**
@@ -86,6 +117,17 @@ public class ScilabPolynomial implements ScilabType {
     public ScilabPolynomial(double[][][] realData, double[][][] imagData) {
         realPart = realData;
         imaginaryPart = imagData;
+    }
+
+    /**
+     * Constructor with a matrix of complex polynomials
+     *
+     * @param realData the real part of the data
+     * @param imagData the imaginary part of the data
+     */
+    public ScilabPolynomial(double[][][] realData, double[][][] imagData, String polyVarName)  {
+        this(realData, imagData);
+        setPolyVarName(polyVarName);
     }
 
     /**
@@ -175,7 +217,11 @@ public class ScilabPolynomial implements ScilabType {
      * @return the name
      */
     public String getPolyVarName() {
-        return polyVarName == null ? "x" : polyVarName;
+        return polyVarName;
+    }
+
+    public void setPolyVarName(String polyVarName) {
+        this.polyVarName = polyVarName;
     }
 
     /**
@@ -250,6 +296,16 @@ public class ScilabPolynomial implements ScilabType {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{polyVarName, realPart};
+        } else {
+            return new Object[]{polyVarName, realPart, imaginaryPart};
+        }
+    }
 
     /**
      * Display the representation in the Scilab language of the type<br />

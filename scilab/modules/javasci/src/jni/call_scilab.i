@@ -77,6 +77,8 @@ class%}
         e.printStackTrace(System.err);
     }
   }
+
+  public final static native int putList(String varNmae, Object list, char type);
 %}
 
 /* JavaDoc for Call_Scilab class */
@@ -139,18 +141,13 @@ BOOL isComplexVar(char* varname);
 // string
 int putString(char* variableName, char **variable, int nbRow, int nbCol);
 
-
-%include "arrays_java.i"
-int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol);
-
-
 // This position matters. It will apply only to the following lines
 %include "call_scilab_java_typemaps.i"
 
+int putDoubleComplex(char * variableName, double variable[], int nbRow, int nbCol, double imag[], int nbRowI, int nbColI);
 
 // double (default Scilab type)
 int putDouble(char * variableName, double variable[], int nbRow, int nbCol);
-
 
 // boolean (%t / %f)
 int putBoolean(char * variableName, BOOL variable[], int nbRow, int nbCol);
@@ -177,4 +174,17 @@ int putLong(char * variableName, long variable[], int nbRow, int nbCol);
 int putUnsignedLong(char * variableName, unsigned long variable[], int nbRow, int nbCol);
 #endif
 
+// This position matters. It will apply only to the following lines
+%include "call_scilab_java_typemaps_sparse.i"
 
+int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL);
+
+int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL, double * imag, int imagL);
+
+int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL);
+
+// This position matters. It will apply only to the following lines
+%include "call_scilab_java_typemaps_poly.i"
+
+int putPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef);
+int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI);

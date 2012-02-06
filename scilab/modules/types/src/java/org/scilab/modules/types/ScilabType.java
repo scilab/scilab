@@ -73,6 +73,12 @@ public interface ScilabType extends Serializable, Cloneable {
     public boolean equals(Object obj);
 
     /**
+     * Get a single object used to easily rebuild a Scilab variable from the Java ScilabType
+     * @return an very simple object reflecting this ScilabType.
+     */
+    public Object getSerializedObject();
+
+    /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
      *

@@ -115,6 +115,27 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     }
 
     /**
+     * Get a serialized list;
+     * The format is the following:
+     *   i) returned[0] is an array of integers containing the Scilab type (ScilabTypeEunm) of the different elements of the list.
+     *   ii) returned[i] for i&gt;=1 contains the serialized form of each items.
+     * @return a serialized SiclabList/
+     */
+    public Object[] getSerializedObject() {
+        int[] types = new int[size()];
+        Object[] items = new Object[types.length + 1];
+
+        for (int i = 0; i < types.length; i++) {
+            ScilabType var = get(i);
+            types[i] = var.getType().swigValue();
+            items[i + 1] = var.getSerializedObject();
+        }
+        items[0] = types;
+
+        return items;
+    }
+
+    /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
      *

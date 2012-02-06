@@ -404,6 +404,19 @@ public class ScilabSparse implements ScilabType {
      *
      * @return an integer array.
      */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
+    }
+
+    /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
     public int[] getColPos() {
         return colPos;
     }
@@ -582,6 +595,17 @@ public class ScilabSparse implements ScilabType {
         }
 
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart};
+        } else {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart, imaginaryPart};
+        }
     }
 
     /**

@@ -196,8 +196,8 @@ public class ScilabDouble implements ScilabType {
      * @return the serialized matrix with complex values
      */
     public double[] getSerializedComplexMatrix() {
-        int size = this.getHeight()*this.getWidth();
-        double [] serializedComplexMatrix = new double[size*2];
+        int size = this.getHeight() * this.getWidth();
+        double [] serializedComplexMatrix = new double[size * 2];
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
                 serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
@@ -208,6 +208,16 @@ public class ScilabDouble implements ScilabType {
         return serializedComplexMatrix;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{realPart};
+        } else {
+            return new Object[]{realPart, imaginaryPart};
+        }
+    }
 
     /**
      * @return the height of the data matrix
