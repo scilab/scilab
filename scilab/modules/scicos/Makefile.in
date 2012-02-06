@@ -2389,7 +2389,7 @@ distclean-local:
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLYACC) $(<)
 @OCAML_TRUE@@XCOS_TRUE@	$(RM) -f $(<:.mly=.mli)
 # Crappy workaround to avoid bug 8013
-@OCAML_TRUE@@XCOS_TRUE@	touch src/modelica_compiler/scicosCodeGeneration.mli
+@OCAML_TRUE@@XCOS_TRUE@	touch src/modelica_compiler/*.mli
 
 # Call the lexer
 @OCAML_TRUE@@XCOS_TRUE@generate-lexer: $(LEXER_SRC)
