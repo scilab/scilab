@@ -71,7 +71,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         dfs.setDecimalSeparator('.');
         ((DecimalFormat) adaptedFormat).setDecimalFormatSymbols(dfs);
 
-        String text = adaptedFormat.format(value);
+        String text = adaptedFormat.format(value).replaceAll("E", "e");
         final TextEntity textEntity = new TextEntity(text);
 
         textEntity.setTextAntiAliased(false);
