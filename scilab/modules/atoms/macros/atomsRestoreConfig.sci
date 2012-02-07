@@ -28,7 +28,7 @@ function atomsRestoreConfig(quiet)
     if isfile(pathsystemuser + "config.bak") then
         movefile(pathsystemuser + "config.bak", pathsystemuser + "config");
     elseif ~quiet then
-	    error(msprintf(gettext("File %s does not exist : could not restore previous configuration."), pathsystemuser + "config.bak"));
+	    error(msprintf(gettext("File %s does not exist: could not restore previous configuration."), pathsystemuser + "config.bak"));
     end
 
 endfunction

@@ -69,7 +69,7 @@ function nbChanges = atomsSetConfig(field,value)
             case "False" then,
             case "true" then value(i)="True",
             case "false" then value(i)="False",
-            else error(msprintf(gettext("%s: Wrong value for input configuration argument : True or False expected.\n"),value(i)));
+            else error(msprintf(gettext("%s: Wrong value for input configuration argument: True or False expected.\n"),value(i)));
             end
         elseif element == "proxyHost"..
             | element == "proxyPort"..
