@@ -294,4 +294,4 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>7 then pause,end
 
-funcprot(fprot)
+funcprot(fprot);

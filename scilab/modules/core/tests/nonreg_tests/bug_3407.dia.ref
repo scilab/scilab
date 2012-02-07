@@ -252,4 +252,4 @@ function l=myfun2()
  [l,w]=where()
 endfunction
 l=myfun2();if l(1)<>7 then bugmes();quit;end
-funcprot(fprot)
+funcprot(fprot);
