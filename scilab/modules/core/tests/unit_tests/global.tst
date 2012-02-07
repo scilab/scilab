@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 global a
 a=133;
 clear a;
@@ -158,5 +158,5 @@ endfunction
 a13=G.a(1,3);
 X=G(1,3)
 if or(G.a(1,3)<>1) then pause,end
-funcprot(prot)
+funcprot(prot);
 

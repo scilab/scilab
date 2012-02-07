@@ -13,7 +13,7 @@
 // <-- Short Description -->
 //Invalid line numbering in compiled functions
 
-fprot=funcprot()
+fprot=funcprot();
 funcprot(0);
 
 function l=myfun()
