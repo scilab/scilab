@@ -308,6 +308,9 @@ Bug fixes
 
 * Bug #10631 fixed - The # sign was missing in some error cases.
 
+* Bug #10634 fixed - dsearch help page referenced an invalid input argument
+                     name.
+
 * Bug #10643 fixed - Bad result when using isreal function with a polynomial
                      input.
 
