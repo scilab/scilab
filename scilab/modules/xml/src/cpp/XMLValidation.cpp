@@ -74,15 +74,23 @@ namespace org_modules_xml
     bool XMLValidation::validate(const char *path, std::string * error)const
     {
         char *expandedPath = expandPathVariable(const_cast<char *>(path));
-        xmlTextReader *reader = xmlNewTextReaderFilename(expandedPath);
-        FREE(expandedPath);
-        if (!reader)
+        if (expandedPath)
         {
-            error->append(gettext("Invalid file"));
+            xmlTextReader *reader = xmlNewTextReaderFilename(expandedPath);
+            FREE(expandedPath);
+            if (!reader)
+            {
+                error->append(gettext("Invalid file"));
+                return false;
+            }
+
+            return validate(reader, error);
+        }
+        else
+        {
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
             return false;
         }
-
-        return validate(reader, error);
     }
 
     const std::list<XMLValidation *>& XMLValidation::getOpenValidationFiles()

@@ -30,35 +30,41 @@ namespace org_modules_xml
     XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):XMLValidation()
     {
         char *expandedPath = expandPathVariable(const_cast < char *>(path));
-        xmlSchemaParserCtxt *pctxt = xmlSchemaNewParserCtxt(expandedPath);
-          FREE(expandedPath);
-        if (!pctxt)
+        if (expandedPath)
         {
-            if (errorBuffer)
-            {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot create a validation context"));
-
-            *error = *errorBuffer;
-        }
-        else
-        {
-            validationFile = (void *)xmlSchemaParse(pctxt);
-            xmlSchemaFreeParserCtxt(pctxt);
-            if (!validationFile)
+            xmlSchemaParserCtxt *pctxt = xmlSchemaNewParserCtxt(expandedPath);
+            FREE(expandedPath);
+            if (!pctxt)
             {
                 if (errorBuffer)
                 {
                     delete errorBuffer;
                 }
-                errorBuffer = new std::string(gettext("Cannot parse the schema"));
+                errorBuffer = new std::string(gettext("Cannot create a validation context"));
                 *error = *errorBuffer;
             }
             else
             {
-                openValidationFiles.push_back(this);
+                validationFile = (void *)xmlSchemaParse(pctxt);
+                xmlSchemaFreeParserCtxt(pctxt);
+                if (!validationFile)
+                {
+                    if (errorBuffer)
+                    {
+                        delete errorBuffer;
+                    }
+                    errorBuffer = new std::string(gettext("Cannot parse the schema"));
+                    *error = *errorBuffer;
+                }
+                else
+                {
+                    openValidationFiles.push_back(this);
+                }
             }
+        }
+        else
+        {
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
         }
         scope->registerPointers(validationFile, this);
         id = scope->getVariableId(*this);
@@ -172,12 +178,12 @@ namespace org_modules_xml
         std::ostringstream oss;
         xmlSchema *schema = getValidationFile < xmlSchema > ();
 
-          oss << "XML Schema" << std::endl;
-          oss << "name: " << (schema->name ? (const char *)schema->name : "") << std::endl;
-          oss << "target namespace: " << (schema->targetNamespace ? (const char *)schema->targetNamespace : "") << std::endl;
-          oss << "version: " << (schema->version ? (const char *)schema->version : "");
+        oss << "XML Schema" << std::endl;
+        oss << "name: " << (schema->name ? (const char *)schema->name : "") << std::endl;
+        oss << "target namespace: " << (schema->targetNamespace ? (const char *)schema->targetNamespace : "") << std::endl;
+        oss << "version: " << (schema->version ? (const char *)schema->version : "");
 
-          return oss.str();
+        return oss.str();
     }
 
 }

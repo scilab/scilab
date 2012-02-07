@@ -30,22 +30,30 @@ namespace org_modules_xml
     {
         internalValidate = false;
         char *expandedPath = expandPathVariable(const_cast<char *>(path));
-        validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
-        FREE(expandedPath);
-        if (!validationFile)
+        if (expandedPath)
         {
-            if (errorBuffer)
+            validationFile = (void *)xmlParseDTD(0, (const xmlChar *)expandedPath);
+            FREE(expandedPath);
+            if (!validationFile)
             {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot parse the DTD"));
+                if (errorBuffer)
+                {
+                    delete errorBuffer;
+                }
+                errorBuffer = new std::string(gettext("Cannot parse the DTD"));
 
-            *error = *errorBuffer;
+                *error = *errorBuffer;
+            }
+            else
+            {
+                openValidationFiles.push_back(this);
+            }
         }
         else
         {
-            openValidationFiles.push_back(this);
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
         }
+
         scope->registerPointers(validationFile, this);
         id = scope->getVariableId(*this);
     }

@@ -30,36 +30,43 @@ namespace org_modules_xml
     XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error):XMLValidation()
     {
         char *expandedPath = expandPathVariable(const_cast < char *>(path));
-        xmlRelaxNGParserCtxt *pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
-          FREE(expandedPath);
-        if (!pctxt)
+        if (expandedPath)
         {
-            if (errorBuffer)
-            {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot create a validation context"));
-
-            *error = *errorBuffer;
-        }
-        else
-        {
-            validationFile = (void *)xmlRelaxNGParse(pctxt);
-            xmlRelaxNGFreeParserCtxt(pctxt);
-            if (!validationFile)
+            xmlRelaxNGParserCtxt *pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
+            FREE(expandedPath);
+            if (!pctxt)
             {
                 if (errorBuffer)
                 {
                     delete errorBuffer;
                 }
-                errorBuffer = new std::string(gettext("Cannot parse the Relax NG grammar"));
+                errorBuffer = new std::string(gettext("Cannot create a validation context"));
                 *error = *errorBuffer;
             }
             else
             {
-                openValidationFiles.push_back(this);
+                validationFile = (void *)xmlRelaxNGParse(pctxt);
+                xmlRelaxNGFreeParserCtxt(pctxt);
+                if (!validationFile)
+                {
+                    if (errorBuffer)
+                    {
+                        delete errorBuffer;
+                    }
+                    errorBuffer = new std::string(gettext("Cannot parse the Relax NG grammar"));
+                    *error = *errorBuffer;
+                }
+                else
+                {
+                    openValidationFiles.push_back(this);
+                }
             }
         }
+        else
+        {
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
+        }
+
         scope->registerPointers(validationFile, this);
         id = scope->getVariableId(*this);
     }

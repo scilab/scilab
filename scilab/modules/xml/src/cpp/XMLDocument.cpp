@@ -37,13 +37,21 @@ namespace org_modules_xml
     XMLDocument::XMLDocument(const char *path, bool validate, std::string * error):XMLObject()
     {
         char *expandedPath = expandPathVariable(const_cast<char *>(path));
-        document = readDocument(const_cast<const char *>(expandedPath), validate, error);
-        FREE(expandedPath);
-        if (document)
+        if (expandedPath)
         {
-            openDocs.push_back(this);
+            document = readDocument(const_cast<const char *>(expandedPath), validate, error);
+            FREE(expandedPath);
+            if (document)
+            {
+                openDocs.push_back(this);
+                scope->registerPointers(document, this);
+            }
         }
-        scope->registerPointers(document, this);
+        else
+        {
+            document = 0;
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
+        }
 
         id = scope->getVariableId(*this);
         scilabType = XMLDOCUMENT;
@@ -103,13 +111,11 @@ namespace org_modules_xml
         if (errorBuffer)
         {
             delete errorBuffer;
-
             errorBuffer = 0;
         }
         if (errorXPathBuffer)
         {
             delete errorXPathBuffer;
-
             errorXPathBuffer = 0;
         }
     }
