@@ -24,6 +24,8 @@ ilib_verbose(0);
 exec('builder.sce');
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_sum.sci
+genlib: Regenerate names and lib
 Building sources...
 Building gateway...
 Generating loader_gateway.sce...
@@ -31,14 +33,14 @@ Generating cleaner_gateway.sce...
 Building help...
 
 Building the master document:
-	TMPDIR\toolbox_skeleton\help\en_US
+	TMPDIR/toolbox_skeleton/help/en_US
 
-Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\en_US.
+Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/en_US.
 
 Building the master document:
-	TMPDIR\toolbox_skeleton\help\fr_FR
+	TMPDIR/toolbox_skeleton/help/fr_FR
 
-Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\fr_FR.
+Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
 Generating loader.sce...
 Generating cleaner.sce...
 assert_checkequal(isdir(DST + '/help/fr_FR/scilab_fr_FR_help'), %T);

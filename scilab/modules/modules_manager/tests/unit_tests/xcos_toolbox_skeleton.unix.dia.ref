@@ -60,8 +60,6 @@ Start Xcos toolbox skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/xcos_toolbox_skeleton/", [], "short_summary");
-   TMPDIR = TMPDIR
-
    001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
 
    001/001 - [TMPDIR/xcos_toolbox_skeleton/] tbx_sum............passed
