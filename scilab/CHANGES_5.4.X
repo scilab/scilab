@@ -308,6 +308,9 @@ Bug fixes
 
 * Bug #10631 fixed - The # sign was missing in some error cases.
 
+* Bug #10643 fixed - Bad result when using isreal function with a polynomial
+                     input.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
