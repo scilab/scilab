@@ -317,8 +317,10 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
 {
     sco_data *sco = (sco_data *) * (block->work);
     int i, j;
+
     double *ptr;
     int setLen;
+    int previousNumberOfPoints = sco->internal.maxNumberOfPoints;
 
     for (i = 0; i < block->nin; i++)
     {
@@ -328,8 +330,8 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
             if (ptr == NULL)
                 goto error_handler;
 
-            for (setLen = sco->internal.maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
-                ptr[sco->internal.maxNumberOfPoints + setLen] = ptr[sco->internal.maxNumberOfPoints - 1];
+            for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+                ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
             sco->internal.data[i][j] = ptr;
         }
     }

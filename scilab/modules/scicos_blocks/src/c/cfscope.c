@@ -365,8 +365,11 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
 {
     sco_data *sco = (sco_data *) * (block->work);
     int i, j;
+
     double *ptr;
     int setLen;
+    int previousNumberOfPoints = sco->internal.maxNumberOfPoints;
+
     int links_count = block->ipar[15];
 
     for (i = 0; i < 1; i++)
@@ -377,8 +380,8 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
             if (ptr == NULL)
                 goto error_handler;
 
-            for (setLen = sco->internal.maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
-                ptr[sco->internal.maxNumberOfPoints + setLen] = ptr[sco->internal.maxNumberOfPoints - 1];
+            for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+                ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
             sco->internal.data[i][j] = ptr;
         }
     }
@@ -387,8 +390,8 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
     if (ptr == NULL)
         goto error_handler;
 
-    for (setLen = sco->internal.maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
-        ptr[sco->internal.maxNumberOfPoints + setLen] = ptr[sco->internal.maxNumberOfPoints - 1];
+    for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+        ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
     sco->internal.time = ptr;
 
     sco->internal.maxNumberOfPoints = numberOfPoints;
@@ -455,11 +458,11 @@ static void appendData(scicos_block * block, int input, double t, double *data)
 
         for (i = 0; i < links_count; i++)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
                 sco->internal.data[input][i][numberOfPoints + setLen] = data[i];
         }
 
-        for (setLen = maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
             sco->internal.time[numberOfPoints + setLen] = t;
 
         sco->internal.numberOfPoints++;

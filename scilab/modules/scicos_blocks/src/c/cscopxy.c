@@ -318,6 +318,7 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
 {
     sco_data *sco = (sco_data *) * (block->work);
     int i, j;
+
     double *ptr;
     int setLen;
     int previousNumberOfPoints = sco->internal.maxNumberOfPoints;
@@ -330,8 +331,10 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
             if (ptr == NULL)
                 goto error_handler;
 
-            for (setLen = previousNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+            for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+            {
                 ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+            }
             sco->internal.data[i][j] = ptr;
         }
     }
@@ -382,11 +385,15 @@ static void appendData(scicos_block * block, double *x, double *y)
 
         for (i = 0; i < block->insz[0]; i++)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
                 sco->internal.data[0][i][numberOfPoints + setLen] = x[i];
+            }
 
-            for (setLen = maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
                 sco->internal.data[1][i][numberOfPoints + setLen] = y[i];
+            }
         }
 
         sco->internal.numberOfPoints++;

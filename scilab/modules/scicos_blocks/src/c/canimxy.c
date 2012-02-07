@@ -323,11 +323,11 @@ static void appendData(scicos_block * block, double *x, double *y)
         // on a full scope, push data
         for (i = 0; i < block->insz[0]; i++)
         {
-            sco->internal.data[0][i][setLen] = x[i];
             memmove(sco->internal.data[0][i], &sco->internal.data[0][i][1], setLen * sizeof(double));
+            sco->internal.data[0][i][setLen] = x[i];
 
-            sco->internal.data[1][i][setLen] = y[i];
             memmove(sco->internal.data[1][i], &sco->internal.data[1][i][1], setLen * sizeof(double));
+            sco->internal.data[1][i][setLen] = y[i];
         }
 
         // then return
@@ -343,7 +343,7 @@ static void appendData(scicos_block * block, double *x, double *y)
 
         for (i = 0; i < block->insz[0]; i++)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints; setLen >= 0; setLen--)
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
             {
                 sco->internal.data[0][i][numberOfPoints + setLen] = x[i];
                 sco->internal.data[1][i][numberOfPoints + setLen] = y[i];
