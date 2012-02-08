@@ -33,7 +33,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
+#include "deleteGraphicObject.h"
 /*-------------------------------------------------------------------------------*/
 void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double xPos, double yPos,
@@ -46,6 +46,8 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     char * pTextUID = NULL;
     double * textCorners = NULL;
     int defaultColor = 0; /* color does not matter */
+    int visible = 0;
+    double fontAngle = 0;
 
     /* Update subwin scale if needed */
     updateSubwinScale(parentSubwinUID);
@@ -65,10 +67,10 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                        ALIGN_LEFT);
 
     /* Make it invisible to be sure */
-    int visible = 0;
+    visible = 0;
     setGraphicObjectProperty(pTextUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-    double fontAngle = DEG2RAD(angle);
+    fontAngle = DEG2RAD(angle);
     setGraphicObjectProperty(pTextUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
 
     setGraphicObjectProperty(pTextUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
