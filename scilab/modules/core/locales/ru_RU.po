@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: ru\n"
 
 #, c-format
@@ -228,6 +228,12 @@ msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: Недопустимое имя модуля: %s.\n"
 
 #, c-format
+msgid ""
+"%s: Cannot allocate memory.\n"
+"%s\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Cannot allocate this quantity of memory.\n"
 msgstr "%s: Нельзя выделить такое количество памяти.\n"
 
@@ -237,10 +243,8 @@ msgstr "%s: Запрашиваемый размер меньше минимал�
 
 #, c-format
 msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error)\n"
+"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
-"%s: Невозможно создать стек или изменить его размер (возможна ошибка функции "
-"malloc)\n"
 
 #, c-format
 msgid "%s: Unknown error.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: ru\n"
 
 #, c-format
@@ -26,23 +26,21 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица действительных чисел или "
-"«readonly».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid ""
@@ -52,8 +50,8 @@ msgstr ""
 "размерности.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась одиночная строка.\n"
+msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgstr ""
 
 msgid "File"
 msgstr "Файл"

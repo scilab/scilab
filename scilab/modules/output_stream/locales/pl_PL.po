@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: pl\n"
 
 #, c-format
@@ -48,10 +48,9 @@ msgstr ""
 "%s: Niewłaściwa liczba argumentów wejściowych: dane nie pasują do formatu.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego %d: dane nie mieszczą się w "
-"formacie.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

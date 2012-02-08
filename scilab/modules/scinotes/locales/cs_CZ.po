@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -25,21 +25,21 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána řetězcová matice.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána reálná matice nebo 'readonly'\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -49,8 +49,8 @@ msgstr ""
 "rozměry.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván jeden řetězec.\n"
+msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgstr ""
 
 msgid "File"
 msgstr "Soubor"

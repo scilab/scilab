@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -218,6 +218,12 @@ msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: モジュール名が間違っています: %s.\n"
 
 #, c-format
+msgid ""
+"%s: Cannot allocate memory.\n"
+"%s\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Cannot allocate this quantity of memory.\n"
 msgstr "%s: 指定した量のメモリを確保できません.\n"
 
@@ -227,8 +233,8 @@ msgstr "%s: 指定した大きさは指定値の下限を下回っています.\
 
 #, c-format
 msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error)\n"
-msgstr "%s: スタックを作成(またはリサイズ)できません(おそらくmallocエラーです)\n"
+"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unknown error.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: ja\n"
 
 #, c-format
@@ -26,20 +26,21 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列または 'readonly' を指定してください.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -47,8 +48,8 @@ msgid ""
 msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: 引数 %d の型が間違っています: 文字列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgstr ""
 
 msgid "File"
 msgstr "ファイル"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: de\n"
 
 #, c-format
@@ -45,10 +45,9 @@ msgstr ""
 "überein.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument %d: Daten stimmen nicht mit Format "
-"überein.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

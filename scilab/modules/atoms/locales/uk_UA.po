@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 17:21+0000\n"
+"PO-Revision-Date: 2012-02-07 16:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: uk\n"
 
 #, c-format
@@ -351,10 +351,29 @@ msgstr ""
 "«user», «allusers» або «official».\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr "Файла %s не існує. Не вдалося відновити попередні налаштування."
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "файл налаштувань збережено до %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
 "розмірність.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+"%s: помилкове значення параметра вхідних налаштувань: мало бути вказано True "
+"або False.\n"
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr "%s: помилковий ключ параметра вхідних налаштувань.\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -41,9 +41,9 @@ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: Špatný počet vstupních argumentů: data neodpovídají formátu.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: data neodpovídají formátu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

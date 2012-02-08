@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -26,18 +26,16 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekáván reálný nebo komplexní vektor.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -232,6 +230,11 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %s nebo %s.\
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"

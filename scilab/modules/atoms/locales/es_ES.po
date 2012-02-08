@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-14 18:13+0000\n"
-"Last-Translator: J. Cappelletto <Unknown>\n"
+"PO-Revision-Date: 2012-02-04 22:58+0000\n"
+"Last-Translator: Miguel Castillo <guelo1313@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: es\n"
 
 #, c-format
@@ -340,10 +340,27 @@ msgstr ""
 "'all','user','allusers' o 'official'.\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+
+#, c-format
+msgid "config file saved to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
 "tamaño.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -425,6 +442,8 @@ msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
+"El modulo ATOMS no esta disponible. Por favor revisar su conexión a internet "
+"o revisar si su sistema operativo es compatible con ATOMS"
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
