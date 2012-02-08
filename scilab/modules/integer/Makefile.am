@@ -118,7 +118,6 @@ sci_gateway/fortran/sci_i_tril.f \
 sci_gateway/fortran/sci_int8.f \
 sci_gateway/fortran/sci_uint32.f \
 sci_gateway/fortran/sci_uint16.f \
-sci_gateway/fortran/sci_iconvert.f \
 sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f

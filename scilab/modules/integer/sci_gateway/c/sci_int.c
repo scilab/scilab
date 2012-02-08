@@ -463,34 +463,42 @@ int get_int(void* pvApiCtx, int* _piAddress, int* _piRows, int* _piCols, int* _p
 	case SCI_INT8 : 
 		{
 			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddress, _piRows, _piCols, (char**)pvData);
+            break;
 		}
 	case SCI_UINT8 : 
 		{
 			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned char**)pvData);
+            break;
 		}
 	case SCI_INT16 : 
 		{
 			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddress, _piRows, _piCols, (short**)pvData);
+            break;
 		}
 	case SCI_UINT16 : 
 		{
 			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned short**)pvData);
+            break;
 		}
 	case SCI_INT32 : 
 		{
 			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddress, _piRows, _piCols, (int**)pvData);
+            break;
 		}
 	case SCI_UINT32 : 
 		{
 			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned int**)pvData);
+            break;
 		}
 	case SCI_INT64 : 
 		{
 			sciErr = getMatrixOfInteger64(pvApiCtx, _piAddress, _piRows, _piCols, (long long**)pvData);
+            break;
 		}
 	case SCI_UINT64 : 
 		{
 			sciErr = getMatrixOfUnsignedInteger64(pvApiCtx, _piAddress, _piRows, _piCols, (unsigned long long**)pvData);
+            break;
 		}
 	default :
 		{

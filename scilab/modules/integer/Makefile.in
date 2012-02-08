@@ -174,8 +174,7 @@ am__objects_5 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
 	sci_i_maxi.lo sci_i_p.lo sci_uint8.lo sci_i_sum.lo \
 	sci_i_prod.lo sci_i_cumsum.lo sci_i_diag.lo sci_i_abs.lo \
 	sci_i_cumprod.lo sci_i_tril.lo sci_int8.lo sci_uint32.lo \
-	sci_uint16.lo sci_iconvert.lo sci_i_triu.lo sci_i_min.lo \
-	sci_inttype.lo
+	sci_uint16.lo sci_i_triu.lo sci_i_min.lo sci_inttype.lo
 am__objects_6 = libsciinteger_la-integer_gw.lo \
 	libsciinteger_la-sci_inttype.lo libsciinteger_la-sci_double.lo
 am_libsciinteger_la_OBJECTS = $(am__objects_4) $(am__objects_5) \
@@ -596,7 +595,6 @@ sci_gateway/fortran/sci_i_tril.f \
 sci_gateway/fortran/sci_int8.f \
 sci_gateway/fortran/sci_uint32.f \
 sci_gateway/fortran/sci_uint16.f \
-sci_gateway/fortran/sci_iconvert.f \
 sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
@@ -1405,9 +1403,6 @@ sci_uint32.lo: sci_gateway/fortran/sci_uint32.f
 
 sci_uint16.lo: sci_gateway/fortran/sci_uint16.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_uint16.lo `test -f 'sci_gateway/fortran/sci_uint16.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_uint16.f
-
-sci_iconvert.lo: sci_gateway/fortran/sci_iconvert.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_iconvert.lo `test -f 'sci_gateway/fortran/sci_iconvert.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_iconvert.f
 
 sci_i_triu.lo: sci_gateway/fortran/sci_i_triu.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_triu.lo `test -f 'sci_gateway/fortran/sci_i_triu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_triu.f

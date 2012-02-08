@@ -51,7 +51,7 @@ Function::ReturnValue sci_inttype(typed_list &in, int _piRetCount, typed_list &o
         pRetVal = new Double(SCI_INT32);
         break;
     case InternalType::RealUInt32 :
-        pRetVal = new Double(SCI_INT32);
+        pRetVal = new Double(SCI_UINT32);
         break;
     case InternalType::RealInt64 :
         pRetVal = new Double(SCI_INT64);

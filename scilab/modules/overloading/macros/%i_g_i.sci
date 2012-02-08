@@ -15,5 +15,6 @@ function i1=%i_g_i(i1,i2)
   //more arbitrary promotions
   if t1<10 & t2>10 then t=max(t1+10,t2); end
   if t1>10 & t2<10 then t=max(t1,t2+10); end
-  i1=iconvert(i1,t) | iconvert(i2,t)
+//  i1=iconvert(i1,t) | iconvert(i2,t)
+    i1 = iconvert(double(i1) | double(i2), t);
 endfunction

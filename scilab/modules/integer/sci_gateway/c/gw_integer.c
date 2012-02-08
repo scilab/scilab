@@ -40,7 +40,6 @@ static gw_generic_table Tab[]=
   {C2F(scimgeti),"mgeti"},
   {C2F(scivoid),"sci_void"},
   {C2F(sciimput),"%i_mput"},
-  {C2F(sciiconvert),"iconvert"},
   {C2F(sciiabs),"%i_abs"},
   {C2F(sciidiag),"%i_diag"},
   {C2F(sciitriu),"%i_triu"},
@@ -50,7 +49,6 @@ static gw_generic_table Tab[]=
   {C2F(sciimax),"%i_max"},
   {C2F(sciimin),"%i_min"},
   {C2F(sciip),"%i_p"},
-  {C2F(sciiconvert),"iconvert"},
   {C2F(sciimatrix),"%i_matrix"},
   {C2F(sciiprod),"%i_prod"},
   {C2F(sciicumprod),"%i_cumprod"}
