@@ -740,7 +740,8 @@ check_macosx_version()
     esac
 }
 
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+# . is used by the dynamic link. The build lib are copied into the PWD
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in
