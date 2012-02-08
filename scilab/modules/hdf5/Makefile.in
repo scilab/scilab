@@ -116,7 +116,8 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihdf5_la_etcdir)" \
 	"$(DESTDIR)$(libscihdf5_la_rootdir)" \
-	"$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscihdf5_la_testsampledatadir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihdf5_algo_la_LIBADD =
 am__libscihdf5_algo_la_SOURCES_DIST = src/c/h5_fileManagement.c \
@@ -203,7 +204,8 @@ DIST_SOURCES = $(am__libscihdf5_algo_la_SOURCES_DIST) \
 	$(am__libscihdf5_forceload_la_SOURCES_DIST) \
 	$(am__libscihdf5_la_SOURCES_DIST)
 DATA = $(libscihdf5_la_etc_DATA) $(libscihdf5_la_root_DATA) \
-	$(libscihdf5_la_sci_gateway_DATA)
+	$(libscihdf5_la_sci_gateway_DATA) \
+	$(libscihdf5_la_testsampledata_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -549,6 +551,37 @@ libscihdf5_la_root_DATA = license.txt
 libscihdf5_la_etcdir = $(mydatadir)/etc
 libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
+#### hdf5 : test file ####
+libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data
+libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.h5 \
+tests/sample_scilab_data/booleanscalar.h5 \
+tests/sample_scilab_data/booleansparse.h5 \
+tests/sample_scilab_data/emptysparse.h5 \
+tests/sample_scilab_data/hypermatrixcomplex.h5 \
+tests/sample_scilab_data/hypermatrix.h5 \
+tests/sample_scilab_data/int16.h5 \
+tests/sample_scilab_data/int32.h5 \
+tests/sample_scilab_data/int8.h5 \
+tests/sample_scilab_data/list.h5 \
+tests/sample_scilab_data/listnested.h5 \
+tests/sample_scilab_data/matricedoublecomplex.h5 \
+tests/sample_scilab_data/matricedoublecomplexscalar.h5 \
+tests/sample_scilab_data/matricedouble.h5 \
+tests/sample_scilab_data/matricedoublescalar.h5 \
+tests/sample_scilab_data/matricestring.h5 \
+tests/sample_scilab_data/matricestringscalar.h5 \
+tests/sample_scilab_data/mlist.h5 \
+tests/sample_scilab_data/polynomialscoef.h5 \
+tests/sample_scilab_data/polynomials.h5 \
+tests/sample_scilab_data/sparsematrix.h5 \
+tests/sample_scilab_data/tlist.h5 \
+tests/sample_scilab_data/uint16.h5 \
+tests/sample_scilab_data/uint32.h5 \
+tests/sample_scilab_data/uint8.h5 \
+tests/sample_scilab_data/undefinedelement.h5 \
+tests/sample_scilab_data/voidelement.h5
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -889,6 +922,26 @@ uninstall-libscihdf5_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" && rm -f $$files
+install-libscihdf5_la_testsampledataDATA: $(libscihdf5_la_testsampledata_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihdf5_la_testsampledatadir)" || $(MKDIR_P) "$(DESTDIR)$(libscihdf5_la_testsampledatadir)"
+	@list='$(libscihdf5_la_testsampledata_DATA)'; test -n "$(libscihdf5_la_testsampledatadir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscihdf5_la_testsampledatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscihdf5_la_testsampledatadir)" || exit $$?; \
+	done
+
+uninstall-libscihdf5_la_testsampledataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihdf5_la_testsampledata_DATA)'; test -n "$(libscihdf5_la_testsampledatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscihdf5_la_testsampledatadir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscihdf5_la_testsampledatadir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -978,7 +1031,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" "$(DESTDIR)$(libscihdf5_la_testsampledatadir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1033,7 +1086,8 @@ info-am:
 
 install-data-am: install-data-local install-libscihdf5_la_etcDATA \
 	install-libscihdf5_la_rootDATA \
-	install-libscihdf5_la_sci_gatewayDATA
+	install-libscihdf5_la_sci_gatewayDATA \
+	install-libscihdf5_la_testsampledataDATA
 
 install-dvi: install-dvi-am
 
@@ -1082,6 +1136,7 @@ ps-am:
 uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	uninstall-libscihdf5_la_rootDATA \
 	uninstall-libscihdf5_la_sci_gatewayDATA \
+	uninstall-libscihdf5_la_testsampledataDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1097,15 +1152,17 @@ uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscihdf5_la_etcDATA \
 	install-libscihdf5_la_rootDATA \
-	install-libscihdf5_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscihdf5_la_etcDATA \
+	install-libscihdf5_la_sci_gatewayDATA \
+	install-libscihdf5_la_testsampledataDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libscihdf5_la_etcDATA \
 	uninstall-libscihdf5_la_rootDATA \
 	uninstall-libscihdf5_la_sci_gatewayDATA \
+	uninstall-libscihdf5_la_testsampledataDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
