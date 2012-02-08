@@ -89,6 +89,8 @@ Elementary functions
 
 * linspace deprecates the usage of non integer values as third input argument.
 
+* logspace deprecates the usage of non integer values as third input argument.
+
 
 Unitary testing
 ===============

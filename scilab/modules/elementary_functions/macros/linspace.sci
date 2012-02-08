@@ -30,7 +30,7 @@ function y = linspace(d1, d2, n)
     n = 100;
   else
     if type(n)<>1 | size(n,'*')<>1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer >= %d expected.\n"),"linspace",3, 2));
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"linspace",3));
     end
 
     if int(n) <> n then
