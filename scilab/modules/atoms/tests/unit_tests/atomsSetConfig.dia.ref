@@ -32,7 +32,7 @@ assert_checkequal(string(atomsSetConfig("Verbose","True")),"0");
 assert_checkequal(atomsGetConfig(),ref);
 // Wrong key/value test
 // =============================================================================
-assert_checkerror("atomsSetConfig(""verbose"",""scilab"")","scilab: Wrong value for input configuration argument : True or False expected.");
+assert_checkerror("atomsSetConfig(""verbose"",""scilab"")","scilab: Wrong value for input configuration argument: True or False expected.");
 assert_checkequal(atomsGetConfig(),ref);
 assert_checkerror("atomsSetConfig(""scilab"",""true"")","scilab: Wrong key for input configuration argument.");
 assert_checkequal(atomsGetConfig(),ref);
