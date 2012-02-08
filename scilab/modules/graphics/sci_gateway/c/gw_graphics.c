@@ -58,7 +58,7 @@ static gw_generic_table Tab[] = {
     {sci_xfpolys, "xfpolys"},
     {sci_xrect, "xfrect"},
     {sci_xget, "xget"},
-    {sci_xgetech, "xgetech"},
+    {NULL, ""}, // xgetech: moved as Scilab Macro
     {sci_xgetmouse, "xgetmouse"},
     {sci_xgrid, "xgrid"},
     {sci_xlfont, "xlfont"},
@@ -69,7 +69,7 @@ static gw_generic_table Tab[] = {
     {sci_xsegs, "xsegs"},
     {sci_show_window, "show_window"},
     {sci_xset, "xset"},
-    {sci_xsetech, "xsetech"},
+    {NULL, ""}, // xsetech: moved as Scilab Macro
     {sci_xstring, "xstring"},
     {sci_xtitle, "xtitle"},
     {sci_xgraduate, "xgraduate"},
