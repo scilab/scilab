@@ -136,7 +136,7 @@ public class AxesDrawer {
         projectionStack.push(zoneProjection);
 
         // Set box projection.
-        Transformation transformation = computeBoxTransformation(axes, canvas);
+        Transformation transformation = computeBoxTransformation(axes, canvas, false);
         modelViewStack.pushRightMultiply(transformation);
 
         /* Compute the data scale and translate transformation. */
@@ -396,12 +396,16 @@ public class AxesDrawer {
      * The box transformation is applied to the axes box to fit in the canvas.
      *
      * @param axes the given {@see Axes}.
-     * @param canvas the current {@see Canvas}
+     * @param canvas the current {@see Canvas}.
+     * @param use2dView specifies whether the default 2d view rotation angles must be used (true) or the given Axes' ones (false).
      * @return box transformation for the given axes.
      * @throws DegenerateMatrixException if data bounds are incorrect or canvas with or length are zero.
      */
-    private Transformation computeBoxTransformation(Axes axes, Canvas canvas) throws DegenerateMatrixException {
+    private Transformation computeBoxTransformation(Axes axes, Canvas canvas, boolean use2dView) throws DegenerateMatrixException {
         Double[] bounds = axes.computeDisplayedBounds();
+
+        double alpha;
+        double theta;
 
         double tmpX;
         double tmpY;
@@ -415,9 +419,17 @@ public class AxesDrawer {
         transformation = TransformationFactory.getPreferredAspectRatioTransformation(canvas.getDimension(), axesRatio);
 
         // Rotate.
-        Transformation alphaRotation = TransformationFactory.getRotationTransformation(-axes.getRotationAngles()[0], 1.0, 0.0, 0.0);
+        if (use2dView) {
+            alpha = 0.0;
+            theta = 2*DEFAULT_THETA;
+        } else {
+            alpha = -axes.getRotationAngles()[0];
+            theta = DEFAULT_THETA + axes.getRotationAngles()[1];
+        }
+
+        Transformation alphaRotation = TransformationFactory.getRotationTransformation(alpha, 1.0, 0.0, 0.0);
         transformation = transformation.rightTimes(alphaRotation);
-        Transformation thetaRotation = TransformationFactory.getRotationTransformation(DEFAULT_THETA + axes.getRotationAngles()[1], 0.0, 0.0, 1.0);
+        Transformation thetaRotation = TransformationFactory.getRotationTransformation(theta, 0.0, 0.0, 1.0);
         transformation = transformation.rightTimes(thetaRotation);
 
         // If there is no cube scaling, we must take into account the distribution of data.
@@ -563,32 +575,33 @@ public class AxesDrawer {
      * @param axes the given Axes.
      * @param drawingTools the drawing tools.
      * @param canvas the current canvas.
+     * @param use2dView specifies whether the default 2d view rotation angles must be used (true) or the given Axes' ones (false).
      * @return the projection
      */
-    private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Canvas canvas) {
-        Transformation currentProjection;
+    private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Canvas canvas, boolean use2dView) {
+        Transformation projection;
 
         try {
             /* Compute the zone projection. */
             Transformation zoneProjection = computeZoneProjection(axes);
 
             /* Compute the box transformation. */
-            Transformation transformation = computeBoxTransformation(axes, canvas);
+            Transformation transformation = computeBoxTransformation(axes, canvas, use2dView);
 
             /* Compute the data scale and translate transformation. */
             Transformation dataTransformation = computeDataTransformation(axes);
 
             /* Compute the object to window coordinates projection. */
-            currentProjection = zoneProjection.rightTimes(transformation);
-            currentProjection = currentProjection.rightTimes(dataTransformation);
+            projection = zoneProjection.rightTimes(transformation);
+            projection = projection.rightTimes(dataTransformation);
 
             Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
-            currentProjection = windowTrans.rightTimes(currentProjection);
+            projection = windowTrans.rightTimes(projection);
         } catch (DegenerateMatrixException e) {
             return TransformationFactory.getIdentity();
         }
 
-        return currentProjection;
+        return projection;
     }
 
     /**
@@ -633,14 +646,48 @@ public class AxesDrawer {
      */
     public static void updateAxesTransformation(Axes axes) {
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
         Transformation transformation = currentVisitor.getAxesDrawer().getProjection(axes.getIdentifier());
 
         /* The projection must be updated */
         if (transformation == null) {
-            Transformation projection = currentVisitor.getAxesDrawer().computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas());
+            Transformation projection = currentVisitor.getAxesDrawer().computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
 
             currentVisitor.getAxesDrawer().addProjection(axes.getIdentifier(), projection);
         }
+    }
+
+    /**
+     * Computes and returns the coordinates of a point projected onto the default 2d view plane.
+     * To compute them, the point is projected using the object to window coordinate projection, then
+     * unprojected using the object to window coordinate projection corresponding to the default 2d view
+     * (which uses the default camera rotation angles).
+     * To do: optimize by using the already computed 3d view projection.
+     * @param axes the given Axes.
+     * @param coordinates the object (x,y,z) coordinates to project onto the 2d view plane (3-element array).
+     * @returns the 2d view coordinates (3-element array).
+     */
+    public static double[] compute2dViewCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor;
+        AxesDrawer axesDrawer;
+        Transformation projection;
+        Transformation projection2d;
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
+        Vector3d point = new Vector3d(coordinates);
+
+        if (currentVisitor != null) {
+            axesDrawer = currentVisitor.getAxesDrawer();
+
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
+            projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), true);
+
+            point = projection.project(point);
+            point = projection2d.unproject(point);
+        }
+
+        return new double[]{point.getX(), point.getY(), point.getZ()};
     }
 
     /**

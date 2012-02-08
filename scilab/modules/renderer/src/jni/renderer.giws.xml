@@ -7,5 +7,9 @@
     <method name="updateSubwinScale" returnType="void" modifier="static">
       <parameter name="id" type="String"/>
     </method>
+    <method name="get2dViewCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
   </object>
 </package>

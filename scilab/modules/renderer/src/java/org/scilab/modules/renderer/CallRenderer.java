@@ -50,4 +50,28 @@ public final class CallRenderer {
             TextManager.updateTextCorners((Text) object);
         }
     }
+
+    /**
+     * Computes and returns the coordinates of a point projected onto the default 2d view plane.
+     * The obtained coordinates correspond to the point's object coordinates in the default 2d view
+     * coordinate frame (the point's position being fixed in window coordinates).
+     * The projected point's z coordinate is set to 0, as only x and y are relevant.
+     * @param id the identifier of the Axes object.
+     * @param coords the input object coordinates (3-element array).
+     * @return the 2d view coordinates (3-element array).
+     */
+    public static double[] get2dViewCoordinates(String id, double[] coords) {
+        double[] point2d = new double[]{0.0, 0.0, 0.0};
+
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+
+        if (object != null && object instanceof Axes) {
+            double[] tmp = AxesDrawer.compute2dViewCoordinates((Axes) object, coords);
+
+            point2d[0] = tmp[0];
+            point2d[1] = tmp[1];
+        }
+
+        return point2d;
+    }
 }

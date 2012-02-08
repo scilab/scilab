@@ -200,7 +200,7 @@ GRAPHICS_IMPEXP void sciGetTextPos(sciPointObj * pObj, double position[3]); /* G
 
 GRAPHICS_IMPEXP void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pixCoord[2]); /* GET */
 
-GRAPHICS_IMPEXP void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2]); /* GET */
+GRAPHICS_IMPEXP void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2]); /* GET */
 
 GRAPHICS_IMPEXP void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2]); /* GET */
 

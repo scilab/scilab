@@ -79,6 +79,7 @@ JavaVM * jvm;
 protected:
 jmethodID voidupdateTextBoundsjstringjava_lang_StringID; // cache method id
 jmethodID voidupdateSubwinScalejstringjava_lang_StringID; // cache method id
+jmethodID jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID; // cache method id
 
 
 
@@ -138,6 +139,8 @@ void endSynchronize();
 static void updateTextBounds(JavaVM * jvm_, char * id);
 
 static void updateSubwinScale(JavaVM * jvm_, char * id);
+
+static double* get2dViewCoordinates(JavaVM * jvm_, char * id, double* coords, int coordsSize);
 
 
                         /**

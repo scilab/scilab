@@ -106,6 +106,7 @@ curEnv->DeleteLocalRef(localInstance);
                 /* Methods ID set to NULL */
 voidupdateTextBoundsjstringjava_lang_StringID=NULL;
 voidupdateSubwinScalejstringjava_lang_StringID=NULL;
+jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID=NULL;
 
 
 }
@@ -130,6 +131,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         /* Methods ID set to NULL */
         voidupdateTextBoundsjstringjava_lang_StringID=NULL;
 voidupdateSubwinScalejstringjava_lang_StringID=NULL;
+jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID=NULL;
 
 
 }
@@ -199,6 +201,64 @@ curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+double* CallRenderer::get2dViewCoordinates (JavaVM * jvm_, char * id, double* coords, int coordsSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID = curEnv->GetStaticMethodID(cls, "get2dViewCoordinates", "(Ljava/lang/String;[D)[D" ) ;
+if (jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "get2dViewCoordinates");
+}
+
+jstring id_ = curEnv->NewStringUTF( id );
+if (id != NULL && id_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+jdoubleArray coords_ = curEnv->NewDoubleArray( coordsSize ) ;
+
+if (coords_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( coords_, 0, coordsSize, (jdouble*)(coords) ) ;
+
+
+                        jdoubleArray res =  static_cast<jdoubleArray>( curEnv->CallStaticObjectMethod(cls, jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID ,id_, coords_));
+                        if (res == NULL) { return NULL; }
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}int lenRow;
+ lenRow = curEnv->GetArrayLength(res);
+jboolean isCopy = JNI_FALSE;
+
+/* GetPrimitiveArrayCritical is faster than getXXXArrayElements */
+jdouble *resultsArray = static_cast<jdouble *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
+double* myArray= new double[ lenRow];
+
+for (jsize i = 0; i <  lenRow; i++){
+myArray[i]=resultsArray[i];
+}
+curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+
+                        curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(id_);
+curEnv->DeleteLocalRef(coords_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+delete[] myArray;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myArray;
+
 }
 
 }

@@ -79,7 +79,7 @@ RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, con
 /**
  * Project 3d coordinates on the Default 2d plane
  */
-RENDERER_IMPEXP void sciGetJava2dViewCoordinates(sciPointObj * pSubwin, const double userCoords3D[3], double userCoords2D[2]);
+RENDERER_IMPEXP void sciGetJava2dViewCoordinates(char * pSubwinUID, const double userCoords3D[3], double userCoords2D[2]);
 
 /**
  * Convert pixel coordinates to 2D view ones.

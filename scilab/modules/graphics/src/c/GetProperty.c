@@ -5,7 +5,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  *
  * This file must be used under the terms of the CeCILL.
@@ -3112,22 +3112,25 @@ void sciGetPixelCoordinate(sciPointObj * pObj, const double userCoord[3], int pi
 /*----------------------------------------------------------------------------------*/
 /**
 * Convert user coordinates to user cooordinates (2D).
-* @param pObj subwindow handle
+* @param pObjUID subwindow identifier
 * @param userCoord3D user coordinates
 * @param userCoords2D result in user coordinates in the default 2D plane.
 */
-void sciGet2dViewCoordinate(sciPointObj * pObj, const double userCoords3D[3], double userCoords2D[2])
+void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2])
 {
-    switch(sciGetEntityType(pObj))
+    char *type = NULL;
+
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_AXES__) == 0)
     {
-    case SCI_SUBWIN:
-        sciGetJava2dViewCoordinates(pObj, userCoords3D, userCoords2D);
-        break;
-    default:
+        sciGetJava2dViewCoordinates(pObjUID, userCoords3D, userCoords2D);
+    }
+    else
+    {
         Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
         userCoords2D[0] = 0.0;
         userCoords2D[1] = 0.0;
-        break;
     }
 }
 /*----------------------------------------------------------------------------------*/
