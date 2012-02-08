@@ -24,6 +24,10 @@
 
 #include <string.h>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 char *findChildWithKindAt(char *parent, const char *type, const int position)
 {
     char *child = NULL;
