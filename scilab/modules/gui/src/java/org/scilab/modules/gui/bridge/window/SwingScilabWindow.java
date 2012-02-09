@@ -109,18 +109,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         // By default ctrl+w close the window
         ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-            }
-        };
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+                }
+            };
         getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
         this.setTitle("Scilab");
         setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
-        
+
         /* defining the Layout */
         super.setLayout(new java.awt.BorderLayout());
 
@@ -150,11 +150,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         setLocationByPlatform(true);
 
         addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
-            }
-        });
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
+                }
+            });
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
@@ -252,11 +252,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        raiseToFront();
-                    }
-                });
+                        @Override
+                        public void run() {
+                            raiseToFront();
+                        }
+                    });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -285,18 +285,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void setDims(Size newWindowSize) {
         //if (!SwingUtilities.isEventDispatchThread()) {
-            if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
-                // get the greatest size we can use
-                int[] maxSize = RenderingCapabilities.getMaxWindowSize();
+        if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
+            // get the greatest size we can use
+            int[] maxSize = RenderingCapabilities.getMaxWindowSize();
 
-                // make suze size is not greater than the max size
-                Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
-                        Math.min(newWindowSize.getHeight(), maxSize[1]));
+            // make suze size is not greater than the max size
+            Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
+                                               Math.min(newWindowSize.getHeight(), maxSize[1]));
 
-                setSize(finalDim);
-                // validate so the new values are taken into account immediately
-                validate();
-            }
+            setSize(finalDim);
+            // validate so the new values are taken into account immediately
+            validate();
+        }
         //}
     }
 
@@ -318,11 +318,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void setPosition(Position newWindowPosition) {
         //if (!SwingUtilities.isEventDispatchThread()) {
-            if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
-                this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
-            }   
-        //}   
-    }   
+        if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
+            this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+        }
+        //}
+    }
 
     /**
      * Gets the title of a swing Scilab window
@@ -395,13 +395,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                 ((SwingScilabToolBar) toolBar).close();
             }
             if (menuBar != null) {
-                UIElementMapper.removeMapping(menuBar.getElementId());
+                ((SwingScilabMenuBar) menuBar).close();
             }
-            UIElementMapper.removeMapping(this.elementId);
 
             // clean all
             this.removeAll();
-            this.dispose();
+            close();
 
             // disable docking port
             ActiveDockableTracker.getTracker(this).setActive(null);
@@ -534,7 +533,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     @Override
     public void close() {
         dispose();
-        allScilabWindows.remove(this);
+        allScilabWindows.remove(windowUID);
     }
 
     /**
