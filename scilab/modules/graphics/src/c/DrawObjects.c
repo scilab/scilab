@@ -415,7 +415,7 @@ BOOL sci_update_frame_bounds_2d(char *pobjUID)
     hx=xmax-xmin;
     hy=ymax-ymin;
 
-    getscale2d(WRect,FRect,logscale,ARect);
+    //getscale2d(WRect,FRect,logscale,ARect);
 
     wdim[0]=linint((double)wdim[0] *WRect[2]);
     wdim[1]=linint((double)wdim[1] *WRect[3]);

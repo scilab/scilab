@@ -20,16 +20,6 @@
 #include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 
-
-
-GRAPHICS_IMPEXP int setscale2d( double WRect[4],
-                 double ARect[4],
-                 double FRect[4],
-                 char   logscale[2]);
-
-GRAPHICS_IMPEXP int getscale2d( double WRect[4], double FRect[4], char logscale[2], double ARect[4] ) ;
-
-
 GRAPHICS_IMPEXP void unzoom( void ) ;
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -408,7 +408,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xfpoly.c" />
     <ClCompile Include="sci_gateway\c\sci_xfpolys.c" />
     <ClCompile Include="sci_gateway\c\sci_xget.c" />
-    <ClCompile Include="sci_gateway\c\sci_xgetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c" />
     <ClCompile Include="sci_gateway\c\sci_xgraduate.c" />
     <ClCompile Include="sci_gateway\c\sci_xgrid.c" />
@@ -420,7 +419,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xrects.c" />
     <ClCompile Include="sci_gateway\c\sci_xsegs.c" />
     <ClCompile Include="sci_gateway\c\sci_xset.c" />
-    <ClCompile Include="sci_gateway\c\sci_xsetech.c" />
     <ClCompile Include="sci_gateway\c\sci_xstring.c" />
     <ClCompile Include="sci_gateway\c\sci_xstringb.c" />
     <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
