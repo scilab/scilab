@@ -56,6 +56,8 @@ Xcos
 * Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
+* Bug #10246 fixed - PROD_f block was broken.
+
 * Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
                      labeling when ports had not the same types.
 
