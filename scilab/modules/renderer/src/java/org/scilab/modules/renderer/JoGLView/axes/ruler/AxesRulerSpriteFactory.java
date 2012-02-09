@@ -18,6 +18,7 @@ import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.forge.scirenderer.sprite.TextEntity;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -41,6 +42,8 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
      */
     private final Axes axes;
 
+    private final int axisId;
+
     /**
      * The current colormap.
      */
@@ -48,9 +51,11 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
     /**
      * Default constructor.
-     * @param axes This factory create ruler label for this given {@see Axes}.
+     * @param axes This factory create ruler label for one axis of this given {@see Axes}.
+     * @param axisId the id of the managed axis.
      */
-    public AxesRulerSpriteFactory(Axes axes) {
+    public AxesRulerSpriteFactory(Axes axes, int axisId) {
+        this.axisId = axisId;
         this.axes = axes;
         ColorMap figureColorMap;
         try {
@@ -65,14 +70,18 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
     @Override
     public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
-
-        DecimalFormatSymbols decimalFormatSymbols = adaptedFormat.getDecimalFormatSymbols();
-        decimalFormatSymbols.setDecimalSeparator('.');
-        decimalFormatSymbols.setExponentSeparator("e");
-        adaptedFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-
-        String text = adaptedFormat.format(value).replaceAll("E", "e");
-        final TextEntity textEntity = new TextEntity(text);
+        final TextEntity textEntity;
+        if (axes.getAxes()[axisId].getAutoTicks()) {
+            DecimalFormatSymbols decimalFormatSymbols = adaptedFormat.getDecimalFormatSymbols();
+            decimalFormatSymbols.setDecimalSeparator('.');
+            decimalFormatSymbols.setExponentSeparator("e");
+            adaptedFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+    
+            String text = adaptedFormat.format(value).replaceAll("E", "e");
+            textEntity = new TextEntity(text);
+        } else {            
+            textEntity = new TextEntity(getTextAtValue(axes.getAxes()[axisId], value));
+        }
 
         textEntity.setTextAntiAliased(false);
         textEntity.setTextUseFractionalMetrics(axes.getFontFractional());
@@ -97,5 +106,21 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         });
 
         return sprite;
+    }
+
+    private String getTextAtValue(AxisProperty axisProperty, double value) {
+        Double[] locations = axisProperty.getTicksLocations();
+        int index = -1;
+        for (int i = 0 ; i < locations.length ; i++) {
+            if (locations[i] == value) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            return "";
+        } else {
+            return axisProperty.getTicksLabels().get(index).getText();
+        }        
     }
 }

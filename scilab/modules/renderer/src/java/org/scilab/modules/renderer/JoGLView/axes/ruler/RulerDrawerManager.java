@@ -28,7 +28,7 @@ import java.util.Set;
  *
  * @author Pierre Lando
  */
-public class RulerDrawerManager {
+class RulerDrawerManager {
 
     /**
      * Set of properties that affect ruler sprites.
@@ -37,14 +37,17 @@ public class RulerDrawerManager {
             GraphicObjectProperties.__GO_FONT_SIZE__,
             GraphicObjectProperties.__GO_FONT_COLOR__,
             GraphicObjectProperties.__GO_FONT_STYLE__,
-            GraphicObjectProperties.__GO_FONT_FRACTIONAL__
+            GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
+            GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
+            GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
+            GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__
     ));
 
     /**
      * Map of up to date {@see RulerSpriteManager}
      * The key are the {@see Axes} id.
      */
-    private final Map<String, RulerDrawer> rulerSpriteManagerMap = new HashMap<String, RulerDrawer>();
+    private final Map<String, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<String, RulerDrawer[]>();
 
     /**
      * The {@see SpriteManager} of the current {@see Canvas}.
@@ -64,11 +67,13 @@ public class RulerDrawerManager {
      * @param axes the given {@see Axes}
      * @return the {@see RulerSpriteManager} for the rulers of the given {@see Axes}.
      */
-    public RulerDrawer get(Axes axes) {
-        RulerDrawer rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
+    public RulerDrawer[] get(Axes axes) {
+        RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
         if (rulerSpriteManager == null) {
-            rulerSpriteManager = new RulerDrawer(spriteManager);
-            rulerSpriteManager.setSpriteFactory(new AxesRulerSpriteFactory(axes));
+            rulerSpriteManager = new RulerDrawer[]{new RulerDrawer(spriteManager), new RulerDrawer(spriteManager), new RulerDrawer(spriteManager)};
+            rulerSpriteManager[0].setSpriteFactory(new AxesRulerSpriteFactory(axes, 0));
+            rulerSpriteManager[1].setSpriteFactory(new AxesRulerSpriteFactory(axes, 1));
+            rulerSpriteManager[2].setSpriteFactory(new AxesRulerSpriteFactory(axes, 2));
             rulerSpriteManagerMap.put(axes.getIdentifier(), rulerSpriteManager);
         }
         return rulerSpriteManager;
@@ -84,6 +89,7 @@ public class RulerDrawerManager {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.
+         * TODO : optimize by an X, Y, Z auto ticks differentiation.
          */
         if (SPRITE_PROPERTIES.contains(property)) {
             dispose(id);
@@ -95,9 +101,13 @@ public class RulerDrawerManager {
      * @param id the {@see Axes} id.
      */
     public void dispose(String id) {
-        RulerDrawer spriteManager = rulerSpriteManagerMap.get(id);
-        if (spriteManager != null) {
-            spriteManager.disposeResources();
+        RulerDrawer[] rulerDrawers = rulerSpriteManagerMap.get(id);
+        if (rulerDrawers != null) {
+            for (RulerDrawer rulerDrawer : rulerDrawers) {
+                if (rulerDrawer != null) {
+                    rulerDrawer.disposeResources();
+                }
+            }
         }
         rulerSpriteManagerMap.remove(id);
     }
@@ -106,8 +116,14 @@ public class RulerDrawerManager {
      * Dispose all the {@see RulerSpriteManager}.
      */
     public void disposeAll() {
-        for (RulerDrawer spriteManager : rulerSpriteManagerMap.values()) {
-            spriteManager.disposeResources();
+        for (RulerDrawer[] rulerDrawers : rulerSpriteManagerMap.values()) {
+            if (rulerDrawers != null) {
+                for (RulerDrawer rulerDrawer : rulerDrawers) {
+                    if (rulerDrawer != null) {
+                        rulerDrawer.disposeResources();
+                    }
+                }
+            }
         }
         rulerSpriteManagerMap.clear();
     }

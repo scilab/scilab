@@ -874,7 +874,7 @@ public class AxesDrawer {
      * Returns the x-axis label positioner.
      * @return the x-axis label positioner.
      */
-    public LabelPositioner getXAxisLabelPositioner() {
+    public AxisLabelPositioner getXAxisLabelPositioner() {
         return this.xAxisLabelPositioner;
     }
 
@@ -882,7 +882,7 @@ public class AxesDrawer {
      * Returns the y-axis label positioner.
      * @return the y-axis label positioner.
      */
-    public LabelPositioner getYAxisLabelPositioner() {
+    public AxisLabelPositioner getYAxisLabelPositioner() {
         return this.yAxisLabelPositioner;
     }
 
@@ -890,7 +890,7 @@ public class AxesDrawer {
      * Returns the z-axis label positioner.
      * @return the z-axis label positioner.
      */
-    public LabelPositioner getZAxisLabelPositioner() {
+    public AxisLabelPositioner getZAxisLabelPositioner() {
         return this.zAxisLabelPositioner;
     }
 
