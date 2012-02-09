@@ -35,8 +35,8 @@ else
 
     // Binary version
     if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
-        ref_flag = " -I" + fullpath(SCI + "../../bin") + " " + "-I" + SCI + "modules -I" + TMPDIR + filesep() + "myincludespath";
-        includes_path = [ "../../bin" , SCI + filesep() + "modules" , TMPDIR + filesep() + "myincludespath"];
+        ref_flag = " -I" + fullpath(SCI + "/../../bin") + " " + "-I" + SCI + "/modules -I" + TMPDIR + filesep() + "myincludespath";
+        includes_path = [ "../../bin" , "modules" , TMPDIR + filesep() + "myincludespath"];
         ScilabTreeFound = %T;
     end
 
