@@ -213,6 +213,8 @@ Bug fixes
 
 * Bug #10304 fixed - test_run did not return an error when using an invalid option.
 
+* Bug #10306 fixed - 'isempty' could fail with empty elements in a list.
+
 * Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
                      but 'lasterror' returned vector of strings.
 
