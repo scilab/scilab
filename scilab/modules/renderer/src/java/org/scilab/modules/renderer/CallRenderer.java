@@ -74,4 +74,75 @@ public final class CallRenderer {
 
         return point2d;
     }
+
+    /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed
+     * in the default 2d view coordinate frame, using the given Axes.
+     * The returned pixel coordinates are expressed in the AWT's 2d coordinate frame.
+     * @param id the Axes' identifier.
+     * @param coords the 2d view coordinates (3-element array: x, y, z).
+     * @return the pixel coordinates (2-element array: x, y).
+     */
+    public static double[] getPixelFrom2dViewCoordinates(String id, double[] coords) {
+        double[] pointPix = new double[]{0.0, 0.0};
+
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+
+        if (object != null && object instanceof Axes) {
+            double[] tmp = AxesDrawer.computePixelFrom2dViewCoordinates((Axes) object, coords);
+
+            pointPix[0] = tmp[0];
+            pointPix[1] = tmp[1];
+        }
+
+        return pointPix;
+    }
+
+    /**
+     * Computes and returns the coordinates of a point projected onto the default 2d view plane
+     * from its pixel coordinates, using the given Axes. The pixel coordinates are expressed in
+     * the AWT's 2d coordinate frame.
+     * The returned point's z component is set to 0, as we only have x and y as an input.
+     * @param id the Axes' identifier.
+     * @param coords the pixel coordinates (2-element array: x, y).
+     * @return the 2d view coordinates (3-element array: x, y, z).
+     */
+    public static double[] get2dViewFromPixelCoordinates(String id, double[] coords) {
+        double[] point2d = new double[]{0.0, 0.0, 0.0};
+
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+
+        if (object != null && object instanceof Axes) {
+            double[] tmp = AxesDrawer.compute2dViewFromPixelCoordinates((Axes) object, coords);
+
+            point2d[0] = tmp[0];
+            point2d[1] = tmp[1];
+        }
+
+        return point2d;
+    }
+
+    /**
+     * Computes and returns the viewing area of the Axes object given by the identifier.
+     * The viewing area is defined by its upper-left corner and its dimensions, all values
+     * are in pixels. It is expressed in the AWT's 2d coordinate frame.
+     * @param id the Axes' identifier.
+     * @return the Axes' viewing area (4-element array: x, y, width, height).
+     */
+    public static double[] getViewingArea(String id) {
+        double[] viewingArea = new double[]{0.0, 0.0, 0.0, 0.0};
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+
+        if (object != null && object instanceof Axes) {
+            double[] tmp = AxesDrawer.getViewingArea((Axes) object);
+
+            viewingArea[0] = tmp[0];
+            viewingArea[1] = tmp[1];
+            viewingArea[2] = tmp[2];
+            viewingArea[3] = tmp[3];
+        }
+
+        return viewingArea;
+    }
+
 }

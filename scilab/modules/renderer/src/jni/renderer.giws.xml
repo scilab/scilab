@@ -11,5 +11,16 @@
       <parameter name="id" type="String"/>
       <parameter name="coords" type="double[]"/>
     </method>
+    <method name="getPixelFrom2dViewCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
+    <method name="get2dViewFromPixelCoordinates" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+      <parameter name="coords" type="double[]"/>
+    </method>
+    <method name="getViewingArea" returnType="double[]" modifier="static">
+      <parameter name="id" type="String"/>
+    </method>
   </object>
 </package>

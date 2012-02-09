@@ -25,6 +25,7 @@
  --------------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <string.h>
 
 #include "GetProperty.h"
 #include "Scierror.h"
@@ -3131,47 +3132,51 @@ void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double
 /*----------------------------------------------------------------------------------*/
 /**
 * Convert pixel coordinates to 2D view coordinate
-* @param pObj subwindow handle
+* @param pObjUID subwindow identifier
 * @param userCoord pixel coordinates
 * @param userCoords2D user coordinates in default 2D plane
 */
-void sciGet2dViewCoordFromPixel(sciPointObj * pObj, const int pixelCoords[2], double userCoords2D[2])
+void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double userCoords2D[2])
 {
-    switch(sciGetEntityType(pObj))
+    char *type = NULL;
+
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_AXES__) == 0)
     {
-    case SCI_SUBWIN:
-        sciGetJava2dViewCoordFromPixel(pObj, pixelCoords, userCoords2D);
-        break;
-    default:
+        sciGetJava2dViewCoordFromPixel(pObjUID, pixelCoords, userCoords2D);
+    }
+    else
+    {
         Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
         userCoords2D[0] = 0.0;
         userCoords2D[1] = 0.0;
-        break;
     }
 }
 /*----------------------------------------------------------------------------------*/
 /**
 * Convert 2d view coordinates to pixel coordinates
-* @param pObj subwindow handle
-* @param userCoords2D coordinates in th default 2D plane
+* @param pObjUID subwindow identifier
+* @param userCoords2D coordinates in the default 2D plane
 * @param pixelsCoords pixel coordinates
 */
-void sciGet2dViewPixelCoordinates(sciPointObj * pObj, const double userCoords2D[2], int pixelCoords[2])
+void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], int pixelCoords[2])
 {
-    switch(sciGetEntityType(pObj))
+    char *type = NULL;
+
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_AXES__) == 0)
     {
-    case SCI_SUBWIN:
-        {
-            /* create a 3d user coord */
-            double userCoord3D[3] = {userCoords2D[0], userCoords2D[1], 0.0};
-            sciGetJava2dViewPixelCoordinates(pObj, userCoord3D, pixelCoords);
-        }
-        break;
-    default:
+        /* create a 3d user coord */
+        double userCoord3D[3] = {userCoords2D[0], userCoords2D[1], 0.0};
+        sciGetJava2dViewPixelCoordinates(pObjUID, userCoord3D, pixelCoords);
+    }
+    else
+    {
         Scierror(999, _("Coordinates modifications are only applicable on axes objects.\n"));
         pixelCoords[0] = -1;
         pixelCoords[1] = -1;
-        break;
     }
 }
 /*----------------------------------------------------------------------------------*/
@@ -3401,23 +3406,26 @@ void sciGet2dViewBoundingBox(sciPointObj * pObj, double corner1[2], double corne
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the viewing area of a subwindown acoordinf to its axes scale and margins
+* Get the viewing area of a subwindow acoording to its axes scale and margins
 * result is in pixels
 */
-void sciGetViewingArea(sciPointObj * pObj, int * xPos, int * yPos, int * width, int * height)
+void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height)
 {
-    switch (sciGetEntityType(pObj))
+    char *type = NULL;
+
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_AXES__) == 0)
     {
-    case SCI_SUBWIN:
-        sciGetJavaViewingArea(pObj, xPos, yPos, width, height);
-        break;
-    default:
+        sciGetJavaViewingArea(pObjUID, xPos, yPos, width, height);
+    }
+    else
+    {
         *xPos = -1;
         *yPos = -1;
         *width = -1;
         *height = -1;
         Scierror(999, _("Only axes handles have a viewing area."));
-        break;
     }
 }
 /*----------------------------------------------------------------------------------*/

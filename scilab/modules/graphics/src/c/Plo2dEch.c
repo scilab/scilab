@@ -111,22 +111,23 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
                                    int xPixCoords[], int yPixCoords[], int nbCoords,
                                    int rect[4])
 {
-  /* coordinates transformation */
-  int i;
-  sciPointObj * selectedSubwin = sciGetCurrentSubWin();
-  updateSubwinScale(selectedSubwin);
-  for (i = 0; i < nbCoords; i++)
-  {
-    // specify a default value for Z
-    double curCoords[3] = {xCoords[i], yCoords[i], 0.0};
-    int curPixCoords[2];
-    sciGet2dViewPixelCoordinates(selectedSubwin, curCoords, curPixCoords);
-    xPixCoords[i] = curPixCoords[0];
-    yPixCoords[i] = curPixCoords[1];
-  }
+    /* coordinates transformation */
+    int i;
+    char * selectedSubwinUID = getOrCreateDefaultSubwin();
+    updateSubwinScale(selectedSubwinUID);
 
-  /* get viewing area */
-  sciGetViewingArea(selectedSubwin, &rect[0], &rect[1], &rect[2], &rect[3]);
+    for (i = 0; i < nbCoords; i++)
+    {
+        // specify a default value for Z
+        double curCoords[3] = {xCoords[i], yCoords[i], 0.0};
+        int curPixCoords[2];
+        sciGet2dViewPixelCoordinates(selectedSubwinUID, curCoords, curPixCoords);
+        xPixCoords[i] = curPixCoords[0];
+        yPixCoords[i] = curPixCoords[1];
+    }
+
+    /* get viewing area */
+    sciGetViewingArea(selectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
 
 }
 /*--------------------------------------------------------------------------*/
@@ -139,22 +140,22 @@ void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords
                                     double xUserCoords[], double yUserCoords[], int nbCoords,
                                     int rect[4])
 {
-  /* coordinates transformation */
-  int i;
-  sciPointObj * selectedSubwin = sciGetCurrentSubWin();
-  updateSubwinScale(selectedSubwin);
-  for (i = 0; i < nbCoords; i++)
-  {
-    // specify a default value for Z
-    int curPixCoords[2] = {xPixCoords[i], yPixCoords[i]};
-    double curCoords[2];
-    sciGet2dViewCoordFromPixel(selectedSubwin, curPixCoords, curCoords);
-    xUserCoords[i] = curCoords[0];
-    yUserCoords[i] = curCoords[1];
-  }
+    /* coordinates transformation */
+    int i;
+    char * selectedSubwinUID = getOrCreateDefaultSubwin();
+    updateSubwinScale(selectedSubwinUID);
+    for (i = 0; i < nbCoords; i++)
+    {
+        // specify a default value for Z
+        int curPixCoords[2] = {xPixCoords[i], yPixCoords[i]};
+        double curCoords[2];
+        sciGet2dViewCoordFromPixel(selectedSubwinUID, curPixCoords, curCoords);
+        xUserCoords[i] = curCoords[0];
+        yUserCoords[i] = curCoords[1];
+    }
 
-  /* get viewing area */
-  sciGetViewingArea(selectedSubwin, &rect[0], &rect[1], &rect[2], &rect[3]);
+    /* get viewing area */
+    sciGetViewingArea(selectedSubwinUID, &rect[0], &rect[1], &rect[2], &rect[3]);
 
 }
 /*--------------------------------------------------------------------------*/

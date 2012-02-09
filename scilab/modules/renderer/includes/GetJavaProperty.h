@@ -74,7 +74,7 @@ RENDERER_IMPEXP void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const dou
 /**
  * Convert user Coordinate to pixel coordinates using 2d view.
  */
-RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
+RENDERER_IMPEXP void sciGetJava2dViewPixelCoordinates(char * pSubwinUID, const double userCoords[3], int pixCoords[2]);
 
 /**
  * Project 3d coordinates on the Default 2d plane
@@ -84,7 +84,7 @@ RENDERER_IMPEXP void sciGetJava2dViewCoordinates(char * pSubwinUID, const double
 /**
  * Convert pixel coordinates to 2D view ones.
  */
-RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2], double userCoords2D[2]);
+RENDERER_IMPEXP void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], double userCoords2D[2]);
 
 /**
  * Get the bounding box of a text object.
@@ -101,7 +101,7 @@ RENDERER_IMPEXP void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1
 /**
  * Get the viewing area in pixels of a subwin object
  */
-RENDERER_IMPEXP void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
+RENDERER_IMPEXP void sciGetJavaViewingArea(char * pSubwinUID, int * xPos, int * yPos,
                            int * width, int * height);
 
 /**

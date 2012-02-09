@@ -94,6 +94,9 @@ public class AxesDrawer {
     /** The set of object to window coordinate projections associated to all the Axes drawn by this drawer. */
     private final Map<String, Transformation> projectionMap = new HashMap<String, Transformation>();
 
+    /** The set of object (in 2d view mode) to window coordinate projections associated to all the Axes drawn by this drawer. */
+    private final Map<String, Transformation> projection2dViewMap = new HashMap<String, Transformation>();
+
     /**
      * Default constructor.
      * @param visitor the parent {@see DrawerVisitor}.
@@ -137,6 +140,7 @@ public class AxesDrawer {
 
         // Set box projection.
         Transformation transformation = computeBoxTransformation(axes, canvas, false);
+        Transformation transformation2dView = computeBoxTransformation(axes, canvas, true);
         modelViewStack.pushRightMultiply(transformation);
 
         /* Compute the data scale and translate transformation. */
@@ -149,8 +153,15 @@ public class AxesDrawer {
         Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
         currentProjection = windowTrans.rightTimes(currentProjection);
 
-        /* Update the projection map with the resulting projection. */
+        /* Update the projection maps with the resulting projections. */
         addProjection(axes.getIdentifier(), currentProjection);
+
+        /* 2d view projection, to do: optimize computation */
+        currentProjection = zoneProjection.rightTimes(transformation2dView);
+        currentProjection = currentProjection.rightTimes(dataTransformation);
+        currentProjection = windowTrans.rightTimes(currentProjection);
+
+        addProjection2dView(axes.getIdentifier(), currentProjection);
 
         /**
          * Draw the axes background.
@@ -635,25 +646,66 @@ public class AxesDrawer {
     /**
      * Removes the object to window coordinate projection corresponding to a given Axes from
      * the projection map.
+     * @param axesId the identifier of the given Axes.
      */
     public void removeProjection(String axesId) {
         projectionMap.remove(axesId);
     }
 
     /**
-     * Updates the projection from object to window coordinates for the given Axes object.
+     * Adds the projection from object (in 2d view mode) to window coordinates corresponding to a given Axes object
+     * to the projection map.
+     * @param axesId the identifier of the given Axes.
+     * @param projection the corresponding projection.
+     */
+    public synchronized void addProjection2dView(String axesId, Transformation projection) {
+        projection2dViewMap.put(axesId, projection);
+    }
+
+    /**
+     * Returns the projection from object (in 2d view mode) to window coordinates corresponding
+     * to a given Axes object.
+     * @param id the identifier of the given Axes.
+     * @return the projection.
+     */
+    public Transformation getProjection2dView(String id) {
+        return projection2dViewMap.get(id);
+    }
+
+    /**
+     * Removes the object (in 2d view mode) to window coordinate projection corresponding to a given Axes from
+     * the projection map.
+     * @param axesId the identifier of the given Axes.
+     */
+    public void removeProjection2dView(String axesId) {
+        projection2dViewMap.remove(axesId);
+    }
+
+    /**
+     * Updates both the projection from object to window coordinates and the related
+     * object (in 2d view mode) to window coordinates projection for the given Axes object.
      * @param axes the given Axes.
      */
     public static void updateAxesTransformation(Axes axes) {
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
 
-        Transformation transformation = currentVisitor.getAxesDrawer().getProjection(axes.getIdentifier());
+        Transformation transformation = axesDrawer.getProjection(axes.getIdentifier());
 
         /* The projection must be updated */
         if (transformation == null) {
-            Transformation projection = currentVisitor.getAxesDrawer().computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
+            Transformation projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
 
-            currentVisitor.getAxesDrawer().addProjection(axes.getIdentifier(), projection);
+            axesDrawer.addProjection(axes.getIdentifier(), projection);
+        }
+
+        Transformation transformation2dView = axesDrawer.getProjection2dView(axes.getIdentifier());
+
+        /* The projection must be updated */
+        if (transformation2dView == null) {
+            Transformation projection2dView = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), true);
+
+            axesDrawer.addProjection2dView(axes.getIdentifier(), projection2dView);
         }
     }
 
@@ -688,6 +740,118 @@ public class AxesDrawer {
         }
 
         return new double[]{point.getX(), point.getY(), point.getZ()};
+    }
+
+    /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed in the default
+     * 2d view coordinate frame, using the given Axes. The returned pixel coordinates are expressed
+     * in the AWT's 2d coordinate frame.
+     * @param axes the given Axes.
+     * @param coordinates the 2d view coordinates (3-element array: x, y, z).
+     * @returns the pixel coordinates (2-element array: x, y).
+     */
+    public static double[] computePixelFrom2dViewCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor;
+        AxesDrawer axesDrawer;
+
+        double[] coords2dView = new double[]{0.0, 0.0, 0.0};
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
+        if (currentVisitor != null) {
+            double height;
+
+            axesDrawer = currentVisitor.getAxesDrawer();
+            height = currentVisitor.getCanvas().getHeight();
+
+            Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+
+            Vector3d point = new Vector3d(coordinates);
+            point = projection2d.project(point);
+
+            /* Convert the window coordinates to pixel coordinates, only y changes due to the differing y-axis convention */
+            coords2dView[0] = point.getX();
+            coords2dView[1] = height - point.getY();
+        }
+
+        return coords2dView;
+    }
+
+    /**
+     * Computes and returns the coordinates of a point projected onto the default 2d view plane
+     * from its pixel coordinates, using the given Axes. Pixel coordinates are expressed in
+     * the AWT's 2d coordinate frame.
+     * The returned point's z component is set to 0, as we only have x and y as an input.
+     * @param axes the given Axes.
+     * @param coordinates the pixel coordinates (2-element array: x, y).
+     * @return coordinates the 2d view coordinates (3-element array: x, y, z).
+     */
+    public static double[] compute2dViewFromPixelCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor;
+        AxesDrawer axesDrawer;
+
+        double[] coords2dView = new double[]{0.0, 0.0, 0.0};
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
+        if (currentVisitor != null) {
+            double height;
+
+            axesDrawer = currentVisitor.getAxesDrawer();
+            height = currentVisitor.getCanvas().getHeight();
+
+            /* Convert the pixel coordinates to window coordinates, only y changes due to the differing y-axis convention */
+            Vector3d point = new Vector3d(coordinates[0], height - coordinates[1], 0.0);
+
+            Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+            point = projection2d.unproject(point);
+
+            coords2dView[0] = point.getX();
+            coords2dView[1] = point.getY();
+        }
+
+        return coords2dView;
+    }
+
+    /**
+     * Computes and returns the viewing area corresponding to the given Axes object.
+     * The viewing area is described by the (x, y) coordinates of the Axes box's upper-left corner
+     * and the Axes box's dimensions (width and height), all values are in pixel.
+     * The 2d coordinate frame in which the area is expressed uses the AWT convention:
+     * upper-left window corner at (0, 0), y-axis pointing downwards).
+     * @param axes the given Axes.
+     * @return the Axes' viewing area (4-element array: x, y, width, height).
+     */
+    public static double[] getViewingArea(Axes axes) {
+        DrawerVisitor currentVisitor;
+
+        double[] viewingArea = new double[]{0.0, 0.0, 0.0, 0.0};
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+
+        if (currentVisitor != null) {
+            double width;
+            double height;
+            double upperLeftY;
+
+            AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
+
+            width = (double) currentVisitor.getCanvas().getWidth();
+            height = (double) currentVisitor.getCanvas().getHeight();
+
+            Rectangle2D axesZone = axesDrawer.computeZone(axes);
+
+            /* Compute the upper-left point's y coordinate */
+            upperLeftY = axesZone.getY() + axesZone.getHeight()*2.0;
+
+            /* Convert from normalized coordinates to 2D pixel coordinates */
+            viewingArea[0] = (axesZone.getX() + 1.0) * 0.5 * width;
+            viewingArea[1] = (1.0 - upperLeftY) * 0.5 * height;
+            viewingArea[2] = axesZone.getWidth() * width;
+            viewingArea[3] = axesZone.getHeight() * height;
+        }
+
+        return viewingArea;
     }
 
     /**

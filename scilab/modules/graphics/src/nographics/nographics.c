@@ -459,7 +459,7 @@ void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetViewingArea(sciPointObj * pObj, int *xPos, int *yPos, int *width, int *height)
+void sciGetViewingArea(char * pObjUID, int *xPos, int *yPos, int *width, int *height)
 {
 
 }

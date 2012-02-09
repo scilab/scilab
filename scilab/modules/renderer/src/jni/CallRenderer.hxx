@@ -80,6 +80,9 @@ protected:
 jmethodID voidupdateTextBoundsjstringjava_lang_StringID; // cache method id
 jmethodID voidupdateSubwinScalejstringjava_lang_StringID; // cache method id
 jmethodID jdoubleArray_get2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID; // cache method id
+jmethodID jdoubleArray_getPixelFrom2dViewCoordinatesjstringjava_lang_StringjdoubleArray_doubleID; // cache method id
+jmethodID jdoubleArray_get2dViewFromPixelCoordinatesjstringjava_lang_StringjdoubleArray_doubleID; // cache method id
+jmethodID jdoubleArray_getViewingAreajstringjava_lang_StringID; // cache method id
 
 
 
@@ -141,6 +144,12 @@ static void updateTextBounds(JavaVM * jvm_, char * id);
 static void updateSubwinScale(JavaVM * jvm_, char * id);
 
 static double* get2dViewCoordinates(JavaVM * jvm_, char * id, double* coords, int coordsSize);
+
+static double* getPixelFrom2dViewCoordinates(JavaVM * jvm_, char * id, double* coords, int coordsSize);
+
+static double* get2dViewFromPixelCoordinates(JavaVM * jvm_, char * id, double* coords, int coordsSize);
+
+static double* getViewingArea(JavaVM * jvm_, char * id);
 
 
                         /**
