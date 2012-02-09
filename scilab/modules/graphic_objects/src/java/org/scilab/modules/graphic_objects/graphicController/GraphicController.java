@@ -34,6 +34,8 @@ import org.scilab.modules.graphic_objects.graphicView.TreeView;
  */
 public class GraphicController {
 
+    private boolean debugEnable = false;
+
     private static void DEBUG(String message)
     {
         //System.err.println("[CONTROLLER] : "+message);
@@ -53,7 +55,7 @@ public class GraphicController {
      * Default constructor
      */
     private GraphicController() {
-        if (!GraphicsEnvironment.isHeadless()) {
+        if (!GraphicsEnvironment.isHeadless() && debugEnable) {
             register(GuiLogView.createGuiLogView());
             register(TreeView.createTreeView());
         }
