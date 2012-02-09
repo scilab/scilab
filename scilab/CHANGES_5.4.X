@@ -338,6 +338,8 @@ Bug fixes
 
 * Bug #10643 fixed - getdebuginfo() did not display TMPDIR value.
 
+* Bug #10656 fixed - Exception when an empty help browser was closed.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================

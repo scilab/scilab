@@ -394,7 +394,10 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Save the state of this help browser
      */
     public void saveHelpBrowserState() {
-        ConfigManager.saveHelpBrowserState(getCurrentID());
+        String id = getCurrentID();
+        if (id != null) {
+            ConfigManager.saveHelpBrowserState(id);
+        }
     }
 
     /**

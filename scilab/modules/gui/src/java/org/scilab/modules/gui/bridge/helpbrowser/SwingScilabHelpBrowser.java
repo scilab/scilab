@@ -267,15 +267,19 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      * @return the current id as String being displayed
      */
     public String getCurrentID() {
-        String id = jhelp.getModel().getCurrentID().toString();
-        int whitePos = id.indexOf(" ");
-        int commaPos = id.indexOf(",");
+        if (jhelp.getModel().getCurrentID() != null) {
+            String id = jhelp.getModel().getCurrentID().toString();
+            int whitePos = id.indexOf(" ");
+            int commaPos = id.indexOf(",");
 
-        if (whitePos != -1 && commaPos != -1) {
-            id = id.substring(whitePos + 1, commaPos);
+            if (whitePos != -1 && commaPos != -1) {
+                id = id.substring(whitePos + 1, commaPos);
+            }
+
+            return id;
+        } else {
+            return null;
         }
-
-        return id;
     }
 
     /**
