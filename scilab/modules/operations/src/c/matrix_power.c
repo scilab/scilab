@@ -332,15 +332,16 @@ int iPowerComplexScalarByComplexScalar(
 int iPowerRealScalarByRealMatrix(
 		double _dblReal1,
 		double* _pdblReal2, int _iRows2, int _iCols2,
-		double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex)
+		double* _pdblRealOut,	double* _pdblImgOut, int *_piComplex)
 {
 	int i = 0;
+    *_piComplex = 0;
 	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
 	{
 		int iComplex = 0;
 		iPowerRealScalarByRealScalar(
 				_dblReal1, _pdblReal2[i], &_pdblRealOut[i], &_pdblImgOut[i], &iComplex);
-		*_iComplex |= iComplex;
+		*_piComplex |= iComplex;
 	}
 	return 0;
 }

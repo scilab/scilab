@@ -278,9 +278,10 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-    elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
+    //no have librarieslist in scilab 6
+    //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
         // It's an ATOMS module
-        module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
+        //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
     elseif isdir(name(1)) then
         // It's an external module
         module.path = pathconvert(name(1), %F);
@@ -762,7 +763,7 @@ function status = test_single(_module, _testPath, _testName)
 
     //Check for execution errors
     if try_catch & grep(dia,"<--Error on the test script file-->") <> [] then
-        details = [ checkthefile(tmp_dia); ..
+        details = [ checkthefile(tmp_dia);
         launchthecommand(testFile)];
         status.id = 3;
         status.message = "failed: premature end of the test script";

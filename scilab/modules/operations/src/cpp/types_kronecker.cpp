@@ -56,34 +56,34 @@ int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pD
     if(bComplex1 && bComplex2) // Complex .*. Complex
     {
         vKronC( _pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iRowResult);
+            _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iRowResult);
     }
     else if(bComplex1) // Complex .*. Real
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), iRowResult);
+            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getReal(), iRowResult);
 
         vKronR( _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getImg(), iRowResult);
+            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getImg(), iRowResult);
     }
     else if(bComplex2) // Real .*. Complex
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), iRowResult);
+            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getReal(), iRowResult);
 
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getImg(), iRowResult);
+            _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getImg(), iRowResult);
     }
     else // Real .*. Real
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), iRowResult);
+            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+            (*_pDoubleOut)->getReal(), iRowResult);
     }
 
     return 0; //No Error;

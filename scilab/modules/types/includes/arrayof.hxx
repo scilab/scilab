@@ -654,7 +654,16 @@ namespace types
             }
 
             //Update complexity if necessary
-            setComplex(isComplex() || pGT->isComplex());
+            if(pGT->isComplex())
+            {
+                setComplex(true);
+            }
+
+            if(isComplex())
+            {
+                pGT->setComplex(true);
+            }
+
 
             for(int i = 0 ; i < iRows ; i++)
             {
@@ -1152,7 +1161,8 @@ namespace types
                     }
 
                     //copy values into new one
-                    int* piIndexes = new int[m_iDims];
+                    int* piIndexes = new int[Max(m_iDims, _iDims)];
+                    memset(piIndexes, 0x00, Max(m_iDims, _iDims) * sizeof(int));
                     for(int i = 0 ; i < m_iSize ; i++)
                     {
                         getIndexes(i, piIndexes);
@@ -1185,7 +1195,8 @@ namespace types
                     if(m_iDims != _iDims || (!isVector() && bNonLastDimChange))
                     {
                         //copy values into new one
-                        int* piIndexes = new int[m_iDims];
+                        int* piIndexes = new int[Max(m_iDims, _iDims)];
+                        memset(piIndexes, 0x00, sizeof(int) * Max(m_iDims, _iDims));
                         for(int i = m_iSize - 1 ; i >= 0  ; i--)
                         {
                             getIndexes(i, piIndexes);
@@ -1218,7 +1229,8 @@ namespace types
                     }
 
                     //copy values into new one
-                    int* piIndexes = new int[_iDims];
+                    int* piIndexes = new int[Max(m_iDims, _iDims)];
+                    memset(piIndexes, 0x00, sizeof(int) * Max(m_iDims, _iDims));
                     for(int i = 0 ; i < _iDims ; i++)
                     {
                         piIndexes[i] = 0;
@@ -1254,7 +1266,8 @@ namespace types
                     if(m_iDims != _iDims || (!isVector() && bNonLastDimChange))
                     {
                         //copy values into new one
-                        int* piIndexes = new int[m_iDims];
+                        int* piIndexes = new int[Max(m_iDims, _iDims)];
+                        memset(piIndexes, 0x00, sizeof(int) * Max(m_iDims, _iDims));
                         for(int i = m_iSize - 1 ; i >= 0  ; i--)
                         {
                             getIndexes(i, piIndexes);

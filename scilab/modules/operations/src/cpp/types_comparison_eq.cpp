@@ -14,6 +14,7 @@
 #include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "polynom.hxx"
 #include "list.hxx"
 #include "cell.hxx"
 #include "sparse.hxx"
@@ -53,67 +54,66 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
-        Double *pL			= _pLeftOperand->getAs<Double>();
-        Double *pR			= _pRightOperand->getAs<Double>();
+        Double *pL   = _pLeftOperand->getAs<Double>();
+        Double *pR   = _pRightOperand->getAs<Double>();
 
-        if(pR->getSize() == 0 && pL->getSize() == 0)
+        if(pR->isEmpty() && pL->isEmpty())
         {
             return new Bool(true);
         }
-        else if(pL->getSize() == 0  || pR->getSize() == 0)
+        
+        if(pL->isEmpty() || pR->isEmpty())
         {
             return new Bool(false);
         }
-        else if(pR->getSize() == 1)
+        
+        if(pR->isScalar())
         {
             Bool* pB = new Bool(pL->getDims(), pL->getDimsArray());
-            double dblRef	= pR->get(0);
+            double dblRef = pR->get(0);
             for(int i = 0 ; i < pL->getSize() ; i++)
             {
                 pB->getAs<Bool>()->set(i, pL->get(i) == dblRef);
             }
-            pResult = pB;
+            return pB;
         }
-        else if(pL->getSize() == 1)
+        
+        if(pL->isScalar())
         {
             Bool* pB = new Bool(pR->getDims(), pR->getDimsArray());
-            double dblRef	= pL->get(0);
+            double dblRef = pL->get(0);
             for(int i = 0 ; i < pR->getSize() ; i++)
             {
                 pB->getAs<Bool>()->set(i, dblRef == pR->get(i));
             }
 
-            pResult = pB;
+            return pB;
         }
-        else
+        
+
+        if(pL->getDims() != pR->getDims())
         {
-            if(pL->getDims() != pR->getDims())
+            return new Bool(false);
+        }
+
+        int* piDimsL = pL->getDimsArray();
+        int* piDimsR = pR->getDimsArray();
+
+        for(int i = 0 ; i < pL->getDims() ; i++)
+        {
+            if(piDimsL[i] != piDimsR[i])
             {
                 return new Bool(false);
             }
-            else
-            {
-                int* piDimsL = pL->getDimsArray();
-                int* piDimsR = pR->getDimsArray();
-
-                for(int i = 0 ; i < pL->getDims() ; i++)
-                {
-                    if(piDimsL[i] != piDimsR[i])
-                    {
-                        return new Bool(false);
-                    }
-                }
-
-                Bool* pB = new Bool(pR->getRows(), pR->getCols());
-                for(int i = 0 ; i < pL->getSize() ; i++)
-                {
-                    pB->set(i, pL->get(i) == pR->get(i));
-                }
-
-                pResult = pB;
-            }
         }
-        return pResult;
+
+        Bool* pB = new Bool(pR->getDims(), pR->getDimsArray());
+        for(int i = 0 ; i < pL->getSize() ; i++)
+        {
+            pB->set(i, pL->get(i) == pR->get(i));
+        }
+
+        return pB;
     }
 
     /*
@@ -121,75 +121,59 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
     {
-        String *pL			= _pLeftOperand->getAs<String>();
-        String *pR			= _pRightOperand->getAs<String>();
+        String *pL   = _pLeftOperand->getAs<String>();
+        String *pR   = _pRightOperand->getAs<String>();
 
-        if(pL->getSize() == 1)
+        if(pL->isScalar())
         {
-            pResult = new Bool(pR->getRows(), pR->getCols());
+            pResult = new Bool(pR->getDims(), pR->getDimsArray());
 
-            wchar_t* pstL = pL->get()[0];
-            for(int i = 0 ; i < pR->getRows() ; i++)
+            wchar_t* pstL = pL->get(0);
+            for(int i = 0 ; i < pR->getSize() ; i++)
             {
-                for(int j = 0 ; j < pR->getCols() ; j++)
-                {
-                    wchar_t* pstR = pR->get(i,j);
-                    if(wcscmp(pstL, pstR) == 0)
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
+                pResult->getAs<Bool>()->set(i, wcscmp(pstL, pR->get(i)) == 0);
+            }
+
+            return pResult;
+        }
+
+        if(pR->isScalar())
+        {
+            pResult = new Bool(pL->getDims(), pL->getDimsArray());
+
+            wchar_t* pstR = pR->get(0);
+            for(int i = 0 ; i < pL->getSize() ; i++)
+            {
+                pResult->getAs<Bool>()->set(i, wcscmp(pL->get(i), pstR) == 0);
+            }
+
+            return pResult;
+        }
+
+        int iDims1 = pL->getDims();
+        int iDims2 = pR->getDims();
+
+        if(iDims1 != iDims2)
+        {
+            return new Bool(false);
+        }
+
+        int* piDims1 = pL->getDimsArray();
+        int* piDims2 = pR->getDimsArray();
+
+        for(int i = 0 ; i < iDims1 ; i++)
+        {
+            if(piDims1[i] != piDims2[i])
+            {
+                return new Bool(false);
             }
         }
-        else if(pR->getSize() == 1)
-        {
-            pResult = new Bool(pL->getRows(), pL->getCols());
 
-            wchar_t* pstR = pR->get()[0];
-            for(int i = 0 ; i < pL->getRows() ; i++)
-            {
-                for(int j = 0 ; j < pL->getCols() ; j++)
-                {
-                    wchar_t* pstL = pL->get(i,j);
-                    if(wcscmp(pstL, pstR) == 0)
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
-            }
-        }
-        else if(pL->getRows() == pR->getRows() && pL->getCols() == pR->getCols())
-        {
-            pResult = new Bool(pL->getRows(), pL->getCols());
+        pResult = new Bool(pL->getDims(), pL->getDimsArray());
 
-            for(int i = 0 ; i < pL->getRows() ; i++)
-            {
-                for(int j = 0 ; j < pL->getCols() ; j++)
-                {
-                    wchar_t* pstR = pR->get(i,j);
-                    wchar_t* pstL = pL->get(i,j);
-                    if(wcscmp(pstL, pstR) == 0)
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
-            }
-        }
-        else
+        for(int i = 0 ; i < pL->getSize() ; i++)
         {
-            pResult = new Bool(false);
+            pResult->getAs<Bool>()->set(i, wcscmp(pL->get(i), pR->get(i)) == 0);
         }
         return pResult;
     }
@@ -199,71 +183,115 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
     {
-        Bool *pL			= _pLeftOperand->getAs<Bool>();
-        Bool *pR			= _pRightOperand->getAs<Bool>();
+        Bool *pL   = _pLeftOperand->getAs<Bool>();
+        Bool *pR   = _pRightOperand->getAs<Bool>();
 
-        if(pL->getSize() == 1)
+        if(pL->isScalar())
         {
-            pResult = new Bool(pR->getRows(), pR->getCols());
+            pResult = new Bool(pR->getDims(), pR->getDimsArray());
 
-            int iL = pL->get()[0];
-            for(int i = 0 ; i < pR->getRows() ; i++)
+            int iL = pL->get(0);
+            for(int i = 0 ; i < pR->getSize() ; i++)
             {
-                for(int j = 0 ; j < pR->getCols() ; j++)
-                {
-                    if(iL == pR->get(i,j))
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
+                pResult->getAs<Bool>()->set(i, iL == pR->get(i));
+            }
+            return pResult;
+        }
+        
+        if(pR->isScalar())
+        {
+            pResult = new Bool(pL->getDims(), pL->getDimsArray());
+
+            int iR = pR->get(0);
+            for(int i = 0 ; i < pL->getSize() ; i++)
+            {
+                pResult->getAs<Bool>()->set(i, iR == pL->get(i));
+            }
+            return pResult;
+        }
+        
+        
+        int iDims1 = pL->getDims();
+        int iDims2 = pR->getDims();
+
+        if(iDims1 != iDims2)
+        {
+            return new Bool(false);
+        }
+
+        int* piDims1 = pL->getDimsArray();
+        int* piDims2 = pR->getDimsArray();
+
+        for(int i = 0 ; i < iDims1 ; i++)
+        {
+            if(piDims1[i] != piDims2[i])
+            {
+                return new Bool(false);
             }
         }
-        else if(pR->getSize() == 1)
-        {
-            pResult = new Bool(pL->getRows(), pL->getCols());
 
-            int iR = pR->get()[0];
-            for(int i = 0 ; i < pL->getRows() ; i++)
+        pResult = new Bool(pL->getDims(), pL->getDimsArray());
+
+        for(int i = 0 ; i < pL->getSize() ; i++)
+        {
+            pResult->getAs<Bool>()->set(i, pL->get(i) == pR->get(i));
+        }
+        return pResult;
+    }
+
+    /*
+    ** POLY == POLY
+    */
+    if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    {
+        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
+        Polynom *pR   = _pRightOperand->getAs<Polynom>();
+
+        if(pL->isScalar())
+        {
+            pResult = new Bool(pR->getDims(), pR->getDimsArray());
+
+            SinglePoly* pSL = pL->get(0);
+            for(int i = 0 ; i < pR->getSize() ; i++)
             {
-                for(int j = 0 ; j < pL->getCols() ; j++)
-                {
-                    if(iR == pL->get(i,j))
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
+                pResult->getAs<Bool>()->set(i, *pSL == *pR->get(i));
+            }
+            return pResult;
+        }
+
+        if(pR->isScalar())
+        {
+            pResult = new Bool(pL->getDims(), pL->getDimsArray());
+
+            SinglePoly* pSR = pR->get(0);
+            for(int i = 0 ; i < pL->getSize() ; i++)
+            {
+                pResult->getAs<Bool>()->set(i, *pSR == *pL->get(i));
+            }
+            return pResult;
+        }
+
+        if(pL->getDims() != pR->getDims())
+        {
+            return new Bool(false);
+        }
+
+        int* piDims1 = pL->getDimsArray();
+        int* piDims2 = pR->getDimsArray();
+
+        for(int i = 0 ; i < pL->getDims() ; i++)
+        {
+            if(piDims1[i] != piDims2[i])
+            {
+                return new Bool(false);
             }
         }
-        else if(pL->getRows() == pR->getRows() && pL->getCols() == pR->getCols())
-        {
-            pResult = new Bool(pL->getRows(), pL->getCols());
 
-            for(int i = 0 ; i < pL->getRows() ; i++)
-            {
-                for(int j = 0 ; j < pL->getCols() ; j++)
-                {
-                    if(pL->get(i,j) == pR->get(i,j))
-                    {
-                        pResult->getAs<Bool>()->set(i,j,true);
-                    }
-                    else
-                    {
-                        pResult->getAs<Bool>()->set(i,j,false);
-                    }
-                }
-            }
-        }
-        else
+        pResult = new Bool(pL->getDims(), pL->getDimsArray());
+
+        for(int i = 0 ; i < pL->getSize() ; i++)
         {
-            pResult = new Bool(false);
+            pResult->getAs<Bool>()->set(i, *pL->get(i) == *pR->get(i));
         }
         return pResult;
     }
@@ -281,7 +309,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             return new Bool(false);
         }
 
-        if(pLL->getSize() == 0)
+        if(pLL->getSize() == 0 && pLR->getSize() == 0)
         {//list() == list() -> return true
             return new Bool(true);
         }
@@ -289,14 +317,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         Bool* pB = new Bool(1, pLL->getSize());
         for(int i = 0 ; i < pLL->getSize() ; i++)
         {
-            if(*pLL->get(i) == *pLR->get(i))
-            {
-                pB->set(i, true);
-            }
-            else
-            {
-                pB->set(i, false);
-            }
+            pB->set(i, *pLL->get(i) == *pLR->get(i));
         }
         return pB;
     }
@@ -372,7 +393,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         return pResult;
     }
-        
+
     /*
     ** SPARSE == DOUBLE
     */
@@ -471,7 +492,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
     {
         pOut = new SparseBool(_pSB2->getRows(), _pSB2->getCols());
         bool bVal = _pSB1->get(0, 0);
-        
+
         for(int i = 0 ; i < pOut->getRows() ; i++)
         {
             for(int j = 0 ; j < pOut->getCols() ; j++)
@@ -488,7 +509,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
     {
         pOut = new SparseBool(_pSB1->getRows(), _pSB1->getCols());
         bool bVal = _pSB2->get(0, 0);
-        
+
         for(int i = 0 ; i < pOut->getRows() ; i++)
         {
             for(int j = 0 ; j < pOut->getCols() ; j++)
@@ -537,7 +558,7 @@ int EqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _
                 }
             }
         }
-        
+
         *_pOut = pSB;
         return 0;
     }
@@ -557,7 +578,7 @@ int EqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _
                 }
             }
         }
-        
+
         *_pOut = pSB;
         return 0;
     }

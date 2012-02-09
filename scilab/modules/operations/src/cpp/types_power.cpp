@@ -16,10 +16,10 @@
 
 extern "C"
 {
-	#include "operation_f.h"
-	#include "matrix_power.h"
-    #include "localization.h"
-    #include "charEncoding.h"
+#include "operation_f.h"
+#include "matrix_power.h"
+#include "localization.h"
+#include "charEncoding.h"
 }
 
 InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand)
@@ -33,8 +33,8 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
-        Double *pL			= _pLeftOperand->getAs<Double>();
-        Double *pR			= _pRightOperand->getAs<Double>();
+        Double *pL   = _pLeftOperand->getAs<Double>();
+        Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if(iResult)
@@ -46,8 +46,8 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
     }
     else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
-        Polynom *pL			= _pLeftOperand->getAs<Polynom>();
-        Double *pR			= _pRightOperand->getAs<Double>();
+        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
+        Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = PowerPolyByDouble(pL, pR, &pResult);
         switch(iResult)
@@ -95,8 +95,8 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
     }
     else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
-        Polynom *pL			= _pLeftOperand->getAs<Polynom>();
-        Double *pR			= _pRightOperand->getAs<Double>();
+        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
+        Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = PowerPolyByDouble(pL, pR, &pResult);
         switch(iResult)
@@ -121,160 +121,171 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
 
 int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
 {
-	bool bComplex1  = _pDouble1->isComplex();
-	bool bComplex2  = _pDouble2->isComplex();
+    bool bComplex1  = _pDouble1->isComplex();
+    bool bComplex2  = _pDouble2->isComplex();
     bool bScalar1   = _pDouble1->isScalar();
     bool bScalar2   = _pDouble2->isScalar();
 
-	int iComplex = 1;
+    int iComplex = 1;
 
-	if(bScalar1 && bScalar2)
-	{//s ^ s
-		*_pDoubleOut = new Double(1,1 , true);
+    if(bScalar1 && bScalar2)
+    {//s ^ s
+        *_pDoubleOut = new Double(1, 1, true);
 
-		if(bComplex1 == false && bComplex2 == false)
-		{
-			iPowerRealScalarByRealScalar(
-				_pDouble1->getReal()[0], 
-				_pDouble2->getReal()[0],
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), &iComplex);
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-			iPowerRealScalarByComplexScalar(
-				_pDouble1->getReal()[0], 
-				_pDouble2->getReal()[0], _pDouble2->getImg()[0],
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-			iPowerComplexScalarByRealScalar(
-				_pDouble1->getReal()[0], _pDouble1->getImg()[0], 
-				_pDouble2->getReal()[0],
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
-			iPowerComplexScalarByComplexScalar(
-				_pDouble1->getReal()[0], _pDouble1->getImg()[0],
-				_pDouble2->getReal()[0], _pDouble2->getImg()[0],
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-	}
-	else if(bScalar1)
-	{//s ^ []
-		*_pDoubleOut = new Double(_pDouble2->getRows(), _pDouble2->getCols(), true);
+        if(bComplex1 == false && bComplex2 == false)
+        {
+            iPowerRealScalarByRealScalar(_pDouble1->get(0), _pDouble2->get(0), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+        }
+        else if(bComplex1 == false && bComplex2 == true)
+        {
+            iPowerRealScalarByComplexScalar(_pDouble1->get(0), _pDouble2->get(0), _pDouble2->getImg(0), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+        else if(bComplex1 == true && bComplex2 == false)
+        {
+            iPowerComplexScalarByRealScalar(_pDouble1->get(0), _pDouble1->getImg(0), _pDouble2->get(0), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+        else if(bComplex1 == true && bComplex2 == true)
+        {
+            iPowerComplexScalarByComplexScalar(_pDouble1->get(0), _pDouble1->getImg(0), _pDouble2->get(0), _pDouble2->getImg(0), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
 
-		if(bComplex1 == false && bComplex2 == false)
-		{
-			iPowerRealScalarByRealMatrix(
-				_pDouble1->getReal()[0], 
-				_pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), &iComplex);
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-			iPowerRealScalarByComplexMatrix(
-				_pDouble1->getReal()[0], 
-				_pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-			iPowerComplexScalarByRealMatrix(
-				_pDouble1->getReal()[0], _pDouble1->getImg()[0], 
-				_pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
-			iPowerComplexScalarByComplexMatrix(
-				_pDouble1->getReal()[0], _pDouble1->getImg()[0], 
-				_pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-	}
-	else if(bScalar2 && ( _pDouble1->getRows() == 1 || _pDouble1->getCols() == 1 ))
-	{//_pDouble1 is a vector and _pDouble is a scalar
-		*_pDoubleOut = new Double(_pDouble1->getRows(),_pDouble1->getCols() , true);
-		
-		if(bComplex1 == false && bComplex2 == false)
-		{
-			for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
-			{
-				iPowerRealScalarByRealScalar(
-					_pDouble1->getReal()[i], 
-					_pDouble2->getReal()[0],
-					&(*_pDoubleOut)->getReal()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
-			}
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-			for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
-			{
-				iPowerRealScalarByComplexScalar(
-					_pDouble1->getReal()[i], 
-					_pDouble2->getReal()[0], _pDouble2->getImg()[0],
-					&(*_pDoubleOut)->getReal()[i], &(*_pDoubleOut)->getImg()[i]);
-			}
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-			for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
-			{
-			iPowerComplexScalarByRealScalar(
-				_pDouble1->getReal()[i], _pDouble1->getImg()[i], 
-				_pDouble2->getReal()[0],
-					&(*_pDoubleOut)->getReal()[i], &(*_pDoubleOut)->getImg()[i]);
-			}
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
-			for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
-			{
-			iPowerComplexScalarByComplexScalar(
-				_pDouble1->getReal()[i], _pDouble1->getImg()[i],
-				_pDouble2->getReal()[0], _pDouble2->getImg()[0],
-					&(*_pDoubleOut)->getReal()[i], &(*_pDoubleOut)->getImg()[i]);
-			}
-		}
-	}
-	else if(bScalar2 && ( _pDouble1->getRows() == _pDouble1->getCols()))
-	{//power of a square matrix by a scalar exponent.
-		*_pDoubleOut = new Double(_pDouble1->getRows(),_pDouble1->getCols() , true);
-		if(bComplex1 == false && bComplex2 == false)
-		{
-			iPowerRealSquareMatrixByRealScalar(
-				_pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
-				_pDouble2->getReal()[0], 
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), &iComplex);
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-			iPowerComplexSquareMatrixByRealScalar(
-				_pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-				_pDouble2->getReal()[0], 
-				(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
-		}
-	}
+        if(iComplex == 0)
+        {
+            (*_pDoubleOut)->setComplex(false);
+        }
 
-	if(iComplex == 0)
-	{
-		(*_pDoubleOut)->setComplex(false);
-	}
-	return 0;
+        return 0;
+    }
+    else if(bScalar1 && _pDouble2->getDims() == 2)
+    {//s ^ []
+        *_pDoubleOut = new Double(_pDouble2->getRows(), _pDouble2->getCols(), true);
+
+        if(bComplex1 == false && bComplex2 == false)
+        {
+            iPowerRealScalarByRealMatrix(
+                _pDouble1->get(0), 
+                _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+        }
+        else if(bComplex1 == false && bComplex2 == true)
+        {
+            iPowerRealScalarByComplexMatrix(
+                _pDouble1->get(0), 
+                _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+        else if(bComplex1 == true && bComplex2 == false)
+        {
+            iPowerComplexScalarByRealMatrix(
+                _pDouble1->get(0), _pDouble1->getImg(0), 
+                _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+        else if(bComplex1 == true && bComplex2 == true)
+        {
+            iPowerComplexScalarByComplexMatrix(
+                _pDouble1->get(0), _pDouble1->getImg(0), 
+                _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+
+        if(iComplex == 0)
+        {
+            (*_pDoubleOut)->setComplex(false);
+        }
+
+        return 0;
+    }
+    
+    if(bScalar2 && _pDouble1->getDims() == 2 && _pDouble1->isVector() )
+    {//_pDouble1 is a vector and _pDouble is a scalar
+        *_pDoubleOut = new Double(_pDouble1->getRows(),_pDouble1->getCols() , true);
+
+        if(bComplex1 == false && bComplex2 == false)
+        {
+            for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
+            {
+                iPowerRealScalarByRealScalar(
+                    _pDouble1->get(i), 
+                    _pDouble2->get(0),
+                    &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
+            }
+        }
+        else if(bComplex1 == false && bComplex2 == true)
+        {
+            for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
+            {
+                iPowerRealScalarByComplexScalar(
+                    _pDouble1->get(i), 
+                    _pDouble2->get(0), _pDouble2->getImg(0),
+                    &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
+            }
+        }
+        else if(bComplex1 == true && bComplex2 == false)
+        {
+            for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
+            {
+                iPowerComplexScalarByRealScalar(
+                    _pDouble1->get(i), _pDouble1->getImg(i), 
+                    _pDouble2->get(0),
+                    &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
+            }
+        }
+        else if(bComplex1 == true && bComplex2 == true)
+        {
+            for(int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
+            {
+                iPowerComplexScalarByComplexScalar(
+                    _pDouble1->get(i), _pDouble1->getImg(i),
+                    _pDouble2->get(0), _pDouble2->getImg(0),
+                    &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
+            }
+        }
+
+        if(iComplex == 0)
+        {
+            (*_pDoubleOut)->setComplex(false);
+        }
+
+        return 0;
+    }
+    
+    if(bScalar2 && ( _pDouble1->getRows() == _pDouble1->getCols()))
+    {//power of a square matrix by a scalar exponent.
+
+        if(bComplex2)
+        {//mange by overloading
+            return 0;
+        }
+
+        *_pDoubleOut = new Double(_pDouble1->getRows(),_pDouble1->getCols() , true);
+        if(bComplex1 == false)
+        {
+            iPowerRealSquareMatrixByRealScalar(
+                _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
+                _pDouble2->get(0), 
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+        }
+        else if(bComplex1 == true)
+        {
+            iPowerComplexSquareMatrixByRealScalar(
+                _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
+                _pDouble2->get(0), 
+                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+
+        if(iComplex == 0)
+        {
+            (*_pDoubleOut)->setComplex(false);
+        }
+    }
+    return 0;
 }
 
 int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 {
-	bool bComplex1  = _pPoly->isComplex();
-	bool bComplex2  = _pDouble->isComplex();
+    bool bComplex1  = _pPoly->isComplex();
+    bool bComplex2  = _pDouble->isComplex();
     bool bScalar1   = _pPoly->isScalar();
     bool bScalar2   = _pDouble->isScalar();
     bool bIdentity2 = _pDouble->isIdentity();
@@ -291,7 +302,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         *_pOut = Double::Empty();
         return 0;
     }
-    
+
     if(bScalar1)
     {//p ^ x or p ^ X
         int iRank   = 0;
@@ -350,7 +361,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         }
         *_pOut = pOut;
     }
-	return 0;
+    return 0;
 }
 
 int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
@@ -445,7 +456,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                         _pDouble1->get(i), _pDouble1->getImg(i),
                         dblR2, dblI2,
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
-               }
+                }
             }
             else
             {

@@ -147,22 +147,38 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     {
     case GREP_OK :
         {
-            Double* pD1 = new Double(1, grepresults.currentLength);
-            double* pDbl1 = pD1->getReal();
-            for (int i = 0 ; i < grepresults.currentLength ; i++ )
+            Double* pD1 = NULL;
+            if(grepresults.currentLength == 0)
             {
-                pDbl1[i] = static_cast<double>(grepresults.values[i]);
+                pD1 = Double::Empty();
+            }
+            else
+            {
+                pD1 = new Double(1, grepresults.currentLength);
+                double* pDbl1 = pD1->getReal();
+                for (int i = 0 ; i < grepresults.currentLength ; i++ )
+                {
+                    pDbl1[i] = static_cast<double>(grepresults.values[i]);
+                }
             }
 
             out.push_back(pD1);
 
             if (_iRetCount == 2)
             {
-                Double* pD2 = new Double(1, grepresults.currentLength);
-                double* pDbl2 = pD2->getReal();
-                for (int i = 0 ; i < grepresults.currentLength ; i++ )
+                Double* pD2 = NULL;
+                if(grepresults.currentLength == 0)
                 {
-                    pDbl2[i] = static_cast<double>(grepresults.positions[i]);
+                    pD2 = Double::Empty();
+                }
+                else
+                {
+                    pD2 = new Double(1, grepresults.currentLength);
+                    double* pDbl2 = pD2->getReal();
+                    for (int i = 0 ; i < grepresults.currentLength ; i++ )
+                    {
+                        pDbl2[i] = static_cast<double>(grepresults.positions[i]);
+                    }
                 }
 
                 out.push_back(pD2);

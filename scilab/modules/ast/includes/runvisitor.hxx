@@ -1243,7 +1243,7 @@ namespace ast
             {
                 InternalType* pVar  = result_get();
                 Double *pdbl        = pVar->getAs<Double>();
-                Bool *pReturn       = new Bool(pdbl->getRows(), pdbl->getCols());
+                Bool *pReturn       = new Bool(pdbl->getDims(), pdbl->getDimsArray());
                 double *pR		    = pdbl->getReal();
                 int *piB            = pReturn->get();
                 for(int i = 0 ; i < pdbl->getSize() ; i++)
@@ -1262,7 +1262,7 @@ namespace ast
             {
                 InternalType* pIT   = result_get();
                 Bool *pb            = pIT->getAs<types::Bool>();
-                Bool *pReturn       = new Bool(pb->getRows(), pb->getCols());
+                Bool *pReturn       = new Bool(pb->getDims(), pb->getDimsArray());
                 int *piR            = pb->get();
                 int *piB            = pReturn->get();
 

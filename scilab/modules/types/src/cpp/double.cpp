@@ -687,19 +687,40 @@ namespace types
 		}
 
 		double *pdblReal = pdbl->getReal();
-		if(memcmp(m_pRealData, pdblReal, getSize() * sizeof(double)) != 0)
-		{
-			return false;
-		}
+
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(m_pRealData[i] != pdblReal[i])
+            {
+                return false;
+            }
+        }
 
 		if(isComplex())
 		{
-			double *pdblImg = pdbl->getImg();
-			if(memcmp(m_pImgData, pdblImg, getSize() * sizeof(double)) != 0)
-			{
-				return false;
-			}
-		}
+            double *pdblImg = pdbl->getImg();
+            for(int i = 0 ; i < getSize() ; i++)
+            {
+                if(m_pImgData[i] != pdblImg[i])
+                {
+                    return false;
+                }
+            }
+        }
+
+        //if(memcmp(m_pRealData, pdblReal, getSize() * sizeof(double)) != 0)
+		//{
+		//	return false;
+		//}
+
+		//if(isComplex())
+		//{
+		//	double *pdblImg = pdbl->getImg();
+		//	if(memcmp(m_pImgData, pdblImg, getSize() * sizeof(double)) != 0)
+		//	{
+		//		return false;
+		//	}
+		//}
 		return true;
 	}
 

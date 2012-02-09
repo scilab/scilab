@@ -55,7 +55,10 @@ namespace types
 
 	SinglePoly::~SinglePoly()
 	{
-		delete m_pdblCoef;
+        if(m_pdblCoef)
+        {
+		    delete m_pdblCoef;
+        }
 	}
 
 	/*Real constructor, private only*/
@@ -68,6 +71,7 @@ namespace types
 
 		if(m_iRank == 0)
 		{
+            m_pdblCoef = NULL;
 			return;
 		}
 
@@ -128,7 +132,7 @@ namespace types
 			{
 				pCoef = new Double(1, _iRank, &pR, &pI);
 				pCoef->set(m_pdblCoef->getReal());
-				setComplex(m_pdblCoef->isComplex());
+				pCoef->setComplex(m_pdblCoef->isComplex());
 				if(m_pdblCoef->isComplex())
 				{
 					pCoef->setImg(m_pdblCoef->getImg());
@@ -461,25 +465,7 @@ namespace types
 			return false;
 		}
 
-		double* pR1 = getCoefReal();
-		double *pR2 = pP->getCoefReal();
-
-		if(memcmp(pR1, pR2, sizeof(double) * getRank()) != 0)
-		{
-			return false;
-		}
-
-		if(isComplex())
-		{
-			double* pI1 = getCoefImg();
-			double *pI2 = pP->getCoefImg();
-
-			if(memcmp(pI1, pI2, sizeof(double) * getRank()) != 0)
-			{
-				return false;
-			}
-		}
-		return true;
+        return *(getCoef()) == *(pP->getCoef());
 	}
 
 	bool SinglePoly::operator!=(const InternalType& it)

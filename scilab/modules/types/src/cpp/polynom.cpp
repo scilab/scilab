@@ -105,6 +105,41 @@ namespace types
 #endif
     }
 
+    bool Polynom::set(int _iPos, SinglePoly* _pS)
+    {
+        if(m_pRealData == NULL || _iPos >= m_iSize)
+        {
+            return false;
+        }
+
+        if(m_pRealData[_iPos])
+        {
+            delete m_pRealData[_iPos];
+        }
+
+        m_pRealData[_iPos] = copyValue(_pS);
+
+        if(_pS->isComplex())
+        {
+            setComplex(true);
+        }
+        return true;
+    }
+
+    bool Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
+    {
+        return set(_iCols * getRows() + _iRows, _pS);
+    }
+
+    bool Polynom::set(SinglePoly** _pS)
+    {
+        for(int i = 0 ; i < m_iSize ; i++)
+        {
+            set(i, _pS[i]);
+        }
+        return true;
+    }
+
     bool Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
     {
         int piDims[] = {_iRows, _iCols};
