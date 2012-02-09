@@ -101,6 +101,10 @@ Unitary testing
 Example: test_run('SCI/contrib/toolbox_skeleton')
 (See bug #9834)
 
+* test_run and atomsTest now return a boolean value:
+  - %t if no error detected
+  - %f if any error detected)
+
 
 Graphical User Interface
 ========================

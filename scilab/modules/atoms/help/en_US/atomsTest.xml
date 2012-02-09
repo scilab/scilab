@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
+ * Copyright (C) 2011 DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,31 +28,13 @@
     <refpurpose>Execute tests of given module installed</refpurpose>
   </refnamediv>
 
-  <!-- ===================================================================== -->
-
-  <!-- Calling Sequence -->
-
-  <!-- ===================================================================== -->
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
     <synopsis>
-    atomsTest(module)
+     status = atomsTest(module)
   </synopsis>
   </refsynopsisdiv>
-
-  <!-- ===================================================================== -->
-
-  <!-- Parameters -->
-
-  <!-- ===================================================================== -->
-
-  <!-- ===================================================================== -->
-
-  <!-- Parameters -->
-
-  <!-- ===================================================================== -->
 
   <refsection>
     <title>Arguments</title>
@@ -78,14 +61,17 @@
           </informaltable>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>status</term>
+
+        <listitem>
+          <para>boolean value %t or %f Returns %t if no error has been
+          detected Returns %f if any error has been detected</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
-
-  <!-- ===================================================================== -->
-
-  <!-- Description -->
-
-  <!-- ===================================================================== -->
 
   <refsection>
     <title>Description</title>
@@ -93,12 +79,6 @@
     <para><literal>atomsTest</literal> executes all the tests provided by the
     module and print their results.</para>
   </refsection>
-
-  <!-- ===================================================================== -->
-
-  <!-- Examples -->
-
-  <!-- ===================================================================== -->
 
   <refsection>
     <title>Example</title>
@@ -116,16 +96,10 @@ atomsGetLoaded();
 atomsTest("toolbox_1");</programlisting>
 
     <refsection>
-      <!-- ===================================================================== -->
-
-      <!-- Explanations on the printing -->
-
-      <!-- ===================================================================== -->
-
       <title>Explanations on the printing</title>
 
       <para><emphasis role="strong">Example 1</emphasis>: result of
-      atomsTest("toolbox_1")</para>
+      atomsTest("apifun")</para>
 
       <programlisting role="example">   atomsTest("apifun")
    TMPDIR = /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV
@@ -177,8 +151,8 @@ atomsTest("toolbox_1");</programlisting>
 
    --------------------------------------------------------------------------
  ans  =
- 
-     [] </programlisting>
+
+     %f </programlisting>
 
       <para>TMPDIR is the general folder where all the temporary files of the
       tests will be saved. The list of the tests is then shown, with their
@@ -334,12 +308,6 @@ atomsTest("toolbox_1");</programlisting>
     </refsection>
   </refsection>
 
-  <!-- ===================================================================== -->
-
-  <!-- See also -->
-
-  <!-- ===================================================================== -->
-
   <refsection role="see also">
     <title>See Also</title>
 
@@ -354,17 +322,27 @@ atomsTest("toolbox_1");</programlisting>
     </simplelist>
   </refsection>
 
-  <!-- ===================================================================== -->
-
-  <!-- Authors -->
-
-  <!-- ===================================================================== -->
-
   <refsection>
     <title>Authors</title>
 
     <simplelist type="vert">
       <member>Pierre MARECHAL - DIGITEO</member>
     </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+
+        <revdescription>atomsTest returns a status: <itemizedlist>
+            <listitem>Returns %t if no error has been detected</listitem>
+
+            <listitem>Returns %f if any error has been detected</listitem>
+          </itemizedlist></revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>
