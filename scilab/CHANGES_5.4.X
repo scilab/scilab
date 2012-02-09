@@ -188,6 +188,8 @@ Bug fixes
 
 * Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
 
+* Bug #9424 fixed - gettext("") did not return "".
+
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
@@ -317,6 +319,9 @@ Bug fixes
 
 * Bug #10579 fixed - Wrong reference to and function in the help page of prod
                      and cumprod fixed.
+
+* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
+                     than gettext.
 
 * Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
 
