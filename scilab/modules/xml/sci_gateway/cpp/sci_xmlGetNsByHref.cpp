@@ -73,7 +73,11 @@ int sci_xmlGetNsByHref(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, addr, &href);
+    if (getAllocatedSingleString(pvApiCtx, addr, &href) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (!strlen(href))
     {

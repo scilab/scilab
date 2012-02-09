@@ -58,7 +58,11 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
-    getAllocatedSingleString(pvApiCtx, addr, &path);
+    if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     validation = new T((const char *)path, &error);
     freeAllocatedSingleString(path);

@@ -74,7 +74,11 @@ int sci_xmlElement(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, addr, &name);
+    if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (!strlen(name) || xmlValidateName((const xmlChar *)name, 0))
     {

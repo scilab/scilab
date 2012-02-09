@@ -78,7 +78,11 @@ int sci_xmlNs(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, addr, vars[i]);
+        if (getAllocatedSingleString(pvApiCtx, addr, vars[i]) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
     }
 
     ns = new XMLNs(*elem, prefix, href);

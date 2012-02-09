@@ -121,7 +121,11 @@ int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, retaddr, &retstr);
+        if (getAllocatedSingleString(pvApiCtx, retaddr, &retstr) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         if (retstr)
         {
             a->setElementAtPosition(index, std::string(retstr));

@@ -94,7 +94,11 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, addr))
         {
-            getAllocatedSingleString(pvApiCtx, addr, &path);
+            if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
 
             if (!strlen(path))
             {

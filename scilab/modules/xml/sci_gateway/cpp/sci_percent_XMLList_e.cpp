@@ -78,7 +78,11 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, daddr, &field);
+        if (getAllocatedSingleString(pvApiCtx, daddr, &field) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
         if (err.iErr)
         {

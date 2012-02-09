@@ -78,7 +78,11 @@ int sci_percent_XMLAttr_size(char *fname, unsigned long fname_len)
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
-        getAllocatedSingleString(pvApiCtx, addr, &option);
+        if (getAllocatedSingleString(pvApiCtx, addr, &option) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
 
         if (strcmp(option, "r") && strcmp(option, "c") && strcmp(option, "*"))
         {

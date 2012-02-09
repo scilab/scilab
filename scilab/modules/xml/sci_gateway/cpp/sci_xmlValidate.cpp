@@ -59,7 +59,11 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &path);
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &path) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
     }
     else if (isXMLDoc(addr, pvApiCtx))
     {

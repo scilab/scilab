@@ -271,7 +271,11 @@ int sci_extraction(char * fname, void *pvApiCtx)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
+    if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
     id = getXMLObjectId(mlistaddr, pvApiCtx);
 
     t = XMLObject::getFromId<T>(id);

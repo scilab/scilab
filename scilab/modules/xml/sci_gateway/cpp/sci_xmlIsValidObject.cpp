@@ -55,7 +55,11 @@ int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &vars);
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &vars) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         exists = new int[row * col];
 
         for (int i = 0; i < row * col; i++)

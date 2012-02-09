@@ -101,7 +101,11 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
-    getAllocatedSingleString(pvApiCtx, addr, &query);
+    if (getAllocatedSingleString(pvApiCtx, addr, &query) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (Rhs == 3)
     {
@@ -137,7 +141,11 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces);
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
     }
 
     xpath = doc->makeXPathQuery(const_cast < const char *>(query), namespaces, row, where, &error);

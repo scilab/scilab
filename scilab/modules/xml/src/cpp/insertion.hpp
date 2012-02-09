@@ -206,7 +206,11 @@ int sci_insertion(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
+    if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
     lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
 
     a = XMLObject::getFromId<T>(lhsid);

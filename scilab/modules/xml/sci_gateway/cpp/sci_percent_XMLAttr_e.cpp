@@ -72,7 +72,11 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
+        if (getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
 
         if (Rhs == 3)
         {
@@ -92,7 +96,11 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
                 return 0;
             }
 
-            getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+            if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
         }
     }
 

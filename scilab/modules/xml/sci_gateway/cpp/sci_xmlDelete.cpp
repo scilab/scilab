@@ -55,7 +55,11 @@ int sci_xmlDelete(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedSingleString(pvApiCtx, addr, &com);
+        if (getAllocatedSingleString(pvApiCtx, addr, &com) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         if (!strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
