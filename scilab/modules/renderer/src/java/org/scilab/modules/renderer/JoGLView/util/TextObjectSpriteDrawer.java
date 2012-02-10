@@ -129,7 +129,7 @@ public class TextObjectSpriteDrawer implements SpriteDrawer {
      * @return true if the given string represent a MathML entity.
      */
     private boolean isMathML(String string) {
-        return (string.length() >= 2) && string.endsWith("<") && string.startsWith(">");
+        return (string.length() >= 2) && string.endsWith(">") && string.startsWith("<");
     }
 
     @Override

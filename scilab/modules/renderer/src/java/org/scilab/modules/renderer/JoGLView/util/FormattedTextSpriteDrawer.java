@@ -16,6 +16,7 @@ import org.scilab.forge.scirenderer.sprite.SpriteDrawer;
 import org.scilab.forge.scirenderer.sprite.SpriteDrawingTools;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.forge.scirenderer.sprite.TextEntity;
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
@@ -38,14 +39,20 @@ public class FormattedTextSpriteDrawer implements SpriteDrawer {
             String text = formattedText.getText();
             Font font = formattedText.getFont();
             if (isLatex(text)) {
-                LoadClassPath.loadOnUse("graphics_mathml_textrendering");
+                LoadClassPath.loadOnUse("graphics_latex_textrendering");
                 TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
                 formula.setColor(ColorFactory.createColor(colorMap, font.getColor()));
                 icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, FontManager.scilabSizeToAwtSize(font.getSize()));
-                dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
-                textEntity = null;
+            } else if (isMathML(text)) {
+                icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, ((int) FontManager.scilabSizeToAwtSize(font.getSize() + .5)));
             } else {
                 icon = null;
+            }
+
+            if (icon != null) {
+                textEntity = null;
+                dimension = new Dimension(icon.getIconWidth(), icon.getIconHeight());
+            } else {
                 textEntity = new TextEntity(formattedText.getText());
 
                 textEntity.setFont(FontManager.getSciFontManager().getFontFromIndex(font.getStyle(), font.getSize()));
@@ -88,5 +95,14 @@ public class FormattedTextSpriteDrawer implements SpriteDrawer {
      */
     private boolean isLatex(String string) {
         return (string.length() >= 2) && string.endsWith("$") && string.startsWith("$");
+    }
+
+    /**
+     * Return true if the given string represent a MathML entity.
+     * @param string the given string.
+     * @return true if the given string represent a MathML entity.
+     */
+    private boolean isMathML(String string) {
+        return (string.length() >= 2) && string.endsWith(">") && string.startsWith("<");
     }
 }
