@@ -12,11 +12,9 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
-import java.util.ArrayList;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,7 +26,7 @@ public class AxisProperty {
 	 * AxisProperty properties names
 	 */
 	public enum AxisPropertyProperty { VISIBLE, REVERSE, GRIDCOLOR, LABEL, AXISLOCATION,
-		LOGFLAG, UNKNOWNPROPERTY };
+		LOGFLAG, UNKNOWNPROPERTY }
 
 	/**
 	 * Axis location type
@@ -396,7 +394,7 @@ public class AxisProperty {
 	/**
 	 * Supposes all ticks labels have the same font size.
 	 * To be corrected.
-	 * @param the ticks labels font size to set
+	 * @param fontSize the ticks labels font size to set
 	 */
 	public void setFontSize(Double fontSize) {
 		ticks.setFontSize(fontSize);
@@ -414,7 +412,7 @@ public class AxisProperty {
 	/**
 	 * Supposes all ticks labels have the same font color.
 	 * To be corrected.
-	 * @param the ticks labels font color to set
+	 * @param fontColor the ticks labels font color to set
 	 */
 	public void setFontColor(Integer fontColor) {
 		ticks.setFontColor(fontColor);
@@ -432,7 +430,7 @@ public class AxisProperty {
 	/**
 	 * Supposes all ticks labels have the same font fractional.
 	 * To be corrected.
-	 * @param the ticks labels font fractional to set
+	 * @param fontFractional the ticks labels font fractional to set
 	 */
 	public void setFontFractional(Boolean fontFractional) {
 		ticks.setFontFractional(fontFractional);

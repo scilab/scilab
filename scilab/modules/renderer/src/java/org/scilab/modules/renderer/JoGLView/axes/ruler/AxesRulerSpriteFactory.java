@@ -22,7 +22,9 @@ import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.FormattedTextSpriteDrawer;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 import java.awt.Dimension;
@@ -38,11 +40,9 @@ import java.text.DecimalFormatSymbols;
 class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
     /**
-     * This factory create ruler label for this {@see Axes}.
+     * This factory create ruler label for this {@see Axis}.
      */
-    private final Axes axes;
-
-    private final int axisId;
+    private final AxisProperty axisProperty;
 
     /**
      * The current colormap.
@@ -55,8 +55,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
      * @param axisId the id of the managed axis.
      */
     public AxesRulerSpriteFactory(Axes axes, int axisId) {
-        this.axisId = axisId;
-        this.axes = axes;
+        this.axisProperty = axes.getAxes()[axisId];
         ColorMap figureColorMap;
         try {
             GraphicController controller = GraphicController.getController();
@@ -69,9 +68,9 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     @Override
-    public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
+    public Sprite create(final double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
         final TextEntity textEntity;
-        if (axes.getAxes()[axisId].getAutoTicks()) {
+        if (axisProperty.getAutoTicks()) {
             DecimalFormatSymbols decimalFormatSymbols = adaptedFormat.getDecimalFormatSymbols();
             decimalFormatSymbols.setDecimalSeparator('.');
             decimalFormatSymbols.setExponentSeparator("e");
@@ -79,36 +78,40 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     
             String text = adaptedFormat.format(value).replaceAll("E", "e");
             textEntity = new TextEntity(text);
-        } else {            
-            textEntity = new TextEntity(getTextAtValue(axes.getAxes()[axisId], value));
+
+            textEntity.setTextAntiAliased(false);
+            textEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
+            textEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
+
+            Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
+            textEntity.setFont(font);
+
+            Dimension dimension = spriteManager.getSize(textEntity);
+            Sprite sprite = spriteManager.createSprite(dimension.width + 1, dimension.height + 1);
+            sprite.setDrawer(new SpriteDrawer() {
+
+                @Override
+                public void draw(SpriteDrawingTools drawingTools) {
+                    drawingTools.draw(textEntity, 0, 0);
+                }
+
+                @Override
+                public OriginPosition getOriginPosition() {
+                    return SpriteDrawer.OriginPosition.UPPER_LEFT;
+                }
+            });
+
+            return sprite;
+        } else {
+            FormattedText formattedText = getTextAtValue(value);
+            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, spriteManager, formattedText);
+            Sprite sprite = spriteManager.createSprite(textObjectSpriteDrawer.getSpriteSize());
+            sprite.setDrawer(textObjectSpriteDrawer);
+            return sprite;
         }
-
-        textEntity.setTextAntiAliased(false);
-        textEntity.setTextUseFractionalMetrics(axes.getFontFractional());
-        textEntity.setTextColor(ColorFactory.createColor(colorMap, axes.getFontColor()));
-
-        Font font = FontManager.getSciFontManager().getFontFromIndex(axes.getFontStyle(), axes.getFontSize());
-        textEntity.setFont(font);
-
-        Dimension dimension = spriteManager.getSize(textEntity);
-        Sprite sprite = spriteManager.createSprite(dimension.width + 1, dimension.height + 1);
-        sprite.setDrawer(new SpriteDrawer() {
-
-            @Override
-            public void draw(SpriteDrawingTools drawingTools) {
-                drawingTools.draw(textEntity, 0, 0);
-            }
-
-            @Override
-            public OriginPosition getOriginPosition() {
-                return SpriteDrawer.OriginPosition.UPPER_LEFT;
-            }
-        });
-
-        return sprite;
     }
 
-    private String getTextAtValue(AxisProperty axisProperty, double value) {
+    private FormattedText getTextAtValue(double value) {
         Double[] locations = axisProperty.getTicksLocations();
         int index = -1;
         for (int i = 0 ; i < locations.length ; i++) {
@@ -118,9 +121,9 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             }
         }
         if (index == -1) {
-            return "";
+            return null;
         } else {
-            return axisProperty.getTicksLabels().get(index).getText();
-        }        
+            return axisProperty.getTicksLabels().get(index);
+        }
     }
 }

@@ -19,13 +19,13 @@ import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-import org.scilab.modules.renderer.JoGLView.util.GenericTextSpriteDrawer;
+import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
 
 /**
  * A {@see SpriteDrawer} who draw a Scilab {@see Text} object.
  * @author Pierre Lando
  */
-class TextSpriteDrawer extends GenericTextSpriteDrawer implements SpriteDrawer {
+class TextSpriteDrawer extends TextObjectSpriteDrawer implements SpriteDrawer {
 
     /**
      * Default constructor.

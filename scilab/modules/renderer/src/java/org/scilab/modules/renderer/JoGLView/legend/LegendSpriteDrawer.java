@@ -19,7 +19,7 @@ import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-import org.scilab.modules.renderer.JoGLView.util.GenericTextSpriteDrawer;
+import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
 
 /**
  * A {@see SpriteDrawer} who draw a Scilab {@see Legend} object.
@@ -28,7 +28,7 @@ import org.scilab.modules.renderer.JoGLView.util.GenericTextSpriteDrawer;
  * To do: refactoring.
  * @author Pierre Lando
  */
-public class LegendSpriteDrawer extends GenericTextSpriteDrawer implements SpriteDrawer {
+public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements SpriteDrawer {
 
     /**
      * Default constructor.

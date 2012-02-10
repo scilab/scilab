@@ -20,7 +20,7 @@ import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-import org.scilab.modules.renderer.JoGLView.util.GenericTextSpriteDrawer;
+import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
 
 /**
  * A {@see SpriteDrawer} which draws a Scilab {@see Label} object.
@@ -29,7 +29,7 @@ import org.scilab.modules.renderer.JoGLView.util.GenericTextSpriteDrawer;
  *    -refactoring
  * @author Pierre Lando
  */
-public class LabelSpriteDrawer extends GenericTextSpriteDrawer implements SpriteDrawer {
+public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements SpriteDrawer {
 
      /**
      * Default constructor.

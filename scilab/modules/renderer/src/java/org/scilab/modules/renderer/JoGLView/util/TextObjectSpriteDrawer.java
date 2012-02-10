@@ -24,7 +24,6 @@ import org.scilab.forge.scirenderer.sprite.TextEntity;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
-import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 import javax.swing.Icon;
@@ -35,7 +34,7 @@ import java.awt.Font;
  * A {@see SpriteDrawer} who draw a Scilab {@see Text} object.
  * @author Pierre Lando
  */
-public class GenericTextSpriteDrawer implements SpriteDrawer {
+public class TextObjectSpriteDrawer implements SpriteDrawer {
 
     /**
      * Scilab text margin.
@@ -61,7 +60,7 @@ public class GenericTextSpriteDrawer implements SpriteDrawer {
      * @param colorMap the color map to use.
      * @param textObject the scilab {@see Text} to draw.
      */
-    public GenericTextSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final TextObject textObject) {
+    public TextObjectSpriteDrawer(final SpriteManager spriteManager, final ColorMap colorMap, final TextObject textObject) {
         this.spriteManager = spriteManager;
         this.spaceWidth = computeSpaceWidth();
 
