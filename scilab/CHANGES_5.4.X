@@ -85,6 +85,8 @@ Xcos
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
 
+* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
 
 Elementary functions
 ====================
