@@ -48,7 +48,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 msgid "File"

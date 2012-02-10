@@ -325,7 +325,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
                     if (!isStringType(pvApiCtx, piAddressVarThree))
                     {
-                        Scierror(999, _("%s: Wrong type for argument #%d: A single string.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
@@ -335,7 +335,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
                     if (ret)
                     {
-                        Scierror(999, _("%s: Wrong type for argument #%d: A single string.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;

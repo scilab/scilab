@@ -126,6 +126,8 @@ Scinotes
 * Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
                      restoring.
 
+* Bug #10647 fixed : An error message did not repect Scilab localization standard.
+
 
 Javasci
 =======

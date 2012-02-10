@@ -49,7 +49,7 @@ msgstr ""
 "rozměry.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 msgid "File"

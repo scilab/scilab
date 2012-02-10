@@ -48,7 +48,7 @@ msgid ""
 msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A single string.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 msgid "File"
