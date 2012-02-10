@@ -36,9 +36,14 @@ int get_z_ticks_property(char *pobjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
+    int iView = 0;
+    int* piView = &iView;
 
     /* retrieve number of ticks */
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
+    /* retrieve view: 0 -> 2d // 1 -> 3d */
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
+
 
     if (piNbTicks == NULL)
     {
@@ -46,7 +51,7 @@ int get_z_ticks_property(char *pobjUID)
         return -1;
     }
 
-    if (iNbTicks == 0)
+    if (iNbTicks == 0 || iView == 0)
     {
         /* return empty matrices */
         buildTListForTicks( NULL, NULL, 0);
