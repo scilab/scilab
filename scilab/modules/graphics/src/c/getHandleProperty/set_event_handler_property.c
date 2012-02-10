@@ -18,6 +18,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -32,6 +34,8 @@
 int set_event_handler_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status;
+  int bEnable = FALSE;
+  char *pstHandler = NULL;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
@@ -47,7 +51,15 @@ int set_event_handler_property(char* pobjUID, size_t stackPointer, int valueType
   }
 #endif
 
-  status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, getStringFromStack(stackPointer), jni_string, 1);
+  pstHandler = getStringFromStack(stackPointer);
+  status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, pstHandler, jni_string, 1);
+
+  if (strlen(pstHandler) == 0)
+  {
+      // f.event_handler = "" => f.event_handler_enable = "off"
+      status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, &bEnable, jni_bool, 1);
+  }
+
 
   if (status == TRUE)
   {
