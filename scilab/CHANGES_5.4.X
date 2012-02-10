@@ -200,6 +200,8 @@ Bug fixes
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
+* Bug #9523 fixed - clearglobal did not clear all global variables.
+
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
