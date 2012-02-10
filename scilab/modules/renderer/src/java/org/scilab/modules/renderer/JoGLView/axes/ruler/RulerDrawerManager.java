@@ -40,7 +40,10 @@ class RulerDrawerManager {
             GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
             GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
             GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
-            GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__
+            GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
+            GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
+            GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
+            GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
     ));
 
     /**

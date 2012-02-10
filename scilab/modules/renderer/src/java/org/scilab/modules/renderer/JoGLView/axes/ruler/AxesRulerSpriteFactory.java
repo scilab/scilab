@@ -38,6 +38,15 @@ import java.text.DecimalFormatSymbols;
  * @author Pierre Lando
  */
 class AxesRulerSpriteFactory implements RulerSpriteFactory {
+    /**
+     * The symbol used for ticks label in log and auto ticks mode.
+     */
+    private static final String MULTIPLICATION_SYMBOL = "x";
+
+    /**
+     * The exponent size is smaller than the mantissa size.
+     */
+    private static final float EXPONENT_SIZE_RATIO = 0.4f;
 
     /**
      * This factory create ruler label for this {@see Axis}.
@@ -68,40 +77,15 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     }
 
     @Override
-    public Sprite create(final double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
-        final TextEntity textEntity;
+    public Sprite create(double value, DecimalFormat adaptedFormat, SpriteManager spriteManager) {
+        //System.out.println((axisProperty.getAutoTicks() ? "auto-" : "mano-") + (axisProperty.getLogFlag() ? "log" : "lin") + " @" + value);
         if (axisProperty.getAutoTicks()) {
-            DecimalFormatSymbols decimalFormatSymbols = adaptedFormat.getDecimalFormatSymbols();
-            decimalFormatSymbols.setDecimalSeparator('.');
-            decimalFormatSymbols.setExponentSeparator("e");
-            adaptedFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-    
-            String text = adaptedFormat.format(value).replaceAll("E", "e");
-            textEntity = new TextEntity(text);
-
-            textEntity.setTextAntiAliased(false);
-            textEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
-            textEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
-
-            Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
-            textEntity.setFont(font);
-
-            Dimension dimension = spriteManager.getSize(textEntity);
-            Sprite sprite = spriteManager.createSprite(dimension.width + 1, dimension.height + 1);
-            sprite.setDrawer(new SpriteDrawer() {
-
-                @Override
-                public void draw(SpriteDrawingTools drawingTools) {
-                    drawingTools.draw(textEntity, 0, 0);
-                }
-
-                @Override
-                public OriginPosition getOriginPosition() {
-                    return SpriteDrawer.OriginPosition.UPPER_LEFT;
-                }
-            });
-
-            return sprite;
+            setScilabStyle(adaptedFormat);
+            if (axisProperty.getLogFlag()) {
+                return createScientificStyleSprite(value, spriteManager);
+            } else {
+                return createSimpleSprite(adaptedFormat.format(value), spriteManager);
+            }
         } else {
             FormattedText formattedText = getTextAtValue(value);
             FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, spriteManager, formattedText);
@@ -111,6 +95,115 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         }
     }
 
+    /**
+     * Set the given {@see DecimalFormat} to scilab style.
+     * @param format the given {@see DecimalFormat}.
+     */
+    private void setScilabStyle(DecimalFormat format) {
+        DecimalFormatSymbols decimalFormatSymbols = format.getDecimalFormatSymbols();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        decimalFormatSymbols.setExponentSeparator("e");
+        format.setDecimalFormatSymbols(decimalFormatSymbols);
+    }
+
+    /**
+     * Create and return a sprite representing the given value.
+     * The returned sprites will look like "5x10²"
+     * @param value, the given value.
+     * @param spriteManager used sprite manager.
+     * @return a simple sprite representing the given value with the adapted format.
+     */
+    private Sprite createScientificStyleSprite(double value, SpriteManager spriteManager) {
+        Integer exponent = (int) Math.floor(Math.log10(value));
+        Double mantissa = value / Math.pow(10, exponent);
+
+        /**
+         * Create mantissa.
+         */
+        final TextEntity mantissaTextEntity;
+        if (mantissa != 1) {
+            mantissaTextEntity = new TextEntity(mantissa.toString() + MULTIPLICATION_SYMBOL + "10");
+        } else {
+            mantissaTextEntity = new TextEntity("10");
+        }
+
+        Font mantissaFont = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
+        mantissaTextEntity.setTextAntiAliased(false);
+        mantissaTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
+        mantissaTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
+        mantissaTextEntity.setFont(mantissaFont);
+        final Dimension mantissaSize = spriteManager.getSize(mantissaTextEntity);
+
+        /**
+         * Create exponent.
+         */
+        final TextEntity exponentTextEntity = new TextEntity(exponent.toString());
+        Font exponentFont = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize() * EXPONENT_SIZE_RATIO);
+        exponentTextEntity.setTextAntiAliased(false);
+        exponentTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
+        exponentTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
+        exponentTextEntity.setFont(exponentFont);
+        final Dimension exponentSize = spriteManager.getSize(exponentTextEntity);
+
+        Sprite sprite = spriteManager.createSprite(
+                exponentSize.width + mantissaSize.width,
+                exponentSize.height + mantissaSize.height
+        );
+
+        sprite.setDrawer(new SpriteDrawer() {
+
+            @Override
+            public void draw(SpriteDrawingTools drawingTools) {
+                drawingTools.draw(mantissaTextEntity, 0, exponentSize.height);
+                drawingTools.draw(exponentTextEntity, mantissaSize.width, 0);
+            }
+
+            @Override
+            public OriginPosition getOriginPosition() {
+                return SpriteDrawer.OriginPosition.UPPER_LEFT;
+            }
+        });
+
+        return sprite;
+    }
+
+    /**
+     * Create and return a simple sprite representing the given value.
+     * @param text the formatted string representing the value.
+     * @param spriteManager used sprite manager.
+     * @return a simple sprite representing the given value with the adapted format.
+     */
+    private Sprite createSimpleSprite(String text, SpriteManager spriteManager) {
+        Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
+        final TextEntity textEntity = new TextEntity(text);
+        textEntity.setTextAntiAliased(false);
+        textEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
+        textEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
+        textEntity.setFont(font);
+
+        Dimension dimension = spriteManager.getSize(textEntity);
+        Sprite sprite = spriteManager.createSprite(dimension.width, dimension.height);
+        sprite.setDrawer(new SpriteDrawer() {
+
+            @Override
+            public void draw(SpriteDrawingTools drawingTools) {
+                drawingTools.draw(textEntity, 0, 0);
+            }
+
+            @Override
+            public OriginPosition getOriginPosition() {
+                return SpriteDrawer.OriginPosition.UPPER_LEFT;
+            }
+        });
+
+        return sprite;
+    }
+
+    /**
+     * Return the user defined {@see FormattedText} ticks label corresponding to the given value.
+     * @param value the given value.
+     * @return the user defined {@see FormattedText} ticks label corresponding to the given value.
+     */
     private FormattedText getTextAtValue(double value) {
         Double[] locations = axisProperty.getTicksLocations();
         int index = -1;
