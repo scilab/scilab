@@ -30,53 +30,44 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_rotation_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_rotation_style_property(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  int rotationStyle;
-  BOOL status;
+    int rotationStyle = 0;
+    BOOL status = FALSE;
 
-  getStringFromStack( stackPointer ) ;
+    getStringFromStack(stackPointer);
 
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "rotation_style");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (!isParameterStringMatrix(valueType))
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "rotation_style");
+        return SET_PROPERTY_ERROR;
+    }
 
-#if 0
-  if ( sciGetEntityType (pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
+    if (isStringParamEqual(stackPointer, "unary"))
+    {
+        rotationStyle = 0;
+    }
+    else if (isStringParamEqual(stackPointer, "multiple"))
+    {
+        rotationStyle = 1;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "rotation_style", "unary", "multiple");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( isStringParamEqual( stackPointer, "unary" ) )
-  {
-    rotationStyle = 0;
-  }
-  else if ( isStringParamEqual( stackPointer, "multiple" ) )
-  {
-    rotationStyle = 1;
-  }
-  else
-  {
+    status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, &rotationStyle, jni_int, 1);
 
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "rotation_style", "'unary'", "'multiple'");
-
-  }
-
-
-  status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, &rotationStyle, jni_int, 1);
-
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_style");
+        return SET_PROPERTY_ERROR;
+    }
 }
+
 /*------------------------------------------------------------------------*/

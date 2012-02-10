@@ -881,7 +881,10 @@ public class Figure extends GraphicObject {
      * @param rotation the rotation to set
      */
     public void setRotation(Integer rotation) {
-        this.rotation = RotationType.intToEnum(rotation);
+        RotationType rotationType = RotationType.intToEnum(rotation);
+        if (rotationType != null) {
+            this.rotation = rotationType;
+        }
     }
 
     /**
