@@ -119,23 +119,42 @@ void ScilabView::deleteObject(char *pstId)
 {
     //std::cerr << "[ScilabView] -- deleteObject UID=" << pstId << std::endl;
     char *pstType = NULL;
+    char *pstParentUID = NULL;
 
     getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
+
+    /*
+    ** If deleting a figure, remove from figure list.
+    */
     if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
         m_figureList.erase(pstId);
-        if (strcmp(pstId, getCurrentFigure()) == 0) // Deleting current figure
+    }
+
+    /*
+    ** If deleting current figure find another current one,
+    ** if there is no more figure : NULL
+    */
+    if (strcmp(pstId, getCurrentFigure()) == 0) // Deleting current figure
+    {
+        if (getNbFigure() != 0)
         {
-            if (getNbFigure() != 0)
-            {
-                setCurrentFigure(m_figureList.begin()->first);
-            }
-            else
-            {
-                setCurrentFigure(NULL);
-                setCurrentSubWin(NULL);
-            }
+            setCurrentFigure(m_figureList.begin()->first);
         }
+        else
+        {
+            setCurrentFigure(NULL);
+            setCurrentSubWin(NULL);
+        }
+    }
+
+    /*
+    ** If deleting current entity, set parent as new current.
+    */
+    if (strcmp(pstId, getCurrentObject()) == 0) // Deleting current object
+    {
+        getGraphicObjectProperty(pstId, __GO_PARENT__, jni_string, (void **)&pstParentUID);
+        setCurrentObject(pstParentUID);
     }
 
     // Remove the corresponding handle.
@@ -177,6 +196,10 @@ void ScilabView::setCurrentFigure(char *UID)
 {
     if (UID != NULL)
     {
+        if (m_currentFigure != NULL)
+        {
+            free(m_currentFigure);
+        }
         m_currentFigure = strdup(UID);
     }
     else

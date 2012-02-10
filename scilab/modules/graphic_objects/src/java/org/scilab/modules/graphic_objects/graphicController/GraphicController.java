@@ -344,10 +344,10 @@ public class GraphicController {
             String parentId = (String) parent;
             if (!parentId.equals("")) {
                 getObjectFromId(parentId).removeChild(id);
-                setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
+                //setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
 
                 objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
-                objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
+                //objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
             }
         }
 
