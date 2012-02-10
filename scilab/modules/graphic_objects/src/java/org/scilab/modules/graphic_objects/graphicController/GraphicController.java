@@ -26,6 +26,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.graphicView.GuiLogView;
+import org.scilab.modules.graphic_objects.graphicView.LogView;
 import org.scilab.modules.graphic_objects.graphicView.TreeView;
 
 /**
@@ -66,9 +67,12 @@ public class GraphicController {
      * Default constructor
      */
     private GraphicController() {
-        if (!GraphicsEnvironment.isHeadless() && debugEnable) {
+        if (!GraphicsEnvironment.isHeadless() && debugEnable && infoEnable) {
             register(GuiLogView.createGuiLogView());
             register(TreeView.createTreeView());
+        }
+        if (infoEnable) {
+            register(LogView.createLogView());
         }
     }
 
@@ -120,9 +124,14 @@ public class GraphicController {
      */
     public boolean setProperty(String id, String prop, Object value) {
         try {
-            if (GraphicModel.getModel().setProperty(id, prop, value)) {
+            switch (GraphicModel.getModel().setProperty(id, prop, value)) {
+            case Success : // BroadCast Message + return true
                 objectUpdate(id, prop);
                 return true;
+            case NoChange : // Do not broadcast message
+                return true;
+            case Fail :
+                return false;
             }
             return false;
         }

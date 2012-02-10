@@ -77,7 +77,7 @@ public abstract class GraphicClippableObject extends GraphicObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == GraphicClippableObjectProperty.CLIPPROPERTY) {
 			setClipProperty((ClippableProperty) value);
 		} else if (property == ClippablePropertyType.CLIPSTATE) {
@@ -90,7 +90,7 @@ public abstract class GraphicClippableObject extends GraphicObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

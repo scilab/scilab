@@ -90,14 +90,14 @@ public class Fac3d extends Surface {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == Fac3dProperty.DATAMAPPING) {
 			setDataMapping((Integer) value);
 		} else {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

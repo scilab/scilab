@@ -176,7 +176,7 @@ public class Text extends ClippableTextObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == TextProperty.FONTANGLE) {
 			setFontAngle((Double) value);
 		} else if (property == TextProperty.POSITION) {
@@ -197,7 +197,7 @@ public class Text extends ClippableTextObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

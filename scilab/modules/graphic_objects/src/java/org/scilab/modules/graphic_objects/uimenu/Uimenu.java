@@ -128,7 +128,7 @@ public class Uimenu extends GraphicObject {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(Object property, Object value) {
+    public UpdateStatus setProperty(Object property, Object value) {
         if (property == UimenuProperty.ACCELERATOR) {
             setAccelerator((String) value);
         } else if (property == UimenuProperty.CHECKED) {
@@ -147,7 +147,7 @@ public class Uimenu extends GraphicObject {
             return super.setProperty(property, value);
         }
 
-        return true;
+        return UpdateStatus.Success;
     }
 
     /**

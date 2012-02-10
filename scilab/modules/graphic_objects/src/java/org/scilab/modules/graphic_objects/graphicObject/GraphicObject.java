@@ -29,6 +29,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Vincent COUVERT
  */
 public abstract class GraphicObject implements Cloneable {
+
+    public enum UpdateStatus {
+        Success,        // Property updated with new values
+        NoChange,       // Property leave unchanged
+        Fail            // Update Fail
+    };
+
     /** User data array default size */
     public static final int USER_DATA_DEFAULT_SIZE = 0;
 
@@ -319,7 +326,7 @@ public abstract class GraphicObject implements Cloneable {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(Object property, Object value) {
+    public UpdateStatus setProperty(Object property, Object value) {
         if (property == GraphicObjectPropertyType.PARENT) {
             setParent((String) value);
         } else if (property == GraphicObjectPropertyType.CHILDREN) {
@@ -333,11 +340,11 @@ public abstract class GraphicObject implements Cloneable {
         } else if (property == GraphicObjectPropertyType.USERDATA) {
             setUserData((Integer[]) value);
         } else if (property == GraphicObjectPropertyType.USERDATASIZE) {
-            return false;
+            return UpdateStatus.Fail;
         } else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
             setSelectedChild((String) value);
         } else if (property == GraphicObjectPropertyType.DATA) {
-            return true;
+            return UpdateStatus.Success;
         } else if (property == GraphicObjectPropertyType.TAG) {
             setTag((String) value);
         } else if (property == GraphicObjectPropertyType.CALLBACK) {
@@ -345,10 +352,10 @@ public abstract class GraphicObject implements Cloneable {
         } else if (property == GraphicObjectPropertyType.CALLBACKTYPE) {
             setCallbackType((Integer) value);
         } else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
-            return false;
+            return UpdateStatus.Fail;
         }
 
-        return true;
+        return UpdateStatus.Success;
     }
 
     /**

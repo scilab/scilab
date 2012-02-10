@@ -412,7 +412,7 @@ public class Uicontrol extends GraphicObject {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(Object property, Object value) {
+    public UpdateStatus setProperty(Object property, Object value) {
         if (property == UicontrolProperty.STYLE) {
             setStyle((String) value);
         } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
@@ -467,7 +467,7 @@ public class Uicontrol extends GraphicObject {
             return super.setProperty(property, value);
         }
 
-        return true;
+        return UpdateStatus.Success;
     }
 
     /**

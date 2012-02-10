@@ -487,7 +487,7 @@ public class Figure extends GraphicObject {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(Object property, Object value) {
+    public UpdateStatus setProperty(Object property, Object value) {
         if (property == FigureDimensionsProperty.POSITION) {
             setPosition((Integer[]) value);
         } else if (property == FigureDimensionsProperty.SIZE) {
@@ -505,7 +505,7 @@ public class Figure extends GraphicObject {
         } else if (property == FigureProperty.INFOMESSAGE) {
             setInfoMessage((String) value);
         } else if (property == FigureProperty.COLORMAP) {
-            getColorMap().setData((Double[]) value);
+            return getColorMap().setData((Double[]) value);
         } else if (property == RenderingModeProperty.PIXMAP) {
             setPixmap((Boolean) value);
         } else if (property == RenderingModeProperty.PIXELDRAWINGMODE) {
@@ -528,7 +528,7 @@ public class Figure extends GraphicObject {
             return super.setProperty(property, value);
         }
 
-        return true;
+        return UpdateStatus.Success;
     }
 
     /**

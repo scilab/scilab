@@ -103,7 +103,7 @@ public class Champ extends VectField {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == ChampProperty.DIMENSIONS) {
 			setDimensions((Integer[]) value);
 		} else if (property == Arrow.ArrowProperty.BASEX) {
@@ -116,7 +116,7 @@ public class Champ extends VectField {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

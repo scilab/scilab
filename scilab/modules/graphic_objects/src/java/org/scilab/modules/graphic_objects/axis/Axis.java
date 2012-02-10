@@ -195,7 +195,7 @@ public class Axis extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == AxisProperty.TICKSDIRECTION) {
 			setTicksDirection((Integer) value);
 		} else if (property == AxisProperty.XTICKSCOORDS) {
@@ -228,7 +228,7 @@ public class Axis extends ClippableContouredObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

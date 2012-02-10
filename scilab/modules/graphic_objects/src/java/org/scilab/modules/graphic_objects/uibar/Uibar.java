@@ -87,7 +87,7 @@ public class Uibar extends GraphicObject {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(Object property, Object value) {
+    public UpdateStatus setProperty(Object property, Object value) {
         if (property == UibarProperty.MESSAGE) {
             setMessage((String[]) value);
         } else if (property == UibarProperty.VALUE) {
@@ -96,7 +96,7 @@ public class Uibar extends GraphicObject {
             return super.setProperty(property, value);
         }
 
-        return true;
+        return UpdateStatus.Success;
     }
 
     /**

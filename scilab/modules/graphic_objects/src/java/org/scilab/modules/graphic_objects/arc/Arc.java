@@ -139,7 +139,7 @@ public class Arc extends ClippableContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == ArcProperty.UPPERLEFTPOINT) {
 			setUpperLeftPoint((Double[]) value);
 		} else if (property == ArcProperty.WIDTH) {
@@ -156,7 +156,7 @@ public class Arc extends ClippableContouredObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

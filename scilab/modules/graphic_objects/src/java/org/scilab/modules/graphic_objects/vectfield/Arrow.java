@@ -99,7 +99,7 @@ public class Arrow extends ContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == ArrowProperty.BASE) {
 			setBase((Double[]) value);
 		} else if (property == ArrowProperty.DIRECTION) {
@@ -110,7 +110,7 @@ public class Arrow extends ContouredObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**

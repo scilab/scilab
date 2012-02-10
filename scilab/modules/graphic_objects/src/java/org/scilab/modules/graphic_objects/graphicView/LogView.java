@@ -40,7 +40,7 @@ public class LogView implements GraphicView {
     }
 
     public void updateObject(String id, String property) {
-        //System.out.println("==="+id+" Object Property " + property + " Updated.");
+        System.out.println("==="+id+" Object Property " + property + " Updated.");
     }
 
 }

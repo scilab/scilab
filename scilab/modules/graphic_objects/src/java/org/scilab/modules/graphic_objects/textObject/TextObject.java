@@ -126,7 +126,7 @@ public abstract class TextObject extends ContouredObject {
 	 * @param value the property value
 	 * @return true if the property has been set, false otherwise
 	 */
-	public boolean setProperty(Object property, Object value) {
+	public UpdateStatus setProperty(Object property, Object value) {
 		if (property == TextObjectProperty.TEXT) {
 			setText((FormattedText[]) value);
 		} else if (property == TextObjectProperty.TEXT_ARRAY_DIMENSIONS) {
@@ -145,7 +145,7 @@ public abstract class TextObject extends ContouredObject {
 			return super.setProperty(property, value);
 		}
 
-		return true;
+		return UpdateStatus.Success;
 	}
 
 	/**
