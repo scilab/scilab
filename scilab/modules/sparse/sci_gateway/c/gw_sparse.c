@@ -17,21 +17,21 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{sci_sparsefunc,"sparse"},
-	{sci_spget,"spget"},
-	{sci_full,"full"},
+	{NULL, ""}, //sparse
+	{NULL, ""}, //spget
+	{NULL, ""}, //full
 	{sci_lufact,"lufact"},
 	{sci_lusolve,"lusolve"},
 	{sci_ludel,"ludel"},
 	{sci_luget,"luget"},
 	{sci_spclean,"spclean"},
-	{sci_nnz,"nnz"},
+	{NULL, ""}, //nnz
 	{NULL, ""}, //spmax
 	{NULL, ""}, //spmin
 	{sci_spmatrix,"spmatrix"},
 	{sci_spchol,"spchol"},
 	{sci_fadj2sp,"fadj2sp"},
-	{sci_spcompa,"spcompa"},
+	{NULL, ""}, //spcompa
 	{sci_ordmmd,"ordmmd"},
 	{sci_blkfc1i,"blkfc1i"},
 	{sci_blkslvi,"blkslvi"},
@@ -39,9 +39,9 @@ static gw_generic_table Tab[]=
 	{sci_sfinit,"sfinit"},
 	{sci_symfcti,"symfcti"},
 	{sci_bfinit,"bfinit"},
-	{sci_msparse,"msparse"},
-	{sci_mspget,"mspget"},
-	{sci_mfull,"mfull"},
+	{NULL, ""}, //msparse
+	{NULL, ""}, //mspget
+	{NULL, ""}, //mfull
 	{C2F(scita2lpd),"ta2lpd"}
 };
 /*--------------------------------------------------------------------------*/

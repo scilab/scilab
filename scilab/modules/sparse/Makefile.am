@@ -105,14 +105,11 @@ src/fortran/dspmin.f \
 src/fortran/writebuf.f \
 src/fortran/ta2lpd.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \
-sci_gateway/c/sci_full.c \
+GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_blkslvi.c \
 sci_gateway/c/sci_inpnvi.c \
-sci_gateway/c/sci_nnz.c \
 sci_gateway/c/sci_ludel.c \
 sci_gateway/c/sci_spmatrix.c \
-sci_gateway/c/sci_msparse.c \
 sci_gateway/c/sci_blkfc1i.c \
 sci_gateway/c/sci_bfinit.c \
 sci_gateway/c/sci_lufact.c \
@@ -120,7 +117,6 @@ sci_gateway/c/sci_symfcti.c \
 sci_gateway/c/sci_mfull.c \
 sci_gateway/c/sci_luget.c \
 sci_gateway/c/sci_ordmmd.c \
-sci_gateway/c/sci_spget.c \
 sci_gateway/c/sci_spclean.c \
 sci_gateway/c/sci_spmin.c \
 sci_gateway/c/sci_spchol.c \
