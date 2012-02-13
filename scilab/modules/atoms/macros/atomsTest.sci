@@ -13,7 +13,7 @@
 // Output argument :
 
 
-function bResult = atomsTest(packages)
+function bResult = atomsTest(packages, test_name)
 
     rhs         = argn(2);
     path        = [];
@@ -30,8 +30,17 @@ function bResult = atomsTest(packages)
 
     rhs = argn(2);
 
-    if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsTest",1))
+    if rhs > 2 | rhs < 1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"atomsTest", 1, 2));
+    end
+    
+    if isdef('test_name') then
+      if type(test_name) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsTest", 2));
+      end
+      test_name = stripblanks(test_name);
+    else
+      test_name = [];
     end
 
     if type(packages) <> 10 then
@@ -150,9 +159,13 @@ function bResult = atomsTest(packages)
 
     // Loop on packages
     // =========================================================================
-
-    for i = 1:size(packages(:,1),"*")
+    
+    if test_name <> [] & (size(packages(:,1), "*") == 1) then
+      bResult = bResult & test_run(packages(1,4), test_name);
+    else
+      for i = 1:size(packages(:,1),"*")
         bResult = bResult & test_run(packages(i,4));
+      end
     end
 
 endfunction

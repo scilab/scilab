@@ -217,6 +217,8 @@ Bug fixes
 * Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
                      parent axes.
 
+* Bug #10139 fixed - 'atomsTest' function did not manage specific test name.
+
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.

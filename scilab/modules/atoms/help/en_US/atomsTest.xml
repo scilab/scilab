@@ -33,6 +33,7 @@
 
     <synopsis>
      status = atomsTest(module)
+     status = atomsTest(module, test_name)
   </synopsis>
   </refsynopsisdiv>
 
@@ -59,6 +60,13 @@
               <td></td>
             </tr>
           </informaltable>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>test_name</term>
+        <listitem>
+          <para>A string array</para>
         </listitem>
       </varlistentry>
 
@@ -342,6 +350,10 @@ atomsTest("toolbox_1");</programlisting>
 
             <listitem>Returns %f if any error has been detected</listitem>
           </itemizedlist></revdescription>
+      </revision>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>atomsTest manages specific test names.</revdescription>
       </revision>
     </revhistory>
   </refsection>
