@@ -139,7 +139,7 @@ void ScilabView::deleteObject(char *pstId)
     {
         if (getNbFigure() != 0)
         {
-            setCurrentFigure(m_figureList.begin()->first);
+            setCurrentFigure(m_figureList.rbegin()->first);
         }
         else
         {
