@@ -113,11 +113,12 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     unsigned short *ptr_us = NULL;
     long *ptr_l = NULL;
     unsigned long *ptr_ul = NULL;
+    int nblklst = 40;
 
     scicos_block Block;
     memset(&Block, 0, sizeof(scicos_block));
 
-    int nblklst = 40;
+
 
     /* check size of rhs/lhs parameters */
     CheckRhs(1, 1);
