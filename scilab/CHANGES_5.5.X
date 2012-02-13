@@ -145,6 +145,8 @@ Xcos
 * API changed in the scicos_block4 interface: the uid value is not available
   inside the simulation function.
 
+* xcosAddToolsMenu added to let the user perform some actions on the graph.
+
 * Bug #7350 fixed - The I/O ports numbering of a superblock was not updated
                     when a new port was dropped.
 
