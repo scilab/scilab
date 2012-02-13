@@ -100,14 +100,12 @@ public class AxesDrawer {
     /**
      * Default constructor.
      * @param visitor the parent {@see DrawerVisitor}.
-     * @param labelManager the parent's {@see LabelManager}.
      */
-    public AxesDrawer(DrawerVisitor visitor, LabelManager labelManager) {
+    public AxesDrawer(DrawerVisitor visitor) {
         this.visitor = visitor;
+        this.labelManager = visitor.getLabelManager();
         this.geometries = new Geometries(visitor.getCanvas());
         this.rulerDrawer = new AxesRulerDrawer(visitor.getCanvas());
-
-        this.labelManager = labelManager;
 
         this.xAxisLabelPositioner = new AxisLabelPositioner();
         this.yAxisLabelPositioner = new YAxisLabelPositioner();

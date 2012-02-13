@@ -12,12 +12,29 @@
 
 package org.scilab.modules.graphic_objects.axis;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.textObject.Font;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+
+import java.util.ArrayList;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FORMATN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUMBER_TICKS_LABELS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SUBTICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TICKS_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TICKS_DIRECTION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TICKS_LABELS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TICKS_SEGMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TICKS_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_NUMBER_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_TICKS_COORDS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_NUMBER_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_TICKS_COORDS__;
 
 /**
  * Axis class
@@ -32,28 +49,7 @@ public class Axis extends ClippableContouredObject {
 	private static final int DEFAULT_NUMBER_OF_TICKS = 10;
 
 	/** Ticks direction */
-	private enum TicksDirection { TOP, BOTTOM, LEFT, RIGHT;
-
-		/**
-		 * Converts an integer to the corresponding enum
-		 * @param intValue the integer value
-		 * @return the ticks direction enum
-		 */
-		public static TicksDirection intToEnum(Integer intValue) {
-			switch (intValue) {
-				case 0:
-					return TicksDirection.TOP;
-				case 1:
-					return TicksDirection.BOTTOM;
-				case 2:
-					return TicksDirection.LEFT;
-				case 3:
-					return TicksDirection.RIGHT;
-				default:
-					return null;
-			}
-		}
-	}
+    public enum TicksDirection {TOP, BOTTOM, LEFT, RIGHT}
 	
 	/** Ticks direction */
 	private TicksDirection ticksDirection;
@@ -351,7 +347,7 @@ public class Axis extends ClippableContouredObject {
 	 * @param ticksDirection the ticksDirection to set
 	 */
 	public void setTicksDirection(Integer ticksDirection) {
-		setTicksDirectionAsEnum(TicksDirection.intToEnum(ticksDirection));
+		setTicksDirectionAsEnum(TicksDirection.values()[ticksDirection]);
 	}
 
 	/**
@@ -488,6 +484,7 @@ public class Axis extends ClippableContouredObject {
 	/**
 	 * Sets the x ticks coordinates
 	 * Resizes the array if required
+     * TODO : we should use format_n to fill ticks label.
 	 * @param ticksCoords the xTicksCoords to set
 	 */
 	public void setXTicksCoords(Double[] ticksCoords) {
@@ -516,6 +513,7 @@ public class Axis extends ClippableContouredObject {
 	/**
 	 * Sets the y ticks coordinates
 	 * Resizes the array if required
+     * TODO : we should use format_n to fill ticks label.
 	 * @param ticksCoords the yTicksCoords to set
 	 */
 	public void setYTicksCoords(Double[] ticksCoords) {

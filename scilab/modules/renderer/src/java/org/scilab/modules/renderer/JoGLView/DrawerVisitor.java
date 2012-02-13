@@ -68,6 +68,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final MarkSpriteManager markManager;
     private final TextManager textManager;
     private final AxesDrawer axesDrawer;
+    private final AxisDrawer axisDrawer;
     private final ContouredObjectDrawer contouredObjectDrawer;
     private final LegendDrawer legendDrawer;
     private final LabelManager labelManager;
@@ -92,7 +93,8 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.markManager = new MarkSpriteManager(canvas.getSpriteManager());
         this.textManager = new TextManager(canvas.getSpriteManager());
         this.labelManager = new LabelManager(canvas.getSpriteManager());
-        this.axesDrawer = new AxesDrawer(this, this.labelManager);
+        this.axesDrawer = new AxesDrawer(this);
+        this.axisDrawer = new AxisDrawer(this);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
 
@@ -188,8 +190,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void visit(Axis axis) {
-        // TODO
-        System.out.println("How can I draw an axis ?");
+        if (axis.getVisible()) {
+            axisDrawer.draw(axis);
+        }
     }
 
     @Override
@@ -1073,6 +1076,10 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private boolean isFigureChild(String id) {
         String parentFigureID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
         return figure.getIdentifier().equals(parentFigureID);
+    }
+
+    public LabelManager getLabelManager() {
+        return labelManager;
     }
 }
 
