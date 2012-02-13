@@ -328,6 +328,26 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
 
 }
 
+void NgonGridDataDecomposer::getFacetCoordinates(double* x, double* y, double*z, int numX, int numY, int i, int j,
+    double vertices[4][3])
+{
+    vertices[0][0] = x[i];
+    vertices[0][1] = y[j];
+    vertices[0][2] = getZCoordinate(z, numX, numY, i, j);;
+
+    vertices[1][0] = x[i+1];
+    vertices[1][1] = y[j];
+    vertices[1][2] = getZCoordinate(z, numX, numY, i+1, j);
+
+    vertices[2][0] = x[i];
+    vertices[2][1] = y[j+1];
+    vertices[2][2] = getZCoordinate(z, numX, numY, i, j+1);
+
+    vertices[3][0] = x[i+1];
+    vertices[3][1] = y[j+1];
+    vertices[3][2] = getZCoordinate(z, numX, numY, i+1, j+1);
+}
+
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j)
 {
     return *z;
@@ -494,28 +514,32 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
 
             if (currentColumnValid && nextColumnValid && (currentFacetValid))
             {
-                /*
-                 * All facets are currently decomposed the same way.
-                 * To be adapted to the particular case of Plot3D objects.
-                 */
-#if PER_VERTEX_VALUES
-                buffer[bufferOffset] = ij;
-                buffer[bufferOffset+1] = ip1j;
-                buffer[bufferOffset+2] = ip1jp1;
-                buffer[bufferOffset+3] = ij;
-                buffer[bufferOffset+4] = ip1jp1;
-                buffer[bufferOffset+5] = ijp1;
-#else
+                int facetVertexIndices[4];
+                int triangleVertexIndices[6];
                 int firstVertexIndex;
+
+#if PER_VERTEX_VALUES
+                facetVertexIndices[0] = ij;
+                facetVertexIndices[1] = ip1j;
+                facetVertexIndices[2] = ijp1;
+                facetVertexIndices[3] = ip1jp1;
+#else
                 firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
 
-                buffer[bufferOffset] = firstVertexIndex;
-                buffer[bufferOffset+1] = firstVertexIndex +1;
-                buffer[bufferOffset+2] = firstVertexIndex +3;
-                buffer[bufferOffset+3] = firstVertexIndex;
-                buffer[bufferOffset+4] = firstVertexIndex +3;
-                buffer[bufferOffset+5] = firstVertexIndex +2;
+                facetVertexIndices[0] = firstVertexIndex;
+                facetVertexIndices[1] = firstVertexIndex+1;
+                facetVertexIndices[2] = firstVertexIndex+2;
+                facetVertexIndices[3] = firstVertexIndex+3;
 #endif
+
+                getFacetTriangles(x, y, z, numX, numY, i, j, facetVertexIndices, triangleVertexIndices);
+
+                buffer[bufferOffset] = triangleVertexIndices[0];
+                buffer[bufferOffset+1] = triangleVertexIndices[1];
+                buffer[bufferOffset+2] = triangleVertexIndices[2];
+                buffer[bufferOffset+3] = triangleVertexIndices[3];
+                buffer[bufferOffset+4] = triangleVertexIndices[4];
+                buffer[bufferOffset+5] = triangleVertexIndices[5];
 
                 bufferOffset += 6;
             }
@@ -530,6 +554,18 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
     }
 
     return bufferOffset;
+}
+
+void NgonGridDataDecomposer::getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
+    int* facetVertexIndices, int* triangleVertexIndices)
+{
+    /* Facets are plane: they are all decomposed the same way */
+    triangleVertexIndices[0] = facetVertexIndices[0];
+    triangleVertexIndices[1] = facetVertexIndices[1];
+    triangleVertexIndices[2] = facetVertexIndices[3];
+    triangleVertexIndices[3] = facetVertexIndices[0];
+    triangleVertexIndices[4] = facetVertexIndices[3];
+    triangleVertexIndices[5] = facetVertexIndices[2];
 }
 
 int NgonGridDataDecomposer::isFacetValid(double* z, double* values, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)

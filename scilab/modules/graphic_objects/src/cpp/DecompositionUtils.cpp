@@ -128,6 +128,11 @@ double DecompositionUtils::getAbsoluteValue(double value)
     return fabs(value);
 }
 
+double DecompositionUtils::getSquareRoot(double value)
+{
+    return sqrt(value);
+}
+
 /*
  * Decomposes a rectangle into two adjacent triangles.
  * The rectangle's vertices are supposed to be specified in

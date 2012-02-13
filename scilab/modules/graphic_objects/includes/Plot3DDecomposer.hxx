@@ -55,6 +55,23 @@ protected :
      */
     double getZCoordinate(double* z, int numX, int numY, int i, int j, int logUsed);
 
+    /**
+     * Decomposes facet (i,j) into triangles and outputs the resulting vertex indices, where (i,j) is
+     * the facet's lower-left corner. As there are two possible decompositions, it chooses the one which
+     * has the most coplanar triangles. The output triangles' vertex indices are in counter-clockwise order.
+     * @param[in] the grid x-coordinate array.
+     * @param[in] the grid y-coordinate array.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[in] the facet vertices' indices (4-element array: (i,j), (i+1,j), (i,j+1) and (i+1,j+1) indices).
+     * @param[out] the triangles' vertex indices (6-element array: two consecutive triplets).
+     */
+    virtual void getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
+        int* facetVertexIndices, int* triangleVertexIndices);
+
 public :
 
     /**

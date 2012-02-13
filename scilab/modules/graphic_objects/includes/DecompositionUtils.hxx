@@ -103,6 +103,13 @@ public :
     static double getAbsoluteValue(double value);
 
     /**
+     * Returns the square root of its input value.
+     * @param[in] the value.
+     * @return the value's square root.
+     */
+    static double getSquareRoot(double value);
+
+    /**
      * Utility function which outputs the triangle indices of a rectangle decomposed
      * into 2 adjacent triangles. Decomposition is always performed the same way as it does not
      * depend on input vertex values. This function should therefore be used only for rectangles.

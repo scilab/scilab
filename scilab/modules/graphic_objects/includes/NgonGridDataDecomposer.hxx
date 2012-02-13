@@ -86,6 +86,21 @@ protected :
         double* z, int numX, int numY);
 
     /**
+     * Returns the coordinates of the (i,j) facet's four vertices, where (i,j) is the facet's
+     * lower-left corner. Vertices are output in the following order: (i,j), (i+1,j), (i,j+1) and (i+1,j+1).
+     * @param[in] the grid x-coordinate array.
+     * @param[in] the grid y-coordinate array.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[out] the facet's vertices (4 (x,y,z) triplets).
+     */
+    void getFacetCoordinates(double* x, double* y, double* z, int numX, int numY, int i, int j,
+        double vertices[4][3]);
+
+    /**
      * Returns the z-coordinate of the (i,j) grid point.
      * It treats z as a 1-element array, hence all grid points have the same z-value.
      * @param[in] the grid z-coordinate array.
@@ -136,6 +151,23 @@ protected :
      * @return the number of indices actually written.
      */
     int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int numX, int numY);
+
+    /**
+     * Decomposes facet (i,j) into triangles and outputs the resulting vertex indices, where (i,j) is
+     * the facet's lower-left corner. As N-gon grid objects are plane, it always decomposes facets
+     * exactly the same way. The output triangles' vertex indices are in counter-clockwise order.
+     * @param[in] the grid x-coordinate array.
+     * @param[in] the grid y-coordinate array.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[in] the facet vertices' indices (4-element array: (i,j), (i+1,j), (i,j+1) and (i+1,j+1) indices).
+     * @param[out] the triangles' indices (6-element array: two consecutive triplets).
+     */
+    virtual void getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
+        int* facetVertexIndices, int* triangleVertexIndices);
 
     /**
      * Determines whether a facet is valid.
