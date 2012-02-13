@@ -74,13 +74,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
 
     psubwinUID = getOrCreateDefaultSubwin();
 
-    //startGraphicDataWriting();
-    //psubwin = sciGetCurrentSubWin();
-    //pFigure = sciGetParentFigure(psubwin);
-    //endGraphicDataWriting();
-
-    //startFigureDataWriting(pFigure);
-
     // Create compound.
     pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
     /* Sets the parent-child relationship for the Compound */
@@ -120,11 +113,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
 
     /** make Compound current object **/
     setCurrentObject(pstCompoundUID);
-//    endFigureDataWriting(pFigure);
-
-//    startFigureDataReading(pFigure);
-//    sciDrawObjIfRequired(sciGetCurrentObj());
-//    endFigureDataReading(pFigure);
 
     LhsVar(1)=0;
     PutLhsVar();

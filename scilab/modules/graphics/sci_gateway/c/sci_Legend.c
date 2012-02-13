@@ -157,13 +157,6 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
     setCurrentObject(legendUID);
 
-    /* Deactivated (drawing using the former renderer) */
-#if 0
-    startFigureDataReading(pFigure);
-    sciDrawObjIfRequired(legend);
-    endFigureDataReading(pFigure);
-#endif
-
     freeArrayOfString(Str,n);
     FREE(tabofhandles);
 

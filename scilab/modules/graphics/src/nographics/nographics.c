@@ -507,12 +507,6 @@ BOOL sciGetAutoRotation(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL needsDisplay(sciPointObj * pFigure)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetIsAutoDrawable(sciPointObj * pobj)
 {
     return FALSE;

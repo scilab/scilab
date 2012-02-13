@@ -1045,10 +1045,6 @@ void Objdrawaxis ( char     dir    ,
 
     setCurrentObject(pobjUID);
 
-    /* Deactivated (uses the former renderer) */
-#if 0
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-#endif
 }
 
 /*-----------------------------------------------------------

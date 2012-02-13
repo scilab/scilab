@@ -45,7 +45,6 @@ sciSetFontSize
 sciSetText
 ConstructGrayplot
 ConstructSurface
-sciClearFigure
 sciSetAutoSize
 sciSetUserSize
 sciSetTextPos

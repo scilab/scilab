@@ -68,7 +68,6 @@
 static void computeCoordinatesFromLogExponents(double* coordinates, int numCoordinates);
 static void printLabels(char** stringVector, double* ticksLocations, int numTicks, BOOL logFlag);
 
-static BOOL subwinNeedsDisplay(sciPointObj * pSubwin);
 
 
 
@@ -658,10 +657,10 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
 
   destroyStringArray(stringVector, updatedNxgrads);
-  
+
   getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
   logFlags[1] = iLogFlag;
-  
+
   /* y-axis */
   if (logFlags[1] == 0)
   {
@@ -843,6 +842,9 @@ int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * gr
   double grads_diff;        /* Used for computing spacing between major ticks. */
   int nbtics_safe = nbtics; /* nbtics clamped to the range 0 to subticsval_len-1. Safe as an index into subticsval. */
 
+  //printf("[DEBUG] ComputeNbSubTics ... aouch ...\n");
+  //return 0;
+
 #if 0
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
 #endif
@@ -1004,71 +1006,6 @@ int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * gr
   return -1;
 }
 
-
-
-/**DrawAxesIfRequired
- * Draws Axes (only the basic  graphicobject under subwindows) in its SubWindow or figure
- * if and only if pFIGURE_FEATURE(pobj)->auto_redraw == TRUE !!
- * Only used inside High Level functions calls (sucha as plot2d, plot3d...)
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if OK, -1 if not
- */
-void DrawAxesIfRequired(sciPointObj * pobj)
-{
-  sciPointObj * pfigure = sciGetParentFigure(pobj);
-
-  if( sciGetIsAutoDrawable(pfigure) && sciGetVisibility(pfigure) )
-  {
-    DrawAxes(pobj);
-  }
-
-}
-
-/* Routine used inside Plo2dn.c, Champ.c, Gray.c... */
-/* to force the drawing of the axes after a new object is created */
-void DrawAxes(sciPointObj * pobj)
-{
-  sciPointObj * psubwin = sciGetParentSubwin(pobj);
-  sciDrawObj(psubwin);
-}
-
-/*---------------------------------------------------------------------------------*/
-/**
- * draw the figure number numFigure.
- */
-void sciDrawFigure( int numFigure )
-{
-  int curFigure = sciGetNumFigure( sciGetCurrentFigure() ) ;
-  sciSetUsedWindow( numFigure ) ;
-  sciDrawObj( sciGetCurrentFigure() ) ;
-  sciSetUsedWindow( curFigure ) ;
-}
-/*---------------------------------------------------------------------------------*/
-
-
-
-
-/**sciDrawObjIfRequired
- * Draws Object (only the basic  graphicobject under subwindows) in its SubWindow or figure
- * if and only if pFIGURE_FEATURE(pobj)->auto_redraw == TRUE !!
- * Only used inside High Level functions calls (sucha as plot2d, plot3d...)
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if OK, -1 if not
- */
-int
-sciDrawObjIfRequired (sciPointObj * pobj)
-{
-  /*sciPointObj * pfigure = sciGetParentFigure(pobj);
-
-  if( sciGetIsAutoDrawable(pfigure) && sciGetVisibility(pfigure) )
-  {
-    sciDrawObj( pobj ) ;
-  }*/
-
-  sciDrawObj( pobj ) ;
-
-  return 0;
-}
 /*---------------------------------------------------------------------------------*/
 void showPixmap(char *pFigureUID)
 {
@@ -1089,98 +1026,7 @@ void clearPixmap(sciPointObj * pFigure)
 {
   // nothing to do with the hack
 }
-/*---------------------------------------------------------------------------------*/
-BOOL needsDisplay(sciPointObj * pFigure)
-{
-  /* return false if the figure contains no or one subwindow and the subwindow is not displayed. */
 
-  if (!sciGetVisibility(pFigure))
-  {
-    /* Figure not visible */
-    return FALSE;
-  }
-  else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
-  {
-    /* No subwindows, return false */
-    return FALSE;
-  }
-  else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 1)
-  {
-    /* One subwindow check if it is visible */
-    sciPointObj * onlySubwin = sciGetFirstTypedSelectedSon(pFigure, SCI_SUBWIN);
-    return subwinNeedsDisplay(onlySubwin);
-  }
-  else
-  {
-    return TRUE;
-  }
-}
-/*---------------------------------------------------------------------------------*/
-/*
- * This function has been only partially adapted to the MVC, due to sciisTextEmpty's prototype
- * having changed.
- * To be completed.
- */
-static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
-{
-  /* the subwindow is not displayed if it does not have any children, its box is of and is transparent or */
-  /* has the same background as the figure */
-  if (!sciGetVisibility(pSubwin))
-  {
-    /* subwin invisible */
-    return FALSE;
-  }
-  else if (sciGetNbChildren(pSubwin) > 4)
-  {
-    /* Other children than the labels */
-    return TRUE;
-  }
-  else
-  {
-    BOOL axesVisible[3];
-    char* titleId;
-    char* xLabelId;
-    char* yLabelId;
-    char* zLabelId;
-
-    if (sciGetBoxType(pSubwin) != BT_OFF)
-    {
-      /* Box is displayed */
-      return TRUE;
-    }
-
-    sciGetAxesVisible(pSubwin, axesVisible);
-    if (axesVisible[0] || axesVisible[1] || axesVisible[2])
-    {
-      /* One axis is visible */
-      return TRUE;
-    }
-
-    if (   sciGetIsFilled(pSubwin)
-        && sciGetBackground(sciGetParentFigure(pSubwin)) != sciGetBackground(pSubwin))
-    {
-      /* Compare subwin background and figure one */
-      return TRUE;
-    }
-
-    getGraphicObjectProperty(pSubwin->UID, __GO_TITLE__, jni_string, &titleId);
-    getGraphicObjectProperty(pSubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &xLabelId);
-    getGraphicObjectProperty(pSubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &yLabelId);
-    getGraphicObjectProperty(pSubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &zLabelId);
-
-    /* Check that labels texts are empty */
-    if (   !sciisTextEmpty(titleId)
-        || !sciisTextEmpty(xLabelId)
-        || !sciisTextEmpty(yLabelId)
-        || !sciisTextEmpty(zLabelId))
-    {
-      return TRUE;
-    }
-
-    /* apparently no need to display the axes */
-    return FALSE;
-  }
-}
 /*---------------------------------------------------------------------------------*/
 /*
  * Utility function which transforms back positions (logarithmic exponents) to non-log coordinates

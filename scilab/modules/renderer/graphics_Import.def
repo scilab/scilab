@@ -16,7 +16,6 @@ sciGetNum
 sciGetParentFigure
 stringArrayCopy
 sciGetIsAutoDrawable
-needsDisplay
 sciGetNbTypedObjects
 sciGetXorMode
 sciGetHandle

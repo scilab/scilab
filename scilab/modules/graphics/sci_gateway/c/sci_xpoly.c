@@ -89,26 +89,11 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     }
     /* NG beg */
 
-    /* Deactivated for now (synchronization) */
-#if 0
-    startGraphicDataWriting();
-#endif
-
     psubwinUID = getOrCreateDefaultSubwin();
-
-    /* Deactivated for now (synchronization) */
-#if 0
-    endGraphicDataWriting();
-#endif
 
     Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
     pobjUID = getCurrentObject(); /* the polyline newly created */
-
-    /* Deactivated for now (synchronization) */
-#if 0
-    startFigureDataWriting(pFigure);
-#endif
 
     /*
      * The contour properties set calls below were
@@ -141,19 +126,6 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
     setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-
-
-    /*
-     * Deactivated for now as it performs drawing operations
-     * To be implemented
-     */
-#if 0
-    endFigureDataWriting(pFigure);
-
-    startFigureDataReading(pFigure);
-    sciDrawObjIfRequired(pobj);
-    endFigureDataReading(pFigure);
-#endif
 
     /* NG end */
     LhsVar(1)=0;

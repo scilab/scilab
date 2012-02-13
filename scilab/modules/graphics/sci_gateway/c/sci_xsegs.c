@@ -108,12 +108,6 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 
     Objsegs (style,colorFlag,mx*nx,stk(lx),stk(ly),zptr,arsize);
 
-    /* Deactivated since it performs drawing */
-#if 0
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-#endif
-
-
     LhsVar(1)=0;
     PutLhsVar();
     return 0;

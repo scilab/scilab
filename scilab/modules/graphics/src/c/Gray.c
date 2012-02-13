@@ -237,7 +237,6 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     else
     {
         sciDrawObj( sciGetCurrentObj() );
-        DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     }
 #endif
 
@@ -496,7 +495,6 @@ int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
     else
     {
         sciDrawObj(sciGetCurrentObj ());
-        DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
     }
 #endif
 

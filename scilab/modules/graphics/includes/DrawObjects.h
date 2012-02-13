@@ -48,19 +48,7 @@ GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_2d(char *pobjUID);  /* DRAWINGS */
 
 GRAPHICS_IMPEXP int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
 
-GRAPHICS_IMPEXP void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
-GRAPHICS_IMPEXP void DrawAxes(sciPointObj*); /* DRAWINGS */
-
-GRAPHICS_IMPEXP int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
-
-
 /* Other functions coming from Entities.c (old file) */
-
-
-/**DJ.Abdemouche 2003**/
-GRAPHICS_IMPEXP void sciDrawFigure( int numFigure ) ;
-
-
 
 /**
  * Show the pixmap buffer of a figure
@@ -72,10 +60,5 @@ GRAPHICS_IMPEXP void showPixmap(char* pFigureUID);
  */
 GRAPHICS_IMPEXP void clearPixmap(sciPointObj * pFigure);
 
-/**
- * @return true if the figure contains some objects
- *         which needs to be displayed in 3D.
- */
-GRAPHICS_IMPEXP BOOL needsDisplay(sciPointObj * pFigure);
 
 #endif /* __SCI_DRAWINGS__ */
