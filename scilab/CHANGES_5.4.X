@@ -320,6 +320,8 @@ Bug fixes
 
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
+* Bug #10560 fixed - genetic algorithms demos failed.
+
 * Bug #10564 fixed - atan graphic demo was failing due to a too strong test
                      in the linspace function.
 
