@@ -15,6 +15,7 @@ package org.scilab.modules.renderer.JoGLView.axes.ruler;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.ruler.DefaultRulerModel;
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
 import org.scilab.forge.scirenderer.ruler.RulerDrawingResult;
 import org.scilab.forge.scirenderer.ruler.RulerModel;
@@ -40,6 +41,9 @@ import java.nio.FloatBuffer;
  */
 public class AxesRulerDrawer {
 
+    private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
+    private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
+
     private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
     private static final double TICKS_SIZE = .1;
 
@@ -64,7 +68,7 @@ public class AxesRulerDrawer {
         double[] values;
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
-        RulerModel rulerModel = new RulerModel();
+        DefaultRulerModel rulerModel = new DefaultRulerModel();
 
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 
@@ -103,11 +107,13 @@ public class AxesRulerDrawer {
         gridAppearance.setLinePattern(GRID_LINE_PATTERN);
 
         rulerModel.setTicksDirection(xTicksDirection);
-        rulerModel.setFirstPoint(xAxisPosition.setX(1));
-        rulerModel.setSecondPoint(xAxisPosition.setX(-1));
+        rulerModel.setFirstPoint(xAxisPosition.setX(-1));
+        rulerModel.setSecondPoint(xAxisPosition.setX(1));
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
+
         rulerModel.setLogarithmic(axes.getXAxis().getLogFlag());
+        rulerModel.setMinimalSubTicksDistance(axes.getXAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
         if (!axes.getAxes()[0].getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[0], bounds[1]));
@@ -131,14 +137,18 @@ public class AxesRulerDrawer {
             }
 
             distanceRatio  = rulerDrawingResult.getMaxDistToTicksDirNorm();
-            double [] xTicksDir = rulerDrawingResult.getNormalizedTicksDirection();
 
             xAxisLabelPositioner.setTicksDirection(xTicksDirection);
             xAxisLabelPositioner.setDistanceRatio(distanceRatio);
-            xAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(xTicksDir[0], xTicksDir[1], 0.0));
+            xAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
 
             if (axes.getXAxisGridColor() != -1) {
-                FloatBuffer vertexData = getXGridData(values, rulerModel);
+                FloatBuffer vertexData;
+                if(axes.getXAxisLogFlag()) {
+                    vertexData = getXGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
+                } else {
+                    vertexData = getXGridData(values, rulerModel);
+                }
                 vertexBuffer.setData(vertexData, 4);
 
                 Transformation mirror;
@@ -163,11 +173,12 @@ public class AxesRulerDrawer {
 
         // Draw Y ruler
         rulerModel.setTicksDirection(yTicksDirection);
-        rulerModel.setFirstPoint(yAxisPosition.setY(1));
-        rulerModel.setSecondPoint(yAxisPosition.setY(-1));
+        rulerModel.setFirstPoint(yAxisPosition.setY(-1));
+        rulerModel.setSecondPoint(yAxisPosition.setY(1));
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
+        rulerModel.setMinimalSubTicksDistance(axes.getYAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
         if (!axes.getAxes()[1].getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[2], bounds[3]));
@@ -190,14 +201,18 @@ public class AxesRulerDrawer {
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
-            double [] yTicksDir = rulerDrawingResult.getNormalizedTicksDirection();
 
             yAxisLabelPositioner.setTicksDirection(yTicksDirection);
             yAxisLabelPositioner.setDistanceRatio(distanceRatio);
-            yAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(yTicksDir[0], yTicksDir[1], 0.0));
+            yAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
 
             if (axes.getYAxisGridColor() != -1) {
-                FloatBuffer vertexData = getYGridData(values, rulerModel);
+                FloatBuffer vertexData;
+                if(axes.getYAxisLogFlag()) {
+                    vertexData = getYGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
+                } else {
+                    vertexData = getYGridData(values, rulerModel);
+                }
                 vertexBuffer.setData(vertexData, 4);
 
                 Transformation mirror;
@@ -235,13 +250,14 @@ public class AxesRulerDrawer {
                 tys = ys;
             }
 
-            rulerModel.setFirstPoint(new Vector3d(xs, ys, 1));
-            rulerModel.setSecondPoint(new Vector3d(xs, ys, -1));
+            rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
+            rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
             rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
 
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
+            rulerModel.setMinimalSubTicksDistance(axes.getZAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
             if (!axes.getAxes()[2].getAutoTicks()) {
                 rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[4], bounds[5]));
@@ -264,14 +280,18 @@ public class AxesRulerDrawer {
                 }
 
                 distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
-                double [] zTicksDir = rulerDrawingResult.getNormalizedTicksDirection();
 
                 zAxisLabelPositioner.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0.0));
                 zAxisLabelPositioner.setDistanceRatio(distanceRatio);
-                zAxisLabelPositioner.setProjectedTicksDirection(new Vector3d(zTicksDir[0], zTicksDir[1], 0.0));
+                zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
 
                 if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
-                    FloatBuffer vertexData = getZGridData(values, rulerModel);
+                    FloatBuffer vertexData;
+                    if(axes.getZAxisLogFlag()) {
+                        vertexData = getZGridData(rulerDrawingResult.getSubTicksValues(), rulerModel);
+                    } else {
+                        vertexData = getZGridData(values, rulerModel);
+                    }
                     vertexBuffer.setData(vertexData, 4);
 
                     Transformation mirror;
@@ -297,7 +317,7 @@ public class AxesRulerDrawer {
         drawingTools.getCanvas().getBuffersManager().dispose(vertexBuffer);
     }
 
-    private void setRulerBounds(AxisProperty axis, RulerModel rulerModel, double axisMin, double axisMax) {
+    private void setRulerBounds(AxisProperty axis, DefaultRulerModel rulerModel, double axisMin, double axisMax) {
         double min, max;
         if (axis.getReverse()) {
             min = axisMin;

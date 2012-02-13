@@ -12,8 +12,8 @@
 package org.scilab.modules.renderer.JoGLView;
 
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.ruler.DefaultRulerModel;
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
-import org.scilab.forge.scirenderer.ruler.RulerModel;
 import org.scilab.forge.scirenderer.ruler.RulerSpriteFactory;
 import org.scilab.forge.scirenderer.ruler.graduations.AbstractGraduations;
 import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
@@ -46,7 +46,7 @@ public class AxisDrawer {
         double min;
         double max;
 
-        RulerModel rulerModel = new RulerModel();
+        DefaultRulerModel rulerModel = new DefaultRulerModel();
 
         Double[] xTicksValues;
         Double[] yTicksValues;
@@ -78,9 +78,7 @@ public class AxisDrawer {
         rulerModel.setLineVisible(axis.getTicksSegment());
         rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicksColor()));
 
-        // TODO flip first and second point
-        rulerModel.setSecondPoint(new Vector3d(xMinAndMax[0], yMinAndMax[0], 0));
-        rulerModel.setFirstPoint(new Vector3d(xMinAndMax[1], yMinAndMax[1], 0));
+        rulerModel.setPoints(new Vector3d(xMinAndMax[0], yMinAndMax[0], 0), new Vector3d(xMinAndMax[1], yMinAndMax[1], 0));
         rulerModel.setTicksDirection(computeTicksDirection(axis.getTicksDirectionAsEnum()));
 
 
@@ -259,7 +257,7 @@ public class AxisDrawer {
         }
 
         @Override
-        public Graduations getSubGraduation() {
+        public Graduations getSubGraduations() {
             return new AbstractGraduations(this) {
                 @Override
                 public List<Double> getAllValues() {
@@ -282,7 +280,7 @@ public class AxisDrawer {
                 }
 
                 @Override
-                public Graduations getSubGraduation() {
+                public Graduations getSubGraduations() {
                     return null;
                 }
 

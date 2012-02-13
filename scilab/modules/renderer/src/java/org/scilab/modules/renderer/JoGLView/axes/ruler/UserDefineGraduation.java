@@ -96,7 +96,7 @@ class UserDefineGraduation implements Graduations {
     }
 
     @Override
-    public Graduations getSubGraduation() {
+    public Graduations getSubGraduations() {
         // TODO
         return null;
     }
