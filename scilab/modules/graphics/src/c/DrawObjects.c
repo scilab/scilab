@@ -210,7 +210,9 @@ BOOL sci_update_frame_bounds_2d(char *pobjUID)
   double hx,hy,hx1,hy1;
   int i;
 
-  double FRect[4],WRect[4],ARect[4];
+  double FRect[4];
+  double WRect[4] = {0.0, 0.0, 0.0, 0.0};
+  double ARect[4];
   char logscale[2];
 
   /* Temp variables only used when called from update_specification_bounds */
@@ -618,7 +620,7 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
       zGrads[i] = 0.0;
   }
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
   logFlags[0] = iLogFlag;
 
   /*
@@ -660,7 +662,10 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
 
   destroyStringArray(stringVector, updatedNxgrads);
-
+  
+  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
+  logFlags[1] = iLogFlag;
+  
   /* y-axis */
   if (logFlags[1] == 0)
   {
@@ -697,6 +702,9 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
 
   destroyStringArray(stringVector, updatedNygrads);
+
+  getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **) &piLogFlag);
+  logFlags[2] = iLogFlag;
 
   /* z-axis */
   if (logFlags[2] == 0)

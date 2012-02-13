@@ -52,11 +52,11 @@ void clearSubWin(char * pSubWinUID)
     char **pstChildrenUID;
 
     // Iterate on children.
-    getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+    getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
 
     if (iChildrenCount != 0)
     {
-        getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+        getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
 
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
