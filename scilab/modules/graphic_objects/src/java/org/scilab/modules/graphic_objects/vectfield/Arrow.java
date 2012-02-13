@@ -40,7 +40,7 @@ public class Arrow extends ContouredObject {
 		super();
 		base = new double[] {0.0, 0.0, 0.0};
 		direction = new double[] {0.0, 0.0, 0.0};
-		arrowSize = 0.0;
+		arrowSize = -1.0;
 	}
 
 	/** Clone method */
@@ -124,7 +124,7 @@ public class Arrow extends ContouredObject {
 	 * @param arrowSize the arrowSize to set
 	 */
 	public void setArrowSize(Double arrowSize) {
-		this.arrowSize = arrowSize;
+	    this.arrowSize = arrowSize;
 	}
 
 	/**
