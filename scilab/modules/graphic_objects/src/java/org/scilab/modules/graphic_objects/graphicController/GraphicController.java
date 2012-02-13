@@ -34,11 +34,22 @@ import org.scilab.modules.graphic_objects.graphicView.TreeView;
  */
 public class GraphicController {
 
-    private boolean debugEnable = false;
+    private static boolean debugEnable = true;
+    private static boolean infoEnable = false;
 
+    private static void INFO(String message)
+    {
+        if (infoEnable == true)
+        {
+            System.err.println("[CONTROLLER - INFO] : "+message);
+        }
+    }
+    
     private static void DEBUG(String message)
     {
-        //System.err.println("[CONTROLLER] : "+message);
+        if (debugEnable == true) {
+            System.err.println("[CONTROLLER - DEBUG] : "+message);
+        }
     }
 
     /**
@@ -79,7 +90,7 @@ public class GraphicController {
      * @param view The view to register.
      */
     public void register(GraphicView view) {
-        DEBUG("Register view : " + view.toString());
+        INFO("Register view : " + view.toString());
         allViews.add(view);
     }
 
@@ -116,10 +127,10 @@ public class GraphicController {
             return false;
         }
         catch (Exception e) {
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             DEBUG("setProperty : " + id + " " + prop);
             e.printStackTrace();
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             return false;
         }
     }
@@ -135,10 +146,10 @@ public class GraphicController {
             return GraphicModel.getModel().getProperty(id, prop);
         }
         catch (Exception e) {
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             DEBUG("getProperty : [" + id + "] " + prop);
             e.printStackTrace();
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             return null;
         }
     }
@@ -167,9 +178,10 @@ public class GraphicController {
             return id.toString();
         }
         catch (Exception e) {
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
+            DEBUG(" askObject type = " + type.name());
             e.printStackTrace();
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             return "";
         }
 
@@ -189,9 +201,10 @@ public class GraphicController {
             return newId.toString();
         }
         catch (Exception e) {
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
+            DEBUG("cloneObject id = " + id);
             e.printStackTrace();
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
             return "";
         }
     }
@@ -206,9 +219,10 @@ public class GraphicController {
             GraphicModel.getModel().deleteObject(id);
         }
         catch (Exception e) {
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
+            DEBUG("deleteObject id = " + id);
             e.printStackTrace();
-            System.err.println("====== Exception caught ======");
+            DEBUG("====== Exception caught ======");
         }
     }
 
@@ -217,8 +231,8 @@ public class GraphicController {
      * @param id the created object's id
      */
     public void objectCreated(final String id) {
-        DEBUG("### Create object : "+id);
-        DEBUG("### type is : " + getProperty(id, "Type"));
+        INFO("### Create object : "+id);
+        INFO("### type is : " + getProperty(id, "Type"));
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
 
         try {
@@ -243,9 +257,9 @@ public class GraphicController {
      * @param prop the property that has been updated
      */
     public void objectUpdate(final String id, final String prop) {
-        DEBUG("### Update object : "+id);
-        DEBUG("### type is : " + getProperty(id, "Type"));
-        DEBUG("### prop is : " + prop);
+        INFO("### Update object : "+id);
+        INFO("### type is : " + getProperty(id, "Type"));
+        INFO("### prop is : " + prop);
 
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
         try {
@@ -269,8 +283,8 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void objectDeleted(final String id) {
-        DEBUG("### Delete object : "+id);
-        DEBUG("### type is : " + getProperty(id, "Type"));
+        INFO("### Delete object : "+id);
+        INFO("### type is : " + getProperty(id, "Type"));
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
 
         try {
