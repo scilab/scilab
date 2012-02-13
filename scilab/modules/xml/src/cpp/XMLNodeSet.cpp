@@ -110,7 +110,6 @@ namespace org_modules_xml
         if (nodeSet && index >= 1 && index <= size)
         {
             XMLObject *obj = 0;
-            XMLElement *e = 0;
             xmlNode *node = nodeSet->nodeTab[index - 1];
 
             switch (node->type)

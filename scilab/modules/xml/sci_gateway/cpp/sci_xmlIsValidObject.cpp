@@ -33,7 +33,6 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 {
-    XMLObject *obj = 0;
     int id;
     SciErr err;
     int *addr = 0;
