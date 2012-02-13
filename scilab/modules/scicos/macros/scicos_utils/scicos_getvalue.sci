@@ -115,6 +115,7 @@ end
 
 %ok=%t
 while %t do
+  %ini=matrix(%ini, size(%labels));
   %str=x_mdialog(%desc,%labels,%ini)
   if %str==[] then %ok=%f,%str=[];break,end
   for %kk=1:%nn
