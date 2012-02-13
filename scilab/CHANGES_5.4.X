@@ -327,6 +327,9 @@ Bug fixes
 * Bug #10564 fixed - atan graphic demo was failing due to a too strong test
                      in the linspace function.
 
+* Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
+                     trajectory failed.
+
 * Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
 
 * Bug #10577 fixed - getdate did not check input argument.
