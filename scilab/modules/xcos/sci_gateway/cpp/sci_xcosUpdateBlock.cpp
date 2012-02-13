@@ -33,8 +33,7 @@ int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    int i;
-    char *hdf5File;
+    char *hdf5File = NULL;
 
     if (readSingleString(pvApiCtx, 1, &hdf5File, fname))
     {
@@ -47,12 +46,14 @@ int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
         Xcos::updateBlock(getScilabJavaVM(), hdf5File);
 
         FREE(hdf5File);
+        hdf5File = NULL;
     }
     catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
         FREE(hdf5File);
+        hdf5File = NULL;
         return 0;
     }
     catch (GiwsException::JniException exception)
@@ -60,6 +61,7 @@ int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
         FREE(hdf5File);
+        hdf5File = NULL;
         return 0;
     }
 
