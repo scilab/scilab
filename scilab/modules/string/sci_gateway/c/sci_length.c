@@ -366,7 +366,7 @@ static int lengthMList(const char *fname, int *piAddressVar)
                 if (isScilabFunction(overloadFunctionName))
                 {
                     int lw = 1 + Top - Rhs;
-                    C2F(overload)(&lw, (char*)fname, strlen(fname));
+                    C2F(overload)(&lw, (char*)fname, (unsigned long)strlen(fname));
                     return 0;
                 }
                 else

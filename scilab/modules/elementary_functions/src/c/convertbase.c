@@ -205,7 +205,7 @@ char **convertMatrixOfDec2Base(const double* dValues, int mn,
             FREE(maxBaseString);
             if (maxDigits > nbDigits)
             {
-                nbDigits = maxDigits;
+                nbDigits = (unsigned int)maxDigits;
             }
         }
     }
