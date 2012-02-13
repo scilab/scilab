@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Pierre Lando
@@ -142,7 +143,7 @@ public class DataManager {
 
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, ElementsBuffer> colorBufferMap = new HashMap<String, ElementsBuffer>();
+    private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Canvas canvas;
@@ -295,7 +296,7 @@ public class DataManager {
      * Clears all the color buffers.
      */
     public void disposeAllColorBuffers() {
-        canvas.getBuffersManager().dispose(colorBufferMap.values());
+    	canvas.getBuffersManager().dispose(colorBufferMap.values());
         colorBufferMap.clear();
     }
 
