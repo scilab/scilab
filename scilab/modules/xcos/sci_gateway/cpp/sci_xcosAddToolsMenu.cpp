@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID <clement.david@scilab-enterprises.com>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,7 +10,7 @@
  *
  */
 
-#include "Modelica.hxx"
+#include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
 
@@ -26,50 +26,48 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
-using namespace org_scilab_modules_xcos_modelica;
+using namespace org_scilab_modules_xcos;
 
-int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
+int sci_xcosAddToolsMenu(char *fname, unsigned long fname_len)
 {
-    CheckRhs(1, 2);
+    CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    char *init = NULL;
-    char *relations = NULL;
+    char *label;
+    char *callback;
 
-    /* first file setup */
-    if (readSingleString(pvApiCtx, 1, &init, fname))
+    if (readSingleString(pvApiCtx, 1, &label, fname))
     {
         return 0;
     }
-    /* second file setup */
-    if (readSingleString(pvApiCtx, 2, &relations, fname))
+    if (readSingleString(pvApiCtx, 2, &callback, fname))
     {
-        FREE(init);
+        FREE(label);
         return 0;
     }
 
     /* Call the java implementation */
     try
     {
-        Modelica::load(getScilabJavaVM(), init, relations);
+        Xcos::addToolsMenu(getScilabJavaVM(), label, callback);
 
-        FREE(init);
-        FREE(relations);
+        FREE(label);
+        FREE(callback);
     }
     catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
-        FREE(init);
-        FREE(relations);
+        FREE(label);
+        FREE(callback);
         return 0;
     }
     catch (GiwsException::JniException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
-        FREE(init);
-        FREE(relations);
+        FREE(label);
+        FREE(callback);
         return 0;
     }
 

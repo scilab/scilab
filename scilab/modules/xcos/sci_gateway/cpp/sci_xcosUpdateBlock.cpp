@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,7 +10,7 @@
  *
  */
 
-#include "Modelica.hxx"
+#include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
 
@@ -26,50 +26,40 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
-using namespace org_scilab_modules_xcos_modelica;
+using namespace org_scilab_modules_xcos;
 
-int sci_xcosConfigureXmlFile(char *fname, unsigned long fname_len)
+int sci_xcosUpdateBlock(char *fname, unsigned long fname_len)
 {
-    CheckRhs(1, 2);
+    CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    char *init = NULL;
-    char *relations = NULL;
+    int i;
+    char *hdf5File;
 
-    /* first file setup */
-    if (readSingleString(pvApiCtx, 1, &init, fname))
+    if (readSingleString(pvApiCtx, 1, &hdf5File, fname))
     {
-        return 0;
-    }
-    /* second file setup */
-    if (readSingleString(pvApiCtx, 2, &relations, fname))
-    {
-        FREE(init);
         return 0;
     }
 
     /* Call the java implementation */
     try
     {
-        Modelica::load(getScilabJavaVM(), init, relations);
+        Xcos::updateBlock(getScilabJavaVM(), hdf5File);
 
-        FREE(init);
-        FREE(relations);
+        FREE(hdf5File);
     }
     catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
-        FREE(init);
-        FREE(relations);
+        FREE(hdf5File);
         return 0;
     }
     catch (GiwsException::JniException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
-        FREE(init);
-        FREE(relations);
+        FREE(hdf5File);
         return 0;
     }
 

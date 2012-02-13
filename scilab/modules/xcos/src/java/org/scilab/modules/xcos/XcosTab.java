@@ -35,6 +35,7 @@ import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
@@ -42,6 +43,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -61,6 +63,7 @@ import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
+import org.scilab.modules.xcos.actions.ExternalAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
@@ -111,7 +114,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Xcos tab operations
- * 
+ *
  * This class implement specific operation of an Xcos Tab.
  */
 // CSOFF: ClassFanOutComplexity
@@ -154,8 +157,8 @@ public class XcosTab extends SwingScilabTab implements Tab {
     private PushButton xcosDocumentationAction;
 
     private static class ClosingOperation
-            implements
-            org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
+        implements
+        org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
         private final XcosDiagram graph;
 
         public ClosingOperation(XcosDiagram graph) {
@@ -180,7 +183,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
         @Override
         public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                                       ListIterator<SwingScilabTab> it) {
             final PaletteManagerView palette = PaletteManagerView.get();
 
             /*
@@ -199,7 +202,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 
             final boolean wasLastOpened = Xcos.getInstance()
-                    .wasLastOpened(list);
+                                          .wasLastOpened(list);
 
             /*
              * Append the palette if all the xcos files will be closed
@@ -212,7 +215,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     private static class EndedRestoration implements
-            WindowsConfigurationManager.EndedRestoration {
+        WindowsConfigurationManager.EndedRestoration {
         private final XcosDiagram graph;
 
         public EndedRestoration(XcosDiagram graph) {
@@ -224,20 +227,20 @@ public class XcosTab extends SwingScilabTab implements Tab {
             graph.updateTabTitle();
 
             ConfigurationManager.getInstance().removeFromRecentTabs(
-                    graph.getDiagramTab());
+                graph.getDiagramTab());
         }
     }
 
     /**
      * Default constructor
-     * 
+     *
      * @param diagram
      *            The associated diagram
      */
     private XcosTab(XcosDiagram graph, String uuid) {
         super(XcosMessages.XCOS, uuid);
-	
-	setAssociatedXMLIDForHelp("xcos");
+
+        setAssociatedXMLIDForHelp("xcos");
 
         /** tab association */
         graph.setDiagramTab(uuid);
@@ -254,7 +257,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Get the tab for a graph.
-     * 
+     *
      * @param graph
      *            the graph
      * @return the tab (can be null)
@@ -270,7 +273,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Restore or create the viewport tab for the graph
-     * 
+     *
      * @param graph
      *            the graph
      */
@@ -280,7 +283,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Restore or create the tab for the graph
-     * 
+     *
      * @param graph
      *            the graph
      * @param visible
@@ -309,7 +312,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) tab,
                 new ClosingOperation(graph));
         WindowsConfigurationManager.registerEndedRestoration(
-                (SwingScilabTab) tab, new EndedRestoration(graph));
+            (SwingScilabTab) tab, new EndedRestoration(graph));
     }
 
     /*
@@ -318,7 +321,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Instantiate all the subcomponents of this Tab.
-     * 
+     *
      * @param diagram
      *            the diagram
      */
@@ -341,7 +344,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Create the windows menu bar
-     * 
+     *
      * @param diagram
      *            the diagram
      * @return the Xcos diagram menu bar
@@ -411,7 +414,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
         final CheckBoxMenuItem menuItem = ViewViewportAction
-                .createCheckBoxMenu(diagram);
+                                          .createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();
         view.add(menuItem);
         view.add(ViewDetailsAction.createMenu(diagram));
@@ -471,7 +474,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
         format.add(DiagramBackgroundAction.createMenu(diagram));
         final CheckBoxMenuItem gridMenu = ViewGridAction
-                .createCheckBoxMenu(diagram);
+                                          .createCheckBoxMenu(diagram);
         format.add(gridMenu);
 
         /** Tools menu */
@@ -481,6 +484,17 @@ public class XcosTab extends SwingScilabTab implements Tab {
         menuBar.add(tools);
 
         tools.add(CodeGenerationAction.createMenu(diagram));
+
+        // add external action to the tools menu
+        final List<ExternalAction> externalActions = Xcos.getInstance().getExternalActions();
+        for (ExternalAction action : externalActions) {
+            final MenuItem item = ScilabMenuItem.createMenuItem();
+
+            final SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item.getAsSimpleMenuItem();
+            swingItem.setAction(new ExternalAction(action, diagram));
+
+            tools.add(item);
+        }
 
         /** Help menu */
         help = ScilabMenu.createMenu();
@@ -502,7 +516,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Create the recent menu from the previously opened files
-     * 
+     *
      * @return the recent menu
      */
     private Menu createRecentMenu() {
@@ -513,7 +527,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
         final ConfigurationManager manager = ConfigurationManager.getInstance();
         final List<DocumentType> recentFiles = manager.getSettings()
-                .getRecent();
+                                               .getRecent();
         for (int i = 0; i < recentFiles.size(); i++) {
             URL url;
             try {
@@ -526,42 +540,42 @@ public class XcosTab extends SwingScilabTab implements Tab {
         }
 
         ConfigurationManager.getInstance().addPropertyChangeListener(
-                ConfigurationConstants.RECENT_FILES_CHANGED,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(final PropertyChangeEvent evt) {
-                        assert evt.getPropertyName().equals(
-                                ConfigurationConstants.RECENT_FILES_CHANGED);
+            ConfigurationConstants.RECENT_FILES_CHANGED,
+        new PropertyChangeListener() {
+            @Override
+            public void propertyChange(final PropertyChangeEvent evt) {
+                assert evt.getPropertyName().equals(
+                    ConfigurationConstants.RECENT_FILES_CHANGED);
 
-                        /*
-                         * We only handle menu creation there. Return when this
-                         * is not the case.
-                         */
-                        if (evt.getOldValue() != null) {
-                            return;
-                        }
+                /*
+                 * We only handle menu creation there. Return when this
+                 * is not the case.
+                 */
+                if (evt.getOldValue() != null) {
+                    return;
+                }
 
-                        URL url;
-                        try {
-                            url = new URL(((DocumentType) evt.getNewValue())
-                                    .getUrl());
-                        } catch (final MalformedURLException e) {
-                            LogFactory.getLog(XcosTab.class).error(e);
-                            return;
-                        }
+                URL url;
+                try {
+                    url = new URL(((DocumentType) evt.getNewValue())
+                                  .getUrl());
+                } catch (final MalformedURLException e) {
+                    LogFactory.getLog(XcosTab.class).error(e);
+                    return;
+                }
 
-                        ((SwingScilabMenu) recent.getAsSimpleMenu()).add(
-                                (SwingScilabMenu) RecentFileAction.createMenu(
-                                        url).getAsSimpleMenu(), 0);
-                    }
-                });
+                ((SwingScilabMenu) recent.getAsSimpleMenu()).add(
+                    (SwingScilabMenu) RecentFileAction.createMenu(
+                        url).getAsSimpleMenu(), 0);
+            }
+        });
 
         return recent;
     }
 
     /**
      * Create the Tab toolbar
-     * 
+     *
      * @param diagram
      *            the associated diagram
      * @return tool bar
@@ -627,7 +641,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         toolBar.addSeparator();
 
         xcosDemonstrationAction = XcosDemonstrationsAction
-                .createButton(diagram);
+                                  .createButton(diagram);
         toolBar.add(xcosDemonstrationAction);
         xcosDocumentationAction = XcosDocumentationAction.createButton(diagram);
         toolBar.add(xcosDocumentationAction);
@@ -637,7 +651,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Check/uncheck the viewport check box menu item
-     * 
+     *
      * @param status
      *            the checked status
      */
@@ -647,7 +661,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     /**
      * Get the check/uncheck status of the check box menu item
-     * 
+     *
      * @param status
      *            the checked status
      */
@@ -659,7 +673,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         final Window win;
 
         final Window configuration = WindowsConfigurationManager.createWindow(
-                DEFAULT_WIN_UUID, false);
+                                         DEFAULT_WIN_UUID, false);
         if (configuration != null) {
             win = configuration;
         } else {
