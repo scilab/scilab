@@ -206,6 +206,8 @@ Bug fixes
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
+* Bug #9892 fixed - "-noatomsautoload" startup option added.
+
 * Bug #10202 fixed - Example in csv_write help page did not differenciate
                      tab-separated and comma-separated files.
 

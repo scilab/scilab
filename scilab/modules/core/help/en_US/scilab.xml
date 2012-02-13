@@ -155,6 +155,13 @@ scilab -l ja_JP
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>-noatomsautoload</term>
+        <listitem>
+          <para>If this option is present the ATOMS modules previously installed are not loaded for this session.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
         <term>-nw</term>
         <listitem>
           <para>If this option is present, Scilab is started as command line
@@ -332,5 +339,14 @@ echo $? ]]></programlisting>
         <link linkend="exit">exit</link>
       </member>
     </simplelist>
+  </refsection>
+ <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>-noatomsautoload added.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

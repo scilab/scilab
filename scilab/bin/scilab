@@ -821,6 +821,7 @@ do_help()
     echo     "      -nb             : do not display the Scilab banner at starting time."
     echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "      -noatomsautoload: do not load ATOMS installed module."
     echo     "      -nw             : start Scilab without dedicated Scilab Window."
     echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
     echo     "      -nogui          : See -nwni"
@@ -948,7 +949,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then
