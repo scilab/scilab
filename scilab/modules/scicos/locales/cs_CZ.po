@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 20:33+0000\n"
+"PO-Revision-Date: 2012-02-08 15:53+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Generator: Launchpad (build 14781)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -1318,39 +1318,39 @@ msgstr "%s: Chyba: Blok scifunc nebyl určen."
 
 #, c-format
 msgid "%s: flat failed"
-msgstr ""
+msgstr "%s: ploché selhalo"
 
 #, c-format
 msgid "%s: global case failed"
-msgstr ""
+msgstr "%s: selhání globálního případu"
 
 #, c-format
 msgid "%s: invalid connection matrix"
-msgstr ""
+msgstr "%s: neplatná matice připojení"
 
 #, c-format
 msgid "%s: unable to build modelica block"
-msgstr ""
+msgstr "%s: nelze sestavit blok modelica"
 
 #, c-format
 msgid "%s: unable to build block"
-msgstr ""
+msgstr "%s: nelze sestavit blok"
 
 #, c-format
 msgid "%s: unable to sample the whole diagram"
-msgstr ""
+msgstr "%s: nelze vzorkovat celý graf"
 
 #, c-format
 msgid "%s: invalid links table size"
-msgstr ""
+msgstr "%s: neplatná velikost tabulky propojení"
 
 #, c-format
 msgid "%s: implicit block with event port"
-msgstr ""
+msgstr "%s: implicitní blok s portem události"
 
 #, c-format
 msgid "%s: build the modelica meta-block failed"
-msgstr ""
+msgstr "%s: sestavení metabloku modelica selhalo"
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1418,31 +1418,31 @@ msgstr "Je nám líto, jméno souboru není určeno v "
 
 #, c-format
 msgid "%s: goto tag not unique"
-msgstr ""
+msgstr "%s: značka goto není jedinečná"
 
 #, c-format
 msgid "%s: port out of hierarchy"
-msgstr ""
+msgstr "%s: port mimo hiearchii"
 
 #, c-format
 msgid "%s: not connected super block input"
-msgstr ""
+msgstr "%s: vstup super bloku nepřipojen"
 
 #, c-format
 msgid "%s: invalid super block at %d"
-msgstr ""
+msgstr "%s: neplatný super blok v %d"
 
 #, c-format
 msgid "%s: empty diagram"
-msgstr ""
+msgstr "%s: prázdný graf"
 
 #, c-format
 msgid "%s: multiple GotoTagVisibility at the same level"
-msgstr ""
+msgstr "%s: mnoho GotoTagVisibility na stejné úrovni"
 
 #, c-format
 msgid "%s: shared GotoTagVisibility across GOTO"
-msgstr ""
+msgstr "%s: sdílené GotoTagVisibility napříč GOTO"
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"

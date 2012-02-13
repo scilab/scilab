@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-04 15:02+0000\n"
+"PO-Revision-Date: 2012-02-08 14:25+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Generator: Launchpad (build 14781)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -54,6 +54,8 @@ msgstr "%s: XMLList не существует.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
+"«%s».\n"
 
 #, c-format
 msgid ""
@@ -288,7 +290,7 @@ msgid "Cannot create a reader"
 msgstr ""
 
 msgid "Invalid file"
-msgstr ""
+msgstr "Недопустимый файл"
 
 msgid "Cannot parse the DTD"
 msgstr "Не могу сделать синтаксический разбор  DTD"

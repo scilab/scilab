@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-04 20:30+0000\n"
+"PO-Revision-Date: 2012-02-08 15:59+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Generator: Launchpad (build 14781)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -53,6 +53,7 @@ msgstr "%s: XMLList neexistuje.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid ""
@@ -278,13 +279,13 @@ msgid "Cannot create a parser context"
 msgstr "Nelze vytvořit kontext zpracovatele"
 
 msgid "Cannot create a buffer"
-msgstr ""
+msgstr "Nelze vytvořit mezipaměť"
 
 msgid "Cannot create a reader"
-msgstr ""
+msgstr "Nelze vytvořit čítače"
 
 msgid "Invalid file"
-msgstr ""
+msgstr "Neplatný soubor"
 
 msgid "Cannot parse the DTD"
 msgstr "Nelze zpracovat DTD"
