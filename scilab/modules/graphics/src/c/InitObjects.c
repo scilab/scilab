@@ -734,7 +734,6 @@ int InitAxesModel()
     int tightLimits;
     int arcDrawingMethod;
     int i;
-    int *tmp;
     double axesBounds[4];
     double dataBounds[6];
     double rotationAngles[2];

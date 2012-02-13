@@ -479,7 +479,6 @@ void Objplot3d ( char    * fname ,
     int firstPlot = 0;
     int *piFirstPlot = &firstPlot;
 
-    int* tmp;
     int box;
     int axisVisible;
     int autoScale = 0;

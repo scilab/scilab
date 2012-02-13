@@ -38,7 +38,6 @@ int set_cdata_mapping_property( char* pobjUID, size_t stackPointer, int valueTyp
 {
     BOOL status;
     int cdataMapping;
-    int result;
     sciSurface * ppSurf = NULL;
 
     if ( !isParameterStringMatrix( valueType ) )

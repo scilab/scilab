@@ -1831,7 +1831,7 @@ int
 sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 {
     char* type;
-    int i,n1,k,k1,k2;
+    int i,n1;
     double * pvx  = NULL ;
     double * pvy  = NULL ;
     double * pvz  = NULL ;

@@ -406,7 +406,7 @@ sciDelCallback (sciPointObj * pthis)
 
 static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 {
-    int i,n;
+    int i;
     double x = displacement[0];
     double y = displacement[1];
     double z = (displacementSize == 3? displacement[2] : 0.0);
@@ -448,7 +448,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 
     if (iChildrenCount != 0)
     {
-        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
             moveObj(pstChildrenUID[i], displacement, displacementSize);

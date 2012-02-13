@@ -32,7 +32,6 @@
 /*------------------------------------------------------------------------*/
 int get_links_property(char *pobjUID)
 {
-    int nbLegends;
     int i;
     long *handles;
     char** links;

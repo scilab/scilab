@@ -58,5 +58,7 @@ int get_view_property(char *pobjUID)
     {
         return sciReturnString( "3d" );
     }
+
+    return -1;
 }
 /*------------------------------------------------------------------------*/

@@ -169,7 +169,6 @@ int set3ddata( char* pobjUID, AssignedList * tlist )
 
     int m1, n1, m2, n2, m3, n3;
     int m3n, n3n;
-    int colorFlag;
     int isFac3d;
 
     double * pvecx = NULL;

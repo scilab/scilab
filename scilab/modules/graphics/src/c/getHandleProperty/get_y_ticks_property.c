@@ -34,7 +34,6 @@
 /*------------------------------------------------------------------------*/
 int get_y_ticks_property(char *pobjUID)
 {
-    int* tmp;
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
 

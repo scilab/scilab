@@ -33,7 +33,6 @@
 int set_outside_colors_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
-    char* parentFigure;
     int  values[2];
     int nbColors = 0;
 

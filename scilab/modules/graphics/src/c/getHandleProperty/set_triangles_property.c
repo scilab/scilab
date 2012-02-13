@@ -38,7 +38,6 @@ int set_triangles_property(char* pobjUID, size_t stackPointer, int valueType, in
 {
     char* type;
     BOOL result;
-    int i;
     double* pnoeud;
 
     if ( !isParameterDoubleMatrix( valueType ) )

@@ -36,7 +36,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
 {
     int m1,n1,l1;
     unsigned long hdl;
-    int numrow, numcol, outindex, i;
+    int outindex, i;
 
     int iOne = 1;
     char *pobjUID = NULL;
@@ -65,10 +65,10 @@ int sci_unglue(char *fname,unsigned long fname_len)
     if (pstObjectType != NULL && strcmp(pstObjectType, __GO_COMPOUND__) == 0)
     {
         // Retrieve number of children.
-        getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+        getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
 
         // Retrieve all children UID.
-        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
 
         // Retrieve Compound Parent.
         getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &pstParentUID);

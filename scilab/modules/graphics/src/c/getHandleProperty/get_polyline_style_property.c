@@ -43,6 +43,6 @@ int get_polyline_style_property(char *pobjUID)
         return -1;
     }
 
-    sciReturnDouble(iPolylineStyle);
+    return sciReturnDouble(iPolylineStyle);
 }
 /*------------------------------------------------------------------------*/

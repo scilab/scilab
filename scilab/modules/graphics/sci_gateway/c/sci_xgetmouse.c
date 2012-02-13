@@ -42,7 +42,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     int sel[2],m,n;
 
     int pixelCoords[2];
-    double userCoords2D[2];
+    double userCoords2D[2] = {0.0, 0.0};
     sciPointObj * clickedSubwin = NULL;
 
     int selPosition = 0;

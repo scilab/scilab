@@ -53,7 +53,6 @@ int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier)
     int lineMode;
     int foreground;
     int lineStyle;
-    int fillMode;
     int background;
     int markForeground;
     int markBackground;

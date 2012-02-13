@@ -22,6 +22,10 @@
 
 #include <string.h>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
@@ -35,7 +39,7 @@
 int get_figure_name_property(char *pobjUID)
 {
     char* figureName;
-    getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, &figureName);
+    getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **) &figureName);
 
     if ( figureName == NULL )
     {

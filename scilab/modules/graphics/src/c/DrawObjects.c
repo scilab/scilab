@@ -210,10 +210,7 @@ BOOL sci_update_frame_bounds_2d(char *pobjUID)
   double hx,hy,hx1,hy1;
   int i;
 
-  double FRect[4];
   double WRect[4] = {0.0, 0.0, 0.0, 0.0};
-  double ARect[4];
-  char logscale[2];
 
   /* Temp variables only used when called from update_specification_bounds */
   /* to know if we have to redraw all the figure */
@@ -250,7 +247,6 @@ BOOL sci_update_frame_bounds_2d(char *pobjUID)
   /* Used to print labels */
   char** stringVector;
 
-  int* tmp;
   /* End of Temp variables */
 
   /* Get the initial data bounds, number of ticks and number of subticks */

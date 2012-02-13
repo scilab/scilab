@@ -626,8 +626,6 @@ BOOL strflag2axes_properties(char *psubwinUID, char *strflag)
     BOOL haschanged = FALSE;
     BOOL tightLimitsPrev;
     BOOL isoviewPrev;
-    char xLocPrev;
-    char yLocPrev;
     int boxPrev;
     int tightLimits;
     int firstPlot;

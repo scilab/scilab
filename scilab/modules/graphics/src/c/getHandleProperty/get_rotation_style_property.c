@@ -52,5 +52,7 @@ int get_rotation_style_property(char * pobjUID)
     {
         return sciReturnString( "multiple" ) ;
     }
+
+    return -1;
 }
 /*------------------------------------------------------------------------*/

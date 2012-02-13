@@ -49,5 +49,6 @@ int get_mark_background_property(char *pobjUID)
 #if 0
   return sciReturnDouble( sciGetMarkBackgroundToDisplay( pobj ) ) ;
 #endif
+    return -1;
 }
 /*------------------------------------------------------------------------*/

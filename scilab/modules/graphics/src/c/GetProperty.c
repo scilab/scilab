@@ -602,7 +602,7 @@ BOOL sciisTextEmpty(char* identifier)
     if (nbElements == 1)
     {
         char** textMatrix;
-        getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
+        getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
         if (textMatrix[0] == NULL)
         {
@@ -1599,7 +1599,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 {
     char* type;
     double *tab;
-    int i,k;
+    int i;
 
     getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
 
@@ -1731,12 +1731,10 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     {
         char* parentAxes;
         double* upperLeftPoint;
-        double* tmpDouble;
         double width = 0.0;
         double *pdblWidth = &width;
         double height = 0.0;
         double *pdblHeight = &height;
-        int* tmp;
         int iView = 0;
         int *piView = &iView;
 
@@ -1779,7 +1777,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     {
         char* parentAxes;
         double* upperLeftPoint;
-        double* tmpDouble;
         double width = 0.0;
         double *pdblWidth = &width;
 
@@ -1790,7 +1787,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
         double *pdblStartAngle = &startAngle;
         double endAngle;
         double *pdblEndAngle = &endAngle;
-        int* tmp;
         int view = 0;
         int *piView = &view;
 
@@ -1946,7 +1942,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     }
     else if (strcmp(type, __GO_MATPLOT__) == 0)
     {
-        int* tmp;
         int nx = 0;
         int *piNx = &nx;
         int ny = 0;

@@ -247,7 +247,6 @@ int sci_xset( char *fname, unsigned long fname_len )
     else if ( strcmp(cstk(l1),"mark") == 0)
     {
         int markMode = 1;
-        int markStyle;
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
 

@@ -35,7 +35,6 @@
 int sci_newaxes( char * fname,unsigned long fname_len )
 {
     char *psubwinUID;
-    char *pfigureUID;
     int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
     int outindex,numrow   = 1,numcol   = 1;
     CheckRhs(0, 0);

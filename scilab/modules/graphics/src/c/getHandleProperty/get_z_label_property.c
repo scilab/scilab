@@ -43,7 +43,6 @@ int get_z_label_property(char *pobjUID)
 #endif
 
     char* labelUID;
-    long labelHandle;
 
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LABEL__, jni_string, (void **) &labelUID);
 
