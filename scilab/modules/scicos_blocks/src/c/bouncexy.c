@@ -211,7 +211,7 @@ static sco_data *getScoData(scicos_block * block)
         if (sco == NULL)
             goto error_handler_sco;
 
-        sco->internal.ballsSize = (double *)CALLOC(block->nin, sizeof(double));
+        sco->internal.ballsSize = (double *)CALLOC(block->insz[0], sizeof(double));
         if (sco->internal.ballsSize == NULL)
             goto error_handler_ballsSize;
         for (i = 0; i < block->insz[0]; i++)

@@ -223,7 +223,6 @@ static sco_data *getScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
     int i, j, k, l;
-    BOOL result;
 
     if (sco == NULL)
     {
@@ -362,7 +361,9 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
                 goto error_handler;
 
             for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+            {
                 ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+            }
             sco->internal.data[i][j] = ptr;
         }
     }
@@ -372,7 +373,9 @@ static sco_data *reallocScoData(scicos_block * block, int numberOfPoints)
         goto error_handler;
 
     for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
+    {
         ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+    }
     sco->internal.time = ptr;
 
     sco->internal.maxNumberOfPoints = numberOfPoints;
@@ -388,7 +391,6 @@ error_handler:
 static void appendData(scicos_block * block, int input, double t, double *data)
 {
     int i;
-    static const int i__1 = 1;
 
     sco_data *sco = (sco_data *) * (block->work);
     int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
@@ -439,11 +441,15 @@ static void appendData(scicos_block * block, int input, double t, double *data)
         for (i = 0; i < block->insz[input]; i++)
         {
             for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
                 sco->internal.data[input][i][numberOfPoints + setLen] = data[i];
+            }
         }
 
         for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
             sco->internal.time[numberOfPoints + setLen] = t;
+        }
 
         sco->internal.numberOfPoints++;
     }
@@ -755,7 +761,6 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
     char *pFigureUID;
     char *pAxeUID;
 
-    BOOL result;
     double dataBounds[6];
     int nin = block->nin;
     double period = block->rpar[block->nrpar - 3 * nin + input];
