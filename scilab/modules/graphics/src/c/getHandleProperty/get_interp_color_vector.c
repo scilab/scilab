@@ -37,7 +37,7 @@ int get_interp_color_vector_property(char *pobjUID)
     int iInterpVectorSet = 0;
     int *piInterpVectorSet = &iInterpVectorSet;
     int iNumElements = 0;
-    int piNumElements = &iNumElements;
+    int *piNumElements = &iNumElements;
 
 #if 0
     if( sciGetEntityType(pobj) != SCI_POLYLINE )
