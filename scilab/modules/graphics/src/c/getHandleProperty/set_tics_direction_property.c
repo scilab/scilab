@@ -53,7 +53,7 @@ int set_tics_direction_property(char* pobjUID, size_t stackPointer, int valueTyp
     }
 #endif
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
 
     if (piYNumberTicks == NULL)
     {
