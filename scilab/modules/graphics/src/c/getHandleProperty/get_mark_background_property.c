@@ -43,12 +43,11 @@ int get_mark_background_property(char *pobjUID)
         return -1;
     }
 
-    sciReturnDouble(iMarkBackground);
+    return sciReturnDouble(iMarkBackground);
 
 /* To be implemented since it involves color range checks */
 #if 0
   return sciReturnDouble( sciGetMarkBackgroundToDisplay( pobj ) ) ;
 #endif
-    return -1;
 }
 /*------------------------------------------------------------------------*/
