@@ -780,43 +780,36 @@
   </refsection>
   <refsection>
     <title>Example: Counting function evaluations and number of
-      iterations
-    </title>
-    
-    <para>
-      The <literal>imp</literal> option can take negative values. If the
-      <literal>imp</literal> is equal to <literal>m</literal> where
-      <literal>m</literal> is a negative integer, then the cost function is
-      evaluated every -<literal>m</literal> iterations, with the
-      <literal>ind</literal> input argument equal to 1. The following example
-      uses this feature to compute the number of iterations. The global variable
-      <literal>mydata</literal> is used to store the number of function
-      evaluations as well as the number of iterations.
-    </para>
-    
-    <programlisting role="example">xref = [1;2;3];
-      x0 = [1;-1;1];
-      global _MYDATA_
-      _MYDATA_ = tlist ( ["T_MYDATA","niter","nfevals"]);
-      _MYDATA_.niter = 0;
-      _MYDATA_.nfevals = 0;
-      
-      function [f, g, ind] = cost(x, ind)
-      global _MYDATA_
-      disp(ind)
-      if ( ind == 1 )
-      _MYDATA_.niter = _MYDATA_.niter + 1
-      end
-      _MYDATA_.nfevals = _MYDATA_.nfevals + 1
-      f = 0.5 * norm(x - xref)^2;
-      g = x - xref;
-      endfunction
-      
-      [f, xopt] = optim(cost, x0, imp = -1)
-      mprintf("Number of function evaluations:%d\n", _MYDATA_.nfevals)
-      mprintf("Number of iterations:%d\n", _MYDATA_.niter)    
-    </programlisting>
-    
+    iterations</title>
+
+    <para>The <literal>imp</literal> option can take negative values. If the
+    <literal>imp</literal> is equal to <literal>m</literal> where
+    <literal>m</literal> is a negative integer, then the cost function is
+    evaluated every -<literal>m</literal> iterations, with the
+    <literal>ind</literal> input argument equal to 1. The following example
+    uses this feature to compute the number of iterations. The global variable
+    <literal>mydata</literal> is used to store the number of function
+    evaluations as well as the number of iterations.</para>
+
+    <programlisting role="example">function [f, g, ind] = cost(x, ind,xref)
+  global _MYDATA_
+  if ( ind == 1 )
+    _MYDATA_.niter = _MYDATA_.niter + 1
+  end
+  _MYDATA_.nfevals = _MYDATA_.nfevals + 1
+  f = 0.5 * norm(x - xref)^2;
+  g = x - xref;
+endfunction
+xref = [1; 2; 3];
+x0 = [1; -1; 1];
+global _MYDATA_
+_MYDATA_ = tlist ( ["T_MYDATA", "niter", "nfevals"])
+_MYDATA_.niter = 0
+_MYDATA_.nfevals = 0
+[f, xopt] = optim(list(cost, xref), x0, imp = -1)
+mprintf("Number of function evaluations:%d\n", _MYDATA_.nfevals)
+mprintf("Number of iterations:%d\n", _MYDATA_.niter) </programlisting>
+
     <para>While the previous example perfectly works, there is a risk that the
       same variable <literal>_MYDATA_</literal> is used by some internal
       function used by <literal>optim</literal>. In this case, the value may be
