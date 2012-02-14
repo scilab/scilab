@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,7 +19,6 @@
 /* desc : function to modify in Scilab the z_ticks field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -34,7 +34,6 @@
 #include "loadTextRenderingAPI.h"
 
 #include "setGraphicObjectProperty.h"
-#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
@@ -44,33 +43,17 @@ int set_z_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int 
     BOOL autoTicks;
     BOOL status;
     AssignedList * tlist     = NULL ;
-    sciSubWindow * ppSubWin  = NULL ;
     int            nbTicsRow = 0    ;
     int            nbTicsCol = 0    ;
 
     double* userGrads = NULL;
     char** userLabels = NULL;
-    int iLogFlag = 0;
-    int* piLogFlag = &iLogFlag;
 
     if ( !isParameterTlist( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "z_ticks");
         return SET_PROPERTY_ERROR ;
     }
-
-#if 0
-    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_ticks");
-        return SET_PROPERTY_ERROR ;
-    }
-#endif
-
-    /* To be removed */
-#if 0
-    ppSubWin = pSUBWIN_FEATURE(pobj);
-#endif
 
     tlist = createTlistForTicks();
 
@@ -80,11 +63,6 @@ int set_z_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int 
     }
 
     /* locations */
-    /* To be implemented */
-#if 0
-    ppSubWin->axes.u_nzgrads = 0;
-#endif
-
     userGrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
 
     if ( userGrads == NULL && nbTicsRow == -1 )
@@ -92,30 +70,6 @@ int set_z_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int 
         // if nbTicsRow = 0, it's just an empty matrix
         Scierror(999, _("%s: No more memory.\n"),"set_z_ticks_property");
         return SET_PROPERTY_ERROR ;
-    }
-
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
-
-    if (iLogFlag)
-    {
-        int  i ;
-        /* nbTicsCol * nbTicsRow ? */
-        for ( i = 0 ; i < nbTicsCol * nbTicsRow; i++ )
-        {
-            userGrads[i] = log10(userGrads[i]);
-        }
-    }
-    else
-    {
-        int iNbSubticks = 0;
-        int *piNbSubticks = &iNbSubticks;
-
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, &piNbSubticks);
-
-        /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-        iNbSubticks = ComputeNbSubTics(pobjUID, userGrads, 'n', NULL, iNbSubticks);
-
-        setGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, &iNbSubticks, jni_int, 1);
     }
 
     /* Automatic ticks must be first deactivated in order to set user ticks */
@@ -152,11 +106,6 @@ int set_z_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int 
         ppSubWin->axes.u_zlabels = NULL;
 #endif
     }
-
-    /* To be implemented */
-#if 0
-    ppSubWin->axes.u_nzgrads = nbTicsRow * nbTicsCol;
-#endif
 
     if (userGrads != NULL)
     {
