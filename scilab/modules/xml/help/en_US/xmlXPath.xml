@@ -30,19 +30,19 @@
       <varlistentry>
         <term>xmlObj</term>
         <listitem>
-          <para>xmlObj, a XML mlist typed XMLDoc or XMLElem</para>
+          <para>a XML mlist typed XMLDoc or XMLElem</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>queryStr</term>
         <listitem>
-          <para>queryStr, a string</para>
+          <para>a Xpath query</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>namespaces</term>
         <listitem>
-          <para>namespaces, an optional matrix nx2 of strings</para>
+          <para>An optional matrix nx2 of strings</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,7 +55,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument.</para>
+    <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
     <para>
       For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
     </para>
