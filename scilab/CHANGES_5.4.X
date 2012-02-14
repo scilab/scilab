@@ -207,6 +207,8 @@ Bug fixes
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
+* Bug #9643 fixed - genetic algorithms demo was not vectorized.
+
 * Bug #9654 fixed - an example of 'optim' help was poorly implemented. 
 
 * Bug #9700 fixed - optim help page had a mistake about bounds management.
