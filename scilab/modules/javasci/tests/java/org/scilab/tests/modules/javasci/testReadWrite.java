@@ -47,15 +47,6 @@ public class testReadWrite {
     }
 
     @Test(sequential = true) 
-    public void putAndGetEmptyMatrixTest() throws NullPointerException, JavasciException {
-        ScilabDouble aOriginal = new ScilabDouble();
-        sci.put("a",aOriginal);
-        ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");
-
-        assertTrue(aFromScilab.equals(aOriginal));
-    }
-
-    @Test(sequential = true) 
     public void putAndGetDoubleTest() throws NullPointerException, JavasciException {
         double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);

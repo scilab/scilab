@@ -51,8 +51,8 @@ public class ScilabDouble implements ScilabType {
      * Default constructor
      */
     public ScilabDouble() {
-        realPart = new double[0][];
-        imaginaryPart = new double[0][];
+        realPart = null;
+        imaginaryPart = null;
     }
 
     /**
@@ -62,7 +62,7 @@ public class ScilabDouble implements ScilabType {
     public ScilabDouble(double data) {
         realPart = new double[1][1];
         realPart[0][0] = data;
-        imaginaryPart = new double[0][];
+        imaginaryPart = null;
     }
 
     /**
@@ -84,7 +84,8 @@ public class ScilabDouble implements ScilabType {
      * @param data the data
      */
     public ScilabDouble(double[][] data) {
-        this(data, new double[0][]);
+        realPart = data;
+        imaginaryPart = null;
     }
 
     /**
@@ -94,17 +95,8 @@ public class ScilabDouble implements ScilabType {
      * @param imagData the imaginary part of the data
      */
     public ScilabDouble(double[][] realData, double[][] imagData) {
-        if (realData == null) {
-            realPart = new double[0][];
-            imaginaryPart = new double[0][];
-        } else {
-            realPart = realData;
-            if (imagData == null) {
-                imaginaryPart = new double[0][];
-            } else {
-                imaginaryPart = imagData;
-            }
-        }
+        realPart = realData;
+        imaginaryPart = imagData;
     }
 
     /**
@@ -114,9 +106,10 @@ public class ScilabDouble implements ScilabType {
      * @param imagData the imaginary part of the data
      */
     public ScilabDouble(String varName, double[][] realData, double[][] imagData, boolean swaped) {
-        this(realData, imagData);
         this.varName = varName;
         this.swaped = swaped;
+        realPart = realData;
+        imaginaryPart = imagData;
     }
 
     /**
@@ -135,7 +128,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public boolean isEmpty() {
-        return realPart.length == 0;
+        return (realPart == null && imaginaryPart == null);
     }
 
     /**
@@ -144,7 +137,7 @@ public class ScilabDouble implements ScilabType {
      * @return true, if the data are real only.
      */
     public boolean isReal() {
-        return imaginaryPart.length == 0;
+        return (imaginaryPart == null);
     }
 
     /**
@@ -234,7 +227,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public int getWidth() {
-        if (isEmpty()) {
+        if (isEmpty() || realPart.length  == 0) {
             return 0;
         }
 
@@ -248,10 +241,6 @@ public class ScilabDouble implements ScilabType {
     public boolean equals(Object obj) {
         if (obj instanceof ScilabDouble) {
             ScilabDouble sciDouble = ((ScilabDouble)obj);
-            if (isEmpty() && sciDouble.isEmpty()) {
-                return true;
-            }
-
             if (this.isReal() && sciDouble.isReal()) {
                 return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
             } else {
