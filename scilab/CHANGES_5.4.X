@@ -207,6 +207,8 @@ Bug fixes
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
+* Bug #9700 fixed - optim help page had a mistake about bounds management.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #9892 fixed - "-noatomsautoload" startup option added.
