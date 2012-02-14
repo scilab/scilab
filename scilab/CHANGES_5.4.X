@@ -178,6 +178,9 @@ Bug fixes
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #7779 fixed - genlib did not check input arguments and did not use current
+                    path as default.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
