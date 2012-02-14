@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: de\n"
 
 #, c-format
@@ -1123,6 +1123,42 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Fehler: ein Scifunc Block wurde nicht definiert."
 
+#, c-format
+msgid "%s: flat failed"
+msgstr ""
+
+#, c-format
+msgid "%s: global case failed"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid connection matrix"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to build modelica block"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to build block"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to sample the whole diagram"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid links table size"
+msgstr ""
+
+#, c-format
+msgid "%s: implicit block with event port"
+msgstr ""
+
+#, c-format
+msgid "%s: build the modelica meta-block failed"
+msgstr ""
+
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
@@ -1169,10 +1205,41 @@ msgstr ""
 msgid "Evaluation problem: value not updated from context."
 msgstr ""
 
+msgid "Evaluation problem: Unknown block"
+msgstr ""
+
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr ""
 
 msgid "Sorry file name not defined in "
+msgstr ""
+
+#, c-format
+msgid "%s: goto tag not unique"
+msgstr ""
+
+#, c-format
+msgid "%s: port out of hierarchy"
+msgstr ""
+
+#, c-format
+msgid "%s: not connected super block input"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid super block at %d"
+msgstr ""
+
+#, c-format
+msgid "%s: empty diagram"
+msgstr ""
+
+#, c-format
+msgid "%s: multiple GotoTagVisibility at the same level"
+msgstr ""
+
+#, c-format
+msgid "%s: shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #, c-format

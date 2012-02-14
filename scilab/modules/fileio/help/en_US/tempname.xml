@@ -61,4 +61,14 @@
       <member>A.C</member>
     </simplelist>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function tempname introduced.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+   
 </refentry>

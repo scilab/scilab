@@ -52,6 +52,6 @@ function filename = getW2Foutput(scs_m, idxBlock)
 
 //-- Retrieve filename and convert to human-readable string
 ipar = scs_m.objs(idxBlock).model.ipar
-filename = code2str(ipar(5:4+ipar(1)))
+filename = _code2str(ipar(5:4+ipar(1)))
 endfunction
 

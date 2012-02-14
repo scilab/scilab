@@ -20,25 +20,25 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-
-
+  
+  
   <refnamediv>
     <refname>assert_comparecomplex</refname>
     <refpurpose>Compare complex numbers with a tolerance.</refpurpose>
   </refnamediv>
-
-
-
+  
+  
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       order = assert_comparecomplex ( a , b )
       order = assert_comparecomplex ( a , b , reltol )
       order = assert_comparecomplex ( a , b , reltol , abstol )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
+  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -74,7 +74,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
+  
   <refsection>
     <title>Description</title>
     <para>
@@ -113,7 +113,7 @@
     <para>
     </para>
   </refsection>
-
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
@@ -179,14 +179,25 @@ end
    ]]>
     </programlisting>
   </refsection>
-
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">
       <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
     </simplelist>
   </refsection>
-
+  
   <refsection>
     <title>Bibliography</title>
     <para>http://gitweb.scilab.org/?p=scilab.git;a=blob;f=scilab/modules/polynomials/tests/nonreg_tests/bug_415.tst;h=0c716a3bed0dfb72c831972d19dbb0814dffde2b;hb=HEAD</para>

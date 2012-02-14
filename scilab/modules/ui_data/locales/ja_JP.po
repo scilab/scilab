@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-30 06:47+0000\n"
+"PO-Revision-Date: 2012-01-28 02:05+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: ja\n"
 
 #, c-format
@@ -24,6 +24,10 @@ msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無
 #, c-format
 msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 1, 2 または 4個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"

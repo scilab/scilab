@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,14 +27,15 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDelete(char * fname, unsigned long fname_len)
+int sci_xmlDelete(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
+
     org_modules_xml::XMLDocument * doc = 0;
-    XMLValidation * vf = 0;
-    char * com = 0;
+    XMLValidation *vf = 0;
+    char *com = 0;
 
     CheckLhs(1, 1);
 
@@ -54,7 +55,11 @@ int sci_xmlDelete(char * fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedSingleString(pvApiCtx, addr, &com);
+        if (getAllocatedSingleString(pvApiCtx, addr, &com) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         if (!strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
@@ -77,7 +82,7 @@ int sci_xmlDelete(char * fname, unsigned long fname_len)
             if (isXMLDoc(addr, pvApiCtx))
             {
                 id = getXMLObjectId(addr, pvApiCtx);
-                doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+                doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
                 if (!doc)
                 {
                     Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
@@ -88,7 +93,7 @@ int sci_xmlDelete(char * fname, unsigned long fname_len)
             else if (isXMLValid(addr, pvApiCtx))
             {
                 id = getXMLObjectId(addr, pvApiCtx);
-                vf = XMLObject::getFromId<XMLValidation>(id);
+                vf = XMLObject::getFromId < XMLValidation > (id);
                 if (!vf)
                 {
                     Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
@@ -108,4 +113,5 @@ int sci_xmlDelete(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

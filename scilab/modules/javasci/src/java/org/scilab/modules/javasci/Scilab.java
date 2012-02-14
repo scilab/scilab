@@ -50,6 +50,7 @@ public class Scilab {
 
     private String SCI = null;
     private boolean advancedMode = false;
+    private int notHandledError = -999;
 
     /**
      * Creator of the Scilab Javasci object. <br />
@@ -108,7 +109,7 @@ public class Scilab {
     public Scilab(String SCIPath, boolean advancedMode) throws InitializationException {
         String SCI = SCIPath;
         if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-            if (SCI==null) {
+            if (SCI == null) {
                 // Auto detect
                 try {
                     SCI = System.getProperty("SCI");
@@ -160,15 +161,20 @@ public class Scilab {
     public boolean open() throws JavasciException {
         int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
         switch (res) {
-        case -1:
-            throw new AlreadyRunningException("Javasci already running.");
-        case -2:
-            /* Should not occurd (processed before) */
-            throw new InitializationException("Could not find SCI.");
-        case -3:
-            throw new InitializationException("No existing directory.");
+            case 0: /* Success */
+                return true;
+            case -1:
+                throw new AlreadyRunningException("Javasci already running.");
+            case -2:
+                /* Should not occurd (processed before) */
+                throw new InitializationException("Could not find SCI.");
+            case -3:
+                throw new InitializationException("No existing directory.");
+            case 10001:
+                throw new InitializationException("Stacksize failed (not enought memory ?).");
+            default:
+                throw new InitializationException("Unknown startup error: " + res);
         }
-        return true;
     }
 
     /**
@@ -213,7 +219,6 @@ public class Scilab {
         if (!this.open()) {
             return false;
         }
-
         return this.exec(jobs);
     }
 
@@ -281,7 +286,7 @@ public class Scilab {
     public void execException(String job) throws ScilabErrorException {
         int result = Call_Scilab.SendScilabJob(job);
         if (result != 0) {
-            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
+            throw new ScilabErrorException("A Scilab error occurred: " + this.getLastErrorMessage(), this.getLastErrorCode());
         }
     }
 
@@ -324,7 +329,7 @@ public class Scilab {
     public void execException(String jobs[]) throws ScilabErrorException {
         int result = Call_Scilab.SendScilabJobs(jobs, jobs.length);
         if (result != 0) {
-            throw new ScilabErrorException("A Scilab error occurred: "+ this.getLastErrorMessage(), this.getLastErrorCode());
+            throw new ScilabErrorException("A Scilab error occurred: " + this.getLastErrorMessage(), this.getLastErrorCode());
         }
     }
 
@@ -479,14 +484,14 @@ public class Scilab {
         try {
             variableType = Call_Scilab.getVariableType(varName);
             if (variableType == null ) {
-                throw new UndefinedVariableException("Could not find the type of the variable '"+varName+"'");
+                throw new UndefinedVariableException("Could not find the type of the variable '" + varName + "'");
             }
         } catch (IllegalArgumentException e) {
-            String lastWord = e.getMessage().substring(e.getMessage().lastIndexOf(' ')+1);
+            String lastWord = e.getMessage().substring(e.getMessage().lastIndexOf(' ') + 1);
             if (lastWord.equals("-2")) { /* Crappy workaround. Parse the exception */
-                throw new UndefinedVariableException("Could not find variable '"+varName+"'");
+                throw new UndefinedVariableException("Could not find variable '" + varName + "'");
             }
-            throw new UnknownTypeException("Type of "+varName+" unknown");
+            throw new UnknownTypeException("Type of " + varName + " unknown");
 
         }
         return variableType;
@@ -512,36 +517,37 @@ public class Scilab {
     public ScilabType get(String varname) throws JavasciException {
         ScilabTypeEnum sciType = this.getVariableType(varname);
         switch (sciType) {
-        case sci_matrix:
-        case sci_boolean:
-        case sci_strings:
-        case sci_poly:
-        case sci_sparse:
-        case sci_boolean_sparse:
-        case sci_list:
-        case sci_tlist:
-        case sci_mlist:
-            return ScilabVariablesJavasci.getScilabVariable(varname);
-        case sci_ints:
-            ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
+            case sci_matrix:
+            case sci_boolean:
+            case sci_strings:
 
-            switch (typeInt) {
-            case sci_int8:
-            case sci_uint8:
-            case sci_int16:
-            case sci_uint16:
-            case sci_int32:
-            case sci_uint32:
+            case sci_poly:
+            case sci_sparse:
+            case sci_boolean_sparse:
+            case sci_list:
+            case sci_tlist:
+            case sci_mlist:
                 return ScilabVariablesJavasci.getScilabVariable(varname);
-            case sci_int64:
-            case sci_uint64:
-                // will be available in Scilab 6
-                throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
+            case sci_ints:
+                ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
 
-            }
+                switch (typeInt) {
+                    case sci_int8:
+                    case sci_uint8:
+                    case sci_int16:
+                    case sci_uint16:
+                    case sci_int32:
+                    case sci_uint32:
+                        return ScilabVariablesJavasci.getScilabVariable(varname);
+                    case sci_int64:
+                    case sci_uint64:
+                        // will be available in Scilab 6
+                        throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
 
-        default:
-            throw new UnsupportedTypeException("Type not managed: " + sciType);
+                }
+
+            default:
+                throw new UnsupportedTypeException("Type not managed: " + sciType);
         }
     }
 
@@ -565,7 +571,7 @@ public class Scilab {
      * @throws UnsupportedTypeException Type not managed yet.
      */
     public boolean put(String varname, ScilabType theVariable) throws JavasciException {
-        int err = -999; /* -999: if the type is not handled */
+        int err = notHandledError; /* -999: if the type is not handled */
 
         if (theVariable instanceof ScilabDouble) {
             ScilabDouble sciDouble = (ScilabDouble)theVariable;
@@ -575,36 +581,36 @@ public class Scilab {
                 // Special case. Serialize the matrix from Scilab same way
                 //  Scilab stores them (columns by columns)
                 // plus the complex values at the second part of the array
-                err = Call_Scilab.putDoubleComplex(varname,sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
+                err = Call_Scilab.putDoubleComplex(varname, sciDouble.getSerializedComplexMatrix(), sciDouble.getHeight(), sciDouble.getWidth());
             }
         }
 
         if (theVariable instanceof ScilabInteger) {
             ScilabInteger sciInteger = (ScilabInteger)theVariable;
             switch (sciInteger.getPrec()) {
-            case sci_uint8:
-                err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
-                break;
-            case sci_int8:
-                err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
-                break;
-            case sci_uint16:
-                err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
-                break;
-            case sci_int16:
-                err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
-                break;
-            case sci_uint32:
-                err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
-                break;
-            case sci_int32:
-                err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
-                break;
-            case sci_uint64:
-//                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
-            case sci_int64:
-//                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
-                break;
+                case sci_uint8:
+                    err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
+                    break;
+                case sci_int8:
+                    err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
+                    break;
+                case sci_uint16:
+                    err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
+                    break;
+                case sci_int16:
+                    err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
+                    break;
+                case sci_uint32:
+                    err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+                    break;
+                case sci_int32:
+                    err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
+                    break;
+                case sci_uint64:
+                    //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                case sci_int64:
+                    //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
+                    break;
             }
         }
 
@@ -618,11 +624,11 @@ public class Scilab {
             err = Call_Scilab.putString(varname, sciString.getData());
         }
 
-        if (err == -999) {
+        if (err == notHandledError) {
             throw new UnsupportedTypeException("Type not managed: " + theVariable.getClass());
         } else {
             if (err != 0) {
-                throw new ScilabInternalException("Storage of the variable '"+varname+"' ("+theVariable.getClass()+") failed.");
+                throw new ScilabInternalException("Storage of the variable '" + varname + "' (" + theVariable.getClass() + ") failed.");
             }
         }
         return true;

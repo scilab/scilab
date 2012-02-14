@@ -28,7 +28,7 @@ mputl(help_skeleton("bug_8505"), pathDest + "bug_8505.xml");
 r = xmltojar(pathDest, "bug help");
 
 Building the master document:
-	TMPDIR/directory with space
+	TMPDIR/directory with space/
 
-Building the manual file [javaHelp] in TMPDIR/directory with space.
+Building the manual file [javaHelp] in TMPDIR/directory with space/.
 if ~isfile(r) then bugmes();quit;end

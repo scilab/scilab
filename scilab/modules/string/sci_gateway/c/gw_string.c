@@ -47,7 +47,9 @@ static gw_generic_table Tab[] =
 	{sci_strtok,"strtok"},
 	{sci_strspn,"strspn"},
 	{sci_strtod,"strtod"},
-	{sci_regexp,"regexp"}
+	{sci_regexp,"regexp"},
+    {sci_str2code,"_str2code"},
+    {sci_code2str,"_code2str"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)

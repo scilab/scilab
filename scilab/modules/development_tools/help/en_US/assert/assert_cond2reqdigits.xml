@@ -20,25 +20,25 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-
-
+  
+  
   <refnamediv>
     <refname>assert_cond2reqdigits</refname>
     <refpurpose>Suggests the number of required digits, given the condition number.</refpurpose>
   </refnamediv>
-
-
-
+  
+  
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       d = assert_cond2reqdigits ( condition )
       d = assert_cond2reqdigits ( condition , offset )
       d = assert_cond2reqdigits ( condition , offset , b )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
+  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -68,7 +68,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
+  
   <refsection>
     <title>Description</title>
     <para>
@@ -110,7 +110,7 @@
     <para>
     </para>
   </refsection>
-
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
@@ -182,7 +182,18 @@ legend(["Offset=0","Offset=+10","Offset=-10"]);
    ]]>
     </programlisting>
   </refsection>
-
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

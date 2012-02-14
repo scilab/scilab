@@ -17,8 +17,3 @@ assert_checkequal(logspace([-1;2],[2;6],6), [logspace(-1,2,6);logspace(2,6,6)]);
 // Perform a check on the size of the input arguments
 assert_checkequal(execstr('logspace(2,[2,2])','errcatch'), 10000);
 assert_checktrue(lasterror() <> []);
-// Perform a check on invalid n value
-assert_checktrue(execstr('logspace(1,2,0)','errcatch')<>0)
- ans  =
- 
-  T  

@@ -64,7 +64,7 @@ while %T ,
     end
   elseif sym==quote then
     // Check if transpose or beginning of a string 
-    if abs(str2code(psym))>=36&psym<>')'&psym<>']'&psym<>'.'&psym<>quote then // Not a transpose
+    if abs(_str2code(psym))>=36&psym<>')'&psym<>']'&psym<>'.'&psym<>quote then // Not a transpose
       strcnt=1
     elseif bcount<>0 then // Inside a matrix definition
       if part(str,ksym-1)==' ' then strcnt=1,end

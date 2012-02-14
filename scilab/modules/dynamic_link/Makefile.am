@@ -42,7 +42,7 @@ endif
 
 
 
-libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidynamic_link_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidynamic_link_algo_la_CFLAGS = $(libscidynamic_link_la_CFLAGS)

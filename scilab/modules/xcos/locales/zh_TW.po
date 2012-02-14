@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -23,12 +23,20 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -244,6 +252,9 @@ msgstr "新增調色盤"
 
 msgid "Open"
 msgstr "開啟"
+
+msgid "Open file in Scilab current directory"
+msgstr ""
 
 msgid "Save"
 msgstr "儲存"
@@ -802,7 +813,11 @@ msgstr ""
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
-msgid "Wrong port number"
+msgid "Evaluation problem: wrong port number."
+msgstr ""
+
+#, c-format
+msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
@@ -1026,7 +1041,11 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
+msgid "%s: Unable to import file %s ."
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to import file %s from %s ."
 msgstr ""
 
 #, c-format
@@ -1155,8 +1174,7 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

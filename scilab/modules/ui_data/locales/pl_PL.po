@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-03 13:59+0000\n"
+"PO-Revision-Date: 2012-01-13 20:41+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: pl\n"
 
 #, c-format
@@ -23,6 +23,10 @@ msgstr "Moduł '%s' Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
@@ -47,6 +51,8 @@ msgstr "%s: Niezdefiniowana zmienna %s.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano wartości "
+"double.\n"
 
 #, c-format
 msgid ""
@@ -92,7 +98,7 @@ msgid "Type int value"
 msgstr ""
 
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "Właściwość niedostępna w tym trybie..."
 
 msgid "File"
 msgstr "Plik"
@@ -107,31 +113,31 @@ msgid "Hide Scilab variables"
 msgstr "Ukryj zmienne Scilab"
 
 msgid "Double"
-msgstr "Podwójne"
+msgstr "Double"
 
 msgid "Polynomial"
 msgstr "Wielomian"
 
 msgid "Boolean"
-msgstr "Logiczny"
+msgstr "Boolean"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Sparse"
 
 msgid "Sparse boolean"
 msgstr ""
 
 msgid "Integer"
-msgstr "Liczba całkowita"
+msgstr "Integer"
 
 msgid "Graphic handles"
-msgstr ""
+msgstr "Graphic handles"
 
 msgid "String"
-msgstr "Ciąg znaków"
+msgstr "String"
 
 msgid "Un-compiled function"
-msgstr ""
+msgstr "Funcja nie skompilowana"
 
 msgid "Compiled function"
 msgstr "Funkcja skompilowana"
@@ -140,25 +146,25 @@ msgid "Function library"
 msgstr "Biblioteka funkcji"
 
 msgid "List"
-msgstr "Lista"
+msgstr "List"
 
 msgid "Tlist"
-msgstr "Tlista"
+msgstr "Tlist"
 
 msgid "Mlist"
-msgstr "Mlista"
+msgstr "Mlist"
 
 msgid "Pointer"
-msgstr "Wskaźnik"
+msgstr "Pointer"
 
 msgid "Intrinsic function"
 msgstr "Funkcja wewnętrzna"
 
 msgid "Matlab sparse"
-msgstr "Rzadka (Matlab)"
+msgstr "Matlab sparse"
 
 msgid "Implicit polynomial"
-msgstr ""
+msgstr "Implicit polynomial"
 
 msgid "Variable Editor"
 msgstr "Edytor zmiennych"
@@ -170,7 +176,7 @@ msgid "Global variables can not be edited."
 msgstr "Nie można edytawać zmienne globalne"
 
 msgid "Edition"
-msgstr ""
+msgstr "Edycja"
 
 msgid "Refresh the variable "
 msgstr ""
@@ -197,10 +203,10 @@ msgid "Size columns to fit"
 msgstr ""
 
 msgid "Copy as Scilab command"
-msgstr ""
+msgstr "Kopiuj jako polecenie Scilab"
 
 msgid "Copy as Scilab matrix"
-msgstr ""
+msgstr "Kopiuj jako macierz Scilab"
 
 msgid "Copy as Scilab matrix with CR"
 msgstr ""
@@ -218,19 +224,19 @@ msgid "LongE format"
 msgstr ""
 
 msgid "Create variable from selection"
-msgstr ""
+msgstr "Utwórz zmienną z zaznaczenia"
 
 msgid "Insert a row"
-msgstr ""
+msgstr "Wstaw wiersz"
 
 msgid "Remove rows"
-msgstr ""
+msgstr "Usuń wiersze"
 
 msgid "Insert a column"
-msgstr ""
+msgstr "Wstaw kolumnę"
 
 msgid "Remove columns"
-msgstr ""
+msgstr "Usuń kolumny"
 
 msgid "Plot the selection"
 msgstr ""
@@ -239,25 +245,25 @@ msgid "Plot the matrix"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 msgid "Variable name"
-msgstr ""
+msgstr "Nazwa zmiennej"
 
 msgid "Create new variable"
-msgstr ""
+msgstr "Utwórz nową zmienną"
 
 msgid "Duplicate the variable"
 msgstr ""
 
 msgid "Rows number"
-msgstr ""
+msgstr "Numer wiersza"
 
 msgid "Columns number"
-msgstr ""
+msgstr "Numer kolumny"
 
 msgid "Fill with"
 msgstr ""
@@ -279,7 +285,7 @@ msgid "%s File"
 msgstr "Plik %s"
 
 msgid "File/directory filter"
-msgstr "Filt plików/katalogów"
+msgstr "Filtr plików/katalogów"
 
 msgid "Enter your working folder"
 msgstr "Podaj nazwę katalogu roboczego"
@@ -320,10 +326,10 @@ msgid "Load in Scilab"
 msgstr "Załaduj do Scilab"
 
 msgid "Edit with default application"
-msgstr ""
+msgstr "Edytuj za pomocą domyślnej aplikacji"
 
 msgid "Open with default application"
-msgstr ""
+msgstr "Otwórz w aplikacji domyślnej"
 
 msgid "Scilab type:"
 msgstr "Typ Scilab:"

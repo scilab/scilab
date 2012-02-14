@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,7 +21,7 @@
 
 namespace org_modules_xml
 {
-    XMLAttr::XMLAttr(const XMLElement & _elem) : XMLObject(), elem(_elem)
+    XMLAttr::XMLAttr(const XMLElement & _elem):XMLObject(), elem(_elem)
     {
         scilabType = XMLATTRIBUTE;
         id = scope->getVariableId(*this);
@@ -34,20 +34,20 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
-    void * XMLAttr::getRealXMLPointer() const
+    void *XMLAttr::getRealXMLPointer() const
     {
-        return static_cast<void *>(elem.getRealNode()->properties);
+        return static_cast < void *>(elem.getRealNode()->properties);
     }
 
-    const XMLObject * XMLAttr::getXMLObjectParent() const
+    const XMLObject *XMLAttr::getXMLObjectParent() const
     {
         return &elem;
     }
 
-    const char * XMLAttr::getAttributeValue(const char * name) const
+    const char *XMLAttr::getAttributeValue(const char *name) const
     {
-        xmlNode * node = elem.getRealNode();
-        xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)name);
+        xmlNode *node = elem.getRealNode();
+        xmlAttr *attrs = xmlHasProp(node, (const xmlChar *)name);
         if (attrs)
         {
             return (const char *)attrs->children->content;
@@ -56,13 +56,14 @@ namespace org_modules_xml
         return 0;
     }
 
-    const char * XMLAttr::getAttributeValue(const char * ns, const char * name) const
+    const char *XMLAttr::getAttributeValue(const char *ns, const char *name) const
     {
-        xmlNode * node = elem.getRealNode();
-        xmlAttr * attrs = 0;
+        xmlNode *node = elem.getRealNode();
+        xmlAttr *attrs = 0;
         for (xmlAttr * cur = node->properties; cur; cur = cur->next)
         {
-            if (cur->ns && !strcmp(name, (const char *)cur->name) && (!strcmp(ns, (const char *)cur->ns->prefix) || !strcmp(ns, (const char *)cur->ns->href)))
+            if (cur->ns && !strcmp(name, (const char *)cur->name)
+                && (!strcmp(ns, (const char *)cur->ns->prefix) || !strcmp(ns, (const char *)cur->ns->href)))
             {
                 attrs = cur;
                 break;
@@ -77,9 +78,9 @@ namespace org_modules_xml
         return 0;
     }
 
-    const char * XMLAttr::getAttributeValue(int index) const
+    const char *XMLAttr::getAttributeValue(int index) const
     {
-        xmlNode * node = elem.getRealNode();
+        xmlNode *node = elem.getRealNode();
         int i = 1;
         for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
         {
@@ -92,19 +93,21 @@ namespace org_modules_xml
         return 0;
     }
 
-    void XMLAttr::setAttributeValue(const char * prefix, const char * name, const char * value) const
+    void XMLAttr::setAttributeValue(const char *prefix, const char *name, const char *value) const
     {
         setAttributeValue(elem.getRealNode(), prefix, name, value);
     }
 
-    void XMLAttr::setAttributeValue(xmlNode * node, const char * prefix, const char * name, const char * value)
+    void XMLAttr::setAttributeValue(xmlNode * node, const char *prefix, const char *name, const char *value)
     {
         if (node && node->type == XML_ELEMENT_NODE)
         {
-            xmlAttr * attrs = 0;
+            xmlAttr *attrs = 0;
+
             for (xmlAttr * cur = node->properties; cur; cur = cur->next)
             {
-                if (cur->ns && !strcmp(name, (const char *)cur->name) && (!strcmp(prefix, (const char *)cur->ns->prefix) || !strcmp(prefix, (const char *)cur->ns->href)))
+                if (cur->ns && !strcmp(name, (const char *)cur->name)
+                    && (!strcmp(prefix, (const char *)cur->ns->prefix) || !strcmp(prefix, (const char *)cur->ns->href)))
                 {
                     attrs = cur;
                     break;
@@ -117,7 +120,8 @@ namespace org_modules_xml
             }
             else
             {
-                xmlNs * ns = 0;
+                xmlNs *ns = 0;
+
                 if (!strncmp(prefix, "http://", strlen("http://")))
                 {
                     ns = xmlSearchNsByHref(node->doc, node, (const xmlChar *)prefix);
@@ -139,7 +143,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(xmlNode * node, const char ** prefix, const char ** name, const char ** value, int size)
+    void XMLAttr::setAttributeValue(xmlNode * node, const char **prefix, const char **name, const char **value, int size)
     {
         if (node && node->type == XML_ELEMENT_NODE)
         {
@@ -150,7 +154,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const
+    void XMLAttr::setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
     {
         for (int i = 0; i < size; i++)
         {
@@ -158,16 +162,17 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(int index, const char * value) const
+    void XMLAttr::setAttributeValue(int index, const char *value) const
     {
         setAttributeValue(elem.getRealNode(), index, value);
     }
 
-    void XMLAttr::setAttributeValue(xmlNode * node, int index, const char * value)
+    void XMLAttr::setAttributeValue(xmlNode * node, int index, const char *value)
     {
         if (node && node->type == XML_ELEMENT_NODE)
         {
             int i = 1;
+
             for (xmlAttr * cur = node->properties; cur; cur = cur->next, i++)
             {
                 if (i == index)
@@ -178,16 +183,17 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(const char * name, const char * value) const
+    void XMLAttr::setAttributeValue(const char *name, const char *value) const
     {
         setAttributeValue(elem.getRealNode(), name, value);
     }
 
-    void XMLAttr::setAttributeValue(xmlNode * node, const char * name, const char * value)
+    void XMLAttr::setAttributeValue(xmlNode * node, const char *name, const char *value)
     {
         if (node && node->type == XML_ELEMENT_NODE)
         {
-            xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)name);
+            xmlAttr *attrs = xmlHasProp(node, (const xmlChar *)name);
+
             if (attrs)
             {
                 xmlSetProp(node, (const xmlChar *)name, (const xmlChar *)value);
@@ -199,7 +205,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(xmlNode * node, const char ** name, const char ** value, int size)
+    void XMLAttr::setAttributeValue(xmlNode * node, const char **name, const char **value, int size)
     {
         if (node && node->type == XML_ELEMENT_NODE)
         {
@@ -210,7 +216,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLAttr::setAttributeValue(const char ** name, const char ** value, int size) const
+    void XMLAttr::setAttributeValue(const char **name, const char **value, int size) const
     {
         for (int i = 0; i < size; i++)
         {
@@ -221,17 +227,17 @@ namespace org_modules_xml
     int XMLAttr::getSize() const
     {
         int i = 0;
-        for (xmlAttr * cur = elem.getRealNode()->properties; cur; cur = cur->next, i++);
+        for (xmlAttr * cur = elem.getRealNode()->properties; cur; cur = cur->next, i++) ;
 
-        return i;
+          return i;
     }
 
     const std::string XMLAttr::toString() const
     {
         std::ostringstream oss;
-        xmlNode * node = elem.getRealNode();
+        xmlNode *node = elem.getRealNode();
 
-        oss << "XML Attributes" << std::endl;
+          oss << "XML Attributes" << std::endl;
         for (xmlAttr * cur = node->properties; cur; cur = cur->next)
         {
             if (cur->ns)

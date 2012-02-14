@@ -21,7 +21,7 @@
     <synopsis>
       assert_generror ( errormsg )
       assert_generror ( errormsg , errornb )
-
+      
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -96,6 +96,17 @@ assert_generror = olderrorfunction;
 funcprot(back);
 
    ]]></programlisting>
+  </refsection>
+  
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
   <refsection>
     <title>Authors</title>

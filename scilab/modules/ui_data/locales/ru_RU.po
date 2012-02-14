@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-29 15:09+0000\n"
+"PO-Revision-Date: 2012-01-25 16:02+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: ru\n"
 
 #, c-format
@@ -24,6 +24,10 @@ msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\
 #, c-format
 msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
 msgstr "%s: Неверное число входных аргументов: ожидалось 1, 2 или 4.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -201,7 +205,7 @@ msgid "Copy as Scilab command"
 msgstr "Копировать как команду Scilab"
 
 msgid "Copy as Scilab matrix"
-msgstr "Копировать как Scilab"
+msgstr "Копировать как матрицу Scilab"
 
 msgid "Copy as Scilab matrix with CR"
 msgstr "Копировать как матрицу Scilab с CR"
@@ -261,7 +265,7 @@ msgid "Columns number"
 msgstr "Число столбцов"
 
 msgid "Fill with"
-msgstr ""
+msgstr "Заполнить"
 
 msgid "File Browser"
 msgstr "Обозреватель файлов"

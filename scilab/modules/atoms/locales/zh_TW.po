@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-13 07:21+0000\n"
+"PO-Revision-Date: 2012-02-04 01:36+0000\n"
 "Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: \n"
 
 #, c-format
@@ -210,12 +210,12 @@ msgstr "%s: 載入 '%s-%s' 時產生錯誤:\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
-msgstr ""
+msgstr "%s: 第 #%d 輸入參數的資料型別錯誤: 應該是布林值或是字串型別.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
-msgstr ""
+msgstr "%s: 第 #%d 輸入參數的資料長度錯誤: 應該是布林值或是字串型別.\n"
 
 #, c-format
 msgid ""
@@ -245,6 +245,8 @@ msgid ""
 "Removing %s (%s)(%s).\n"
 "\n"
 msgstr ""
+"移除 %s (%s)(%s) 中.\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -269,6 +271,8 @@ msgid ""
 "Deleting archives files for %s.\n"
 "\n"
 msgstr ""
+"刪除檔案夾 %s.\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
@@ -281,8 +285,25 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'all','user','allusers' 或'official' .\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+
+#, c-format
+msgid "config file saved to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 第 %d 和 %d 個輸入參數不相容: 資料長度應該是相同.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -537,6 +558,14 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤:應為內含 'TOOLBOXES' 或'DESCRIPTION' 的字串 .\n"
 
 #, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: 檔案 %s 是空的.\n"
+
+#, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
 "the %s field\n"
@@ -564,12 +593,16 @@ msgid ""
 "%s%s deleted.\n"
 "\n"
 msgstr ""
+"%s%s 已經刪除.\n"
+"\n"
 
 #, c-format
 msgid ""
 "%s%s does not exist.\n"
 "\n"
 msgstr ""
+"%s%s 不存在.\n"
+"\n"
 
 #, c-format
 msgid ""

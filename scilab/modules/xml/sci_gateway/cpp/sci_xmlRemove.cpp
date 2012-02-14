@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,12 +27,12 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRemove(char * fname, unsigned long fname_len)
+int sci_xmlRemove(char *fname, unsigned long fname_len)
 {
-    XMLRemovable * rem;
+    XMLRemovable *rem;
     SciErr err;
     int id;
-    int * addr = 0;
+    int *addr = 0;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -52,7 +52,7 @@ int sci_xmlRemove(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    rem = dynamic_cast<XMLRemovable *>(XMLObject::getFromId<XMLObject>(id));
+    rem = dynamic_cast < XMLRemovable * >(XMLObject::getFromId < XMLObject > (id));
     if (!rem)
     {
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
@@ -66,4 +66,5 @@ int sci_xmlRemove(char * fname, unsigned long fname_len)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -102,8 +102,12 @@ public class Scilab {
             /*
              * Set Java directories to Scilab ones
              */
+            if (mode != 1) {
+            /* only modify these properties if Scilab is not called by another application */
+            /* In this case, we let the calling application to use its own properties */
             System.setProperty("java.io.tmpdir", ScilabConstants.TMPDIR.getCanonicalPath());
             System.setProperty("user.home", ScilabConstants.SCIHOME.getCanonicalPath());
+          }
 
         } catch (Exception e) {
             System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");

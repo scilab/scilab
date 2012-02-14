@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,7 +15,7 @@
 
 namespace org_modules_xml
 {
-    XMLList::XMLList() : XMLObject()
+    XMLList::XMLList():XMLObject()
     {
         scilabType = XMLLIST;
     }

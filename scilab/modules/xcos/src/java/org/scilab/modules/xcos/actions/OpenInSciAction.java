@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -15,18 +15,12 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -44,7 +38,7 @@ public final class OpenInSciAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      */
@@ -54,7 +48,7 @@ public final class OpenInSciAction extends DefaultAction {
 
     /**
      * Create a menu to add in Scilab Graph menu bar
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      * @return the menu
@@ -65,7 +59,7 @@ public final class OpenInSciAction extends DefaultAction {
 
     /**
      * Create a button to add in Scilab Graph tool bar
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      * @return the button
@@ -81,43 +75,12 @@ public final class OpenInSciAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-
-        fc.setTitle(XcosMessages.OPEN);
-        fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
-        fc.setMultipleSelection(true);
+        final SwingScilabFileChooser fc = OpenAction.createFileChooser();
 
         /* Configure the file chooser */
-        configureFileFilters(fc);
+        OpenAction.configureFileFilters(fc);
         fc.setCurrentDirectory(new File(CommonFileUtils.getCWD()));
 
-        int status = fc.showOpenDialog(getGraph(e).getAsComponent());
-        if (status != JFileChooser.APPROVE_OPTION) {
-            return;
-        }
-
-        final File onlySelected = fc.getSelectedFile();
-        if (onlySelected != null) {
-            Xcos.getInstance().open(onlySelected);
-        }
-
-        final File[] multiSelected = fc.getSelectedFiles();
-        for (File file : multiSelected) {
-            Xcos.getInstance().open(file);
-        }
-    }
-
-    /*
-     * Helpers functions to configure file chooser
-     */
-
-    private static void configureFileFilters(JFileChooser fc) {
-        fc.setAcceptAllFileFilterUsed(true);
-
-        final FileFilter[] filters = XcosFileType.getValidFilters();
-        for (FileFilter fileFilter : filters) {
-            fc.addChoosableFileFilter(fileFilter);
-        }
-        fc.setFileFilter(filters[0]);
+        OpenAction.displayAndOpen(fc, getGraph(e).getAsComponent());
     }
 }

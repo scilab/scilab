@@ -34,7 +34,7 @@ BOOL sendToRecycleBinW(const wchar_t* wfilename)
     if (wfilename)
     {
         SHFILEOPSTRUCTW opFile;
-        int len = wcslen(wfilename) + 2;
+        size_t len = wcslen(wfilename) + 2;
         /* we add 00 at the end of filename */
         /* required by SHFileOperationW */
         wchar_t* csrc = (wchar_t*)CALLOC(len, sizeof(wchar_t));

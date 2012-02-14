@@ -7,6 +7,7 @@ com_
 putlhsvar_
 intersci_
 createvarfromptr_
+transposeMatrixDouble
 transposeMatrixInt
 stack_
 getrhsvar_

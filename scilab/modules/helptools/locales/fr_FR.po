@@ -8,18 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-09 14:21+0000\n"
+"PO-Revision-Date: 2012-01-23 12:46+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -37,8 +41,8 @@ msgid "%s: Error while building documentation: %s.\n"
 msgstr "%s : Erreur pendant la génération de la documentation : %s.\n"
 
 #, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s : Pile d'exécution Java %s.\n"
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s : Exécution de la pile Java : %s.\n"
 
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
@@ -47,10 +51,6 @@ msgstr ""
 "Si Scilab est lancé dans un chroot, vous pourriez vouloir essayer de régler "
 "les deux variables d'environnement : SCI_DISABLE_TK=1 "
 "SCI_JAVA_ENABLE_HEADLESS=1\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s : Exécution de la pile Java : %s.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -169,6 +169,14 @@ msgstr "%02d-%02d-%04d"
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tTraitement du fichier %s.xml\n"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Attention %s ne suit pas la dtd"
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"

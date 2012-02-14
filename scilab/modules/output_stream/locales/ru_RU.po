@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-09 09:05+0000\n"
+"PO-Revision-Date: 2012-02-08 13:58+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: ru\n"
 
 #, c-format
@@ -28,6 +28,10 @@ msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 "%s: Неверное количество входных параметров: данные не соответствуют "
 "формату.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,10 +48,10 @@ msgstr ""
 "формату.\n"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgid ""
+"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: данные не соответствуют "
-"формату.\n"
+"%s: Неверное значение входноо аргумента №%d: данные не подходят по формату.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -1469,6 +1473,27 @@ msgstr "%s: Неверный формат для экспорта: %s"
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr "%s: Тип %s не обрабатывается: определите функцию %s2%s."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась модель в пространстве "
+"состояний.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

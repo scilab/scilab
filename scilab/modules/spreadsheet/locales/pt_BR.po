@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -235,39 +235,12 @@ msgstr ""
 "substituição de \"%s\" por \"%s\""
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Não é possível interpretar a opção \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Decodificando o nome de arquivo=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE exige um arquivo de entrada para decodificar.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: Não é possível alocar memória para o objeto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Não é possível localizar o arquivo de entrada '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "O arquivo '%s' não está no formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "O arquivo de entrada OLE \"%s\" é insano"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: A decodificação de %s resultou no erro %d\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"

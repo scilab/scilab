@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,21 +32,21 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
+int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
 {
-    XMLAttr * a;
+    XMLAttr *a;
     int lhsid;
     SciErr err;
-    int * prefixaddr = 0;
-    int * nameaddr = 0;
-    double * indexes = 0;
+    int *prefixaddr = 0;
+    int *nameaddr = 0;
+    double *indexes = 0;
     int rows;
     int cols;
-    int * rhsaddr = 0;
-    int * lhsaddr = 0;
-    char * name = 0;
-    char * prefix = 0;
-    char * value = 0;
+    int *rhsaddr = 0;
+    int *lhsaddr = 0;
+    char *name = 0;
+    char *prefix = 0;
+    char *value = 0;
 
     CheckLhs(1, 1);
     CheckRhs(3, 4);
@@ -76,7 +76,11 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix);
+        if (getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
 
         if (Rhs == 4)
         {
@@ -96,7 +100,11 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
                 return 0;
             }
 
-            getAllocatedSingleString(pvApiCtx, nameaddr, &name);
+            if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
         }
     }
 
@@ -133,7 +141,7 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     }
 
     lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
-    a = XMLObject::getFromId<XMLAttr>(lhsid);
+    a = XMLObject::getFromId < XMLAttr > (lhsid);
     if (!a)
     {
         if (prefix)
@@ -162,7 +170,11 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, rhsaddr, &value);
+    if (getAllocatedSingleString(pvApiCtx, rhsaddr, &value) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (Rhs == 3)
     {

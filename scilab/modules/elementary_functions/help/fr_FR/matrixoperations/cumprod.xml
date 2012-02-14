@@ -170,7 +170,7 @@ cumprod(A)
 cumprod(A,1)
 
 I=uint8([2 95 103;254 9 0])
-cumprod(I) //native evaluation
+cumprod(I) // Evaluation "native"
 cumprod(I,"double")
 cumprod(I,2,"double")
 
@@ -180,8 +180,8 @@ cumprod(P),
 cumprod(P,2)
 
 B=[%t %t %f %f];
-cumprod(B) //evaluation in float
-cumprod(B,"native") //similar to or(B)
+cumprod(B) // Evaluation en flottant
+cumprod(B,"native") // Equivalent à and(B)
 
  ]]></programlisting>
   </refsection>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-01-10 11:38+0100\n"
+"Revision-Date: 2012-02-07 10:31+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -455,6 +455,8 @@ msgstr ""
 #
 # File: macros/atomsInstall.sci, line: 42
 # File: macros/atomsRemove.sci, line: 42
+# File: macros/atomsRestoreConfig.sci, line: 17
+# File: macros/atomsSaveConfig.sci, line: 17
 # File: macros/atomsUpdate.sci, line: 42
 # File: macros/atoms_internals/atomsDeleteTarball.sci, line: 26
 # File: macros/atoms_internals/atomsDisp.sci, line: 22
@@ -728,6 +730,19 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/atomsRestoreConfig.sci, line: 31
+#, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+
+#
+# File: macros/atomsSaveConfig.sci, line: 33
+# File: macros/atomsSaveConfig.sci, line: 39
+#, c-format
+msgid "config file saved to %s"
+msgstr ""
+
+#
 # File: macros/atomsSetConfig.sci, line: 50
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 59
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 63
@@ -737,6 +752,19 @@ msgstr ""
 # File: macros/atoms_internals/atomsToremoveUnregister.sci, line: 58
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsSetConfig.sci, line: 72
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsSetConfig.sci, line: 80
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
 
 #
@@ -1166,8 +1194,20 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 126
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 170
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 101
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 111
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 134
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 178
 #, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
@@ -1175,20 +1215,20 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 228
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 248
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 236
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 256
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 266
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 274
 #, c-format
 msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 344
+# File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 352
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' is not a registered category"

@@ -67,7 +67,7 @@ case 'set' then
     end
 
     if ok then
-      model.ipar=[length(varnam);str2code(varnam);Method;ZC;OutEnd;];
+      model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
       [model,graphics,ok]=set_io(model,graphics,list(),list([-1,-2],-1),1,1);
       if ok then
         graphics.exprs=exprs;
@@ -88,7 +88,7 @@ case 'define' then
   model.out=-1
   model.out2=-2
   model.outtyp=-1
-  model.ipar=[length(varnam);str2code(varnam);Method;ZC;OutEnd;];
+  model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
   model.evtin=[1];
   model.evtout=[1];
   model.firing=[0];

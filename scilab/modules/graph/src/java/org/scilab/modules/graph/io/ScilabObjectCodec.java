@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graph.io;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -24,10 +23,8 @@ import org.scilab.modules.types.ScilabString;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
-import com.mxgraph.model.mxCell;
 
 /**
  * Codec for any Scilab object
@@ -101,33 +98,6 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 		
 		ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 		mxCodecRegistry.register(scilabListCodec);
-	}
-	
-	/**
-	 * Apply compatibility pattern to the decoded object
-	 * 
-	 * @param dec
-	 *            Codec that controls the decoding process.
-	 * @param node
-	 *            XML node to decode the object from.
-	 * @param obj
-	 *            Object decoded.
-	 * @return The Object transformed
-	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
-	 *      org.w3c.dom.Node, java.lang.Object)
-	 */
-	@Override
-	public Object afterDecode(mxCodec dec, Node node, Object obj) {
-		if (node.getNodeName().equals("mxCell")) {
-			NamedNodeMap attrs = node.getAttributes();
-			for (int i = 0; i < attrs.getLength(); i++) {
-				Node attr = attrs.item(i);
-				if (attr.getNodeName().compareToIgnoreCase("id") == 0) {
-					((mxCell) obj).setId(attr.getNodeValue());
-				}
-			}
-		}
-		return obj;
 	}
 	
 	/**

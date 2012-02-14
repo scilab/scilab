@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // execstr forgets to store the function name and line number when in the errcatch mode
 
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 
 
 //uncompiled macros
@@ -65,4 +65,4 @@ if execstr('foo()','errcatch')<>4 then pause,end
 if l<>1|f<>'' then pause,end
 
 
-funcprot(prot)
+funcprot(prot);

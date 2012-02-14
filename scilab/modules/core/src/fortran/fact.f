@@ -26,7 +26,7 @@ c
       logical recurs,compil,dotsep,nullarg,ok
       integer setgetmode
       integer minus,plus
-      integer iadr,sadr
+      integer iadr
       character tmpbuf * (bsiz)      
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
@@ -39,7 +39,6 @@ c
       
 c
       iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
 
       r = rstk(pt)
 c     

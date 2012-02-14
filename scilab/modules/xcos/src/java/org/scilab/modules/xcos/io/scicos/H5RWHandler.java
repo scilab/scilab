@@ -216,6 +216,8 @@ public class H5RWHandler {
             }
         } catch (HDF5Exception e) {
             throw new RuntimeException(e);
+        } catch (Throwable t) {
+        	t.printStackTrace();
         } finally {
             diagram.getModel().endUpdate();
         }

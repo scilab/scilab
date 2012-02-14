@@ -62,18 +62,25 @@
     <title>Examples</title>
     <programlisting role="example">// save a matrix as csv file format
 A = [1:10] * 0.1;
-write_csv(A, TMPDIR + '/data.csv');
+write_csv(A, TMPDIR + '/data.tsv');
 
 // read as text
-mgetl(TMPDIR + '/data.csv')
+mgetl(TMPDIR + '/data.tsv')
 
-r = read_csv(TMPDIR + '/data.csv',ascii(9));
-r = strsubst(r,',','.');
+//tab-separated values
+r = read_csv(TMPDIR + '/data.tsv', ascii(9));
+r = strsubst(r, ',' , '.');
 evstr(r)
 
 A = [1:10] * 0.1; 
 write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
 mgetl(TMPDIR+'/foo.csv')
+
+//tab-separated values
+write_csv(A, TMPDIR + '/datas.tsv');
+
+//coma-separated values
+write_csv(A, TMPDIR + '/datas.csv', ';'); 
 
 </programlisting>
   </refsection>

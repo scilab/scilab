@@ -30,6 +30,7 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
@@ -91,14 +92,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param font new font to use.
      */
     public void setFont(Font font) {
-
         getLabel().setFont(font); // Set font so that getFont can be used direclty
 
         // Set the properties to the text (only for text label not for HTML or MATHML)
         if ((labelText != null) && !(labelText.startsWith(DOLLAR) && labelText.endsWith(DOLLAR))
                 && !(labelText.startsWith("<") && labelText.endsWith(">"))) {
             // Now set the stylesheet because of text/html contents
-            StyleSheet styleSheet = ((HTMLEditorKit) getLabel().getEditorKit()).getStyleSheet();
+            StyleSheet styleSheet = ((HTMLDocument) getLabel().getDocument()).getStyleSheet();
             styleSheet.addRule("body {font-family:" + font.getName() + ";}");
             styleSheet.addRule("body {font-size:" + font.getSize() + "pt;}");
             if (font.isBold()) {
@@ -388,8 +388,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 gbc.anchor = GridBagConstraints.WEST;
                 break;
             default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHWEST;
-            break;
+                gbc.anchor = GridBagConstraints.SOUTHWEST;
+                break;
             }
             break;
         case SwingConstants.CENTER:
@@ -401,8 +401,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 gbc.anchor = GridBagConstraints.CENTER;
                 break;
             default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTH;
-            break;
+                gbc.anchor = GridBagConstraints.SOUTH;
+                break;
             }
             break;
         default: // SwingConstants.RIGHT
@@ -414,8 +414,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 gbc.anchor = GridBagConstraints.EAST;
                 break;
             default: // SwingConstants.BOTTOM
-            gbc.anchor = GridBagConstraints.SOUTHEAST;
-            break;
+                gbc.anchor = GridBagConstraints.SOUTHEAST;
+                break;
             }
             break;
         }

@@ -1760,8 +1760,8 @@ case 'FOR_f' then
     outmask=ipar(imask+ievt:imask+nout+ievt-1)
     lfil=ipar(1)
     lfmt=ipar(2)
-    if lfil>0 then fname=code2str(ipar(5:4+lfil)),else fname=' ',end
-    if lfmt>0 then Fmt=code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
+    if lfil>0 then fname=_code2str(ipar(5:4+lfil)),else fname=' ',end
+    if lfmt>0 then Fmt=_code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
     label=[ sci2exp(tmask);
     sci2exp(outmask);
     fname;
@@ -1959,8 +1959,8 @@ case 'FOR_f' then
     N=ipar(4)
     lfil=ipar(1)
     lfmt=ipar(2)
-    if lfil>0 then fname=code2str(ipar(5:4+lfil)),else fname=' ',end
-    if lfmt>0 then Fmt=code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
+    if lfil>0 then fname=_code2str(ipar(5:4+lfil)),else fname=' ',end
+    if lfmt>0 then Fmt=_code2str(ipar(5+lfil:4+lfil+lfmt)),else Fmt=' ',end
     label=[sci2exp(in);
     fname;
     Fmt;

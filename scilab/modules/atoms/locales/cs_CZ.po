@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-27 20:49+0000\n"
+"PO-Revision-Date: 2012-02-08 14:03+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -323,9 +323,28 @@ msgstr ""
 "'all','user','allusers' nebo 'official'\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr "Soubor %s neexistuje: nelze obnovit předchozí nastavení."
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "konfigurační soubor uložen do %s"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu nastavení: Očekáváno True nebo "
+"False.\n"
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr "%s: Špatný klíč vstupního argumentu nastavení.\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -600,6 +619,14 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec obsahující "
 "'TOOLBOXES' nebo 'DESCRIPTION'.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Soubor %s neexistuje.\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: Soubor %s je prázdný.\n"
 
 #, c-format
 msgid ""

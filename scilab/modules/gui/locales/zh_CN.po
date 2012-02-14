@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: \n"
 
 #, c-format
@@ -273,6 +273,10 @@ msgstr "%s：发生一个错误：%s。\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "不能得到目前的界面风格"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -866,23 +870,19 @@ msgid "No print service found."
 msgstr "没有发现打印服务"
 
 msgid ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
+msgstr ""
+
+msgid "In some cases, %s fixes the issue"
 msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"警告： 由于你的设置限制，Scilab不能采用uicontrols和graphics混合模式，输入\"\"help "
-"usecanvas\"\" 以获取更毒信息\")"
-
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr "disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的驱动程序。\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1049,17 +1049,14 @@ msgstr "保存并执行"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1114,7 +1111,6 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, c-format
 msgid "All %s files"
 msgstr "所有 %s 文件"
 

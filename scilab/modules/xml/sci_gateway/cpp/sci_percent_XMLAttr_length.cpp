@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,13 +26,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_length(char * fname, unsigned long fname_len)
+int sci_percent_XMLAttr_length(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
     double d;
-    int * addr = 0;
-    XMLAttr * attrs;
+    int *addr = 0;
+    XMLAttr *attrs;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -53,10 +53,10 @@ int sci_percent_XMLAttr_length(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    attrs = XMLObject::getFromId<XMLAttr>(id);
+    attrs = XMLObject::getFromId < XMLAttr > (id);
     if (!attrs)
     {
-        Scierror(999, gettext("%s: XML Attributes does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML attribute does not exist.\n"), fname);
         return 0;
     }
 
@@ -67,4 +67,5 @@ int sci_percent_XMLAttr_length(char * fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

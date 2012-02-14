@@ -26,6 +26,10 @@ XML
 
 * Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
 
+* Bug #10594 fixed - size could not be used with two arguments on XMLList.
+
+* Bug #10630 fixed - Fix a typo in one of the error message.
+
 
 Help
 ====
@@ -63,11 +67,15 @@ Xcos
 * Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
+* Bug #10246 fixed - PROD_f block was broken.
+
 * Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
                      labeling when ports had not the same types.
 
 * Bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
+
+* Bug #10393 fixed - Block style was not updated on palette loading.
 
 * Bug #10419 fixed - Exception occured while refusing to create a new empty
                      file.
@@ -88,6 +96,20 @@ Xcos
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
 
+* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
+
+Elementary functions
+====================
+
+* dec2base function added (See SEP #75).
+
+* linspace deprecates the usage of non integer values as third input argument.
+
+* logspace deprecates the usage of non integer values as third input argument.
+
+* The toeplitz macro was not vectorized.
+
 
 Unitary testing
 ===============
@@ -95,6 +117,10 @@ Unitary testing
 * external modules are now managed by out of the box by test_run
 Example: test_run('SCI/contrib/toolbox_skeleton')
 (See bug #9834)
+
+* test_run and atomsTest now return a boolean value:
+  - %t if no error detected
+  - %f if any error detected)
 
 
 Graphical User Interface
@@ -111,15 +137,20 @@ Scinotes
 * Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
                      restoring.
 
+* Bug #10647 fixed : An error message did not repect Scilab localization standard.
+
 
 Javasci
 =======
 
 * Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-a sparse but not to send it to Scilab).
+  a sparse but not to send it to Scilab).
 
-* Javasci supports struct datatypes under the form of an MList  (Javasci is
-able to retrieve a struct but not to send it to Scilab).
+* Javasci supports struct datatypes under the form of an MList (Javasci is
+  able to retrieve a struct but not to send it to Scilab).
+
+* If Scilab fails to start because of a memory issues (stacksize), triggers an
+  InitializationException Java exception.
 
 
 CACSD & Signal Processing
@@ -147,6 +178,8 @@ Compilation
 
 * Enforce a minimal version of Flexdock (1.1.1).
 
+* "make check" will now launch the most important unitary tests (level 1).
+
 
 Bug fixes
 =========
@@ -158,8 +191,13 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
+* Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
+                    simplified and optimized.
+
 * Bug #8682 fixed - funcprot did not return the previous value when called with
                     an argument.
+
+* Bug #8724 fixed - Sometimes, there was a critical error with uiget(file|dir).
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
@@ -167,11 +205,22 @@ Bug fixes
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
+* Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
+
+* Bug #9424 fixed - gettext("") did not return "".
+
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
+
+* Bug #9523 fixed - clearglobal did not clear all global variables.
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
+
+* Bug #9892 fixed - "-noatomsautoload" startup option added.
+
+* Bug #10202 fixed - Example in csv_write help page did not differenciate
+                     tab-separated and comma-separated files.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
@@ -181,6 +230,8 @@ Bug fixes
 * Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
                      parent axes.
 
+* Bug #10139 fixed - 'atomsTest' function did not manage specific test name.
+
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
@@ -189,8 +240,15 @@ Bug fixes
 
 * Bug #10304 fixed - test_run did not return an error when using an invalid option.
 
+* Bug #10306 fixed - 'isempty' could fail with empty elements in a list.
+
 * Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
                      but 'lasterror' returned vector of strings.
+
+* Bug #10341 fixed - font in help was bold when the font of a text uicontrol
+                     was set to bold.
+
+* Bug #10342 fixed - assert_checkerror help file had a wrong format.
 
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
@@ -212,8 +270,12 @@ Bug fixes
 
 * Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
 
+* Bug #10439 fixed - stacksize('max') crashed on Windows 64 bit.
+
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
+
+* Bug #10444 fixed - fullfile did not manage string matrix as last input argument.
 
 * Bug #10449 fixed - On restoration, empty tabs could appear if the previous
                      session was not cleanly exited.
@@ -270,6 +332,43 @@ Bug fixes
 * Bug #10536 fixed - A string was in French in the English help page of cumsum.
 
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+
+* Bug #10558 fixed - Tcl/Tk demonstrations did not start.
+
+* Bug #10560 fixed - genetic algorithms demos failed.
+
+* Bug #10564 fixed - atan graphic demo was failing due to a too strong test
+                     in the linspace function.
+
+* Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
+                     trajectory failed.
+
+* Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
+
+* Bug #10577 fixed - getdate did not check input argument.
+
+* Bug #10579 fixed - Wrong reference to and function in the help page of prod
+                     and cumprod fixed.
+
+* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
+                     than gettext.
+
+* Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
+
+* Bug #10631 fixed - The # sign was missing in some error cases.
+
+* Bug #10632 fixed - Navigation buttons in the file browser did not change the
+                     current Scilab working directory.
+
+* Bug #10634 fixed - dsearch help page referenced an invalid input argument
+                     name.
+
+* Bug #10643 fixed - Bad result when using isreal function with a polynomial
+                     input.
+
+* Bug #10643 fixed - getdebuginfo() did not display TMPDIR value.
+
+* Bug #10656 fixed - Exception when an empty help browser was closed.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -725,6 +824,9 @@ Obsolete Functions
   obsolete and will be removed on 5.4.
   Use set(get(0), "ShowHiddenHandles", "on"); instead.
 
+* 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use
+  'ascii' instead.
+
 
 Removed Functions (previously declared as obsolete)
 ====================================================
@@ -1140,7 +1242,7 @@ Bug Fixes
 
 * Bug #9659 fixed - "error(246)" returned a bad message for overloading.
 
-* Bug #9682 fixed \D0 3-D assignment into a 2-D array of integers issued an error.
+* Bug #9682 fixed - 3-D assignment into a 2-D array of integers issued an error.
 
 * Bug #9696 fixed - An error in an if expression inside a try make Scilab froze.
 
@@ -1216,7 +1318,6 @@ Bug Fixes
 * Bug #9963 fixed - The assert_computedigits function was not vectorized.
 
 * Bug #9966 fixed - The default value of comptype in assert_checkalmostequal
-                   was wrongly chosen.
 
 * Bug #9971 fixed - GLoad macro not used and not documented has been removed.
 

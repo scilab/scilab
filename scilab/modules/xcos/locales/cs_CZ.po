@@ -8,17 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-10 22:05+0000\n"
+"PO-Revision-Date: 2012-01-23 20:46+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -27,6 +31,10 @@ msgstr "%s: Žádná další paměť.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -252,6 +260,9 @@ msgstr "Nová paleta"
 
 msgid "Open"
 msgstr "Otevřít"
+
+msgid "Open file in Scilab current directory"
+msgstr "Otevřít soubor v současném adresáři Scilab"
 
 msgid "Save"
 msgstr "Uložit"
@@ -831,8 +842,12 @@ msgstr "Zavedení Modelicy"
 msgid "Error: unable to compile this SuperBlock"
 msgstr "Chyba: nelze zkompilovat tento SuperBlok"
 
-msgid "Wrong port number"
-msgstr "Špatné číslo portu"
+msgid "Evaluation problem: wrong port number."
+msgstr "Problémy vyhodnocení: špatné číslo portu."
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr "Očekáváno '%d'."
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. "
@@ -1059,8 +1074,12 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d."
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: Nelze importovat xcos soubor %s."
+msgid "%s: Unable to import file %s ."
+msgstr "%s: Nelze importovat soubor %s ."
+
+#, c-format
+msgid "%s: Unable to import file %s from %s ."
+msgstr "%s: Nelze importovat soubor %s z %s ."
 
 #, c-format
 msgid ""
@@ -1193,11 +1212,9 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekávány stejné "
-"velikosti.\n"
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."

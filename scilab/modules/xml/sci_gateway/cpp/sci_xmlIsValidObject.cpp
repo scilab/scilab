@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,16 +31,15 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
+int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 {
-    XMLObject * obj = 0;
     int id;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
     int row = 1;
     int col = 1;
-    char ** vars = 0;
-    int * exists = 0;
+    char **vars = 0;
+    int *exists = 0;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -55,22 +54,29 @@ int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &vars);
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &vars) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         exists = new int[row * col];
+
         for (int i = 0; i < row * col; i++)
         {
-            err = getVarAddressFromName(pvApiCtx, const_cast<const char *>(vars[i]), &addr);
+            err = getVarAddressFromName(pvApiCtx, const_cast < const char *>(vars[i]), &addr);
+
             if (err.iErr)
             {
-                delete[] exists;
+                delete[]exists;
                 freeAllocatedMatrixOfString(row, col, vars);
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read named argument %s.\n"), fname, const_cast<const char *>(vars[i]));
+                Scierror(999, _("%s: Can not read named argument %s.\n"), fname, const_cast < const char *>(vars[i]));
+
                 return 0;
             }
 
             id = getXMLObjectId(addr, pvApiCtx);
-            exists[i] = XMLObject::getFromId<XMLObject>(id) != 0;
+            exists[i] = XMLObject::getFromId < XMLObject > (id) != 0;
         }
 
         freeAllocatedMatrixOfString(row, col, vars);
@@ -78,16 +84,17 @@ int sci_xmlIsValidObject(char * fname, unsigned long fname_len)
     else
     {
         exists = new int[1];
+
         id = getXMLObjectId(addr, pvApiCtx);
-        exists[0] = XMLObject::getFromId<XMLObject>(id) != 0;
+        exists[0] = XMLObject::getFromId < XMLObject > (id) != 0;
     }
 
     err = createMatrixOfBoolean(pvApiCtx, Rhs + 1, row, col, exists);
-    delete[] exists;
+    delete[]exists;
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

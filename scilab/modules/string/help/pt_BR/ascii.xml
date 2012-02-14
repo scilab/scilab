@@ -78,13 +78,4 @@ ascii([115 99 105 108 97 98])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
-
-    <simplelist type="inline">
-      <member><link linkend="code2str">code2str</link></member>
-
-      <member><link linkend="str2code">str2code</link></member>
-    </simplelist>
-  </refsection>
 </refentry>

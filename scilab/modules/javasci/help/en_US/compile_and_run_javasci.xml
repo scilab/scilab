@@ -43,7 +43,7 @@
 
     <para>on Windows:</para>
 
-    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\org.scilab.modules.javasci.jar:%SCI%\modules\types\jar\org.scilab.modules.types.jar
+    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\org.scilab.modules.javasci.jar;%SCI%\modules\types\jar\org.scilab.modules.types.jar
     BasicExample.java</literal></para>
 
     <para>To run Scilab, there are a few other things to set up.</para>
@@ -108,7 +108,7 @@
           </listitem>
 
           <listitem>
-            <para>Windows: Path to libscilab2.dll, libscitypes.dll and javasci.dll</para>
+            <para>Windows:  libscilab.dll, javasci.dll and others dll dependencies</para>
 
             <itemizedlist>
               <listitem>

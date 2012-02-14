@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,21 +22,20 @@ namespace org_modules_xml
     class XMLElement;
     class XMLObject;
 
-    class XMLAttr : public XMLObject
+    class XMLAttr:public XMLObject
     {
         const XMLElement & elem;
 
-    public :
-
+public:
         /**
          * Default constructor
          * @param elem the element which has this attributes
          */
-        XMLAttr(const XMLElement & elem);
+          XMLAttr(const XMLElement & elem);
 
-        ~XMLAttr();
+         ~XMLAttr();
 
-        void * getRealXMLPointer() const;
+        void *getRealXMLPointer() const;
 
         /**
          * Get the number of attributes
@@ -49,14 +48,14 @@ namespace org_modules_xml
          * @param index the attribute index
          * @return the attribute value
          */
-        const char * getAttributeValue(int index) const;
+        const char *getAttributeValue(int index) const;
 
         /**
          * Gets the attribute value.
          * @param name the attribute name
          * @return the attribute value
          */
-        const char * getAttributeValue(const char * name) const;
+        const char *getAttributeValue(const char *name) const;
 
         /**
          * Gets the attribute value with a prefix namespace.
@@ -64,14 +63,14 @@ namespace org_modules_xml
          * @param name the attribute name
          * @return the attribute value
          */
-        const char * getAttributeValue(const char * prefix, const char * name) const;
+        const char *getAttributeValue(const char *prefix, const char *name) const;
 
         /**
          * Sets the attribute value.
          * @param name the attribute name
          * @param value the attribute value
          */
-        void setAttributeValue(const char * name, const char * value) const;
+        void setAttributeValue(const char *name, const char *value) const;
 
         /**
          * Sets the attribute value.
@@ -79,7 +78,7 @@ namespace org_modules_xml
          * @param name the attribute name
          * @param value the attribute value
          */
-        static void setAttributeValue(xmlNode * node, const char * name, const char * value);
+        static void setAttributeValue(xmlNode * node, const char *name, const char *value);
 
         /**
          * Sets the attribute value.
@@ -87,7 +86,7 @@ namespace org_modules_xml
          * @param value the attribute values
          * @param size the number of names
          */
-        void setAttributeValue(const char ** name, const char ** value, int size) const;
+        void setAttributeValue(const char **name, const char **value, int size) const;
 
         /**
          * Sets the attribute value.
@@ -96,14 +95,14 @@ namespace org_modules_xml
          * @param value the attribute values
          * @param size the number of names
          */
-        static void setAttributeValue(xmlNode * node, const char ** name, const char ** value, int size);
+        static void setAttributeValue(xmlNode * node, const char **name, const char **value, int size);
 
         /**
          * Sets the attribute value at the given index.
          * @param index the attribute index
          * @param value the attribute value
          */
-        void setAttributeValue(int index, const char * value) const;
+        void setAttributeValue(int index, const char *value) const;
 
         /**
          * Sets the attribute value at the given index.
@@ -111,7 +110,7 @@ namespace org_modules_xml
          * @param index the attribute index
          * @param value the attribute value
          */
-        static void setAttributeValue(xmlNode * node, int index, const char * value);
+        static void setAttributeValue(xmlNode * node, int index, const char *value);
 
         /**
          * Sets the attribute value with a prefix namespace.
@@ -119,7 +118,7 @@ namespace org_modules_xml
          * @param name the attribute name
          * @param value the attribute value
          */
-        void setAttributeValue(const char * prefix, const char * name, const char * value) const;
+        void setAttributeValue(const char *prefix, const char *name, const char *value) const;
 
         /**
          * Sets the attribute value with a prefix namespace.
@@ -128,7 +127,7 @@ namespace org_modules_xml
          * @param name the attribute name
          * @param value the attribute value
          */
-        static void setAttributeValue(xmlNode * node, const char * prefix, const char * name, const char * value);
+        static void setAttributeValue(xmlNode * node, const char *prefix, const char *name, const char *value);
 
         /**
          * Sets the attribute value with a prefix namespace.
@@ -137,7 +136,7 @@ namespace org_modules_xml
          * @param value the attribute values
          * @param size the number of names
          */
-        void setAttributeValue(const char ** prefix, const char ** name, const char ** value, int size) const;
+        void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const;
 
         /**
          * Sets the attribute value with a prefix namespace.
@@ -147,15 +146,18 @@ namespace org_modules_xml
          * @param value the attribute values
          * @param size the number of names
          */
-        static void setAttributeValue(xmlNode * node, const char ** prefix, const char ** name, const char ** value, int size);
+        static void setAttributeValue(xmlNode * node, const char **prefix, const char **name, const char **value, int size);
 
         /**
          * Gets the element associated with this object
          * @return the associated object
          */
-        const XMLElement & getElement() const { return elem; }
+        const XMLElement & getElement() const
+        {
+            return elem;
+        }
 
-        const XMLObject * getXMLObjectParent() const;
+        const XMLObject *getXMLObjectParent() const;
         const std::string toString() const;
     };
 }

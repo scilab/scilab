@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: pl\n"
 
 #, c-format
@@ -352,6 +352,10 @@ msgstr "%s: Wystąpił błąd: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Impossible to get current look and feel"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1010,28 +1014,19 @@ msgid "No print service found."
 msgstr "Nie znaleziono usługi drukowania."
 
 msgid ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
+msgstr ""
+
+msgid "In some cases, %s fixes the issue"
 msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"OSTRZEŻENIE: Z powodu ograniczeń Twojej konfiguracji Scilab został "
-"przełączony do trybu, w którym nie jest możliwe jednoczesne używanie "
-"uicontrols i grafiki. Więcej informacji można uzyskać po \"\"help "
-"usecanvas\"\".\")"
-
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr ""
-"disp(\"OSTRZEŻENIE: ze względu na ograniczenia sterowników Twojej karty "
-"wideo, które nie są w stanie obsłużyć OpenGL, Scilab nie jest w stanie "
-"wygenerować grafiki. Należy zaktualizować sterownik.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1204,17 +1199,14 @@ msgstr "Zapisz i wykonaj"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1269,7 +1261,6 @@ msgstr "Wszystkie pliki PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Wszystkie pliki RTF"
 
-#, c-format
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 

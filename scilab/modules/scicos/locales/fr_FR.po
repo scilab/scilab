@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-11-15 09:05+0000\n"
+"PO-Revision-Date: 2012-01-23 12:49+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: fr\n"
 
 #, c-format
@@ -1387,6 +1387,42 @@ msgstr "Le bloc a un port d'entrée connecté<br />avec un type incompatible :"
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s : Erreur : Un bloc scifunc n'a pas été défini."
 
+#, c-format
+msgid "%s: flat failed"
+msgstr ""
+
+#, c-format
+msgid "%s: global case failed"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid connection matrix"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to build modelica block"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to build block"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to sample the whole diagram"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid links table size"
+msgstr ""
+
+#, c-format
+msgid "%s: implicit block with event port"
+msgstr ""
+
+#, c-format
+msgid "%s: build the modelica meta-block failed"
+msgstr ""
+
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 "Une des sorties de ce bloc a une dimension négative.<br />Veuillez vérifier."
@@ -1445,11 +1481,42 @@ msgid "Evaluation problem: value not updated from context."
 msgstr ""
 "Problème d'évaluation : La valeur n'est pas mise à jour à partir du contexte."
 
+msgid "Evaluation problem: Unknown block"
+msgstr "Problème d'évaluation : Bloc inconnu"
+
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Seuls les langages C et Fortran sont pris en charge"
 
 msgid "Sorry file name not defined in "
 msgstr "Le nom de fichier n'est pas défini dans "
+
+#, c-format
+msgid "%s: goto tag not unique"
+msgstr ""
+
+#, c-format
+msgid "%s: port out of hierarchy"
+msgstr ""
+
+#, c-format
+msgid "%s: not connected super block input"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid super block at %d"
+msgstr ""
+
+#, c-format
+msgid "%s: empty diagram"
+msgstr ""
+
+#, c-format
+msgid "%s: multiple GotoTagVisibility at the same level"
+msgstr ""
+
+#, c-format
+msgid "%s: shared GotoTagVisibility across GOTO"
+msgstr ""
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"

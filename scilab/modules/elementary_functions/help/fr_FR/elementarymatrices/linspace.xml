@@ -36,13 +36,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
-    valeurs régulièrement espacées entre <literal>x1</literal> et
-    <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
-    sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
-    ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
-    sont regulierement espacées entre les partie réels (resp. imaginaires) de
-    x1 et x2.</para>
+    <para>
+      <literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
+      valeurs régulièrement espacées entre <literal>x1</literal> et
+      <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
+      sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
+      ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
+      sont regulierement espacées entre les partie réels (resp. imaginaires) de
+      x1 et x2.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -64,7 +66,13 @@ linspace(1+1*%i,2+2*%i,10)
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>La fonction linspace accepte les vecteurs colonnes pour les deux premiers arguments d'entrée. Merci à Guillaume AZEMA pour l'implémentation.</revremark>
+        <revremark>          <itemizedlist>
+            <listitem>La fonction linspace accepte les vecteurs colonnes pour les deux premiers arguments d'entrée. Merci à Guillaume AZEMA pour l'implémentation.</listitem>
+            <listitem>Le troisième argument d'entrée (n) doit être une valeur entière.
+            </listitem>
+          </itemizedlist>
+        </revremark>
+        
       </revision>
     </revhistory>
   </refsection>

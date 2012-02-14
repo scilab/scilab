@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-11 15:20+0000\n"
+"PO-Revision-Date: 2012-01-28 01:47+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -300,6 +300,10 @@ msgstr "%s: エラーが起きました: %s.\n"
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid ""
@@ -869,7 +873,7 @@ msgstr "'%s' プロパティの値が間違っています:1 x 3実数ベクト�
 
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
+msgstr "'%s' プロパティの値が間違っています: 0 と 1 の間の数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1047,30 +1051,19 @@ msgid "No print service found."
 msgstr "印刷サービスがみつかりません."
 
 msgid ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"警告: ユーザの設定指示により,uicontrolsとgraphicsの混在ができないモードにScilabが切り替わりました. "
-"詳細については,\"\"help usecanvas\"\" と入力してください.\")"
-
-#
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 150
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr ""
-"disp(\"警告: "
-"ビデオ・カード・ドライバーの制限です、OpenGLを操作できないので、Scilabはグラフィックを描くことができません。どうぞドライバを更新して下さい。"
-"\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1259,7 +1252,6 @@ msgstr "保存して実行"
 msgid "Empty tab"
 msgstr "空のタブ"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1267,11 +1259,9 @@ msgstr ""
 "uuid %s のタブは回復できません.\n"
 "前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "%s を閉じても良ろしいですか?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "%s と %s を閉じても宜しいですか?"
 
@@ -1326,7 +1316,6 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
-#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 

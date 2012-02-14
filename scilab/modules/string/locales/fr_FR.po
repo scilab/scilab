@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"PO-Revision-Date: 2012-01-11 15:00+0000\n"
+"PO-Revision-Date: 2012-01-23 12:51+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14781)\n"
 "Language: fr\n"
 
 msgid "WARNING : \n"
@@ -92,6 +92,10 @@ msgstr ""
 "caractères non vides attendues.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
@@ -108,6 +112,10 @@ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
+
+#, c-format
+msgid "%s: Can not read input argument.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée.\n"
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"

@@ -14,34 +14,70 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-01-10 11:38+0100\n"
+"Revision-Date: 2012-02-07 10:31+0100\n"
 
-# File: sci_gateway/c/sci_conv2.c, line: 63
-# File: sci_gateway/c/sci_conv2.c, line: 75
+# File: sci_gateway/c/sci_conv2.c, line: 39
+# File: sci_gateway/c/sci_conv2.c, line: 100
+# File: sci_gateway/c/sci_conv2.c, line: 109
+# File: sci_gateway/c/sci_conv2.c, line: 127
+# File: sci_gateway/c/sci_conv2.c, line: 138
+# File: sci_gateway/c/sci_conv2.c, line: 157
+# File: sci_gateway/c/sci_conv2.c, line: 166
+# File: sci_gateway/c/sci_conv2.c, line: 184
+# File: sci_gateway/c/sci_conv2.c, line: 195
+# File: sci_gateway/c/sci_conv2.c, line: 215
+# File: sci_gateway/c/sci_conv2.c, line: 224
+# File: sci_gateway/c/sci_conv2.c, line: 242
+# File: sci_gateway/c/sci_conv2.c, line: 253
+# File: sci_gateway/c/sci_conv2.c, line: 354
+# File: sci_gateway/c/sci_conv2.c, line: 363
+# File: sci_gateway/c/sci_conv2.c, line: 381
+# File: sci_gateway/c/sci_conv2.c, line: 392
+# File: sci_gateway/c/sci_conv2.c, line: 403
+# File: sci_gateway/c/sci_conv2.c, line: 412
+# File: sci_gateway/c/sci_conv2.c, line: 430
+# File: sci_gateway/c/sci_conv2.c, line: 441
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 64
+# File: sci_gateway/c/sci_conv2.c, line: 76
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 112
-# File: sci_gateway/c/sci_conv2.c, line: 195
+# File: sci_gateway/c/sci_conv2.c, line: 115
+# File: sci_gateway/c/sci_conv2.c, line: 204
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 141
-# File: sci_gateway/c/sci_conv2.c, line: 165
+# File: sci_gateway/c/sci_conv2.c, line: 146
+# File: sci_gateway/c/sci_conv2.c, line: 172
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_conv2.c, line: 219
-# File: sci_gateway/c/sci_conv2.c, line: 351
-# File: sci_gateway/c/sci_conv2.c, line: 396
+# File: sci_gateway/c/sci_conv2.c, line: 230
+# File: sci_gateway/c/sci_conv2.c, line: 369
+# File: sci_gateway/c/sci_conv2.c, line: 418
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_conv2.c, line: 313
+# File: sci_gateway/c/sci_conv2.c, line: 327
+# File: sci_gateway/c/sci_conv2.c, line: 335
+# File: sci_gateway/c/sci_conv2.c, line: 497
+# File: sci_gateway/c/sci_conv2.c, line: 510
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 # File: demos/arma/arma1.dem.sce, line: 29
@@ -378,6 +414,13 @@ msgstr ""
 # File: macros/convol2d.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/convol2d.sci, line: 24
+# File: macros/convol2d.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
