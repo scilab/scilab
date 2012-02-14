@@ -95,8 +95,7 @@
       two-dimensional convolution of the arrays <literal>A</literal>
       and <literal>B</literal>:
     </para>
-    <itemizedlist>
-      <listitem>
+    <itemizedlist><listitem>
         With <literal>shape=="full"</literal> the
         dimensions of the result<literal>C</literal> are given by
         <literal>size(A)+size(B)+1</literal>. The indices of the
@@ -151,12 +150,6 @@
       <member>
         <link linkend="conv">conv</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
   <refsection>

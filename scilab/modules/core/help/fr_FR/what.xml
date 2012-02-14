@@ -6,20 +6,18 @@
   <refnamediv>
     <refname>what</refname>
     <refpurpose>liste des primitives
-  Scilab</refpurpose>
+      Scilab
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>what()
-[primitives,commandes]=what();</synopsis>
+      [primitives,commandes]=what();
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>Liste des primitives et commandes de bas niveau.</para>
     <para/>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

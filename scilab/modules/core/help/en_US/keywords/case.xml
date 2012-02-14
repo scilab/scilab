@@ -10,9 +10,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Keyword used in <literal>select ... case</literal></para>
+      Keyword used in <literal>select ... case</literal>
+    </para>
     <para>
-    Use it in the following way:</para>
+      Use it in the following way:
+    </para>
     <programlisting><![CDATA[ 
 select expr0,
   case expr1 then instructions1,
@@ -24,7 +26,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="select">select</link>

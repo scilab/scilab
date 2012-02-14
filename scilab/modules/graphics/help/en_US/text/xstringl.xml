@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>xstringl</refname>
     <refpurpose>compute a box which surrounds
-  strings</refpurpose>
+      strings
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,14 +37,17 @@
         <term>x,y</term>
         <listitem>
           <para>real scalars, coordinates of the lower-left point of the
-          strings.</para>
+            strings.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str</term>
         <listitem>
           <para>matrix of strings.</para>
-         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+          <para>
+            Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,10 +66,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xstringl</literal> returns in <literal>rect=[x,y,w,h]</literal>
-    (upper-left point, width, height) the size of a rectangle in the current
-    graphic scale which would surround the strings <literal>str</literal> drawn at
-    location <literal>x,y</literal> (lower-left point).</para>
+    <para>
+      <literal>xstringl</literal> returns in <literal>rect=[x,y,w,h]</literal>
+      (upper-left point, width, height) the size of a rectangle in the current
+      graphic scale which would surround the strings <literal>str</literal> drawn at
+      location <literal>x,y</literal> (lower-left point).
+    </para>
     <para>The result can be approximative when using the Postscript driver.</para>
   </refsection>
   <refsection>
@@ -103,7 +109,7 @@ xstring(r2(1),r2(2),str)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>
@@ -121,9 +127,5 @@ xstring(r2(1),r2(2),str)
         <link linkend="stringbox">stringbox</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

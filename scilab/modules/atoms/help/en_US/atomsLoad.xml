@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsLoad(name[,version])
-	</synopsis>
+      result = atomsLoad(name[,version])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -34,25 +34,25 @@
         <term>name</term>
         <listitem>
           <para>
-			Matrix of strings : External module name
-		  </para>
+            Matrix of strings : External module name
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>version</term>
         <listitem>
           <para>
-			Matrix of strings : External module version. This is an optional parameter.
-			If it's not defined, the most recent version of the module is used.
-		  </para>
+            Matrix of strings : External module version. This is an optional parameter.
+            If it's not defined, the most recent version of the module is used.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
           <para>
-			
-		  </para>
+            
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -62,8 +62,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsLoad</literal> install one or more external modules.
-	</para>
+    <para>
+      <literal>atomsLoad</literal> install one or more external modules.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -87,7 +88,7 @@ atomsRemove("toolbox_2");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsIsLoaded">atomsIsLoaded</link>
@@ -100,10 +101,4 @@ atomsRemove("toolbox_2");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

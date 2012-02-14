@@ -25,7 +25,8 @@
   <refsection>
     <title>説明</title>
     <para>c = clock は,現在の10進形式の日付と時間を有する要素数6の日付ベクトル
-	を返します:</para>
+      を返します:
+    </para>
     <para>c = [年 月 日 時間 分 秒]</para>
     <para>最初の5つの要素は整数です.2番目の要素は小数点以下数桁まで正確です.</para>
   </refsection>
@@ -56,12 +57,6 @@ clock
       <member>
         <link linkend="toc">toc</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

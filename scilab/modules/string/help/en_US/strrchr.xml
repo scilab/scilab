@@ -47,7 +47,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.</para>
+    <para>
+      <literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.
+    </para>
     <para> num must have same dimensions than str1 or only one char. </para>
   </refsection>
   <refsection>
@@ -59,7 +61,7 @@ strrchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strchr">strchr</link>

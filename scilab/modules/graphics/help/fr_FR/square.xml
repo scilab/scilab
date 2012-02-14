@@ -18,20 +18,21 @@
         <term>xmin,xmax,ymin,ymax  </term>
         <listitem>
           <para>4 valeurs réelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>square</literal> est utilisée pour avoir une échelle identique sur les axes x et y. 
-    Les valeurs 
-    <literal>xmin, xmax, ymin, ymax</literal> sont les bornes du dessin
-    et <literal>square</literal> change les dimensions de la fenêtre graphique pour que les échelles soient identiques.
-    <literal>square</literal> change l'échelle graphique courante et
-    peut être utilisée en conjonction avec les routines graphiques nécessitant que l'échelle soit définie au préalable (mode <literal>fstrf="x0z"</literal> dans <literal>plot2d</literal>).
-  </para>
+    <para>
+      <literal>square</literal> est utilisée pour avoir une échelle identique sur les axes x et y. 
+      Les valeurs 
+      <literal>xmin, xmax, ymin, ymax</literal> sont les bornes du dessin
+      et <literal>square</literal> change les dimensions de la fenêtre graphique pour que les échelles soient identiques.
+      <literal>square</literal> change l'échelle graphique courante et
+      peut être utilisée en conjonction avec les routines graphiques nécessitant que l'échelle soit définie au préalable (mode <literal>fstrf="x0z"</literal> dans <literal>plot2d</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -45,7 +46,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="isoview">isoview</link>
@@ -54,9 +55,5 @@ xset("default")
         <link linkend="xsetech">xsetech</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

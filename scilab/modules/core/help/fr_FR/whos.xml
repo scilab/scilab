@@ -10,8 +10,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>whos()
-whos -type typ
-whos -name nam</synopsis>
+      whos -type typ
+      whos -name nam
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,7 +20,9 @@ whos -name nam</synopsis>
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>nom du type des variables sélectionnées (voir <literal>typeof</literal>)</para>
+          <para>
+            nom du type des variables sélectionnées (voir <literal>typeof</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -32,9 +35,15 @@ whos -name nam</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>whos()</literal> affiche tous les noms des variables courantes triés par nom sans tenir compte de la casse, leurs types et la place mémoire occupée.</para>
-    <para><literal>whos -type typ</literal> affiche tous les noms des variables courantes de type spécifié dans <literal>typ</literal>.</para>
-    <para><literal>whos -name nam</literal> affiche tous les noms des variables courantes dont le nom commence par <literal>'nam'</literal></para>
+    <para>
+      <literal>whos()</literal> affiche tous les noms des variables courantes triés par nom sans tenir compte de la casse, leurs types et la place mémoire occupée.
+    </para>
+    <para>
+      <literal>whos -type typ</literal> affiche tous les noms des variables courantes de type spécifié dans <literal>typ</literal>.
+    </para>
+    <para>
+      <literal>whos -name nam</literal> affiche tous les noms des variables courantes dont le nom commence par <literal>'nam'</literal>
+    </para>
     <para>Remarque : si une variable est globale, le caractère * apparait aprés son type.</para>
   </refsection>
   <refsection>
@@ -47,7 +56,7 @@ whos -name %
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

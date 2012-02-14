@@ -42,8 +42,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>f = fullfile(varargin)</literal> builds a full filename taking care of platform on which it is run
-    and handling the cases when the directories begin or end with a directory separator.</para>
+    <para>
+      <literal>f= fullfile(varargin)</literal> builds a full filename taking care of platform on which it is run
+      and handling the cases when the directories begin or end with a directory separator.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +54,7 @@ f = fullfile("C:", "\scilab", "macros", "\util", "fullfile.sci")
 r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>
@@ -60,12 +62,6 @@ r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]
       <member>
         <link linkend="fileparts">fileparts</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

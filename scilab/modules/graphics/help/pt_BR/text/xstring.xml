@@ -29,7 +29,8 @@
         <term>x,y</term>
         <listitem>
           <para>escalares reais, coordenadas do ponto inferior esquerdo dos
-          strings. </para>
+            strings. 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,14 +55,16 @@
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para><literal>xstring</literal> imprime a matriz de strings
-    <literal>str</literal> na localização <literal>x,y</literal> (ponto
-    inferior esquerdo) na escala de gráficos corrente: cada linha da matriz
-    significa uma linha de texto e os elementos das linhas são palavras
-    separadas por espaços em branco. Se <literal>angle</literal> for dado,
-    fornece a inclinação em graus para escrever os strings. Se
-    <literal>box</literal> for 1 e <literal>angle</literal> for 0, uma caixa é
-    desenhada ao redor dos strings.</para>
+    <para>
+      <literal>xstring</literal> imprime a matriz de strings
+      <literal>str</literal> na localização <literal>x,y</literal> (ponto
+      inferior esquerdo) na escala de gráficos corrente: cada linha da matriz
+      significa uma linha de texto e os elementos das linhas são palavras
+      separadas por espaços em branco. Se <literal>angle</literal> for dado,
+      fornece a inclinação em graus para escrever os strings. Se
+      <literal>box</literal> for 1 e <literal>angle</literal> for 0, uma caixa é
+      desenhada ao redor dos strings.
+    </para>
   </refsection>
   <refsection>
     <title>Exemplos</title>
@@ -105,9 +108,5 @@ xset("default")
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Autor</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

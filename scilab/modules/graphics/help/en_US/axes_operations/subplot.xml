@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>subplot(m,n,p)
-subplot(mnp)</synopsis>
+      subplot(mnp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,7 +36,9 @@ subplot(mnp)</synopsis>
       <varlistentry>
         <term>mnp</term>
         <listitem>
-          <para>an integer with decimal notation <literal>mnp</literal></para>
+          <para>
+            an integer with decimal notation <literal>mnp</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,11 +46,12 @@ subplot(mnp)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    subplot(m,n,p) or subplot(mnp) breaks the graphics window
-    into an m-by-n matrix of sub-windows and selects the p-th sub-window
-    for drawing  the current plot.  The number of a sub-window into the
-    matrices is counted row by row ie the sub-window corresponding to element
-    (i,j) of the matrix has number (i-1)*n + j.</para>
+      subplot(m,n,p) or subplot(mnp) breaks the graphics window
+      into an m-by-n matrix of sub-windows and selects the p-th sub-window
+      for drawing  the current plot.  The number of a sub-window into the
+      matrices is counted row by row ie the sub-window corresponding to element
+      (i,j) of the matrix has number (i-1)*n + j.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +67,7 @@ hist3d()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

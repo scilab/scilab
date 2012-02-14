@@ -10,8 +10,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>clearglobal()
-clearglobal nam1 .. namn
-clearglobal('nam1', ..,'namn')</synopsis>
+      clearglobal nam1 .. namn
+      clearglobal('nam1', ..,'namn')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -20,20 +21,22 @@ clearglobal('nam1', ..,'namn')</synopsis>
         <term>nam1,..., namn  </term>
         <listitem>
           <para>noms valides de variables
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>clearglobal() </literal> supprime toutes les variables globales.
-  </para>
-    <para><literal>clearglobal nam1 .. namn</literal> supprime les variables globales dont les noms sont spécifiés.
-  </para>
     <para>
-    Notez que <literal>clearglobal()</literal> détruit seulement les variables globales, les copies locales de ces variables sont conservées.
-  </para>
+      <literal>clearglobal() </literal> supprime toutes les variables globales.
+    </para>
+    <para>
+      <literal>clearglobal nam1 .. namn</literal> supprime les variables globales dont les noms sont spécifiés.
+    </para>
+    <para>
+      Notez que <literal>clearglobal()</literal> détruit seulement les variables globales, les copies locales de ces variables sont conservées.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -46,7 +49,7 @@ who('global')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="global">global</link>

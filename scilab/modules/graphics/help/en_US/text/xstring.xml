@@ -35,7 +35,9 @@
         <term>str</term>
         <listitem>
           <para>matrix of strings.</para>
-          <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+          <para>
+            Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,15 +56,31 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>If <literal>x</literal> is a real scalar, it's regarded as a vector with the size of <literal>y</literal> whose elements are set to <literal>x</literal>.</para>
-    <para>If <literal>y</literal> is a real scalar, it's regarded as a vector with the size of <literal>x</literal> whose elements are set to <literal>y</literal>.</para>
-    <para><literal>xstring</literal> draws n strings at location <literal>(x[i], y[i])</literal> in the current graphic scale.</para>
-    <para>If <literal>str</literal> contain n elements, these n elements are the n drawed strings.</para>
+    <para>
+      If <literal>x</literal> is a real scalar, it's regarded as a vector with the size of <literal>y</literal> whose elements are set to <literal>x</literal>.
+    </para>
+    <para>
+      If <literal>y</literal> is a real scalar, it's regarded as a vector with the size of <literal>x</literal> whose elements are set to <literal>y</literal>.
+    </para>
+    <para>
+      <literal>xstring</literal> draws n strings at location <literal>(x[i], y[i])</literal> in the current graphic scale.
+    </para>
+    <para>
+      If <literal>str</literal> contain n elements, these n elements are the n drawed strings.
+    </para>
     <para>Otherwise, each row of the matrix stands for a line of text and row elements stand for words separated by a white space.</para>
-    <para>If <literal>angle</literal> is a real scalar, it's regarded as a vector of size n whose elements are set to <literal>angle</literal>.</para>
-    <para><literal>angle(i)</literal>gives the slope in degree used for drawing the strings at location <literal>(x[i], y[i])</literal>.</para>
-    <para>If <literal>box</literal> is a integer scalar, it's regarded as a vector of size n whose elements are set to <literal>box</literal>.</para>
-    <para>If <literal>box(i)</literal> is 1 and <literal>angle(i)</literal> is 0, a box is drawn around the strings at location <literal>(x[i], y[i])</literal>.</para>
+    <para>
+      If <literal>angle</literal> is a real scalar, it's regarded as a vector of size n whose elements are set to <literal>angle</literal>.
+    </para>
+    <para>
+      <literal>angle(i)</literal>gives the slope in degree used for drawing the strings at location <literal>(x[i], y[i])</literal>.
+    </para>
+    <para>
+      If <literal>box</literal> is a integer scalar, it's regarded as a vector of size n whose elements are set to <literal>box</literal>.
+    </para>
+    <para>
+      If <literal>box(i)</literal> is 1 and <literal>angle(i)</literal> is 0, a box is drawn around the strings at location <literal>(x[i], y[i])</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -108,9 +126,5 @@ xset("default")
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

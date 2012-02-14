@@ -28,7 +28,9 @@
       <varlistentry>
         <term>xx,yy,zz</term>
         <listitem>
-          <para>matrices of size (4,n-1xm-1). <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> and <literal>zz(:,i)</literal>  are respectively the x-axis, y-axis and z-axis coordinates of the 4 points of  the ith four sided facet.</para>
+          <para>
+            matrices of size (4,n-1xm-1). <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> and <literal>zz(:,i)</literal>  are respectively the x-axis, y-axis and z-axis coordinates of the 4 points of  the ith four sided facet.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,21 +48,27 @@
       <varlistentry>
         <term>z</term>
         <listitem>
-          <para>matrix of size (m,n). <literal>z(i,j)</literal> is the value of the surface at the point (x(i),y(j)).</para>
+          <para>
+            matrix of size (m,n). <literal>z(i,j)</literal> is the value of the surface at the point (x(i),y(j)).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mask</term>
         <listitem>
-          <para>boolean optional matrix with same size as <literal>z</literal> used to select  the entries of <literal>z</literal> to be represented by facets.</para>
+          <para>
+            boolean optional matrix with same size as <literal>z</literal> used to select  the entries of <literal>z</literal> to be represented by facets.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>genfac3d</literal> computes a four sided facets representation of a 3D surface 
-    <literal>z=f(x,y)</literal> defined by <literal>x</literal>, <literal>y</literal> and <literal>z</literal>.</para>
+    <para>
+      <literal>genfac3d</literal> computes a four sided facets representation of a 3D surface 
+      <literal>z=f(x,y)</literal> defined by <literal>x</literal>, <literal>y</literal> and <literal>z</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +79,7 @@ plot3d(xx,yy,zz)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="eval3dp">eval3dp</link>

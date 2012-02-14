@@ -18,18 +18,15 @@
         <term>name  </term>
         <listitem>
           <para>chaîne de caractères, nom de la fenêtre graphique.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xname</literal> change le nom de la fenêtre graphique courante.
-  </para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xname</literal> change le nom de la fenêtre graphique courante.
+    </para>
   </refsection>
 </refentry>

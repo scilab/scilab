@@ -54,32 +54,34 @@
   <refsection>
     <title>説明</title>
     <para>write_csv(M, filename) は,行列Mを
-	filenameにカンマ区切り形式で書き込みます.
-	filename入力は文字列です .</para>
+      filenameにカンマ区切り形式で書き込みます.
+      filename入力は文字列です .
+    </para>
     <para>ファイル 'filename' がすでに存在する場合, 上書きされます.</para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example">// 行列をCSVファイル形式で保存
-A = [1:10] * 0.1;
-write_csv(A, TMPDIR + '/data.tsv');
-
-// テキストとして読み込む
-mgetl(TMPDIR + '/data.tsv')
-
-r = read_csv(TMPDIR + '/data.tsv', ascii(9));
-r = strsubst(r, ',' , '.');
-evstr(r)
-
-A = [1:10] * 0.1; 
-write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
-mgetl(TMPDIR+'/foo.csv')
-
-// tab-separated values
-write_csv(A, TMPDIR + '/datas.tsv');
-
-//coma-separated values
-write_csv(A, TMPDIR + '/datas.csv', ';');</programlisting>
+      A = [1:10] * 0.1;
+      write_csv(A, TMPDIR + '/data.tsv');
+      
+      // テキストとして読み込む
+      mgetl(TMPDIR + '/data.tsv')
+      
+      r = read_csv(TMPDIR + '/data.tsv', ascii(9));
+      r = strsubst(r, ',' , '.');
+      evstr(r)
+      
+      A = [1:10] * 0.1; 
+      write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
+      mgetl(TMPDIR+'/foo.csv')
+      
+      // tab-separated values
+      write_csv(A, TMPDIR + '/datas.tsv');
+      
+      //coma-separated values
+      write_csv(A, TMPDIR + '/datas.csv', ';');
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -97,13 +99,5 @@ write_csv(A, TMPDIR + '/datas.csv', ';');</programlisting>
         <link linkend="format">format</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <variablelist>
-      <varlistentry>
-        <term>Allan CORNET</term>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

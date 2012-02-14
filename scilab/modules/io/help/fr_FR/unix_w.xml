@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>unix_w</refname>
     <refpurpose>exécution d'une commande Unix ou DOS,
-	sortie redirigée vers la fenêtre de Scilab</refpurpose>
+      sortie redirigée vers la fenêtre de Scilab
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -36,13 +37,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> Envoie la chaîne <literal>command-name</literal> à  
-	l'interpréteur de commande (sh sous Unix, ou cmd.com sous Windows). La
-	sortie standard et les erreurs sont reportées dans la variable
-	<literal>rep</literal>. Les erreurs se produisant dans l'interpréteur de commande
-	sont interceptées; notez que la *dernière erreur uniquement* est signalée
-	quand <literal>command-name</literal> est une suite de commandes séparées par des
-	";". </para>
+    <para>
+       Envoie la chaîne <literal>command-name</literal> à  
+      l'interpréteur de commande (sh sous Unix, ou cmd.com sous Windows). La
+      sortie standard et les erreurs sont reportées dans la variable
+      <literal>rep</literal>. Les erreurs se produisant dans l'interpréteur de commande
+      sont interceptées; notez que la *dernière erreur uniquement* est signalée
+      quand <literal>command-name</literal> est une suite de commandes séparées par des
+      ";". 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +58,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

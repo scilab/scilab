@@ -41,19 +41,24 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpolys</literal> draws a set of polylinse using marks or dashed lines. 
-    The coordinates of each polyline
-    are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
-  </para>
     <para>
-    The style of polyline i is given by <literal>draw(i)</literal>:
-  </para>
+      <literal>xpolys</literal> draws a set of polylinse using marks or dashed lines. 
+      The coordinates of each polyline
+      are stored in a column of <literal>xpols</literal> and <literal>ypols</literal>.
+    </para>
+    <para>
+      The style of polyline i is given by <literal>draw(i)</literal>:
+    </para>
     <itemizedlist>
       <listitem>
-        <para>If <literal>draw(i)</literal> is negative, the mark with id <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using the current pattern). Use <literal>xset()</literal> to see the meaning of the ids.</para>
+        <para>
+          If <literal>draw(i)</literal> is negative, the mark with id <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using the current pattern). Use <literal>xset()</literal> to see the meaning of the ids.
+        </para>
       </listitem>
       <listitem>
-        <para>If <literal>draw(i)</literal> is strictly positive, the line style (or color) with id  <literal>draw(i)</literal> is used to draw polyline i. Use <literal>xset()</literal> to see the meaning of the ids.</para>
+        <para>
+          If <literal>draw(i)</literal> is strictly positive, the line style (or color) with id  <literal>draw(i)</literal> is used to draw polyline i. Use <literal>xset()</literal> to see the meaning of the ids.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -68,7 +73,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>
@@ -80,9 +85,5 @@ xset("default")
         <link linkend="xpoly">xpoly</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

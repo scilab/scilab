@@ -40,7 +40,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト, <literal>sl=[A,B,C,D]</literal>.</para>
+          <para>
+            <literal>syslin</literal> リスト, <literal>sl=[A,B,C,D]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,7 +50,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    伝達関数 <literal>NUM/den</literal>の可制御状態空間形式.</para>
+      伝達関数 <literal>NUM/den</literal>の可制御状態空間形式.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

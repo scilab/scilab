@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>apropos(key)
-apropos(regexp)</synopsis>
+      apropos(regexp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -36,18 +37,23 @@ apropos(regexp)</synopsis>
         <term>regexp</term>
         <listitem>
           <para> Une chaîne de caractères, l'expression régulière à
-	    rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"</para>
+            rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>apropos(key)</literal> recherche les pages d'aides contenant la
-      séquence de caractères <literal>key</literal> dans leur section "SHORT_DESCRIPTION".</para>
-    <para><literal>apropos(regexp)</literal>
+    <para>
+      <literal>apropos(key)</literal> recherche les pages d'aides contenant la
+      séquence de caractères <literal>key</literal> dans leur section "SHORT_DESCRIPTION".
+    </para>
+    <para>
+      <literal>apropos(regexp)</literal>
       recherche les pages d'aides contenant l'expression régulière donnée par
-      <literal>regexp</literal> dans leur section "SHORT_DESCRIPTION".</para>
+      <literal>regexp</literal> dans leur section "SHORT_DESCRIPTION".
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -61,7 +67,7 @@ apropos "quadratic.*solver"
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

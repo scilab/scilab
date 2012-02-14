@@ -41,14 +41,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>spcho=chfact(A)</literal> computes the sparse Cholesky factors of sparse
-    matrix <literal>A</literal>, assumed symmetric positive definite.
-    This function is based on the Ng-Peyton programs (ORNL). See the
-    Fortran programs for a complete description of the variables in
-    <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.</para>
+    <para>
+      <literal>spcho=chfact(A)</literal> computes the sparse Cholesky factors of sparse
+      matrix <literal>A</literal>, assumed symmetric positive definite.
+      This function is based on the Ng-Peyton programs (ORNL). See the
+      Fortran programs for a complete description of the variables in
+      <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="chsolve">chsolve</link>

@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>dt=getdate()
-x=getdate("s")
-dt=getdate(x)</synopsis>
+      x=getdate("s")
+      dt=getdate(x)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -116,14 +117,17 @@ dt=getdate(x)</synopsis>
         <term>x = getdate("s")</term>
         <listitem>
           <para> renvoie un entier contenant le nombre de secondes écoulées depuis le 1er Janvier 1970, 00:00 UTC (Unix Time Convention).</para>
-          <para>L'entier retourné prend en compte <ulink url="http://fr.wikipedia.org/wiki/Seconde_intercalaire">seconde intercalaire</ulink>.</para>
+          <para>
+            L'entier retourné prend en compte <ulink url="http://fr.wikipedia.org/wiki/Seconde_intercalaire">seconde intercalaire</ulink>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dt = getdate(x)</term>
         <listitem>
           <para> renvoie dt au format ci-dessus, à partir de x (nombre de secondes depuis le 1er Janvier 1970). 
-        Dans ce cas, dt(10) est toujours égal à 0.</para>
+            Dans ce cas, dt(10) est toujours égal à 0.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -147,12 +151,6 @@ getdate(x)
       <member>
         <link linkend="timer">timer</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -19,8 +19,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-     datatipRemove(polyline_handle,ind)
-     datatipRemove(datatip_handle)</synopsis>
+      datatipRemove(polyline_handle,ind)
+      datatipRemove(datatip_handle)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -54,7 +55,7 @@
   <refsection>
     <title>Description</title>
     <para>
-        Removes a selected datatip.
+      Removes a selected datatip.
     </para>
   </refsection>
   <refsection>
@@ -80,12 +81,6 @@
       <member>
         <link linkend="datatipCreate">datatipCreate</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

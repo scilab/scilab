@@ -10,17 +10,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Some predefined variables names begin with <literal>%</literal>, such as
-    <literal>%i</literal> (for <literal>sqrt(-1)</literal>), <literal>%inf</literal> (for <literal>Infinity</literal>), <literal>%pi</literal> (for <literal>3.14...</literal>),
-    <literal>%T</literal> (for the boolean constant <literal>"true"</literal>),...</para>
+      Some predefined variables names begin with <literal>%</literal>, such as
+      <literal>%i</literal> (for <literal>sqrt(-1)</literal>), <literal>%inf</literal> (for <literal>Infinity</literal>), <literal>%pi</literal> (for <literal>3.14...</literal>),
+      <literal>%T</literal> (for the boolean constant <literal>"true"</literal>),...
+    </para>
     <para>
-    In addition, functions whose names begin with <literal>%</literal> are special : 
-    they are used for primitives and operators overloading (see <literal>overloading</literal>).</para>
+      In addition, functions whose names begin with <literal>%</literal> are special : 
+      they are used for primitives and operators overloading (see <literal>overloading</literal>).
+    </para>
     <para>
-    For example the function <literal>%rmr</literal> performs the multiplication (<literal>m</literal>)
-    operation <literal>x*y</literal> for <literal>x</literal> and <literal>y</literal> rational matrices (<literal>r</literal>).
-    The coding conventions are given by the readme file in 
-    directory <literal>SCI/modules/overloading/macros</literal>.</para>
+      For example the function <literal>%rmr</literal> performs the multiplication (<literal>m</literal>)
+      operation <literal>x*y</literal> for <literal>x</literal> and <literal>y</literal> rational matrices (<literal>r</literal>).
+      The coding conventions are given by the readme file in 
+      directory <literal>SCI/modules/overloading/macros</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -32,7 +35,7 @@ x1*x2
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="overloading">overloading</link>

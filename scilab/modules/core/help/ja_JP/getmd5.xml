@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>res=getmd5(filename)
-res=getmd5(ParamString,'string')</synopsis>
+      res=getmd5(ParamString,'string')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,7 +38,9 @@ res=getmd5(ParamString,'string')</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>getmd5(...)</literal> はファイルまたは文字列の md5 チェックサムを取得します.</para>
+    <para>
+      <literal>getmd5(...)</literal> はファイルまたは文字列の md5 チェックサムを取得します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -49,11 +52,5 @@ getmd5(['hello' ; 'world'],'string')
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C.</member>
-    </simplelist>
   </refsection>
 </refentry>

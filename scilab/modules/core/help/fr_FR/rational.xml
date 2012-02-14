@@ -10,13 +10,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Une fraction rationnelle <literal>r</literal> est le quotient de deux polynômes <literal>r=num/den</literal>.
-    La représentation interne d'une fraction rationnelle est une liste :
-    <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> est identique à <literal>r=num/den</literal>.
-    Une matrice de fractions rationnelles peut être définie en utilisant la syntaxe habituelle :
-    <literal>[r11,r12;r21,r22]</literal> est une matrice 2x2 ou les <literal>rij</literal> sont des fractions rationnelles.
-    Une matrice de fractions rationnelles peut aussi être définie comme précédemment : <literal>tlist(['r','num','den','dt'],num,den,[])</literal> avec <literal>num</literal> et <literal>den</literal> deux matrices polynomiales.
-  </para>
+      Une fraction rationnelle <literal>r</literal> est le quotient de deux polynômes <literal>r=num/den</literal>.
+      La représentation interne d'une fraction rationnelle est une liste :
+      <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> est identique à <literal>r=num/den</literal>.
+      Une matrice de fractions rationnelles peut être définie en utilisant la syntaxe habituelle :
+      <literal>[r11,r12;r21,r22]</literal> est une matrice 2x2 ou les <literal>rij</literal> sont des fractions rationnelles.
+      Une matrice de fractions rationnelles peut aussi être définie comme précédemment : <literal>tlist(['r','num','den','dt'],num,den,[])</literal> avec <literal>num</literal> et <literal>den</literal> deux matrices polynomiales.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -33,7 +33,7 @@ syslin('c',H)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

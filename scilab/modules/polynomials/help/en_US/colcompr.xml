@@ -40,13 +40,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>normal rank of <literal>A</literal></para>
+          <para>
+            normal rank of <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=A*Y</literal>, polynomial matrix</para>
+          <para>
+            <literal>Ac=A*Y</literal>, polynomial matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +58,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    column compression of polynomial matrix <literal>A</literal> (compression to the left)</para>
+      column compression of polynomial matrix <literal>A</literal> (compression to the left)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +71,7 @@ p*p'*Y
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcompr">rowcompr</link>

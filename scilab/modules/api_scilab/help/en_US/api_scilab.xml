@@ -22,7 +22,7 @@
     <title>Description</title>
     <para>In the previous versions of Scilab, there was no clear or easy way to extend Scilab or to use it as an embedded application.</para>
     <para>Since Scilab 5.2.0, these issues have been tackled by API Scilab. Its provides a new consistent, documented and easy way API.
-</para>
+    </para>
     <para>This API provides functions to read/write data from/to Scilab memory.</para>
     <para>  It provides many advantages:</para>
     <itemizedlist>
@@ -42,7 +42,9 @@
         <para>Fully tested by unitary tests</para>
       </listitem>
       <listitem>
-        <para>Straight and named access (See the <link linkend="call_scilab">call_scilab API</link>) to variables.</para>
+        <para>
+          Straight and named access (See the <link linkend="call_scilab">call_scilab API</link>) to variables.
+        </para>
       </listitem>
       <listitem>
         <para>And it will be maintained over future versions of Scilab</para>
@@ -52,11 +54,12 @@
     <itemizedlist>
       <listitem>
         <para>Libraires or C/C++ functions: Many librairies have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
-</para>
+        </para>
       </listitem>
       <listitem>
-        <para>Scilab can be used as computing engine from a third party software. This feature is called <link linkend="call_scilab">call_scilab</link> when Scilab is used from C/C++ code or  <link linkend="javasci">javasci</link> when used from Java. Access to variable is done through their names (named variable).
-</para>
+        <para>
+          Scilab can be used as computing engine from a third party software. This feature is called <link linkend="call_scilab">call_scilab</link> when Scilab is used from C/C++ code or  <link linkend="javasci">javasci</link> when used from Java. Access to variable is done through their names (named variable).
+        </para>
       </listitem>
     </itemizedlist>
     <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
@@ -64,49 +67,71 @@
   <refsection>
     <title>See Also - API_Scilab</title>
     <simplelist type="inline">
-      <member><link linkend="boolean_reading_API">boolean reading API</link>,
+      <member>
+        <link linkend="boolean_reading_API">boolean reading API</link>,
       </member>
-      <member><link linkend="boolean_writing_API">boolean writing API</link>,
+      <member>
+        <link linkend="boolean_writing_API">boolean writing API</link>,
       </member>
-      <member><link linkend="bsparse_reading_API">bsparse reading API</link>,
+      <member>
+        <link linkend="bsparse_reading_API">bsparse reading API</link>,
       </member>
-      <member><link linkend="bsparse_writing_API">bsparse writing API</link>,
+      <member>
+        <link linkend="bsparse_writing_API">bsparse writing API</link>,
       </member>
-      <member><link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
+      <member>
+        <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
       </member>
-      <member><link linkend="Common_getvardimension_API">Common getvardimension API</link>,
+      <member>
+        <link linkend="Common_getvardimension_API">Common getvardimension API</link>,
       </member>
-      <member><link linkend="Common_getvartype_API">Common getvartype API</link>,
+      <member>
+        <link linkend="Common_getvartype_API">Common getvartype API</link>,
       </member>
-      <member><link linkend="Common_iscomplex_API">Common iscomplex API</link>,
+      <member>
+        <link linkend="Common_iscomplex_API">Common iscomplex API</link>,
       </member>
-      <member><link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>,
+      <member>
+        <link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>,
       </member>
-      <member><link linkend="Double_management_reading_API">Double management reading API</link>,
+      <member>
+        <link linkend="Double_management_reading_API">Double management reading API</link>,
       </member>
-      <member><link linkend="Double_management_writing_API">Double management writing API</link>,
+      <member>
+        <link linkend="Double_management_writing_API">Double management writing API</link>,
       </member>
-      <member><link linkend="Integer_management_reading_API">Integer management reading API</link>,
+      <member>
+        <link linkend="Integer_management_reading_API">Integer management reading API</link>,
       </member>
-      <member><link linkend="Integer_management_writing_API">Integer management writing API</link>,
+      <member>
+        <link linkend="Integer_management_writing_API">Integer management writing API</link>,
       </member>
-      <member><link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+      <member>
+        <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
       </member>
-      <member><link linkend="Pointer_reading_API">Pointer reading API</link>,
+      <member>
+        <link linkend="Pointer_reading_API">Pointer reading API</link>,
       </member>
-      <member><link linkend="Pointer_writing_API">Pointer writing API</link>,
+      <member>
+        <link linkend="Pointer_writing_API">Pointer writing API</link>,
       </member>
-      <member><link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>,
+      <member>
+        <link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>,
       </member>
-      <member><link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>,
+      <member>
+        <link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>,
       </member>
-      <member><link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>,
+      <member>
+        <link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>,
       </member>
-      <member><link linkend="Sparse_management_reading_API">Sparse management reading API</link>,
+      <member>
+        <link linkend="Sparse_management_reading_API">Sparse management reading API</link>,
       </member>
-      <member><link linkend="Sparse_management_writing_API">Sparse management writing_API</link>,
+      <member>
+        <link linkend="Sparse_management_writing_API">Sparse management writing_API</link>,
       </member>
-      <member><link linkend="String_management_reading_API">String management reading API</link>,
+      <member>
+        <link linkend="String_management_reading_API">String management reading API</link>,
       </member>
       <member>
         <link linkend="String_management_writing_API">String management writing API</link>
@@ -197,9 +222,5 @@
         <link linkend="StringManagement_callscilab">String Management</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

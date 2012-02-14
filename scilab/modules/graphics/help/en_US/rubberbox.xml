@@ -21,10 +21,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[final_rect,btn]=rubberbox()
-[final_rect,btn]=rubberbox(initial_rect)
-[final_rect,btn]=rubberbox(edition_mode)
-[final_rect,btn]=rubberbox(initial_rect, edition_mode)
-</synopsis>
+      [final_rect,btn]=rubberbox(initial_rect)
+      [final_rect,btn]=rubberbox(edition_mode)
+      [final_rect,btn]=rubberbox(initial_rect, edition_mode)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,18 +33,20 @@
         <term>initial_rect</term>
         <listitem>
           <para>vector with two or four entries. With four entries it gives the
-  initial rectangle defined by [x_left, y_top, width, height], with
-  two entries width and height are supposed to be 0.
-  </para>
+            initial rectangle defined by [x_left, y_top, width, height], with
+            two entries width and height are supposed to be 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>edition_mode</term>
         <listitem>
-          <para>a boolean, if edition_mode is <literal>%t</literal> button press selects the first corner, release
-	    selects the opposite corner. If edition_mode is <literal>%f</literal>, a button press or
-	    click selects the first corner, a click is requested to select the
-	    opposite corner. The default value is %f.</para>
+          <para>
+            a boolean, if edition_mode is <literal>%t</literal> button press selects the first corner, release
+            selects the opposite corner. If edition_mode is <literal>%f</literal>, a button press or
+            click selects the first corner, a click is requested to select the
+            opposite corner. The default value is %f.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,11 +65,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
-    the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
-    rectangles definition in <literal>final_Rect</literal>. If the argument
-    <literal>initial_rect</literal> is not specified, a click is needed to fix the initial
-    corner position.</para>
+    <para>
+      <literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
+      the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
+      rectangles definition in <literal>final_Rect</literal>. If the argument
+      <literal>initial_rect</literal> is not specified, a click is needed to fix the initial
+      corner position.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -79,7 +83,7 @@ r=rubberbox()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

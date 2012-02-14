@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="Diode"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Diode" xml:lang="fr">
   <refnamediv>
     <refname>Diode</refname>
     <refpurpose>Diode électrique</refpurpose>
@@ -91,13 +83,22 @@
     <title>Description</title>
     <para>
       Ce composant est constitué d'une diode simple en parallèle avec une résistance (
-      <emphasis role="bold"><emphasis>R</emphasis></emphasis>). Le courant (<emphasis role="bold">
-      <emphasis>i</emphasis></emphasis>) traversant ce composant est défini
-      comme une fonction de la tension à ses bornes, (<emphasis role="bold">
-      <emphasis>V</emphasis></emphasis>) :
+      <emphasis role="bold">
+        <emphasis>R</emphasis>
+      </emphasis>
+      ). Le courant (
+      <emphasis role="bold">
+        <emphasis>i</emphasis>
+      </emphasis>
+      )traversant ce composant est défini
+      comme une fonction de la tension à ses bornes, (
+      <emphasis role="bold">
+        <emphasis>V</emphasis>
+      </emphasis>
+      ):
     </para>
     <para>
-</para>
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -106,12 +107,19 @@
       </inlinemediaobject>
     </para>
     <para>
-      où <emphasis role="bold"><emphasis>Ids</emphasis></emphasis> et <emphasis role="bold">
-      <emphasis>Vt</emphasis></emphasis> sont respectivement le courant de saturation et
+      où 
+      <emphasis role="bold">
+        <emphasis>Ids</emphasis>
+      </emphasis>
+      et 
+      <emphasis role="bold">
+        <emphasis>Vt</emphasis>
+      </emphasis>
+      sont respectivement le courant de saturation et
       l'équivalent de tension de température. Si l'exponentielle franchit une certaine limite
       (<emphasis role="bold">Max exponent for linear continuation</emphasis>), la caractéristique
       de la diode devient linéaire afin d'éviter un débordement de capacité numérique.
-  </para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_Diode">
     <title>Boîte de dialogue</title>
@@ -123,8 +131,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -165,17 +173,27 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Outputs :</emphasis></para>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -185,29 +203,55 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Ids'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.000001</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Ids'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.000001
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Vt'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 0.04</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Vt'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 0.04
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Maxexp'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 15</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'Maxexp'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 15
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'R'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E+08</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'R'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 1.000E+08
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> Diode</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> Diode
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>exportUI(figId)
-exportUI(fig)</synopsis>
+      exportUI(fig)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -42,12 +43,13 @@ exportUI(fig)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>exportUI</literal> routine
+    <para>
+      <literal>exportUI</literal> routine
       call the graphical interface dedicated in exporting a graphic window into an image file.
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xs2jpg">xs2jpg</link>
@@ -66,9 +68,4 @@ exportUI(fig)</synopsis>
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

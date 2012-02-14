@@ -14,14 +14,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Avec cette commande il est possible d'utiliser un programme externe 
-    comme une commande Scilab où
-    <literal>(s_1,s_2,...,s_lhs)</literal> sont les variables de sortie et
-     <literal>(e_1,e_2,...,e_rhs)</literal> sont les variables d'entrée. Pour utiliser cette commande dans Scilab il faut écrire quelques lignes dans la subroutine Fortran <literal>user</literal> de Scilab. Voir <literal>intersci</literal> ou la documentation de Scilab pour plus d'informations.
-  </para>
+      Avec cette commande il est possible d'utiliser un programme externe 
+      comme une commande Scilab où
+      <literal>(s_1,s_2,...,s_lhs)</literal> sont les variables de sortie et
+      <literal>(e_1,e_2,...,e_rhs)</literal> sont les variables d'entrée. Pour utiliser cette commande dans Scilab il faut écrire quelques lignes dans la subroutine Fortran <literal>user</literal> de Scilab. Voir <literal>intersci</literal> ou la documentation de Scilab pour plus d'informations.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fort">fort</link>

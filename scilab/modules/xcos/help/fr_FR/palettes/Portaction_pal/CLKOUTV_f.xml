@@ -70,11 +70,6 @@
               <xref linkend="Seealso_CLKOUTV_f">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_CLKOUTV_f">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -103,10 +98,10 @@
     <title>Description</title>
     <para>
       Ce bloc représente une port de sortie d'activation. Il doit être seulement utilisé à l'intérieur d'un Super Bloc Xcos et être
-       connecté à un port de sortie d'activation dans le sous-système.
+      connecté à un port de sortie d'activation dans le sous-système.
     </para>
     <para>
-     Ce bloc est une liaison d'événement d'un système dans un sous-système. Dans un superbloc, les ports de sortie d'activation
+      Ce bloc est une liaison d'événement d'un système dans un sous-système. Dans un superbloc, les ports de sortie d'activation
       doivent être numérotés de 1 au nombre total de sortie d'activation du Super bloc. Chaque numéro de sortie d'activation doit
       être unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
     </para>
@@ -135,31 +130,49 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -172,10 +185,15 @@
   <refsection id="Example_CLKOUTV_f">
     <title>Exemple</title>
     <para>
-      Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant <emphasis><literal>t = 3 s</literal></emphasis>.
+      Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant 
+      <emphasis>
+        <literal>t= 3 s</literal>
+      </emphasis>
+      .
       <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.xcos">
         Ouvrir cet exemple dans Xcos
-      </link>.
+      </link>
+      .
     </para>
     <para/>
     <mediaobject>
@@ -204,9 +222,5 @@
         <link linkend="SUPER_f">SUPER_f</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CLKOUTV_f">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

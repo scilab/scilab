@@ -54,29 +54,29 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,ベクトル(または行列) nx1を出力します.
-	これには,行列Xから抽出された置換を有する
-	n個のランダムな標本が含まれます.
-</para>
+      この関数は,ベクトル(または行列) nx1を出力します.
+      これには,行列Xから抽出された置換を有する
+      n個のランダムな標本が含まれます.
+    </para>
     <para>
-     s=sample(n,X)  (または s=sample(n,X,'*'))  は,
-	その値がXからのn個の値のランダムな標本である
-	ベクトル s を返します.
-</para>
+      s=sample(n,X)  (または s=sample(n,X,'*'))  は,
+      その値がXからのn個の値のランダムな標本である
+      ベクトル s を返します.
+    </para>
     <para>
-
-     s=sample(n,X,'r')   (または等価な  s=sample(n,X,1))
-	は,size(X,'r')xnの行列を返します.
-	これには,Xの行から置換付きで展開された
-	n行のランダム標本が含まれます.
-</para>
+      
+      s=sample(n,X,'r')   (または等価な  s=sample(n,X,1))
+      は,size(X,'r')xnの行列を返します.
+      これには,Xの行から置換付きで展開された
+      n行のランダム標本が含まれます.
+    </para>
     <para>
-
-     s=sample(n,X,'c')   (または等価な  s=sample(n,X,2))
-	は,nxsize(X,'c')の行列を返します.
-	これには,Xの列から置換付きで展開された
-	n列のランダム標本が含まれます.
-</para>
+      
+      s=sample(n,X,'c')   (または等価な  s=sample(n,X,2))
+      は,nxsize(X,'c')の行列を返します.
+      これには,Xの列から置換付きで展開された
+      n列のランダム標本が含まれます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -97,11 +97,5 @@ s=sample(25,X,'c')
         <link linkend="samwr">samwr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Carlos Klimann
-  </para>
   </refsection>
 </refentry>

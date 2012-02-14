@@ -11,16 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry
-    xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns:ns5="http://www.w3.org/1999/xhtml"
-    xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook"
-    version="5.0-subset Scilab"
-    xml:id="test_run"
-    xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="test_run" xml:lang="en">
   <refnamediv>
     <refname>test_run</refname>
     <refpurpose>Launch tests</refpurpose>
@@ -120,7 +111,6 @@
           </para>
         </listitem>
       </varlistentry>
-      
     </variablelist>
   </refsection>
   <refsection>
@@ -145,97 +135,96 @@
     <itemizedlist>
       <listitem>
         <para>
-          &#60;-- INTERACTIVE TEST --&#62;
+          &lt;-- INTERACTIVE TEST --&gt;
           This test will be skipped because it is interactive.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- LONG TIME EXECUTION --&#62;
+          &lt;-- LONG TIME EXECUTION --&gt;
           This test will be skipped because it needs long-time duration. To enable
           the test, call test_run with the following option: "enable_lt"
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NOT FIXED --&#62;
+          &lt;-- NOT FIXED --&gt;
           This test will be skipped because it is a known, but unfixed bug.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- TEST WITH GRAPHIC --&#62;
+          &lt;-- TEST WITH GRAPHIC --&gt;
           This test will not be executed if the option "mode_nwni" is used.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO TRY CATCH --&#62;
+          &lt;-- NO TRY CATCH --&gt;
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO CHECK ERROR OUTPUT --&#62;
+          &lt;-- NO CHECK ERROR OUTPUT --&gt;
           The error output file is not checked
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- NO CHECK REF --&#62;
+          &lt;-- NO CHECK REF --&gt;
           The .dia and the .dia.ref files are not compared.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- ENGLISH IMPOSED --&#62;
+          &lt;-- ENGLISH IMPOSED --&gt;
           This test will be executed with the -l en_US option.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- FRENCH IMPOSED --&#62;
+          &lt;-- FRENCH IMPOSED --&gt;
           This test will be executed with the -l fr_FR option.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- JVM NOT MANDATORY --&#62;
+          &lt;-- JVM NOT MANDATORY --&gt;
           This test will be executed with the nwni mode by default.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- WINDOWS ONLY --&#62;
+          &lt;-- WINDOWS ONLY --&gt;
           If the operating system isn't Windows, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- UNIX ONLY --&#62;
+          &lt;-- UNIX ONLY --&gt;
           If the operating system isn't an Unix OS, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- LINUX ONLY --&#62;
+          &lt;-- LINUX ONLY --&gt;
           If the operating system isn't GNU/Linux, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- MACOSX ONLY --&#62;
+          &lt;-- MACOSX ONLY --&gt;
           If the operating system isn't Mac OS X, the test is skipped.
         </para>
       </listitem>
       <listitem>
         <para>
-          &#60;-- XCOS TEST --&#62;
+          &lt;-- XCOS TEST --&gt;
           This test will launch all the necessary Xcos libs. This test
           will be launched in nw mode.
         </para>
       </listitem>
     </itemizedlist>
-    
     <para>
       Each test is executed in a separated process, created with the "host" command.
       That enables the current command to continue, even if the test as
@@ -243,7 +232,6 @@
       independent from one another.
     </para>
   </refsection>
-  
   <refsection>
     <title>Platform-specific tests</title>
     <para>
@@ -253,72 +241,57 @@
       create a default <literal>.ref</literal> and create additionnal <literal>.ref</literal>
       file for each platform.
     </para>
-    
     <para>
       The various platform-specific <literal>.ref</literal> files must have one of the following extensions.
     </para>
-    
     <itemizedlist>
       <listitem>
         <para>
           <literal>.unix.dia.ref</literal> for Unix platform,
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>.linux.dia.ref</literal> for GNU/Linux platform,
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>.win.dia.ref</literal> for Windows platform,
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>.macosx.dia.ref</literal> for Mac OS X platform.
         </para>
       </listitem>
-      
     </itemizedlist>
-    
     <para>
       The algorithm is the following.
       First, the <literal>.ref</literal> is considered. If this file does not exist,
       the platform-specific <literal>.ref</literal> file is examined depending on the current platform.
     </para>
-    
     <itemizedlist>
-      
       <listitem>
         <para>
           on Windows platforms: <literal>.win.dia.ref</literal>,
         </para>
       </listitem>
-      
       <listitem>
         <para>
           on Max OS X platforms: <literal>.unix.dia.ref</literal>, <literal>.macosx.dia.ref</literal>,
         </para>
       </listitem>
-      
       <listitem>
         <para>
           on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
         </para>
       </listitem>
-      
     </itemizedlist>
-    
   </refsection>
-  
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 // Launch all tests
 // =============================================
 
@@ -381,10 +354,8 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
-  
   <refsection>
     <title>Internal Design</title>
     <para>
@@ -393,7 +364,6 @@ test_run([],[],['no_check_ref','mode_nw']);
       The .tst file is copied into the temporary directory, the test is performed
       and the .dia.ref is copied back into the original location.
     </para>
-    
     <para>
       The .tst script is not run as is. Instead, a header and a footer are
       inserted at the beginning and at the end of the .tst at the time
@@ -402,7 +372,6 @@ test_run([],[],['no_check_ref','mode_nw']);
       into the .dia file, so that the user can have a log file once the test
       is performed.
     </para>
-    
   </refsection>
   <refsection>
     <title>History</title>
@@ -410,8 +379,7 @@ test_run([],[],['no_check_ref','mode_nw']);
       <revision>
         <revnumber>5.4.0</revnumber>
         <revdescription>test_run returns a status:
-          <itemizedlist>
-            <listitem>
+          <itemizedlist><listitem>
               Returns %t if no error has been detected
             </listitem>
             <listitem>
@@ -422,5 +390,4 @@ test_run([],[],['no_check_ref','mode_nw']);
       </revision>
     </revhistory>
   </refsection>
-  
 </refentry>

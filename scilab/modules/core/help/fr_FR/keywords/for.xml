@@ -10,8 +10,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utilisé pour spécifier une boucle. La syntaxe est la suivante :
-  </para>
+      Utilisé pour spécifier une boucle. La syntaxe est la suivante :
+    </para>
     <para>
       <literal>for variable=expression ,instruction,   ,instruction,end</literal>
     </para>
@@ -19,20 +19,20 @@
       <literal>for variable=expression do instruction,   ,instruction,end</literal>
     </para>
     <para>
-    Si <literal>expression</literal> est une matrice ou un vecteur ligne, <literal>variable</literal>
-    prend successivement les valeurs de chaque colonne de la matrice.
-  </para>
+      Si <literal>expression</literal> est une matrice ou un vecteur ligne, <literal>variable</literal>
+      prend successivement les valeurs de chaque colonne de la matrice.
+    </para>
     <para>
-    Un exemple utile : <literal>for variable=n1:pas:n2,  ...,end</literal>
-  </para>
+      Un exemple utile : <literal>for variable=n1:pas:n2,  ...,end</literal>
+    </para>
     <para>
-    Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
-  </para>
+      Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
+    </para>
     <para>
-    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
-  </para>
+      Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+    </para>
     <para>
-  </para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -63,7 +63,7 @@ for l=list(1,2,'example'); l, end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="while">while</link>

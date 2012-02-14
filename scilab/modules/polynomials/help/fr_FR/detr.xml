@@ -18,19 +18,20 @@
         <term>h  </term>
         <listitem>
           <para>matrice carrée de polynômes ou de fractions rationnelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>d=detr(h)</literal> renvoie le déterminant <literal>d</literal> de la
-   matrice <literal>h</literal>. Basé sur l'algorithme de Leverrier.
-  </para>
+    <para>
+      <literal>d=detr(h)</literal> renvoie le déterminant <literal>d</literal> de la
+      matrice <literal>h</literal>. Basé sur l'algorithme de Leverrier.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

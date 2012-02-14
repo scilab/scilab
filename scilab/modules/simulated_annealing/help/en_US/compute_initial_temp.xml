@@ -11,44 +11,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="compute_initial_temp"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="compute_initial_temp" xml:lang="en">
   <refnamediv>
     <refname>compute_initial_temp</refname>
-
     <refpurpose>
       A SA function which allows to compute the initial temperature
       of the simulated annealing
     </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>T_init = compute_initial_temp(x0,f,proba_init, ItMX [, param] )</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>x0</term>
-
         <listitem>
           <para>the starting point</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>f</term>
-
         <listitem>
           <para>
             the objective function which will be send to the simulated
@@ -56,10 +41,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>proba_init</term>
-
         <listitem>
           <para>
             the initial probability of accepting a bad solution (usually
@@ -67,10 +50,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>ItMX</term>
-
         <listitem>
           <para>
             the number of iterations of random walk (usually around
@@ -78,7 +59,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>param</term>
         <listitem>
@@ -86,9 +66,7 @@
           <para>
             The <literal>optim_sa</literal> function is sensitive to the following fields.
           </para>
-
           <variablelist>
-
             <varlistentry>
               <term>"neigh_func"</term>
               <listitem>
@@ -98,7 +76,6 @@
                 </para>
               </listitem>
             </varlistentry>
-
             <varlistentry>
               <term>"type_accept"</term>
               <listitem>
@@ -111,15 +88,11 @@
                 </para>
               </listitem>
             </varlistentry>
-
           </variablelist>
         </listitem>
       </varlistentry>
-
-
       <varlistentry>
         <term>T_init</term>
-
         <listitem>
           <para>
             The initial temperature corresponding to the given probability
@@ -129,23 +102,17 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>
       This function computes an initial temperature given an initial
       probability of accepting a bad solution. This computation is based on
       some iterations of random walk.
     </para>
-    
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example">
-      <![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 deff('y=f(x)','y=sum(x.^2)');
     
 x0 = [2 2];
@@ -157,24 +124,19 @@ saparams = init_param();
 saparams = add_param(comp_t_params,'neigh_func', neigh_func_default);
 
 T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="optim_sa"> optim_sa </link>
       </member>
-
       <member>
         <link linkend="neigh_func_default">
           neigh_func_default
         </link>
       </member>
-
       <member>
         <link linkend="temp_law_default">
           temp_law_default
@@ -182,11 +144,4 @@ T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
       </member>
     </simplelist>
   </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <para>Yann Collette - 2008 - ycollet@freesurf.fr</para>
-    <para>Michael Baudin - Digiteo - 2010</para>
-  </refsection>
-
 </refentry>

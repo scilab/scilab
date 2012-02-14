@@ -29,21 +29,22 @@
         <term>spcho  </term>
         <listitem>
           <para>liste contenant les facteurs de Cholesky renvoyés par chfact 
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rhs, sol  </term>
         <listitem>
           <para>vecteurs
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sol=chsolve(spcho,rhs)</literal> calcule la solution de 
+    <para>
+      <literal>sol=chsolve(spcho,rhs)</literal> calcule la solution de 
       <literal>rhs=A*sol</literal>, où <literal>A</literal> est une matrice symétrique
       définie positive. Cette fonction est basée sur le programme Ng-Peyton
       (ORNL). Voir le programme Fortran pour une description complète des
@@ -62,7 +63,7 @@ chsolve(spcho,rhs)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="chfact">chfact</link>

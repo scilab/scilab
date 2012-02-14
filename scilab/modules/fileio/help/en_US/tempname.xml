@@ -56,12 +56,6 @@
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Author</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>History</title>
     <revhistory>
       <revision>
@@ -70,5 +64,4 @@
       </revision>
     </revhistory>
   </refsection>
-   
 </refentry>

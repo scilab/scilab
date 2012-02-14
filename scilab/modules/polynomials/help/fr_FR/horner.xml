@@ -18,14 +18,14 @@
         <term>P  </term>
         <listitem>
           <para>polynôme ou matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
           <para>vecteur de nombres , de polynômes ou de fractions rationnelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -33,19 +33,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    évalue le polynôme ou la fraction rationnelle (ou matrice de fractions rationnelles)
-    <literal>P = P(s)</literal> quand la variable <literal>s</literal> du polynôme 
-    est remplacée par <literal>x</literal> :
-  </para>
-    <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
+      évalue le polynôme ou la fraction rationnelle (ou matrice de fractions rationnelles)
+      <literal>P = P(s)</literal> quand la variable <literal>s</literal> du polynôme 
+      est remplacée par <literal>x</literal> :
+    </para>
     <para>
-    Exemple (transformation bilinéaire) : supposons que <literal>P = P(s)</literal> est 
-    une matrice de polynômes, alors la matrice de polynômes 
-    <literal>P((1+s)/(1-s))</literal> est obtenue par <literal>horner(P,(1+s)/(1-s))</literal>.
-  </para>
+      <literal>horner(P,x)</literal>=<literal>P(x)</literal>
+    </para>
     <para>
-    Pour évaluer une matrice de polynômes à des fréquences données utiliser plutôt la primitive <literal>freq</literal>. 
-  </para>
+      Exemple (transformation bilinéaire) : supposons que <literal>P = P(s)</literal> est 
+      une matrice de polynômes, alors la matrice de polynômes 
+      <literal>P((1+s)/(1-s))</literal> est obtenue par <literal>horner(P,(1+s)/(1-s))</literal>.
+    </para>
+    <para>
+      Pour évaluer une matrice de polynômes à des fréquences données utiliser plutôt la primitive <literal>freq</literal>. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -69,7 +71,7 @@ m=horner(p, X)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="freq">freq</link>

@@ -10,19 +10,22 @@
   <refsection>
     <title>説明</title>
     <para>
-	行列は,Scilabで定義される基本的なオブジェクトです.
-	行列は以下のように定義されます:</para>
-    <programlisting role = ""><![CDATA[ 
+      行列は,Scilabで定義される基本的なオブジェクトです.
+      行列は以下のように定義されます:
+    </para>
+    <programlisting role=""><![CDATA[ 
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
    em1,em2,...,emn];
  ]]></programlisting>
     <para>
-    エントリ <literal>eij</literal> は,
-	実数または複素数, 多項式, 有理数, 文字列, 論理値とすることができます.</para>
+      エントリ <literal>eij</literal> は,
+      実数または複素数, 多項式, 有理数, 文字列, 論理値とすることができます.
+    </para>
     <para>
-    ベクトルは,1行または1列のみを有する行列として扱われます.</para>
+      ベクトルは,1行または1列のみを有する行列として扱われます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

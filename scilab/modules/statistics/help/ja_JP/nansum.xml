@@ -35,8 +35,9 @@
         <term>orient</term>
         <listitem>
           <para>なしまたは '*'.
-         'r' または 1.
-         'c' または 2.</para>
+            'r' または 1.
+            'c' または 2.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,30 +51,30 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,数値ベクトルまたは行列xの
-	(NaNを無視した)値の合計をsに返します.
-   </para>
+      この関数は,数値ベクトルまたは行列xの
+      (NaNを無視した)値の合計をsに返します.
+    </para>
     <para>
-	あるベクトルまたは行列xについて,
-	s=nansum(x) (または s=nansum(x,'*')) は
-	(NaNを無視した)ベクトルまたは行列xの全エントリ
-	の合計をスカラーsに返します.
-   </para>
+      あるベクトルまたは行列xについて,
+      s=nansum(x) (または s=nansum(x,'*')) は
+      (NaNを無視した)ベクトルまたは行列xの全エントリ
+      の合計をスカラーsに返します.
+    </para>
     <para>
-   s=nansum(x,'r')(もしくは等価な s=nansum(x,1)) は,
-	1xsize(x,'c')の行ベクトルsの各エントリに
-	xの各列の(NaNを無視した)合計を返します.
-</para>
+      s=nansum(x,'r')(もしくは等価な s=nansum(x,1)) は,
+      1xsize(x,'c')の行ベクトルsの各エントリに
+      xの各列の(NaNを無視した)合計を返します.
+    </para>
     <para>
-   s=nansum(x,'c')(もしくは等価な s=nansum(x,2)) は,
-	size(x,'c')x1の列ベクトルsの各エントリに
-	xの各行の(NaNを無視した)合計を返します.
-</para>
+      s=nansum(x,'c')(もしくは等価な s=nansum(x,2)) は,
+      size(x,'c')x1の列ベクトルsの各エントリに
+      xの各行の(NaNを無視した)合計を返します.
+    </para>
     <para>
-	最後の2つのケースで,
-	ある行または列が全てNaNから構成される場合,
-	sの対応する位置はNaNとなります.
-</para>
+      最後の2つのケースで,
+      ある行または列が全てNaNから構成される場合,
+      sの対応する位置はNaNとなります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -96,15 +97,10 @@ m=nansum(x,2)
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para>
-    Carlos Klimann
-  </para>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott,  T.H. and  Wonacott, R.J.; Introductory Statistics,
-    5th edition, J.Wiley and Sons, 1990.</para>
+      Wonacott,  T.H. and  Wonacott, R.J.; Introductory Statistics,
+      5th edition, J.Wiley and Sons, 1990.
+    </para>
   </refsection>
 </refentry>

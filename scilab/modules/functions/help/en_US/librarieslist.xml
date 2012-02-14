@@ -24,7 +24,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>return in <literal>s</literal> all libraries on scilab stack.</para>
+    <para>
+      return in <literal>s</literal> all libraries on scilab stack.
+    </para>
     <para>libraries are scanned from the lastest loaded to the first one.</para>
   </refsection>
   <refsection>
@@ -36,7 +38,7 @@ l =  gsort(librarieslist(),'r','i')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="libraryinfo">libraryinfo</link>

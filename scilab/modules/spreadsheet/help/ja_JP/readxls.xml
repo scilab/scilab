@@ -30,15 +30,16 @@
         <term>file_path</term>
         <listitem>
           <para>文字列: Excelファイルのパス.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sheets</term>
         <listitem>
-          <para><literal>xls</literal>型の<literal>mlist</literal>で, 
-		<literal>sheets</literal>という名前のフィールドを有します
-       </para>
+          <para>
+            <literal>xls</literal>型の<literal>mlist</literal>で, 
+            <literal>sheets</literal>という名前のフィールドを有します
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -46,16 +47,18 @@
   <refsection>
     <title>説明</title>
     <para>Excelファイルのパスを指定すると,この関数は
-	<literal>sheets</literal>という名前のフィールドを有する
-	<literal>xls</literal>
-	型の <literal>mlist</literal>データ構造体を返します.
+      <literal>sheets</literal>という名前のフィールドを有する
+      <literal>xls</literal>
+      型の <literal>mlist</literal>データ構造体を返します.
       この<literal>sheets</literal> フィールドはそれ自体 sheetデータ構造体の
-	リストです.</para>
-    <para><literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> ただし,
+      リストです.
+    </para>
+    <para>
+      <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> ただし,
       <literal>sheetname</literal>はシートの名前を有する文字列です.
       <literal>Text</literal> はセルの文字列を有する文字列の行列,
-	<literal>Value</literal>はセルの値を有する数値の行列です.
-	</para>
+      <literal>Value</literal>はセルの値を有する数値の行列です.
+    </para>
     <para> BIFF8 Excelファイル(最近のExcelファイルのバージョン)のみが処理可能です.</para>
   </refsection>
   <refsection>
@@ -86,30 +89,10 @@ editvar s1
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <variablelist>
-      <varlistentry>
-        <term>Pierrick Mode</term>
-        <listitem>
-          <para>
-    INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Serge Steer</term>
-        <listitem>
-          <para>
-    INRIA
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
     <title>使用される関数</title>
-    <para> この関数はScilab関数 <literal>xls_open</literal>
+    <para>
+      この関数はScilab関数 <literal>xls_open</literal>
       および<literal>xls_read</literal>に基づいています.
-     </para>
+    </para>
   </refsection>
 </refentry>

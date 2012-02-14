@@ -20,7 +20,7 @@
     <title>呼び出し手順</title>
     <synopsis>
       f = factorial ( n )
-
+      
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -69,14 +69,9 @@ h.children.log_flags="nln";
    ]]></programlisting>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
-      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
-    <para><ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin</para>
+    <para>
+      <ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin
+    </para>
   </refsection>
 </refentry>

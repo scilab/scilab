@@ -21,11 +21,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>winId=waitbar(x)
-winId=waitbar(x,mes)
-winId=waitbar(mes)
-waitbar(x,winId)
-waitbar(mes,winId)
-waitbar(x,mes,winId)</synopsis>
+      winId=waitbar(x,mes)
+      winId=waitbar(mes)
+      waitbar(x,winId)
+      waitbar(mes,winId)
+      waitbar(x,mes,winId)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -52,11 +53,21 @@ waitbar(x,mes,winId)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>waitbar(x)</literal> create a new waitbar displaying a fraction x, return window identificator.</para>
-    <para><literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction x and message mes, return window identificator.</para>
-    <para><literal>waitbar(mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</para>
-    <para><literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.</para>
-    <para><literal>waitbar(x,winId)</literal>, <literal>waitbar(mes,winId)</literal> and <literal>waitbar(x,mes,winId)</literal> update waitbar with window identificator winId.</para>
+    <para>
+      <literal>waitbar(x)</literal> create a new waitbar displaying a fraction x, return window identificator.
+    </para>
+    <para>
+      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction x and message mes, return window identificator.
+    </para>
+    <para>
+      <literal>waitbar(mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.
+    </para>
+    <para>
+      <literal>waitbar(x,mes)</literal> create a new waitbar displaying a fraction 0 and message mes, return window identificator.
+    </para>
+    <para>
+      <literal>waitbar(x,winId)</literal>, <literal>waitbar(mes,winId)</literal> and <literal>waitbar(x,mes,winId)</literal> update waitbar with window identificator winId.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,9 +80,5 @@ for j=0:0.1:1,
 end
 winclose(winId);
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
   </refsection>
 </refentry>

@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>det(X)
-[e,m]=det(X)</synopsis>
+      [e,m]=det(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -64,8 +65,9 @@
   <refsection role="see also">
     <title>参照</title>
     <para>
-     det の計算は Lapack ルーチン DGETRF (実数行列の場合) および
-     ZGETRF (複素数の場合)に基づいている.</para>
+      det の計算は Lapack ルーチン DGETRF (実数行列の場合) および
+      ZGETRF (複素数の場合)に基づいている.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

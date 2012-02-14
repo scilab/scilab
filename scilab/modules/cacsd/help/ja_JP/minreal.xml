@@ -28,7 +28,9 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,11 +43,17 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
-    は線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)
-	の平衡実現を返します.</para>
-    <para><literal>sl</literal> は安定であると仮定されます.</para>
-    <para><literal>tol</literal> 閾値は <literal>equil1</literal>で使用されます.</para>
+    <para>
+      <literal>[ae,be,ce]=minreal(a,b,c,domain [,tol]) </literal>
+      は線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)
+      の平衡実現を返します.
+    </para>
+    <para>
+      <literal>sl</literal> は安定であると仮定されます.
+    </para>
+    <para>
+      <literal>tol</literal> 閾値は <literal>equil1</literal>で使用されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -80,9 +88,5 @@ clean(obs_gram(slb))
         <link linkend="equil1">equil1</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer INRIA 1987</para>
   </refsection>
 </refentry>

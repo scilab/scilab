@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>wfir_gui</refname>
     <refpurpose>
-      対話的にwfirフィルタを設計する際に使用するGUI</refpurpose>
+      対話的にwfirフィルタを設計する際に使用するGUI
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
@@ -19,7 +20,7 @@
         <term>ftype</term>
         <listitem>
           <para>
-           文字列: 選択されたフィルタ形式.
+            文字列: 選択されたフィルタ形式.
           </para>
         </listitem>
       </varlistentry>
@@ -27,7 +28,7 @@
         <term>forder</term>
         <listitem>
           <para>
-	    正の整数値(スカラー): 選択されたフィルタ次数
+            正の整数値(スカラー): 選択されたフィルタ次数
           </para>
         </listitem>
       </varlistentry>
@@ -96,15 +97,10 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>使用される関数</title>
-    <para><link linkend="uicontrol">uicontrol</link> 関数に基づきます.
-  </para>
+    <para>
+      <link linkend="uicontrol">uicontrol</link> 関数に基づきます.
+    </para>
   </refsection>
   <refsection>
     <title>履歴</title>
@@ -112,8 +108,8 @@
       <revision>
         <revnumber>5.4.0</revnumber>
         <revremark>関数 wfir_gui は,
-	より使いやすくするために一から再設計されました.
-	</revremark>
+          より使いやすくするために一から再設計されました.
+        </revremark>
       </revision>
     </revhistory>
   </refsection>

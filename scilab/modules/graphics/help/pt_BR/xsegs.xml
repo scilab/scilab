@@ -34,34 +34,42 @@
       <varlistentry>
         <term>style</term>
         <listitem>
-          <para>vetor ou escalar. Se <literal>style</literal> is a positive
-          scalar, it gives the color to use for all segments. Se
-          <literal>style</literal> for negativo, então a cor corrente é
-          utilizada. Se <literal>style</literal> for um vetor, então
-          <literal>style(i)</literal> fornece a cor a ser utilizada no
-          segmento <literal>i</literal>.</para>
+          <para>
+            vetor ou escalar. Se <literal>style</literal> is a positive
+            scalar, it gives the color to use for all segments. Se
+            <literal>style</literal> for negativo, então a cor corrente é
+            utilizada. Se <literal>style</literal> for um vetor, então
+            <literal>style(i)</literal> fornece a cor a ser utilizada no
+            segmento <literal>i</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Descrição</title>
-    <para><literal>xsegs</literal> desenha um conjunto de segmentos desconexos
-    dados por <literal>xv</literal> e <literal>yv</literal>. Se
-    <literal>xv</literal> e <literal>yv</literal> forem matrizes, serão
-    considerados como vetores através da concatenação de suas colunas. As
-    coordenadas dos dois pontos definindo um segmento são dadas por dois
-    valores consecutivos de <literal>xv</literal> e
-    <literal>yv</literal>:</para>
-    <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
+    <para>
+      <literal>xsegs</literal> desenha um conjunto de segmentos desconexos
+      dados por <literal>xv</literal> e <literal>yv</literal>. Se
+      <literal>xv</literal> e <literal>yv</literal> forem matrizes, serão
+      considerados como vetores através da concatenação de suas colunas. As
+      coordenadas dos dois pontos definindo um segmento são dadas por dois
+      valores consecutivos de <literal>xv</literal> e
+      <literal>yv</literal>:
+    </para>
+    <para>
+      <literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.
+    </para>
     <para>Por exemplo, utilizando matrizes de tamanho (2,n), os segmentos são
-    definidos por:</para>
+      definidos por:
+    </para>
     <programlisting role=""><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
 yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
  ]]></programlisting>
     <para>e os segmentos são
-    <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
+      <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemplos</title>
@@ -97,9 +105,5 @@ e = gce();
 e.arrow_size = 0.4;
 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Autor</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

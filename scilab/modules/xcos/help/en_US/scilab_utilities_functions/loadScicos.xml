@@ -54,18 +54,18 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="xcos"><programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.</link>
+          <link linkend="xcos">
+            <programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.
+          </link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="loadXcosLibs"><programlisting>loadXcosLibs</programlisting> - Load the blocks macros libraries.</link>
+          <link linkend="loadXcosLibs">
+            <programlisting>loadXcosLibs</programlisting> - Load the blocks macros libraries.
+          </link>
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_loadScicos">
-    <title>Authors</title>
-    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

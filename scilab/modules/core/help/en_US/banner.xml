@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>banner</refname>
     <refpurpose>show scilab banner
-  (Windows)</refpurpose>
+      (Windows)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -21,9 +22,5 @@
     <programlisting role="example"><![CDATA[ 
 clc();banner()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

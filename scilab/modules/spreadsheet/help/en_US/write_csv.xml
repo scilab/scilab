@@ -41,7 +41,8 @@
         <term>sep</term>
         <listitem>
           <para>column separator mark, by default a tabulation: ascii(9) or
-          "\t".</para>
+            "\t".
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,34 +56,35 @@
   <refsection>
     <title>Description</title>
     <para>write_csv(M, filename) writes matrix M into filename as
-    comma-separated values. The filename input is a string.</para>
+      comma-separated values. The filename input is a string.
+    </para>
     <para>if the file 'filename' already exists, it is overwritten.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example">// save a matrix as csv file format
-A = [1:10] * 0.1;
-write_csv(A, TMPDIR + '/data.tsv');
-
-// read as text
-mgetl(TMPDIR + '/data.tsv')
-
-//tab-separated values
-r = read_csv(TMPDIR + '/data.tsv', ascii(9));
-r = strsubst(r, ',' , '.');
-evstr(r)
-
-A = [1:10] * 0.1; 
-write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
-mgetl(TMPDIR+'/foo.csv')
-
-//tab-separated values
-write_csv(A, TMPDIR + '/datas.tsv');
-
-//coma-separated values
-write_csv(A, TMPDIR + '/datas.csv', ';'); 
-
-</programlisting>
+      A = [1:10] * 0.1;
+      write_csv(A, TMPDIR + '/data.tsv');
+      
+      // read as text
+      mgetl(TMPDIR + '/data.tsv')
+      
+      //tab-separated values
+      r = read_csv(TMPDIR + '/data.tsv', ascii(9));
+      r = strsubst(r, ',' , '.');
+      evstr(r)
+      
+      A = [1:10] * 0.1; 
+      write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
+      mgetl(TMPDIR+'/foo.csv')
+      
+      //tab-separated values
+      write_csv(A, TMPDIR + '/datas.tsv');
+      
+      //coma-separated values
+      write_csv(A, TMPDIR + '/datas.csv', ';'); 
+      
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -100,13 +102,5 @@ write_csv(A, TMPDIR + '/datas.csv', ';');
         <link linkend="format">format</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>Allan CORNET</term>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

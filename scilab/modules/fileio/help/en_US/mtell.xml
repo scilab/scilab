@@ -29,7 +29,9 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,11 +39,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    The function <literal>mtell()</literal> returns the offset of the current byte  relative  to
-    the beginning of the file associated with the named stream <literal>fd</literal>.</para>
+      The function <literal>mtell()</literal> returns the offset of the current byte  relative  to
+      the beginning of the file associated with the named stream <literal>fd</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

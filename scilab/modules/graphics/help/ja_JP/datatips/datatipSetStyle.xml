@@ -38,8 +38,8 @@
         <term>t</term>
         <listitem>
           <para>
-	    使用可能な値は 1または2です.省略時は
-	    選択用ポップアップが開きます.
+            使用可能な値は 1または2です.省略時は
+            選択用ポップアップが開きます.
           </para>
         </listitem>
       </varlistentry>
@@ -47,7 +47,7 @@
         <term>boxed</term>
         <listitem>
           <para>
-	    論理値, デフォルト値は %tです.
+            論理値, デフォルト値は %tです.
           </para>
         </listitem>
       </varlistentry>
@@ -55,7 +55,7 @@
         <term>labeled</term>
         <listitem>
           <para>
-	    論理値, デフォルト値は %tです.
+            論理値, デフォルト値は %tです.
           </para>
         </listitem>
       </varlistentry>
@@ -67,11 +67,11 @@
       データティップのポリライン用のマーカは以下の２種類です:
     </para>
     <para>
-     - 四角, ティップポイントを中心とする. 
+      - 四角, ティップポイントを中心とする. 
     </para>
     <para>
-     - ティップ点の接線に沿って描画された矢印.
-     矢じりはティップ点上にあります.
+      - ティップ点の接線に沿って描画された矢印.
+      矢じりはティップ点上にあります.
     </para>
     <para>
       boxedオプションが選択された場合,
@@ -115,12 +115,6 @@
       <member>
         <link linkend="datatipInitStruct">datatipInitStruct</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
   <refsection>

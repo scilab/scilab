@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>f=ftest(samples)
-[f,p]=ftest(samples)</synopsis>
+      [f,p]=ftest(samples)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -36,19 +37,24 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal> f=ftest(samples) </literal> computes the Fischer ratio of the
-    nc samples whose  values are in the columns  of the matrix
-    <literal>samples</literal>. Each one of these samples is composed of nr
-    values. (The  Fischer ratio is the ratio  between nr times
-    the  variance of  the means  of  samples and  the mean  of
-    variances of each sample)</para>
-    <para><literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
-    computed Fischer ratio f.</para>
+    <para>
+      <literal> f=ftest(samples) </literal> computes the Fischer ratio of the
+      nc samples whose  values are in the columns  of the matrix
+      <literal>samples</literal>. Each one of these samples is composed of nr
+      values. (The  Fischer ratio is the ratio  between nr times
+      the  variance of  the means  of  samples and  the mean  of
+      variances of each sample)
+    </para>
+    <para>
+      <literal> [f,p]=ftest(samples) </literal> gives in p the p-value of the
+      computed Fischer ratio f.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,15 +68,11 @@ samples=[46 55 54;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ftuneq">ftuneq</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

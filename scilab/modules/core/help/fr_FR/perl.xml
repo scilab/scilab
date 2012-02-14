@@ -10,28 +10,24 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>perl('perlfile')
-perl('perlfile',arg1,arg2,...)
-result = perl(...)</synopsis>
+      perl('perlfile',arg1,arg2,...)
+      result = perl(...)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>perl('perlfile') appelle le script Perl perlfile.</para>
     <para>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
-    les arguments arg1, arg2, ..., à perlfile.</para>
+      les arguments arg1, arg2, ..., à perlfile.
+    </para>
     <para>result = perl(...) retourne le resultat du script Perl.</para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

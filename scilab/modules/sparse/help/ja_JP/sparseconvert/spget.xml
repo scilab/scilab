@@ -53,12 +53,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>spget</literal> は疎行列の内部形式を
-	標準的な<literal>ij, v</literal> 形式に変換する際に使用されます.</para>
     <para>
-    <literal>sp</literal>の非ゼロエントリは,
-	<literal>ij</literal>のインデックスにより行および列の
-	位置が決定されます.</para>
+      <literal>spget</literal> は疎行列の内部形式を
+      標準的な<literal>ij, v</literal> 形式に変換する際に使用されます.
+    </para>
+    <para>
+      <literal>sp</literal>の非ゼロエントリは,
+      <literal>ij</literal>のインデックスにより行および列の
+      位置が決定されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

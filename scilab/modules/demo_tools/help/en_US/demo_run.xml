@@ -25,11 +25,11 @@
   <refsection>
     <title>Description</title>
     <para>
-		The  function demo_run executes a script in the file 'fil' given in argument.
-		</para>
+      The  function demo_run executes a script in the file 'fil' given in argument.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>
@@ -43,12 +43,6 @@
       <member>
         <link linkend="demo_end">demo_end</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

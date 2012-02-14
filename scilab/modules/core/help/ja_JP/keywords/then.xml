@@ -10,7 +10,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>if</literal>と共に使用されます.</para>
+      <literal>if</literal>と共に使用されます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>s=stdevf(x,fre)
-s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
-s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis>
+      s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
+      s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -38,30 +39,36 @@ s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	この関数はベクトルまたは行列<literal>x</literal>の
-	値の標準偏差を計算します.
-	その各々には,<literal>x</literal>と同じ大きさの
-	整数ベクトルまたは行列<literal>fre</literal>
-	の対応する値により指定された頻度が考慮されます.</para>
+      この関数はベクトルまたは行列<literal>x</literal>の
+      値の標準偏差を計算します.
+      その各々には,<literal>x</literal>と同じ大きさの
+      整数ベクトルまたは行列<literal>fre</literal>
+      の対応する値により指定された頻度が考慮されます.
+    </para>
     <para>
-	あるベクトルまたは行列<literal>x</literal>について, s=stdevf(x,fre) (または
-    <literal>s=stdevf(x,fre,'*')</literal> は,
-	スカラー<literal>s</literal>に
-	<literal>x</literal>の全エントリの標準偏差を返します.
-	各値には,<literal>fre</literal>の対応する値により示された
-	多重度が考慮されます.</para>
-    <para><literal>s=stdevf(x,fre,'r')</literal>   (または等価な,   
-    <literal>s=stdevf(x,fre,1)</literal>) は,
-	1xsize(x,'c')の行ベクトル<literal>s</literal>の各エントリに
-	<literal>x</literal>の各列の標準偏差を返します.
-	各値には,<literal>fre</literal>の対応する値により示された
-	多重度が考慮されます.</para>
-    <para><literal>s=stdevf(x,fre,'c')</literal>    (または等価な,   
-    <literal>s=stdevf(x,fre,2)</literal>)  は,
-	size(x,'c')x1の列ベクトル<literal>s</literal>の各エントリに
-	<literal>x</literal>の各行の標準偏差を返します.
-	各値には,<literal>fre</literal>の対応する値により示された
-	多重度が考慮されます.</para>
+      あるベクトルまたは行列<literal>x</literal>について, s=stdevf(x,fre) (または
+      <literal>s=stdevf(x,fre,'*')</literal> は,
+      スカラー<literal>s</literal>に
+      <literal>x</literal>の全エントリの標準偏差を返します.
+      各値には,<literal>fre</literal>の対応する値により示された
+      多重度が考慮されます.
+    </para>
+    <para>
+      <literal>s=stdevf(x,fre,'r')</literal>   (または等価な,   
+      <literal>s=stdevf(x,fre,1)</literal>) は,
+      1xsize(x,'c')の行ベクトル<literal>s</literal>の各エントリに
+      <literal>x</literal>の各列の標準偏差を返します.
+      各値には,<literal>fre</literal>の対応する値により示された
+      多重度が考慮されます.
+    </para>
+    <para>
+      <literal>s=stdevf(x,fre,'c')</literal>    (または等価な,   
+      <literal>s=stdevf(x,fre,2)</literal>)  は,
+      size(x,'c')x1の列ベクトル<literal>s</literal>の各エントリに
+      <literal>x</literal>の各行の標準偏差を返します.
+      各値には,<literal>fre</literal>の対応する値により示された
+      多重度が考慮されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -74,12 +81,9 @@ m=stdevf(x,fre,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

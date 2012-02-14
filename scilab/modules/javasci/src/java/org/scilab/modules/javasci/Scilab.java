@@ -280,7 +280,6 @@ public class Scilab {
      * <br />
      * </code>
      * @param job the job to execute
-     * @return if the operation is successful
      * @since 5.4.0
      */
     public void execException(String job) throws ScilabErrorException {
@@ -323,7 +322,6 @@ public class Scilab {
      * <br />
      * </code>
      * @param jobs the serie of job to execute
-     * @return if the operation is successful
      * @since 5.4.0
      */
     public void execException(String jobs[]) throws ScilabErrorException {
@@ -347,7 +345,6 @@ public class Scilab {
      * <br />
      * </code>
      * @param scriptFilename the script to execute
-     * @return if the operation is successful
      * @since 5.4.0
      */
     public void execException(File scriptFilename) throws FileNotFoundException, ScilabErrorException {

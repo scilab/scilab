@@ -10,28 +10,38 @@
   <refsection>
     <title>Description</title>
     <para>
-    Right division.  <literal>x=A / b</literal> is the solution of <literal>x*b=A</literal> .</para>
-    <para><literal>b/a = (a' \ b')'</literal> .</para>
-    <para><literal>a ./  b</literal> is the matrix with entries <literal>a(i,j)/ b(i,j)</literal>.
-    If <literal>b</literal> is scalar (1x1 matrix) this operation is the same
-    as <literal> a./b*ones(a)</literal>. (Same convention if <literal>a</literal> is a scalar).</para>
+      Right division.  <literal>x=A / b</literal> is the solution of <literal>x*b=A</literal> .
+    </para>
     <para>
-    Remark that <literal>123./b</literal> is interpreted as <literal>(123.)/b</literal>. In this
-    cases dot is part of the  number not of the operator.</para>
+      <literal>b/a = (a' \ b')'</literal> .
+    </para>
     <para>
-    Backslash stands for left division.</para>
+      <literal>a./  b</literal> is the matrix with entries <literal>a(i,j)/ b(i,j)</literal>.
+      If <literal>b</literal> is scalar (1x1 matrix) this operation is the same
+      as <literal> a./b*ones(a)</literal>. (Same convention if <literal>a</literal> is a scalar).
+    </para>
     <para>
-    System feed back.  <literal>S=G/.K</literal> evaluates <literal>S=G*(eye()+K*G)^(-1)</literal>
-    this operator avoid simplification problem.</para>
+      Remark that <literal>123./b</literal> is interpreted as <literal>(123.)/b</literal>. In this
+      cases dot is part of the  number not of the operator.
+    </para>
     <para>
-    Remark that <literal>G/.5</literal> is interpreted as <literal>G/(.5)</literal>. In such 
-    cases dot is part of the number, not of the operator.</para>
+      Backslash stands for left division.
+    </para>
     <para>
-    Comment <literal>//</literal> comments a line i.e lines which begin by <literal>//</literal> are
-    ignored by the interpreter.</para>
+      System feed back.  <literal>S=G/.K</literal> evaluates <literal>S=G*(eye()+K*G)^(-1)</literal>
+      this operator avoid simplification problem.
+    </para>
+    <para>
+      Remark that <literal>G/.5</literal> is interpreted as <literal>G/(.5)</literal>. In such 
+      cases dot is part of the number, not of the operator.
+    </para>
+    <para>
+      Comment <literal>//</literal> comments a line i.e lines which begin by <literal>//</literal> are
+      ignored by the interpreter.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inv">inv</link>

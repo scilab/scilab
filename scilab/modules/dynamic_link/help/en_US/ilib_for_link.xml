@@ -57,7 +57,6 @@
           </para>
           <para>This parameter is useless since Scilab 5.0.</para>
           <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-          
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -140,15 +139,12 @@
     <para>
       <emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis>
     </para>
-    
     <para>
       On the internal technical level, under GNU/Linux and Mac OS X, the ilib_* function are based on the autotools. First, a configure is executed to detect compilers available. Then, a make is launched with the provided arguments. For more information: <ulink url="http://wiki.scilab.org/Full%20technical%20description%20of%20the%20incremental%20link">Full technical description of the incremental link / dynamic link</ulink>
     </para>
-    
     <para>
       Since version 5.3.2, under GNU/Linux, Scilab detects where the libstdc++ is located (thanks to the command <emphasis role="italic">gcc -print-search-dirs|grep ^install:|awk '{print $2}'</emphasis>). Previously, the dynamic link was using the libstdc++ embedded in Scilab.
     </para>
-    
   </refsection>
   <refsection>
     <title>Examples (C code)</title>
@@ -181,7 +177,6 @@ if norm(c-(a+b)) > %eps then pause,end
 end
  ]]></programlisting>
   </refsection>
-  
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -220,5 +215,4 @@ end
       </revision>
     </revhistory>
   </refsection>
-   
 </refentry>

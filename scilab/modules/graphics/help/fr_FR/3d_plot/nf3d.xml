@@ -18,7 +18,7 @@
         <term>x,y,x,xx,yy,zz  </term>
         <listitem>
           <para>6 matrices réelles
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -26,8 +26,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Fonction utilitaire utilisée pour convertir des facettes codées dans trois matrices x,y,z (format plot3d2) dans un format accepté par plot3d.
-  </para>
+      Fonction utilitaire utilisée pour convertir des facettes codées dans trois matrices x,y,z (format plot3d2) dans un format accepté par plot3d.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -43,7 +43,7 @@ z= sin(u)'*ones(v);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>s=center(x)
-s=center(x,'r') or s=center(x,1)
-s=center(x,'c') or s=center(x,2)</synopsis>
+      s=center(x,'r') or s=center(x,1)
+      s=center(x,'c') or s=center(x,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,26 +39,27 @@ s=center(x,'c') or s=center(x,2)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-     
-    This function  computes <literal>s</literal>, the  centred version of
-    the numerical matrix <literal>x</literal>.
-     
-    For  a  vector  or  a  matrix  <literal>x</literal>,  <literal>s=center(x)</literal>
-    returns in  the <literal>(i,j)</literal> coefficient of  the matrix <literal>s</literal> 
-    the  value <literal>(x(i,j)-xbar)</literal>, where  <literal> xbar</literal> is
-    the mean of the values of the coefficients of <literal>x</literal>.
-     
-    <literal>s=center(x,'r')</literal>      (or,      equivalently,     
-    <literal>s=center(x,1)</literal>) is  the rowwise center  reduction of the
-    values of <literal>x</literal>.  It  returns in the entry <literal> s(i,j)</literal>
-    the  value <literal>(x(i,j)-xbarv(j))(j)</literal>  with <literal>xbarv(j)</literal>
-    the mean of the values of the <literal>j</literal> column.
-     
-    <literal>s=center(x,'c')</literal>      (or,      equivalently,     
-    <literal>s=center(x,2)</literal>)  is the  columnwise center  reduction of
-    the  values  of <literal>x</literal>.   It  returns  in  the entry  
-    <literal>s(i,j)</literal>   the    value   <literal>(x(i,j)-xbarh(i)))</literal>   with
-    <literal>xbarh(i)</literal> the mean of the values of the <literal>i</literal> row.</para>
+      
+      This function  computes <literal>s</literal>, the  centred version of
+      the numerical matrix <literal>x</literal>.
+      
+      For  a  vector  or  a  matrix  <literal>x</literal>,  <literal>s=center(x)</literal>
+      returns in  the <literal>(i,j)</literal> coefficient of  the matrix <literal>s</literal> 
+      the  value <literal>(x(i,j)-xbar)</literal>, where  <literal> xbar</literal> is
+      the mean of the values of the coefficients of <literal>x</literal>.
+      
+      <literal>s=center(x,'r')</literal>      (or,      equivalently,     
+      <literal>s=center(x,1)</literal>) is  the rowwise center  reduction of the
+      values of <literal>x</literal>.  It  returns in the entry <literal> s(i,j)</literal>
+      the  value <literal>(x(i,j)-xbarv(j))(j)</literal>  with <literal>xbarv(j)</literal>
+      the mean of the values of the <literal>j</literal> column.
+      
+      <literal>s=center(x,'c')</literal>      (or,      equivalently,     
+      <literal>s=center(x,2)</literal>)  is the  columnwise center  reduction of
+      the  values  of <literal>x</literal>.   It  returns  in  the entry  
+      <literal>s(i,j)</literal>   the    value   <literal>(x(i,j)-xbarh(i)))</literal>   with
+      <literal>xbarh(i)</literal> the mean of the values of the <literal>i</literal> row.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,15 +72,11 @@ s=center(x,'c')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="wcenter">wcenter</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

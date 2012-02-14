@@ -43,8 +43,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    squared magnitude response of a Butterworth filter
-    <literal>omegac</literal> = cutoff frequency ; <literal>sample</literal> = sample of frequencies</para>
+      squared magnitude response of a Butterworth filter
+      <literal>omegac</literal> = cutoff frequency ; <literal>sample</literal> = sample of frequencies
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,9 +55,5 @@ h=buttmag(13,300,1:1000);
 mag=20*log(h)'/log(10);
 plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

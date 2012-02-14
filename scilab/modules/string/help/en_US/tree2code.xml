@@ -62,8 +62,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given a loaded Scilab function "tree" (returned by macr2tree), tree2code allows to
-    re-generate the code.</para>
+      Given a loaded Scilab function "tree" (returned by macr2tree), tree2code allows to
+      re-generate the code.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -74,17 +75,11 @@ write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="macr2tree">macr2tree</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

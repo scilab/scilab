@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>get_contents_infer</refname>
     <refpurpose>Search for information
-  in a "M2SCi tlist" contents</refpurpose>
+      in a "M2SCi tlist" contents
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -35,7 +36,9 @@
       <varlistentry>
         <term>index</term>
         <listitem>
-          <para>an index similar to indexes returned by <literal>macr2tree</literal>.</para>
+          <para>
+            an index similar to indexes returned by <literal>macr2tree</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,10 +58,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    This functions searches for inference information of a given
-    index in the contents of a Cell or a Struct taken in account the
-    <literal>*</literal>. If no information has been found, returned values
-    are infer=infer() and pos=0.
+      This functions searches for inference information of a given
+      index in the contents of a Cell or a Struct taken in account the
+      <literal>*</literal>. If no information has been found, returned values
+      are infer=infer() and pos=0.
     </para>
   </refsection>
   <refsection role="see also">
@@ -70,12 +73,6 @@
       <member>
         <link linkend="Contents">Contents</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

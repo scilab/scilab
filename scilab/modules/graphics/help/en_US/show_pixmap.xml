@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>show_pixmap</refname>
     <refpurpose>send the pixmap buffer to the
-  screen</refpurpose>
+      screen
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -25,14 +26,19 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
-    the drawings are send to a pixmap memory instead of the screen
-    display.</para>
-    <para>The <literal>show_pixmap()</literal> instruction send the pixmap to the
-    screen.</para>
+    <para>
+      If a graphic window <literal>pixmap</literal> property is <literal>"on"</literal>
+      the drawings are send to a pixmap memory instead of the screen
+      display.
+    </para>
+    <para>
+      The <literal>show_pixmap()</literal> instruction send the pixmap to the
+      screen.
+    </para>
     <para>The pixmap mode can be used to obtain smooth animations. This property
-    can be found among the figure entity fields (see
-    <link linkend="figure_properties">figure_properties</link>).</para>
+      can be found among the figure entity fields (see
+      <link linkend="figure_properties">figure_properties</link>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +58,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure_properties">figure_properties</link>
@@ -61,9 +67,5 @@ end
         <link linkend="clear_pixmap">clear_pixmap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

@@ -34,7 +34,9 @@
       <varlistentry>
         <term>Des</term>
         <listitem>
-          <para>記述子システム (<literal>list('des',A,B,C,D,E)</literal>)</para>
+          <para>
+            記述子システム (<literal>list('des',A,B,C,D,E)</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,13 +44,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数: システム行列</para>
-    <programlisting role = ""><![CDATA[ 
+      ユーティリティ関数: システム行列
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    を記述子システム <literal>Des=list('des',A,B,C,D,E)</literal>)に変換します.</para>
+      を記述子システム <literal>Des=list('des',A,B,C,D,E)</literal>)に変換します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

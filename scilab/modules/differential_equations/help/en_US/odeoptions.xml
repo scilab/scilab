@@ -10,36 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-  
   <refnamediv>
     <refname>odeoptions</refname>
     <refpurpose>set options for ode solvers</refpurpose>
   </refnamediv>
-  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    
     <synopsis>odeoptions()</synopsis>
   </refsynopsisdiv>
-  
   <refsection>
     <title>Description</title>
-    
     <para>This function interactively displays a command which should be
       executed to set various options of ode solvers. The context variable
       <literal>%ODEOPTIONS</literal> sets the options.
     </para>
-    
     <para>
       CAUTION: the <literal>ode</literal> function checks if this variable
       exists and in this case it uses it. For using default values you should
@@ -47,7 +35,6 @@
       create this variable. To create it you must execute the command line
       displayed by <literal>odeoptions</literal>.
     </para>
-    
     <para>
       The variable <literal>%ODEOPTIONS</literal> is a vector with the
       following elements:
@@ -62,12 +49,10 @@
         <listitem>
           <literal>itask</literal> set the integration mode:
           <itemizedlist>
-            <listitem>1 : normal computation at specified times </listitem>
-            <listitem>2 : computation at mesh points (given in first row of output of
+            <listitem>1: normal computation at specified times </listitem><listitem>2 : computation at mesh points (given in first row of output of
               <literal>ode</literal>)
             </listitem>
-            <listitem>3 : one step at one internal mesh point and return</listitem>
-            <listitem>
+            <listitem>3 : one step at one internal mesh point and return</listitem><listitem>
               4 : normal computation without overshooting <literal>tcrit</literal>
             </listitem>
             <listitem>
@@ -91,13 +76,11 @@
         <listitem>
           <literal>jactype</literal> set jacobian properties:
           <itemizedlist>
-            <listitem>0 : functional iterations, no jacobian used
+            <listitem>0: functional iterations, no jacobian used
               (<literal>"adams"</literal> or <literal>"stiff"</literal>
               only) 
             </listitem>
-            <listitem>1 : user-supplied full jacobian </listitem>
-            <listitem>2 : internally generated full jacobian </listitem>
-            <listitem>3: internally generated diagonal jacobian
+            <listitem>1 : user-supplied full jacobian </listitem><listitem>2 : internally generated full jacobian </listitem><listitem>3: internally generated diagonal jacobian
               (<literal>"adams"</literal> or <literal>"stiff"</literal>
               only) 
             </listitem>
@@ -122,13 +105,12 @@
           <literal>ixpr</literal> print level, 0 or 1
         </listitem>
         <listitem>
-           <literal>ml</literal>,<literal>mu</literal> <para> If
+          <literal>ml</literal>,<literal>mu</literal><para> If
             <literal>jactype</literal> equals 4 or 5, <literal>ml</literal>
             and <literal>mu</literal> are the lower and upper
             half-bandwidths of the banded jacobian: the band is the i,j's
             with i-ml &lt;= j &lt;= ny-1. 
           </para>
-          
           <para>
             If <literal>jactype</literal> equals 4 the jacobian
             function must return a matrix J which is ml+mu+1 x ny (where
@@ -138,7 +120,6 @@
             followed by df1/dx2, df2/dx2, etc
           </para>
         </listitem>
-        
       </itemizedlist>
     </para>
   </refsection>
@@ -161,7 +142,6 @@ clear %ODEOPTIONS
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
-    
     <simplelist type="inline">
       <member>
         <link linkend="ode">ode</link>

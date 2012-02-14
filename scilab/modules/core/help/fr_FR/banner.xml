@@ -21,8 +21,4 @@
 clc();banner()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

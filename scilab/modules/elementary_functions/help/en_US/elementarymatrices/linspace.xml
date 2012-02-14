@@ -78,7 +78,8 @@ linspace(1+%i,2+2*%i,10)
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>          <itemizedlist>
+        <revremark>
+          <itemizedlist>
             <listitem>The linspace function accepts column vectors as input argument for the two first input arguments. Thanks to Guillaume AZEMA for the implementation.
             </listitem>
             <listitem>The third input argument (n) must be an integer value.

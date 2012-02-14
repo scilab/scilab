@@ -13,13 +13,10 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>xpause</literal> interrompt Scilab pendant un temps donné en microsecondes
-    spécifié par l'argument. Le temps de pause peut être plus long que prévu
-    à cause de l'activité du système, ou bien tout simplement à cause du temps passé pendant l'appel lui même.
-  </para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xpause</literal> interrompt Scilab pendant un temps donné en microsecondes
+      spécifié par l'argument. Le temps de pause peut être plus long que prévu
+      à cause de l'activité du système, ou bien tout simplement à cause du temps passé pendant l'appel lui même.
+    </para>
   </refsection>
 </refentry>

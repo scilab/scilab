@@ -47,10 +47,11 @@
         <term>s</term>
         <listitem>
           <para>
-	sizsam  x numsampの行列. 
-	各(列)が列ベクトルXから置換をせずに
-	siznam (size(X,'*'))回の抽出を行った
-         numsamp  組のランダム標本を有します.</para>
+            sizsam  x numsampの行列. 
+            各(列)が列ベクトルXから置換をせずに
+            siznam (size(X,'*'))回の抽出を行った
+            numsamp  組のランダム標本を有します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,7 +59,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	列ベクトルから置換を行わずに標本を出力します.</para>
+      列ベクトルから置換を行わずに標本を出力します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -77,11 +79,5 @@ s=samwr(4,12,a)
         <link linkend="samplef">samplef</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Carlos Klimann
-  </para>
   </refsection>
 </refentry>

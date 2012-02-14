@@ -25,10 +25,10 @@
   <refsection>
     <title>Description</title>
     <para>
-			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
-			compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
-			compilateur.
-		</para>
+      La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
+      compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+      compilateur.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -50,17 +50,11 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="findmsvccompiler">findmsvccompiler</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

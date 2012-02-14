@@ -17,7 +17,9 @@
       <varlistentry>
         <term>ft</term>
         <listitem>
-          <para>フィルタの型.ただし,<literal>ft</literal>の値には以下の値を指定できます</para>
+          <para>
+            フィルタの型.ただし,<literal>ft</literal>の値には以下の値を指定できます
+          </para>
           <variablelist>
             <varlistentry>
               <term>"lp"  </term>
@@ -75,17 +77,14 @@
   <refsection>
     <title>説明</title>
     <para>
-	FIRローパス, ハイパス, バンドパス, またはストップバンドフィルタの
-	<literal>n</literal>個の係数を取得します.
-	ローパスおよびハイパスフィルタの場合,<literal>fl</literal>に
-	カットオフ周波数を1つ指定する必要があります.
-	バンドパスおよびストップバンドフィルタの場合,2つのカットオフ周波数を
-	指定する必要があり,
-	低域側を<literal>fl</literal>,高域側を<literal>fh</literal>
-	に指定します.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      FIRローパス, ハイパス, バンドパス, またはストップバンドフィルタの
+      <literal>n</literal>個の係数を取得します.
+      ローパスおよびハイパスフィルタの場合,<literal>fl</literal>に
+      カットオフ周波数を1つ指定する必要があります.
+      バンドパスおよびストップバンドフィルタの場合,2つのカットオフ周波数を
+      指定する必要があり,
+      低域側を<literal>fl</literal>,高域側を<literal>fh</literal>
+      に指定します.
+    </para>
   </refsection>
 </refentry>

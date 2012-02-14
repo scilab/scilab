@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>head_comments(name)
-head_comments(name,%paths)</synopsis>
+      head_comments(name,%paths)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -36,29 +37,30 @@ head_comments(name,%paths)</synopsis>
         <term>%paths</term>
         <listitem>
           <para>文字列ベクトル, sci-ファイルを探す場所のパス
-	</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>comments(name)</literal> は,
-	(Matlabヘルプのように)
-	関数ヘッダのコメントを表示します.
-	コメントは関連する sci-ファイルから読み込まれます.
-	<literal>name</literal>がライブラリ中の関数の場合,
-	sci-ファイルはライブラリパスで指定したパスとなります
-	(<literal>lib</literal>参照).
-	<literal>name</literal>がライブラリ中ではない関数の場合,
-	変数<literal>%paths</literal>で指定したディレクトリの中で
-	<literal>name.sci</literal>という名前のファイルが
-	探されます.
-		</para>
     <para>
-	Scilabのほとんどの定義済みの関数はもはやヘッダコメントを
-	有していません.
-		</para>
+      <literal>comments(name)</literal> は,
+      (Matlabヘルプのように)
+      関数ヘッダのコメントを表示します.
+      コメントは関連する sci-ファイルから読み込まれます.
+      <literal>name</literal>がライブラリ中の関数の場合,
+      sci-ファイルはライブラリパスで指定したパスとなります
+      (<literal>lib</literal>参照).
+      <literal>name</literal>がライブラリ中ではない関数の場合,
+      変数<literal>%paths</literal>で指定したディレクトリの中で
+      <literal>name.sci</literal>という名前のファイルが
+      探されます.
+    </para>
+    <para>
+      Scilabのほとんどの定義済みの関数はもはやヘッダコメントを
+      有していません.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -73,11 +75,5 @@ head_comments sinc
         <link linkend="help">help</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-		Serge Steer, INRIA
-	</para>
   </refsection>
 </refentry>

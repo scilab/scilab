@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[r]=strange(x)
-[r]=strange(x,'r') (or, equivalently, [r]=strange(x,1))
-[r]=strange(x,'c') (or, equivalently, [r]=strange(x,2))</synopsis>
+      [r]=strange(x,'r') (or, equivalently, [r]=strange(x,1))
+      [r]=strange(x,'c') (or, equivalently, [r]=strange(x,2))
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,23 +39,23 @@
   <refsection>
     <title>Description</title>
     <para>
-    The  range  is the  distance   between  the largest  and
-    smaller value,   [r]=strange(x) computes   the  range of
-    vector or matrix x.</para>
+      The  range  is the  distance   between  the largest  and
+      smaller value,   [r]=strange(x) computes   the  range of
+      vector or matrix x.
+    </para>
     <para>
-    [r]=strange(x,'r')  (or   equivalently [r]=strange(x,1))
-    give a row vector with the range of each column.</para>
+      [r]=strange(x,'r')  (or   equivalently [r]=strange(x,1))
+      give a row vector with the range of each column.
+    </para>
     <para>
-    [r]=strange(x,'c') (or  equivalently   [r]=strange(x,2))
-    give a column vector with the range of each row.</para>
+      [r]=strange(x,'c') (or  equivalently   [r]=strange(x,2))
+      give a column vector with the range of each row.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Carlos klimann</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

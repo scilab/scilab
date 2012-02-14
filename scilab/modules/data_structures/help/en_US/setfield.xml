@@ -48,9 +48,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is an equivalent of <literal>l(i)=x</literal> syntax for field
-    extraction with the only difference that it also applies to
-    <literal>mlist</literal> objects.</para>
+      This function is an equivalent of <literal>l(i)=x</literal> syntax for field
+      extraction with the only difference that it also applies to
+      <literal>mlist</literal> objects.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -65,7 +66,7 @@ setfield(3,1:8,a);a // set the field value to 1:8
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="insertion">insertion</link>

@@ -63,13 +63,17 @@
             <varlistentry>
               <term>*  </term>
               <listitem>
-                <para><literal>ISTAIR(i) = + j</literal>  if the boundary element <literal>E(i,j)</literal> is a   corner point.</para>
+                <para>
+                  <literal>ISTAIR(i) = + j</literal>  if the boundary element <literal>E(i,j)</literal> is a   corner point.
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>*  </term>
               <listitem>
-                <para><literal>ISTAIR(i) = - j</literal>   if the boundary element <literal>E(i,j)</literal> is not a corner point.</para>
+                <para>
+                  <literal>ISTAIR(i) = - j</literal>   if the boundary element <literal>E(i,j)</literal> is not a corner point.
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -89,10 +93,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given an <literal>m x n</literal> matrix <literal>X</literal> (not necessarily regular) the function 
-    ereduc computes a unitary transformed matrix <literal>E=Q*X*Z</literal> which is in 
-    column echelon form (trapezoidal form). Furthermore the rank of
-    matrix <literal>X</literal> is determined.</para>
+      Given an <literal>m x n</literal> matrix <literal>X</literal> (not necessarily regular) the function 
+      ereduc computes a unitary transformed matrix <literal>E=Q*X*Z</literal> which is in 
+      column echelon form (trapezoidal form). Furthermore the rank of
+      matrix <literal>X</literal> is determined.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -102,15 +107,11 @@ X=[1 2 3;4 5 6]
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fstair">fstair</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
   </refsection>
 </refentry>

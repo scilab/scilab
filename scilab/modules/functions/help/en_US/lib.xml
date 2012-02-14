@@ -37,31 +37,35 @@
           <para>library variable returned by 'lib'.</para>
         </listitem>
       </varlistentry>
-      
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lib-dir</literal> is a character string defining a directory that contains
-    compiled Scilab function (<literal>.bin</literal>) files.</para>
     <para>
-    In addition to these files <literal>lib-dir</literal> must have a file called
-    <literal>names</literal>, that contains the names of the functions defined in
-    <literal>lib-dir</literal>.  On success, all functions in <literal>lib-dir</literal> are
-    available from within Scilab.  They are loaded on demand when called
-    for the first time.</para>
+      <literal>lib-dir</literal> is a character string defining a directory that contains
+      compiled Scilab function (<literal>.bin</literal>) files.
+    </para>
     <para>
-    Binary files can be created from within Scilab with the command
-    <literal>save</literal>.
-    A library variable
-    usually is saved for later loading, either on-line or from the
-    user-specific startup file (see startup).</para>
+      In addition to these files <literal>lib-dir</literal> must have a file called
+      <literal>names</literal>, that contains the names of the functions defined in
+      <literal>lib-dir</literal>.  On success, all functions in <literal>lib-dir</literal> are
+      available from within Scilab.  They are loaded on demand when called
+      for the first time.
+    </para>
+    <para>
+      Binary files can be created from within Scilab with the command
+      <literal>save</literal>.
+      A library variable
+      usually is saved for later loading, either on-line or from the
+      user-specific startup file (see startup).
+    </para>
     <para>value returned by 'lib' must be insert in a variable 'namelib' to access to macro functions of this library.</para>
   </refsection>
   <refsection>
     <title>Restrictions</title>
     <para>
-    Scilab tacitly assumes that each xxxx.bin file defines a  variable named <literal>xxxx</literal>.</para>
+      Scilab tacitly assumes that each xxxx.bin file defines a  variable named <literal>xxxx</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -105,7 +109,7 @@ isdef('myplus')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="library">library</link>
@@ -128,7 +132,6 @@ isdef('myplus')
       <member>
         <link linkend="libraryinfo">libraryinfo</link>
       </member>
-     
     </simplelist>
   </refsection>
 </refentry>

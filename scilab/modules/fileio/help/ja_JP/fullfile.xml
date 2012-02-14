@@ -30,8 +30,9 @@
         <term>varargin</term>
         <listitem>
           <para>
-	完全なファイル名を構築するために使用される全てのディレクトリとファイル名
-	(少なくとも一つのディレクトリおよびファイル名)</para>
+            完全なファイル名を構築するために使用される全てのディレクトリとファイル名
+            (少なくとも一つのディレクトリおよびファイル名)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,11 +45,13 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>f = fullfile(varargin)</literal> は,
-	実行されるプラットフォームを考慮した
-	完全なファイル名を構築します.
-	この際,ディレクトリがディレクトリセパレータで
-	開始または終了するケースを処理します.</para>
+    <para>
+      <literal>f= fullfile(varargin)</literal> は,
+      実行されるプラットフォームを考慮した
+      完全なファイル名を構築します.
+      この際,ディレクトリがディレクトリセパレータで
+      開始または終了するケースを処理します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,12 +68,6 @@ r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"])]
       <member>
         <link linkend="fileparts">fileparts</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

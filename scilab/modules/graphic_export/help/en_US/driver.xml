@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>driver(driver_name)
-current_driver=driver()</synopsis>
+      current_driver=driver()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -37,10 +38,10 @@ current_driver=driver()</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    This function is used to select a graphics driver, or with no arguments 
-    to get the current graphics driver name.
-    The selected driver can be one of the followings:
-  </para>
+      This function is used to select a graphics driver, or with no arguments 
+      to get the current graphics driver name.
+      The selected driver can be one of the followings:
+    </para>
     <variablelist>
       <varlistentry>
         <term>"X11"</term>
@@ -57,7 +58,9 @@ current_driver=driver()</synopsis>
       <varlistentry>
         <term>"Rec"</term>
         <listitem>
-          <para>output to the screen of the computer. Same as <literal>X11</literal>.</para>
+          <para>
+            output to the screen of the computer. Same as <literal>X11</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,10 +86,12 @@ current_driver=driver()</synopsis>
   <refsection>
     <title>Remark</title>
     <para>
-    To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)</para>
+      To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)
+    </para>
     <para>
-    To redirect the graphic output to a GIF file (which will be written in the current directory), you can use the following example:</para>
-    <programlisting role = ""><![CDATA[ 
+      To redirect the graphic output to a GIF file (which will be written in the current directory), you can use the following example:
+    </para>
+    <programlisting role=""><![CDATA[ 
 driver('GIF');
 xinit('mygiffile.gif');
 plot3d();
@@ -94,13 +99,10 @@ xend();
 driver('X11');
  ]]></programlisting>
     <para>
-    For example if one has generated a sequence of Gif files named <literal>img*.gif</literal> it is possible to build an animated Gif file (named anim.gif) by</para>
-    <programlisting role = ""><![CDATA[ 
+      For example if one has generated a sequence of Gif files named <literal>img*.gif</literal> it is possible to build an animated Gif file (named anim.gif) by
+    </para>
+    <programlisting role=""><![CDATA[ 
 convert -delay 10  img*.gif anim.gif  
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

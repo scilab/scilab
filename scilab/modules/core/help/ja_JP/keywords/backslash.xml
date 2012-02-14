@@ -14,31 +14,34 @@
   <refsection>
     <title>説明</title>
     <para>
-			バックスラッシュは左行列除算を定義します. 
-			<literal>x=A\b</literal> は <literal>A*x=b</literal>の解です.</para>
+      バックスラッシュは左行列除算を定義します. 
+      <literal>x=A\b</literal> は <literal>A*x=b</literal>の解です.
+    </para>
     <para>
-			<literal>A</literal> が正方で非特異の場合,
-	 <literal>x=A\b</literal> (唯一の解) は <literal>x=inv(A)*b</literal> 
-	と等価です(しかし,計算コストははるかに小さくなります).
-		</para>
+      <literal>A</literal> が正方で非特異の場合,
+      <literal>x=A\b</literal> (唯一の解) は <literal>x=inv(A)*b</literal> 
+      と等価です(しかし,計算コストははるかに小さくなります).
+    </para>
     <para>
-			<literal>A</literal> が正方でない場合, <literal>x</literal> は最小二乗解となります.
-			すなわち, <literal>norm(A*x-b)</literal> は最小値 (ユークリッドノルム)となります. <literal>A</literal> が列フルランクの場合,最小二乗解, <literal>x=A\b</literal>, は
-		唯一の解 (<literal>norm(A*x-b)</literal>を最小化する唯一の
-		<literal>x</literal>が存在)となります.
-	<literal>A</literal> が列フルランクでない場合, 最小二乗解は唯一ではなくなり,
-	<literal>x=A\b</literal>は一般に最小ノルム解ではなくなります
-	(最小ノルム解は <literal>x=pinv(A)*b</literal>です).
-		</para>
-    <para><literal>A.\B</literal>  は<literal>(i,j)</literal> エントリが
-	 <literal>A(i,j)\B(i,j)</literal>となる行列となります.
-	<literal>A.\B</literal> は
-			<literal>A*ones(B).\B</literal> (または <literal>A.\(B*ones(A))</literal>
-	と等価になります.
-		</para>
-    <para><literal>A\.B</literal>  は定義されていない演算子です.
-	この演算子は, * または /.のように新しい演算子を定義する際に使用できます(オーバーロード参照).
-		</para>
+      <literal>A</literal> が正方でない場合, <literal>x</literal> は最小二乗解となります.
+      すなわち, <literal>norm(A*x-b)</literal> は最小値 (ユークリッドノルム)となります. <literal>A</literal> が列フルランクの場合,最小二乗解, <literal>x=A\b</literal>, は
+      唯一の解 (<literal>norm(A*x-b)</literal>を最小化する唯一の
+      <literal>x</literal>が存在)となります.
+      <literal>A</literal> が列フルランクでない場合, 最小二乗解は唯一ではなくなり,
+      <literal>x=A\b</literal>は一般に最小ノルム解ではなくなります
+      (最小ノルム解は <literal>x=pinv(A)*b</literal>です).
+    </para>
+    <para>
+      <literal>A.\B</literal>  は<literal>(i,j)</literal> エントリが
+      <literal>A(i,j)\B(i,j)</literal>となる行列となります.
+      <literal>A.\B</literal> は
+      <literal>A*ones(B).\B</literal> (または <literal>A.\(B*ones(A))</literal>
+      と等価になります.
+    </para>
+    <para>
+      <literal>A\.B</literal>  は定義されていない演算子です.
+      この演算子は, * または /.のように新しい演算子を定義する際に使用できます(オーバーロード参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

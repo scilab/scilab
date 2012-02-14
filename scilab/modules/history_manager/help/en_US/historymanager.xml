@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>state1=historymanager(state2)
-state1=historymanager()</synopsis>
+      state1=historymanager()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -59,7 +60,7 @@ historymanager(backupstate)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getscilabmode">getscilabmode</link>
@@ -67,7 +68,6 @@ historymanager(backupstate)
       <member>
         <link linkend="call_scilab">call_scilab</link>
       </member>
-      
     </simplelist>
-  </refsection>  
+  </refsection>
 </refentry>

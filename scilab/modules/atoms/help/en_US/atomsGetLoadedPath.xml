@@ -44,10 +44,10 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-                    Mandatory
-                  </td>
+                Mandatory
+              </td>
               <td>
-                  </td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -58,12 +58,12 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-                      Optional
-                    </td>
+                Optional
+              </td>
               <td>
-                      If this field is empty or is not present,
-                      the most recent version is used
-                    </td>
+                If this field is empty or is not present,
+                the most recent version is used
+              </td>
             </tr>
             <!-- Section -->
             <tr>
@@ -74,12 +74,12 @@
                 <emphasis role="strong">Section</emphasis>
               </td>
               <td>
-                      Optional
-                    </td>
+                Optional
+              </td>
               <td>
-                      If this field is empty or is not present,
-                      "allusers" is used
-                    </td>
+                If this field is empty or is not present,
+                "allusers" is used
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -93,7 +93,8 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsGetLoadedPath</literal> returns the path of the module given
+    <para>
+      <literal>atomsGetLoadedPath</literal> returns the path of the module given
     </para>
   </refsection>
   <!-- ===================================================================== -->
@@ -132,10 +133,4 @@ atomsRemove("toolbox_5");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

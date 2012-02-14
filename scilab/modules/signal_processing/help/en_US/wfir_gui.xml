@@ -18,7 +18,7 @@
         <term>ftype</term>
         <listitem>
           <para>
-           a string: the selected filter type.
+            a string: the selected filter type.
           </para>
         </listitem>
       </varlistentry>
@@ -59,10 +59,10 @@
   <refsection>
     <title>Description</title>
     <para>
-         This function proposes a graphical user interface to allow user
-         interactively select the design parameteres of windowed
-         finite impluse response filters (see <link linkend="wfir">wfir</link>). It is called by
-         <literal>wfir</literal> when no input arguments are given.
+      This function proposes a graphical user interface to allow user
+      interactively select the design parameteres of windowed
+      finite impluse response filters (see <link linkend="wfir">wfir</link>). It is called by
+      <literal>wfir</literal> when no input arguments are given.
     </para>
     <para>
       <inlinemediaobject>
@@ -93,16 +93,10 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Used Functions</title>
     <para>
-    Based on <link linkend="uicontrol">uicontrol</link> functions.
-  </para>
+      Based on <link linkend="uicontrol">uicontrol</link> functions.
+    </para>
   </refsection>
   <refsection>
     <title>History</title>

@@ -23,7 +23,9 @@
       <varlistentry>
         <term>m</term>
         <listitem>
-          <para>cztはz平面の<literal>m</literal> 個の点で評価されます</para>
+          <para>
+            cztはz平面の<literal>m</literal> 個の点で評価されます
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,10 +63,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>k=0,1,...,m-1</literal>として
-	点<literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal>における
-	z平面の螺旋上でz変換を計算するチャープz変換アルゴリズム.
-	</para>
+      <literal>k=0,1,...,m-1</literal>として
+      点<literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal>における
+      z平面の螺旋上でz変換を計算するチャープz変換アルゴリズム.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -88,9 +90,5 @@ zr=real(z);zi=imag(z);
 plot2d(zr',zi',[5],"000")
 xsetech(ffr,bds); //コンテキストを回復
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. Bunks</para>
   </refsection>
 </refentry>

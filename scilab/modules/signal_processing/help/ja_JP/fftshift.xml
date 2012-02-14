@@ -37,24 +37,28 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>x</literal>がFFT計算の結果の場合,
-	<literal>y= fftshift(x)</literal> または <literal>y= fftshift(x,"all")</literal>
-	は,扱いが容易な形式である,周波数0要素をよりスペクトルの中心に移動します.
-	</para>
+      <literal>x</literal>がFFT計算の結果の場合,
+      <literal>y= fftshift(x)</literal> または <literal>y= fftshift(x,"all")</literal>
+      は,扱いが容易な形式である,周波数0要素をよりスペクトルの中心に移動します.
+    </para>
     <para>
-    <literal>x</literal> が大きさnのベクトルの場合,y はiベクトル
-	 <literal>x([n/2+1:n,1:n/2])</literal>となります</para>
+      <literal>x</literal> が大きさnのベクトルの場合,y はiベクトル
+      <literal>x([n/2+1:n,1:n/2])</literal>となります
+    </para>
     <para>
-    <literal>x</literal>が  <literal>m</literal> 行 <literal>n</literal> 列行列の場合,
-	 <literal>y</literal> は行列
-    <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>となります.</para>
-    <programlisting role = ""><![CDATA[ 
+      <literal>x</literal>が  <literal>m</literal> 行 <literal>n</literal> 列行列の場合,
+      <literal>y</literal> は行列
+      <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>となります.
+    </para>
+    <programlisting role=""><![CDATA[ 
   [x11 x12]                  [x22 x21]
 x=[       ]        gives   y=[       ]
   [x21 x22]                  [x12 x11]
  ]]></programlisting>
-    <para><literal>y= fftshift(x,n)</literal> は<literal>n</literal>番目の次元
-	のみについて配置換えを行ないます.</para>
+    <para>
+      <literal>y= fftshift(x,n)</literal> は<literal>n</literal>番目の次元
+      のみについて配置換えを行ないます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

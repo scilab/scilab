@@ -36,12 +36,14 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>x</literal> が論理値行列の場合,
-    <literal>bool2s(x)</literal> は"true"値を1,	"false"値を0で置換した
-	行列を返します.</para>
+      <literal>x</literal> が論理値行列の場合,
+      <literal>bool2s(x)</literal> は"true"値を1,	"false"値を0で置換した
+      行列を返します.
+    </para>
     <para>
-    <literal>x</literal> が "標準" 行列の場合,
-    <literal>bool2s(x)</literal> は非ゼロ値を 1 に置換した行列を返します.</para>
+      <literal>x</literal> が "標準" 行列の場合,
+      <literal>bool2s(x)</literal> は非ゼロ値を 1 に置換した行列を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

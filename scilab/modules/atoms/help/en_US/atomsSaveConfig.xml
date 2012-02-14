@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsSaveConfig([force])
-	</synopsis>
+      atomsSaveConfig([force])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -34,9 +34,9 @@
         <term>force</term>
         <listitem>
           <para>
-	    <literal>force</literal> is a boolean. If set to %T (True), previously existing config.bak file
-		in SCIHOME/.atoms will be erased. Default value is %F (False);
-	  </para>
+            <literal>force</literal> is a boolean. If set to %T (True), previously existing config.bak file
+            in SCIHOME/.atoms will be erased. Default value is %F (False);
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -72,13 +72,6 @@ ls(atomsPath("system","user"));
   <!-- Authors -->
   <!-- ===================================================================== -->
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
     <title>History</title>
     <revhistory>
       <revision>
@@ -86,5 +79,5 @@ ls(atomsPath("system","user"));
         <revdescription>Function added</revdescription>
       </revision>
     </revhistory>
-  </refsection>  
+  </refsection>
 </refentry>

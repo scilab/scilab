@@ -49,9 +49,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    Square magnitude response of a type 2 Chebyshev filter.</para>
-    <para><literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of 
-    frequencies where the square magnitude <literal>h2</literal> is desired.</para>
+      Square magnitude response of a type 2 Chebyshev filter.
+    </para>
+    <para>
+      <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of 
+      frequencies where the square magnitude <literal>h2</literal> is desired.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +74,7 @@ plot2d(sample',attenuation*ones(sample)',[5],"000")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cheb1mag">cheb1mag</link>

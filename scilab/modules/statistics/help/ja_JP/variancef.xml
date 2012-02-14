@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>s=variancef(x,fre)
-s=variancef(x,fre,'r') or s=variancef(x,fre,1)
-s=variancef(x,fre,'c') or s=variancef(x,fre,2)</synopsis>
+      s=variancef(x,fre,'r') or s=variancef(x,fre,1)
+      s=variancef(x,fre,'c') or s=variancef(x,fre,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -38,29 +39,35 @@ s=variancef(x,fre,'c') or s=variancef(x,fre,2)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	この関数はベクトルまたは行列<literal>x</literal>の値の分散を計算します.
-	これらの分散の各々は,
-	<literal>x</literal>と同じ大きさの整数ベクトルまたは行列
-	<literal>fre</literal>の対応する値により示された頻度に基づき計算されます.</para>
+      この関数はベクトルまたは行列<literal>x</literal>の値の分散を計算します.
+      これらの分散の各々は,
+      <literal>x</literal>と同じ大きさの整数ベクトルまたは行列
+      <literal>fre</literal>の対応する値により示された頻度に基づき計算されます.
+    </para>
     <para>
-	あるベクトルまたは行列<literal>x</literal>について, 
-	<literal>s=variancef(x,fre)</literal> (または
-    <literal>s=variancef(x,fre,'*')</literal>)  は,スカラー<literal>s</literal>に
-	<literal>x</literal>の全エントリの分散を返します.
-	その各値には,<literal>fre</literal>の対応する値により示された多重度が
-	考慮されます.</para>
-    <para><literal>s=variancef(x,fre,'r')</literal>(または等価な,
-    <literal>s=variancef(x,fre,1)</literal>) は
-	1xsize(x,'c')の行ベクトル<literal>s</literal>の各エントリに
-	<literal>x</literal>の各列の分散を返します.
-	各値には<literal>fre</literal>の対応する値により示された多重度
-	が考慮されます.</para>
-    <para><literal>s=variancef(x,fre,'c')</literal>(または等価な,
-    <literal>s=variancef(x,fre,2)</literal>)  は,
-	size(x,'c') x1の列ベクトル<literal>s</literal>の各エントリに
-	<literal>x</literal>の各行の分散を返します.
-	各値には<literal>fre</literal>の対応する値により示された多重度
-	が考慮されます.</para>
+      あるベクトルまたは行列<literal>x</literal>について, 
+      <literal>s=variancef(x,fre)</literal> (または
+      <literal>s=variancef(x,fre,'*')</literal>)  は,スカラー<literal>s</literal>に
+      <literal>x</literal>の全エントリの分散を返します.
+      その各値には,<literal>fre</literal>の対応する値により示された多重度が
+      考慮されます.
+    </para>
+    <para>
+      <literal>s=variancef(x,fre,'r')</literal>(または等価な,
+      <literal>s=variancef(x,fre,1)</literal>) は
+      1xsize(x,'c')の行ベクトル<literal>s</literal>の各エントリに
+      <literal>x</literal>の各列の分散を返します.
+      各値には<literal>fre</literal>の対応する値により示された多重度
+      が考慮されます.
+    </para>
+    <para>
+      <literal>s=variancef(x,fre,'c')</literal>(または等価な,
+      <literal>s=variancef(x,fre,2)</literal>)  は,
+      size(x,'c') x1の列ベクトル<literal>s</literal>の各エントリに
+      <literal>x</literal>の各行の分散を返します.
+      各値には<literal>fre</literal>の対応する値により示された多重度
+      が考慮されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -73,12 +80,9 @@ m=variancef(x,fre,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

@@ -10,9 +10,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>for</literal> または   <literal>while</literal>
-　　命令の内部で使用することができます.
-　　ループ変数の定義と命令を分離するために使用されます.
+      <literal>for</literal> または   <literal>while</literal>
+      　　命令の内部で使用することができます.
+      　　ループ変数の定義と命令を分離するために使用されます.
     </para>
   </refsection>
   <refsection role="see also">

@@ -43,12 +43,10 @@ blk=curblock()
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">blk :</emphasis> the current block number in the compiled structure.</para>
+        <para>
+          <emphasis role="bold">blk :</emphasis> the current block number in the compiled structure.
+        </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_curblock">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

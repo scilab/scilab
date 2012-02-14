@@ -35,7 +35,9 @@
       <varlistentry>
         <term>Hz</term>
         <listitem>
-          <para>filter <literal>B(z)/A(z)</literal></para>
+          <para>
+            filter <literal>B(z)/A(z)</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,8 +45,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Hz = yulewalk(N,frq,mag) finds the N-th order iir filter</para>
-    <programlisting role = ""><![CDATA[ 
+      Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
+    </para>
+    <programlisting role=""><![CDATA[ 
                   n-1         n-2            
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
@@ -52,11 +55,12 @@ H(z)= ---- = ---------------------------------
       A(z)    z   + a(2)z    + .... + a(n)
  ]]></programlisting>
     <para>
-    which matches the magnitude frequency response given by vectors frq and mag.
-    Vectors frq and mag specify the frequency and magnitude of the desired
-    frequency response. The frequencies in frq must be between 0.0 and 1.0,
-    with 1.0 corresponding to half the sample rate. They must be in
-    increasing order and start with 0.0 and end with 1.0.</para>
+      which matches the magnitude frequency response given by vectors frq and mag.
+      Vectors frq and mag specify the frequency and magnitude of the desired
+      frequency response. The frequencies in frq must be between 0.0 and 1.0,
+      with 1.0 corresponding to half the sample rate. They must be in
+      increasing order and start with 0.0 and end with 1.0.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

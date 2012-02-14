@@ -21,16 +21,17 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsRestoreConfig()
-	</synopsis>
+      atomsRestoreConfig()
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main confiuration file. The backup file is deleted in the process.
-        </para>
+    <para>
+      <literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main confiuration file. The backup file is deleted in the process.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -64,12 +65,6 @@ atomsRestoreConfig();
   <!-- Authors -->
   <!-- ===================================================================== -->
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>History</title>
     <revhistory>
       <revision>
@@ -77,6 +72,5 @@ atomsRestoreConfig();
         <revdescription>Function added</revdescription>
       </revision>
     </revhistory>
-  </refsection>  
-  
+  </refsection>
 </refentry>

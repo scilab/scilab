@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>呼出し手順</title>
     <synopsis>resume
-[x1,..,xn]=resume(a1,..,an)</synopsis>
+      [x1,..,xn]=resume(a1,..,an)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -26,21 +27,26 @@
   <refsection>
     <title>説明</title>
     <para>
-    関数内で <literal>resume</literal> は関数の実行を中断します.また，
-    <literal>[..]=resume(..)</literal> は関数の実行を中断,
-	ローカル変数<literal>ai</literal>をコールした側の環境の
-	名前<literal>xi</literal>に代入します.</para>
+      関数内で <literal>resume</literal> は関数の実行を中断します.また，
+      <literal>[..]=resume(..)</literal> は関数の実行を中断,
+      ローカル変数<literal>ai</literal>をコールした側の環境の
+      名前<literal>xi</literal>に代入します.
+    </para>
     <para>
-	<literal>pause</literal> モードの場合, より低いレベルに戻ることができます.
-	<literal>[..]=resume(..)</literal>はより低いレベルに戻り,
-	ローカル変数<literal>ai</literal>をコールした側の環境の
-	名前<literal>xi</literal>に代入します.</para>
+      <literal>pause</literal> モードの場合, より低いレベルに戻ることができます.
+      <literal>[..]=resume(..)</literal>はより低いレベルに戻り,
+      ローカル変数<literal>ai</literal>をコールした側の環境の
+      名前<literal>xi</literal>に代入します.
+    </para>
     <para>
-	関数によりコールされる<literal>execstr</literal>の場合,
-	<literal>[..]=resume(..)</literal> はその関数の実行を停止し,
-	ローカル変数<literal>ai</literal>をコールした側の環境の
-	名前<literal>xi</literal>に代入します.</para>
-    <para><literal>resume</literal> は <literal>return</literal>と等価です.</para>
+      関数によりコールされる<literal>execstr</literal>の場合,
+      <literal>[..]=resume(..)</literal> はその関数の実行を停止し,
+      ローカル変数<literal>ai</literal>をコールした側の環境の
+      名前<literal>xi</literal>に代入します.
+    </para>
+    <para>
+      <literal>resume</literal> は <literal>return</literal>と等価です.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

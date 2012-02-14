@@ -24,10 +24,15 @@
   <refsection>
     <title>Description</title>
     <para>This fonction stops the Scilab engine. It is strongly recommended to
-    call this function at the end when using Call Scilab .</para>
-    <para>BOOL is just a simple typedef on int (<literal>typedef int
-    BOOL</literal>). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
-    and FALSE is defined on 0 (<literal>#define FALSE 0</literal>).</para>
+      call this function at the end when using Call Scilab .
+    </para>
+    <para>
+      BOOL is just a simple typedef on int (<literal>typedef int
+        BOOL
+      </literal>
+      ). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
+      and FALSE is defined on 0 (<literal>#define FALSE 0</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Arguments</title>
@@ -36,9 +41,11 @@
         <term>ScilabQuit</term>
         <listitem>
           <para>a standard C char* containing the path to Scilab quit script
-          (scilab.quit)</para>
+            (scilab.quit)
+          </para>
           <para>If ScilabStartup is NULL, Scilab will use the default path
-          (detected from SCIpath).</para>
+            (detected from SCIpath).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -91,9 +98,5 @@ if ( TerminateScilab(NULL) == FALSE ) {
         <link linkend="StringManagement_callscilab">String Management</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

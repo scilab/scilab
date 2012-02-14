@@ -10,7 +10,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Use the following names to get help on a specific symbol.</para>
+      Use the following names to get help on a specific symbol.
+    </para>
     <informaltable border="1">
       <tr>
         <td> operator</td>
@@ -113,14 +114,22 @@
   <refsection>
     <title>Remark</title>
     <para>For historical reasons, different symbols may represent the same operator:</para>
-    <para> <literal>{</literal> as the same meaning as <literal>[</literal></para>
-    <para> <literal>}</literal> as the same meaning as <literal>]</literal></para>
-    <para> <literal>@</literal> as the same meaning as <literal>~</literal></para>
-    <para> <literal>`</literal> as the same meaning as &lt;</para>
+    <para>
+      <literal>{</literal> as the same meaning as <literal>[</literal>
+    </para>
+    <para>
+      <literal>}</literal> as the same meaning as <literal>]</literal>
+    </para>
+    <para>
+      <literal>@</literal> as the same meaning as <literal>~</literal>
+    </para>
+    <para>
+      <literal>`</literal> as the same meaning as &lt;
+    </para>
     <para> It is highly recommended not to use these features because they will be removed in the future </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="overloading">overloading</link>

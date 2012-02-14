@@ -23,8 +23,12 @@
     <title>Description</title>
     <para>Scilab offers the possibility to be called from a Java application.</para>
     <para>This help describes the features of the javasci API.</para>
-    <para>Since Scilab version 5.3.0, a new version of Javasci called Javasci v2 has been introduced. This version fixes most of the <link linkend="javasci_v1_limitations">limitations of Javasci v1</link>.</para>
-    <para>Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).</para>
+    <para>
+      Since Scilab version 5.3.0, a new version of Javasci called Javasci v2 has been introduced. This version fixes most of the <link linkend="javasci_v1_limitations">limitations of Javasci v1</link>.
+    </para>
+    <para>
+      Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
+    </para>
   </refsection>
   <refsection>
     <title>Example of Javasci v2</title>
@@ -79,7 +83,7 @@ public class DisplayPI {
     <simplelist type="inline">
       <member>
         Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
-       </member>
+      </member>
       <member>
         <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
       </member>
@@ -94,14 +98,18 @@ public class DisplayPI {
       <revision>
         <revnumber>5.4.0</revnumber>
         <revdescription>New methods added:
-<itemizedlist><listitem>Scilab.execException(String)
-  <para>Same as Scilab.exec(String) but returns an exception when a Scilab error occurs</para>
-  </listitem><listitem>Scilab.execException(String[])
-  <para>Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs</para>
-  </listitem><listitem>Scilab.execException(File)
-  <para>Same as Scilab.exec(File) but returns an exception when a Scilab error occurs</para>
-  </listitem></itemizedlist>
-</revdescription>
+          <itemizedlist>
+            <listitem>Scilab.execException(String)
+              <para>Same as Scilab.exec(String) but returns an exception when a Scilab error occurs</para>
+            </listitem>
+            <listitem>Scilab.execException(String[])
+              <para>Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs</para>
+            </listitem>
+            <listitem>Scilab.execException(File)
+              <para>Same as Scilab.exec(File) but returns an exception when a Scilab error occurs</para>
+            </listitem>
+          </itemizedlist>
+        </revdescription>
       </revision>
       <revision>
         <revnumber>5.4.0</revnumber>
@@ -113,10 +121,5 @@ public class DisplayPI {
         </revdescription>
       </revision>
     </revhistory>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan Cornet</para>
-    <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

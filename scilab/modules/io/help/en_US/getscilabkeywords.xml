@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>getscilabkeywords</refname>
     <refpurpose>returns a list with all scilab
-  keywords.</refpurpose>
+      keywords.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -42,10 +43,8 @@
     <para>list_keywords(4) :scilab functions</para>
     <para>list_keywords(5) :xcos functions</para>
   </refsection>
-  
-    <refsection>
+  <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 list_keywords = getscilabkeywords();
 primitives = list_keywords(1)
@@ -54,10 +53,5 @@ predef_var = list_keywords(3)
 scilab_functions = list_keywords(4)
 xcos_functions = list_keywords(5)
  ]]></programlisting>
-  </refsection>
-  
-  <refsection>
-    <title>Authors</title>
-    <para>A.C, adapted from Enrico Segre's code in Scipad</para>
   </refsection>
 </refentry>

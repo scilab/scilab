@@ -21,22 +21,23 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>V=datevec(DT)
-[Y,M,D,H,MI,S]=datevec(DT)</synopsis>
+      [Y,M,D,H,MI,S]=datevec(DT)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>
-	V = datevec(DT) は,(datenumにより定義された)日数を
-	要素[year, month, day, hour, minute, second]を有する日付ベクトル V
-	に変換します.
-	最初の5個の要素は整数です.
-	DT は配列とすることができます.
-		</para>
+      V = datevec(DT) は,(datenumにより定義された)日数を
+      要素[year, month, day, hour, minute, second]を有する日付ベクトル V
+      に変換します.
+      最初の5個の要素は整数です.
+      DT は配列とすることができます.
+    </para>
     <para>
-	[Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
-	要素を別々の配列に返します.
-	DT は配列とすることができます.
-		</para>
+      [Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
+      要素を別々の配列に返します.
+      DT は配列とすることができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -65,12 +66,6 @@ datevec(A)
       <member>
         <link linkend="calendar">calendar</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

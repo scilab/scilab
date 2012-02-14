@@ -34,21 +34,27 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string (<literal>'c'</literal> or <literal>'d'</literal>)</para>
+          <para>
+            character string (<literal>'c'</literal> or <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = sylv(A,B,C,'c')</literal> computes <literal>X</literal>, solution
-    of the "continuous time" Sylvester equation</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X= sylv(A,B,C,'c')</literal> computes <literal>X</literal>, solution
+      of the "continuous time" Sylvester equation
+    </para>
+    <programlisting role=""><![CDATA[ 
 A*X+X*B=C 
  ]]></programlisting>
-    <para><literal>X=sylv(A,B,C,'d')</literal> computes <literal>X</literal>, solution
-    of the "discrete time" Sylvester equation</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>X=sylv(A,B,C,'d')</literal> computes <literal>X</literal>, solution
+      of the "discrete time" Sylvester equation
+    </para>
+    <programlisting role=""><![CDATA[ 
 A*X*B-X=C
  ]]></programlisting>
   </refsection>
@@ -63,7 +69,7 @@ norm(A*X*B-X-C)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lyap">lyap</link>

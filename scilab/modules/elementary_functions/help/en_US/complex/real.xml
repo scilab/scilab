@@ -41,10 +41,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>real(x)</literal> is the real part of <literal>x</literal> (See <literal>%i</literal> to enter complex numbers).</para>
+    <para>
+      <literal>real(x)</literal> is the real part of <literal>x</literal> (See <literal>%i</literal> to enter complex numbers).
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imag">imag</link>

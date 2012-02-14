@@ -45,8 +45,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>convol2d</literal> uses fft to compute the full
-       two-dimensional discrete convolution. The
+    <para>
+      <literal>convol2d</literal> uses fft to compute the full
+      two-dimensional discrete convolution. The
       dimensions of the result<literal>C</literal> are given by
       <literal>size(A)+size(B)+1</literal>. The indices of the
       center element of <literal>B</literal> are defined as
@@ -73,16 +74,10 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Used Functions</title>
     <para>
-         The  <literal>convol2d</literal> function is based on the <link linkend="fft">fft</link> builtin.
-       </para>
+      The  <literal>convol2d</literal> function is based on the <link linkend="fft">fft</link> builtin.
+    </para>
   </refsection>
   <refsection>
     <title>History</title>

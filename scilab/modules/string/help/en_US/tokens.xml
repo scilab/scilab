@@ -47,9 +47,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>T=tokens(str [,delimiter]) </literal> searches the tokens included in the
-    string <literal>str</literal>. The <literal>delimiter</literal> default value is [" ",&lt;Tab&gt;]
-    where &lt;Tab&gt; stands for <literal>ascii(9)</literal>.</para>
+    <para>
+      <literal>T=tokens(str [,delimiter]) </literal> searches the tokens included in the
+      string <literal>str</literal>. The <literal>delimiter</literal> default value is [" ",&lt;Tab&gt;]
+      where &lt;Tab&gt; stands for <literal>ascii(9)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -62,7 +64,7 @@ tokens('y=a+b*2',['=','+','*'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strindex">strindex</link>

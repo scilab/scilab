@@ -41,9 +41,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>milk_drop</literal> is a function representing the surface of a milk drop
-    falling down into milk. It
-    can be used to test functions <literal>eval3d</literal> and <literal>plot3d</literal>.</para>
+    <para>
+      <literal>milk_drop</literal> is a function representing the surface of a milk drop
+      falling down into milk. It
+      can be used to test functions <literal>eval3d</literal> and <literal>plot3d</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +56,7 @@ plot3d(x,y,z)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="eval3d">eval3d</link>
@@ -63,9 +65,5 @@ plot3d(x,y,z)
         <link linkend="plot3d">plot3d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

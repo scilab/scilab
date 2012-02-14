@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>barhomogenize()
-barhomogenize([h[,'style'[,'width']]])</synopsis>
+      barhomogenize([h[,'style'[,'width']]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -42,26 +43,37 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
         <term>width</term>
         <listitem>
           <para>(optional), a real scalar, defines the width (a percentage of
-					the available room) for the bar (default: 0.8).</para>
+            the available room) for the bar (default: 0.8).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>If there are several bar calls, the <literal>barhomogenize</literal> function
-		allows to homogenize the width and style of all bars (i.e which has the
-		<literal>polyline_style</literal> type 6) included in the current working axes.
-		These bars must have the same x data.</para>
-    <para><literal>barhomogenize( ) :</literal> takes the default values, h=gca(),
-		width=0.8, style='grouped'. <literal/></para>
-    <para><literal>barhomogenize(h,...) :</literal> defines the current axes where the
-		drawing is performed.</para>
-    <para><literal>barhomogenize(...,width,...) :</literal> defines the width of the
-		bar(s) in percentage (generally: 0&lt;width&lt;=1).</para>
-    <para><literal>barhomogenize(...,style,...) :</literal> defines how the bars are
-		drawn. The 'grouped' option allows to center the M polylines versus each
-		components of x, and the 'stacked' option allows to stack them.</para>
+    <para>
+      If there are several bar calls, the <literal>barhomogenize</literal> function
+      allows to homogenize the width and style of all bars (i.e which has the
+      <literal>polyline_style</literal> type 6) included in the current working axes.
+      These bars must have the same x data.
+    </para>
+    <para>
+      <literal>barhomogenize( ) :</literal> takes the default values, h=gca(),
+      width=0.8, style='grouped'. <literal/>
+    </para>
+    <para>
+      <literal>barhomogenize(h,...) :</literal> defines the current axes where the
+      drawing is performed.
+    </para>
+    <para>
+      <literal>barhomogenize(...,width,...) :</literal> defines the width of the
+      bar(s) in percentage (generally: 0&lt;width&lt;=1).
+    </para>
+    <para>
+      <literal>barhomogenize(...,style,...) :</literal> defines how the bars are
+      drawn. The 'grouped' option allows to center the M polylines versus each
+      components of x, and the 'stacked' option allows to stack them.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -114,7 +126,7 @@ barhomogenize();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bar">bar</link>
@@ -123,9 +135,5 @@ barhomogenize();
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Farid Belacehne</para>
   </refsection>
 </refentry>

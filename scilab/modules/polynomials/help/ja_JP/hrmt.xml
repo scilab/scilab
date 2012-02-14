@@ -28,7 +28,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>多項式の行,すなわち,<literal>1</literal>x<literal>k</literal> 多項式行列</para>
+          <para>
+            多項式の行,すなわち,<literal>1</literal>x<literal>k</literal> 多項式行列
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,10 +49,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[pg,U]=hrmt(v)</literal> は,多項式<literal>v</literal>について
-	ユニモジュラ行列<literal>U</literal>および
-	<literal>v*U = [pg,0]</literal>となるような,
-	<literal>pg</literal> = 多項式の行の最大公約数を返します.</para>
+    <para>
+      <literal>[pg,U]=hrmt(v)</literal> は,多項式<literal>v</literal>について
+      ユニモジュラ行列<literal>U</literal>および
+      <literal>v*U = [pg,0]</literal>となるような,
+      <literal>pg</literal> = 多項式の行の最大公約数を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -71,9 +75,5 @@ det(U)
         <link linkend="htrianr">htrianr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> S. Steer INRIA</para>
   </refsection>
 </refentry>

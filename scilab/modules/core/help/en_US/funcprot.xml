@@ -29,7 +29,6 @@
           <para>integer with possible values 0,1,2 returns previous value</para>
         </listitem>
       </varlistentry>
-      
     </variablelist>
   </refsection>
   <refsection>
@@ -71,5 +70,4 @@ funcprot(previousprot)]]></programlisting>
       </revision>
     </revhistory>
   </refsection>
-   
 </refentry>

@@ -47,7 +47,9 @@
       <varlistentry>
         <term>file</term>
         <listitem>
-          <para>a Scilab string specifying a file name or a logical unit number (see <literal>file</literal>)</para>
+          <para>
+            a Scilab string specifying a file name or a logical unit number (see <literal>file</literal>)
+          </para>
           <para>Note that is file=0, the message will be display on standard error stream (stderr).</para>
         </listitem>
       </varlistentry>
@@ -55,17 +57,19 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> Obsolete function, use preferabily the <link linkend="mfprintf">mfprintf</link> function
-      which is much more compatible with the C <literal>fprintf</literal> functionalities.</para>
     <para>
-    The <literal>fprintf</literal> function converts, formats, and writes
-    its <literal>value</literal> parameters, under control of the <literal>format</literal>
-    parameter, to the file specified by its <literal>file</literal> parameter.
-  </para>
+       Obsolete function, use preferabily the <link linkend="mfprintf">mfprintf</link> function
+      which is much more compatible with the C <literal>fprintf</literal> functionalities.
+    </para>
     <para>
-    The <literal>format</literal> parameter is a character string that contains two
-    types of objects:
-  </para>
+      The <literal>fprintf</literal> function converts, formats, and writes
+      its <literal>value</literal> parameters, under control of the <literal>format</literal>
+      parameter, to the file specified by its <literal>file</literal> parameter.
+    </para>
+    <para>
+      The <literal>format</literal> parameter is a character string that contains two
+      types of objects:
+    </para>
     <variablelist>
       <varlistentry>
         <term>Literal characters</term>
@@ -76,13 +80,16 @@
       <varlistentry>
         <term>Conversion specifications</term>
         <listitem>
-          <para>each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. see <link linkend="printf_conversion">printf_conversion</link> for details</para>
+          <para>
+            each of which causes zero or more items to be fetched from the <literal>value</literal> parameter list. see <link linkend="printf_conversion">printf_conversion</link> for details
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-    If any <literal>value</literal>s remain after the entire <literal>format</literal> has been
-    processed, they are ignored.</para>
+      If any <literal>value</literal>s remain after the entire <literal>format</literal> has been
+      processed, they are ignored.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -98,7 +105,7 @@ fprintf(0,'My error which is going to be displayed on the stderr')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfprintf">mfprintf</link>

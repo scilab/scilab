@@ -18,36 +18,38 @@
         <term>W  </term>
         <listitem>
           <para>matrice réelle de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k  </term>
         <listitem>
           <para>entier (borne supérieure pour le degré du déterminant de W)
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res=determ(W [,k])</literal> renvoie le déterminant d'une
-    matrice réelle de polynômes (calculs fait par FFT si la taille de W
-    est supérieure à 2*2).
-  </para>
-    <para><literal>k</literal> est un entier plus grand que le degré effectif du
-    déterminant.  de <literal>W</literal>.
-  </para>
     <para>
-    La valeur par défaut de <literal>k</literal> est la plus petite
-    puissance de 2 plus grande que <literal>n*max(degree(W))</literal>.
-  </para>
+      <literal>res=determ(W [,k])</literal> renvoie le déterminant d'une
+      matrice réelle de polynômes (calculs fait par FFT si la taille de W
+      est supérieure à 2*2).
+    </para>
     <para>
-    Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
-    fréquences de Fourier et FFT inverse appliquée aux coefficients du
-    déterminant.
-  </para>
+      <literal>k</literal> est un entier plus grand que le degré effectif du
+      déterminant.  de <literal>W</literal>.
+    </para>
+    <para>
+      La valeur par défaut de <literal>k</literal> est la plus petite
+      puissance de 2 plus grande que <literal>n*max(degree(W))</literal>.
+    </para>
+    <para>
+      Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
+      fréquences de Fourier et FFT inverse appliquée aux coefficients du
+      déterminant.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -59,7 +61,7 @@ det(coeff(w,1))*s^10
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>
@@ -71,9 +73,5 @@ det(coeff(w,1))*s^10
         <link linkend="coffg">coffg</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>F. Delebecque  </para>
   </refsection>
 </refentry>

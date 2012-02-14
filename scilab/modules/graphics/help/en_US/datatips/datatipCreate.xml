@@ -19,7 +19,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>datatip_handle = datatipCreate(polyline_handle,index)
-    datatip_handle = datatipCreate(polyline_handle,pt)</synopsis>
+      datatip_handle = datatipCreate(polyline_handle,pt)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -61,13 +62,13 @@
   <refsection>
     <title>Description</title>
     <para>
-       This function can be used to create data tips on a polyline by
-       program. Called with an index as second argument, it sets the
-       tip at the coordinates given by polyline point specified by the
-       index. Called with a point as second argument it sets the tip
-       at the coordinates corresponding to the orthogonal projection
-       of the point on the polyline if the interpolation mode is on or to
-       the nearest mesh point.
+      This function can be used to create data tips on a polyline by
+      program. Called with an index as second argument, it sets the
+      tip at the coordinates given by polyline point specified by the
+      index. Called with a point as second argument it sets the tip
+      at the coordinates corresponding to the orthogonal projection
+      of the point on the polyline if the interpolation mode is on or to
+      the nearest mesh point.
     </para>
   </refsection>
   <refsection>
@@ -105,12 +106,6 @@
       <member>
         <link linkend="datatipMove">datatipMove</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

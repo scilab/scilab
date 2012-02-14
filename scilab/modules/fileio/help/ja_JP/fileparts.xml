@@ -22,7 +22,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[path,fname,extension]=fileparts(fullpath)
-v=fileparts(fullpath,sel)</synopsis>
+      v=fileparts(fullpath,sel)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,7 +38,8 @@ v=fileparts(fullpath,sel)</synopsis>
         <term>sel</term>
         <listitem>
           <para>オプションの文字列セレクタ, 以下の値を指定可能:
-       'path' 'fname' または 'extension'</para>
+            'path' 'fname' または 'extension'
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -68,10 +70,12 @@ v=fileparts(fullpath,sel)</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[path,fname,extension]=fileparts(fullpath)</literal> は
-	フルパスの文字列を以下の3つの部分に分割します:
-	ディレクトリを指すパス, ファイル名の部分,
-	ドットを含む拡張子の部分.</para>
+    <para>
+      <literal>[path,fname,extension]=fileparts(fullpath)</literal> は
+      フルパスの文字列を以下の3つの部分に分割します:
+      ディレクトリを指すパス, ファイル名の部分,
+      ドットを含む拡張子の部分.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -93,11 +97,5 @@ fileparts('SCI/etc/scilab.start','extension')
         <link linkend="fullfile">fullfile</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Serge Steer, INRIA
-  </para>
   </refsection>
 </refentry>

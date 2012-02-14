@@ -29,14 +29,14 @@
         <term>mat_file_path</term>
         <listitem>
           <para>Chaîne de caractères contenant le chemin du fichier d'entrée 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sci_file_path </term>
         <listitem>
           <para> Chaîne de caractères contenant le chemin du fichier résultant
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,13 +44,13 @@
   <refsection>
     <title>Description</title>
     <para>
-   convertit un fichier  Matlab .mat  en un fichier binaire compatible
-   avec la fonction <literal>load</literal>. Les types de données Matlab
-   sont convertis en leur équivalent Scilab.
-  </para>
+      convertit un fichier  Matlab .mat  en un fichier binaire compatible
+      avec la fonction <literal>load</literal>. Les types de données Matlab
+      sont convertis en leur équivalent Scilab.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="loadmatfile">loadmatfile</link>
@@ -64,12 +64,9 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Auteurs</title>
-    <para>Serge Steer (INRIA)  </para>
-  </refsection>
-  <refsection>
     <title>Bibliographie</title>
     <para>Cette fonction a été développée en suivant le document   "MAT-File Format":
-<ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink></para>
+      <ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink>
+    </para>
   </refsection>
 </refentry>

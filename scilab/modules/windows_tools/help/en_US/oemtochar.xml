@@ -17,15 +17,13 @@
   <refnamediv>
     <refname>oemtochar</refname>
     <refpurpose>translates a string from the OEM-defined
-  character set into either an ANSI string. (Windows Only)</refpurpose>
+      character set into either an ANSI string. (Windows Only)
+    </refpurpose>
   </refnamediv>
-  
   <refsynopsisdiv>
-
-  <refsection>
-    <para>Obsolete, it will be removed in Scilab 5.4.1</para>
-  </refsection>
-    
+    <refsection>
+      <para>Obsolete, it will be removed in Scilab 5.4.1</para>
+    </refsection>
     <title>Calling Sequence</title>
     <synopsis>str=oemtochar(str1)</synopsis>
   </refsynopsisdiv>
@@ -48,11 +46,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>oemtochar</literal> translates a string from the OEM-defined
-    character set into either an ANSI string.</para>
+    <para>
+      <literal>oemtochar</literal> translates a string from the OEM-defined
+      character set into either an ANSI string.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="chartooem">chartooem</link>
@@ -67,5 +67,5 @@
         <revremark>This function will be removed in Scilab 5.4.1</revremark>
       </revision>
     </revhistory>
-  </refsection>  
+  </refsection>
 </refentry>

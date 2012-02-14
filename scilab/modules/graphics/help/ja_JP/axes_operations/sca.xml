@@ -35,10 +35,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sca(a)</literal> はカレントの<literal>Axes</literal>のエンティティ
-	(<link linkend="graphics_entities">graphics_entities</link>参照)
-	をカレントの軸エンティティハンドル<literal>a</literal>に設定する際に使用されます.
-	描画関数は通常カレント軸エンティティに適用されます.</para>
+    <para>
+      <literal>sca(a)</literal> はカレントの<literal>Axes</literal>のエンティティ
+      (<link linkend="graphics_entities">graphics_entities</link>参照)
+      をカレントの軸エンティティハンドル<literal>a</literal>に設定する際に使用されます.
+      描画関数は通常カレント軸エンティティに適用されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -73,9 +75,5 @@ legend('sinh')
         <link linkend="newaxes">newaxes</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer, INRIA</para>
   </refsection>
 </refentry>

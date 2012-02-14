@@ -28,7 +28,9 @@
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>インパルス応答のベクトル係数, <literal>v(:,k)</literal> はk番目のサンプル</para>
+          <para>
+            インパルス応答のベクトル係数, <literal>v(:,k)</literal> はk番目のサンプル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +42,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,8 +52,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    インパルス応答の線形システムへの変換 (1入力).
-    <literal>v</literal> の列数は偶数である必要があります.</para>
+      インパルス応答の線形システムへの変換 (1入力).
+      <literal>v</literal> の列数は偶数である必要があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -10,82 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="gsort" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="gsort" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
       $
     </pubdate>
   </info>
-  
   <refnamediv>
     <refname>gsort</refname>
-    
     <refpurpose>sorting by quick sort agorithm</refpurpose>
   </refnamediv>
-  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    
     <synopsis>[B [,k]]=gsort(A)
       [B [,k]]=gsort(A,option)
       [B [,k]]=gsort(A,option,direction)
     </synopsis>
   </refsynopsisdiv>
-  
   <refsection>
     <title>Arguments</title>
-    
     <variablelist>
       <varlistentry>
         <term>A</term>
-        
         <listitem>
           <para>a real,an integer or a character string vector/matrix or a
             sparse vector.
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>option</term>
-        
         <listitem>
           <para>a character string. It gives the type of sort to
             perform:
           </para>
-          
           <itemizedlist>
             <listitem>
               <para>
                 'r' : each column of <literal>A</literal> is sorted
               </para>
             </listitem>
-            
             <listitem>
               <para>
                 'c': each row of <literal>A</literal> is sorted
               </para>
             </listitem>
-            
             <listitem>
               <para>
                 'g': all elements of <literal>A</literal> are sorted. It
                 is the default value.
               </para>
             </listitem>
-            
             <listitem>
               <para>'lr': lexicographic sort of the rows of
                 <literal>A</literal>
               </para>
             </listitem>
-            
             <listitem>
               <para>'lc': lexicographic sort of the columns of
                 <literal>A</literal>
@@ -94,10 +74,8 @@
           </itemizedlist>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>direction</term>
-        
         <listitem>
           <para>a character string. It gives the ordering direction:
             <literal>'i'</literal> stand for increasing and
@@ -105,20 +83,16 @@
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>B</term>
-        
         <listitem>
           <para>an array with same type and dimensions as
             <literal>A</literal>.
           </para>
         </listitem>
       </varlistentry>
-      
       <varlistentry>
         <term>k</term>
-        
         <listitem>
           <para>a real array with integer values and same dimensions as
             <literal>A</literal>. Contains the origin indices.
@@ -127,15 +101,12 @@
       </varlistentry>
     </variablelist>
   </refsection>
-  
   <refsection>
     <title>Description</title>
-    
     <para>
       <literal>gsort</literal> implements a "quick sort" algorithm for
       various data types.
     </para>
-    
     <itemizedlist>
       <listitem>
         <para>
@@ -145,13 +116,11 @@
           <literal>A</literal>, seen as <literal>A(:)</literal> in a decreasing
           order.
         </para>
-        
         <para>
           <literal>B=gsort(A,'g','i')</literal> sort the elements of the
           array <literal>A</literal> in the increasing order.
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>B=gsort(A,'lr')</literal> sorts the rows of
@@ -161,13 +130,11 @@
           <literal>B</literal> verify <literal>B(i,:)&gt;=B(j,:)</literal> if
           <literal>i&lt;j</literal>.
         </para>
-        
         <para>
           <literal>B=gsort(A,'lr','i')</literal> works similarily for
           increasing lexical order.
         </para>
       </listitem>
-      
       <listitem>
         <para>
           <literal>B=gsort(A,'lc')</literal> sorts the columns of
@@ -177,14 +144,12 @@
           <literal>B</literal> verify <literal>B(:,i)&gt;=B(:,j)</literal> if
           <literal>i&lt;j</literal>.
         </para>
-        
         <para>
           <literal>B=gsort(A,'lc','i')</literal> works similarily for
           increasing lexical order.
         </para>
       </listitem>
     </itemizedlist>
-    
     <para>
       If required the second return argument <literal>k</literal> contains
       the indices of the sorted values in <literal>A</literal>. If
@@ -193,25 +158,20 @@
         records with equal values. 
       </emphasis>
     </para>
-    
     <para>
       When <literal>v</literal> is complex, the elements are sorted by
       magnitude, i.e., abs(<literal>v</literal>) . Only <literal>'g'</literal>
       as second argument is managed with complex.
     </para>
-    
     <para>
       With complex numbers, <literal>gsort</literal> can be overloaded
     </para>
-    
     <para>see macro:
       SCI/modules/elementary_functions/macros/%_gsort.sci
     </para>
-    
     <para>Overloading for not managed type (others than a real, an integer or a character
       string vector/matrix or a sparse vector.) is allowed.
     </para>
-    
     <para>
       if <literal>v</literal> have <literal>%nan</literal> or
       <literal>%inf</literal> as elements. gsort places these at the beginning
@@ -219,10 +179,8 @@
       argument.
     </para>
   </refsection>
-  
   <refsection>
     <title>Examples</title>
-    
     <programlisting role="example"> 
       alr=[1,2,2;
       1,2,1;
@@ -249,10 +207,8 @@
       gsort(v,'lc','i')
     </programlisting>
   </refsection>
-  
   <refsection role="see also">
     <title>See Also</title>
-    
     <simplelist type="inline">
       <member>
         <link linkend="find">find</link>
@@ -263,18 +219,14 @@
         <link linkend="overloading">overloading</link>
       </member>
     </simplelist>
-    
   </refsection>
-  
   <refsection>
     <title>Bibliography</title>
-    
     <para>Quick sort algorithm from Bentley &amp; McIlroy's "Engineering a
       Sort Function". Software---Practice and Experience,
       23(11):1249-1265
     </para>
   </refsection>
-  
   <refsection>
     <title>History</title>
     <revhistory>
@@ -284,6 +236,4 @@
       </revision>
     </revhistory>
   </refsection>
-   
-  
 </refentry>

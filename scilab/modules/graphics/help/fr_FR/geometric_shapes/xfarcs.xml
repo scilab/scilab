@@ -18,27 +18,31 @@
         <term>arcs  </term>
         <listitem>
           <para>matrice de taille (6,n) décrivant les ellipses.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>style  </term>
         <listitem>
           <para>vecteur ligne de taille n donnant les couleurs à utiliser
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xarcs</literal> remplit des secteurs angulaires d'un ensemble d'ellipses décrites par <literal>arcs</literal> : 
-    <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
-    par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
-  </para>
-    <para>Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.</para>
-    <para><literal>style(i)</literal> donne la couleur utilisée pour remplir l'ellipse <literal>i</literal>.
-  </para>
+    <para>
+      <literal>xarcs</literal> remplit des secteurs angulaires d'un ensemble d'ellipses décrites par <literal>arcs</literal> : 
+      <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
+      par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
+    </para>
+    <para>
+      Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.
+    </para>
+    <para>
+      <literal>style(i)</literal> donne la couleur utilisée pour remplir l'ellipse <literal>i</literal>.
+    </para>
     <para>Si a2 est égal à 360*62, un circle complet sera dessiné.</para>
   </refsection>
   <refsection>
@@ -67,9 +71,5 @@ xfarcs(arcs,[1,2,3])
         <link linkend="xfarc">xfarc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

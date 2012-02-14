@@ -10,11 +10,12 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>for</literal> または <literal>while</literal> ループの中で,
-	コマンド
-    <literal>continue</literal> はループの次の反復に制御を移します.
-	この際,この命令とループの<literal>end</literal>命令の間に
-	残る命令を全てスキップします.</para>
+      <literal>for</literal> または <literal>while</literal> ループの中で,
+      コマンド
+      <literal>continue</literal> はループの次の反復に制御を移します.
+      この際,この命令とループの<literal>end</literal>命令の間に
+      残る命令を全てスキップします.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -44,9 +45,5 @@ end
         <link linkend="return">return</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Serge Steer, INRIA</para>
   </refsection>
 </refentry>

@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>macros = libraryinfo(libraryname)
-[macros,path] = libraryinfo(libraryname)</synopsis>
+      [macros,path] = libraryinfo(libraryname)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -42,8 +43,9 @@
   <refsection>
     <title>Description</title>
     <para>get functions names  and path of a scilab library.The function names
-returned correspond to those which correspond to the associated .sci or .bin
-file names. The other ones are subsidiary functions.</para>
+      returned correspond to those which correspond to the associated .sci or .bin
+      file names. The other ones are subsidiary functions.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -52,7 +54,7 @@ file names. The other ones are subsidiary functions.</para>
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="librarieslist">librarieslist</link>

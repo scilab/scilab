@@ -41,11 +41,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>y=int8(X)
-y=int16(X)
-y=int32(X)
-y=uint8(X)
-y=uint16(X)
-y=uint32(X)</synopsis>
+      y=int16(X)
+      y=int32(X)
+      y=uint8(X)
+      y=uint16(X)
+      y=uint32(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -67,10 +68,10 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    converts and stores data two one, two or four bytes integers. These
-    data types are specialy useful to store big objects such as images,
-    long signals,...
-  </para>
+      converts and stores data two one, two or four bytes integers. These
+      data types are specialy useful to store big objects such as images,
+      long signals,...
+    </para>
     <variablelist>
       <varlistentry>
         <term>y=int8(X)</term>
@@ -121,7 +122,7 @@ int8(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="double">double</link>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
@@ -11,25 +10,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" 
-	  xmlns:xlink="http://www.w3.org/1999/xlink" 
-	  xmlns:svg="http://www.w3.org/2000/svg" 
-	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-	  xmlns:db="http://docbook.org/ns/docbook" 
-	  version="5.0-subset Scilab" 
-	  xml:lang="en" xml:id="add_param">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_param">
   <refnamediv>
     <refname>add_param</refname>
     <refpurpose> Add a parameter to a list of parameters </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[param_list,err] = add_param(list_name,param_name,param_value)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
     <variablelist>
@@ -37,47 +26,45 @@
         <term>list_name</term>
         <listitem>
           <para>the list of parameters. This list must have been initialize by a call to init_param.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param_name</term>
         <listitem>
           <para>a string. The name of the parameter to be added in the list of parameters.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param_value</term>
         <listitem>
           <para>the value associated to the parameter param_name. This parameter is optional. You can set the value of this parameter via a call to set_param.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param_list</term>
         <listitem>
           <para>the updated list of parameters.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err</term>
         <listitem>
           <para>an error flag which is set to %T if list_name is not of type plist (this list has not been initialized by a call to init_param).
-       </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-        <para>
+    <para>
       This function creates a new parameter in a list of parameters. You can set the value of the parameter using this function or you can set it via a call to set_param.
-     </para>
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -85,9 +72,8 @@ mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="init_param">init_param</link>
@@ -104,14 +90,6 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
       <member>
         <link linkend="is_param">is_param</link>
       </member>
-    </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <simplelist type="vert">
-      <member>Yann COLLETTE</member>
     </simplelist>
   </refsection>
 </refentry>

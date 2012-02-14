@@ -10,9 +10,11 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>select ... case</literal>で使用されるキーワード</para>
+      <literal>select ... case</literal>で使用されるキーワード
+    </para>
     <para>
-    以下のように使用されます:</para>
+      以下のように使用されます:
+    </para>
     <programlisting><![CDATA[ 
 select expr0,
   case expr1 then instructions1,

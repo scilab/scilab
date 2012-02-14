@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>TCL_UnsetVar</refname>
     <refpurpose>Remove a tcl
-  variable</refpurpose>
+      variable
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -30,17 +31,18 @@
         <term>varname</term>
         <listitem>
           <para>character string. Contains the name of the tcl/tk variable to
-          unset.</para>
+            unset.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>interp</term>
         <listitem>
           <para>optional character string parameter. Name of the slave tcl
-          interpreter in which the operation has to be performed. If not
-          provided, it defaults to the main tcl interpreter created by
-          Scilab.</para>
-
+            interpreter in which the operation has to be performed. If not
+            provided, it defaults to the main tcl interpreter created by
+            Scilab.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,7 +56,9 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to unset a tcl variable.</para>
-    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
+    <para>
+      More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,7 +77,7 @@ TCL_DeleteInterp('InterpSlave')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>
@@ -103,9 +107,5 @@ TCL_DeleteInterp('InterpSlave')
         <link linkend="TCL_DeleteInterp">TCL_DeleteInterp</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

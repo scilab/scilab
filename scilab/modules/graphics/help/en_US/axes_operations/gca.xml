@@ -36,8 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-   This routine returns the handle of the current axes for the current figure.
-  </para>
+      This routine returns the handle of the current axes for the current figure.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +57,7 @@ xdel(0) //delete a graphics window
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gda">gda</link>
@@ -75,11 +75,5 @@ xdel(0) //delete a graphics window
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Djalel ABDEMOUCHE
-  </para>
   </refsection>
 </refentry>
