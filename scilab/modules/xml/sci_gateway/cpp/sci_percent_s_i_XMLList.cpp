@@ -55,7 +55,7 @@ int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isDoubleType(pvApiCtx, indexaddr))
+    if (!isDoubleType(pvApiCtx, indexaddr) || !checkVarDimension(pvApiCtx, indexaddr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
         return 0;
@@ -115,7 +115,7 @@ int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, retaddr))
+        if (!isStringType(pvApiCtx, retaddr) || !checkVarDimension(pvApiCtx, retaddr, 1, 1))
         {
             Scierror(999, gettext("%s: xmlFormat must return a string.\n"), fname);
             return 0;

@@ -60,13 +60,13 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
         err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
         if (rows != 1 || cols != 1)
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a real expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A real expected.\n"), fname, 1);
             return 0;
         }
     }
     else
     {
-        if (!isStringType(pvApiCtx, prefixaddr))
+        if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
@@ -89,10 +89,10 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
                 return 0;
             }
 
-            if (!isStringType(pvApiCtx, nameaddr))
+            if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                 return 0;
             }
 

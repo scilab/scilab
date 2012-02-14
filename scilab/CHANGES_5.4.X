@@ -19,6 +19,8 @@ XML
 
 * Bug #10630 fixed - Fix a typo in one of the error message.
 
+* Bug #10670 fixed - Avoid a crash when xmlRead had an arg with a bad size.
+
 
 Help
 ====

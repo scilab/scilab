@@ -72,7 +72,7 @@ int sci_percent_XMLList_size(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, addr))
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;

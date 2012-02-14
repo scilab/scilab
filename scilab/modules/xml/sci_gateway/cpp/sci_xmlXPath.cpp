@@ -96,11 +96,12 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
+
     if (getAllocatedSingleString(pvApiCtx, addr, &query) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
@@ -164,38 +165,38 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
     switch (xpath->getResultType())
     {
     case XPATH_NODESET:
-        {
-            const XMLNodeSet *set = xpath->getNodeSet();
+    {
+        const XMLNodeSet *set = xpath->getNodeSet();
 
-            if (set->getSize() == 0)
-            {
-                createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
-            }
-            set->createOnStack(Rhs + 1, pvApiCtx);
-            mustDelete = false;
-            break;
+        if (set->getSize() == 0)
+        {
+            createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
         }
+        set->createOnStack(Rhs + 1, pvApiCtx);
+        mustDelete = false;
+        break;
+    }
     case XPATH_BOOLEAN:
-        {
-            int b = xpath->getBooleanValue();
+    {
+        int b = xpath->getBooleanValue();
 
-            createScalarBoolean(pvApiCtx, Rhs + 1, b);
-            break;
-        }
+        createScalarBoolean(pvApiCtx, Rhs + 1, b);
+        break;
+    }
     case XPATH_NUMBER:
-        {
-            double d = xpath->getFloatValue();
+    {
+        double d = xpath->getFloatValue();
 
-            createScalarDouble(pvApiCtx, Rhs + 1, d);
-            break;
-        }
+        createScalarDouble(pvApiCtx, Rhs + 1, d);
+        break;
+    }
     case XPATH_STRING:
-        {
-            const char *str = xpath->getStringValue();
+    {
+        const char *str = xpath->getStringValue();
 
-            createSingleString(pvApiCtx, Rhs + 1, str);
-            break;
-        }
+        createSingleString(pvApiCtx, Rhs + 1, str);
+        break;
+    }
     default:
         delete xpath;
         Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());

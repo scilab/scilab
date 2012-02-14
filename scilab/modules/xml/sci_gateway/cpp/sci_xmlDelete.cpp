@@ -55,6 +55,12 @@ int sci_xmlDelete(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, addr))
     {
+        if (!checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
+
         if (getAllocatedSingleString(pvApiCtx, addr, &com) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);

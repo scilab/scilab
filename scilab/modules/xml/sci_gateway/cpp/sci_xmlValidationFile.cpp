@@ -53,11 +53,12 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
+
     if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
