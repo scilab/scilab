@@ -296,6 +296,9 @@ Bug fixes
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
+* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
+                     in the documentation.
+
 * Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
                      error message.
 
