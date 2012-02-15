@@ -135,7 +135,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public boolean isEmpty() {
-        return realPart.length == 0;
+        return realPart == null || realPart.length == 0;
     }
 
     /**
