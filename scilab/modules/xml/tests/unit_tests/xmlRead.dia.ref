@@ -10,7 +10,8 @@ assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[20,1]);
 xmlDelete(xmlFile);
 // Delete the file a second time
-assert_checkerror("xmlDelete(xmlFile)","xmlDelete: XML document does not exist.");
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 xmlFile2=xmlRead(SCI+"/etc/classpath.xml");
 content=xmlDump(xmlFile);
@@ -23,7 +24,8 @@ assert_checktrue(size(content2)>=[20,1]);
 xmlDelete(xmlFile);
 xmlDelete(xmlFile2);
 // Delete the file a second time
-assert_checkerror("xmlDelete(xmlFile)","xmlDelete: XML document does not exist.");
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 // Work with the structure
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 assert_checkequal(xmlFile.root.name,"modules");       

@@ -45,7 +45,8 @@ assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[1,1]);
 xmlDelete(xmlFile);
 // Delete the file a second time
-assert_checkerror("xmlDelete(xmlFile)",gettext("xmlDelete: XML document does not exist."));
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 
 xmlClasspath=xmlRead(SCI+"/etc/classpath.xml");
@@ -75,7 +76,8 @@ assert_checktrue(size(content2)>=[1,1]);
 xmlDelete(xmlFile);
 xmlDelete(xmlFile2);
 // Delete the file a second time
-assert_checkerror("xmlDelete(xmlFile)","xmlDelete: XML document does not exist.");
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
