@@ -59,7 +59,6 @@ fr_FR.DescriptionM2sci =Boite à outils M2SCI
 fr_FR.DescriptionMatio =Boite à outils Fichiers MAT Entree/Sortie
 fr_FR.DescriptionSound =Boite à outils Manipulation des fichiers son
 fr_FR.DescriptionRandlib =Boite à outils Randlib
-fr_FR.DescriptionJavasci =Interface Java vers Scilab
 fr_FR.DescriptionMexlib =Outils Mexlib
 fr_FR.DescriptionIntersci =Boite à outils Intersci
 fr_FR.DescriptionTclTK =TCL/TK pour Scilab

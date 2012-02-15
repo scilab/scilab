@@ -190,7 +190,7 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_JAVASCI}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
             end;

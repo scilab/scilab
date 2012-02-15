@@ -51,7 +51,6 @@
 #define COMPN_MEXLIB 'mexlib'
 #define COMPN_M2SCI 'm2sci'
 
-#define COMPN_JAVASCI 'javasci'
 #define COMPN_INTERSCI 'intersci'
 
 #define COMPN_FFTW 'FFTW'
@@ -119,7 +118,6 @@ Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: default full cu
 Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
 Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
 ;
-Name: {#COMPN_JAVASCI}; Description: {cm:DescriptionJavasci}; Types: default full custom;
 Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types: default full custom;
 Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types: default full custom;
 ;

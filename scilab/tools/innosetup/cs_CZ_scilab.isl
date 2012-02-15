@@ -59,7 +59,6 @@ cs_CZ.DescriptionM2sci =M2SCI Toolbox
 cs_CZ.DescriptionMatio =MAT File Input/Output Toolbox
 cs_CZ.DescriptionSound =Sound file handling Toolbox
 cs_CZ.DescriptionRandlib =Randlib Toolbox
-cs_CZ.DescriptionJavasci =Java Interface with Scilab
 cs_CZ.DescriptionMexlib =Mexlib Tools
 cs_CZ.DescriptionIntersci =Intersci Toolbox
 cs_CZ.DescriptionTclTK =TCL/TK in Scilab
