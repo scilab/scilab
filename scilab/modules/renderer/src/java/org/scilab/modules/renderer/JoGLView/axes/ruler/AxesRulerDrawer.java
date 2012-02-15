@@ -21,7 +21,7 @@ import org.scilab.forge.scirenderer.ruler.RulerDrawingResult;
 import org.scilab.forge.scirenderer.ruler.RulerModel;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
@@ -165,7 +165,10 @@ public class AxesRulerDrawer {
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                DefaultGeometry gridGeometry = new DefaultGeometry();
+                gridGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                gridGeometry.setVertices(vertexBuffer);
+                drawingTools.draw(gridGeometry, gridAppearance);
                 drawingTools.getTransformationManager().getModelViewStack().pop();
             }
 
@@ -229,7 +232,10 @@ public class AxesRulerDrawer {
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                DefaultGeometry gridGeometry = new DefaultGeometry();
+                gridGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                gridGeometry.setVertices(vertexBuffer);
+                drawingTools.draw(gridGeometry, gridAppearance);
                 drawingTools.getTransformationManager().getModelViewStack().pop();
             }
         }
@@ -308,7 +314,10 @@ public class AxesRulerDrawer {
 
                     gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
                     drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-                    drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                    DefaultGeometry gridGeometry = new DefaultGeometry();
+                    gridGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                    gridGeometry.setVertices(vertexBuffer);
+                    drawingTools.draw(gridGeometry, gridAppearance);
                     drawingTools.getTransformationManager().getModelViewStack().pop();
                 }
             }

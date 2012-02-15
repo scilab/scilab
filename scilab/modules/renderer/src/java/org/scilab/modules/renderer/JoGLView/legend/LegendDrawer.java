@@ -16,7 +16,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
@@ -27,13 +27,11 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-import org.scilab.modules.renderer.JoGLView.legend.LegendSpriteDrawer;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
@@ -281,41 +279,46 @@ public class LegendDrawer {
 
                 /* Legend rectangle background */
                 if (legend.getFillMode()) {
-                        float [] backgroundVerticesData = new float[] {(float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                                                                       (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
-                                                                       (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                                                                       (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                                                                       (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                                                                       (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f};
+                    float [] backgroundVerticesData = new float[] {
+                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
+                            (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
+                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
+                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
+                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
+                            (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f
+                    };
 
-                        backgroundVertices.setData(backgroundVerticesData, 4);
+                    backgroundVertices.setData(backgroundVerticesData, 4);
 
-                        Geometry legendTriangles = new GeometryImpl(Geometry.DrawingMode.TRIANGLES, backgroundVertices);
+                    DefaultGeometry legendTriangles = new DefaultGeometry();
+                    legendTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                    legendTriangles.setVertices(backgroundVertices);
 
-                        Appearance triappearance = new Appearance();
-                        triappearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground()));
+                    Appearance appearance = new Appearance();
+                    appearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground()));
 
-                        drawingTools.draw(legendTriangles, triappearance);
+                    drawingTools.draw(legendTriangles, appearance);
                 }
 
-                /* Legend outline */
-                float [] outlineVerticesData = new float[] {(float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                                                            (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
-                                                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                                                            (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f};
-
-
-                outlineVertices.setData(outlineVerticesData, 4);
-
-                Geometry legendSquare = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_LOOP, outlineVertices);
-
                 if (legend.getLineMode()) {
-                        Appearance appearance = new Appearance();
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
-                        appearance.setLineWidth(legend.getLineThickness().floatValue());
-                        appearance.setLinePattern(legend.getLineStyleAsEnum().asPattern());
+                    /* Legend outline */
+                    float [] outlineVerticesData = new float[] {
+                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
+                            (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
+                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
+                            (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f
+                    };
+                    outlineVertices.setData(outlineVerticesData, 4);
 
-                        drawingTools.draw(legendSquare, appearance);
+                    DefaultGeometry legendSquare = new DefaultGeometry();
+                    legendSquare.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+                    legendSquare.setVertices(outlineVertices);
+                    Appearance appearance = new Appearance();
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
+                    appearance.setLineWidth(legend.getLineThickness().floatValue());
+                    appearance.setLinePattern(legend.getLineStyleAsEnum().asPattern());
+
+                    drawingTools.draw(legendSquare, appearance);
                 }
 
                 /* Lines: 3 vertices each, left, middle, and right */
@@ -350,19 +353,21 @@ public class LegendDrawer {
                         lineVertices.setData(lineData, 4);
 
                         if (currentLine.getLineMode()) {
-                                Geometry line = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_STRIP, lineVertices);
-                                Appearance lineAppearance = new Appearance();
-                                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
-                                lineAppearance.setLineWidth((float) lineThickness);
+                            DefaultGeometry line = new DefaultGeometry();
+                            line.setDrawingMode(Geometry.DrawingMode.SEGMENTS_STRIP);
+                            line.setVertices(lineVertices);
+                            Appearance lineAppearance = new Appearance();
+                            lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                            lineAppearance.setLineWidth((float) lineThickness);
 
-                                lineAppearance.setLinePattern(linePattern);
+                            lineAppearance.setLinePattern(linePattern);
 
-                                drawingTools.draw(line, lineAppearance);
+                            drawingTools.draw(line, lineAppearance);
                         }
 
                         if (currentLine.getMarkMode()) {
-                                Sprite markSprite = markManager.getMarkSprite(currentLine, colorMap);
-                                drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
+                            Sprite markSprite = markManager.getMarkSprite(currentLine, colorMap);
+                            drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
                         }
 
                         lineData[1] += deltaHeight;
@@ -377,7 +382,7 @@ public class LegendDrawer {
 
                 /* Re-enable clipping and restore the transformation stacks */
                 for (int i = 0; i < 6; i++) {
-                        drawingTools.getClippingManager().getClippingPlane(i).setEnable(true);
+                    drawingTools.getClippingManager().getClippingPlane(i).setEnable(true);
                 }
 
                 modelViewStack.pop();

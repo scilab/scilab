@@ -15,8 +15,8 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
@@ -52,7 +52,6 @@ import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 import java.util.HashMap;
@@ -209,90 +208,27 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(final Fec fec) {
         if (fec.getVisible()) {
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
+            triangles.setColors(dataManager.getColorBuffer(fec.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(fec.getIdentifier()));
+            triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(fec.getIdentifier());
-                }
 
-                @Override
-                public ElementsBuffer getColors() {
-                    return dataManager.getColorBuffer(fec.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(fec.getIdentifier());
-                    return indices;
-                }
-
-				@Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
-            Geometry wireframe = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(fec.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(fec.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
+            DefaultGeometry wireFrame = new DefaultGeometry();
+            wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+            wireFrame.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
+            wireFrame.setIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
+            wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
             Appearance trianglesAppearance = new Appearance();
             drawingTools.draw(triangles, trianglesAppearance);
 
-            if (fec.getLineMode())
-            {
-                Appearance wireframeAppearance = new Appearance();
-                wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
-                drawingTools.draw(wireframe, wireframeAppearance);
+            if (fec.getLineMode()) {
+                Appearance wireFrameAppearance = new Appearance();
+                wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
+                drawingTools.draw(wireFrame, wireFrameAppearance);
             }
         }
     }
@@ -318,43 +254,12 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(final Grayplot grayplot) {
         if (grayplot.getVisible()) {
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(grayplot.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return dataManager.getColorBuffer(grayplot.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(grayplot.getIdentifier());
-                    return indices;
-                }
-
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(grayplot.getIdentifier()));
+            triangles.setColors(dataManager.getColorBuffer(grayplot.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(grayplot.getIdentifier()));
+            triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
             Appearance trianglesAppearance = new Appearance();
             drawingTools.draw(triangles, trianglesAppearance);
         }
@@ -363,44 +268,12 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(final Matplot matplot) {
         if (matplot.getVisible()) {
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(matplot.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return dataManager.getColorBuffer(matplot.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(matplot.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(matplot.getIdentifier()));
+            triangles.setColors(dataManager.getColorBuffer(matplot.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(matplot.getIdentifier()));
+            triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
             Appearance trianglesAppearance = new Appearance();
             drawingTools.draw(triangles, trianglesAppearance);
         }
@@ -423,86 +296,21 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     public void visit(final Polyline polyline) {
         if (polyline.getVisible()) {
 
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+            triangles.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
+            triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(polyline.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    /* Interpolated color rendering is used only for basic polylines for now. */
-                    if (polyline.getInterpColorMode() && polyline.getPolylineStyle() == 1) {
-                        return dataManager.getColorBuffer(polyline.getIdentifier());
-                    } else {
-                        return null;
-                    }
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(polyline.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
-            Geometry geometry = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(polyline.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    return dataManager.getWireIndexBuffer(polyline.getIdentifier());
-                }
-
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
+            /**
+             * TODO : try to remove the wire frame and use 'triangle.setEdgeIndices' it's here for that.
+             */
+            DefaultGeometry wireFrame = new DefaultGeometry();
+            wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+            wireFrame.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+            wireFrame.setIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
+            wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
             Appearance trianglesAppearance = new Appearance();
 
@@ -518,7 +326,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
 
-            drawingTools.draw(geometry, appearance);
+            drawingTools.draw(wireFrame, appearance);
 
 
             if (polyline.getMarkMode()) {
@@ -545,130 +353,23 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     public void visit(final Fac3d fac3d) {
         if (fac3d.getVisible()) {
 
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+            triangles.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+            triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+            if (fac3d.getHiddenColor() > 0) {
+                triangles.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+            } else {
+                triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+            }
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(fac3d.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    if (fac3d.getColorFlag() >= 1) {
-                        return dataManager.getColorBuffer(fac3d.getIdentifier());
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(fac3d.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    if (fac3d.getHiddenColor() > 0) {
-                        return axesDrawer.getFrontFaceCullingMode();
-                    }
-                    else {
-                        return FaceCullingMode.BOTH;
-                    }
-                }
-            };
-
-            Geometry backTriangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(fac3d.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(fac3d.getIdentifier());
-                    return indices;
-                }
-
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return axesDrawer.getBackFaceCullingMode();
-                }
-            };
-
-            Geometry wireframe = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(fac3d.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(fac3d.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
+            DefaultGeometry backTriangles = new DefaultGeometry();
+            backTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            backTriangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+            backTriangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+            backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
 
             if (fac3d.getSurfaceMode()) {
                 if (fac3d.getColorMode() != 0) {
@@ -689,11 +390,18 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                     drawingTools.draw(triangles, trianglesAppearance);
                 }
 
-                if (fac3d.getColorMode() >= 0 && fac3d.getLineThickness() > 0.0) {
-                    Appearance wireframeAppearance = new Appearance();
-                    wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
-                    wireframeAppearance.setLineWidth(fac3d.getLineThickness().floatValue());
-                    drawingTools.draw(wireframe, wireframeAppearance);
+                if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
+                    // TODO: use 'EdgeIndices'.
+                    DefaultGeometry wireFrame = new DefaultGeometry();
+                    wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                    wireFrame.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    wireFrame.setIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
+                    wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+
+                    Appearance wireFrameAppearance = new Appearance();
+                    wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                    wireFrameAppearance.setLineWidth(fac3d.getLineThickness().floatValue());
+                    drawingTools.draw(wireFrame, wireFrameAppearance);
                 }
             }
 
@@ -711,130 +419,28 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     public void visit(final Plot3d plot3d) {
         if (plot3d.getVisible()) {
 
-            Geometry triangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
+            DefaultGeometry triangles = new DefaultGeometry();
+            triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            triangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+            triangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
-                }
+            if (plot3d.getColorFlag() == 1) {
+                triangles.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
+            } else {
+                triangles.setColors(null);
+            }
 
-                @Override
-                public ElementsBuffer getColors() {
-                    if (plot3d.getColorFlag() == 1) {
-                        return dataManager.getColorBuffer(plot3d.getIdentifier());
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
+            if (plot3d.getHiddenColor() > 0) {
+                triangles.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+            } else {
+                triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+            }
 
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(plot3d.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    if (plot3d.getHiddenColor() > 0) {
-                        return axesDrawer.getFrontFaceCullingMode();
-                    }
-                    else {
-                        return FaceCullingMode.BOTH;
-                    }
-                }
-            };
-
-            Geometry backTriangles = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.TRIANGLES;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getIndexBuffer(plot3d.getIdentifier());
-                    return indices;
-                }
-
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return axesDrawer.getBackFaceCullingMode();
-                }
-            };
-
-            Geometry wireframe = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
-
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return null;
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(plot3d.getIdentifier());
-                    return indices;
-                }
-                
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
+            DefaultGeometry backTriangles = new DefaultGeometry();
+            backTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+            backTriangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+            backTriangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
+            backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
 
             if (plot3d.getSurfaceMode()) {
                 if (plot3d.getColorMode() != 0) {
@@ -856,11 +462,18 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                     drawingTools.draw(triangles, trianglesAppearance);
                 }
 
-                if (plot3d.getColorMode() >= 0 && plot3d.getLineThickness() > 0.0) {
-                    Appearance wireframeAppearance = new Appearance();
-                    wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
-                    wireframeAppearance.setLineWidth(plot3d.getLineThickness().floatValue());
-                    drawingTools.draw(wireframe, wireframeAppearance);
+                if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0)) {
+                    // TODO: use edgeIndices.
+                    DefaultGeometry wireFrame = new DefaultGeometry();
+                    wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                    wireFrame.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    wireFrame.setIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
+                    wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+
+                    Appearance wireFrameAppearance = new Appearance();
+                    wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                    wireFrameAppearance.setLineWidth(plot3d.getLineThickness().floatValue());
+                    drawingTools.draw(wireFrame, wireFrameAppearance);
                 }
             }
 
@@ -898,50 +511,18 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(final Champ champ) {
         if (champ.getVisible()) {
-            Geometry segments = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
+            DefaultGeometry segments = new DefaultGeometry();
+            segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+            segments.setVertices(dataManager.getVertexBuffer(champ.getIdentifier()));
+            segments.setIndices(dataManager.getWireIndexBuffer(champ.getIdentifier()));
+            segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+            if (champ.getColored()) {
+                segments.setColors(dataManager.getColorBuffer(champ.getIdentifier()));
+            } else {
+                segments.setColors(null);
+            }
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(champ.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    if (champ.getColored()) {
-                        return dataManager.getColorBuffer(champ.getIdentifier());
-                    } else {
-                        return null;
-                    }
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(champ.getIdentifier());
-                    return indices;
-                }
-
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
-            if (champ.getLineMode())
-            {
+            if (champ.getLineMode()) {
                 Appearance segmentAppearance = new Appearance();
 
                 /* If not colored, all segments have the same color. */
@@ -954,7 +535,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 drawingTools.draw(segments, segmentAppearance);
             }
         }
-
     }
 
     /*
@@ -963,46 +543,14 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void visit(final Segs segs) {
         if (segs.getVisible()) {
-            Geometry segments = new Geometry() {
-                @Override
-                public DrawingMode getDrawingMode() {
-                    return Geometry.DrawingMode.SEGMENTS;
-                }
+            DefaultGeometry segments = new DefaultGeometry();
+            segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+            segments.setVertices(dataManager.getVertexBuffer(segs.getIdentifier()));
+            segments.setColors(dataManager.getColorBuffer(segs.getIdentifier()));
+            segments.setIndices(dataManager.getWireIndexBuffer(segs.getIdentifier()));
+            segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                @Override
-                public ElementsBuffer getVertices() {
-                    return dataManager.getVertexBuffer(segs.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getColors() {
-                    return dataManager.getColorBuffer(segs.getIdentifier());
-                }
-
-                @Override
-                public ElementsBuffer getNormals() {
-                    return null;
-                }
-
-                @Override
-                public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(segs.getIdentifier());
-                    return indices;
-                }
-
-                @Override
-                public IndicesBuffer getEdgesIndices() {
-                    return null;
-                }
-
-                @Override
-                public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
-                }
-            };
-
-            if (segs.getLineMode())
-            {
+            if (segs.getLineMode()) {
                 Appearance segmentAppearance = new Appearance();
                 segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, segs.getLineColor()));
                 segmentAppearance.setLineWidth(segs.getLineThickness().floatValue());
@@ -1020,12 +568,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
             }
         }
-
     }
-
-
-
-
 
     @Override
     public void updateObject(String id, String property) {

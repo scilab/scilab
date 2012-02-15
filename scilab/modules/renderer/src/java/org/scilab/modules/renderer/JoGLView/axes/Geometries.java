@@ -14,7 +14,7 @@ package org.scilab.modules.renderer.JoGLView.axes;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.shapes.geometry.GeometryImpl;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 
 /**
@@ -24,9 +24,9 @@ class Geometries {
     private static final int ELEMENT_SIZE = 4;
 
     private final Geometry cubeGeometry;
-    private final Geometry boxBorderGeometry;
-    private final Geometry frontBoxBorderGeometry;
-    private final Geometry hiddenBoxBorderGeometry;
+    private final DefaultGeometry boxBorderGeometry;
+    private final DefaultGeometry frontBoxBorderGeometry;
+    private final DefaultGeometry hiddenBoxBorderGeometry;
 
     private final ElementsBuffer boxBorderVertices;
     private static final float[] boxBorderVerticesData = new float[] {
@@ -70,9 +70,18 @@ class Geometries {
         frontBoxBorderVertices.setData(frontBoxBorderVerticesData, ELEMENT_SIZE);
 
         cubeGeometry = CubeFactory.createCube(canvas);
-        hiddenBoxBorderGeometry = new GeometryImpl(Geometry.DrawingMode.SEGMENTS, hiddenBoxBorderVertices);
-        frontBoxBorderGeometry  = new GeometryImpl(Geometry.DrawingMode.SEGMENTS, frontBoxBorderVertices);
-        boxBorderGeometry       = new GeometryImpl(Geometry.DrawingMode.SEGMENTS_LOOP, boxBorderVertices);
+
+        hiddenBoxBorderGeometry = new DefaultGeometry();
+        hiddenBoxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        hiddenBoxBorderGeometry.setVertices(hiddenBoxBorderVertices);
+
+        frontBoxBorderGeometry = new DefaultGeometry();
+        frontBoxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        frontBoxBorderGeometry.setVertices(frontBoxBorderVertices);
+
+        boxBorderGeometry = new DefaultGeometry();
+        boxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+        boxBorderGeometry.setVertices(boxBorderVertices);
     }
 
     /* TODO !

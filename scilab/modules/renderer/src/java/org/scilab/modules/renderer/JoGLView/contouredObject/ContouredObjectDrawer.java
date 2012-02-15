@@ -13,8 +13,8 @@ package org.scilab.modules.renderer.JoGLView.contouredObject;
 
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
@@ -32,142 +32,71 @@ import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
  * @author Manuel JULIACHS
  */
 public class ContouredObjectDrawer {
-        /** The DrawerVisitor used */
-        private final DrawerVisitor visitor;
+    /** The DrawerVisitor used */
+    private final DrawerVisitor visitor;
 
-        /** The DataManager used */
-        private final DataManager dataManager;
+    /** The DataManager used */
+    private final DataManager dataManager;
 
-        /** The MarkSpriteManager used */
-        private final MarkSpriteManager markManager;
+    /** The MarkSpriteManager used */
+    private final MarkSpriteManager markManager;
 
-        /** The identifier of the currently drawn object */
-        private String drawnObjectID;
+    /**
+     * Constructor.
+     * @param visitor the DrawerVisitor {@see DrawerVisitor}.
+     * @param dataManagerIn the DataManager {@see DataManager}.
+     * @param markManagerIn the MarkSpriteManager {@see MarkSpriteManager}.
+     */
+    public ContouredObjectDrawer(DrawerVisitor visitor, DataManager dataManagerIn, MarkSpriteManager markManagerIn) {
+        this.visitor = visitor;
+        this.dataManager = dataManagerIn;
+        this.markManager = markManagerIn;
+    }
 
-        /** The Geometry specifying triangles */
-        private Geometry triangles;
+    /**
+     * Draws the given ContouredObject.
+     * @param contouredObject the ContouredObject to draw.
+     */
+    public void draw(ContouredObject contouredObject) {
+        DrawingTools drawingTools = visitor.getDrawingTools();
+        ColorMap colorMap = visitor.getColorMap();
 
-        /** The Geometry specifying line segments */
-        private Geometry segments;
+        /* Sets the drawn object's identifier as the current one */
+        String drawnObjectID = contouredObject.getIdentifier();
 
-        /**
-         * Constructor.
-         * @param visitor the DrawerVisitor {@see DrawerVisitor}.
-         * @param dataManagerIn the DataManager {@see DataManager}.
-         * @param markManagerIn the MarkSpriteManager {@see MarkSpriteManager}.
-         */
-        public ContouredObjectDrawer(DrawerVisitor visitor, DataManager dataManagerIn, MarkSpriteManager markManagerIn) {
-                this.visitor = visitor;
-                this.dataManager = dataManagerIn;
-                this.markManager = markManagerIn;
-
-                triangles = new Geometry() {
-                        @Override
-                        public DrawingMode getDrawingMode() {
-                                return Geometry.DrawingMode.TRIANGLES;
-                        }
-
-                        @Override
-                        public ElementsBuffer getVertices() {
-                                return dataManager.getVertexBuffer(drawnObjectID);
-                        }
-
-                        @Override
-                        public ElementsBuffer getColors() {
-                                return null;
-                        }
-
-                        @Override
-                        public ElementsBuffer getNormals() {
-                                return null;
-                        }
-
-                        @Override
-                        public IndicesBuffer getIndices() {
-                                IndicesBuffer indices = dataManager.getIndexBuffer(drawnObjectID);
-                                return indices;
-                        }
-
-                        @Override
-                        public IndicesBuffer getEdgesIndices() {
-                                return null;
-                        }
-
-                        @Override
-                        public FaceCullingMode getFaceCullingMode() {
-                                return FaceCullingMode.BOTH;
-                        }
-                };
-
-                segments = new Geometry() {
-                        @Override
-                        public DrawingMode getDrawingMode() {
-                                return Geometry.DrawingMode.SEGMENTS;
-                        }
-
-                        @Override
-                        public ElementsBuffer getVertices() {
-                                return dataManager.getVertexBuffer(drawnObjectID);
-                        }
-
-                        @Override
-                        public ElementsBuffer getColors() {
-                                return null;
-                        }
-
-                        @Override
-                        public ElementsBuffer getNormals() {
-                                return null;
-                        }
-
-                        @Override
-                        public IndicesBuffer getIndices() {
-                                IndicesBuffer indices = dataManager.getWireIndexBuffer(drawnObjectID);
-                                return indices;
-                        }
-
-                        @Override
-                        public IndicesBuffer getEdgesIndices() {
-                                return null;
-                        }
-
-                        @Override
-                        public FaceCullingMode getFaceCullingMode() {
-                                return FaceCullingMode.BOTH;
-                        }
-                };
-        }
+        DefaultGeometry triangles = new DefaultGeometry();
+        triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+        triangles.setVertices(dataManager.getVertexBuffer(drawnObjectID));
+        triangles.setIndices(dataManager.getIndexBuffer(drawnObjectID));
+        triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
         /**
-         * Draws the given ContouredObject.
-         * @param contouredObject the ContouredObject to draw.
+         * TODO: use "triangle.edgesIndices".
          */
-        public void draw(ContouredObject contouredObject) {
-                DrawingTools drawingTools = visitor.getDrawingTools();
-                ColorMap colorMap = visitor.getColorMap();
+        DefaultGeometry segments = new DefaultGeometry();
+        segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        segments.setVertices(dataManager.getVertexBuffer(drawnObjectID));
+        segments.setIndices(dataManager.getWireIndexBuffer(drawnObjectID));
+        segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                /* Sets the drawn object's identifier as the current one */
-                drawnObjectID = contouredObject.getIdentifier();
-
-                if (contouredObject.getFillMode()) {
-                        Appearance trianglesAppearance = new Appearance();
-                        trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground()));
-                        drawingTools.draw(triangles, trianglesAppearance);
-                }
-
-                if (contouredObject.getLineMode()) {
-                        Appearance segmentAppearance = new Appearance();
-                        segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
-                        segmentAppearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
-                        segmentAppearance.setLineWidth(contouredObject.getLineThickness().floatValue());
-                        drawingTools.draw(segments, segmentAppearance);
-                }
-
-                if (contouredObject.getMarkMode()) {
-                        Sprite sprite = markManager.getMarkSprite(contouredObject, colorMap);
-                        ElementsBuffer positions = dataManager.getVertexBuffer(contouredObject.getIdentifier());
-                        drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
-                }
-
+        if (contouredObject.getFillMode()) {
+                Appearance trianglesAppearance = new Appearance();
+                trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground()));
+                drawingTools.draw(triangles, trianglesAppearance);
         }
+
+        if (contouredObject.getLineMode()) {
+                Appearance segmentAppearance = new Appearance();
+                segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
+                segmentAppearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
+                segmentAppearance.setLineWidth(contouredObject.getLineThickness().floatValue());
+                drawingTools.draw(segments, segmentAppearance);
+        }
+
+        if (contouredObject.getMarkMode()) {
+                Sprite sprite = markManager.getMarkSprite(contouredObject, colorMap);
+                ElementsBuffer positions = dataManager.getVertexBuffer(contouredObject.getIdentifier());
+                drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
+        }
+    }
 }
