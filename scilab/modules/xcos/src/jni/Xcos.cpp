@@ -119,7 +119,7 @@ Xcos::Xcos(JavaVM * jvm_)
     voidxcosjstringjava_lang_StringID = NULL;
     voidwarnCellByUIDjobjectArray_java_lang_Stringjstringjava_lang_StringID = NULL;
     voidcloseXcosFromScilabID = NULL;
-    jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = NULL;
+    jintxcosDiagramToScilabjstringjava_lang_StringID = NULL;
     voidxcosDiagramOpenjobjectArray_java_lang_StringID = NULL;
     voidxcosDiagramClosejobjectArray_java_lang_StringID = NULL;
     voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID = NULL;
@@ -153,7 +153,7 @@ Xcos::Xcos(JavaVM * jvm_, jobject JObj)
     voidxcosjstringjava_lang_StringID = NULL;
     voidwarnCellByUIDjobjectArray_java_lang_Stringjstringjava_lang_StringID = NULL;
     voidcloseXcosFromScilabID = NULL;
-    jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = NULL;
+    jintxcosDiagramToScilabjstringjava_lang_StringID = NULL;
     voidxcosDiagramOpenjobjectArray_java_lang_StringID = NULL;
     voidxcosDiagramClosejobjectArray_java_lang_StringID = NULL;
     voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID = NULL;
@@ -305,17 +305,17 @@ void Xcos::closeXcosFromScilab (JavaVM * jvm_)
     }
 }
 
-int Xcos::xcosDiagramToHDF5 (JavaVM * jvm_, char * xcosFile, char * h5File, bool forceOverwrite)
+int Xcos::xcosDiagramToScilab (JavaVM * jvm_, char * xcosFile)
 {
 
     JNIEnv * curEnv = NULL;
     jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
     jclass cls = curEnv->FindClass( className().c_str() );
 
-    jmethodID jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "xcosDiagramToHDF5", "(Ljava/lang/String;Ljava/lang/String;Z)I" ) ;
-    if (jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID == NULL)
+    jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;)I" ) ;
+    if (jintxcosDiagramToScilabjstringjava_lang_StringID == NULL)
     {
-        throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToHDF5");
+        throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToScilab");
     }
 
     jstring xcosFile_ = curEnv->NewStringUTF( xcosFile );
@@ -325,18 +325,8 @@ int Xcos::xcosDiagramToHDF5 (JavaVM * jvm_, char * xcosFile, char * h5File, bool
     }
 
 
-    jstring h5File_ = curEnv->NewStringUTF( h5File );
-    if (h5File != NULL && h5File_ == NULL)
-    {
-        throw GiwsException::JniBadAllocException(curEnv);
-    }
-
-
-    jboolean forceOverwrite_ = (static_cast<bool>(forceOverwrite) ? JNI_TRUE : JNI_FALSE);
-
-    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID , xcosFile_, h5File_, forceOverwrite_));
+    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintxcosDiagramToScilabjstringjava_lang_StringID , xcosFile_));
     curEnv->DeleteLocalRef(xcosFile_);
-    curEnv->DeleteLocalRef(h5File_);
     curEnv->DeleteLocalRef(cls);
     if (curEnv->ExceptionCheck())
     {

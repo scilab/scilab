@@ -30,9 +30,9 @@ extern "C"
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
+int sci_xcosDiagramToScilab(char *fname, unsigned long fname_len)
 {
-    CheckRhs(3, 3);
+    CheckRhs(1, 1);
     CheckLhs(0, 1);
 
     SciErr sciErr;
@@ -74,9 +74,9 @@ int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (iRows1 != 1 || iCols1 != 1)
+    if (iRows1 * iCols1 != 1)
     {
-        //Error String matrix 1,1 excepted
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
     }
 
     //get xcos filename length
@@ -98,81 +98,6 @@ int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    //get h5 filename
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
-
-    //get h5 filename matrix dimension
-    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, NULL, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
-
-    if (iRows2 != 1 || iCols2 != 1)
-    {
-        //Error String matrix 1,1 excepted
-    }
-
-    //get xcos filename length
-    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
-
-    pstH5File = (char *)MALLOC(sizeof(char *) * (iLen2 + 1));   //+ 1 for null termination
-    //get xcos filename
-    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, &pstH5File);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
-
-    //get force writing flag
-    //get h5 filename
-    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-        return 0;
-    }
-
-    sciErr = getVarDimension(pvApiCtx, piAddr3, &iRows3, &iCols3);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-        return 0;
-    }
-
-    sciErr = getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, &piForceWrite);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-        return 0;
-    }
-
-    if (iRows3 != 1 || iCols3 != 1)
-    {
-        //Error boolean matrix 1,1 excepted
-    }
-
-    bForceWrite = piForceWrite[0] ? true : false;
-
     /*
      * Call the Java implementation
      */
@@ -180,14 +105,14 @@ int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
 
     try
     {
-        iRet = Xcos::xcosDiagramToHDF5(getScilabJavaVM(), pstXcosFile, pstH5File, bForceWrite);
+        iRet = Xcos::xcosDiagramToScilab(getScilabJavaVM(), pstXcosFile);
     }
-    catch(GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch(GiwsException::JniException exception)
+    catch (GiwsException::JniException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
@@ -205,7 +130,7 @@ int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

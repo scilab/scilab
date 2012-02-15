@@ -84,7 +84,7 @@ protected:
     jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjstringjava_lang_StringID; // cache method id
     jclass stringArrayClass;
     jmethodID voidcloseXcosFromScilabID; // cache method id
-    jmethodID jintxcosDiagramToHDF5jstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
+    jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID; // cache method id
     jmethodID voidxcosDiagramOpenjobjectArray_java_lang_StringID; // cache method id
     jmethodID voidxcosDiagramClosejobjectArray_java_lang_StringID; // cache method id
     jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
@@ -153,7 +153,7 @@ public:
 
     static void closeXcosFromScilab(JavaVM * jvm_);
 
-    static int xcosDiagramToHDF5(JavaVM * jvm_, char * xcosFile, char * h5File, bool forceOverwrite);
+    static int xcosDiagramToScilab(JavaVM * jvm_, char * xcosFile);
 
     static void xcosDiagramOpen(JavaVM * jvm_, char ** UID, int UIDSize);
 

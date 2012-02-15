@@ -37,19 +37,7 @@ function result = importXcosDiagram(xcosFile)
 	end
 
 	// import the real file
-	convertStatus = xcosDiagramToHDF5(fullPathName, h5File, %t);
-
-	if(convertStatus <> 0) then
-		error(msprintf(gettext("%s: Unable to import file ""%s"" ." + '\n'), "importXcosDiagram", xcosFile));
-	end
-	
-	if(import_from_hdf5(h5File) == %f) then
-		error(msprintf(gettext("%s: Unable to import file ""%s"" from ""%s"" ." + '\n'), "importXcosDiagram", xcosFile, h5File));
-		return;
-	end
-
-	// deleting the temporary file
-	mdelete(h5File);
+	convertStatus = xcosDiagramToScilab(fullPathName);
 	
 	//return scs_m in Scilab environment
 	result = %t;

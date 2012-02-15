@@ -13,9 +13,6 @@
 
 package org.scilab.modules.xcos;
 
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
-
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +62,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -1006,24 +1004,11 @@ public final class Xcos {
      *
      * @param xcosFile
      *            The xcos diagram file
-     * @param h5File
-     *            The target file
-     * @param overwrite
-     *            Does the file will be overwritten ?
      * @return Not used (compatibility)
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-    public static int xcosDiagramToHDF5(final String xcosFile,
-                                        final String h5File, final boolean overwrite) {
+    public static int xcosDiagramToScilab(final String xcosFile) {
         final File file = new File(xcosFile);
-
-        if (exists(h5File)) {
-            if (!overwrite) {
-                return 1;
-            } else {
-                delete(h5File);
-            }
-        }
 
         if (!file.exists()) {
             return 1;
@@ -1033,17 +1018,21 @@ public final class Xcos {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
+                    LOG.trace("xcosDiagramToScilab: entering");
                     final XcosDiagram diagram = new XcosDiagram();
 
                     final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
                     if (filetype != null) {
                         try {
+                            LOG.trace("xcosDiagramToScilab: initialized");
                             filetype.load(xcosFile, diagram);
-                            new H5RWHandler(h5File).writeDiagram(diagram);
+                            LOG.trace("xcosDiagramToScilab: loaded");
+                            new ScilabDirectHandler().writeDiagram(diagram);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
                     }
+                    LOG.trace("xcosDiagramToScilab: exiting");
                 }
             });
         } catch (final InterruptedException e) {

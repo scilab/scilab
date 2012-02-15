@@ -23,7 +23,7 @@ int sci_Xcos(char *fname, unsigned long l);
 int sci_xcosNotify(char *fname, unsigned long l);
 int sci_warnBlockByUID(char *fname, unsigned long l);
 int sci_closeXcosFromScilab(char *fname, unsigned long l);
-int sci_xcosDiagramToHDF5(char *fname, unsigned long l);
+int sci_xcosDiagramToScilab(char *fname, unsigned long l);
 int sci_xcosDiagramOpen(char *fname, unsigned long l);
 int sci_xcosDiagramClose(char *fname, unsigned long l);
 int sci_xcosPalLoad(char *fname, unsigned long l);
