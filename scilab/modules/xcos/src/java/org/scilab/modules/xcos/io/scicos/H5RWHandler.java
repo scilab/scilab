@@ -36,7 +36,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement useful methods to easily import or export Scicos data.
  */
 // CSOFF: ClassDataAbstractionCoupling
-public class H5RWHandler {
+public class H5RWHandler implements Handler {
     private static final String CONTEXT = "context";
     private static final String SCS_M = "scs_m";
     private static final Log LOG = LogFactory.getLog(H5RWHandler.class);
@@ -45,7 +45,7 @@ public class H5RWHandler {
 
     /**
      * Constructor a new instance with a file.
-     * 
+     *
      * @param hdf5file
      *            the file path.
      */
@@ -55,7 +55,7 @@ public class H5RWHandler {
 
     /**
      * Construct a new instance with the file path.
-     * 
+     *
      * @param hdf5file
      *            the file path.
      */
@@ -67,26 +67,18 @@ public class H5RWHandler {
      * Read methods
      */
 
-    /**
-     * Decode an Xcos block
-     * 
-     * @return the decoded block
-     * @throws ScicosFormatException
-     *             on decoding error
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readBlock()
      */
+    @Override
     public BasicBlock readBlock() throws ScicosFormatException {
         return readBlock(null);
     }
 
-    /**
-     * Decode an Xcos block into an instance
-     * 
-     * @param into
-     *            the instance to update
-     * @return the updated instance.
-     * @throws ScicosFormatException
-     *             on decoding error
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readBlock(org.scilab.modules.xcos.block.BasicBlock)
      */
+    @Override
     public BasicBlock readBlock(BasicBlock into) throws ScicosFormatException {
         final ScilabMList data = new ScilabMList();
         final BlockElement element = new BlockElement();
@@ -119,11 +111,10 @@ public class H5RWHandler {
         return instance;
     }
 
-    /**
-     * Decode an evaluated Xcos context
-     * 
-     * @return the decoded context
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readContext()
      */
+    @Override
     public Map<String, String> readContext() {
         final ScilabList list = new ScilabList();
         final Map<String, String> result = new LinkedHashMap<String, String>();
@@ -160,24 +151,18 @@ public class H5RWHandler {
         return result;
     }
 
-    /**
-     * Decode an Xcos diagram from an H5 file
-     * 
-     * @return the decoded diagram
-     * @throws VersionMismatchException
-     *             when the diagram version mismatch
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readDiagram()
      */
+    @Override
     public XcosDiagram readDiagram() throws VersionMismatchException {
         return readDiagram(null);
     }
 
-    /**
-     * Decode an Xcos diagram from an H5 file in place.
-     * 
-     * @param instance
-     *            the previously allocated diagram where to decode.
-     * @return the decoded diagram
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#readDiagram(org.scilab.modules.xcos.graph.XcosDiagram)
      */
+    @Override
     public XcosDiagram readDiagram(XcosDiagram instance) {
         final ScilabMList data = new ScilabMList();
         final DiagramElement element = new DiagramElement();
@@ -208,8 +193,8 @@ public class H5RWHandler {
                  * contains the partially decoded data so continue.
                  */
                 diagram.error(XcosMessages.UNKNOW_VERSION
-                        + ((VersionMismatchException) e).getWrongVersion()
-                        + "\n" + XcosMessages.TRY_TO_CONTINUE);
+                              + ((VersionMismatchException) e).getWrongVersion()
+                              + "\n" + XcosMessages.TRY_TO_CONTINUE);
             } else {
                 // rethrow
                 throw new RuntimeException(e);
@@ -217,7 +202,7 @@ public class H5RWHandler {
         } catch (HDF5Exception e) {
             throw new RuntimeException(e);
         } catch (Throwable t) {
-        	t.printStackTrace();
+            t.printStackTrace();
         } finally {
             diagram.getModel().endUpdate();
         }
@@ -233,12 +218,10 @@ public class H5RWHandler {
      * Write methods
      */
 
-    /**
-     * Encode an Xcos block
-     * 
-     * @param block
-     *            the block
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#writeBlock(org.scilab.modules.xcos.block.BasicBlock)
      */
+    @Override
     public void writeBlock(BasicBlock block) {
         final BlockElement element = new BlockElement();
         final ScilabType data = element.encode(block, null);
@@ -268,12 +251,10 @@ public class H5RWHandler {
         }
     }
 
-    /**
-     * Encode an Xcos context
-     * 
-     * @param context
-     *            the context
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#writeContext(java.lang.String[])
      */
+    @Override
     public void writeContext(String[] context) {
         final ScilabString string = new ScilabString(context);
 
@@ -296,12 +277,10 @@ public class H5RWHandler {
         }
     }
 
-    /**
-     * Encode an Xcos diagram
-     * 
-     * @param diagram
-     *            the block
+    /* (non-Javadoc)
+     * @see org.scilab.modules.xcos.io.scicos.RWHandler#writeDiagram(org.scilab.modules.xcos.graph.XcosDiagram)
      */
+    @Override
     public void writeDiagram(XcosDiagram diagram) {
         final DiagramElement element = new DiagramElement();
         final ScilabType data = element.encode(diagram, null);

@@ -49,6 +49,8 @@ Xcos
 
 * Bug #7863 fixed - Default path for code generation was SCI.
 
+* Bug #8188 fixed - Xcos to Scilab export took too much time.
+
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
 

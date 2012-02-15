@@ -3,11 +3,11 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,6 +31,7 @@ import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -76,7 +77,7 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            the source event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -90,7 +91,7 @@ public class StartAction extends OneBlockDependantAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         String cmd;
 
         updateUI(true);
@@ -121,7 +122,7 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Create the command String
-     * 
+     *
      * @param diagram
      *            the working diagram
      * @return the command string
@@ -129,7 +130,7 @@ public class StartAction extends OneBlockDependantAction {
      *             when temporary files must not be created.
      */
     private String createSimulationCommand(final XcosDiagram diagram)
-            throws IOException {
+    throws IOException {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
@@ -142,12 +143,9 @@ public class StartAction extends OneBlockDependantAction {
         /*
          * Import a valid scs_m structure into Scilab
          */
-        final String temp = FileUtils.createTempFile();
-        diagram.dumpToHdf5File(temp);
-
-        command.append(buildCall("import_from_hdf5", temp));
+        new ScilabDirectHandler().writeDiagram(diagram);
         command.append(buildCall("scicos_debug", diagram.getScicosParameters()
-                .getDebugLevel()));
+                                 .getDebugLevel()));
 
         /*
          * Simulate
@@ -160,7 +158,7 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Update the UI depending on the action selected or not
-     * 
+     *
      * @param started
      *            the started status
      */
@@ -171,7 +169,7 @@ public class StartAction extends OneBlockDependantAction {
 
         if (started) {
             ((XcosDiagram) getGraph(null))
-                    .info(XcosMessages.SIMULATION_IN_PROGRESS);
+            .info(XcosMessages.SIMULATION_IN_PROGRESS);
         } else {
             ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
         }
