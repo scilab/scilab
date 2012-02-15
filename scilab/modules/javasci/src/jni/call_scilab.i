@@ -66,7 +66,6 @@ class%}
     if (System.getProperty("os.name").toLowerCase().contains("windows")) {
         System.loadLibrary("javasci");
     } else {
-        System.loadLibrary("scilab");
         System.loadLibrary("javasci2");
         }
     } catch (SecurityException e) {
