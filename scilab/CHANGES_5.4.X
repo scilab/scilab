@@ -131,14 +131,22 @@ Scinotes
 * Bug #10647 fixed : An error message did not repect Scilab localization standard.
 
 
+api_scilab
+==========
+
+* Construction of any type of lists is now way faster (300x in some cases).
+
+
 Javasci
 =======
 
-* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-  a sparse but not to send it to Scilab).
+* Javasci supports sparse and boolean sparse datatypes.
 
-* Javasci supports struct datatypes under the form of an MList (Javasci is
-  able to retrieve a struct but not to send it to Scilab).
+* Javasci supports tlists, mlists and lists datatypes.
+
+* Javasci supports polynomial datatypes.
+
+* Javasci supports struct datatypes under the form of an MList.
 
 * If Scilab fails to start because of a memory issues (stacksize), triggers an
   InitializationException Java exception.

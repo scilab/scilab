@@ -115,8 +115,10 @@ public class DisplayPI {
         <revnumber>5.4.0</revnumber>
         <revdescription>
           <itemizedlist>
-            <listitem>Javasci supports sparse datatypes retrieval (Javasci is able to retrieve a sparse but not to send it to Scilab).</listitem>
-            <listitem>Javasci supports struct datatypes under the form of a mlist (Javasci is able to retrieve a struct but not to send it to Scilab).</listitem>
+            <listitem>Javasci supports sparse and boolean sparse datatypes.</listitem>
+            <listitem>Javasci supports tlists, mlists and lists datatypes.</listitem>
+            <listitem>Javasci supports polynomial datatypes.</listitem>
+            <listitem>Javasci supports struct datatypes under the form of an mList.</listitem>
           </itemizedlist>
         </revdescription>
       </revision>
