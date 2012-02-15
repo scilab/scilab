@@ -937,7 +937,7 @@ function msg = launchthecommand( filename )
 //   - exec("C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst")
 // Workaround for bug #4827
   msg(1) = "   Or launch the following command :"
-  msg(2) = "   - exec(""" + filename + """);"
+  msg(2) = "   - exec(""" + fullpath(filename) + """);"
 endfunction
 
 // => remove header from the diary txt
