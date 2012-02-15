@@ -599,8 +599,7 @@ uninstall-am:
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am
 
 
-@NEED_JAVA_TRUE@all:
-@NEED_JAVA_TRUE@	$(ANT) 
+@NEED_JAVA_TRUE@all: java
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
