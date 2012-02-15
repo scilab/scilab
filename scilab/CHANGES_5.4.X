@@ -211,6 +211,9 @@ Bug fixes
 
 * Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
 
+* Bug #9328 fixed - Scilab randomly crached at startup under Mac OS X when calling
+                    functions returning no value (lines, modes, banner, ...).
+
 * Bug #9424 fixed - gettext("") did not return "".
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
