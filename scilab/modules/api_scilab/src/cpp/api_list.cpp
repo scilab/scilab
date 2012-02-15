@@ -621,7 +621,16 @@ static SciErr createCommonListInList(void* _pvCtx, int _iVar, const char* _pstNa
     int iNewPos    = Top - Rhs + _iVar;
     int iNbItem    = 0;
     int* piChildAddr = NULL;
-    int* piParent   = getLastListAddress(_iVar, _iItemPos);
+    int* piParent   = NULL;
+
+    if(iNamed)
+    {
+        piParent = getLastNamedListAddress(_pstName, _iItemPos);
+    }
+    else
+    {
+        piParent = getLastListAddress(_iVar, _iItemPos);
+    }
 
     //Does item can be added in the list
     sciErr = getListItemNumber(_pvCtx, piParent, &iNbItem);
@@ -2022,14 +2031,23 @@ static SciErr fillCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piP
     return sciErr;
 }
 
-static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
+static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iNewPos    = Top - Rhs + _iVar;
     int* piEnd    = NULL;
-    int* piParent   = getLastListAddress(_iVar, _iItemPos);
+    int* piParent   = NULL;
+    
+    if(_pstName)
+    {
+        piParent = getLastNamedListAddress(_pstName, _iItemPos);
+    }
+    else
+    {
+        piParent = getLastListAddress(_iVar, _iItemPos);
+    }
 
     sciErr = fillCommonMatrixOfIntegerInList(_pvCtx, _iVar, piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
     if(sciErr.iErr)
@@ -2051,42 +2069,42 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* /*_
 
 SciErr allocMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, (void **)_pucData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, (void **)_pucData);
 }
 
 SciErr allocMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, (void**)_pusData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, (void**)_pusData);
 }
 
 SciErr allocMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, (void**)_puiData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, (void**)_puiData);
 }
 
 SciErr allocMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, (void**)_pcData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, (void**)_pcData);
 }
 
 SciErr allocMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, (void**)_psData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, (void**)_psData);
 }
 
 SciErr allocMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)
 {
-    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, (void**)_piData);
+    return allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, (void**)_piData);
 }
 
-static SciErr createCommomMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
+static SciErr createCommomMatrixOfIntegerInList(void* _pvCtx, int _iVar, const char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     void *pvData = NULL;
 
-    sciErr = allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, &pvData);
+    sciErr = allocCommonMatrixOfIntegerInList(_pvCtx, _iVar, _pstName, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, &pvData);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_INT_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfIntegerInList", _iItemPos + 1);
@@ -2102,32 +2120,32 @@ static SciErr createCommomMatrixOfIntegerInList(void* _pvCtx, int _iVar, int* _p
 
 SciErr createMatrixOfUnsignedInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned char* _pucData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
 }
 
 SciErr createMatrixOfUnsignedInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned short* _pusData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
 }
 
 SciErr createMatrixOfUnsignedInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const unsigned int* _puiData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
 }
 
 SciErr createMatrixOfInteger8InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* _pcData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
 SciErr createMatrixOfInteger16InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const short* _psData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
 SciErr createMatrixOfInteger32InList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const int* _piData)
 {
-    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
+    return createCommomMatrixOfIntegerInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
 static SciErr getCommonMatrixOfIntegerInList(void* _pvCtx, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
@@ -2209,7 +2227,7 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _
 
     getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    sciErr = createCommomMatrixOfIntegerInList(_pvCtx, Top, piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
+    sciErr = createCommomMatrixOfIntegerInList(_pvCtx, Top, _pstName, piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_INT_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createMatrixOfIntegerInNamedList", _iItemPos + 1, _pstName);
@@ -3076,9 +3094,10 @@ static void updateCommunListOffset(void* _pvCtx, int _iVar, const char* _pstName
 
     if(_pstName == NULL)
     {
-        iMaxDepth = getDepthList(_iVar);
+        int iLocalVar = _iVar - Top + Rhs;
+        iMaxDepth = getDepthList(iLocalVar);
         piParent = (int**)MALLOC(sizeof(int*) * iMaxDepth);
-        getListAdressses(_iVar, piParent);
+        getListAdressses(iLocalVar, piParent);
     }
     else
     {
