@@ -96,6 +96,8 @@ Xcos
 
 * Bug #10658 fixed - Typos fixed in the bloc2exp help page.
 
+* Bug #10679 fixed - blocks_link.tst failed.
+
 * Bug #10697 fixed - post_xcos_simulate function did not work if a TOWS_c block
                      were present.
 
