@@ -14,10 +14,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
@@ -29,8 +26,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -105,25 +101,16 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         /*
          * Export data
          */
-        String temp;
-        try {
-            temp = FileUtils.createTempFile();
-            new H5RWHandler(temp).writeBlock(data);
-        } catch (IOException e1) {
-            Logger.getLogger(ViewDetailsAction.class.getName()).severe(e1.toString());
-            return;
-        }
+        new ScilabDirectHandler().writeBlock(data);
 
         /*
          * Build and execute the command
          */
-        String cmd = buildCall("import_from_hdf5", temp);
-        cmd += "tree_show(scs_m); ";
-        cmd += buildCall("deletefile", temp);
+        final String cmd = "tree_show(scs_m); ";
         try {
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
         } catch (InterpreterException e1) {
-            Logger.getLogger(ViewDetailsAction.class.getName()).severe(e1.toString());
+            Logger.getLogger(ViewDetailsAction.class.toString()).severe(e1.toString());
         }
     }
 }

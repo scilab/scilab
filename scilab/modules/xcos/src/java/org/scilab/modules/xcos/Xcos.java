@@ -13,6 +13,9 @@
 
 package org.scilab.modules.xcos;
 
+import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
+
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +35,6 @@ import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.core.Scilab;
@@ -62,11 +64,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
-import org.scilab.modules.xcos.palette.model.Category;
-import org.scilab.modules.xcos.palette.model.PaletteBlock;
-import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -282,27 +280,6 @@ public final class Xcos {
     private static synchronized Xcos getInstance(final XcosTabFactory factory) {
         if (sharedInstance == null) {
             sharedInstance = new Xcos(factory);
-
-            /*
-             * Lazy loading of HDF5 libraries to avoid first drag lag.
-             */
-            (new SwingWorker<Void, Void>() {
-
-                @Override
-                protected Void doInBackground() throws Exception {
-                    try {
-                        final Category root = PaletteManager.getInstance().getRoot();
-
-                        final PaletteBlock b = ((PreLoaded) root.getNode().get(0)).getBlock().get(0);
-                        new PaletteBlockCtrl(b).getTransferable();
-                    } catch (IndexOutOfBoundsException e) {
-                        LOG.warning(e.toString());
-                    } catch (ClassCastException e) {
-                        LOG.warning(e.toString());
-                    }
-                    return null;
-                }
-            }).execute();
 
             LOG.finest("Session started");
         }
@@ -927,7 +904,7 @@ public final class Xcos {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
-                    getInstance().updateBlockInstance(h5File);
+                    getInstance().updateBlockInstance();
                 }
             });
         } catch (final InterruptedException e) {
@@ -944,13 +921,16 @@ public final class Xcos {
         }
     }
 
-    private void updateBlockInstance(final String h5File) {
+    private void updateBlockInstance() {
         // get the cell
         BasicBlock modifiedBlock;
         try {
-            modifiedBlock = new H5RWHandler(h5File).readBlock();
+            modifiedBlock = new ScilabDirectHandler().readBlock();
         } catch (ScicosFormatException e) {
             throw new RuntimeException(e);
+        }
+        if (modifiedBlock == null) {
+            return;
         }
 
         // diagram lookup

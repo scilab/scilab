@@ -484,6 +484,26 @@ public class Scilab {
      * @throws UnknownTypeException Cannot find the type
      */
     public ScilabTypeEnum getVariableType(String varName) throws JavasciException {
+        return getVariableTypeInCurrentScilabSession(varName);
+    }
+
+    /**
+     * Return the code type of a variable varname in the current Scilab session
+     * <br />
+     * Example:<br />
+     * <code>
+     * sci.exec("a = 2*%pi");<br />
+     * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
+     *      System.out.println("a is a double matrix");<br />
+     * }<br />
+     * <br />
+     * </code>
+     * @param varName the name of the variable
+     * @return the type of the variable
+     * @throws UndefinedVariableException The variable does not exist
+     * @throws UnknownTypeException Cannot find the type
+     */
+    public static ScilabTypeEnum getVariableTypeInCurrentScilabSession(String varName) throws JavasciException {
         ScilabTypeEnum variableType = null;
         try {
             variableType = Call_Scilab.getVariableType(varName);
@@ -519,7 +539,28 @@ public class Scilab {
      * @throws UnsupportedTypeException Type not managed yet.
      */
     public ScilabType get(String varname) throws JavasciException {
-        ScilabTypeEnum sciType = this.getVariableType(varname);
+        return getInCurrentScilabSession(varname);
+    }
+
+    /**
+     * Returns a variable named varname in the current Scilab session<br />
+     * Throws an exception if the datatype is not managed or if the variable is not available
+     * <br />
+     * Example:<br />
+     * <code>
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
+     * sci.put("a",aOriginal);<br />
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
+     * <br />
+     * </code>
+     * @param varname the name of the variable
+     * @return return the variable
+     * @throws UnsupportedTypeException Type not managed yet.
+     */
+    public static ScilabType getInCurrentScilabSession(String varname) throws JavasciException {
+        ScilabTypeEnum sciType = getVariableTypeInCurrentScilabSession(varname);
         switch (sciType) {
         case sci_matrix:
         case sci_boolean:

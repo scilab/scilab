@@ -249,7 +249,7 @@ public final class Palette {
                 }
             });
         } catch (final InterruptedException e) {
-            LOG.severe(e.toString());
+            Logger.getLogger(Palette.class.getName()).severe(e.toString());
         } catch (final InvocationTargetException e) {
             Throwable throwable = e;
             String firstMessage = null;

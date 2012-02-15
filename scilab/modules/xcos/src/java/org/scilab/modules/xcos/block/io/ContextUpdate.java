@@ -14,8 +14,6 @@ package org.scilab.modules.xcos.block.io;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -33,8 +31,8 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -44,7 +42,6 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.model.mxGraphModel;
@@ -429,30 +426,23 @@ public abstract class ContextUpdate extends BasicBlock {
 
         LOG_LOCAL.finest("Update the I/O value from the context");
 
-        String tempOutput;
-        String tempInput;
-        String tempContext;
         try {
-            tempInput = FileUtils.createTempFile();
-            new File(tempInput).deleteOnExit();
-
             // Write scs_m
-            tempOutput = exportBlockStruct();
+            new ScilabDirectHandler().writeBlock(this);
             // Write context
-            tempContext = exportContext(context);
+            new ScilabDirectHandler().writeContext(context);
 
-            String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval", tempOutput, tempInput, getInterfaceFunctionName().toCharArray(), tempContext);
+            String cmd = ScilabInterpreterManagement.buildCall("blk = xcosBlockEval", getInterfaceFunctionName().toCharArray(),
+                         ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
 
             try {
                 ScilabInterpreterManagement.synchronousScilabExec(cmd);
             } catch (InterpreterException e) {
                 e.printStackTrace();
             }
-            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
             updateBlockSettings(modifiedBlock);
 
-        } catch (IOException e) {
-            LOG_LOCAL.severe(e.toString());
         } catch (ScicosFormatException e) {
             LOG_LOCAL.severe(e.toString());
         }

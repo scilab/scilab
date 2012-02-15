@@ -15,12 +15,9 @@ package org.scilab.modules.xcos.block.actions;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
@@ -31,10 +28,9 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -99,30 +95,21 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
         final SuperBlock block = (SuperBlock) selectedObj;
         try {
             /*
-             * Prepare data
-             */
-            final String tempOutput = FileUtils.createTempFile();
-            final String tempInput = FileUtils.createTempFile();
-
-            /*
              * Export data
              */
-            new H5RWHandler(tempOutput).writeBlock(block);
+            new ScilabDirectHandler().writeBlock(block);
 
             /*
              * Prepare command and callback
              */
-            String cmd = buildCall("xcosCodeGeneration", tempOutput, tempInput);
+            String cmd = buildCall("xcosCodeGeneration");
 
             final ActionListener callback = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-
-                    if (!exists(tempInput)) {
-                        graph.info(XcosMessages.EMPTY_INFO);
-                        return;
-                    }
-
+                    /*
+                     * Find the block parent
+                     */
                     XcosDiagram parent = block.getParentDiagram();
                     if (parent == null) {
                         block.setParentDiagram(Xcos.findParent(block));
@@ -130,15 +117,15 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
                         Logger.getLogger(CodeGenerationAction.class.getName()).finest("Parent diagram was null");
                     }
 
+                    /*
+                     * Update
+                     */
                     parent.getModel().beginUpdate();
-                    doAction(block, tempInput);
+                    doAction(block);
                     parent.getModel().endUpdate();
 
                     parent.getView().clear(block, true, false);
                     parent.getView().validate();
-
-                    delete(tempOutput);
-                    delete(tempInput);
 
                     graph.info(XcosMessages.EMPTY_INFO);
                 }
@@ -149,9 +136,6 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
              */
             asynchronousScilabExec(callback, cmd);
 
-        } catch (IOException ex) {
-            Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
-            graph.info(XcosMessages.EMPTY_INFO);
         } catch (InterpreterException ex) {
             Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
             graph.info(XcosMessages.EMPTY_INFO);
@@ -165,12 +149,13 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      *
      * @param block
      *            The block we are working on
-     * @param tempInput
-     *            Input file
      */
-    private static void doAction(final SuperBlock block, final String tempInput) {
+    private static void doAction(final SuperBlock block) {
         try {
-            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
+            if (modifiedBlock == null) {
+                return;
+            }
 
             block.updateBlockSettings(modifiedBlock);
             block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());

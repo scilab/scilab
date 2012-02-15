@@ -238,6 +238,7 @@ public class H5RWHandler implements Handler {
      * .xcos.block.BasicBlock)
      */
     @Override
+    @Deprecated
     public void writeBlock(BasicBlock block) {
         final BlockElement element = new BlockElement();
         final ScilabType data = element.encode(block, null);
@@ -275,6 +276,7 @@ public class H5RWHandler implements Handler {
      * [])
      */
     @Override
+    @Deprecated
     public void writeContext(String[] context) {
         final ScilabString string = new ScilabString(context);
 
@@ -305,6 +307,7 @@ public class H5RWHandler implements Handler {
      * .xcos.graph.XcosDiagram)
      */
     @Override
+    @Deprecated
     public void writeDiagram(XcosDiagram diagram) {
         final DiagramElement element = new DiagramElement();
         final ScilabType data = element.encode(diagram, null);

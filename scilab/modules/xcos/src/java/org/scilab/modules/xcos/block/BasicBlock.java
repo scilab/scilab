@@ -12,17 +12,12 @@
 
 package org.scilab.modules.xcos.block;
 
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
-
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,8 +31,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
@@ -58,7 +51,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
@@ -87,15 +79,14 @@ import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -391,7 +382,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     /**
-     * Trace the parameters change on the {@link Log}.
+     * Trace the parameters change on the {@link Logger}.
      *
      * This listener is only installed if the trace is enable.
      */
@@ -1199,7 +1190,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         } else {
             graph = getParentDiagram();
         }
-        if (getParentDiagram() instanceof PaletteDiagram) {
+        if (graph instanceof PaletteDiagram) {
             return;
         }
 
@@ -1212,109 +1203,42 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             return;
         }
 
-        final String tempOutput;
-        final String tempInput;
-        final String tempContext;
-        final BasicBlock currentBlock = this;
+        // Write scs_m
+        new ScilabDirectHandler().writeBlock(this);
+        // Write context
+        new ScilabDirectHandler().writeContext(context);
 
-        try {
-            tempInput = FileUtils.createTempFile();
+        final ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LOG.finest("Updating data.");
 
-            // Write scs_m
-            tempOutput = exportBlockStruct();
-            // Write context
-            tempContext = exportContext(context);
+                graph.getView().clear(this, true, true);
 
-            final ActionListener action = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (exists(tempInput)) {
-                        LOG.finest("Updating data.");
+                // Now read new Block
+                graph.getModel().beginUpdate();
+                try {
+                    final BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
+                    updateBlockSettings(modifiedBlock);
 
-                        graph.getView().clear(this, true, true);
-
-                        // Now read new Block
-                        graph.getModel().beginUpdate();
-                        try {
-
-                            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-                            updateBlockSettings(modifiedBlock);
-
-                            graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, currentBlock));
-                        } catch (ScicosFormatException e1) {
-                            LOG.severe(e1.toString());
-                        } finally {
-                            graph.getModel().endUpdate();
-                        }
-
-                        delete(tempInput);
-                    } else {
-                        LOG.finest("No needs to update data.");
-                    }
-
-                    delete(tempOutput);
-                    delete(tempContext);
-                    setLocked(false);
+                    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
+                } catch (ScicosFormatException ex) {
+                    LOG.severe(ex.toString());
+                } finally {
+                    graph.getModel().endUpdate();
                 }
-            };
-
-            try {
-                setLocked(true);
-                ScilabInterpreterManagement.asynchronousScilabExec(action, "xcosBlockInterface", tempOutput, tempInput, getInterfaceFunctionName()
-                        .toCharArray(), "set", tempContext);
-            } catch (InterpreterException e) {
-                LOG.severe(e.toString());
                 setLocked(false);
             }
+        };
 
-        } catch (IOException e) {
+        try {
+            setLocked(true);
+            ScilabInterpreterManagement.asynchronousScilabExec(action, "blk = xcosBlockInterface", getInterfaceFunctionName().toCharArray(), "set",
+                    ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
+        } catch (InterpreterException e) {
             LOG.severe(e.toString());
+            setLocked(false);
         }
-    }
-
-    /**
-     * @return exported file
-     */
-    protected String exportBlockStruct() {
-
-        // Write scs_m
-        String tempOutput;
-        try {
-            tempOutput = FileUtils.createTempFile();
-            File f = new File(tempOutput);
-            f.deleteOnExit();
-
-            new H5RWHandler(tempOutput).writeBlock(this);
-            return tempOutput;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * @param context
-     *            parent diagram context
-     * @return exported file
-     */
-    protected String exportContext(String[] context) {
-
-        // Write context
-        try {
-            String fileString = FileUtils.createTempFile();
-            File tempContext = new File(fileString);
-            tempContext.deleteOnExit();
-
-            int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
-            H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
-            H5Write.closeFile(contextFileId);
-            return fileString;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (HDF5Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

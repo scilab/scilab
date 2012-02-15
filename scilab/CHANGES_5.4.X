@@ -50,6 +50,8 @@ Xcos
 
 * Bug #6733 fixed - Each call to xcos created an empty diagram.
 
+* Bug #7539 fixed - Some blocks were slow to interact with.
+
 * Bug #7863 fixed - Default path for code generation was SCI.
 
 * Bug #8188 fixed - Xcos to Scilab export took too much time.

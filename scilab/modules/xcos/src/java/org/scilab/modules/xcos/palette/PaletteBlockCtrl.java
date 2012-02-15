@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.palette;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
+
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -20,9 +23,11 @@ import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseListener;
+import java.lang.ref.WeakReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
@@ -30,8 +35,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -67,7 +72,7 @@ public final class PaletteBlockCtrl {
     private final PaletteBlock model;
     private final PaletteBlockView view;
 
-    private Transferable transferable;
+    private transient WeakReference<Transferable> transferable = new WeakReference<Transferable>(null);
 
     /**
      * Default constructor
@@ -111,8 +116,9 @@ public final class PaletteBlockCtrl {
      * @throws ScicosFormatException
      *             on decoding error
      */
-    public Transferable getTransferable() throws ScicosFormatException {
-        if (transferable == null) {
+    public synchronized Transferable getTransferable() throws ScicosFormatException {
+        Transferable transfer = transferable.get();
+        if (transfer == null) {
             /* Load the block from the H5 file */
             BasicBlock block;
             try {
@@ -140,11 +146,12 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.updateCellSize(block, false);
 
             mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
-            transferable = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+            transfer = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+            transferable = new WeakReference<Transferable>(transfer);
 
             INTERNAL_GRAPH.removeCells();
         }
-        return transferable;
+        return transfer;
     }
 
     /**
@@ -155,9 +162,14 @@ public final class PaletteBlockCtrl {
     private BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
-            // Load the block from the file
-            String realPath = model.getData().getEvaluatedPath();
-            block = new H5RWHandler(realPath).readBlock();
+            // Load the block with a reference instance
+            try {
+                synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
+                block = new ScilabDirectHandler().readBlock();
+            } catch (InterpreterException e1) {
+                LOG.severe(e1.toString());
+                block = null;
+            }
 
             // invalid block case
             if (block == null) {
@@ -223,7 +235,7 @@ public final class PaletteBlockCtrl {
                 }
                 final PaletteManagerView winView = PaletteManagerView.get();
                 final DragGestureEvent event = e;
-                final String msg = String.format(UNABLE_TO_LOAD_BLOCK, getModel().getData().getEvaluatedPath());
+                final String msg = String.format(UNABLE_TO_LOAD_BLOCK, getModel().getName());
 
                 winView.setInfo(LOADING_THE_BLOCK);
                 try {

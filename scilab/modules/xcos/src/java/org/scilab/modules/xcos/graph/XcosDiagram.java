@@ -36,7 +36,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -56,7 +55,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
@@ -78,7 +76,7 @@ import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosCodec;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -94,7 +92,6 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -1532,33 +1529,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * @param fileName
-     *            HDF5 filename
-     */
-    public void dumpToHdf5File(final String fileName) {
-        String writeFile = fileName;
-        if (fileName == null) {
-            final FileChooser fc = ScilabFileChooser.createFileChooser();
-            if (getSavedFile() != null) {
-                try {
-                    fc.setInitialDirectory(getSavedFile().getCanonicalPath());
-                } catch (final IOException e) {
-                    LOG.severe(e.toString());
-                }
-            }
-            fc.setMultipleSelection(false);
-            fc.displayAndWait();
-
-            if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-                return;
-            }
-            writeFile = fc.getSelection()[0];
-        }
-
-        new H5RWHandler(writeFile).writeDiagram(this);
-    }
-
-    /**
      * @return the parameters
      */
     public ScicosParameters getScicosParameters() {
@@ -2207,26 +2177,14 @@ public class XcosDiagram extends ScilabGraph {
         Map<String, String> result = null;
 
         try {
-            final Pattern p = Pattern.compile("('|\")");
+            // first write the context strings
+            new ScilabDirectHandler().writeContext(getContext());
 
-            final StringBuilder str = new StringBuilder();
-            str.append('[');
-            for (final String s : getContext()) {
-                str.append('\"');
-                str.append(p.matcher(s).replaceAll("''"));
-                str.append("\" ");
-            }
-            str.append(']');
+            // evaluate using script2var
+            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + " struct());");
 
-            final String temp = FileUtils.createTempFile();
-
-            ScilabInterpreterManagement.synchronousScilabExec("vars = script2var(" + str.toString() + ", struct());" + "export_to_hdf5('" + temp
-                    + "', 'vars');");
-
-            result = new H5RWHandler(temp).readContext();
-        } catch (final IOException e) {
-            info("Unable to create file");
-            e.printStackTrace();
+            // read the structure
+            result = new ScilabDirectHandler().readContext();
         } catch (final InterpreterException e) {
             info("Unable to evaluate the contexte");
             e.printStackTrace();
