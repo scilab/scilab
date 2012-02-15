@@ -16,6 +16,7 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.MainDataLoader;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
@@ -162,8 +163,9 @@ public class DataManager {
      * Return the vertex buffer of the given object.
      * @param id the given object Id.
      * @return the vertex buffer of the given object.
+     * @throws ObjectRemovedException 
      */
-    public ElementsBuffer getVertexBuffer(String id) {
+    public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException {
         if (vertexBufferMap.containsKey(id)) {
             return vertexBufferMap.get(id);
         } else {
@@ -178,8 +180,9 @@ public class DataManager {
      * Texture coordinates getter.
      * @param identifier the graphic object id.
      * @return the texture coordinates corresponding to the given graphic object.
+     * @throws ObjectRemovedException 
      */
-    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) {
+    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) throws ObjectRemovedException {
         if (texturesCoordinatesBufferMap.containsKey(identifier)) {
             return texturesCoordinatesBufferMap.get(identifier);
         } else {
@@ -194,8 +197,9 @@ public class DataManager {
      * Return the color buffer of the given object.
      * @param id the given object Id.
      * @return the color buffer of the given object.
+     * @throws ObjectRemovedException 
      */
-    public ElementsBuffer getColorBuffer(String id) {
+    public ElementsBuffer getColorBuffer(String id) throws ObjectRemovedException {
         if (colorBufferMap.containsKey(id)) {
             return colorBufferMap.get(id);
         } else {
@@ -210,8 +214,9 @@ public class DataManager {
      * Return the index buffer of the given object.
      * @param id the given object Id.
      * @return the index buffer of the given object.
+     * @throws ObjectRemovedException 
      */
-    public IndicesBuffer getIndexBuffer(String id) {
+    public IndicesBuffer getIndexBuffer(String id) throws ObjectRemovedException {
         if (indexBufferMap.containsKey(id)) {
             return indexBufferMap.get(id);
         } else {
@@ -226,8 +231,9 @@ public class DataManager {
      * Return the wire index buffer of the given object.
      * @param id the given object Id.
      * @return the wire index buffer of the given object.
+     * @throws ObjectRemovedException 
      */
-    public IndicesBuffer getWireIndexBuffer(String id) {
+    public IndicesBuffer getWireIndexBuffer(String id) throws ObjectRemovedException {
         if (wireIndexBufferMap.containsKey(id)) {
             return wireIndexBufferMap.get(id);
         } else {
@@ -241,8 +247,9 @@ public class DataManager {
     /**
      * Update texture coordinate buffer for the given object.
      * @param id given object id.
+     * @throws ObjectRemovedException 
      */
-    public void updateTextureCoordinatesBuffer(String id) {
+    public void updateTextureCoordinatesBuffer(String id) throws ObjectRemovedException {
         ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
         if (textureCoordinatesBuffer != null) {
             fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
@@ -256,30 +263,35 @@ public class DataManager {
      */
     public void update(String id, String property) {
         String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if (vertexBufferMap.containsKey(id)) {
-            if ((type.equals(GraphicObjectProperties.__GO_FAC3D__) && FAC3D_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_FEC__) && FEC_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_MATPLOT__) && MATPLOT_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_ARC__) && ARC_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_CHAMP__) && CHAMP_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_SEGS__) && SEGS_DATA_PROPERTIES.contains(property))) {
-                fillBuffers(id);
+
+        try {
+            if (vertexBufferMap.containsKey(id)) {
+                if ((type.equals(GraphicObjectProperties.__GO_FAC3D__) && FAC3D_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_FEC__) && FEC_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_MATPLOT__) && MATPLOT_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_ARC__) && ARC_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_CHAMP__) && CHAMP_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))
+                        || (type.equals(GraphicObjectProperties.__GO_SEGS__) && SEGS_DATA_PROPERTIES.contains(property))) {
+                    fillBuffers(id);
+                }
             }
-        }
-        if (property.equals(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__)) {
-            updateChildrenVertex(id, 0x01);
-        }
+            if (property.equals(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__)) {
+                updateChildrenVertex(id, 0x01);
+            }
 
-        if (property.equals(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)) {
-            updateChildrenVertex(id, 0x02);
-        }
+            if (property.equals(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)) {
+                updateChildrenVertex(id, 0x02);
+            }
 
-        if (property.equals(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)) {
-            updateChildrenVertex(id, 0x04);
+            if (property.equals(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)) {
+                updateChildrenVertex(id, 0x04);
+            }
+        } catch (ObjectRemovedException e) {
+            // Object has been removed before drawing : do nothing.
         }
     }
 
@@ -287,8 +299,9 @@ public class DataManager {
      * Update vertex buffer of the given object and is descendant.
      * @param id the id of the object.
      * @param coordinateMask the coordinateMask to use.
+     * @throws ObjectRemovedException 
      */
-    private void updateChildrenVertex(String id, int coordinateMask) {
+    private void updateChildrenVertex(String id, int coordinateMask) throws ObjectRemovedException {
         ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
         if (vertexBuffer != null) {
             updateVertexBuffer(vertexBuffer, id, coordinateMask);
@@ -341,8 +354,9 @@ public class DataManager {
      * Fill the vertex, color, index and wire index buffers
      * of a given object.
      * @param id the object id.
+     * @throws ObjectRemovedException 
      */
-    private void fillBuffers(String id) {
+    private void fillBuffers(String id) throws ObjectRemovedException {
         ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
         if (vertexBuffer != null) {
             fillVertexBuffer(vertexBuffer, id);
@@ -369,11 +383,11 @@ public class DataManager {
         }
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) throws ObjectRemovedException {
         fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08);
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
@@ -381,7 +395,7 @@ public class DataManager {
         vertexBuffer.setData(data, 4);
     }
 
-    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) {
+    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = vertexBuffer.getData();
@@ -389,21 +403,21 @@ public class DataManager {
         vertexBuffer.setData(data, 4);
     }
 
-    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) {
+    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
         MainDataLoader.fillTextureCoordinates(id, data, length);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) {
+    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException {
             int length = MainDataLoader.getDataSize(id);
             FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
             MainDataLoader.fillColors(id, data, 4);
             colorBuffer.setData(data, 4);
     }
 
-    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) {
+    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException {
         int length = MainDataLoader.getIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
@@ -421,7 +435,7 @@ public class DataManager {
         indexBuffer.setData(data);
     }
 
-    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) {
+    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException {
         int length = MainDataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 

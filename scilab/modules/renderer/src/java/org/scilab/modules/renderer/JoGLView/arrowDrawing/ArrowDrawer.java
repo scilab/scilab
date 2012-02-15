@@ -19,6 +19,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -133,9 +134,10 @@ public class ArrowDrawer {
      * @param isColored specifies whether the object is drawn with per-arrow colors.
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
+     * @throws ObjectRemovedException 
      */
     public void drawArrows(String parentAxesId, String identifier, double arrowSize, double lineThickness, boolean isSegs,
-        boolean isColored, int lineColor) throws SciRendererException {
+        boolean isColored, int lineColor) throws SciRendererException, ObjectRemovedException {
 
         DataManager dataManager = visitor.getDataManager();
         ColorMap colorMap = visitor.getColorMap();

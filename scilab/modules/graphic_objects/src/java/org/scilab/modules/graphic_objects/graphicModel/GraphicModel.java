@@ -106,9 +106,12 @@ public final class GraphicModel {
      */
     public Object getProperty(String id, String property) {
         GraphicObject object = allObjects.get(id);
-        Object propertyType = object.getPropertyFromName(property);
 
-        return object.getProperty(propertyType);
+        if (object != null) {
+            Object propertyType = object.getPropertyFromName(property);
+            return object.getProperty(propertyType);
+        }
+        return null;
     }
 
     /**
@@ -120,8 +123,11 @@ public final class GraphicModel {
      */
     public UpdateStatus setProperty(String id, String property, Object value) {
         GraphicObject object = allObjects.get(id);
-        Object propertyType = object.getPropertyFromName(property);
-        return object.setProperty(propertyType, value);
+        if (object != null) {
+            Object propertyType = object.getPropertyFromName(property);
+            return object.setProperty(propertyType, value);
+        }
+        return UpdateStatus.Fail;
     }
 
     /**

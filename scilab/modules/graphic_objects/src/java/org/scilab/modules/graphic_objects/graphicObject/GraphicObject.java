@@ -13,6 +13,7 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -139,8 +140,8 @@ public abstract class GraphicObject implements Cloneable {
         return (GraphicObject) copy;
     }
 
-    abstract public void accept(Visitor visitor);
-
+    abstract public void accept(Visitor visitor) throws ObjectRemovedException;
+ 
     /**
      * Returns the enum associated to a type name
      * @param typeName the property name

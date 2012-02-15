@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -110,7 +111,7 @@ public class Segs extends VectField {
 	}
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor visitor) throws ObjectRemovedException {
         visitor.visit(this);
     }
 

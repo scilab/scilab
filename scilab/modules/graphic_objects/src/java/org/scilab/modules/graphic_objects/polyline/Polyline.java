@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.polyline;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
@@ -76,7 +77,7 @@ public class Polyline extends ClippableContouredObject {
 	}
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor visitor) throws ObjectRemovedException {
         visitor.visit(this);
     }
 

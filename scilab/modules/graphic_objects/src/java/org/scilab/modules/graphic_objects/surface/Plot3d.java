@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.surface;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
@@ -29,7 +30,7 @@ public class Plot3d extends Surface {
 	}
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor visitor) throws ObjectRemovedException {
         visitor.visit(this);
     }
 

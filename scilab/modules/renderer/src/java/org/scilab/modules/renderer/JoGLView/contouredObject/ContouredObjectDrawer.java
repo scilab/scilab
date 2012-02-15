@@ -19,6 +19,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.DataManager;
@@ -58,8 +59,9 @@ public class ContouredObjectDrawer {
      * Draws the given ContouredObject.
      * @param contouredObject the ContouredObject to draw.
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
+     * @throws ObjectRemovedException 
      */
-    public void draw(ContouredObject contouredObject) throws SciRendererException {
+    public void draw(ContouredObject contouredObject) throws SciRendererException, ObjectRemovedException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
 

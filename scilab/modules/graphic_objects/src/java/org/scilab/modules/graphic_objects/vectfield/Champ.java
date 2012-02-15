@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.vectfield;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.Utils;
 
@@ -43,7 +44,7 @@ public class Champ extends VectField {
 	}
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor visitor) throws ObjectRemovedException {
         visitor.visit(this);
     }
 

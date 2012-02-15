@@ -17,7 +17,6 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
@@ -79,9 +78,13 @@ public class MainDataLoader {
      * @param the id of the given object.
      * @return the number of data elements.
      */
-    public static int getDataSize(String id) {
+    public static int getDataSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     return JavaObjectLoader.getDataSize(id);
             } else {
@@ -100,9 +103,13 @@ public class MainDataLoader {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      */
     public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
-            int coordinateMask, double[] scale, double[] translation, int logMask) {
+            int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-
+            
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     JavaObjectLoader.fillVertices(id, buffer, elementsSize, coordinateMask, scale, translation, logMask);
             } else {
@@ -116,9 +123,13 @@ public class MainDataLoader {
      * @param the buffer to fill.
      * @param the number of components taken by one element in the buffer (3 or 4).
      */
-    public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
+    public static void fillColors(String id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-
+            
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     JavaObjectLoader.fillColors(id, buffer, elementsSize);
             } else {
@@ -131,9 +142,13 @@ public class MainDataLoader {
      * @param the id of the given object.
      * @return the object's number of indices.
      */
-    public static int getIndicesSize(String id) {
+    public static int getIndicesSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-
+            
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     return JavaObjectLoader.getIndicesSize(id);
             } else {
@@ -148,10 +163,14 @@ public class MainDataLoader {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillIndices(String id, IntBuffer buffer, int logMask) {
+    public static int fillIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-            if (JAVA_OBJECTS.contains(type)) {
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
+              if (JAVA_OBJECTS.contains(type)) {
                     return JavaObjectLoader.fillIndices(id, buffer, logMask);
             } else {
                     return DataLoader.fillIndices(id, buffer, buffer.capacity(), logMask);
@@ -163,9 +182,14 @@ public class MainDataLoader {
      * @param the id of the given object.
      * @return the object's number of indices.
      */
-    public static int getWireIndicesSize(String id) {
+    public static int getWireIndicesSize(String id) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
+            
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     return JavaObjectLoader.getWireIndicesSize(id);
             } else {
@@ -180,9 +204,13 @@ public class MainDataLoader {
      * @param the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    public static int fillWireIndices(String id, IntBuffer buffer, int logMask) {
+    public static int fillWireIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
             String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
+            if (type == null) {
+                throw (new ObjectRemovedException(id));
+            }
+            
             if (JAVA_OBJECTS.contains(type)) {
                     return JavaObjectLoader.fillWireIndices(id, buffer, logMask);
             } else {

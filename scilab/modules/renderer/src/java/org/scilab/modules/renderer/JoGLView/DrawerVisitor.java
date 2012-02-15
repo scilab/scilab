@@ -15,7 +15,6 @@ import com.sun.opengl.util.BufferUtil;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
-import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
@@ -28,6 +27,7 @@ import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -223,11 +223,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     public void askAcceptVisitor(String[] childrenId) {
         if (childrenId != null) {
-            
+
             for (int i = childrenId.length - 1 ; i >= 0 ; --i) {
                 GraphicObject child = GraphicController.getController().getObjectFromId(childrenId[i]);
                 if (child != null) {
-                    child.accept(this);
+                    try {
+                        child.accept(this);
+                    } catch (Exception e) {
+                        System.err.println("[DEBUG] Try to draw an already removed object");
+                        System.err.println("[DEBUG] " + e);
+                        System.err.println("[DEBUG] Skipped...");
+                    }
                 }
             }
         }
@@ -239,7 +245,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             try {
                 currentAxes = axes;
                 axesDrawer.draw(axes);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + axes.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -250,7 +256,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (arc.getVisible()) {
             try {
                 contouredObjectDrawer.draw(arc);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + arc.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -271,7 +277,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void visit(Fec fec) {
+    public void visit(Fec fec) throws ObjectRemovedException {
         fecDrawer.draw(fec);
     }
 
@@ -305,7 +311,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + grayplot.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -331,7 +337,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     drawingTools.draw(textureManager.getTexture(matplot.getIdentifier()));
                     modelViewStack.pop();
                 }
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + matplot.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -349,7 +355,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (legend.getVisible()) {
             try {
                 legendDrawer.draw(legend);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + legend.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -397,7 +403,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + polyline.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -408,7 +414,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (rectangle.getVisible()) {
             try {
                 contouredObjectDrawer.draw(rectangle);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + rectangle.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -474,7 +480,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + fac3d.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -539,7 +545,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + plot3d.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -551,7 +557,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (text.getVisible()) {
             try {
                 textManager.draw(drawingTools, colorMap, text, axesDrawer);
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + text.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -600,7 +606,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         champ.getColored(), champ.getLineColor());
                 }
 
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + champ.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -642,7 +648,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         true, segs.getLineColor());
                 }
 
-            } catch (SciRendererException e) {
+            } catch (Exception e) {
                 System.err.println("A '" + segs.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
@@ -650,25 +656,29 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void updateObject(String id, String property) {
-        if (needUpdate(id, property)) {
-            if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
-                labelManager.disposeAll();
-                dataManager.disposeAllColorBuffers();
-                markManager.disposeAll();
-                textManager.disposeAll();
-                axesDrawer.disposeAll();
-                fecDrawer.updateAll();
-                colorMapTextureDataProvider.update();
-            } else {
-                labelManager.update(id, property);
-                dataManager.update(id, property);
-                markManager.update(id, property);
-                textManager.update(id, property);
-                axesDrawer.update(id, property);
-                legendDrawer.update(id, property);
-                fecDrawer.update(id, property);
+        try {
+            if (needUpdate(id, property)) {
+                if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+                    labelManager.disposeAll();
+                    dataManager.disposeAllColorBuffers();
+                    markManager.disposeAll();
+                    textManager.disposeAll();
+                    axesDrawer.disposeAll();
+                    fecDrawer.updateAll();
+                    colorMapTextureDataProvider.update();
+                } else {
+                    labelManager.update(id, property);
+                    dataManager.update(id, property);
+                    markManager.update(id, property);
+                    textManager.update(id, property);
+                    axesDrawer.update(id, property);
+                    legendDrawer.update(id, property);
+                    fecDrawer.update(id, property);
+                }
+                canvas.redraw();
             }
-            canvas.redraw();
+        } catch (ObjectRemovedException e) {
+            // Object has been removed before draw : do nothing.
         }
     }
 

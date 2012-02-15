@@ -8,6 +8,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureDataProvider;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -53,8 +54,9 @@ class FecDrawer {
     /**
      * Draw the given fec.
      * @param fec given fec object.
+     * @throws ObjectRemovedException 
      */
-    public void draw(Fec fec) {
+    public void draw(Fec fec) throws ObjectRemovedException {
         if (fec.getVisible()) {
 
             DrawingTools drawingTools = drawerVisitor.getDrawingTools();
@@ -133,8 +135,9 @@ class FecDrawer {
     /**
      * Update all texture.
      * Reset all texture data provider.
+     * @throws ObjectRemovedException 
      */
-    void updateAll() {
+    void updateAll() throws ObjectRemovedException {
         for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
             drawerVisitor.getDataManager().updateTextureCoordinatesBuffer(entry.getKey());
             entry.getValue().setDataProvider(null);

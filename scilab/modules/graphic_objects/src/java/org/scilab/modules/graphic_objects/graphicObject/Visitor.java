@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.graphic_objects.graphicObject;
 
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -43,31 +44,31 @@ public interface Visitor {
 
     void visit(Compound compound);
 
-    void visit(Fec fec);
+    void visit(Fec fec) throws ObjectRemovedException;
 
     void visit(Figure figure);
 
-    void visit(Grayplot grayplot);
+    void visit(Grayplot grayplot) throws ObjectRemovedException;
 
-    void visit(Matplot matplot);
+    void visit(Matplot matplot) throws ObjectRemovedException;
 
     void visit(Label label);
 
     void visit(Legend legend);
 
-    void visit(Polyline polyline);
+    void visit(Polyline polyline) throws ObjectRemovedException;
 
     void visit(Rectangle rectangle);
 
-    void visit(Fac3d fac3d);
+    void visit(Fac3d fac3d) throws ObjectRemovedException;
 
-    void visit(Plot3d plot3d);
+    void visit(Plot3d plot3d) throws ObjectRemovedException;
 
     void visit(Text text);
 
     void visit(Arrow arrow);
 
-    void visit(Champ champ);
+    void visit(Champ champ) throws ObjectRemovedException;
 
-    void visit(Segs segs);
+    void visit(Segs segs) throws ObjectRemovedException;
 }
