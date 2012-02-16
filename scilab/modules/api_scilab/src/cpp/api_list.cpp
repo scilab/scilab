@@ -70,7 +70,7 @@ static SciErr readCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstNa
 static SciErr fillCommonMatrixOfPolyInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg, int* _piTotalLen);
 static SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings, int* _piTotalLen);
 static SciErr readCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
+static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 static SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg);
 
 struct ListInfo
@@ -2435,7 +2435,7 @@ static SciErr fillCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPare
     return sciErr;
 }
 
-static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* /*_piParent*/, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
+static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
     SciErr sciErr;
     sciErr.iErr = 0;
@@ -2444,7 +2444,16 @@ static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* /*_pi
     int *piEnd      = NULL;
     int iItemLen    = 0;
     int iTotalLen   = 0;
-    int* piParent   = getLastListAddress(_iVar, _iItemPos);
+    int* piParent   = NULL;
+
+    if(_pstName)
+    {
+        piParent = getLastNamedListAddress(_pstName, _iItemPos);
+    }
+    else
+    {
+        piParent = getLastListAddress(_iVar, _iItemPos);
+    }
 
     sciErr = getListItemAddress(_pvCtx, piParent, _iItemPos, &piAddr);
     if(sciErr.iErr)
@@ -2476,12 +2485,12 @@ static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* /*_pi
 
 SciErr createSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal)
 {
-    return createCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+    return createCommonSparseMatrixInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
 SciErr createComplexSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
-    return createCommonSparseMatrixInList(_pvCtx, _iVar, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+    return createCommonSparseMatrixInList(_pvCtx, _iVar, NULL, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
 SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
@@ -2509,7 +2518,7 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, i
 
     getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    sciErr = createCommonSparseMatrixInList(_pvCtx, Top, piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+    sciErr = createCommonSparseMatrixInList(_pvCtx, Top, _pstName, piParent, _iItemPos, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), _iComplex ? "createComplexSparseMatrixInNamedList" : "createSparseMatrixInNamedList", _iItemPos + 1, _pstName);
@@ -2662,10 +2671,11 @@ SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
     return readCommonSparseMatrixInNamedList(_pvCtx, _pstName, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
+
 /*****************************
 * boolean sparses functions *
 *****************************/
-static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
+static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
     SciErr sciErr;
     sciErr.iErr = 0;
@@ -2675,11 +2685,21 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPar
     int* piNbItemRow = NULL;
     int* piColPos   = NULL;
     int* piChildAddr = NULL;
-
     int iItemLen   = 0;
 
+    int* piParent = NULL;
+
+    if(_pstName)
+    {
+        piParent = getLastNamedListAddress(_pstName, _iItemPos);
+    }
+    else
+    {
+        piParent = getLastListAddress(_iVar, _iItemPos);
+    }
+
     //Does item can be added in the list
-    sciErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
+    sciErr = getListItemNumber(_pvCtx, piParent, &iNbItem);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
@@ -2692,7 +2712,7 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPar
         return sciErr;
     }
 
-    sciErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
+    sciErr = allocCommonItemInList(_pvCtx, piParent, _iItemPos, &piChildAddr);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
@@ -2706,7 +2726,7 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPar
         return sciErr;
     }
 
-    piOffset      = _piParent + 2;
+    piOffset      = piParent + 2;
 
     iItemLen      = 5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2);
     piOffset[_iItemPos] = piOffset[_iItemPos - 1] + ((iItemLen + 1) / 2);
@@ -2734,7 +2754,7 @@ SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* /*_piParent
         return sciErr;
     }
 
-    sciErr = fillBooleanSparseMatrixInList(_pvCtx, _iVar, piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+    sciErr = fillBooleanSparseMatrixInList(_pvCtx, _iVar, NULL, piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
     if(sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createBooleanSparseMatrixInList", _iItemPos + 1);
@@ -2779,7 +2799,7 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
 
     getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
-    sciErr = createBooleanSparseMatrixInList(_pvCtx, Top, piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+    sciErr = fillBooleanSparseMatrixInList(_pvCtx, Top, _pstName, piParent, _iItemPos, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST, _("%s: Unable to create list item #%d in variable \"%s\""), "createBooleanSparseMatrixInNamedList", _iItemPos + 1, _pstName);
