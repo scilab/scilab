@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Contains the function to retrieve a the drawer of a graphic handle
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -28,7 +28,6 @@ extern "C"
 #include "surfaceDrawing/DrawableSurface.h"
 #include "segsDrawing/DrawableSegs.h"
 #include "grayplotDrawing/DrawableGrayplot.h"
-#include "fecDrawing/DrawableFec.h"
 #include "axesDrawing/DrawableAxes.h"
 
 namespace sciGraphics
@@ -120,12 +119,6 @@ DrawableSegs * getSegsDrawer( sciPointObj * pSegs );
  * @return the corresponding grayplot to pGrayplot if pGrayplot if of type grayplot, NULL otherwise
  */
 DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot );
-
-/**
- * Return a DrawableFec object corresponding to a sciPointObj object.
- * @return the corresponding fec to pFec if pFec if of type fec, NULL otherwise
- */
-DrawableFec * getFecDrawer( sciPointObj * pFec );
 
 /**
  * Return a DrawableAxes object corresponding to a sciPointObj object.

@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\FigureDrawing">
-      <UniqueIdentifier>{f8ae6f86-688c-4829-9ab9-42074dab6a60}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\PolylineDrawing">
       <UniqueIdentifier>{d385f7d4-c15d-447e-8b95-bbeb854aac8f}</UniqueIdentifier>
     </Filter>
@@ -40,9 +37,6 @@
     </Filter>
     <Filter Include="Source Files\GrayplotDrawing">
       <UniqueIdentifier>{d8b1b0e1-955b-4cf8-aeac-528de2c937fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\FecDrawing">
-      <UniqueIdentifier>{dd953b20-b619-46d8-8ad1-1099ef4e343f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\LegendDrawing">
       <UniqueIdentifier>{e19d3579-6247-41cd-9713-311c7b424367}</UniqueIdentifier>
@@ -770,45 +764,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\grayplotDrawing\MatplotDecomposer.cpp">
       <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\ConcreteDrawableFec.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFec.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecBridgeFactory.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecFactory.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableFecGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecJavaMapper.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\DrawableFecJoGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\FecFacetDrawerGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\FecFacetDrawerJavaMapper.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\FecFacetDrawerJoGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\FecLineDrawerGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\FecLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\fecDrawing\FecLineDrawerJoGL.cpp">
-      <Filter>Source Files\FecDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\legendDrawing\ConcreteDrawableLegend.cpp">
       <Filter>Source Files\LegendDrawing</Filter>

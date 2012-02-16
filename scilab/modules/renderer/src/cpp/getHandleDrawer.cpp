@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Contains the function to retrieve a the drawer of a graphic handle
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,7 +29,7 @@ DrawableObject * getHandleDrawer( sciPointObj * pObj )
   {
     return getHandleDrawerPointer( pObj ) ;
   }
-  
+
   /* We need to create the drawer */
 
   DrawableObjectFactory creator ;
@@ -99,11 +99,6 @@ DrawableSegs * getSegsDrawer( sciPointObj * pSegs )
 DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot )
 {
   return dynamic_cast<DrawableGrayplot *>(getHandleDrawer(pGrayplot));
-}
-/*---------------------------------------------------------------------------------*/
-DrawableFec * getFecDrawer( sciPointObj * pFec )
-{
-  return dynamic_cast<DrawableFec *>(getHandleDrawer(pFec));
 }
 /*---------------------------------------------------------------------------------*/
 DrawableAxes * getAxesDrawer( sciPointObj * pAxes )

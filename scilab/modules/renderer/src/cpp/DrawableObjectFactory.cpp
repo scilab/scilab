@@ -26,7 +26,6 @@ extern "C"
 #include "surfaceDrawing/DrawableSurfaceFactory.h"
 #include "arcDrawing/DrawableArcFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
-#include "fecDrawing/DrawableFecFactory.h"
 #include "grayplotDrawing/DrawableGrayplotFactory.h"
 #include "legendDrawing/DrawableLegendFactory.h"
 #include "rectangleDrawing/DrawableRectangleFactory.h"
@@ -103,9 +102,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break ;
   case SCI_SEGS:
     return new DrawableSegsFactory() ;
-    break ;
-  case SCI_FEC:
-    return new DrawableFecFactory() ;
     break ;
   case SCI_GRAYPLOT:
     return new DrawableGrayplotFactory() ;

@@ -51,8 +51,6 @@ src/cpp/labelDrawing/DrawableLabel.cpp \
 src/cpp/labelDrawing/DrawableLabelFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurface.cpp \
-src/cpp/fecDrawing/DrawableFec.cpp \
-src/cpp/fecDrawing/DrawableFecFactory.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
@@ -217,17 +215,6 @@ src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
 src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
 src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
-src/jni/DrawableFecGL.cpp \
-src/jni/FecLineDrawerGL.cpp \
-src/jni/FecFacetDrawerGL.cpp \
-src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
-src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
-src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
-src/cpp/fecDrawing/DrawableFecJoGL.cpp \
-src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
-src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
-src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
 src/jni/DrawableAxesGL.cpp \
 src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
 src/cpp/axesDrawing/AxesTicksComputer.cpp \
@@ -312,7 +299,6 @@ src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \
 src/jni/DrawableArcGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
-src/jni/DrawableFecGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \
 src/jni/DrawablePolylineGL.giws.xml \
@@ -321,8 +307,6 @@ src/jni/DrawableSegsGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/DrawableSurfaceGL.giws.xml \
 src/jni/DrawableTextGL.giws.xml \
-src/jni/FecFacetDrawerGL.giws.xml \
-src/jni/FecLineDrawerGL.giws.xml \
 src/jni/FilledTextDrawerGL.giws.xml \
 src/jni/FullBoxDrawerGL.giws.xml \
 src/jni/GraphicSynchronizerJava.giws.xml \
