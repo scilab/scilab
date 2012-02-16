@@ -247,6 +247,8 @@ Bug fixes
 * Bug #9734 fixed - intsplin help pages moved from interpolation to
                     elementary functions chapter.
 
+* Bug #9735 fixed - Remove some old stack api examples.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #9892 fixed - "-noatomsautoload" startup option added.
