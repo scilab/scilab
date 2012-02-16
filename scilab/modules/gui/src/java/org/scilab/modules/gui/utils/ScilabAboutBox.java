@@ -57,11 +57,11 @@ public class ScilabAboutBox {
             filename = System.getenv("SCI") + "/../../ACKNOWLEDGEMENTS"; // Linux binary version
         }
 
-        createAboutBox(Messages.gettext("About Scilab..."), filename, Messages.gettext("Acknowledgements"));
+        createAboutBox(Messages.gettext("About Scilab..."), null, filename, Messages.gettext("Acknowledgements"));
 
     }
 
-    public static void createAboutBox(String aboutTitle, String ackFile, String ackTitle) {
+    public static void createAboutBox(String aboutTitle, String[] contents, String ackFile, String ackTitle) {
 
         ImageIcon icon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/aboutscilab.png");
         icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth(), icon.getIconHeight(), 0));
@@ -82,6 +82,14 @@ public class ScilabAboutBox {
         ScilabSwingUtilities.closeOnEscape(ackBox);
 
         ImagePanel text = new ImagePanel();
+
+        String theText = new String("\n\n\n\n\n\n");
+        if (contents != null) {
+            for (int i = 0; i < contents.length; i++) {
+                theText += "\n\t" + contents[i];
+            }
+            text.setText(theText);
+        }
 
         text.setOpaque(false);
         text.setEditable(false);
