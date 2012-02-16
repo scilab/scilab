@@ -37,7 +37,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * This class manage scilab text entity drawing.
  *
  *
- * TODO, Manage: {text_box, text_box_mode, auto_dimensionning, clip_state, clip_box}
+ * TODO, Manage: {text_box, text_box_mode (filled), auto_dimensionning, clip_state, clip_box}
  *
  *
  * @author Pierre Lando
@@ -73,13 +73,21 @@ public class TextManager {
     public final void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Text text, final AxesDrawer axesDrawer) throws DegenerateMatrixException {
         Sprite sprite = getSprite(colorMap, text);
 
+        Transformation projection = drawingTools.getTransformationManager().getCanvasProjection();
+
+        /* Compute the text's position and draw in window coordinates */
+        Vector3d textPosition = new Vector3d(text.getPosition());
+        textPosition = computeTextPosition(projection, text, sprite.getWidth(), sprite.getHeight());
+
+        drawingTools.getTransformationManager().useWindowCoordinate();
+
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(sprite, SpriteAnchorPosition.LOWER_LEFT, new Vector3d(text.getPosition()), -180.0*text.getFontAngle()/Math.PI);
+        drawingTools.draw(sprite, SpriteAnchorPosition.LOWER_LEFT, textPosition, -180.0*text.getFontAngle()/Math.PI);
+
+        drawingTools.getTransformationManager().useSceneCoordinate();
 
         /* Compute the corners of the text's bounding box in window coordinates */
-        Vector3d[] projCorners = computeProjCorners(drawingTools, new Vector3d(text.getPosition()), text.getFontAngle(), sprite.getWidth(), sprite.getHeight());
-
-        Transformation projection = axesDrawer.getProjection();
+        Vector3d[] projCorners = computeProjCorners(projection, new Vector3d(text.getPosition()), text.getFontAngle(), sprite.getWidth(), sprite.getHeight());
 
         Vector3d[] corners = computeCorners(projection, projCorners);
         Double[] coordinates = cornersToCoordinateArray(corners);
@@ -89,34 +97,87 @@ public class TextManager {
     }
 
     /**
-     * Computes and returns the corners of a {@see Text} object's bounding box, in window coordinates.
-     * The returned corners are in the following order: lower-left, lower-right, upper-left and upper-right.
-     * @param drawingTools the given {@see DrawingTools}.
-     * @param position the text's position.
-     * @param fontAngle the text's font angle (radians).
+     * Computes and returns the position of a Scilab {@see Text} object in window coordinates as a function
+     * of its text box mode and text box properties. It is the position of its lower-left corner,
+     * which may differ from the text's unmodified lower-left corner position, depending on its text box properties.
+     * If the text box mode is set to off, the returned position is the text's unmodified projected position.
+     * @param projection the projection from object coordinates to window coordinates.
+     * @param text the Scilab {@see Text}.
      * @param spriteWidth the text sprite's width (in pixels).
      * @param spriteHeight the text sprite's height (in pixels).
-     * @return the corners' window coordinates (4-element array).
-     * @throws DegenerateMatrixException 
+     * @return the position of the Scilab {@see Text}'s text box.
+     * @throws DegenerateMatrixException.
      */
-    private Vector3d[] computeProjCorners(DrawingTools drawingTools, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
-        Transformation canvasProj = drawingTools.getTransformationManager().getCanvasProjection();
+    private Vector3d computeTextPosition(Transformation projection, Text text, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
+        Vector3d textPosition = new Vector3d(text.getPosition());
 
-        return computeProjCorners(canvasProj, position, fontAngle, spriteWidth, spriteHeight);
+        textPosition = projection.project(textPosition);
+
+        /* Only manages the centered mode at the moment */
+        if (text.getTextBoxMode() == 1) {
+            Double[] textBox = text.getTextBox();
+
+            Vector3d textBoxWidth = new Vector3d(textBox[0], 0.0, 0.0);
+            Vector3d textBoxHeight = new Vector3d(0.0, textBox[1], 0.0);
+
+            textBoxWidth = projection.projectDirection(textBoxWidth);
+            textBoxHeight = projection.projectDirection(textBoxHeight);
+
+            Vector3d[] projCorners = computeProjCorners(textPosition, text.getFontAngle(), spriteWidth, spriteHeight);
+
+            Vector3d textWidth = projCorners[1].minus(projCorners[0]);
+            Vector3d textHeight = projCorners[2].minus(projCorners[0]);
+
+            /* Compute the text box's and text's half-length vectors */
+            textBoxWidth = textWidth.getNormalized().times(0.5*textBoxWidth.getX());
+            textBoxHeight = textHeight.getNormalized().times(0.5*textBoxHeight.getY());
+
+            textWidth = textWidth.times(0.5);
+            textHeight = textHeight.times(0.5);
+
+            /* Compute the actual position from the initial projected position and the half-length vectors */
+            textPosition = textPosition.plus(textBoxWidth);
+            textPosition = textPosition.plus(textBoxHeight);
+
+            textPosition = textPosition.minus(textWidth);
+            textPosition = textPosition.minus(textHeight);
+        }
+
+        return textPosition;
     }
 
     /**
      * Computes and returns the corners of a {@see Text} object's bounding box, in window coordinates.
      * The returned corners are in the following order: lower-left, lower-right, upper-left and upper-right.
      * @param canvasProj the projection from object coordinates to window coordinates.
-     * @param position the text's position.
+     * @param position the text's position in object coordinates.
      * @param fontAngle the text's font angle (radians).
      * @param spriteWidth the text sprite's width (in pixels).
      * @param spriteHeight the text sprite's height (in pixels).
      * @return the corners' window coordinates (4-element array).
-     * @throws DegenerateMatrixException
+     * @throws DegenerateMatrixException.
      */
     private Vector3d[] computeProjCorners(Transformation canvasProj, Vector3d position, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
+        Vector3d[] projCorners = new Vector3d[4];
+
+        position = canvasProj.project(position);
+
+        projCorners = computeProjCorners(position, fontAngle, spriteWidth, spriteHeight);
+
+        return projCorners;
+    }
+
+    /**
+     * Computes and returns the corners of a {@see Text} object's bounding box, in window coordinates.
+     * The returned corners are in the following order: lower-left, lower-right, upper-left and upper-right.
+     * @param projPosition the text's position in window coordinates.
+     * @param fontAngle the text's font angle (radians).
+     * @param spriteWidth the text sprite's width (in pixels).
+     * @param spriteHeight the text sprite's height (in pixels).
+     * @return the corners' window coordinates (4-element array).
+     * @throws DegenerateMatrixException.
+     */
+    private Vector3d[] computeProjCorners(Vector3d projPosition, double fontAngle, int spriteWidth, int spriteHeight) throws DegenerateMatrixException {
         Vector3d[] projCorners = new Vector3d[4];
 
         /*
@@ -126,7 +187,7 @@ public class TextManager {
          */
         Transformation projRotation = TransformationFactory.getRotationTransformation(180.0*fontAngle/Math.PI, 0.0, 0.0, 1.0);
 
-        projCorners[0] = canvasProj.project(position);
+        projCorners[0] = projPosition;
 
         Vector3d width = new Vector3d((double) spriteWidth, 0.0, 0.0);
         Vector3d height = new Vector3d(0.0, (double) spriteHeight, 0.0);
@@ -285,7 +346,8 @@ public class TextManager {
 
         /* Compute the corners */
         try {
-            projCorners = currentVisitor.getTextManager().computeProjCorners(currentProj, textPosition, text.getFontAngle(), spriteDims[0], spriteDims[1]);
+            textPosition = currentVisitor.getTextManager().computeTextPosition(currentProj, text, spriteDims[0], spriteDims[1]);
+            projCorners = currentVisitor.getTextManager().computeProjCorners(textPosition, text.getFontAngle(), spriteDims[0], spriteDims[1]);
         } catch (DegenerateMatrixException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
