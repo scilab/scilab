@@ -61,11 +61,6 @@ DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
   return dynamic_cast<DrawableRectangle *>(getHandleDrawer(pRectangle));
 }
 /*---------------------------------------------------------------------------------*/
-DrawableArc * getArcDrawer( sciPointObj * pArc )
-{
-  return dynamic_cast<DrawableArc *>(getHandleDrawer(pArc));
-}
-/*---------------------------------------------------------------------------------*/
 DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
 {
   return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));

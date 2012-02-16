@@ -45,8 +45,6 @@ src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-src/cpp/arcDrawing/DrawableArcFactory.cpp \
-src/cpp/arcDrawing/DrawableArc.cpp \
 src/cpp/labelDrawing/DrawableLabel.cpp \
 src/cpp/labelDrawing/DrawableLabelFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
@@ -97,17 +95,6 @@ src/jni/DrawableRectangleGL.cpp \
 src/jni/RectangleFillDrawerGL.cpp \
 src/jni/RectangleLineDrawerGL.cpp \
 src/jni/RectangleMarkDrawerGL.cpp \
-src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
-src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
-src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
-src/cpp/arcDrawing/DrawableArcJoGL.cpp \
-src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
-src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
-src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
-src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
-src/jni/ArcLineDrawerGL.cpp \
-src/jni/ArcFillDrawerGL.cpp \
-src/jni/DrawableArcGL.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
@@ -293,11 +280,8 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 
 GIWS_WRAPPERS= \
-src/jni/ArcFillDrawerGL.giws.xml \
-src/jni/ArcLineDrawerGL.giws.xml \
 src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \
-src/jni/DrawableArcGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \

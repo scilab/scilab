@@ -24,7 +24,6 @@ extern "C"
 #include "labelDrawing/DrawableLabelFactory.h"
 #include "compoundDrawing/DrawableCompoundFactory.h"
 #include "surfaceDrawing/DrawableSurfaceFactory.h"
-#include "arcDrawing/DrawableArcFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
 #include "grayplotDrawing/DrawableGrayplotFactory.h"
 #include "legendDrawing/DrawableLegendFactory.h"
@@ -90,9 +89,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break ;
   case SCI_SURFACE:
     return new DrawableSurfaceFactory() ;
-    break ;
-  case SCI_ARC:
-    return new DrawableArcFactory() ;
     break ;
   case SCI_LEGEND:
     return new DrawableLegendFactory() ;

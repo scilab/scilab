@@ -141,8 +141,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableRectangleJoGL.lo \
 	libscirenderer_la-RectangleFillDrawerJoGL.lo \
 	libscirenderer_la-RectangleLineDrawerJoGL.lo \
-	libscirenderer_la-DrawableArcFactory.lo \
-	libscirenderer_la-DrawableArc.lo \
 	libscirenderer_la-DrawableLabel.lo \
 	libscirenderer_la-DrawableLabelFactory.lo \
 	libscirenderer_la-DrawableSurfaceFactory.lo \
@@ -193,17 +191,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-RectangleFillDrawerGL.lo \
 	libscirenderer_la-RectangleLineDrawerGL.lo \
 	libscirenderer_la-RectangleMarkDrawerGL.lo \
-	libscirenderer_la-ArcLineDrawerJoGL.lo \
-	libscirenderer_la-DrawableArcBridgeFactory.lo \
-	libscirenderer_la-DrawableArcJavaMapper.lo \
-	libscirenderer_la-DrawableArcJoGL.lo \
-	libscirenderer_la-ArcFillDrawerJavaMapper.lo \
-	libscirenderer_la-ArcLineDrawerJavaMapper.lo \
-	libscirenderer_la-ConcreteDrawableArc.lo \
-	libscirenderer_la-ArcFillDrawerJoGL.lo \
-	libscirenderer_la-ArcLineDrawerGL.lo \
-	libscirenderer_la-ArcFillDrawerGL.lo \
-	libscirenderer_la-DrawableArcGL.lo \
 	libscirenderer_la-PolylineLineDrawerJavaMapper.lo \
 	libscirenderer_la-InterpolatedDecomposition.lo \
 	libscirenderer_la-StairCaseDecomposition.lo \
@@ -664,8 +651,6 @@ src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-src/cpp/arcDrawing/DrawableArcFactory.cpp \
-src/cpp/arcDrawing/DrawableArc.cpp \
 src/cpp/labelDrawing/DrawableLabel.cpp \
 src/cpp/labelDrawing/DrawableLabelFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
@@ -716,17 +701,6 @@ src/jni/DrawableRectangleGL.cpp \
 src/jni/RectangleFillDrawerGL.cpp \
 src/jni/RectangleLineDrawerGL.cpp \
 src/jni/RectangleMarkDrawerGL.cpp \
-src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
-src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
-src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
-src/cpp/arcDrawing/DrawableArcJoGL.cpp \
-src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
-src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
-src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
-src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
-src/jni/ArcLineDrawerGL.cpp \
-src/jni/ArcFillDrawerGL.cpp \
-src/jni/DrawableArcGL.cpp \
 src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
 src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
@@ -911,11 +885,8 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = \
-src/jni/ArcFillDrawerGL.giws.xml \
-src/jni/ArcLineDrawerGL.giws.xml \
 src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/CenteredTextDrawerGL.giws.xml \
-src/jni/DrawableArcGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \
@@ -1095,12 +1066,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo@am__quote@
@@ -1127,7 +1092,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CenteredTextDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo@am__quote@
@@ -1139,12 +1103,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableText.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableArcJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo@am__quote@
@@ -1481,20 +1439,6 @@ libscirenderer_la-RectangleLineDrawerJoGL.lo: src/cpp/rectangleDrawing/Rectangle
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' object='libscirenderer_la-RectangleLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleLineDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
-
-libscirenderer_la-DrawableArcFactory.lo: src/cpp/arcDrawing/DrawableArcFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArcFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArcFactory.Tpo -c -o libscirenderer_la-DrawableArcFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArcFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableArcFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArcFactory.cpp' object='libscirenderer_la-DrawableArcFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArcFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcFactory.cpp
-
-libscirenderer_la-DrawableArc.lo: src/cpp/arcDrawing/DrawableArc.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArc.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArc.Tpo -c -o libscirenderer_la-DrawableArc.lo `test -f 'src/cpp/arcDrawing/DrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArc.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArc.Tpo $(DEPDIR)/libscirenderer_la-DrawableArc.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArc.cpp' object='libscirenderer_la-DrawableArc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArc.lo `test -f 'src/cpp/arcDrawing/DrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArc.cpp
 
 libscirenderer_la-DrawableLabel.lo: src/cpp/labelDrawing/DrawableLabel.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableLabel.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableLabel.Tpo -c -o libscirenderer_la-DrawableLabel.lo `test -f 'src/cpp/labelDrawing/DrawableLabel.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabel.cpp
@@ -1845,83 +1789,6 @@ libscirenderer_la-RectangleMarkDrawerGL.lo: src/jni/RectangleMarkDrawerGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/RectangleMarkDrawerGL.cpp' object='libscirenderer_la-RectangleMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerGL.lo `test -f 'src/jni/RectangleMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/RectangleMarkDrawerGL.cpp
-
-libscirenderer_la-ArcLineDrawerJoGL.lo: src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Tpo -c -o libscirenderer_la-ArcLineDrawerJoGL.lo `test -f 'src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-ArcLineDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp' object='libscirenderer_la-ArcLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcLineDrawerJoGL.lo `test -f 'src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp
-
-libscirenderer_la-DrawableArcBridgeFactory.lo: src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArcBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArcBridgeFactory.Tpo -c -o libscirenderer_la-DrawableArcBridgeFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArcBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableArcBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp' object='libscirenderer_la-DrawableArcBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArcBridgeFactory.lo `test -f 'src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp
-
-libscirenderer_la-DrawableArcJavaMapper.lo: src/cpp/arcDrawing/DrawableArcJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArcJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArcJavaMapper.Tpo -c -o libscirenderer_la-DrawableArcJavaMapper.lo `test -f 'src/cpp/arcDrawing/DrawableArcJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArcJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableArcJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArcJavaMapper.cpp' object='libscirenderer_la-DrawableArcJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArcJavaMapper.lo `test -f 'src/cpp/arcDrawing/DrawableArcJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcJavaMapper.cpp
-
-libscirenderer_la-DrawableArcJoGL.lo: src/cpp/arcDrawing/DrawableArcJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArcJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArcJoGL.Tpo -c -o libscirenderer_la-DrawableArcJoGL.lo `test -f 'src/cpp/arcDrawing/DrawableArcJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArcJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableArcJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/DrawableArcJoGL.cpp' object='libscirenderer_la-DrawableArcJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArcJoGL.lo `test -f 'src/cpp/arcDrawing/DrawableArcJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/DrawableArcJoGL.cpp
-
-libscirenderer_la-ArcFillDrawerJavaMapper.lo: src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcFillDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Tpo -c -o libscirenderer_la-ArcFillDrawerJavaMapper.lo `test -f 'src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp' object='libscirenderer_la-ArcFillDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcFillDrawerJavaMapper.lo `test -f 'src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp
-
-libscirenderer_la-ArcLineDrawerJavaMapper.lo: src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-ArcLineDrawerJavaMapper.lo `test -f 'src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-ArcLineDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp' object='libscirenderer_la-ArcLineDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcLineDrawerJavaMapper.lo `test -f 'src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp
-
-libscirenderer_la-ConcreteDrawableArc.lo: src/cpp/arcDrawing/ConcreteDrawableArc.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableArc.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Tpo -c -o libscirenderer_la-ConcreteDrawableArc.lo `test -f 'src/cpp/arcDrawing/ConcreteDrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ConcreteDrawableArc.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableArc.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/ConcreteDrawableArc.cpp' object='libscirenderer_la-ConcreteDrawableArc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableArc.lo `test -f 'src/cpp/arcDrawing/ConcreteDrawableArc.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ConcreteDrawableArc.cpp
-
-libscirenderer_la-ArcFillDrawerJoGL.lo: src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcFillDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Tpo -c -o libscirenderer_la-ArcFillDrawerJoGL.lo `test -f 'src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp' object='libscirenderer_la-ArcFillDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcFillDrawerJoGL.lo `test -f 'src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp
-
-libscirenderer_la-ArcLineDrawerGL.lo: src/jni/ArcLineDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Tpo -c -o libscirenderer_la-ArcLineDrawerGL.lo `test -f 'src/jni/ArcLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ArcLineDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-ArcLineDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ArcLineDrawerGL.cpp' object='libscirenderer_la-ArcLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcLineDrawerGL.lo `test -f 'src/jni/ArcLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ArcLineDrawerGL.cpp
-
-libscirenderer_la-ArcFillDrawerGL.lo: src/jni/ArcFillDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ArcFillDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Tpo -c -o libscirenderer_la-ArcFillDrawerGL.lo `test -f 'src/jni/ArcFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ArcFillDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ArcFillDrawerGL.cpp' object='libscirenderer_la-ArcFillDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ArcFillDrawerGL.lo `test -f 'src/jni/ArcFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/ArcFillDrawerGL.cpp
-
-libscirenderer_la-DrawableArcGL.lo: src/jni/DrawableArcGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableArcGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableArcGL.Tpo -c -o libscirenderer_la-DrawableArcGL.lo `test -f 'src/jni/DrawableArcGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableArcGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableArcGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableArcGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableArcGL.cpp' object='libscirenderer_la-DrawableArcGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableArcGL.lo `test -f 'src/jni/DrawableArcGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableArcGL.cpp
 
 libscirenderer_la-PolylineLineDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineLineDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp

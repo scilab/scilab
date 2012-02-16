@@ -17,9 +17,6 @@
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ArcDrawing">
-      <UniqueIdentifier>{bf7b01ce-234f-4f9f-aba3-bd1abb0ebfe5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\TextDrawing">
       <UniqueIdentifier>{07f93c17-ae84-4408-9e2e-26dc0bcf0353}</UniqueIdentifier>
     </Filter>
@@ -60,9 +57,6 @@
     <Filter Include="Header Files\GraphicSynchronization">
       <UniqueIdentifier>{7775e038-d4c9-4769-9918-d5b01de96e74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ArcDrawing">
-      <UniqueIdentifier>{510712c8-b4d3-47cf-9e5a-957e2ee46058}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
     </Filter>
@@ -83,9 +77,6 @@
     </Filter>
     <Filter Include="Header Files\CompoundDrawing">
       <UniqueIdentifier>{9e5915d4-e4ec-4b8c-8284-d2feca793e68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\FecDrawing">
-      <UniqueIdentifier>{b1e492d2-a014-4c60-b6db-11f31282ee9d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\LegendDrawing">
       <UniqueIdentifier>{b14a59f1-a8c8-4491-8abf-77151b6954c0}</UniqueIdentifier>
@@ -515,45 +506,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\ArcFillDrawerGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\ArcFillDrawerJavaMapper.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\ArcFillDrawerJoGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\ArcLineDrawerGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\ArcLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\ArcLineDrawerJoGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\ConcreteDrawableArc.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArc.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcBridgeFactory.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcFactory.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableArcGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcJavaMapper.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\arcDrawing\DrawableArcJoGL.cpp">
-      <Filter>Source Files\ArcDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\jni\CenteredTextDrawerGL.cpp">
       <Filter>Source Files\TextDrawing</Filter>
@@ -1268,51 +1220,6 @@
     <ClInclude Include="src\cpp\GraphicSynchronization\LocalSynchronizer.h">
       <Filter>Header Files\GraphicSynchronization</Filter>
     </ClInclude>
-    <ClInclude Include="src\jni\ArcFillDrawerGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\ArcFillDrawerJavaMapper.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\ArcFillDrawerJoGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\ArcLineDrawerGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\ArcLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\ArcLineDrawerJoGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\ConcreteDrawableArc.h">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArc.h">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcBridge.h">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcBridgeFactory.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcFactory.h">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableArcGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcJavaMapper.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawableArcJoGL.hxx">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h">
-      <Filter>Header Files\ArcDrawing</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\figureDrawing\ConcreteDrawableFigure.h">
       <Filter>Header Files\FigureDrawing</Filter>
     </ClInclude>
@@ -1577,51 +1484,6 @@
     <ClInclude Include="src\cpp\compoundDrawing\DrawableCompoundFactory.h">
       <Filter>Header Files\CompoundDrawing</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\ConcreteDrawableFec.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFec.h">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecBridge.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecBridgeFactory.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecFactory.h">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableFecGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecJavaMapper.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawableFecJoGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\DrawFecStrategy.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\FecFacetDrawerGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\FecFacetDrawerJavaMapper.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\FecFacetDrawerJoGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\FecLineDrawerGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\FecLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\fecDrawing\FecLineDrawerJoGL.hxx">
-      <Filter>Header Files\FecDrawing</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\legendDrawing\ConcreteDrawableLegend.hxx">
       <Filter>Header Files\LegendDrawing</Filter>
     </ClInclude>
@@ -1662,6 +1524,9 @@
       <Filter>Header Files\AxesDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\CallRenderer.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
