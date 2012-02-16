@@ -12,6 +12,8 @@
 
 package org.scilab.modules.preferences.Component;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
@@ -24,7 +26,7 @@ import org.w3c.dom.Node;
  *
  */
 //public class Button extends JButton implements XComponent {
-public class Button extends SwingScilabPushButton implements XComponent {
+public class Button extends JButton implements XComponent {
 
     /** Universal identifier for serialization.
      *
@@ -61,9 +63,9 @@ public class Button extends SwingScilabPushButton implements XComponent {
         if (!text.equals(text())) {
             text(text);
         }
-        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
-        setEnabled(enable.equals("true"));
 
+        String enable = XConfigManager.getAttribute(peer , "enable", "true");
+        setEnabled(enable.equals("true"));
     }
 
     /** Sensor for 'text' attribute.
