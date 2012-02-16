@@ -92,6 +92,8 @@ Xcos
 * Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
                      block.
 
+* Bug #10535 fixed - Long instruction into the Xcos' context crashed Scilab.
+
 * Bug #10658 fixed - Typos fixed in the bloc2exp help page.
 
 
