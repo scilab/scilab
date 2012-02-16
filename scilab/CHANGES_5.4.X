@@ -392,6 +392,8 @@ Bug fixes
 
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
+* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
