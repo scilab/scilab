@@ -231,6 +231,9 @@ Bug fixes
 
 * Bug #9700 fixed - optim help page had a mistake about bounds management.
 
+* Bug #9734 fixed - intsplin help pages moved from interpolation to 
+                    elementary functions chapter.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #9892 fixed - "-noatomsautoload" startup option added.
