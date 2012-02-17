@@ -1461,16 +1461,19 @@ default:
 char *initLabel(char *parentObjUID)
 {
     char *newLabel = NULL;
+    int iHidden = 1;
     int autoPosition = 1;
     int autoRotation = 1;
 
     newLabel = createGraphicObject(__GO_LABEL__);
 
-    /* Sets the label's parent */
-    setGraphicObjectProperty(newLabel, __GO_PARENT__, parentObjUID, jni_string, 1);
-
+    /* Hide Label as they are non explicit children */
+    setGraphicObjectProperty(newLabel, __GO_HIDDEN__, &iHidden, jni_bool, 1);
     setGraphicObjectProperty(newLabel, __GO_AUTO_POSITION__, &autoPosition, jni_bool, 1);
     setGraphicObjectProperty(newLabel, __GO_AUTO_ROTATION__, &autoPosition, jni_bool, 1);
+
+    /* Sets the label's parent */
+    setGraphicObjectRelationship(parentObjUID, newLabel);
 
     /* Not used anymore */
 #if 0

@@ -2199,7 +2199,7 @@ char *ConstructLabel(char *pparentsubwinUID, char *text, int type)
 
     /* Attach the cloned label to its parent Axes and set the latter as the label's parent */
     setGraphicObjectProperty(pparentsubwinUID, labelType, pobjUID, jni_string, 1);
-    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     return pobjUID;
 }
