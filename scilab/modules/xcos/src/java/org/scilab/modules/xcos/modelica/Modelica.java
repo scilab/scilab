@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,7 +36,6 @@ import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.xcos.modelica.model.Model;
@@ -59,8 +59,7 @@ public final class Modelica {
      * Default constructor.
      */
     private Modelica() {
-        final String schemaPath = ScilabConstants.SCI.getAbsolutePath()
-                + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+        final String schemaPath = ScilabConstants.SCI.getAbsolutePath() + XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
 
         JAXBContext jaxbContext;
         try {
@@ -68,9 +67,7 @@ public final class Modelica {
             marshaller = jaxbContext.createMarshaller();
             unmarshaller = jaxbContext.createUnmarshaller();
 
-            Schema schema = SchemaFactory.newInstance(
-                    XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-                    new File(schemaPath));
+            Schema schema = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(schemaPath));
 
             marshaller.setSchema(schema);
             unmarshaller.setSchema(schema);
@@ -85,7 +82,7 @@ public final class Modelica {
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         } catch (SAXException e) {
-            LogFactory.getLog(Modelica.class).error(e);
+            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
         }
     }
 
@@ -101,7 +98,7 @@ public final class Modelica {
 
     /**
      * Setup a new modelica settings UI
-     * 
+     *
      * @param init
      *            the initialisation file.
      * @param relation
@@ -112,15 +109,14 @@ public final class Modelica {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ModelicaController.showDialog(new File(init),
-                        new File(relation));
+                ModelicaController.showDialog(new File(init), new File(relation));
             }
         });
     }
 
     /**
      * Load a file
-     * 
+     *
      * @param file
      *            the file to load
      * @return the model element
@@ -131,10 +127,9 @@ public final class Modelica {
     public Model load(File file) throws JAXBException {
         InputStreamReader reader;
         try {
-            reader = new InputStreamReader(new FileInputStream(file),
-                    Charset.forName(LATIN1_ENCODING));
+            reader = new InputStreamReader(new FileInputStream(file), Charset.forName(LATIN1_ENCODING));
         } catch (FileNotFoundException e) {
-            LogFactory.getLog(Modelica.class).error(e);
+            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
             return null;
         }
         return ((JAXBElement<Model>) unmarshaller.unmarshal(reader)).getValue();
@@ -142,7 +137,7 @@ public final class Modelica {
 
     /**
      * Save the model into the file
-     * 
+     *
      * @param root
      *            the root of the model to save
      * @param file
@@ -172,17 +167,15 @@ public final class Modelica {
 
             new FileOutputStream(file).write(strw.toString().getBytes());
         } catch (FactoryConfigurationError e) {
-            LogFactory.getLog(Modelica.class).error(e);
-        } catch (FileNotFoundException e) {
-            LogFactory.getLog(Modelica.class).error(e);
+            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
         } catch (IOException e) {
-            LogFactory.getLog(Modelica.class).error(e);
+            Logger.getLogger(Modelica.class.toString()).severe(e.toString());
         }
     }
 
     /**
      * Merge the models into a single shared model
-     * 
+     *
      * @param initModel
      *            the initialization model
      * @param relationModel
@@ -204,7 +197,7 @@ public final class Modelica {
 
     /**
      * Unmerge the model
-     * 
+     *
      * @param model
      *            the model
      * @return the unmerged model

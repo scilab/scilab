@@ -21,8 +21,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
@@ -590,7 +591,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Use a predictable block and links order when debug is enable
          */
-        if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()) {
+        if (Logger.getLogger(BlockElement.class.toString()).isLoggable(Level.FINE)) {
             Collections.sort(blockList);
             Collections.sort(linkList, new Comparator<BasicLink>() {
                 @Override

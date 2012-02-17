@@ -20,9 +20,8 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -32,7 +31,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -99,7 +97,7 @@ public class StartAction extends OneBlockDependantAction {
         try {
             cmd = createSimulationCommand(graph);
         } catch (IOException ex) {
-            LogFactory.getLog(StartAction.class).error(ex);
+            Logger.getLogger(StartAction.class.getName()).severe(ex.toString());
             updateUI(false);
             return;
         }
@@ -129,23 +127,21 @@ public class StartAction extends OneBlockDependantAction {
      * @throws IOException
      *             when temporary files must not be created.
      */
-    private String createSimulationCommand(final XcosDiagram diagram)
-    throws IOException {
+    private String createSimulationCommand(final XcosDiagram diagram) throws IOException {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
         /*
          * Log compilation info
          */
-        final Log log = LogFactory.getLog(StartAction.class);
-        log.trace("start simulation");
+        final Logger log = Logger.getLogger(StartAction.class.getName());
+        log.finest("start simulation");
 
         /*
          * Import a valid scs_m structure into Scilab
          */
         new ScilabDirectHandler().writeDiagram(diagram);
-        command.append(buildCall("scicos_debug", diagram.getScicosParameters()
-                                 .getDebugLevel()));
+        command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 
         /*
          * Simulate
@@ -168,8 +164,7 @@ public class StartAction extends OneBlockDependantAction {
         ((XcosDiagram) getGraph(null)).setReadOnly(started);
 
         if (started) {
-            ((XcosDiagram) getGraph(null))
-            .info(XcosMessages.SIMULATION_IN_PROGRESS);
+            ((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
         } else {
             ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
         }

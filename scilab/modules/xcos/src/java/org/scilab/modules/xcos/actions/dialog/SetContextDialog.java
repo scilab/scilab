@@ -21,6 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -34,7 +35,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetContextAction;
@@ -183,7 +183,7 @@ public class SetContextDialog extends JDialog {
 
                     dispose();
                 } catch (PropertyVetoException e2) {
-                    LogFactory.getLog(SetContextAction.class).error(e2);
+                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
                 }
             }
         });

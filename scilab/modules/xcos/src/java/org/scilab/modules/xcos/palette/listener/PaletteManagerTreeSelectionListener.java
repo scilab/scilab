@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette.listener;
 
 import java.awt.Dimension;
+import java.util.logging.Logger;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
@@ -21,7 +22,6 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -36,14 +36,13 @@ import org.scilab.modules.xcos.palette.view.PaletteView;
 /**
  * Implement the tree selection listener
  */
-public class PaletteManagerTreeSelectionListener implements
-        TreeSelectionListener {
+public class PaletteManagerTreeSelectionListener implements TreeSelectionListener {
 
     private final JScrollPane panel;
 
     /**
      * Default constructor
-     * 
+     *
      * @param panel
      *            The default scrollpane to modify
      */
@@ -53,7 +52,7 @@ public class PaletteManagerTreeSelectionListener implements
 
     /**
      * Selection handler
-     * 
+     *
      * @param tree
      *            The source event
      * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
@@ -61,11 +60,9 @@ public class PaletteManagerTreeSelectionListener implements
     @Override
     public void valueChanged(TreeSelectionEvent tree) {
         JTree component = (JTree) tree.getSource();
-        JSplitPane splitPanel = (JSplitPane) component.getParent().getParent()
-                .getParent();
+        JSplitPane splitPanel = (JSplitPane) component.getParent().getParent().getParent();
 
-        PaletteNode node = (PaletteNode) component
-                .getLastSelectedPathComponent();
+        PaletteNode node = (PaletteNode) component.getLastSelectedPathComponent();
 
         if (node == null) {
             // Nothing is selected.
@@ -73,8 +70,7 @@ public class PaletteManagerTreeSelectionListener implements
         }
 
         JScrollPane nodeView = null;
-        final Dimension dimension = splitPanel.getRightComponent()
-                .getPreferredSize();
+        final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 
         if (node instanceof Category) {
             final PaletteListModel model = new PaletteListModel((Category) node);
@@ -96,8 +92,7 @@ public class PaletteManagerTreeSelectionListener implements
             diagram.openDiagramAsPal(desc.getPath().getEvaluatedPath());
             nodeView = diagram.getAsComponent();
         } else {
-            LogFactory.getLog(PaletteManagerTreeSelectionListener.class).error(
-                    "tree selection is not handled");
+            Logger.getLogger(PaletteManagerTreeSelectionListener.class.getName()).severe("tree selection is not handled");
             return;
         }
 

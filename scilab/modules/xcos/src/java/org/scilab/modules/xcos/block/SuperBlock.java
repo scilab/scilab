@@ -15,8 +15,8 @@ package org.scilab.modules.xcos.block;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -172,9 +172,7 @@ public final class SuperBlock extends BasicBlock {
         /*
          * Specific case when we want to generate code.
          */
-        if (getChild() == null
-                && getSimulationFunctionType().compareTo(
-                    SimulationFunctionType.DEFAULT) != 0) {
+        if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
             return;
         }
 
@@ -199,9 +197,7 @@ public final class SuperBlock extends BasicBlock {
              * In this case child was null and we need to reconstruct child
              * diagram from scs_m.
              */
-            if (getChild() == null
-                    || getChild().getChildVertices(
-                        getChild().getDefaultParent()).length == 0) {
+            if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
                 child = null;
                 createChildDiagram();
             } else {
@@ -253,7 +249,8 @@ public final class SuperBlock extends BasicBlock {
          * By this way we are sure that the main scs_m structure is always
          * valid.
          *
-         * The child can be null in case of a block conversion (to native code or other)
+         * The child can be null in case of a block conversion (to native code
+         * or other)
          */
         if (getChild() != null && getChild().isModified()) {
             // normal hierarchy case
@@ -320,7 +317,7 @@ public final class SuperBlock extends BasicBlock {
             try {
                 element.decode(getRealParameters(), child, false);
             } catch (ScicosFormatException e) {
-                LogFactory.getLog(SuperBlock.class).error(e);
+                Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 return false;
             }
 
@@ -367,10 +364,8 @@ public final class SuperBlock extends BasicBlock {
             setParentDiagram(Xcos.findParent(this));
         }
 
-        final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks
-                .getAllBlocks(this);
-        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks
-                .getAllPorts(this);
+        final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
         for (IOBlocks block : IOBlocks.values()) {
             final int blockCount = blocksMap.get(block).size();
             int portCount = portsMap.get(block).size();
@@ -382,9 +377,9 @@ public final class SuperBlock extends BasicBlock {
                     port = block.getReferencedPortClass().newInstance();
                     addPort(port);
                 } catch (InstantiationException e) {
-                    LogFactory.getLog(SuperBlock.class).error(e);
+                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 } catch (IllegalAccessException e) {
-                    LogFactory.getLog(SuperBlock.class).error(e);
+                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 }
                 portCount++;
             }
@@ -395,9 +390,7 @@ public final class SuperBlock extends BasicBlock {
                 portCount--;
             }
         }
-        getParentDiagram().fireEvent(
-            new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-                              XcosConstants.EVENT_BLOCK_UPDATED, this));
+        getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
     }
 
     /**
@@ -494,8 +487,7 @@ public final class SuperBlock extends BasicBlock {
      * @throws ClassNotFoundException
      *             on error
      */
-    private void readObject(java.io.ObjectInputStream in) throws IOException,
-        ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
         new XcosCodec().decode((Node) in.readObject(), this);
 
         /*

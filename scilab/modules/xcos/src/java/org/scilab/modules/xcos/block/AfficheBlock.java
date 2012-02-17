@@ -21,11 +21,11 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Timer;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
@@ -52,7 +52,7 @@ public final class AfficheBlock extends BasicBlock {
      */
     private static final int DEFAULT_TIMER_RATE = 200;
 
-    private static final Log LOG = LogFactory.getLog(AfficheBlock.class);
+    private static final Logger LOG = Logger.getLogger(AfficheBlock.class.getName());
     private static final String EXPRS = "exprs";
     private static final int PRECISION_INDEX = 4;
     private static final String NEW_LINE = System.getProperty("line.separator");
@@ -61,23 +61,21 @@ public final class AfficheBlock extends BasicBlock {
 
     /**
      * Map any id to an affiche block instance.
-     * 
+     *
      * This property is linked to the affich2.cpp native implementation
      */
-    private static final Map<Integer, AfficheBlock> INSTANCES = Collections
-            .synchronizedMap(new HashMap<Integer, AfficheBlock>());
+    private static final Map<Integer, AfficheBlock> INSTANCES = Collections.synchronizedMap(new HashMap<Integer, AfficheBlock>());
 
     /**
      * Update the value of the associated block
      */
-    private static class UpdateValueListener implements ActionListener,
-            Serializable {
+    private static class UpdateValueListener implements ActionListener, Serializable {
         private AfficheBlock block;
         private String[][] data;
 
         /**
          * Default constructor
-         * 
+         *
          * @param block
          *            the current block
          */
@@ -95,7 +93,7 @@ public final class AfficheBlock extends BasicBlock {
 
         /**
          * Calculate an print the new String value.
-         * 
+         *
          * @param e
          *            the current event
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -106,7 +104,7 @@ public final class AfficheBlock extends BasicBlock {
             if (graph == null) {
                 block.setParentDiagram(Xcos.findParent(block));
                 graph = block.getParentDiagram();
-                LogFactory.getLog(getClass()).error("Parent diagram was null");
+                LOG.severe("Parent diagram was null");
             }
 
             /*
@@ -138,8 +136,8 @@ public final class AfficheBlock extends BasicBlock {
             state.setLabel(value);
             graph.getAsComponent().redraw(state);
 
-            if (LOG.isTraceEnabled()) {
-                LOG.trace(blockResult.toString());
+            if (LOG.isLoggable(Level.FINEST)) {
+                LOG.finest(blockResult.toString());
             }
         }
     }
@@ -147,11 +145,10 @@ public final class AfficheBlock extends BasicBlock {
     /**
      * Update the style according to the values of the expression
      */
-    private static final class UpdateStyle implements PropertyChangeListener,
-            Serializable {
+    private static final class UpdateStyle implements PropertyChangeListener, Serializable {
         /**
-		 * 
-		 */
+         *
+         */
         private static final String OPENING_BRACKET = "[";
         private static transient UpdateStyle instance;
 
@@ -173,7 +170,7 @@ public final class AfficheBlock extends BasicBlock {
 
         /**
          * Update the style of the block according to the expression value
-         * 
+         *
          * @param evt
          *            the evnt
          * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -183,12 +180,11 @@ public final class AfficheBlock extends BasicBlock {
             // Pre-condition
             final String property = evt.getPropertyName();
             if (evt.getSource() == null || !property.equals(EXPRS)) {
-                LOG.error("Unable to update the style");
+                LOG.severe("Unable to update the style");
             }
 
             final AfficheBlock src = (AfficheBlock) evt.getSource();
-            final String[][] data = ((ScilabString) evt.getNewValue())
-                    .getData();
+            final String[][] data = ((ScilabString) evt.getNewValue()).getData();
 
             updateValue(src, data);
             updateStyle(src, data);
@@ -213,7 +209,7 @@ public final class AfficheBlock extends BasicBlock {
 
         /**
          * Update the value according to the data (matrix size and precision)
-         * 
+         *
          * @param src
          *            the src block
          * @param data
@@ -229,10 +225,9 @@ public final class AfficheBlock extends BasicBlock {
             if (data00.startsWith(OPENING_BRACKET)) {
                 final String[] strSize = data00.split("[\\[\\],]");
                 try {
-                    size = new int[] { Integer.parseInt(strSize[1]),
-                            Integer.parseInt(strSize[2]) };
+                    size = new int[] { Integer.parseInt(strSize[1]), Integer.parseInt(strSize[2]) };
                 } catch (NumberFormatException e) {
-                    LOG.error(e);
+                    LOG.severe(e.toString());
                     return;
                 }
             } else {
@@ -249,8 +244,7 @@ public final class AfficheBlock extends BasicBlock {
             final StringBuilder value = new StringBuilder();
             for (int i = 0; i < size[0]; i++) {
                 for (int j = 0; j < size[1]; j++) {
-                    value.append(new Formatter(Locale.US).format(format,
-                            Double.valueOf(0.0)).toString());
+                    value.append(new Formatter(Locale.US).format(format, Double.valueOf(0.0)).toString());
                     value.append(SPACE);
                 }
                 value.append(NEW_LINE);
@@ -261,7 +255,7 @@ public final class AfficheBlock extends BasicBlock {
 
         /**
          * Update the style of the block according to the data.
-         * 
+         *
          * @param src
          *            the block
          * @param data
@@ -283,26 +277,19 @@ public final class AfficheBlock extends BasicBlock {
             final StyleMap style = new StyleMap(src.getStyle());
 
             try {
-                final int parsedFontInt = Integer
-                        .parseInt(data[index[0]][index[1]]);
-                style.put(mxConstants.STYLE_FONTFAMILY,
-                        Font.getFont(parsedFontInt).getName());
+                final int parsedFontInt = Integer.parseInt(data[index[0]][index[1]]);
+                style.put(mxConstants.STYLE_FONTFAMILY, Font.getFont(parsedFontInt).getName());
 
                 AbstractElement.incrementIndexes(index, true);
-                final int parsedFontSizeInt = Integer
-                        .parseInt(data[index[0]][index[1]]);
-                style.put(mxConstants.STYLE_FONTSIZE,
-                        Integer.toString(Font.getSize(parsedFontSizeInt)));
+                final int parsedFontSizeInt = Integer.parseInt(data[index[0]][index[1]]);
+                style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
 
                 AbstractElement.incrementIndexes(index, true);
-                final int parsedFontColorInt = Integer
-                        .parseInt(data[index[0]][index[1]]);
-                String color = "#"
-                        + Integer.toHexString(Font.getColor(parsedFontColorInt)
-                                .getRGB());
+                final int parsedFontColorInt = Integer.parseInt(data[index[0]][index[1]]);
+                String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
                 style.put(mxConstants.STYLE_FONTCOLOR, color);
             } catch (NumberFormatException e) {
-                LOG.error(e);
+                LOG.severe(e.toString());
                 return;
             }
 
@@ -321,13 +308,12 @@ public final class AfficheBlock extends BasicBlock {
         printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
         printTimer.setRepeats(false);
 
-        getParametersPCS().addPropertyChangeListener(EXPRS,
-                UpdateStyle.getInstance());
+        getParametersPCS().addPropertyChangeListener(EXPRS, UpdateStyle.getInstance());
     }
 
     /**
      * Set the default values
-     * 
+     *
      * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
      */
     @Override
@@ -339,7 +325,7 @@ public final class AfficheBlock extends BasicBlock {
 
     /**
      * Assign a value to an AfficheBlock instance
-     * 
+     *
      * @param uid
      *            the block id
      * @param value
@@ -348,8 +334,7 @@ public final class AfficheBlock extends BasicBlock {
     @ScilabExported(module = "scicos_blocks", filename = "Blocks.giws.xml")
     public static void setValue(final int uid, final String[][] value) {
         if (value.length == 0 || value[0].length == 0) {
-            throw new IllegalArgumentException(
-                    "value is not a non-empty String matrix (String[][])");
+            throw new IllegalArgumentException("value is not a non-empty String matrix (String[][])");
         }
 
         final AfficheBlock block = INSTANCES.get(uid);
@@ -378,7 +363,7 @@ public final class AfficheBlock extends BasicBlock {
         /*
          * As hashCode() may return an already existing id, we need to change it
          * in this case.
-         * 
+         *
          * see
          * http://java.sun.com/javase/6/docs/api/java/lang/Object.html#hashCode
          * ()
@@ -396,7 +381,7 @@ public final class AfficheBlock extends BasicBlock {
 
     /**
      * Remove the instance from the INSTANCES map.
-     * 
+     *
      * @throws Throwable
      *             when unable to do so.
      * @see java.lang.Object#finalize()

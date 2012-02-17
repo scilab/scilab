@@ -18,10 +18,10 @@ import static org.scilab.modules.xcos.utils.FileUtils.delete;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.swing.SwingWorker;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
@@ -87,7 +87,7 @@ public class CompileAction extends SimulationNotRunningAction {
         try {
             temp = FileUtils.createTempFile();
         } catch (IOException e1) {
-            LogFactory.getLog(CompileAction.class).error(e1);
+            Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
             return;
         }
 
@@ -118,7 +118,7 @@ public class CompileAction extends SimulationNotRunningAction {
                 try {
                     ScilabInterpreterManagement.asynchronousScilabExec(action, cmd);
                 } catch (InterpreterException e) {
-                    LogFactory.getLog(CompileAction.class).error(e);
+                    Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
                 }
             }
 

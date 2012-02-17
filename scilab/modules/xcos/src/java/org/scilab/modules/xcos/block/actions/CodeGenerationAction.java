@@ -21,8 +21,8 @@ import static org.scilab.modules.xcos.utils.FileUtils.exists;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -52,7 +52,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      */
@@ -62,7 +62,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Menu for diagram menubar
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      * @return the menu
@@ -73,7 +73,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            parameter
      * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
@@ -87,7 +87,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         Object selectedObj = graph.getSelectionCell();
         if (!(selectedObj instanceof SuperBlock)) {
             graph.error(XcosMessages.ERROR_GENERATING_C_CODE);
@@ -127,8 +127,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
                     if (parent == null) {
                         block.setParentDiagram(Xcos.findParent(block));
                         parent = block.getParentDiagram();
-                        LogFactory.getLog(getClass()).error(
-                                "Parent diagram was null");
+                        Logger.getLogger(CodeGenerationAction.class.getName()).finest("Parent diagram was null");
                     }
 
                     parent.getModel().beginUpdate();
@@ -151,19 +150,19 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
             asynchronousScilabExec(callback, cmd);
 
         } catch (IOException ex) {
-            LogFactory.getLog(CodeGenerationAction.class).error(ex);
+            Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
             graph.info(XcosMessages.EMPTY_INFO);
         } catch (InterpreterException ex) {
-            LogFactory.getLog(CodeGenerationAction.class).error(ex);
+            Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
             graph.info(XcosMessages.EMPTY_INFO);
         }
     }
 
     /**
      * Callback function
-     * 
+     *
      * Read the block from the scilab
-     * 
+     *
      * @param block
      *            The block we are working on
      * @param tempInput
@@ -174,19 +173,16 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
             BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 
             block.updateBlockSettings(modifiedBlock);
-            block.setInterfaceFunctionName(modifiedBlock
-                    .getInterfaceFunctionName());
-            block.setSimulationFunctionName(modifiedBlock
-                    .getSimulationFunctionName());
-            block.setSimulationFunctionType(modifiedBlock
-                    .getSimulationFunctionType());
+            block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+            block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+            block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
             block.setChild(null);
 
             block.setStyle(block.getStyle() + ";blockWithLabel");
             block.setValue(block.getSimulationFunctionName());
             BlockPositioning.updateBlockView(block);
         } catch (ScicosFormatException e) {
-            LogFactory.getLog(CodeGenerationAction.class).error(e);
+            Logger.getLogger(CodeGenerationAction.class.getName()).severe(e.toString());
         }
     }
 }

@@ -16,8 +16,8 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -106,7 +106,7 @@ public class InitModelicaAction extends DefaultAction {
         try {
             asynchronousScilabExec(action, cmd);
         } catch (InterpreterException e1) {
-            LogFactory.getLog(InitModelicaAction.class).error(e1);
+            Logger.getLogger(InitModelicaAction.class.getName()).severe(e.toString());
         }
     }
 }

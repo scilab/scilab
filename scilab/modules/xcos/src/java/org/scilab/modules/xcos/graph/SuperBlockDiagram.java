@@ -21,8 +21,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -43,8 +43,7 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 
-public final class SuperBlockDiagram extends XcosDiagram implements
-        Serializable, Cloneable {
+public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
 
     private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
     private static final long serialVersionUID = -402918614723713301L;
@@ -101,7 +100,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
     /**
      * Concatenate the context with the parent one
-     * 
+     *
      * @return the context
      * @see org.scilab.modules.xcos.graph.XcosDiagram#getContext()
      */
@@ -112,7 +111,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
         if (graph == null) {
             block.setParentDiagram(Xcos.findParent(block));
             graph = block.getParentDiagram();
-            LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
+            Logger.getLogger(SuperBlockDiagram.class.getName()).finest(PARENT_DIAGRAM_WAS_NULL);
         }
 
         final String[] parent;
@@ -133,8 +132,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
     /**
      * Listener for SuperBlock diagram events.
      */
-    private static final class GenericSuperBlockListener implements
-            mxIEventListener, Serializable {
+    private static final class GenericSuperBlockListener implements mxIEventListener, Serializable {
         private static GenericSuperBlockListener instance;
 
         /**
@@ -146,7 +144,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
         /**
          * Mono-threaded singleton implementation getter
-         * 
+         *
          * @return The unique instance
          */
         public static GenericSuperBlockListener getInstance() {
@@ -158,7 +156,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
         /**
          * Update the IOPorts colors and values.
-         * 
+         *
          * @param arg0
          *            the source
          * @param arg1
@@ -178,7 +176,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
     /**
      * Validate I/O ports.
-     * 
+     *
      * @param cell
      *            Cell that represents the cell to validate.
      * @param context
@@ -226,7 +224,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
          */
 
         // get the real index
-        final List<? extends BasicBlock> blocks = (List<? extends BasicBlock>) context.get(key);
+        final List <? extends BasicBlock > blocks = (List <? extends BasicBlock > ) context.get(key);
         final int realIndex = blocks.indexOf(block) + 1;
 
         // get the user index
@@ -253,7 +251,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
     /**
      * Fill the context with I/O port
-     * 
+     *
      * @param context
      *            the context to fill
      */
@@ -275,12 +273,12 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
     /**
      * Sort the blocks per first integer parameter value
-     * 
+     *
      * @param blocks
      *            the block list
      * @return the sorted block list (same instance)
      */
-    private List<? extends BasicBlock> iparSort(final List<? extends BasicBlock> blocks) {
+    private List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
         Collections.sort(blocks, new Comparator<BasicBlock>() {
 
             @Override
@@ -346,8 +344,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements
     /**
      * Update the diagram labels
      */
-    private static final class LabelBlockListener implements mxIEventListener,
-            Serializable {
+    private static final class LabelBlockListener implements mxIEventListener, Serializable {
         private static LabelBlockListener instance;
 
         /**
@@ -374,18 +371,15 @@ public final class SuperBlockDiagram extends XcosDiagram implements
             final Object parent = evt.getProperty("parent");
             if (parent instanceof ContextUpdate) {
                 final ContextUpdate block = (ContextUpdate) parent;
-                final ScilabDouble data = (ScilabDouble) block
-                        .getIntegerParameters();
+                final ScilabDouble data = (ScilabDouble) block.getIntegerParameters();
                 final int index = (int) data.getRealPart()[0][0];
 
-                final SuperBlock container = ((SuperBlockDiagram) sender)
-                        .getContainer();
+                final SuperBlock container = ((SuperBlockDiagram) sender).getContainer();
                 if (container == null) {
                     return;
                 }
 
-                List<mxICell> tmp = IOBlocks.getPorts(container,
-                        block.getClass());
+                List<mxICell> tmp = IOBlocks.getPorts(container, block.getClass());
                 BasicPort[] ports = new BasicPort[tmp.size()];
                 Arrays.sort(tmp.toArray(ports), new Comparator<BasicPort>() {
                     @Override
@@ -398,11 +392,9 @@ public final class SuperBlockDiagram extends XcosDiagram implements
                 if (graph == null) {
                     container.setParentDiagram(Xcos.findParent(container));
                     graph = container.getParentDiagram();
-                    LogFactory.getLog(getClass())
-                            .error(PARENT_DIAGRAM_WAS_NULL);
+                    Logger.getLogger(SuperBlockDiagram.class.getName()).finest(PARENT_DIAGRAM_WAS_NULL);
                 }
-                container.getParentDiagram().cellLabelChanged(ports[index - 1],
-                        value, false);
+                container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
             }
         }
     }
@@ -414,19 +406,16 @@ public final class SuperBlockDiagram extends XcosDiagram implements
         removeListener(GenericSuperBlockListener.getInstance());
         removeListener(LabelBlockListener.getInstance());
 
-        addListener(XcosEvent.CELLS_ADDED,
-                GenericSuperBlockListener.getInstance());
-        addListener(XcosEvent.CELLS_REMOVED,
-                GenericSuperBlockListener.getInstance());
-        addListener(XcosEvent.IO_PORT_VALUE_UPDATED,
-                GenericSuperBlockListener.getInstance());
+        addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
+        addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
+        addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
         addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
     }
 
     /**
      * This function set the SuperBlock diagram and all its parents in a
      * modified state or not.
-     * 
+     *
      * @param modified
      *            status
      */
@@ -441,10 +430,10 @@ public final class SuperBlockDiagram extends XcosDiagram implements
 
     /**
      * This function set the SuperBlock diagram in a modified state or not.
-     * 
+     *
      * It doesn't perform recursively on the parent diagrams. If you want such a
      * behavior use setModified instead.
-     * 
+     *
      * @param modified
      *            status
      * @see #setModified
@@ -461,10 +450,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements
         clone.installListeners();
         clone.installSuperBlockListeners();
 
-        clone.setScicosParameters((ScicosParameters) getScicosParameters()
-                .clone());
-        clone.addCells(cloneCells(getChildCells(getDefaultParent())),
-                clone.getDefaultParent());
+        clone.setScicosParameters((ScicosParameters) getScicosParameters().clone());
+        clone.addCells(cloneCells(getChildCells(getDefaultParent())), clone.getDefaultParent());
 
         return clone;
     }
