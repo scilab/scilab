@@ -215,7 +215,7 @@ public class AxesDrawer {
         modelViewStack.pushRightMultiply(dataTransformation);
 
         // TODO implement clipgrf
-        Double[] bounds = axes.computeDisplayedBounds();
+        Double[] bounds = axes.getDisplayedBounds();
         Vector4d[] equations = new Vector4d[]{
                 new Vector4d(+1, 0, 0, -bounds[0]),
                 new Vector4d(-1, 0, 0, +bounds[1]),
@@ -370,7 +370,7 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are not corrects.
      */
     private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
-        Double[] bounds = axes.computeDisplayedBounds();
+        Double[] bounds = axes.getDisplayedBounds();
 
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
@@ -411,7 +411,7 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are incorrect or canvas with or length are zero.
      */
     private Transformation computeBoxTransformation(Axes axes, Canvas canvas, boolean use2dView) throws DegenerateMatrixException {
-        Double[] bounds = axes.computeDisplayedBounds();
+        Double[] bounds = axes.getDisplayedBounds();
 
         double alpha;
         double theta;
@@ -480,7 +480,7 @@ public class AxesDrawer {
      * @param axes the given {@see Axes}.
      */
     private void computeReversedBounds(Axes axes) {
-        Double[] currentBounds = axes.computeDisplayedBounds();
+        Double[] currentBounds = axes.getDisplayedBounds();
 
         /* Reverse */
         if (axes.getAxes()[0].getReverse()) {

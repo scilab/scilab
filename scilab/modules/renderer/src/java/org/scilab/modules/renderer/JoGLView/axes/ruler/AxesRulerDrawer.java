@@ -69,7 +69,7 @@ public class AxesRulerDrawer {
      * @param drawingTools the used {@see DrawingTools}
      */
     public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) {
-        Double[] bounds = axes.computeDisplayedBounds();
+        Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
 
         RulerDrawingResult rulerDrawingResult;

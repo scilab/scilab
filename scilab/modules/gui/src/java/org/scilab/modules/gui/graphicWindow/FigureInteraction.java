@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2009-2012 - DIGITEO - Pierre Lando
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,8 +10,11 @@
  */
 package org.scilab.modules.gui.graphicWindow;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -22,11 +25,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.events.GlobalEventWatcher;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 
 /**
  * This class manage figure interaction.
@@ -35,6 +35,13 @@ import org.scilab.modules.gui.events.GlobalEventWatcher;
  */
 public class FigureInteraction {
 
+    private static final int XY_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK;
+    private static final int Z_TRANSLATION_MODIFIER = MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK;
+    private static final int ROTATION_MODIFIER = MouseEvent.BUTTON3_MASK;
+
+    /**
+     * The box size is multiply by this value.
+     */
     private static final double ZOOM_FACTOR = 1.02;
 
     private final MouseListener mouseListener;
@@ -44,245 +51,211 @@ public class FigureInteraction {
     private final Component component;
     private final String figureId;
 
-    private boolean isEnable = false;
+    /**
+     * Current enable status.
+     */
+    private boolean isEnable;
 
+    /**
+     * Last important mouse event.
+     */
     private MouseEvent previousEvent;
 
+    /**
+     * Default constructor.
+     * @param component Component to listen.
+     * @param figureId the Scilab figure Id.
+     */
     public FigureInteraction(Component component, String figureId) {
         this.component = component;
         this.figureId = figureId;
 
-        mouseListener = createMouseListener();
-        mouseMotionListener = createMouseMotionListener();
-        mouseWheelListener = createMouseWheelListener();
+        mouseMotionListener = new FigureMouseMotionListener();
+        mouseWheelListener = new FigureMouseWheelListener();
+        mouseListener = new FigureMouseListener();
+
+        isEnable = false;
     }
 
+    /**
+     * Enable status setter.
+     * @param isEnable the new enable status.
+     */
     public void setEnable(boolean isEnable) {
-        this.isEnable = isEnable;
-        if (isEnable) {
-            enable();
-        } else {
-            disable();
+        if (isEnable() != isEnable) {
+            if (isEnable) {
+                component.addMouseListener(mouseListener);
+                component.addMouseMotionListener(mouseMotionListener);
+                component.addMouseWheelListener(mouseWheelListener);
+            } else {
+                component.removeMouseListener(mouseListener);
+                component.removeMouseMotionListener(mouseMotionListener);
+                component.removeMouseWheelListener(mouseWheelListener);
+            }
+            this.isEnable = isEnable;
         }
     }
 
+    /**
+     * Enable status getter.
+     * @return the enable status.
+     */
     public boolean isEnable() {
         return isEnable;
     }
 
-    private void disable() {
-        component.removeMouseListener(mouseListener);
-        component.removeMouseMotionListener(mouseMotionListener);
-        component.removeMouseWheelListener(mouseWheelListener);
-    }
-
-    private void enable() {
-        component.addMouseListener(mouseListener);
-        component.addMouseMotionListener(mouseMotionListener);      
-        component.addMouseWheelListener(mouseWheelListener);
-    }
-
-    private MouseListener createMouseListener() {
-        return new MouseAdapter() {
-            int pressedButtons = 0;
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (pressedButtons == 0) {
-                    component.addMouseMotionListener(mouseMotionListener);
-                    previousEvent = e;
-                }
-                pressedButtons++;
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                pressedButtons--;
-                if (pressedButtons == 0) {
-                    component.removeMouseMotionListener(mouseMotionListener);
-                }
-            }
-            
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                GlobalEventWatcher.setAxesUID(figureId);
-            }
-        };
-    }
-
     /**
-     * Return the current visible bounds of the given axes.
-     * // TODO : tight limit.
-     * @param axes the given axes.
-     * @return the current visible bounds of the given axes.
+     * This {@see MouseListner} activate the {@see MouseMotionListener} when at least
+     * one button is pressed.
+     * The event is saved in {@see previousEvent}
      */
-    private Double[] getCurrentBounds(Axes axes) {
-        if (axes.getZoomEnabled()) {
-            return axes.getZoomBox();
-        } else {
-            return axes.getDataBounds();
-        }
-    }
+    private class FigureMouseListener extends MouseAdapter implements MouseListener {
 
+        private int pressedButtons = 0;
 
-    /**
-     * Tight given bounds to axes data bounds.
-     * @param axes the given axes.
-     * @param zoomBounds the zoomBounds.
-     * @return true if actually there is a zoom.
-     */
-    private boolean tightZoomBounds(Axes axes, Double[] zoomBounds) {
-        boolean zoomed = false;
-        Double[] dataBounds = axes.getDataBounds();
-        for (int i : new int[] {0, 2, 4}) {
-            if (zoomBounds[i] < dataBounds[i]) {
-                zoomBounds[i] = dataBounds[i];
-            } else {
-                zoomed = true;
-            }
-        }
-
-        for (int i : new int[] {1, 3, 5}) {
-            if (zoomBounds[i] > dataBounds[i]) {
-                zoomBounds[i] = dataBounds[i];
-            } else {
-                zoomed = true;
-            }
-        }
-
-        return zoomed;
-    }
-
-    private MouseWheelListener createMouseWheelListener() {
-        return new MouseWheelListener() {
-            @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                // TODO : picking to find current children
-                String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-                for (String child : children) {
-                    GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                    if (object instanceof Axes) {
-
-                        double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
-                        System.out.println(scale);
-
-                        Axes axes = (Axes) object;
-                        Double[] bounds = getCurrentBounds(axes);
-
-                        double xDelta = (bounds[1] - bounds[0]) / 2;
-                        double xMiddle = (bounds[1] + bounds[0]) / 2;
-                        bounds[0] = xMiddle - xDelta * scale;
-                        bounds[1] = xMiddle + xDelta * scale;
-
-                        double yDelta = (bounds[3] - bounds[2]) / 2;
-                        double yMiddle = (bounds[3] + bounds[2]) / 2;
-                        bounds[2] = yMiddle - yDelta * scale;
-                        bounds[3] = yMiddle + yDelta * scale;
-
-                        double zDelta = (bounds[5] - bounds[4]) / 2;
-                        double zMiddle = (bounds[5] + bounds[4]) / 2;
-                        bounds[4] = zMiddle - zDelta * scale;
-                        bounds[5] = zMiddle + zDelta * scale;
-
-                        Boolean zoomed = tightZoomBounds(axes, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-                    }
-                }
-            }
-        };
-    }
-
-
-    /**
-     * Tight given bounds to axes data bounds.
-     * Bounds length along axes are conserved.
-     * @param axes the given axes.
-     * @param zoomBounds the zoomBounds.
-     * @return true if actually there is a zoom.
-     */
-    private boolean tightZoomBoxToDataBounds(Axes axes, Double[] zoomBounds) {
-        boolean zoomed = false;
-        Double[] dataBounds = axes.getDataBounds();
-        for (int i : new int[] {0, 2, 4}) {
-            if (zoomBounds[i] < dataBounds[i]) {
-                double delta = dataBounds[i] - zoomBounds[i];
-                zoomBounds[i] = dataBounds[i]; // zoomBounds[i] += delta;
-                zoomBounds[i + 1] += delta;
-            } else {
-                zoomed = true;
-            }
-        }
-
-        for (int i : new int[] {1, 3, 5}) {
-            if (zoomBounds[i] > dataBounds[i]) {
-                double delta = dataBounds[i] - zoomBounds[i];
-                zoomBounds[i] = dataBounds[i]; // zoomBounds[i] += delta;
-                zoomBounds[i - 1] += delta;
-            } else {
-                zoomed = true;
-            }
-        }
-
-        return zoomed;
-    }
-
-    private MouseMotionListener createMouseMotionListener() {
-        return new MouseMotionAdapter() {
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                if (isRotationEvent(e)) {
-                    doRotation(e);
-                } else if (isXYTranslationEvent(e)) {
-                    doXYTranslation(e);
-                } else if (isZTranslationEvent(e)) {
-                    doZTranslation(e);
-                }
-
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if (pressedButtons == 0) {
+                component.addMouseMotionListener(mouseMotionListener);
                 previousEvent = e;
             }
+            pressedButtons++;
+        }
 
-            private boolean isZTranslationEvent(MouseEvent e) {
-                return e.getModifiers() == (MouseEvent.BUTTON1_MASK | MouseEvent.CTRL_MASK);
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            pressedButtons--;
+            if (pressedButtons == 0) {
+                component.removeMouseMotionListener(mouseMotionListener);
             }
+        }
 
-            private boolean isXYTranslationEvent(MouseEvent e) {
-                return e.getModifiers() == MouseEvent.BUTTON1_MASK;
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            GlobalEventWatcher.setAxesUID(figureId);
+        }
+    }
+
+    /**
+     * This {@see MouseWheelListener} manage zoom/un-zoom on the figure.
+     */
+    private class FigureMouseWheelListener implements MouseWheelListener {
+
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            // TODO : picking to find current children
+            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
+            for (String child : children) {
+                GraphicObject object = GraphicController.getController().getObjectFromId(child);
+                if (object instanceof Axes) {
+                    double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
+
+                    Axes axes = (Axes) object;
+                    Double[] bounds = axes.getDisplayedBounds();
+
+                    double xDelta = (bounds[1] - bounds[0]) / 2;
+                    double xMiddle = (bounds[1] + bounds[0]) / 2;
+                    bounds[0] = xMiddle - xDelta * scale;
+                    bounds[1] = xMiddle + xDelta * scale;
+
+                    double yDelta = (bounds[3] - bounds[2]) / 2;
+                    double yMiddle = (bounds[3] + bounds[2]) / 2;
+                    bounds[2] = yMiddle - yDelta * scale;
+                    bounds[3] = yMiddle + yDelta * scale;
+
+                    double zDelta = (bounds[5] - bounds[4]) / 2;
+                    double zMiddle = (bounds[5] + bounds[4]) / 2;
+                    bounds[4] = zMiddle - zDelta * scale;
+                    bounds[5] = zMiddle + zDelta * scale;
+
+                    Boolean zoomed = tightZoomBounds(axes, bounds);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+                }
             }
+        }
 
-            private boolean isRotationEvent(MouseEvent e) {
-                return e.getModifiers() == MouseEvent.BUTTON3_MASK;
-            }
 
-            private void doRotation(MouseEvent e) {
-                int dx = e.getX() - previousEvent.getX();
-                int dy = e.getY() - previousEvent.getY();
-
-                // TODO : picking to find current children
-                String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-                for (String child : children) {
-                    String childType = (String) GraphicController.getController().getProperty(child, __GO_TYPE__);
-                    if (__GO_AXES__.equals(childType)) {
-                        Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                        angles[0] -= dy / 4.0;
-                        angles[1] -= dx / 4.0;
-                        GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
-                    }
+        /**
+         * Tight given bounds to axes data bounds.
+         * @param axes the given axes.
+         * @param zoomBounds the zoomBounds.
+         * @return true if actually there is a zoom.
+         */
+        private boolean tightZoomBounds(Axes axes, Double[] zoomBounds) {
+            boolean zoomed = false;
+            Double[] dataBounds = axes.getMaximalDisplayedBounds();
+            for (int i : new int[] {0, 2, 4}) {
+                if (zoomBounds[i] < dataBounds[i]) {
+                    zoomBounds[i] = dataBounds[i];
+                } else {
+                    zoomed = true;
                 }
             }
 
-            private void doXYTranslation(MouseEvent e) {
-                int dx = e.getX() - previousEvent.getX();
-                int dy = e.getY() - previousEvent.getY();
+            for (int i : new int[] {1, 3, 5}) {
+                if (zoomBounds[i] > dataBounds[i]) {
+                    zoomBounds[i] = dataBounds[i];
+                } else {
+                    zoomed = true;
+                }
+            }
 
-                // TODO : picking to find current children
-                String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-                for (String child : children) {
-                    GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                    if (object instanceof Axes) {
-                        Axes axes = (Axes) object;
-                        Double[] bounds = getCurrentBounds(axes);
+            return zoomed;
+        }
+    }
+
+    /**
+     * This {@see MouseMotionListener} manage rotation and translation on the figure.
+     */
+    private class FigureMouseMotionListener extends MouseMotionAdapter implements MouseMotionListener {
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            switch (e.getModifiers()) {
+                case XY_TRANSLATION_MODIFIER:
+                    doXYTranslation(e);
+                    break;
+                case Z_TRANSLATION_MODIFIER:
+                    doZTranslation(e);
+                    break;
+                case ROTATION_MODIFIER:
+                    doRotation(e);
+                    break;
+            }
+
+            previousEvent = e;
+        }
+
+        private void doRotation(MouseEvent e) {
+            int dx = e.getX() - previousEvent.getX();
+            int dy = e.getY() - previousEvent.getY();
+
+            // TODO : picking to find current children
+            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
+            for (String child : children) {
+                String childType = (String) GraphicController.getController().getProperty(child, __GO_TYPE__);
+                if (__GO_AXES__.equals(childType)) {
+                    Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+                    angles[0] -= dy / 4.0;
+                    angles[1] -= dx / 4.0;
+                    GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                }
+            }
+        }
+
+        private void doXYTranslation(MouseEvent e) {
+            int dx = e.getX() - previousEvent.getX();
+            int dy = e.getY() - previousEvent.getY();
+
+            // TODO : picking to find current children
+            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
+            for (String child : children) {
+                GraphicObject object = GraphicController.getController().getObjectFromId(child);
+                if (object instanceof Axes) {
+                    Axes axes = (Axes) object;
+                    if (axes.getZoomEnabled()) {
+                        Double[] bounds = axes.getDisplayedBounds();
                         double orientation = Math.signum(Math.cos(Math.toRadians(axes.getRotationAngles()[0])));
                         double angle = - orientation * Math.toRadians(axes.getRotationAngles()[1]);
 
@@ -304,29 +277,62 @@ public class FigureInteraction {
                     }
                 }
             }
+        }
 
-            private void doZTranslation(MouseEvent e) {
-                int dy = e.getY() - previousEvent.getY();
+        private void doZTranslation(MouseEvent e) {
+            int dy = e.getY() - previousEvent.getY();
 
-                // TODO : picking to find current children
-                String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-                for (String child : children) {
-                    GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                    if (object instanceof Axes) {
-                        Axes axes = (Axes) object;
-                        Double[] bounds = getCurrentBounds(axes);
+            // TODO : picking to find current children
+            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
+            for (String child : children) {
+                GraphicObject object = GraphicController.getController().getObjectFromId(child);
+                if (object instanceof Axes) {
+                    Axes axes = (Axes) object;
+                    Double[] bounds = axes.getDisplayedBounds();
 
-                        double zDelta = (bounds[5] - bounds[4])/100;
+                    double zDelta = (bounds[5] - bounds[4])/100;
 
-                        bounds[4] -= zDelta * dy;
-                        bounds[5] -= zDelta * dy;
+                    bounds[4] += zDelta * dy;
+                    bounds[5] += zDelta * dy;
 
-                        Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-                    }
+                    Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
                 }
             }
-        };
+        }
+
+        /**
+         * Tight given bounds to axes data bounds.
+         * Bounds length along axes are conserved.
+         * @param axes the given axes.
+         * @param zoomBounds the zoomBounds.
+         * @return true if actually there is a zoom.
+         */
+        private boolean tightZoomBoxToDataBounds(Axes axes, Double[] zoomBounds) {
+            boolean zoomed = false;
+            Double[] dataBounds = axes.getMaximalDisplayedBounds();
+            for (int i : new int[] {0, 2, 4}) {
+                if (zoomBounds[i] < dataBounds[i]) {
+                    double delta = dataBounds[i] - zoomBounds[i];
+                    zoomBounds[i] = dataBounds[i]; // zoomBounds[i] += delta;
+                    zoomBounds[i + 1] += delta;
+                } else {
+                    zoomed = true;
+                }
+            }
+
+            for (int i : new int[] {1, 3, 5}) {
+                if (zoomBounds[i] > dataBounds[i]) {
+                    double delta = dataBounds[i] - zoomBounds[i];
+                    zoomBounds[i] = dataBounds[i]; // zoomBounds[i] += delta;
+                    zoomBounds[i - 1] += delta;
+                } else {
+                    zoomed = true;
+                }
+            }
+
+            return zoomed;
+        }
     }
 }

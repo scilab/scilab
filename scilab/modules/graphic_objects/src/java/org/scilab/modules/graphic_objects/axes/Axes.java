@@ -1783,31 +1783,37 @@ public class Axes extends GraphicObject {
         }
 
         /**
-         * Return the current visible bounds.
-         * // TODO : tight limit.
-         * @return the current visible bounds of the axes.
+         * Current displayed bounds getter.
+         * @return the current visible bounds of this axes.
          */
-        public Double[] computeDisplayedBounds() {
-            Double[] bounds;
+        public Double[] getDisplayedBounds() {
             if (getZoomEnabled()) {
-                bounds = getZoomBox();
+                return getZoomBox();
             } else {
-                bounds = getDataBounds();
+                return getMaximalDisplayedBounds();
+            }
+        }
 
-                /**
-                 * Remove 0 sized bounds
-                 */
-                for (int i = 0 ; i < 6 ; i += 2) {
-                    if (bounds[i].equals(bounds[i + 1])) {
-                        bounds[i]--;
-                        bounds[i + 1]++;
-                    }
+        /**
+         * Maximal possible displayed bounds getter.
+         * @return the maximal possible displayed bounds.
+         */
+        public Double[] getMaximalDisplayedBounds() {
+            Double[] bounds = getDataBounds();
+
+            /**
+             * Remove 0 sized bounds
+             */
+            for (int i = 0 ; i < 6 ; i += 2) {
+                if (bounds[i].equals(bounds[i + 1])) {
+                    bounds[i]--;
+                    bounds[i + 1]++;
                 }
+            }
 
-                if (!getTightLimits()) {
-                    for (int i = 0 ; i < 6 ; i++) {
-                        bounds[i] = round(bounds[i]);
-                    }
+            if (!getTightLimits()) {
+                for (int i = 0 ; i < 6 ; i++) {
+                    bounds[i] = round(bounds[i]);
                 }
             }
 
