@@ -49,9 +49,6 @@ GRAPHICS_IMPEXP int sciSetForeground ( char* pobj, int colorindex ) ; /* SET */
 GRAPHICS_IMPEXP int sciInitLineWidth( char* pobj, double linewidth ) ;
 GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */
 
-GRAPHICS_IMPEXP int sciInitIsLine(char* pobj, BOOL isline);
-GRAPHICS_IMPEXP int sciSetIsLine (char* pobj, BOOL isline);  /* SET */
-
 GRAPHICS_IMPEXP int sciInitLineStyle( char* pobj, int linestyle ) ;
 GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
 

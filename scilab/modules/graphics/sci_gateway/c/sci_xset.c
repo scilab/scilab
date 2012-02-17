@@ -321,13 +321,16 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if(strcmp(cstk(l1),"line mode") == 0)
     {
+        char *pstSubwinUID = getOrCreateDefaultSubwin();
+        int iZero = 0;
+        int iOne = 1;
         if (x[0] == 0)
         {
-            sciSetIsLine(subwin, FALSE);
+            setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
         }
         else
         {
-            sciSetIsLine(subwin, TRUE);
+            setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iOne, jni_bool, 1);
         }
     }
     else

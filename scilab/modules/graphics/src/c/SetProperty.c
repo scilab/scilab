@@ -572,34 +572,6 @@ sciSetMarkSizeUnit (char * pobjUID, int marksizeunit)
     return sciInitMarkSizeUnit( pobjUID, marksizeunit ) ;
 }
 
-int sciInitIsLine( char * pobjUID, BOOL isline )
-{
-
-    if (sciGetGraphicContext(pobjUID) != NULL)
-    {
-        sciGetGraphicContext(pobjUID)->isline = isline;
-        return 0;
-    }
-
-    printSetGetErrorMessage("line_mode");
-    return -1;
-
-}
-
-/**sciSetIsLine
- * Sets the line style existence
- */
-int
-sciSetIsLine (char * pobjUID, BOOL isline)
-{
-
-    if ( sciGetIsLine( pobjUID ) == isline )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitIsLine( pobjUID, isline ) ;
-}
 /**sciInitPolylineStyle
  * Sets Polyline Style (plot)
  */

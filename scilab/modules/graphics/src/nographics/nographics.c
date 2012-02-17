@@ -327,12 +327,6 @@ int sciInitIsFilled(char *pobj, BOOL isfilled)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitIsLine(char *pobj, BOOL isline)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitLineStyle(char *pobj, int linestyle)
 {
     return -1;
