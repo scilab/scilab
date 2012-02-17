@@ -88,31 +88,31 @@ static StackNamedList stackNamedListPosition;
 
 
 // Push a list address on the stackListPosition
-static void pushListAddress(int _iRhsPos, int* _piAddr, int _iLast)
+static void pushListAddress(int _iRhsPos, int* _piAddr)
 {
     if (stackListPosition.find(_iRhsPos) == stackListPosition.end())
     {
         VectListInfo* pVect = new VectListInfo();
-        pVect->push_back(new ListInfo(_piAddr, _iLast));
+        pVect->push_back(new ListInfo(_piAddr, 0));
         stackListPosition[_iRhsPos] = pVect;
     }
     else
     {
-        stackListPosition[_iRhsPos]->push_back(new ListInfo(_piAddr, _iLast));
+        stackListPosition[_iRhsPos]->push_back(new ListInfo(_piAddr, 0));
     }
 }
 
-static void pushNamedListAddress(std::string _stNamedList, int* _piAddr, int _iLast)
+static void pushNamedListAddress(std::string _stNamedList, int* _piAddr)
 {
     if (stackNamedListPosition.find(_stNamedList) == stackNamedListPosition.end())
     {
         VectListInfo* pVect = new VectListInfo();
-        pVect->push_back(new ListInfo(_piAddr, _iLast));
+        pVect->push_back(new ListInfo(_piAddr, 0));
         stackNamedListPosition[_stNamedList] = pVect;
     }
     else
     {
-        stackNamedListPosition[_stNamedList]->push_back(new ListInfo(_piAddr, _iLast));
+        stackNamedListPosition[_stNamedList]->push_back(new ListInfo(_piAddr, 0));
     }
 }
 
@@ -413,7 +413,7 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
 
     if (_iNbItem != 0)
     {
-        pushNamedListAddress(_pstName, piAddr, 0);
+        pushNamedListAddress(_pstName, piAddr);
     }
 
     Top      = iSaveTop;
@@ -447,7 +447,7 @@ static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNb
 
     if(_iNbItem != 0)
     {
-        pushListAddress(_iVar, piAddr, 0);
+        pushListAddress(_iVar, piAddr);
     }
 
     return sciErr;
@@ -689,7 +689,7 @@ static SciErr createCommonListInList(void* _pvCtx, int _iVar, const char* _pstNa
         if(iNamed == 0)
         {
             //add new child address in stacklist
-            pushListAddress(_iVar, *_piAddress, _iItemPos == piParent[1]);
+            pushListAddress(_iVar, *_piAddress);
         }
     }
 
@@ -744,7 +744,7 @@ SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* /*_p
     if (_iNbItem != 0)
     {
         //add new child address in stacklist
-        pushNamedListAddress(_pstName, *_piAddress, _iItemPos == piParent[1]);
+        pushNamedListAddress(_pstName, *_piAddress);
     }
 
     Top = iSaveTop;
