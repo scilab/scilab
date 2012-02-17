@@ -28,72 +28,73 @@ import org.w3c.dom.Node;
 // - text does not appear.
 
 /** Implementation of Label compliant with extended management.
-*
-* @author Pierre GRADIT
-* TODO http://www.java-tips.org/java-se-tips/javax.swing/how-to-use-popup-menus-in-swing-applications.html
-*/
+ *
+ * @author Pierre GRADIT
+ * TODO http://www.java-tips.org/java-se-tips/javax.swing/how-to-use-popup-menus-in-swing-applications.html
+ */
 public class Color extends JLabel implements XComponent, XChooser, MouseListener {
 
-  /**
-    * 
-    */
+    /**
+     *
+     */
     private static final long serialVersionUID = 5598263085800128888L;
 
 /** Define the set of actuators.
-    *
-    * @return array of actuator names.
-    */
+ *
+ * @return array of actuator names.
+ */
     public final String [] actuators() {
         String [] actuators = {"color"};
         return actuators;
     }
 
     /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
+     *
+     * @param peer : associated view DOM node.
+     */
     public Color(final Node peer) {
         super();
         setText("\u2588\u2588\u2588\u2588");
         String color = XCommonManager.getAttribute(peer , "color", "000000");
         color(color);
-        setOpaque(false);
+        setOpaque(true);
         addMouseListener((MouseListener) this);
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public final void refresh(final Node peer) {
         String color = XCommonManager.getAttribute(peer , "color", "000000");
         if (!color.equals(color())) {
-        	color(color);
+            color(color);
         }
     }
 
     /** Sensor for 'color' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String color() {
-    	java.awt.Color color = getForeground();
+        java.awt.Color color = getForeground();
         return XCommonManager.getColor(color);
     }
 
     /** Actuator for 'color' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void color(final String color) {
-    	java.awt.Color jColor= XCommonManager.getColor(color);
-    	setForeground(jColor);
+        java.awt.Color jColor= XCommonManager.getColor(color);
+        setForeground(jColor);
+	setBackground(jColor);
     }
 
-   /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
+    /** Developer serialization method.
+     *
+     * @return equivalent signature.
+     */
     public final String toString() {
         String signature = "Color";
         signature += " color='" + color() + "'";
@@ -101,40 +102,44 @@ public class Color extends JLabel implements XComponent, XChooser, MouseListener
     }
 
     /** Event management
-     * 
+     *
      */
     ActionListener actionListener = null;
-    /** Color chooser must be invoked on mouse click, 
+    /** Color chooser must be invoked on mouse click,
      *  and post actionEvent
      */
     private SwingScilabColorChooser colorChooser;
 
-    /** Registration of a single listener. 
+    /** Registration of a single listener.
      * @param listener
      */
     public void addActionListener(ActionListener listener) {
-    	actionListener = listener;
+        actionListener = listener;
     }
 
-    /** External consultation 
+    /** External consultation
      *
      */
-    public String choose() {
-    	java.awt.Color jColor = colorChooser.getSelectedColor();
-	    return XCommonManager.getColor(jColor);
+    public Object choose() {
+        java.awt.Color jColor = colorChooser.getSelectedColor();
+        if (jColor != null) {
+            return XCommonManager.getColor(jColor);
+        } else {
+            return color();
+        }
     }
-    
-    /** Mouse listener used callback. 
+
+    /** Mouse listener used callback.
      * @param e : event
      */
     public void mouseClicked(final MouseEvent e) {
         java.awt.Color jColor = XCommonManager.getColor(color());
         ActionEvent transmit  = new ActionEvent(
-             this, 
-             e.getID(), 
-             "Color change", 
-             e.getWhen() + 1, 
-             e.getModifiers());
+            this,
+            e.getID(),
+            "Color change",
+            e.getWhen() + 1,
+            e.getModifiers());
         colorChooser = new SwingScilabColorChooser(jColor);
         colorChooser.displayAndWait();
         if (actionListener != null) {

@@ -146,7 +146,7 @@ public class PreviewCode extends JPanel implements XComponent, XChooser {
     *
     * @return index of the selected line.
     */
-    public final String choose() {
+    public final Object choose() {
         return chosenItem;
     }
 

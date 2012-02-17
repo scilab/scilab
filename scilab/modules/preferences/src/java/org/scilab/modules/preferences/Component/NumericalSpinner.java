@@ -252,7 +252,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      *
      * @return response read by the listener.
      */
-    public final String choose() {
+    public final Object choose() {
         return value();
     }
 
@@ -309,4 +309,3 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
         return signature.toString();
     }
 }
-

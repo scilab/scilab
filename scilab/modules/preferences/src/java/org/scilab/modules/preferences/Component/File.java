@@ -164,7 +164,7 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     *
     * @return response read by the listener.
     */
-    public final String choose() {
+    public final Object choose() {
         String mask[] = {jMask};
         String desc[] = {jDesc};
         Juigetfile.uigetfile(mask, desc);

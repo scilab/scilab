@@ -110,7 +110,7 @@ public class Tree extends JPanel implements XComponent, XChooser, TreeSelectionL
     *
     * @return the chosen value.
     */
-    public final String choose() {
+    public final Object choose() {
         return path();
     }
 

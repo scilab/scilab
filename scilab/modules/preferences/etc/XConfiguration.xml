@@ -39,13 +39,13 @@
   </general>
   <fonts>
     <body maturity="B">
-      <fonts item="1" system="true" font-family="Monospaced" font-face="plain" font-size="10">
-        <item name="Console" desktop="false" font-family="Monospaced" font-face="plain" font-size="10"/>
-        <item name="Command History" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
-        <item name="Variable Browser" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
-        <item name="Help" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
-        <item name="Scinotes" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
-        <item name="Variables Editor" desktop="true" font-family="Monospaced" font-face="plain" font-size="10"/>
+      <fonts item="1" system="true" font-name="Monospaced" font-face="plain" font-size="10">
+        <item name="Console" desktop="false" font-name="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Command History" desktop="true" font-name="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Variable Browser" desktop="true" font-name="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Help" desktop="true" font-name="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Scinotes" desktop="true" font-name="Monospaced" font-face="plain" font-size="10"/>
+        <item name="Variables Editor" desktop="true" font-name="Monospaced" font-face="plain" font-size="10"/>
       </fonts>
     </body>
   </fonts>

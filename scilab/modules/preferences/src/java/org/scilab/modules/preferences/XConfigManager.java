@@ -228,14 +228,14 @@ public final class XConfigManager extends XCommonManager {
      * @param source : component source of the action (only class is needed).
      * @return whether event was treated or not.
      */
-    public static boolean xEvent(final Node [] actions, final Component source) {
+    public static boolean xEvent(final Node[] actions, final Component source) {
         if (generixEvent(actions, source)) {
             return true;
         }
-        if (actions.length==0) {
-//C            System.out.println("No actions processed!");
+        if (actions.length == 0) {
             return false;
         }
+
         Node action = actions[0];
         String callback = getAttribute(action, "callback");
         /** help deprecated

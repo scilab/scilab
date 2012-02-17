@@ -120,7 +120,7 @@ public class Radiobutton extends SwingScilabRadioButton implements XComponent, X
     *
     * @return response read by the listener.
     */
-    public final String choose() {
+    public final Object choose() {
         if (isSelected()) {
             return "checked";
         }

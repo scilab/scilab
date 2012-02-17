@@ -107,7 +107,7 @@ public class Label extends JLabel implements XComponent {
 
         String fontFace = XConfigManager.getAttribute(peer , "font-face", fontFace());
         if (!fontFace.equals(fontFace())) {
-            foreground(fontFace);
+            fontFace(fontFace);
         }
 
         String fontSize = XConfigManager.getAttribute(peer , "font-size", fontSize());

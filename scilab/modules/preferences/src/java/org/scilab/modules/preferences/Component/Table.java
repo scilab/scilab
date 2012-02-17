@@ -263,7 +263,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     *
     * @return the chosen value.
     */
-    public final String choose() {
+    public final Object choose() {
         if (! column.equals(XCommonManager.NAV)) {
             int row      = table.getSelectedRow();
             Node record  = model.getRowRecord(row);

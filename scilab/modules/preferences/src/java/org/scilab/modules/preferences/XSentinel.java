@@ -204,7 +204,7 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener, Ke
     public void mouseClicked(final MouseEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
-            Node [] action = getEventNodes(peer, "mouseClicked");
+            Node[] action = getEventNodes(peer, "mouseClicked");
             triggerEventNodes((Component) e.getSource(),action) ;
             timestamp = when;
         } else {
@@ -230,10 +230,7 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener, Ke
     public void actionPerformed(final ActionEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
-            Node [] actions = {};
-            if (actions.length == 0) {
-                actions = getEventNodes(peer, "actionPerformed");
-            }
+            Node[] actions = getEventNodes(peer, "actionPerformed");
             if (actions.length == 0) {
                 actions = getEventNodes(peer, e.getActionCommand());
             }

@@ -118,7 +118,7 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     *
     * @return response read by the listener.
     */
-    public final String choose() {
+    public final Object choose() {
         if (isSelected()) {
             return "checked";
         }

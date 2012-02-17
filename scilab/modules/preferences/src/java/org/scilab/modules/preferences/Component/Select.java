@@ -101,7 +101,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
     *
     * @return response read by the listener.
     */
-    public final String choose() {
+    public final Object choose() {
         if (isEnabled()) {
             return (String) getSelectedItem();
         }

@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.StringTokenizer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -314,10 +315,7 @@ public abstract class XCommonManager {
      * @param source : component source of the action (only class is needed).
      * @return if the event is handled here
      */
-    protected static boolean generixEvent(
-        final Node [] actions,
-        final Component source
-        ) {
+    protected static boolean generixEvent(final Node[] actions, final Component source) {
         printTimeStamp("*** Event occured");
 
         if (actions.length==0) {
@@ -331,7 +329,7 @@ public abstract class XCommonManager {
             System.out.print("*** " + action.getNodeName());
         }
         if (!getAttribute(action, "set").equals(NAV)) {
-            for (int i=0; i < actions.length; i++) {
+            for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
                 String context   = getAttribute(action, "context");
                 if (differential) {
@@ -340,7 +338,7 @@ public abstract class XCommonManager {
                 Element element  = getElementByContext(context);
                 String value     = getAttribute(action, "value");
                 String attribute = getAttribute(action, "set");
-                if (!(element == null)) {
+                if (element != null) {
                     element.setAttribute(attribute, value);
                 }
             }
@@ -349,22 +347,20 @@ public abstract class XCommonManager {
             return true;
         }
         if (!getAttribute(action, "insert").equals(NAV)) {
-            for (int i=0; i < actions.length; i++) {
+            for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
                 String context   = getAttribute(action, "context");
                 if (differential) {
                     System.out.println(" hits " + context);
                 }
-                Element element           = getElementByContext(context);
-                String insertValue        = XCommonManager.getAttribute(action, "insert");
+                Element element = getElementByContext(context);
+                String insertValue = XCommonManager.getAttribute(action, "insert");
                 int insert = 0;
                 try {
                     insert = Integer.decode(insertValue);
-
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     XChooser chooser   = (XChooser) source;
-                    insertValue        = chooser.choose();
+                    insertValue        = chooser.choose().toString();
                     insert = Integer.decode(insertValue) + 1;
                 }
                 Node hook = null;
@@ -388,7 +384,7 @@ public abstract class XCommonManager {
                     transferred = document.importNode(transferred, true);
                     fragment.appendChild(transferred);
                 }
-                if (!(element == null)) {
+                if (element != null) {
                     element.insertBefore(fragment, hook);
                 }
             }
@@ -398,9 +394,9 @@ public abstract class XCommonManager {
         }
 
         if (!getAttribute(action, "delete").equals(NAV)) {
-            for (int i=0; i < actions.length; i++) {
+            for (int i = 0; i < actions.length; i++) {
                 action = actions[i];
-                String context   = getAttribute(action, "context");
+                String context = getAttribute(action, "context");
                 if (differential) {
                     System.out.println(" hits " + context);
                 }
@@ -409,24 +405,20 @@ public abstract class XCommonManager {
                 int delete = 0;
                 try {
                     delete = Integer.decode(xDelete);
-
-                }
-                catch (NumberFormatException e) {
-                    if (source==null) {
+                } catch (NumberFormatException e) {
+                    if (source == null) {
                         System.out.println(" lost! ");
                         return false;
                     }
-                    XChooser chooser   = (XChooser) source;
-                    xDelete            = chooser.choose();
+                    XChooser chooser = (XChooser) source;
+                    xDelete = chooser.choose().toString();
                     delete = Integer.decode(xDelete);
                 }
                 Node deleted = null;
                 NodeList nodelist = element.getChildNodes();
-                for (int xi=0; xi < nodelist.getLength(); xi++) {
+                for (int xi = 0; xi < nodelist.getLength(); xi++) {
                     Node node = nodelist.item(xi);
-                    if (node.getNodeName() != "#text"
-                        && node.getNodeName() != "#comment"
-                        ) {
+                    if (node.getNodeName() != "#text" && node.getNodeName() != "#comment") {
                         if (delete == 1) {
                             deleted = node;
                             break;
@@ -434,7 +426,7 @@ public abstract class XCommonManager {
                         delete --;
                     }
                 }
-                if (!(element == null) && !(deleted == null)) {
+                if (element != null && deleted != null) {
                     element.removeChild(deleted);
                 } else {
                     System.out.println(" lost! " + delete);
@@ -446,22 +438,32 @@ public abstract class XCommonManager {
         }
 
         if (!getAttribute(action, "choose").equals(NAV)) {
-            String context   = getAttribute(action, "context");
+            String context = getAttribute(action, "context");
             if (differential) {
                 System.out.println(" hits " + context);
             }
             Element element  = getElementByContext(context);
-            if (source==null) {
+            if (source == null) {
                 System.out.println(" lost! ");
                 return false;
             }
             if (source instanceof XChooser) {
-                XChooser chooser   = (XChooser) source;
-                String   value     = chooser.choose();
+                XChooser chooser = (XChooser) source;
+                Object value = chooser.choose();
                 if (value != null) {
-                    String   attribute = getAttribute(action, "choose");
-                    if (!(element == null)) {
-                        element.setAttribute(attribute, value);
+                    String attribute = getAttribute(action, "choose");
+                    if (element != null) {
+                        if (value instanceof String[]) {
+                            String[] values = (String[]) value;
+                            StringTokenizer toks = new StringTokenizer(attribute, ",");
+                            int n = Math.min(toks.countTokens(), values.length);
+                            for (int i = 0; i < n; i++) {
+                                String attr = toks.nextToken().trim();
+                                element.setAttribute(attr, values[i]);
+                            }
+                        } else {
+                            element.setAttribute(attribute, value.toString());
+                        }
                     }
                     refreshDisplay();
                     updated = true;

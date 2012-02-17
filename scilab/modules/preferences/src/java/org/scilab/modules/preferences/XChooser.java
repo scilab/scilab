@@ -32,7 +32,7 @@ public interface XChooser {
      *
      * @return response read by the listener.
      */
-    String choose();
+    Object choose();
 
 }
 

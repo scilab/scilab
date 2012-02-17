@@ -36,30 +36,17 @@
           </xsl:call-template>
         </Panel>
         <Label gridx="1" gridy="3" text="Width:"/>
-        <Panel gridx="2" gridy="3">
-          <xsl:call-template name="Select">
-            <xsl:with-param name="among">
-              <option printing-font-size="8"/>
-              <option printing-font-size="9"/>
-              <option printing-font-size="10"/>
-              <option printing-font-size="11"/>
-              <option printing-font-size="12"/>
-              <option printing-font-size="14"/>
-              <option printing-font-size="16"/>
-              <option printing-font-size="18"/>
-              <option printing-font-size="20"/>
-              <option printing-font-size="22"/>
-              <option printing-font-size="24"/>
-              <option printing-font-size="28"/>
-              <option printing-font-size="32"/>
-              <option printing-font-size="36"/>
-              <option printing-font-size="40"/>
-              <option printing-font-size="44"/>
-              <option printing-font-size="48"/>
-              <option printing-font-size="96"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </Panel>
+        <NumericalSpinner gridx="2"
+                          gridy="3"
+                          min-value = "1"
+                          increment = "1"
+                          length = "3"
+                          listener = "ActionListener"
+                          value = "{@width}">
+          <actionPerformed choose="width">
+            <xsl:call-template name="context"/>
+          </actionPerformed>
+        </NumericalSpinner>
       </Grid>
     </Title>
   </xsl:template>
@@ -70,7 +57,7 @@
     <Title text="Java Heap Memory">
       <HBox>
         <Label text="Select the memory (in MB) available in Java"/>
-	<HSpace width="20"/>
+        <HSpace width="20"/>
         <NumericalSpinner min-value = "128"
                           increment = "128"
                           length = "6"
@@ -80,7 +67,7 @@
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-	<Panel/>
+        <Panel/>
       </HBox>
     </Title>
 

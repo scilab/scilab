@@ -109,7 +109,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
     *
     * @return response read by the listener.
     */
-    public final String choose() {
+    public final Object choose() {
         return text();
     }
 
