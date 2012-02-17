@@ -24,10 +24,11 @@ import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.graphicView.FlattenTreeView;
+import org.scilab.modules.graphic_objects.graphicView.GedTreeView;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.graphicView.GuiLogView;
 import org.scilab.modules.graphic_objects.graphicView.LogView;
-import org.scilab.modules.graphic_objects.graphicView.TreeView;
 
 /**
  * GraphicController class
@@ -35,6 +36,7 @@ import org.scilab.modules.graphic_objects.graphicView.TreeView;
  */
 public class GraphicController {
 
+    private static boolean MVCViewEnable = false;
     private static boolean debugEnable = true;
     private static boolean infoEnable = false;
 
@@ -67,9 +69,10 @@ public class GraphicController {
      * Default constructor
      */
     private GraphicController() {
-        if (!GraphicsEnvironment.isHeadless() && debugEnable && infoEnable) {
+        if (!GraphicsEnvironment.isHeadless() && MVCViewEnable) {
             register(GuiLogView.createGuiLogView());
-            register(TreeView.createTreeView());
+            register(GedTreeView.create());
+            register(FlattenTreeView.create());
         }
         if (infoEnable) {
             register(LogView.createLogView());
@@ -362,18 +365,30 @@ public class GraphicController {
      * @param id deleted object identifier.
      */
     public void removeRelationShipAndDelete(String id) {
-        Object parent = getProperty(id, GraphicObjectProperties.__GO_PARENT__);
-        if ((parent != null) && (parent instanceof String)) {
-            String parentId = (String) parent;
-            if (!parentId.equals("")) {
-                getObjectFromId(parentId).removeChild(id);
-                //setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
+        GraphicObject killMe = getObjectFromId(id);
+        String parentUID = killMe.getParent();
 
-                objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
-                //objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
-            }
+        
+        /* Remove object from Parent's Children list */
+        if (parentUID != null && !parentUID.equals("")) {
+            getObjectFromId(parentUID).removeChild(id);
+            //setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
+
+            objectUpdate(parentUID, GraphicObjectProperties.__GO_CHILDREN__);
+            //objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
         }
 
+        recursiveDeleteChildren(killMe);
+        
         deleteObject(id);
+    }
+    
+    private void recursiveDeleteChildren(GraphicObject killMe) {
+        String children[] = killMe.getChildren();
+        
+        for (int i = 0 ; i < children.length ; ++i) {
+            recursiveDeleteChildren(getObjectFromId(children[i]));
+            deleteObject(children[i]);
+        }
     }
 }

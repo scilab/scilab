@@ -237,7 +237,7 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Ged-like View (Future ged)">
-             <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showGedView([SCILAB_FIGURE_ID])' type="3"/>
+             <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showGedView' type="3"/>
         </submenu>
         <separator/>
     </menu>

@@ -13,7 +13,8 @@ package org.scilab.modules.graphic_objects.graphicView;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -28,62 +29,44 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
-public class TreeView implements GraphicView, TreeSelectionListener{
+public abstract class TreeView implements GraphicView, TreeSelectionListener{
 
-    private static TreeView me;
-    private HashMap<String, DefaultMutableTreeNode> fObjects = new HashMap<String, DefaultMutableTreeNode>();
-    private DefaultTreeModel topFModel = null;
-    private DefaultMutableTreeNode topF = new DefaultMutableTreeNode("Graphic Objects Flatten");
-    private JTree flatTree;
+    protected Map<String, DefaultMutableTreeNode> allObjects = new ConcurrentHashMap<String, DefaultMutableTreeNode>();
+    protected DefaultTreeModel topModel = null;
+    protected DefaultMutableTreeNode top = new DefaultMutableTreeNode("Graphic Objects");
+    private JTree tree;
     private JEditorPane htmlDetailPane;
     private JFrame frame;
-    
-    public static TreeView createTreeView() {
-        if (me == null) {
-            me = new TreeView();
-        }
-        return me;
-    }
 
     public void show() {
         frame.setVisible(true);
     }
-    
-    private TreeView() {
+
+    protected TreeView() {
         frame = new JFrame("TreeView");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new GridLayout(1,0));
 
-        //Create a tree that allows one selection at a time.
-        //topHModel = new DefaultTreeModel(topH);
-        //hierarchicalTree = new JTree(topHModel);
-        //hierarchicalTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        //hierarchicalTree.addTreeSelectionListener(this);
-        //hierarchicalTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        topModel = new DefaultTreeModel(top);
+        tree = new JTree(topModel);
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.addTreeSelectionListener(this);
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-        //Create a tree that allows one selection at a time.
-        topFModel = new DefaultTreeModel(topF);
-        flatTree = new JTree(topFModel);
-        flatTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        flatTree.addTreeSelectionListener(this);
-        flatTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
         //Listen for when the selection changes.
-        //tree.addTreeSelectionListener(this);
+        tree.addTreeSelectionListener(this);
 
 
         Dimension minDims = new Dimension(400,300);
         //Create the scroll pane and add the tree to it. 
-        //JScrollPane hTreeView = new JScrollPane(hierarchicalTree);
-        //hTreeView.setMinimumSize(minDims);
-        JScrollPane fTreeView = new JScrollPane(flatTree);
-        fTreeView.setMinimumSize(minDims);
+        JScrollPane treeView = new JScrollPane(tree);
+        treeView.setMinimumSize(minDims);
 
-                //Create the HTML detail viewing pane.
+        //Create the HTML detail viewing pane.
         htmlDetailPane = new JEditorPane();
         htmlDetailPane.setEditable(false);
         htmlDetailPane.setContentType("text/html");
@@ -91,7 +74,8 @@ public class TreeView implements GraphicView, TreeSelectionListener{
 
         //Add the scroll panes to a split pane.
         JSplitPane treeDetailPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-        treeDetailPane.setLeftComponent(fTreeView);
+        //treeDetailPane.setLeftComponent(fTreeView);
+        treeDetailPane.setLeftComponent(treeView);
         treeDetailPane.setRightComponent(htmlView);
 
         treeDetailPane.setDividerLocation(100); 
@@ -104,39 +88,14 @@ public class TreeView implements GraphicView, TreeSelectionListener{
         frame.setSize(1200, 600);
     }
 
-    public void createObject(String id) {
-        try {
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new GraphicObjectNode(GraphicController.getController().getObjectFromId(id)));
-           
-            node = new DefaultMutableTreeNode(new GraphicObjectNode(GraphicController.getController().getObjectFromId(id)));
-            fObjects.put(id, node);
-            topF.add(node);
-            topFModel.nodeStructureChanged(topF);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteObject(String id) {
-        try {
-            DefaultMutableTreeNode node = fObjects.get(id);
-            topF.remove(node);
-            fObjects.remove(id);
-            topFModel.nodeStructureChanged(topF);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateObject(String id, String property) {
-    }
-
+    public abstract void createObject(String id);
+    public abstract void deleteObject(String id) ;
+    public abstract void updateObject(String id, String property);
+    
     /*
      * Inner class to wrap GraphicObject in a Node.
      */
-    private class GraphicObjectNode {
+    protected class GraphicObjectNode {
         private GraphicObject graphicObject;
 
         public GraphicObjectNode(GraphicObject object) {
@@ -197,7 +156,7 @@ public class TreeView implements GraphicView, TreeSelectionListener{
     }
     /** Required by TreeSelectionListener interface. */
     public void valueChanged(TreeSelectionEvent e) {
-        Object node = flatTree.getLastSelectedPathComponent();
+        Object node = tree.getLastSelectedPathComponent();
 
         if (node == null || !(node instanceof DefaultMutableTreeNode)) {
             htmlDetailPane.setText("");

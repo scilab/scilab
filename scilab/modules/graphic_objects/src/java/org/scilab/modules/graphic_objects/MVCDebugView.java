@@ -11,8 +11,9 @@
  */
 package org.scilab.modules.graphic_objects;
 
+import org.scilab.modules.graphic_objects.graphicView.FlattenTreeView;
+import org.scilab.modules.graphic_objects.graphicView.GedTreeView;
 import org.scilab.modules.graphic_objects.graphicView.GuiLogView;
-import org.scilab.modules.graphic_objects.graphicView.TreeView;
 
 public class MVCDebugView {
 
@@ -21,6 +22,10 @@ public class MVCDebugView {
     }
    
     public static void showAllObjectsView() {
-        TreeView.createTreeView().show();
-    } 
+        FlattenTreeView.create().show();
+    }
+    
+    public static void showGedView() {
+        GedTreeView.create().show();
+    }
 }
