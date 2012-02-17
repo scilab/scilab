@@ -299,7 +299,14 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             DefaultGeometry triangles = new DefaultGeometry();
             triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
             triangles.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
-            triangles.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
+
+            /* Interpolated color rendering is used only for basic polylines for now. */
+            if (polyline.getInterpColorMode() && polyline.getPolylineStyle() == 1) {
+                triangles.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
+            } else {
+                triangles.setColors(null);
+            }
+
             triangles.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
             triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
