@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel JULIACHS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.legend;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
@@ -26,7 +27,7 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
+import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
@@ -48,6 +49,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * To do:
  * - clean up the code
+ * - implement arrow rendering (polyline_style == 4)
  * - modify bounds depending on the location (for OUT_* values)
  * - take into account the actual tick/label size (instead of an arbitrary value)
  * - correct clipping (works incorrectly when subplots are used)
@@ -68,6 +70,9 @@ public class LegendDrawer {
                 GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__,
                 GraphicObjectProperties.__GO_TEXT_STRINGS__
         ));
+
+        /** The height of a bar relative to the height difference between two lines */
+        private static final float BAR_HEIGHT = 0.5f;
 
         /** The DrawerVisitor used */
         private final DrawerVisitor visitor;
@@ -93,14 +98,20 @@ public class LegendDrawer {
         /** The z-value corresponding to the frontmost position */
         private static final float Z_FRONT = 0.99f;
 
-        /** The background vertices */
-        private ElementsBuffer backgroundVertices;
-
-        /** The legend outline vertices */
-        private ElementsBuffer outlineVertices;
+        /** The legend background's vertices */
+        private ElementsBuffer rectangleVertices;
 
         /** The vertices used to draw lines */
         private ElementsBuffer lineVertices;
+
+        /** The vertices used to draw bars */
+        private ElementsBuffer barVertices;
+
+        /** The indices used to draw a rectangle */
+        private IndicesBuffer rectangleIndices;
+
+        /** The indices used to draw the outline of a rectangle */
+        private IndicesBuffer rectangleOutlineIndices;
 
         /** The map storing legend text sprites */
         private Map<String, Sprite> textSpriteMap;
@@ -116,9 +127,11 @@ public class LegendDrawer {
                 this.spriteManager = spriteManager;
                 this.markManager = markManager;
 
-                backgroundVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
-                outlineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
+                rectangleVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
                 lineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
+                barVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
+                rectangleIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
+                rectangleOutlineIndices = visitor.getCanvas().getBuffersManager().createIndicesBuffer();
 
                 textSpriteMap = new ConcurrentHashMap<String, Sprite>();
         }
@@ -277,22 +290,29 @@ public class LegendDrawer {
 
                 /* Afterwards, draw the elements making up the Legend using the previously computed values */
 
+                /* Legend background vertex data: lower-left, lower-right, upper-left and upper-right corners */
+                float [] rectangleVertexData = new float[] {
+                    (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
+                    (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
+                    (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
+                    (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f
+                };
+
+                /* The indices of a rectangle's triangles and a rectangle outline's segment loop */
+                int[] rectangleIndexData = new int[] {0, 1, 3, 0, 3, 2};
+                int[] rectangleOutlineIndexData = new int[] {0, 1, 3, 2};
+
+                rectangleIndices.setData(rectangleIndexData);
+                rectangleOutlineIndices.setData(rectangleOutlineIndexData);
+
+                rectangleVertices.setData(rectangleVertexData, 4);
+
                 /* Legend rectangle background */
                 if (legend.getFillMode()) {
-                    float [] backgroundVerticesData = new float[] {
-                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                            (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
-                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                            (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f
-                    };
-
-                    backgroundVertices.setData(backgroundVerticesData, 4);
-
                     DefaultGeometry legendTriangles = new DefaultGeometry();
                     legendTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
-                    legendTriangles.setVertices(backgroundVertices);
+                    legendTriangles.setVertices(rectangleVertices);
+                    legendTriangles.setIndices(rectangleIndices);
 
                     Appearance appearance = new Appearance();
                     appearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground()));
@@ -300,19 +320,12 @@ public class LegendDrawer {
                     drawingTools.draw(legendTriangles, appearance);
                 }
 
+                /* Legend outline */
                 if (legend.getLineMode()) {
-                    /* Legend outline */
-                    float [] outlineVerticesData = new float[] {
-                            (float)legendCorner[0], (float)legendCorner[1], Z_FRONT, 1.0f,
-                            (float)(legendCorner[0]+legendDims[0]), (float)legendCorner[1], Z_FRONT, 1.0f,
-                            (float)(legendCorner[0]+legendDims[0]), (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f,
-                            (float)legendCorner[0], (float)(legendCorner[1]+legendDims[1]), Z_FRONT, 1.0f
-                    };
-                    outlineVertices.setData(outlineVerticesData, 4);
-
                     DefaultGeometry legendSquare = new DefaultGeometry();
                     legendSquare.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
-                    legendSquare.setVertices(outlineVertices);
+                    legendSquare.setVertices(rectangleVertices);
+                    legendSquare.setIndices(rectangleOutlineIndices);
                     Appearance appearance = new Appearance();
                     appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
                     appearance.setLineWidth(legend.getLineThickness().floatValue());
@@ -322,61 +335,65 @@ public class LegendDrawer {
                 }
 
                 /* Lines: 3 vertices each, left, middle, and right */
-                float [] lineData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
+                float [] lineVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
                                                  0.5f, 0.75f, Z_FRONT, 1.0f,
                                                  0.75f, 0.75f, Z_FRONT, 1.0f};
 
                 double normSpriteMargin = (double) legendSpriteDrawer.getMargin() / (double) canvasHeight;
 
-                lineData[0] = (float) (legendCorner[0] + xOffset);
-                lineData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset);
+                lineVertexData[0] = (float) (legendCorner[0] + xOffset);
+                lineVertexData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset);
 
-                lineData[8] = lineData[0] + (float) lineWidth;
-                lineData[9] = lineData[1];
+                lineVertexData[8] = lineVertexData[0] + (float) lineWidth;
+                lineVertexData[9] = lineVertexData[1];
 
-                lineData[4] = 0.5f*(lineData[0] + lineData[8]);
-                lineData[5] = lineData[1];
+                lineVertexData[4] = 0.5f*(lineVertexData[0] + lineVertexData[8]);
+                lineVertexData[5] = lineVertexData[1];
 
                 float deltaHeight = (float) (normSpriteHeight - 2.0 * normSpriteMargin) / ((float)(links.length));
 
-                lineData[1] = lineData[1] + 0.5f*deltaHeight;
-                lineData[5] = lineData[5] + 0.5f*deltaHeight;
-                lineData[9] = lineData[9] + 0.5f*deltaHeight;
+                lineVertexData[1] = lineVertexData[1] + 0.5f*deltaHeight;
+                lineVertexData[5] = lineVertexData[5] + 0.5f*deltaHeight;
+                lineVertexData[9] = lineVertexData[9] + 0.5f*deltaHeight;
+
+                /* Bar vertex data: lower-left, lower-right, upper-left and upper-right corners */
+                float [] barVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
+                                                0.75f, 0.75f, Z_FRONT, 1.0f,
+                                                0.25f, 1.00f, Z_FRONT, 1.0f,
+                                                0.75f, 1.00f, Z_FRONT, 1.0f};
+
+                float barHeight = BAR_HEIGHT*deltaHeight;
+
+                barVertexData[0] = (float) (legendCorner[0] + xOffset);
+                barVertexData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset) + 0.5f*(deltaHeight - barHeight);
+
+                barVertexData[4] = barVertexData[0] + (float) lineWidth;
+                barVertexData[5] = barVertexData[1];
+
+                barVertexData[8] = barVertexData[0];
+                barVertexData[9] = barVertexData[1] + barHeight;
+
+                barVertexData[12] = barVertexData[4];
+                barVertexData[13] = barVertexData[9];
 
                 for (int i = 0; i < links.length; i++) {
-                        ContouredObject currentLine = (ContouredObject) GraphicController.getController().getObjectFromId(links[i]);
+                        Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(links[i]);
 
-                        int lineColor = currentLine.getLineColor();
-                        double lineThickness = currentLine.getLineThickness();
-                        short linePattern = currentLine.getLineStyleAsEnum().asPattern();
+                        drawLegendItem(drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
 
-                        lineVertices.setData(lineData, 4);
+                        /* Update the vertex data's vertical position */
+                        lineVertexData[1] += deltaHeight;
+                        lineVertexData[5] += deltaHeight;
+                        lineVertexData[9] += deltaHeight;
 
-                        if (currentLine.getLineMode()) {
-                            DefaultGeometry line = new DefaultGeometry();
-                            line.setDrawingMode(Geometry.DrawingMode.SEGMENTS_STRIP);
-                            line.setVertices(lineVertices);
-                            Appearance lineAppearance = new Appearance();
-                            lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
-                            lineAppearance.setLineWidth((float) lineThickness);
-
-                            lineAppearance.setLinePattern(linePattern);
-
-                            drawingTools.draw(line, lineAppearance);
-                        }
-
-                        if (currentLine.getMarkMode()) {
-                            Sprite markSprite = markManager.getMarkSprite(currentLine, colorMap);
-                            drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
-                        }
-
-                        lineData[1] += deltaHeight;
-                        lineData[5] += deltaHeight;
-                        lineData[9] += deltaHeight;
+                        barVertexData[1] += deltaHeight;
+                        barVertexData[5] += deltaHeight;
+                        barVertexData[9] += deltaHeight;
+                        barVertexData[13] += deltaHeight;
                 }
 
                 /* Legend text */
-                float [] spritePosition = new float[]{lineData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
+                float [] spritePosition = new float[]{lineVertexData[8] + (float) xOffset, (float) (legendCorner[1] + yOffset), Z_FRONT};
 
                 drawingTools.draw(legendSprite, SpriteAnchorPosition.LOWER_LEFT, new Vector3d(spritePosition));
 
@@ -405,6 +422,83 @@ public class LegendDrawer {
                 if (legendLocation != LegendLocation.BY_COORDINATES) {
                         legend.setPosition(legendPosition);
                 }
+        }
+
+        /**
+         * Draw the legend item corresponding to the given polyline.
+         * It draws either a horizontal line or bar depending on the polyline's properties (style, fill and line modes).
+         * @param drawingTools the DrawingTools {@see DrawingTools} used to draw the Legend.
+         * @param colorMap the colorMap used.
+         * @param polyline the given polyline.
+         * @param barVertexData a bar's vertex data (4 consecutive (x,y,z,w) quadruplets: lower-left, lower-right, upper-left and upper-right corners.
+         * @param lineVertexData a line's vertex data (3 consecutive (x,y,z,w) quadruplets: left, middle and right vertices).
+         */
+        private void drawLegendItem(DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) {
+            int polylineStyle = polyline.getPolylineStyle();
+
+            int lineColor = polyline.getLineColor();
+            double lineThickness = polyline.getLineThickness();
+            short linePattern = polyline.getLineStyleAsEnum().asPattern();
+
+            boolean isBar = (polylineStyle == 6) || (polylineStyle == 7);
+            boolean barDrawn = isBar || (!isBar && polyline.getFillMode());
+
+            /* Draw a bar if the curve is a bar or if is is filled */
+            if (barDrawn) {
+                barVertices.setData(barVertexData, 4);
+
+                DefaultGeometry bar = new DefaultGeometry();
+                bar.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+
+                Appearance barAppearance = new Appearance();
+                barAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
+                bar.setVertices(barVertices);
+                bar.setIndices(rectangleIndices);
+
+                drawingTools.draw(bar, barAppearance);
+
+                /* Draw the bar outline */
+                DefaultGeometry barOutline = new DefaultGeometry();
+                barOutline.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+
+                Appearance barOutlineAppearance = new Appearance();
+                barOutlineAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                barOutlineAppearance.setLineWidth((float) lineThickness);
+                barOutlineAppearance.setLinePattern(linePattern);
+
+                barOutline.setVertices(barVertices);
+                barOutline.setIndices(rectangleOutlineIndices);
+
+                if (isBar || (!isBar && polyline.getLineMode())) {
+                    drawingTools.draw(barOutline, barOutlineAppearance);
+                }
+            }
+
+            /* Draw a line otherwise */
+            if (!barDrawn && polyline.getLineMode()) {
+                lineVertices.setData(lineVertexData, 4);
+
+                DefaultGeometry line = new DefaultGeometry();
+                line.setDrawingMode(Geometry.DrawingMode.SEGMENTS_STRIP);
+                line.setVertices(lineVertices);
+                Appearance lineAppearance = new Appearance();
+                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                lineAppearance.setLineWidth((float) lineThickness);
+                lineAppearance.setLinePattern(linePattern);
+
+                drawingTools.draw(line, lineAppearance);
+            }
+
+            if (polyline.getMarkMode()) {
+                Sprite markSprite = markManager.getMarkSprite(polyline, colorMap);
+
+                if (barDrawn) {
+                    drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, barVertices);
+                } else {
+                    drawingTools.draw(markSprite, SpriteAnchorPosition.CENTER, lineVertices);
+                }
+            }
+
         }
 
         /**
@@ -437,9 +531,11 @@ public class LegendDrawer {
          * Disposes all the Legend resources.
          */
         public void disposeAll() {
-                visitor.getCanvas().getBuffersManager().dispose(backgroundVertices);
-                visitor.getCanvas().getBuffersManager().dispose(outlineVertices);
+                visitor.getCanvas().getBuffersManager().dispose(rectangleVertices);
                 visitor.getCanvas().getBuffersManager().dispose(lineVertices);
+                visitor.getCanvas().getBuffersManager().dispose(barVertices);
+                visitor.getCanvas().getBuffersManager().dispose(rectangleIndices);
+                visitor.getCanvas().getBuffersManager().dispose(rectangleOutlineIndices);
 
                 spriteManager.dispose(textSpriteMap.values());
                 textSpriteMap.clear();
