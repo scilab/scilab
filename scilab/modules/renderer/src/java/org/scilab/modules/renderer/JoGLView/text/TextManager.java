@@ -24,10 +24,9 @@ import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_ANGLE__;
@@ -47,7 +46,7 @@ public class TextManager {
     /**
      * The {@see Map} off existing {@see TextEntity}.
      */
-    private final Map<String, Sprite> spriteMap = new HashMap<String, Sprite>();
+    private final Map<String, Sprite> spriteMap = new ConcurrentHashMap<String, Sprite>();
 
     /**
      * The used sprite manager.

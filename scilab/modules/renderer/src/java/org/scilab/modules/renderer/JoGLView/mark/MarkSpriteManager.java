@@ -18,8 +18,8 @@ import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -37,7 +37,7 @@ public class MarkSpriteManager {
     /**
      * The sprite map.
      */
-    private final Map<String, Sprite> spriteMap = new HashMap<String, Sprite>();
+    private final Map<String, Sprite> spriteMap = new ConcurrentHashMap<String, Sprite>();
 
 
     /**

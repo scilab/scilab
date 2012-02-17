@@ -25,10 +25,9 @@ import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
-import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_POSITION__;
@@ -48,7 +47,7 @@ public class LabelManager {
     /**
      * The {@see Map} of existing {@see Sprite}.
      */
-    private final Map<String, Sprite> spriteMap = new HashMap<String, Sprite>();
+    private final Map<String, Sprite> spriteMap = new ConcurrentHashMap<String, Sprite>();
 
     /**
      * The used sprite manager.

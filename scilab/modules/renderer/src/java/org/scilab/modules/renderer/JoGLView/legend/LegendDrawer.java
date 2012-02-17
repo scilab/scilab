@@ -36,10 +36,10 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -120,7 +120,7 @@ public class LegendDrawer {
                 outlineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
                 lineVertices = visitor.getCanvas().getBuffersManager().createElementsBuffer();
 
-                textSpriteMap = new HashMap<String, Sprite>();
+                textSpriteMap = new ConcurrentHashMap<String, Sprite>();
         }
 
         /**
