@@ -20,8 +20,8 @@ import org.scilab.forge.scirenderer.ruler.RulerDrawer;
 import org.scilab.forge.scirenderer.ruler.RulerDrawingResult;
 import org.scilab.forge.scirenderer.ruler.RulerModel;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
-import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
+import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
@@ -41,11 +41,19 @@ import java.nio.FloatBuffer;
  */
 public class AxesRulerDrawer {
 
+    /**
+     * Grid pattern.
+     */
+    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
+
     private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
-    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
-    private static final double TICKS_SIZE = .1;
+    /**
+     * Ticks length in pixels.
+     */
+    private static final int TICKS_LENGTH = 10;
+
 
     private final RulerDrawerManager rulerDrawerManager;
 
@@ -69,11 +77,12 @@ public class AxesRulerDrawer {
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         DefaultRulerModel rulerModel = new DefaultRulerModel();
+        rulerModel.setTicksLength(TICKS_LENGTH);
 
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        Vector3d xAxisPosition = computeXAxisPosition(matrix, axes.getAxes()[0].getAxisLocation());
-        Vector3d yAxisPosition = computeYAxisPosition(matrix, axes.getAxes()[1].getAxisLocation());
+        Vector3d xAxisPosition = computeXAxisPosition(matrix, bounds, axes.getXAxis().getAxisLocation());
+        Vector3d yAxisPosition = computeYAxisPosition(matrix, bounds, axes.getYAxis().getAxisLocation());
 
         Vector3d px = canvasProjection.projectDirection(new Vector3d(1, 0, 0)).setZ(0);
         Vector3d py = canvasProjection.projectDirection(new Vector3d(0, 1, 0)).setZ(0);
@@ -81,15 +90,15 @@ public class AxesRulerDrawer {
 
         Vector3d xTicksDirection, yTicksDirection;
         if (py.getNorm2() > pz.getNorm2()) {
-            xTicksDirection = new Vector3d(0, TICKS_SIZE * xAxisPosition.getY(), 0);
+            xTicksDirection = new Vector3d(0, getNonZeroSignum(xAxisPosition.getY()), 0);
         } else {
-            xTicksDirection = new Vector3d(0, 0, TICKS_SIZE * xAxisPosition.getZ());
+            xTicksDirection = new Vector3d(0, 0, getNonZeroSignum(xAxisPosition.getZ()));
         }
 
         if (px.getNorm2() > pz.getNorm2()) {
-            yTicksDirection = new Vector3d(TICKS_SIZE * yAxisPosition.getX(), 0, 0);
+            yTicksDirection = new Vector3d(getNonZeroSignum(yAxisPosition.getX()), 0, 0);
         } else {
-            yTicksDirection = new Vector3d(0, 0, TICKS_SIZE * yAxisPosition.getZ());
+            yTicksDirection = new Vector3d(0, 0, getNonZeroSignum(yAxisPosition.getZ()));
         }
 
         int gridPosition;
@@ -258,7 +267,7 @@ public class AxesRulerDrawer {
 
             rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
-            rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
+            rulerModel.setTicksDirection(new Vector3d(txs, tys, 0));
 
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
@@ -287,7 +296,7 @@ public class AxesRulerDrawer {
 
                 distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
 
-                zAxisLabelPositioner.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0.0));
+                zAxisLabelPositioner.setTicksDirection(new Vector3d(txs, tys, 0.0));
                 zAxisLabelPositioner.setDistanceRatio(distanceRatio);
                 zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
 
@@ -326,6 +335,14 @@ public class AxesRulerDrawer {
         drawingTools.getCanvas().getBuffersManager().dispose(vertexBuffer);
     }
 
+    private double getNonZeroSignum(double value) {
+        if (value < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
     private void setRulerBounds(AxisProperty axis, DefaultRulerModel rulerModel, double axisMin, double axisMax) {
         double min, max;
         if (axis.getReverse()) {
@@ -343,39 +360,69 @@ public class AxesRulerDrawer {
         rulerModel.setValues(min, max);
     }
 
-    private Vector3d computeXAxisPosition(double[] matrix, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeXAxisPosition(double[] projectionMatrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
         double y, z;
-        if (axisLocation.equals(AxisProperty.AxisLocation.BOTTOM)) {
-            z = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
-            y = -Math.signum(matrix[6]) * z * Math.signum(matrix[10]);
-            if (y == 0) {
-                y = +1;
-            }
-        } else {
-            z = Math.signum(matrix[9]);  // First : switch Z such that Y was maximal.
-            y = -Math.signum(matrix[6]) * z * Math.signum(matrix[10]);
-            if (y == 0) {
-                y = -1;
-            }
-        } // TODO : center, origin case ?!
+        switch (axisLocation) {
+            default:
+            case BOTTOM:
+                z = -Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was minimal.
+                y = -Math.signum(projectionMatrix[6]) * z * Math.signum(projectionMatrix[10]);
+                if (y == 0) {
+                    y = +1;
+                }
+                break;
+            case MIDDLE:
+                z = Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was maximal.
+                y = 0;
+                break;
+            case TOP:
+                z = Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was maximal.
+                y = -Math.signum(projectionMatrix[6]) * z * Math.signum(projectionMatrix[10]);
+                if (y == 0) {
+                    y = -1;
+                }
+                break;
+            case ORIGIN:
+                z = Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was maximal.
+                y = (bounds[3] + bounds[2]) / (bounds[3] - bounds[2]);
+                if (Math.abs(y) > 1) {
+                    y = Math.signum(y);
+                }
+                break;
+        }
         return new Vector3d(0, y, z);
     }
 
-    private Vector3d computeYAxisPosition(double[] matrix, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeYAxisPosition(double[] matrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
         double x, z;
-        if (axisLocation.equals(AxisProperty.AxisLocation.LEFT)) {
-            z = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
-            x = -Math.signum(matrix[2]) * z * Math.signum(matrix[10]);
-            if (x == 0) {
-                x = +1;
-            }
-        } else {
-            z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
-            x = -Math.signum(matrix[2]) * z * Math.signum(matrix[10]); // Then switch X such that Z max but not in the middle.
-            if (x == 0) {
-                x = -1;
-            }
-        } // TODO : center, origin case ?!
+        switch (axisLocation) {
+            default:
+            case LEFT:
+                z = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
+                x = -Math.signum(matrix[2]) * z * Math.signum(matrix[10]);
+                if (x == 0) {
+                    x = +1;
+                }
+                break;
+            case MIDDLE:
+                z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
+                x = 0;
+                break;
+            case RIGHT:
+                z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
+                x = -Math.signum(matrix[2]) * z * Math.signum(matrix[10]); // Then switch X such that Z max but not in the middle.
+                if (x == 0) {
+                    x = -1;
+                }
+                break;
+            case ORIGIN:
+                z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
+                x = (bounds[1] + bounds[0]) / (bounds[1] - bounds[0]);
+                if (Math.abs(x) > 1) {
+                    x = Math.signum(x);
+                }
+                break;
+        }
         return new Vector3d(x, 0, z);
     }
 
