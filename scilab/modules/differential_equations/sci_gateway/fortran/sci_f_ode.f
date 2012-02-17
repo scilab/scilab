@@ -579,7 +579,7 @@ c     lsdisc
          liw=1
       elseif(meth.eq.5) then
 c     lsrgk
-         lrw=3*ny
+         lrw=9*ny
          liw=1
       elseif(meth.eq.6) then
 c     rkf45

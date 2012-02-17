@@ -372,6 +372,8 @@ Bug fixes
 * Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
                      trajectory failed.
 
+* Bug #10574 fixed - Runge-Kutta-Method failed for vector [x, 1] with x > 9.
+
 * Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
 
 * Bug #10577 fixed - getdate did not check input argument.
