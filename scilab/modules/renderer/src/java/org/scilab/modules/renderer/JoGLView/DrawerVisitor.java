@@ -363,7 +363,13 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             DefaultGeometry triangles = new DefaultGeometry();
             triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
             triangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
-            triangles.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
+
+            if (fac3d.getColorFlag() > 0) {
+                triangles.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
+            } else {
+                triangles.setColors(null);
+            }
+
             triangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
             triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
             if (fac3d.getHiddenColor() > 0) {
