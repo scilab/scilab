@@ -930,6 +930,9 @@ Compilation
 Dynamic Link
 =============
 
+* In the automatic generated lib file, explicitly defines C symbol for cases
+  when built with a C++ compiler.
+
 * Bug #9432 fixed - Link a 64-bit dynamic library on a 32-bit platform returned
                    a wrong error message under Windows.
 

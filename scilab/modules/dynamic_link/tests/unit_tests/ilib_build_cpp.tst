@@ -59,3 +59,18 @@ exec loader.sce;
 assert_checkequal(cppfind("my very long string", "long"), 8);
 assert_checkequal(cppfind("my very long string","very"), 3);
 assert_checkequal(cppfind("my very long string","short"), -1);
+
+if getos() == "Linux" | getos() == "Darwin" then
+
+// Force the usage 
+   files = ['sci_cppfind.cxx'];
+
+   ilib_build('foo2', ['cppfind2', 'sci_cppfind'], files,[],[], [], "-fpermissive", [], [], "g++");
+   exec loader.sce;
+
+   // Small test to see if the function is actually working.
+   assert_checkequal(cppfind("my very long string", "long"), 8);
+   assert_checkequal(cppfind("my very long string","very"), 3);
+   assert_checkequal(cppfind("my very long string","short"), -1);
+
+end
