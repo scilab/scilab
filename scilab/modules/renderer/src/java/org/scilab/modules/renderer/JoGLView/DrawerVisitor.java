@@ -281,8 +281,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void visit(Label label) {
-        // TODO
-        System.out.println("How can I draw a label ?");
+        if (label.getVisible()) {
+            labelManager.draw(drawingTools, colorMap, label, axesDrawer);
+        }
     }
 
     @Override

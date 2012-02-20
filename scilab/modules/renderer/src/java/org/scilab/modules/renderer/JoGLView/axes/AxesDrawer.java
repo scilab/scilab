@@ -29,7 +29,6 @@ import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
@@ -91,6 +90,9 @@ public class AxesDrawer {
     /** The current projection (from object to window coordinates) used when drawing objects. */
     private Transformation currentProjection;
 
+    /**  The current data scale and translate transformation. */
+    private Transformation currentDataTransformation;
+
     /** The set of object to window coordinate projections associated to all the Axes drawn by this drawer. */
     private final Map<String, Transformation> projectionMap = new HashMap<String, Transformation>();
 
@@ -115,7 +117,6 @@ public class AxesDrawer {
         reversedBounds = new double[6];
         reversedBoundsIntervals = new double[3];
     }
-
 
     /**
      * Draw the given {@see Axes}.
@@ -143,6 +144,8 @@ public class AxesDrawer {
 
         /* Compute the data scale and translate transformation. */
         Transformation dataTransformation = computeDataTransformation(axes);
+
+        currentDataTransformation = dataTransformation;
 
         /* Compute the object to window coordinates projection. */
         currentProjection = zoneProjection.rightTimes(transformation);
@@ -180,33 +183,6 @@ public class AxesDrawer {
 
         /* Compute reversed bounds. */
         computeReversedBounds(axes);
-
-        /* Draw the labels. */
-
-        /* X-axis label */
-        String labelID = axes.getXAxisLabel();
-        Label label = (Label) GraphicController.getController().getObjectFromId(labelID);
-
-        labelManager.positionAndDraw(drawingTools, colorMap, label, xAxisLabelPositioner, this, true);
-
-        /* Y-axis label */
-        labelID = axes.getYAxisLabel();
-        label = (Label) GraphicController.getController().getObjectFromId(labelID);
-
-        labelManager.positionAndDraw(drawingTools, colorMap, label, yAxisLabelPositioner, this, true);
-
-        /* Z-axis label */
-        labelID = axes.getZAxisLabel();
-        label = (Label) GraphicController.getController().getObjectFromId(labelID);
-
-        labelManager.positionAndDraw(drawingTools, colorMap, label, zAxisLabelPositioner, this, (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D));
-
-        /* Title */
-        labelID = axes.getTitle();
-        label = (Label) GraphicController.getController().getObjectFromId(labelID);
-
-        labelManager.positionAndDraw(drawingTools, colorMap, label, titlePositioner, this, true);
-
 
         /**
          * Scale and translate for data fitting.
@@ -619,6 +595,14 @@ public class AxesDrawer {
      */
     public Transformation getProjection() {
         return currentProjection;
+    }
+
+    /**
+     * Returns the current data scale and translate transformation.
+     * @return the data transformation.
+     */
+    public Transformation getDataTransformation() {
+        return currentDataTransformation;
     }
 
     /**

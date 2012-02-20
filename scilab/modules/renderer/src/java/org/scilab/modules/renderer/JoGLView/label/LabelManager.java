@@ -19,6 +19,7 @@ import org.scilab.forge.scirenderer.sprite.SpriteManager;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.label.Label;
@@ -63,6 +64,62 @@ public class LabelManager {
     }
 
     /**
+     * Draws the given {@see Label} with the given {@see DrawingTools}.
+     * @param drawingTools the given {@see DrawingTools}.
+     * @param colorMap the current {@see ColorMap}.
+     * @param label the given Scilab {@see Label}.
+     * @param axesDrawer the Axes drawer used to draw the label's parent Axes.
+     */
+    public void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, AxesDrawer axesDrawer) {
+        /* Only the z-axis Label may not be drawn depending on the view mode */
+        boolean drawnFlag = true;
+        String parentId;
+        String labelId = label.getIdentifier();
+        LabelPositioner labelPositioner;
+
+        parentId = label.getParentAxes();
+
+        if (parentId == null) {
+            return;
+        }
+
+        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentId);
+
+        /* Get the positioner associated to the label */
+        if (parentAxes.getXAxisLabel().equals(label.getIdentifier())) {
+            labelPositioner = axesDrawer.getXAxisLabelPositioner();
+        } else if (parentAxes.getYAxisLabel().equals(label.getIdentifier())) {
+            labelPositioner = axesDrawer.getYAxisLabelPositioner();
+        } else if (parentAxes.getZAxisLabel().equals(label.getIdentifier())) {
+            labelPositioner = axesDrawer.getZAxisLabelPositioner();
+            drawnFlag = (parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D);
+        } else if (parentAxes.getTitle().equals(label.getIdentifier())) {
+            labelPositioner = axesDrawer.getTitlePositioner();
+        } else {
+            /* Do not do anything */
+            return;
+        }
+
+        /* Clipping must be disabled to draw labels */
+        drawingTools.getClippingManager().disableClipping();
+
+        /*
+         * The topmost transformation, which is the data transformation, must be popped before drawing
+         * and restored afterwards because Labels, like Axes rulers, are drawn in box coordinates.
+         */
+        drawingTools.getTransformationManager().getModelViewStack().pop();
+
+        positionAndDraw(drawingTools, colorMap, label, labelPositioner, parentAxes, axesDrawer, drawnFlag);
+
+        drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(axesDrawer.getDataTransformation());
+
+        /* Re-enable clipping */
+        for (int i = 0 ; i < 6 ; i++) {
+            drawingTools.getClippingManager().getClippingPlane(i).setEnable(true);
+        }
+    }
+
+    /**
      * Positions and draws the given Scilab {@see Label} with the given {@see DrawingTools}.
      * First, it initializes the label positioner's remaining parameters which have not been previously
      * obtained from the axis ruler drawer. It then asks the positioner the relevant values and
@@ -71,13 +128,11 @@ public class LabelManager {
      * @param colorMap the current {@see ColorMap}.
      * @param label the given Scilab {@see Label}.
      * @param labelPositioner the positioner used to compute the label's position.
+     * @param parentAxes the label's parent Axes.
      * @param axesDrawer the Axes drawer used to draw the label's parent Axes.
      * @param drawnFlag a flag indicating whether the label must be drawn or not.
      */
-    public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, AxesDrawer axesDrawer, boolean drawnFlag) {
-        String parentAxesID = label.getParentAxes();
-        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesID);
-
+    public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, Axes parentAxes, AxesDrawer axesDrawer, boolean drawnFlag) {
         Sprite labelSprite = getSprite(colorMap, label);
 
         labelPositioner.setLabelSprite(labelSprite);
