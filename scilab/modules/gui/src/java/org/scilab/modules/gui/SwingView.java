@@ -181,7 +181,7 @@ public final class SwingView implements GraphicView {
         public TypedObject(UielementType _type, SwingViewObject _value) {
             this._type = _type;
             this._value = _value;
-            this._children = new HashSet<String>();
+            this._children = Collections.synchronizedSet(new HashSet<String>());
         }
 
         public UielementType getType() {
@@ -748,7 +748,9 @@ public final class SwingView implements GraphicView {
 
         // Remove children which have been deleted
         Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-        for (String childId : updatedObject.getChildren()) {
+        Object[] updatedObjectChildren = updatedObject.getChildren().toArray();
+        for (int i = 0 ; i < updatedObjectChildren.length ; ++i) {
+            String childId = (String) updatedObjectChildren[i];
             if (!newChildrenSet.contains(childId)) {
 
                 // Remove the child

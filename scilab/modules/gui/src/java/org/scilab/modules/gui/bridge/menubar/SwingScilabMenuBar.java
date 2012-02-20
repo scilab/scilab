@@ -12,15 +12,18 @@
 
 package org.scilab.modules.gui.bridge.menubar;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+
 import java.awt.Container;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
@@ -85,7 +88,8 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
         for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
             // Check the name of each menu until one matches the name
             if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
-                this.getMenu(menuIndex).setEnabled(status);
+                String id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
+                GraphicController.getController().setProperty(id, __GO_UI_ENABLE__, status);
                 break;
             }
         }
@@ -114,7 +118,8 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
         if ((menuItemPosition <= parentMenu.getItemCount()) & (menuItemPosition >= 1)) {
             /* Java index begins at 0 and Scilab index begins at 1 */
             if (parentMenu.getItem(menuItemPosition - 1) != null) {
-                parentMenu.getItem(menuItemPosition - 1).setEnabled(status);
+                String id = ((SwingScilabMenuItem) parentMenu.getItem(menuItemPosition - 1)).getId();
+                GraphicController.getController().setProperty(id, __GO_UI_ENABLE__, status);
             }
         }
     }
@@ -128,7 +133,9 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
         for (int menuIndex = 0; menuIndex < this.getMenuCount(); menuIndex++) {
             // Check the name of each menu until one matches the name
             if (this.getMenu(menuIndex).getText().equals(removeMnemonicFromName(menuName))) {
-                ScilabSwingUtilities.removeFromParent(this.getMenu(menuIndex));
+                this.getMenu(menuIndex).setVisible(false);
+                String id = ((SwingScilabMenu) this.getMenu(menuIndex)).getId();
+                GraphicController.getController().removeRelationShipAndDelete(id);
                 break;
             }
         }
