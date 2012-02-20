@@ -341,9 +341,18 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   n=size(files,1)
   for i=1:n
     load(TMPDIR+'/Workspace/'+files(i))
-    execstr(files(i)+'=struct('"values'",x,'"time'",t)')
+    ierr = execstr(files(i)+'=struct('"values'",x,'"time'",t)', "errcatch")
+    if ierr <> 0
+       str_err = split_lasterror(lasterror());
+       message(['Simulation problem:';str_err]);
+    end
+
   end
-  execstr(txt)
+  ierr = execstr(txt, "errcatch")
+  if ierr <> 0
+      str_err = split_lasterror(lasterror());
+      message(['Simulation problem while executing <'+txt+'>:';str_err]);
+  end
 
     // Hook according to SEP066
     if isdef("post_xcos_simulate") then
