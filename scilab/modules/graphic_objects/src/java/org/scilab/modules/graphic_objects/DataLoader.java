@@ -9,6 +9,28 @@
 package org.scilab.modules.graphic_objects;
 
 public class DataLoader {
+  public static int getTextureWidth(String id) {
+    return DataLoaderJNI.getTextureWidth(id);
+  }
+
+  public static int getTextureHeight(String id) {
+    return DataLoaderJNI.getTextureHeight(id);
+  }
+
+  public static int fillTextureData(String id, java.nio.FloatBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillTextureData(id, buffer, bufferLength);
+    }
+  }
+
+  public static int fillSubTextureData(String id, java.nio.FloatBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      return DataLoaderJNI.fillSubTextureData(id, buffer, bufferLength, x, y, width, height);
+    }
+  }
+
   public static int getDataSize(String id) {
     return DataLoaderJNI.getDataSize(id);
   }

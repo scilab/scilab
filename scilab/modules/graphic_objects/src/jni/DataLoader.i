@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Pierre LANDO
+ * Copyright (C) 2010-2012 - DIGITEO - Pierre LANDO
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -16,8 +16,7 @@
   %typemap(jni) CTYPE* LABEL "jobject"
   %typemap(jtype) CTYPE* LABEL "BUFFERTYPE"
   %typemap(jstype) CTYPE* LABEL "BUFFERTYPE"
-  %typemap(javain, 
-	  pre="    assert $javainput.isDirect() : \"Buffer must be allocated direct.\";") CTYPE* LABEL "$javainput"
+  %typemap(javain,	  pre="    assert $javainput.isDirect() : \"Buffer must be allocated direct.\";") CTYPE* LABEL "$javainput"
   %typemap(javaout) CTYPE* LABEL {
       return $jnicall;
   }
@@ -67,6 +66,11 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
 %apply int   *BUFF {int   *buffer};
 
 %inline %{
+    extern int getTextureWidth(char* id);
+    extern int getTextureHeight(char* id);
+    extern int fillTextureData(char* id, float* buffer, int bufferLength);
+    extern int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height);
+
     extern int getDataSize(char* id);
     extern void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double scale[], double translation[], int logMask);
     extern void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
@@ -81,4 +85,3 @@ NIO_BUFFER_TYPEMAP(float, BUFF, java.nio.FloatBuffer);
     extern int getMarkIndicesSize(char* id);
     extern int fillMarkIndices(char* id, int* BUFF, int bufferLength);
 %}
-

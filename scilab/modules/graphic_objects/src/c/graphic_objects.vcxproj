@@ -245,6 +245,7 @@
     <ClCompile Include="..\cpp\FigureModel.cpp" />
     <ClCompile Include="..\cpp\getConsoleIdentifier.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
+    <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\cpp\Triangulator.cpp" />
@@ -283,6 +284,7 @@
     <ClInclude Include="..\..\includes\getConsoleIdentifier.h" />
     <ClInclude Include="..\..\includes\getGraphicObjectProperty.h" />
     <ClInclude Include="..\..\includes\graphicObjectProperties.h" />
+    <ClInclude Include="..\..\includes\MatPlotDecomposer.hxx" />
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx" />
     <ClInclude Include="..\..\includes\returnType.h" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />

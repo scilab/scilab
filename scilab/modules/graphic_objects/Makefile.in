@@ -162,6 +162,7 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-Fac3DDecomposer.lo \
 	libscigraphic_objects_la-NgonGridDataDecomposer.lo \
 	libscigraphic_objects_la-NgonGridGrayplotDataDecomposer.lo \
+	libscigraphic_objects_la-MatPlotDecomposer.lo \
 	libscigraphic_objects_la-NgonGridMatplotDataDecomposer.lo \
 	libscigraphic_objects_la-Plot3DDecomposer.lo \
 	libscigraphic_objects_la-PolylineDecomposer.lo \
@@ -574,6 +575,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/Fac3DDecomposer.cpp \
 								src/cpp/NgonGridDataDecomposer.cpp \
 								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
+								src/cpp/MatPlotDecomposer.cpp \
 								src/cpp/NgonGridMatplotDataDecomposer.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
@@ -731,6 +733,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-FigureList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-FigureModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-HandleManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-MatPlotDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGeneralData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridData.Plo@am__quote@
@@ -986,6 +989,13 @@ libscigraphic_objects_la-NgonGridGrayplotDataDecomposer.lo: src/cpp/NgonGridGray
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/NgonGridGrayplotDataDecomposer.cpp' object='libscigraphic_objects_la-NgonGridGrayplotDataDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-NgonGridGrayplotDataDecomposer.lo `test -f 'src/cpp/NgonGridGrayplotDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/NgonGridGrayplotDataDecomposer.cpp
+
+libscigraphic_objects_la-MatPlotDecomposer.lo: src/cpp/MatPlotDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-MatPlotDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-MatPlotDecomposer.Tpo -c -o libscigraphic_objects_la-MatPlotDecomposer.lo `test -f 'src/cpp/MatPlotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/MatPlotDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-MatPlotDecomposer.Tpo $(DEPDIR)/libscigraphic_objects_la-MatPlotDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/MatPlotDecomposer.cpp' object='libscigraphic_objects_la-MatPlotDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-MatPlotDecomposer.lo `test -f 'src/cpp/MatPlotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/MatPlotDecomposer.cpp
 
 libscigraphic_objects_la-NgonGridMatplotDataDecomposer.lo: src/cpp/NgonGridMatplotDataDecomposer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-NgonGridMatplotDataDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-NgonGridMatplotDataDecomposer.Tpo -c -o libscigraphic_objects_la-NgonGridMatplotDataDecomposer.lo `test -f 'src/cpp/NgonGridMatplotDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/NgonGridMatplotDataDecomposer.cpp

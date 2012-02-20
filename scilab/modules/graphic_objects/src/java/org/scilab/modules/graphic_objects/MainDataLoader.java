@@ -17,6 +17,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
+import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
@@ -33,158 +34,182 @@ import java.util.Set;
  */
 public class MainDataLoader {
 
-        /**
-         * The names of Java-based objects.
-         */
-        private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
-                GraphicObjectProperties.__GO_ARC__,
-                GraphicObjectProperties.__GO_CHAMP__,
-                GraphicObjectProperties.__GO_RECTANGLE__,
-                GraphicObjectProperties.__GO_SEGS__
-        ));
+    /**
+     * The names of Java-based objects.
+     */
+    private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_ARC__,
+            GraphicObjectProperties.__GO_CHAMP__,
+            GraphicObjectProperties.__GO_RECTANGLE__,
+            GraphicObjectProperties.__GO_SEGS__
+    ));
 
-        /**
-         * Returns the number of data elements for the given object.
-         * @param the id of the given object.
-         * @return the number of data elements.
-         */
-        public static int getDataSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Returns the data width for the given object.
+     * @param id of the given object.
+     * @return the data width.
+     */
+    public static int getTextureWidth(String id) {
+        return DataLoader.getTextureWidth(id);
+    }
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        return JavaObjectLoader.getDataSize(id);
-                } else {
-                        return DataLoader.getDataSize(id);
-                }
-        }
+    /**
+     * Returns the data height for the given object.
+     * @param id of the given object.
+     * @return the data height.
+     */
+    public static int getTextureHeight(String id) {
+        return DataLoader.getTextureHeight(id);
+    }
 
-        /**
-         * Fills the given buffer with vertex data from the given object.
-         * @param the id of the given object.
-         * @param the buffer to fill.
-         * @param the number of coordinates taken by one element in the buffer.
-         * @param the bit mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
-         * @param the conversion scale factor to apply to data.
-         * @param the conversion translation value to apply to data.
-         * @param the bit mask specifying whether logarithmic coordinates are used.
-         */
-        public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
-                int coordinateMask, double[] scale, double[] translation, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    public static void fillTextureCoordinates(String id, FloatBuffer buffer, int bufferLength) {
+        DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
+    }
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        JavaObjectLoader.fillVertices(id, buffer, elementsSize, coordinateMask, scale, translation, logMask);
-                } else {
-                        DataLoader.fillVertices(id, buffer, buffer.capacity(), elementsSize, coordinateMask, scale, translation, logMask);
-                }
-        }
+    public static void fillTextureData(String id, FloatBuffer buffer, int bufferLength) {
+        DataLoader.fillTextureData(id, buffer, bufferLength);
+    }
 
-        public static void fillTextureCoordinates(String id, FloatBuffer buffer, int bufferLength) {
-            DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
-        }
+    public static void fillTextureData(String identifier, FloatBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+        DataLoader.fillSubTextureData(identifier, buffer, bufferLength, x, y, width, height);
+    }
 
-        /**
-         * Fills the given buffer with color data from the given object.
-         * @param the id of the given object.
-         * @param the buffer to fill.
-         * @param the number of components taken by one element in the buffer (3 or 4).
-         */
-        public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Returns the number of data elements for the given object.
+     * @param the id of the given object.
+     * @return the number of data elements.
+     */
+    public static int getDataSize(String id) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        JavaObjectLoader.fillColors(id, buffer, elementsSize);
-                } else {
-                        DataLoader.fillColors(id, buffer, buffer.capacity(), elementsSize);
-                }
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    return JavaObjectLoader.getDataSize(id);
+            } else {
+                    return DataLoader.getDataSize(id);
+            }
+    }
 
-        /**
-         * Returns the number of indices for the given object.
-         * @param the id of the given object.
-         * @return the object's number of indices.
-         */
-        public static int getIndicesSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Fills the given buffer with vertex data from the given object.
+     * @param the id of the given object.
+     * @param the buffer to fill.
+     * @param the number of coordinates taken by one element in the buffer.
+     * @param the bit mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param the conversion scale factor to apply to data.
+     * @param the conversion translation value to apply to data.
+     * @param the bit mask specifying whether logarithmic coordinates are used.
+     */
+    public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
+            int coordinateMask, double[] scale, double[] translation, int logMask) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        return JavaObjectLoader.getIndicesSize(id);
-                } else {
-                        return DataLoader.getIndicesSize(id);
-                }
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    JavaObjectLoader.fillVertices(id, buffer, elementsSize, coordinateMask, scale, translation, logMask);
+            } else {
+                    DataLoader.fillVertices(id, buffer, buffer.capacity(), elementsSize, coordinateMask, scale, translation, logMask);
+            }
+    }
 
-        /**
-         * Fills the given buffer with indices data of the given object.
-         * @param the id of the given object.
-         * @param the buffer to fill.
-         * @param the bit mask specifying whether logarithmic coordinates are used.
-         * @return the number of indices actually written.
-         */
-        public static int fillIndices(String id, IntBuffer buffer, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Fills the given buffer with color data from the given object.
+     * @param the id of the given object.
+     * @param the buffer to fill.
+     * @param the number of components taken by one element in the buffer (3 or 4).
+     */
+    public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        return JavaObjectLoader.fillIndices(id, buffer, logMask);
-                } else {
-                        return DataLoader.fillIndices(id, buffer, buffer.capacity(), logMask);
-                }
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    JavaObjectLoader.fillColors(id, buffer, elementsSize);
+            } else {
+                    DataLoader.fillColors(id, buffer, buffer.capacity(), elementsSize);
+            }
+    }
 
-        /**
-         * Returns the number of wireframe indices of the given object.
-         * @param the id of the given object.
-         * @return the object's number of indices.
-         */
-        public static int getWireIndicesSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Returns the number of indices for the given object.
+     * @param the id of the given object.
+     * @return the object's number of indices.
+     */
+    public static int getIndicesSize(String id) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        return JavaObjectLoader.getWireIndicesSize(id);
-                } else {
-                        return DataLoader.getWireIndicesSize(id);
-                }
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    return JavaObjectLoader.getIndicesSize(id);
+            } else {
+                    return DataLoader.getIndicesSize(id);
+            }
+    }
 
-        /**
-         * Fills the given buffer with wireframe index data of the given object.
-         * @param the id of the given object.
-         * @param the buffer to fill.
-         * @param the bit mask specifying whether logarithmic coordinates are used.
-         * @return the number of indices actually written.
-         */
-        public static int fillWireIndices(String id, IntBuffer buffer, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    /**
+     * Fills the given buffer with indices data of the given object.
+     * @param the id of the given object.
+     * @param the buffer to fill.
+     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @return the number of indices actually written.
+     */
+    public static int fillIndices(String id, IntBuffer buffer, int logMask) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (JAVA_OBJECTS.contains(type)) {
-                        return JavaObjectLoader.fillWireIndices(id, buffer, logMask);
-                } else {
-                        return DataLoader.fillWireIndices(id, buffer, buffer.capacity(), logMask);
-                }
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    return JavaObjectLoader.fillIndices(id, buffer, logMask);
+            } else {
+                    return DataLoader.fillIndices(id, buffer, buffer.capacity(), logMask);
+            }
+    }
 
-        /**
-         * Returns the number of mark indices of the given object.
-         * To implement.
-         * @param the id of the given object.
-         * @return the number of mark indices.
-         */
-        public static int getMarkIndicesSize(String id)
-        {
-                return 0;
-        }
+    /**
+     * Returns the number of wireframe indices of the given object.
+     * @param the id of the given object.
+     * @return the object's number of indices.
+     */
+    public static int getWireIndicesSize(String id) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-        /**
-         * Fills the given buffer with mark index data of the given object.
-         * To implement.
-         * @param the id of the given object.
-         * @param the buffer to fill.
-         * @return the number of indices actually written.
-         */
-        public static int fillMarkIndices(String id, IntBuffer buffer)
-        {
-                return 0;
-        }
+            if (JAVA_OBJECTS.contains(type)) {
+                    return JavaObjectLoader.getWireIndicesSize(id);
+            } else {
+                    return DataLoader.getWireIndicesSize(id);
+            }
+    }
+
+    /**
+     * Fills the given buffer with wireframe index data of the given object.
+     * @param the id of the given object.
+     * @param the buffer to fill.
+     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @return the number of indices actually written.
+     */
+    public static int fillWireIndices(String id, IntBuffer buffer, int logMask) {
+            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+            if (JAVA_OBJECTS.contains(type)) {
+                    return JavaObjectLoader.fillWireIndices(id, buffer, logMask);
+            } else {
+                    return DataLoader.fillWireIndices(id, buffer, buffer.capacity(), logMask);
+            }
+    }
+
+    /**
+     * Returns the number of mark indices of the given object.
+     * To implement.
+     * @param the id of the given object.
+     * @return the number of mark indices.
+     */
+    public static int getMarkIndicesSize(String id) {
+            return 0;
+    }
+
+    /**
+     * Fills the given buffer with mark index data of the given object.
+     * To implement.
+     * @param the id of the given object.
+     * @param the buffer to fill.
+     * @return the number of indices actually written.
+     */
+    public static int fillMarkIndices(String id, IntBuffer buffer) {
+            return 0;
+    }
 
     public static int getLogMask(String id) {
         try {

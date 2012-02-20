@@ -17,6 +17,42 @@ extern "C"
 {
 
   /**
+   * Return the texture width for the given object.
+   * @param[in] the given object id.
+   * @return the texture width for the given object.
+   */
+  int getTextureWidth(char* id);
+
+  /**
+   * Return the texture height for the given object.
+   * @param[in] the given object id.
+   * @return the texture height for the given object.
+   */
+  int getTextureHeight(char* id);
+
+  /**
+   * Fill the given buffer with texture data.
+   * @param[in] the id of the object texture.
+   * @param[out] the buffer to fill.
+   * @param[in] the buffer length in number of elements.
+   * @return the length of writed data.
+   */
+  int fillTextureData(char *id, float* buffer, int bufferLength);
+
+  /**
+   * Fill the given buffer with sub-texture data.
+   * @param[in] the id of the object texture.
+   * @param[out] the buffer to fill.
+   * @param[in] the buffer length in number of elements.
+   * @param[in] the x-coordinate of the first pixel.
+   * @param[in] the y-coordinate of the first pixel.
+   * @param[in] the width of the sub-texture.
+   * @param[in] the length of the sub-texture.
+   * @return the length of writed data.
+   */
+  int fillSubTextureData(char* id, float* buffer, int bufferLength, int x, int y, int width, int height);
+
+  /**
    * Return the number of data elements for the given object.
    * @param[in] the given object id.
    * @return the number of data elements.
@@ -105,4 +141,5 @@ extern "C"
 
 }
 
-#endif DATA_LOADER_HXX
+#endif /* DATA_LOADER_HXX */
+

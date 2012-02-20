@@ -25,6 +25,9 @@ import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureDataProvider;
+import org.scilab.forge.scirenderer.tranformations.Transformation;
+import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
+import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -73,6 +76,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private final ColorMapTextureDataProvider colorMapTextureDataProvider;
 
+    private final TextureManager textureManager;
     private final MarkSpriteManager markManager;
     private final LabelManager labelManager;
     private final DataManager dataManager;
@@ -86,6 +90,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private DrawingTools drawingTools = null;
     private Texture colorMapTexture;
     private ColorMap colorMap;
+
+    private Axes currentAxes;
 
     /**
      * The map between the existing Figures' identifiers and their corresponding Visitor.
@@ -101,6 +107,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.figure = figure;
 
         this.dataManager = new DataManager(canvas);
+        this.textureManager = new TextureManager(this);
         this.markManager = new MarkSpriteManager(canvas.getSpriteManager());
         this.textManager = new TextManager(canvas.getSpriteManager());
         this.labelManager = new LabelManager(canvas.getSpriteManager());
@@ -185,6 +192,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Axes axes) {
         if (axes.getVisible()) {
             try {
+                currentAxes = axes;
                 axesDrawer.draw(axes);
             } catch (SciRendererException e) {
                 System.err.println("A '" + axes.getType() + "' is not drawable because: '" + e.getMessage() + "'");
@@ -285,14 +293,22 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(final Matplot matplot) {
         if (matplot.getVisible()) {
             try {
-                DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                triangles.setVertices(dataManager.getVertexBuffer(matplot.getIdentifier()));
-                triangles.setColors(dataManager.getColorBuffer(matplot.getIdentifier()));
-                triangles.setIndices(dataManager.getIndexBuffer(matplot.getIdentifier()));
-                triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-                Appearance trianglesAppearance = new Appearance();
-                drawingTools.draw(triangles, trianglesAppearance);
+                if ((currentAxes != null) && (currentAxes.getXAxisLogFlag() || currentAxes.getYAxisLogFlag())) {
+                    DefaultGeometry geometry = new DefaultGeometry();
+                    geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                    geometry.setVertices(dataManager.getVertexBuffer(matplot.getIdentifier()));
+                    geometry.setColors(dataManager.getColorBuffer(matplot.getIdentifier()));
+                    geometry.setIndices(dataManager.getIndexBuffer(matplot.getIdentifier()));
+                    geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                    Appearance appearance = new Appearance();
+                    drawingTools.draw(geometry, appearance);
+                } else {
+                    TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
+                    Transformation t = TransformationFactory.getTranslateTransformation(.5, .5, 0);
+                    modelViewStack.pushRightMultiply(t);
+                    drawingTools.draw(textureManager.getTexture(matplot.getIdentifier()));
+                    modelViewStack.pop();
+                }
             } catch (SciRendererException e) {
                 System.err.println("A '" + matplot.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
@@ -707,4 +723,3 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
     }
 }
-

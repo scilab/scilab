@@ -55,6 +55,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/Fac3DDecomposer.cpp \
 								src/cpp/NgonGridDataDecomposer.cpp \
 								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
+								src/cpp/MatPlotDecomposer.cpp \
 								src/cpp/NgonGridMatplotDataDecomposer.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
