@@ -20,9 +20,6 @@
     <Filter Include="Source Files\TextDrawing">
       <UniqueIdentifier>{07f93c17-ae84-4408-9e2e-26dc0bcf0353}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\LabelDrawing">
-      <UniqueIdentifier>{d9fb448e-c23f-48a7-8f03-c1d1e45c6886}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SurfaceDrawing">
       <UniqueIdentifier>{2523bd68-bc83-4801-989d-59efa3b15126}</UniqueIdentifier>
     </Filter>
@@ -62,9 +59,6 @@
     </Filter>
     <Filter Include="Header Files\TextDrawing">
       <UniqueIdentifier>{d9620e16-a7e4-4b98-9528-95d050aee748}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\LabelDrawing">
-      <UniqueIdentifier>{41c3109e-0c9d-4c8e-a403-b6fde4c3cb06}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SurfaceDrawing">
       <UniqueIdentifier>{39c25f36-115c-4f52-aa9d-d3aeadea1b28}</UniqueIdentifier>
@@ -557,27 +551,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\textDrawing\TextContentDrawerJoGL.cpp">
       <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabel.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabelFactory.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\LabelPositioner.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\TitlePositioner.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\XLabelPositioner.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\YLabelPositioner.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\labelDrawing\ZLabelPositioner.cpp">
-      <Filter>Source Files\LabelDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp">
       <Filter>Source Files\SurfaceDrawing</Filter>
@@ -1306,27 +1279,6 @@
     </ClInclude>
     <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJoGL.hxx">
       <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabel.h">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabelFactory.h">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\LabelPositioner.hxx">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\TitlePositioner.hxx">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\XLabelPositioner.hxx">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\YLabelPositioner.hxx">
-      <Filter>Header Files\LabelDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\labelDrawing\ZLabelPositioner.hxx">
-      <Filter>Header Files\LabelDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx">
       <Filter>Header Files\SurfaceDrawing</Filter>

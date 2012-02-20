@@ -45,8 +45,6 @@ src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-src/cpp/labelDrawing/DrawableLabel.cpp \
-src/cpp/labelDrawing/DrawableLabelFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurface.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
@@ -164,7 +162,6 @@ src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/cpp/labelDrawing/LabelPositioner.cpp \
 src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
@@ -210,10 +207,6 @@ src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
 src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
 src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
 src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
-src/cpp/labelDrawing/TitlePositioner.cpp \
-src/cpp/labelDrawing/XLabelPositioner.cpp \
-src/cpp/labelDrawing/YLabelPositioner.cpp \
-src/cpp/labelDrawing/ZLabelPositioner.cpp \
 src/cpp/axesDrawing/AxesPositioner.cpp \
 src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \

@@ -76,11 +76,6 @@ DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
   return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));
 }
 /*---------------------------------------------------------------------------------*/
-DrawableLabel * getLabelDrawer( sciPointObj * pLabel )
-{
-  return dynamic_cast<DrawableLabel *>(getHandleDrawer(pLabel));
-}
-/*---------------------------------------------------------------------------------*/
 DrawableSurface * getSurfaceDrawer( sciPointObj * pSurface )
 {
   return dynamic_cast<DrawableSurface *>(getHandleDrawer(pSurface));

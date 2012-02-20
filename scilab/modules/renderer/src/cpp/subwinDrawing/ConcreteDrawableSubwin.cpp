@@ -554,17 +554,6 @@ void ConcreteDrawableSubwin::displayTexts(void)
 void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double yLabelDist,
                                                      double zLabelDist, double titleDist)
 {
-  sciPointObj * xLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_x_label;
-  getLabelDrawer(xLabel)->setDistanceToAxis(xLabelDist);
-
-  sciPointObj * yLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_y_label;
-  getLabelDrawer(yLabel)->setDistanceToAxis(yLabelDist);
-
-  sciPointObj * zLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_z_label;
-  getLabelDrawer(zLabel)->setDistanceToAxis(zLabelDist);
-
-  sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
-  getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::addZeroInRange(double range[2]) {

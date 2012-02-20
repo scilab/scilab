@@ -359,13 +359,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJavaMapper.cpp" />
     <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJoGL.cpp" />
     <ClCompile Include="src\cpp\textDrawing\TextContentDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabel.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\DrawableLabelFactory.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\LabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\TitlePositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\XLabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\YLabelPositioner.cpp" />
-    <ClCompile Include="src\cpp\labelDrawing\ZLabelPositioner.cpp" />
     <ClCompile Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp" />
     <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurface.cpp" />
     <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.cpp" />
@@ -611,13 +604,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="src\cpp\textDrawing\StandardTextDrawerJoGL.hxx" />
     <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJavaMapper.hxx" />
     <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJoGL.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabel.h" />
-    <ClInclude Include="src\cpp\labelDrawing\DrawableLabelFactory.h" />
-    <ClInclude Include="src\cpp\labelDrawing\LabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\TitlePositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\XLabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\YLabelPositioner.hxx" />
-    <ClInclude Include="src\cpp\labelDrawing\ZLabelPositioner.hxx" />
     <ClInclude Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx" />
     <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurface.h" />
     <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceBridge.hxx" />

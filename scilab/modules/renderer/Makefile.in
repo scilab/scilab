@@ -141,8 +141,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableRectangleJoGL.lo \
 	libscirenderer_la-RectangleFillDrawerJoGL.lo \
 	libscirenderer_la-RectangleLineDrawerJoGL.lo \
-	libscirenderer_la-DrawableLabel.lo \
-	libscirenderer_la-DrawableLabelFactory.lo \
 	libscirenderer_la-DrawableSurfaceFactory.lo \
 	libscirenderer_la-DrawableSurface.lo \
 	libscirenderer_la-DrawableAxes.lo \
@@ -260,7 +258,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GridDrawer.lo \
 	libscirenderer_la-XGridDrawerJoGL.lo \
 	libscirenderer_la-ZGridDrawerJoGL.lo \
-	libscirenderer_la-LabelPositioner.lo \
 	libscirenderer_la-ConcreteDrawableSurface.lo \
 	libscirenderer_la-DrawableSurfaceJavaMapper.lo \
 	libscirenderer_la-DrawableSurfaceJoGL.lo \
@@ -306,10 +303,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableAxesJavaMapper.lo \
 	libscirenderer_la-DrawableAxesJoGL.lo \
 	libscirenderer_la-DecomposeSegsStrategy.lo \
-	libscirenderer_la-TitlePositioner.lo \
-	libscirenderer_la-XLabelPositioner.lo \
-	libscirenderer_la-YLabelPositioner.lo \
-	libscirenderer_la-ZLabelPositioner.lo \
 	libscirenderer_la-AxesPositioner.lo \
 	libscirenderer_la-AxesTicksDrawerJoGL.lo \
 	libscirenderer_la-BottomXAxisPositioner.lo \
@@ -651,8 +644,6 @@ src/cpp/rectangleDrawing/DrawableRectangle.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-src/cpp/labelDrawing/DrawableLabel.cpp \
-src/cpp/labelDrawing/DrawableLabelFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurface.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
@@ -770,7 +761,6 @@ src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/cpp/labelDrawing/LabelPositioner.cpp \
 src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
@@ -816,10 +806,6 @@ src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
 src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
 src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
 src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
-src/cpp/labelDrawing/TitlePositioner.cpp \
-src/cpp/labelDrawing/XLabelPositioner.cpp \
-src/cpp/labelDrawing/YLabelPositioner.cpp \
-src/cpp/labelDrawing/ZLabelPositioner.cpp \
 src/cpp/axesDrawing/AxesPositioner.cpp \
 src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
@@ -1118,8 +1104,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLabel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLabelFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLegend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLegendFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
@@ -1193,7 +1177,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LeftYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
@@ -1266,7 +1249,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TitlePositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
@@ -1275,14 +1257,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XLabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YLabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZLabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
@@ -1439,20 +1418,6 @@ libscirenderer_la-RectangleLineDrawerJoGL.lo: src/cpp/rectangleDrawing/Rectangle
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' object='libscirenderer_la-RectangleLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleLineDrawerJoGL.lo `test -f 'src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp
-
-libscirenderer_la-DrawableLabel.lo: src/cpp/labelDrawing/DrawableLabel.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableLabel.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableLabel.Tpo -c -o libscirenderer_la-DrawableLabel.lo `test -f 'src/cpp/labelDrawing/DrawableLabel.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabel.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableLabel.Tpo $(DEPDIR)/libscirenderer_la-DrawableLabel.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/DrawableLabel.cpp' object='libscirenderer_la-DrawableLabel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableLabel.lo `test -f 'src/cpp/labelDrawing/DrawableLabel.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabel.cpp
-
-libscirenderer_la-DrawableLabelFactory.lo: src/cpp/labelDrawing/DrawableLabelFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableLabelFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableLabelFactory.Tpo -c -o libscirenderer_la-DrawableLabelFactory.lo `test -f 'src/cpp/labelDrawing/DrawableLabelFactory.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabelFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableLabelFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableLabelFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/DrawableLabelFactory.cpp' object='libscirenderer_la-DrawableLabelFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableLabelFactory.lo `test -f 'src/cpp/labelDrawing/DrawableLabelFactory.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/DrawableLabelFactory.cpp
 
 libscirenderer_la-DrawableSurfaceFactory.lo: src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSurfaceFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSurfaceFactory.Tpo -c -o libscirenderer_la-DrawableSurfaceFactory.lo `test -f 'src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp
@@ -2273,13 +2238,6 @@ libscirenderer_la-ZGridDrawerJoGL.lo: src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 
-libscirenderer_la-LabelPositioner.lo: src/cpp/labelDrawing/LabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LabelPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LabelPositioner.Tpo -c -o libscirenderer_la-LabelPositioner.lo `test -f 'src/cpp/labelDrawing/LabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/LabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-LabelPositioner.Tpo $(DEPDIR)/libscirenderer_la-LabelPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/LabelPositioner.cpp' object='libscirenderer_la-LabelPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LabelPositioner.lo `test -f 'src/cpp/labelDrawing/LabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/LabelPositioner.cpp
-
 libscirenderer_la-ConcreteDrawableSurface.lo: src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableSurface.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Tpo -c -o libscirenderer_la-ConcreteDrawableSurface.lo `test -f 'src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp' || echo '$(srcdir)/'`src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo
@@ -2594,34 +2552,6 @@ libscirenderer_la-DecomposeSegsStrategy.lo: src/cpp/segsDrawing/DecomposeSegsStr
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/DecomposeSegsStrategy.cpp' object='libscirenderer_la-DecomposeSegsStrategy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DecomposeSegsStrategy.lo `test -f 'src/cpp/segsDrawing/DecomposeSegsStrategy.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DecomposeSegsStrategy.cpp
-
-libscirenderer_la-TitlePositioner.lo: src/cpp/labelDrawing/TitlePositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TitlePositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TitlePositioner.Tpo -c -o libscirenderer_la-TitlePositioner.lo `test -f 'src/cpp/labelDrawing/TitlePositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/TitlePositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TitlePositioner.Tpo $(DEPDIR)/libscirenderer_la-TitlePositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/TitlePositioner.cpp' object='libscirenderer_la-TitlePositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TitlePositioner.lo `test -f 'src/cpp/labelDrawing/TitlePositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/TitlePositioner.cpp
-
-libscirenderer_la-XLabelPositioner.lo: src/cpp/labelDrawing/XLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XLabelPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XLabelPositioner.Tpo -c -o libscirenderer_la-XLabelPositioner.lo `test -f 'src/cpp/labelDrawing/XLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/XLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-XLabelPositioner.Tpo $(DEPDIR)/libscirenderer_la-XLabelPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/XLabelPositioner.cpp' object='libscirenderer_la-XLabelPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XLabelPositioner.lo `test -f 'src/cpp/labelDrawing/XLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/XLabelPositioner.cpp
-
-libscirenderer_la-YLabelPositioner.lo: src/cpp/labelDrawing/YLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YLabelPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YLabelPositioner.Tpo -c -o libscirenderer_la-YLabelPositioner.lo `test -f 'src/cpp/labelDrawing/YLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/YLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-YLabelPositioner.Tpo $(DEPDIR)/libscirenderer_la-YLabelPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/YLabelPositioner.cpp' object='libscirenderer_la-YLabelPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YLabelPositioner.lo `test -f 'src/cpp/labelDrawing/YLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/YLabelPositioner.cpp
-
-libscirenderer_la-ZLabelPositioner.lo: src/cpp/labelDrawing/ZLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZLabelPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZLabelPositioner.Tpo -c -o libscirenderer_la-ZLabelPositioner.lo `test -f 'src/cpp/labelDrawing/ZLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/ZLabelPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ZLabelPositioner.Tpo $(DEPDIR)/libscirenderer_la-ZLabelPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/labelDrawing/ZLabelPositioner.cpp' object='libscirenderer_la-ZLabelPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZLabelPositioner.lo `test -f 'src/cpp/labelDrawing/ZLabelPositioner.cpp' || echo '$(srcdir)/'`src/cpp/labelDrawing/ZLabelPositioner.cpp
 
 libscirenderer_la-AxesPositioner.lo: src/cpp/axesDrawing/AxesPositioner.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesPositioner.Tpo -c -o libscirenderer_la-AxesPositioner.lo `test -f 'src/cpp/axesDrawing/AxesPositioner.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesPositioner.cpp

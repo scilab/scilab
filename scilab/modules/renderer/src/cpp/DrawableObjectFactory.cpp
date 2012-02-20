@@ -1,13 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Factory for drawable objects. Automatically create a drawable    
+ * desc : Factory for drawable objects. Automatically create a drawable
  * object with the right algorithms from the graphic handle
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@ extern "C"
 #include "subwinDrawing/DrawableSubwinFactory.h"
 #include "textDrawing/DrawableTextFactory.h"
 #include "polylineDrawing/DrawablePolylineFactory.h"
-#include "labelDrawing/DrawableLabelFactory.h"
 #include "compoundDrawing/DrawableCompoundFactory.h"
 #include "surfaceDrawing/DrawableSurfaceFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
@@ -33,7 +32,7 @@ extern "C"
 namespace sciGraphics
 {
 
-/*---------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------------*/
 void DrawableObjectFactory::setGraphicObj( sciPointObj * drawedObj )
 {
   m_pDrawed = drawedObj ;
@@ -42,9 +41,9 @@ void DrawableObjectFactory::setGraphicObj( sciPointObj * drawedObj )
 DrawableObject * DrawableObjectFactory::create( void )
 {
   DrawableObjectFactory * fact = createRightFactory() ;
-  
+
   fact->setGraphicObj( m_pDrawed ) ;
-  
+
   DrawableObject * drawer = fact->create() ;
 
   delete fact ;
@@ -81,9 +80,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   case SCI_POLYLINE:
     return new DrawablePolylineFactory() ;
     break;
-  case SCI_LABEL:
-    return new DrawableLabelFactory() ;
-    break;
   case SCI_AGREG:
     return new DrawableCompoundFactory() ;
     break ;
@@ -102,7 +98,7 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   case SCI_GRAYPLOT:
     return new DrawableGrayplotFactory() ;
     break ;
-  case SCI_RECTANGLE: 
+  case SCI_RECTANGLE:
     return new DrawableRectangleFactory() ;
     break ;
   case SCI_UIMENU:
