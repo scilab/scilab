@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-07 10:31+0100\n"
+"Revision-Date: 2012-02-21 14:18+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -62,23 +62,23 @@ msgid "%s : No more free memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 76
+# File: sci_gateway/c/sci_callblk.c, line: 78
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 85
-# File: sci_gateway/c/sci_callblk.c, line: 102
-# File: sci_gateway/c/sci_callblk.c, line: 108
-# File: sci_gateway/c/sci_callblk.c, line: 121
+# File: sci_gateway/c/sci_callblk.c, line: 87
+# File: sci_gateway/c/sci_callblk.c, line: 104
+# File: sci_gateway/c/sci_callblk.c, line: 110
+# File: sci_gateway/c/sci_callblk.c, line: 125
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 93
-# File: sci_gateway/c/sci_callblk.c, line: 118
+# File: sci_gateway/c/sci_callblk.c, line: 95
+# File: sci_gateway/c/sci_callblk.c, line: 121
 # File: sci_gateway/c/sci_scicosim.c, line: 428
 # File: sci_gateway/c/sci_scicosim.c, line: 443
 # File: sci_gateway/c/sci_scicosim.c, line: 535
@@ -126,13 +126,13 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 165
+# File: sci_gateway/c/sci_callblk.c, line: 170
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 177
+# File: sci_gateway/c/sci_callblk.c, line: 182
 #, c-format
 msgid "%s : Third argument must be scalar.\n"
 msgstr ""
@@ -247,140 +247,140 @@ msgid "%s : Error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 132
+# File: sci_gateway/c/sci_model2blk.c, line: 134
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 146
+# File: sci_gateway/c/sci_model2blk.c, line: 148
 #, c-format
 msgid "%s : First argument must be a scicos model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 196
+# File: sci_gateway/c/sci_model2blk.c, line: 198
 # File: sci_gateway/c/sci_scicosim.c, line: 1365
 #, c-format
 msgid "%s : unknown block : %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 213
+# File: sci_gateway/c/sci_model2blk.c, line: 215
 #, c-format
 msgid "%s : type 1 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 216
+# File: sci_gateway/c/sci_model2blk.c, line: 218
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 235
+# File: sci_gateway/c/sci_model2blk.c, line: 237
 #, c-format
 msgid "%s : Undefined Function type\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 251
+# File: sci_gateway/c/sci_model2blk.c, line: 253
 #, c-format
 msgid "%s : Function not found\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 273
+# File: sci_gateway/c/sci_model2blk.c, line: 275
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 281
-# File: sci_gateway/c/sci_model2blk.c, line: 288
-# File: sci_gateway/c/sci_model2blk.c, line: 363
-# File: sci_gateway/c/sci_model2blk.c, line: 378
-# File: sci_gateway/c/sci_model2blk.c, line: 393
-# File: sci_gateway/c/sci_model2blk.c, line: 408
-# File: sci_gateway/c/sci_model2blk.c, line: 423
-# File: sci_gateway/c/sci_model2blk.c, line: 438
-# File: sci_gateway/c/sci_model2blk.c, line: 453
-# File: sci_gateway/c/sci_model2blk.c, line: 468
-# File: sci_gateway/c/sci_model2blk.c, line: 507
-# File: sci_gateway/c/sci_model2blk.c, line: 519
-# File: sci_gateway/c/sci_model2blk.c, line: 599
-# File: sci_gateway/c/sci_model2blk.c, line: 617
-# File: sci_gateway/c/sci_model2blk.c, line: 635
-# File: sci_gateway/c/sci_model2blk.c, line: 653
-# File: sci_gateway/c/sci_model2blk.c, line: 671
-# File: sci_gateway/c/sci_model2blk.c, line: 688
-# File: sci_gateway/c/sci_model2blk.c, line: 706
-# File: sci_gateway/c/sci_model2blk.c, line: 724
-# File: sci_gateway/c/sci_model2blk.c, line: 758
-# File: sci_gateway/c/sci_model2blk.c, line: 804
-# File: sci_gateway/c/sci_model2blk.c, line: 824
-# File: sci_gateway/c/sci_model2blk.c, line: 844
+# File: sci_gateway/c/sci_model2blk.c, line: 283
+# File: sci_gateway/c/sci_model2blk.c, line: 290
+# File: sci_gateway/c/sci_model2blk.c, line: 365
+# File: sci_gateway/c/sci_model2blk.c, line: 381
+# File: sci_gateway/c/sci_model2blk.c, line: 397
+# File: sci_gateway/c/sci_model2blk.c, line: 413
+# File: sci_gateway/c/sci_model2blk.c, line: 429
+# File: sci_gateway/c/sci_model2blk.c, line: 445
+# File: sci_gateway/c/sci_model2blk.c, line: 461
+# File: sci_gateway/c/sci_model2blk.c, line: 477
+# File: sci_gateway/c/sci_model2blk.c, line: 517
+# File: sci_gateway/c/sci_model2blk.c, line: 530
+# File: sci_gateway/c/sci_model2blk.c, line: 613
+# File: sci_gateway/c/sci_model2blk.c, line: 632
+# File: sci_gateway/c/sci_model2blk.c, line: 651
+# File: sci_gateway/c/sci_model2blk.c, line: 670
+# File: sci_gateway/c/sci_model2blk.c, line: 689
+# File: sci_gateway/c/sci_model2blk.c, line: 708
+# File: sci_gateway/c/sci_model2blk.c, line: 727
+# File: sci_gateway/c/sci_model2blk.c, line: 746
+# File: sci_gateway/c/sci_model2blk.c, line: 780
+# File: sci_gateway/c/sci_model2blk.c, line: 826
+# File: sci_gateway/c/sci_model2blk.c, line: 846
 # File: sci_gateway/c/sci_model2blk.c, line: 866
-# File: sci_gateway/c/sci_model2blk.c, line: 901
-# File: sci_gateway/c/sci_model2blk.c, line: 937
-# File: sci_gateway/c/sci_model2blk.c, line: 956
-# File: sci_gateway/c/sci_model2blk.c, line: 976
-# File: sci_gateway/c/sci_model2blk.c, line: 1009
-# File: sci_gateway/c/sci_model2blk.c, line: 1038
-# File: sci_gateway/c/sci_model2blk.c, line: 1070
-# File: sci_gateway/c/sci_model2blk.c, line: 1099
-# File: sci_gateway/c/sci_model2blk.c, line: 1128
-# File: sci_gateway/c/sci_model2blk.c, line: 1157
-# File: sci_gateway/c/sci_model2blk.c, line: 1186
-# File: sci_gateway/c/sci_model2blk.c, line: 1215
-# File: sci_gateway/c/sci_model2blk.c, line: 1255
-# File: sci_gateway/c/sci_model2blk.c, line: 1292
-# File: sci_gateway/c/sci_model2blk.c, line: 1333
-# File: sci_gateway/c/sci_model2blk.c, line: 1357
-# File: sci_gateway/c/sci_model2blk.c, line: 1382
-# File: sci_gateway/c/sci_model2blk.c, line: 1420
-# File: sci_gateway/c/sci_model2blk.c, line: 1454
-# File: sci_gateway/c/sci_model2blk.c, line: 1492
-# File: sci_gateway/c/sci_model2blk.c, line: 1526
-# File: sci_gateway/c/sci_model2blk.c, line: 1560
-# File: sci_gateway/c/sci_model2blk.c, line: 1594
-# File: sci_gateway/c/sci_model2blk.c, line: 1628
-# File: sci_gateway/c/sci_model2blk.c, line: 1662
-# File: sci_gateway/c/sci_model2blk.c, line: 1709
-# File: sci_gateway/c/sci_model2blk.c, line: 1751
-# File: sci_gateway/c/sci_model2blk.c, line: 1783
-# File: sci_gateway/c/sci_model2blk.c, line: 1828
-# File: sci_gateway/c/sci_model2blk.c, line: 1865
+# File: sci_gateway/c/sci_model2blk.c, line: 888
+# File: sci_gateway/c/sci_model2blk.c, line: 923
+# File: sci_gateway/c/sci_model2blk.c, line: 959
+# File: sci_gateway/c/sci_model2blk.c, line: 978
+# File: sci_gateway/c/sci_model2blk.c, line: 998
+# File: sci_gateway/c/sci_model2blk.c, line: 1031
+# File: sci_gateway/c/sci_model2blk.c, line: 1060
+# File: sci_gateway/c/sci_model2blk.c, line: 1092
+# File: sci_gateway/c/sci_model2blk.c, line: 1121
+# File: sci_gateway/c/sci_model2blk.c, line: 1150
+# File: sci_gateway/c/sci_model2blk.c, line: 1179
+# File: sci_gateway/c/sci_model2blk.c, line: 1208
+# File: sci_gateway/c/sci_model2blk.c, line: 1237
+# File: sci_gateway/c/sci_model2blk.c, line: 1277
+# File: sci_gateway/c/sci_model2blk.c, line: 1314
+# File: sci_gateway/c/sci_model2blk.c, line: 1355
+# File: sci_gateway/c/sci_model2blk.c, line: 1379
+# File: sci_gateway/c/sci_model2blk.c, line: 1404
+# File: sci_gateway/c/sci_model2blk.c, line: 1442
+# File: sci_gateway/c/sci_model2blk.c, line: 1476
+# File: sci_gateway/c/sci_model2blk.c, line: 1514
+# File: sci_gateway/c/sci_model2blk.c, line: 1548
+# File: sci_gateway/c/sci_model2blk.c, line: 1582
+# File: sci_gateway/c/sci_model2blk.c, line: 1616
+# File: sci_gateway/c/sci_model2blk.c, line: 1650
+# File: sci_gateway/c/sci_model2blk.c, line: 1684
+# File: sci_gateway/c/sci_model2blk.c, line: 1731
+# File: sci_gateway/c/sci_model2blk.c, line: 1773
+# File: sci_gateway/c/sci_model2blk.c, line: 1805
+# File: sci_gateway/c/sci_model2blk.c, line: 1850
+# File: sci_gateway/c/sci_model2blk.c, line: 1887
 #, c-format
 msgid "%s : Allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 301
+# File: sci_gateway/c/sci_model2blk.c, line: 303
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 318
+# File: sci_gateway/c/sci_model2blk.c, line: 320
 #, c-format
 msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 497
+# File: sci_gateway/c/sci_model2blk.c, line: 506
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 531
+# File: sci_gateway/c/sci_model2blk.c, line: 543
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 550
+# File: sci_gateway/c/sci_model2blk.c, line: 563
 #, c-format
 msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
@@ -1950,37 +1950,37 @@ msgstr ""
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 163
 #, c-format
-msgid "%s: port out of hierarchy"
+msgid "%s: Port out of hierarchy"
 msgstr ""
 
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 170
 #, c-format
-msgid "%s: not connected super block input"
+msgid "%s: Not connected super block input"
 msgstr ""
 
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 264
 #, c-format
-msgid "%s: invalid super block at %d"
+msgid "%s: Invalid super block at %d"
 msgstr ""
 
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 317
 #, c-format
-msgid "%s: empty diagram"
+msgid "%s: Empty diagram"
 msgstr ""
 
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 380
 #, c-format
-msgid "%s: multiple GotoTagVisibility at the same level"
+msgid "%s: Multiple GotoTagVisibility at the same level"
 msgstr ""
 
 #
 # File: macros/scicos_scicos/scicos_flat.sci, line: 391
 #, c-format
-msgid "%s: shared GotoTagVisibility across GOTO"
+msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #
@@ -2002,7 +2002,7 @@ msgstr ""
 
 #
 # File: macros/scicos_scicos/setvalue.sci, line: 244
-# File: macros/scicos_utils/scicos_getvalue.sci, line: 289
+# File: macros/scicos_utils/scicos_getvalue.sci, line: 290
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr ""
@@ -2031,7 +2031,7 @@ msgid "Xcos block parameter error"
 msgstr ""
 
 #
-# File: macros/scicos_utils/scicos_getvalue.sci, line: 294
+# File: macros/scicos_utils/scicos_getvalue.sci, line: 295
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -2040,7 +2040,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scicos_utils/scicos_getvalue.sci, line: 298
+# File: macros/scicos_utils/scicos_getvalue.sci, line: 299
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -2048,7 +2048,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scicos_utils/scicos_getvalue.sci, line: 300
+# File: macros/scicos_utils/scicos_getvalue.sci, line: 301
 #, c-format
 msgid ""
 "Answer given for %s \n"

@@ -14,11 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-07 10:31+0100\n"
+"Revision-Date: 2012-02-21 14:18+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
-# File: macros/atomsTest.sci, line: 36
 # File: macros/atoms_internals/atomsError.sci, line: 22
 # File: macros/atoms_internals/atomsOrphanList.sci, line: 24
 # File: macros/atoms_internals/atomsRemoveList.sci, line: 48
@@ -75,7 +74,8 @@ msgstr ""
 # File: macros/atomsSetConfig.sci, line: 39
 # File: macros/atomsSetConfig.sci, line: 43
 # File: macros/atomsShow.sci, line: 35
-# File: macros/atomsTest.sci, line: 40
+# File: macros/atomsTest.sci, line: 39
+# File: macros/atomsTest.sci, line: 47
 # File: macros/atomsUpdate.sci, line: 46
 # File: macros/atoms_internals/atomsAutoloadCheck.sci, line: 36
 # File: macros/atoms_internals/atomsAutoloadSave.sci, line: 27
@@ -239,7 +239,7 @@ msgstr ""
 #
 # File: macros/atomsAutoloadAdd.sci, line: 136
 # File: macros/atomsLoad.sci, line: 110
-# File: macros/atomsTest.sci, line: 109
+# File: macros/atomsTest.sci, line: 114
 #, c-format
 msgid "%s: Module '%s' is not installed ('%s' section).\n"
 msgstr ""
@@ -247,7 +247,7 @@ msgstr ""
 #
 # File: macros/atomsAutoloadAdd.sci, line: 144
 # File: macros/atomsLoad.sci, line: 119
-# File: macros/atomsTest.sci, line: 118
+# File: macros/atomsTest.sci, line: 123
 #, c-format
 msgid "%s: Module '%s - %s' is not installed.\n"
 msgstr ""
@@ -278,7 +278,7 @@ msgstr ""
 #
 # File: macros/atomsAutoloadAdd.sci, line: 181
 # File: macros/atomsLoad.sci, line: 150
-# File: macros/atomsTest.sci, line: 142
+# File: macros/atomsTest.sci, line: 147
 #, c-format
 msgid "%s: The following modules are not installed:\n"
 msgstr ""
@@ -386,6 +386,86 @@ msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr ""
 
 #
+# File: macros/atomsCheckModule.sci, line: 38
+#, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 52
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 68
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 77
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 93
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 97
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 106
+# File: macros/atomsCheckModule.sci, line: 128
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 114
+#, c-format
+msgid "%s: Module %s does not exist in current repostories.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 121
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/atomsCheckModule.sci, line: 133
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
+
+#
 # File: macros/atomsDepTreeShow.sci, line: 38
 # File: macros/atomsGetLoadedPath.sci, line: 21
 # File: macros/atomsIsLoaded.sci, line: 41
@@ -445,7 +525,7 @@ msgstr ""
 # File: macros/atomsGetLoadedPath.sci, line: 32
 # File: macros/atomsIsLoaded.sci, line: 52
 # File: macros/atomsLoad.sci, line: 46
-# File: macros/atomsTest.sci, line: 44
+# File: macros/atomsTest.sci, line: 51
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
@@ -525,6 +605,7 @@ msgstr ""
 
 #
 # File: macros/atomsList.sci, line: 28
+# File: macros/atomsTest.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -551,8 +632,8 @@ msgstr ""
 
 #
 # File: macros/atomsLoad.sci, line: 108
-# File: macros/atomsTest.sci, line: 67
-# File: macros/atomsTest.sci, line: 107
+# File: macros/atomsTest.sci, line: 74
+# File: macros/atomsTest.sci, line: 112
 #, c-format
 msgid "%s: Module '%s' is not installed.\n"
 msgstr ""
@@ -865,19 +946,19 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsTest.sci, line: 69
+# File: macros/atomsTest.sci, line: 76
 #, c-format
 msgid "%s: '%s - %s' is not installed.\n"
 msgstr ""
 
 #
-# File: macros/atomsTest.sci, line: 71
+# File: macros/atomsTest.sci, line: 78
 #, c-format
 msgid "%s: '%s' ('%s' section) is not installed.\n"
 msgstr ""
 
 #
-# File: macros/atomsTest.sci, line: 73
+# File: macros/atomsTest.sci, line: 80
 #, c-format
 msgid "%s: '%s - %s' ('%s' section) is not installed.\n"
 msgstr ""
