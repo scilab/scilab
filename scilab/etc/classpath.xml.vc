@@ -31,7 +31,6 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/flexdock-1.1.1.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
 <path value="$SCILAB/thirdparty/jhall.jar"/>
 
 <!-- Load when needed -->

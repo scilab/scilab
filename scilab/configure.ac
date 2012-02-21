@@ -1016,11 +1016,6 @@ the the JNI libraries."])],
                 ################ END Mandatory for graphic_export features #####
 
 
-                # Logging (flexdock dep)
-                AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
-                COMMONS_LOGGING=$PACKAGE_JAR_FILE
-                AC_SUBST(COMMONS_LOGGING)
-
                 # JLaTeXMath
                 AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
                 JLATEXMATH=$PACKAGE_JAR_FILE
@@ -2109,7 +2104,6 @@ echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
-echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi

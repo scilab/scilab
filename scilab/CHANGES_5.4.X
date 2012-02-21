@@ -186,6 +186,8 @@ Compilation
 
 * "make check" will now launch the most important unitary tests (level 1).
 
+* commons-logging is not longer a mandatory dependency.
+
 
 Bug fixes
 =========
