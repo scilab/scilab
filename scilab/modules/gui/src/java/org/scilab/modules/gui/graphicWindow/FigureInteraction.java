@@ -11,12 +11,14 @@
 package org.scilab.modules.gui.graphicWindow;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,9 +26,6 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 
 /**
  * This class manage figure interaction.
@@ -49,7 +48,7 @@ public class FigureInteraction {
     private final MouseMotionListener mouseMotionListener;
 
     private final Component component;
-    private final String figureId;
+    private final Figure figure;
 
     /**
      * Current enable status.
@@ -60,6 +59,7 @@ public class FigureInteraction {
      * Last important mouse event.
      */
     private MouseEvent previousEvent;
+    private Axes currentAxes;
 
     /**
      * Default constructor.
@@ -68,7 +68,7 @@ public class FigureInteraction {
      */
     public FigureInteraction(Component component, String figureId) {
         this.component = component;
-        this.figureId = figureId;
+        this.figure = (Figure) GraphicController.getController().getObjectFromId(figureId);
 
         mouseMotionListener = new FigureMouseMotionListener();
         mouseWheelListener = new FigureMouseWheelListener();
@@ -85,7 +85,7 @@ public class FigureInteraction {
         if (isEnable() != isEnable) {
             if (isEnable) {
                 component.addMouseListener(mouseListener);
-                component.addMouseMotionListener(mouseMotionListener);
+                //component.addMouseMotionListener(mouseMotionListener);
                 component.addMouseWheelListener(mouseWheelListener);
             } else {
                 component.removeMouseListener(mouseListener);
@@ -105,6 +105,28 @@ public class FigureInteraction {
     }
 
     /**
+     * Compute the underlying {@link Axes} for the given point in figure coordinates.
+     * @param point given point in figure coordinates.
+     * @return the underlying {@link Axes} for the given point in figure coordinates.
+     */
+    private Axes getUnderlyingAxes(Point point) {
+        Axes underlyingAxes = null;
+        Integer[] size = figure.getAxesSize();
+        double x = point.getX() / size[0];
+        double y = point.getY() / size[1];
+        for (String childId : figure.getChildren()) {
+            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            if (child instanceof Axes) {
+                Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
+                if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
+                    underlyingAxes = (Axes) child;
+                }
+            }
+        }
+        return underlyingAxes;
+    }
+
+    /**
      * This {@see MouseListner} activate the {@see MouseMotionListener} when at least
      * one button is pressed.
      * The event is saved in {@see previousEvent}
@@ -116,8 +138,13 @@ public class FigureInteraction {
         @Override
         public void mousePressed(MouseEvent e) {
             if (pressedButtons == 0) {
-                component.addMouseMotionListener(mouseMotionListener);
                 previousEvent = e;
+                if (currentAxes == null) {
+                    currentAxes = getUnderlyingAxes(e.getPoint());
+                    if (currentAxes != null) {
+                        component.addMouseMotionListener(mouseMotionListener);
+                    }
+                }
             }
             pressedButtons++;
         }
@@ -127,12 +154,13 @@ public class FigureInteraction {
             pressedButtons--;
             if (pressedButtons == 0) {
                 component.removeMouseMotionListener(mouseMotionListener);
+                currentAxes = null;
             }
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            GlobalEventWatcher.setAxesUID(figureId);
+            GlobalEventWatcher.setAxesUID(figure.getIdentifier());
         }
     }
 
@@ -143,35 +171,29 @@ public class FigureInteraction {
 
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
-            // TODO : picking to find current children
-            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-            for (String child : children) {
-                GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                if (object instanceof Axes) {
-                    double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
+            Axes axes = getUnderlyingAxes(e.getPoint());
+            if (axes != null) {
+                double scale = Math.pow(ZOOM_FACTOR, e.getUnitsToScroll());
+                Double[] bounds = axes.getDisplayedBounds();
 
-                    Axes axes = (Axes) object;
-                    Double[] bounds = axes.getDisplayedBounds();
+                double xDelta = (bounds[1] - bounds[0]) / 2;
+                double xMiddle = (bounds[1] + bounds[0]) / 2;
+                bounds[0] = xMiddle - xDelta * scale;
+                bounds[1] = xMiddle + xDelta * scale;
 
-                    double xDelta = (bounds[1] - bounds[0]) / 2;
-                    double xMiddle = (bounds[1] + bounds[0]) / 2;
-                    bounds[0] = xMiddle - xDelta * scale;
-                    bounds[1] = xMiddle + xDelta * scale;
+                double yDelta = (bounds[3] - bounds[2]) / 2;
+                double yMiddle = (bounds[3] + bounds[2]) / 2;
+                bounds[2] = yMiddle - yDelta * scale;
+                bounds[3] = yMiddle + yDelta * scale;
 
-                    double yDelta = (bounds[3] - bounds[2]) / 2;
-                    double yMiddle = (bounds[3] + bounds[2]) / 2;
-                    bounds[2] = yMiddle - yDelta * scale;
-                    bounds[3] = yMiddle + yDelta * scale;
+                double zDelta = (bounds[5] - bounds[4]) / 2;
+                double zMiddle = (bounds[5] + bounds[4]) / 2;
+                bounds[4] = zMiddle - zDelta * scale;
+                bounds[5] = zMiddle + zDelta * scale;
 
-                    double zDelta = (bounds[5] - bounds[4]) / 2;
-                    double zMiddle = (bounds[5] + bounds[4]) / 2;
-                    bounds[4] = zMiddle - zDelta * scale;
-                    bounds[5] = zMiddle + zDelta * scale;
-
-                    Boolean zoomed = tightZoomBounds(axes, bounds);
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-                }
+                Boolean zoomed = tightZoomBounds(axes, bounds);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             }
         }
 
@@ -231,16 +253,11 @@ public class FigureInteraction {
             int dx = e.getX() - previousEvent.getX();
             int dy = e.getY() - previousEvent.getY();
 
-            // TODO : picking to find current children
-            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-            for (String child : children) {
-                String childType = (String) GraphicController.getController().getProperty(child, __GO_TYPE__);
-                if (__GO_AXES__.equals(childType)) {
-                    Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                    angles[0] -= dy / 4.0;
-                    angles[1] -= dx / 4.0;
-                    GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
-                }
+            if (currentAxes != null) {
+                Double[] angles = currentAxes.getRotationAngles();
+                angles[0] -= dy / 4.0;
+                angles[1] -= dx / 4.0;
+                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
             }
         }
 
@@ -248,33 +265,27 @@ public class FigureInteraction {
             int dx = e.getX() - previousEvent.getX();
             int dy = e.getY() - previousEvent.getY();
 
-            // TODO : picking to find current children
-            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-            for (String child : children) {
-                GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                if (object instanceof Axes) {
-                    Axes axes = (Axes) object;
-                    if (axes.getZoomEnabled()) {
-                        Double[] bounds = axes.getDisplayedBounds();
-                        double orientation = Math.signum(Math.cos(Math.toRadians(axes.getRotationAngles()[0])));
-                        double angle = - orientation * Math.toRadians(axes.getRotationAngles()[1]);
+            if (currentAxes != null) {
+                if (currentAxes.getZoomEnabled()) {
+                    Double[] bounds = currentAxes.getDisplayedBounds();
+                    double orientation = Math.signum(Math.cos(Math.toRadians(currentAxes.getRotationAngles()[0])));
+                    double angle = - orientation * Math.toRadians(currentAxes.getRotationAngles()[1]);
 
-                        double xDelta = (bounds[0] - bounds[1])/100;
-                        double yDelta = (bounds[2] - bounds[3])/100;
+                    double xDelta = (bounds[0] - bounds[1])/100;
+                    double yDelta = (bounds[2] - bounds[3])/100;
 
-                        double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
-                        double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
+                    double rotatedDX = dx * Math.sin(angle) + dy * Math.cos(angle);
+                    double rotatedDY = dx * Math.cos(angle) - dy * Math.sin(angle);
 
-                        bounds[0] += xDelta * rotatedDX * orientation;
-                        bounds[1] += xDelta * rotatedDX * orientation;
+                    bounds[0] += xDelta * rotatedDX * orientation;
+                    bounds[1] += xDelta * rotatedDX * orientation;
 
-                        bounds[2] += yDelta * rotatedDY;
-                        bounds[3] += yDelta * rotatedDY;
+                    bounds[2] += yDelta * rotatedDY;
+                    bounds[3] += yDelta * rotatedDY;
 
-                        Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-                    }
+                    Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
+                    GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                    GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
                 }
             }
         }
@@ -282,23 +293,17 @@ public class FigureInteraction {
         private void doZTranslation(MouseEvent e) {
             int dy = e.getY() - previousEvent.getY();
 
-            // TODO : picking to find current children
-            String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
-            for (String child : children) {
-                GraphicObject object = GraphicController.getController().getObjectFromId(child);
-                if (object instanceof Axes) {
-                    Axes axes = (Axes) object;
-                    Double[] bounds = axes.getDisplayedBounds();
+            if (currentAxes != null) {
+                Double[] bounds = currentAxes.getDisplayedBounds();
 
-                    double zDelta = (bounds[5] - bounds[4])/100;
+                double zDelta = (bounds[5] - bounds[4])/100;
 
-                    bounds[4] += zDelta * dy;
-                    bounds[5] += zDelta * dy;
+                bounds[4] += zDelta * dy;
+                bounds[5] += zDelta * dy;
 
-                    Boolean zoomed = tightZoomBoxToDataBounds(axes, bounds);
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-                }
+                Boolean zoomed = tightZoomBoxToDataBounds(currentAxes, bounds);
+                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             }
         }
 
