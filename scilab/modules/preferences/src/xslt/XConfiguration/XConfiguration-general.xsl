@@ -8,11 +8,11 @@
                  -->
   <xsl:template match="environment" mode="tooltip">Settings environment</xsl:template>
   <xsl:template match="environment">
-    <VSpace height="25"/>
     <Title text="Environment">
       <Grid>
-        <Label gridx="1" gridy="1" text="Floating point exception:"/>
-        <Panel gridx="2" gridy="1">
+        <Label gridx="1" gridy="1" weightx="0" text="Floating point exception: "/>
+	<Panel gridx="2" gridy="1" weightx="1"/>
+        <Panel gridx="3" gridy="1" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
               <option floating-point-exception="Produces an error"/>
@@ -21,8 +21,9 @@
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
-        <Label gridx="1" gridy="2" text="Printing format:"/>
-        <Panel gridx="2" gridy="2">
+        <Label gridx="1" gridy="2" weightx="0" text="Printing format: "/>
+	<Panel gridx="2" gridy="2" weightx="1"/>
+        <Panel gridx="3" gridy="2" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
               <option printing-format="short"/>
@@ -35,9 +36,11 @@
             </xsl:with-param>
           </xsl:call-template>
         </Panel>
-        <Label gridx="1" gridy="3" text="Width:"/>
-        <NumericalSpinner gridx="2"
+        <Label gridx="1" gridy="3" weightx="0" text="Width: "/>
+	<Panel gridx="2" gridy="3" weightx="1"/>
+        <NumericalSpinner gridx="3"
                           gridy="3"
+			  weightx="0"
                           min-value = "1"
                           increment = "1"
                           length = "3"
@@ -55,20 +58,20 @@
   <xsl:template match="java-heap-memory">
     <VSpace height="25"/>
     <Title text="Java Heap Memory">
-      <HBox>
-        <Label text="Select the memory (in MB) available in Java"/>
-        <HSpace width="20"/>
+      <Grid>
+        <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
+	<Panel gridx="2" gridy="1" weightx="1"/>
         <NumericalSpinner min-value = "128"
                           increment = "128"
                           length = "6"
                           listener = "ActionListener"
-                          value = "{@heap-size}">
+                          value = "{@heap-size}"
+			  gridx="3" gridy="1" anchor="baseline" weightx="0">
           <actionPerformed choose="heap-size">
             <xsl:call-template name="context"/>
           </actionPerformed>
         </NumericalSpinner>
-        <Panel/>
-      </HBox>
+      </Grid>
     </Title>
 
   </xsl:template>
@@ -251,7 +254,8 @@
                   </xsl:if>
                 </xsl:for-each>
               </VBox>
-          </Grid>                       </Scroll>
+            </Grid>
+          </Scroll>
         </VBox>
 
       </VBox>

@@ -15,7 +15,7 @@ package org.scilab.modules.preferences;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import javax.swing.JDialog;
 
@@ -75,7 +75,7 @@ public final class XWizardManager extends XCommonManager {
         printTimeStamp("Model XML loaded");
 
         // Set up correspondence
-        correspondance = new Hashtable<Component, XSentinel>();
+        correspondance = new HashMap<Component, XSentinel>();
 
         // Let the show begin!
         if (refreshDisplay()) {

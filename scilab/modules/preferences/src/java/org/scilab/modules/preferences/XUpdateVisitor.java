@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Pierre GRADIT
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +20,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Hashtable;
+import java.util.Map;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -39,16 +40,17 @@ import org.w3c.dom.NodeList;
 /** Updates swing component to reach correspondence with dom nodes.
  */
 public class XUpdateVisitor {
+
     /**
      * stores preceding correspondence to compute diff.
      */
-    private Hashtable<Component, XSentinel> correspondance;
+    private Map<Component, XSentinel> correspondance;
 
     /** Construction of  visitor.
      *
      * @param table : previous correspondence.
      */
-    public XUpdateVisitor(final Hashtable<Component, XSentinel> table) {
+    public XUpdateVisitor(final Map<Component, XSentinel> table) {
         correspondance = table;
     }
 
@@ -60,14 +62,10 @@ public class XUpdateVisitor {
      * @param index : component index in container layout.
      * @return a built component inserted in its container.
      */
-    public final Component build(
-            final Container view,
-            final Node peer,
-            final Node item,
-            final int index) {
-        Component component  = buildPeerFor(item);
-        Object constraints   = getLayoutConstraints(peer, item);
-        if (index > -1) {
+    public final Component build(final Container view, final Node peer, final Node item, final int index) {
+        Component component = buildPeerFor(item);
+        Object constraints = getLayoutConstraints(peer, item);
+        if (index >= 0) {
             view.add(component, constraints, index);
         } else {
             view.add(component, constraints);
@@ -81,8 +79,8 @@ public class XUpdateVisitor {
      * @param component : suppressed component.
      */
     public final void forget(final Container view, final Component component) {
-       view.remove(component);
-       correspondance.remove(component);
+        view.remove(component);
+        correspondance.remove(component);
     }
 
     /** Computes a recursive diff on both tree structure
@@ -91,80 +89,61 @@ public class XUpdateVisitor {
      * @param view : the visited container.
      * @param peer : the visited node.
      */
-    public final void visit(final Container view, final Node peer, String tab) {
-        int allIndex     = 0;
+    public final void visit(final Container view, final Node peer) {
         int visibleIndex = 0;
+        int count;
         NodeList nodes = peer.getChildNodes();
+        int size = nodes.getLength();
         Component component;
-        XSentinel sentinel = null;
+        XSentinel sentinel;
         String indent;
-//C        System.out.println(tab + peer.getNodeName());
-        while (allIndex < nodes.getLength()) {
+
+        if (view instanceof Scroll) {
+            count = ((Scroll) view).getXComponentCount();
+        } else {
+            count = view.getComponentCount();
+        }
+
+        for (int allIndex = 0; allIndex < size; allIndex++) {
             Node item = nodes.item(allIndex);
             if (isVisible(item)) {
-                /* TODO: these lines should be correct !
-                while (visibleIndex < view.getComponentCount()) {
-                    component = view.getComponent(visibleIndex);
-                    if (component instanceof XComponent) {
-                        break;
-                    }
-                    visibleIndex++;
-                } */
-                int count;
-                if (view instanceof Scroll) {
-                    count = ((Scroll) view).getXComponentCount();
-                } else {
-                    count = view.getComponentCount();
-                }
                 if (visibleIndex < count) {
                     if (view instanceof Scroll) {
                         component = ((Scroll) view).getXComponent(visibleIndex);
                     } else {
                         component = view.getComponent(visibleIndex);
                     }
-                    sentinel  = (XSentinel) correspondance.get(component);
+                    sentinel = (XSentinel) correspondance.get(component);
                     if (sentinel == null || !sentinel.checks(item)) {
                         forget(view, component);
                         component = build(view, peer, item, visibleIndex);
-                        if (sentinel == null) {
-                            indent = "0 ";
-                        } else {
-                            indent = "# ";
-                        }
-                    } else {
-                        indent = "| ";
                     }
                 } else {
-                    indent = "+ ";
                     component = build(view, peer, item, -1);
                 }
                 if (component instanceof XComponent) {
                     // Rebuild container children.
                     Container container = (Container) component;
-                    visit(container, item, tab + indent);
+                    visit(container, item);
                 }
-                visibleIndex += 1;
+                visibleIndex++;
             }
-            allIndex += 1;
         }
+
         // Clean children tail.
         while (visibleIndex < view.getComponentCount()) {
             component = view.getComponent(visibleIndex);
             if (component instanceof XComponent) {
-                /*
-                 *  Clean XComponent at the tail
-                 */
                 forget(view, component);
                 continue;
             }
-//C            System.out.println("hidden swing node:" + component);
             visibleIndex++;
         }
 
         // Sentinel sets watch.
-        sentinel  = (XSentinel) correspondance.get(view);
+        sentinel = (XSentinel) correspondance.get(view);
         if (sentinel == null) {
-            sentinel   = new XSentinel(view, peer);
+            sentinel = new XSentinel(view, peer);
             correspondance.put(view, sentinel);
             if (view instanceof XComponent) {
                 addListeners(view, peer, sentinel);
@@ -189,11 +168,12 @@ public class XUpdateVisitor {
         if (XConfigManager.getAttribute(parent, "layout").equals("border")) {
             return XConfigManager.getAttribute(current, "border-side");
         }
+
         if (parent.getNodeName().equals("Grid")) {
             return current;
         }
         return null;
-        }
+    }
 
     /** Checks whether a node is visible or not.
      *
@@ -222,6 +202,16 @@ public class XUpdateVisitor {
         if (node.getNodeName().startsWith("table")) {
             return false;
         }
+
+        // d. List element are invisible.
+        if (node.getNodeName().equals("listElement")) {
+            return false;
+        }
+
+        // d. List element are invisible.
+        if (node.getNodeName().equals("html")) {
+            return false;
+        }
         return true;
     }
 
@@ -231,19 +221,8 @@ public class XUpdateVisitor {
      * @param node : peer node of the component
      * @param sentinel : listener of component, node interpreter
      */
-    public final void addListeners(
-            final Component component,
-            final Node node,
-            final XSentinel sentinel
-            ) {
-
+    public final void addListeners(final Component component, final Node node, final XSentinel sentinel) {
         String listener = XCommonManager.getAttribute(node, "listener");
-        //System.out.println("... " + listener + " on " + node);
-        if (listener.equals("MouseListener")) {
-             //component.addKeyListener(sentinel); Provide focus with proper focus policy.
-             component.addMouseListener(sentinel);
-             return;
-        }
         if (listener.equals("ActionListener")) {
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
@@ -255,29 +234,22 @@ public class XUpdateVisitor {
                 chooser.addActionListener(sentinel);
                 return;
             }
-            System.out.println("----> Action listener works on buttons and choosers only!");
         }
+
+        if (listener.equals("MouseListener")) {
+            //component.addKeyListener(sentinel); Provide focus with proper focus policy.
+            component.addMouseListener(sentinel);
+            return;
+        }
+
         if (listener.equals("TableListener")) {
             if (component instanceof Table) {
                 Table table = (Table) component;
                 table.addTableModelListener(sentinel);
                 return;
             }
-            System.out.println("----> Table listener works on tables only!");
-       }
-
+        }
     }
-
-    /** Address for dynamic class loading.
-     *
-     */
-    private static final String X_PACKAGE
-        = "org.scilab.modules.preferences.Component.";
-
-    /** Default size for spaces.
-    *
-    */
-    private static final int S_DIM = 5;
 
     /** Build component from scratch with its node description.
      *
@@ -285,155 +257,8 @@ public class XUpdateVisitor {
      * @return the built component
      */
     @SuppressWarnings("unchecked")
-	public final Component buildPeerFor(final Node node) {
-
-        String tag = node.getNodeName();
-        if (tag.equals("Scroll")) {
-            // Specific treatment for scrolls...
-            JPanel container = new JPanel();
-            return new Scroll(node, container);
-        }
-
-/*            if (tag.equals("HBox")) {
-                Box hbox = Box.createHorizontalBox();
-                XConfigManager.drawConstructionBorders(hbox);
-                XConfigManager.setDimension(hbox, node);
-                return hbox;
-            }
-            if (tag.equals("VBox")) {
-                Box vbox          = Box.createVerticalBox();
-                String background = XConfigManager.getAttribute(
-                   node,
-                   "background"
-                   );
-                if (!(background.equals(XConfigManager.NAV))) {
-                    Color color = XConfigManager.getColor(background);
-                    vbox.setOpaque(true);
-                    vbox.setBackground(color);
-                }
-                XConfigManager.drawConstructionBorders(vbox);
-                XConfigManager.setDimension(vbox, node);
-                return vbox;
-            }
-*/
-        //1. Find the class with the same name.
-        Class<Component> componentClass;
-        try {
-            componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);
-        } catch (ClassNotFoundException e) {
-            // Some classes are made directly
-            //  - here labels for text node.
-            if (tag.equals("#text")) {
-                String value = node.getNodeValue();
-                return new JLabel(value);
-            }
-            // - here boxes.
-                      
-            if (tag.equals("VSpace")) {
-                int height = XConfigManager.getInt(node, "height", S_DIM);
-                return Box.createVerticalStrut(height);
-                //return new JPanel();
-            }
-            if (tag.equals("HSpace")) {
-                int width = XConfigManager.getInt(node, "width", S_DIM);
-                return Box.createHorizontalStrut(width);
-		//return new JPanel();
-            }
-            if (tag.equals("Glue")) {
-		//return new JPanel();
-                return Box.createGlue();
-            }
-
-            // Declare failure due to class absence
-            return new XStub(node, "ClassNotFoundException");
-        }
-
-        //2. Find the constructor.
-        Constructor<Component> constructor;
-        try {
-                // First with a Node,
-                Class [] parameter = new Class[]{Node.class};
-                constructor = componentClass.getConstructor(parameter);
-        } catch (NoSuchMethodException e) {
-            try {
-                // then without anything.
-                constructor = componentClass.getConstructor(new Class[]{});
-            } catch (NoSuchMethodException f) {
-                // Declare failure due to constructor absence
-                System.err.println("NoSuchMethodException:" + f);
-                return new XStub(node, "NoSuchMethodException");
-            }
-        } catch (SecurityException e) {
-            // Declare failure due to constructor rights (it must be public)
-            System.err.println("SecurityException:" + e);
-            return new XStub(node, "SecurityException");
-        }
-
-        //3. Invoke the constructor.
-        Component component;
-        try {
-            component = (Component) constructor.newInstance(new Object[]{node});
-        } catch (InstantiationException e) {
-            System.err.println("InstantiationException:" + e);
-            return new XStub(node, "InstantiationException");
-        } catch (IllegalAccessException e) {
-            System.err.println("IllegalAccessException:" + e);
-            return new XStub(node, "IllegalAccessException");
-        } catch (IllegalArgumentException e) {
-            System.err.println("IllegalArgumentException:" + e);
-            return new XStub(node, "IllegalArgumentException");
-        } catch (InvocationTargetException e) {
-            System.err.println("InvocationTargetException:" + e.getTargetException());
-            e.getTargetException().printStackTrace();
-            return new XStub(node, "InvocationTargetException");
-        }
-        return component;
-    }
-}
-
-/** Graphical indication of what goes wrong in buildPeerFor(node).
- *
- */
-class XStub extends JPanel {
-    /** Serialization id.
-     *
-     */
-    private static final long serialVersionUID = -6540983459186007758L;
-
-    /** Default height.
-     *
-     */
-    private static final int D_HEIGHT = 50;
-
-    /** Default width.
-     *
-     */
-    private static final int D_WIDTH = 100;
-
-    /** Constructor.
-     * @param tag : class name source of the error
-     * @param cause : description of the error
-     *
-     */
-    public XStub(final Node node, final String cause) {
-        super();
-        Border       black  = BorderFactory.createLineBorder(Color.blue);
-        TitledBorder title  = BorderFactory.createTitledBorder(black, node.getNodeName());
-        Dimension dimension = new Dimension(D_WIDTH, D_HEIGHT);
-        setPreferredSize(dimension);
-        setOpaque(false);
-        XConfigManager.setDimension(this, node);
-
-        title.setTitleColor(Color.blue);
-        setBorder(title);
-        setLayout(new FlowLayout());
-    }
-
-    /** Output method.
-     * @return the string representation
-     */
-    public String toString() {
-        return "STUB";
+    public final Component buildPeerFor(final Node node) {
+        return ComponentFactory.getComponent(node);
     }
 }
 

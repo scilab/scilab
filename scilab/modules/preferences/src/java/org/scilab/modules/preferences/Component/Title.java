@@ -12,36 +12,39 @@
 
 package org.scilab.modules.preferences.Component;
 
-import org.scilab.modules.preferences.XComponent;
-import org.scilab.modules.preferences.XConfigManager;
-import javax.swing.JPanel;
-import org.w3c.dom.Node;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
-import java.awt.Color;
-import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
-// TODO ScilabSwing class for this?
+import org.w3c.dom.Node;
 
-/** Implementation of Title compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
-public class Title extends JPanel implements XComponent {
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
+
+/** 
+ * Implementation of Title compliant with extended management.
+ *
+ * @author Pierre GRADIT
+ *
+ */
+public class Title extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = 6183280975436648612L;
-
+    
     /** Define the set of actuators.
     *
     * @return array of actuator names.
     */
-    public final String [] actuators() {
-        String [] actuators = {};
-        return actuators;
+    public String[] actuators() {
+        return new String[]{};
     }
 
     /** Constructor.
@@ -49,9 +52,10 @@ public class Title extends JPanel implements XComponent {
     * @param peer : associated view DOM node.
     */
     public Title(final Node peer) {
-        super();
-        String       text  = XConfigManager.getAttribute(peer , "text");
+        super(peer);
+        String text = XConfigManager.getAttribute(peer, "text");
         TitledBorder title = BorderFactory.createTitledBorder(text);
+	title.setTitleFont(title.getTitleFont().deriveFont(Font.BOLD));
         setBorder(title);
         XConfigManager.setDimension(this, peer);
         setLayout(new BorderLayout());
@@ -62,24 +66,20 @@ public class Title extends JPanel implements XComponent {
             setOpaque(true);
             setBackground(color);
         }
-
     }
 
     /** Refresh the component by the use of actuators.
     *
     * @param peer the corresponding view DOM node
     */
-    public void refresh(final Node peer) {
-    }
+    public void refresh(final Node peer) { }
 
     /** Developer serialization method.
     *
     * @return equivalent signature.
     */
     public final String toString() {
-        String signature = "Title";
-
-        return signature;
+        return "Title";
     }
 }
 

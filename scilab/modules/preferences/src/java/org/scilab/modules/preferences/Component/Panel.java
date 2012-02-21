@@ -12,17 +12,21 @@
 
 package org.scilab.modules.preferences.Component;
 
-import org.scilab.modules.preferences.XComponent;
-import javax.swing.JPanel;
-import org.w3c.dom.Node;
-import org.scilab.modules.preferences.XConfigManager;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+import org.w3c.dom.Node;
+
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
 
 /** Implementation of Panel compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
+ *
+ * @author Pierre GRADIT
+ *
+ */
 public class Panel extends JPanel implements XComponent {
 
     /** Universal identifier for serialization.
@@ -30,38 +34,93 @@ public class Panel extends JPanel implements XComponent {
      */
     private static final long serialVersionUID = 3462302313959678932L;
 
+    protected boolean fixedHeight = true;
+    protected boolean fixedWidth = false;
+    private Dimension maxDim = new Dimension(0, 0);
+    private Dimension minDim = new Dimension(0, 0);
+
     /** Define the set of actuators.
      *
      * @return array of actuator names.
      */
-    public final String [] actuators() {
-        String [] actuators = {};
-        return actuators;
+    public String [] actuators() {
+        return new String[]{};
     }
 
     /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
+     *
+     * @param peer : associated view DOM node.
+     */
     public Panel(final Node peer) {
         super();
         setLayout(new BorderLayout());
         XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
+
+	String fixed = XConfigManager.getAttribute(peer, "fixed-width");
+	if (!(fixed.equals(XConfigManager.NAV))) {
+	    this.fixedWidth = fixed.equals("true");
+	}
+
+	fixed = XConfigManager.getAttribute(peer, "fixed-height");
+	if (!(fixed.equals(XConfigManager.NAV))) {
+	    this.fixedHeight = fixed.equals("true");
+	}
+
+	//setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GREEN));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Dimension getMaximumSize() {
+        Dimension max = super.getMaximumSize();
+        if (fixedHeight) {
+            maxDim.height = getPreferredSize().height;
+        } else {
+	    maxDim.height = max.height;
+	}
+
+        if (fixedWidth) {
+            maxDim.width = getPreferredSize().width;
+        } else {
+	    maxDim.width = max.width;
+	}
+	
+        return maxDim;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Dimension getMinimumSize() {
+        Dimension min = super.getMinimumSize();
+        if (fixedHeight) {
+            minDim.height = getPreferredSize().height;
+        } else {
+	    minDim.height = min.height;
+	}
+
+        if (fixedWidth) {
+            minDim.width = getPreferredSize().width;
+        } else {
+	    minDim.width = min.width;
+	}
+	
+        return minDim;
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public void refresh(final Node peer) {
     }
 
     /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
-    public final String toString() {
+     *
+     * @return equivalent signature.
+     */
+    public String toString() {
         String signature = "Panel";
 
         return signature;

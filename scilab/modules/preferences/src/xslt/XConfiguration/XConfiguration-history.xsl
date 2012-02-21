@@ -6,8 +6,8 @@
   <xsl:template match="history-save">
     <Title text="Saving">
       <VBox>
-        <HBox>
-          <Radiobutton listener="ActionListener" text="Save after">
+        <Grid>
+          <Radiobutton gridx="1" gridy="1" weightx="0" anchor="baseline" listener="ActionListener" text="Save after ">
             <xsl:if test="@kind='save'">
               <xsl:attribute name="checked">checked</xsl:attribute>
             </xsl:if>
@@ -15,12 +15,8 @@
               <xsl:call-template name="context"/>
             </actionPerformed>
           </Radiobutton>
-
-          <xsl:variable name="enable">
-          </xsl:variable>
-          <xsl:call-template name="Select">
-            <xsl:with-param name="enable">
-              <xsl:choose>
+	  <xsl:variable name="enable">
+	      <xsl:choose>
                 <xsl:when test="@kind='save'">
                   <xsl:text>true</xsl:text>
                 </xsl:when>
@@ -28,22 +24,24 @@
                   <xsl:text>false</xsl:text>
                 </xsl:otherwise>
               </xsl:choose>
-            </xsl:with-param>
-            <xsl:with-param name="among">
-              <option after="1"/>
-              <option after="2"/>
-              <option after="4"/>
-              <option after="8"/>
-              <option after="16"/>
-              <option after="32"/>
-              <option after="64"/>
-              <option after="128"/>
-              <option after="256"/>
-            </xsl:with-param>
-          </xsl:call-template>
-          command(s)
-          <Glue/>
-        </HBox>
+	  </xsl:variable>
+	  <NumericalSpinner gridx="2"
+			    gridy="1"
+			    weightx="0"
+			    anchor="baseline"
+			    min-value="0"
+			    increment="100"
+			    length="5"
+			    listener="ActionListener"
+			    value="{@after}"
+			    enable="{$enable}">
+	    <actionPerformed choose="after">
+	      <xsl:call-template name="context"/>
+	    </actionPerformed>
+	  </NumericalSpinner>
+	  <Label gridx="3" gridy="1" weightx="0" anchor="baseline" text=" command(s)" enable="{$enable}"/>
+	  <Panel gridx="4" gridy="1"/>
+        </Grid>
         <HBox>
           <Radiobutton listener="ActionListener" text="Save history file on quit">
             <xsl:if test="@kind='quit'">

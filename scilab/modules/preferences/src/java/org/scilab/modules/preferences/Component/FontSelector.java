@@ -12,6 +12,7 @@
 
 package org.scilab.modules.preferences.Component;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +39,7 @@ import org.scilab.modules.preferences.XConfigManager;
  * @author Calixte DENIZET
  *
  */
-public class FontSelector extends JPanel implements XComponent, XChooser {
+public class FontSelector extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -46,6 +47,7 @@ public class FontSelector extends JPanel implements XComponent, XChooser {
     private static final long serialVersionUID = -4842434795956015959L;
     private ActionListener actionListener;
     private JTextField textField;
+    private JButton button;
     private Font font = new Font("Monospaced", Font.PLAIN, 12);
     private int defaultSize;
 
@@ -54,7 +56,7 @@ public class FontSelector extends JPanel implements XComponent, XChooser {
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        return new String[]{"font-name", "font-face", "font-size"};
+        return new String[]{"font-name", "font-face", "font-size", "enable"};
     }
 
     /** Constructor.
@@ -62,15 +64,15 @@ public class FontSelector extends JPanel implements XComponent, XChooser {
      * @param peer : associated view DOM node.
      */
     public FontSelector(final Node peer) {
-        super();
-	GroupLayout layout = new GroupLayout(this);
-	setLayout(layout);
-	
+        super(peer);
+        GroupLayout layout = new GroupLayout(this);
+        setLayout(layout);
+
         textField = new JTextField();
         defaultSize = textField.getFont().getSize();
         textField.setEditable(false);
 
-        JButton button = new JButton("...");
+        button = new JButton("...");
         button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     JFrame frame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, FontSelector.this);
@@ -89,8 +91,11 @@ public class FontSelector extends JPanel implements XComponent, XChooser {
                 }
             });
 
-	layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(textField).addComponent(button));
-	layout.setVerticalGroup(layout.createParallelGroup().addComponent(textField).addComponent(button));
+        layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(textField).addComponent(button));
+        layout.setVerticalGroup(layout.createParallelGroup().addComponent(textField).addComponent(button));
+
+	setRequestFocusEnabled(true);
+        setFocusable(true);
 
         String fontname = XConfigManager.getAttribute(peer , "font-name");
         fontname(fontname);
@@ -127,8 +132,13 @@ public class FontSelector extends JPanel implements XComponent, XChooser {
             fontsize(fontsize);
         }
 
-        setRequestFocusEnabled(true);
-        setFocusable(true);
+        String enable = XConfigManager.getAttribute(peer , "enable", "true");
+        textField.setEnabled(enable.equals("true"));
+        button.setEnabled(enable.equals("true"));
+    }
+
+    public Dimension getMaximumSize() {
+        return getPreferredSize();
     }
 
     /** Sensor for 'font-size' attribute.

@@ -31,20 +31,21 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import org.scilab.modules.preferences.XChooser;
-import org.scilab.modules.preferences.XCommonManager;
-import org.scilab.modules.preferences.XComponent;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XCommonManager;
+import org.scilab.modules.preferences.XComponent;
+
+
 /** Implementation of Select compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
-public class Table extends JPanel implements XComponent, XChooser, ListSelectionListener, ActionListener {
+ *
+ * @author Pierre GRADIT
+ *
+ */
+public class Table extends Panel implements XComponent, XChooser, ListSelectionListener, ActionListener {
 
     /** Universal identifier for serialization.
      *
@@ -52,27 +53,18 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     private static final long serialVersionUID = -6127289363733321914L;
 
     private final CustomTableCellRenderer customTableCellRenderer = new CustomTableCellRenderer();
-    
-    /** Define the set of actuators.
-    *
-    * @return array of actuator names.
-    */
-    public final String [] actuators() {
-        String [] actuators = {"item"};
-        return actuators;
-    }
-    Model model;
-    JTable table;
-    JScrollPane scrollPane;
+    private Model model;
+    private JTable table;
+    private JScrollPane scrollPane;
 
     /** The attribute column indicates which column has to be chosen.
-    *    if this attribute is not set, the chosen value is the selected index (as a string).
-    */
-    String column;
+     *    if this attribute is not set, the chosen value is the selected index (as a string).
+     */
+    private String column;
 
     //begin Dynamic_controller
     // TODO separate class.
-    ImageIcon icons[] = {
+    private ImageIcon icons[] = {
         new ImageIcon(Icon.SCILAB_XICONS + "list-add.png"),
         new ImageIcon(Icon.SCILAB_XICONS + "go-up.png"),
         new ImageIcon(Icon.SCILAB_XICONS + "media-playback-stop.png"),
@@ -93,6 +85,46 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         true,
         true
     };
+
+    /** Constructor.
+     *
+     * @param peer : associated view DOM node.
+     */
+    public Table(final Node peer) {
+        super(peer);
+        model = new Model(peer);
+        table = new JTable (model);
+        table.setFillsViewportHeight(true);
+
+        table.getSelectionModel().addListSelectionListener(this);
+        table.getTableHeader().setReorderingAllowed(false);
+        setupOpenMask(peer);
+        setupControls(peer);
+
+        column = XCommonManager.getAttribute(peer , "column");
+
+        if (XCommonManager.getAttribute(peer , "mode").equals("select")) {
+            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
+
+        if (XCommonManager.getAttribute(peer , "mode").equals("cell")) {
+            table.setCellSelectionEnabled(true);
+            table.setColumnSelectionAllowed(false);
+            table.setRowSelectionAllowed(true);
+        }
+        //checkContent();
+        scrollPane = new JScrollPane(table);
+        this.add(scrollPane);
+    }
+
+    /** Define the set of actuators.
+     *
+     * @return array of actuator names.
+     */
+    public final String [] actuators() {
+        String [] actuators = {"item"};
+        return actuators;
+    }
 
     public void setupOpenMask(Node peer) {
         if (XCommonManager.getAttribute(peer , "location").equals("fixed")) {
@@ -149,7 +181,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
                 actionListener.actionPerformed(transmit);
             }
             break;
-        case 1: 
+        case 1:
             // Move row upper
             break;
         case 2:
@@ -161,65 +193,34 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         case 3: break;
         case 4:
             // Delete row
-                System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
+            System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
             if (actionListener != null) {
                 ActionEvent transmit  = new ActionEvent(this, 0,"tableDel", e.getWhen(), 0);
                 actionListener.actionPerformed(transmit);
             }
-        break;
+            break;
         }
     }
     //end Dynamic_controller
-    
+
     private final class CustomTableCellRenderer extends DefaultTableCellRenderer{
-        public Component getTableCellRendererComponent (JTable table, 
-                Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
+        public Component getTableCellRendererComponent (JTable table,
+                                                        Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
             Component cell = super.getTableCellRendererComponent(table, obj, isSelected, hasFocus, row, column);
             if (obj instanceof java.awt.Color) {
-                    cell.setBackground((java.awt.Color) obj);
-                    cell.setForeground((java.awt.Color) obj);
-            } 
-       
+                cell.setBackground((java.awt.Color) obj);
+                cell.setForeground((java.awt.Color) obj);
+            }
+
             return cell;
         }
     }
 
-    /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
-    public Table(final Node peer) {
-        super(new BorderLayout());
-        model        = new Model(peer);
-        table        = new JTable (model);
-        table.setFillsViewportHeight(true);
-       
-        table.getSelectionModel().addListSelectionListener(this);
-        table.getTableHeader().setReorderingAllowed(false);
-        setupOpenMask(peer);
-        setupControls(peer);
-
-        column = XCommonManager.getAttribute(peer , "column");
-
-        if (XCommonManager.getAttribute(peer , "mode").equals("select")) {
-            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        }
-
-        if (XCommonManager.getAttribute(peer , "mode").equals("cell")) {
-            table.setCellSelectionEnabled(true);
-            table.setColumnSelectionAllowed(false);
-            table.setRowSelectionAllowed(true);
-        }
-        //checkContent();
-        scrollPane = new JScrollPane(table);
-        this.add(scrollPane);
-    }
-    
     public void addTableModelListener(TableModelListener listener) {
         model.addTableModelListener(listener);
         addActionListener((ActionListener) listener);
     }
-    
+
     @SuppressWarnings("unused")
     private void checkContent() {
         for (int j = 0; j < model.getColumnCount(); j++) {
@@ -238,9 +239,9 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public final void refresh(final Node peer) {
         model.setNodeList(peer.getChildNodes());
         String item = XCommonManager.getAttribute(peer , "item", "-1");
@@ -255,14 +256,14 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     }
 
     /** Row selection management.
-    *
-    */
+     *
+     */
     private ActionListener actionListener = null;
 
     /** Actual response read by the listener.
-    *
-    * @return the chosen value.
-    */
+     *
+     * @return the chosen value.
+     */
     public final Object choose() {
         if (! column.equals(XCommonManager.NAV)) {
             int row      = table.getSelectedRow();
@@ -281,7 +282,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     }
 
     boolean externalChange;
-    
+
     public void valueChanged(ListSelectionEvent e) {
         //table.valueChanged(e);
         if (externalChange) {
@@ -292,19 +293,19 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
             }
         }
     }
-    
+
     /** Sensor for 'item' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String item() {
         return "" + (table.getSelectedRow() + 1);
     }
 
     /** Actuator for 'item' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void item(final String item) {
         int selectedRow = Integer.parseInt(item);
         externalChange  = false;
@@ -316,16 +317,16 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     }
 
     /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
+     *
+     * @return equivalent signature.
+     */
     public final String toString() {
         String signature = "Table ...";
         return signature;
     }
 
     /** Enrich action description with event and model information.
-     * 
+     *
      * @param event embeds the description of interaction in view
      * @param action embeds the description of interaction in model
      */
@@ -358,7 +359,7 @@ class Model extends AbstractTableModel {
      *
      */
     private static final long serialVersionUID = -4786321481195930071L;
-    
+
     /** Data source.
      *
      */
@@ -367,7 +368,7 @@ class Model extends AbstractTableModel {
     public Model(Node peer) {
         setNodeList(peer.getChildNodes());
     }
-    
+
     /** Set a new root for value scanning.
      *
      * @param input is the data source
@@ -401,17 +402,17 @@ class Model extends AbstractTableModel {
     }
 
     /** browse DOM model.
-    *
-    * @return tablePrototype DOM node
-    */
-   public Node getPrototypeRecord() {
-       for (int i = 0; i < nodelist.getLength(); i++) {
-           Node node = nodelist.item(i);
-           if (node.getNodeName().equals("tablePrototype")) {
-               return node;
-           }
-       }
-       return null;
+     *
+     * @return tablePrototype DOM node
+     */
+    public Node getPrototypeRecord() {
+        for (int i = 0; i < nodelist.getLength(); i++) {
+            Node node = nodelist.item(i);
+            if (node.getNodeName().equals("tablePrototype")) {
+                return node;
+            }
+        }
+        return null;
     }
 
     /** browse DOM model.
@@ -502,7 +503,7 @@ class Model extends AbstractTableModel {
     public boolean isCellEditable(final int row, final int col) {
         Node record  = getColumnRecord(col);
         String value = XCommonManager.getAttribute(
-                       record , "editable", "false");
+            record , "editable", "false");
         return value == "true";
     }
 

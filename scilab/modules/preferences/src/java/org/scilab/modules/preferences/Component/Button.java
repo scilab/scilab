@@ -14,11 +14,12 @@ package org.scilab.modules.preferences.Component;
 
 import javax.swing.JButton;
 
+import org.w3c.dom.Node;
+
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
-import org.w3c.dom.Node;
 
 /** Implementation of Button compliant with extended management.
  *
@@ -51,6 +52,9 @@ public class Button extends JButton implements XComponent {
      */
     public Button(final Node peer) {
         super();
+	setRequestFocusEnabled(true);
+        setFocusable(true);
+
         refresh(peer);
     }
 

@@ -47,7 +47,6 @@ public class Scroll extends JScrollPane implements XComponent {
         insideContainer.setLayout(new BorderLayout());
         setMinimumSize(new Dimension(200,200));
         XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
     }
 
    /** Define the set of actuators.

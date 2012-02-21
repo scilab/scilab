@@ -54,7 +54,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        return new String[]{"length", "increment", "min-value", "max-value", "value", "tooltip"};
+        return new String[]{"length", "increment", "min-value", "max-value", "value", "tooltip", "enable"};
     }
 
     /** Constructor.
@@ -67,23 +67,26 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
         setModel(spinnerModel);
         addChangeListener(this);
 
-        String length = XConfigManager.getAttribute(peer , "length");
+        String length = XConfigManager.getAttribute(peer, "length");
         length(length);
 
-        String increment = XConfigManager.getAttribute(peer , "increment");
+        String increment = XConfigManager.getAttribute(peer, "increment");
         increment(increment);
 
-        String tooltip = XConfigManager.getAttribute(peer , "tooltip");
+        String tooltip = XConfigManager.getAttribute(peer, "tooltip");
         tooltip(tooltip);
 
-        String minvalue = XConfigManager.getAttribute(peer , "min-value");
+        String minvalue = XConfigManager.getAttribute(peer, "min-value");
         minvalue(minvalue);
 
-        String maxvalue = XConfigManager.getAttribute(peer , "max-value");
+        String maxvalue = XConfigManager.getAttribute(peer, "max-value");
         maxvalue(maxvalue);
 
-        String value = XConfigManager.getAttribute(peer , "value");
+        String value = XConfigManager.getAttribute(peer, "value");
         value(value);
+
+        String enable = XConfigManager.getAttribute(peer, "enable", "true");
+        setEnabled(enable.equals("true"));
     }
 
     /** Refresh the component by the use of actuators.
@@ -91,35 +94,38 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      * @param peer the corresponding view DOM node
      */
     public void refresh(final Node peer) {
-        String length = XConfigManager.getAttribute(peer , "length");
+        String length = XConfigManager.getAttribute(peer, "length");
         if (!length.equals(length())) {
             length(length);
         }
 
-        String increment = XConfigManager.getAttribute(peer , "increment");
+        String increment = XConfigManager.getAttribute(peer, "increment");
         if (!increment.equals(increment())) {
             increment(increment);
         }
 
-        String tooltip = XConfigManager.getAttribute(peer , "tooltip");
+        String tooltip = XConfigManager.getAttribute(peer, "tooltip");
         if (!tooltip.equals(tooltip())) {
             tooltip(tooltip);
         }
 
-        String minvalue = XConfigManager.getAttribute(peer , "min-value");
+        String minvalue = XConfigManager.getAttribute(peer, "min-value");
         if (!minvalue.equals(minvalue())) {
             minvalue(minvalue);
         }
 
-        String maxvalue = XConfigManager.getAttribute(peer , "max-value");
+        String maxvalue = XConfigManager.getAttribute(peer, "max-value");
         if (!maxvalue.equals(maxvalue())) {
             maxvalue(maxvalue);
         }
 
-        String value = XConfigManager.getAttribute(peer , "value");
+        String value = XConfigManager.getAttribute(peer, "value");
         if (!value.equals(value())) {
             value(value);
         }
+
+        String enable = XConfigManager.getAttribute(peer, "enable", "true");
+        setEnabled(enable.equals("true"));
 
         setRequestFocusEnabled(true);
         setFocusable(true);

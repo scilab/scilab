@@ -28,7 +28,7 @@ import java.awt.Component;
 * @author Pierre GRADIT
 *
 */
-public class VBox extends JPanel implements XComponent {
+public class VBox extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *
@@ -49,11 +49,9 @@ public class VBox extends JPanel implements XComponent {
     * @param peer : associated view DOM node.
     */
     public VBox(final Node peer) {
-        super();
+        super(peer);
         BoxLayout box = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         setLayout(box);
-        XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
         refresh(peer);
     }
 
@@ -62,7 +60,8 @@ public class VBox extends JPanel implements XComponent {
     */
     public void add(Component child, Object constraints, int index) {
         if (child instanceof JComponent) {
-            ((JComponent)child).setAlignmentX(TOP_ALIGNMENT);
+	    ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
+            ((JComponent)child).setAlignmentY(TOP_ALIGNMENT);
         }
         super.add(child, constraints, index);
     }
@@ -72,7 +71,8 @@ public class VBox extends JPanel implements XComponent {
     */
     public void add(Component child, Object constraints) {
         if (child instanceof JComponent) {
-            ((JComponent)child).setAlignmentX(TOP_ALIGNMENT);
+	    ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
+            ((JComponent) child).setAlignmentY(TOP_ALIGNMENT);
         }
         super.add(child, constraints);
     }

@@ -40,9 +40,6 @@ public class XCosPreview extends JLabel implements XComponent {
     */
     public XCosPreview(final Node peer) {
         super();
-        //setLayout(new BorderLayout());
-        //XConfigManager.setDimension(this, peer);
-        //XConfigManager.drawConstructionBorders(this);
     }
 
     /** Refresh the component by the use of actuators.

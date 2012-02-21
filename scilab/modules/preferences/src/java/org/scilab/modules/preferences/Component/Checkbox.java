@@ -47,6 +47,9 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     public Checkbox(final Node peer) {
         super();
         setOpaque(false);
+	setRequestFocusEnabled(true);
+	setFocusable(true);
+	
         refresh(peer);
     }
 
@@ -64,7 +67,6 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
         if (!checked.equals(checked())) {
             checked(checked);
         }
-
     }
 
     /** Sensor for 'text' attribute.

@@ -12,74 +12,57 @@
 
 package org.scilab.modules.preferences.Component;
 
-import org.scilab.modules.preferences.XComponent;
-
-
-import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
-import org.w3c.dom.Node;
-import org.scilab.modules.preferences.XConfigManager;
-import java.awt.BorderLayout;
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.ScilabEditorKit;
-
-import javax.swing.text.DefaultCaret;
-import org.scilab.modules.scinotes.KeywordAdaptater;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import javax.swing.BorderFactory;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.KeywordEvent;
-import org.scilab.modules.scinotes.ScilabLexerConstants;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.scilab.modules.preferences.XChooser;
-import java.awt.Color;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JScrollPane;
+import javax.swing.text.DefaultCaret;
+
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
+import org.scilab.modules.scinotes.KeywordAdaptater;
+import org.scilab.modules.scinotes.KeywordEvent;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.ScilabEditorKit;
+import org.scilab.modules.scinotes.ScilabLexerConstants;
+
 /** Implementation of Panel compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
-public class PreviewCode extends JPanel implements XComponent, XChooser {
+ *
+ * @author Pierre GRADIT
+ *
+ */
+public class PreviewCode extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = 3462302313959678932L;
-
     private static final int GAP = 5;
 
-    /** Define the set of actuators.
-     *
-     * @return array of actuator names.
-     */
-    public final String [] actuators() {
-        String [] actuators = {};
-        return actuators;
-    }
-
-
-    final ScilabEditorPane previewEditorPane;
+    private final ScilabEditorPane previewEditorPane;
 
     /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
+     *
+     * @param peer : associated view DOM node.
+     */
     public PreviewCode(final Node peer) {
-        super();
-        setLayout(new BorderLayout());
-        XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
-
-
-        JPanel previewPanel = new JPanel(new BorderLayout(GAP, GAP));
-        previewEditorPane   = new ScilabEditorPane(null);
-        previewPanel.setBorder(BorderFactory.createTitledBorder(SciNotesMessages.PREVIEW));
+        super(peer);
+        fixedHeight = false;
+        previewEditorPane = new ScilabEditorPane(null);
         previewEditorPane.setEditorKit(new ScilabEditorKit());
+        previewEditorPane.resetFont(new Font("Monospaced", Font.PLAIN, 12));
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
             + "// Email: <scilab.support@scilab.org>\n"
             + "// Scilab editor: http://www.scilab.org/\n"
+            + "//\n"
+            + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
             + "function [a, b] = myfunction(d, e, f)\n"
             + "\ta = 2.71828 + %pi + f($, :);\n"
             + "\tb = cos(a) + cosh(a);\n"
@@ -92,15 +75,12 @@ public class PreviewCode extends JPanel implements XComponent, XChooser {
             + "\tmyvar = 1.23e-45;\n"
             + "endfunction";
         previewEditorPane.setText(codeSample);
-        //previewEditorPane.setBackground(bgColorButton.getBackground());
-        //previewEditorPane.setFont(ConfigSciNotesManager.getFont());
         previewEditorPane.setCaret(new DefaultCaret() {
                 public void mouseDragged(MouseEvent e) {
                     e.consume();
                 }
             });
         previewEditorPane.getCaret().setBlinkRate(500);
-        //previewEditorPane.setCaretColor(fgColorButton.getBackground());
         previewEditorPane.getCaret().setVisible(true);
         previewEditorPane.setEditable(false);
         previewEditorPane.addKeywordListener(new KeywordAdaptater.MouseOverAdaptater() {
@@ -113,39 +93,68 @@ public class PreviewCode extends JPanel implements XComponent, XChooser {
                     PreviewCode.this.keywordClicked(e);
                 }
             });
-        previewPanel.add(previewEditorPane, BorderLayout.CENTER);
-        add(previewPanel);
+        JScrollPane scrollPane = new JScrollPane(previewEditorPane);
+        previewEditorPane.setRequestFocusEnabled(true);
+        previewEditorPane.setFocusable(true);
+
+        add(scrollPane);
+    }
+
+    /** Define the set of actuators.
+     *
+     * @return array of actuator names.
+     */
+    public final String [] actuators() {
+        String [] actuators = {};
+        return actuators;
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public void refresh(final Node peer) {
-        System.out.println(" " + peer);
         NodeList nodelist = peer.getChildNodes();
         for (int i = 0; i < nodelist.getLength(); i++) {
-            Node node     = nodelist.item(i);
+            Node node = nodelist.item(i);
             if (node.getNodeName().equals("tableRow")) {
-                String name   = XConfigManager.getAttribute(node , "name");
+                String name = XConfigManager.getAttribute(node , "name");
                 String xColor = XConfigManager.getAttribute(node , "color");
-                Color color   = XConfigManager.getColor(xColor);
+                Color color = XConfigManager.getColor(xColor);
                 previewEditorPane.resetColor(name, color);
+                int style = 0;
+                if (XConfigManager.getAttribute(node , "underline").equals("true")) {
+                    style = 1;
+                }
+                if (XConfigManager.getAttribute(node , "strike-through").equals("true")) {
+                    style += 2;
+                }
+                previewEditorPane.resetAttribute(name, style);
+                int bold = -1;
+                if (XConfigManager.getAttribute(node , "bold").equals("true")) {
+                    bold = 1;
+                }
+                int italic = -2;
+                if (XConfigManager.getAttribute(node , "italic").equals("true")) {
+                    italic = 2;
+                }
+                previewEditorPane.resetFont(name, bold);
+                previewEditorPane.resetFont(name, italic);
             }
         }
         previewEditorPane.repaint();
     }
 
     /** Row selection management.
-    *
-    */
+     *
+     */
     private ActionListener actionListener = null;
     String chosenItem;
 
     /** Actual response read by the listener.
-    *
-    * @return index of the selected line.
-    */
+     *
+     * @return index of the selected line.
+     */
     public final Object choose() {
         return chosenItem;
     }
@@ -154,8 +163,7 @@ public class PreviewCode extends JPanel implements XComponent, XChooser {
         if (actionListener != null) {
             int choosedIndex = e.getType();
             chosenItem = ScilabLexerConstants.getStringRep(choosedIndex);
-            ActionEvent transmit  = new ActionEvent(
-                 this, 0,"Keyword changed", choosedIndex, 0);
+            ActionEvent transmit  = new ActionEvent(this, 0,"Keyword changed", System.currentTimeMillis(), 0);
             actionListener.actionPerformed(transmit);
         }
     }
@@ -168,15 +176,10 @@ public class PreviewCode extends JPanel implements XComponent, XChooser {
     }
 
     /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
+     *
+     * @return equivalent signature.
+     */
     public final String toString() {
-        String signature = "PreviewCode";
-
-        return signature;
+        return "PreviewCode";
     }
-
-
 }
-
