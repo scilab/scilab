@@ -446,7 +446,7 @@ msgstr ""
 #
 # File: macros/atomsCheckModule.sci, line: 114
 #, c-format
-msgid "%s: Module %s does not exist in current repostories.\n"
+msgid "%s: Module %s does not exist in current repositories.\n"
 msgstr ""
 
 #

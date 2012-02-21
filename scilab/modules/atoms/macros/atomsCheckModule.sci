@@ -111,7 +111,7 @@ function isok = atomsCheckModule(modulenames, verbose)
     modulename = modulenames(k);
     r = atomsSearch(modulename);
     if grep(r(:, 1), modulename)  == [] then
-      error(msprintf(gettext("%s: Module %s does not exist in current repostories.\n"), "atomsCheckModule", modulename));
+      error(msprintf(gettext("%s: Module %s does not exist in current repositories.\n"), "atomsCheckModule", modulename));
     end
   end  
   
