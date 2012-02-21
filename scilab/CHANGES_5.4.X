@@ -35,7 +35,7 @@ Help
 Xcos
 ====
 
-* Major performance improvements on the simulation startup. On big schemas, 
+* Major performance improvements on the simulation startup. On big schemas,
   the gain is very important (minutes to milliseconds).
 
 * New examples are provided in the documentation for the blocks:
@@ -234,11 +234,11 @@ Bug fixes
 
 * Bug #9643 fixed - genetic algorithms demo was not vectorized.
 
-* Bug #9654 fixed - an example of 'optim' help was poorly implemented. 
+* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
 
 * Bug #9700 fixed - optim help page had a mistake about bounds management.
 
-* Bug #9734 fixed - intsplin help pages moved from interpolation to 
+* Bug #9734 fixed - intsplin help pages moved from interpolation to
                     elementary functions chapter.
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
@@ -400,6 +400,8 @@ Bug fixes
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
 * Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
+* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
