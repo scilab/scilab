@@ -1,20 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<xsl:stylesheet
-    version ="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    >
+<xsl:stylesheet version ="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:import href="XCommon.xsl"/>
+  <xsl:import href="XCommon-toolbars.xsl"/>
   <xsl:import href="XGeneric.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-general.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-font.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-colors.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-console.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-history.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-scinotes.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-variables.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-xcos.xsl"/>
-  <xsl:import href="XConfiguration/XConfiguration-toolbars.xsl"/>
 
   <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
        ::

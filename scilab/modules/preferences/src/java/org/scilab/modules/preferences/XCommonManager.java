@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 -         Pierre GRADIT
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,10 +20,15 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.File;
+import java.io.FilenameFilter;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -49,6 +55,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.localization.Messages;
@@ -117,6 +124,13 @@ public abstract class XCommonManager {
      * XSL Transformer.
      */
     protected static Transformer transformer = null;
+
+    private static final String SCI = System.getenv("SCI");
+
+    /** Scilab configuration file.*/
+    private static final String SCILAB_CONFIG_FILE = SCI + "/modules/preferences/etc/XConfiguration.xml";
+
+    private static String XSLCODE;
 
     /**
      * Monitor time between calls.
@@ -218,12 +232,117 @@ public abstract class XCommonManager {
         return swingComposite(topSwing, "");
     }
 
+    private static List<File> getEtcDir() {
+        List<File> list = new ArrayList<File>();
+        File modulesDir = new File(SCI + "/modules/");
+        File[] modules = modulesDir.listFiles(new FileFilter() {
+                public boolean accept(File f) {
+                    return f.isDirectory();
+                }
+            });
+
+        for (File module : modules) {
+            File etc = new File(module, "/etc/");
+            if (etc.exists() && etc.isDirectory()) {
+                list.add(etc);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * Create a XSL string in using the XConfiguration-*.xsl found in SCI/modules/MODULE_NAME/etc/
+     * @return the buit XSL string.
+     */
+    protected static String createXSLFile() {
+        if (XSLCODE == null) {
+            List<File> etcs = getEtcDir();
+
+            StringBuilder buffer = new StringBuilder("<?xml version='1.0' encoding='utf-8'?>\n");
+            buffer.append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n");
+            buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
+
+            for (File etc : etcs) {
+                File[] xsls = etc.listFiles(new FilenameFilter() {
+                        public boolean accept(File dir, String name) {
+                            return name.endsWith(".xsl") && name.startsWith("XConfiguration");
+                        }
+                    });
+                for (File xsl : xsls) {
+                    try {
+                        buffer.append("<xsl:import href=\"").append(xsl.getCanonicalPath()).append("\"/>\n");
+                    } catch (IOException e) {
+                        buffer.append("<xsl:import href=\"").append(xsl.getAbsolutePath()).append("\"/>\n");
+                    }
+                }
+            }
+            buffer.append("</xsl:stylesheet>");
+
+            XSLCODE = buffer.toString();
+        }
+
+        return XSLCODE;
+    }
+
+    /**
+     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
+     * @return the built document
+     */
+    protected static Document createDocument() {
+        DocumentBuilder docBuilder;
+        DocumentBuilderFactory factory;
+        Document mainDoc;
+
+        try {
+            factory = ScilabDocumentBuilderFactory.newInstance();
+            docBuilder = factory.newDocumentBuilder();
+            mainDoc = docBuilder.parse(SCILAB_CONFIG_FILE);
+        } catch (ParserConfigurationException pce) {
+            System.err.println("Cannot create a XML DocumentBuilder:\n" + pce);
+            return null;
+        } catch (SAXException se) {
+            System.err.println("Weird... Cannot parse basic file:\n" + se);
+            return null;
+        } catch (IOException ioe) {
+            System.err.println("Weird... Cannot parse basic file:\n" + ioe);
+            return null;
+        }
+
+        Element root = mainDoc.getDocumentElement();
+
+        List<File> etcs = getEtcDir();
+        for (File etc : etcs) {
+            File[] xmls = etc.listFiles(new FilenameFilter() {
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".xml") && name.startsWith("XConfiguration-");
+                    }
+                });
+            for (File xml : xmls) {
+                try {
+                    Document doc = docBuilder.parse(xml);
+                    Node node = mainDoc.importNode(doc.getDocumentElement(), true);
+                    NodeList list = root.getElementsByTagName(node.getNodeName());
+                    if (list.getLength() != 0) {
+                        root.replaceChild(node, list.item(0));
+                    }
+                } catch (SAXException se) {
+                    System.err.println(ERROR_READ + xml.getName());
+                } catch (IOException ioe) {
+                    System.err.println(ERROR_READ + xml.getName());
+                }
+            }
+        }
+
+        return mainDoc;
+    }
+
     /**
      * Load XSL as XSL Transformer.
      */
     protected static void reloadTransformer(String address) {
         try {
-            StreamSource source = new StreamSource(address);
+            StreamSource source = new StreamSource(new StringReader(createXSLFile()));
             transformer = factory.newTransformer(source);
         } catch (TransformerConfigurationException e1) {
             System.err.println(ERROR_READ + address);
@@ -601,15 +720,16 @@ public abstract class XCommonManager {
      * Read the file to modify
      */
     protected static Document readDocument(final String fileName) {
-        File xml = null;
+        File xml = new File(fileName);
+        if (!xml.exists()) {
+            return createDocument();
+        }
+
         DocumentBuilder docBuilder = null;
 
         try {
             DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
             docBuilder = factory.newDocumentBuilder();
-
-            // lecture du contenu d'un fichier XML avec DOM
-            xml = new File(fileName);
             return docBuilder.parse(xml);
         } catch (ParserConfigurationException pce) {
             System.err.println(ERROR_READ + fileName);
@@ -624,7 +744,7 @@ public abstract class XCommonManager {
     /**
      * Save the modifications
      */
-    protected static void writeDocument(String filename,  Node written) {
+    protected static void writeDocument(String filename, Node written) {
         Transformer transformer = null;
         try {
             transformer = ScilabTransformerFactory.newInstance().newTransformer();

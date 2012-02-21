@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<general>
+  <body>
+    <environment floating-point-exception="Produces a warning" printing-format="long" width="10"/>
+    <java-heap-memory heap-size="128"/>
+  </body>
+  <confirmation-dialogs>
+    <body>
+      <tools order="ascending">
+        <tool state="checked" name="Scinotes" description="Prompt"/>
+        <tool state="unchecked" name="Console" description="Warn before clearing the Console"/>
+        <tool state="checked" name="Command History" description="Warn before deleting Command History items"/>
+      </tools>
+    </body>
+  </confirmation-dialogs>
+  <shortcuts>
+    <body>
+      <actions active="scilab" browse="--choose a file --" filter="">
+        <action-folder name="Console" state="open">
+          <action ctrl="E" description="Execute..."/>
+          <action ctrl="N" description="New..."/>
+          <action ctrl="O" description="Open a file"/>
+        </action-folder>
+        <action-folder name="Scinotes" state="close">
+          <action ctrl="A" description="Abort..."/>
+          <action ctrl="B" description="Battle"/>
+          <action ctrl="C" description="Copy"/>
+          <action ctrl="D" description="Delete"/>
+          <action ctrl="E" description="Erase..."/>
+          <action ctrl="F" description="Flush"/>
+          <action ctrl="G" description="Giggle..."/>
+          <action ctrl="H" description="Help"/>
+          <action ctrl="I" description="Ignite"/>
+        </action-folder>
+      </actions>
+    </body>
+  </shortcuts>
+</general>
