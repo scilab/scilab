@@ -28,7 +28,7 @@ import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 import java.util.ArrayList;
@@ -199,7 +199,7 @@ public class Axes extends GraphicObject {
         }
 
         @Override
-        public void accept(IVisitor visitor) {
+        public void accept(Visitor visitor) {
             visitor.visit(this);
         }
 

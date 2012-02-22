@@ -12,7 +12,7 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -111,7 +111,7 @@ public class Text extends ClippableTextObject {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

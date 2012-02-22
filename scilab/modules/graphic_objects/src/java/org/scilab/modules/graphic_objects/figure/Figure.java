@@ -33,7 +33,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEWPORT__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 /**
  * Figure class
  * @author Manuel JULIACHS
@@ -379,7 +379,7 @@ public class Figure extends GraphicObject {
     }
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

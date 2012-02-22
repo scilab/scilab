@@ -22,7 +22,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * @author Vincent COUVERT
@@ -272,9 +272,9 @@ public class Uimenu extends GraphicObject {
     /**
      * Accept method
      * @param visitor the visitor
-     * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#accept(org.scilab.modules.graphic_objects.graphicObject.IVisitor)
+     * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#accept(org.scilab.modules.graphic_objects.graphicObject.Visitor)
      */
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
 
     }
 

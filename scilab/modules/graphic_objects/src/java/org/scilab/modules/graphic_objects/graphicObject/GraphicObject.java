@@ -139,7 +139,7 @@ public abstract class GraphicObject implements Cloneable {
         return (GraphicObject) copy;
     }
 
-    abstract public void accept(IVisitor visitor);
+    abstract public void accept(Visitor visitor);
 
     /**
      * Returns the enum associated to a type name

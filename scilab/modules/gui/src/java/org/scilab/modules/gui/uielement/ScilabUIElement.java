@@ -14,7 +14,6 @@
 
 package org.scilab.modules.gui.uielement;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.utils.Layout;
 import org.scilab.modules.gui.menubar.MenuBar;

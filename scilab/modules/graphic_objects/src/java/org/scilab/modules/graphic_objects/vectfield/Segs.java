@@ -15,7 +15,7 @@ package org.scilab.modules.graphic_objects.vectfield;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * Segs class
@@ -110,7 +110,7 @@ public class Segs extends VectField {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

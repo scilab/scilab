@@ -12,7 +12,7 @@
 
 package org.scilab.modules.graphic_objects.label;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -73,7 +73,7 @@ public class Label extends TextObject {
 	}
 
 	@Override
-	public void accept(IVisitor visitor) {
+	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
 

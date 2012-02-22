@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.compound;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * Compound object class
@@ -27,7 +27,7 @@ public class Compound extends GraphicObject {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

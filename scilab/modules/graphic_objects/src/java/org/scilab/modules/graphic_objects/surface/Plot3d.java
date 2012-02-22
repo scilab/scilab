@@ -12,7 +12,7 @@
 
 package org.scilab.modules.graphic_objects.surface;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * Plot3d class
@@ -29,7 +29,7 @@ public class Plot3d extends Surface {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

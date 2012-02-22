@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.vectfield;
 
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -55,7 +55,7 @@ public class Arrow extends ContouredObject {
 
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

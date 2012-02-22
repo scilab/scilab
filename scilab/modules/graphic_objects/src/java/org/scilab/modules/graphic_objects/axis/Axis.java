@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.axis;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.Font;
 
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public class Axis extends ClippableContouredObject {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

@@ -13,7 +13,7 @@
 package org.scilab.modules.graphic_objects.polyline;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -76,7 +76,7 @@ public class Polyline extends ClippableContouredObject {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

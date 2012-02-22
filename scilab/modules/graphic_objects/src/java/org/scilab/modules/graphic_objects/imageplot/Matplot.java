@@ -12,7 +12,7 @@
 
 package org.scilab.modules.graphic_objects.imageplot;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * Matplot class
@@ -27,7 +27,7 @@ public class Matplot extends Imageplot {
 	}
 
     @Override
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

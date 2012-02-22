@@ -33,7 +33,7 @@ import org.scilab.modules.graphic_objects.vectfield.Segs;
 /**
  * @author Pierre Lando
  */
-public interface IVisitor {
+public interface Visitor {
 
     void visit(Axes axes);
 

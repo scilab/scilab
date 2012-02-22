@@ -14,7 +14,7 @@ package org.scilab.modules.graphic_objects.uibar.progressionbar;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
 
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.uibar.Uibar;
 
 /**
@@ -41,8 +41,8 @@ public class Progressionbar extends Uibar {
     /**
      * Accept method
      * @param visitor the visitor
-     * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#accept(org.scilab.modules.graphic_objects.graphicObject.IVisitor)
+     * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#accept(org.scilab.modules.graphic_objects.graphicObject.Visitor)
      */
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
     }
 }

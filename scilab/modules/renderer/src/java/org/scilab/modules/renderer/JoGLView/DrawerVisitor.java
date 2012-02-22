@@ -35,7 +35,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.graphic_objects.imageplot.Grayplot;
 import org.scilab.modules.graphic_objects.imageplot.Matplot;
@@ -67,7 +67,7 @@ import java.util.Map;
 /**
  * @author Pierre Lando
  */
-public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
+public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final Canvas canvas;
     private final Figure figure;
     private final DataManager dataManager;

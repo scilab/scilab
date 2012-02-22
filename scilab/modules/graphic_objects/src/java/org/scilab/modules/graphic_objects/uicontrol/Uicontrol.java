@@ -59,7 +59,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
  * @author Bruno JOFRET
@@ -752,7 +752,7 @@ public class Uicontrol extends GraphicObject {
         this.verticalAlignment = alignment;
     }
 
-    public void accept(IVisitor visitor) {
+    public void accept(Visitor visitor) {
 
     }
 
