@@ -29,7 +29,7 @@ OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
 CC = __CC__
 # ------------------------------------------------------
-CFLAGS = $(CC_OPTIONS) -DFORDLL __CFLAGS__ __MEXCFLAGS__
+CFLAGS = $(CC_OPTIONS) -D__SCILAB_TOOLBOX__ -DFORDLL __CFLAGS__ __MEXCFLAGS__ 
 # ------------------------------------------------------
 FFLAGS = $(FC_OPTIONS) -DFORDLL __FFLAGS__ __MEXFFLAGS__
 # ------------------------------------------------------

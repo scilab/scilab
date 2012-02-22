@@ -22,4 +22,3 @@ assert_checkequal(booleanExample(a), a);
 assert_checkequal(booleanExample(b), b);
 assert_checkequal(booleanExample(c), c);
 assert_checkequal(booleanExample(d), d);
-

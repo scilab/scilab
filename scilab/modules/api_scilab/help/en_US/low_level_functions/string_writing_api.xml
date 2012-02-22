@@ -97,7 +97,8 @@
     <!--Lib_name: string_writing-->
     <!--Func_list: write_string-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int write_string(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -105,7 +106,6 @@ int write_string(char *fname,unsigned long fname_len)
 	int iRows		= 2;
 	int iCols		= 3;
 	char** pstData	= NULL;
-
 	//data to put in the new variable
 	char string11[]	= "may";
 	char string21[]	= "be";
@@ -113,10 +113,8 @@ int write_string(char *fname,unsigned long fname_len)
 	char string22[]	= "with";
 	char string13[]	= "puffin";
 	char string23[]	= "you";
-
 	//alloc new array
 	pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
-
 	//copy data address to the "main" array
 	pstData[0]		= string11;
 	pstData[1]		= string21;
@@ -126,7 +124,7 @@ int write_string(char *fname,unsigned long fname_len)
 	pstData[5]		= string23;
 
 	//create the variable
-	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
+	sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRows, iCols, pstData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -135,9 +133,8 @@ int write_string(char *fname,unsigned long fname_len)
 
 	//free container
 	free(pstData);
-
 	//assign allocated variables to Lhs position
-	LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }
  ]]></programlisting>

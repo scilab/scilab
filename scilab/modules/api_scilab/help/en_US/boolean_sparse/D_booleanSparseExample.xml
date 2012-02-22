@@ -27,7 +27,8 @@
     <!--Lib_name: booleanSparseExample-->
     <!--Func_list: booleanSparseExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int booleanSparseExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -35,8 +36,8 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 	int iType		= 0;
 	int iRet		= 0;
 
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -60,7 +61,7 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 			return iRet;
 		}
 
-		sciErr = createBooleanSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+		sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos);
 		if(sciErr.iErr)
 		{
 			freeAllocatedBooleanSparse(piNbItemRow, piColPos);
@@ -69,7 +70,7 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 		}
 
 		freeAllocatedBooleanSparse(piNbItemRow, piColPos);
-		LhsVar(1) = Rhs + 1;
+		AssignOutputVariable(1) = InputArgument + 1;
 	}
 	return 0;
 }

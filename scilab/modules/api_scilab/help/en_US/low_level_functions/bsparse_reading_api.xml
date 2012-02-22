@@ -113,14 +113,14 @@
     <!--Lib_name: read_write_bsparse-->
     <!--Func_list: read_write_bsparse-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int read_write_bsparse(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
     int i                   = 0;
     int j                   = 0;
     int k                   = 0;
-
     //first variable info : real matrix of double
     int iRows               = 0;
     int iCols               = 0;
@@ -128,19 +128,15 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
     int iNbItem             = 0;
     int* piNbItemRow        = NULL;
     int* piColPos           = NULL;
-
     int iCol                = 0;
     int iNewCol             = 0;
-
     int iNewItem            = 0;
     int* piNewRow           = NULL;
     int* piNewCol           = NULL;
-    
 
     //check input and output arguments
-    CheckRhs(1,1);
-    CheckLhs(1,1);
-
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     //get variable address of the first input argument
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
@@ -160,7 +156,6 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
 
     //Do something with data
     //convert %T -> %F and %F -> %T
-
     iNewItem = (iRows * iCols) - iNbItem;
     piNewRow = (int*)MALLOC(sizeof(int) * iRows);
     piNewCol = (int*)MALLOC(sizeof(int) * iNewItem);
@@ -179,22 +174,24 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
                     break;
                 }
             }
+
             if(iFind == 0)
             {
                 piNewCol[iNewCol++] = (j + 1);
             }
         }
+
         iCol += piNbItemRow[i];
     }
 
-    sciErr = createBooleanSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
+    sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(1) = InputArgument + 1;
     return 0;
 }
  ]]></programlisting>

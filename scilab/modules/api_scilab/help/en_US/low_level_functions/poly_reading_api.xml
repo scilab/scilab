@@ -113,7 +113,8 @@
     <!--Lib_name: poly_reading-->
     <!--Func_list: read_poly-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int read_poly(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -129,8 +130,8 @@ int read_poly(char *fname,unsigned long fname_len)
 	char* pstVarname	= NULL;
 
 	//check input and output arguments
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -155,6 +156,7 @@ int read_poly(char *fname,unsigned long fname_len)
 
 	//alloc buff to receive variable name
 	pstVarname = (char*)malloc(sizeof(char) * (iVarLen + 1));//1 for null termination
+
 	//get variable name
 	sciErr = getPolyVariableName(pvApiCtx, piAddr, pstVarname, &iVarLen);
 	if(sciErr.iErr)
@@ -173,6 +175,7 @@ int read_poly(char *fname,unsigned long fname_len)
 
 	//alloc array of coefficient
 	piNbCoef = (int*)malloc(sizeof(int) * iRows * iCols);
+
 	//Second call: retrieve coefficient
 	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
 	if(sciErr.iErr)
@@ -184,6 +187,7 @@ int read_poly(char *fname,unsigned long fname_len)
 	//alloc arrays of data
 	pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
 	pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		pdblReal[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
@@ -198,26 +202,20 @@ int read_poly(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-
 	//Do something with Data
-
 	//Invert polynomials in the matrix and invert coefficients
-
 	for(i = 0 ; i < (iRows * iCols) / 2 ; i++)
 	{
 		int iPos1			= iRows * iCols - 1 - i;
 		double* pdblSave	= NULL;
 		int iNbCoefSave		= 0;
-
 		//switch array of coefficient
 		pdblSave			= pdblReal[i];
 		pdblReal[i]			= pdblReal[iPos1];
 		pdblReal[iPos1]		= pdblSave;
-
 		pdblSave			= pdblImg[i];
 		pdblImg[i]			= pdblImg[iPos1];
 		pdblImg[iPos1]		= pdblSave;
-
 		//switch number of coefficient
 		iNbCoefSave			= piNbCoef[i];
 		piNbCoef[i]			= piNbCoef[iPos1];
@@ -233,14 +231,13 @@ int read_poly(char *fname,unsigned long fname_len)
 			double dblVal		= pdblReal[i][j];
 			pdblReal[i][j]		= pdblReal[i][iPos2];
 			pdblReal[i][iPos2]	= dblVal;
-
 			dblVal				= pdblImg[i][j];
 			pdblImg[i][j]		= pdblImg[i][iPos2];
 			pdblImg[i][iPos2]	= dblVal;
 		}
 	}
 
-	sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+	sciErr = createComplexMatrixOfPoly(pvApiCtx, InputArgument + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -250,18 +247,15 @@ int read_poly(char *fname,unsigned long fname_len)
 	//free OS memory
 	free(pstVarname);
 	free(piNbCoef);
-
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		free(pdblReal[i]);
 		free(pdblImg[i]);
 	}
-
 	free(pdblReal);
 	free(pdblImg);
-
 	//assign allocated variables to Lhs position
-	LhsVar(1) = Rhs + 1;
+	AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }
  ]]></programlisting>

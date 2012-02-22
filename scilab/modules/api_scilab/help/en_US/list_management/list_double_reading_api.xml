@@ -113,9 +113,9 @@
     <!--Lib_name: common_read-->
     <!--Func_list: common_read-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 static int iTab = 0;
-
 void insert_indent(void)
 {
 	int i = 0;
@@ -124,7 +124,6 @@ void insert_indent(void)
 		sciprint("\t");
 	}
 }
-
 
 int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
@@ -144,7 +143,7 @@ int common_read(char *fname,unsigned long fname_len)
 	int iRet        = 0;
 	int *piAddr     = NULL;
 
-	CheckRhs(1,1);
+	CheckInputArgument(pvApiCtx, 1, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -154,8 +153,7 @@ int common_read(char *fname,unsigned long fname_len)
 	}
 
 	get_info(1, NULL, piAddr, 0);
-
-	LhsVar(1) = 0;
+	AssignOutputVariable(1) = 0;
 	return 0;
 }
 
@@ -244,7 +242,6 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		iRet = get_info(_iRhs, _piAddr, piChild, i + 1);
 		iTab--;
 	}
-
 	return 0;;
 }
 
@@ -253,7 +250,6 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	SciErr sciErr;
 	int iRows           = 0;
 	int iCols           = 0;
-
 	double* pdblReal    = NULL;
 	double* pdblImg     = NULL;
 
@@ -288,7 +284,6 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Double (%d x %d)\n", iRows, iCols);
-
 	return 0;;
 }
 
@@ -299,7 +294,6 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iLen            = 0;
 	int iRows           = 0;
 	int iCols           = 0;
-
 	char pstVar[16];
 	int* piCoeff        = NULL;
 	double** pdblReal   = NULL;
@@ -331,6 +325,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
 		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -366,6 +361,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
+
 		sciErr = getMatrixOfPolyInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
@@ -375,6 +371,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
 		pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -405,18 +402,17 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		free(pdblReal[i]);
 		free(pdblImg[i]);
 	}
+
 	free(pdblReal);
 	free(pdblImg);
 	free(piCoeff);
 	return 0;;
 }
-
 int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows       = 0;
 	int iCols       = 0;
-
 	int* piBool     = NULL;
 
 	if(_iItemPos == 0)
@@ -438,17 +434,14 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean (%d x %d)\n", iRows, iCols);
 	return 0;
 }
-
 int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iRows           = 0;
 	int iCols           = 0;
 	int iItem           = 0;
-
 	int* piNbRow        = NULL;
 	int* piColPos       = NULL;
-
 	double* pdblReal    = NULL;
 	double* pdblImg     = NULL;
 
@@ -486,7 +479,6 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iRows       = 0;
 	int iCols       = 0;
 	int iItem       = 0;
-
 	int* piNbRow    = NULL;
 	int* piColPos   = NULL;
 
@@ -509,14 +501,12 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
 	return 0;;
 }
-
 int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
 	int iPrec               = 0;
 	int iRows               = 0;
 	int iCols               = 0;
-
 	char* pcData            = NULL;
 	short* psData           = NULL;
 	int* piData             = NULL;
@@ -535,22 +525,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		switch(iPrec)
 		{
-		case SCI_INT8 : 
+		case SCI_INT8 :
 			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pcData);
 			break;
-		case SCI_INT16 : 
+		case SCI_INT16 :
 			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &psData);
 			break;
-		case SCI_INT32 : 
+		case SCI_INT32 :
 			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &piData);
 			break;
-		case SCI_UINT8 : 
+		case SCI_UINT8 :
 			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddr, &iRows, &iCols, &pucData);
 			break;
-		case SCI_UINT16 : 
+		case SCI_UINT16 :
 			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddr, &iRows, &iCols, &pusData);
 			break;
-		case SCI_UINT32 : 
+		case SCI_UINT32 :
 			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddr, &iRows, &iCols, &puiData);
 			break;
 		default :
@@ -568,22 +558,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 		switch(iPrec)
 		{
-		case SCI_INT8 : 
+		case SCI_INT8 :
 			sciErr = getMatrixOfInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pcData);
 			break;
-		case SCI_INT16 : 
+		case SCI_INT16 :
 			sciErr = getMatrixOfInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &psData);
 			break;
-		case SCI_INT32 : 
+		case SCI_INT32 :
 			sciErr = getMatrixOfInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &piData);
 			break;
-		case SCI_UINT8 : 
+		case SCI_UINT8 :
 			sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
 			break;
-		case SCI_UINT16 : 
+		case SCI_UINT16 :
 			sciErr = getMatrixOfUnsignedInteger16InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pusData);
 			break;
-		case SCI_UINT32 : 
+		case SCI_UINT32 :
 			sciErr = getMatrixOfUnsignedInteger32InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &puiData);
 			break;
 		default :
@@ -598,16 +588,15 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	}
 
 	insert_indent();
+
 	if(iPrec > 10)
 	{
 		sciprint("Unsigned ");
 	}
 
 	sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
-
 	return 0;;
 }
-
 int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
@@ -615,7 +604,6 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	int iRows       = 0;
 	int iCols       = 0;
 	int* piLen      = NULL;
-
 	char **pstData  = NULL;
 
 	if(_iItemPos == 0)
@@ -636,6 +624,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
@@ -658,6 +647,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+
 		sciErr = getMatrixOfStringInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
 		if(sciErr.iErr)
 		{
@@ -666,6 +656,7 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		}
 
 		pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
@@ -678,7 +669,6 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 			return 0;
 		}
 	}
-
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -687,10 +677,8 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Strings (%d x %d)\n", iRows, iCols);
-
 	return 0;;
 }
-
 int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 {
 	SciErr sciErr;
@@ -713,7 +701,6 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
 	insert_indent();
 	sciprint("Pointer : 0x%08X\n", pvPtr);
-
 	return 0;
 }
  ]]></programlisting>

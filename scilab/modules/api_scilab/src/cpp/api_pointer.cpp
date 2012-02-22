@@ -13,14 +13,12 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_pointer.h"
 #include "localization.h"
 
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {

@@ -178,7 +178,8 @@
     <!--Lib_name: double_writing-->
     <!--Func_list: write_double-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int write_double(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -187,7 +188,6 @@ int write_double(char *fname,unsigned long fname_len)
 	int iRows1			= 3;
 	int iCols1			= 4;
 	double* pdblReal1	= NULL;
-
 	//second variable info : complex matrix of double 4 x 6
 	int iRows2			= 4;
 	int iCols2			= 6;
@@ -197,9 +197,9 @@ int write_double(char *fname,unsigned long fname_len)
 	/************************
 	*    First variable    *
 	************************/
+
 	//alloc array of data in OS memory
 	pdblReal1 = (double*)malloc(sizeof(double) * iRows1 * iCols1);
-
 	//fill array with incremental values
 	//[ 0   1   2   3
 	//  4   5   6   7
@@ -211,28 +211,30 @@ int write_double(char *fname,unsigned long fname_len)
 			pdblReal1[i + iRows1 * j] = i * iCols1 + j;
 		}
 	}
+
 	//can be written in a single loop
 	//for(i = 0 ; i < iRows1 * iCols1; i++)
 	//{
 	//  pdblReal1[i] = i;
 	//}
-
 	//create a variable from a existing data array
-	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
+
+	sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows1, iCols1, pdblReal1);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-
 	//after creation, we can free memory.
 	free(pdblReal1);
 
-	/*************************
+	
+    /*************************
 	*    Second variable    *
 	*************************/
+
 	//reserve space in scilab memory and fill it
-	sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, InputArgument + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -252,20 +254,20 @@ int write_double(char *fname,unsigned long fname_len)
 			pdblImg2 [i + iRows2 * j]	= (iRows2 * iCols2 - 1) - (i * iCols2 + j);
 		}
 	}
+
 	//can be written in a single loop
 	//for(i = 0 ; i < iRows2 * iCols2; i++)
 	//{
 	//  pdblReal2[i] = i;
 	//  pdblImg2 [i] = (iRows2 * iCols2 - 1) - i;
 	//}
-
 	// /!\ DO NOT FREE MEMORY, in this case, it's the Scilab memory
-
-
 	//assign allocated variables to Lhs position
-	LhsVar(1) = Rhs + 1;
-	LhsVar(2) = Rhs + 2;
-	return 0;
+
+    AssignOutputVariable(1) = InputArgument + 1;
+    AssignOutputVariable(2) = InputArgument + 2;
+
+    return 0;
 }
  ]]></programlisting>
   </refsection>

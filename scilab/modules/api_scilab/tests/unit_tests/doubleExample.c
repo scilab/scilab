@@ -10,42 +10,46 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int doubleExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
-	int* piAddr		= NULL;
-	int iType		= 0;
-	int iRet		= 0;
-	CheckRhs(1,1);
-	CheckLhs(0,1);
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	int* piAddr = NULL;
+	int iType   = 0;
+	int iRet    = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	if(isEmptyMatrix(pvApiCtx, piAddr))
 	{
-		iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
+		iRet = createEmptyMatrix(pvApiCtx, InputArgument + 1);
 		if(iRet)
 		{
 			return iRet;
 		}
-		LhsVar(1) = 0;
+
+		AssignOutputVariable(1) = 0;
 	}
 	else if(isDoubleType(pvApiCtx, piAddr))
 	{
 		if(isScalar(pvApiCtx, piAddr))
 		{
 			double dblReal	= 0;
-			double dblImg		= 0;
+			double dblImg   = 0;
+
 			if(isVarComplex(pvApiCtx, piAddr))
 			{
 				iRet = getScalarComplexDouble(pvApiCtx, piAddr, &dblReal, &dblImg);
@@ -53,7 +57,8 @@ int doubleExample(char *fname,unsigned long fname_len)
 				{
 					return iRet;
 				}
-				iRet = createScalarComplexDouble(pvApiCtx, Rhs + 1, dblReal, dblImg);
+
+				iRet = createScalarComplexDouble(pvApiCtx, InputArgument + 1, dblReal, dblImg);
 				if(iRet)
 				{
 					return iRet;
@@ -66,7 +71,8 @@ int doubleExample(char *fname,unsigned long fname_len)
 				{
 					return iRet;
 				}
-				iRet = createScalarDouble(pvApiCtx, Rhs + 1, dblReal);
+
+				iRet = createScalarDouble(pvApiCtx, InputArgument + 1, dblReal);
 				if(iRet)
 				{
 					return iRet;
@@ -79,6 +85,7 @@ int doubleExample(char *fname,unsigned long fname_len)
 			int iCols			= 0;
 			double* pdblReal	= NULL;
 			double* pdblImg		= NULL;
+
 			if(isVarComplex(pvApiCtx, piAddr))
 			{
 				sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
@@ -87,7 +94,8 @@ int doubleExample(char *fname,unsigned long fname_len)
 					printError(&sciErr, 0);
 					return sciErr.iErr;
 				}
-				sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal, pdblImg);
+
+				sciErr = createComplexMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal, pdblImg);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -102,7 +110,8 @@ int doubleExample(char *fname,unsigned long fname_len)
 					printError(&sciErr, 0);
 					return sciErr.iErr;
 				}
-				sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
+
+				sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
@@ -110,7 +119,9 @@ int doubleExample(char *fname,unsigned long fname_len)
 				}
 			}
 		}
-		LhsVar(1) = Rhs+1;
+
+        AssignOutputVariable(1) = InputArgument + 1;
 	}
+
 	return 0;
 }

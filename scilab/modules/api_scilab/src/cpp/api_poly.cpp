@@ -13,16 +13,13 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
-#include "api_poly.h"
-#include "api_double.h"
 #include "localization.h"
 
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 extern "C" {
 #include "code2str.h"
 };

@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int write_string(char *fname,unsigned long fname_len)
@@ -40,16 +39,18 @@ int write_string(char *fname,unsigned long fname_len)
 	pstData[3]		= string22;
 	pstData[4]		= string13;
 	pstData[5]		= string23;
+
 	//create the variable
-	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
+	sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRows, iCols, pstData);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	//free container
 	free(pstData);
 	//assign allocated variables to Lhs position
-	LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }

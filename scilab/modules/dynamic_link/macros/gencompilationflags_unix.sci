@@ -23,7 +23,7 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     return
   end
 
-  cmd=''
+  cmd='-D__SCILAB_TOOLBOX__'
 
   // CFLAGS
   if cflags <> '' then

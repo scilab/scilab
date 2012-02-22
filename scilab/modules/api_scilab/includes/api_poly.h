@@ -12,6 +12,10 @@
 #ifndef __POLY_API__
 #define __POLY_API__
 
+#if !defined(__INTERNAL_API_SCILAB__)
+#error Do not include api_poly.h. Include api_scilab.h instead.
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

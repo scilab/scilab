@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int write_sparse(char *fname,unsigned long fname_len)
@@ -25,12 +24,14 @@ int write_sparse(char *fname,unsigned long fname_len)
 	double pdblSReal[]	= {1,2,3,4};
 	double pdblSImg[]	= {4,3,2,1};
 	int iNbItem			= 4;
-	sciErr = createComplexSparseMatrix(pvApiCtx, Rhs + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+
+	sciErr = createComplexSparseMatrix(pvApiCtx, InputArgument + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	LhsVar(1) = 1;
+
+	AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }

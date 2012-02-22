@@ -27,7 +27,8 @@
     <!--Lib_name: stringExample-->
     <!--Func_list: stringExample-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int stringExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -35,8 +36,8 @@ int stringExample(char *fname,unsigned long fname_len)
 	int iType   = 0;
 	int iRet    = 0;
 
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -58,12 +59,13 @@ int stringExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			iRet = createSingleString(pvApiCtx, Rhs + 1, pstData);
+			iRet = createSingleString(pvApiCtx, InputArgument + 1, pstData);
 			if(iRet)
 			{
 				freeAllocatedSingleString(pstData);
 				return iRet;
 			}
+
 			freeAllocatedSingleString(pstData);
 		}
 		else
@@ -79,21 +81,22 @@ int stringExample(char *fname,unsigned long fname_len)
 				return iRet;
 			}
 
-			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
+			sciErr = createMatrixOfString(pvApiCtx, InputArgument + 1, iRows, iCols, pstData);
 			if(sciErr.iErr)
 			{
 				freeAllocatedMatrixOfString(iRows, iCols, pstData);
 				printError(&sciErr, 0);
 				return sciErr.iErr;
 			}
+
 			freeAllocatedMatrixOfString(iRows, iCols, pstData);
 		}
-
-		LhsVar(1) = Rhs + 1;
+		
+        AssignOutputVariable(1) = InputArgument + 1;
 	}
 	else
 	{
-		LhsVar(1) = 0;
+        AssignOutputVariable(1) = 0;
 	}
 	return 0;
 }

@@ -76,7 +76,8 @@
     <!--Lib_name: common_list-->
     <!--Func_list: common_list-->
     <title>Gateway Source</title>
-    <programlisting role="code_gateway"><![CDATA[ 
+    <programlisting role="code_gateway">
+        <![CDATA[ 
 int get_list_info(int* _piAddress);
 void insert_indent(void);
 
@@ -85,9 +86,9 @@ static int iLocalTab = 0;
 int common_list(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
-    int *piAddr     = NULL;
+    int *piAddr = NULL;
 
-    CheckRhs(1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)
@@ -97,11 +98,9 @@ int common_list(char *fname,unsigned long fname_len)
     }
 
     get_list_info(piAddr);
-
-    LhsVar(1) = 0;
+    AssignOutputVariable(1) = 0;
     return 0;
 }
-
 int get_list_info(int* _piAddress)
 {
     SciErr sciErr;
@@ -119,10 +118,12 @@ int get_list_info(int* _piAddress)
     }
 
     sciprint("List (%d items) -> address : 0x%08X) : \n", iItem, _piAddress);
+
     for(i = 0 ; i < iItem ; i++)
     {
         int iType           = 0;
         int* piAddrChild    = NULL;
+
         sciErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
         if(sciErr.iErr)
         {
@@ -144,6 +145,7 @@ int get_list_info(int* _piAddress)
             iLocalTab++;
             iRet = get_list_info(piAddrChild);
             iLocalTab--;
+
             if(iRet)
             {
                 return 1;
@@ -155,9 +157,9 @@ int get_list_info(int* _piAddress)
             sciprint("Child %d -> address : 0x%08X\n", i + 1, piAddrChild);
         }
     }
+
     return 0;
 }
-
 void insert_indent(void)
 {
     int i = 0;
