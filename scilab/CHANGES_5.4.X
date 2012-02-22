@@ -401,6 +401,8 @@ Bug fixes
 
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
+* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+
 * Bug #10685 fixed - inttrap help page moved to differential calculus module.
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.

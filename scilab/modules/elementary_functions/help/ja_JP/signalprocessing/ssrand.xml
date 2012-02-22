@@ -115,7 +115,7 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
-//dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0  
+//dim_cont_subs<=dim_stab_subs<=dim_stab0  
 //pair (A,B) U-similar to:
 //    [*,*,*,*;     [*;    
 //    [0,s,*,*;     [0;
