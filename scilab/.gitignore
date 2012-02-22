@@ -52,6 +52,7 @@ lib
 
 # Generated file: Scilab.iss
 /Scilab.iss
+contrib/external_modules.iss
 
 #
 # VS solution files (windows)
@@ -150,6 +151,7 @@ scilab.pc
 # atoms generated files
 .atoms
 contrib/archives
+
 
 # SWIG generated files which are not used
 modules/types/src/java/org/scilab/modules/types/types.java

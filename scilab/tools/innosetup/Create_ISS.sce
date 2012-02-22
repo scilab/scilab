@@ -1,6 +1,6 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -239,11 +239,40 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
     return;
   end;
 
+  if isdir(SCI + "/.atoms") <> %F then
+    err = generateAdditionnalIss();
+    if err == %F then
+      ret = err;
+      return;
+    end;
+  end
+
+  
   mdelete(WSCI+"\"+ISSFilenameSource);
   printf("\nSaving %s\n",WSCI+"\"+ISSFilenameSource);
   ret = mputl(SciFile,WSCI+"\"+ISSFilenameSource);
 endfunction
 //------------------------------------------------------------------------------
+function bOK = generateAdditionnalIss()
+  bOK = %f;
+  ATOMS_DIR = fullpath(SCI + '/contrib');
+  dir_list = ls(ATOMS_DIR);
+  dir_list = fullpath(ATOMS_DIR + filesep() + dir_list);
+  dir_list = dir_list(isdir(dir_list) == %t);
+  
+  // remove default modules
+  list_default_ATOMS = ['xcos_toolbox_skeleton', 'toolbox_skeleton'];
+  dir_list(grep(dir_list, list_default_ATOMS)) = [];
+  if dir_list <> [] then
+    name_list = basename(dir_list);
+    ISS = "Source: contrib\" + name_list  +"\*.*; DestDir: {app}\contrib\" + name_list + "; Flags: recursesubdirs; Components: {#COMPN_ATOMS}";
+    ISS = [ISS; "Source: .atoms\*.*; DestDir: {app}\.atoms; Flags: recursesubdirs; Components: {#COMPN_ATOMS}"];
+  else
+    ISS = '';
+  end
+  bOK = mputl(ISS, fullpath(SCI + "\contrib\external_modules.iss"));
+endfunction
+//------------------------------------------------------------------------------  
 // Main
 [units,typs,nams] = file();
 path = fileparts(string(nams(1)),"path");
