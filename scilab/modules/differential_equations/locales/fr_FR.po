@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: fr\n"
 
 msgid "bike simulation, stable trajectory"
@@ -129,6 +129,10 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entréen°%d : Erreur de syntaxe pour "
 "l'expression donnée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Défini la variable %ODEOPTIONS"

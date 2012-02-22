@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-28 01:45+0000\n"
+"PO-Revision-Date: 2012-02-15 14:49+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -222,6 +222,8 @@ msgid ""
 "%s: Cannot allocate memory.\n"
 "%s\n"
 msgstr ""
+"%s: メモリを確保できません.\n"
+"%s\n"
 
 #, c-format
 msgid "%s: Cannot allocate this quantity of memory.\n"
@@ -234,7 +236,7 @@ msgstr "%s: 指定した大きさは指定値の下限を下回っています.\
 #, c-format
 msgid ""
 "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
-msgstr ""
+msgstr "%s: スタックを作成(またはリサイズ)できません(おそらくmallocエラーです).\n"
 
 #, c-format
 msgid "%s: Unknown error.\n"
@@ -325,6 +327,9 @@ msgstr "致命的なエラー: Scilab関数用のテーブルを作成できま�
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "エラー: 環境変数 %s を定義できません.\n"
+
+msgid "Scilab Enterprises\n"
+msgstr ""
 
 #
 # File: src/c/banier.c, line: 36

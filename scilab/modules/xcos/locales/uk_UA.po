@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 17:32+0000\n"
+"PO-Revision-Date: 2012-02-21 17:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: uk\n"
 
 #, c-format
@@ -78,6 +78,9 @@ msgid ""
 msgstr ""
 "Не вдалося завантажити бібліотеку Batik. \n"
 "Потрібна версія — %s; Поточна версія — %s."
+
+msgid "parent diagram not found."
+msgstr "не знайдено батьківської діаграми."
 
 msgid "Preview"
 msgstr "Перегляд"
@@ -1099,14 +1102,6 @@ msgstr "Не вдалося відкрити %s"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
-
-#, c-format
-msgid "%s: Unable to import file %s ."
-msgstr "%s: не вдалося імпортувати файл %s ."
-
-#, c-format
-msgid "%s: Unable to import file %s from %s ."
-msgstr "%s: не вдалося імпортувати файл %s з %s ."
 
 #, c-format
 msgid ""

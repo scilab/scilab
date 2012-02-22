@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ca\n"
 
 #, c-format
@@ -1279,26 +1279,14 @@ msgstr ""
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "El Scilab Consortium (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Llicència CeCILL"
-
 msgid "About Scilab..."
 msgstr "Quant al Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Reconeixements"
-
 msgid "Close"
 msgstr "Tanca"
+
+msgid "Acknowledgements"
+msgstr "Reconeixements"
 
 msgid "Could not open: "
 msgstr ""

@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-23 17:26+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2012-02-21 21:07+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -23,9 +23,9 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути 1, 2 або 4 параметри.\n"
+"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -47,8 +47,8 @@ msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans не можна редагувати.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: невизначена змінна %s.\n"
+msgid "%s: Undefined variable: %s.\n"
+msgstr "%s: невизначена змінна, %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"

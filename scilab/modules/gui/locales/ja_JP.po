@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-28 01:47+0000\n"
+"PO-Revision-Date: 2012-02-15 14:52+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1055,15 +1055,18 @@ msgid ""
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
+"警告: 設定ファイルの制限のため, Scilab は uicontrolとグラフィックスが利用できないモードに変更されました.詳細な情報については %s "
+"と入力ください."
 
 msgid "In some cases, %s fixes the issue"
-msgstr ""
+msgstr "いくつかのケースでは, %s は問題を修正します"
 
 msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
 "driver."
 msgstr ""
+"使用中のビデオカードドライバの制限により, OpenGL,を管理できず, Scilabはグラフィックを描画できません.ドライバを更新してください."
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1319,32 +1322,20 @@ msgstr "RTF (Rich Text Format)ファイル"
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Scilab コンソーシアム (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr "Copyright (c) 1989-2012 (INRIA)"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "CeCILL ライセンス"
-
 #
 # File: macros/about.sci, line: 20
 msgid "About Scilab..."
 msgstr "Scilab バージョン情報..."
 
 #
-# File: macros/about.sci, line: 20
-msgid "Acknowledgements"
-msgstr "謝辞"
-
-#
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
 msgid "Close"
 msgstr "閉じる"
+
+#
+# File: macros/about.sci, line: 20
+msgid "Acknowledgements"
+msgstr "謝辞"
 
 msgid "Could not open: "
 msgstr "オープンできません: "

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 
 #, c-format
@@ -1243,27 +1243,27 @@ msgid "%s: goto tag not unique"
 msgstr ""
 
 #, c-format
-msgid "%s: port out of hierarchy"
+msgid "%s: Port out of hierarchy"
 msgstr ""
 
 #, c-format
-msgid "%s: not connected super block input"
+msgid "%s: Not connected super block input"
 msgstr ""
 
 #, c-format
-msgid "%s: invalid super block at %d"
+msgid "%s: Invalid super block at %d"
 msgstr ""
 
 #, c-format
-msgid "%s: empty diagram"
+msgid "%s: Empty diagram"
 msgstr ""
 
 #, c-format
-msgid "%s: multiple GotoTagVisibility at the same level"
+msgid "%s: Multiple GotoTagVisibility at the same level"
 msgstr ""
 
 #, c-format
-msgid "%s: shared GotoTagVisibility across GOTO"
+msgid "%s: Shared GotoTagVisibility across GOTO"
 msgstr ""
 
 #, c-format

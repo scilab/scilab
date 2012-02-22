@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -72,6 +72,9 @@ msgid ""
 msgstr ""
 "Не удалось загрузить библиотеку Batik.\n"
 "Ожидалась версия %s ; установлена версия %s ."
+
+msgid "parent diagram not found."
+msgstr ""
 
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -1080,14 +1083,6 @@ msgstr "Не удалось открыть %s"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: Неверное число входных аргуметов: ожидается %d."
-
-#, c-format
-msgid "%s: Unable to import file %s ."
-msgstr "%s: Невозможно импортировать файл %s ."
-
-#, c-format
-msgid "%s: Unable to import file %s from %s ."
-msgstr "%s: Невозможно импортировать файл %s из %s ."
 
 #, c-format
 msgid ""
