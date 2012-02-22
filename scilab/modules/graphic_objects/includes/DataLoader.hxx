@@ -46,6 +46,14 @@ extern "C"
   void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize);
 
   /**
+   * Fill the given buffer with texture coordinates data from the given object.
+   * @param[in] the id of the given object.
+   * @param[in] the buffer to fill.
+   * @param[in] the buffer length in number of elements.
+   */
+  void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
+
+  /**
    * Return the number of indices for the given object.
    * @param[in] the given object id.
    * @return the object's number of indices.

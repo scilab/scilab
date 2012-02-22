@@ -11,6 +11,7 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
+import com.sun.opengl.util.BufferUtil;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
@@ -20,6 +21,9 @@ import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
+import org.scilab.forge.scirenderer.texture.AbstractDataProvider;
+import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
@@ -54,6 +58,9 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
+import java.awt.Dimension;
+import java.nio.Buffer;
+import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,8 +78,10 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final ContouredObjectDrawer contouredObjectDrawer;
     private final LegendDrawer legendDrawer;
     private final LabelManager labelManager;
+    private final ColorMapTextureDataProvider colorMapTextureDataProvider;
 
     private ColorMap colorMap;
+    private Texture colorMapTexture;
     private DrawingTools drawingTools = null;
 
     /**
@@ -96,6 +105,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.axisDrawer = new AxisDrawer(this);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
+        this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
 
         /*
          * Forces font loading from the main thread. This is done because
@@ -202,8 +212,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     }
 
     /*
-     * To do:
-     * -use polygon offset for wireframe rendering.
+     * TODO: use geometry wire-frame.
      */
     @Override
     public void visit(final Fec fec) {
@@ -211,7 +220,8 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             DefaultGeometry triangles = new DefaultGeometry();
             triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
             triangles.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
-            triangles.setColors(dataManager.getColorBuffer(fec.getIdentifier()));
+            //triangles.setColors(dataManager.getColorBuffer(fec.getIdentifier()));
+            triangles.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fec.getIdentifier()));
             triangles.setIndices(dataManager.getIndexBuffer(fec.getIdentifier()));
             triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
@@ -223,6 +233,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
             Appearance trianglesAppearance = new Appearance();
+            trianglesAppearance.setTexture(getColorMapTexture());
             drawingTools.draw(triangles, trianglesAppearance);
 
             if (fec.getLineMode()) {
@@ -593,6 +604,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             labelManager.disposeAll();
             axesDrawer.disposeAll();
             canvas.redraw();
+            colorMapTextureDataProvider.update();
         } else if (isFigureChild(id)) {
             dataManager.update(id, property);
             markManager.update(id, property);
@@ -637,6 +649,49 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     public LabelManager getLabelManager() {
         return labelManager;
+    }
+
+    public Texture getColorMapTexture() {
+        if (colorMapTexture == null) {
+            colorMapTexture = canvas.getTextureManager().createTexture();
+            colorMapTexture.setMagnificationFilter(Texture.Filter.NEAREST);
+            colorMapTexture.setMinifyingFilter(Texture.Filter.NEAREST);
+            colorMapTexture.setSWrappingMode(Texture.Wrap.CLAMP);
+            colorMapTexture.setTWrappingMode(Texture.Wrap.CLAMP);
+            colorMapTexture.setDataProvider(colorMapTextureDataProvider);
+        }
+        return colorMapTexture;
+    }
+
+    private class ColorMapTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
+
+        @Override
+        public Dimension getTextureSize() {
+            return new Dimension(colorMap.getSize(), 1);
+        }
+
+        @Override
+        public Buffer getData() {
+            Double[] data = colorMap.getData();
+            FloatBuffer buffer = BufferUtil.newFloatBuffer(4 * data.length / 3);
+            for (int i = 0 ; i < data.length / 3 ; i++) {
+                buffer.put(data[i].floatValue());
+                buffer.put(data[i + colorMap.getSize()].floatValue());
+                buffer.put(data[i + 2 * colorMap.getSize()].floatValue());
+                buffer.put(1);
+            }
+            buffer.rewind();
+            return buffer;
+        }
+
+        @Override
+        public boolean isValid() {
+            return true;
+        }
+
+        public void update() {
+            fireUpdate();
+        }
     }
 }
 

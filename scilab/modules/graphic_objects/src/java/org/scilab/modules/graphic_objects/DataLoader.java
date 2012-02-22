@@ -27,6 +27,13 @@ public class DataLoader {
     }
   }
 
+  public static void fillTextureCoordinates(String id, java.nio.FloatBuffer buffer, int bufferLength) {
+    assert buffer.isDirect() : "Buffer must be allocated direct.";
+    {
+      DataLoaderJNI.fillTextureCoordinates(id, buffer, bufferLength);
+    }
+  }
+
   public static int getIndicesSize(String id) {
     return DataLoaderJNI.getIndicesSize(id);
   }

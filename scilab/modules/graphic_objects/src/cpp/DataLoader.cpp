@@ -99,6 +99,18 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
     }
 }
 
+void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
+{
+    char* type;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+
+    if (strcmp(type, __GO_FEC__) == 0)
+    {
+        TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+    }
+}
+
 void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 {
     char* type;

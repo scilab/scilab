@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -83,6 +83,38 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
         returnedColor[1] = (float)colormap[colormapSize+index];
         returnedColor[2] = (float)colormap[2*colormapSize+index];
     }
+}
+
+double ColorComputer::getIndex(double s, double smin, double srange, double indexOffset, int minIndex, int maxIndex)
+{
+    double value;
+    double index;
+
+    if (!DecompositionUtils::isANumber(s))
+    {
+        /*
+         * The minimum possible value is output if s is a Nan.
+         * It should be an index corresponding to black.
+         */
+        index = MIN_COMPONENT_VALUE;
+    }
+    else
+    {
+        value = (s - smin) / (srange);
+        index = (double)(maxIndex - minIndex)*value + indexOffset + (double) minIndex;
+
+        /* Clamp */
+        if (index < (double) minIndex)
+        {
+            index = (double) minIndex;
+        }
+        else if (index > (double) maxIndex)
+        {
+            index = (double) maxIndex;
+        }
+    }
+
+    return index;
 }
 
 void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)

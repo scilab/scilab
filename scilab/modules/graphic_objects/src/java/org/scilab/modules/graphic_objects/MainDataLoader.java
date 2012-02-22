@@ -79,6 +79,10 @@ public class MainDataLoader {
                 }
         }
 
+        public static void fillTextureCoordinates(String id, FloatBuffer buffer, int bufferLength) {
+            DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
+        }
+
         /**
          * Fills the given buffer with color data from the given object.
          * @param the id of the given object.

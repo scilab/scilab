@@ -81,6 +81,23 @@ public :
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      */
     static void getClampedDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
+
+    /**
+     * Returns a colormap index mapped to a scalar value s belonging to an [smin, smax] interval.
+     * The index belongs to an [imin, imax] interval which is linearly mapped to s, smin and smax respectively
+     * corresponding to the imin and imax indices. The index is computed and returned as a floating-point
+     * number to prevent quantization problems.
+     * It neither checks whether srange is greater than 0 nor verifies than minIndex and maxIndex are valid colormap
+     * indices.
+     * @param[in] the scalar value.
+     * @param[in] the scale value's minimum value.
+     * @param[in] the scalar value interval's range (smax-smin).
+     * @param[in] an offset added to the index computed from s.
+     * @param[in] the index specifying the index interval's lower bound.
+     * @param[in] the index specifying the index interval's upper bound.
+     * @return the computed index.
+     */
+    static double getIndex(double s, double smin, double srange, double indexOffset, int minIndex, int maxIndex);
 };
 
 /**

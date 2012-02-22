@@ -144,6 +144,7 @@ public class DataManager {
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
+    private final Map<String, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Canvas canvas;
@@ -166,6 +167,22 @@ public class DataManager {
             fillVertexBuffer(vertexBuffer, id);
             vertexBufferMap.put(id, vertexBuffer);
             return vertexBuffer;
+        }
+    }
+
+    /**
+     * Texture coordinates getter.
+     * @param identifier the graphic object id.
+     * @return the texture coordinates corresponding to the given graphic object.
+     */
+    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) {
+        if (texturesCoordinatesBufferMap.containsKey(identifier)) {
+            return texturesCoordinatesBufferMap.get(identifier);
+        } else {
+            ElementsBuffer texturesCoordinatesBuffer = canvas.getBuffersManager().createElementsBuffer();
+            fillTextureCoordinatesBuffer(texturesCoordinatesBuffer, identifier);
+            texturesCoordinatesBufferMap.put(identifier, texturesCoordinatesBuffer);
+            return texturesCoordinatesBuffer;
         }
     }
 
@@ -281,6 +298,11 @@ public class DataManager {
             colorBufferMap.remove(id);
         }
 
+        if (texturesCoordinatesBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(texturesCoordinatesBufferMap.get(id));
+            texturesCoordinatesBufferMap.remove(id);
+        }
+
         if (indexBufferMap.containsKey(id)) {
             canvas.getBuffersManager().dispose(indexBufferMap.get(id));
             indexBufferMap.remove(id);
@@ -316,6 +338,11 @@ public class DataManager {
             fillColorBuffer(colorBuffer, id);
         }
 
+        ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
+        if (textureCoordinatesBuffer != null) {
+            fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
+        }
+
         IndicesBuffer indexBuffer = indexBufferMap.get(id);
         if (indexBuffer != null) {
             fillIndexBuffer(indexBuffer, id);
@@ -345,6 +372,13 @@ public class DataManager {
         FloatBuffer data = vertexBuffer.getData();
         MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
         vertexBuffer.setData(data, 4);
+    }
+
+    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) {
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+        MainDataLoader.fillTextureCoordinates(id, data, length);
+        colorBuffer.setData(data, 4);
     }
 
     private void fillColorBuffer(ElementsBuffer colorBuffer, String id) {
