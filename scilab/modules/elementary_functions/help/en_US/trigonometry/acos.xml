@@ -28,13 +28,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex vector</para>
+          <para>real or complex vector or matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real or complex vector</para>
+          <para>real or complex vector or matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +42,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      The components of vector <literal>t</literal> are cosine inverse of
-      the corresponding entries of vector <literal>x</literal>. Definition
+      The components of <literal>t</literal> are cosine inverse of
+      the corresponding entries of <literal>x</literal>. Definition
       domain is [-1, 1].
     </para>
   </refsection>
@@ -53,5 +53,14 @@
 x=[1,%i,-1,-%i]
 cos(acos(x))
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="cos">cos</link>
+        <link linkend="acosd">acosd</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

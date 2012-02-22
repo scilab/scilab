@@ -405,6 +405,8 @@ Bug fixes
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
+* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
