@@ -28,13 +28,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex vector</para>
+          <para>real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real or complex vector</para>
+          <para>real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,9 +42,9 @@
   <refsection>
     <title>Description</title>
     <para>
-      the components of vector <literal>t</literal> are the ArgCosh of the
-      corresponding entries of vector <literal>x</literal>. Definition domain is
-      ]1,+infinity[.
+      The components of <literal>t</literal> are the inverse hyperbolic 
+      cosine of the corresponding entries of <literal>x</literal>.
+      Definition domain is ]1,+infinity[.
     </para>
   </refsection>
   <refsection>

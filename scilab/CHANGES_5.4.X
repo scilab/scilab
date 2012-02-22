@@ -409,6 +409,8 @@ Bug fixes
 
 * Bug #10717 fixed - Typos fixed in the help page of acosd.
 
+* Bug #10720 fixed - Typos fixed in the help page of acosh.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
