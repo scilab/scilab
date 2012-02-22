@@ -28,13 +28,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>Real or complex array.</para>
+          <para>Real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>Real or complex array.</para>
+          <para>Real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,10 +42,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      The components of vector <literal>t</literal> are cosine inverse, in
-      degree, of the corresponding entries of vector <literal>x</literal>
-      (t=acos(x)*180/%pi). For real data in<literal> [-1, 1]</literal>. The
-      results are real in <literal>[0 180].</literal>
+      The components of <literal>t</literal> are cosine inverse, in
+      degree, of the corresponding entries of <literal>x</literal>
+      (t=acos(x)*180/%pi). For real data in <literal>[-1, 1]</literal>, the
+      results are real in <literal>[0 180]</literal>.
     </para>
   </refsection>
   <refsection>
@@ -60,6 +60,7 @@ acosd(x)
     <simplelist type="inline">
       <member>
         <link linkend="acos">acos</link>
+        <link linkend="cos">cos</link>
       </member>
     </simplelist>
   </refsection>

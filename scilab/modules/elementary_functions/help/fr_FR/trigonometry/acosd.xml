@@ -46,12 +46,8 @@
     <para>
       Les éléments de <literal>t</literal> sont les cosinus inverse
       exprimés en degrés des éléments correspondants de <literal>x</literal>
-      (t=acos(x)*180/%pi). Pour les données réelles dans <literal> [-1,
-        1]
-      </literal>
-      ,les résultats sont réel dans l'intervalle <literal>[0
-        180].
-      </literal>
+      (t=acos(x)*180/%pi). Pour les données réelles dans <literal>[-1, 1]</literal>,
+      les résultats sont réels dans l'intervalle <literal>[0 180]</literal>.
     </para>
   </refsection>
   <refsection>
@@ -66,6 +62,7 @@ acosd(x)
     <simplelist type="inline">
       <member>
         <link linkend="acos">acos</link>
+        <link linkend="cos">cos</link>
       </member>
     </simplelist>
   </refsection>

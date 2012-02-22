@@ -407,6 +407,8 @@ Bug fixes
 
 * Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
 
+* Bug #10717 fixed - Typos fixed in the help page of acosd.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
