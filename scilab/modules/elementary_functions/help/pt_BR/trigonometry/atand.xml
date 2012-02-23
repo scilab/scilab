@@ -78,7 +78,7 @@ atand(x)
         <link linkend="tan">tan</link>
       </member>
       <member>
-        <link linkend="ieee">tand</link>
+        <link linkend="tand">tand</link>
       </member>
     </simplelist>
   </refsection>

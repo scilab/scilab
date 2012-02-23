@@ -429,6 +429,8 @@ Bug fixes
 
 * Bug #10731 fixed - Typos fixed in the help page of atan.
 
+* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+
 * Bug #10734 fixed - Missing link in the help page of cos added.
 
 * Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
