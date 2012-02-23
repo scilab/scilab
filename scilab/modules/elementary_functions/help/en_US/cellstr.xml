@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>cellstr</refname>
-    <refpurpose>convert strings vector (or strings matrix) into a cell of
+    <refpurpose>converts strings vector (or strings matrix) into a cell array of
       strings
     </refpurpose>
   </refnamediv>
@@ -41,30 +41,30 @@
     <itemizedlist>
       <listitem>
         <para>
-          If <literal>s</literal>is a line vector of strings then
+          If <literal>s</literal> is a row vector of strings then
           <literal>cellstr(s)</literal> returns a
-          <literal>(one-by-one)</literal> cell which contains one component (the
-          concatenation of all columns components of <literal>s
-            )
-          </literal>
+          one-by-one cell array which contains one component (the
+          concatenation of all column components of <literal>s</literal>.
         </para>
       </listitem>
       <listitem>
         <para>
           If <literal>s</literal> is a column vector of strings then
-          <literal>cellstr(s)</literal> convert s into a cell which have the
-          same size : <literal>(size(s,1)-by-one)</literal> cell of
-          strings
+          <literal>cellstr(s)</literal> converts <literal>s</literal> into
+          a cell array of strings which have the same size :
+          <literal>size(s,1)</literal>-by-one.
         </para>
       </listitem>
       <listitem>
         <para>
           If <literal>s</literal> is a matrix of strings then for each
-          row<literal> i </literal>of <literal>s</literal>,
+          row <literal>i</literal> of <literal>s</literal>,
           <literal>cellstr(s)</literal> concatenates all the components of the
-          ith rows of the matrix <literal>s</literal> (i.e s(i,1), s(i,2),
-          s(i,3),...) and returns a (<literal>size(s,1)-by-one)</literal> cell
-          of strings
+          <literal>i</literal>th rows of the matrix <literal>s</literal> (i.e 
+          <literal>s(i,1)</literal>, <literal>s(i,2)</literal>,
+          <literal>s(i,3)</literal>,...) and returns a 
+          <literal>size(s,1)</literal>-by-one cell
+          array of strings.
         </para>
       </listitem>
     </itemizedlist>
@@ -82,6 +82,9 @@ cellstr(["abc","def",'gh';"i","j","klm"])
     <simplelist type="inline">
       <member>
         <link linkend="cell">cell</link>
+      </member>
+      <member>
+        <link linkend="makecell">makecell</link>
       </member>
       <member>
         <link linkend="string">string</link>
