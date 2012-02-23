@@ -69,12 +69,6 @@ void visitprivate(const MatrixExp &e)
                     continue;
                 }
 
-                if(poRow == NULL)
-                {//first loop
-                    poRow = pGT;
-                    continue;
-                }
-
                 if(pGT->isImplicitList() && pGT->getAs<ImplicitList>()->isComputable())
                 {
                     ImplicitList *pIL = pGT->getAs<ImplicitList>();
@@ -84,6 +78,12 @@ void visitprivate(const MatrixExp &e)
                         delete pGT;
                     }
                     pGT = pIT->getAs<GenericType>();
+                }
+
+                if(poRow == NULL)
+                {//first loop
+                    poRow = pGT;
+                    continue;
                 }
 
                 GenericType* pGTResult = poRow->getAs<GenericType>();
