@@ -413,6 +413,8 @@ Bug fixes
 
 * Bug #10720 fixed - Typos fixed in the help page of acosh.
 
+* Bug #10740 fixed - Typos fixed in the help page of sec.
+
 * Bug #10741 fixed - Typos fixed in the help page of secd.
 
 * Bug #10742 fixed - Missing link in the help page of sin added.

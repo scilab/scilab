@@ -34,7 +34,7 @@
   <refsection>
     <title>Description</title>
     <para>Compute the element-wise secant of the argument. The secant is a
-      periodic finction defined as 1/cos. For real data the results are real and
+      periodic function defined as 1/cos. For real data the results are real and
       in <literal>]-%inf -1] U [1 %inf[</literal>.
     </para>
   </refsection>
