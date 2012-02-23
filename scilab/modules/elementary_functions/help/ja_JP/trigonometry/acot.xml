@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
--->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="acot" xml:lang="ja">
   <info>
     <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
@@ -58,9 +55,15 @@ acot(x)/%pi
       <member>
         <link linkend="acotd">acotd</link>
       </member>
-      <!--<member>
+      <member>
         <link linkend="csgn">csgn</link>
-      </member>-->
+      </member>
+      <member>
+        <link linkend="acoth">acoth</link>
+      </member>
+      <member>
+        <link linkend="atan">atan</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection role="see also">
