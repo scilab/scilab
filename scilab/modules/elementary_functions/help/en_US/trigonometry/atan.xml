@@ -63,7 +63,7 @@
     <para>In case of vector or matrix arguments, the evaluation is done
       element-wise, so that <literal>phi</literal> is a vector or matrix of the
       same size with <literal>phi(i,j)=atan(x(i,j))</literal> or
-      <literal>phi(i,j)=tan(y(i,j),x(i,j))</literal>.
+      <literal>phi(i,j)=atan(y(i,j),x(i,j))</literal>.
     </para>
   </refsection>
   <refsection>
