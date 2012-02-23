@@ -726,6 +726,20 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
 
         @Override
+        public Buffer getSubData(int x, int y, int width, int height) {
+            Double[] data = colorMap.getData();
+            FloatBuffer buffer = BufferUtil.newFloatBuffer(4 * width);
+            for (int i = x ; i < x + width ; i++) {
+                buffer.put(data[i].floatValue());
+                buffer.put(data[i + colorMap.getSize()].floatValue());
+                buffer.put(data[i + 2 * colorMap.getSize()].floatValue());
+                buffer.put(1);
+            }
+            buffer.rewind();
+            return buffer;
+        }
+
+        @Override
         public boolean isValid() {
             return true;
         }
