@@ -25,7 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>Pour un vecteur ou une matrice, les éléments de
-      <literal>sinh(x)</literal> sont les sinus hyperboliques des éléments de x.
+      <literal>sinh(x)</literal> sont les sinus hyperboliques des éléments de <literal>x</literal>.
       Pour le sinus hyperbolique matriciel utiliser la fonction
       <literal>sinhm(X)</literal>.
     </para>

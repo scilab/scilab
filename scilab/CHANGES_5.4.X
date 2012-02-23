@@ -413,6 +413,8 @@ Bug fixes
 
 * Bug #10720 fixed - Typos fixed in the help page of acosh.
 
+* Bug #10744 fixed - Typos fixed in the help page of sinh.
+
 * Bug #10745 fixed - Typos fixed in the help page of tand.
 
 

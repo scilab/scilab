@@ -36,8 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      the elements of vector <literal>t</literal> are the hyperbolic sine
-      of elements of vector <literal>x</literal>.
+      The elements of <literal>t</literal> are the hyperbolic sine
+      of elements of <literal>x</literal>.
     </para>
   </refsection>
   <refsection>
