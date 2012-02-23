@@ -126,7 +126,7 @@ public class AxesRulerDrawer {
         rulerModel.setLogarithmic(axes.getXAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getXAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
-        if (!axes.getAxes()[0].getAutoTicks()) {
+        if (!axes.getXAxis().getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[0], bounds[1]));
             rulerModel.setAutoTicks(false);
         } else {
@@ -195,8 +195,8 @@ public class AxesRulerDrawer {
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getYAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
-        if (!axes.getAxes()[1].getAutoTicks()) {
-            rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[2], bounds[3]));
+        if (!axes.getYAxis().getAutoTicks()) {
+            rulerModel.setUserGraduation(new UserDefineGraduation(axes.getYAxis(), bounds[2], bounds[3]));
             rulerModel.setAutoTicks(false);
         } else {
             rulerModel.setAutoTicks(true);
@@ -278,8 +278,8 @@ public class AxesRulerDrawer {
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
             rulerModel.setMinimalSubTicksDistance(axes.getZAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
-            if (!axes.getAxes()[2].getAutoTicks()) {
-                rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[4], bounds[5]));
+            if (!axes.getZAxis().getAutoTicks()) {
+                rulerModel.setUserGraduation(new UserDefineGraduation(axes.getZAxis(), bounds[4], bounds[5]));
                 rulerModel.setAutoTicks(false);
             } else {
                 rulerModel.setAutoTicks(true);
