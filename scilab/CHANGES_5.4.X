@@ -421,6 +421,8 @@ Bug fixes
 
 * Bug #10727 fixed - Missing links in the help page of asech added.
 
+* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+
 * Bug #10734 fixed - Missing link in the help page of cos added.
 
 * Bug #10735 fixed - Missing information about input argument in the help page of cotd added.

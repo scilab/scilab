@@ -68,7 +68,10 @@ asind(x)
         <link linkend="sin">sin</link>
       </member>
       <member>
-        <link linkend="sinm">sind</link>
+        <link linkend="sind">sind</link>
+      </member>
+      <member>
+        <link linkend="sinm">sinm</link>
       </member>
       <member>
         <link linkend="asinm">asinm</link>
