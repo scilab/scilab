@@ -53,5 +53,14 @@
 A=[1,2;2,3]
 sinh(asinh(A))
  ]]></programlisting>
+    
+  </refsection>
+  <refsection role="see also">
+    <title>Ver Também</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sinh">sinh</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>
