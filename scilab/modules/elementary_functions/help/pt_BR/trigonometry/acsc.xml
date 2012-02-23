@@ -62,9 +62,9 @@ plot(x,acsc(x))
       <member>
         <link linkend="acscd">acscd</link>
       </member>
-      <!--<member>
-        <link linkend="csgn">csgn</link>
-      </member>-->
+      <member>
+        <link linkend="acsch">acsch</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

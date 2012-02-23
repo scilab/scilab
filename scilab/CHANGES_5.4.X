@@ -417,6 +417,8 @@ Bug fixes
 
 * Bug #10725 fixed - Typos fixed in the help page of acot.
 
+* Bug #10726 fixed - Missing links in the help page of acsc added.
+
 * Bug #10734 fixed - Missing link in the help page of cos added.
 
 * Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
