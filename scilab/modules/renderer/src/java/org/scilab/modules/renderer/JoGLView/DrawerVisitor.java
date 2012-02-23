@@ -218,38 +218,28 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
     }
 
-    /*
-     * TODO: use geometry wire-frame.
-     */
     @Override
     public void visit(final Fec fec) {
         if (fec.getVisible()) {
             try {
-                DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                triangles.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
-                //triangles.setColors(dataManager.getColorBuffer(fec.getIdentifier()));
-                triangles.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fec.getIdentifier()));
-                triangles.setIndices(dataManager.getIndexBuffer(fec.getIdentifier()));
-                triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                DefaultGeometry geometry = new DefaultGeometry();
+                Appearance appearance = new Appearance();
 
+                geometry.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
+                geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fec.getIdentifier()));
+                geometry.setIndices(dataManager.getIndexBuffer(fec.getIdentifier()));
 
-                DefaultGeometry wireFrame = new DefaultGeometry();
-                wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                wireFrame.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
-                wireFrame.setWireIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
-                wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                Appearance trianglesAppearance = new Appearance();
-                trianglesAppearance.setTexture(getColorMapTexture());
-                drawingTools.draw(triangles, trianglesAppearance);
+                geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 if (fec.getLineMode()) {
-                    Appearance wireFrameAppearance = new Appearance();
-                    wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
-                    drawingTools.draw(wireFrame, wireFrameAppearance);
+                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                    geometry.setWireIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
                 }
+                appearance.setTexture(getColorMapTexture());
+
+                drawingTools.draw(geometry, appearance);
             } catch (SciRendererException e) {
                 System.err.println("A '" + fec.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
