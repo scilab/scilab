@@ -73,7 +73,9 @@ namespace types
             RealDollar,
             RealThreadId,
             RealSparse,
-            RealSparseBool
+            RealSparseBool,
+            RealSingleHandle,
+            RealHandle
         };
 
     protected :
@@ -160,6 +162,8 @@ namespace types
         virtual bool                    isColon(void) { return false; }
         virtual bool                    isDollar(void) { return false; }
         virtual bool                    isFile(void) { return false; }
+        virtual bool                    isHandle(void) { return false; }
+        virtual bool                    isSingleHandle(void) { return false; }
         virtual bool                    isThreadId(void) { return false; }
         virtual bool                    isListOperation(void) { return false; }
         virtual bool                    isListDelete(void) { return false; }

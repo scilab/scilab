@@ -148,7 +148,8 @@ am__libscitypes_algo_la_SOURCES_DIST = src/cpp/types.cpp \
 	src/cpp/threadId.cpp src/cpp/arrayof.cpp src/cpp/int8.cpp \
 	src/cpp/uint8.cpp src/cpp/int16.cpp src/cpp/uint16.cpp \
 	src/cpp/int32.cpp src/cpp/uint32.cpp src/cpp/int64.cpp \
-	src/cpp/uint64.cpp src/cpp/sparse.cpp src/cpp/types_tools.cpp \
+	src/cpp/uint64.cpp src/cpp/sparse.cpp \
+	src/cpp/graphichandle.cpp src/cpp/types_tools.cpp \
 	src/cpp/inspector.cpp
 @ENABLE_DEBUG_TRUE@am__objects_1 = libscitypes_algo_la-inspector.lo
 am__objects_2 = libscitypes_algo_la-types.lo \
@@ -174,6 +175,7 @@ am__objects_2 = libscitypes_algo_la-types.lo \
 	libscitypes_algo_la-int32.lo libscitypes_algo_la-uint32.lo \
 	libscitypes_algo_la-int64.lo libscitypes_algo_la-uint64.lo \
 	libscitypes_algo_la-sparse.lo \
+	libscitypes_algo_la-graphichandle.lo \
 	libscitypes_algo_la-types_tools.lo $(am__objects_1)
 am_libscitypes_algo_la_OBJECTS = $(am__objects_2)
 libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
@@ -621,7 +623,8 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp src/cpp/string.cpp \
 	src/cpp/threadId.cpp src/cpp/arrayof.cpp src/cpp/int8.cpp \
 	src/cpp/uint8.cpp src/cpp/int16.cpp src/cpp/uint16.cpp \
 	src/cpp/int32.cpp src/cpp/uint32.cpp src/cpp/int64.cpp \
-	src/cpp/uint64.cpp src/cpp/sparse.cpp src/cpp/types_tools.cpp \
+	src/cpp/uint64.cpp src/cpp/sparse.cpp \
+	src/cpp/graphichandle.cpp src/cpp/types_tools.cpp \
 	$(am__append_2)
 TYPES_JAVA_CPP_SOURCES = \
 			src/cpp/ScilabToJava.cpp \
@@ -825,6 +828,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-float.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-function.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-graphichandle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-implicitlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-inspector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-int16.Plo@am__quote@
@@ -1176,6 +1180,13 @@ libscitypes_algo_la-sparse.lo: src/cpp/sparse.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sparse.cpp' object='libscitypes_algo_la-sparse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_algo_la-sparse.lo `test -f 'src/cpp/sparse.cpp' || echo '$(srcdir)/'`src/cpp/sparse.cpp
+
+libscitypes_algo_la-graphichandle.lo: src/cpp/graphichandle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_algo_la-graphichandle.lo -MD -MP -MF $(DEPDIR)/libscitypes_algo_la-graphichandle.Tpo -c -o libscitypes_algo_la-graphichandle.lo `test -f 'src/cpp/graphichandle.cpp' || echo '$(srcdir)/'`src/cpp/graphichandle.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_algo_la-graphichandle.Tpo $(DEPDIR)/libscitypes_algo_la-graphichandle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/graphichandle.cpp' object='libscitypes_algo_la-graphichandle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_algo_la-graphichandle.lo `test -f 'src/cpp/graphichandle.cpp' || echo '$(srcdir)/'`src/cpp/graphichandle.cpp
 
 libscitypes_algo_la-types_tools.lo: src/cpp/types_tools.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_algo_la-types_tools.lo -MD -MP -MF $(DEPDIR)/libscitypes_algo_la-types_tools.Tpo -c -o libscitypes_algo_la-types_tools.lo `test -f 'src/cpp/types_tools.cpp' || echo '$(srcdir)/'`src/cpp/types_tools.cpp

@@ -64,6 +64,7 @@ TYPES_CPP_SOURCES = \
 			src/cpp/int64.cpp \
 			src/cpp/uint64.cpp \
             src/cpp/sparse.cpp \
+			src/cpp/graphichandle.cpp \
             src/cpp/types_tools.cpp
 
 TYPES_JAVA_CPP_SOURCES = \

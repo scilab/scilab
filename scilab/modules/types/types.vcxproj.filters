@@ -120,6 +120,9 @@
     <ClCompile Include="src\cpp\sparse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\graphichandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\alltypes.hxx">
@@ -258,6 +261,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\sparseOp.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\graphichandle.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
