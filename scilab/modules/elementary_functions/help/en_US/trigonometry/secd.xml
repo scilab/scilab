@@ -36,15 +36,13 @@
   <refsection>
     <title>Description</title>
     <para>
-      The entries of <literal>y</literal> are thesecant
+      The entries of <literal>y</literal> are the secant
       <literal>1/cos</literal> of the entries of <literal>x</literal> given in
-      degree. The results are real and in <literal>]-%inf -1] U [1
-        %inf[
-      </literal>
-      .For entries equal to <literal>n*180</literal> with
+      degree. The results are real and in <literal>]-%inf -1] U [1 %inf[</literal>.
+      For entries equal to <literal>n*180</literal> with
       <literal>n</literal> integer, the result is exactly <literal>-1</literal>
       or <literal>+1</literal>. For entries equal to <literal>n*90</literal>with
-      <literal>n</literal> integer and odd the result is infinite(or an error
+      <literal>n</literal> integer and odd the result is infinite (or an error
       depending on <link linkend="ieee">ieee</link> mode).
     </para>
   </refsection>
