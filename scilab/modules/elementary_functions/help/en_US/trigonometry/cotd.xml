@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>cotd</refname>
-    <refpurpose>cotangent</refpurpose>
+    <refpurpose>element-wise cotangent function, argument in degree</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
