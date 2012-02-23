@@ -59,6 +59,12 @@ sinhm(asinhm(A))
       <member>
         <link linkend="sqrtm">sqrtm</link>
       </member>
+      <member>
+        <link linkend="sinhm">sinhm</link>
+      </member>
+      <member>
+        <link linkend="eye">eye</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

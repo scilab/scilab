@@ -425,6 +425,8 @@ Bug fixes
 
 * Bug #10729 fixed - Missing links in the help page of asinh added.
 
+* Bug #10730 fixed - Missing links in the help page of asinhm added.
+
 * Bug #10734 fixed - Missing link in the help page of cos added.
 
 * Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
