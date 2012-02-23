@@ -413,6 +413,8 @@ Bug fixes
 
 * Bug #10720 fixed - Typos fixed in the help page of acosh.
 
+* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+
 * Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
 
 * Bug #10738 fixed - Typos fixed in the help page of cscd.

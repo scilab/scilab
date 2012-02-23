@@ -23,9 +23,26 @@
     <synopsis>[t]=coth(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
-      the elements of vector <literal>t</literal> are the hyperbolic
+      The elements of vector <literal>t</literal> are the hyperbolic
       cotangent of elements of the vector <literal>x</literal>.
     </para>
   </refsection>

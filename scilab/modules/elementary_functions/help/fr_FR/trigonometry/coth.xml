@@ -15,9 +15,15 @@
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>x,t</term>
+        <term>x</term>
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>vecteur ou matrice réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>vecteur ou matrice réel ou complexe.</para>
         </listitem>
       </varlistentry>
     </variablelist>
