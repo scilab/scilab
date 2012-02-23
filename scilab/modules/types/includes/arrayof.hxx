@@ -822,12 +822,12 @@ namespace types
                 else
                 {
                     //two cases, depends of original matrix/vector
-                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1)
+                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
                     {//special case for row vector
                         int piRealDim[2] = {1, iNewDimSize};
                         pOut = createEmpty(2, piRealDim, isComplex());
                         //in this case we have to care of 2nd dimension
-                        iNotEntire = 1;
+                        //iNotEntire = 1;
                     }
                     else
                     {
