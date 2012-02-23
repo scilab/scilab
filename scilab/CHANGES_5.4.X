@@ -207,6 +207,8 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
+* Bug #8592 fixed - Add a explicit error message if macros are not available.
+
 * Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
                     simplified and optimized.
 
