@@ -413,6 +413,8 @@ Bug fixes
 
 * Bug #10720 fixed - Typos fixed in the help page of acosh.
 
+* Bug #10739 fixed - Typos fixed in the help page of csgn.
+
 * Bug #10740 fixed - Typos fixed in the help page of sec.
 
 * Bug #10741 fixed - Typos fixed in the help page of secd.
