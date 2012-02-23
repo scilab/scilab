@@ -372,7 +372,13 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
             if (parent instanceof ContextUpdate) {
                 final ContextUpdate block = (ContextUpdate) parent;
                 final ScilabDouble data = (ScilabDouble) block.getIntegerParameters();
-                final int index = (int) data.getRealPart()[0][0];
+
+                final int index;
+                if (data.getHeight() > 0 && data.getWidth() > 0) {
+                    index = (int) data.getRealPart()[0][0];
+                } else {
+                    index = 1;
+                }
 
                 final SuperBlock container = ((SuperBlockDiagram) sender).getContainer();
                 if (container == null) {
@@ -394,7 +400,10 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
                     graph = container.getParentDiagram();
                     Logger.getLogger(SuperBlockDiagram.class.getName()).finest(PARENT_DIAGRAM_WAS_NULL);
                 }
-                container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
+
+                if (index > 0 && index <= ports.length) {
+                    container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
+                }
             }
         }
     }

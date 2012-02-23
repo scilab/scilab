@@ -101,6 +101,8 @@ Xcos
 * Bug #10697 fixed - post_xcos_simulate function did not work if a TOWS_c block
                      were present.
 
+* Bug #10747 fixed - The SUPER_f palette instance contains empty port index.
+
 
 Elementary functions
 ====================
