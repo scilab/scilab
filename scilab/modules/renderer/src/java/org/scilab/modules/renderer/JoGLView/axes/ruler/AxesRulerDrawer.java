@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.axes.ruler;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.ruler.DefaultRulerModel;
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
@@ -67,8 +68,9 @@ public class AxesRulerDrawer {
      * @param axesDrawer the drawer used to draw the current {@see Axes}
      * @param colorMap current {@see ColorMap}
      * @param drawingTools the used {@see DrawingTools}
+     * @throws org.scilab.forge.scirenderer.SciRendererException if draw fail.
      */
-    public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) {
+    public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) throws SciRendererException {
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
 

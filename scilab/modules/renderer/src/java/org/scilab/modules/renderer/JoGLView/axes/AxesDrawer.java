@@ -14,6 +14,7 @@ package org.scilab.modules.renderer.JoGLView.axes;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry.FaceCullingMode;
@@ -25,10 +26,8 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
-import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
@@ -121,9 +120,9 @@ public class AxesDrawer {
     /**
      * Draw the given {@see Axes}.
      * @param axes {@see Axes} to draw.
-     * @throws DegenerateMatrixException if the axes is not representable.
+     * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    public void draw(Axes axes) throws DegenerateMatrixException {
+    public void draw(Axes axes) throws SciRendererException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         Canvas canvas = visitor.getCanvas();
         ColorMap colorMap = visitor.getColorMap();
@@ -229,8 +228,9 @@ public class AxesDrawer {
      * @param axes the {@see Axes}
      * @param drawingTools the {@see DrawingTools} to use.
      * @param colorMap the current {@see ColorMap}
+     * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    private void drawBackground(Axes axes, DrawingTools drawingTools, ColorMap colorMap) {
+    private void drawBackground(Axes axes, DrawingTools drawingTools, ColorMap colorMap) throws SciRendererException {
         if (axes.getFilled()) {
             Appearance appearance = new Appearance();
             appearance.setFillColor(ColorFactory.createColor(colorMap, axes.getBackground()));
@@ -244,8 +244,9 @@ public class AxesDrawer {
      * @param axes the given {@see Axes}.
      * @param drawingTools the {@see DrawingTools} to use.
      * @param colorMap the current {@see ColorMap}.
+     * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    private void drawBox(Axes axes, DrawingTools drawingTools, ColorMap colorMap) {
+    private void drawBox(Axes axes, DrawingTools drawingTools, ColorMap colorMap) throws SciRendererException {
         Box.BoxType boxed = axes.getBox().getBox();
         if (boxed != Box.BoxType.OFF) {
             Appearance appearance = new Appearance();

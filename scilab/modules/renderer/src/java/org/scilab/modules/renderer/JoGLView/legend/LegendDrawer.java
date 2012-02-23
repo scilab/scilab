@@ -13,6 +13,7 @@ package org.scilab.modules.renderer.JoGLView.legend;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
@@ -140,7 +141,7 @@ public class LegendDrawer {
          * Draws the given Legend.
          * @param legend the Legend to draw.
          */
-        public void draw(Legend legend) {
+        public void draw(Legend legend) throws SciRendererException {
                 /* The coordinates of the legend box's lower-left corner */
                 double [] legendCorner = new double[]{0.25, 0.75, Z_FRONT};
 
@@ -432,8 +433,9 @@ public class LegendDrawer {
          * @param polyline the given polyline.
          * @param barVertexData a bar's vertex data (4 consecutive (x,y,z,w) quadruplets: lower-left, lower-right, upper-left and upper-right corners.
          * @param lineVertexData a line's vertex data (3 consecutive (x,y,z,w) quadruplets: left, middle and right vertices).
+         * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
          */
-        private void drawLegendItem(DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) {
+        private void drawLegendItem(DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) throws SciRendererException {
             int polylineStyle = polyline.getPolylineStyle();
 
             int lineColor = polyline.getLineColor();

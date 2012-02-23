@@ -12,6 +12,7 @@
 package org.scilab.modules.renderer.JoGLView.contouredObject;
 
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
@@ -56,8 +57,9 @@ public class ContouredObjectDrawer {
     /**
      * Draws the given ContouredObject.
      * @param contouredObject the ContouredObject to draw.
+     * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    public void draw(ContouredObject contouredObject) {
+    public void draw(ContouredObject contouredObject) throws SciRendererException {
         DrawingTools drawingTools = visitor.getDrawingTools();
         ColorMap colorMap = visitor.getColorMap();
 
