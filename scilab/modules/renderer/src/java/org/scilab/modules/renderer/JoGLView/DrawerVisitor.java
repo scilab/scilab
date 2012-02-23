@@ -468,68 +468,58 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(final Plot3d plot3d) {
         if (plot3d.getVisible()) {
             try {
-                DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                triangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
-                triangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
-
-                if (plot3d.getColorFlag() == 1) {
-                    triangles.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
-                } else {
-                    triangles.setColors(null);
-                }
-
-                if (plot3d.getHiddenColor() > 0) {
-                    triangles.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
-                } else {
-                    triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-                }
-
-                DefaultGeometry backTriangles = new DefaultGeometry();
-                backTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                backTriangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
-                backTriangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
-                backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
-
                 if (plot3d.getSurfaceMode()) {
+                    DefaultGeometry geometry = new DefaultGeometry();
                     if (plot3d.getColorMode() != 0) {
+                        geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                    } else {
+                        geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                    }
+                    geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
+                    /* Back-facing triangles */
+                    if (plot3d.getHiddenColor() > 0) {
+                        geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
+                        Appearance backTrianglesAppearance = new Appearance();
+                        backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, plot3d.getHiddenColor()));
+                        drawingTools.draw(geometry, backTrianglesAppearance);
+                    }
 
-                        /* Back-facing triangles */
-                        if (plot3d.getHiddenColor() > 0) {
-                            Appearance backTrianglesAppearance = new Appearance();
-                            backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, plot3d.getHiddenColor()));
-                            drawingTools.draw(backTriangles, backTrianglesAppearance);
-                        }
+                    /* Front-facing triangles */
+                    Appearance appearance = new Appearance();
 
-                        /* Front-facing triangles */
-                        Appearance trianglesAppearance = new Appearance();
 
-                        if (plot3d.getColorFlag() == 0) {
-                            trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode())));
-                        }
+                    if (plot3d.getColorFlag() == 1) {
+                        geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
+                    } else {
+                        geometry.setColors(null);
+                    }
 
-                        drawingTools.draw(triangles, trianglesAppearance);
+                    if (plot3d.getHiddenColor() > 0) {
+                        geometry.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+                    } else {
+                        geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                    }
+
+                    if (plot3d.getColorFlag() == 0) {
+                        appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode())));
                     }
 
                     if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0)) {
-                        // TODO: use edgeIndices.
-                        DefaultGeometry wireFrame = new DefaultGeometry();
-                        wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                        wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                        wireFrame.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
-                        wireFrame.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
-                        wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                        geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
-                        Appearance wireFrameAppearance = new Appearance();
-                        wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
-                        wireFrameAppearance.setLineWidth(plot3d.getLineThickness().floatValue());
-                        drawingTools.draw(wireFrame, wireFrameAppearance);
+                        appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                        appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
+
+                    drawingTools.draw(geometry, appearance);
                 }
 
                 if (plot3d.getMarkMode()) {
                     Sprite sprite = markManager.getMarkSprite(plot3d, colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());  // TODO : getMarkVertexBuffer
+                    ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
             } catch (SciRendererException e) {
