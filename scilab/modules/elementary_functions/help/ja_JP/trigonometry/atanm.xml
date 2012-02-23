@@ -59,6 +59,10 @@ tanm(atanm([1,2;3,4]))
       <member>
         <link linkend="atan">atan</link>
       </member>
+      
+      <member>
+        <link linkend="tanm">tanm</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>
