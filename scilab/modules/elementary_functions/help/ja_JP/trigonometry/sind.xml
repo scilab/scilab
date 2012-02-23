@@ -62,7 +62,8 @@ sind(x)
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="sinm">sin</link>
+        <link linkend="sin">sin</link>
+        <link linkend="sinm">sinm</link>
       </member>
     </simplelist>
   </refsection>
