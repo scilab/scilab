@@ -67,7 +67,7 @@ public class ContouredObjectDrawer {
         String drawnObjectID = contouredObject.getIdentifier();
 
         DefaultGeometry triangles = new DefaultGeometry();
-        triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+        triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
         triangles.setVertices(dataManager.getVertexBuffer(drawnObjectID));
         triangles.setIndices(dataManager.getIndexBuffer(drawnObjectID));
         triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
@@ -76,9 +76,10 @@ public class ContouredObjectDrawer {
          * TODO: use "triangle.edgesIndices".
          */
         DefaultGeometry segments = new DefaultGeometry();
-        segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
         segments.setVertices(dataManager.getVertexBuffer(drawnObjectID));
-        segments.setIndices(dataManager.getWireIndexBuffer(drawnObjectID));
+        segments.setWireIndices(dataManager.getWireIndexBuffer(drawnObjectID));
         segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
         if (contouredObject.getFillMode()) {

@@ -226,7 +226,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (fec.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
                 //triangles.setColors(dataManager.getColorBuffer(fec.getIdentifier()));
                 triangles.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fec.getIdentifier()));
@@ -235,9 +235,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
 
                 DefaultGeometry wireFrame = new DefaultGeometry();
-                wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                 wireFrame.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
-                wireFrame.setIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
+                wireFrame.setWireIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
                 wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 Appearance trianglesAppearance = new Appearance();
@@ -278,7 +279,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (grayplot.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(grayplot.getIdentifier()));
                 triangles.setColors(dataManager.getColorBuffer(grayplot.getIdentifier()));
                 triangles.setIndices(dataManager.getIndexBuffer(grayplot.getIdentifier()));
@@ -296,7 +297,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (matplot.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(matplot.getIdentifier()));
                 triangles.setColors(dataManager.getColorBuffer(matplot.getIdentifier()));
                 triangles.setIndices(dataManager.getIndexBuffer(matplot.getIdentifier()));
@@ -332,7 +333,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (polyline.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
 
                 /* Interpolated color rendering is used only for basic polylines for now. */
@@ -349,9 +350,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * TODO : try to remove the wire frame and use 'triangle.setEdgeIndices' it's here for that.
                  */
                 DefaultGeometry wireFrame = new DefaultGeometry();
-                wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                 wireFrame.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
-                wireFrame.setIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
+                wireFrame.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
                 wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 Appearance trianglesAppearance = new Appearance();
@@ -403,7 +405,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (fac3d.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
 
                 if (fac3d.getColorFlag() > 0) {
@@ -420,7 +422,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 DefaultGeometry backTriangles = new DefaultGeometry();
-                backTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                backTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 backTriangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
                 backTriangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
                 backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
@@ -447,9 +449,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
                         // TODO: use 'EdgeIndices'.
                         DefaultGeometry wireFrame = new DefaultGeometry();
-                        wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                        wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                        wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         wireFrame.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
-                        wireFrame.setIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
+                        wireFrame.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
                         wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                         Appearance wireFrameAppearance = new Appearance();
@@ -476,7 +479,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (plot3d.getVisible()) {
             try {
                 DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 triangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
                 triangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
 
@@ -493,7 +496,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 DefaultGeometry backTriangles = new DefaultGeometry();
-                backTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                backTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                 backTriangles.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
                 backTriangles.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                 backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
@@ -521,9 +524,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if ((plot3d.getColorMode() >= 0) && (plot3d.getLineThickness() > 0.0)) {
                         // TODO: use edgeIndices.
                         DefaultGeometry wireFrame = new DefaultGeometry();
-                        wireFrame.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                        wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                        wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         wireFrame.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
-                        wireFrame.setIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
+                        wireFrame.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
                         wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                         Appearance wireFrameAppearance = new Appearance();
@@ -571,9 +575,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (champ.getVisible()) {
             try {
                 DefaultGeometry segments = new DefaultGeometry();
-                segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                 segments.setVertices(dataManager.getVertexBuffer(champ.getIdentifier()));
-                segments.setIndices(dataManager.getWireIndexBuffer(champ.getIdentifier()));
+                segments.setWireIndices(dataManager.getWireIndexBuffer(champ.getIdentifier()));
                 segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 if (champ.getColored()) {
                     segments.setColors(dataManager.getColorBuffer(champ.getIdentifier()));
@@ -607,10 +612,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (segs.getVisible()) {
             try {
                 DefaultGeometry segments = new DefaultGeometry();
-                segments.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+                segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                 segments.setVertices(dataManager.getVertexBuffer(segs.getIdentifier()));
                 segments.setColors(dataManager.getColorBuffer(segs.getIdentifier()));
-                segments.setIndices(dataManager.getWireIndexBuffer(segs.getIdentifier()));
+                segments.setWireIndices(dataManager.getWireIndexBuffer(segs.getIdentifier()));
                 segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 if (segs.getLineMode()) {

@@ -311,7 +311,7 @@ public class LegendDrawer {
                 /* Legend rectangle background */
                 if (legend.getFillMode()) {
                     DefaultGeometry legendTriangles = new DefaultGeometry();
-                    legendTriangles.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                    legendTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                     legendTriangles.setVertices(rectangleVertices);
                     legendTriangles.setIndices(rectangleIndices);
 
@@ -324,7 +324,8 @@ public class LegendDrawer {
                 /* Legend outline */
                 if (legend.getLineMode()) {
                     DefaultGeometry legendSquare = new DefaultGeometry();
-                    legendSquare.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+                    legendSquare.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                    legendSquare.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
                     legendSquare.setVertices(rectangleVertices);
                     legendSquare.setIndices(rectangleOutlineIndices);
                     Appearance appearance = new Appearance();
@@ -450,7 +451,7 @@ public class LegendDrawer {
                 barVertices.setData(barVertexData, 4);
 
                 DefaultGeometry bar = new DefaultGeometry();
-                bar.setDrawingMode(Geometry.DrawingMode.TRIANGLES);
+                bar.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
 
                 Appearance barAppearance = new Appearance();
                 barAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
@@ -461,7 +462,8 @@ public class LegendDrawer {
 
                 /* Draw the bar outline */
                 DefaultGeometry barOutline = new DefaultGeometry();
-                barOutline.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+                barOutline.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                barOutline.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
 
                 Appearance barOutlineAppearance = new Appearance();
                 barOutlineAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
@@ -481,7 +483,8 @@ public class LegendDrawer {
                 lineVertices.setData(lineVertexData, 4);
 
                 DefaultGeometry line = new DefaultGeometry();
-                line.setDrawingMode(Geometry.DrawingMode.SEGMENTS_STRIP);
+                line.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                line.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
                 line.setVertices(lineVertices);
                 Appearance lineAppearance = new Appearance();
                 lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));

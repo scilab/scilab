@@ -72,15 +72,18 @@ class Geometries {
         cubeGeometry = CubeFactory.createCube(canvas);
 
         hiddenBoxBorderGeometry = new DefaultGeometry();
-        hiddenBoxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        hiddenBoxBorderGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        hiddenBoxBorderGeometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
         hiddenBoxBorderGeometry.setVertices(hiddenBoxBorderVertices);
 
         frontBoxBorderGeometry = new DefaultGeometry();
-        frontBoxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS);
+        frontBoxBorderGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        frontBoxBorderGeometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
         frontBoxBorderGeometry.setVertices(frontBoxBorderVertices);
 
         boxBorderGeometry = new DefaultGeometry();
-        boxBorderGeometry.setDrawingMode(Geometry.DrawingMode.SEGMENTS_LOOP);
+        boxBorderGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        boxBorderGeometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
         boxBorderGeometry.setVertices(boxBorderVertices);
     }
 
