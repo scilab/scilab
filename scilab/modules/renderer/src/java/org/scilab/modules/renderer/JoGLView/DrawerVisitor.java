@@ -380,62 +380,49 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(final Fac3d fac3d) {
         if (fac3d.getVisible()) {
             try {
-                DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                triangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
-
-                if (fac3d.getColorFlag() > 0) {
-                    triangles.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
-                } else {
-                    triangles.setColors(null);
-                }
-
-                triangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
-                if (fac3d.getHiddenColor() > 0) {
-                    triangles.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
-                } else {
-                    triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-                }
-
-                DefaultGeometry backTriangles = new DefaultGeometry();
-                backTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                backTriangles.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
-                backTriangles.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
-                backTriangles.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
-
                 if (fac3d.getSurfaceMode()) {
+                    DefaultGeometry geometry = new DefaultGeometry();
+                    geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
+
+                    /* Front-facing triangles */
+                    Appearance appearance = new Appearance();
+
                     if (fac3d.getColorMode() != 0) {
+                        geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                         /* Back-facing triangles */
                         if (fac3d.getHiddenColor() > 0) {
+                            geometry.setFaceCullingMode(axesDrawer.getBackFaceCullingMode());
                             Appearance backTrianglesAppearance = new Appearance();
                             backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, fac3d.getHiddenColor()));
-                            drawingTools.draw(backTriangles, backTrianglesAppearance);
-                        }
+                            drawingTools.draw(geometry, backTrianglesAppearance);
 
-                        /* Front-facing triangles */
-                        Appearance trianglesAppearance = new Appearance();
+                            // Now we will draw front face.
+                            geometry.setFaceCullingMode(axesDrawer.getFrontFaceCullingMode());
+                        } else {
+                            geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                        }
 
                         if (fac3d.getColorFlag() == 0) {
-                            trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode())));
+                            appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode())));
+                        } else if (fac3d.getColorFlag() > 0) {
+                            geometry.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
+                        } else {
+                            geometry.setColors(null);
                         }
-
-                        drawingTools.draw(triangles, trianglesAppearance);
+                    } else {
+                        geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                     }
 
                     if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
-                        // TODO: use 'EdgeIndices'.
-                        DefaultGeometry wireFrame = new DefaultGeometry();
-                        wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                        wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                        wireFrame.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
-                        wireFrame.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
-                        wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                        geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
 
-                        Appearance wireFrameAppearance = new Appearance();
-                        wireFrameAppearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
-                        wireFrameAppearance.setLineWidth(fac3d.getLineThickness().floatValue());
-                        drawingTools.draw(wireFrame, wireFrameAppearance);
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                        appearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     }
+
+                    drawingTools.draw(geometry, appearance);
                 }
 
                 if (fac3d.getMarkMode()) {
