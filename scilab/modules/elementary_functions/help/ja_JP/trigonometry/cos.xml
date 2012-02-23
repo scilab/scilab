@@ -53,6 +53,9 @@ acos(cos(x))
       <member>
         <link linkend="cosm">cosm</link>
       </member>
+      <member>
+        <link linkend="acos">acos</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

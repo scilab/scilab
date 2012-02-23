@@ -413,6 +413,8 @@ Bug fixes
 
 * Bug #10720 fixed - Typos fixed in the help page of acosh.
 
+* Bug #10734 fixed - Missing link in the help page of cos added.
+
 * Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
 
 * Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
