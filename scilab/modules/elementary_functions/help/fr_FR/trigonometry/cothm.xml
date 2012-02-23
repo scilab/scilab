@@ -17,13 +17,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>vecteur ou matrice réel ou complexe.</para>
+          <para>matrice carrée (réelle ou complexe).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>vecteur ou matrice réel ou complexe.</para>
+          <para>matrice carrée (réelle ou complexe).</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -28,13 +28,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex vector or matrix</para>
+          <para>square matrix (real or complex).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real or complex vector or matrix</para>
+          <para>square matrix (real or complex).</para>
         </listitem>
       </varlistentry>
     </variablelist>

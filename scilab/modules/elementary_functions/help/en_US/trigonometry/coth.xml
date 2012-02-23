@@ -28,13 +28,13 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex vector or matrix</para>
+          <para>real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t</term>
         <listitem>
-          <para>real or complex vector or matrix</para>
+          <para>real or complex vector or matrix.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +42,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      The elements of vector <literal>t</literal> are the hyperbolic
-      cotangent of elements of the vector <literal>x</literal>.
+      The elements of <literal>t</literal> are the hyperbolic
+      cotangent of elements of <literal>x</literal>.
     </para>
   </refsection>
   <refsection>
