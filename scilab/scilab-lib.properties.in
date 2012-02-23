@@ -1,5 +1,8 @@
 ; Definition of lib used in Scilab 
 
+
+commons-logging.jar=@COMMONS_LOGGING@
+
 flexdock.jar=@FLEXDOCK@
 
 jogl.jar=@JOGL@
