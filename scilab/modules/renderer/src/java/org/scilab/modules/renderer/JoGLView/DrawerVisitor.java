@@ -25,7 +25,6 @@ import org.scilab.forge.scirenderer.sprite.SpriteAnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureDataProvider;
-import org.scilab.forge.scirenderer.tranformations.DegenerateMatrixException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
@@ -322,50 +321,37 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(final Polyline polyline) {
         if (polyline.getVisible()) {
             try {
-                DefaultGeometry triangles = new DefaultGeometry();
-                triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                triangles.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+                DefaultGeometry geometry = new DefaultGeometry();
+
+                geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+                geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
+                geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
+
+                geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+                geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
                 /* Interpolated color rendering is used only for basic polylines for now. */
                 if (polyline.getInterpColorMode() && polyline.getPolylineStyle() == 1) {
-                    triangles.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
+                    geometry.setColors(dataManager.getColorBuffer(polyline.getIdentifier()));
                 } else {
-                    triangles.setColors(null);
+                    geometry.setColors(null);
                 }
-
-                triangles.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
-                triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                /**
-                 * TODO : try to remove the wire frame and use 'triangle.setEdgeIndices' it's here for that.
-                 */
-                DefaultGeometry wireFrame = new DefaultGeometry();
-                wireFrame.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                wireFrame.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                wireFrame.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
-                wireFrame.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
-                wireFrame.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                Appearance trianglesAppearance = new Appearance();
-
-                if (!polyline.getInterpColorMode() || polyline.getPolylineStyle() != 1) {
-                    trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
-                }
-
-                drawingTools.draw(triangles, trianglesAppearance);
 
                 Appearance appearance = new Appearance();
                 appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
                 appearance.setLineWidth(polyline.getLineThickness().floatValue());
                 appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
+                if (!polyline.getInterpColorMode() || polyline.getPolylineStyle() != 1) {
+                    appearance.setFillColor(ColorFactory.createColor(colorMap, polyline.getBackground()));
+                }
 
-                drawingTools.draw(wireFrame, appearance);
-
+                drawingTools.draw(geometry, appearance);
 
                 if (polyline.getMarkMode()) {
                     Sprite sprite = markManager.getMarkSprite(polyline, colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());  // TODO : getMarkVertexBuffer
+                    ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
             } catch (SciRendererException e) {
@@ -454,7 +440,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 if (fac3d.getMarkMode()) {
                     Sprite sprite = markManager.getMarkSprite(fac3d, colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());  // TODO : getMarkVertexBuffer
+                    ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
             } catch (SciRendererException e) {
@@ -534,9 +520,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (text.getVisible()) {
             try {
                 textManager.draw(drawingTools, colorMap, text, axesDrawer);
-            } catch (DegenerateMatrixException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            } catch (SciRendererException e) {
+                System.err.println("A '" + text.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
     }
@@ -613,7 +598,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  */
                 if (segs.getMarkMode()) {
                     Sprite sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());  // TODO : getMarkVertexBuffer
+                    ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
             } catch (SciRendererException e) {
