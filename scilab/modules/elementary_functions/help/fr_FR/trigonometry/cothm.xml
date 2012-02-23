@@ -12,6 +12,23 @@
     <synopsis>[t]=cothm(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>vecteur ou matrice réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>vecteur ou matrice réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
       <literal>cothm(x)</literal> est la cotangente hyperbolique

@@ -23,6 +23,23 @@
     <synopsis>[t]=cothm(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
       <literal>cothm(x)</literal> is the matrix hyperbolic cotangent of
