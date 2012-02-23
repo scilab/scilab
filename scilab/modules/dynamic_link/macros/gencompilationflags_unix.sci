@@ -23,16 +23,16 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     return
   end
 
-  cmd='-D__SCILAB_TOOLBOX__'
+  cmd='';
 
   // CFLAGS
   if cflags <> '' then
-    cmd = cmd +" CFLAGS="""+cflags+""""
+    cmd = cmd +" CFLAGS=""-D__SCILAB_TOOLBOX__ "+cflags+""""
   end
 
   // CXXFLAGS ... use the same as C
   if cflags <> '' then
-    cmd = cmd +" CXXFLAGS="""+cflags+""""
+    cmd = cmd +" CXXFLAGS=""-D__SCILAB_TOOLBOX__ "+cflags+""""
   end
 
   // LDFLAGS
