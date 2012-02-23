@@ -59,10 +59,10 @@ ieee(mod)
     <title>Ver Também</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atan">atand</link>
+        <link linkend="atan">atan</link>
       </member>
       <member>
-        <link linkend="tanm">tan</link>
+        <link linkend="tan">tan</link>
       </member>
     </simplelist>
   </refsection>
