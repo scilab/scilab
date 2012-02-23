@@ -66,35 +66,31 @@ public class ContouredObjectDrawer {
         /* Sets the drawn object's identifier as the current one */
         String drawnObjectID = contouredObject.getIdentifier();
 
-        DefaultGeometry triangles = new DefaultGeometry();
-        triangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-        triangles.setVertices(dataManager.getVertexBuffer(drawnObjectID));
-        triangles.setIndices(dataManager.getIndexBuffer(drawnObjectID));
-        triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+        DefaultGeometry geometry = new DefaultGeometry();
+        geometry.setVertices(dataManager.getVertexBuffer(drawnObjectID));
+        geometry.setIndices(dataManager.getIndexBuffer(drawnObjectID));
+        geometry.setWireIndices(dataManager.getWireIndexBuffer(drawnObjectID));
+        geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-        /**
-         * TODO: use "triangle.edgesIndices".
-         */
-        DefaultGeometry segments = new DefaultGeometry();
-        segments.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-        segments.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-        segments.setVertices(dataManager.getVertexBuffer(drawnObjectID));
-        segments.setWireIndices(dataManager.getWireIndexBuffer(drawnObjectID));
-        segments.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+        Appearance appearance = new Appearance();
 
         if (contouredObject.getFillMode()) {
-                Appearance trianglesAppearance = new Appearance();
-                trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground()));
-                drawingTools.draw(triangles, trianglesAppearance);
+            geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+            appearance.setFillColor(ColorFactory.createColor(colorMap, contouredObject.getBackground()));
+        } else {
+            geometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
         }
 
         if (contouredObject.getLineMode()) {
-                Appearance segmentAppearance = new Appearance();
-                segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
-                segmentAppearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
-                segmentAppearance.setLineWidth(contouredObject.getLineThickness().floatValue());
-                drawingTools.draw(segments, segmentAppearance);
+            geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+            appearance.setLineColor(ColorFactory.createColor(colorMap, contouredObject.getLineColor()));
+            appearance.setLinePattern(contouredObject.getLineStyleAsEnum().asPattern());
+            appearance.setLineWidth(contouredObject.getLineThickness().floatValue());
+        } else {
+            geometry.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
         }
+
+        drawingTools.draw(geometry, appearance);
 
         if (contouredObject.getMarkMode()) {
                 Sprite sprite = markManager.getMarkSprite(contouredObject, colorMap);
