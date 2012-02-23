@@ -52,6 +52,8 @@ asin(sin([1,0,%i]))
     <simplelist type="inline">
       <member>
         <link linkend="sinm">sinm</link>
+      </member>
+      <member>
         <link linkend="asin">asin</link>
       </member>
     </simplelist>
