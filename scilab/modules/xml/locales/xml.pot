@@ -87,7 +87,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 63
 #, c-format
-msgid "%s: Wrong dimension for input argument #%d: A real expected.\n"
+msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #

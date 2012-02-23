@@ -60,7 +60,7 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
         err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
         if (rows != 1 || cols != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A real expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A real scalar expected.\n"), fname, 1);
             return 0;
         }
     }
@@ -168,7 +168,7 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
     }
     else
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast < const char *const *>(&value));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast < const char * const *>(&value));
     }
 
     if (err.iErr)

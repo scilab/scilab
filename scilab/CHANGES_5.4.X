@@ -409,6 +409,8 @@ Bug fixes
 
 * Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
+* Bug #10710 fixed - Wrong error message fixed in xml module.
+
 * Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
 
 * Bug #10717 fixed - Typos fixed in the help page of acosd.
