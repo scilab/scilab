@@ -402,6 +402,14 @@ public final class Palette {
             throw new IOException(e);
         }
 
+        generateIcon(block, iconPath);
+
+        if (LOG.isLoggable(Level.FINEST)) {
+            LOG.finest(iconPath + " updated.");
+        }
+    }
+
+    private static void generateIcon(BasicBlock block, final String iconPath) throws IOException {
         if (block == null || block.getGeometry() == null) {
             return;
         }
@@ -438,10 +446,6 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
-
-        if (LOG.isLoggable(Level.FINEST)) {
-            LOG.finest(iconPath + " updated.");
-        }
     }
 
     /**
@@ -452,56 +456,45 @@ public final class Palette {
      * (palette block image generation)
      */
     public static void generateAllPaletteImages() {
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                    final PaletteManager current = PaletteManager.getInstance();
-                    iterate(current.getRoot().getNode());
-                    current.saveConfig();
-                }
-
-                private void iterate(final List<PaletteNode> children) {
-                    for (final PaletteNode next : children) {
-                        if (next instanceof Category) {
-                            iterate(((Category) next).getNode());
-                        } else if (next instanceof PreLoaded) {
-                            generatePreLoadedIcon((PreLoaded) next);
-                        }
-                    }
-                }
-
-                /**
-                 * Generate PreLoaded icon file.
-                 *
-                 * @param current
-                 *            the current node
-                 */
-                private void generatePreLoadedIcon(final PreLoaded current) {
-                    final List<PaletteBlock> blocks = current.getBlock();
-                    for (final PaletteBlock paletteBlock : blocks) {
-                        final String file = paletteBlock.getIcon().getEvaluatedPath();
-
-                        try {
-                            generatePaletteIcon(paletteBlock.getData().getEvaluatedPath(), paletteBlock.getIcon().getEvaluatedPath());
-                        } catch (final IOException e) {
-                            LOG.severe(e.toString());
-                        }
-                    }
-                }
-            });
-        } catch (final InterruptedException e) {
-            LOG.severe(e.toString());
-        } catch (final InvocationTargetException e) {
-            Throwable throwable = e;
-            String firstMessage = null;
-            while (throwable != null) {
-                firstMessage = throwable.getLocalizedMessage();
-                throwable = throwable.getCause();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                final PaletteManager current = PaletteManager.getInstance();
+                iterate(current.getRoot().getNode());
+                current.saveConfig();
             }
 
-            throw new RuntimeException(firstMessage, e);
-        }
+            private void iterate(final List<PaletteNode> children) {
+                for (final PaletteNode next : children) {
+                    if (next instanceof Category) {
+                        iterate(((Category) next).getNode());
+                    } else if (next instanceof PreLoaded) {
+                        generatePreLoadedIcon((PreLoaded) next);
+                    }
+                }
+            }
+
+            /**
+             * Generate PreLoaded icon file.
+             *
+             * @param current
+             *            the current node
+             */
+            private void generatePreLoadedIcon(final PreLoaded current) {
+                final List<PaletteBlock> blocks = current.getBlock();
+                for (final PaletteBlock paletteBlock : blocks) {
+
+                    try {
+                        final BasicBlock block = new PaletteBlockCtrl(paletteBlock).loadBlock();
+                        generateIcon(block, paletteBlock.getIcon().getEvaluatedPath());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ScicosFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
         LOG.finest("All images has been generated.");
     }

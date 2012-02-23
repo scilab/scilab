@@ -159,7 +159,7 @@ public final class PaletteBlockCtrl {
      * @throws ScicosFormatException
      *             on error
      */
-    private BasicBlock loadBlock() throws ScicosFormatException {
+    protected BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
             // Load the block with a reference instance
