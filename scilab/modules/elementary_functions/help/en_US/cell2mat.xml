@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -51,7 +52,8 @@
       All components of <literal>c</literal> must have the same data type (strings or
       doubles or integers or booleans). For each row <literal>i
       </literal>
-      of <literal>c</literal>, <literal>cell2mat</literal>
+       of <literal>c</literal>, <literal>cell2mat</literal>
+       of <literal>c</literal>, <literal>cell2mat</literal>
       concatenates all the components of the <literal>i</literal>th row of
       the cell array <literal>c</literal>.
     </para>
