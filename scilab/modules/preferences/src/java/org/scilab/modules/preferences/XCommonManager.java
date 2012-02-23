@@ -625,6 +625,22 @@ public abstract class XCommonManager {
     }
 
     /**
+     * Typed attribute consulting with default.
+     * @param node : consulted node.
+     * @param name : attribute key.
+     * @param value : default value.
+     * @return the value.
+     */
+    public static boolean getBoolean(final Node node, final String name, final boolean value) {
+        String response = getAttribute(node, name);
+        if (response.equals(NAV) || response.equals("")) {
+            return value;
+        }
+	
+	return response.equalsIgnoreCase("true");
+    }
+
+    /**
      * Manage color representation.
      * @param source : the color.
      * @return the string representation.
@@ -661,9 +677,7 @@ public abstract class XCommonManager {
      * @param component : the resized component.
      * @param peer : the node having the dimension information.
      */
-    public static void setDimension(
-        final Component component,
-        final Node peer) {
+    public static void setDimension(final Component component, final Node peer) {
         int height = XConfigManager.getInt(peer, "height", 0);
         int width = XConfigManager.getInt(peer, "width",  0);
         if (height > 0 && width > 0) {

@@ -14,8 +14,10 @@ package org.scilab.modules.preferences.Component;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
@@ -54,11 +56,14 @@ public class Title extends Panel implements XComponent {
     public Title(final Node peer) {
         super(peer);
         String text = XConfigManager.getAttribute(peer, "text");
-        TitledBorder title = BorderFactory.createTitledBorder(text);
+        TitledBorder title = new TitledBorder(text) {
+		public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		    super.paintBorder(c, g, x, y - TitledBorder.EDGE_SPACING - 1, width, height + 2 * TitledBorder.EDGE_SPACING + 2);
+		}
+	    };
 	title.setTitleFont(title.getTitleFont().deriveFont(Font.BOLD));
         setBorder(title);
         XConfigManager.setDimension(this, peer);
-        setLayout(new BorderLayout());
 
         String background = XConfigManager.getAttribute(peer, "background");
         if (!(background.equals(XConfigManager.NAV))) {

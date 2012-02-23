@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import org.scilab.modules.preferences.Component.Entry;
 import org.scilab.modules.preferences.Component.Scroll;
 import org.scilab.modules.preferences.Component.Table;
 import org.scilab.modules.preferences.Component.Select;
@@ -240,6 +241,18 @@ public class XUpdateVisitor {
             //component.addKeyListener(sentinel); Provide focus with proper focus policy.
             component.addMouseListener(sentinel);
             return;
+        }
+
+        if (listener.equals("KeyListener")) {
+            component.addKeyListener(sentinel);
+            return;
+        }
+
+        if (listener.equals("EntryListener")) {
+            if (component instanceof Entry) {
+                ((Entry) component).getDocument().addDocumentListener(sentinel);
+                return;
+            }
         }
 
         if (listener.equals("TableListener")) {

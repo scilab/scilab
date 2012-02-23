@@ -29,10 +29,10 @@ import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.w3c.dom.Node;
 
 /** Implementation of Entry compliant with extended management.
-*
-* @author Pierre GRADIT
-*
-*/
+ *
+ * @author Pierre GRADIT
+ *
+ */
 public class File extends JTextField implements XComponent, XChooser, MouseListener {
 
     /** Universal identifier for serialization.
@@ -41,18 +41,18 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     private static final long serialVersionUID = -7007541669965737408L;
 
     /** Define the set of actuators.
-    *
-    * @return array of actuator names.
-    */
+     *
+     * @return array of actuator names.
+     */
     public final String [] actuators() {
         String [] actuators = {"enable", "href", "desc", "mask"};
         return actuators;
     }
 
     /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    */
+     *
+     * @param peer : associated view DOM node.
+     */
     public File(final Node peer) {
         super();
         refresh(peer);
@@ -60,14 +60,14 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     }
 
     /** Refresh the component by the use of actuators.
-    *
-    * @param peer the corresponding view DOM node
-    */
+     *
+     * @param peer the corresponding view DOM node
+     */
     public final void refresh(final Node peer) {
         String href   = XCommonManager.getAttribute(peer , "href");
         String mask   = XCommonManager.getAttribute(peer , "mask");
         String desc   = XCommonManager.getAttribute(peer , "desc");
-        
+
         if (!href.equals(href())) {
             href(href);
         }
@@ -82,67 +82,60 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     }
 
     String jMask, jDesc;
-    
+
     /** Sensor for 'mask' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String mask() {
         return jMask;
     }
 
     /** Actuator for 'mask' attribute.
-    *
-    * @param mask : the attribute value.
-    */
+     *
+     * @param mask : the attribute value.
+     */
     public final void mask(final String mask) {
         jMask = mask;
     }
 
     /** Sensor for 'desc' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String desc() {
         return jDesc;
     }
 
     /** Actuator for 'desc' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void desc(final String desc) {
-    	jDesc = desc;
+        jDesc = desc;
     }
 
-    
+
     /** Sensor for 'href' attribute.
-    *
-    * @return the attribute value.
-    */
+     *
+     * @return the attribute value.
+     */
     public final String href() {
         return getText();
     }
 
     /** Actuator for 'href' attribute.
-    *
-    * @param text : the attribute value.
-    */
+     *
+     * @param text : the attribute value.
+     */
     public final void href(final String href) {
         setText(href);
     }
 
     public void mouseClicked(final MouseEvent e) {
-        ActionEvent transmit  = new ActionEvent(
-             this, 
-             e.getID(), 
-             "File change", 
-             e.getWhen() + 1, 
-             e.getModifiers());
-        if (actionListener != null) {
+        if (actionListener != null && isEnabled()) {
+            ActionEvent transmit  = new ActionEvent(this, e.getID(), "File change", e.getWhen() + 1, e.getModifiers());
             actionListener.actionPerformed(transmit);
-        } else {
-            System.out.println("----> No registered listener!");
         }
     }
 
@@ -159,11 +152,10 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     public void mouseReleased(final MouseEvent e) {
     }
 
-    
     /** Actual response read by the listener.
-    *
-    * @return response read by the listener.
-    */
+     *
+     * @return response read by the listener.
+     */
     public final Object choose() {
         String mask[] = {jMask};
         String desc[] = {jDesc};
@@ -176,9 +168,9 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     }
 
     /** Developer serialization method.
-    *
-    * @return equivalent signature.
-    */
+     *
+     * @return equivalent signature.
+     */
     public final String toString() {
         String signature = "File";
         if (!href().equals(XCommonManager.NAV)) {
@@ -194,8 +186,8 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     }
 
     /** Row selection management.
-    *
-    */
+     *
+     */
     private ActionListener actionListener = null;
 
     /** Registration of a single listener.

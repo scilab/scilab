@@ -72,6 +72,7 @@
         </NumericalSpinner>
       </Grid>
     </Title>
+    <VSpace height="10"/>
   </xsl:template>
 
   <xsl:template match="accessibility">

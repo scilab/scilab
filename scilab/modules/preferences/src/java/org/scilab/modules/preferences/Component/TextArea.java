@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Pierre GRADIT
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,34 +12,38 @@
 
 package org.scilab.modules.preferences.Component;
 
-import javax.swing.JTextField;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.JTextArea;
 
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
-import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XConfigManager;
-import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 
 import org.w3c.dom.Node;
 
-/** Implementation of Entry compliant with extended management.
+/** 
+ * Implementation of a TextArea.
  *
- * @author Pierre GRADIT
+ * @author Calixte DENIZET
  *
  */
-public class Entry extends JTextField implements XComponent, XChooser {
+public class TextArea extends Panel implements XComponent {
 
     /** Universal identifier for serialization.
      *
      */
     private static final long serialVersionUID = -7007541669965737408L;
 
+    private JTextArea textarea;
+
     /** Define the set of actuators.
      *
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        String [] actuators = {"enable", "text", "columns", "lines", "editable"};
+        String [] actuators = {"enable", "text", "columns", "rows", "editable"};
         return actuators;
     }
 
@@ -47,8 +51,11 @@ public class Entry extends JTextField implements XComponent, XChooser {
      *
      * @param peer : associated view DOM node.
      */
-    public Entry(final Node peer) {
-        super();
+    public TextArea(final Node peer) {
+        super(peer);
+	textarea = new JTextArea();
+	textarea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+	add(textarea);
         refresh(peer);
     }
 
@@ -59,14 +66,27 @@ public class Entry extends JTextField implements XComponent, XChooser {
     public final void refresh(final Node peer) {
         String text = XCommonManager.getAttribute(peer, "text");
         String columns = XCommonManager.getAttribute(peer, "columns");
+	String rows = XCommonManager.getAttribute(peer, "rows");
+	String editable = XCommonManager.getAttribute(peer, "editable");
+
         if (!text.equals(text())) {
             text(text);
         }
+
         if (!columns.equals(columns())) {
             columns(columns);
         }
-        String enable = XConfigManager.getAttribute(peer, "enable", "true");
-        setEnabled(enable.equals("true"));
+
+        if (!rows.equals(rows())) {
+            rows(rows);
+        }
+
+        if (!editable.equals(editable())) {
+            editable(editable);
+        }
+
+        boolean enable = XConfigManager.getBoolean(peer, "enable", true);
+        textarea.setEnabled(enable);
     }
 
     /** Sensor for 'text' attribute.
@@ -74,7 +94,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @return the attribute value.
      */
     public final String text() {
-        return getText();
+        return textarea.getText();
     }
 
     /** Actuator for 'text' attribute.
@@ -82,9 +102,9 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @param text : the attribute value.
      */
     public final void columns(final String columns) {
-        if (! (columns.equals(XCommonManager.NAV))) {
+        if (!columns.equals(XCommonManager.NAV)) {
             int jColumns = Integer.parseInt(columns);
-            setColumns(jColumns);
+            textarea.setColumns(jColumns);
         }
     }
 
@@ -93,7 +113,42 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @return the attribute value.
      */
     public final String columns() {
-        return "" + getColumns();
+        return Integer.toString(textarea.getColumns());
+    }
+
+    /** Actuator for 'text' attribute.
+     *
+     * @param text : the attribute value.
+     */
+    public final void rows(final String rows) {
+        if (!rows.equals(XCommonManager.NAV)) {
+            int jRows = Integer.parseInt(rows);
+            textarea.setRows(jRows);
+        }
+    }
+
+    /** Sensor for 'columns' attribute.
+     *
+     * @return the attribute value.
+     */
+    public final String rows() {
+        return Integer.toString(textarea.getRows());
+    }
+
+    /** Actuator for 'text' attribute.
+     *
+     * @param text : the attribute value.
+     */
+    public final void editable(final String editable) {
+	textarea.setEditable(editable.equalsIgnoreCase("true"));
+    }
+
+    /** Sensor for 'columns' attribute.
+     *
+     * @return the attribute value.
+     */
+    public final String editable() {
+        return Boolean.toString(textarea.isEditable());
     }
 
     /** Actuator for 'text' attribute.
@@ -101,9 +156,8 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @param text : the attribute value.
      */
     public final void text(final String text) {
-        setText(text);
+        textarea.setText(text);
     }
-
 
     /** Actual response read by the listener.
      *
@@ -118,7 +172,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @return equivalent signature.
      */
     public final String toString() {
-        String signature = "Entry";
+        String signature = "TextArea";
         if (!text().equals(XCommonManager.NAV)) {
             signature += " text='" + text() + "'";
         }

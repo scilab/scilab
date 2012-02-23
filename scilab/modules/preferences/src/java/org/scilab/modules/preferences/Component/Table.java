@@ -93,11 +93,11 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
     public Table(final Node peer) {
         super(peer);
         model = new Model(peer);
-        table = new JTable (model);
-        table.setFillsViewportHeight(true);
+        table = new JTable(model);
 
         table.getSelectionModel().addListSelectionListener(this);
         table.getTableHeader().setReorderingAllowed(false);
+	table.setDragEnabled(false);
         setupOpenMask(peer);
         setupControls(peer);
 
@@ -122,7 +122,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        String [] actuators = {"item"};
+        String[] actuators = {"item"};
         return actuators;
     }
 
@@ -195,7 +195,7 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
             // Delete row
             System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
             if (actionListener != null) {
-                ActionEvent transmit  = new ActionEvent(this, 0,"tableDel", e.getWhen(), 0);
+                ActionEvent transmit = new ActionEvent(this, 0, "tableDel", e.getWhen(), 0);
                 actionListener.actionPerformed(transmit);
             }
             break;
@@ -285,10 +285,10 @@ public class Table extends Panel implements XComponent, XChooser, ListSelectionL
 
     public void valueChanged(ListSelectionEvent e) {
         //table.valueChanged(e);
-        if (externalChange) {
+        if (externalChange && !e.getValueIsAdjusting()) {
             openControls();
             if (actionListener != null) {
-                ActionEvent transmit  = new ActionEvent(this, 0,"tableSelect", table.getSelectedRow() + 1, 0);
+		ActionEvent transmit = new ActionEvent(this, 0, "tableSelect", System.currentTimeMillis(), 0);
                 actionListener.actionPerformed(transmit);
             }
         }
@@ -364,6 +364,9 @@ class Model extends AbstractTableModel {
      *
      */
     private NodeList nodelist;
+    private NodeList prevC, prevR;
+    private int rows;
+    private int cols;
 
     public Model(Node peer) {
         setNodeList(peer.getChildNodes());
@@ -379,26 +382,34 @@ class Model extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        int count = 0;
-        for (int i = 0; i < nodelist.getLength(); i++) {
-            Node node = nodelist.item(i);
-            if (node.getNodeName().equals("tableCol")) {
-                count++;
-            }
-        }
-        return count;
+	if (nodelist != prevC) {
+	    cols = 0;
+	    for (int i = 0; i < nodelist.getLength(); i++) {
+		Node node = nodelist.item(i);
+		if (node.getNodeName().equals("tableCol")) {
+		    cols++;
+		}
+	    }
+	    prevC = nodelist;
+	}
+	    
+        return cols;
     }
 
     @Override
     public int getRowCount() {
-        int count = 0;
-        for (int i = 0; i < nodelist.getLength(); i++) {
-            Node node = nodelist.item(i);
-            if (node.getNodeName().equals("tableRow")) {
-                count++;
-            }
-        }
-        return count;
+	if (nodelist != prevR) {
+	    rows = 0;
+	    for (int i = 0; i < nodelist.getLength(); i++) {
+		Node node = nodelist.item(i);
+		if (node.getNodeName().equals("tableRow")) {
+		    rows++;
+		}
+	    }
+	    prevR = nodelist;
+	}
+
+        return rows;
     }
 
     /** browse DOM model.

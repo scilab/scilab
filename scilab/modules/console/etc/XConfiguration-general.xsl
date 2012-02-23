@@ -11,7 +11,7 @@
     <Title text="Environment">
       <Grid>
         <Label gridx="1" gridy="1" weightx="0" text="Floating point exception: "/>
-	<Panel gridx="2" gridy="1" weightx="1"/>
+        <Panel gridx="2" gridy="1" weightx="1"/>
         <Panel gridx="3" gridy="1" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
@@ -22,7 +22,7 @@
           </xsl:call-template>
         </Panel>
         <Label gridx="1" gridy="2" weightx="0" text="Printing format: "/>
-	<Panel gridx="2" gridy="2" weightx="1"/>
+        <Panel gridx="2" gridy="2" weightx="1"/>
         <Panel gridx="3" gridy="2" weightx="0">
           <xsl:call-template name="Select">
             <xsl:with-param name="among">
@@ -37,10 +37,10 @@
           </xsl:call-template>
         </Panel>
         <Label gridx="1" gridy="3" weightx="0" text="Width: "/>
-	<Panel gridx="2" gridy="3" weightx="1"/>
+        <Panel gridx="2" gridy="3" weightx="1"/>
         <NumericalSpinner gridx="3"
                           gridy="3"
-			  weightx="0"
+                          weightx="0"
                           min-value = "1"
                           increment = "1"
                           length = "3"
@@ -56,17 +56,17 @@
 
   <xsl:template match="java-heap-memory" mode="tooltip"> and java heap size.</xsl:template>
   <xsl:template match="java-heap-memory">
-    <VSpace height="25"/>
+    <VSpace height="10"/>
     <Title text="Java Heap Memory">
       <Grid>
         <Label text="Select the memory (in MB) available in Java: " gridx="1" gridy="1" anchor="baseline" weightx="0"/>
-	<Panel gridx="2" gridy="1" weightx="1"/>
+        <Panel gridx="2" gridy="1" weightx="1"/>
         <NumericalSpinner min-value = "128"
                           increment = "128"
                           length = "6"
                           listener = "ActionListener"
                           value = "{@heap-size}"
-			  gridx="3" gridy="1" anchor="baseline" weightx="0">
+                          gridx="3" gridy="1" anchor="baseline" weightx="0">
           <actionPerformed choose="heap-size">
             <xsl:call-template name="context"/>
           </actionPerformed>
@@ -164,108 +164,83 @@
   </xsl:template>
 
   <xsl:template match="actions">
-    <Grid>
-      <Label gridy="1" gridx="1" text="Active settings: "/>
-      <Panel gridy="1" gridx="2">
-        <xsl:call-template name="Select">
-          <xsl:with-param name="among">
-            <option active="scilab"/>
-            <option active="emacs"/>
-            <option active="browse..."/>
-          </xsl:with-param>
-        </xsl:call-template>
-      </Panel>
-      <File gridy="2" gridx="1" gridwidth="2" href="{@browse}" mask="*.xml" desc="Choose a shortcut description file" listener="ActionListener">
-        <xsl:if test="not(@active='browse...')">
-          <xsl:attribute name="enable">false</xsl:attribute>
-        </xsl:if>
-        <actionPerformed choose="browse">
-          <xsl:call-template name="context"/>
-        </actionPerformed>
-      </File>
-      <Label gridy="3" gridx="1" gridwidth="2" text="Strike return to search by action name or shortcut:"/>
-      <Entry gridy="4" gridx="1" gridwidth="2" text="{@filter}" listener="ActionListener">
-        <actionPerformed choose="filter">
-          <xsl:call-template name="context"/>
-        </actionPerformed>
-      </Entry>
-    </Grid>
-    <Title background="#ffffff" text="General shortcuts preferences">
-      <VBox>
-        <xsl:variable name="filtered-actions"
-                      select="action-folder/action[contains(
-                              translate(
-                              concat(@description,@ctrl),
-                              'abcdefghijklmnopqrstuvwxyz',
-                              'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-                              translate(current()/@filter,
-                              'abcdefghijklmnopqrstuvwxyz',
-                              'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-                              )]"/>
-        <xsl:variable name="filtered-folder"
-                      select="action-folder[action [@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]]"/>
-        <HBox>&lt;HTML&gt;&lt;B&gt;Action name
+    <xsl:variable name="name" select="@name"/>
+    <xsl:variable name="current-item" select="action-folder[@name=$name]/action[number(@item)]"/>
+    <Title text="Keys binding" fixed-height="false">
+      <VBox fixed-height="false">
+        <Grid>
+          <Label gridy="1" gridx="1" gridwidth="2" text="Filter on action name:"/>
+          <Entry gridy="2" gridx="1" gridwidth="2" text="{@filter}" listener="EntryListener">
+            <entryChanged choose="filter">
+              <xsl:call-template name="context"/>
+            </entryChanged>
+          </Entry>
+        </Grid>
+        <VSpace height="10"/>
+        <Grid>
+          <VBox gridx="1" gridy="1" weightx="0" anchor="north">
+            <Label text="Component"/>
+            <List item="{@name}" nb-visible-rows="4" listener="ActionListener">
+              <actionPerformed choose="name">
+                <xsl:call-template name="context"/>
+              </actionPerformed>
+              <xsl:for-each select="action-folder">
+                <listElement name="{@name}"/>
+              </xsl:for-each>
+            </List>
+          </VBox>
+          <Panel gridx="2" gridy="1" weightx="0" width="30" height="1" fixed-width="true"/>
+          <Grid gridx="3" gridy="1" weightx="1" anchor="north">
+            <Label gridx="1" gridy="1" weightx="0" weighty="0" anchor="north" text="Name: "/>
+            <Label gridx="2" gridy="1" weightx="0" weighty="0" anchor="west">
+              <xsl:attribute name="text">
+                <xsl:value-of select="$current-item/@name"/>
+              </xsl:attribute>
+            </Label>
+            <Label gridx="1" gridy="2" weightx="0" weighty="0" anchor="north" text="Description: "/>
+            <TextArea gridx="2" gridy="2" weightx="1" weighty="0" anchor="west" editable="false" rows="4">
+              <xsl:attribute name="text">
+                <xsl:value-of select="$current-item/@description"/>
+              </xsl:attribute>
+            </TextArea>
+            <Label gridx="1" gridy="3" weightx="0" weighty="0" anchor="baseline" text="Binding: "/>
+            <Entry gridx="2" gridy="3" weightx="0" weighty="0" anchor="baseline" listener="ActionListener">
+              <xsl:attribute name="text">
+                <xsl:value-of select="$current-item/@key"/>
+              </xsl:attribute>
+              <actionPerformed choose="key">
+                <xsl:attribute name="context">
+                  <xsl:for-each select="$current-item/ancestor-or-self::*">
+                    <xsl:if test="not(.=/)">
+                      <xsl:value-of select="count(preceding-sibling::*)+1"/>
+                      <xsl:text>/</xsl:text>
+                    </xsl:if>
+                  </xsl:for-each>
+                </xsl:attribute>
+              </actionPerformed>
+            </Entry>
+          </Grid>
+        </Grid>
+        <VSpace height="10"/>
+        <Table mode="select" listener="TableListener" fixed-height="false">
+          <!-- we change this useless attribute (which is not an actuator) to force the table reload) -->
+          <xsl:attribute name="name">
+            <xsl:value-of select="concat($name,@filter)"/>
+          </xsl:attribute>
+          <tableSelect choose="item">
+            <xsl:call-template name="context"/>
+          </tableSelect>
+          <xsl:for-each select="action-folder[@name=$name]/action[contains(
+                                translate(@name,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+                                translate(current()/@filter,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'))]">
+            <tableRow binding="{@key}" command="{@name}"/>
+          </xsl:for-each>
+          <tableCol title="Action name" attr="command"/>
+          <tableCol title="Key binding" attr="binding"/>
+        </Table>
         <Glue/>
-        <Label halign="right" text="&lt;HTML&gt;&lt;B&gt;Shortcut"/>
-        </HBox>
-        <VBox width="200" height="300">
-          <Scroll>
-            <Grid >
-              <VBox anchor="north">
-                <xsl:for-each select="$filtered-folder">
-                  <HBox>
-                    <Icon listener="MouseListener">
-                      <xsl:attribute name="src">
-                        <xsl:choose>
-                          <xsl:when test="@state='close'">
-                            <xsl:text>list-add.png</xsl:text>
-                          </xsl:when>
-                          <xsl:otherwise>
-                            <xsl:text>list-remove.png</xsl:text>
-                          </xsl:otherwise>
-                        </xsl:choose>
-                      </xsl:attribute>
-                      <mouseClicked set="state">
-                        <xsl:attribute name="value">
-                          <xsl:choose>
-                            <xsl:when test="@state='close'">
-                              <xsl:text>open</xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <xsl:text>close</xsl:text>
-                            </xsl:otherwise>
-                          </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:call-template name="context"/>
-                      </mouseClicked>
-                    </Icon>
-                    <Label text="  {@name}"/>
-                    <Glue/>
-                  </HBox>
-                  <xsl:if test="@state='open'">
-                    <xsl:for-each select="action[@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]">
-                      <HBox>
-                        <HSpace width="30"/>
-                        <Label text="{@description}"/>
-                        <Glue/>
-                        <Label font-family="Courier 10 Pitch" text="{concat('CTRL + ', @ctrl)}"/>
-                      </HBox>
-                    </xsl:for-each>
-                  </xsl:if>
-                </xsl:for-each>
-              </VBox>
-            </Grid>
-          </Scroll>
-        </VBox>
-
       </VBox>
     </Title>
-    <HBox>
-      <Button text="Restore defaults"/>
-      <Glue/>
-    </HBox>
-    <Glue/>
   </xsl:template>
-
 </xsl:stylesheet>
 

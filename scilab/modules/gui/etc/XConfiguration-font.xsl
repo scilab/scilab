@@ -56,6 +56,7 @@
         </Grid>
       </VBox>
     </Title>
+    <VSpace height="10"/>
     <Title text="Custom font">
       <Grid>
         <List gridx="1" gridy="1" weightx="0" item="{@item}" nb-visible-rows="5" listener="ActionListener">

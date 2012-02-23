@@ -78,7 +78,7 @@ public class List extends Panel implements XComponent, XChooser, ListSelectionLi
     }
 
     public void valueChanged(ListSelectionEvent e) {
-	if (actionListener != null && !dontChange) {
+	if (actionListener != null && !dontChange && !e.getValueIsAdjusting()) {
 	    actionListener.actionPerformed(new ActionEvent(this, 0, "List selected Value changed", System.currentTimeMillis(), 0));
 	}
     }
