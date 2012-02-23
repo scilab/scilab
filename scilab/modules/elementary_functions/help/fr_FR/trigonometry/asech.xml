@@ -61,6 +61,15 @@ asech(1)
         <link linkend="sech">sech</link>
         <!--<link linkend="csgn">csgn</link>-->
       </member>
+      <member>
+        <link linkend="acosh">acosh</link>
+      </member>
+      <member>
+        <link linkend="acsch">acsch</link>
+      </member>
+      <member>
+        <link linkend="csgn">csgn</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>
