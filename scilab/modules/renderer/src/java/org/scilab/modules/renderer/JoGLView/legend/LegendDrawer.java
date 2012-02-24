@@ -308,33 +308,33 @@ public class LegendDrawer {
 
                 rectangleVertices.setData(rectangleVertexData, 4);
 
-                /* Legend rectangle background */
+                /* Legend rectangle background and outline */
+                DefaultGeometry legendRectangle = new DefaultGeometry();
+                legendRectangle.setVertices(rectangleVertices);
+                legendRectangle.setIndices(rectangleIndices);
+
+                Appearance appearance = new Appearance();
+
                 if (legend.getFillMode()) {
-                    DefaultGeometry legendTriangles = new DefaultGeometry();
-                    legendTriangles.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                    legendTriangles.setVertices(rectangleVertices);
-                    legendTriangles.setIndices(rectangleIndices);
-
-                    Appearance appearance = new Appearance();
+                    legendRectangle.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
                     appearance.setFillColor(ColorFactory.createColor(colorMap, legend.getBackground()));
-
-                    drawingTools.draw(legendTriangles, appearance);
+                } else {
+                    legendRectangle.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
                 }
 
                 /* Legend outline */
                 if (legend.getLineMode()) {
-                    DefaultGeometry legendSquare = new DefaultGeometry();
-                    legendSquare.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                    legendSquare.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
-                    legendSquare.setVertices(rectangleVertices);
-                    legendSquare.setIndices(rectangleOutlineIndices);
-                    Appearance appearance = new Appearance();
+                    legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
+                    legendRectangle.setWireIndices(rectangleOutlineIndices);
+
                     appearance.setLineColor(ColorFactory.createColor(colorMap, legend.getLineColor()));
                     appearance.setLineWidth(legend.getLineThickness().floatValue());
                     appearance.setLinePattern(legend.getLineStyleAsEnum().asPattern());
-
-                    drawingTools.draw(legendSquare, appearance);
+                } else {
+                    legendRectangle.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
                 }
+
+                drawingTools.draw(legendRectangle, appearance);
 
                 /* Lines: 3 vertices each, left, middle, and right */
                 float [] lineVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
@@ -378,8 +378,8 @@ public class LegendDrawer {
                 barVertexData[12] = barVertexData[4];
                 barVertexData[13] = barVertexData[9];
 
-                for (int i = 0; i < links.length; i++) {
-                        Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(links[i]);
+                for (String link : links) {
+                        Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
 
                         drawLegendItem(drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
 
@@ -418,8 +418,8 @@ public class LegendDrawer {
                         axesDims[1] = 1.0;
                 }
 
-                legendPosition[0] = (double) ((legendCorner[0] - axesPos[0])/axesDims[0]);
-                legendPosition[1] = 1.0 - (double) ((legendCorner[1] + legendDims[1] - axesPos[1])/axesDims[1]);
+                legendPosition[0] = (legendCorner[0] - axesPos[0]) / axesDims[0];
+                legendPosition[1] = 1.0 - (legendCorner[1] + legendDims[1] - axesPos[1]) / axesDims[1];
 
                 if (legendLocation != LegendLocation.BY_COORDINATES) {
                         legend.setPosition(legendPosition);
@@ -444,7 +444,7 @@ public class LegendDrawer {
             short linePattern = polyline.getLineStyleAsEnum().asPattern();
 
             boolean isBar = (polylineStyle == 6) || (polylineStyle == 7);
-            boolean barDrawn = isBar || (!isBar && polyline.getFillMode());
+            boolean barDrawn = isBar || polyline.getFillMode();
 
             /* Draw a bar if the curve is a bar or if is is filled */
             if (barDrawn) {
@@ -458,24 +458,19 @@ public class LegendDrawer {
                 bar.setVertices(barVertices);
                 bar.setIndices(rectangleIndices);
 
-                drawingTools.draw(bar, barAppearance);
+                /* Bar outline */
+                if (isBar || polyline.getLineMode()) {
+                    bar.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
+                    bar.setWireIndices(rectangleOutlineIndices);
 
-                /* Draw the bar outline */
-                DefaultGeometry barOutline = new DefaultGeometry();
-                barOutline.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                barOutline.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_LOOP);
-
-                Appearance barOutlineAppearance = new Appearance();
-                barOutlineAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
-                barOutlineAppearance.setLineWidth((float) lineThickness);
-                barOutlineAppearance.setLinePattern(linePattern);
-
-                barOutline.setVertices(barVertices);
-                barOutline.setIndices(rectangleOutlineIndices);
-
-                if (isBar || (!isBar && polyline.getLineMode())) {
-                    drawingTools.draw(barOutline, barOutlineAppearance);
+                    barAppearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    barAppearance.setLineWidth((float) lineThickness);
+                    barAppearance.setLinePattern(linePattern);
+                } else {
+                    bar.setLineDrawingMode(Geometry.LineDrawingMode.NONE);
                 }
+
+                drawingTools.draw(bar, barAppearance);
             }
 
             /* Draw a line otherwise */
