@@ -130,8 +130,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableText.lo \
 	libscirenderer_la-DrawablePolylineFactory.lo \
 	libscirenderer_la-DrawablePolyline.lo \
-	libscirenderer_la-DrawableLegend.lo \
-	libscirenderer_la-DrawableLegendFactory.lo \
 	libscirenderer_la-DrawableSegs.lo \
 	libscirenderer_la-DrawableSegsFactory.lo \
 	libscirenderer_la-DrawableRectangleFactory.lo \
@@ -296,7 +294,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GrayplotDecomposer.lo \
 	libscirenderer_la-MatplotDecomposer.lo \
 	libscirenderer_la-DrawableAxesGL.lo \
-	libscirenderer_la-ConcreteDrawableLegend.lo \
 	libscirenderer_la-AxesTicksComputer.lo \
 	libscirenderer_la-ConcreteDrawableAxes.lo \
 	libscirenderer_la-DrawableAxesBridgeFactory.lo \
@@ -633,8 +630,6 @@ src/cpp/textDrawing/DrawableTextFactory.cpp \
 src/cpp/textDrawing/DrawableText.cpp \
 src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolyline.cpp \
-src/cpp/legendDrawing/DrawableLegend.cpp \
-src/cpp/legendDrawing/DrawableLegendFactory.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
@@ -799,7 +794,6 @@ src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
 src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
 src/jni/DrawableAxesGL.cpp \
-src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
 src/cpp/axesDrawing/AxesTicksComputer.cpp \
 src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
@@ -1080,7 +1074,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableRectangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo@am__quote@
@@ -1104,8 +1097,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLegend.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableLegendFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
@@ -1341,20 +1332,6 @@ libscirenderer_la-DrawablePolyline.lo: src/cpp/polylineDrawing/DrawablePolyline.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolyline.cpp' object='libscirenderer_la-DrawablePolyline.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/DrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolyline.cpp
-
-libscirenderer_la-DrawableLegend.lo: src/cpp/legendDrawing/DrawableLegend.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableLegend.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableLegend.Tpo -c -o libscirenderer_la-DrawableLegend.lo `test -f 'src/cpp/legendDrawing/DrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegend.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableLegend.Tpo $(DEPDIR)/libscirenderer_la-DrawableLegend.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/DrawableLegend.cpp' object='libscirenderer_la-DrawableLegend.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableLegend.lo `test -f 'src/cpp/legendDrawing/DrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegend.cpp
-
-libscirenderer_la-DrawableLegendFactory.lo: src/cpp/legendDrawing/DrawableLegendFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableLegendFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableLegendFactory.Tpo -c -o libscirenderer_la-DrawableLegendFactory.lo `test -f 'src/cpp/legendDrawing/DrawableLegendFactory.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegendFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableLegendFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableLegendFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/DrawableLegendFactory.cpp' object='libscirenderer_la-DrawableLegendFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableLegendFactory.lo `test -f 'src/cpp/legendDrawing/DrawableLegendFactory.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/DrawableLegendFactory.cpp
 
 libscirenderer_la-DrawableSegs.lo: src/cpp/segsDrawing/DrawableSegs.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegs.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegs.Tpo -c -o libscirenderer_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
@@ -2503,13 +2480,6 @@ libscirenderer_la-DrawableAxesGL.lo: src/jni/DrawableAxesGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableAxesGL.cpp' object='libscirenderer_la-DrawableAxesGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp
-
-libscirenderer_la-ConcreteDrawableLegend.lo: src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableLegend.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Tpo -c -o libscirenderer_la-ConcreteDrawableLegend.lo `test -f 'src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableLegend.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' object='libscirenderer_la-ConcreteDrawableLegend.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableLegend.lo `test -f 'src/cpp/legendDrawing/ConcreteDrawableLegend.cpp' || echo '$(srcdir)/'`src/cpp/legendDrawing/ConcreteDrawableLegend.cpp
 
 libscirenderer_la-AxesTicksComputer.lo: src/cpp/axesDrawing/AxesTicksComputer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Tpo -c -o libscirenderer_la-AxesTicksComputer.lo `test -f 'src/cpp/axesDrawing/AxesTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksComputer.cpp

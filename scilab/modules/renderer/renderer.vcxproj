@@ -405,9 +405,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotJoGL.cpp" />
     <ClCompile Include="src\cpp\grayplotDrawing\GrayplotDecomposer.cpp" />
     <ClCompile Include="src\cpp\grayplotDrawing\MatplotDecomposer.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\ConcreteDrawableLegend.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegend.cpp" />
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegendFactory.cpp" />
     <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp" />
     <ClCompile Include="src\cpp\axesDrawing\AxesSubticksComputer.cpp" />
     <ClCompile Include="src\cpp\axesDrawing\AxesTicksComputer.cpp" />
@@ -656,9 +653,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.hxx" />
     <ClInclude Include="src\cpp\compoundDrawing\DrawableCompound.h" />
     <ClInclude Include="src\cpp\compoundDrawing\DrawableCompoundFactory.h" />
-    <ClInclude Include="src\cpp\legendDrawing\ConcreteDrawableLegend.hxx" />
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegend.h" />
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegendFactory.h" />
     <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx" />
     <ClInclude Include="src\cpp\axesDrawing\AxesSubticksComputer.hxx" />
     <ClInclude Include="src\cpp\axesDrawing\AxesTicksComputer.hxx" />

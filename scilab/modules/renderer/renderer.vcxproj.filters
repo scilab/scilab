@@ -32,9 +32,6 @@
     <Filter Include="Source Files\GrayplotDrawing">
       <UniqueIdentifier>{d8b1b0e1-955b-4cf8-aeac-528de2c937fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\LegendDrawing">
-      <UniqueIdentifier>{e19d3579-6247-41cd-9713-311c7b424367}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\AxesDrawing">
       <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
     </Filter>
@@ -71,9 +68,6 @@
     </Filter>
     <Filter Include="Header Files\CompoundDrawing">
       <UniqueIdentifier>{9e5915d4-e4ec-4b8c-8284-d2feca793e68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\LegendDrawing">
-      <UniqueIdentifier>{b14a59f1-a8c8-4491-8abf-77151b6954c0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\AxesDrawing">
       <UniqueIdentifier>{3d9abe35-a706-4a1b-9c17-2d76e32aab45}</UniqueIdentifier>
@@ -689,15 +683,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\grayplotDrawing\MatplotDecomposer.cpp">
       <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\legendDrawing\ConcreteDrawableLegend.cpp">
-      <Filter>Source Files\LegendDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegend.cpp">
-      <Filter>Source Files\LegendDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\legendDrawing\DrawableLegendFactory.cpp">
-      <Filter>Source Files\LegendDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp">
       <Filter>Source Files\AxesDrawing</Filter>
@@ -1435,15 +1420,6 @@
     </ClInclude>
     <ClInclude Include="src\cpp\compoundDrawing\DrawableCompoundFactory.h">
       <Filter>Header Files\CompoundDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\legendDrawing\ConcreteDrawableLegend.hxx">
-      <Filter>Header Files\LegendDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegend.h">
-      <Filter>Header Files\LegendDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\legendDrawing\DrawableLegendFactory.h">
-      <Filter>Header Files\LegendDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx">
       <Filter>Header Files\AxesDrawing</Filter>

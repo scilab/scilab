@@ -34,8 +34,6 @@ src/cpp/textDrawing/DrawableTextFactory.cpp \
 src/cpp/textDrawing/DrawableText.cpp \
 src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolyline.cpp \
-src/cpp/legendDrawing/DrawableLegend.cpp \
-src/cpp/legendDrawing/DrawableLegendFactory.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
@@ -200,7 +198,6 @@ src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
 src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
 src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
 src/jni/DrawableAxesGL.cpp \
-src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
 src/cpp/axesDrawing/AxesTicksComputer.cpp \
 src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
