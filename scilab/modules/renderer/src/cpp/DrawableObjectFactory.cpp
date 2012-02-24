@@ -20,7 +20,6 @@ extern "C"
 #include "DrawableObjectFactory.h"
 #include "subwinDrawing/DrawableSubwinFactory.h"
 #include "compoundDrawing/DrawableCompoundFactory.h"
-#include "surfaceDrawing/DrawableSurfaceFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
 #include "segsDrawing/DrawableSegsFactory.h"
 
@@ -71,9 +70,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break;
   case SCI_AGREG:
     return new DrawableCompoundFactory() ;
-    break ;
-  case SCI_SURFACE:
-    return new DrawableSurfaceFactory() ;
     break ;
   case SCI_AXES:
     return new DrawableAxesFactory() ;

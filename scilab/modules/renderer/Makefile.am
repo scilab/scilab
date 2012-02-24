@@ -32,8 +32,6 @@ src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
 src/cpp/compoundDrawing/DrawableCompound.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-src/cpp/surfaceDrawing/DrawableSurface.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/getHandleDrawer.cpp \
@@ -95,20 +93,6 @@ src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
-src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
-src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
-src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
-src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
-src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
-src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
-src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
-src/jni/DrawableSurfaceGL.cpp \
-src/jni/SurfaceFacetDrawerGL.cpp \
-src/jni/SurfaceLineDrawerGL.cpp \
-src/jni/SurfaceMarkDrawerGL.cpp \
 src/jni/DrawableSegsGL.cpp \
 src/jni/SegsArrowDrawerGL.cpp \
 src/jni/SegsLineDrawerGL.cpp \
@@ -203,7 +187,6 @@ src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableSegsGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
-src/jni/DrawableSurfaceGL.giws.xml \
 src/jni/FullBoxDrawerGL.giws.xml \
 src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/HalfBoxDrawerGL.giws.xml \
@@ -212,9 +195,6 @@ src/jni/IsoViewCameraGL.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \
-src/jni/SurfaceFacetDrawerGL.giws.xml \
-src/jni/SurfaceLineDrawerGL.giws.xml \
-src/jni/SurfaceMarkDrawerGL.giws.xml \
 src/jni/TicksDrawerGL.giws.xml \
 src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \

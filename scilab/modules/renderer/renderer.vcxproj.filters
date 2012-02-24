@@ -11,9 +11,6 @@
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SurfaceDrawing">
-      <UniqueIdentifier>{2523bd68-bc83-4801-989d-59efa3b15126}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\CompoundDrawing">
       <UniqueIdentifier>{47c9bb68-bec3-4f90-abbc-2b15247ed150}</UniqueIdentifier>
     </Filter>
@@ -35,9 +32,6 @@
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SurfaceDrawing">
-      <UniqueIdentifier>{39c25f36-115c-4f52-aa9d-d3aeadea1b28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SegsDrawing">
       <UniqueIdentifier>{f9c9dfe3-7207-4e18-b1be-6f4ac59216d7}</UniqueIdentifier>
@@ -332,54 +326,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurface.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceFactory.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableSurfaceGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\DrawableSurfaceJoGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SurfaceFacetDrawerGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SurfaceLineDrawerGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SurfaceMarkDrawerGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.cpp">
-      <Filter>Source Files\SurfaceDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\compoundDrawing\DrawableCompound.cpp">
       <Filter>Source Files\CompoundDrawing</Filter>
@@ -808,60 +754,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\RenderingChecker.hxx">
       <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurface.h">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceBridge.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceBridgeFactory.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceFactory.h">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableSurfaceGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceJavaMapper.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawableSurfaceJoGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\DrawSurfaceStrategy.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SurfaceFacetDrawerGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJavaMapper.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceFacetDrawerJoGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SurfaceLineDrawerGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceLineDrawerJoGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SurfaceMarkDrawerGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJavaMapper.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx">
-      <Filter>Header Files\SurfaceDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\segsDrawing\ChampDecomposer.hxx">
       <Filter>Header Files\SegsDrawing</Filter>
