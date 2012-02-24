@@ -11,9 +11,6 @@
     <Filter Include="Source Files\SubwinDrawing">
       <UniqueIdentifier>{8d923d4f-419e-4aca-9064-8dd5a174d536}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\RectangleDrawing">
-      <UniqueIdentifier>{794fdbcc-47cb-4ae7-a526-e5982c86e1d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
@@ -44,9 +41,6 @@
     </Filter>
     <Filter Include="Header Files\SubwinDrawing">
       <UniqueIdentifier>{9ee73def-e821-482d-82c0-e6eb08c24aad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RectangleDrawing">
-      <UniqueIdentifier>{3c92de1e-a70b-41e5-9ca0-083fbf0347bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GraphicSynchronization">
       <UniqueIdentifier>{7775e038-d4c9-4769-9918-d5b01de96e74}</UniqueIdentifier>
@@ -422,54 +416,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\subwinDrawing\ZGridDrawerJoGL.cpp">
       <Filter>Source Files\SubwinDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\ConcreteDrawableRectangle.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangle.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleFactory.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableRectangleGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleJavaMapper.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\DrawableRectangleJoGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\RectangleFillDrawerGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\RectangleLineDrawerGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleLineDrawerJoGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\RectangleMarkDrawerGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.cpp">
-      <Filter>Source Files\RectangleDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
@@ -1096,60 +1042,6 @@
     </ClInclude>
     <ClInclude Include="src\cpp\subwinDrawing\ZGridDrawerJoGL.hxx">
       <Filter>Header Files\SubwinDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\ConcreteDrawableRectangle.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangle.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleBridge.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleBridgeFactory.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleFactory.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableRectangleGL.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleJavaMapper.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawableRectangleJoGL.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\DrawRectangleStrategy.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\RectangleFillDrawerGL.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleFillDrawerJavaMapper.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleFillDrawerJoGL.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\RectangleLineDrawerGL.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleLineDrawerJoGL.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\RectangleMarkDrawerGL.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJavaMapper.hxx">
-      <Filter>Header Files\RectangleDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\rectangleDrawing\RectangleMarkDrawerJoGL.h">
-      <Filter>Header Files\RectangleDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.h">
       <Filter>Header Files\GraphicSynchronization</Filter>

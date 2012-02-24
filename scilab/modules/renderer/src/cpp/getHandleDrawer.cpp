@@ -56,11 +56,6 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer )
   ((DrawableObjectWrapper *)(pObj->pDrawer))->drawer = drawer ;
 }
 /*---------------------------------------------------------------------------------*/
-DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle )
-{
-  return dynamic_cast<DrawableRectangle *>(getHandleDrawer(pRectangle));
-}
-/*---------------------------------------------------------------------------------*/
 DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
 {
   return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));

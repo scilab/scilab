@@ -19,7 +19,6 @@ extern "C"
 #include "ObjectStructure.h"
 }
 #include "DrawableObject.h"
-#include "rectangleDrawing/DrawableRectangle.h"
 #include "polylineDrawing/DrawablePolyline.h"
 #include "textDrawing/DrawableText.h"
 #include "subwinDrawing/DrawableSubwin.h"
@@ -63,12 +62,6 @@ DrawableObject * getHandleDrawerPointer( sciPointObj * pObj ) ;
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
 
 /*------------------------------------------------------------------------------*/
-
-/**
- * Return a DrawableRectangle object corresponding to a sciPointObj object.
- * @return the corresponding rectangle to pRectangle if pRectangle if of type rectangle, NULL otherwise
- */
-DrawableRectangle * getRectangleDrawer( sciPointObj * pRectangle ) ;
 
 /**
  * Return a DrawablePolyline object corresponding to a sciPointObj object.
