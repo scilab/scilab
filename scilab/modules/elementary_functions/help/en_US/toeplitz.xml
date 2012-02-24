@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>toeplitz</refname>
-    <refpurpose>toeplitz matrix</refpurpose>
+    <refpurpose>Toeplitz matrix</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,7 +36,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      returns the Toeplitz matrix whose first row is <literal>r</literal>
+      <literal>A=toeplitz(c [,r])</literal> returns the Toeplitz matrix whose first row is <literal>r</literal>
       and first column is <literal>c</literal>. <literal>c(1)</literal> must be
       equal to <literal>r(1)</literal>. <literal>toeplitz(c)</literal> returns
       the symmetric Toeplitz matrix.
@@ -64,6 +64,9 @@ t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
     <simplelist type="inline">
       <member>
         <link linkend="matrix">matrix</link>
+      </member>
+      <member>
+        <link linkend="testmatrix">testmatrix</link>
       </member>
     </simplelist>
   </refsection>

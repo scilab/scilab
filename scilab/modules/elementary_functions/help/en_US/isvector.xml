@@ -43,7 +43,7 @@
     <title>Description</title>
     <para>
       <literal>isvector(x)</literal> returns true if <literal>x</literal>
-      is a vector (one of its dimension is different from 1).
+      is a vector (only one of its dimension is different from 1).
     </para>
   </refsection>
   <refsection>

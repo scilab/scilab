@@ -48,7 +48,7 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>scalar or vector</para>
+	  <para>scalar or vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,15 +57,15 @@
     <title>Description</title>
     <para>
       <literal>y=diff(x)</literal> compute the difference function
-      y=x(2:$)-x(1:$-1)
+      <literal>y=x(2:$)-x(1:$-1)</literal>
     </para>
     <para>
-      <literal>diff(x,n,dim)</literal> is the <literal>n</literal> th
+      <literal>diff(x,n,dim)</literal> is the <literal>n</literal>th
       difference function along dimension <literal>dim</literal>.
     </para>
     <para>
       <literal>diff(x,n,"*")</literal> is equivalent to
-      diff(x(:),n).
+      <literal>diff(x(:),n)</literal>.
     </para>
     <para>
       Default value for <literal>n</literal> is 1. Default value for

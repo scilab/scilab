@@ -33,9 +33,9 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>logp1(x)</literal> is the "element-wise" log(1+x) function.
-      <literal>y(i,j)=log(1 + x(i,j))</literal>. This function, defined for x
-      &gt; -1, must be used if we want to compute log(1+x) with accuracy for |x|
+      <literal>log1p(x)</literal> is the "element-wise" <literal>log(1+x)</literal> function.
+      <literal>y(i,j)=log(1 + x(i,j))</literal>. This function, defined for <literal>x</literal>
+      &gt; -1, must be used if we want to compute <literal>log(1+x)</literal> with accuracy for <literal>|x|</literal>
       &lt;&lt; 1.
     </para>
   </refsection>

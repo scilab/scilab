@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>or</refname>
-    <refpurpose>logical or of the elements of an array</refpurpose>
+    <refpurpose>logical OR of the elements of an array</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -31,7 +31,7 @@
     <para>
       <literal>or(A)</literal> gives the <literal>or</literal> of the
       elements of the boolean matrix <literal>A</literal>.
-      <literal>or(A)</literal> is true (<literal>%t</literal>) iff at least one
+      <literal>or(A)</literal> is true (<literal>%t</literal>) if at least one
       entry of <literal>A</literal> is <literal>%t</literal>.
     </para>
     <para>
@@ -39,16 +39,16 @@
     </para>
     <para>
       <literal>y=or(A,'r')</literal> (or, equivalently,
-      <literal>y=or(A,1)</literal>) is the rowwise or. It returns in each entry
-      of the row vector <literal>y</literal> the or of the rows of
-      <literal>x</literal> (The or is performed on the row index :
+      <literal>y=or(A,1)</literal>) is the row-wise OR. It returns in each entry
+      of the row vector <literal>y</literal> the OR of the rows of
+      <literal>x</literal> (The OR is performed on the row index :
       <literal>y(j)= or(A(i,j),i=1,m)</literal>).
     </para>
     <para>
       <literal>y=or(A,'c')</literal> (or, equivalently,
-      <literal>y=or(A,2)</literal>) is the columnwise or. It returns in each
-      entry of the column vector <literal>y</literal> the or of the columns of
-      <literal>x</literal> (The or is performed on the column index:
+      <literal>y=or(A,2)</literal>) is the column-wise OR. It returns in each
+      entry of the column vector <literal>y</literal> the OR of the columns of
+      <literal>x</literal> (The OR is performed on the column index:
       <literal>y(i)= or(A(i,j),j=1,n)</literal>)). 
     </para>
     <para/>

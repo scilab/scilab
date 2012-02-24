@@ -50,7 +50,7 @@
       <varlistentry>
         <term>sel</term>
         <listitem>
-          <para>a positive scalar with integer values or one of the character
+          <para>a positive scalar with integer value or one of the character
             strings 'r', 'c' or '*'
           </para>
         </listitem>
@@ -75,53 +75,37 @@
       <varlistentry>
         <term>Applied to :</term>
         <listitem>
-          <para>an array or nD array (constant, polynomial, string, boolean,
+          <para>an array or n-D array (constant, polynomial, string, boolean,
             rational)
           </para>
           <itemizedlist>
             <listitem>
-              <literal>sz = size(x)</literal>
-              
-              returns a 
-              
-              <literal>1</literal>
-              
-              by 
-              
-              <literal>ndims(x)</literal>
-              
-              vector. Each entry gives the corresponding dimension value. 
+              <literal>sz = size(x)</literal> returns a <literal>1</literal>-by-<literal>ndims(x)</literal> vector. Each entry gives the corresponding dimension value. 
             </listitem>
             <listitem>
-              <literal>[n1, n2, ...] = size(x)</literal>
-              
-              , the function returns in each argument the corresponding dimension value. 
+              <literal>[n1, n2, ...] = size(x)</literal>, the function returns in each argument the corresponding dimension value. 
             </listitem>
             <listitem>
-              <literal>La syntaxe n = size(x, sel)</literal>
-              
+              The syntax <literal>n = size(x, sel)</literal> 
               may be used to specify what dimension to get: 
               
               <itemizedlist mark="dash"><listitem>
-                  Set <literal>sel</literal> to 1 or 'r' to get the
-                  number of rows
+                  Set <literal>sel</literal> to 1 or <literal>'r'</literal> to get the
+                  number of rows.
                 </listitem>
                 <listitem>
-                  Set <literal>sel</literal> 2 or 'c' to get the
-                  number of columns
+                  Set <literal>sel</literal> to 2 or <literal>'c'</literal> to get the
+                  number of columns.
                 </listitem>
                 <listitem>
-                  Set <literal>sel</literal> to m,
-                  where<literal>m</literal> is a positive integer to get the
-                  <literal>m</literal> th dimension. If <literal>m</literal> is
-                  greater than <literal>ndims(x)</literal>,<literal>size(x,
-                    m)
-                  </literal>
-                  returns 1.
+                  Set <literal>sel</literal> to <literal>m</literal>,
+                  where <literal>m</literal> is a positive integer to get the
+                  <literal>m</literal>th dimension. If <literal>m</literal> is
+                  greater than <literal>ndims(x)</literal>, then <literal>size(x,m)</literal> returns 1.
                 </listitem>
                 <listitem>
-                  Set <literal>sel</literal> '*' to get the product of
-                  the dimensions
+                  Set <literal>sel</literal> to <literal>'*'</literal> to get the product of
+                  the dimensions.
                 </listitem>
               </itemizedlist>
               
@@ -133,8 +117,8 @@
       <varlistentry>
         <term>Applied to:</term>
         <listitem>
-          <para>a list it returns the number of elements. In this case only
-            <literal>y = size(x)</literal> syntax can be used
+          <para>a list; it returns the number of elements. In this case only
+            <literal>y = size(x)</literal> syntax can be used.
           </para>
         </listitem>
       </varlistentry>
@@ -142,17 +126,15 @@
         <term>Applied to:</term>
         <listitem>
           <para>
-            a linear system, <literal>y= size(x)</literal> returns in
-            <literal>y</literal> the (row) vector [number of outputs, number if
+            a linear system; <literal>y= size(x)</literal> returns in
+            <literal>y</literal> the (row) vector [number of outputs, number of
             inputs] i.e. the dimension of the corresponding transfer matrix. The
             syntax <literal>[nr, nc] = size(x)</literal> is also valid (with
-            <literal>(nr, nc) = (y(1), y(2))</literal>. If <literal>x</literal>
-            is a linear system in state-space form, then <literal>[nr, nc, nx] =
-              size(x)
-            </literal>
-            returns in addition the dimension
-            <literal>nx</literal> of the <literal>A</literal> matrix of
-            <literal>x</literal>.
+            <literal>(nr, nc) = (y(1), y(2))</literal>). If <literal>x</literal>
+            is a linear system in state-space form, then <literal>[nr, nc, nx] = 
+            size(x)</literal>
+            returns in addition the dimension <literal>nx</literal> of matrix 
+	    <literal>x</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -160,7 +142,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">[n, m] = size(rand(3, 2))
+    <programlisting role="example">
+      [n, m] = size(rand(3, 2))
       [n, m] = size(['a', 'b'; 'c', 'd'])
       
       x = ssrand(3, 2, 4);

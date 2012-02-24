@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>&amp;</refname>
-    <refpurpose>logical and operator</refpurpose>
+    <refpurpose>logical AND operator</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -27,7 +27,7 @@
     <para>
       <literal>A&amp;B</literal> gives the element-wise logical
       <literal>and</literal> of the booleans matrices <literal>A</literal> and
-      <literal>B</literal> .<literal>A</literal> and <literal>B</literal> must
+      <literal>B</literal>. <literal>A</literal> and <literal>B</literal> must
       be matrices with the same dimensions or one from them must be a single
       boolean.
     </para>

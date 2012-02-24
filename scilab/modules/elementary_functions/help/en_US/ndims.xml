@@ -18,6 +18,12 @@
     <refname>ndims</refname>
     <refpurpose>number of dimensions of an array</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      n=ndims(A)
+    </synopsis>
+  </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>

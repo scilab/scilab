@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>pertrans</refname>
-    <refpurpose>pertranspose</refpurpose>
+    <refpurpose>simultaneous permutation and transposition</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,15 +43,23 @@
     <title>Description</title>
     <para>
       <literal>Y=pertrans(X)</literal> returns the pertranspose of
-      <literal>X</literal>, i.e. the symmetric of <literal>X</literal> w.r.t the
-      second diagonal (utility function).
+      <literal>X</literal>, i.e. the symmetric of <literal>X</literal> 
+      with reference to the second diagonal (utility function).
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-A=[1,2;3,4]
+A = matrix(1:25,5,5)
 pertrans(A)
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="permute">permute</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

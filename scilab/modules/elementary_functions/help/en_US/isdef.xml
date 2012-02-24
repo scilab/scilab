@@ -45,7 +45,7 @@
     <title>Description</title>
     <para>
       <literal>isdef(name)</literal> returns <literal>%T</literal> if the
-      variable named<literal>name</literal> exists and <literal>%F</literal>
+      variable named <literal>name</literal> exists and <literal>%F</literal>
       otherwise.
     </para>
     <para>
@@ -54,7 +54,7 @@
     </para>
     <para>
       <literal>isdef(name,'local')</literal> returns <literal>%T</literal>
-      if the variable named<literal>name</literal> exists in the local
+      if the variable named <literal>name</literal> exists in the local
       environment of the current function and <literal>%F</literal>
       otherwise.
     </para>

@@ -39,9 +39,9 @@
       <literal>logm(x)</literal> is the matrix logarithm of
       <literal>x</literal>. The result is complex if <literal>x</literal> is not
       positive or definite positive. If <literal>x</literal> is a symmetric
-      matrix, then calculation is made by schur form. Otherwise,
+      matrix, then calculation is made by Schur form. Otherwise,
       <literal>x</literal> is assumed diagonalizable. One has
-      <literal>expm(logm(x))=x.</literal>
+      <literal>expm(logm(x))=x</literal>.
     </para>
   </refsection>
   <refsection>

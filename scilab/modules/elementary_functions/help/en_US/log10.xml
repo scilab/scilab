@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>log10</refname>
-    <refpurpose>logarithm</refpurpose>
+    <refpurpose>base 10 logarithm</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,8 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      decimal logarithm.If <literal>x</literal> is a vector
-      <literal>log10(x)=[log10(x1),...,log10(xn)]</literal>.
+      <literal>log10(x)</literal> is the "element-wise" base 10 logarithm 
+      <literal>y(i,j)=log10(x(i,j))</literal>.
     </para>
   </refsection>
   <refsection>

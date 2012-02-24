@@ -36,8 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      decimal logarithm.If <literal>x</literal> is a vector
-      <literal>log2(x)=[log2(x1),...,log2(xn)]</literal>.
+      <literal>log2(x)</literal> is the "element-wise" base 2 logarithm 
+      <literal>y(i,j)=log2(x(i,j))</literal>.
     </para>
   </refsection>
   <refsection>

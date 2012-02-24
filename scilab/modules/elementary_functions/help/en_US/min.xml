@@ -51,12 +51,12 @@
     <title>Description</title>
     <para>
       For <literal>A</literal>, a real vector or matrix,
-      <literal>min(A)</literal> is the largest element <literal>A</literal>.
+      <literal>min(A)</literal> is the least element <literal>A</literal>.
       <literal>[m,k]=min(A)</literal> gives in addition the index of the
       minimum. A second argument of type string <literal>'r'</literal> or
       <literal>'c'</literal> can be used : <literal>'r'</literal> is used to get
       a row vector <literal>m</literal> such that <literal>m(j)</literal>
-      contains the minimum of the <literal>j</literal> th column of A
+      contains the minimum of the <literal>j</literal>th column of <literal>A</literal>
       (<literal>A(:,j)</literal>), <literal>k(j)</literal> gives the row indice
       which contain the minimum for column <literal>j</literal>.
       <literal>'c'</literal> is used for the dual operation on the rows of
@@ -65,17 +65,17 @@
     </para>
     <para>
       <literal>m=min(A1,A2,...,An)</literal>, where all the
-      <literal>Aj</literal> are matrices of the same sizes,returns a vector or a
+      <literal>Aj</literal> are matrices of the same sizes, returns a vector or a
       matrix <literal>m</literal> of size <literal>size(m)=size(A1)</literal>
       such that <literal>m(i)= min( Aj(i)), j=1,...,n</literal>.
       <literal>[m,k]=min(A1,A2,...,An)</literal> gives in addition the vector or
-      matrix <literal>k</literal>. for a fixed <literal>i</literal>,
+      matrix <literal>k</literal>. For a fixed <literal>i</literal>,
       <literal>k(i)</literal> is the number of the first
       <literal>Aj(i)</literal> achieving the minimum.
     </para>
     <para>
       <literal>[m,k]=min(list(A1,...,An))</literal> is an equivalent
-      syntax of <literal>[m,k]=min(A1,A2,...,An)</literal>
+      syntax of <literal>[m,k]=min(A1,A2,...,An)</literal>.
     </para>
   </refsection>
   <refsection>
@@ -96,6 +96,9 @@
       </member>
       <member>
         <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="max">max</link>
       </member>
     </simplelist>
   </refsection>

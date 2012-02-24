@@ -30,7 +30,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real vector with non negative elements</para>
+	  <para>real vector/matrix with nonnegative elements</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>real or complex number (or vector) with the same size as
+	  <para>real or complex number (or vector/matrix) with the same size as
             <literal>x</literal>
           </para>
         </listitem>
@@ -118,9 +118,9 @@
       Where <literal>x</literal> is real and positive,
       <literal>ck</literal> is in <literal>[-1 1]</literal>.
     </para>
-    <para>If x is less than 1 the result is real.</para>
+    <para>If <literal>x</literal>  is less than 1 the result is real.</para>
     <para>
-      When called with <literal>x</literal> a vector <literal>r</literal>
+      When called with <literal>x</literal> a vector/matrix <literal>r</literal>
       is evaluated for each entry of <literal>x</literal>.
     </para>
   </refsection>

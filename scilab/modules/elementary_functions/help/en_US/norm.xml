@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>norm</refname>
-    <refpurpose>matrix norms</refpurpose>
+    <refpurpose>matrix norm</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -37,6 +37,14 @@
         <term>flag</term>
         <listitem>
           <para>string (type of norm) (default value =2)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>
+	    norm
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -76,7 +84,7 @@
         <term>norm(x,'fro')</term>
         <listitem>
           <para>Frobenius norm i.e.
-            <literal>sqrt(sum(diag(x'*x)))</literal>
+            <literal>sqrt(sum(diag(x'*x)))</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -87,15 +95,15 @@
         <term>norm(v,p)</term>
         <listitem>
           <para>
-            l_p norm (<literal>sum(v(i)^p))^(1/p)</literal> .
+            The l_p norm (<literal>sum(v(i)^p))^(1/p)</literal> .
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>norm(v)</term>
+        <term>norm(v), norm(v,2)</term>
         <listitem>
           <para>
-            <literal>=norm(v,2)</literal> : l_2 norm
+            The l_2 norm
           </para>
         </listitem>
       </varlistentry>
@@ -136,6 +144,9 @@ norm(A)
       </member>
       <member>
         <link linkend="abs">abs</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
       </member>
     </simplelist>
   </refsection>

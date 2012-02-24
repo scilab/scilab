@@ -43,7 +43,7 @@
         <term>percent</term>
         <listitem>
           <para>real positive scalar, the percent of the period in which the
-            signal is positive. Defaut value is 50
+            signal is positive. Defaut value is 50.
           </para>
         </listitem>
       </varlistentry>
@@ -57,8 +57,8 @@
       <literal>t</literal> vector.
     </para>
     <para>
-      <literal>squarewave(t,%)</literal> generates a square wave such that
-      <literal>%</literal> is the percent of the period in which the signal is
+      <literal>squarewave(t,percent)</literal> generates a square wave such that
+      <literal>percent</literal> is the percent of the period in which the signal is
       positive.
     </para>
   </refsection>

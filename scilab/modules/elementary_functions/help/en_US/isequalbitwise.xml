@@ -44,14 +44,16 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal> isequalbitwise</literal> compares its arguments. If all of
-      them are equals function returns <literal> %t</literal> and in the other
-      case it returns <literal> %f</literal>.
+      <literal>isequalbitwise</literal> compares its arguments. If all of
+      them are equal, then the function returns <literal>%t</literal> and in the other
+      case it returns <literal>%f</literal>.
     </para>
-    <para>When comparing list's, structures,... the comparison is made
+    <para>
+      When comparing list's, structures,... the comparison is made
       recursively, the order of the fields matters.
     </para>
-    <para>floating point data are compared bitwise, i.e. NaN values are not
+    <para>
+      Floating point data are compared bitwise, i.e. NaN values are not
       equal, double(1) and int32(1) are not equal. See <link linkend="isequal">isequal</link> for IEEE comparisons.
     </para>
   </refsection>

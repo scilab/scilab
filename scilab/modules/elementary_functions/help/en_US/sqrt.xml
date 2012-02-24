@@ -28,7 +28,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex scalar or vector</para>
+	  <para>real or complex scalar or vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,16 +36,17 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>sqrt(x)</literal> is the vector of the square root of the
-      <literal>x</literal> elements. Result is complex if <literal>x</literal>
+      <literal>sqrt(x)</literal> is the vector/matrix of the square root of the
+      <literal>x</literal> elements. Result is complex if element of <literal>x</literal>
       is negative.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-sqrt([2,4])
-sqrt(-1)
+    A = matrix(4:4:16,2,2)
+    sqrt(A)
+    sqrt(-1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

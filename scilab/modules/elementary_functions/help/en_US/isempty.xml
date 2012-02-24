@@ -30,7 +30,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>vector or matrix or list</para>
+          <para>vector, matrix or list</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,7 +44,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>isempty(x)</literal> returns true if x is an empty matrix
+      <literal>isempty(x)</literal> returns true if <literal>x</literal> is an empty matrix
       or an empty list.
     </para>
   </refsection>

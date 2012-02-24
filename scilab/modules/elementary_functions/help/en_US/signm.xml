@@ -16,24 +16,51 @@
   </info>
   <refnamediv>
     <refname>signm</refname>
-    <refpurpose>matrix sign function</refpurpose>
+    <refpurpose>matrix signum function</refpurpose>
   </refnamediv>
-  <refsection>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>X=signm(A)</synopsis>
+  </refsynopsisdiv>
+ <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>А</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>real or complex matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+ <refsection>
     <title>Description</title>
     <para>
       For square and Hermitian matrices <literal>X=signm(A)</literal> is
-      matrix sign function.
+      matrix signum function.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
+A=rand(4,4);
+B=A+A';
+X=signm(B);
+spec(B),spec(X)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="csgn">csgn</link>
+      </member>
       <member>
         <link linkend="sign">sign</link>
       </member>

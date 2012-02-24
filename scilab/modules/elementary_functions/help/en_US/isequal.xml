@@ -44,14 +44,16 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal> isequal</literal> compares its arguments. If all of them
-      are equals function returns <literal> %t</literal> and in the other case
-      it returns <literal> %f</literal> .
+      <literal>isequal</literal> compares its arguments. If all of them
+      are equal then the function returns <literal>%t</literal> and in the 
+      other case it returns <literal>%f</literal>.
     </para>
-    <para>When comparing list's, structures,... the comparison is made
+    <para>
+      When comparing lists, structures,... the comparison is made
       recursively, the order of the fields matters.
     </para>
-    <para>floating point data are compared according to IEEE rule, i.e. NaN
+    <para>
+      Floating point data are compared according to IEEE rule, i.e. NaN
       values are not equal. See <link linkend="isequalbitwise">isequalbitwise</link> for bitwise
       comparisons.
     </para>

@@ -36,9 +36,9 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>log(x)</literal> is the "element-wise" logarithm.
+      <literal>log(x)</literal> is the "element-wise" logarithm 
       <literal>y(i,j)=log(x(i,j))</literal>. For matrix logarithm see
-      <literal>logm</literal>.
+      <link linkend="logm">logm</link>.
     </para>
   </refsection>
   <refsection>

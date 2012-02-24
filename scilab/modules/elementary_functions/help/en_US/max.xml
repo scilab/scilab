@@ -34,14 +34,14 @@
       <varlistentry>
         <term>A</term>
         <listitem>
-          <para>real vector or matrix.</para>
+          <para>real vector or matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A1,...,An</term>
         <listitem>
           <para>a set of real vectors or matrices, all of the same size or
-            scalar.
+            scalar
           </para>
         </listitem>
       </varlistentry>
@@ -56,26 +56,26 @@
       maximum. A second argument of type string <literal>'r'</literal> or
       <literal>'c'</literal> can be used : <literal>'r'</literal> is used to get
       a row vector <literal>m</literal> such that <literal>m(j)</literal>
-      contains the maximum of the <literal>j</literal> th column of A
-      (<literal>A(:,j)</literal>), <literal>k(j)</literal> gives the row indice
-      which contain the maximum for column <literal>j</literal>.
+      contains the maximum of the <literal>j</literal>th column of 
+      <literal>A</literal> (<literal>A(:,j)</literal>), <literal>k(j)</literal> 
+      gives the row indice which contain the maximum for column <literal>j</literal>.
       <literal>'c'</literal> is used for the dual operation on the rows of
       <literal>A</literal>. <literal>'m'</literal> is used for compatibility
       with Matlab.
     </para>
     <para>
       <literal>m=max(A1,A2,...,An)</literal>, where all the
-      <literal>Aj</literal> are matrices of the same sizes,returns a vector or a
+      <literal>Aj</literal> are matrices of the same sizes, returns a vector or a
       matrix <literal>m</literal> of size <literal>size(m)=size(A1)</literal>
       such that <literal>m(i)= max( Aj(i)), j=1,...,n</literal>.
       <literal>[m,k]=max(A1,A2,...,An)</literal> gives in addition the vector or
-      matrix <literal>k</literal>. for a fixed <literal>i</literal>,
+      matrix <literal>k</literal>. For a fixed <literal>i</literal>,
       <literal>k(i)</literal> is the number of the first
       <literal>Aj(i)</literal> achieving the maximum.
     </para>
     <para>
       <literal>[m,k]=max(list(A1,...,An))</literal> is an equivalent
-      syntax of <literal>[m,k]=max(A1,A2,...,An)</literal>
+      syntax of <literal>[m,k]=max(A1,A2,...,An)</literal>.
     </para>
   </refsection>
   <refsection>
