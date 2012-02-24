@@ -61,11 +61,6 @@ DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline )
   return dynamic_cast<DrawablePolyline *>(getHandleDrawer(pPolyline));
 }
 /*---------------------------------------------------------------------------------*/
-DrawableText * getTextDrawer( sciPointObj * pText )
-{
-  return dynamic_cast<DrawableText *>(getHandleDrawer(pText));
-}
-/*---------------------------------------------------------------------------------*/
 DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
 {
   return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));

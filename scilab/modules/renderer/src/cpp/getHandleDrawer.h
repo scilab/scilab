@@ -20,7 +20,6 @@ extern "C"
 }
 #include "DrawableObject.h"
 #include "polylineDrawing/DrawablePolyline.h"
-#include "textDrawing/DrawableText.h"
 #include "subwinDrawing/DrawableSubwin.h"
 #include "surfaceDrawing/DrawableSurface.h"
 #include "segsDrawing/DrawableSegs.h"
@@ -68,12 +67,6 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
  * @return the corresponding polyline to pPolyline if pPolyline if of type polyline, NULL otherwise
  */
 DrawablePolyline * getPolylineDrawer( sciPointObj * pPolyline );
-
-/**
- * Return a DrawableText object corresponding to a sciPointObj object.
- * @return the corresponding text to pText if pText if of type text, NULL otherwise
- */
-DrawableText * getTextDrawer( sciPointObj * pText );
 
 /**
  * Return a DrawableSubwin object corresponding to a sciPointObj object.

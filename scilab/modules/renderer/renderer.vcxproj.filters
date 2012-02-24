@@ -14,9 +14,6 @@
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\TextDrawing">
-      <UniqueIdentifier>{07f93c17-ae84-4408-9e2e-26dc0bcf0353}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SurfaceDrawing">
       <UniqueIdentifier>{2523bd68-bc83-4801-989d-59efa3b15126}</UniqueIdentifier>
     </Filter>
@@ -47,9 +44,6 @@
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TextDrawing">
-      <UniqueIdentifier>{d9620e16-a7e4-4b98-9528-95d050aee748}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SurfaceDrawing">
       <UniqueIdentifier>{39c25f36-115c-4f52-aa9d-d3aeadea1b28}</UniqueIdentifier>
@@ -440,57 +434,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\CenteredTextDrawerGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\CenteredTextDrawerJavaMapper.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\CenteredTextDrawerJoGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\ConcreteDrawableText.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\DrawableText.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextBridgeFactory.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextFactory.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableTextGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextJavaMapper.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\DrawableTextJoGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\FilledTextDrawerGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\FilledTextDrawerJavaMapper.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\FilledTextDrawerJoGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\StandardTextDrawerGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJavaMapper.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\StandardTextDrawerJoGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\textDrawing\TextContentDrawerJoGL.cpp">
-      <Filter>Source Files\TextDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.cpp">
       <Filter>Source Files\SurfaceDrawing</Filter>
@@ -1096,66 +1039,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\RenderingChecker.hxx">
       <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\CenteredTextDrawerGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\CenteredTextDrawerJavaMapper.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\CenteredTextDrawerJoGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\ConcreteDrawableText.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableText.h">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextBridge.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextBridgeFactory.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextFactory.h">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableTextGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextJavaMapper.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawableTextJoGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\DrawTextContentStrategy.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\FilledTextDrawerGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\FilledTextDrawerJavaMapper.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\FilledTextDrawerJoGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\StandardTextDrawerGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\StandardTextDrawerJavaMapper.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\StandardTextDrawerJoGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJavaMapper.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\textDrawing\TextContentDrawerJoGL.hxx">
-      <Filter>Header Files\TextDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\surfaceDrawing\ConcreteDrawableSurface.hxx">
       <Filter>Header Files\SurfaceDrawing</Filter>

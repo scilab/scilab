@@ -3,12 +3,12 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - Paul Griffiths
  * Copyright (C) 2012 - DIGITEO - Manuel Juliachs
- * desc : Interface functions between between GetProperty functions and the C++/Java part of module 
- * 
+ * desc : Interface functions between between GetProperty functions and the C++/Java part of module
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -128,13 +128,11 @@ void sciGetJava2dViewCoordFromPixel(char * pSubwinUID, const int pixCoords[2], d
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
-    getTextDrawer(pText)->getBoundingRectangle(corner1, corner2, corner3, corner4);
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
-    getTextDrawer(pText)->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
 
 /*---------------------------------------------------------------------------------*/

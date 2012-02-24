@@ -30,8 +30,6 @@ src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
 src/cpp/compoundDrawing/DrawableCompound.cpp \
-src/cpp/textDrawing/DrawableTextFactory.cpp \
-src/cpp/textDrawing/DrawableText.cpp \
 src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
 src/cpp/polylineDrawing/DrawablePolyline.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
@@ -97,21 +95,6 @@ src/jni/PolylineBarDrawerGL.cpp \
 src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
 src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
 src/jni/PolylineInterpColorDrawerGL.cpp \
-src/cpp/textDrawing/DrawableTextJoGL.cpp \
-src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
-src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
-src/jni/DrawableTextGL.cpp \
-src/cpp/textDrawing/ConcreteDrawableText.cpp \
-src/cpp/textDrawing/StandardTextDrawerJavaMapper.cpp \
-src/cpp/textDrawing/StandardTextDrawerJoGL.cpp \
-src/jni/StandardTextDrawerGL.cpp \
-src/cpp/textDrawing/TextContentDrawerJoGL.cpp \
-src/cpp/textDrawing/FilledTextDrawerJavaMapper.cpp \
-src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
-src/jni/FilledTextDrawerGL.cpp \
-src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
-src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-src/jni/CenteredTextDrawerGL.cpp \
 src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
@@ -255,7 +238,6 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 GIWS_WRAPPERS= \
 src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/CenteredTextDrawerGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \
@@ -263,8 +245,6 @@ src/jni/DrawablePolylineGL.giws.xml \
 src/jni/DrawableSegsGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/DrawableSurfaceGL.giws.xml \
-src/jni/DrawableTextGL.giws.xml \
-src/jni/FilledTextDrawerGL.giws.xml \
 src/jni/FullBoxDrawerGL.giws.xml \
 src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/HalfBoxDrawerGL.giws.xml \
@@ -279,7 +259,6 @@ src/jni/PolylineMarkdrawerGL.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \
-src/jni/StandardTextDrawerGL.giws.xml \
 src/jni/SurfaceFacetDrawerGL.giws.xml \
 src/jni/SurfaceLineDrawerGL.giws.xml \
 src/jni/SurfaceMarkDrawerGL.giws.xml \
