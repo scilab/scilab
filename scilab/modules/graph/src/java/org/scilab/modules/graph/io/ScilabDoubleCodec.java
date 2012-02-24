@@ -77,7 +77,10 @@ public class ScilabDoubleCodec extends ScilabObjectCodec {
                     mxCodec.setAttribute(data, REALPART, scilabDouble.getRealPart()[i][j]);
                 }
                 if (scilabDouble.getImaginaryPart() != null) {
-                    mxCodec.setAttribute(data, IMGPART, scilabDouble.getImaginaryPart()[i][j]);
+                    final double[][] imag = scilabDouble.getImaginaryPart();
+                    if (imag.length > i && imag[i].length > j) {
+                        mxCodec.setAttribute(data, IMGPART, imag[i][j]);
+                    }
                 }
                 node.appendChild(data);
             }
