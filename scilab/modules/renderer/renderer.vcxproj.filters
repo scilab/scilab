@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\PolylineDrawing">
-      <UniqueIdentifier>{d385f7d4-c15d-447e-8b95-bbeb854aac8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SubwinDrawing">
       <UniqueIdentifier>{8d923d4f-419e-4aca-9064-8dd5a174d536}</UniqueIdentifier>
     </Filter>
@@ -32,9 +29,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\PolylineDrawing">
-      <UniqueIdentifier>{dc9c2b2b-a7f7-4019-8a9b-20d021894089}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SubwinDrawing">
       <UniqueIdentifier>{9ee73def-e821-482d-82c0-e6eb08c24aad}</UniqueIdentifier>
@@ -131,96 +125,6 @@
     </ClCompile>
     <ClCompile Include="src\jni\XlFontManager.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\BarDecomposition.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolyline.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineBrirdgeFactory.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineFactory.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawablePolylineGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\DrawablePolylineJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\HorizontalBarDecomposition.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\InterpolatedDecomposition.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineArrowDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineArrowDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineBarDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineBarDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineFillDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineFillDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineInterpColorDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineLineDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineLineDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\PolylineMarkDrawerGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\StairCaseDecomposition.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\polylineDrawing\VerticalBarDecomposition.cpp">
-      <Filter>Source Files\PolylineDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\subwinDrawing\AutoLogSubticksComputer.cpp">
       <Filter>Source Files\SubwinDrawing</Filter>
@@ -682,108 +586,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\XlFontManager.hxx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\BarDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\ConcreteDrawablePolyline.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DecomposeLineStrategy.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolyline.h">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineBridge.h">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineBridgeFactory.h">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineFactory.h">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawablePolylineGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawablePolylineJoGL.h">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\DrawPolylineStrategy.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\HorizontalBarDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\InterpolatedDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\LinearBarDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineArrowDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineArrowDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineArrowDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineBarDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineBarDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineBarDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineFillDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineFillDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineFillDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineInterpColorDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineInterpColorDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineLineDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineLineDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\PolylineMarkDrawerGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineMarkDrawerJavaMapper.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\PolylineMarkDrawerJoGL.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\StairCaseDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\polylineDrawing\VerticalBarDecomposition.hxx">
-      <Filter>Header Files\PolylineDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\subwinDrawing\AutoLogSubticksComputer.hxx">
       <Filter>Header Files\SubwinDrawing</Filter>

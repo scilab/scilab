@@ -19,7 +19,6 @@ extern "C"
 
 #include "DrawableObjectFactory.h"
 #include "subwinDrawing/DrawableSubwinFactory.h"
-#include "polylineDrawing/DrawablePolylineFactory.h"
 #include "compoundDrawing/DrawableCompoundFactory.h"
 #include "surfaceDrawing/DrawableSurfaceFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
@@ -70,9 +69,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break ;
   case SCI_SUBWIN:
     return new DrawableSubwinFactory() ;
-    break;
-  case SCI_POLYLINE:
-    return new DrawablePolylineFactory() ;
     break;
   case SCI_AGREG:
     return new DrawableCompoundFactory() ;

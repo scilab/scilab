@@ -126,8 +126,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwin.lo \
 	libscirenderer_la-DrawableCompoundFactory.lo \
 	libscirenderer_la-DrawableCompound.lo \
-	libscirenderer_la-DrawablePolylineFactory.lo \
-	libscirenderer_la-DrawablePolyline.lo \
 	libscirenderer_la-DrawableSegs.lo \
 	libscirenderer_la-DrawableSegsFactory.lo \
 	libscirenderer_la-DrawableSurfaceFactory.lo \
@@ -155,8 +153,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwinJoGL.lo \
 	libscirenderer_la-Camera.lo \
 	libscirenderer_la-CameraBridgeFactory.lo \
-	libscirenderer_la-DrawablePolylineBrirdgeFactory.lo \
-	libscirenderer_la-DrawablePolylineJoGL.lo \
 	libscirenderer_la-DrawableClippedObjectJoGL.lo \
 	libscirenderer_la-GlobalSynchronizer.lo \
 	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
@@ -166,31 +162,7 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GraphicSynchronizerInterface.lo \
 	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
 	libscirenderer_la-DrawableSubwinJavaMapper.lo \
-	libscirenderer_la-DrawablePolylineJavaMapper.lo \
 	libscirenderer_la-DrawableSubwinGL.lo \
-	libscirenderer_la-DrawablePolylineGL.lo \
-	libscirenderer_la-PolylineLineDrawerJavaMapper.lo \
-	libscirenderer_la-InterpolatedDecomposition.lo \
-	libscirenderer_la-StairCaseDecomposition.lo \
-	libscirenderer_la-ConcreteDrawablePolyline.lo \
-	libscirenderer_la-PolylineLineDrawerJoGL.lo \
-	libscirenderer_la-PolylineLineDrawerGL.lo \
-	libscirenderer_la-PolylineFillDrawerJavaMapper.lo \
-	libscirenderer_la-PolylineFillDrawerJoGL.lo \
-	libscirenderer_la-PolylineFillDrawerGL.lo \
-	libscirenderer_la-PolylineMarkDrawerJavaMapper.lo \
-	libscirenderer_la-PolylineMarkDrawerJoGL.lo \
-	libscirenderer_la-PolylineMarkDrawerGL.lo \
-	libscirenderer_la-PolylineArrowDrawerJavaMapper.lo \
-	libscirenderer_la-PolylineArrowDrawerJoGL.lo \
-	libscirenderer_la-PolylineArrowDrawerGL.lo \
-	libscirenderer_la-PolylineBarDrawerJoGL.lo \
-	libscirenderer_la-BarDecomposition.lo \
-	libscirenderer_la-PolylineBarDrawerJavaMapper.lo \
-	libscirenderer_la-PolylineBarDrawerGL.lo \
-	libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo \
-	libscirenderer_la-PolylineInterpColorDrawerJoGL.lo \
-	libscirenderer_la-PolylineInterpColorDrawerGL.lo \
 	libscirenderer_la-IsoViewCameraGL.lo \
 	libscirenderer_la-IsometricCameraGL.lo \
 	libscirenderer_la-IsoViewCameraJavaMapper.lo \
@@ -198,8 +170,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-LinearBoundsComputer.lo \
 	libscirenderer_la-ConcreteDrawableSubwin.lo \
 	libscirenderer_la-LogarithmicBoundsComputer.lo \
-	libscirenderer_la-VerticalBarDecomposition.lo \
-	libscirenderer_la-HorizontalBarDecomposition.lo \
 	libscirenderer_la-BackTrihedronDrawerGL.lo \
 	libscirenderer_la-BackTrihedronDrawerJoGL.lo \
 	libscirenderer_la-BackTrihedronDrawerJavaMapper.lo \
@@ -593,8 +563,6 @@ src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
 src/cpp/compoundDrawing/DrawableCompound.cpp \
-src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolyline.cpp \
 src/cpp/segsDrawing/DrawableSegs.cpp \
 src/cpp/segsDrawing/DrawableSegsFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
@@ -622,8 +590,6 @@ src/cpp/subwinDrawing/CameraFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
 src/cpp/subwinDrawing/Camera.cpp \
 src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
-src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
 src/cpp/DrawableClippedObjectJoGL.cpp \
 src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
@@ -633,31 +599,7 @@ src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
 src/jni/DrawableSubwinGL.cpp \
-src/jni/DrawablePolylineGL.cpp \
-src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
-src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
-src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
-src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
-src/jni/PolylineLineDrawerGL.cpp \
-src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
-src/jni/PolylineFillDrawerGL.cpp \
-src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp \
-src/jni/PolylineMarkDrawerGL.cpp \
-src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp \
-src/jni/PolylineArrowDrawerGL.cpp \
-src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
-src/cpp/polylineDrawing/BarDecomposition.cpp \
-src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
-src/jni/PolylineBarDrawerGL.cpp \
-src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
-src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
-src/jni/PolylineInterpColorDrawerGL.cpp \
 src/jni/IsoViewCameraGL.cpp \
 src/jni/IsometricCameraGL.cpp \
 src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
@@ -665,8 +607,6 @@ src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
 src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
 src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
 src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
-src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
-src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
 src/jni/BackTrihedronDrawerGL.cpp \
 src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
 src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
@@ -803,7 +743,6 @@ src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableGrayplotGL.giws.xml \
-src/jni/DrawablePolylineGL.giws.xml \
 src/jni/DrawableSegsGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/DrawableSurfaceGL.giws.xml \
@@ -812,12 +751,6 @@ src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/HalfBoxDrawerGL.giws.xml \
 src/jni/IsometricCameraGL.giws.xml \
 src/jni/IsoViewCameraGL.giws.xml \
-src/jni/PolylineArrrowDrawerGL.giws.xml \
-src/jni/PolylineBarDrawerGL.giws.xml \
-src/jni/PolylineFillDrawer.giws.xml \
-src/jni/PolylineInterpColorDrawerGL.giws.xml \
-src/jni/PolylineLineDrawerGL.giws.xml \
-src/jni/PolylineMarkdrawerGL.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \
@@ -984,7 +917,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BuildDrawingObserver.Plo@am__quote@
@@ -997,7 +929,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
@@ -1021,12 +952,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolyline.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSegsFactory.Plo@am__quote@
@@ -1067,8 +992,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
@@ -1083,24 +1006,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineBarDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineBarDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineBarDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineLineDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineMarkDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo@am__quote@
@@ -1114,7 +1019,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsMarkDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsMarkDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Plo@am__quote@
@@ -1138,7 +1042,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
@@ -1197,20 +1100,6 @@ libscirenderer_la-DrawableCompound.lo: src/cpp/compoundDrawing/DrawableCompound.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/compoundDrawing/DrawableCompound.cpp' object='libscirenderer_la-DrawableCompound.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableCompound.lo `test -f 'src/cpp/compoundDrawing/DrawableCompound.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompound.cpp
-
-libscirenderer_la-DrawablePolylineFactory.lo: src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Tpo -c -o libscirenderer_la-DrawablePolylineFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' object='libscirenderer_la-DrawablePolylineFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineFactory.cpp
-
-libscirenderer_la-DrawablePolyline.lo: src/cpp/polylineDrawing/DrawablePolyline.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolyline.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolyline.Tpo -c -o libscirenderer_la-DrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/DrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolyline.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolyline.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolyline.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolyline.cpp' object='libscirenderer_la-DrawablePolyline.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/DrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolyline.cpp
 
 libscirenderer_la-DrawableSegs.lo: src/cpp/segsDrawing/DrawableSegs.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSegs.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSegs.Tpo -c -o libscirenderer_la-DrawableSegs.lo `test -f 'src/cpp/segsDrawing/DrawableSegs.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/DrawableSegs.cpp
@@ -1401,20 +1290,6 @@ libscirenderer_la-CameraBridgeFactory.lo: src/cpp/subwinDrawing/CameraBridgeFact
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/CameraBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridgeFactory.cpp
 
-libscirenderer_la-DrawablePolylineBrirdgeFactory.lo: src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineBrirdgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Tpo -c -o libscirenderer_la-DrawablePolylineBrirdgeFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineBrirdgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp' object='libscirenderer_la-DrawablePolylineBrirdgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineBrirdgeFactory.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp
-
-libscirenderer_la-DrawablePolylineJoGL.lo: src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Tpo -c -o libscirenderer_la-DrawablePolylineJoGL.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp' object='libscirenderer_la-DrawablePolylineJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineJoGL.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp
-
 libscirenderer_la-DrawableClippedObjectJoGL.lo: src/cpp/DrawableClippedObjectJoGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableClippedObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo
@@ -1478,180 +1353,12 @@ libscirenderer_la-DrawableSubwinJavaMapper.lo: src/cpp/subwinDrawing/DrawableSub
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJavaMapper.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
 
-libscirenderer_la-DrawablePolylineJavaMapper.lo: src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Tpo -c -o libscirenderer_la-DrawablePolylineJavaMapper.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp' object='libscirenderer_la-DrawablePolylineJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineJavaMapper.lo `test -f 'src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp
-
 libscirenderer_la-DrawableSubwinGL.lo: src/jni/DrawableSubwinGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSubwinGL.cpp' object='libscirenderer_la-DrawableSubwinGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
-
-libscirenderer_la-DrawablePolylineGL.lo: src/jni/DrawablePolylineGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawablePolylineGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Tpo -c -o libscirenderer_la-DrawablePolylineGL.lo `test -f 'src/jni/DrawablePolylineGL.cpp' || echo '$(srcdir)/'`src/jni/DrawablePolylineGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Tpo $(DEPDIR)/libscirenderer_la-DrawablePolylineGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawablePolylineGL.cpp' object='libscirenderer_la-DrawablePolylineGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawablePolylineGL.lo `test -f 'src/jni/DrawablePolylineGL.cpp' || echo '$(srcdir)/'`src/jni/DrawablePolylineGL.cpp
-
-libscirenderer_la-PolylineLineDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineLineDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineLineDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineLineDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineLineDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp
-
-libscirenderer_la-InterpolatedDecomposition.lo: src/cpp/polylineDrawing/InterpolatedDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-InterpolatedDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Tpo -c -o libscirenderer_la-InterpolatedDecomposition.lo `test -f 'src/cpp/polylineDrawing/InterpolatedDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/InterpolatedDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Tpo $(DEPDIR)/libscirenderer_la-InterpolatedDecomposition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/InterpolatedDecomposition.cpp' object='libscirenderer_la-InterpolatedDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-InterpolatedDecomposition.lo `test -f 'src/cpp/polylineDrawing/InterpolatedDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/InterpolatedDecomposition.cpp
-
-libscirenderer_la-StairCaseDecomposition.lo: src/cpp/polylineDrawing/StairCaseDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-StairCaseDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Tpo -c -o libscirenderer_la-StairCaseDecomposition.lo `test -f 'src/cpp/polylineDrawing/StairCaseDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/StairCaseDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Tpo $(DEPDIR)/libscirenderer_la-StairCaseDecomposition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/StairCaseDecomposition.cpp' object='libscirenderer_la-StairCaseDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-StairCaseDecomposition.lo `test -f 'src/cpp/polylineDrawing/StairCaseDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/StairCaseDecomposition.cpp
-
-libscirenderer_la-ConcreteDrawablePolyline.lo: src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawablePolyline.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Tpo -c -o libscirenderer_la-ConcreteDrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawablePolyline.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp' object='libscirenderer_la-ConcreteDrawablePolyline.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawablePolyline.lo `test -f 'src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp
-
-libscirenderer_la-PolylineLineDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineLineDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineLineDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineLineDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp' object='libscirenderer_la-PolylineLineDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineLineDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp
-
-libscirenderer_la-PolylineLineDrawerGL.lo: src/jni/PolylineLineDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineLineDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Tpo -c -o libscirenderer_la-PolylineLineDrawerGL.lo `test -f 'src/jni/PolylineLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineLineDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineLineDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineLineDrawerGL.cpp' object='libscirenderer_la-PolylineLineDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineLineDrawerGL.lo `test -f 'src/jni/PolylineLineDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineLineDrawerGL.cpp
-
-libscirenderer_la-PolylineFillDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineFillDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineFillDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineFillDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineFillDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp
-
-libscirenderer_la-PolylineFillDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineFillDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineFillDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineFillDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp' object='libscirenderer_la-PolylineFillDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineFillDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp
-
-libscirenderer_la-PolylineFillDrawerGL.lo: src/jni/PolylineFillDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineFillDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Tpo -c -o libscirenderer_la-PolylineFillDrawerGL.lo `test -f 'src/jni/PolylineFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineFillDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineFillDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineFillDrawerGL.cpp' object='libscirenderer_la-PolylineFillDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineFillDrawerGL.lo `test -f 'src/jni/PolylineFillDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineFillDrawerGL.cpp
-
-libscirenderer_la-PolylineMarkDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineMarkDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineMarkDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineMarkDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp
-
-libscirenderer_la-PolylineMarkDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineMarkDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineMarkDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp' object='libscirenderer_la-PolylineMarkDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineMarkDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp
-
-libscirenderer_la-PolylineMarkDrawerGL.lo: src/jni/PolylineMarkDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineMarkDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerGL.Tpo -c -o libscirenderer_la-PolylineMarkDrawerGL.lo `test -f 'src/jni/PolylineMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineMarkDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineMarkDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineMarkDrawerGL.cpp' object='libscirenderer_la-PolylineMarkDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineMarkDrawerGL.lo `test -f 'src/jni/PolylineMarkDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineMarkDrawerGL.cpp
-
-libscirenderer_la-PolylineArrowDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineArrowDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineArrowDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineArrowDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineArrowDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp
-
-libscirenderer_la-PolylineArrowDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineArrowDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineArrowDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp' object='libscirenderer_la-PolylineArrowDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineArrowDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp
-
-libscirenderer_la-PolylineArrowDrawerGL.lo: src/jni/PolylineArrowDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineArrowDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Tpo -c -o libscirenderer_la-PolylineArrowDrawerGL.lo `test -f 'src/jni/PolylineArrowDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineArrowDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineArrowDrawerGL.cpp' object='libscirenderer_la-PolylineArrowDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineArrowDrawerGL.lo `test -f 'src/jni/PolylineArrowDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineArrowDrawerGL.cpp
-
-libscirenderer_la-PolylineBarDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineBarDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineBarDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp' object='libscirenderer_la-PolylineBarDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineBarDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp
-
-libscirenderer_la-BarDecomposition.lo: src/cpp/polylineDrawing/BarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BarDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BarDecomposition.Tpo -c -o libscirenderer_la-BarDecomposition.lo `test -f 'src/cpp/polylineDrawing/BarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/BarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BarDecomposition.Tpo $(DEPDIR)/libscirenderer_la-BarDecomposition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/BarDecomposition.cpp' object='libscirenderer_la-BarDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BarDecomposition.lo `test -f 'src/cpp/polylineDrawing/BarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/BarDecomposition.cpp
-
-libscirenderer_la-PolylineBarDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineBarDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineBarDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineBarDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineBarDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineBarDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp
-
-libscirenderer_la-PolylineBarDrawerGL.lo: src/jni/PolylineBarDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineBarDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineBarDrawerGL.Tpo -c -o libscirenderer_la-PolylineBarDrawerGL.lo `test -f 'src/jni/PolylineBarDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineBarDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineBarDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineBarDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineBarDrawerGL.cpp' object='libscirenderer_la-PolylineBarDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineBarDrawerGL.lo `test -f 'src/jni/PolylineBarDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineBarDrawerGL.cpp
-
-libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo: src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Tpo -c -o libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' object='libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp
-
-libscirenderer_la-PolylineInterpColorDrawerJoGL.lo: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineInterpColorDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Tpo -c -o libscirenderer_la-PolylineInterpColorDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' object='libscirenderer_la-PolylineInterpColorDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerJoGL.lo `test -f 'src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp
-
-libscirenderer_la-PolylineInterpColorDrawerGL.lo: src/jni/PolylineInterpColorDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-PolylineInterpColorDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerGL.Tpo -c -o libscirenderer_la-PolylineInterpColorDrawerGL.lo `test -f 'src/jni/PolylineInterpColorDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineInterpColorDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-PolylineInterpColorDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/PolylineInterpColorDrawerGL.cpp' object='libscirenderer_la-PolylineInterpColorDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-PolylineInterpColorDrawerGL.lo `test -f 'src/jni/PolylineInterpColorDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/PolylineInterpColorDrawerGL.cpp
 
 libscirenderer_la-IsoViewCameraGL.lo: src/jni/IsoViewCameraGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
@@ -1701,20 +1408,6 @@ libscirenderer_la-LogarithmicBoundsComputer.lo: src/cpp/subwinDrawing/Logarithmi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' object='libscirenderer_la-LogarithmicBoundsComputer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LogarithmicBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
-
-libscirenderer_la-VerticalBarDecomposition.lo: src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-VerticalBarDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Tpo -c -o libscirenderer_la-VerticalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Tpo $(DEPDIR)/libscirenderer_la-VerticalBarDecomposition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' object='libscirenderer_la-VerticalBarDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-VerticalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/VerticalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/VerticalBarDecomposition.cpp
-
-libscirenderer_la-HorizontalBarDecomposition.lo: src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HorizontalBarDecomposition.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Tpo -c -o libscirenderer_la-HorizontalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Tpo $(DEPDIR)/libscirenderer_la-HorizontalBarDecomposition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' object='libscirenderer_la-HorizontalBarDecomposition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HorizontalBarDecomposition.lo `test -f 'src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp' || echo '$(srcdir)/'`src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp
 
 libscirenderer_la-BackTrihedronDrawerGL.lo: src/jni/BackTrihedronDrawerGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BackTrihedronDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Tpo -c -o libscirenderer_la-BackTrihedronDrawerGL.lo `test -f 'src/jni/BackTrihedronDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/BackTrihedronDrawerGL.cpp
