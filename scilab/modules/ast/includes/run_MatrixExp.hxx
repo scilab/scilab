@@ -64,10 +64,6 @@ void visitprivate(const MatrixExp &e)
                 }
 
                 GenericType* pGT = pIT->getAs<GenericType>();
-                if(pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
-                {
-                    continue;
-                }
 
                 if(pGT->isImplicitList() && pGT->getAs<ImplicitList>()->isComputable())
                 {
@@ -78,6 +74,11 @@ void visitprivate(const MatrixExp &e)
                         delete pGT;
                     }
                     pGT = pIT->getAs<GenericType>();
+                }
+
+                if(pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
+                {
+                    continue;
                 }
 
                 if(poRow == NULL)
