@@ -22,7 +22,6 @@ extern "C"
 #include "compoundDrawing/DrawableCompoundFactory.h"
 #include "surfaceDrawing/DrawableSurfaceFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
-#include "grayplotDrawing/DrawableGrayplotFactory.h"
 #include "segsDrawing/DrawableSegsFactory.h"
 
 namespace sciGraphics
@@ -81,9 +80,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break ;
   case SCI_SEGS:
     return new DrawableSegsFactory() ;
-    break ;
-  case SCI_GRAYPLOT:
-    return new DrawableGrayplotFactory() ;
     break ;
   case SCI_UIMENU:
   default:

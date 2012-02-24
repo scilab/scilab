@@ -132,8 +132,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSurface.lo \
 	libscirenderer_la-DrawableAxes.lo \
 	libscirenderer_la-DrawableAxesFactory.lo \
-	libscirenderer_la-DrawableGrayplot.lo \
-	libscirenderer_la-DrawableGrayplotFactory.lo \
 	libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-HandleObserverManagement.lo \
 	libscirenderer_la-DrawableObjectFactory.lo \
@@ -223,13 +221,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-SegsLineDrawerJoGL.lo \
 	libscirenderer_la-SegsMarkDrawerJavaMapper.lo \
 	libscirenderer_la-SegsMarkDrawerJoGL.lo \
-	libscirenderer_la-DrawableGrayplotGL.lo \
-	libscirenderer_la-ConcreteDrawableGrayplot.lo \
-	libscirenderer_la-DrawabelGrayplotJavaMapper.lo \
-	libscirenderer_la-DrawableGrayplotBridgeFactory.lo \
-	libscirenderer_la-DrawableGrayplotJoGL.lo \
-	libscirenderer_la-GrayplotDecomposer.lo \
-	libscirenderer_la-MatplotDecomposer.lo \
 	libscirenderer_la-DrawableAxesGL.lo \
 	libscirenderer_la-AxesTicksComputer.lo \
 	libscirenderer_la-ConcreteDrawableAxes.lo \
@@ -569,8 +560,6 @@ src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
 src/cpp/surfaceDrawing/DrawableSurface.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
@@ -660,13 +649,6 @@ src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
 src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
-src/jni/DrawableGrayplotGL.cpp \
-src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp \
-src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
-src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
-src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
-src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
 src/jni/DrawableAxesGL.cpp \
 src/cpp/axesDrawing/AxesTicksComputer.cpp \
 src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
@@ -742,7 +724,6 @@ GIWS_WRAPPERS = \
 src/jni/BackTrihedronDrawerGL.giws.xml \
 src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
-src/jni/DrawableGrayplotGL.giws.xml \
 src/jni/DrawableSegsGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/DrawableSurfaceGL.giws.xml \
@@ -928,12 +909,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ChampDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSegs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSurface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DecomposeSegsStrategy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo@am__quote@
@@ -944,11 +923,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
@@ -982,7 +956,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GrayplotDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerJavaMapper.Plo@am__quote@
@@ -1001,7 +974,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MatplotDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo@am__quote@
@@ -1142,20 +1114,6 @@ libscirenderer_la-DrawableAxesFactory.lo: src/cpp/axesDrawing/DrawableAxesFactor
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesFactory.cpp' object='libscirenderer_la-DrawableAxesFactory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesFactory.cpp
-
-libscirenderer_la-DrawableGrayplot.lo: src/cpp/grayplotDrawing/DrawableGrayplot.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableGrayplot.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableGrayplot.Tpo -c -o libscirenderer_la-DrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplot.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableGrayplot.Tpo $(DEPDIR)/libscirenderer_la-DrawableGrayplot.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplot.cpp' object='libscirenderer_la-DrawableGrayplot.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplot.cpp
-
-libscirenderer_la-DrawableGrayplotFactory.lo: src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableGrayplotFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Tpo -c -o libscirenderer_la-DrawableGrayplotFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableGrayplotFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' object='libscirenderer_la-DrawableGrayplotFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableGrayplotFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp
 
 libscirenderer_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-getHandleDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-getHandleDrawer.Tpo -c -o libscirenderer_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
@@ -1779,55 +1737,6 @@ libscirenderer_la-SegsMarkDrawerJoGL.lo: src/cpp/segsDrawing/SegsMarkDrawerJoGL.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp' object='libscirenderer_la-SegsMarkDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SegsMarkDrawerJoGL.lo `test -f 'src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp
-
-libscirenderer_la-DrawableGrayplotGL.lo: src/jni/DrawableGrayplotGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableGrayplotGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Tpo -c -o libscirenderer_la-DrawableGrayplotGL.lo `test -f 'src/jni/DrawableGrayplotGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableGrayplotGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableGrayplotGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableGrayplotGL.cpp' object='libscirenderer_la-DrawableGrayplotGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableGrayplotGL.lo `test -f 'src/jni/DrawableGrayplotGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableGrayplotGL.cpp
-
-libscirenderer_la-ConcreteDrawableGrayplot.lo: src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableGrayplot.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Tpo -c -o libscirenderer_la-ConcreteDrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableGrayplot.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp' object='libscirenderer_la-ConcreteDrawableGrayplot.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableGrayplot.lo `test -f 'src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp
-
-libscirenderer_la-DrawabelGrayplotJavaMapper.lo: src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawabelGrayplotJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Tpo -c -o libscirenderer_la-DrawabelGrayplotJavaMapper.lo `test -f 'src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawabelGrayplotJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp' object='libscirenderer_la-DrawabelGrayplotJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawabelGrayplotJavaMapper.lo `test -f 'src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp
-
-libscirenderer_la-DrawableGrayplotBridgeFactory.lo: src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableGrayplotBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableGrayplotBridgeFactory.Tpo -c -o libscirenderer_la-DrawableGrayplotBridgeFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableGrayplotBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableGrayplotBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp' object='libscirenderer_la-DrawableGrayplotBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableGrayplotBridgeFactory.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp
-
-libscirenderer_la-DrawableGrayplotJoGL.lo: src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableGrayplotJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Tpo -c -o libscirenderer_la-DrawableGrayplotJoGL.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableGrayplotJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp' object='libscirenderer_la-DrawableGrayplotJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableGrayplotJoGL.lo `test -f 'src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp
-
-libscirenderer_la-GrayplotDecomposer.lo: src/cpp/grayplotDrawing/GrayplotDecomposer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GrayplotDecomposer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GrayplotDecomposer.Tpo -c -o libscirenderer_la-GrayplotDecomposer.lo `test -f 'src/cpp/grayplotDrawing/GrayplotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/GrayplotDecomposer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GrayplotDecomposer.Tpo $(DEPDIR)/libscirenderer_la-GrayplotDecomposer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/GrayplotDecomposer.cpp' object='libscirenderer_la-GrayplotDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GrayplotDecomposer.lo `test -f 'src/cpp/grayplotDrawing/GrayplotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/GrayplotDecomposer.cpp
-
-libscirenderer_la-MatplotDecomposer.lo: src/cpp/grayplotDrawing/MatplotDecomposer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-MatplotDecomposer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-MatplotDecomposer.Tpo -c -o libscirenderer_la-MatplotDecomposer.lo `test -f 'src/cpp/grayplotDrawing/MatplotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/MatplotDecomposer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-MatplotDecomposer.Tpo $(DEPDIR)/libscirenderer_la-MatplotDecomposer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/grayplotDrawing/MatplotDecomposer.cpp' object='libscirenderer_la-MatplotDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MatplotDecomposer.lo `test -f 'src/cpp/grayplotDrawing/MatplotDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/grayplotDrawing/MatplotDecomposer.cpp
 
 libscirenderer_la-DrawableAxesGL.lo: src/jni/DrawableAxesGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Tpo -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp

@@ -72,11 +72,6 @@ DrawableSegs * getSegsDrawer( sciPointObj * pSegs )
   return dynamic_cast<DrawableSegs *>(getHandleDrawer(pSegs));
 }
 /*---------------------------------------------------------------------------------*/
-DrawableGrayplot * getGrayplotDrawer( sciPointObj * pGrayplot )
-{
-  return dynamic_cast<DrawableGrayplot *>(getHandleDrawer(pGrayplot));
-}
-/*---------------------------------------------------------------------------------*/
 DrawableAxes * getAxesDrawer( sciPointObj * pAxes )
 {
   return dynamic_cast<DrawableAxes *>(getHandleDrawer(pAxes));

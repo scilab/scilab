@@ -20,9 +20,6 @@
     <Filter Include="Source Files\SegsDrawing">
       <UniqueIdentifier>{06634c08-c05e-4bcf-9cc1-8be0678d1777}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GrayplotDrawing">
-      <UniqueIdentifier>{d8b1b0e1-955b-4cf8-aeac-528de2c937fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\AxesDrawing">
       <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
     </Filter>
@@ -41,9 +38,6 @@
     </Filter>
     <Filter Include="Header Files\SurfaceDrawing">
       <UniqueIdentifier>{39c25f36-115c-4f52-aa9d-d3aeadea1b28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GrayplotDrawing">
-      <UniqueIdentifier>{12d8680f-fdb7-4a33-990b-5d16ef27201b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SegsDrawing">
       <UniqueIdentifier>{f9c9dfe3-7207-4e18-b1be-6f4ac59216d7}</UniqueIdentifier>
@@ -449,33 +443,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.cpp">
       <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawabelGrayplotJavaMapper.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplot.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotFactory.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableGrayplotGL.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\DrawableGrayplotJoGL.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\GrayplotDecomposer.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\grayplotDrawing\MatplotDecomposer.cpp">
-      <Filter>Source Files\GrayplotDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp">
       <Filter>Source Files\AxesDrawing</Filter>
@@ -895,39 +862,6 @@
     </ClInclude>
     <ClInclude Include="src\cpp\surfaceDrawing\SurfaceMarkDrawerJoGL.hxx">
       <Filter>Header Files\SurfaceDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\ConcreteDrawableGrayplot.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplot.h">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotBridge.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotBridgeFactory.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotFactory.h">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableGrayplotGL.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotJavaMapper.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\DrawableGrayplotJoGL.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\GrayplotDecomposer.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\GrayplotDecompositionStrategy.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\grayplotDrawing\MatplotDecomposer.hxx">
-      <Filter>Header Files\GrayplotDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\segsDrawing\ChampDecomposer.hxx">
       <Filter>Header Files\SegsDrawing</Filter>
