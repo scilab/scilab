@@ -12,7 +12,6 @@
  */
 
 #include "matfile_manager.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"

@@ -11,7 +11,6 @@
  *
  */
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "localization.h"

@@ -10,7 +10,7 @@
  *
  */
 #include "gw_core.h"
-#include "stack-c.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intclear)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

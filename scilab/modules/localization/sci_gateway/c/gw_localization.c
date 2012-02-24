@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "gw_localization.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]=

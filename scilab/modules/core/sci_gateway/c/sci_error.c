@@ -12,7 +12,7 @@
  */
 #include <stdlib.h>
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "do_error_number.h"

@@ -13,7 +13,6 @@
 
 #include "gw_matio.h"
 #include "CreateMatlabVariable.h"
-#include "stack-c.h"
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif

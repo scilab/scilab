@@ -14,7 +14,6 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "do_xxprintf.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

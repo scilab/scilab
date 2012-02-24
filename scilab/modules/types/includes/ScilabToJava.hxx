@@ -22,7 +22,6 @@
 
 extern "C"
 {
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"

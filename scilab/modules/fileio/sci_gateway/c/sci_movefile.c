@@ -14,7 +14,6 @@
 #include <errno.h>
 #endif
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"

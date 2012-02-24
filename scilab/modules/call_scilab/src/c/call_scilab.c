@@ -34,7 +34,7 @@
 #include "../../core/src/c/TerminateCore.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-#include "api_scilab.h"
+
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"

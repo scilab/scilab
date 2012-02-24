@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "getdate.h"
 #include "Scierror.h"

@@ -19,7 +19,6 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "api_scilab.h"

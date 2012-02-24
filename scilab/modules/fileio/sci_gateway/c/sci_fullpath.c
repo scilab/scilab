@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"

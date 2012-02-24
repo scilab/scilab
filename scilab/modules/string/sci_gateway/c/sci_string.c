@@ -14,8 +14,6 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include "gw_string.h"
-#include "stack-c.h"
-#include "stack-def.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "api_scilab.h"

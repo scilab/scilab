@@ -14,7 +14,6 @@
 #include "gw_elementary_functions.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "convertbase.h"

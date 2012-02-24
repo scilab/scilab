@@ -21,7 +21,6 @@ extern "C"
 #include <wchar.h>
 #include "callscinotes.h"
 #include "gw_scinotes.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"

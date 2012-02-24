@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_string.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/

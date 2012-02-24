@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -92,7 +91,7 @@ int sci_percent_XMLAttr_size(char *fname, unsigned long fname_len)
         }
     }
 
-    size = (double)attrs->getSize();
+    size = (int)(attrs->getSize());
     if (Rhs == 1)
     {
         d[1] = size;

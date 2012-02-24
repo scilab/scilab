@@ -12,7 +12,6 @@
 
 #include "xml_mlist.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 
