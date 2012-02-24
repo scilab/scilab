@@ -79,13 +79,11 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
 
     if(_iMax == _iMin)
     {
-        addErrorMessage(&sciErr, API_ERROR_CHECKRHS, _("%s: Wrong number of input argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
-        printError(&sciErr, 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     }
     else
     {
-        addErrorMessage(&sciErr, API_ERROR_CHECKRHS, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
-        printError(&sciErr, 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
     }
 
     return 0;
@@ -103,8 +101,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    addErrorMessage(&sciErr, API_ERROR_CHECKRHS, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
-    printError(&sciErr, 0);
+    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
     return 0;
 }
 
@@ -120,8 +117,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    addErrorMessage(&sciErr, API_ERROR_CHECKRHS, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
-    printError(&sciErr, 0);
+    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     return 0;
 }
 
@@ -140,13 +136,11 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 
     if(_iMax == _iMin)
     {
-        addErrorMessage(&sciErr, API_ERROR_CHECKLHS, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
-        printError(&sciErr, 0);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     }
     else
     {
-        addErrorMessage(&sciErr, API_ERROR_CHECKLHS, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
-        printError(&sciErr, 0);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
     }
 
     return 0;
@@ -164,8 +158,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    addErrorMessage(&sciErr, API_ERROR_CHECKLHS, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
-    printError(&sciErr, 0);
+    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
     return 0;
 }
 
@@ -181,8 +174,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    addErrorMessage(&sciErr, API_ERROR_CHECKLHS, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
-    printError(&sciErr, 0);
+    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
     return 0;
 }
 
