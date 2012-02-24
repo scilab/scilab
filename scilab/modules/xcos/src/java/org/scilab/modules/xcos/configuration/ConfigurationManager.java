@@ -309,7 +309,7 @@ public final class ConfigurationManager {
         /*
          * Store uuids
          */
-        doc.setUuid(graph.getDiagramTab());
+        doc.setUuid(graph.getGraphTab());
         doc.setViewport(graph.getViewPortTab());
     }
 
@@ -318,7 +318,7 @@ public final class ConfigurationManager {
         DocumentType doc = null;
 
         for (DocumentType d : tabs) {
-            if (d.getUuid().equals(graph.getDiagramTab())) {
+            if (d.getUuid().equals(graph.getGraphTab())) {
                 doc = d;
                 break;
             }
@@ -398,7 +398,7 @@ public final class ConfigurationManager {
 
             graph = loadPath(doc, graph);
 
-            graph.setDiagramTab(doc.getUuid());
+            graph.setGraphTab(doc.getUuid());
         } catch (Exception e) {
             Logger.getLogger(ConfigurationManager.class.getName()).log(Level.SEVERE, null, e);
             graph = null;

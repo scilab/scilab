@@ -220,7 +220,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         public void finish() {
             graph.updateTabTitle();
 
-            ConfigurationManager.getInstance().removeFromRecentTabs(graph.getDiagramTab());
+            ConfigurationManager.getInstance().removeFromRecentTabs(graph.getGraphTab());
         }
     }
 
@@ -236,7 +236,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
         setAssociatedXMLIDForHelp("xcos");
 
         /** tab association */
-        graph.setDiagramTab(uuid);
+        graph.setGraphTab(uuid);
         setWindowIcon(Xcos.ICON.getImage());
 
         initComponents(graph);
@@ -256,7 +256,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
      * @return the tab (can be null)
      */
     public static XcosTab get(XcosDiagram graph) {
-        final String uuid = graph.getDiagramTab();
+        final String uuid = graph.getGraphTab();
         if (uuid == null) {
             return null;
         }
@@ -283,7 +283,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
      *            should the tab should be visible
      */
     public static void restore(final XcosDiagram graph, final boolean visible) {
-        String uuid = graph.getDiagramTab();
+        String uuid = graph.getGraphTab();
         if (uuid == null) {
             uuid = UUID.randomUUID().toString();
         }

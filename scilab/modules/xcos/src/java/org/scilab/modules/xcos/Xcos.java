@@ -631,7 +631,7 @@ public final class Xcos {
     public boolean wasLastOpened(final List<SwingScilabTab> list) {
         final HashSet<String> opened = new HashSet<String>();
         for (XcosDiagram diag : openedDiagrams()) {
-            opened.add(diag.getDiagramTab());
+            opened.add(diag.getGraphTab());
         }
 
         final HashSet<String> tabs = new HashSet<String>();
@@ -1034,7 +1034,7 @@ public final class Xcos {
          * Update opened tabs
          */
         for (final XcosDiagram d : instance.openedDiagrams()) {
-            final String uuid = d.getDiagramTab();
+            final String uuid = d.getGraphTab();
             final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(uuid);
 
             if (tab != null) {
@@ -1183,7 +1183,7 @@ public final class Xcos {
                     tab = ViewPortTab.get(graph);
 
                     ClosingOperationsManager.addDependency((SwingScilabTab) XcosTab.get(graph), tab);
-                    WindowsConfigurationManager.makeDependency(graph.getDiagramTab(), tab.getPersistentId());
+                    WindowsConfigurationManager.makeDependency(graph.getGraphTab(), tab.getPersistentId());
                 } else {
                     return null;
                 }
@@ -1206,7 +1206,7 @@ public final class Xcos {
                 final Collection<XcosDiagram> diags = getInstance().diagrams.get(f);
 
                 for (XcosDiagram d : diags) {
-                    final String id = d.getDiagramTab();
+                    final String id = d.getGraphTab();
                     if (id != null && id.equals(cachedDocumentType.getUuid())) {
                         graph = d;
                         break;

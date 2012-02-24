@@ -68,6 +68,9 @@ public class ScilabGraph extends mxGraph {
 
     private transient mxRubberband rubberBand;
 
+    private transient String graphTab;
+    private transient String viewPortTab;
+
     /**
      * Manage the modification state on change
      */
@@ -214,6 +217,44 @@ public class ScilabGraph extends mxGraph {
             title = String.format(ScilabGraphMessages.UNTITLED, time);
         }
         return title;
+    }
+
+    /**
+     * Get the graph tab uuid
+     *
+     * @return
+     */
+    public String getGraphTab() {
+        return graphTab;
+    }
+
+    /**
+     * Set the graph tab uuid
+     *
+     * @param uuid
+     *            the diagram tab
+     */
+    public void setGraphTab(String uuid) {
+        this.graphTab = uuid;
+    }
+
+    /**
+     * Get the view port tab uuid
+     *
+     * @return the view port tab
+     */
+    public String getViewPortTab() {
+        return viewPortTab;
+    }
+
+    /**
+     * Set the view port tab uuid
+     *
+     * @param uuid
+     *            the view port tab
+     */
+    public void setViewPortTab(String uuid) {
+        this.viewPortTab = uuid;
     }
 
     /**

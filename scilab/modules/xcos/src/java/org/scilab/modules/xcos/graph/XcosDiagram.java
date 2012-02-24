@@ -135,9 +135,6 @@ public class XcosDiagram extends ScilabGraph {
     // the scicos engine current status
     private final transient CompilationEngineStatus engine;
 
-    private transient String viewPortTab;
-    private transient String diagramTab;
-
     /**
      * Constructor
      */
@@ -1650,44 +1647,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Get the view port tab uuid
-     *
-     * @return the view port tab
-     */
-    public String getViewPortTab() {
-        return viewPortTab;
-    }
-
-    /**
-     * Set the view port tab uuid
-     *
-     * @param uuid
-     *            the view port tab
-     */
-    public void setViewPortTab(String uuid) {
-        this.viewPortTab = uuid;
-    }
-
-    /**
-     * Get the diagram tab uuid
-     *
-     * @return
-     */
-    public String getDiagramTab() {
-        return diagramTab;
-    }
-
-    /**
-     * Set the diagram tab uuid
-     *
-     * @param uuid
-     *            the diagram tab
-     */
-    public void setDiagramTab(String uuid) {
-        this.diagramTab = uuid;
-    }
-
-    /**
      * Manage the visibility of the grid and the associated menu
      *
      * @param status
@@ -1871,7 +1830,7 @@ public class XcosDiagram extends ScilabGraph {
 
         final String tabTitle = new StringBuilder().append(modified).append(title).append(formattedPath).append(" - ").append(product).toString();
 
-        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(getDiagramTab());
+        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(getGraphTab());
         if (tab != null) {
             tab.setName(tabTitle);
         }
