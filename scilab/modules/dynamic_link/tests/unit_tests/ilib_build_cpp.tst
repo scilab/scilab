@@ -12,6 +12,7 @@
 //Here with give a complete example on adding new primitive to Scilab
 ilib_verbose(0);
 i = ['#include <string>'
+'#define __USE_DEPRECATED_STACK_FUNCTIONS__'
 'extern ""C"" {'
 '#include ""stack-c.h""'
 'int sci_cppfind(char *fname) {'
