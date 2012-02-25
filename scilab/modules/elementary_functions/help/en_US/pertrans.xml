@@ -42,7 +42,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>Y=pertrans(X)</literal> returns the pertranspose of
+      <literal>Y=pertrans(X)</literal> returns the simultaneous permutation and transposition of
       <literal>X</literal>, i.e. the symmetric of <literal>X</literal> 
       with reference to the second diagonal (utility function).
     </para>
