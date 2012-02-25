@@ -72,7 +72,8 @@
     <!--Func_list: common_function-->
     <title>Gateway Source</title>
     <programlisting role="code_gateway">
-        <![CDATA[ 
+      <![CDATA[ 
+#include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
 int common_function(char *fname,unsigned long fname_len)
@@ -215,7 +216,8 @@ SciErr printf_info(int _iVar)
     }
     return sciErr;
 }
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

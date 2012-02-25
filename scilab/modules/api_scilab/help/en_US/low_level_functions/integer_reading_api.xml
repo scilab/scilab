@@ -111,7 +111,8 @@
     <!--Func_list: read_integer-->
     <title>Gateway Source</title>
     <programlisting role="code_gateway">
-        <![CDATA[ 
+      <![CDATA[ 
+#include "api_scilab.h"
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
 int read_integer(char *fname,unsigned long fname_len)
@@ -371,7 +372,8 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
 	}
 	return pvDataOut;
 }
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

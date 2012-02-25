@@ -112,9 +112,9 @@
       parameter.
     </para>
     <programlisting role="code_gateway"><![CDATA[
-#include "stack-c.h"
-#include "sciprint.h"
 #include "api_scilab.h"
+#include "sciprint.h"
+
 
 int sci_mysci_typesrhs(char * fname, unsigned long fname_len)
 {

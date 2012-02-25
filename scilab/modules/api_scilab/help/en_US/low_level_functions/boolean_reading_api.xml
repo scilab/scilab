@@ -97,7 +97,8 @@
     <!--Func_list: read_write_boolean-->
     <title>Gateway Source</title>
     <programlisting role="code_gateway">
-        <![CDATA[ 
+      <![CDATA[ 
+#include "api_scilab.h"
 int read_write_boolean(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
@@ -144,7 +145,8 @@ int read_write_boolean(char *fname,unsigned long fname_len)
     AssignOutputVariable(1) = InputArgument + 1;
     return 0;
 }
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>

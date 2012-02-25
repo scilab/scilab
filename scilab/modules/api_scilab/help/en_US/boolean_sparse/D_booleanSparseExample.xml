@@ -28,7 +28,9 @@
     <!--Func_list: booleanSparseExample-->
     <title>Gateway Source</title>
     <programlisting role="code_gateway">
-        <![CDATA[ 
+      <![CDATA[ 
+#include "api_scilab.h"
+
 int booleanSparseExample(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -74,7 +76,8 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 	}
 	return 0;
 }
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
   <refsection>
     <title>Scilab test script</title>
