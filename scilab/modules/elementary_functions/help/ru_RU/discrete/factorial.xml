@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="factorial" xml:lang="ru">
+  <refnamediv>
+    <refname>factorial</refname>
+    <refpurpose>Функция факториал</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>
+      f = factorial ( n )
+      
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Параметры</title>
+    <variablelist>
+      <varlistentry>
+        <term>n :</term>
+        <listitem>
+          <para> 
+            Матрица чисел удвоенной точности (double). Числа должны быть положительными целыми.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f :</term>
+        <listitem>
+          <para> матрица чисел удвоенной точности.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      Возвращает факториал <literal>n</literal>, то есть, произведение всех целых чисел 
+      1 * 2 * ... * n.
+    </para>
+    <para>
+      Эта функция переполняет разрядную сетку при n&gt;170.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[
+// Делаем таблицу факториала
+n = (0:30)';
+[n factorial(n)]
+
+// Смотрим пределы факториала: f(171)=%inf
+factorial(170) // 7.257415615307998967e306
+factorial(171) // %inf
+
+// Построим на графике функцию во всём её диапазоне.
+scf();
+plot ( 1:170 , factorial , "b-o" );xgrid
+h = gcf();
+h.children.log_flags="nln";
+
+   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Литература</title>
+    <para>"Introduction to discrete probabilities", Michael Baudin, 2011</para>
+  </refsection>
+</refentry>
