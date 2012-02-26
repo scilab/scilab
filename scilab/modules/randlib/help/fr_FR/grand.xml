@@ -76,7 +76,7 @@
         <term>X </term>
         <listitem>
           <para>
-            une matrice (ou un vecteur) dont seules les dimensions (<literal>m x n</literal>) sont utilisées
+            une matrice (ou un vecteur) dont seules les dimensions (<literal>m</literal>-par-<literal>n</literal>) sont utilisées
           </para>
         </listitem>
       </varlistentry>
@@ -186,15 +186,15 @@
           <para>
             <literal>Y=grand(m,n,"bet",A,B)</literal> génère des nombres aléatoires suivant
             la loi beta de paramètres <literal>A</literal> and <literal>B</literal>.
-            La densité de cette loi est (<literal>0 &lt; x &lt; 1</literal>) :
+            La densité de cette loi est <latex><![CDATA[(0 < x < 1)]]></latex> :
           </para>
           <para>
             <latex>
-              \frac{x^{A-1}   (1-x)^{B-1}}{\beta(A,B)}
+              \dfrac{x^{A-1}(1-x)^{B-1}}{\beta(A,B)}
             </latex>
           </para>
           <para>
-            <literal>A</literal> et <literal>B</literal> devant être des réels &gt; 10^(-37).
+            <literal>A</literal> et <literal>B</literal> devant être des réels <latex><![CDATA[>10^{-37}]]></latex>.
             Fonction(s) associée(s) : <link linkend="cdfbet">cdfbet</link>.
           </para>
         </listitem>
@@ -207,7 +207,7 @@
             binomiale de paramètres <literal>N</literal> (entier str. positif) et <literal>p</literal>
             (réel de [0,1]) : nombre de succès au cours de <literal>N</literal> épreuves de Bernouilli
             de probabilité de succès <literal>p</literal>.
-            Fonction(s) associée(s) : <link linkend="binomial">binomial</link>, <link linkend="cdfbin">cdfbin</link>.
+            Fonctions associées : <link linkend="binomial">binomial</link>, <link linkend="cdfbin">cdfbin</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -219,7 +219,7 @@
             négative de paramètres <literal>N</literal> (entier str. positif) et <literal>p</literal> (réel
             de ]0,1[) : nombre d'échecs avant d'obtenir <literal>N</literal> succès dans des épreuves
             de Bernouilli de probabilité de succès <literal>p</literal>.
-            Fonction(s) associée(s) : <link linkend="cdfnbn">cdfnbn</link>.
+            Fonction associée : <link linkend="cdfnbn">cdfnbn</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -229,7 +229,7 @@
           <para>
             <literal>Y=grand(m,n,"chi", Df)</literal> génère des nombres aléatoires suivant la loi du chi 2
             à <literal>Df</literal> (réel &gt; 0.0) degrés de liberté.
-            Fonction(s) associée(s) : <link linkend="cdfchi">cdfchi</link>.
+            Fonction associée : <link linkend="cdfchi">cdfchi</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -240,7 +240,7 @@
             <literal>Y=grand(m,n,"nch",Df,Xnon)</literal> génère des nombres aléatoires suivant la loi du chi 2
             non centrée à <literal>Df</literal> degrés de liberté (réel &gt;= 1.0)
             le paramètre de décentrage étant <literal>Xnonc</literal> (réel &gt;= 0.0).
-            Fonction(s) associée(s) : <link linkend="cdfchn">cdfchn</link>.
+            Fonction associée : <link linkend="cdfchn">cdfchn</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -260,7 +260,7 @@
             <literal>Y=grand(m,n,"f",Dfn,Dfd)</literal> génère des nombres aléatoires suivant la loi F
             (variance ratio) à <literal>Dfn</literal> (réel &gt; 0.0) degrés de liberté au numérateur et
             <literal>Dfd</literal> (réel &gt; 0.0) degrés de liberté au dénominateur.
-            Fonction(s) associée(s) : <link linkend="cdff">cdff</link>.
+            Fonction associée : <link linkend="cdff">cdff</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -272,7 +272,7 @@
             F (variance ratio) non centrée à <literal>Dfn</literal> (réel &gt;= 1) degrés de liberté
             au numérateur, et <literal>Dfd</literal> (réel &gt; 0) degrés de liberté au dénominateur,
             <literal>Xnonc</literal> (réel &gt;= 0) étant le paramètre de décentrage.
-            Fonction(s) associée(s) : <link linkend="cdffnc">cdffnc</link>.
+            Fonction associée : <link linkend="cdffnc">cdffnc</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -284,12 +284,13 @@
             gamma de paramètres <literal>shape</literal> (réel &gt; 0) et <literal>scale</literal>
             (réel &gt; 0). La densité est :
           </para>
-          <programlisting role=""><![CDATA[ 
-     shape  (shape-1)	-scale x
-scale	    x	       e	  /  gamma(shape)
- ]]></programlisting>
           <para>
-            Fonction(s) associée(s) : <link linkend="gamma">gamma</link>, <link linkend="cdfgam">cdfgam</link>.
+            <latex>
+              \dfrac{ \textrm{scale}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{scale} x}}{\gamma(\textrm{shape}) }
+            </latex>
+          </para>
+          <para>
+            Fonctions associées : <link linkend="gamma">gamma</link>, <link linkend="cdfgam">cdfgam</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -300,7 +301,7 @@ scale	    x	       e	  /  gamma(shape)
             <literal>Y=grand(m,n,"nor",Av,Sd)</literal> génère des nombres aléatoires suivant la loi normale
             de moyenne <literal>Av</literal> (réel) et d'écart type <literal>Sd</literal>
             (réel &gt;= 0).
-            Fonction(s) associée(s) : <link linkend="cdfnor">cdfnor</link>, <link linkend="erf">erf</link>.
+            Fonctions associées : <link linkend="cdfnor">cdfnor</link>, <link linkend="erf">erf</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -309,9 +310,9 @@ scale	    x	       e	  /  gamma(shape)
         <listitem>
           <para>
             <literal>Y=grand(n,"mn",Mean,Cov)</literal> génère <literal>n</literal> réalisations indépendantes de la
-            loi multi-normale ; <literal>Mean</literal> doit être un vecteur <literal>m x 1</literal> et <literal>Cov</literal>
-            une matrice <literal>m x m</literal> symétrique et définie positive, (<literal>Y</literal> est alors une
-            matrice <literal>m x n</literal>).
+            loi multi-normale ; <literal>Mean</literal> doit être un vecteur <literal>m</literal>-par-<literal>1</literal> et <literal>Cov</literal>
+            une matrice <literal>m</literal>-par-<literal>m</literal> symétrique et définie positive, (<literal>Y</literal> est alors une
+            matrice <literal>m</literal>-par-<literal>n</literal>).
           </para>
         </listitem>
       </varlistentry>
@@ -325,11 +326,7 @@ scale	    x	       e	  /  gamma(shape)
             d'épreuves de Bernouilli (de probabilité de succès
             <literal>p</literal>) jusqu'à obtenir un succès
             (<literal>p</literal> doit appartenir à l'intervalle
-            <literal>[pmin,1]</literal> (avec <literal>
-              pmin = 1.3
-              10^(-307)
-            </literal>
-            ).
+            <latex>[p_{min},1]</latex> (avec <latex> p_{min} = 1{,}3\times 10^{-307} </latex>).
           </para>
           <para>
             <literal>Y</literal> contient des nombres réels
@@ -373,7 +370,8 @@ scale	    x	       e	  /  gamma(shape)
         <listitem>
           <para>
             <literal>Y=grand(m,n,"poi",mu)</literal> génère des nombres aléatoires suivant la loi de Poisson
-            de moyenne <literal>mu (réel &gt;= 0.0)</literal>.
+            de moyenne <literal>mu</literal> (réel &gt;= 0.0).
+            Fonction associée : <link linkend="cdfpoi">cdfpoi</link>.
           </para>
         </listitem>
       </varlistentry>
@@ -400,7 +398,7 @@ scale	    x	       e	  /  gamma(shape)
         <listitem>
           <para>
             <literal>Y=grand(m,n,"unf",Low,High)</literal> génère des nombres aléatoires suivant la loi
-            uniforme sur <literal>[Low, High[</literal>.
+            uniforme sur <literal>[Low, High[</literal> (<literal>High</literal> is never return).
           </para>
         </listitem>
       </varlistentry>
@@ -428,17 +426,17 @@ scale	    x	       e	  /  gamma(shape)
           <itemizedlist>
             <listitem>
               <para>
-                <literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra
+                <literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra;
               </para>
             </listitem>
             <listitem>
               <para>
-                <literal>[0, 2147483561]</literal> for clcg2
+                <literal>[0, 2147483561]</literal> for clcg2;
               </para>
             </listitem>
             <listitem>
               <para>
-                <literal>[0, 2^31 - 2]</literal> for clcg4
+                <literal>[0, 2^31 - 2]</literal> for clcg4;
               </para>
             </listitem>
             <listitem>
@@ -462,7 +460,7 @@ scale	    x	       e	  /  gamma(shape)
         <term>mt</term>
         <listitem>
           <para>
-            le Mersenne-Twister de M. Matsumoto and T. Nishimura, période d'environ <literal>2^19937</literal>,
+            Le Mersenne-Twister de M. Matsumoto and T. Nishimura, période d'environ <literal>2^19937</literal>,
             état interne donné par <literal>624</literal> entiers (plus un index); c'est le générateur
             par défaut.
           </para>
@@ -481,7 +479,7 @@ scale	    x	       e	  /  gamma(shape)
         <term>clcg2</term>
         <listitem>
           <para>
-            une combinaison de 2 générateurs linéaires congruentiels de P. L'Ecuyer,
+            Une combinaison de 2 générateurs linéaires congruentiels de P. L'Ecuyer,
             période d'environ <literal>2^61</literal>, état interne donné par <literal>2</literal> entiers ;
             c'était le seul générateur de base utilisé auparavent par grand (cette
             version est cependant légèrement différente de l'ancienne).
@@ -492,7 +490,7 @@ scale	    x	       e	  /  gamma(shape)
         <term>clcg4</term>
         <listitem>
           <para>
-            une combinaison de 4 générateurs linéaires congruentiels de P. L'Ecuyer,
+            Une combinaison de 4 générateurs linéaires congruentiels de P. L'Ecuyer,
             période d'environ <literal>2^121</literal>, état interne donné par 4 entiers ; ce générateur
             peut être partagé en <literal>101</literal> générateur virtuels (en fait la suite de
             longueur <literal>2^121</literal> peut être découpée en <literal>101</literal> sous-suites) ce qui peut
@@ -505,7 +503,7 @@ scale	    x	       e	  /  gamma(shape)
         <term>fsultra</term>
         <listitem>
           <para>
-            un générateur SWB (subtract-with-borrow) mixé avec un générator congruentiel
+            Un générateur SWB (subtract-with-borrow) mixé avec un générator congruentiel
             concu par Arif Zaman et George Marsaglia. Sa période est supérieure à <literal>10^356</literal>,
             et son état interne est constitué d'un tableau de 37 entiers, d'un index sur
             ce tableau et d'un drapeau (0 ou 1) ainsi qu'un autre entier donnant l'état interne
@@ -517,7 +515,7 @@ scale	    x	       e	  /  gamma(shape)
         <term>urand</term>
         <listitem>
           <para>
-            le générateur de base utilisé par la fonction
+            Le générateur de base utilisé par la fonction
             <link linkend="rand">rand</link>, état interne constitué d'un entier, période de
             <literal>2^31</literal>.
             Ce generateur est fondé sur "Urand, A Universal Random Number Generator" By,
@@ -626,7 +624,7 @@ scale	    x	       e	  /  gamma(shape)
               <listitem>
                 <para>
                   <literal>1</literal> entier <literal>s1</literal> appartenant à
-                  <literal>[0,2^31</literal>[ est requis.
+                  <literal>[0,2^31[</literal> est requis.
                 </para>
               </listitem>
             </varlistentry>
@@ -636,7 +634,7 @@ scale	    x	       e	  /  gamma(shape)
                 <para>
                   <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
                   l'intervalle<literal>[0,37]</literal>, son deuxième (drapeau) doit être 0 ou 1, le troisième un
-                  entier de [1,2^32[ et les 37 composantes suivantes, des entiers de [0,2^32[) ; il est recommandé
+                  entier de <literal>[1,2^32[</literal> et les 37 composantes suivantes, des entiers de <literal>[0,2^32[</literal>) ; il est recommandé
                   d'utiliser l'autre procédure d'initialisation (plus simple) avec deux entiers <literal>s1</literal> et
                   <literal>s2</literal> de <literal>[0,2^32[</literal>.
                 </para>
@@ -682,7 +680,7 @@ scale	    x	       e	  /  gamma(shape)
             <literal>grand("setcgn",G)</literal> sélectionne le générateur virtuel numéro <literal>G</literal> :
             lorsque le générateur de base courant est clcg4, c'est le générateur virtuel <literal>G</literal>
             qui sera alors utilisé ; les <literal>101</literal> générateurs virtuels sont numérotés
-            <literal>0,1,..,100</literal> (ainsi <literal>G</literal> doit être un entier de l'intervalle
+            <literal>0,1,...,100</literal> (ainsi <literal>G</literal> doit être un entier de l'intervalle
             <literal>[0,100]</literal>) ; par défaut le générateur virtuel courant est celui de numéro
             <literal>0</literal>.
           </para>
@@ -772,11 +770,11 @@ scf();
 histplot(10,R);
 xtitle("Nombres aléatoires uniformes par grand","X","Fréquence");
 // Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
-// avec une distribution de Poisson de moyenne 2.
-R = grand(400,800,"poi",2);
+// avec une distribution de Poisson de moyenne 5.
+R = grand(400,800,"poi",5);
 scf();
 histplot(10,R);
-xtitle("Nombres aléatoires (loi de Poissonà par grand","X","Fréquence");
+xtitle("Nombres aléatoires (loi de Poisson) par grand","X","Fréquence");
  ]]></programlisting>
     <para>
       Dans l'exemple suivant, nous produisons des nombres aléatoires
