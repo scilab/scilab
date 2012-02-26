@@ -420,11 +420,12 @@ detect_java_vm() {
 # to find where it could be !
             if test -z "$JAVA_HOME"; then
                 JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
-                for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
+                for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
-                        echo "Trying to find Java in $JAVA_HOME "
+                        echo "Trying to find Java in $DIR "
                     fi
-                    if test -x "${JAVA_HOME}/bin/java" ; then
+                    if test -x "${DIR}/bin/java" ; then
+                        JAVA_HOME=$DIR
                         export JAVA_HOME
                         if test $SCIVERBOSE -ne 0; then
                             echo "found"
@@ -434,17 +435,13 @@ detect_java_vm() {
                 done
             fi
 
-# JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+# if JAVA_HOME still haven't been found. Well, we can now try to find it in the path
             if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Have not been able to find any Java VM on this computer. Some features may be broken."
-                fi
-            else
 
                 PATH_SEPARATOR=:
                 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
                 if test $SCIVERBOSE -ne 0; then
-                    echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
+                    echo "Look for the java binary in the PATH. If it is a symlink, try to resolve it"
                 fi
                 for DIR in $PATH; do
                     if test -f $DIR/java; then
@@ -567,7 +564,7 @@ detect_java_vm() {
                     proc=$MODEL
                     ;;
             esac
-        fi # JAVA_HOME provided but wrong
+        fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
 # Check if the lib exists or not (we should manage system where .so is not the
