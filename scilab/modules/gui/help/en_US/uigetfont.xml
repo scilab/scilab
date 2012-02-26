@@ -7,11 +7,11 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-uigetfont()
-
-[fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
-
-[fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
+      uigetfont()
+      
+      [fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
+      
+      [fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -82,15 +82,11 @@ uigetfont("arial", 24, %T, %F)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getfont">getfont</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Vincent COUVERT</para>
   </refsection>
 </refentry>

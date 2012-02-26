@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>f=ftest(samples)
-[f,p]=ftest(samples)</synopsis>
+      [f,p]=ftest(samples)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -36,18 +37,23 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal> f=ftest(samples) </literal> は,
-	行列<literal>samples</literal>の各列の値である
-	nc個の標本のフィッシャー比を計算します.
-	これらの各標本の各々は,nr個の値から構成されます
-	(フィッシャー比はnrと標本の平均の分散の積と各標本の分散の平均の比です).</para>
-    <para><literal> [f,p]=ftest(samples) </literal> は,
-	p 個のフィッシャー比 fの計算値をpに出力します.</para>
+    <para>
+      <literal> f=ftest(samples) </literal> は,
+      行列<literal>samples</literal>の各列の値である
+      nc個の標本のフィッシャー比を計算します.
+      これらの各標本の各々は,nr個の値から構成されます
+      (フィッシャー比はnrと標本の平均の分散の積と各標本の分散の平均の比です).
+    </para>
+    <para>
+      <literal> [f,p]=ftest(samples) </literal> は,
+      p 個のフィッシャー比 fの計算値をpに出力します.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -67,9 +73,5 @@ samples=[46 55 54;
         <link linkend="ftuneq">ftuneq</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

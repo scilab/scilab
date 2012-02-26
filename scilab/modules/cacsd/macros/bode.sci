@@ -158,5 +158,5 @@ endfunction
 function str=formatBodePhaseTip(curve,pt,index)
 //this function is called by the datatip mechanism to format the tip
 //string for the bode phase curves
-  str=msprintf("%.4g"+_("Hz")+"\n %.4g"+_("°"), pt(1),pt(2))
+  str=msprintf("%.4g"+_("Hz")+"\n %.4g"+"°", pt(1),pt(2))
 endfunction

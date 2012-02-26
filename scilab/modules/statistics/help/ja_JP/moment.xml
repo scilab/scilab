@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>mom=moment(x,ord)
-mom=moment(x,ord,'r') or mom=moment(x,ord,1)
-mom=moment(x,ord,'c') or mom=moment(x,ord,2)</synopsis>
+      mom=moment(x,ord,'r') or mom=moment(x,ord,1)
+      mom=moment(x,ord,'c') or mom=moment(x,ord,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -44,17 +45,19 @@ mom=moment(x,ord,'c') or mom=moment(x,ord,2)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-    moment<literal>(x,ord)</literal> は<literal>x</literal>の要素の
-	ord次の非心モーメントです.</para>
+      moment<literal>(x,ord)</literal> は<literal>x</literal>の要素の
+      ord次の非心モーメントです.
+    </para>
     <para>
-	3番目の引数に文字列<literal>'r'</literal>  (または<literal> 1</literal>)
-	または<literal>'c'</literal> (または<literal>2</literal>)が指定された場合,
-	最初の場合は<literal>mom(j)</literal>に
-	<literal>x</literal>の<literal>j</literal>列の
-	<literal>ord</literal>次の非心モーメントを含むような
-	行ベクトル<literal>mom</literal>が出力されます.
-    <literal>moment(x,ord,'c')</literal> は,同様に行に関する非心モーメントについて
-	使用されます.</para>
+      3番目の引数に文字列<literal>'r'</literal>  (または<literal> 1</literal>)
+      または<literal>'c'</literal> (または<literal>2</literal>)が指定された場合,
+      最初の場合は<literal>mom(j)</literal>に
+      <literal>x</literal>の<literal>j</literal>列の
+      <literal>ord</literal>次の非心モーメントを含むような
+      行ベクトル<literal>mom</literal>が出力されます.
+      <literal>moment(x,ord,'c')</literal> は,同様に行に関する非心モーメントについて
+      使用されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -66,12 +69,9 @@ mom=moment(x,3,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>B参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

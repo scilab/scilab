@@ -10,9 +10,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>gstacksize(n)
-gstacksize('max')
-gstacksize('min')
-sz=gstacksize()</synopsis>
+      gstacksize('max')
+      gstacksize('min')
+      sz=gstacksize()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -34,20 +35,29 @@ sz=gstacksize()</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Scilab stores gobal variables in a stack</para>
-    <para><literal>gstacksize(n)</literal> allows the user to increase or decrease the size of
-    this stack. The maximum allowed size depends on the amount of
-    free memory and swap space available at the time. Note that Scilab can
-    increase automatically the global stacksize when needed</para>
-    <para><literal>sz=gstacksize()</literal> returns a 2-vector which contains  the current
-    total and used global stack size.</para>
-    <para><literal>gstacksize('max')</literal> allows the user to increase the size of
-    this global stack to the maximum.</para>
-    <para><literal>gstacksize('min')</literal> allows the user to decrease the size of
-    this global stack to the minimum.</para>
+      Scilab stores gobal variables in a stack
+    </para>
+    <para>
+      <literal>gstacksize(n)</literal> allows the user to increase or decrease the size of
+      this stack. The maximum allowed size depends on the amount of
+      free memory and swap space available at the time. Note that Scilab can
+      increase automatically the global stacksize when needed
+    </para>
+    <para>
+      <literal>sz=gstacksize()</literal> returns a 2-vector which contains  the current
+      total and used global stack size.
+    </para>
+    <para>
+      <literal>gstacksize('max')</literal> allows the user to increase the size of
+      this global stack to the maximum.
+    </para>
+    <para>
+      <literal>gstacksize('min')</literal> allows the user to decrease the size of
+      this global stack to the minimum.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

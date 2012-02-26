@@ -42,20 +42,21 @@
   <refsection>
     <title>説明</title>
     <para>b = isfile(filenames) は, filenames が
-	既存のファイルかどうかを調べます.
-	(ディレクトリはファイルではありません. isdir を参照ください.)</para>
+      既存のファイルかどうかを調べます.
+      (ディレクトリはファイルではありません. isdir を参照ください.)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example">cd SCI
-filenames = ls()
-isfile(filenames)
-
-isfile(filenames)
-
-isfile(SCI + '/etc')
-isdir(SCI + '/etc')
- </programlisting>
+      filenames = ls()
+      isfile(filenames)
+      
+      isfile(filenames)
+      
+      isfile(SCI + '/etc')
+      isdir(SCI + '/etc')
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -67,9 +68,5 @@ isdir(SCI + '/etc')
         <link linkend="isdir">isdir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

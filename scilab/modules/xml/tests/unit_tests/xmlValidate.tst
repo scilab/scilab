@@ -30,4 +30,7 @@ xmlValidate(doc, rng);
 xmlValidate(doc, schema);
 
 
-xmlClose(doc, dtd, schema, rng);
+xmlDelete(doc, dtd, schema, rng);
+
+// Used to crash
+assert_checktrue(size(xmlValidate("SCI/DO_NOT_EXIST.XML"))>0);

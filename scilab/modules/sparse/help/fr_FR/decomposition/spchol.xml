@@ -29,29 +29,30 @@
         <term>X  </term>
         <listitem>
           <para>matrice creuse réelle symétrique et définie positive.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P  </term>
         <listitem>
           <para> matrice de permutation
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>R  </term>
         <listitem>
           <para> facteur de Cholesky
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire inférieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
-  </para>
+    <para>
+      <literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire inférieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -73,7 +74,7 @@ max(P*R*R'*P'-X)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

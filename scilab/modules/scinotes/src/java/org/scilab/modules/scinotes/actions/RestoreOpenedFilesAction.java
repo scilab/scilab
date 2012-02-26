@@ -124,8 +124,12 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         int dimX = 450;
         int dimY = 300;
 
-        final JDialog dialog = new JDialog(owner);
         final JTree tree = fillTree(uuid);
+        if (tree == null) {
+            return;
+        }
+
+        final JDialog dialog = new JDialog(owner);
         dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
                 @Override
@@ -217,23 +221,21 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      */
     private static List<File> getOpenedFiles(JTree tree, String uuid) {
         List<File> list = new ArrayList();
+        List<String> remove = new ArrayList();
         TreeModel model = tree.getModel();
+        TreeNode node = (TreeNode) model.getChild(model.getRoot(), 0);
 
-        List<File> files = removeAlreadyOpenFiles(uuid);
-        if (files.size() > 0) {
-            List<File> filesToOpen = new ArrayList();
-            TreeNode node = (TreeNode) model.getChild(model.getRoot(), 0);
-            for (int j = 0; j < files.size(); j++) {
-                DefaultMutableTreeNode mutNode = (DefaultMutableTreeNode) node.getChildAt(j);
-                CheckBoxNode cb = (CheckBoxNode) mutNode.getUserObject();
-                if (cb.isSelected()) {
-                    filesToOpen.add(files.get(j));
-                }
+        for (int i = 0; i < node.getChildCount(); i++) {
+            DefaultMutableTreeNode mutNode = (DefaultMutableTreeNode) node.getChildAt(i);
+            CheckBoxNode cb = (CheckBoxNode) mutNode.getUserObject();
+            if (cb.isSelected()) {
+                list.add(cb.getFile());
+            } else {
+                remove.add(cb.getFile().getAbsolutePath());
             }
-            list = filesToOpen;
         }
         // Remove these files from the list of open files
-        ConfigSciNotesManager.removeFromOpenFiles(UUID.fromString(uuid));
+        ConfigSciNotesManager.removeFromOpenFiles(UUID.fromString(uuid), remove);
 
         return list;
     }
@@ -250,6 +252,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
 
         if (filesToOpen.size() > 0) {
             eds.add(new FilesVector("SciNotes", filesToOpen));
+        } else {
+            return null;
         }
 
         JTree tree = new JTree(eds);
@@ -274,6 +278,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     private static List<File> removeAlreadyOpenFiles(String editorUUID) {
         List<File> filesToOpen = ConfigSciNotesManager.getOpenFilesByEditor(UUID.fromString(editorUUID));
         SciNotes editor = SciNotes.getEditorFromUUID(editorUUID);
+        List<File> filesToRemove = new ArrayList();
         if (editor != null) {
             int n = editor.getTabPane().getTabCount();
             for (int i = 0; i < n; i++) {
@@ -282,13 +287,15 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
                 if (name != null) {
                     for (File ff : filesToOpen) {
                         if (ff.equals(new File(name))) {
-                            filesToOpen.remove(ff);
+                            filesToRemove.add(ff);
                             break;
                         }
                     }
                 }
             }
         }
+
+        filesToOpen.removeAll(filesToRemove);
 
         return filesToOpen;
     }
@@ -306,6 +313,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         private final Color selectionBackground;
         private final Color textForeground;
         private final Color textBackground;
+
+        private File file;
 
         /**
          * Constructor
@@ -353,6 +362,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
                         CheckBoxNode node = (CheckBoxNode) obj;
                         leafRenderer.setText(node.getText());
                         leafRenderer.setSelected(node.isSelected());
+                        file = node.getFile();
                     }
                 }
                 return leafRenderer;
@@ -366,6 +376,13 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
          */
         protected JCheckBox getLeafRenderer() {
             return leafRenderer;
+        }
+
+        /**
+         * @return the file associated with the renderer
+         */
+        protected File getFile() {
+            return file;
         }
     }
 
@@ -392,7 +409,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         @Override
         public Object getCellEditorValue() {
             JCheckBox checkbox = renderer.getLeafRenderer();
-            CheckBoxNode checkBoxNode = new CheckBoxNode(checkbox.getText(), checkbox.isSelected());
+            CheckBoxNode checkBoxNode = new CheckBoxNode(renderer.getFile(), checkbox.getText(), checkbox.isSelected());
             return checkBoxNode;
         }
 
@@ -447,13 +464,15 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
 
         private String text;
         private boolean selected;
+        private File file;
 
         /**
          * Constructor
          * @param text which will be displayed
          * @param selected true if the checkbox is selected
          */
-        public CheckBoxNode(String text, boolean selected) {
+        public CheckBoxNode(File f, String text, boolean selected) {
+            this.file = f;
             this.text = text;
             this.selected = selected;
         }
@@ -485,6 +504,10 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         public void setText(String newValue) {
             text = newValue;
         }
+
+        public File getFile() {
+            return file;
+        }
     }
 
     /**
@@ -503,7 +526,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
             super();
             this.name = name;
             for (int i = 0; i < elems.size(); i++) {
-                add(new CheckBoxNode(elems.get(i).getName() + " (in " + elems.get(i).getParent() + ")", true));
+                add(new CheckBoxNode(elems.get(i), elems.get(i).getName() + " (in " + elems.get(i).getParent() + ")", true));
             }
         }
 

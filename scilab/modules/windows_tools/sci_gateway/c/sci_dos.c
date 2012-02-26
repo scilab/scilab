@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "gw_windows_tools.h"
 #include "PATH_MAX.h"
-#include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "spawncommand.h"
 #include "sciprint.h"
@@ -58,6 +57,7 @@ int sci_dos(char *fname,unsigned long l)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -65,6 +65,7 @@ int sci_dos(char *fname,unsigned long l)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -78,6 +79,7 @@ int sci_dos(char *fname,unsigned long l)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -94,6 +96,7 @@ int sci_dos(char *fname,unsigned long l)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 				return 0;
 			}
 
@@ -119,6 +122,7 @@ int sci_dos(char *fname,unsigned long l)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -126,6 +130,7 @@ int sci_dos(char *fname,unsigned long l)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -139,6 +144,7 @@ int sci_dos(char *fname,unsigned long l)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -159,6 +165,7 @@ int sci_dos(char *fname,unsigned long l)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -223,6 +230,7 @@ int sci_dos(char *fname,unsigned long l)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -250,6 +258,7 @@ int sci_dos(char *fname,unsigned long l)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -259,6 +268,7 @@ int sci_dos(char *fname,unsigned long l)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -272,6 +282,7 @@ int sci_dos(char *fname,unsigned long l)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 

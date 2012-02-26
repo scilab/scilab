@@ -25,7 +25,8 @@
   <refsection>
     <title>説明</title>
     <para>t = now() は,日数として日付と時間を返します.
-	(<link linkend="datenum">datenum</link>参照)</para>
+      (<link linkend="datenum">datenum</link>参照)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -51,12 +52,6 @@ datevec(t1)
       <member>
         <link linkend="datevec">datevec</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

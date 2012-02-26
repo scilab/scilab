@@ -52,7 +52,10 @@ static char *backtrace_print(int niv_debut)
     size_t ind;
 
     sci_backtrace_t *tr = NULL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     char print_buffer[4096];    /* TODO: make it dynamic */
 
     int size = sizeof(print_buffer);
@@ -75,10 +78,15 @@ static char *backtrace_print(int niv_debut)
         const char *s_addr;
 
         const char s_unknown[] = "?";
+<<<<<<< HEAD
 
         const char s_vide[] = "";
 
         const char *s_prefix = s_vide;
+=======
+        const char s_empty[] = "";
+        const char *s_prefix = s_empty;
+>>>>>>> origin/master
 
         size_t nbr = sci_backtrace_size(tr);
 

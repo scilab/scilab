@@ -18,21 +18,22 @@
         <term>x  </term>
         <listitem>
           <para>matrice de tout type
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>l  </term>
         <listitem>
           <para>variable de type list, tlist ou mlist
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>indice du champ, voir <literal>extraction</literal> pour plus de détails
-</para>
+          <para>
+            indice du champ, voir <literal>extraction</literal> pour plus de détails
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,8 +41,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction est un équivalent de la syntaxe <literal>[x,...]=l(i)</literal> pour l'extraction de champs avec la seule différence qu'elle s'applique aussi aux objets de type <literal>mlist</literal>.
-  </para>
+      Cette fonction est un équivalent de la syntaxe <literal>[x,...]=l(i)</literal> pour l'extraction de champs avec la seule différence qu'elle s'applique aussi aux objets de type <literal>mlist</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +56,7 @@ getfield(1,a) // le premier champ de la mlist
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>

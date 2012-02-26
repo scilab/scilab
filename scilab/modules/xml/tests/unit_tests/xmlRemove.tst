@@ -14,8 +14,10 @@ assert_checkequal(doc.root.children(3).name,"a");
 xp = xmlXPath(doc, "//a");
 xmlRemove(xp);
 assert_checkequal(doc.root.children(1).name,"b");
-assert_checkerror("doc.root.children(2).name","%XMLList_e: Wrong index in the XMLList.");
-assert_checkerror("doc.root.children(3).name","%XMLList_e: Wrong index in the XMLList.");
+
+msgerr = msprintf(gettext("%s: Wrong index in the XMLList.\n"), "%XMLList_e");
+assert_checkerror("doc.root.children(2).name", msgerr);
+assert_checkerror("doc.root.children(3).name", msgerr);
 
 xp = xmlXPath(doc, "//a");
 assert_checkequal(length(xp),0);
@@ -23,8 +25,8 @@ assert_checkequal(length(xp),0);
 doc2 = xmlReadStr("<root><b>Scilab</b></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc2)));
 
-xmlClose(doc);
-xmlClose(doc2);
+xmlDelete(doc);
+xmlDelete(doc2);
 
 
 // Remove the first element
@@ -46,10 +48,10 @@ xmlRemove(doc.root.children);
 doc4 = xmlReadStr("<root></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc4)));
 
-xmlClose(doc);
-xmlClose(doc2);
-xmlClose(doc3);
-xmlClose(doc4);
+xmlDelete(doc);
+xmlDelete(doc2);
+xmlDelete(doc3);
+xmlDelete(doc4);
 
 doc = xmlReadStr("<root><a>Hello</a><mynode><b>Scilab</b></mynode><a>World</a></root>");
 xmlRemove(doc.root.children(1));
@@ -69,5 +71,5 @@ doc = xmlReadStr("<root><a>Hello</a><mynode><b>Scilab</b></mynode><a>World</a></
 xmlRemove(doc.root.children(2).children(1));
 doc2 = xmlReadStr("<root><a>Hello</a><mynode></mynode><a>World</a></root>");
 assert_checktrue(and(xmlDump(doc)==xmlDump(doc2)));
-xmlClose(doc);
-xmlClose(doc2);
+xmlDelete(doc);
+xmlDelete(doc2);

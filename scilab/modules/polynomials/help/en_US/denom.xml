@@ -41,15 +41,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>den=denom(r)</literal> returns the denominator of a rational matrix.</para>
     <para>
-    Since rationals are internally represented as
-    <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-    <literal>denom(r</literal>) is the same as <literal>r(3)</literal>,
-    <literal>r('den')</literal> or <literal>r.den</literal></para>
+      <literal>den=denom(r)</literal> returns the denominator of a rational matrix.
+    </para>
+    <para>
+      Since rationals are internally represented as
+      <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
+      <literal>denom(r</literal>) is the same as <literal>r(3)</literal>,
+      <literal>r('den')</literal> or <literal>r.den</literal>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="numer">numer</link>

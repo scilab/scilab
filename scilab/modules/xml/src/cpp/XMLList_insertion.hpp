@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +19,6 @@ extern "C"
 {
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -55,6 +54,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -70,6 +70,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -77,6 +78,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 

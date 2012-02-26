@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>y=matrix(v,n,m)
-y=matrix(v,[sizes])</synopsis>
+      y=matrix(v,[sizes])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,28 +20,28 @@ y=matrix(v,[sizes])</synopsis>
         <term>v  </term>
         <listitem>
           <para>un vecteur, une matrice ou une hypermatrice 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>n,m  </term>
         <listitem>
           <para>entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sizes  </term>
         <listitem>
           <para>vecteur d'entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
           <para>un vecteur, une matrice ou une hypermatrice
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,19 +49,19 @@ y=matrix(v,[sizes])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Pour un vecteur ou une matrice de taille <literal>n</literal> x <literal>m</literal>, la commande
-    <literal>y=matrix(v,n,m)</literal> ou <literal>y=matrix(v,[n,m])</literal>
-    transforme le vecteur (ou la matrice) <literal>v</literal> en une matrice <literal>nxm</literal> en parcourant les éléments colonne par colonne <literal>v</literal>.
-  </para>
+      Pour un vecteur ou une matrice de taille <literal>n</literal> x <literal>m</literal>, la commande
+      <literal>y=matrix(v,n,m)</literal> ou <literal>y=matrix(v,[n,m])</literal>
+      transforme le vecteur (ou la matrice) <literal>v</literal> en une matrice <literal>nxm</literal> en parcourant les éléments colonne par colonne <literal>v</literal>.
+    </para>
     <para>
-    Si l'une des dimensions m ou n est égale à -1 elle est remplacée par le quotient de  size(v,'*') par l'autre dimension.
-  </para>
+      Si l'une des dimensions m ou n est égale à -1 elle est remplacée par le quotient de  size(v,'*') par l'autre dimension.
+    </para>
     <para>
-  </para>
+    </para>
     <para>
-    Pour une hypermatrice telle que <literal>prod(size(v))==prod(sizes)</literal>, la commande <literal>y=matrix(v,sizes)</literal> (ou de façon équivalente, <literal>y=matrix(v,n1,n2,...nm)</literal>) transforme <literal>v</literal> en une matrice ou une hypermatrice
-    en parcourant les éléments de <literal>v</literal> (parcourus tel que le premier indice varie en premier). <literal>y=matrix(v,sizes)</literal> renvoie une matrice ou un vecteur si <literal>sizes</literal> est un scalaire ou un vecteur à deux composantes.
-  </para>
+      Pour une hypermatrice telle que <literal>prod(size(v))==prod(sizes)</literal>, la commande <literal>y=matrix(v,sizes)</literal> (ou de façon équivalente, <literal>y=matrix(v,n1,n2,...nm)</literal>) transforme <literal>v</literal> en une matrice ou une hypermatrice
+      en parcourant les éléments de <literal>v</literal> (parcourus tel que le premier indice varie en premier). <literal>y=matrix(v,sizes)</literal> renvoie une matrice ou un vecteur si <literal>sizes</literal> est un scalaire ou un vecteur à deux composantes.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -72,7 +73,7 @@ matrix(a,3,2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="matrices">matrices</link>

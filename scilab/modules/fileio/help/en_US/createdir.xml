@@ -22,16 +22,19 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>createdir('dirname')
-status = createdir('dirname')</synopsis>
+      status = createdir('dirname')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>createdir('dirname') creates the directory dirname in the current
-    directory, if dirname is not in the current directory, specify the
-    relative path to the current directory or the full path for dirname.</para>
+      directory, if dirname is not in the current directory, specify the
+      relative path to the current directory or the full path for dirname.
+    </para>
     <para>[status] = createdir('dirname') creates the directory dirname in the
-    existing directory parentdir, returning the status, a message. Here,
-    status is %T for success and %F otherwise.</para>
+      existing directory parentdir, returning the status, a message. Here,
+      status is %T for success and %F otherwise.
+    </para>
     <para>createdir is used by mkdir.</para>
   </refsection>
   <refsection>
@@ -42,7 +45,7 @@ removedir(SCIHOME+'/Directory_test')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mkdir">mkdir</link>
@@ -50,12 +53,6 @@ removedir(SCIHOME+'/Directory_test')
       <member>
         <link linkend="rmdir">rmdir</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -35,29 +35,29 @@
       Y=grand(m,n,"unf",Low,High)
       Y=grand(m,n,"uin",Low,High)
       Y=grand(m,n,"lgi")
-
+      
       Y=grand(X,...)
-
+      
       Y=grand(n,"mn",Mean,Cov)
       Y=grand(n,"markov",P,x0)
       Y=grand(n,"mul",nb,P)
       Y=grand(n,"prm",vect)
-
+      
       S=grand("getgen")
       grand("setgen",gen)
-
+      
       S=grand("getsd")
       grand("setsd",S)
-
+      
       S=grand("phr2sd",phrase)
-
+      
       grand("setcgn",G)
       S=grand("getcgn")
-
+      
       grand("initgn",I)
-
+      
       grand("setall",s1,s2,s3,s4)
-
+      
       grand("advnst",K)
     </synopsis>
   </refsynopsisdiv>
@@ -79,7 +79,8 @@
             a matrix whom only the dimensions (say <literal>
               m x
               n
-            </literal>) are used
+            </literal>
+            )are used
           </para>
         </listitem>
       </varlistentry>
@@ -162,17 +163,17 @@
     <screen>
       S=grand("getgen")
       grand("setgen",gen)
-
+      
       S=grand("getsd")
       grand("setsd",S)
-
+      
       grand("setcgn",G)
       S=grand("getcgn")
-
+      
       grand("initgn",I)
-
+      
       grand("setall",s1,s2,s3,s4)
-
+      
       grand("advnst",K)
     </screen>
     <para>
@@ -186,7 +187,8 @@
       <varlistentry>
         <term>beta</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"bet",A,B)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"bet",A,B)</literal> generates
             random variates from the beta distribution with parameters
             <literal>A</literal> and <literal>B</literal>.  The density
             of the beta distribution is (<literal>0 &lt; x &lt; 1</literal>) :
@@ -196,7 +198,8 @@
               \frac{x^{A-1}   (1-x)^{B-1}}{\beta(A,B)}
             </latex>
           </para>
-          <para><literal>A</literal> and <literal>B</literal> must be
+          <para>
+            <literal>A</literal> and <literal>B</literal> must be
             reals &gt;<literal>10^(-37)</literal>.  Related function(s)
             : <link linkend="cdfbet">cdfbet</link>.
           </para>
@@ -205,7 +208,8 @@
       <varlistentry>
         <term>binomial</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"bin",N,p)</literal> generates random
+          <para>
+            <literal>Y=grand(m,n,"bin",N,p)</literal> generates random
             variates from the binomial distribution with parameters
             <literal>N</literal> (positive integer) and <literal>p</literal>
             (real in [0,1]) : number of successes in <literal>N</literal>
@@ -218,7 +222,8 @@
       <varlistentry>
         <term>negative binomial</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"nbn",N,p)</literal> generates random variates from the negative binomial
+          <para>
+            <literal>Y=grand(m,n,"nbn",N,p)</literal> generates random variates from the negative binomial
             distribution with parameters <literal>N</literal> (positive integer) and <literal>p</literal> (real
             in (0,1)) : number of failures occurring before <literal>N</literal> successes
             in independent Bernouilli trials with probability <literal>p</literal> of success.
@@ -229,7 +234,8 @@
       <varlistentry>
         <term>chisquare</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"chi", Df)</literal> generates random
+          <para>
+            <literal>Y=grand(m,n,"chi", Df)</literal> generates random
             variates from the chisquare distribution with <literal>Df</literal>
             (real &gt; 0.0) degrees of freedom.  Related function(s) :
             <link linkend="cdfchi">cdfchi</link>.
@@ -239,7 +245,8 @@
       <varlistentry>
         <term>non central chisquare</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"nch",Df,Xnonc)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"nch",Df,Xnonc)</literal> generates
             random variates from the non central chisquare
             distribution with <literal>Df</literal> degrees of freedom
             (real &gt;= 1.0) and noncentrality parameter
@@ -251,7 +258,8 @@
       <varlistentry>
         <term>exponential</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"exp",Av)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"exp",Av)</literal> generates
             random variates from the exponential distribution with mean
             <literal>Av</literal> (real &gt;= 0.0).
           </para>
@@ -260,7 +268,8 @@
       <varlistentry>
         <term>F variance ratio</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"f",Dfn,Dfd)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"f",Dfn,Dfd)</literal> generates
             random variates from the F (variance ratio) distribution
             with <literal>Dfn</literal> (real &gt; 0.0) degrees of
             freedom in the numerator and <literal>Dfd</literal> (real
@@ -272,7 +281,8 @@
       <varlistentry>
         <term>non central F variance ratio</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"nf",Dfn,Dfd,Xnonc)</literal>
+          <para>
+            <literal>Y=grand(m,n,"nf",Dfn,Dfd,Xnonc)</literal>
             generates random variates from the noncentral F (variance
             ratio) distribution with <literal>Dfn</literal> (real
             &gt;= 1) degrees of freedom in the numerator, and
@@ -286,7 +296,8 @@
       <varlistentry>
         <term>gamma</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"gam",shape,scale)</literal>
+          <para>
+            <literal>Y=grand(m,n,"gam",shape,scale)</literal>
             generates random variates from the gamma distribution with
             parameters <literal>shape</literal> (real &gt; 0) and
             <literal>scale</literal> (real &gt; 0). The density of the
@@ -306,7 +317,8 @@
       <varlistentry>
         <term>Gauss Laplace (normal)</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"nor",Av,Sd)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"nor",Av,Sd)</literal> generates
             random variates from the normal distribution with mean
             <literal>Av</literal> (real) and standard deviation
             <literal>Sd</literal> (real &gt;= 0). Related function(s)
@@ -317,15 +329,18 @@
       <varlistentry>
         <term>multivariate gaussian (multivariate normal)</term>
         <listitem>
-          <para><literal>Y=grand(n,"mn",Mean,Cov)</literal>
+          <para>
+            <literal>Y=grand(n,"mn",Mean,Cov)</literal>
             generates <literal>n</literal> multivariate normal random
             variates ; <literal>Mean</literal> must be a <literal>
               m x
               1
-            </literal> matrix and <literal>Cov</literal> a <literal>
+            </literal>
+            matrix and <literal>Cov</literal> a <literal>
               m x
               m
-            </literal> symmetric positive definite matrix
+            </literal>
+            symmetric positive definite matrix
             (<literal>Y</literal> is then a <literal>m x n</literal>
             matrix).
           </para>
@@ -334,7 +349,8 @@
       <varlistentry>
         <term>geometric</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"geom", p)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"geom", p)</literal> generates
             random variates from the geometric distribution with
             parameter <literal>p</literal> : number of Bernouilli trials
             (with probability succes of <literal>p</literal>) until a
@@ -342,9 +358,11 @@
             <literal>[pmin,1]</literal> (with <literal>
               pmin = 1.3
               10^(-307)
-            </literal>).
+            </literal>
+            ).
           </para>
-          <para><literal>Y</literal> contains positive real numbers
+          <para>
+            <literal>Y</literal> contains positive real numbers
             with integer values, with are the "number of trials to get
             a success".
           </para>
@@ -353,7 +371,8 @@
       <varlistentry>
         <term>markov</term>
         <listitem>
-          <para><literal>Y=grand(n,"markov",P,x0)</literal> generate
+          <para>
+            <literal>Y=grand(n,"markov",P,x0)</literal> generate
             <literal>n</literal> successive states of a Markov chain
             described by the transition matrix
             <literal>P</literal>. Initial state is given by
@@ -362,7 +381,8 @@
             <literal>Y</literal> is a matrix of size <literal>
               m x
               n
-            </literal>. <literal>Y(i,:)</literal> is the sample path
+            </literal>
+            .<literal>Y(i,:)</literal> is the sample path
             obtained from initial state <literal>x0(i)</literal>.
           </para>
         </listitem>
@@ -370,7 +390,8 @@
       <varlistentry>
         <term>multinomial</term>
         <listitem>
-          <para><literal>Y=grand(n,"mul",nb,P)</literal> generates
+          <para>
+            <literal>Y=grand(n,"mul",nb,P)</literal> generates
             <literal>n</literal> observations from the Multinomial
             distribution : class <literal>nb</literal> events in
             <literal>m</literal> categories (put <literal>nb</literal>
@@ -388,14 +409,16 @@
             <literal>j</literal> th observation) (<literal>
               sum(Y(:,j))
               = nb
-            </literal>).
+            </literal>
+            ).
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Poisson</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"poi",mu)</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"poi",mu)</literal> generates
             random variates from the Poisson distribution with mean
             <literal>mu (real &gt;= 0.0)</literal>. Related function(s)
             : <link linkend="cdfpoi">cdfpoi</link>.
@@ -405,7 +428,8 @@
       <varlistentry>
         <term>random permutations</term>
         <listitem>
-          <para><literal>Y=grand(n,"prm",vect)</literal> generate
+          <para>
+            <literal>Y=grand(n,"prm",vect)</literal> generate
             <literal>n</literal> random permutations of the column
             vector (<literal>m x 1</literal>)
             <literal>vect</literal>.
@@ -415,7 +439,8 @@
       <varlistentry>
         <term>uniform (def)</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"def")</literal> generates
+          <para>
+            <literal>Y=grand(m,n,"def")</literal> generates
             random variates from the uniform distribution over
             <literal>[0,1)</literal> (1 is never return).
           </para>
@@ -424,7 +449,8 @@
       <varlistentry>
         <term>uniform (unf)</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"unf",Low,High)</literal>
+          <para>
+            <literal>Y=grand(m,n,"unf",Low,High)</literal>
             generates random reals uniformly distributed in
             <literal>[Low, High)</literal>.
           </para>
@@ -433,7 +459,8 @@
       <varlistentry>
         <term>uniform (uin)</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"uin",Low,High)</literal>
+          <para>
+            <literal>Y=grand(m,n,"uin",Low,High)</literal>
             generates random integers uniformly distributed between
             <literal>Low</literal> and <literal>High</literal>
             (included). <literal>High</literal> and
@@ -445,25 +472,30 @@
       <varlistentry>
         <term>uniform (lgi)</term>
         <listitem>
-          <para><literal>Y=grand(m,n,"lgi")</literal> returns the
+          <para>
+            <literal>Y=grand(m,n,"lgi")</literal> returns the
             basic output of the current generator : random integers
             following a uniform distribution over :
           </para>
           <itemizedlist>
             <listitem>
-              <para><literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra
+              <para>
+                <literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra
               </para>
             </listitem>
             <listitem>
-              <para><literal>[0, 2147483561]</literal> for clcg2
+              <para>
+                <literal>[0, 2147483561]</literal> for clcg2
               </para>
             </listitem>
             <listitem>
-              <para><literal>[0, 2^31 - 2]</literal> for clcg4
+              <para>
+                <literal>[0, 2^31 - 2]</literal> for clcg4
               </para>
             </listitem>
             <listitem>
-              <para><literal>[0, 2^31 - 1]</literal> for urand.
+              <para>
+                <literal>[0, 2^31 - 1]</literal> for urand.
               </para>
             </listitem>
           </itemizedlist>
@@ -552,7 +584,8 @@
       <varlistentry>
         <term>action= "getgen"</term>
         <listitem>
-          <para><literal>S=grand("getgen")</literal> returns the current base generator.
+          <para>
+            <literal>S=grand("getgen")</literal> returns the current base generator.
             In this case <literal>S</literal> is
             a string among "mt", "kiss", "clcg2", "clcg4", "urand", "fsultra".
           </para>
@@ -561,7 +594,8 @@
       <varlistentry>
         <term>action= "setgen"</term>
         <listitem>
-          <para><literal>grand("setgen",gen)</literal> sets the current base generator to be <literal>gen</literal>
+          <para>
+            <literal>grand("setgen",gen)</literal> sets the current base generator to be <literal>gen</literal>
             a string among "mt", "kiss", "clcg2", "clcg4", "urand", "fsultra".
             Notice that this call returns the new current generator, ie <literal>gen</literal>.
           </para>
@@ -570,7 +604,8 @@
       <varlistentry>
         <term>action= "getsd"</term>
         <listitem>
-          <para><literal>S=grand("getsd")</literal> gets the current state (the current seeds) of the current base
+          <para>
+            <literal>S=grand("getsd")</literal> gets the current state (the current seeds) of the current base
             generator ; <literal>S</literal> is given as a column vector (of integers) of dimension <literal>625</literal>
             for mt (the first being an index in <literal>[1,624]</literal>), <literal>4</literal> for kiss, <literal>2</literal>
             for clcg2,  <literal>40</literal> for fsultra, <literal>4</literal> for clcg4
@@ -582,14 +617,16 @@
       <varlistentry>
         <term>action= "setsd"</term>
         <listitem>
-          <para><literal>grand("setsd",S), grand("setsd",s1[,s2,s3,s4])</literal> sets the state of the current
+          <para>
+            <literal>grand("setsd",S), grand("setsd",s1[,s2,s3,s4])</literal> sets the state of the current
             base generator (the new seeds) :
           </para>
           <variablelist>
             <varlistentry>
               <term>for mt</term>
               <listitem>
-                <para><literal>S</literal> is a vector of integers of dim <literal>625</literal> (the first component is an index
+                <para>
+                  <literal>S</literal> is a vector of integers of dim <literal>625</literal> (the first component is an index
                   and must be in <literal>[1,624]</literal>, the <literal>624</literal> last ones must be in
                   <literal>[0,2^32[</literal>) (but must not be all zeros) ; a simpler initialisation may be done
                   with only one integer <literal>s1</literal> (<literal>s1</literal> must be in <literal>[0,2^32[</literal>) ;
@@ -599,14 +636,16 @@
             <varlistentry>
               <term>for kiss</term>
               <listitem>
-                <para><literal>4</literal> integers <literal>s1,s2, s3,s4</literal> in <literal>[0,2^32[</literal> must be provided ;
+                <para>
+                  <literal>4</literal> integers <literal>s1,s2, s3,s4</literal> in <literal>[0,2^32[</literal> must be provided ;
                 </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>for clcg2</term>
               <listitem>
-                <para><literal>2</literal> integers <literal>s1</literal> in <literal>[1,2147483562]</literal> and <literal>s2</literal>
+                <para>
+                  <literal>2</literal> integers <literal>s1</literal> in <literal>[1,2147483562]</literal> and <literal>s2</literal>
                   in  <literal>[1,2147483398]</literal> must be given ;
                 </para>
               </listitem>
@@ -614,7 +653,8 @@
             <varlistentry>
               <term>for clcg4</term>
               <listitem>
-                <para><literal>4</literal> integers <literal>s1</literal> in <literal>[1,2147483646]</literal>, <literal>s2</literal>
+                <para>
+                  <literal>4</literal> integers <literal>s1</literal> in <literal>[1,2147483646]</literal>, <literal>s2</literal>
                   in <literal>[1,2147483542]</literal>, <literal>s3</literal> in <literal>[1,2147483422]</literal>,
                   <literal>s4</literal> in  <literal>[1,2147483322]</literal> are required ;
                   <literal>CAUTION</literal> : with clcg4 you set the seeds of the current virtual
@@ -628,14 +668,16 @@
             <varlistentry>
               <term>for urand</term>
               <listitem>
-                <para><literal>1</literal> integer <literal>s1</literal> in  <literal>[0,2^31</literal>[ must be given.
+                <para>
+                  <literal>1</literal> integer <literal>s1</literal> in  <literal>[0,2^31</literal>[ must be given.
                 </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>for fsultra</term>
               <listitem>
-                <para><literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component
+                <para>
+                  <literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component
                   is an index and must be in <literal>[0,37]</literal>, the 2d component is a flag (0 or 1), the 3d
                   an integer in [1,2^32[ and the 37 others integers in [0,2^32[) ; a simpler (and recommanded)
                   initialisation may be done with two integers <literal>s1</literal> and <literal>s2</literal> in
@@ -649,7 +691,8 @@
       <varlistentry>
         <term>action= "phr2sd"</term>
         <listitem>
-          <para><literal>Sd=grand("phr2sd", phrase)</literal> given a <literal>phrase</literal> (character string) generates
+          <para>
+            <literal>Sd=grand("phr2sd", phrase)</literal> given a <literal>phrase</literal> (character string) generates
             a <literal>1 x 2</literal> vector <literal>Sd</literal> which may be used as seeds to change the state of a
             base generator (initialy suited for clcg2).
           </para>
@@ -678,7 +721,8 @@
       <varlistentry>
         <term>action= "setcgn"</term>
         <listitem>
-          <para><literal>grand("setcgn",G)</literal> sets the current virtual generator for clcg4 (when clcg4
+          <para>
+            <literal>grand("setcgn",G)</literal> sets the current virtual generator for clcg4 (when clcg4
             is set, this is the virtual (clcg4) generator number <literal>G</literal> which is used);  the virtual clcg4
             generators are numbered from <literal>0,1,..,100</literal> (and so <literal>G</literal> must be an integer
             in  <literal>[0,100]</literal>) ; by default the current virtual generator is <literal>0</literal>.
@@ -688,14 +732,16 @@
       <varlistentry>
         <term>action= "getcgn"</term>
         <listitem>
-          <para><literal>S=grand("getcgn")</literal> returns the number of the current virtual clcg4 generator.
+          <para>
+            <literal>S=grand("getcgn")</literal> returns the number of the current virtual clcg4 generator.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>action= "initgn"</term>
         <listitem>
-          <para><literal>grand("initgn",I)</literal> reinitializes the state of the current virtual generator
+          <para>
+            <literal>grand("initgn",I)</literal> reinitializes the state of the current virtual generator
           </para>
           <variablelist>
             <varlistentry>
@@ -725,7 +771,8 @@
       <varlistentry>
         <term>action= "setall"</term>
         <listitem>
-          <para><literal>grand("setall",s1,s2,s3,s4)</literal> sets the initial state of generator <literal>0</literal>
+          <para>
+            <literal>grand("setall",s1,s2,s3,s4)</literal> sets the initial state of generator <literal>0</literal>
             to <literal>s1,s2,s3,s4</literal>. The initial seeds of the other generators are set accordingly
             to have synchronisation. For constraints on <literal>s1, s2, s3, s4</literal> see the "setsd" action.
           </para>
@@ -734,7 +781,8 @@
       <varlistentry>
         <term>action= "advnst"</term>
         <listitem>
-          <para><literal>grand("advnst",K)</literal> advances the state of the current generator by <literal>2^K</literal> values
+          <para>
+            <literal>grand("advnst",K)</literal> advances the state of the current generator by <literal>2^K</literal> values
             and  resets the initial seed to that value.
           </para>
         </listitem>
@@ -866,87 +914,5 @@ grand("setsd",n)
         <link linkend="ssrand">ssrand</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>randlib</term>
-        <listitem>
-          <para>
-            The codes to generate sequences following other distributions than def, unf, lgi,  uin and geom are
-            from "Library of Fortran Routines for Random Number  Generation", by Barry W. Brown
-            and James Lovato, Department of Biomathematics, The University of Texas, Houston.
-            The source code is available at : http://www.netlib.org/random/ranlib.f.tar.gz
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>mt</term>
-        <listitem>
-          <para>
-            The code is the mt19937int.c by M. Matsumoto and  T. Nishimura, "Mersenne Twister:
-            A 623-dimensionally equidistributed  uniform pseudorandom number generator",
-            ACM Trans. on Modeling and  Computer Simulation Vol. 8, No. 1, January, pp.3-30 1998.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>kiss</term>
-        <listitem>
-          <para>
-            The code was given by G. Marsaglia at the end of a thread concerning RNG in C in several
-            newsgroups (whom sci.math.num-analysis) "My offer of  RNG's for C was an invitation
-            to dance..." only kiss have been included in Scilab (kiss is made of a combinaison of
-            severals others which are not visible at the scilab level).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>clcg2</term>
-        <listitem>
-          <para>
-            The method is from P. L'Ecuyer but the C code is provided at Luc Devroye's home page
-            (<ulink url="http://cg.scs.carleton.ca/~luc/rng.html">http://cg.scs.carleton.ca/~luc/rng.html</ulink> See "lecuyer.c".).
-            This generator is made of two linear congruential sequences s1 = a1*s1 mod m1,
-            with a1 = 40014, m1 = 2147483563 and s2 = a2*s2 mod m2 , with a2 = 40692, m2 = 2147483399.
-            The output is computed from output =  s1-s2 mod (m1 - 1).
-            Therefore, output is in [0, 2147483561]. The perido is about 2.3 10^18.
-            The state is given by (s1, s2). In case of a user modification of the state we must have :
-            s1 in [1, m1-1] and s2 in [1, m2-1].
-            The default initial seeds are s1 = 1234567890  and s2 = 123456789.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>clcg4</term>
-        <listitem>
-          <para>
-            The code is from P. L'Ecuyer and Terry H.Andres and provided at the P. L'Ecuyer
-            home page ( <ulink url="http://www.iro.umontreal.ca/~lecuyer/papers.html">http://www.iro.umontreal.ca/~lecuyer/papers.html</ulink>) A paper is also provided
-            and this new package is the logical successor of an old one from : P.  L'Ecuyer
-            and S. Cote.
-            Implementing a Random   Number Package with Splitting Facilities.  ACM Transactions
-            on Mathematical  Software 17:1,pp 98-111.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fsultra</term>
-        <listitem>
-          <para>
-            code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu)
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Scilab packaging</term>
-        <listitem>
-          <para>
-            By Jean-Philippe Chancelier and Bruno Pincon
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

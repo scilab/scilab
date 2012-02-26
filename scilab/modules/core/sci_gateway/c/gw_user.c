@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "gw_user.h"
 /*--------------------------------------------------------------------------*/ 
  int gw_user(void)

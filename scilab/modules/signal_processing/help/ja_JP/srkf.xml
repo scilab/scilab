@@ -49,10 +49,7 @@
   <refsection>
     <title>説明</title>
     <para>
-    平方根カルマンフィルタアルゴリズム</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      平方根カルマンフィルタアルゴリズム
+    </para>
   </refsection>
 </refentry>

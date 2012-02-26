@@ -91,6 +91,7 @@ public class ScilabFileBrowserHistory {
                         showPopup(true);
                     } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && previous.isEnabled()) {
                         ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position - 1), false);
+                        chDir(history.get(position - 1));
                         setPositionInHistory(position - 1);
                     }
                 }
@@ -130,6 +131,7 @@ public class ScilabFileBrowserHistory {
                         showPopup(false);
                     } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && next.isEnabled()) {
                         ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position + 1), false);
+                        chDir(history.get(position + 1));
                         setPositionInHistory(position + 1);
                     }
                 }

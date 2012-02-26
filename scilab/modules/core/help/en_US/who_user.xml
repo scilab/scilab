@@ -13,10 +13,12 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>who_user</literal> displays user's  variable names.</para>
+    <para>
+      <literal>who_user</literal> displays user's  variable names.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

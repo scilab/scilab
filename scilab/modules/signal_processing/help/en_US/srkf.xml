@@ -49,10 +49,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    square root Kalman filter algorithm</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      square root Kalman filter algorithm
+    </para>
   </refsection>
 </refentry>

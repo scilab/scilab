@@ -12,7 +12,6 @@
  */
 
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "CreateMatlabVariable.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \

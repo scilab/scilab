@@ -27,7 +27,6 @@ extern "C"
 #include "localization.h"
 #include "MALLOC.h"
 #include "BOOL.h"
-#include "stack-c.h"
 #include "stackinfo.h"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
@@ -213,11 +212,13 @@ static std::set < string > createScilabDefaultVariablesSet()
         "$",
         "%driverName",
         "%toolboxes",
-        "%toolboxes_dir"
+        "%toolboxes_dir",
+        "TICTOC",
+        "%helps_modules"
     };
     int i = 0;
 
-#define NBELEMENT 31
+#define NBELEMENT 33
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++)

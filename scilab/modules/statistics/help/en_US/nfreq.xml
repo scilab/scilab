@@ -36,17 +36,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    Frequence of the  values in a real or  complex vector or a
-    real or complex matrix <literal>x</literal>.</para>
+      Frequence of the  values in a real or  complex vector or a
+      real or complex matrix <literal>x</literal>.
+    </para>
     <para>
-    For a real  or complex vector or a  real or complex matrix
-    <literal>x</literal>,  <literal>m=freq(x)</literal> returns in  the first  column of
-    the  <literal>size(x,'*')x2</literal>  matrix  <literal>m</literal>  the  values  of
-    <literal>x</literal>  and  in the  second  column  of  this matrix  the
-    frequences of the corresponding values.</para>
+      For a real  or complex vector or a  real or complex matrix
+      <literal>x</literal>,  <literal>m=freq(x)</literal> returns in  the first  column of
+      the  <literal>size(x,'*')x2</literal>  matrix  <literal>m</literal>  the  values  of
+      <literal>x</literal>  and  in the  second  column  of  this matrix  the
+      frequences of the corresponding values.
+    </para>
     <para>
-Note that the  <link linkend="tabul">tabul</link> function is more efficient, applies
-also to vector of strings and returns a sorted <literal>m</literal>.</para>
+      Note that the  <link linkend="tabul">tabul</link> function is more efficient, applies
+      also to vector of strings and returns a sorted <literal>m</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -56,7 +59,7 @@ m=nfreq(x)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tabul">tabul</link>
@@ -68,9 +71,5 @@ m=nfreq(x)
         <link linkend="histplot">histplot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

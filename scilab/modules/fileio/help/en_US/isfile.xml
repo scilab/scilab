@@ -42,19 +42,20 @@
   <refsection>
     <title>Description</title>
     <para>x = isfile(filenames) checks if filenames is existing file or not. (a
-    directory is not a file. see isdir.)</para>
+      directory is not a file. see isdir.)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example">cd SCI
-filenames = ls()
-isfile(filenames)
-
-isfile(filenames)
-
-isfile(SCI + '/etc')
-isdir(SCI + '/etc')
- </programlisting>
+      filenames = ls()
+      isfile(filenames)
+      
+      isfile(filenames)
+      
+      isfile(SCI + '/etc')
+      isdir(SCI + '/etc')
+    </programlisting>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -66,9 +67,5 @@ isdir(SCI + '/etc')
         <link linkend="isdir">isdir</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

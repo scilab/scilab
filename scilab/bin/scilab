@@ -725,7 +725,7 @@ check_macosx_version()
                      VERSION=$(/usr/libexec/java_home -v 1.5|grep 1.5.0)
                      if test "$VERSION"; then
                          open /Applications/Utilities/Java\ Preferences.app/ &
-                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu." || exit 128
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu. An other workaround is to rename /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib to libjava.jnilib_" || exit 128
                      fi
 
                      ;;
@@ -740,7 +740,8 @@ check_macosx_version()
     esac
 }
 
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+# . is used by the dynamic link. The build lib are copied into the PWD
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in
@@ -820,6 +821,7 @@ do_help()
     echo     "      -nb             : do not display the Scilab banner at starting time."
     echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "      -noatomsautoload: do not load ATOMS installed module."
     echo     "      -nw             : start Scilab without dedicated Scilab Window."
     echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
     echo     "      -nogui          : See -nwni"
@@ -947,7 +949,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then

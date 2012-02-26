@@ -15,14 +15,10 @@
 
 #include <string>
 #include <stdlib.h>
-#include "machine.h"
-#include "call_scilab.h"
-#include "api_common.h"
+//#include "api_stack.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
-#include "api_int.h"
-#include "api_string.h"
-#include "stack-c.h"
+#include "call_scilab.h"
 #include "stackinfo.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -49,7 +45,147 @@ extern "C"
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
+int* getInputArgument(void* _pvCtx)
+{
+    return &C2F(com).rhs;
+}
 
+int* getOutputArgument(void* _pvCtx)
+{
+    return &C2F(com).lhs;
+}
+
+int* assignOutputVariable(void* _pvCtx, int _iVal)
+{
+    return &(C2F(intersci).lhsvar[_iVal-1]);
+}
+
+int updateStack(void* _pvCtx)
+{
+    return C2F(putlhsvar)();
+}
+
+int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    int iRhs = InputArgument;
+    if(_iMin <= InputArgument && _iMax >= InputArgument)
+    {
+        return 1;
+    }
+
+    if(_iMax == _iMin)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    }
+    else
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
+    }
+
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMin <= InputArgument)
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMax >= InputArgument)
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    int iLhs = OutputArgument;
+    if(_iMin <= OutputArgument && _iMax >= OutputArgument)
+    {
+        return 1;
+    }
+
+    if(_iMax == _iMin)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    }
+    else
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
+    }
+
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMin <= OutputArgument)
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMax >= OutputArgument)
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
+{
+    int iVar = _iVar + Top - Rhs;
+    return C2F(overload)(&iVar, _pstName, _iNameLen);
+}
+
+/*--------------------------------------------------------------------------*/
 SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols)
 {
     SciErr sciErr;

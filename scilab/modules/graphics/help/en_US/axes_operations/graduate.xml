@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
-[xi,xa,np]=graduate( xmi, xma)</synopsis>
+      [xi,xa,np]=graduate( xmi, xma)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -55,12 +56,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    graduate looks for the minimum interval <literal>[xi,xa]</literal> and a number of tics 
-    <literal>np</literal> such that:</para>
+      graduate looks for the minimum interval <literal>[xi,xa]</literal> and a number of tics 
+      <literal>np</literal> such that:
+    </para>
     <para>
       <literal>xi &lt;= xmi &lt;= xma &lt;= xa</literal>
     </para>
-    <para><literal>xa - xi / np  =  k(10^n)</literal>,<literal>k</literal> in <literal>[1 3 5]</literal>  for an integer <literal>n</literal></para>
+    <para>
+      <literal>xa - xi / np  =  k(10^n)</literal>,<literal>k</literal> in <literal>[1 3 5]</literal>  for an integer <literal>n</literal>
+    </para>
     <para>
       <literal>n1 &lt; np &lt; n2</literal>
     </para>
@@ -76,7 +80,7 @@ clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xsetech">xsetech</link>
@@ -85,9 +89,5 @@ clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer 1992;   </para>
   </refsection>
 </refentry>

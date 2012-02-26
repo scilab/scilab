@@ -36,9 +36,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>path</literal>ディレクトリで定義された
-	(Scilab関数を含む)
-    全ての <literal>.sci</literal>ファイルをロードします.</para>
+      <literal>path</literal>ディレクトリで定義された
+      (Scilab関数を含む)
+      全ての <literal>.sci</literal>ファイルをロードします.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

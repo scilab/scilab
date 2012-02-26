@@ -25,9 +25,9 @@
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_message affiche le message de texte contenu dans le fichier 
-		donné en argument.
-		</para>
+      La fonction demo_message affiche le message de texte contenu dans le fichier 
+      donné en argument.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -36,7 +36,7 @@ demo_message('SCI/demos/control/pid/pid_3.sce');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_run">demo_run</link>
@@ -50,12 +50,6 @@ demo_message('SCI/demos/control/pid/pid_3.sce');
       <member>
         <link linkend="demo_end">demo_end</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

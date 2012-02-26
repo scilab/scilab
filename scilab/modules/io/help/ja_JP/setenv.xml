@@ -64,8 +64,4 @@ getenv('toto')
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

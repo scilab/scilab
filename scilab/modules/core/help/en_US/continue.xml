@@ -6,15 +6,17 @@
   <refnamediv>
     <refname>continue</refname>
     <refpurpose> keyword to pass control to the next
-  iteration of a loop</refpurpose>
+      iteration of a loop
+    </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Inside a <literal>for</literal> or <literal>while</literal> loop, the command
-    <literal>continue</literal> passes control to the next iteration of the loop
-    in which it appears, skipping any remaining statements between
-    this instruction and the loop's <literal>end</literal> instruction.</para>
+      Inside a <literal>for</literal> or <literal>while</literal> loop, the command
+      <literal>continue</literal> passes control to the next iteration of the loop
+      in which it appears, skipping any remaining statements between
+      this instruction and the loop's <literal>end</literal> instruction.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -29,7 +31,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="while">while</link>
@@ -44,9 +46,5 @@ end
         <link linkend="return">return</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Serge Steer, INRIA</para>
   </refsection>
 </refentry>

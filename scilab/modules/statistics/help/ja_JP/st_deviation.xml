@@ -25,11 +25,12 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>y=st_deviation(x)
-y=st_deviation(x,'r')
-y=st_deviation(x,'c')
-y=stdev(x)
-y=stdev(x,'r')
-y=stdev(x,'c')</synopsis>
+      y=st_deviation(x,'r')
+      y=st_deviation(x,'c')
+      y=stdev(x)
+      y=stdev(x,'r')
+      y=stdev(x,'c')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -51,19 +52,24 @@ y=stdev(x,'c')</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-    st_deviation は, N-1で正規化された"標本"標準偏差を計算します.
-	ただし, Nはデータ長です.</para>
-    <para>
-    <literal>x</literal>がベクトルまたは行列の場合, <literal>y=st_deviation(x)</literal>は
-	<literal>x</literal>の全ての要素の標準偏差をスカラー<literal>y</literal>として返します.
+      st_deviation は, N-1で正規化された"標本"標準偏差を計算します.
+      ただし, Nはデータ長です.
     </para>
-    <para><literal>y=st_deviation(x,'r')</literal> (または等価的に,
-    <literal>y=st_deviation(x,1)</literal>) は行毎の標準偏差です. 
-    列ベクトル<literal>y</literal>の各要素について<literal>x</literal>の各行の標準偏差を
-	返します.</para>
-    <para><literal>y=st_deviation(x,'c')</literal> (または等価的に, <literal>y=st_deviation(x,2)</literal>)
-	は列毎の標準偏差です.行ベクトル<literal>y</literal>の各要素について<literal>x</literal>の各列の
-	標準偏差を返します.</para>
+    <para>
+      <literal>x</literal>がベクトルまたは行列の場合, <literal>y=st_deviation(x)</literal>は
+      <literal>x</literal>の全ての要素の標準偏差をスカラー<literal>y</literal>として返します.
+    </para>
+    <para>
+      <literal>y=st_deviation(x,'r')</literal> (または等価的に,
+      <literal>y=st_deviation(x,1)</literal>) は行毎の標準偏差です. 
+      列ベクトル<literal>y</literal>の各要素について<literal>x</literal>の各行の標準偏差を
+      返します.
+    </para>
+    <para>
+      <literal>y=st_deviation(x,'c')</literal> (または等価的に, <literal>y=st_deviation(x,2)</literal>)
+      は列毎の標準偏差です.行ベクトル<literal>y</literal>の各要素について<literal>x</literal>の各列の
+      標準偏差を返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

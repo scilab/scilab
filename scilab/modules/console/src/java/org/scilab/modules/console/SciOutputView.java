@@ -261,7 +261,6 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
                 insertPosition += str.length();
             }
         } catch (BadLocationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

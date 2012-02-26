@@ -44,10 +44,4 @@
 pathsep() 
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
-  </refsection>
 </refentry>

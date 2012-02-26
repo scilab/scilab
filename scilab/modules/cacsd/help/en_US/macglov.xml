@@ -40,7 +40,9 @@
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>1x2 vector, dimension of <literal>P22</literal></para>
+          <para>
+            1x2 vector, dimension of <literal>P22</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,10 +65,5 @@
       representation (transfer function or state-space) than
       <literal>Sl</literal>.
     </para>
-
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA</para>
   </refsection>
 </refentry>

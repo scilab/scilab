@@ -17,3 +17,4 @@ EXPORTS
  checkrhs_
  createvar_
  getWarningMode
+ freeArrayOfString 

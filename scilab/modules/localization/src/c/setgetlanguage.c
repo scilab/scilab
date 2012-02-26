@@ -75,6 +75,13 @@ BOOL setlanguage(char *lang)
                 //for mbstowcs
                 char *ret = setlocale(LC_CTYPE, lang);
 
+                if (ret == NULL)
+                {
+                    fprintf(stderr,
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?\n",
+                            lang, ret, setlocale(LC_CTYPE, NULL));
+                }
+
                 //for gettext
                 ret = setlocale(LC_MESSAGES, lang);
 #else
@@ -167,8 +174,9 @@ BOOL LanguageIsOK(char *lang)
     int i = 0;
 
     if (strlen(lang) == 0)
-    {                           /* Empty language declaration... it is the default
-                                 * language from the system */
+    {
+        /* Empty language declaration... it is the default
+         * language from the system */
         return TRUE;
     }
 
@@ -277,7 +285,8 @@ char *convertlanguagealias(char *strlanguage)
         else
         {
             if (strlen(strlanguage) == 5 && strlanguage[2] == '_')
-            {                   /* already xx_XX (fr_FR) */
+            {
+                /* already xx_XX (fr_FR) */
                 return strlanguage;
             }
         }

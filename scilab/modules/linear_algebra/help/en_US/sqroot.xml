@@ -36,7 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns W such that  <literal>X=W*W'</literal> (uses SVD).</para>
+      returns W such that  <literal>X=W*W'</literal> (uses SVD).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -51,7 +52,7 @@ norm(W*W'-X,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="chol">chol</link>

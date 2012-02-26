@@ -21,7 +21,6 @@ extern "C"
 #include <wchar.h>
 #include "callscinotes.h"
 #include "gw_scinotes.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -43,11 +42,11 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         {
             callSciNotesW(NULL, 0);
         }
-        catch(GiwsException::JniCallMethodException exception)
+        catch (GiwsException::JniCallMethodException exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         }
-        catch(GiwsException::JniException exception)
+        catch (GiwsException::JniException exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         }
@@ -66,6 +65,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -73,12 +73,13 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
         if (iType1 != sci_strings)
         {
-            Scierror(999, _("%s: Wrong type for argument %d: String matrix expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
             return 0;
         }
 
@@ -87,6 +88,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -102,6 +104,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             FREE(lenStVarOne);
             return 0;
         }
@@ -134,6 +137,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             freeArrayOfWideString(pStVarOne, m1 * n1);
             FREE(lenStVarOne);
             return 0;
@@ -150,6 +154,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -159,6 +164,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -166,7 +172,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
             if (iType2 != sci_matrix && iType2 != sci_strings)
             {
-                Scierror(999, _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for argument #%d: Real matrix or \'readonly\' expected.\n"), fname, 2);
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
@@ -182,6 +188,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -189,7 +196,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
                 if (m2 != 1 || n2 != 1)
                 {
-                    Scierror(999, _("%s: Wrong type for argument %d: Real matrix or \'readonly\' expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for argument #%d: Real matrix or \'readonly\' expected.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -209,6 +216,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
@@ -241,6 +249,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(pStVarTwo);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -252,7 +261,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 {
                     callSciNotesWWithOption(pStVarOne, pStVarTwo, m1 * n1);
                 }
-                catch(GiwsException::JniCallMethodException exception)
+                catch (GiwsException::JniCallMethodException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                     FREE(pStVarTwo);
@@ -261,7 +270,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                     FREE(lenStVarOne);
                     return 0;
                 }
-                catch(GiwsException::JniException exception)
+                catch (GiwsException::JniException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                     FREE(pStVarTwo);
@@ -277,7 +286,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
             {
                 if (isVarComplex(pvApiCtx, piAddressVarTwo) == 1)
                 {
-                    Scierror(999, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -287,6 +296,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
@@ -308,12 +318,13 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
                         return 0;
                     }
 
                     if (!isStringType(pvApiCtx, piAddressVarThree))
                     {
-                        Scierror(999, _("%s: Wrong type for argument %d: A single string.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
@@ -323,7 +334,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
                     if (ret)
                     {
-                        Scierror(999, _("%s: Wrong type for argument %d: A single string.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
@@ -334,11 +345,11 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 {
                     callSciNotesWWithLineNumberAndFunction(pStVarOne, pdblVarTwo, functionName, m1 * n1);
                 }
-                catch(GiwsException::JniCallMethodException exception)
+                catch (GiwsException::JniCallMethodException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                 }
-                catch(GiwsException::JniException exception)
+                catch (GiwsException::JniException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                 }
@@ -350,11 +361,11 @@ int sci_scinotes(char *fname, unsigned long fname_len)
             {
                 callSciNotesW(pStVarOne, m1 * n1);
             }
-            catch(GiwsException::JniCallMethodException exception)
+            catch (GiwsException::JniCallMethodException exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
             }
-            catch(GiwsException::JniException exception)
+            catch (GiwsException::JniException exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
             }

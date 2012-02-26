@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-10-22 15:18+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2012-02-04 02:24+0000\n"
+"Last-Translator: Miguel Castillo <guelo1313@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: es\n"
 
 #, c-format
@@ -36,7 +36,7 @@ msgid "Mixed-sensitivity"
 msgstr ""
 
 msgid "PID"
-msgstr ""
+msgstr "PID"
 
 msgid "Inverted pendulum"
 msgstr "Péndulo invertido"
@@ -778,6 +778,8 @@ msgstr "%s: %s no es simétrico.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
+"%s: Tipo erróneo de argumentos de entrada #%d: se esperaba un espacio de "
+"estados lineal.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
@@ -801,7 +803,7 @@ msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr "%s: El valor computado de || G || puede ser inexacto.\n"
 
 msgid "G is all-pass"
-msgstr ""
+msgstr "G es pasa-todo"
 
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
@@ -868,6 +870,9 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un sistema "
 "lineal dinámico.\n"
+
+msgid "Phase ()"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"

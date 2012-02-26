@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -1605,3 +1605,7 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是純量.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一向量.\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr ""

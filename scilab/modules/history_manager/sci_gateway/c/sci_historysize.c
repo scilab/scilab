@@ -14,7 +14,6 @@
 /*------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
 #include "HistoryManager.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -34,6 +33,7 @@ int sci_historysize(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 

@@ -28,8 +28,10 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>多項式行ベクトル <literal>p=[p1,..,pn]</literal> または整数行ベクトル
-	 (8型)</para>
+          <para>
+            多項式行ベクトル <literal>p=[p1,..,pn]</literal> または整数行ベクトル
+            (8型)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,9 +39,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>p</literal>の要素の最大公約数および以下のような最小次数の
-	(多項式の逆を有する)ユニモジュラ行列 <literal>U</literal>
-	を計算します</para>
+      <literal>p</literal>の要素の最大公約数および以下のような最小次数の
+      (多項式の逆を有する)ユニモジュラ行列 <literal>U</literal>
+      を計算します
+    </para>
     <para>
       <literal>p*U=[0 ... 0 pgcd]</literal>
     </para>

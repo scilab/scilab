@@ -24,9 +24,10 @@
         <term>style  </term>
         <listitem>
           <para>(optional) a string given the color and/or the marker type of the form "[color][mark]" 
-      where color may be a number referring the color you want to use (in the current colormap). 
-      If you use the std colormap then color may be one of the following letters :</para>
-          <programlisting role = ""><![CDATA[ 
+            where color may be a number referring the color you want to use (in the current colormap). 
+            If you use the std colormap then color may be one of the following letters :
+          </para>
+          <programlisting role=""><![CDATA[ 
 k  for black       b  for blue
 r  for red         g  for green
 c  for cyan        m  for magenta
@@ -34,9 +35,9 @@ y  for yellow      t  for turquoise
 G  a dark green
  ]]></programlisting>
           <para>
-    mark must be one of the following :
-  </para>
-          <programlisting role = ""><![CDATA[ 
+            mark must be one of the following :
+          </para>
+          <programlisting role=""><![CDATA[ 
 .  point           +  plus 
 x  cross           *  circled plus 
 D  filled diamond  d  diamond
@@ -44,8 +45,8 @@ D  filled diamond  d  diamond
 o  circle
  ]]></programlisting>
           <para>
-    by default you have "b." (in fact the 2d color) and this is also forced in case of error. 
-  </para>
+            by default you have "b." (in fact the 2d color) and this is also forced in case of error. 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -53,10 +54,10 @@ o  circle
   <refsection>
     <title>Description</title>
     <para>
-    plot the pattern of non nul elements of a sparse matrix :
-    each non nul element is drawn with a marker. For "big" 
-    matrix use essentially the point . as marker
-  </para>
+      plot the pattern of non nul elements of a sparse matrix :
+      each non nul element is drawn with a marker. For "big" 
+      matrix use essentially the point . as marker
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,15 +68,11 @@ xtitle(ref + "." + mtype + " : " + description)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ReadHBSparse">ReadHBSparse</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bruno Pincon  &lt;Bruno.Pincon@iecn.u-nancy.fr&gt;  </para>
   </refsection>
 </refentry>

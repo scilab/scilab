@@ -34,7 +34,9 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>線形システム (<literal>syslin</literal> リスト)</para>
+          <para>
+            線形システム (<literal>syslin</literal> リスト)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,13 +44,15 @@
   <refsection>
     <title>説明</title>
     <para>
-    ユーティリティ関数: システム行列:</para>
-    <programlisting role = ""><![CDATA[ 
+      ユーティリティ関数: システム行列:
+    </para>
+    <programlisting role=""><![CDATA[ 
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
     <para>
-    を状態空間表現の線形システム (<literal>syslin</literal>) リストに変換します.</para>
+      を状態空間表現の線形システム (<literal>syslin</literal>) リストに変換します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

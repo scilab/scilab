@@ -29,18 +29,19 @@
         <term>X  </term>
         <listitem>
           <para>matrice carrée, réelle, complexe, polynomiale ou rationnelle.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
-  </para>
     <para>
-    Identique à <literal>sum(diag(X))</literal>.
-  </para>
+      <literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
+    </para>
+    <para>
+      Identique à <literal>sum(diag(X))</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -50,7 +51,7 @@ trace(A)-sum(spec(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

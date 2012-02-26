@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_build_macros(toolbox_name)
-	  tbx_build_macros(toolbox_name, macros_path)
+      tbx_build_macros(toolbox_name)
+      tbx_build_macros(toolbox_name, macros_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -48,11 +48,5 @@
 // Recommended usage
 tbx_build_macros("toolbox_example", get_absolute_file_path('buildmacros.sce'))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
-    </simplelist>
   </refsection>
 </refentry>

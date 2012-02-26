@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-27 09:21+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2012-02-11 01:03+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -22,23 +22,27 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица действительных чисел или "
-"«readonly».\n"
+"%s: Неверный тип аргумента №%d: ожидалась вещественная матрица либо "
+"'readonly'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid ""
@@ -48,8 +52,8 @@ msgstr ""
 "размерности.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась одиночная строка.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 msgid "File"
 msgstr "Файл"
@@ -614,7 +618,9 @@ msgstr ""
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
-msgstr "Данный файл очень длинный. Продолжить?"
+msgstr ""
+"Этот файл очень длинный. Было бы лучше \"Выполнить файл в Scilab''е\".\n"
+"Продолжить?"
 
 msgid "Enter line number"
 msgstr "Введите номер строки"
@@ -645,7 +651,7 @@ msgid "Mail to "
 msgstr "Пишите на адрес "
 
 msgid "Open the source of the macro "
-msgstr "Открыть исходный текст макроса "
+msgstr "Открыть исходный код макроса "
 
 msgid "Show the definition of the macro "
 msgstr "Показать определение макроса "
@@ -719,7 +725,7 @@ msgid "Background Color"
 msgstr "Цвет фона"
 
 msgid "Change Color"
-msgstr "Изменить"
+msgstr "Изменить цвет"
 
 msgid "Italic"
 msgstr "Курсив"
@@ -779,10 +785,10 @@ msgid "Anchor: "
 msgstr "Метка: "
 
 msgid "Open source file of the function:"
-msgstr "Открыть исходный текст функции:"
+msgstr "Открыть исходный код функции:"
 
 msgid "Open source"
-msgstr "Открыть исходный текст"
+msgstr "Открыть исходный код"
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "Закрыть SciNotes?"

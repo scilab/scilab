@@ -6,16 +6,20 @@
   <refnamediv>
     <refname>getos</refname>
     <refpurpose>return Operating System name and
-  version</refpurpose>
+      version
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>OS=getos()
-[OS,Version]=getos()</synopsis>
+      [OS,Version]=getos()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getos </literal>return Operating System name and version</para>
+    <para>
+      <literal>getos </literal>return Operating System name and version
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -28,9 +32,5 @@ if (getos() == "SunOS") then disp("Scilab on Solaris"); end
 if (getos() == "Darwin") then disp("Scilab on MacOs"); end
 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

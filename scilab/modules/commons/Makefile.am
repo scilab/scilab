@@ -37,7 +37,8 @@ endif
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
 libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/
+			-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/
 
 libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) -Isrc/jni/
 

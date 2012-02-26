@@ -16,9 +16,7 @@
 extern "C"
 {
 #include "gw_action_binding.h"
-#include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -45,6 +43,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -52,6 +51,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -66,6 +66,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -87,6 +88,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -104,6 +106,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 

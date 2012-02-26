@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ScrollPaneConstants;
-import javax.xml.transform.TransformerException;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -26,6 +25,7 @@ import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosFileType;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -76,8 +76,9 @@ public class PaletteDiagram extends XcosDiagram {
 
         if (theFile.exists()) {
             try {
-                load(new File(diagramFileName));
-            } catch (TransformerException e) {
+                final XcosFileType filetype = XcosFileType.findFileType(diagramFileName);
+                filetype.load(diagramFileName, this);
+            } catch (Exception e) {
                 return false;
             }
             setName(theFile.getName());

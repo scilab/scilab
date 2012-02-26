@@ -13,30 +13,36 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>The <literal>quit</literal> command has two different meanings depending on the calling context:</para>
+    <para>
+      The <literal>quit</literal> command has two different meanings depending on the calling context:
+    </para>
     <variablelist>
       <varlistentry>
-        <term>If there is no <literal>pause</literal> active,</term>
+        <term>
+          If there is no <literal>pause</literal> active,
+        </term>
         <listitem>
           <para>then the
-          <literal>quit</literal> command makes Scilab terminate, even
-          if the command is called inside a function.</para>
+            <literal>quit</literal> command makes Scilab terminate, even
+            if the command is called inside a function.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-	<term>If there is a <literal>pause</literal> active,</term>
+        <term>
+          If there is a <literal>pause</literal> active,
+        </term>
         <listitem>
           <para>then the
-          <literal>quit</literal> command makes aborts the instructions
-          started at this pause level ando terminates the current pause level.</para>
+            <literal>quit</literal> command makes aborts the instructions
+            started at this pause level ando terminates the current pause level.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
- <refsection>
+  <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // quit Scilab
 function foo(x),if x then quit,end,endfunction
@@ -56,9 +62,8 @@ endfunction
 foo1(%t) //enter quit at the following prompt
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pause">pause</link>

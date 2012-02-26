@@ -22,7 +22,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>ls path options
-files=ls( [path] )</synopsis>
+      files=ls( [path] )
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -31,23 +32,26 @@ files=ls( [path] )</synopsis>
         <term>path</term>
         <listitem>
           <para>a string matrix giving a directory pathname (eventually  ended
-	    by a pattern built with <literal>*</literal>). Default value is <literal>.</literal></para>
+            by a pattern built with <literal>*</literal>). Default value is <literal>.</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>files</term>
         <listitem>
           <para>a string column vector. By default it contains a column
-	    formatted output. if one of the option is
-	    <literal>'-1'</literal>. <literal>files</literal> contains an entry for each
-	    files</para>
+            formatted output. if one of the option is
+            <literal>'-1'</literal>. <literal>files</literal> contains an entry for each
+            files
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>ls</literal> can be used to list the files which match 
+    <para>
+      <literal>ls</literal> can be used to list the files which match 
       the patterns given by the path argument. 
       Patterns are given to the unix <literal>ls</literal> or to the windows
       <literal>dir</literal> commands in order to get information on files. 
@@ -61,11 +65,11 @@ files=ls( [path] )</synopsis>
       the  <link linkend="listfiles">listfiles</link>  or the <link linkend="dir">dir</link>function.
     </para>
     <para>
-	  Please note that starting from the version 5.0 of Scilab, the second 
-	  input argument has been removed (a sequence of strings which can 
-	  be added under Unix systems: the Unix ls command options).
-	  This option has been removed mainly for security and portability reasons.
-	</para>
+      Please note that starting from the version 5.0 of Scilab, the second 
+      input argument has been removed (a sequence of strings which can 
+      be added under Unix systems: the Unix ls command options).
+      This option has been removed mainly for security and portability reasons.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +80,7 @@ x=ls('SCI/modules/core/macros/*.sci')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="listfiles">listfiles</link>

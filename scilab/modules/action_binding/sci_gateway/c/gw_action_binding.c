@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_action_binding.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {

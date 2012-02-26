@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-11-09 13:23+0000\n"
+"PO-Revision-Date: 2012-01-28 02:07+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -30,12 +30,20 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -68,14 +76,17 @@ msgid ""
 "Expecting version %s ; Getting version %s ."
 msgstr "Batikライブラリを読み込めません."
 
+msgid "parent diagram not found."
+msgstr ""
+
 msgid "Preview"
 msgstr "プレビュー"
 
-msgid "Please specify a file format"
-msgstr "ファイル形式を指定してください."
-
 msgid "Error on export"
 msgstr "エクスポートエラー"
+
+msgid "Please specify a valid file format"
+msgstr "有効なフォーマットを指定してください"
 
 msgid "Incompatibility detected"
 msgstr "互換性がありません"
@@ -154,11 +165,14 @@ msgstr "グローバル"
 msgid "Equations"
 msgstr "方程式"
 
-msgid "Discrete"
+msgid "Discretes"
 msgstr "離散"
 
-msgid "Input"
+msgid "Inputs"
 msgstr "入力"
+
+msgid "Outputs"
+msgstr "出力"
 
 msgid "Solver"
 msgstr "ソルバー"
@@ -250,6 +264,9 @@ msgstr "新規パレット"
 
 msgid "Open"
 msgstr "開く"
+
+msgid "Open file in Scilab current directory"
+msgstr "Scilabカレントディレクトリのファイルを開く"
 
 msgid "Save"
 msgstr "保存"
@@ -518,6 +535,9 @@ msgstr "OK"
 
 msgid "Cancel"
 msgstr "キャンセル"
+
+msgid "Reset to default"
+msgstr "デフォルトに戻す"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -803,8 +823,18 @@ msgstr "Modelica初期化"
 msgid "Error: unable to compile this SuperBlock"
 msgstr "エラー: このSuperBlockをコンパイルできません"
 
-msgid "Wrong port number"
-msgstr "ポート番号が間違っています"
+msgid "Evaluation problem: wrong port number."
+msgstr "評価時の問題: ポート番号が間違っています."
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr "'%d' を待っています."
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
+msgstr ""
+"<html><body>コンパイルエラー: 未接続のためリンクは無視されます. <br/>再接続してください.</body></html>"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -1022,10 +1052,6 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: xcosファイル %s をインポートできません."
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
@@ -1141,12 +1167,16 @@ msgid "%s is not a valid block descriptor."
 msgstr "%s は有効なブロック記述子ではありません."
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
-msgstr ""
-"%s\n"
-"エラー: ダイアログの大きさが間違っています."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
@@ -1155,6 +1185,10 @@ msgstr "関数 [%s] のブロック定義が失敗しました."
 #, c-format
 msgid "Block configuration with function [%s] failed."
 msgstr "関数 [%s] のブロック設定が失敗しました."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
+msgstr "%s: 入力引数 #%d の型が間違っています: ブロックを指定してください."
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Scilabライブラリは取り込めませんでした"

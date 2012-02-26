@@ -55,7 +55,7 @@ case 'set' then
              message('Upper limits must be > Lower limits')
              ok=%f
          elseif or(x0>maxp)|or(x0<lowp) then
-             message('Inital condition x0 should be inside the limits')
+             message('Initial condition x0 should be inside the limits')
              ok=%f
          else
              rpar=[real(maxp(:));real(lowp(:))]

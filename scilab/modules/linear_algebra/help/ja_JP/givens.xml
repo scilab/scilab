@@ -21,9 +21,10 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>U=givens(xy)
-U=givens(x,y)
-[U,c]=givens(xy)
-[U,c]=givens(x,y)</synopsis>
+      U=givens(x,y)
+      [U,c]=givens(xy)
+      [U,c]=givens(x,y)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -55,15 +56,19 @@ U=givens(x,y)
     </variablelist>
   </refsection>
   <refsection>
-    <title>説明</title>
-	<literal>xy = [x;y]</literal>として
-    <para><literal>U = givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
-	は,次のような<literal>2</literal>x<literal>2</literal> の
-	ユニタリ行列 <literal>U</literal> を返します:</para>
-    <para><literal>U*xy=[r;0]=c</literal>.</para>
+    <title>説明</title><literal>xy = [x;y]</literal>として
     <para>
-    <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
-	注意してください.</para>
+      <literal>U= givens(x, y)</literal> または <literal>U = givens(xy)</literal> 
+      は,次のような<literal>2</literal>x<literal>2</literal> の
+      ユニタリ行列 <literal>U</literal> を返します:
+    </para>
+    <para>
+      <literal>U*xy=[r;0]=c</literal>.
+    </para>
+    <para>
+      <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
+      注意してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

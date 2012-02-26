@@ -43,10 +43,10 @@
   <refsection id="Description_get_scicos_version">
     <title>Description</title>
     <para>
-This function is used to know the current version number of Scicos.  
-</para>
+      This function is used to know the current version number of Scicos.  
+    </para>
     <para>
-</para>
+    </para>
     <programlisting role="example"><![CDATA[ 
 scicos_ver = get_scicos_version
  ]]></programlisting>
@@ -55,7 +55,9 @@ scicos_ver = get_scicos_version
     <title>Arguments</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scicos_ver :</emphasis> a string given the current number version of Scicos.</para>
+        <para>
+          <emphasis role="bold">scicos_ver :</emphasis> a string given the current number version of Scicos.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -73,9 +75,5 @@ get_scicos_version()
         <para> SCI/modules/scicos/macros/scicos_utils/get_scicos_version.sci</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_get_scicos_version">
-    <title>Authors</title>
-    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>
 </refentry>

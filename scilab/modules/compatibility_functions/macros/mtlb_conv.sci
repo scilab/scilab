@@ -9,11 +9,6 @@
 
 function [w]=mtlb_conv(u,v)
 // Emulation function for Matlab conv()
-
-w=clean(convol(u,v))
-if size(u,1)>1 | size(v,1)>1 then
-  w=w.'
-end
+warnobsolete("conv", "5.4.1");
+w = conv(u,v);
 endfunction
-
-

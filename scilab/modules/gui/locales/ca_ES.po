@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ca\n"
 
 #, c-format
@@ -355,6 +355,10 @@ msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
@@ -674,14 +678,20 @@ msgstr "Pàgina web de l'&ATOMS d'Scilab"
 msgid "&File Exchange"
 msgstr ""
 
-msgid "&Mailing lists"
-msgstr "&Llistes de correu"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr ""
 
 msgid "&Bugs And Requests"
 msgstr "&Base de dades d'errors i consultes"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "Rota"
@@ -1019,22 +1029,19 @@ msgid "No print service found."
 msgstr "No s'ha trobat el servei d'impressió."
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"Avís: Degut a limitacions en la vostra configuració, el Scilab no pot "
-"canviar a un mode amb uicontrols i gràfics. Escriviu \"\"help usecanvas\"\" "
-"per més informació.\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"Avís: Degut a limitacions en els controladors de la vostra targeta de "
-"vídeo, que no poden utilitzar OpenGL, el Scilab no podrà dibuixar cap "
-"gràfic. Actualitzeu els vostres controladors.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1272,26 +1279,14 @@ msgstr ""
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "El Scilab Consortium (DIGITEO)"
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Llicència CeCILL"
-
 msgid "About Scilab..."
 msgstr "Quant al Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Reconeixements"
-
 msgid "Close"
 msgstr "Tanca"
+
+msgid "Acknowledgements"
+msgstr "Reconeixements"
 
 msgid "Could not open: "
 msgstr ""
@@ -1321,9 +1316,6 @@ msgstr "Figura desada.\n"
 
 msgid "Select a file name"
 msgstr "Seleccioneu un nom de fitxer"
-
-msgid "Select a file to open with SciNotes"
-msgstr ""
 
 msgid "Control Plot3d"
 msgstr "Control Plot3d"

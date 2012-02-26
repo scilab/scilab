@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.modelica;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +28,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Model.Identifiers;
@@ -42,8 +42,7 @@ import org.scilab.modules.xcos.modelica.view.MainPanel;
 public final class ModelicaController {
     private static final String VARIABLE = "variable";
     private static final String FIXED_PARAMETER = "fixed_parameter";
-    private static final Pattern DERIVATIVE_REGEX = Pattern
-            .compile("(\\p{Graph}*)__der_(\\p{Graph}*)");
+    private static final Pattern DERIVATIVE_REGEX = Pattern.compile("(\\p{Graph}*)__der_(\\p{Graph}*)");
 
     /**
      * Contains available computation methods.
@@ -66,7 +65,7 @@ public final class ModelicaController {
 
         /**
          * Default constructor
-         * 
+         *
          * @param name
          *            the name of the method
          */
@@ -98,7 +97,7 @@ public final class ModelicaController {
 
     /**
      * Default constructor
-     * 
+     *
      * @param root
      *            the root of the model
      */
@@ -111,9 +110,11 @@ public final class ModelicaController {
             public void stateChanged(ChangeEvent e) {
                 final ModelStatistics stats = (ModelStatistics) e.getSource();
 
-                // Validate equation >= (unknowns + discretes)
-                setValid(stats.getEquations() >= (stats.getUnknowns() + stats
-                        .getDiscreteStates()));
+                /*
+                 * Validate: equation >= (unknowns + discretes + inputs +
+                 * outputs)
+                 */
+                setValid(stats.getEquations() >= (stats.getUnknowns() + stats.getDiscreteStates() + stats.getInputs() + stats.getOutputs()));
             }
         });
 
@@ -122,11 +123,13 @@ public final class ModelicaController {
 
     /**
      * Show a dialog for a file
-     * 
-     * @param f
-     *            the file
+     *
+     * @param init
+     *            the initialisation file
+     * @param relation
+     *            the relation file
      */
-    public static void showDialog(final File f) {
+    public static void showDialog(final File init, final File relation) {
         JDialog dialog = new JDialog();
         dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
         dialog.setAlwaysOnTop(false);
@@ -136,14 +139,17 @@ public final class ModelicaController {
 
         ModelicaController controller;
         try {
-            controller = new ModelicaController(Modelica.getInstance().load(f));
+            final Model initModel = Modelica.getInstance().load(init);
+            final Model relationModel = Modelica.getInstance().load(relation);
+
+            controller = new ModelicaController(Modelica.getInstance().merge(initModel, relationModel));
             dialog.add(new MainPanel(controller));
 
             dialog.setVisible(true);
             dialog.pack();
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         } catch (JAXBException e) {
-            LogFactory.getLog(ModelicaController.class).error(e);
+            Logger.getLogger(ModelicaController.class.toString()).severe(e.toString());
         }
     }
 
@@ -246,8 +252,7 @@ public final class ModelicaController {
      *            the computeMethod to set
      */
     public void setComputeMethod(ComputationMethod computeMethod) {
-        if (this.computeMethod != null
-                && !this.computeMethod.equals(computeMethod)) {
+        if (this.computeMethod != null && !this.computeMethod.equals(computeMethod)) {
             this.computeMethod = computeMethod;
 
             fireChange();
@@ -256,9 +261,9 @@ public final class ModelicaController {
 
     /**
      * Update the model info from all the {@link Terminal} data
-     * 
+     *
      * This method parse the whole {@link Struct} tree.
-     * 
+     *
      * @return the calculated info
      */
     public ModelStatistics getStatistics() {
@@ -282,20 +287,19 @@ public final class ModelicaController {
 
     /**
      * Update the statistics from the identifiers
-     * 
+     *
      * @param identifiers
      *            the identifiers root
      */
     private void updateIdentifiers(Identifiers identifiers) {
         if (identifiers != null) {
-            statistics.setRelaxedVariables(identifiers.getImplicitVariable()
-                    .size());
+            statistics.setRelaxedVariables(identifiers.getImplicitVariable().size());
         }
     }
 
     /**
      * Update the info from the struct children.
-     * 
+     *
      * @param struct
      *            the current node
      */
@@ -304,12 +308,9 @@ public final class ModelicaController {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
 
-                final String kind = TerminalAccessor.getData(
-                        TerminalAccessor.KIND, terminal);
-                final Double weight = TerminalAccessor.getData(
-                        TerminalAccessor.WEIGHT, terminal);
-                final String id = TerminalAccessor.getData(TerminalAccessor.ID,
-                        terminal);
+                final String kind = TerminalAccessor.getData(TerminalAccessor.KIND, terminal);
+                final Double weight = TerminalAccessor.getData(TerminalAccessor.WEIGHT, terminal);
+                final String id = TerminalAccessor.getData(TerminalAccessor.ID, terminal);
 
                 incrementTerminalWeight(kind, weight.doubleValue());
 
@@ -326,7 +327,7 @@ public final class ModelicaController {
 
     /**
      * Increment statistics for a {@link Terminal} node.
-     * 
+     *
      * @param kind
      *            the kind of statistics to increment
      * @param weight
@@ -349,6 +350,8 @@ public final class ModelicaController {
             statistics.incDiscreteStates();
         } else if ("input".equals(kind)) {
             statistics.incInputs();
+        } else if ("output".equals(kind)) {
+            statistics.incOutputs();
         }
     }
 
@@ -367,7 +370,7 @@ public final class ModelicaController {
 
     /**
      * set the default initial values for a {@link Struct} node.
-     * 
+     *
      * @param struct
      *            the node
      */
@@ -380,17 +383,12 @@ public final class ModelicaController {
                 /*
                  * The first access will update the value.
                  */
-                final Boolean notUsed1 = TerminalAccessor.getData(
-                        TerminalAccessor.FIXED, terminal);
-                final Double notUsed2 = TerminalAccessor.getData(
-                        TerminalAccessor.WEIGHT, terminal);
-                final Double notUsed3 = TerminalAccessor.getData(
-                        TerminalAccessor.INITIAL, terminal);
+                final Boolean notUsed1 = TerminalAccessor.getData(TerminalAccessor.FIXED, terminal);
+                final Double notUsed2 = TerminalAccessor.getData(TerminalAccessor.WEIGHT, terminal);
+                final Double notUsed3 = TerminalAccessor.getData(TerminalAccessor.INITIAL, terminal);
 
-                final Double notUsed4 = TerminalAccessor.getData(
-                        TerminalAccessor.MAX, terminal);
-                final Double notUsed5 = TerminalAccessor.getData(
-                        TerminalAccessor.MIN, terminal);
+                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
+                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
 
             } else {
                 // recursive call
@@ -401,7 +399,7 @@ public final class ModelicaController {
 
     /**
      * Fix the weight in the current tree
-     * 
+     *
      * @param derivative
      *            the derivative weight
      * @param state
@@ -421,7 +419,7 @@ public final class ModelicaController {
 
     /**
      * Update the weight for a {@link Struct} subtree
-     * 
+     *
      * @param struct
      *            the current struct
      * @param derivativeValue
@@ -429,8 +427,7 @@ public final class ModelicaController {
      * @param stateValue
      *            the state weight
      */
-    private void updateWeight(final Struct struct, double derivativeValue,
-            double stateValue) {
+    private void updateWeight(final Struct struct, double derivativeValue, double stateValue) {
         final Map<String, Terminal> derivatives = new HashMap<String, Terminal>();
         final Map<String, Terminal> states = new HashMap<String, Terminal>();
 
@@ -440,14 +437,12 @@ public final class ModelicaController {
         for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
-                final String id = TerminalAccessor.getData(TerminalAccessor.ID,
-                        terminal);
+                final String id = TerminalAccessor.getData(TerminalAccessor.ID, terminal);
 
                 final Matcher matcher = DERIVATIVE_REGEX.matcher(id);
                 if (matcher.matches()) {
                     // store the Terminal as derivative
-                    final String relatedVar = matcher.group(1)
-                            + matcher.group(2);
+                    final String relatedVar = matcher.group(1) + matcher.group(2);
                     derivatives.put(relatedVar, terminal);
                 } else {
                     // store the Terminal as state
@@ -485,7 +480,7 @@ public final class ModelicaController {
 
     /**
      * Add a listener
-     * 
+     *
      * @param l
      *            the listener
      */
@@ -495,7 +490,7 @@ public final class ModelicaController {
 
     /**
      * Remove a listener
-     * 
+     *
      * @param l
      *            the listener
      */

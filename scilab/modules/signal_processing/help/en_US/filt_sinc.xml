@@ -37,8 +37,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calculate n samples of the function <literal>sin(2*pi*fl*t)/(pi*t)</literal>
-    for <literal>t=-(n-1)/2:(n-1)/2</literal> (i.e. centred around the origin).</para>
+      Calculate n samples of the function <literal>sin(2*pi*fl*t)/(pi*t)</literal>
+      for <literal>t=-(n-1)/2:(n-1)/2</literal> (i.e. centred around the origin).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -47,15 +48,11 @@ plot(filt_sinc(100,0.1))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sincd">sincd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.;   </para>
   </refsection>
 </refentry>

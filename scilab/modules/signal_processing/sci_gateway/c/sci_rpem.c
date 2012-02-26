@@ -12,7 +12,6 @@
 
 #include <string.h>
 #include "gw_signal.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scirpem)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

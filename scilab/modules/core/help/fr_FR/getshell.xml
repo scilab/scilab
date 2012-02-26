@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>getshell</refname>
     <refpurpose>retourne le nom de l'interpreteur de
-  commandes.</refpurpose>
+      commandes.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -14,17 +15,15 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getshell</literal>retourne le nom de l'interpreteur de
-    commandes.</para>
+    <para>
+      <literal>getshell</literal>retourne le nom de l'interpreteur de
+      commandes.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 getshell()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

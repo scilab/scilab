@@ -78,15 +78,19 @@
       <varlistentry>
         <term>lmax</term>
         <listitem>
-          <para>integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned</para>
+          <para>
+            integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
-    given or to an expression string.</para>
+    <para>
+      <literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
+      given or to an expression string.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -99,10 +103,11 @@ sci2exp(poly([1 0 3 4],'s'),'fi')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="prettyprint">prettyprint</link></member>
+      <member>
+        <link linkend="prettyprint">prettyprint</link>
+      </member>
     </simplelist>
   </refsection>
-
 </refentry>

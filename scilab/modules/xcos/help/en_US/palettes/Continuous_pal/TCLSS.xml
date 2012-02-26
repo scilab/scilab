@@ -21,12 +21,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:mml="http://www.w3.org/1998/Math/MathML"
-  xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
-  xml:id="TCLSS">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TCLSS">
   <refnamediv>
     <refname>TCLSS</refname>
     <refpurpose>Continuous linear system with jump</refpurpose>
@@ -108,7 +103,7 @@
       system is defined by the  matrices and the initial state
       . The dimensions must be compatible. The sizes of inputs and outputs
       are adjusted automatically.
-  </para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_TCLSS">
     <title>Dialog box</title>
@@ -120,35 +115,66 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">A matrix</emphasis>
         </para>
-        <para> <inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> square matrix.</para>
+        <para>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img5_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          square matrix.
+        </para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no input.</para>
+        <para>
+          The
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img6_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          matrix, [] if system has no input.
+        </para>
         <para> Properties : Type 'mat' of size ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix , [] if system has no output.</para>
+        <para>
+          The
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img7_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          matrix , [] if system has no output.
+        </para>
         <para> Properties : Type 'mat' of size ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no D term.</para>
+        <para>
+          The
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../images/TCLSS_img8_eng.gif" align="center" valign="middle"/>
+            </imageobject>
+          </inlinemediaobject>
+          matrix, [] if system has no D term.
+        </para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>
@@ -164,16 +190,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -195,19 +229,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>

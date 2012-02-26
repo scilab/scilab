@@ -40,21 +40,26 @@
       <varlistentry>
         <term>rmax</term>
         <listitem>
-          <para>オプションのパラメータ (<literal>bdiag</literal>参照)</para>
+          <para>
+            オプションのパラメータ (<literal>bdiag</literal>参照)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>[num,den]=nlev(A,z [,rmax])</literal> は,
-	Aのブロック対角化の後に
-	Leverrierアルゴリズムを各ブロックに適用することにより
-    <literal>(z*eye()-A)^(-1)</literal>を計算します.</para>
     <para>
-	このアルゴリズムは通常の Leverrierアルゴリズム
-	より優れていますが,
-	まだ完全ではありません!</para>
+      <literal>[num,den]=nlev(A,z [,rmax])</literal> は,
+      Aのブロック対角化の後に
+      Leverrierアルゴリズムを各ブロックに適用することにより
+      <literal>(z*eye()-A)^(-1)</literal>を計算します.
+    </para>
+    <para>
+      このアルゴリズムは通常の Leverrierアルゴリズム
+      より優れていますが,
+      まだ完全ではありません!
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -81,9 +86,5 @@ clean(NUM/den-inv(x*eye()-A))
         <link linkend="ss2tf">ss2tf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. Delebecque., S. Steer INRIA;   </para>
   </refsection>
 </refentry>

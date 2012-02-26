@@ -98,8 +98,11 @@ public final class BasicBlockInfo {
     @SuppressWarnings("unchecked")
     public static <T extends BasicPort> List<T> getAllTypedPorts(
             BasicBlock block, boolean revert, Class<T> type) {
-        List<T> data = new ArrayList<T>();
-        int childrenCount = block.getChildCount();
+        final List<T> data = new ArrayList<T>();
+        if (block == null) {
+        	return data;
+        }
+        final int childrenCount = block.getChildCount();
 
         /*
          * type must be first child of BasicPort
@@ -110,7 +113,7 @@ public final class BasicBlockInfo {
         }
 
         for (int i = 0; i < childrenCount; ++i) {
-            mxICell cell = block.getChildAt(i);
+            final mxICell cell = block.getChildAt(i);
             if (realType.isInstance(cell)) {
                 // There we are sure that the cell is an instance of the type
                 // class. Thus we can safely cast it and add it to the result

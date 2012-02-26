@@ -31,9 +31,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette primitive convertit une fonction compilée de Scilab <literal>nom-de-fonction</literal>
-    en arbre (tlists imbriquées) qui code la représentation interne de la fonction. 
-    A utiliser avec <literal>tree2code</literal>.
+      Cette primitive convertit une fonction compilée de Scilab <literal>nom-de-fonction</literal>
+      en arbre (tlists imbriquées) qui code la représentation interne de la fonction. 
+      A utiliser avec <literal>tree2code</literal>.
     </para>
   </refsection>
   <refsection>
@@ -45,17 +45,11 @@ write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="tree2code">tree2code</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

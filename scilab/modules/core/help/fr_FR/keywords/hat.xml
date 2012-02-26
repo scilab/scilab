@@ -14,27 +14,27 @@
   <refsection>
     <title>Description</title>
     <para>
-    Élévation à la puissance de matrices ou vecteurs.
-  </para>
+      Élévation à la puissance de matrices ou vecteurs.
+    </para>
     <para>
-    Si <literal>A</literal> est un vecteur ou une matrice non-carrée l'élévation à la puissance est faite élément par élément avec la signification usuelle.
-  </para>
+      Si <literal>A</literal> est un vecteur ou une matrice non-carrée l'élévation à la puissance est faite élément par élément avec la signification usuelle.
+    </para>
     <para>
-    Pour une matrice carrée <literal>A</literal> l'élévation est faite au sens matriciel.
-  </para>
+      Pour une matrice carrée <literal>A</literal> l'élévation est faite au sens matriciel.
+    </para>
     <para>
-    Pour les matrices booléennes, rationnelles ou polynomiales, l'exposant doit être entier.
-  </para>
+      Pour les matrices booléennes, rationnelles ou polynomiales, l'exposant doit être entier.
+    </para>
     <refsection>
       <title>Remarques</title>
       <para>
-      Notez que <literal>123.^b</literal> est interprété comme <literal>(123).^b</literal>. Dans un tel cas le point fait partie de l'opérateur et non pas du nombre.
-    </para>
+        Notez que <literal>123.^b</literal> est interprété comme <literal>(123).^b</literal>. Dans un tel cas le point fait partie de l'opérateur et non pas du nombre.
+      </para>
       <para>
-      Étant donnés deux nombres réels ou complexes <literal>x1</literal> et  <literal>x2</literal> la valeur de 
-      <literal>x1^x2</literal> est la "valeur principale" déterminée par 
-      <literal>x1^x2 = exp(x2*log(x1))</literal>.
-    </para>
+        Étant donnés deux nombres réels ou complexes <literal>x1</literal> et  <literal>x2</literal> la valeur de 
+        <literal>x1^x2</literal> est la "valeur principale" déterminée par 
+        <literal>x1^x2 = exp(x2*log(x1))</literal>.
+      </para>
     </refsection>
   </refsection>
   <refsection>
@@ -49,7 +49,7 @@ s=poly(0,"s");
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="exp">exp</link>

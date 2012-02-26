@@ -37,8 +37,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>t=-(n-1)/2:(n-1)/2</literal> (つまし,原点が中心)について,
-	関数<literal>sin(2*pi*fl*t)/(pi*t)</literal>の標本をn個計算します.</para>
+      <literal>t=-(n-1)/2:(n-1)/2</literal> (つまし,原点が中心)について,
+      関数<literal>sin(2*pi*fl*t)/(pi*t)</literal>の標本をn個計算します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -53,9 +54,5 @@ plot(filt_sinc(100,0.1))
         <link linkend="sincd">sincd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.;   </para>
   </refsection>
 </refentry>

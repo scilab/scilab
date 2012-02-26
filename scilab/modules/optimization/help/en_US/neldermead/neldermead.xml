@@ -781,7 +781,7 @@
                         a 1-by-1 matrix of doubles, positive, the absolute tolerance on difference of function values in the
                         simplex, suggested by Box (default boxtolf = 1.e-5). This tolerance is used if
                         the -boxtermination option is set to %t.
-
+                        
                       </para>
                     </listitem>
                   </varlistentry>
@@ -1259,19 +1259,19 @@
         <term xml:id="neldermead_defaultoutput">stop = neldermead_defaultoutput(state, data)</term>
         <listitem>
           <para>
-		  Prints messages at an iteration. 
-		  </para>
+            Prints messages at an iteration. 
+          </para>
           <para>
-		  This function provides a default implementation for the output function. 
-		  There is one line by iteration, presenting the number of iterations, the 
-		  number of function evaluations, the current function value and the 
-		  current algorithm step.
-		  </para>
+            This function provides a default implementation for the output function. 
+            There is one line by iteration, presenting the number of iterations, the 
+            number of function evaluations, the current function value and the 
+            current algorithm step.
+          </para>
           <para>
-		  See "The output function" section below for a description of the input and 
-		  output arguments. 
-		  See in the Examples section below for examples of this function.
-		  </para>
+            See "The output function" section below for a description of the input and 
+            output arguments. 
+            See in the Examples section below for examples of this function.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -2004,20 +2004,20 @@ Sort
     <title>Example #3: use output function</title>
     <para>
       There are several ways to print intermediate messages or plots during the 
-	  optimization process. 
-	  The first method is to set the "-verbose" option to 1, 
-	  which prints a lot of detailed informations. 
-	  The other method is to use the <literal>"-outputcommand"</literal> option. 
-	  We can either set it to the <literal>neldermead_defaultoutput</literal> or 
-	  define our own function. 
-	  In this section, we present the methods based on the <literal>"-outputcommand"</literal> option. 
+      optimization process. 
+      The first method is to set the "-verbose" option to 1, 
+      which prints a lot of detailed informations. 
+      The other method is to use the <literal>"-outputcommand"</literal> option. 
+      We can either set it to the <literal>neldermead_defaultoutput</literal> or 
+      define our own function. 
+      In this section, we present the methods based on the <literal>"-outputcommand"</literal> option. 
     </para>
     <para>
-	In the following example, we use the <literal>"-outputcommand"</literal>option and 
-	set it to the <literal>neldermead_defaultoutput</literal> 
-	default output function. 
-	This function prints one line by iteration, with the main optimization informations.
-	</para>
+      In the following example, we use the <literal>"-outputcommand"</literal>option and 
+      set it to the <literal>neldermead_defaultoutput</literal> 
+      default output function. 
+      This function prints one line by iteration, with the main optimization informations.
+    </para>
     <programlisting role="example"><![CDATA[ 
 function [ f , index ] = quadratic ( x , index )
   f = x(1)^2 + x(2)^2;
@@ -2032,24 +2032,24 @@ nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
  ]]></programlisting>
     <para>
-	The previous script produces the following output.
-	</para>
+      The previous script produces the following output.
+    </para>
     <screen>
-Initialization
-Iter. #0, Feval #5, Fval = 2 -- init
-Iter. #1, Feval #5, Fval = 2 -- init
-Iter. #2, Feval #6, Fval = 2 -- reflection
-Iter. #3, Feval #8, Fval = 0.5 -- expansion
-Iter. #4, Feval #9, Fval = 0.5 -- reflection
-[...]
-Iter. #48, Feval #92, Fval = 8.557D-13 -- reflection
-Iter. #49, Feval #94, Fval = 7.893D-13 -- insidecontraction
-Iter. #50, Feval #96, Fval = 1.601D-13 -- insidecontraction
-Iter. #51, Feval #98, Fval = 1.291D-13 -- insidecontraction
-Iter. #52, Feval #100, Fval = 3.139D-14 -- outsidecontraction
-=================================
-End of Optimization
-Iter. #52, Feval #100, Fval = 3.139D-14 -- done
+      Initialization
+      Iter. #0, Feval #5, Fval = 2 -- init
+      Iter. #1, Feval #5, Fval = 2 -- init
+      Iter. #2, Feval #6, Fval = 2 -- reflection
+      Iter. #3, Feval #8, Fval = 0.5 -- expansion
+      Iter. #4, Feval #9, Fval = 0.5 -- reflection
+      [...]
+      Iter. #48, Feval #92, Fval = 8.557D-13 -- reflection
+      Iter. #49, Feval #94, Fval = 7.893D-13 -- insidecontraction
+      Iter. #50, Feval #96, Fval = 1.601D-13 -- insidecontraction
+      Iter. #51, Feval #98, Fval = 1.291D-13 -- insidecontraction
+      Iter. #52, Feval #100, Fval = 3.139D-14 -- outsidecontraction
+      =================================
+      End of Optimization
+      Iter. #52, Feval #100, Fval = 3.139D-14 -- done
     </screen>
     <para>
       In the following example, we define our own output function "myoutputcmd", which takes the current state
@@ -2103,8 +2103,8 @@ nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
  ]]></programlisting>
     <para>
-	The previous script produces the following output.
-	</para>
+      The previous script produces the following output.
+    </para>
     <screen>
       =================================
       Initialization
@@ -2126,7 +2126,7 @@ nm = neldermead_destroy(nm);
       As another example of use, we could format the message so
       that it uses LaTeX formatting rules, which may allow the user to directly
       copy and paste the output into a LaTeX report.
-	</para>
+    </para>
   </refsection>
   <refsection>
     <title>Example #4: Optimization with bounds</title>
@@ -2302,11 +2302,11 @@ nm = neldermead_destroy(nm);
       In the following example, we reproduce the experiment 
       published by Ken McKinnon in 1998. 
       For this particular function and this particular initial simplex,
-	  the Nelder-Mead algorithm converges to a nonstationnary point. 
+      the Nelder-Mead algorithm converges to a nonstationnary point. 
     </para>
     <para>
-	  We first define the objective function, the initial simplex 
-	  and the expected solution of this unconstrained optimization problem.
+      We first define the objective function, the initial simplex 
+      and the expected solution of this unconstrained optimization problem.
     </para>
     <programlisting role="example"><![CDATA[ 
 function [ f , index ] = mckinnon ( x , index )
@@ -2334,10 +2334,10 @@ xstar = [0;-0.5];
 fstar = -0.25;
  ]]></programlisting>
     <para>
-	  Then we run the algorithm two times in sequence. 
-	  At the end of the first optimization process, the algorithm has 
-	  converged to the point [0,0] which is nonstationnary. 
-	  This is why we restart the algorithm and get the correct minimum.
+      Then we run the algorithm two times in sequence. 
+      At the end of the first optimization process, the algorithm has 
+      converged to the point [0,0] which is nonstationnary. 
+      This is why we restart the algorithm and get the correct minimum.
     </para>
     <programlisting role="example"><![CDATA[ 
 nm = neldermead_new ();
@@ -2365,9 +2365,9 @@ status = neldermead_get(nm,"-status")
 nm = neldermead_destroy(nm);
  ]]></programlisting>
     <para>
-	  We can also use the automatic stagnation detection method 
-	  created by Kelley, so that the algorithm automatically restart 
-	  the algorithm when needed.
+      We can also use the automatic stagnation detection method 
+      created by Kelley, so that the algorithm automatically restart 
+      the algorithm when needed.
     </para>
     <programlisting role="example"><![CDATA[ 
 nm = neldermead_new ();
@@ -2392,18 +2392,18 @@ status = neldermead_get(nm,"-status")
 nm = neldermead_destroy(nm);
  ]]></programlisting>
     <para>
-	  See the demonstrations to get a graphical plot of the 
-	  intermediate simplices in Mc Kinnon's experiment.
+      See the demonstrations to get a graphical plot of the 
+      intermediate simplices in Mc Kinnon's experiment.
     </para>
   </refsection>
   <refsection>
     <title>Example #8: Restarting with bounds</title>
     <para>
-	  In the following experimeant, we solve an optimization problem 
-	  with bounds. 
-	  We use Box's algorithm, which is the only algorithm which manages bounds.
-	  We use the randomized bounds simplex both for the initial simplex and 
-	  for the restart simplex.
+      In the following experimeant, we solve an optimization problem 
+      with bounds. 
+      We use Box's algorithm, which is the only algorithm which manages bounds.
+      We use the randomized bounds simplex both for the initial simplex and 
+      for the restart simplex.
     </para>
     <programlisting role="example"><![CDATA[ 
 function [ f , index ] = myquad ( x , index )
@@ -2562,48 +2562,48 @@ nm = neldermead_destroy(nm);
     </screen>
     <para>
       Tagged "-tolvarianceflag", "-tolabsolutevariance", and 
-	  "-tolrelativevariance" options as obsolete:
+      "-tolrelativevariance" options as obsolete:
       will be maintained for backward compatibility until 5.4.1.
       To update your code, create an output function:
     </para>
     <screen>
-function stop = myoutputcmd ( state, data, tolrelativevariance, tolabsolutevariance, variancesimplex0 )
-    simplex = data.simplex
-    stop = %f
-    if ( state == "iter") then
-        var = optimsimplex_fvvariance ( simplex )
-        if ( var &lt; tolrelativevariance * variancesimplex0 + tolabsolutevariance ) then
-            stop = %t;
-        end
-    end
-endfunction
+      function stop = myoutputcmd ( state, data, tolrelativevariance, tolabsolutevariance, variancesimplex0 )
+      simplex = data.simplex
+      stop = %f
+      if ( state == "iter") then
+      var = optimsimplex_fvvariance ( simplex )
+      if ( var &lt; tolrelativevariance * variancesimplex0 + tolabsolutevariance ) then
+      stop = %t;
+      end
+      end
+      endfunction
     </screen>
     <para>
       Create the initial simplex and compute the variance 
       of the function values:
     </para>
     <screen>
-x0 = [1.1 1.1]';
-simplex0 = optimsimplex_new ( "axes" , x0.' );
-coords0 = optimsimplex_getallx(simplex0);
-variancesimplex0 = optimsimplex_fvvariance ( simplex0 );
+      x0 = [1.1 1.1]';
+      simplex0 = optimsimplex_new ( "axes" , x0.' );
+      coords0 = optimsimplex_getallx(simplex0);
+      variancesimplex0 = optimsimplex_fvvariance ( simplex0 );
     </screen>
     <para>
       Finally, replace the configuration:
     </para>
     <screen>
-nm = neldermead_configure(nm,"-tolvarianceflag",%t);
-nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-4);
-nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
+      nm = neldermead_configure(nm,"-tolvarianceflag",%t);
+      nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-4);
+      nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
     </screen>
     <para>
       with:
     </para>
     <screen>
-tolabsolutevariance = 1.e-4;
-tolrelativevariance = 1.e-4;
-stopfun = list(myoutputcmd, tolrelativevariance, tolabsolutevariance, variancesimplex0);
-nm = neldermead_configure(nm,"-outputcommand",stopfun);
+      tolabsolutevariance = 1.e-4;
+      tolrelativevariance = 1.e-4;
+      stopfun = list(myoutputcmd, tolrelativevariance, tolabsolutevariance, variancesimplex0);
+      nm = neldermead_configure(nm,"-outputcommand",stopfun);
     </screen>
   </refsection>
   <refsection>
@@ -2795,11 +2795,6 @@ nm = neldermead_configure(nm,"-outputcommand",stopfun);
       Ken McKinnon, Convergence of the Nelder-Mead simplex method to a nonstationary point, 
       SIAM Journal on Optimization, Volume 9, Number 1, 1998, pages 148-158.
     </para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Michael Baudin - INRIA - 2008 - 2009</para>
-    <para>Michael Baudin - Digiteo - 2009 - 2011</para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>

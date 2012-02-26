@@ -159,13 +159,13 @@
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlClose.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlDelete.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xmlDump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenStreams.cpp">
+    <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenDocs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp">

@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 
 %define JAVASCI_COMPLEX_ARRAYS_IMPL(CTYPE, JNITYPE, JAVATYPE, JAVAPRIMITIVETYPE, JNICODE)
@@ -18,6 +29,7 @@ matching in Java */
    	  $3 = 0;
    	  $1 = NULL;
 	  int i=0, j=0;
+	  ##JNITYPE## *element = NULL;
 
 	  for(i=0; i<$2; i++) {
 		  ##JNITYPE##Array oneDim=(##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
@@ -26,7 +38,7 @@ matching in Java */
 			  $3 = (*jenv)->GetArrayLength(jenv, oneDim);
 			  $1 = (CTYPE*)malloc(sizeof(##CTYPE##)*arg3*arg4);
 		  }
-		  ##JNITYPE## *element=(*jenv)->Get##JAVATYPE##ArrayElements(jenv, oneDim, 0);
+		  element = (*jenv)->Get##JAVATYPE##ArrayElements(jenv, oneDim, 0);
 
 		  for(j=0; j<$3; j++) {
 			  $1[j*$2+i]=element[j];

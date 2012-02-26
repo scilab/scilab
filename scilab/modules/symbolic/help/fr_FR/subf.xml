@@ -18,7 +18,7 @@
         <term>"a","b","c"  </term>
         <listitem>
           <para>strings
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -26,10 +26,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie la chaîne de caractères  <literal>c</literal>=<literal>"a-b"</literal>.
-    Des simplifications triviales du type <literal>subf("0","a")</literal> et
-    <literal>subf("1","2")</literal> sont effectuées.
-  </para>
+      Renvoie la chaîne de caractères  <literal>c</literal>=<literal>"a-b"</literal>.
+      Des simplifications triviales du type <literal>subf("0","a")</literal> et
+      <literal>subf("1","2")</literal> sont effectuées.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -40,7 +40,7 @@ subf('a','0')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

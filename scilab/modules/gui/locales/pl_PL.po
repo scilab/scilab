@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: pl\n"
 
 #, c-format
@@ -354,6 +354,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Impossible to get current look and feel"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
@@ -673,14 +677,20 @@ msgstr "Strona internetowa Scilab &ATOMS"
 msgid "&File Exchange"
 msgstr "&File Exchange"
 
-msgid "&Mailing lists"
-msgstr "Lista dyskusyjna"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr "&Forge"
 
 msgid "&Bugs And Requests"
 msgstr "&Zawiadomienie o błędzie"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "Obróć"
@@ -1004,23 +1014,19 @@ msgid "No print service found."
 msgstr "Nie znaleziono usługi drukowania."
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"OSTRZEŻENIE: Z powodu ograniczeń Twojej konfiguracji Scilab został "
-"przełączony do trybu, w którym nie jest możliwe jednoczesne używanie "
-"uicontrols i grafiki. Więcej informacji można uzyskać po \"\"help "
-"usecanvas\"\".\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"OSTRZEŻENIE: ze względu na ograniczenia sterowników Twojej karty "
-"wideo, które nie są w stanie obsłużyć OpenGL, Scilab nie jest w stanie "
-"wygenerować grafiki. Należy zaktualizować sterownik.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1258,26 +1264,14 @@ msgstr "Wszystkie pliki RTF"
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Konsorcjum Scilab (DIGITEO)"
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2011 (INRIA)"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Licencja CeCILL"
-
 msgid "About Scilab..."
 msgstr "O Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Podziękowania"
-
 msgid "Close"
 msgstr "Zamknij"
+
+msgid "Acknowledgements"
+msgstr "Podziękowania"
 
 msgid "Could not open: "
 msgstr "Nie mogę otworzyć: "
@@ -1307,9 +1301,6 @@ msgstr "Zawartość okna graficznego zapisana\n"
 
 msgid "Select a file name"
 msgstr "Podaj nazwę pliku"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Zaznacz plik do otwarcia razem ze SciNotes"
 
 msgid "Control Plot3d"
 msgstr "Sterowanie Plot3d"

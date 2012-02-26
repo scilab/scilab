@@ -13,16 +13,13 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_sparse.h"
-#include "api_sparse.h"
-#include "api_double.h"
 #include "localization.h"
 
 #include "MALLOC.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 
 //internal sparse functions
 SciErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)

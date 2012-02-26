@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@ extern "C"
 {
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -26,22 +25,22 @@ extern "C"
 
 using namespace org_modules_xml;
 
-int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
+int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
 {
-    XMLList * list = 0;
-    const XMLObject * elem;
+    XMLList *list = 0;
+    const XMLObject *elem;
     int id;
     SciErr err;
-    double * dvalue = 0;
-    int * mlistaddr = 0;
-    int * daddr = 0;
+    double *dvalue = 0;
+    int *mlistaddr = 0;
+    int *daddr = 0;
     int typ = 0;
     int row;
     int col;
     int index;
     double d;
-    char * field = 0;
-    const char ** pstStrings = 0;
+    char *field = 0;
+    const char **pstStrings = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);
@@ -50,6 +49,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -57,6 +57,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -64,6 +65,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -75,17 +77,22 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, daddr, &field);
+        if (getAllocatedSingleString(pvApiCtx, daddr, &field) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
         if (err.iErr)
         {
             freeAllocatedSingleString(field);
             printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         id = getXMLObjectId(mlistaddr, pvApiCtx);
-        list = XMLObject::getFromId<XMLList>(id);
+        list = XMLObject::getFromId < XMLList > (id);
         if (!list)
         {
             freeAllocatedSingleString(field);
@@ -105,11 +112,18 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         {
             pstStrings = list->getContentFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
-            delete[] pstStrings;
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+
+            // contents are created with xmlGetNodeContent which requires that the user free the himself the memory
+            for (int i = 0; i < list->getSize(); i++)
+            {
+                xmlFree(const_cast < char *>(pstStrings[i]));
+            }
+            delete[]pstStrings;
             if (err.iErr)
             {
                 printError(&err, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
@@ -120,11 +134,13 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
         {
             pstStrings = list->getNameFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
-            delete[] pstStrings;
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+
+            delete[]pstStrings;
             if (err.iErr)
             {
                 printError(&err, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
@@ -156,6 +172,7 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -163,11 +180,12 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     id = getXMLObjectId(mlistaddr, pvApiCtx);
-    list = XMLObject::getFromId<XMLList>(id);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);

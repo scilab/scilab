@@ -15,7 +15,6 @@ extern "C"
 #include <hdf5.h>
 #include <string.h>
 #include "gw_hdf5.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -25,7 +24,6 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
-#include "stack-def.h"
 }
 #include "forceJHDF5load.hxx"
 

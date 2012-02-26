@@ -21,7 +21,6 @@
 extern "C"
 {
 #include "gw_ui_data.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -61,7 +60,8 @@ double ** wrapSparse(int nbItem, int * nbItemRow, int * colPos, int r, int c, do
     {
         xx[i] = new double[c];
         memset(xx[i], 0, c * sizeof(double));
-        for (int j = 0; j < nbItemRow[i]; j++) {
+        for (int j = 0; j < nbItemRow[i]; j++)
+        {
             xx[i][colPos[prev + j] - 1] = x[prev + j];
         }
         prev += nbItemRow[i];
@@ -79,7 +79,8 @@ int ** wrapSparse(int nbItem, int * nbItemRow, int * colPos, int r, int c)
     {
         xx[i] = new int[c];
         memset(xx[i], 0, c * sizeof(int));
-        for (int j = 0; j < nbItemRow[i]; j++) {
+        for (int j = 0; j < nbItemRow[i]; j++)
+        {
             xx[i][colPos[prev + j] - 1] = 1;
         }
         prev += nbItemRow[i];
@@ -160,7 +161,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
 
     if (Rhs == 3)
     {
-        Scierror(999,_("%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"), fname);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"), fname, 1, 2, 4);
         return 0;
     }
 
@@ -169,6 +170,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -176,12 +178,13 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (iType != sci_strings)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
         return 0;
     }
 
@@ -190,13 +193,14 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     /* TODO maybe allow vectors in case someone wants to edit several variables in the same time? */
     if (m1 != 1 || n1 != 1)
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -205,6 +209,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -216,6 +221,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     {
         FREE(pStVarOne);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -230,7 +236,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
     sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
     if (sciErr.iErr)
     {
-        Scierror(4, _("%s: Undefined variable %s.\n"), fname, pStVarOne);
+        Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
         FREE(pStVarOne);
         return 0;
     }
@@ -239,9 +245,9 @@ int sci_editvar(char * fname, unsigned long fname_len)
     {
         /* get address of the variable*/
         sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
-            Scierror(4, _("%s: Undefined variable %s.\n"), fname, pStVarOne);
+            Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
             FREE(pStVarOne);
             return 0;
         }
@@ -249,10 +255,11 @@ int sci_editvar(char * fname, unsigned long fname_len)
     else
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
     }
@@ -263,13 +270,14 @@ int sci_editvar(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             FREE(pStVarOne);
             return 0;
         }
 
         if (!isDoubleType(pvApiCtx, addr))
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 3);
             FREE(pStVarOne);
             return 0;
         }
@@ -279,6 +287,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
             return 0;
         }
 
@@ -288,13 +297,14 @@ int sci_editvar(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             FREE(pStVarOne);
             return 0;
         }
 
         if (!isDoubleType(pvApiCtx, addr))
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 4);
             FREE(pStVarOne);
             return 0;
         }
@@ -304,6 +314,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
         {
             FREE(pStVarOne);
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
@@ -318,520 +329,537 @@ int sci_editvar(char * fname, unsigned long fname_len)
     {
         FREE(pStVarOne);
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    switch(iType)
+    switch (iType)
     {
-    case sci_matrix :
+        case sci_matrix :
 
-        /* get complexity */
-        iComplex    = isVarComplex(pvApiCtx, piAddr);
+            /* get complexity */
+            iComplex    = isVarComplex(pvApiCtx, piAddr);
 
-        /* check complexity */
-        if (iComplex)
-        {
-            /* get size and data from Scilab memory */
-            sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+            /* check complexity */
+            if (iComplex)
+            {
+                /* get size and data from Scilab memory */
+                sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+                if (sciErr.iErr)
+                {
+                    FREE(pStVarOne);
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
+
+                ppdblRealMatrix = wrap<double, double>(pdblReal, iRows, iCols);
+                ppdblImgMatrix = wrap<double, double>(pdblImg, iRows, iCols);
+
+                try
+                {
+                    if (nbRowsIndex == 0 || nbColsIndex == 0)
+                    {
+                        /* Launch Java Variable Editor through JNI */
+                        EditVar::openVariableEditorComplex(getScilabJavaVM(),
+                                                           ppdblRealMatrix,
+                                                           iRows,
+                                                           iCols,
+                                                           ppdblImgMatrix,
+                                                           iRows,
+                                                           iCols,
+                                                           pStVarOne);
+                    }
+                    else
+                    {
+                        /* Launch Java Variable Editor through JNI */
+                        EditVar::refreshVariableEditorComplex(getScilabJavaVM(),
+                                                              ppdblRealMatrix,
+                                                              iRows,
+                                                              iCols,
+                                                              ppdblImgMatrix,
+                                                              iRows,
+                                                              iCols,
+                                                              rowsIndex,
+                                                              nbRowsIndex,
+                                                              colsIndex,
+                                                              nbColsIndex,
+                                                              pStVarOne);
+                    }
+                }
+                catch (const GiwsException::JniException & e)
+                {
+                    Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                }
+
+                clearWrap<double>(ppdblRealMatrix, iRows);
+                clearWrap<double>(ppdblImgMatrix, iRows);
+            }
+            else
+            {
+                /* get size and data from Scilab memory */
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+                if (sciErr.iErr)
+                {
+                    FREE(pStVarOne);
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
+                /*
+                 * we need this to make the links between the API (which return a double*)
+                 * and the JNI which needs a double**
+                 */
+                ppdblRealMatrix = wrap<double, double>(pdblReal, iRows, iCols);
+
+                /* Launch Java Variable Editor through JNI */
+                try
+                {
+                    if (nbRowsIndex == 0 || nbColsIndex == 0)
+                    {
+                        EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+                    }
+                    else
+                    {
+                        EditVar::refreshVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                    }
+                }
+                catch (const GiwsException::JniException & e)
+                {
+                    Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                }
+
+                clearWrap<double>(ppdblRealMatrix, iRows);
+            }
+            break;
+
+        case sci_strings :
+
+            //fisrt call to retrieve dimensions
+            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
             if (sciErr.iErr)
             {
                 FREE(pStVarOne);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
-            ppdblRealMatrix = wrap<double, double>(pdblReal, iRows, iCols);
-            ppdblImgMatrix = wrap<double, double>(pdblImg, iRows, iCols);
+            piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    /* Launch Java Variable Editor through JNI */
-                    EditVar::openVariableEditorComplex(getScilabJavaVM(),
-                                                       ppdblRealMatrix,
-                                                       iRows,
-                                                       iCols,
-                                                       ppdblImgMatrix,
-                                                       iRows,
-                                                       iCols,
-                                                       pStVarOne);
-                }
-                else
-                {
-                    /* Launch Java Variable Editor through JNI */
-                    EditVar::refreshVariableEditorComplex(getScilabJavaVM(),
-                                                          ppdblRealMatrix,
-                                                          iRows,
-                                                          iCols,
-                                                          ppdblImgMatrix,
-                                                          iRows,
-                                                          iCols,
-                                                          rowsIndex,
-                                                          nbRowsIndex,
-                                                          colsIndex,
-                                                          nbColsIndex,
-                                                          pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<double>(ppdblRealMatrix, iRows);
-            clearWrap<double>(ppdblImgMatrix, iRows);
-        }
-        else
-        {
-            /* get size and data from Scilab memory */
-            sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+            //second call to retrieve length of each string
+            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
             if (sciErr.iErr)
             {
                 FREE(pStVarOne);
+                FREE(piLen);
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
+
+            pstData = (char**)calloc(iRows * iCols, sizeof(char*));
+            for (int i = 0 ; i < iRows * iCols ; i++)
+            {
+                pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+            }
+            //third call to retrieve data
+            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+            if (sciErr.iErr)
+            {
+                FREE(pStVarOne);
+                FREE(piLen);
+                freeArrayOfString(pstData, iRows * iCols);
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
             /*
-             * we need this to make the links between the API (which return a double*)
-             * and the JNI which needs a double**
+             * we need this to make the links between the API (which return a char**)
+             * and the JNI which needs a char***
              */
-            ppdblRealMatrix = wrap<double, double>(pdblReal, iRows, iCols);
+            ppstData = wrap<char *, char *>(pstData, iRows, iCols);
 
             /* Launch Java Variable Editor through JNI */
             try
             {
                 if (nbRowsIndex == 0 || nbColsIndex == 0)
                 {
-                    EditVar::openVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+                    EditVar::openVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, pStVarOne);
                 }
                 else
                 {
-                    EditVar::refreshVariableEditorDouble(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                    EditVar::refreshVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
                 }
             }
             catch (const GiwsException::JniException & e)
             {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
             }
 
-            clearWrap<double>(ppdblRealMatrix, iRows);
-        }
-        break;
-
-    case sci_strings :
-
-        //fisrt call to retrieve dimensions
-        sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-
-        //second call to retrieve length of each string
-        sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
-            FREE(piLen);
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        pstData = (char**)calloc(iRows * iCols, sizeof(char*));
-        for(int i = 0 ; i < iRows * iCols ; i++)
-        {
-            pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-        }
-        //third call to retrieve data
-        sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
             FREE(piLen);
             freeArrayOfString(pstData, iRows * iCols);
-            printError(&sciErr, 0);
-            return 0;
-        }
 
-        /*
-         * we need this to make the links between the API (which return a char**)
-         * and the JNI which needs a char***
-         */
-        ppstData = wrap<char *, char *>(pstData, iRows, iCols);
+            clearWrap<char *>(ppstData, iRows);
 
-        /* Launch Java Variable Editor through JNI */
-        try
-        {
-            if (nbRowsIndex == 0 || nbColsIndex == 0)
+            break;
+
+        case sci_boolean :
+            //get size and data from Scilab memory
+            sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
+            if (sciErr.iErr)
             {
-                EditVar::openVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, pStVarOne);
+                FREE(pStVarOne);
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            /*
+             * we need this to make the links between the API (which return a int*)
+             * and the JNI which needs a int**
+             */
+            ppiBool = wrap<int, int>(piBool, iRows, iCols);
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                if (nbRowsIndex == 0 || nbColsIndex == 0)
+                {
+                    EditVar::openVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
+                }
+                else
+                {
+                    EditVar::refreshVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                }
+            }
+            catch (const GiwsException::JniException & e)
+            {
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            }
+
+            clearWrap<int>(ppiBool, iRows);
+
+            break;
+
+        case sci_ints :
+            //get size and data from Scilab memory
+            int prec;
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &prec);
+            if (sciErr.iErr)
+            {
+                FREE(pStVarOne);
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            switch (prec)
+            {
+                case SCI_INT8 :
+                    sciErr = getMatrixOfInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piInt8);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiInt8 = wrap<char, char>(piInt8, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorInteger8(getScilabJavaVM(), reinterpret_cast<byte**>(ppiInt8), iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorInteger8(getScilabJavaVM(), reinterpret_cast<byte**>(ppiInt8), iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<char>(ppiInt8, iRows);
+
+                    break;
+
+                case SCI_UINT8 :
+                    sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piUInt8);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiUInt8 = wrap<short, unsigned char>(piUInt8, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorUInteger8(getScilabJavaVM(), ppiUInt8, iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorUInteger8(getScilabJavaVM(), ppiUInt8, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<short>(ppiUInt8, iRows);
+
+                    break;
+
+                case SCI_INT16 :
+                    sciErr = getMatrixOfInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piInt16);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiInt16 = wrap<short, short>(piInt16, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorInteger16(getScilabJavaVM(), ppiInt16, iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorInteger16(getScilabJavaVM(), ppiInt16, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<short>(ppiInt16, iRows);
+
+                    break;
+
+                case SCI_UINT16 :
+                    sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piUInt16);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiUInt16 = wrap<int, unsigned short>(piUInt16, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorUInteger16(getScilabJavaVM(), ppiUInt16, iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorUInteger16(getScilabJavaVM(), ppiUInt16, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<int>(ppiUInt16, iRows);
+
+                    break;
+
+                case SCI_INT32 :
+                    sciErr = getMatrixOfInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piInt32);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiInt32 = wrap<int>(piInt32, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorInteger32(getScilabJavaVM(), ppiInt32, iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorInteger32(getScilabJavaVM(), ppiInt32, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<int>(ppiInt32, iRows);
+
+                    break;
+
+                case SCI_UINT32 :
+                    sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piUInt32);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        return -1;
+                    }
+
+                    ppiUInt32 = wrap<long long int, unsigned int>(piUInt32, iRows, iCols);
+
+                    /* Launch Java Variable Editor through JNI */
+                    try
+                    {
+                        if (nbRowsIndex == 0 || nbColsIndex == 0)
+                        {
+                            EditVar::openVariableEditorUInteger32(getScilabJavaVM(), ppiUInt32, iRows, iCols, pStVarOne);
+                        }
+                        else
+                        {
+                            EditVar::refreshVariableEditorUInteger32(getScilabJavaVM(), ppiUInt32, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                        }
+                    }
+                    catch (const GiwsException::JniException & e)
+                    {
+                        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                    }
+
+                    clearWrap<long long int>(ppiUInt32, iRows);
+
+                    break;
+
+                default :
+
+                    Scierror(42, _("%s: Type not handle yet"), fname);
+                    return 0;
+            }
+
+            break;
+
+        case sci_boolean_sparse :
+            sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos);
+            if (sciErr.iErr)
+            {
+                FREE(pStVarOne);
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+
+            ppiBool = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols);
+
+            /* Launch Java Variable Editor through JNI */
+            try
+            {
+                if (nbRowsIndex == 0 || nbColsIndex == 0)
+                {
+                    EditVar::openVariableEditorBooleanSparse(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
+                }
+                else
+                {
+                    EditVar::refreshVariableEditorBooleanSparse(getScilabJavaVM(), ppiBool, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                }
+            }
+            catch (const GiwsException::JniException & e)
+            {
+                Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            }
+
+            clearWrap<int>(ppiBool, iRows);
+            break;
+        case sci_sparse :
+            if (isVarComplex(pvApiCtx, piAddr))
+            {
+                sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+                if (sciErr.iErr)
+                {
+                    FREE(pStVarOne);
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
+                }
+
+                ppdblRealMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblReal);
+                ppdblImgMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblImg);
+
+                /* Launch Java Variable Editor through JNI */
+                try
+                {
+                    if (nbRowsIndex == 0 || nbColsIndex == 0)
+                    {
+                        EditVar::openVariableEditorComplexSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, ppdblImgMatrix, iRows, iCols, pStVarOne);
+                    }
+                    else
+                    {
+                        EditVar::refreshVariableEditorComplexSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, ppdblImgMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                    }
+                }
+                catch (const GiwsException::JniException & e)
+                {
+                    Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                }
+
+                clearWrap<double>(ppdblRealMatrix, iRows);
+                clearWrap<double>(ppdblImgMatrix, iRows);
             }
             else
             {
-                EditVar::refreshVariableEditorString(getScilabJavaVM(), ppstData, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-            }
-        }
-        catch (const GiwsException::JniException & e)
-        {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-        }
-
-        FREE(piLen);
-        freeArrayOfString(pstData, iRows * iCols);
-
-        clearWrap<char *>(ppstData, iRows);
-
-        break;
-
-    case sci_boolean :
-        //get size and data from Scilab memory
-        sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        /*
-         * we need this to make the links between the API (which return a int*)
-         * and the JNI which needs a int**
-         */
-        ppiBool = wrap<int, int>(piBool, iRows, iCols);
-
-        /* Launch Java Variable Editor through JNI */
-        try
-        {
-            if (nbRowsIndex == 0 || nbColsIndex == 0)
-            {
-                EditVar::openVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
-            }
-            else
-            {
-                EditVar::refreshVariableEditorBoolean(getScilabJavaVM(), ppiBool, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-            }
-        }
-        catch (const GiwsException::JniException & e)
-        {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-        }
-
-        clearWrap<int>(ppiBool, iRows);
-
-        break;
-
-    case sci_ints :
-        //get size and data from Scilab memory
-        int prec;
-        sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &prec);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        switch (prec)
-        {
-        case SCI_INT8 :
-            sciErr = getMatrixOfInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piInt8);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiInt8 = wrap<char, char>(piInt8, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
+                sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal);
+                if (sciErr.iErr)
                 {
-                    EditVar::openVariableEditorInteger8(getScilabJavaVM(), reinterpret_cast<byte**>(ppiInt8), iRows, iCols, pStVarOne);
+                    FREE(pStVarOne);
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    return 0;
                 }
-                else
+
+                ppdblRealMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblReal);
+
+                /* Launch Java Variable Editor through JNI */
+                try
                 {
-                    EditVar::refreshVariableEditorInteger8(getScilabJavaVM(), reinterpret_cast<byte**>(ppiInt8), iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                    if (nbRowsIndex == 0 || nbColsIndex == 0)
+                    {
+                        EditVar::openVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
+                    }
+                    else
+                    {
+                        EditVar::refreshVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
+                    }
                 }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
+                catch (const GiwsException::JniException & e)
+                {
+                    Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+                }
 
-            clearWrap<char>(ppiInt8, iRows);
-
+                clearWrap<double>(ppdblRealMatrix, iRows);
+            }
             break;
-
-        case SCI_UINT8 :
-            sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr, &iRows, &iCols, &piUInt8);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiUInt8 = wrap<short, unsigned char>(piUInt8, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorUInteger8(getScilabJavaVM(), ppiUInt8, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorUInteger8(getScilabJavaVM(), ppiUInt8, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<short>(ppiUInt8, iRows);
-
-            break;
-
-        case SCI_INT16 :
-            sciErr = getMatrixOfInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piInt16);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiInt16 = wrap<short, short>(piInt16, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorInteger16(getScilabJavaVM(), ppiInt16, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorInteger16(getScilabJavaVM(), ppiInt16, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<short>(ppiInt16, iRows);
-
-            break;
-
-        case SCI_UINT16 :
-            sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &piUInt16);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiUInt16 = wrap<int, unsigned short>(piUInt16, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorUInteger16(getScilabJavaVM(), ppiUInt16, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorUInteger16(getScilabJavaVM(), ppiUInt16, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<int>(ppiUInt16, iRows);
-
-            break;
-
-        case SCI_INT32 :
-            sciErr = getMatrixOfInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piInt32);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiInt32 = wrap<int>(piInt32, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorInteger32(getScilabJavaVM(), ppiInt32, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorInteger32(getScilabJavaVM(), ppiInt32, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<int>(ppiInt32, iRows);
-
-            break;
-
-        case SCI_UINT32 :
-            sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr, &iRows, &iCols, &piUInt32);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return -1;
-            }
-
-            ppiUInt32 = wrap<long long int, unsigned int>(piUInt32, iRows, iCols);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorUInteger32(getScilabJavaVM(), ppiUInt32, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorUInteger32(getScilabJavaVM(), ppiUInt32, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<long long int>(ppiUInt32, iRows);
-
-            break;
-
-        default :
+        default:
 
             Scierror(42, _("%s: Type not handle yet"), fname);
             return 0;
-        }
-
-        break;
-
-    case sci_boolean_sparse :
-        sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos);
-        if (sciErr.iErr)
-        {
-            FREE(pStVarOne);
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        ppiBool = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols);
-
-        /* Launch Java Variable Editor through JNI */
-        try
-        {
-            if (nbRowsIndex == 0 || nbColsIndex == 0)
-            {
-                EditVar::openVariableEditorBooleanSparse(getScilabJavaVM(), ppiBool, iRows, iCols, pStVarOne);
-            }
-            else
-            {
-                EditVar::refreshVariableEditorBooleanSparse(getScilabJavaVM(), ppiBool, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-            }
-        }
-        catch (const GiwsException::JniException & e)
-        {
-            Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-        }
-
-        clearWrap<int>(ppiBool, iRows);
-        break;
-    case sci_sparse :
-        if (isVarComplex(pvApiCtx, piAddr))
-        {
-            sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-            if (sciErr.iErr)
-            {
-                FREE(pStVarOne);
-                printError(&sciErr, 0);
-                return 0;
-            }
-
-            ppdblRealMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblReal);
-            ppdblImgMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblImg);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorComplexSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, ppdblImgMatrix, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorComplexSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, ppdblImgMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<double>(ppdblRealMatrix, iRows);
-            clearWrap<double>(ppdblImgMatrix, iRows);
-        }
-        else
-        {
-            sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &piNbItem, &piNbItemRow, &piColPos, &pdblReal);
-            if (sciErr.iErr)
-            {
-                FREE(pStVarOne);
-                printError(&sciErr, 0);
-                return 0;
-            }
-
-            ppdblRealMatrix = wrapSparse(piNbItem, piNbItemRow, piColPos, iRows, iCols, pdblReal);
-
-            /* Launch Java Variable Editor through JNI */
-            try
-            {
-                if (nbRowsIndex == 0 || nbColsIndex == 0)
-                {
-                    EditVar::openVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, pStVarOne);
-                }
-                else
-                {
-                    EditVar::refreshVariableEditorSparse(getScilabJavaVM(), ppdblRealMatrix, iRows, iCols, rowsIndex, nbRowsIndex, colsIndex, nbColsIndex, pStVarOne);
-                }
-            }
-            catch (const GiwsException::JniException & e)
-            {
-                Scierror(999, _("%s: Java exception arised:\n%s\n"), fname, e.what());
-            }
-
-            clearWrap<double>(ppdblRealMatrix, iRows);
-        }
-        break;
-    default:
-
-        Scierror(42, _("%s: Type not handle yet"), fname);
-        return 0;
     }
 
     FREE(pStVarOne);

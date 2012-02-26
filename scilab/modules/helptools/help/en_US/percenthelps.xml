@@ -22,15 +22,23 @@
   <refsection>
     <title>Description</title>
     <para>BEWARE: This variable must NOT be modified by users.</para>
-    <para>The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
-    The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
-    the kth chapter of the manual and is made of two strings:</para>
-    <para><literal>%helps(k,1)</literal> is the absolute pathname for a help directory.</para>
-    <para><literal>%helps(k,2)</literal> is a title for this help directory.</para>
-     <para> To add a new help directory, the user should use <literal>add_help_chapter</literal>.</para>
+    <para>
+      The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
+      The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
+      the kth chapter of the manual and is made of two strings:
+    </para>
+    <para>
+      <literal>%helps(k,1)</literal> is the absolute pathname for a help directory.
+    </para>
+    <para>
+      <literal>%helps(k,2)</literal> is a title for this help directory.
+    </para>
+    <para>
+      To add a new help directory, the user should use <literal>add_help_chapter</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="add_help_chapter">add_help_chapter</link>

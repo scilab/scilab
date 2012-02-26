@@ -22,7 +22,6 @@
 
 extern "C"
 {
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
@@ -44,6 +43,13 @@ namespace org_modules_types
     {
 
         static int refreshId;
+
+        /**
+         * Get the pointer on the indexes
+         * @param indexes a vector containing indexes
+         * @return the pointer
+         */
+        static int * getIndexesPointer(std::vector<int> & indexes);
 
         /**
          * Get a double dimension matrix from a one dimension one

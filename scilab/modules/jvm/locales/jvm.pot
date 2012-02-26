@@ -14,27 +14,37 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-11-03 10:55+0100\n"
+"Revision-Date: 2012-02-21 14:18+0100\n"
 
 # File: sci_gateway/c/gw_jvm.c, line: 41
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_javaclasspath.c, line: 83
-# File: sci_gateway/c/sci_javaclasspath.c, line: 100
+# File: sci_gateway/c/sci_javaclasspath.c, line: 54
+# File: sci_gateway/c/sci_javaclasspath.c, line: 62
+# File: sci_gateway/c/sci_javaclasspath.c, line: 79
+# File: sci_gateway/c/sci_javaclasspath.c, line: 96
+# File: sci_gateway/c/sci_javaclasspath.c, line: 119
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_javaclasspath.c, line: 86
+# File: sci_gateway/c/sci_javaclasspath.c, line: 104
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_javaclasspath.c, line: 122
+# File: sci_gateway/c/sci_javaclasspath.c, line: 127
 #, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_javaclasspath.c, line: 133
+# File: sci_gateway/c/sci_javaclasspath.c, line: 138
 # File: sci_gateway/c/sci_javalibrarypath.c, line: 69
 # File: sci_gateway/c/sci_system_getproperty.c, line: 46
 #, c-format
@@ -54,8 +64,8 @@ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 46
-# File: src/c/InitializeJVM.c, line: 48
+# File: src/c/InitializeJVM.c, line: 47
+# File: src/c/InitializeJVM.c, line: 49
 #, c-format
 msgid ""
 "\n"
@@ -63,18 +73,18 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 46
-# File: src/c/InitializeJVM.c, line: 73
-# File: src/c/JVM.c, line: 70
-# File: src/c/JVM.c, line: 85
-# File: src/c/JVM.c, line: 154
-# File: src/c/JVM.c, line: 188
+# File: src/c/InitializeJVM.c, line: 47
+# File: src/c/InitializeJVM.c, line: 74
+# File: src/c/JVM.c, line: 99
+# File: src/c/JVM.c, line: 118
+# File: src/c/JVM.c, line: 190
 # File: src/c/JVM.c, line: 224
+# File: src/c/JVM.c, line: 261
 msgid "Error"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 58
+# File: src/c/InitializeJVM.c, line: 59
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -83,28 +93,28 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 62
+# File: src/c/InitializeJVM.c, line: 63
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 126
+# File: src/c/InitializeJVM.c, line: 127
 # File: src/c/createMainScilabObject.c, line: 34
-# File: src/c/createMainScilabObject.c, line: 70
-# File: src/c/createMainScilabObject.c, line: 99
+# File: src/c/createMainScilabObject.c, line: 73
+# File: src/c/createMainScilabObject.c, line: 102
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr ""
 
 #
-# File: src/c/InitializeJVM.c, line: 135
+# File: src/c/InitializeJVM.c, line: 136
 msgid "Cannot execute initial hooks. Error:\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 70
-# File: src/c/JVM.c, line: 72
+# File: src/c/JVM.c, line: 99
+# File: src/c/JVM.c, line: 102
 #, c-format
 msgid ""
 "\n"
@@ -112,8 +122,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 85
-# File: src/c/JVM.c, line: 87
+# File: src/c/JVM.c, line: 117
+# File: src/c/JVM.c, line: 122
 #, c-format
 msgid ""
 "\n"
@@ -122,7 +132,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 110
+# File: src/c/JVM.c, line: 146
 #, c-format
 msgid ""
 "\n"
@@ -131,7 +141,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 119
+# File: src/c/JVM.c, line: 155
 #, c-format
 msgid ""
 "\n"
@@ -139,13 +149,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 120
+# File: src/c/JVM.c, line: 156
 #, c-format
 msgid "Error: %s\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 121
+# File: src/c/JVM.c, line: 157
 #, c-format
 msgid ""
 "If you are using a binary version of Scilab, please report a bug http://"
@@ -153,7 +163,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 122
+# File: src/c/JVM.c, line: 158
 #, c-format
 msgid ""
 "If you are using a self-built version of Scilab, update the script bin/"
@@ -161,13 +171,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 124
+# File: src/c/JVM.c, line: 160
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 125
+# File: src/c/JVM.c, line: 161
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
@@ -175,32 +185,11 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/JVM.c, line: 160
+# File: src/c/JVM.c, line: 196
 #, c-format
 msgid ""
 "\n"
 "Impossible to read %s.\n"
-msgstr ""
-
-#
-# File: src/c/JVM.c, line: 188
-# File: src/c/JVM.c, line: 190
-#, c-format
-msgid ""
-"\n"
-"Incorrect version JNI (needs at least JDK 1.4).\n"
-msgstr ""
-
-#
-# File: src/c/JVM.c, line: 202
-#, c-format
-msgid "Error in the creation of the Java VM: %s\n"
-msgstr ""
-
-#
-# File: src/c/JVM.c, line: 207
-#, c-format
-msgid "Options:\n"
 msgstr ""
 
 #
@@ -209,41 +198,62 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 238
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 244
+#, c-format
+msgid "Options:\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 261
+# File: src/c/JVM.c, line: 264
+#, c-format
+msgid ""
+"\n"
 "JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 105
+# File: src/c/JVM_commons.c, line: 125
 msgid "Unknown JNI error"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 108
+# File: src/c/JVM_commons.c, line: 128
 msgid "Thread detached from the VM"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 111
+# File: src/c/JVM_commons.c, line: 131
 msgid "JNI version error"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 116
+# File: src/c/JVM_commons.c, line: 136
 msgid "JNI: not enough memory"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 122
+# File: src/c/JVM_commons.c, line: 142
 msgid "VM already created"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 128
+# File: src/c/JVM_commons.c, line: 148
 msgid "JNI: invalid arguments"
 msgstr ""
 
 #
-# File: src/c/JVM_commons.c, line: 132
+# File: src/c/JVM_commons.c, line: 152
 msgid "Undefined error code in the JNI. Weird problem"
 msgstr ""
 
@@ -259,17 +269,18 @@ msgid "Could not access to the constructor of the Main Scilab Class:\n"
 msgstr ""
 
 #
-# File: src/c/createMainScilabObject.c, line: 47
+# File: src/c/createMainScilabObject.c, line: 44
+# File: src/c/createMainScilabObject.c, line: 49
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr ""
 
 #
-# File: src/c/createMainScilabObject.c, line: 79
+# File: src/c/createMainScilabObject.c, line: 82
 msgid "Cannot execute final hooks. Error:\n"
 msgstr ""
 
 #
-# File: src/c/createMainScilabObject.c, line: 108
+# File: src/c/createMainScilabObject.c, line: 111
 msgid "Error with Scilab.canClose():\n"
 msgstr ""
 
@@ -335,6 +346,6 @@ msgid ""
 msgstr ""
 
 #
-# File: src/nojvm/nojvm.c, line: 46
+# File: src/nojvm/nojvm.c, line: 26
 msgid "Scilab Java module not installed.\n"
 msgstr ""

@@ -21,7 +21,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "CreateEmptystr.h"

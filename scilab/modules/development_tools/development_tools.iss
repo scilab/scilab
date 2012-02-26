@@ -1,7 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) INRIA - Allan CORNET
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -46,5 +46,6 @@ Source: modules\{#DEVTOOLS}\macros\assert\cleanmacros.bat; DestDir: {app}\module
 ;Source: modules\{#DEVTOOLS}\examples\*.*; DestDir: {app}\modules\{#DEVTOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS}
 ;
 Source: modules\{#DEVTOOLS}\tests\*.*; DestDir: {app}\modules\{#DEVTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
+Source: modules\{#DEVTOOLS}\data\test_run_level.xml; DestDir: {app}\modules\{#DEVTOOLS}\data; Flags: recursesubdirs; Components: {#COMPN_DEVTOOLS} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

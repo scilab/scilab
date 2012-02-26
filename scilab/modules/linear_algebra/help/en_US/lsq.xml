@@ -41,10 +41,11 @@
         <term>tol</term>
         <listitem>
           <para>positive scalar,  used to determine the effective rank of A
-	    (defined as the order of the largest leading triangular 
-          submatrix R11 in the QR factorization with pivoting of A,
-          whose estimated condition number &lt;= 1/tol. The tol default value is
-	    set to <literal>sqrt(%eps)</literal>.</para>
+            (defined as the order of the largest leading triangular 
+            submatrix R11 in the QR factorization with pivoting of A,
+            whose estimated condition number &lt;= 1/tol. The tol default value is
+            set to <literal>sqrt(%eps)</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -57,14 +58,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
-    the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
-    solution with at at most <literal>rank(A)</literal>  nonzero components per column.</para>
+    <para>
+      <literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
+      the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
+      solution with at at most <literal>rank(A)</literal>  nonzero components per column.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
-    <para><literal>lsq</literal> function is  based on the LApack functions DGELSY for
-      real matrices and ZGELSY for complex matrices.</para>
+    <para>
+      <literal>lsq</literal> function is  based on the LApack functions DGELSY for
+      real matrices and ZGELSY for complex matrices.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -92,7 +97,7 @@ X2=A\b
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="backslash">backslash</link>

@@ -21,7 +21,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
 /**
  * Class to create Command History tab
- * 
+ *
  * @author Calixte DENIZET
  */
 public class CommandHistoryTab {
@@ -32,32 +32,30 @@ public class CommandHistoryTab {
      * @return a new Command History tab
      */
     public static SwingScilabTab getCommandHistoryInstance(String uuid) {
-        SwingScilabTab cmdh = CommandHistory.createCommandHistoryTab();
+        final SwingScilabTab cmdh = CommandHistory.createCommandHistoryTab();
         ScilabTabFactory.getInstance().addToCache(cmdh);
 
-        ClosingOperationsManager.registerClosingOperation(cmdh,
-                new ClosingOperationsManager.ClosingOperation() {
+        ClosingOperationsManager.registerClosingOperation(cmdh, new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public boolean canClose() {
-                        return true;
-                    }
+                @Override
+                public boolean canClose() {
+                    return true;
+                }
 
-                    @Override
-                    public void destroy() {
-                        CommandHistory.close();
-                    }
+                @Override
+                public void destroy() {
+                    CommandHistory.closeHistory();
+                }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+                @Override
+                public String askForClosing(final List<SwingScilabTab> list) {
+                    return null;
+                }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+                @Override
+                public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+                }
+            });
 
         ClosingOperationsManager.addDependencyWithRoot(cmdh);
 

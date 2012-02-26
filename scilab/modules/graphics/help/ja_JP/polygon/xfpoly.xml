@@ -35,17 +35,19 @@
         <term>close</term>
         <listitem>
           <para>整数. close=1の場合, ポリゴンは閉じられます; デフォルト値は
-          0です.</para>
+            0です.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xfpoly</literal> はポリゴンを指定した色で塗りつぶします.
-    <literal>close</literal> が1の場合,
-	1つの点がポリゴンを定義するポリライン <literal>xv,yv</literal>に追加されます.
-	</para>
+    <para>
+      <literal>xfpoly</literal> はポリゴンを指定した色で塗りつぶします.
+      <literal>close</literal> が1の場合,
+      1つの点がポリゴンを定義するポリライン <literal>xv,yv</literal>に追加されます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -77,9 +79,5 @@ xset("default")
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

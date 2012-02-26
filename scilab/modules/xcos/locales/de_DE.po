@@ -14,12 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: de\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Scilab '%s' Modul in Modus -nogui oder -nmwi deaktiviert.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -29,6 +33,10 @@ msgstr "%s: Kein weiterer Speicher verfügbar.\n"
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -68,13 +76,16 @@ msgstr ""
 "Kann die Batik-Bibliothek nicht laden. \n"
 "Erwartete Version %s ; Erhaltene Version %s."
 
+msgid "parent diagram not found."
+msgstr ""
+
 msgid "Preview"
 msgstr ""
 
-msgid "Please specify a file format"
+msgid "Error on export"
 msgstr ""
 
-msgid "Error on export"
+msgid "Please specify a valid file format"
 msgstr ""
 
 msgid "Incompatibility detected"
@@ -154,10 +165,13 @@ msgstr "Allgemein"
 msgid "Equations"
 msgstr "Gleichungen"
 
-msgid "Discrete"
-msgstr "Diskret"
+msgid "Discretes"
+msgstr ""
 
-msgid "Input"
+msgid "Inputs"
+msgstr ""
+
+msgid "Outputs"
 msgstr ""
 
 msgid "Solver"
@@ -254,6 +268,9 @@ msgstr "Neue Palette"
 
 msgid "Open"
 msgstr "Öffnen"
+
+msgid "Open file in Scilab current directory"
+msgstr ""
 
 msgid "Save"
 msgstr "Speichern"
@@ -530,6 +547,9 @@ msgstr "Ok"
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Reset to default"
+msgstr ""
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -831,7 +851,16 @@ msgstr "Modelica-Initialisierung"
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
-msgid "Wrong port number"
+msgid "Evaluation problem: wrong port number."
+msgstr ""
+
+#, c-format
+msgid "Expecting '%d'."
+msgstr ""
+
+msgid ""
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
 
 #, c-format
@@ -1059,10 +1088,6 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
@@ -1190,9 +1215,15 @@ msgid "%s is not a valid block descriptor."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s\n"
-"Error: dialog wrong size."
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -1201,6 +1232,10 @@ msgstr ""
 
 #, c-format
 msgid "Block configuration with function [%s] failed."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A Block expected."
 msgstr ""
 
 msgid "The Scicos libraries are not loaded"

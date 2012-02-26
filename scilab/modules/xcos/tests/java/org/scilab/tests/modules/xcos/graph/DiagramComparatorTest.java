@@ -11,6 +11,7 @@
  */
 package org.scilab.tests.modules.xcos.graph;
 
+import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,13 +23,16 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DiagramComparatorTest {
 
     @Test
     public void addXcosDiagrams() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
                 1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -53,10 +57,16 @@ public class DiagramComparatorTest {
         for (XcosDiagram ref : testVector) {
             assert sorted.contains(ref);
         }
+
+        assertOnDiagramCollection(sorted);
     }
 
     @Test
     public void addSuperBlocksDiagrams() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final PriorityQueue<XcosDiagram> sorted = new PriorityQueue<XcosDiagram>(
                 1, DiagramComparator.getInstance());
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -85,6 +95,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void checkOneHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -133,16 +147,36 @@ public class DiagramComparatorTest {
         expected.add(r1diag1);
         expected.add(r1diag1b1diag1);
 
-        Assert.assertEquals(sorted, expected);
+        assertOnDiagramCollection(sorted);
 
         sorted.clear();
         Collections.shuffle(testVector);
         sorted.addAll(testVector);
-        Assert.assertEquals(sorted, expected);
+        assertOnDiagramCollection(sorted);
+    }
+
+    private void assertOnDiagramCollection(Collection<XcosDiagram> diags) {
+        int depth = 0;
+
+        for (XcosDiagram d : diags) {
+            int currentDepth = 0;
+
+            while (d instanceof SuperBlockDiagram) {
+                currentDepth++;
+                d = ((SuperBlockDiagram) d).getContainer().getParentDiagram();
+            }
+
+            assert currentDepth >= depth;
+            depth = currentDepth;
+        }
     }
 
     @Test
     public void checkTwoFilesHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -201,6 +235,7 @@ public class DiagramComparatorTest {
         sorted.addAll(testVector);
         assert sorted.size() == testVector.size();
 
+        assertOnDiagramCollection(sorted);
         assertOnTwoFilesHierarchy(sorted, root1, root2);
 
         /*
@@ -212,6 +247,7 @@ public class DiagramComparatorTest {
             sorted.clear();
             sorted.addAll(testVector);
 
+            assertOnDiagramCollection(sorted);
             assertOnTwoFilesHierarchy(sorted, root1, root2);
         }
 
@@ -235,6 +271,10 @@ public class DiagramComparatorTest {
 
     @Test
     public void checkValidHierarchy() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
         final Collection<XcosDiagram> sorted = Xcos.getInstance()
                 .createDiagramCollection();
         final ArrayList<XcosDiagram> testVector = new ArrayList<XcosDiagram>();
@@ -290,5 +330,6 @@ public class DiagramComparatorTest {
             assert it.next() == diag1;
         }
 
+        assertOnDiagramCollection(sorted);
     }
 }

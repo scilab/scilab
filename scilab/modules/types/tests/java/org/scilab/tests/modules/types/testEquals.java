@@ -145,8 +145,8 @@ public class testEquals {
 		assert cMatrix.toString().equals("sparse([1, 1 ; 1, 2 ; 2, 1 ; 2, 2], [42.0+420.0*%i ; 43.0+430.0*%i ; 21.0+210.0*%i ; 22.0+220.0*%i], [2, 2])");
 
 		ScilabSparse mySparse = new ScilabSparse(100, 100, 5, new int[] { 1, 1, 1, 1, 1}, new int[]{ 1, 25, 50, 75, 99}, new double[] { 1.0, 2.0, 3.0, 4.0, 5.0});
-//fails for now
-//		System.out.println(mySparse);
+        String ref="sparse([1, 2 ; 2, 26 ; 3, 51 ; 4, 76 ; 5, 100], [1.0 ; 2.0 ; 3.0 ; 4.0 ; 5.0], [100, 100])";
+		assert mySparse.toString().equals(ref);
 	}
 
 

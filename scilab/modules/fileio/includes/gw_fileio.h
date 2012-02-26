@@ -13,7 +13,6 @@
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
 #include "dynlib_fileio.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 

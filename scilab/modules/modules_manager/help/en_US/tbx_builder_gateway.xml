@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_builder_gateway(toolbox_path)
+      tbx_builder_gateway(toolbox_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -41,11 +41,5 @@
 // Recommended usage
 tbx_builder_gateway(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
-    </simplelist>
   </refsection>
 </refentry>

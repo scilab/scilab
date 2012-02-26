@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int read_write_bsparse(char *fname,unsigned long fname_len)
@@ -35,9 +34,11 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
     int iNewItem            = 0;
     int* piNewRow           = NULL;
     int* piNewCol           = NULL;
+
     //check input and output arguments
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
     //get variable address of the first input argument
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)
@@ -45,6 +46,7 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
         printError(&sciErr, 0);
         return 0;
     }
+
     //get size and data from Scilab memory
     sciErr = getBooleanSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
     if(sciErr.iErr)
@@ -52,11 +54,13 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
         printError(&sciErr, 0);
         return 0;
     }
+
     //Do something with data
     //convert %T -> %F and %F -> %T
     iNewItem = (iRows * iCols) - iNbItem;
     piNewRow = (int*)MALLOC(sizeof(int) * iRows);
     piNewCol = (int*)MALLOC(sizeof(int) * iNewItem);
+
     for(i = 0 ; i < iRows ; i++)
     {
         piNewRow[i] = iCols - piNbItemRow[i];
@@ -71,19 +75,23 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
                     break;
                 }
             }
+
             if(iFind == 0)
             {
                 piNewCol[iNewCol++] = (j + 1);
             }
         }
+
         iCol += piNbItemRow[i];
     }
-    sciErr = createBooleanSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
+
+    sciErr = createBooleanSparseMatrix(pvApiCtx, InputArgument + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
-    LhsVar(1) = Rhs + 1;
+
+    AssignOutputVariable(1) = InputArgument + 1;
     return 0;
 }

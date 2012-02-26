@@ -28,7 +28,6 @@ length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "MALLOC.h"
@@ -57,6 +56,7 @@ int sci_length(char *fname,unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -64,6 +64,7 @@ int sci_length(char *fname,unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -116,6 +117,7 @@ static int lengthStrings(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -258,6 +260,7 @@ static int lengthStrings(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
@@ -289,6 +292,7 @@ static int lengthSparse(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -306,6 +310,7 @@ static int lengthSparse(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
@@ -360,7 +365,7 @@ static int lengthMList(const char *fname, int *piAddressVar)
                 if (isScilabFunction(overloadFunctionName))
                 {
                     int lw = 1 + Top - Rhs;
-                    C2F(overload)(&lw, (char*)fname, strlen(fname));
+                    C2F(overload)(&lw, (char*)fname, (unsigned long)strlen(fname));
                     return 0;
                 }
                 else
@@ -383,6 +388,7 @@ static int lengthList(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -400,6 +406,7 @@ static int lengthList(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 
@@ -421,6 +428,7 @@ static int lengthDefault(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument.\n"), "length");
         return 0;
     }
 
@@ -438,6 +446,7 @@ static int lengthDefault(int *piAddressVar)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), "length");
         return 0;
     }
 

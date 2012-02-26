@@ -1,52 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) INRIA\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-          version="5.0-subset Scilab"
-          xml:id="SUMMATION"
-          xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SUMMATION" xml:lang="fr_FR">
   <refnamediv>
     <refname>SUMMATION</refname>
-
     <refpurpose>Addition/Soustraction de matrices</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Aperçu</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/SUMMATION.png"
-                     valign="middle"></imagedata>
+          <imagedata align="center" fileref="../../../../images/palettes/SUMMATION.png" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Contents_SUMMATION">
     <title>Contenu</title>
-
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="SUMMATION">Addition/Soustraction de matrices</link>
         </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
           <listitem>
@@ -54,31 +40,26 @@
               <xref linkend="Palette_SUMMATION">Palette</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Description_SUMMATION">Description</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Dialogbox_SUMMATION">Boîte de dialogue</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Defaultproperties_SUMMATION">Propriétés par défaut</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_SUMMATION">Fonction d'interfaçage</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Computationalfunction_SUMMATION">Fonctions de calcul</xref>
@@ -89,19 +70,12 @@
               <xref linkend="Seealso_SUMMATION">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SUMMATION">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_SUMMATION">
     <title>Palette</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -110,7 +84,6 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Description_SUMMATION">
     <title>Description</title>
     <para>
@@ -120,17 +93,21 @@
       et l'opération. Pour une entrée vectorielle unique le bloc effectue la somme des éléments du vecteur.
       Les vecteurs/matrices d'entrée doivent avoir les mêmes dimensions.
     </para>
-
     <para>
       Le comportement de ce bloc est résumé dans le tableau suivant :
     </para>
-
-    <para />
+    <para/>
     <informaltable border="1" cellpadding="2">
       <tr>
-        <td align="left" width="18%"><emphasis role="bold">Nombre d'entrées</emphasis></td>
-        <td align="left" width="18%"><emphasis role="bold">Opération</emphasis></td>
-        <td align="left"><emphasis role="bold">Remarques</emphasis></td>
+        <td align="left" width="18%">
+          <emphasis role="bold">Nombre d'entrées</emphasis>
+        </td>
+        <td align="left" width="18%">
+          <emphasis role="bold">Opération</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Remarques</emphasis>
+        </td>
       </tr>
       <tr>
         <td align="left" rawspan="2">Une</td>
@@ -159,7 +136,6 @@
         </td>
       </tr>
     </informaltable>
-
     <para>
       Avec une entrée entière, lors d'un dépassement de capacité, le résultat peut prendre des formes différentes :
     </para>
@@ -167,34 +143,24 @@
       1- Un résultat normal non saturé. Par exemple, si le type est int8 et le résultat 128, la valeur de sortie
       du bloc sera -128.
     </para>
-
     <para>2- Un résultat saturé. Pour l'exemple précédent la valeur de sortie du bloc sera 127</para>
-
     <para>3- Un message d'erreur prévenant l'utilisateur du dépassement de capacité.</para>
-
     <para>
       L'utilisateur peut sélectionner l'une de ces trois formes en mettant le champ
       <emphasis role="bold">Do on Overflow</emphasis> à 0,1 ou 2.
     </para>
-
-    <para />
+    <para/>
   </refsection>
-
   <refsection id="Dialogbox_SUMMATION">
     <title>Boîte de dialogue</title>
-
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/gui/SUMMATION_gui.gif"
-                     valign="middle" />
+          <imagedata align="center" fileref="../../../../images/gui/SUMMATION_gui.gif" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-
-    <para />
-
+    <para/>
     <itemizedlist>
       <listitem>
         <para>
@@ -206,17 +172,13 @@
         </para>
         <para>Propriétés : Type 'vec' de taille 1.</para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Number of inputs or sign vector (of +1, -1)</emphasis>
         </para>
-
         <para>Il indique le nombre d'entrées et l'opération. Voir la description pour plus de détails.</para>
-
         <para>Propriétés : Type 'vec' de taille -1.</para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
@@ -231,71 +193,73 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Defaultproperties_SUMMATION">
     <title>Propriétés par défaut</title>
-
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular inputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 2 : size [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">name of computational function:</emphasis>
@@ -304,97 +268,74 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Interfacingfunction_SUMMATION">
     <title>Fonction d'interfaçage</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/macros/Linear/SUMMATION.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Computationalfunction_SUMMATION">
     <title>Fonctions de calcul</title>
-
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_z.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i32n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i16n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i8n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui32n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui16n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui8n.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i32s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i16s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i8s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui32s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui16s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui8s.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i32e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i16e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_i8e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui32e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui16e.c</para>
       </listitem>
-
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/summation_ui8e.c</para>
       </listitem>
@@ -403,7 +344,7 @@
   <refsection id="Seealso_SUMMATION">
     <title>Voir aussi</title>
     <itemizedlist>
-       <listitem>
+      <listitem>
         <para>
           <link linkend="BIGSOM_f">BIGSOM_f - Addition/Soustraction de scalaires ou vecteurs (Xcos block)</link>
         </para>
@@ -412,28 +353,6 @@
         <para>
           <link linkend="SUM_f">SUM_f - Addition de matrices (Xcos block)</link>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-
-  <refsection id="Authors_SUMMATION">
-    <title>Auteurs</title>
-
-    <para>
-      <emphasis role="bold" />
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

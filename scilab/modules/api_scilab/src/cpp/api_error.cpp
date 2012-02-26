@@ -15,10 +15,9 @@
 
 #include "MALLOC.h"
 #include <stdio.h> 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "stack-c.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

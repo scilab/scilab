@@ -14,11 +14,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM 介面在-nogui or -nwni模式下不作用.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"

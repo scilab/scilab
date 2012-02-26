@@ -23,38 +23,51 @@
 /*--------------------------------------------------------------------------*/
 int gw_jvm(void)
 {
-    Scierror(999,_("Scilab Java module not installed.\n"));
+    Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL InitializeJVM(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL TerminateJVM(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL loadBackGroundClassPath(void)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char *tag)
 {
     return FALSE;
 }
+
 /*--------------------------------------------------------------------------*/
 /* BUG 10325: FORCE EXPORT canCloseMainScilabObject on Windows */
 JVM_IMPEXP BOOL canCloseMainScilabObject(void)
 {
     return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/
 BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }
+
+/*--------------------------------------------------------------------------*/
+BOOL isItTheDisabledLib(void)
+{
+    return TRUE;
+}
+
 /*--------------------------------------------------------------------------*/

@@ -17,7 +17,9 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector</para>
+          <para>
+            data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -67,10 +69,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    steady-state Kalman filter</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      steady-state Kalman filter
+    </para>
   </refsection>
 </refentry>

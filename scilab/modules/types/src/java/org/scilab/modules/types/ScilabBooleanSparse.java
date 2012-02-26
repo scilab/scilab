@@ -50,8 +50,25 @@ public class ScilabBooleanSparse implements ScilabType {
         if (data) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
+        }
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of true items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each true
+     * @param check if true the parameters validity is checked
+     */
+    public ScilabBooleanSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos);
+        if (check) {
+            ScilabSparse.checkValidity(rows, cols, nbItem, nbItemRow, colPos);
         }
     }
 
@@ -148,7 +165,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param nbItem the real part.
      */
     public void setNbNonNullItems(int nbItem) {
         this.nbItem = nbItem;
@@ -166,10 +183,23 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param nbItemRow the real part.
      */
     public void setNbItemRow(int[] nbItemRow) {
         this.nbItemRow = nbItemRow;
+    }
+
+    /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
     }
 
     /**
@@ -184,7 +214,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param colPos the real part.
      */
     public void setColPos(int[] colPos) {
         this.colPos = colPos;
@@ -213,7 +243,7 @@ public class ScilabBooleanSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         boolean[][] b = new boolean[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 b[i][colPos[j]] = true;
             }
@@ -260,11 +290,18 @@ public class ScilabBooleanSparse implements ScilabType {
         if (obj instanceof ScilabBooleanSparse) {
             ScilabBooleanSparse sciSparse = (ScilabBooleanSparse) obj;
             return this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                Arrays.equals(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
-                Arrays.equals(this.getColPos(), sciSparse.getColPos());
+                   ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                   Arrays.equals(this.getColPos(), sciSparse.getColPos());
         } else {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        return new Object[]{new int[]{rows, cols}, nbItemRow, getScilabColPos()};
     }
 
     /**
@@ -286,7 +323,7 @@ public class ScilabBooleanSparse implements ScilabType {
         result.append("sparse([");
         int j = 0;
         int prev = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 result.append(Integer.toString(i + 1));
                 result.append(", ");

@@ -58,7 +58,8 @@
               <term>'p'  </term>
               <listitem>
                 <para>関数は"コンパイル"され,
-		  プロファイルに備えます (profile参照)</para>
+                  プロファイルに備えます (profile参照)
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>

@@ -52,11 +52,6 @@
               <xref linkend="Computationalfunction_SELF_SWITCH">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_SELF_SWITCH">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -81,16 +76,24 @@
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -109,19 +112,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>

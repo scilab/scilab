@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>mod=ieee()
-ieee(mod)</synopsis>
+      ieee(mod)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,39 +20,41 @@ ieee(mod)</synopsis>
         <term>mod  </term>
         <listitem>
           <para>un entier valant 0,1 ou 2
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>ieee()</literal> renvoie le mode d'exception IEEE courant pour les calculs en virgule flottante.
+    <para>
+      <literal>ieee()</literal> renvoie le mode d'exception IEEE courant pour les calculs en virgule flottante.
     </para>
     <variablelist>
       <varlistentry>
         <term>0</term>
         <listitem>
           <para>les exceptions produisent une erreur
-	</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>1</term>
         <listitem>
           <para>les exceptions produisent un warning
-	</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>2</term>
         <listitem>
           <para> les exceptions produisent Inf ou Nan
-	</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>ieee(mod)</literal> choisit le mode d'exception ieee courant pour les calculs en virgule flottante.
+    <para>
+      <literal>ieee(mod)</literal> choisit le mode d'exception ieee courant pour les calculs en virgule flottante.
     </para>
     <para>
       La valeur initiale au lancement de Scilab est 0.
@@ -73,7 +76,7 @@ ieee(2);1/0,log(0)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="errcatch">errcatch</link>

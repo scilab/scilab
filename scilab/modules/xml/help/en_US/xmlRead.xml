@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -51,7 +51,9 @@
     <title>Description</title>
     <para>Read and parse a XML file. The returned document allows to access to the DOM tree which is kept in memory.</para>
     <para>If validateDTD is set to true, the document will be validated or not during the parsing operation.</para>
-    <para>It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlClose">xmlClose</link>.</para>
+    <para>
+      It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlDelete">xmlDelete</link>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,8 +68,8 @@
     q = xmlXPath(doc, "//*[@href]");
     q(1).attributes.href
 
-    // We close the doc
-    xmlClose(doc);
+    // We delete the doc
+    xmlDelete(doc);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -77,10 +79,10 @@
         <link linkend="xmlReadStr">xmlReadStr</link>
       </member>
       <member>
-        <link linkend="xmlGetOpenStreams">xmlGetOpenStreams</link>
+        <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
       </member>
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlDelete">xmlDelete</link>
       </member>
       <member>
         <link linkend="xmlDocument">xmlDocument</link>
@@ -92,10 +94,6 @@
         <link linkend="xmlValidate">xmlValidate</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
   </refsection>
   <refsection>
     <title>History</title>

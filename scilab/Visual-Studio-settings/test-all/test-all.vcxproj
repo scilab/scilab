@@ -57,31 +57,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -e test_run()</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()
-if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_run()</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -noatomsautoload -e test_run()</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()
+if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_run()</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -e test_run()</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()
-if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_run()</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -noatomsautoload -e test_run()</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()
+if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_run()</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -e test_run()</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()
-if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_run()</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -noatomsautoload -e test_run()</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()
+if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_run()</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -e test_run()</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()
-if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_run()</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -e test_clean()</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe" -nb -noatomsautoload -e test_run()</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()
+if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_run()</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>if EXIST "$(SolutionDir)/bin/scilex.exe" "$(SolutionDir)/bin/scilex.exe"  -nb -noatomsautoload -e test_clean()</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

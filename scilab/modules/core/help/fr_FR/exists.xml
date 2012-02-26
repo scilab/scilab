@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>exists</refname>
     <refpurpose>teste l'existence d'une
-  variable</refpurpose>
+      variable
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -25,30 +26,40 @@
         <term>where</term>
         <listitem>
           <para>une chaîne de caractères optionnelle pouvant
-          prendre les valeurs: <literal>'l'</literal> (local),
-          <literal>'n'</literal> (nolocal) et <literal>'a'</literal>
-          (all). La valeur par défaut est
-          <literal>'all'</literal></para>
+            prendre les valeurs: <literal>'l'</literal> (local),
+            <literal>'n'</literal> (nolocal) et <literal>'a'</literal>
+            (all). La valeur par défaut est
+            <literal>'all'</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>exists(name)</literal> renvoie <literal>1</literal> si la variable nommée
-    <literal>name</literal> existe et <literal>0</literal> sinon.</para>
-    <para>Mise en garde : une fonction utilisant <literal>exists</literal> peut
-    renvoyer un résultat dépendant de l'environnement courant !</para>
-    <para><literal>exists(name,'local')</literal> renvoie <literal>1</literal> si la variable
-    nommée <literal>name</literal> existe dans l'environnement de la fonction
-    courante et <literal>0</literal> sinon.</para>
-    <para><literal>exists(name,'nolocal')</literal> renvoie <literal>1</literal> si la
-    variable nommée <literal>name</literal> existe dans l'environnement appelant (y
-    compris le niveau du shell Scilab) de la fonction courante et <literal>0</literal>
-    sinon.</para>
-    <para>Attention: la fonction <literal>exists</literal> ne teste
-    pas si une variable existe dans l'espace de nom <link
-    linkend="global">global</link>.</para>
+    <para>
+      <literal>exists(name)</literal> renvoie <literal>1</literal> si la variable nommée
+      <literal>name</literal> existe et <literal>0</literal> sinon.
+    </para>
+    <para>
+      Mise en garde : une fonction utilisant <literal>exists</literal> peut
+      renvoyer un résultat dépendant de l'environnement courant !
+    </para>
+    <para>
+      <literal>exists(name,'local')</literal> renvoie <literal>1</literal> si la variable
+      nommée <literal>name</literal> existe dans l'environnement de la fonction
+      courante et <literal>0</literal> sinon.
+    </para>
+    <para>
+      <literal>exists(name,'nolocal')</literal> renvoie <literal>1</literal> si la
+      variable nommée <literal>name</literal> existe dans l'environnement appelant (y
+      compris le niveau du shell Scilab) de la fonction courante et <literal>0</literal>
+      sinon.
+    </para>
+    <para>
+      Attention: la fonction <literal>exists</literal> ne teste
+      pas si une variable existe dans l'espace de nom <link linkend="global">global</link>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -75,10 +86,12 @@ go()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="isdef">isdef</link>
+      </member>
+      <member>
         <link linkend="isglobal">isglobal</link>
       </member>
       <member>

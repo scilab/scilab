@@ -11,7 +11,6 @@
  *
  */
 #include "gw_core.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -100,6 +99,7 @@ int C2F(sci_predef)(char *fname,unsigned long fname_len)
                         if(sciErr.iErr)
                         {
                             printError(&sciErr, 0);
+                            Scierror(999,_("%s: Memory allocation error.\n"), fname);
                         }
                         else
                         {

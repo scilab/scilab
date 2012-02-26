@@ -43,8 +43,4 @@
 bOK=configure_msvc()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

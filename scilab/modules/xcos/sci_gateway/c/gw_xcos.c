@@ -24,11 +24,12 @@
 static BOOL loadedDep = FALSE;
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {sci_Xcos, "xcos"},
     {sci_warnBlockByUID, "warnBlockByUID"},
     {sci_closeXcosFromScilab, "closeXcos"},
-    {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
+    {sci_xcosDiagramToScilab, "xcosDiagramToScilab"},
     {sci_xcosPalLoad, "xcosPalLoad"},
     {sci_xcosPalCategoryAdd, "xcosPalCategoryAdd"},
     {sci_xcosPalDelete, "xcosPalDelete"},
@@ -36,7 +37,9 @@ static gw_generic_table Tab[] = {
     {sci_xcosPalEnable, "xcosPalEnable"},
     {sci_xcosPalDisable, "xcosPalDisable"},
     {sci_xcosPalGenerateIcon, "xcosPalGenerateIcon"},
-    {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"}
+    {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"},
+    {sci_xcosAddToolsMenu, "xcosAddToolsMenu"},
+    {sci_xcosUpdateBlock, "xcosUpdateBlock"}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -51,7 +54,7 @@ int gw_xcos(void)
     }
 
     if (!loadedDep              // never reload
-        && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
+            && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
     {
         loadOnUseClassPath("Xcos");
         loadedDep = TRUE;

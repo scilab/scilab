@@ -15,25 +15,22 @@ package org.scilab.modules.xcos.block.actions;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -51,7 +48,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      */
@@ -61,7 +58,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Menu for diagram menubar
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      * @return the menu
@@ -72,70 +69,65 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            parameter
      * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object selectedObj = getGraph(null).getSelectionCell();
-        if (!(selectedObj instanceof SuperBlock)) {
-            ((XcosDiagram) getGraph(null))
-                    .error(XcosMessages.ERROR_GENERATING_C_CODE);
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
             return;
         }
 
-        ((XcosDiagram) getGraph(null)).info(XcosMessages.GENERATING_C_CODE);
+        Object selectedObj = graph.getSelectionCell();
+        if (!(selectedObj instanceof SuperBlock)) {
+            graph.error(XcosMessages.ERROR_GENERATING_C_CODE);
+            return;
+        }
+
+        graph.info(XcosMessages.GENERATING_C_CODE);
 
         final SuperBlock block = (SuperBlock) selectedObj;
         try {
             /*
-             * Prepare data
-             */
-            final String tempOutput = FileUtils.createTempFile();
-            final String tempInput = FileUtils.createTempFile();
-
-            /*
              * Export data
              */
-            new H5RWHandler(tempOutput).writeBlock(block);
+            new ScilabDirectHandler().writeBlock(block);
 
             /*
              * Prepare command and callback
              */
-            String cmd = buildCall("xcosCodeGeneration", tempOutput, tempInput);
+            String cmd = buildCall("xcosCodeGeneration");
 
             final ActionListener callback = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-
-                    if (!exists(tempInput)) {
-                        ((XcosDiagram) getGraph(null))
-                                .info(XcosMessages.EMPTY_INFO);
-                        return;
-                    }
-
-                    XcosDiagram graph = block.getParentDiagram();
-                    if (graph == null) {
+                    /*
+                     * Find the block parent
+                     */
+                    XcosDiagram parent = block.getParentDiagram();
+                    if (parent == null) {
                         block.setParentDiagram(Xcos.findParent(block));
-                        graph = block.getParentDiagram();
-                        LogFactory.getLog(getClass()).error(
-                                "Parent diagram was null");
+                        parent = block.getParentDiagram();
+                        Logger.getLogger(CodeGenerationAction.class.getName()).finest("Parent diagram was null");
                     }
 
-                    graph.getModel().beginUpdate();
-                    doAction(block, tempInput);
-                    graph.getModel().endUpdate();
+                    /*
+                     * Update
+                     */
+                    parent.getModel().beginUpdate();
+                    doAction(block);
+                    parent.getModel().endUpdate();
 
-                    graph.getView().clear(block, true, false);
-                    graph.getView().validate();
+                    parent.getView().clear(block, true, false);
+                    parent.getView().validate();
 
-                    delete(tempOutput);
-                    delete(tempInput);
-
-                    ((XcosDiagram) getGraph(null))
-                            .info(XcosMessages.EMPTY_INFO);
+                    graph.info(XcosMessages.EMPTY_INFO);
                 }
             };
 
@@ -144,43 +136,38 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
              */
             asynchronousScilabExec(callback, cmd);
 
-        } catch (IOException ex) {
-            LogFactory.getLog(CodeGenerationAction.class).error(ex);
-            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
         } catch (InterpreterException ex) {
-            LogFactory.getLog(CodeGenerationAction.class).error(ex);
-            ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+            Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
+            graph.info(XcosMessages.EMPTY_INFO);
         }
     }
 
     /**
      * Callback function
-     * 
+     *
      * Read the block from the scilab
-     * 
+     *
      * @param block
      *            The block we are working on
-     * @param tempInput
-     *            Input file
      */
-    private static void doAction(final SuperBlock block, final String tempInput) {
+    private static void doAction(final SuperBlock block) {
         try {
-            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
+            if (modifiedBlock == null) {
+                return;
+            }
 
             block.updateBlockSettings(modifiedBlock);
-            block.setInterfaceFunctionName(modifiedBlock
-                    .getInterfaceFunctionName());
-            block.setSimulationFunctionName(modifiedBlock
-                    .getSimulationFunctionName());
-            block.setSimulationFunctionType(modifiedBlock
-                    .getSimulationFunctionType());
+            block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+            block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+            block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
             block.setChild(null);
 
             block.setStyle(block.getStyle() + ";blockWithLabel");
             block.setValue(block.getSimulationFunctionName());
             BlockPositioning.updateBlockView(block);
         } catch (ScicosFormatException e) {
-            LogFactory.getLog(CodeGenerationAction.class).error(e);
+            Logger.getLogger(CodeGenerationAction.class.getName()).severe(e.toString());
         }
     }
 }

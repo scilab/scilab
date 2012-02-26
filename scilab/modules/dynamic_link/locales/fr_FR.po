@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-08 10:30+0000\n"
+"PO-Revision-Date: 2012-01-11 14:49+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: fr\n"
 
 #, c-format
@@ -201,6 +201,12 @@ msgstr "Édition de liens %s.\n"
 
 msgid "Dynamic link"
 msgstr "Lien dynamique"
+
+msgid "Call a C function"
+msgstr "Appeler une fonction C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Appeler une sous-routine Fortran"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -459,6 +465,10 @@ msgstr "%s : Erreur à l'exécution de %s.\n"
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 "%s : Cette fonction requiert le compilateur C Microsoft visual studio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

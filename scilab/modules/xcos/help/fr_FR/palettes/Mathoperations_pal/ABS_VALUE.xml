@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
- * Copyright (C) INRIA\
- *\
- * This file must be used under the terms of the CeCILL.\
- * This source file is licensed as described in the file COPYING, which\
- * you should have received as part of this distribution.  The terms\
- * are also available at\
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
- *\
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-          version="5.0-subset Scilab"
-          xml:id="ABS_VALUE"
-          xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ABS_VALUE" xml:lang="fr_FR">
   <refnamediv>
     <refname>ABS_VALUE</refname>
     <refpurpose>Valeur absolue</refpurpose>
@@ -65,17 +57,17 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_ABS_VALUE">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_ABS_VALUE">Fonction d'interfaçage</xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Computationalfunction_ABS_VALUE">Fonction de calcul</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_ABS_VALUE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -94,7 +86,6 @@
   </refsection>
   <refsection id="Description_ABS_VALUE">
     <title>Description</title>
-
     <para>
       Le bloc calcule la valeur absolue des éléments de son vecteur d'entrée.
     </para>
@@ -109,8 +100,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -125,16 +116,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -153,19 +152,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -174,6 +183,16 @@
         </para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_ABS_VALUE">
+    <title>Exemple</title>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/mathoperations_pal/ABS_VALUE_Example.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Interfacingfunction_ABS_VALUE">
     <title>Fonction d'interfaçage</title>
@@ -190,9 +209,5 @@
         <para> SCI/modules/scicos_blocks/src/c/absolute_value.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_ABS_VALUE">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

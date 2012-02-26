@@ -128,12 +128,11 @@ double *getDoubleComplexImg(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putDoubleComplex(char *variableName, double *variable, int nbRow, int nbCol)
+int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol, double * imag, int nbRowI, int nbColI)
 {
     SciErr sciErr;
-    double *variableImg = variable + ((nbRow) * (nbCol));
 
-    sciErr = createNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, variable, variableImg);
+    sciErr = createNamedComplexMatrixOfDouble(pvApiCtx, variableName, nbRow, nbCol, variable, imag);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -573,6 +572,72 @@ int putString(char *variableName, char **variable, int nbRow, int nbCol)
     }
     return 0;
 }
+
+int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL, double * imag, int imagL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedComplexSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data, imag);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedBooleanSparseMatrix(pvApiCtx, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedMatrixOfPoly(pvApiCtx, variableName, polyVarName, nbRow, nbCol, nbCoef, data);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedComplexMatrixOfPoly(pvApiCtx, variableName, polyVarName, nbRow, nbCol, nbCoef, data, imag);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
 
 BOOL isExistingVariable(char *variableName)
 {

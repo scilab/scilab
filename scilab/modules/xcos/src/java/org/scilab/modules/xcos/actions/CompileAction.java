@@ -13,21 +13,22 @@
 
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.swing.SwingWorker;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -46,7 +47,7 @@ public class CompileAction extends SimulationNotRunningAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      */
@@ -56,7 +57,7 @@ public class CompileAction extends SimulationNotRunningAction {
 
     /**
      * Create associated menu
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      * @return the menu
@@ -72,13 +73,21 @@ public class CompileAction extends SimulationNotRunningAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+
         ((XcosDiagram) getGraph(null)).info(XcosMessages.EXPORT_IN_PROGRESS);
 
         final String temp;
         try {
             temp = FileUtils.createTempFile();
         } catch (IOException e1) {
-            LogFactory.getLog(CompileAction.class).error(e1);
+            Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
             return;
         }
 
@@ -86,34 +95,30 @@ public class CompileAction extends SimulationNotRunningAction {
 
             @Override
             protected Void doInBackground() throws Exception {
-                ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
+                new ScilabDirectHandler().writeDiagram(((XcosDiagram) getGraph(null)));
                 ((XcosDiagram) getGraph(null)).setReadOnly(true);
                 return null;
             }
 
             @Override
             protected void done() {
-                ((XcosDiagram) getGraph(null))
-                        .info(XcosMessages.COMPILATION_IN_PROGRESS);
+                ((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
 
-                String cmd = buildCall("import_from_hdf5", temp)
-                        + "cpr = xcos_compile(scs_m);";
+                String cmd = "cpr = xcos_compile(scs_m);";
 
                 final ActionListener action = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         delete(temp);
                         ((XcosDiagram) getGraph(null)).setReadOnly(false);
-                        ((XcosDiagram) getGraph(null))
-                                .info(XcosMessages.EMPTY_INFO);
+                        ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
                     }
                 };
 
                 try {
-                    ScilabInterpreterManagement.asynchronousScilabExec(action,
-                            cmd);
+                    ScilabInterpreterManagement.asynchronousScilabExec(action, cmd);
                 } catch (InterpreterException e) {
-                    LogFactory.getLog(CompileAction.class).error(e);
+                    Logger.getLogger(CompileAction.class.getName()).severe(e.toString());
                 }
             }
 

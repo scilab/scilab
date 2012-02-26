@@ -43,15 +43,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
-    "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
-    signifie pixel vers réel.
-    <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
-    définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
-  </para>
-    <para><literal>rect</literal> sont les coordonnées en pixels
-    du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
-  </para>
+      Après l'appel à une fonction graphique de haut niveau, <literal>xchange</literal> calcule des coordonnées en pixels à partir des coordonnées "réelles" à l'échelle du dessin courant, et inversement, suivant la valeur du paramètre <literal>dir</literal> :
+      "f2i" (float to int) signifie réel vers pixel et "i2f" (int to float)
+      signifie pixel vers réel.
+      <literal>x1</literal> et <literal>y1</literal> sont les nouvelles coordonnées de l'ensemble de points 
+      définis par les anciennes coordonnées <literal>x</literal> et <literal>y</literal>.
+    </para>
+    <para>
+      <literal>rect</literal> sont les coordonnées en pixels
+      du rectangle du cadre courant : [point en haut à gauche, largeur, hauteur].
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -61,9 +62,5 @@ plot2d(t,sin(t))
 [x,y,rect]=xchange(1,1,"f2i")
 [x,y,rect]=xchange(0,0,"i2f")
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

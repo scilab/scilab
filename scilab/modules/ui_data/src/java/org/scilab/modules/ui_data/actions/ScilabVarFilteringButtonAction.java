@@ -14,15 +14,13 @@ package org.scilab.modules.ui_data.actions;
 
 import javax.swing.ImageIcon;
 
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.ui_data.utils.UiDataMessages;
-import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
-
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
 public class ScilabVarFilteringButtonAction extends CallBack {
 	/** Name of the action */
@@ -40,6 +38,7 @@ public class ScilabVarFilteringButtonAction extends CallBack {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void callBack() {
         ScilabVariableBrowser.getVariableBrowser().updateRowFiltering();
     }
@@ -54,7 +53,7 @@ public class ScilabVarFilteringButtonAction extends CallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new ScilabVarFilteringButtonAction(title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/16x16/actions/edit-clear.png");
+        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-clear"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

@@ -43,11 +43,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	Levinsonのアルゴリズムにより
-    Yule-Walker方程式を解きます</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      Levinsonのアルゴリズムにより
+      Yule-Walker方程式を解きます
+    </para>
   </refsection>
 </refentry>

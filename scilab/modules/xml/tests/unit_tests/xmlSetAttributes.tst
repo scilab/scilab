@@ -36,8 +36,8 @@ xmlSetAttributes(doc.root.children(2).attributes, ["truc" "machin"]);
 doc2 = xmlReadStr("<root><a hello=""world"" bonjour=""monde"" foo=""bar"" bar=""foo2""><b><c hello=""world"" bonjour=""monde""></c></b></a><b bar=""foo2"" truc=""machin""></b></root>");
 assert_checkequal(xmlDump(doc),xmlDump(doc2));
 
-xmlClose(doc);
-xmlClose(doc2);
+xmlDelete(doc);
+xmlDelete(doc2);
 
 
 doc = xmlReadStr("<root><a><b><c></c></b></a><b></b></root>");

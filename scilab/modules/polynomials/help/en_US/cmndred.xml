@@ -35,17 +35,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[n,d]=cmndred(num,den)</literal> computes a polynomial matrix
-    <literal>n</literal> and a common denominator polynomial <literal>d</literal>
-    such that:</para>
+    <para>
+      <literal>[n,d]=cmndred(num,den)</literal> computes a polynomial matrix
+      <literal>n</literal> and a common denominator polynomial <literal>d</literal>
+      such that:
+    </para>
     <para>
       <literal>n/d=num./den</literal>
     </para>
     <para>
-    The rational matrix defined by <literal>num./den</literal> is <literal>n/d</literal></para>
+      The rational matrix defined by <literal>num./den</literal> is <literal>n/d</literal>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="simp">simp</link>

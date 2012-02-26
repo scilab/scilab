@@ -11,7 +11,6 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -48,6 +47,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -55,6 +55,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -68,6 +69,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -75,6 +77,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
 			return 0;
 		}
 
@@ -98,6 +101,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -105,6 +109,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -115,6 +120,12 @@ int sci_basename(char *fname,unsigned long fname_len)
 		}
 
 		sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
 		if ( (m2 != n2) && (n2 != 1) ) 
 		{
@@ -126,6 +137,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
 			return 0;
 		}
 
@@ -136,6 +148,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -143,6 +156,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -152,6 +166,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -161,6 +176,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 
@@ -180,6 +196,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -197,6 +214,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -227,6 +245,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 			freeArrayOfWideString(pStVarOne, m1 * n1);
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -248,6 +267,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
 			return 0;
 		}
 

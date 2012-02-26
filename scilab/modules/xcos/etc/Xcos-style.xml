@@ -218,7 +218,7 @@
   </add>
   <add as="CLSS_f" extend="CLSS"/>
   <add as="CLR" extend="blockWithLabel">
-    <add as="displayedLabel" value="num(s)&lt;BR&gt;         &lt;hr&gt;         den(s)"/>
+    <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
   </add>
   <add as="CLR_f" extend="CLR"/>
   <add as="TIME_DELAY" extend="blockWithLabel">

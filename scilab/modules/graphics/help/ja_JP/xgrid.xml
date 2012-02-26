@@ -35,10 +35,12 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xgrid</literal> は2次元プロットにグリッドを追加します.
-     グリッド表示を行う場合,
+    <para>
+      <literal>xgrid</literal> は2次元プロットにグリッドを追加します.
+      グリッド表示を行う場合,
       <literal>style</literal> はダッシュIDまたはカラーIDとします.
-      IDの意味を知るには<literal>xset()</literal>を使用してください.</para>
+      IDの意味を知るには<literal>xset()</literal>を使用してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -58,9 +60,5 @@ xgrid(2)
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

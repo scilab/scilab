@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: it\n"
 
 #, c-format
@@ -240,14 +240,6 @@ msgstr ""
 "sostituzione di '%s' con '%s'"
 
 #, c-format
-msgid ""
-"Cannot interpret option \"%s\"\n"
-"%s\n"
-msgstr ""
-"Non è possibile interpretare l'opzione \"%s\"\n"
-"%s\n"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Decodifica in corso nomefile=%s"
 
@@ -255,31 +247,15 @@ msgstr "Decodifica in corso nomefile=%s"
 msgid "ripOLE requires an input file to decode.\n"
 msgstr "ripOLE richiede un file in ingresso da decodificare.\n"
 
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: non è possibile allocare della memoria per l'oggetto OLE."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Non è possibile trovare il file in ingresso '%s'"
-
-#, c-format
-msgid "File '%s' is not OLE2 format"
-msgstr "Il file '%s' non è in formato OLE2"
-
-#, c-format
-msgid "OLE input file '%s' is insane"
-msgstr "Il file OLE '%s' in ingresso è insensato"
-
-#, c-format
-msgid "ripOLE: decoding of %s resulted in error %d\n"
-msgstr "ripOLE: la decodifica di %s ha portato all'errore %d\n"
-
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: la decodifica di %s ha portato all'errore %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Il modulo speadsheet di Scilab non è installato.\n"
+
+msgid "Spreadsheet"
+msgstr ""
 
 msgid "Read a xls file"
 msgstr ""

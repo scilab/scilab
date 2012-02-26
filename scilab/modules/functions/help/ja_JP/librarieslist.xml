@@ -25,12 +25,14 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>s</literal>にある
-	Scilabスタックの全てのライブラリを返します.
-	return in <literal>s</literal> all libraries on scilab stack.</para>
+      <literal>s</literal>にある
+      Scilabスタックの全てのライブラリを返します.
+      return in <literal>s</literal> all libraries on scilab stack.
+    </para>
     <para>
-	ライブラリは最後にロードされたものから最初にロードされたものに
-	向かってスキャンされます.</para>
+      ライブラリは最後にロードされたものから最初にロードされたものに
+      向かってスキャンされます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

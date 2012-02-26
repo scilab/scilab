@@ -13,15 +13,12 @@
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
 #include "api_internal_double.h"
 #include "localization.h"
 
-
 #include "call_scilab.h"
-#include "stack-c.h"
 
 /*******************************/
 /*   double matrix functions   */

@@ -35,10 +35,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>winlist()</literal> Return the winId of current window created by sciGUI.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
+    <para>
+      <literal>winlist()</literal> Return the winId of current window created by sciGUI.
+    </para>
   </refsection>
 </refentry>

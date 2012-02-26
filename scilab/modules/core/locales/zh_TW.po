@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 10:13+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-02-04 01:52+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -36,21 +36,16 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr "%s：第 %d 個輸入參數形式錯誤： 應為整數值。\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 無法讀取第 #%d 個參數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 第 #%d 個輸入參數值錯誤: 應該是一個整數值.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s：第 %d 個輸入參數形式錯誤： 應為整數值。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應大於 0.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -59,84 +54,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: 輸入參數型態錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是整數．\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 輸入參數值錯誤：應該是 '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 的輸入參數值錯誤: 應該是 int 整數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 必須是在 [%d, %d] 的範圍區間內.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s: 第 %d 的輸入參數型態錯誤: 應該是字串或是純量.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: 第 %d 輸入參數值錯誤: 應該是 '0' 或 '1' 的數值.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
-
-#, c-format
-msgid "%s: Wrong size for inputs arguments.\n"
-msgstr "%s: 輸入參數的資料型態大小錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong type for inputs arguments.\n"
-msgstr "%s: 輸入參數的資料型態錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
-
-#
-# File: macros/add_demo.sci, line: 4
-# File: sci_gateway/c/sci_getmd5.c, line: 56
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Memory 分配有誤.\n"
-
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
-msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
-
-#, c-format
-msgid "Warning: Problems with %s.\n"
-msgstr "警告: %s 的問題.\n"
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -187,8 +104,79 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體不夠.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數的長度錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應大於 0.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是整數．\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數的數值錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數的型別錯誤: 應該是字串或是純整數值.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 應該是 '0' 或 '1' 的數值.\n"
+
+#, c-format
+msgid "%s: Wrong type for inputs arguments.\n"
+msgstr "%s: 輸入參數的資料型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
+
+#
+# File: macros/add_demo.sci, line: 4
+# File: sci_gateway/c/sci_getmd5.c, line: 56
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
+msgstr "%s: 參數 %d 或 %d 型態錯誤 :應為字串.\n"
+
+#, c-format
+msgid "Warning: Problems with %s.\n"
+msgstr "警告: %s 的問題.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -242,8 +230,16 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是布林值.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 
 #
 # File: sci_gateway/c/sci_newfun.c, line: 51
@@ -267,6 +263,29 @@ msgstr "%s: 無法讀取 %s gateway.\n"
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s: 模組名稱不正確 : %s.\n"
+
+#, c-format
+msgid ""
+"%s: Cannot allocate memory.\n"
+"%s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot allocate this quantity of memory.\n"
+msgstr "%s: 無法配置足夠的記憶體空間.\n"
+
+#, c-format
+msgid "%s: The requested size is smaller than the minimal one.\n"
+msgstr "%s: 要求的空間大小少於最低值.\n"
+
+#, c-format
+msgid ""
+"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: 未知錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -352,11 +371,14 @@ msgstr "嚴重錯誤: 無法產生 Scilab 函數表.\n"
 msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "錯誤: 無法定義環境變數 %s.\n"
 
+msgid "Scilab Enterprises\n"
+msgstr ""
+
 msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab 協會 (DIGITEO)\n"
 
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2011 (INRIA)\n"
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr "版權 1989-2012 (INRIA)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "版權 (c) 1989-2007 (ENPC)\n"
@@ -751,8 +773,8 @@ msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為多項式矩陣 (Polynomial matrix).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為多邊形.\n"
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s: 第 %d 個參數的資料型別錯誤: 應該是一多項式.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
@@ -1204,6 +1226,14 @@ msgstr "移除 (Unqueuing) %s - 無選項.\n"
 msgid "Unqueuing %s - seq.\n"
 msgstr "移除 (Unqueuing) %s - seq(選項).\n"
 
+#, c-format
+msgid ""
+"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"\n"
+msgstr ""
+"請安裝 texmacs ATOMS 模組: 執行 automsinstall('texmacs')\n"
+"\n"
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "找不到 Windows 的暫存目錄 (1)."
 
@@ -1250,9 +1280,11 @@ msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
+"無有效的控制台 !\n"
+"請使用 STD(標準)模式."
 
 msgid "Empty tab"
-msgstr ""
+msgstr "空白標籤"
 
 msgid "Scilab Console"
 msgstr "Scilab終端機"
@@ -1398,7 +1430,7 @@ msgstr "使用者自訂變數"
 
 #, c-format
 msgid "Using %s elements out of %s"
-msgstr ""
+msgstr "使用 %s 元素的 %s"
 
 msgid " by "
 msgstr " 由 "

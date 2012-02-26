@@ -21,11 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -39,16 +35,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Dialog associated with the {@link SetContextAction}.
- * 
+ *
  * Note that this dialog break the Data Abstraction Coupling metric because of
  * the numbers of graphical components involved in the GUI creation. For the
  * same reason (GUI class), constants are not used on this code.
@@ -66,7 +62,7 @@ public class SetContextDialog extends JDialog {
 
     /**
      * Default constructor
-     * 
+     *
      * @param parent
      *            the parent component
      * @param parameters
@@ -92,21 +88,16 @@ public class SetContextDialog extends JDialog {
      */
     private void initComponents() {
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
+        contextArea = new JTextArea();
 
         /*
          * Construct a text from a String array context
          */
-        StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0; i < parameters.getContext().length; i++) {
-            contextBuilder.append(parameters.getContext()[i]);
-            // The '\n' is used on JTextArea for new lines.
-            contextBuilder.append(SHARED_NEW_LINE);
+        for (String s : parameters.getContext()) {
+            contextArea.append(s + SHARED_NEW_LINE);
         }
 
-        contextArea = new JTextArea(contextBuilder.toString());
-
-        JScrollPane contextAreaScroll = new JScrollPane(contextArea,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane contextAreaScroll = new JScrollPane(contextArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
@@ -155,7 +146,7 @@ public class SetContextDialog extends JDialog {
 
     /**
      * Install the action listener on the buttons
-     * 
+     *
      * @param cancelButton
      *            the cancel button
      * @param okButton
@@ -180,46 +171,19 @@ public class SetContextDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<String> contextList = new ArrayList<String>();
-                int i = 0;
                 try {
-                    StringReader stringReader = new StringReader(contextArea
-                            .getText());
-                    BufferedReader bufferReader = new BufferedReader(
-                            stringReader);
-                    String nextLine = "";
-
-                    while ((nextLine = bufferReader.readLine()) != null) {
-                        contextList.add(nextLine);
-                        i++;
-                    }
-
-                    if (i == 0) {
-                        contextList.add("");
-                    }
-
-                    String[] context = contextList.toArray(new String[i]);
+                    final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
                     parameters.setContext(context);
 
-                    // Execute the context to alert the user against wrong
-                    // settings
-                    String ctx = contextArea.getText();
-                    if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
-                        // We need to remove some blanks and convert to a one
-                        // line expression
-                        // The '\n' is used on JTextArea for new lines.
-                        ScilabInterpreterManagement
-                                .putCommandInScilabQueue(ctx.trim().replaceAll(
-                                        SHARED_NEW_LINE, "; ")
-                                        + ";");
-                    }
+                    /*
+                     * Validate the context
+                     */
+                    new ScilabDirectHandler().writeContext(context);
+                    ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
 
                     dispose();
-
-                } catch (IOException e1) {
-                    LogFactory.getLog(SetContextAction.class).error(e1);
                 } catch (PropertyVetoException e2) {
-                    LogFactory.getLog(SetContextAction.class).error(e2);
+                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
                 }
             }
         });

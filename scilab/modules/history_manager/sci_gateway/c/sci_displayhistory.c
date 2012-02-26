@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
 int sci_displayhistory(char *fname,unsigned long fname_len)

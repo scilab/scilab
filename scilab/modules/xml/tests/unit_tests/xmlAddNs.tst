@@ -34,4 +34,4 @@ assert_checktrue(tmp.href=="http://gro.balics.www");
 assert_checktrue(grep(xmlDump(doc),"http://www.scilab.")<>[])
 assert_checktrue(grep(xmlDump(doc),"http://gro.ba")<>[])
 
-xmlClose(doc);
+xmlDelete(doc);

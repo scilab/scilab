@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,32 +11,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-
-<refentry 
-          version="5.0-subset Scilab" 
-          xml:id="factorial" 
-          xml:lang="ja"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="factorial" xml:lang="ja">
   <refnamediv>
     <refname>factorial</refname>
     <refpurpose>階乗関数</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>
       f = factorial ( n )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>パラメータ</title>
     <variablelist>
@@ -55,21 +40,18 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>説明</title>
     <para>
       nの階乗,つまり,整数 1 * 2 * ... * nの積を返します.
     </para>
     <para>
-      この関数は n > 170 となるとオーバーフローします.
+      この関数は n &gt; 170 となるとオーバーフローします.
     </para>
   </refsection>
-
   <refsection>
     <title>例</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // Make a table of factorial
 n = (0:30)';
 [n factorial(n)]
@@ -84,20 +66,12 @@ plot ( 1:170 , factorial , "b-o" )
 h = gcf();
 h.children.log_flags="nln";
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
-      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
-    </simplelist>
-  </refsection>
-
   <refsection>
     <title>参考文献</title>
-    <para>"Introduction to discrete probabilities", Michael Baudin, 2010</para>
+    <para>
+      <ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin
+    </para>
   </refsection>
 </refentry>

@@ -28,7 +28,9 @@
       <varlistentry>
         <term>hand</term>
         <listitem>
-          <para>handle, output of <literal>lufact</literal></para>
+          <para>
+            handle, output of <literal>lufact</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +42,9 @@
       <varlistentry>
         <term>L</term>
         <listitem>
-          <para>sparse matrix, lower triangular if <literal>hand</literal> is obtained from a  non singular matrix</para>
+          <para>
+            sparse matrix, lower triangular if <literal>hand</literal> is obtained from a  non singular matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,17 +63,21 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[P,L,U,Q]=luget(hand)</literal> with <literal>hand</literal> obtained by
-    the command <literal>[hand,rk]=lufact(A)</literal> with <literal>A</literal> a sparse matrix
-    returns four sparse matrices such that <literal>P*L*U*Q=A</literal>.</para>
     <para>
-    The A matrix needs not be full rank but must be square 
-    (since A is assumed sparse one may add zeros if necessary to squaring
-    down A).</para>
+      <literal>[P,L,U,Q]=luget(hand)</literal> with <literal>hand</literal> obtained by
+      the command <literal>[hand,rk]=lufact(A)</literal> with <literal>A</literal> a sparse matrix
+      returns four sparse matrices such that <literal>P*L*U*Q=A</literal>.
+    </para>
     <para>
-    If <literal>A</literal> is singular, the <literal>L</literal> matrix is column compressed (with
-    <literal>rk</literal> independent nonzero columns):  the nonsingular sparse 
-    matrix <literal>Q'*inv(U)</literal> column compresses <literal>A</literal>.</para>
+      The A matrix needs not be full rank but must be square 
+      (since A is assumed sparse one may add zeros if necessary to squaring
+      down A).
+    </para>
+    <para>
+      If <literal>A</literal> is singular, the <literal>L</literal> matrix is column compressed (with
+      <literal>rk</literal> independent nonzero columns):  the nonsingular sparse 
+      matrix <literal>Q'*inv(U)</literal> column compresses <literal>A</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -82,7 +90,7 @@ ludel(hand)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

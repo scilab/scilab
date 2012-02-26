@@ -25,7 +25,6 @@
 #include <string.h>
 #include "gw_scicos.h"
 #include "stack-c.h"
-#include "api_common.h"
 #include "callFunctionFromGateway.h"
 
 

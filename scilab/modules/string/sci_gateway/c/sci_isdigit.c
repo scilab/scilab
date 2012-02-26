@@ -15,7 +15,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -35,6 +34,7 @@ int sci_isdigit(char *fname,unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -77,6 +77,7 @@ int sci_isdigit(char *fname,unsigned long fname_len)
                 if(sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
             }

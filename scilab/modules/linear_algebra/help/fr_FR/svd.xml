@@ -21,10 +21,11 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>s=svd(X)
-[U,S,V]=svd(X)
-[U,S,V]=svd(X,0) (obsolete)
-[U,S,V]=svd(X,"e")
-[U,S,V,rk]=svd(X [,tol])</synopsis>
+      [U,S,V]=svd(X)
+      [U,S,V]=svd(X,0) (obsolete)
+      [U,S,V]=svd(X,"e")
+      [U,S,V,rk]=svd(X [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -33,42 +34,43 @@
         <term>X  </term>
         <listitem>
           <para>matrice réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>s  </term>
         <listitem>
           <para>vecteur réel (valeurs singulières)
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>S  </term>
         <listitem>
           <para>matrice réelle diagonale (valeurs singulières sur la diagonale)
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U,V  </term>
         <listitem>
           <para>matrices carrées unitaires (vecteurs singuliers).
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
           <para>nombre réel positif
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[U,S,V]=svd(X)</literal> renvoie une matrice diagonale <literal>S</literal>, de même
+    <para>
+      <literal>[U,S,V]=svd(X)</literal> renvoie une matrice diagonale <literal>S</literal>, de même
       dimension que <literal>X</literal> avec des éléments diagonaux positifs classés
       par ordre décroissant, ainsi que deux matrices unitaires <literal>U</literal>
       et <literal>V</literal> telles que 
@@ -78,10 +80,12 @@
       seulement les n premières colonnes de <literal>U</literal> sont
       calculées et <literal>S</literal> est <literal>n x n </literal>.
     </para>
-    <para><literal>s=svd(X)</literal> renvoie un vecteur <literal>s</literal> contenant
+    <para>
+      <literal>s=svd(X)</literal> renvoie un vecteur <literal>s</literal> contenant
       les valeurs singulières.
     </para>
-    <para><literal>[U,S,V,rk]=svd(X [,tol])</literal> renvoie de plus
+    <para>
+      <literal>[U,S,V,rk]=svd(X [,tol])</literal> renvoie de plus
       <literal>rk</literal>, le rang "numérique" de <literal>X</literal>
       c'est à dire le nombre de valeurs singulières plus grandes
       que <literal>tol</literal>.
@@ -99,7 +103,7 @@ sqrt(spec(X*X'))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rank">rank</link>
@@ -124,8 +128,8 @@ sqrt(spec(X*X'))
   <refsection>
     <title>Fonctions Utilisées</title>
     <para>
-    la décomposition svd est basée sur les routines  DGESVD pour les
-    matrices réelles et  ZGESVD pour le cas complexe.
+      la décomposition svd est basée sur les routines  DGESVD pour les
+      matrices réelles et  ZGESVD pour le cas complexe.
     </para>
   </refsection>
 </refentry>

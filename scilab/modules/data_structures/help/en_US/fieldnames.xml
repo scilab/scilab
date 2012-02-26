@@ -51,20 +51,20 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
-fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
-fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
-fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
-obj.x = 3;
-obj.y = 3;
-fieldnames(obj)
+      fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
+      fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
+      fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
+      obj.x = 3;
+      obj.y = 3;
+      fieldnames(obj)
     </programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>
-      </member>  
+      </member>
       <member>
         <link linkend="getfield">getfield</link>
       </member>

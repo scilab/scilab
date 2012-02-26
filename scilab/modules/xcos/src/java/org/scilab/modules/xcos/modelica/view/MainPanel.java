@@ -58,7 +58,7 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
 // CSOFF: FanOutComplexity
 // CSOFF: DataAbstractionCoupling
 public final class MainPanel extends JPanel {
-    private static final int[] EXTENDED_STATUS_LAYOUT_DATA = new int[] { 2, 4 };
+    private static final int[] EXTENDED_STATUS_LAYOUT_DATA = new int[] { 2, 6 };
 
     private final ModelicaController controller;
 
@@ -70,7 +70,8 @@ public final class MainPanel extends JPanel {
     private TerminalTableModel tableModel;
     private javax.swing.JTree tree;
     private LabelWithValue equation;
-    private LabelWithValue input;
+    private LabelWithValue inputs;
+    private LabelWithValue outputs;
     private LabelWithValue unknowns;
     private LabelWithValue reduced;
     private LabelWithValue diffSt;
@@ -78,7 +79,7 @@ public final class MainPanel extends JPanel {
     private LabelWithValue relaxedParams;
     private LabelWithValue fixedVars;
     private LabelWithValue relaxedVars;
-    private LabelWithValue discrete;
+    private LabelWithValue discretes;
     private javax.swing.JCheckBox embeddedParametersButton;
     private javax.swing.JCheckBox generateJacobianButton;
     private javax.swing.JButton solveButton;
@@ -207,9 +208,8 @@ public final class MainPanel extends JPanel {
         solver.setText(ModelicaMessages.SOLVER + " :");
         control.add(solver);
 
-        solverComboBox
-                .setModel(new javax.swing.DefaultComboBoxModel(
-                        ModelicaController.ComputationMethod.values()));
+        solverComboBox.setModel(new javax.swing.DefaultComboBoxModel(
+                ModelicaController.ComputationMethod.values()));
         solverComboBox
                 .setToolTipText(ModelicaMessages.INITIAL_COMPUTING_METHOD);
 
@@ -220,7 +220,6 @@ public final class MainPanel extends JPanel {
                 .setToolTipText(ModelicaMessages.PARAMETER_EMBEDDING_EXPLAINED);
         control.add(embeddedParametersButton);
         generateJacobianButton.setText(ModelicaMessages.GENERATE_JACOBIAN);
-        generateJacobianButton.setEnabled(false);
         control.add(generateJacobianButton);
         solveButton.setAction(new SolveAction(controller));
         control.add(solveButton);
@@ -241,10 +240,12 @@ public final class MainPanel extends JPanel {
         extendedStatus.add(fixedVars);
         relaxedVars.setTitle(ModelicaMessages.RELAXED_VARIABLES);
         extendedStatus.add(relaxedVars);
-        discrete.setTitle(ModelicaMessages.DISCRETE);
-        extendedStatus.add(discrete);
-        input.setTitle(ModelicaMessages.INPUT);
-        extendedStatus.add(input);
+        discretes.setTitle(ModelicaMessages.DISCRETES);
+        extendedStatus.add(discretes);
+        inputs.setTitle(ModelicaMessages.INPUTS);
+        extendedStatus.add(inputs);
+        outputs.setTitle(ModelicaMessages.OUTPUTS);
+        extendedStatus.add(outputs);
     }
 
     /**
@@ -307,8 +308,9 @@ public final class MainPanel extends JPanel {
         relaxedParams = new LabelWithValue();
         fixedVars = new LabelWithValue();
         relaxedVars = new LabelWithValue();
-        discrete = new LabelWithValue();
-        input = new LabelWithValue();
+        discretes = new LabelWithValue();
+        inputs = new LabelWithValue();
+        outputs = new LabelWithValue();
         splitPanel = new javax.swing.JSplitPane();
         treeScrollPane = new javax.swing.JScrollPane();
         tree = new javax.swing.JTree();
@@ -340,19 +342,6 @@ public final class MainPanel extends JPanel {
         });
 
         /*
-         * On validity change, update the icon
-         */
-        controller.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // Update the error status
-                final boolean isNotSquare = !((ModelicaController) e
-                        .getSource()).isSquare();
-                solveButton.setEnabled(!isNotSquare);
-            }
-        });
-
-        /*
          * On Statistics update, update the labels
          */
         final ModelStatistics statistics = controller.getStatistics();
@@ -368,10 +357,11 @@ public final class MainPanel extends JPanel {
                 fixedParams.setText(Long.toString(stats.getFixedParameters()));
                 relaxedParams.setText(Long.toString(stats
                         .getRelaxedParameters()));
-                discrete.setText(Long.toString(stats.getDiscreteStates()));
+                discretes.setText(Long.toString(stats.getDiscreteStates()));
                 relaxedVars.setText(Long.toString(stats.getRelaxedVariables()));
                 fixedVars.setText(Long.toString(stats.getFixedVariables()));
-                input.setText(Long.toString(stats.getInputs()));
+                inputs.setText(Long.toString(stats.getInputs()));
+                outputs.setText(Long.toString(stats.getInputs()));
             }
         });
 

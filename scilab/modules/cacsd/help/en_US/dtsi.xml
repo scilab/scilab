@@ -34,7 +34,7 @@
       <varlistentry>
         <term>Ga</term>
         <listitem>
-           <para>a continuous time linear system antistable and strictly proper.</para>
+          <para>a continuous time linear system antistable and strictly proper.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,7 +52,9 @@
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal></para>
+          <para>
+            optional parameter for detecting stables poles. Default value: <literal>100*%eps</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,9 +62,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the stable-antistable decomposition of <literal>G</literal>:</para>
-    <para><literal>G = Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal></para>
-    <para><literal>G</literal> can be given in state-space form or in transfer form.</para>
+      returns the stable-antistable decomposition of <literal>G</literal>:
+    </para>
+    <para>
+      <literal>G= Ga + Gs + Gi</literal>,  <literal>(Gi = G(oo))</literal>
+    </para>
+    <para>
+      <literal>G</literal> can be given in state-space form or in transfer form.
+    </para>
     <para>
       <literal>Ga</literal> and <literal>Gs</literal> are returned in the same
       representation (transfer function or state-space) than
@@ -70,7 +77,7 @@
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

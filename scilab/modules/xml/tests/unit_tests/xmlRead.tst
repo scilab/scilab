@@ -11,9 +11,10 @@ xmlFile=xmlRead(SCI+"/etc/modules.xml");
 content=xmlDump(xmlFile);
 assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[20,1]);
-xmlClose(xmlFile);
-// Close the file a second time
-assert_checkerror("xmlClose(xmlFile)","xmlClose: XML document does not exist.");
+xmlDelete(xmlFile);
+// Delete the file a second time
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
@@ -25,10 +26,11 @@ assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[20,1]);
 assert_checktrue(length(content2)>0);
 assert_checktrue(size(content2)>=[20,1]);
-xmlClose(xmlFile);
-xmlClose(xmlFile2);
-// Close the file a second time
-assert_checkerror("xmlClose(xmlFile)","xmlClose: XML document does not exist.");
+xmlDelete(xmlFile);
+xmlDelete(xmlFile2);
+// Delete the file a second time
+msgerr = msprintf(gettext("%s: XML document does not exist.\n"), "xmlDelete");
+assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 // Work with the structure
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
@@ -46,4 +48,4 @@ for (i=1:length(elements))
     assert_checkequal(length(xmlFile.root.children(i).attributes),0);
   end
 end
-xmlClose(xmlFile);
+xmlDelete(xmlFile);

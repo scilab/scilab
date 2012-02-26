@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -43,7 +43,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>When a XML stream has been closed all the attached objects are destroyed, but on the Scilab side the objects are still alive. So this function is useful to know if an object on the Scilab side is valid or not.</para>
+    <para>When a XML document has been deleted all the attached objects are destroyed, but on the Scilab side the objects are still alive. So this function is useful to know if an object on the Scilab side is valid or not.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,8 +53,8 @@
     // must return %T
     xmlIsValidObject(r)
 
-    // We close the doc
-    xmlClose(doc);
+    // We delete the doc
+    xmlDelete(doc);
 
     // must return [%F %F]
     xmlIsValidObject(["doc" "r"])
@@ -67,13 +67,9 @@
         <link linkend="XMLObjects">XML Objects</link>
       </member>
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlDelete">xmlDelete</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
   </refsection>
   <refsection>
     <title>History</title>

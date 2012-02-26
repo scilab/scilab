@@ -104,7 +104,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidloadjstringjava_lang_StringID=NULL;
+voidloadjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 
 
 }
@@ -127,7 +127,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidloadjstringjava_lang_StringID=NULL;
+        voidloadjstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 
 
 }
@@ -147,26 +147,34 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "Modelica");
 }
 // Method(s)
 
-void Modelica::load (JavaVM * jvm_, char * fileName){
+void Modelica::load (JavaVM * jvm_, char * init, char * relation){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidloadjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "load", "(Ljava/lang/String;)V" ) ;
-if (voidloadjstringjava_lang_StringID == NULL) {
+jmethodID voidloadjstringjava_lang_Stringjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "load", "(Ljava/lang/String;Ljava/lang/String;)V" ) ;
+if (voidloadjstringjava_lang_Stringjstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "load");
 }
 
-jstring fileName_ = curEnv->NewStringUTF( fileName );
-if (fileName != NULL && fileName_ == NULL)
+jstring init_ = curEnv->NewStringUTF( init );
+if (init != NULL && init_ == NULL)
 {
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidloadjstringjava_lang_StringID ,fileName_);
-                        curEnv->DeleteLocalRef(fileName_);
+jstring relation_ = curEnv->NewStringUTF( relation );
+if (relation != NULL && relation_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidloadjstringjava_lang_Stringjstringjava_lang_StringID ,init_, relation_);
+                        curEnv->DeleteLocalRef(init_);
+curEnv->DeleteLocalRef(relation_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

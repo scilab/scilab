@@ -35,7 +35,9 @@
       <varlistentry>
         <term>Hz</term>
         <listitem>
-          <para>フィルタ <literal>B(z)/A(z)</literal></para>
+          <para>
+            フィルタ <literal>B(z)/A(z)</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,8 +45,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    Hz = yulewalk(N,frq,mag) は N次IIRフィルタを見つけます.</para>
-    <programlisting role = ""><![CDATA[ 
+      Hz = yulewalk(N,frq,mag) は N次IIRフィルタを見つけます.
+    </para>
+    <programlisting role=""><![CDATA[ 
                   n-1         n-2            
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
@@ -52,12 +55,13 @@ H(z)= ---- = ---------------------------------
       A(z)    z   + a(2)z    + .... + a(n)
  ]]></programlisting>
     <para>
-	は,ベクトルfrqおよびmagで指定された周波数応答に振幅が
-	一致します.
-	周波数frqは 0.0および1.0の間とする必要があり,
-	1.0はサンプルレートの半分に対応します.
-	これらは昇順で, 0.0 から始まり, 1.0で終わる筆王が
-	あります.</para>
+      は,ベクトルfrqおよびmagで指定された周波数応答に振幅が
+      一致します.
+      周波数frqは 0.0および1.0の間とする必要があり,
+      1.0はサンプルレートの半分に対応します.
+      これらは昇順で, 0.0 から始まり, 1.0で終わる筆王が
+      あります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

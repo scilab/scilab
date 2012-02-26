@@ -10,8 +10,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	特殊な記号に関するヘルプを取得するために
-	以下の名前を使用してください.</para>
+      特殊な記号に関するヘルプを取得するために
+      以下の名前を使用してください.
+    </para>
     <informaltable border="1">
       <tr>
         <td> 演算子</td>
@@ -114,13 +115,21 @@
   <refsection>
     <title>注意</title>
     <para>歴史的な理由により, 異なる記号が同じ演算子を表す場合があります:</para>
-    <para> <literal>{</literal> は <literal>[</literal>と同じ意味です</para>
-    <para> <literal>}</literal> は <literal>]</literal>と同じ意味です</para>
-    <para> <literal>@</literal> は <literal>~</literal>と同じ意味です</para>
-    <para> <literal>`</literal> は &lt; と同じ意味です</para>
+    <para>
+      <literal>{</literal> は <literal>[</literal>と同じ意味です
+    </para>
+    <para>
+      <literal>}</literal> は <literal>]</literal>と同じ意味です
+    </para>
+    <para>
+      <literal>@</literal> は <literal>~</literal>と同じ意味です
+    </para>
+    <para>
+      <literal>`</literal> は &lt; と同じ意味です
+    </para>
     <para> これらは将来削除される予定ですので,これらの機能を使用しないことを
-	強く推奨します.
-	</para>
+      強く推奨します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

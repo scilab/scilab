@@ -15,13 +15,22 @@ package org.scilab.modules.xcos.utils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.stream.StreamSource;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 
 /**
  * All the filetype recognized by Xcos.
@@ -30,53 +39,72 @@ public enum XcosFileType {
     /**
      * Represent the Xcos XML format.
      */
-    XCOS("xcos", XcosMessages.FILE_XCOS),
+    XCOS("xcos", XcosMessages.FILE_XCOS) {
+        @Override
+        public String exportToHdf5(String file) throws TransformerException, IOException {
+            XcosDiagram diag = new XcosDiagram();
+            load(file, diag);
+
+            final String exportedFile = FileUtils.createTempFile();
+            new H5RWHandler(exportedFile).writeDiagram(diag);
+            return exportedFile;
+        }
+
+        @Override
+        public void load(String file, XcosDiagram into) throws TransformerException {
+            final XcosCodec codec = new XcosCodec();
+            final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
+            final Transformer aTransformer = tranFactory.newTransformer();
+
+            final StreamSource src = new StreamSource(file);
+            final DOMResult result = new DOMResult();
+            aTransformer.transform(src, result);
+
+            codec.decode(result.getNode().getFirstChild(), into);
+        }
+    },
     /**
      * Represent the old Scicos text format.
      */
     COSF("cosf", XcosMessages.FILE_COSF) {
-        /**
-         * Export the typed file to the HDF5 format.
-         * 
-         * @param arg0
-         *            The COSF formatted file
-         * @return The HDF5 formatted file
-         */
         @Override
         public String exportToHdf5(String arg0) {
             return loadScicosDiagram(arg0);
+        }
+
+        @Override
+        public void load(String file, XcosDiagram into) throws Exception {
+            final String h5File = exportToHdf5(file);
+            HDF5.load(h5File, into);
         }
     },
     /**
      * Represent the old Scicos binary format.
      */
     COS("cos", XcosMessages.FILE_COS) {
-        /**
-         * Export the typed file to the HDF5 format.
-         * 
-         * @param arg0
-         *            The COS formatted file
-         * @return The HDF5 formatted file
-         */
         @Override
         public String exportToHdf5(String arg0) {
             return loadScicosDiagram(arg0);
+        }
+
+        @Override
+        public void load(String file, XcosDiagram into) throws Exception {
+            final String h5File = exportToHdf5(file);
+            HDF5.load(h5File, into);
         }
     },
     /**
      * Represent the Scilab I/O format.
      */
     HDF5("h5", XcosMessages.FILE_HDF5) {
-        /**
-         * Export the typed file to the HDF5 format. (does nothing there)
-         * 
-         * @param arg0
-         *            The HDF5 formatted file
-         * @return The HDF5 formatted file
-         */
         @Override
         public String exportToHdf5(String arg0) {
             return arg0;
+        }
+
+        @Override
+        public void load(String file, XcosDiagram into) {
+            new H5RWHandler(file).readDiagram(into);
         }
     };
 
@@ -88,7 +116,7 @@ public enum XcosFileType {
 
     /**
      * Default constructor
-     * 
+     *
      * @param extension
      *            file extension (without the dot)
      * @param description
@@ -129,7 +157,7 @@ public enum XcosFileType {
 
     /**
      * Find a filetype by the filename extension
-     * 
+     *
      * @param theFile
      *            Current file
      * @return The determined filetype
@@ -160,7 +188,7 @@ public enum XcosFileType {
 
     /**
      * Check the XML header
-     * 
+     *
      * @param theFile
      *            the file to check
      * @return the found file type
@@ -186,7 +214,7 @@ public enum XcosFileType {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                    LogFactory.getLog(XcosFileType.class).error(e);
+                    Logger.getLogger(XcosFileType.class.getName()).severe(e.toString());
                 }
             }
         }
@@ -209,14 +237,26 @@ public enum XcosFileType {
 
     /**
      * Convert the file passed as an argument to Hdf5.
-     * 
+     *
      * @param file
      *            The file to convert
      * @return The created file
+     * @throws Exception
+     *             in case of problem
      */
-    public String exportToHdf5(String file) {
-        throw new Error("Not implemented operation");
-    }
+    public abstract String exportToHdf5(String file) throws Exception;
+
+    /**
+     * Load a file into an XcosDiagram instance
+     *
+     * @param file
+     *            the file to load
+     * @param into
+     *            the diagram instance to fill
+     * @throws Exception
+     *             in case of problem
+     */
+    public abstract void load(final String file, final XcosDiagram into) throws Exception;
 
     /**
      * @return the valid file filters
@@ -226,15 +266,14 @@ public enum XcosFileType {
 
         for (int i = 0; i < filters.length; i++) {
             final XcosFileType type = values()[i];
-            filters[i] = new FileNameExtensionFilter(type.getDescription(),
-                    type.getExtension());
+            filters[i] = new FileNameExtensionFilter(type.getDescription(), type.getExtension());
         }
         return filters;
     }
 
     /**
      * Get a valid file mask (useable by file selector)
-     * 
+     *
      * @return A valid file mask
      */
     public static String[] getValidFileMask() {
@@ -249,15 +288,14 @@ public enum XcosFileType {
 
     /**
      * Get a valid file description (useable by file selector)
-     * 
+     *
      * @return A valid file mask
      */
     public static String[] getValidFileDescription() {
         String[] result = new String[XcosFileType.values().length - 1];
 
         for (int i = 0; i < result.length; i++) {
-            result[i] = XcosFileType.values()[i].getDescription() + BEFORE_EXT
-                    + XcosFileType.values()[i].getExtension() + AFTER_EXT;
+            result[i] = XcosFileType.values()[i].getDescription() + BEFORE_EXT + XcosFileType.values()[i].getExtension() + AFTER_EXT;
         }
 
         return result;
@@ -265,7 +303,7 @@ public enum XcosFileType {
 
     /**
      * Convert a Scicos diagram (scs_m scilab script) to an hdf5 file
-     * 
+     *
      * @param filename
      *            The file to execute in scilab.
      * @return The exported data in hdf5.
@@ -288,8 +326,7 @@ public enum XcosFileType {
             cmd.append("\"); end; ");
 
             try {
-                ScilabInterpreterManagement.synchronousScilabExec(cmd
-                        .toString());
+                ScilabInterpreterManagement.synchronousScilabExec(cmd.toString());
             } catch (InterpreterException e) {
                 e.printStackTrace();
             }

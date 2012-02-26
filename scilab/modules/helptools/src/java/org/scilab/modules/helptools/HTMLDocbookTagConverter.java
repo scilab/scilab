@@ -161,15 +161,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param tag the tag name
      * @param contents the contents to enclose between opening and closing tags
      */
-    public String encloseContents(String tag, String contents) {
+    public String encloseContents(final String tag, final String contents) {
         buffer.setLength(0);
-        if (contents == null) {
-            contents = null;
-        }
         buffer.append("<");
         buffer.append(tag);
         buffer.append(">");
-        buffer.append(contents);
+        if (contents != null) {
+            buffer.append(contents);
+        }
         buffer.append("</");
         buffer.append(tag);
         buffer.append(">");
@@ -182,11 +181,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param attrs the attributes {attr1, value1, attr2, value2, ...}
      * @param contents the contents to enclose between opening and closing tags
      */
-    public String encloseContents(String tag, String[] attrs ,String contents) {
+    public String encloseContents(final String tag, final String[] attrs, final String contents) {
         buffer.setLength(0);
-        if (contents == null) {
-            contents = "";
-        }
         buffer.append("<");
         buffer.append(tag);
         if (attrs != null) {
@@ -200,7 +196,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         buffer.append(">");
-        buffer.append(contents);
+        if (contents != null) {
+            buffer.append(contents);
+        }
         buffer.append("</");
         buffer.append(tag);
         buffer.append(">");
@@ -213,17 +211,16 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param clazz the css class name
      * @param contents the contents to enclose between opening and closing tags
      */
-    public String encloseContents(String tag, String clazz, String contents) {
+    public String encloseContents(final String tag, final String clazz, final String contents) {
         buffer.setLength(0);
-        if (contents == null) {
-            contents = "";
-        }
         buffer.append("<");
         buffer.append(tag);
         buffer.append(" class=\"");
         buffer.append(clazz);
         buffer.append("\">");
-        buffer.append(contents);
+        if (contents != null) {
+            buffer.append(contents);
+        }
         buffer.append("</");
         buffer.append(tag);
         buffer.append(">");
@@ -234,14 +231,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public boolean isEscapable(String tagName) {
+    public boolean isEscapable(final String tagName) {
         return !"latex".equals(tagName) && !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isTrimable(String tagName) {
+    public boolean isTrimable(final String tagName) {
         return !"screen".equals(tagName) && !"programlisting".equals(tagName) && !"synopsis".equals(tagName);
     }
 
@@ -250,7 +247,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param subtitle the subtitle of the file
      * @param contents the contents of the file
      */
-    public void createHTMLFile(String id, String fileName, String subtitle, String contents) {
+    public void createHTMLFile(final String id, final String fileName, final String subtitle, final String contents) {
         if (!hasError) {
             fileSubtitle = subtitle;
             nbFiles++;
@@ -261,7 +258,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeTitle(String id) {
+    public String makeTitle(final String id) {
         if (refname.length() > 0) {
             return tocitem.get(id);
         }
@@ -272,14 +269,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeSubtitle(String id) {
+    public String makeSubtitle(final String id) {
         return fileSubtitle;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String makePrevious(String id) {
+    public String makePrevious(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"previous\">");
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
@@ -303,7 +300,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makePath(String id) {
+    public String makePath(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"path\">");
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
@@ -327,7 +324,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeTop(String id) {
+    public String makeTop(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"top\">");
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
@@ -358,7 +355,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeNext(String id) {
+    public String makeNext(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"next\">");
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
@@ -382,7 +379,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeStart(String id) {
+    public String makeStart(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"start\">");
         buffer.append("<a href=\"");
@@ -397,7 +394,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeTocList(String id) {
+    public String makeTocList(final String id) {
         buffer.setLength(0);
         HTMLDocbookLinkResolver.TreeId leaf = mapTreeId.get(id);
         if (leaf == null) {
@@ -439,7 +436,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeLastModified(String id) {
+    public String makeLastModified(final String id) {
         buffer.setLength(0);
         try {
             buffer.append("<span class=\"lastmodified\">");
@@ -454,7 +451,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeGenerationDate(String id) {
+    public String makeGenerationDate(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"generationdate\">");
         buffer.append(new Date(System.currentTimeMillis()).toString());
@@ -466,7 +463,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * {@inheritDoc}
      */
-    public String makeVersion(String id) {
+    public String makeVersion(final String id) {
         buffer.setLength(0);
         buffer.append("<span class=\"version\">");
         buffer.append(version);
@@ -482,7 +479,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefentry(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefentry(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             currentId = id;
@@ -511,7 +508,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSection(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSection(final Map<String, String> attributes, final String contents) throws SAXException {
         String fileName = attributes.get("id") + ".html";
         String str = encloseContents("ul", "list-refentry", contents);
         String title = encloseContents("h3", "title-section", sectionTitle);
@@ -530,9 +527,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleBook(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleBook(final Map<String, String> attributes, final String contents) throws SAXException {
         String str = encloseContents("ul", "list-part", contents);
-        String btitle = bookTitle.replaceFirst("Scilab", version);
+        String btitle;
+        if (bookTitle.trim().equalsIgnoreCase("Scilab")) {
+            btitle = version;
+        } else {
+            btitle = bookTitle;
+        }
         String title = encloseContents("h3", "book-title", btitle);
         createHTMLFile("index", indexFilename, btitle, title + "\n" + str);
 
@@ -551,7 +553,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handlePart(Map<String, String> attributes, String contents) throws SAXException {
+    public String handlePart(final Map<String, String> attributes, final String contents) throws SAXException {
         String fileName = attributes.get("id") + ".html";
         String str = encloseContents("ul", "list-chapter", contents);
         String title = encloseContents("h3", "title-part", partTitle);
@@ -570,7 +572,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleChapter(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleChapter(final Map<String, String> attributes, final String contents) throws SAXException {
         String fileName = attributes.get("id") + ".html";
         String str = encloseContents("ul", "list-refentry", contents);
         String title = encloseContents("h3", "title-chapter", chapterTitle);
@@ -590,7 +592,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTitle(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTitle(final Map<String, String> attributes, final String contents) throws SAXException {
         String clazz = "title";
         String parent = getParentTagName();
         if (parent.equals("chapter")) {
@@ -618,7 +620,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handlePara(Map<String, String> attributes, String contents) throws SAXException {
+    public String handlePara(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("p", "para", contents);
     }
 
@@ -629,7 +631,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleLiteral(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("code", "literal", contents);
     }
 
@@ -640,7 +642,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefnamediv(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefnamediv(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             currentId = id;
@@ -656,7 +658,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefname(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefname(final Map<String, String> attributes, final String contents) throws SAXException {
         refname = contents;
         return encloseContents("h1", "refname", contents);
     }
@@ -668,7 +670,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefpurpose(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefpurpose(final Map<String, String> attributes, final String contents) throws SAXException {
         refpurpose = contents;
         return encloseContents("p", "refpurpose", contents);
     }
@@ -680,7 +682,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefsynopsisdiv(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefsynopsisdiv(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsynopsisdiv", contents);
@@ -696,7 +698,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSynopsis(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSynopsis(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         String str = encloseContents("div", "synopsis", encloseContents("pre", SynopsisLexer.convert(refname, contents)));
         if (id != null) {
@@ -713,7 +715,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleInfo(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleInfo(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "info", contents);
@@ -729,7 +731,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRefsection(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRefsection(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "refsection", contents);
@@ -745,7 +747,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleProgramlisting(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleProgramlisting(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         String role = attributes.get("role");
         String str;
@@ -799,7 +801,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleScreen(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleScreen(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         String str = encloseContents("div", "screen", encloseContents("pre", contents));
         if (id != null) {
@@ -816,7 +818,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handlePubdate(Map<String, String> attributes, String contents) throws SAXException {
+    public String handlePubdate(final Map<String, String> attributes, final String contents) throws SAXException {
         return null;
     }
 
@@ -827,7 +829,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSimplelist(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSimplelist(final Map<String, String> attributes, final String contents) throws SAXException {
         String style = "itemizedlist";
 
         return encloseContents("ul", style, contents);
@@ -840,7 +842,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleMember(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleMember(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("li", "member", contents);
     }
 
@@ -851,7 +853,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleLink(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleLink(final Map<String, String> attributes, final String contents) throws SAXException {
         String link = attributes.get("linkend");
         if (link == null) {
             throw new SAXException("No linkend attribute in tag link");
@@ -937,7 +939,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleUlink(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleUlink(final Map<String, String> attributes, final String contents) throws SAXException {
         String link = attributes.get("url");
         if (link == null) {
             throw new SAXException("No url attribute in tag ulink");
@@ -953,7 +955,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleXref(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleXref(final Map<String, String> attributes, final String contents) throws SAXException {
         String link = attributes.get("linkend");
         if (link == null) {
             throw new SAXException("No linkend attribute in tag link");
@@ -976,7 +978,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleLatex(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException {
         File f = new File(outName + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
         String parent = getParentTagName();
         if (parent.equals("para") && !attributes.containsKey("style")) {
@@ -996,7 +998,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTerm(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTerm(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("span", "term", contents);
@@ -1012,7 +1014,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleListitem(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleListitem(final Map<String, String> attributes, final String contents) throws SAXException {
         String parent = getParentTagName();
         if (parent.equals("varlistentry")) {
             return encloseContents("dd", contents);
@@ -1027,7 +1029,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleVarlistentry(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleVarlistentry(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("dt", contents);
     }
 
@@ -1038,7 +1040,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleVariablelist(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleVariablelist(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("dl", contents);
     }
 
@@ -1049,7 +1051,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleItemizedlist(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleItemizedlist(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("ul", "itemizedlist", contents);
@@ -1065,7 +1067,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleEmphasis(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleEmphasis(final Map<String, String> attributes, final String contents) throws SAXException {
         String role = attributes.get("role");
         if (role != null) {
             if (role.equals("bold")) {
@@ -1086,7 +1088,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTr(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("tr", contents);
     }
 
@@ -1097,7 +1099,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTd(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTd(final Map<String, String> attributes, final String contents) throws SAXException {
         String align = attributes.get("align");
         if (align == null) {
             return encloseContents("td", new String[]{"align", align}, contents);
@@ -1112,7 +1114,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleInformaltable(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         String border = attributes.get("border");
         if (border == null) {
@@ -1140,7 +1142,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleImagedata(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleImagedata(final Map<String, String> attributes, final String contents) throws SAXException {
         String fileref = attributes.get("fileref");
         if (fileref == null) {
             if (contents == null || contents.length() == 0) {
@@ -1171,7 +1173,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleImageobject(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleImageobject(final Map<String, String> attributes, final String contents) throws SAXException {
         return contents;
     }
 
@@ -1182,7 +1184,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleInlinemediaobject(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleInlinemediaobject(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("span", contents);
     }
 
@@ -1193,7 +1195,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleScreenshot(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleScreenshot(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "screenshot", contents);
@@ -1209,13 +1211,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleMediaobject(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleMediaobject(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        contents = contents.replaceFirst("top:([0-9]+)px;", "");
+        String c = contents.replaceFirst("top:([0-9]+)px;", "");
         if (id != null) {
-            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "mediaobject", contents);
+            return "<a name=\"" + id + "\"></a>" + encloseContents("div", "mediaobject", c);
         } else {
-            return encloseContents("div", "mediaobject", contents);
+            return encloseContents("div", "mediaobject", c);
         }
     }
 
@@ -1226,7 +1228,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleInformalequation(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleInformalequation(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "informalequation", contents);
@@ -1242,7 +1244,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleOrderedlist(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleOrderedlist(final Map<String, String> attributes, final String contents) throws SAXException {
         String numeration = "1";
         String numAttr = attributes.get("numeration");
         if (numAttr != null) {
@@ -1272,7 +1274,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSubscript(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSubscript(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("sub", contents);
     }
 
@@ -1283,7 +1285,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSuperscript(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSuperscript(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("sup", contents);
     }
 
@@ -1294,7 +1296,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleReplaceable(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleReplaceable(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("span", "replaceable", contents);
     }
 
@@ -1305,7 +1307,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleQuestion(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleQuestion(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("dt", encloseContents("strong", contents));
     }
 
@@ -1316,7 +1318,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleAnswer(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleAnswer(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("dd", contents);
     }
 
@@ -1327,7 +1329,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleQandaentry(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleQandaentry(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("dl", contents);
     }
 
@@ -1338,7 +1340,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleQandaset(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleQandaset(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("div", "qandaset", contents);
     }
 
@@ -1349,7 +1351,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleCaption(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleCaption(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("caption", encloseContents("b", contents));
     }
 
@@ -1360,7 +1362,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTbody(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTbody(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("tbody", "tbody", contents);
     }
 
@@ -1371,7 +1373,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTable(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("table", "doctable", contents);
@@ -1387,7 +1389,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleSurname(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleSurname(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("span", "surname", contents);
     }
 
@@ -1398,7 +1400,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleFirstname(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleFirstname(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("span", "firstname", contents);
     }
 
@@ -1409,7 +1411,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleBibliomset(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleBibliomset(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "bibliomset", contents);
@@ -1425,7 +1427,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleBibliomixed(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleBibliomixed(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("div", "bibliomixed", contents);
@@ -1441,7 +1443,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleTh(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleTh(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("th", contents);
     }
 
@@ -1452,7 +1454,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRevhistory(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRevhistory(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
         String str = "<table class=\"revhistory\"><tr class=\"title\"><td>" + VERSION + "</td><td>" + DESCRIPTION + "</td></tr>" + contents + "</table>";
         if (id != null) {
@@ -1469,7 +1471,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRevision(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRevision(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("tr", contents);
     }
 
@@ -1480,7 +1482,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRevnumber(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRevnumber(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("td", "revnumber", contents);
     }
 
@@ -1491,7 +1493,103 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @return the HTML code
      * @throws SAXEception if an error is encountered
      */
-    public String handleRevremark(Map<String, String> attributes, String contents) throws SAXException {
+    public String handleRevremark(final Map<String, String> attributes, final String contents) throws SAXException {
         return encloseContents("td", "revremark", contents);
+    }
+
+    /**
+     * Handle a revdescription
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevdescription(final Map<String, String> attributes, final String contents) throws SAXException {
+        return encloseContents("td", "revdescription", contents);
+    }
+
+    /**
+     * Handle a note
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleNote(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</tr></table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + code;
+        } else {
+            return code;
+        }
+    }
+
+    /**
+     * Handle a warning
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</tr></table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + code;
+        } else {
+            return code;
+        }
+    }
+
+    /**
+     * Handle a caution
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</tr></table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + code;
+        } else {
+            return code;
+        }
+    }
+
+    /**
+     * Handle a tip
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleTip(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</tr></table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + code;
+        } else {
+            return code;
+        }
+    }
+
+    /**
+     * Handle a important
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</tr></table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + code;
+        } else {
+            return code;
+        }
     }
 }

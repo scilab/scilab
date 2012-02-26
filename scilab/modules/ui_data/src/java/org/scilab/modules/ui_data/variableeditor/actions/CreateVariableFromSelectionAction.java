@@ -101,7 +101,7 @@ public final class CreateVariableFromSelectionAction extends CallBack {
         final String[] ret = new String[]{ "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table")).getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

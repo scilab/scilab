@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>Cc=cont_mat(A,B)
-Cc=cont_mat(sl)</synopsis>
+      Cc=cont_mat(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,21 +36,25 @@ Cc=cont_mat(sl)</synopsis>
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>
+            linear system (<literal>syslin</literal> list)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>cont_mat</literal> returns the controllability 
-    matrix of the pair <literal>A,B</literal> (resp. of the system <literal>sl=[A,B,C,D]</literal>).</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>cont_mat</literal> returns the controllability 
+      matrix of the pair <literal>A,B</literal> (resp. of the system <literal>sl=[A,B,C,D]</literal>).
+    </para>
+    <programlisting role=""><![CDATA[ 
 Cc=[B, AB, A^2 B,..., A^(n-1) B]  
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

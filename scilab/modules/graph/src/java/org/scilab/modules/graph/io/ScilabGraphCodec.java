@@ -49,14 +49,35 @@ public class ScilabGraphCodec extends mxObjectCodec {
 		super(template, exclude, idrefs, mapping);
 	}
 
-	/**
-	 * Things to do before encoding
-	 * @param enc Codec that controls the encoding process.
-	 * @param obj Object to be encoded.
-	 * @param node XML node to encode the object into.
-	 * @return Returns the object to be encoded by the default encoding.
-	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
-	 */
+	        /**
+     * Trace any msg to the xml document.
+     * 
+     * @param enc
+     *            the current encoder
+     * @param node
+     *            the current node
+     * @param msg
+     *            the message
+     * @param format
+     *            the format
+     */
+    protected void trace(mxCodec enc, Node node, String msg, Object... format) {
+        node.appendChild(enc.getDocument().createComment(String.format(msg, format)));
+    }
+
+    /**
+     * Things to do before encoding
+     * 
+     * @param enc
+     *            Codec that controls the encoding process.
+     * @param obj
+     *            Object to be encoded.
+     * @param node
+     *            XML node to encode the object into.
+     * @return Returns the object to be encoded by the default encoding.
+     * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec,
+     *      java.lang.Object, org.w3c.dom.Node)
+     */
 	@Override
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		final ScilabGraph graph = (ScilabGraph) obj;

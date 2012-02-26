@@ -17,35 +17,51 @@
       <varlistentry>
         <term>Q</term>
         <listitem>
-          <para>real positive definite symmetric matrix (dimension <literal>n
-          x n</literal>).</para>
+          <para>
+            real positive definite symmetric matrix (dimension <literal>n
+              x n
+            </literal>
+            ).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>real (column) vector (dimension <literal> n</literal>)</para>
+          <para>
+            real (column) vector (dimension <literal> n</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>C</term>
         <listitem>
-          <para>real matrix (dimension <literal> (me + md) x n</literal>).
-          This matrix may be dense or sparse.</para>
+          <para>
+            real matrix (dimension <literal> (me + md) x n</literal>).
+            This matrix may be dense or sparse.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para>RHS column vector (dimension <literal> m=(me +
-          md)</literal>)</para>
+          <para>
+            RHS column vector (dimension <literal> m=(me +
+              md)
+            </literal>
+            )
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>me</term>
         <listitem>
-          <para>number of equality constraints (i.e. <literal>x'*C(:,1:me) =
-          b(1:me)'</literal>)</para>
+          <para>
+            number of equality constraints (i.e. <literal>x'*C(:,1:me) =
+              b(1:me)'
+            </literal>
+            )
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -58,15 +74,17 @@
         <term>iact</term>
         <listitem>
           <para>vector, indicator of active constraints. The first non zero
-          entries give the index of the active constraints</para>
+            entries give the index of the active constraints
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>iter</term>
         <listitem>
           <para>2x1 vector, first component gives the number of "main"
-          iterations, the second one says how many constraints were deleted
-          after they became active.</para>
+            iterations, the second one says how many constraints were deleted
+            after they became active.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,9 +98,11 @@
         </imageobject>
       </mediaobject>
     </informalequation>
-    <para>This function requires <literal>Q</literal> to be symmetric positive
-    definite. If this hypothesis is not satisfied, one may use the contributed
-    <emphasis role="bold">quapro toolbox</emphasis>.</para>
+    <para>
+      This function requires <literal>Q</literal> to be symmetric positive
+      definite. If this hypothesis is not satisfied, one may use the contributed
+      <emphasis role="bold">quapro toolbox</emphasis>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -128,62 +148,50 @@ me=3;
       </member>
     </simplelist>
     <para>The contributed toolbox "quapro" may also be of interest, in
-    particular for singular <literal>Q</literal>.</para>
+      particular for singular <literal>Q</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Memory requirements</title>
     <para>Let r be</para>
     <programlisting> 
-r=min(m,n)
- </programlisting>
+      r=min(m,n)
+    </programlisting>
     <para>Then the memory required by qp_solve during the computations
-    is</para>
+      is
+    </para>
     <programlisting> 
-2*n+r*(r+5)/2 + 2*m +1
- </programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>S. Steer</term>
-        <listitem>
-          <para>INRIA (Scilab interface)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Berwin A. Turlach</term>
-        <listitem>
-          <para>School of Mathematics and Statistics (M019), The University of
-          Western Australia, Crawley, AUSTRALIA (solver code)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+      2*n+r*(r+5)/2 + 2*m +1
+    </programlisting>
   </refsection>
   <refsection>
     <title>References</title>
     <itemizedlist>
       <listitem>
         <para>Goldfarb, D. and Idnani, A. (1982). "Dual and Primal-Dual
-        Methods for Solving Strictly Convex Quadratic Programs", in J.P.
-        Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
-        Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
-        226-239.</para>
+          Methods for Solving Strictly Convex Quadratic Programs", in J.P.
+          Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
+          Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
+          226-239.
+        </para>
       </listitem>
       <listitem>
         <para>Goldfarb, D. and Idnani, A. (1983). "A numerically stable dual
-        method for solving strictly convex quadratic programs", Mathematical
-        Programming 27: 1-33.</para>
+          method for solving strictly convex quadratic programs", Mathematical
+          Programming 27: 1-33.
+        </para>
       </listitem>
       <listitem>
         <para>QuadProg (Quadratic Programming Routines), Berwin A
-        Turlach,<ulink url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink></para>
+          Turlach,<ulink url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection>
     <title>Used Functions</title>
     <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developed by
-    Berwin A. Turlach according to the Goldfarb/Idnani algorithm</para>
+      Berwin A. Turlach according to the Goldfarb/Idnani algorithm
+    </para>
   </refsection>
 </refentry>

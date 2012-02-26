@@ -353,6 +353,7 @@ images/icons/16x16/categories/applications-system.png \
 images/icons/16x16/devices/media-floppy.png \
 images/icons/16x16/devices/printer.png \
 images/icons/16x16/emblems/emblem-readonly.png \
+images/icons/16x16/emblems/emblem-important.png \
 images/icons/16x16/mimetypes/application-pdf.png \
 images/icons/16x16/mimetypes/binary.png \
 images/icons/16x16/mimetypes/image-x-generic.png \
@@ -370,6 +371,12 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
+images/icons/16x16/status/dialog-information.png \
+images/icons/16x16/status/dialog-warning.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
+images/icons/256x256/apps/system-search.png \
 images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/datatips.png \
@@ -379,6 +386,7 @@ images/icons/32x32/apps/scilab.png \
 images/icons/32x32/apps/system-search.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/emblems/emblem-readonly.png \
+images/icons/48x48/emblems/emblem-readonly.png \
 images/icons/64x40/mimetypes/application-x-scilab-champ.png \
 images/icons/64x40/mimetypes/application-x-scilab-contour2d.png \
 images/icons/64x40/mimetypes/application-x-scilab-grayplot.png \
@@ -400,7 +408,9 @@ images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/undock_active.png \
-images/icons/undock_default.png
+images/icons/undock_default.png \
+images/icons/dock_help_active.png \
+images/icons/dock_help_default.png
 
 if GUI
 USEANT=1

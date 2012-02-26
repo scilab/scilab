@@ -51,10 +51,4 @@
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
-    </simplelist>
-  </refsection>
 </refentry>

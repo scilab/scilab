@@ -13,7 +13,6 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -70,6 +69,7 @@ static gw_generic_table Tab[] =
 	{sci_isequalbitwise, "isequalbitwise"},
     {sci_rat, "rat"},
     {sci_base2dec, "base2dec"},
+    {sci_dec2base, "dec2base"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

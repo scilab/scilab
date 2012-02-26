@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_jvm.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "scilabmode.h"
 #include "Scierror.h"
 #include "callFunctionFromGateway.h"

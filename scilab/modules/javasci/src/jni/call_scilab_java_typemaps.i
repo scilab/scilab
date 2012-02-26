@@ -17,56 +17,7 @@
 
 //////////////////////////////////////////////
 
-%typemap(in) (char* variableName, int *nbRow, int *nbCol)  {
-    $2 = &nbRow;
-    $3 = &nbCol;
-    $1 = 0;
-    if ($input) {
-       $1 = (char *)(*jenv)->GetStringUTFChars(jenv, $input, 0);
-       if (!$1) return 0;
-    }
-}
-
-%define JAVASCI_ARRAYS_IMPL(CTYPE, JNITYPE, JAVATYPE, JAVAPRIMITIVETYPE, JNICODE)
-
-// retrieve from the native code a CTYPE * => JAVAPRIMITIVETYPE[][] (java)
-%typemap(out) (CTYPE *) (int nbRow, int nbCol) {
-
-  jclass JAVAPRIMITIVETYPE##Arr = (*jenv)->FindClass(jenv, JNICODE);
-  int i = 0, j = 0;
-  jresult = (*jenv)->NewObjectArray(jenv, nbRow, ##JAVAPRIMITIVETYPE##Arr, NULL);
-
-    for (i=0; i < nbRow; i++) {
-        JNITYPE *array = (JNITYPE*)malloc(nbCol * sizeof(JNITYPE)) ;
-        ##JNITYPE##Array jarray = (*jenv)->New##JAVATYPE##Array(jenv, nbCol);
-        if (jarray == NULL) {
-            printf("Could not allocate\n");fflush(NULL);
-        }
-
-        if (array) {
-            for (j=0; j < nbCol; j++) {
-            /* Scilab is storing matrice cols by cols while Java is doing it
-               row by row. Therefor, we need to convert it */
-                array[j]=result[nbRow*j+i];
-                }
-        }
-
-        (*jenv)->Set##JAVATYPE##ArrayRegion(jenv, jarray, 0, nbCol, array);
-
-        (*jenv)->SetObjectArrayElement(jenv, jresult, i, jarray);
-
-        (*jenv)->DeleteLocalRef(jenv, jarray);
-        if (array) {
-            free(array);
-            array = NULL;
-        }
-    }
-
-
-     if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
-    free(result);
-
-}
+%define JAVASCI_ARRAYS_IMPL(CTYPE, JNITYPE, JAVATYPE, JAVAPRIMITIVETYPE)
 
 %typemap(jni) (CTYPE *) "jobjectArray"
 %typemap(jtype) (CTYPE *) "JAVAPRIMITIVETYPE[][]"
@@ -74,17 +25,14 @@
 %typemap(javain) CTYPE *OUTVALUE "$javainput"
 %typemap(javaout) (CTYPE *) {
     return $jnicall;
-  }
+}
 
 
 %typemap(javain) CTYPE[ANY], CTYPE[] "$javainput"
 
-%typemap(jtype) (char* variableName, int *nbRow, int *nbCol) "String"
-%typemap(jstype) (char* variableName, int *nbRow, int *nbCol) "String"
-
 //////////////////////////
 
-%include "arrays_java.i"
+//%include "arrays_java.i"
 
 /* Transform the input datatype CTYPE[] to JAVAPRIMITIVETYPE[][] to facilitate the
 matching in Java */
@@ -93,61 +41,71 @@ matching in Java */
 %typemap(jstype) CTYPE[] "JAVAPRIMITIVETYPE[][]"
 
 
-
 %typemap(argout) (CTYPE variable[], int nbRow, int nbCol) {
 // Specific target because it was freeing the wrong argument
+    free($1);
 }
 
 
 %typemap(in) (CTYPE variable[], int nbRow, int nbCol) {
 // Convert the CTYPE[][] => CTYPE *
-      int i=0, j=0;
+      int i = 0, j = 0;
       $2 = (*jenv)->GetArrayLength(jenv, $input);
       $3 = 0;
       $1 = NULL;
+      
 
-      for(i=0; i<$2; i++) {
-          ##JNITYPE## *element = NULL;
-          ##JNITYPE##Array oneDim=(##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
-          if ($3==0) {
+      for (; i < $2; i++)
+      {
+          jboolean isCopy = JNI_FALSE;
+          ##JNITYPE##* element = NULL;
+          ##JNITYPE##Array oneDim = (##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, $input, i);
+          if ($3 == 0)
+	  {
               /* First time we are here, init + create the array where we store the data */
               $3 = (*jenv)->GetArrayLength(jenv, oneDim);
-              $1 = (CTYPE*)malloc(sizeof(##CTYPE##)*arg3*arg4);
+              $1 = (CTYPE*)malloc(sizeof(CTYPE) * $2 * $3);
           }
-          element=(*jenv)->Get##JAVATYPE##ArrayElements(jenv, oneDim, 0);
+	  isCopy = JNI_FALSE;
+	  element = (##JNITYPE##*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy);
 
-          for(j=0; j<$3; j++) {
-              $1[j*$2+i]=element[j];
+          for (j = 0; j < $3; j++)
+	  {
+              $1[j * $2 + i] = element[j];
           }
+	  (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+	  (*jenv)->DeleteLocalRef(jenv, oneDim);
       }
-
 }
+
+%typemap(in) (CTYPE imag[], int nbRowI, int nbColI) = (CTYPE variable[], int nbRow, int nbCol);
+%typemap(argout) (CTYPE imag[], int nbRowI, int nbColI) = (CTYPE variable[], int nbRow, int nbCol);
 %enddef
 
 // See SWIG documentation for the full list:
 // http://www.swig.org/Doc1.3/Java.html#default_primitive_type_mappings
 
 // Scilab: int8
-JAVASCI_ARRAYS_IMPL(byte, jbyte, Byte, byte, "[B")     /* signed char[] */
-JAVASCI_ARRAYS_IMPL(unsigned char, jshort, Short, jshort, "[C") /* unsigned char */
+JAVASCI_ARRAYS_IMPL(byte, jbyte, Byte, byte)     /* signed char[] */
+JAVASCI_ARRAYS_IMPL(unsigned char, jshort, Short, jshort) /* unsigned char */
 
 // Scilab: int16
 
-JAVASCI_ARRAYS_IMPL(short, jshort, Short, short, "[S")         /* short[] */
-JAVASCI_ARRAYS_IMPL(unsigned short, jchar, Char, short, "[C")   /* unsigned short[] */
+JAVASCI_ARRAYS_IMPL(short, jshort, Short, short)         /* short[] */
+JAVASCI_ARRAYS_IMPL(unsigned short, jchar, Char, short)   /* unsigned short[] */
 
 // Scilab: int32
-JAVASCI_ARRAYS_IMPL(int, jint, Int, int, "[I")                 /* int[] */
-JAVASCI_ARRAYS_IMPL(unsigned int, jint, Int, int, "[I")     /* unsigned int[] */
+JAVASCI_ARRAYS_IMPL(int, jint, Int, int)                 /* int[] */
+JAVASCI_ARRAYS_IMPL(unsigned int, jint, Int, int)     /* unsigned int[] */
 
 #ifdef __SCILAB_INT64__
 // Scilab: int64
-JAVASCI_ARRAYS_IMPL(long, jint, int, long, "[J")               /* long[] */
-JAVASCI_ARRAYS_IMPL(unsigned long, jlong, Long, long, "[J")   /* unsigned long[] */
+JAVASCI_ARRAYS_IMPL(long, jint, int, long)               /* long[] */
+JAVASCI_ARRAYS_IMPL(unsigned long, jlong, Long, long)   /* unsigned long[] */
 #endif
 
 //JAVASCI_ARRAYS_IMPL(float, jfloat, Float, float, )         /* float[] */
 // Scilab: double
-JAVASCI_ARRAYS_IMPL(double, jdouble, Double, double, "[D")     /* double[] */
+JAVASCI_ARRAYS_IMPL(double, jdouble, Double, double)     /* double[] */
 // Scilab: boolean
-JAVASCI_ARRAYS_IMPL(BOOL, jboolean, Boolean, boolean, "[Z")     /* double[] */
+JAVASCI_ARRAYS_IMPL(BOOL, jboolean, Boolean, boolean)     /* double[] */

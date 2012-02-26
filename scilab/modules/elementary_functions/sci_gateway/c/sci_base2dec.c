@@ -14,7 +14,6 @@
 #include "gw_elementary_functions.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "convertbase.h"
@@ -39,6 +38,7 @@ int sci_base2dec(char *fname,unsigned long fname_len)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -51,13 +51,14 @@ int sci_base2dec(char *fname,unsigned long fname_len)
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         printError(&sciErr, 0);
         return 0;
     }
 
     if (!isDoubleType(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A integer value expected.\n"), fname, 2);
+        Scierror(999,_("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
         return 0;
     }
 
@@ -76,7 +77,7 @@ int sci_base2dec(char *fname,unsigned long fname_len)
     iValue = (int)dValue;
     if (dValue != (double)iValue)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A integer value expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
         return 0;
     }
 
@@ -104,9 +105,9 @@ int sci_base2dec(char *fname,unsigned long fname_len)
 
     for (i = 0; i < m * n; i++)
     {
-        int ierr = 0;
-        dResults[i] = convertBase2Dec(pStrs[i], iValue, &ierr);
-        if (ierr)
+        error_convertbase err = ERROR_CONVERTBASE_NOK;
+        dResults[i] = convertBase2Dec(pStrs[i], iValue, &err);
+        if (err != ERROR_CONVERTBASE_OK)
         {
             freeAllocatedMatrixOfString(m, n, pStrs);
             pStrs = NULL;
@@ -131,6 +132,7 @@ int sci_base2dec(char *fname,unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 

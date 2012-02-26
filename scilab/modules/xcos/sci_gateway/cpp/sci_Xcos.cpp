@@ -13,10 +13,8 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "stack-c.h"
 #include "callxcos.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -48,6 +46,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -55,6 +54,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -69,6 +69,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -85,6 +86,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			{
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 
@@ -118,6 +120,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 				freeArrayOfString(pStVarOne, m1 * n1);
 				if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 				printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 				return 0;
 			}
 

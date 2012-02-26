@@ -15,12 +15,12 @@ package org.scilab.modules.xcos.palette.listener;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Logger;
 
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -44,7 +44,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Manage category selection
-     * 
+     *
      * @param e
      *            Not used
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
@@ -52,15 +52,13 @@ public class PaletteManagerMouseListener implements MouseListener {
     @Override
     public void mouseClicked(final MouseEvent e) {
         // Right click
-        if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-                || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
+        if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
 
             if (PaletteManagerView.get() == null) {
                 PaletteManagerView.restore(null);
             }
             final JTree paletteTree = PaletteManagerView.get().getTree();
-            final TreePath path = paletteTree.getPathForLocation(e.getX(),
-                    e.getY());
+            final TreePath path = paletteTree.getPathForLocation(e.getX(), e.getY());
             paletteTree.setSelectionPath(path);
 
             final ContextMenu menu = ScilabContextMenu.createContextMenu();
@@ -74,16 +72,15 @@ public class PaletteManagerMouseListener implements MouseListener {
             menu.add(remove);
 
             menu.setVisible(true);
-            ((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
-                    .setLocation(MouseInfo.getPointerInfo().getLocation().x,
-                            MouseInfo.getPointerInfo().getLocation().y);
+            ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
+                    .getLocation().y);
 
         }
     }
 
     /**
      * Setup the create item
-     * 
+     *
      * @param paletteTree
      *            the current tree
      * @param path
@@ -91,8 +88,7 @@ public class PaletteManagerMouseListener implements MouseListener {
      * @param create
      *            the menu item
      */
-    private void setupCreateOrAdd(final JTree paletteTree, final TreePath path,
-            final MenuItem create) {
+    private void setupCreateOrAdd(final JTree paletteTree, final TreePath path, final MenuItem create) {
         PaletteNode node;
         if (path != null) {
             node = (PaletteNode) (path.getLastPathComponent());
@@ -143,7 +139,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Setup the remove item
-     * 
+     *
      * @param paletteTree
      *            the current tree
      * @param path
@@ -152,8 +148,7 @@ public class PaletteManagerMouseListener implements MouseListener {
      *            the menu item
      */
     // CSOFF: IllegalCatch
-    private void setupRemove(final JTree paletteTree, final TreePath path,
-            final MenuItem remove) {
+    private void setupRemove(final JTree paletteTree, final TreePath path, final MenuItem remove) {
         remove.setText(XcosMessages.REMOVE);
         remove.setCallback(new CallBack(XcosMessages.REMOVE) {
             @Override
@@ -163,20 +158,17 @@ public class PaletteManagerMouseListener implements MouseListener {
                 }
 
                 try {
-                    final PaletteNode currentNode = (PaletteNode) path
-                            .getLastPathComponent();
+                    final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
                     PaletteNode.remove(currentNode);
-                } catch (final Exception exception) {
-                    LogFactory.getLog(PaletteManagerMouseListener.class).error(
-                            exception);
+                } catch (final Exception e) {
+                    Logger.getLogger(PaletteManagerMouseListener.class.toString()).severe(e.toString());
                 }
             }
         });
 
         boolean canBeRemoved = true;
         try {
-            org.scilab.modules.xcos.palette.model.PaletteNode
-                    .checkRemoving((PaletteNode) path.getLastPathComponent());
+            org.scilab.modules.xcos.palette.model.PaletteNode.checkRemoving((PaletteNode) path.getLastPathComponent());
         } catch (final Exception exception) {
             canBeRemoved = false;
         }
@@ -188,7 +180,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
@@ -199,7 +191,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
@@ -210,7 +202,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
@@ -221,7 +213,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)

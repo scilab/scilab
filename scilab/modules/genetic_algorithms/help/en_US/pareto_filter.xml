@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
@@ -11,7 +10,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pareto_filter">
   <info>
     <pubdate>4-Feb-2008</pubdate>
@@ -31,35 +29,35 @@
         <term>F_in</term>
         <listitem>
           <para>the set of multi-objective function values from which we want to extract the non dominated solutions.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X_in</term>
         <listitem>
           <para>the associated values in the parameters space.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>F_out</term>
         <listitem>
           <para>the set of non dominated multi-objective function values.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X_out</term>
         <listitem>
           <para>the associated values in the parameters space.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ind_out</term>
         <listitem>
           <para>the set of indexes of the non dominated individuals selected from the set X_in.
-       </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -69,13 +67,13 @@
     <itemizedlist>
       <listitem>
         <para>
-      This function applies a Pareto filter to extract non dominated solutions from a set of values.
-     </para>
+          This function applies a Pareto filter to extract non dominated solutions from a set of values.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="optim_moga"> optim_moga </link>
@@ -87,18 +85,5 @@
         <link linkend="optim_nsga2"> optim_nsga2 </link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <variablelist>
-      <varlistentry>
-        <term>Yann COLLETTE</term>
-        <listitem>
-          <para>
-    ycollet@freesurf.Fr
-    </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

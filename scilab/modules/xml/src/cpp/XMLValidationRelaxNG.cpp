@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,8 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
-extern "C" {
+extern "C"
+{
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -26,38 +27,46 @@ extern "C" {
 namespace org_modules_xml
 {
 
-    XMLValidationRelaxNG::XMLValidationRelaxNG(const char * path, std::string * error) : XMLValidation()
+    XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error):XMLValidation()
     {
-        char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        xmlRelaxNGParserCtxt * pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
-        FREE(expandedPath);
-        if (!pctxt)
+        char *expandedPath = expandPathVariable(const_cast < char *>(path));
+        if (expandedPath)
         {
-            if (errorBuffer)
-            {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot create a validation context"));
-            *error = *errorBuffer;
-        }
-        else
-        {
-            validationFile = (void *)xmlRelaxNGParse(pctxt);
-            xmlRelaxNGFreeParserCtxt(pctxt);
-            if (!validationFile)
+            xmlRelaxNGParserCtxt *pctxt = xmlRelaxNGNewParserCtxt(expandedPath);
+            FREE(expandedPath);
+            if (!pctxt)
             {
                 if (errorBuffer)
                 {
                     delete errorBuffer;
                 }
-                errorBuffer = new std::string(gettext("Cannot parse the Relax NG grammar"));
+                errorBuffer = new std::string(gettext("Cannot create a validation context"));
                 *error = *errorBuffer;
             }
             else
             {
-                openValidationFiles.push_back(this);
+                validationFile = (void *)xmlRelaxNGParse(pctxt);
+                xmlRelaxNGFreeParserCtxt(pctxt);
+                if (!validationFile)
+                {
+                    if (errorBuffer)
+                    {
+                        delete errorBuffer;
+                    }
+                    errorBuffer = new std::string(gettext("Cannot parse the Relax NG grammar"));
+                    *error = *errorBuffer;
+                }
+                else
+                {
+                    openValidationFiles.push_back(this);
+                }
             }
         }
+        else
+        {
+            *error = std::string(gettext("Invalid file name: ")) + std::string(path);
+        }
+
         scope->registerPointers(validationFile, this);
         id = scope->getVariableId(*this);
     }
@@ -68,7 +77,7 @@ namespace org_modules_xml
         scope->removeId(id);
         if (validationFile)
         {
-            xmlRelaxNGFree((xmlRelaxNG *)validationFile);
+            xmlRelaxNGFree((xmlRelaxNG *) validationFile);
             openValidationFiles.remove(this);
             if (openValidationFiles.size() == 0 && XMLDocument::getOpenDocuments().size() == 0)
             {
@@ -79,6 +88,7 @@ namespace org_modules_xml
         if (errorBuffer)
         {
             delete errorBuffer;
+
             errorBuffer = 0;
         }
     }
@@ -86,7 +96,7 @@ namespace org_modules_xml
     bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error) const
     {
         bool ret;
-        xmlRelaxNGValidCtxt * vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *)validationFile);
+        xmlRelaxNGValidCtxt *vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *) validationFile);
 
         if (errorBuffer)
         {
@@ -101,7 +111,7 @@ namespace org_modules_xml
             return false;
         }
 
-        xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
+        xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc) XMLValidation::errorFunction, 0, 0);
 
         ret = BOOLtobool(xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument()));
 
@@ -127,10 +137,10 @@ namespace org_modules_xml
         }
         errorBuffer = new std::string();
 
-        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc)XMLValidation::errorFunction, 0);
-        xmlTextReaderRelaxNGSetSchema(reader, getValidationFile<xmlRelaxNG>());
+        xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorFunction, 0);
+        xmlTextReaderRelaxNGSetSchema(reader, getValidationFile < xmlRelaxNG > ());
 
-        while ((last = xmlTextReaderRead(reader)) == 1);
+        while ((last = xmlTextReaderRead(reader)) == 1) ;
         valid = xmlTextReaderIsValid(reader);
 
         xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -147,6 +157,6 @@ namespace org_modules_xml
 
     const std::string XMLValidationRelaxNG::toString() const
     {
-        return std::string("XML Relax NG\nNo public informations");
+        return std::string("XML Relax NG\nNo public information");
     }
 }

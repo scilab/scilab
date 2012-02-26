@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>debug(level-int)
-level-int=debug()</synopsis>
+      level-int=debug()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -25,13 +26,15 @@ level-int=debug()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
-    <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
-    sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
-    et sont dédiés aux experts de Scilab.</para>
+    <para>
+      Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
+      <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
+      sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
+      et sont dédiés aux experts de Scilab.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

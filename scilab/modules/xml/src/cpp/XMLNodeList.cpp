@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,7 +22,7 @@
 namespace org_modules_xml
 {
 
-    XMLNodeList::XMLNodeList(const XMLDocument & _doc, xmlNode * _parent) : XMLList(), doc(_doc)
+    XMLNodeList::XMLNodeList(const XMLDocument & _doc, xmlNode * _parent):XMLList(), doc(_doc)
     {
         parent = _parent;
         size = getNodeListSize(parent->children);
@@ -38,14 +38,14 @@ namespace org_modules_xml
         scope->removeId(id);
     }
 
-    void * XMLNodeList::getRealXMLPointer() const
+    void *XMLNodeList::getRealXMLPointer() const
     {
-        return static_cast<void *>(parent->children);
+        return static_cast < void *>(parent->children);
     }
 
-    const char ** XMLNodeList::getContentFromList() const
+    const char **XMLNodeList::getContentFromList() const
     {
-        const char ** list = new const char*[size];
+        const char **list = new const char *[size];
         int i = 0;
         for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
         {
@@ -55,9 +55,9 @@ namespace org_modules_xml
         return list;
     }
 
-    const char ** XMLNodeList::getNameFromList() const
+    const char **XMLNodeList::getNameFromList() const
     {
-        const char ** list = new const char*[size];
+        const char **list = new const char *[size];
         int i = 0;
         for (xmlNode * cur = parent->children; cur; cur = cur->next, i++)
         {
@@ -67,7 +67,7 @@ namespace org_modules_xml
         return list;
     }
 
-    void XMLNodeList::setAttributeValue(const char ** prefix, const char ** name, const char ** value, int lsize) const
+    void XMLNodeList::setAttributeValue(const char **prefix, const char **name, const char **value, int lsize) const
     {
         for (xmlNode * cur = parent->children; cur; cur = cur->next)
         {
@@ -75,7 +75,7 @@ namespace org_modules_xml
         }
     }
 
-    void XMLNodeList::setAttributeValue(const char ** name, const char ** value, int lsize) const
+    void XMLNodeList::setAttributeValue(const char **name, const char **value, int lsize) const
     {
         for (xmlNode * cur = parent->children; cur; cur = cur->next)
         {
@@ -85,18 +85,18 @@ namespace org_modules_xml
 
     void XMLNodeList::remove() const
     {
-        xmlNode * cur = parent->children;
+        xmlNode *cur = parent->children;
 
         while (cur != NULL)
         {
-            xmlNode * nxt = cur->next;
-            xmlUnlinkNode(cur);
-            xmlFreeNode(cur);
-            cur = nxt;
+            xmlNode *nxt = cur->next;
+              xmlUnlinkNode(cur);
+              xmlFreeNode(cur);
+              cur = nxt;
         }
     }
 
-    const XMLObject * XMLNodeList::getXMLObjectParent() const
+    const XMLObject *XMLNodeList::getXMLObjectParent() const
     {
         return &doc;
     }
@@ -107,23 +107,26 @@ namespace org_modules_xml
         for (xmlNode * cur = parent->children; cur; cur = cur->next)
         {
             xmlNodeDump(buffer, doc.getRealDocument(), cur, 0, 1);
-            xmlBufferAdd(buffer, (xmlChar *)"\n", (int)strlen("\n"));
+            xmlBufferAdd(buffer, (xmlChar *) "\n", (int)strlen("\n"));
         }
         std::string str = std::string((const char *)buffer->content);
+
         xmlBufferFree(buffer);
 
         return str;
     }
 
-    const XMLObject * XMLNodeList::getListElement(int index)
+    const XMLObject *XMLNodeList::getListElement(int index)
     {
-        xmlNode * n = getListNode(index);
+        xmlNode *n = getListNode(index);
+
         if (n)
         {
-            XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(n);
+            XMLObject *obj = scope->getXMLObjectFromLibXMLPtr(n);
+
             if (obj)
             {
-                return static_cast<XMLElement *>(obj);
+                return static_cast < XMLElement * >(obj);
             }
 
             return new XMLElement(doc, n);
@@ -138,7 +141,8 @@ namespace org_modules_xml
         {
             if (index == 1)
             {
-                xmlNode * n = parent->children;
+                xmlNode *n = parent->children;
+
                 scope->unregisterNodeListPointer(n);
                 xmlUnlinkNode(n);
                 xmlFreeNode(n);
@@ -153,10 +157,12 @@ namespace org_modules_xml
             }
             else
             {
-                xmlNode * n = getListNode(index);
+                xmlNode *n = getListNode(index);
+
                 if (n)
                 {
-                    xmlNode * next = n->next;
+                    xmlNode *next = n->next;
+
                     prevNode = prevNode->prev;
                     prev--;
                     xmlUnlinkNode(n);
@@ -196,7 +202,8 @@ namespace org_modules_xml
 
     void XMLNodeList::setElementAtPosition(double index, const XMLDocument & document)
     {
-        const XMLElement * e = document.getRoot();
+        const XMLElement *e = document.getRoot();
+
         setElementAtPosition(index, *e);
         delete e;
     }
@@ -212,7 +219,8 @@ namespace org_modules_xml
         }
         else
         {
-            xmlNode * n = xmlNewText((xmlChar *)xmlCode.c_str());
+            xmlNode *n = xmlNewText((xmlChar *) xmlCode.c_str());
+
             setElementAtPosition(index, XMLElement(doc, n));
         }
     }
@@ -246,16 +254,18 @@ namespace org_modules_xml
 
     void XMLNodeList::replaceAtIndex(int index, const XMLElement & elem)
     {
-        xmlNode * n = getListNode(index);
+        xmlNode *n = getListNode(index);
+
         if (n && n != elem.getRealNode())
         {
             if (index == 1)
             {
                 scope->unregisterNodeListPointer(parent->children);
             }
-            xmlNode * previous = n->prev;
-            xmlNode * next = n->next;
-            xmlNode * cpy = xmlCopyNode(elem.getRealNode(), 1);
+            xmlNode *previous = n->prev;
+            xmlNode *next = n->next;
+            xmlNode *cpy = xmlCopyNode(elem.getRealNode(), 1);
+
             xmlUnlinkNode(cpy);
             xmlReplaceNode(n, cpy);
             xmlFreeNode(n);
@@ -271,7 +281,8 @@ namespace org_modules_xml
 
     void XMLNodeList::insertAtEnd(const XMLElement & elem)
     {
-        xmlNode * cpy = xmlCopyNode(elem.getRealNode(), 1);
+        xmlNode *cpy = xmlCopyNode(elem.getRealNode(), 1);
+
         xmlUnlinkNode(cpy);
         xmlAddChild(parent, cpy);
         size++;
@@ -279,7 +290,8 @@ namespace org_modules_xml
 
     void XMLNodeList::insertAtBeginning(const XMLElement & elem)
     {
-        xmlNode * cpy = xmlCopyNode(elem.getRealNode(), 1);
+        xmlNode *cpy = xmlCopyNode(elem.getRealNode(), 1);
+
         xmlUnlinkNode(cpy);
         scope->unregisterNodeListPointer(parent->children);
         xmlAddPrevSibling(parent->children, cpy);
@@ -289,25 +301,28 @@ namespace org_modules_xml
 
     void XMLNodeList::insertAtIndex(int index, const XMLElement & elem)
     {
-        xmlNode * n = getListNode(index);
+        xmlNode *n = getListNode(index);
+
         if (n)
         {
-            xmlNode * cpy = xmlCopyNode(elem.getRealNode(), 1);
+            xmlNode *cpy = xmlCopyNode(elem.getRealNode(), 1);
+
             xmlUnlinkNode(cpy);
             xmlAddNextSibling(n, cpy);
             size++;
         }
     }
 
-    xmlNode * XMLNodeList::getListNode(int index)
+    xmlNode *XMLNodeList::getListNode(int index)
     {
-        return XMLList::getListElement<xmlNode>(index, size, &prev, &prevNode);
+        return XMLList::getListElement < xmlNode > (index, size, &prev, &prevNode);
     }
 
     inline int XMLNodeList::getNodeListSize(xmlNode * node)
     {
         int i = 0;
-        for (xmlNode * n = node; n; n = n->next, i++);
+
+        for (xmlNode * n = node; n; n = n->next, i++) ;
 
         return i;
     }

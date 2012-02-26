@@ -19,7 +19,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
+import javax.swing.BoundedRangeModel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JViewport;
@@ -44,12 +46,15 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -71,7 +76,7 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-public final class CommandHistory {
+public final class CommandHistory extends SwingScilabTab implements Tab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
 
@@ -85,7 +90,7 @@ public final class CommandHistory {
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
-    private static Tab browserTab;
+    private static SwingScilabTab browserTab;
     private static JScrollPane scrollPane;
 
     private static boolean modelLoaded;
@@ -98,7 +103,27 @@ public final class CommandHistory {
     /**
      * Constructor
      */
-    private CommandHistory() { }
+    private CommandHistory() {
+        super(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
+        setAssociatedXMLIDForHelp("historybrowser");
+        initialize();
+        addMenuBar(createMenuBar());
+        addToolBar(createToolBar());
+        addInfoBar(ScilabTextBox.createTextBox());
+
+        scilabHistoryTree.addMouseListener(new CommandHistoryMouseListener());
+
+        DeleteAction.registerKeyAction();
+        EvaluateAction.registerKeyAction();
+        CopyAction.registerKeyAction();
+        CutAction.registerKeyAction();
+        CloseAction.registerKeyAction();
+
+        scrollPane = new JScrollPane(scilabHistoryTree);
+        JPanel contentPane = new JPanel(new BorderLayout());
+        contentPane.add(scrollPane);
+        setContentPane(contentPane);
+    }
 
     /**
      * Initialize the History Browser at Scilab launch
@@ -131,27 +156,44 @@ public final class CommandHistory {
      * @return the corresponding tab
      */
     public static SwingScilabTab createCommandHistoryTab() {
-        initialize();
-        browserTab = ScilabTab.createTab(CommandHistoryMessages.TITLE, COMMANDHISTORYUUID);
-        browserTab.addMenuBar(createMenuBar());
-        browserTab.addToolBar(createToolBar());
-        browserTab.addInfoBar(ScilabTextBox.createTextBox());
+        browserTab = new CommandHistory();
 
-        scilabHistoryTree.addMouseListener(new CommandHistoryMouseListener());
+        return browserTab;
+    }
 
-        DeleteAction.registerKeyAction();
-        EvaluateAction.registerKeyAction();
-        CopyAction.registerKeyAction();
-        CutAction.registerKeyAction();
-        CloseAction.registerKeyAction();
+    /**
+     * {@inheritDoc}
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+        setInfoBar(infoBarToAdd);
+    }
 
-        scrollPane = new JScrollPane(scilabHistoryTree);
-        scrollPane.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
-        JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.add(scrollPane);
-        ((SwingScilabTab) browserTab.getAsSimpleTab()).setContentPane(contentPane);
+    /**
+     * {@inheritDoc}
+     */
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        setMenuBar(menuBarToAdd);
+    }
 
-        return (SwingScilabTab) browserTab.getAsSimpleTab();
+    /**
+     * {@inheritDoc}
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        setToolBar(toolBarToAdd);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Window getParentWindow() {
+        return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public SimpleTab getAsSimpleTab() {
+        return this;
     }
 
     /**
@@ -171,14 +213,11 @@ public final class CommandHistory {
     }
 
     public static void expandAll() {
-        if (isVisible()) {
+        if (isHistoryVisible()) {
             // put the expansion in an invokeLater to avoid some kind of freeze with huge history
             SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         scilabHistoryTree.setVisible(true);
-                        scilabHistoryTree.setRowHeight(16);
-                        scilabHistoryTree.setLargeModel(true);
-
                         if (!modelLoaded) {
                             scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
                             modelLoaded = true;
@@ -188,13 +227,8 @@ public final class CommandHistory {
                             scilabHistoryTree.expandRow(i);
                         }
 
-                        SwingUtilities.invokeLater(new Runnable() {
-                                public void run() {
-                                    scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
-                                }
-                            });
-                        scrollPane.getHorizontalScrollBar().setValue(0);
                         WindowsConfigurationManager.restorationFinished(getBrowserTab());
+                        scrollAtBottom();
                     }
                 });
         }
@@ -230,16 +264,27 @@ public final class CommandHistory {
             // Create a new session node
             currentSessionNode = new DefaultMutableTreeNode(new SessionString(lineToAppend));
             scilabHistoryTreeModel.insertNodeInto(currentSessionNode, scilabHistoryRootNode, scilabHistoryRootNode.getChildCount());
-            if (expand && isVisible()) {
+            if (expand && isHistoryVisible()) {
                 scilabHistoryTree.expandRow(scilabHistoryTree.getRowCount() - 1);
                 scilabHistoryTree.scrollPathToVisible(new TreePath(currentSessionNode.getPath()));
             }
         } else {
+            boolean mustScroll = false;
+            if (expand && isHistoryVisible()) {
+                JScrollBar vb = scrollPane.getVerticalScrollBar();
+                if (vb != null) {
+                    BoundedRangeModel model = vb.getModel();
+                    // mustScroll is true if the knob is at the bottom of the scollbar.
+                    mustScroll = model.getValue() == model.getMaximum() - model.getExtent();
+                }
+            }
             DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(lineToAppend);
             scilabHistoryTreeModel.insertNodeInto(childNode, currentSessionNode, currentSessionNode.getChildCount());
-            if (expand && isVisible()) {
+            if (expand && isHistoryVisible()) {
                 scilabHistoryTree.expandRow(scilabHistoryTree.getRowCount() - 1);
-                scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));
+                if (mustScroll) {
+                    scilabHistoryTree.scrollPathToVisible(new TreePath(childNode.getPath()));
+                }
             }
         }
     }
@@ -297,7 +342,7 @@ public final class CommandHistory {
     /**
      * Close the tab
      */
-    public static void close() {
+    public static void closeHistory() {
         browserTab = null;
     }
 
@@ -305,7 +350,7 @@ public final class CommandHistory {
      * @return the browserTab
      */
     public static SwingScilabTab getBrowserTab() {
-        return (SwingScilabTab) browserTab.getAsSimpleTab();
+        return browserTab;
     }
 
     /**
@@ -317,7 +362,7 @@ public final class CommandHistory {
             if (!success) {
                 CommandHistoryTabFactory.getInstance().getTab(COMMANDHISTORYUUID);
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
-                window.addTab(browserTab);
+                window.addTab((Tab) browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
                 window.setVisible(true);
@@ -328,10 +373,17 @@ public final class CommandHistory {
     }
 
     /**
+     * Launch the history browser
+     */
+    public static void launchHistoryBrowser() {
+        setVisible();
+    }
+
+    /**
      * Get History Browser visibility
      * @return visibility status
      */
-    private static boolean isVisible() {
+    private static boolean isHistoryVisible() {
         return browserTab != null && browserTab.isVisible();
     }
 
@@ -434,6 +486,16 @@ public final class CommandHistory {
         return selectedEntries;
     }
 
+    private static void scrollAtBottom() {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    scrollPane.getHorizontalScrollBar().setValue(0);
+                    scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+                }
+            });
+
+    }
+
     /**
      * Inner class to render the session nodes in green
      */
@@ -458,6 +520,9 @@ public final class CommandHistory {
 
         HistoryTree(TreeModel model) {
             super(model);
+            setRowHeight(16);
+            setLargeModel(true);
+
             setCellRenderer(new DefaultTreeCellRenderer() {
                         {
                             defaultColor = getTextNonSelectionColor();
@@ -479,9 +544,12 @@ public final class CommandHistory {
         public void paint (Graphics g) {
             if (first) {
                 g.setFont(getFont());
-                setRowHeight(g.getFontMetrics().getHeight());
+                int height = g.getFontMetrics().getHeight();
+                setRowHeight(height);
                 setLargeModel(true);
                 first = false;
+                scrollPane.getVerticalScrollBar().setUnitIncrement(height);
+                scrollAtBottom();
             }
             super.paint(g);
         }

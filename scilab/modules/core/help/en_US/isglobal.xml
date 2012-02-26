@@ -30,8 +30,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>isglobal(x)</literal> returns true if x has been declared to be a global
-        variable and false otherwise.</para>
+    <para>
+      <literal>isglobal(x)</literal> returns true if x has been declared to be a global
+      variable and false otherwise.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -42,7 +44,7 @@ isglobal(a)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="global">global</link>

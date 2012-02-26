@@ -1,5 +1,44 @@
             Changes between version 5.4.0-alpha-1 and 5.4.0-alpha-2 of Scilab
-            =========================================================
+            =================================================================
+
+
+XML
+===
+
+* Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
+
+
+Xcos
+====
+
+* New examples are provided in the documentation for the blocks:
+  - ABS_VALUE - Absolute value
+  - EVTDLY_c - Event delay
+  - AFFICH_m - Display value
+  - CLSS - Continuous state-space system
+  - SELECT_m - Selector block
+  - NEGTOPOS_f - Threshold negative to positive
+
+* Bug #8744 fixed - Solving the initialization problem more than once crash
+                    Scilab.
+
+* Bug #10081 fixed - Palette configuration saving could produce an invalid
+                     file.
+
+* Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
+                     too large. It has been reduced to 1e-6.
+
+* Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
+                     labeling when ports had not the same types.
+
+* Bug #10340 fixed - Exception occured while moving the palette split pane to
+                     hide the block list and while using a palette diagram.
+
+* Bug #10419 fixed - Exception occured while refusing to create a new empty
+                     file.
+
+* Bug #10422 fixed - Exception occured when exporting with an unspecified
+                     format.
 
 
 Unitary testing
@@ -13,7 +52,7 @@ Example: test_run('SCI/contrib/toolbox_skeleton')
 Graphical User Interface
 ========================
 
-* bug 4978 fixed - Icons did not follow the Tango norm.
+* Bug #4978 fixed - Icons did not follow the Tango norm.
 
 
 CLI console:
@@ -21,7 +60,8 @@ CLI console:
 
 * bug 3400 fixed - Long lines in the history breaks the display.
 
-* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
+* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow key
+s.
 
 * bug 3108 fixed - Some specific chars in the terminal are not correctly
                    removed by the backspace.
@@ -38,7 +78,8 @@ CLI console:
             the line.
   - UP or Ctrl+P: recall previous line.
   - DOWN or Ctrl+N: recall next line.
-  - TAB: completion : scilab displays a list of all names that start with somes characters.
+  - TAB: completion : scilab displays a list of all names that start with somes 
+characters.
   - Ctrl + A or HOME: move to beginning of current line.
   - Ctrl + B or LEFT: moves the cursor one character to the left.
   - Ctrl + D or DELETE: deletes the current character.
@@ -52,6 +93,48 @@ CLI console:
   - Alt+F or Ctrl+RIGHT: move right one word.
 
 
+Scinotes
+========
+
+* Add shortcuts META+(UP|DOWN) to navigate between paragraphs
+
+* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+                     restoring.
+
+
+CLI console:
+============
+
+* Support wide characters.
+
+* Support multiline command.
+
+* General improvement command line display.
+
+* List of new/old shortcuts in NW/NWNI mode:
+  - UP or Ctrl+P: recall previous line.
+  - DOWN or Ctrl+N: recall next line.
+  - TAB: completion : Scilab displays a list of all names that start with somes
+    characters.
+  - Ctrl + A or HOME: move to beginning of current line.
+  - Ctrl + B or LEFT: moves the cursor one character to the left.
+  - Ctrl + D or DELETE: deletes the current character.
+  - Ctrl + E or END: moves the cursor to the end of command line.
+  - Ctrl + F or RIGHT: moves the cursor one character to the right.
+  - Ctrl + H or BACKSPACE: deletes the previous character.
+  - Ctrl + K: kills command line from cursor to the end.
+  - Ctrl + U: kills command line from cursor to beginning.
+  - Ctrl + W: delete the previous word from the cursor.
+  - Alt+B or Ctrl+LEFT: move left one word.
+  - Alt+F or Ctrl+RIGHT: move right one word.
+
+* bug 3108 fixed - Some specific chars in the terminal were not correctly
+                   removed by the backspace.
+
+* bug 3400 fixed - Long lines in the history broke the display.
+
+* bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
+
 
 Javasci
 =======
@@ -63,31 +146,79 @@ a sparse but not to send it to Scilab).
 able to retrieve a struct but not to send it to Scilab).
 
 
-Xcos
-====
+CACSD & Signal Processing
+=========================
 
-* bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
-                     too large. It has been reduced to 1e-6.
+* New functions:
+  - conv - discrete 1-D convolution.
+  - conv2 - discrete 2-D convolution.
+  - convol2d - discrete 2-D convolution, using fft.
+  - phaseplot - frequency phase plot.
 
-* bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
-                     labeling when ports had not the same types.
+* Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
 
-* bug #10340 fixed - Exception occured while moving the palette split pane to
-                     hide the block list and while using a palette diagram.
 
-* bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
-                     Scilab".
+Compatibility Functions
+=======================
+
+* 'mtlb_conv' obsolete. Please use 'conv' instead.
 
 
 Bug fixes
 =========
 
+* Bug #4806 fixed - If A is a sparse matrix, A^0 returned A and not the identity
+                    matrix as expected.
+
 * Bug #4813 fixed - Description of type 0 added in type help page.
+
+* Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
+                    were missing.
+
+* Bug #9197 fixed - Unitary test examples in toolbox_skeleton
+                    and xcos_toolbox_skeleton did not use assert functions.
+
+* Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
+
+* Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
                      operator.
+
+* Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
+
+* Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
+
+* Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
+                     Scilab".
+
+* Bug #10402 fixed - FileBrowser threw an exception when a filter was set
+                     and the tree was expanded.
+
+* Bug #10408 fixed - In the history browser, the contents was scrolled even if the
+                     knob was not at the bottom.
+
+* Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
+                     Pierre-Henri Jondot for the patch.
+
+* Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
+
+* Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
+                     and an erronous value was entered.
+
+* Bug #10449 fixed - On restoration, empty tabs could appear if the previous
+                     session was not cleanly exited.
+
+* Bug #10450 fixed - Overloading for gamma, dlgamma and gammaln functions for list,
+                     tlist, mlist and hypermatrices types was not allowed.
+
+* Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
+
+* Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -842,7 +973,7 @@ Bug Fixes
 * Bug #7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
 * Bug #7249 fixed - 'string' function did not work as documented
-                                with a macro as input argument.
+        with a macro as input argument.
 
 * Bug #7333 fixed - In BrowseVar, variables could have a weird type number.
 

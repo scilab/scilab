@@ -29,7 +29,7 @@
         <term>X  </term>
         <listitem>
           <para>matrice réelle ou complexe
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,8 +37,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Conditionnement en norme 2. <literal>cond(X)</literal> est le quotient entre la plus grande et la plus petite valeur singulière de <literal>X</literal>.
-  </para>
+      Conditionnement en norme 2. <literal>cond(X)</literal> est le quotient entre la plus grande et la plus petite valeur singulière de <literal>X</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -48,7 +48,7 @@ cond(A)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="rcond">rcond</link>

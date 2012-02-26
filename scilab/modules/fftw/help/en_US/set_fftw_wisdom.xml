@@ -36,7 +36,7 @@
   <refsection>
     <title>Description</title>
     <para>
-     This function set the fftw wisdom with a string matrix.
+      This function set the fftw wisdom with a string matrix.
     </para>
   </refsection>
   <refsection>
@@ -51,7 +51,7 @@ fftw_forget_wisdom();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

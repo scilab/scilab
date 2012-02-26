@@ -51,8 +51,8 @@ public class ScilabDouble implements ScilabType {
      * Default constructor
      */
     public ScilabDouble() {
-        realPart = null;
-        imaginaryPart = null;
+        realPart = new double[0][];
+        imaginaryPart = new double[0][];
     }
 
     /**
@@ -62,7 +62,7 @@ public class ScilabDouble implements ScilabType {
     public ScilabDouble(double data) {
         realPart = new double[1][1];
         realPart[0][0] = data;
-        imaginaryPart = null;
+        imaginaryPart = new double[0][];
     }
 
     /**
@@ -84,8 +84,7 @@ public class ScilabDouble implements ScilabType {
      * @param data the data
      */
     public ScilabDouble(double[][] data) {
-        realPart = data;
-        imaginaryPart = null;
+        this(data, new double[0][]);
     }
 
     /**
@@ -95,8 +94,17 @@ public class ScilabDouble implements ScilabType {
      * @param imagData the imaginary part of the data
      */
     public ScilabDouble(double[][] realData, double[][] imagData) {
-        realPart = realData;
-        imaginaryPart = imagData;
+        if (realData == null) {
+            realPart = new double[0][];
+            imaginaryPart = new double[0][];
+        } else {
+            realPart = realData;
+            if (imagData == null) {
+                imaginaryPart = new double[0][];
+            } else {
+                imaginaryPart = imagData;
+            }
+        }
     }
 
     /**
@@ -106,10 +114,9 @@ public class ScilabDouble implements ScilabType {
      * @param imagData the imaginary part of the data
      */
     public ScilabDouble(String varName, double[][] realData, double[][] imagData, boolean swaped) {
+        this(realData, imagData);
         this.varName = varName;
         this.swaped = swaped;
-        realPart = realData;
-        imaginaryPart = imagData;
     }
 
     /**
@@ -128,7 +135,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public boolean isEmpty() {
-        return (realPart == null && imaginaryPart == null);
+        return realPart == null || realPart.length == 0;
     }
 
     /**
@@ -137,7 +144,7 @@ public class ScilabDouble implements ScilabType {
      * @return true, if the data are real only.
      */
     public boolean isReal() {
-        return (imaginaryPart == null);
+        return imaginaryPart == null || imaginaryPart.length == 0;
     }
 
     /**
@@ -196,8 +203,8 @@ public class ScilabDouble implements ScilabType {
      * @return the serialized matrix with complex values
      */
     public double[] getSerializedComplexMatrix() {
-        int size = this.getHeight()*this.getWidth();
-        double [] serializedComplexMatrix = new double[size*2];
+        int size = this.getHeight() * this.getWidth();
+        double [] serializedComplexMatrix = new double[size * 2];
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
                 serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
@@ -208,6 +215,16 @@ public class ScilabDouble implements ScilabType {
         return serializedComplexMatrix;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{realPart};
+        } else {
+            return new Object[]{realPart, imaginaryPart};
+        }
+    }
 
     /**
      * @return the height of the data matrix
@@ -227,7 +244,7 @@ public class ScilabDouble implements ScilabType {
      */
     @Override
     public int getWidth() {
-        if (isEmpty() || realPart.length  == 0) {
+        if (isEmpty()) {
             return 0;
         }
 
@@ -241,6 +258,10 @@ public class ScilabDouble implements ScilabType {
     public boolean equals(Object obj) {
         if (obj instanceof ScilabDouble) {
             ScilabDouble sciDouble = ((ScilabDouble)obj);
+            if (isEmpty() && sciDouble.isEmpty()) {
+                return true;
+            }
+
             if (this.isReal() && sciDouble.isReal()) {
                 return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
             } else {

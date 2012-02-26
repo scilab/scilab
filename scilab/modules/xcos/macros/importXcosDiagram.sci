@@ -8,13 +8,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
-//
+
 //import xcos diagram in Scilab environment
 //parameters : 
 //xcosFile : xcos diagram file
 //result : boolean
-
-
 function result = importXcosDiagram(xcosFile)
 
 	result = %f;
@@ -37,25 +35,12 @@ function result = importXcosDiagram(xcosFile)
 		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected." + '\n'), "importXcosDiagram", 1));
 		return;
 	end
-	
+
 	// import the real file
-	convertStatus = xcosDiagramToHDF5(fullPathName, h5File, %t);
-
-	if(convertStatus <> 0) then
-		error(msprintf(gettext("%s: Unable to import xcos file ""%s""." + '\n'), "importXcosDiagram", xcosFile));
-	end
-	
-	if(import_from_hdf5(h5File) == %f) then
-		error(msprintf(gettext("%s: Unable to import xcos file ""%s""." + '\n'), "importXcosDiagram", xcosFile));
-		return;
-	end
-
-	// deleting the temporary file
-	mdelete(h5File);
+	convertStatus = xcosDiagramToScilab(fullPathName);
 	
 	//return scs_m in Scilab environment
 	result = %t;
 	scs_m = resume(scs_m);
 endfunction
-
 

@@ -15,7 +15,6 @@
 #include <string.h>
 #include "gw_windows_tools.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int sci_win64(char *fname,unsigned long l)
 {

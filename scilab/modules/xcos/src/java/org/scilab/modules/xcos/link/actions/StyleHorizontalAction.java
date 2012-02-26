@@ -15,9 +15,10 @@ package org.scilab.modules.xcos.link.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -61,14 +62,27 @@ public class StyleHorizontalAction extends StyleAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        BasicLink[] links = getLinks();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
-        getGraph(e).setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
-        getGraph(e).setCellStyles(mxConstants.STYLE_EDGE,
-                mxConstants.EDGESTYLE_ELBOW, links);
-        getGraph(e).setCellStyles(mxConstants.STYLE_ELBOW,
-                mxConstants.ELBOW_HORIZONTAL, links);
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+        
+        final Object[] links = getLinks();
 
-        removePointsOnLinks(links);
+        graph.getModel().beginUpdate();
+        try {
+            graph.setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
+            graph.setCellStyles(mxConstants.STYLE_EDGE,
+                    mxConstants.EDGESTYLE_ELBOW, links);
+            graph.setCellStyles(mxConstants.STYLE_ELBOW,
+                    mxConstants.ELBOW_HORIZONTAL, links);
+
+            reset(graph, links);
+        } finally {
+            graph.getModel().endUpdate();
+        }
     }
 }

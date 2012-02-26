@@ -13,7 +13,6 @@
 #include "api_scilab.h"
 #include "gw_parallel.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "callFunctionFromGateway.h"
 
 /*--------------------------------------------------------------------------*/

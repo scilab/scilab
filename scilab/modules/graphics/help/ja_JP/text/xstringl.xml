@@ -41,8 +41,11 @@
         <term>str</term>
         <listitem>
           <para>文字列の行列.</para>
-         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">
-	LaTeX または MathML 式</link>を書くことができます.</para>
+          <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">
+              LaTeX または MathML 式
+            </link>
+            を書くことができます.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -61,13 +64,15 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xstringl</literal> は,
-	位置<literal>x,y</literal> (左下の点)にある文字列<literal>str</literal>を囲う
-	矩形の大きさをカレントのグラフィックスケールで
-	<literal>rect=[x,y,w,h]</literal>(左下の点, 幅, 高さ)に返します.
-	</para>
+    <para>
+      <literal>xstringl</literal> は,
+      位置<literal>x,y</literal> (左下の点)にある文字列<literal>str</literal>を囲う
+      矩形の大きさをカレントのグラフィックスケールで
+      <literal>rect=[x,y,w,h]</literal>(左下の点, 幅, 高さ)に返します.
+    </para>
     <para>ポストスクリプトドライバを使用する場合,
-	この結果の近似精度は十分でない可能性があります.</para>
+      この結果の近似精度は十分でない可能性があります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -122,9 +127,5 @@ xstring(r2(1),r2(2),str)
         <link linkend="stringbox">stringbox</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

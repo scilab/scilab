@@ -29,7 +29,7 @@
         <term>path  </term>
         <listitem>
           <para>chaîne de caractères, chemin du répertoire
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,8 +37,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>. 
-  </para>
+      Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>. 
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -47,7 +47,7 @@ getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="exec">exec</link>

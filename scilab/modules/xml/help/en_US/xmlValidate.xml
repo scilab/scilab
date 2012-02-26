@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -88,8 +88,8 @@
     xmlValidate("SCI/modules/xml/tests/unit_tests/library.xml", schema)
     xmlValidate("SCI/modules/xml/tests/unit_tests/invalid_library.xml", rng)
 
-    // We close the all the open streams
-    xmlClose(doc, dtd, schema, rng);
+    // We delete the all the open documents
+    xmlDelete(doc, dtd, schema, rng);
     ]]></programlisting>
   </refsection>
   <refsection role="see also">
@@ -105,10 +105,6 @@
         <link linkend="xmlRelaxNG">xmlRelaxNG</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <para>Calixte DENIZET</para>
   </refsection>
   <refsection>
     <title>History</title>

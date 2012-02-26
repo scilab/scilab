@@ -10,17 +10,18 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>fac3d(x,y,z,[theta,alpha,leg,flag,ebox])
-fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
+      fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Ces fonctions sont obsolètes et ont été remplacées par
-    <literal>plot3d</literal> et <literal>plot3d1</literal>.
-  </para>
+      Ces fonctions sont obsolètes et ont été remplacées par
+      <literal>plot3d</literal> et <literal>plot3d1</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

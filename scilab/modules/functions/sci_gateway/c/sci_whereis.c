@@ -11,7 +11,6 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -37,6 +36,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -44,6 +44,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 		return 0;
 	}
 
@@ -86,6 +87,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -106,6 +108,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
 			return 0;
 		}
 
@@ -118,6 +121,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 		}
@@ -130,6 +134,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
 				return 0;
 			}
 		}

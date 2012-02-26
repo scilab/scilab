@@ -9,15 +9,99 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-11-08 10:30+0000\n"
+"PO-Revision-Date: 2012-01-23 12:36+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s): Valid base %d representations "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument ou des arguments d'entrée : Des "
+"représentations valides en base %d attendues.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -61,18 +145,17 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
+"attendu.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
@@ -142,38 +225,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: integer expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d."
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument(s): Valid base %d representations "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument ou des arguments d'entrée : Des "
-"représentations valides en base %d attendues.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
-"ones expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice de chaîne de "
-"caractères composée de zéros et uns attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Doit être inférieur à "
-"%d caractères.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -308,26 +359,6 @@ msgstr ""
 "scalaire/vecteur/matrice d'entiers positifs attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier positif attendu"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer matrix "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice d'entiers "
-"positifs attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
-"attendu.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
@@ -353,14 +384,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une représentation "
-"hexadécimale valide attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %d,'%s',%d ou '%s' "
@@ -373,6 +396,12 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au plus %d attendus.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur colonne "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -415,14 +444,6 @@ msgstr "%s : Type erroné de l'argument n°%d : Un réel attendu.\n"
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr "%s : Argument n°%d faux : Un entier positif attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid octal representations "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une représentation octale "
-"valide attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

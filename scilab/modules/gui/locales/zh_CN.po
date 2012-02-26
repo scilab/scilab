@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 
 #, c-format
@@ -273,6 +273,10 @@ msgstr "%s：发生一个错误：%s。\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "不能得到目前的界面风格"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -581,14 +585,20 @@ msgstr "Scilab &ATOMS网页"
 msgid "&File Exchange"
 msgstr ""
 
-msgid "&Mailing lists"
-msgstr "邮件列表(&M)"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr ""
 
 msgid "&Bugs And Requests"
 msgstr "错误和新功能需求数据库(&B)"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "旋转"
@@ -860,18 +870,19 @@ msgid "No print service found."
 msgstr "没有发现打印服务"
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"警告： 由于你的设置限制，Scilab不能采用uicontrols和graphics混合模式，输入\"\"help "
-"usecanvas\"\" 以获取更毒信息\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr "disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的驱动程序。\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
+msgstr ""
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1103,26 +1114,14 @@ msgstr ""
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "版权所有 (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "CeCILL协议"
-
 msgid "About Scilab..."
 msgstr "关于Scilab..."
 
-msgid "Acknowledgements"
-msgstr "致谢"
-
 msgid "Close"
 msgstr "关闭"
+
+msgid "Acknowledgements"
+msgstr "致谢"
 
 msgid "Could not open: "
 msgstr ""
@@ -1152,9 +1151,6 @@ msgstr "Figure已被保存\n"
 
 msgid "Select a file name"
 msgstr "选择文件名"
-
-msgid "Select a file to open with SciNotes"
-msgstr ""
 
 msgid "Control Plot3d"
 msgstr "控制Plot3d"

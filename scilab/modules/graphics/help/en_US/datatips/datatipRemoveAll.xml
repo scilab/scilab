@@ -19,8 +19,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    datatipRemoveAll(curve_handles)
-    datatipRemoveAll()</synopsis>
+      datatipRemoveAll(curve_handles)
+      datatipRemoveAll()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,9 +39,9 @@
   <refsection>
     <title>Description</title>
     <para>
-        Removes all datatips on a set of polylines. If the
-        <literal>curve_handles</literal> argument is omitted, all
-        datatips associated to current axes entities are removed.
+      Removes all datatips on a set of polylines. If the
+      <literal>curve_handles</literal> argument is omitted, all
+      datatips associated to current axes entities are removed.
     </para>
   </refsection>
   <refsection>
@@ -75,12 +76,6 @@
       <member>
         <link linkend="datatipRemove">datatipRemove</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

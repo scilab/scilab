@@ -21,15 +21,13 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
-fcontour(xr,yr,f,nz,&lt;opt_args&gt;)</synopsis>
+      fcontour(xr,yr,f,nz,&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>この関数は廃止されており,
-      <link linkend="contour">contour</link> 関数に統合されています.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
+      <link linkend="contour">contour</link> 関数に統合されています.
+    </para>
   </refsection>
 </refentry>

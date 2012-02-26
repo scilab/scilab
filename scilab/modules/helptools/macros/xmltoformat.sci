@@ -508,14 +508,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-          buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
-        else
-          buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
-        end
+        buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
 
         // Check if the help file has been generated
         if fileinfo(buildDoc_file)==[] then
+            chdir(cur_dir);
             error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
         end
 
@@ -526,6 +523,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             my_html_files = listfiles(buildDoc_dir);
             for k=1:size(my_html_files,'*')
                 if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                    chdir(cur_dir);
                     error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                 end
                 mdelete(my_html_files(k));
@@ -602,18 +600,16 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // Change Scilab current directory so that Java Indexer works
             if ~chdir(buildDoc_dir) then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
-            end
+            buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
 
             // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -624,6 +620,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 my_html_files = listfiles(buildDoc_dir);
                 for k=1:size(my_html_files,'*')
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                        chdir(cur_dir);
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
                     mdelete(my_html_files(k));
@@ -729,14 +726,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            if output_format=="javaHelp" | output_format=="html" | output_format=="chm" | output_format=="web" then
-              buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-            else
-              buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
-             end
+            buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
 
              // Check if the help file has been generated
             if fileinfo(buildDoc_file)==[] then
+                chdir(cur_dir);
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -747,6 +741,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 my_html_files = listfiles(buildDoc_dir);
                 for k=1:size(my_html_files,'*')
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                        chdir(cur_dir);
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
                     mdelete(my_html_files(k));

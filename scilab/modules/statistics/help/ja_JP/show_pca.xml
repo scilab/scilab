@@ -25,43 +25,47 @@
   <refsection>
     <title>パラメータ</title>
     <variablelist>
-     
       <varlistentry>
         <term>lambda</term>
         <listitem>
           <para>
-	p x 2 数値行列.
-	最初の列はVの固有値となります.
-	ただし,Vは p x p 相関行列です.
-	2番目の列は対応する固有値と
-	固有値の合計の比となります.</para>
+            p x 2 数値行列.
+            最初の列はVの固有値となります.
+            ただし,Vは p x p 相関行列です.
+            2番目の列は対応する固有値と
+            固有値の合計の比となります.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>facpr</term>
         <listitem>
           <para>
-		主成分です:
-	Vの固有値.
-	各列は<literal>R^p</literal>の双対の
-	固有ベクトルの要素です.</para>
+            主成分です:
+            Vの固有値.
+            各列は<literal>R^p</literal>の双対の
+            固有ベクトルの要素です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>N</term>
         <listitem>
           <para> 2x1 整数ベクトルです. 
-	その係数は固有値を降順に並べた<literal>p</literal>行<literal>p</literal>列の
-	相関行列の固有値に対応する固有ベクトルを指します.
-	<literal>N</literal>が指定されない場合,
-          <literal>N=[1 2]</literal>を仮定します. </para>
+            その係数は固有値を降順に並べた<literal>p</literal>行<literal>p</literal>列の
+            相関行列の固有値に対応する固有ベクトルを指します.
+            <literal>N</literal>が指定されない場合,
+            <literal>N=[1 2]</literal>を仮定します. 
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para>この関数は,<link linkend="pca">pca</link>の結果を可視化します.</para>
+    <para>
+      この関数は,<link linkend="pca">pca</link>の結果を可視化します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -71,7 +75,7 @@ a=rand(100,10,'n');
 show_pca(lambda,facpr)
  ]]></programlisting>
   </refsection>
- <refsection role="see also">
+  <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
       <member>
@@ -82,16 +86,10 @@ show_pca(lambda,facpr)
       </member>
     </simplelist>
   </refsection>
-
-  <refsection>
-    <title>作者</title>
-    <para>
-    Carlos Klimann
-  </para>
-  </refsection>
   <refsection>
     <title>参考文献</title>
     <para>Saporta, Gilbert, Probabilites,  Analyse des
-Donnees et Statistique, Editions Technip, Paris, 1990.</para>
+      Donnees et Statistique, Editions Technip, Paris, 1990.
+    </para>
   </refsection>
 </refentry>

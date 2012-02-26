@@ -22,7 +22,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>draw()
-draw(h)</synopsis>
+      draw(h)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,20 +31,24 @@ draw(h)</synopsis>
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>a handle, the handle on an entity to draw. <literal>h</literal> can
-          be a vector of handles, in which case all objects identified by h(i)
-          will be drawn.</para>
+          <para>
+            a handle, the handle on an entity to draw. <literal>h</literal> can
+            be a vector of handles, in which case all objects identified by h(i)
+            will be drawn.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function can be used to draw entities specified by <literal>h</literal>
-    even if its parent figure <literal>immediate_drawing</literal> property is
-    <literal>"off"</literal>. If no argument is specified, the <literal>current object</literal> 
-    is drawn. Note that the window must not be resized ; if not,
-    those objects are hidden back.</para>
+    <para>
+      This function can be used to draw entities specified by <literal>h</literal>
+      even if its parent figure <literal>immediate_drawing</literal> property is
+      <literal>"off"</literal>. If no argument is specified, the <literal>current object</literal> 
+      is drawn. Note that the window must not be resized ; if not,
+      those objects are hidden back.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +74,7 @@ e.children(1).visible='on';
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>
@@ -87,9 +92,5 @@ e.children(1).visible='on';
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE, F.Leray</para>
   </refsection>
 </refentry>

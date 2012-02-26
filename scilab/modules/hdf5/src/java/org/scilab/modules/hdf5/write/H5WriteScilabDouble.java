@@ -22,7 +22,7 @@ import org.scilab.modules.types.ScilabDouble;
 public class H5WriteScilabDouble {
 	public static void writeInDataSet(int fileId, String dataSetName, ScilabDouble data) throws NullPointerException, HDF5Exception {
 		/* Empty Matrix */
-		if (data.getRealPart() == null && data.getImaginaryPart() == null) {
+	    if (data.isEmpty()) {
 			writeEmptyMatrix(fileId, dataSetName);
 			return;
 		}

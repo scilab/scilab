@@ -17,7 +17,6 @@
 #endif
 
 #include "freeArrayOfString.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \

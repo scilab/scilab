@@ -33,7 +33,7 @@ eomday(2006,3);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="datenum">datenum</link>
@@ -44,12 +44,6 @@ eomday(2006,3);
       <member>
         <link linkend="weekday">weekday</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-03 14:27+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2012-01-05 21:22+0000\n"
+"Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: pl\n"
 
 #, c-format
@@ -116,6 +116,63 @@ msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr ""
 "%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano 'all' lub "
 "'main'\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Module %s does not exist in current repositories.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -249,11 +306,32 @@ msgstr "%s: Wystąpił błąd podczas ładowania '%s-%s':\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: oczekiwano 'user' lub 'allusers' "
 "lub 'all'\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: Oczekiwano typ boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
 
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
@@ -265,6 +343,12 @@ msgid ""
 msgstr ""
 "%s: Nie masz wystarczających uprawnień, aby usunąć którąkolwiek wersję "
 "pakietu %s.\n"
+
+#, c-format
+msgid ""
+"Removing %s (%s)(%s).\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -291,6 +375,12 @@ msgstr ""
 "sprawdź czy masz prawo dostępu do zapisu do tego katalogu : %s.\n"
 
 #, c-format
+msgid ""
+"Deleting archives files for %s.\n"
+"\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: Zła wartość parametru wejściowego nr %d: Ten ("
 
@@ -303,10 +393,27 @@ msgstr ""
 "'all','user','allusers' lub 'official'.\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr ""
+
+#, c-format
+msgid "config file saved to %s"
+msgstr ""
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: oczekiwany taki sam "
 "rozmiar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -584,6 +691,14 @@ msgstr ""
 "znaków zawierający 'TOOLBOXES' lub 'DESCRIPTION'.\n"
 
 #, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
 "the %s field\n"
@@ -607,6 +722,22 @@ msgstr ""
 #, c-format
 msgid "%s: The file '%s' cannot be written.\n"
 msgstr "%s: Plik '%s' nie może być zapisany.\n"
+
+#, c-format
+msgid ""
+"%s%s deleted.\n"
+"\n"
+msgstr ""
+"%s%s usunięto.\n"
+"\n"
+
+#, c-format
+msgid ""
+"%s%s does not exist.\n"
+"\n"
+msgstr ""
+"%s%s nie istnieje.\n"
+"\n"
 
 #, c-format
 msgid ""
@@ -738,17 +869,6 @@ msgid ""
 msgstr ""
 "%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierz "
 "łańcuchów 1x1 lub 1x2\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: Oczekiwano typ boolean.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s:  Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wartości "
-"logicznej.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"

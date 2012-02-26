@@ -34,7 +34,9 @@
       <varlistentry>
         <term>cmap</term>
         <listitem>
-          <para>3 列 <literal>[R,G,B]</literal>を有する行列.</para>
+          <para>
+            3 列 <literal>[R,G,B]</literal>を有する行列.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -102,4 +104,3 @@ f.color_map = whitecolormap(32);
     </simplelist>
   </refsection>
 </refentry>
-

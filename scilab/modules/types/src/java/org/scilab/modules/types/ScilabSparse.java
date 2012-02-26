@@ -52,9 +52,9 @@ public class ScilabSparse implements ScilabType {
         if (data != 0) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
-            realPart = new double[]{ data };
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
+            realPart = new double[] { data };
         }
     }
 
@@ -68,10 +68,10 @@ public class ScilabSparse implements ScilabType {
         if (realData != 0 || imagData != 0) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
-            realPart = new double[]{ realData };
-            imaginaryPart = new double[]{ imagData };
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
+            realPart = new double[] { realData };
+            imaginaryPart = new double[] { imagData };
         }
     }
 
@@ -84,14 +84,63 @@ public class ScilabSparse implements ScilabType {
      * @param nbItemRow contains the number of true in each rows
      * @param colPos the column position of each non null item
      * @param data the non null data
+     * @param check if true the parameters validity is checked
      */
-    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] data) {
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] data, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos, data);
+        if (check) {
+            checkValidity(rows, cols, nbItem, nbItemRow, colPos);
+
+            if (realPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array realPart: its length must be equal to the number of non-null items.");
+            }
+        }
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     * @param real the non null real data
+     */
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real) {
         this.rows = rows;
         this.cols = cols;
         this.nbItem = nbItem;
         this.nbItemRow = nbItemRow;
         this.colPos = colPos;
-        this.realPart = data;
+        this.realPart = real;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     * @param real the non null real data
+     * @param imag the non null imaginary data
+     * @param check if true the parameters validity is checked
+     */
+    public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag, boolean check) throws ScilabSparseException {
+        this(rows, cols, nbItem, nbItemRow, colPos, real, imag);
+        if (check) {
+            checkValidity(rows, cols, nbItem, nbItemRow, colPos);
+
+            if (realPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array realPart: its length must be equal to the number of non-null items.");
+            }
+
+            if (imaginaryPart.length != nbItem) {
+                throw new ScilabSparseException("Invalid length for the array imaginaryPart: its length must be equal to the number of non-null items.");
+            }
+        }
     }
 
     /**
@@ -108,6 +157,47 @@ public class ScilabSparse implements ScilabType {
     public ScilabSparse(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos, double[] real, double[] imag) {
         this(rows, cols, nbItem, nbItemRow, colPos, real);
         this.imaginaryPart = imag;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rows the number of rows
+     * @param cols the number of cols
+     * @param nbItem the number of non null items
+     * @param nbItemRow contains the number of true in each rows
+     * @param colPos the column position of each non null item
+     */
+    static final void checkValidity(int rows, int cols, int nbItem, int[] nbItemRow, int[] colPos) throws ScilabSparseException {
+        if (nbItem > rows * cols || nbItem < 0) {
+            throw new ScilabSparseException("Invalid number of items: between 0 and " + rows * cols + " expected.");
+        }
+
+        if (nbItemRow.length > rows) {
+            throw new ScilabSparseException("Invalid length for the array nbItemRow: a length between 0 and " + rows + " expected.");
+        }
+
+        int s = 0;
+        for (int i = 0; i < nbItemRow.length; i++) {
+            if (nbItemRow[i] > cols) {
+                throw new ScilabSparseException("Invalid number of non-null items in nbItemRow at position " + i + ".");
+            }
+            s += nbItemRow[i];
+        }
+
+        if (s != nbItem) {
+            throw new ScilabSparseException("Invalid array nbItemRow: the total sum is not equal to the number of non-null items.");
+        }
+
+        if (colPos.length != nbItem) {
+            throw new ScilabSparseException("Invalid length for the array colPos: its length must be equal to the number of non-null items.");
+        }
+
+        for (int i = 0; i < nbItem; i++) {
+            if (colPos[i] >= cols || colPos[i] < 0) {
+                throw new ScilabSparseException("Invalid column position at position " + i + ".");
+            }
+        }
     }
 
     /**
@@ -285,7 +375,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the number of non null items in the matrix.
      *
-     * @param the number of non null items.
+     * @param nbItem the number of non null items.
      */
     public void setNbNonNullItems(int nbItem) {
         this.nbItem = nbItem;
@@ -303,10 +393,23 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the number of non null items by row.
      *
-     * @param an integer array.
+     * @param nbItemRow an integer array.
      */
     public void setNbItemRow(int[] nbItemRow) {
         this.nbItemRow = nbItemRow;
+    }
+
+    /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
     }
 
     /**
@@ -321,7 +424,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the column positions of the non null items.
      *
-     * @param an integer array.
+     * @param colPos an integer array.
      */
     public void setColPos(int[] colPos) {
         this.colPos = colPos;
@@ -350,7 +453,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][] d = new double[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[i][colPos[j]] = realPart[j];
             }
@@ -369,7 +472,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][] d = new double[rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[i][colPos[j]] = imaginaryPart[j];
             }
@@ -389,7 +492,7 @@ public class ScilabSparse implements ScilabType {
         int prev = 0;
         int j = 0;
         double[][][] d = new double[2][rows][cols];
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 d[0][i][colPos[j]] = realPart[j];
                 d[1][i][colPos[j]] = imaginaryPart[j];
@@ -437,8 +540,8 @@ public class ScilabSparse implements ScilabType {
         if (obj instanceof ScilabSparse) {
             ScilabSparse sciSparse = (ScilabSparse) obj;
             if (this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                Arrays.equals(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
-                Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
+                    compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                    Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
                 if (this.isReal() && sciSparse.isReal()) {
                     return Arrays.equals(this.getRealPart(), sciSparse.getRealPart());
                 } else {
@@ -450,6 +553,58 @@ public class ScilabSparse implements ScilabType {
             }
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Compare two arrays containing the number of items by row.
+     * For example {1, 2, 3, 4} is equal to {1, 2, 3, 4, 0, 0, 0, 0}/
+     * @param a an array
+     * @param b an other array
+     * @return true if the arrays are equal
+     */
+    static final boolean compareNbItemRow(final int[] a, final int[] b) {
+        if (Arrays.equals(a, b)) {
+            return true;
+        }
+
+        if (a.length == b.length) {
+            return false;
+        }
+
+        int[] c, d;
+        if (a.length < b.length) {
+            c = a;
+            d = b;
+        } else {
+            c = b;
+            d = a;
+        }
+
+        int i = 0;
+        for (; i < c.length; i++) {
+            if (c[i] != d[i]) {
+                return false;
+            }
+        }
+
+        for (; i < d.length; i++) {
+            if (d[i] != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart};
+        } else {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart, imaginaryPart};
         }
     }
 
@@ -472,7 +627,7 @@ public class ScilabSparse implements ScilabType {
         result.append("sparse([");
         int j = 0;
         int prev = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 result.append(Integer.toString(i + 1));
                 result.append(", ");

@@ -17,13 +17,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.ScilabConstants;
@@ -32,19 +30,14 @@ import org.scilab.modules.xcos.modelica.Modelica;
 import org.scilab.modules.xcos.modelica.ModelicaController;
 import org.scilab.modules.xcos.modelica.ModelicaMessages;
 import org.scilab.modules.xcos.modelica.model.Model;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Solve the model.
  */
 public final class SolveAction extends AbstractAction {
-    private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; "
-            + "if(compile_init_modelica(fw, paremb, jaco)) then "
+    private static final String COMPILE_STRING = "fw='%s'; paremb='%s'; jaco='%s'; " + "if(compile_init_modelica(fw, paremb, jaco)) then "
             + "mopen('%s', 'w'); end ";
-    private static final String COMPUTE_STRING = "method='%s'; Nunknowns='%s'; "
-            + "if(Compute_cic(method,Nunknowns)) then "
-            + "mopen('%s', 'w'); "
-            + "end ";
+    private static final String COMPUTE_STRING = "method='%s'; Nunknowns='%s'; " + "if(Compute_cic(method,Nunknowns)) then " + "mopen('%s', 'w'); " + "end ";
 
     private static final String IMF_INIT = "_init";
     private static final String EXTENSION = ".xml";
@@ -54,7 +47,7 @@ public final class SolveAction extends AbstractAction {
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the associated controller
      */
@@ -63,19 +56,11 @@ public final class SolveAction extends AbstractAction {
 
         putValue(NAME, ModelicaMessages.SOLVE);
         this.controller = controller;
-
-        // disable when the model is not square
-        controller.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                setEnabled(controller.isSquare());
-            }
-        });
     }
 
     /**
      * action !!!
-     * 
+     *
      * @param e
      *            the event
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -86,15 +71,13 @@ public final class SolveAction extends AbstractAction {
 
         // defensive programming
         if (!controller.isSquare()) {
-            LogFactory.getLog(SolveAction.class).error(
-                    ModelicaMessages.MODEL_INVALID);
+            Logger.getLogger(SolveAction.class.getName()).severe(ModelicaMessages.MODEL_INVALID);
         }
 
         initStatus();
         try {
             // store the updated values
-            final File updatedInitFile = new File(ScilabConstants.TMPDIR,
-                    modelName + IMF_INIT + EXTENSION);
+            final File updatedInitFile = new File(ScilabConstants.TMPDIR, modelName + IMF_INIT + EXTENSION);
             Modelica.getInstance().save(controller.getRoot(), updatedInitFile);
 
             final int paremb;
@@ -115,18 +98,16 @@ public final class SolveAction extends AbstractAction {
             File statusFile = File.createTempFile(modelName, null);
             statusFile.delete();
 
-            String cmd = String.format(COMPILE_STRING, modelName, paremb, jaco,
-                    statusFile.getAbsolutePath());
+            String cmd = String.format(COMPILE_STRING, modelName, paremb, jaco, statusFile.getAbsolutePath());
 
-            LogFactory.getLog(SolveAction.class).trace("Compiling");
-            ScilabInterpreterManagement.asynchronousScilabExec(
-                    new CompileFinished(statusFile), cmd.toString());
+            Logger.getLogger(SolveAction.class.getName()).finest("Compiling");
+            ScilabInterpreterManagement.asynchronousScilabExec(new CompileFinished(statusFile), cmd.toString());
         } catch (InterpreterException e1) {
-            LogFactory.getLog(SolveAction.class).error(e1);
+            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
         } catch (IOException e1) {
-            LogFactory.getLog(SolveAction.class).error(e1);
+            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
         } catch (JAXBException e1) {
-            LogFactory.getLog(SolveAction.class).error(e1);
+            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
         }
     }
 
@@ -147,20 +128,19 @@ public final class SolveAction extends AbstractAction {
 
         /**
          * Default constructor
-         * 
+         *
          * @param status
          *            the status file
          */
         public CompileFinished(File status) {
             final String modelName = controller.getRoot().getName();
-            incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE
-                    + EXTENSION);
+            incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE + EXTENSION);
             this.status = status;
         }
 
         /**
          * Update things and compute the compiled model
-         * 
+         *
          * @param e
          *            the event
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -168,15 +148,11 @@ public final class SolveAction extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (status.exists()) {
-                putValue(NAME, ModelicaMessages.COMPUTING + XcosMessages.DOTS);
                 try {
                     // update the model with the computed identifiers
-                    final Model incidenceModel = Modelica.getInstance().load(
-                            incidence);
-                    controller.getRoot().setIdentifiers(
-                            incidenceModel.getIdentifiers());
-                    controller.getRoot()
-                            .setOutputs(incidenceModel.getOutputs());
+                    final Model incidenceModel = Modelica.getInstance().load(incidence);
+                    controller.getRoot().setIdentifiers(incidenceModel.getIdentifiers());
+                    controller.getRoot().setOutputs(incidenceModel.getOutputs());
 
                     // update the statistics
                     controller.getStatistics().fireChange();
@@ -185,26 +161,22 @@ public final class SolveAction extends AbstractAction {
                     controller.setCompileNeeded(false);
 
                     // creating a temporary status file
-                    File statusFile = File.createTempFile(controller.getRoot()
-                            .getName(), null);
+                    File statusFile = File.createTempFile(controller.getRoot().getName(), null);
                     statusFile.delete();
 
                     final ModelStatistics stats = controller.getStatistics();
                     long nUnknowns = stats.getUnknowns() - stats.getEquations();
-                    String cmd = String.format(COMPUTE_STRING,
-                            controller.getComputeMethod(), nUnknowns,
-                            statusFile.getAbsolutePath());
+                    String cmd = String.format(COMPUTE_STRING, controller.getComputeMethod(), nUnknowns, statusFile.getAbsolutePath());
 
                     // compute now
-                    LogFactory.getLog(SolveAction.class).trace("Computing");
-                    ScilabInterpreterManagement.asynchronousScilabExec(
-                            new ComputeFinished(statusFile), cmd);
+                    Logger.getLogger(SolveAction.class.getName()).finest("Computing");
+                    ScilabInterpreterManagement.asynchronousScilabExec(new ComputeFinished(statusFile), cmd);
                 } catch (JAXBException e1) {
-                    LogFactory.getLog(CompileFinished.class).error(e1);
+                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
                 } catch (IOException e1) {
-                    LogFactory.getLog(CompileFinished.class).error(e1);
+                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
                 } catch (InterpreterException e1) {
-                    LogFactory.getLog(CompileFinished.class).error(e1);
+                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
                 }
             } else {
                 // best effort to alert the user.
@@ -219,7 +191,7 @@ public final class SolveAction extends AbstractAction {
     private final class ComputeFinished implements ActionListener {
         /**
          * Default constructor
-         * 
+         *
          * @param status
          *            the status file
          */
@@ -228,7 +200,7 @@ public final class SolveAction extends AbstractAction {
 
         /**
          * Clean the state
-         * 
+         *
          * @param e
          *            the event
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)

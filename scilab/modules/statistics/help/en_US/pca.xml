@@ -29,40 +29,44 @@
         <term>x</term>
         <listitem>
           <para> is a nxp (n individuals, p variables) real
-          matrix. Note that <literal>pca</literal> center and
-          normalize the columns of <literal>x</literal> to produce
-          principal components analysis with standardized
-          variables.</para>
+            matrix. Note that <literal>pca</literal> center and
+            normalize the columns of <literal>x</literal> to produce
+            principal components analysis with standardized
+            variables.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>lambda</term>
         <listitem>
           <para>is  a p x 2  numerical  matrix.  In the  first
-         column we  find the eigenvalues of  V, where V
-         is the correlation p x p matrix and in the second
-         column are the ratios of the corresponding 
-         eigenvalue over the sum of eigenvalues.</para>
+            column we  find the eigenvalues of  V, where V
+            is the correlation p x p matrix and in the second
+            column are the ratios of the corresponding 
+            eigenvalue over the sum of eigenvalues.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>facpr</term>
         <listitem>
           <para>are the  principal  factors: eigenvectors  of
-         V. Each column is an eigenvector element of the
-         dual of <literal>R^p</literal>.</para>
+            V. Each column is an eigenvector element of the
+            dual of <literal>R^p</literal>.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>comprinc</term>
         <listitem>
           <para>are the  principal components.  Each column
-         (c_i=Xu_i)  of   this  n x n  matrix   is  the
-         M-orthogonal projection of  individuals onto
-         principal  axis.  Each one of this  columns
-         is a linear combination  of the variables
-         x1,   ...,xp  with   maximum   variance  under
-         condition <literal>u'_i M^(-1) u_i=1</literal></para>
+            (c_i=Xu_i)  of   this  n x n  matrix   is  the
+            M-orthogonal projection of  individuals onto
+            principal  axis.  Each one of this  columns
+            is a linear combination  of the variables
+            x1,   ...,xp  with   maximum   variance  under
+            condition <literal>u'_i M^(-1) u_i=1</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -70,23 +74,24 @@
   <refsection>
     <title>Description</title>
     <para>This function performs several computations known as
-    "principal component analysis".</para>
-
+      "principal component analysis".
+    </para>
     <para>The idea behind this method is to represent in an
-    approximative manner a cluster of n individuals in a smaller
-    dimensional subspace.  In order to do that, it projects the
-    cluster onto a subspace.  The choice of the k-dimensional
-    projection subspace is made in such a way that the distances in
-    the projection have a minimal deformation: we are looking for a
-    k-dimensional subspace such that the squares of the distances in
-    the projection is as big as possible (in fact in a projection,
-    distances can only stretch).  In other words, inertia of the
-    projection onto the k dimensional subspace must be maximal.
+      approximative manner a cluster of n individuals in a smaller
+      dimensional subspace.  In order to do that, it projects the
+      cluster onto a subspace.  The choice of the k-dimensional
+      projection subspace is made in such a way that the distances in
+      the projection have a minimal deformation: we are looking for a
+      k-dimensional subspace such that the squares of the distances in
+      the projection is as big as possible (in fact in a projection,
+      distances can only stretch).  In other words, inertia of the
+      projection onto the k dimensional subspace must be maximal.
     </para>
     <para>Warning, the graphical part of the old version of
-    <literal>pca</literal> has been removed. It can now be performed
-    using the <link linkend="show_pca">show_pca</link>
-    function.</para>
+      <literal>pca</literal> has been removed. It can now be performed
+      using the <link linkend="show_pca">show_pca</link>
+      function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -96,8 +101,8 @@ a=rand(100,10,'n');
 show_pca(lambda,facpr)
  ]]></programlisting>
   </refsection>
- <refsection role="see also">
-<title>See Also</title>
+  <refsection role="see also">
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="show_pca">show_pca</link>
@@ -107,16 +112,10 @@ show_pca(lambda,facpr)
       </member>
     </simplelist>
   </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Carlos Klimann
-  </para>
-  </refsection>
   <refsection>
     <title>Bibliography</title>
     <para>Saporta, Gilbert, Probabilites,  Analyse des
-Donnees et Statistique, Editions Technip, Paris, 1990.</para>
+      Donnees et Statistique, Editions Technip, Paris, 1990.
+    </para>
   </refsection>
 </refentry>

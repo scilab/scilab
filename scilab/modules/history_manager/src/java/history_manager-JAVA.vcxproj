@@ -167,6 +167,11 @@ call ant clean
     <None Include="org\scilab\modules\history_manager\HistoryManagementJNI.java" />
     <None Include="..\..\..\build.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\history_manager.vcxproj">
+      <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

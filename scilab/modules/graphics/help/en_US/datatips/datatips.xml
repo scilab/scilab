@@ -24,15 +24,21 @@
       commonly used mode is the interactive one:
     </para>
     <para>
-     The datatips mode can be enabled by <link linkend="datatipToggle">datatipToggle()</link> or using the
-     <literal>Edit/Start datatip manager</literal> or clicking on the
-     toolbar icon <inlinemediaobject><imageobject><imagedata fileref="../../../../gui/images/icons/32x32/apps/datatips.png"/></imageobject></inlinemediaobject> of the desired graphic window.
+      The datatips mode can be enabled by <link linkend="datatipToggle">datatipToggle()</link> or using the
+      <literal>Edit/Start datatip manager</literal> or clicking on the
+      toolbar icon 
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../gui/images/icons/32x32/apps/datatips.png"/>
+        </imageobject>
+      </inlinemediaobject>
+      of the desired graphic window.
     </para>
     <para>Once enabled, a simple left click on a curve will add a tip
-     ( a small box with information on the current point) at the
-     nearest datapoint of the curve. By default each curve can have a
-     single tip but it is possible to allow multiple datatips using
-     the right click contextual menu.
+      ( a small box with information on the current point) at the
+      nearest datapoint of the curve. By default each curve can have a
+      single tip but it is possible to allow multiple datatips using
+      the right click contextual menu.
     </para>
     <para>
       To move a tip, press left button on the small square mark on
@@ -119,12 +125,6 @@
       <member>
         <link linkend="datatipSetDisplay">datatipSetDisplay</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

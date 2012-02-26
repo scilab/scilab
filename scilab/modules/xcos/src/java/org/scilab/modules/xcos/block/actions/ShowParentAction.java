@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,8 +16,8 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -39,12 +39,11 @@ public class ShowParentAction extends DefaultAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      */
@@ -54,7 +53,7 @@ public class ShowParentAction extends DefaultAction {
 
     /**
      * Menu added to the menubar
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      * @return the menu
@@ -78,10 +77,15 @@ public class ShowParentAction extends DefaultAction {
             if (graph == null) {
                 block.setParentDiagram(Xcos.findParent(block));
                 graph = block.getParentDiagram();
-                LogFactory.getLog(getClass()).error("Parent diagram was null");
+                Logger.getLogger(ShowParentAction.class.getName()).severe("Parent diagram was null");
             }
 
-            XcosTab.restore(graph);
+            final XcosTab tab = XcosTab.get(graph);
+            if (tab == null) {
+                XcosTab.restore(graph);
+            } else {
+                tab.setCurrent();
+            }
         }
     }
 }

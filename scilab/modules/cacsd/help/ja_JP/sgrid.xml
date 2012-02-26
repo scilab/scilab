@@ -21,39 +21,44 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>sgrid()
-sgrid('new')
-sgrid(zeta,wn [,color])</synopsis>
+      sgrid('new')
+      sgrid(zeta,wn [,color])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>
-	evansと組み合わせて使用され,
-	ダンピング比(<literal>zeta</literal>),
-	固有周波数 (<literal>wn</literal>)が一定値となる
-	線をプロットします.
-  </para>
+      evansと組み合わせて使用され,
+      ダンピング比(<literal>zeta</literal>),
+      固有周波数 (<literal>wn</literal>)が一定値となる
+      線をプロットします.
+    </para>
     <variablelist>
       <varlistentry>
         <term>sgrid()</term>
         <listitem>
           <para>
-	<literal>zeta</literal> および <literal>wn</literal>
-	のデフォルト値を用いて,
-	既存の連続したs平面の根軌跡の上にグリッドを追加します.</para>
+            <literal>zeta</literal> および <literal>wn</literal>
+            のデフォルト値を用いて,
+            既存の連続したs平面の根軌跡の上にグリッドを追加します.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sgrid('new')</term>
         <listitem>
           <para>グラフィックスクリーンをクリアした後,
-	デフォルトの s平面グリッドをプロットします</para>
+            デフォルトの s平面グリッドをプロットします
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sgrid(zeta,wn [,color])</term>
         <listitem>
-          <para><literal>sgrid()</literal>と同じですが, 指定された
-	ダンピング比と固有周波数を使用します.</para>
+          <para>
+            <literal>sgrid()</literal>と同じですが, 指定された
+            ダンピング比と固有周波数を使用します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>

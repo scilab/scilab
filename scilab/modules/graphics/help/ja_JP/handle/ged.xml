@@ -28,25 +28,34 @@
       <varlistentry>
         <term>action</term>
         <listitem>
-          <para>実数: <literal>fignum</literal>で指定されたグラフィックウインドウで
-	実行されるアクション: </para>
-
+          <para>
+            実数: <literal>fignum</literal>で指定されたグラフィックウインドウで
+            実行されるアクション: 
+          </para>
           <itemizedlist>
             <listitem>
-              <para>1: ウインドウ<literal>fignum</literal>をカレントの図として選択.</para>
+              <para>
+                1: ウインドウ<literal>fignum</literal>をカレントの図として選択.
+              </para>
             </listitem>
             <listitem>
-              <para>2: ウインドウ <literal>fignum</literal>を再描画.</para>
+              <para>
+                2: ウインドウ <literal>fignum</literal>を再描画.
+              </para>
             </listitem>
             <listitem>
-              <para>3: ウインドウ<literal>fignum</literal>を作成.</para>
+              <para>
+                3: ウインドウ<literal>fignum</literal>を作成.
+              </para>
             </listitem>
             <listitem>
               <para>4: コピーするグラフィックエンティティをユーザに選択させます.</para>
             </listitem>
             <listitem>
-              <para>5: アクション <literal>4</literal>によりコピーされた
-		直近のグラフィックエンティティを貼りつけます.</para>
+              <para>
+                5: アクション <literal>4</literal>によりコピーされた
+                直近のグラフィックエンティティを貼りつけます.
+              </para>
             </listitem>
             <listitem>
               <para>6: ユーザにグラフィックエンティティを選択させた後,それを移動します.</para>
@@ -62,7 +71,8 @@
             </listitem>
             <listitem>
               <para>10: グラフィックオブジェクトを選択するエンティティピッカーを
-		起動し,グラフィックエディタGUIによりそのオブジェクトを編集します.</para>
+                起動し,グラフィックエディタGUIによりそのオブジェクトを編集します.
+              </para>
             </listitem>
             <listitem>
               <para>11: エンティティエディタを停止します.</para>
@@ -80,13 +90,10 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>ged</literal> は図番号<literal>fignum</literal>を指定して
-	Scilabグラフィックエディタを開始し,
-	<literal>action</literal>で指定されたアクションを実行します.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>V.C.</para>
+    <para>
+      <literal>ged</literal> は図番号<literal>fignum</literal>を指定して
+      Scilabグラフィックエディタを開始し,
+      <literal>action</literal>で指定されたアクションを実行します.
+    </para>
   </refsection>
 </refentry>
-

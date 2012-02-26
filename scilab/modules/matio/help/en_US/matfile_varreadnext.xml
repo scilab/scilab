@@ -28,13 +28,17 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>Real: file descriptor (returned by <link linkend="matfile_open">matfile_open</link>).</para>
+          <para>
+            Real: file descriptor (returned by <link linkend="matfile_open">matfile_open</link>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>name</term>
         <listitem>
-          <para>String: name of the variable read or <literal>""</literal> if reading failed.</para>
+          <para>
+            String: name of the variable read or <literal>""</literal> if reading failed.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,10 +53,14 @@
           <para>Real: type of the variable if reading succeeds or:</para>
           <itemizedlist>
             <listitem>
-              <para><emphasis>0</emphasis>: if the variable type is unknown.</para>
+              <para>
+                <emphasis>0</emphasis>: if the variable type is unknown.
+              </para>
             </listitem>
             <listitem>
-              <para><emphasis>-1</emphasis>: if end of file has been reached.</para>
+              <para>
+                <emphasis>-1</emphasis>: if end of file has been reached.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -62,10 +70,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Reads next variable in a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.</para>
+      Reads next variable in a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="matfile_open">matfile_open</link>
@@ -82,13 +91,13 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
-    <para>This function uses MATIO library (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>).</para>
+    <para>
+      This function uses MATIO library (
+      <literal>
+        <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
+      </literal>
+      ).
+    </para>
   </refsection>
 </refentry>

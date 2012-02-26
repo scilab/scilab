@@ -97,10 +97,14 @@ function java = crlist3(x,Path, java)
 	currentNode = crlist3(o,path,currentNode); //* recursive
 	java = uiConcatTree(java, currentNode);
     else
-        if size(o,'*')>40 then
-          tts=typeof(o)+' of size '+sci2exp(size(o))
-        else
-          tts=sprintf('%s',sci2exp(o))
+        try
+          if size(o, '*') > 40 then 
+            tts = typeof(o) + ' of size ' + sci2exp(size(o))
+          else 
+            tts = sprintf('%s', sci2exp(o))
+          end,
+        catch
+          tts = typeof(o);
         end
         titre2=titre+': '+tts  ;
 //--       TCL_EvalStr('set yy {'+titre2+'}')

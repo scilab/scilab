@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:46+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-01-02 21:19+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: de\n"
 
 #, c-format
@@ -338,6 +338,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
@@ -591,7 +595,7 @@ msgid "Clear C&onsole"
 msgstr "&Konsole leeren"
 
 msgid "&Control"
-msgstr "&Kontrolle"
+msgstr "&Steuerung"
 
 msgid "&Resume"
 msgstr "&Fortsetzen"
@@ -630,7 +634,7 @@ msgid "Scilab &Help"
 msgstr "Scilab &Help"
 
 msgid "Scilab &Demonstrations"
-msgstr "Sciliab &Demonstrationen"
+msgstr "Scilab &Demos"
 
 msgid "&Links"
 msgstr "&Web Verweise"
@@ -650,14 +654,20 @@ msgstr "Webseite zu Scilab & Atoms"
 msgid "&File Exchange"
 msgstr ""
 
-msgid "&Mailing lists"
-msgstr "Mailing Listen"
+msgid "&Mailing Lists"
+msgstr ""
+
+msgid "Mailing Lists &Archives"
+msgstr ""
 
 msgid "&Forge"
 msgstr ""
 
 msgid "&Bugs And Requests"
 msgstr "&Fehler und Anfrage Datenbank"
+
+msgid "&Scilab Enterprises"
+msgstr ""
 
 msgid "Rotate"
 msgstr "Rotieren"
@@ -975,23 +985,19 @@ msgid "No print service found."
 msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"Warnung: auf Grund Ihrer Einschränkungen bei der Konfiguration, hat "
-"Scilab in einen Modus geschaltet, in dem Uicontrols und Grafik nicht "
-"verfügbar sind. Geben Sie \"\"Help Usecanvas\"\" für weitere Information "
-"ein.\")"
+
+msgid "In some cases, %s fixes the issue"
+msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"Warnung: Aufgrund von Beschränkungen der Grafikkarte können Sie "
-"OpenGL nicht einstellen, Scilab wird keine Grafik ausgeben. Bitte "
-"aktualisieren Sie die Treiber.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1228,26 +1234,14 @@ msgstr ""
 msgid "All %s files"
 msgstr "Alle %s Dateien"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Das Scilab Konsortium (DIGITEO)"
-
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "CeCILL Lizenz"
-
 msgid "About Scilab..."
 msgstr "Über Scliab..."
 
-msgid "Acknowledgements"
-msgstr "Danksagungen"
-
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Acknowledgements"
+msgstr "Danksagungen"
 
 msgid "Could not open: "
 msgstr ""
@@ -1277,9 +1271,6 @@ msgstr "Diagramm gespeichert.\n"
 
 msgid "Select a file name"
 msgstr "Dateinamen auswählen"
-
-msgid "Select a file to open with SciNotes"
-msgstr ""
 
 msgid "Control Plot3d"
 msgstr ""

@@ -12,6 +12,8 @@
 package org.scilab.tests.modules.javasci;
 
 import org.testng.annotations.*;
+import static org.testng.AssertJUnit.*;
+
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,6 +21,8 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.awt.GraphicsEnvironment;
 
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.javasci.JavasciException;
@@ -57,12 +61,14 @@ public class testBug9544 {
     @BeforeMethod
     public void open() throws NullPointerException, JavasciException {
         sci = new Scilab(true);
-        assert sci.open() == true;
+        assertTrue(sci.open());
     }
 
     @Test(sequential = true) 
     public void nonRegBug9544Working() throws NullPointerException, JavasciException, IOException {
-        x = new Test_sci();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x = new Test_sci();
+        }
     }
 
     /**
@@ -70,7 +76,9 @@ public class testBug9544 {
      */
     @AfterMethod
     public void close() {
-        x.dispose();
+        if (!GraphicsEnvironment.isHeadless()) {
+            x.dispose();
+        }
         sci.close();
         
     }
@@ -123,7 +131,7 @@ public class testBug9544 {
                 commands.add("X = [1,2];");
                 commands.add("Y = [3,4];");
                 commands.add("plot(X,Y);");
-                assert sci.exec(commands.toArray(new String[commands.size()])) == true;
+                assertTrue(sci.exec(commands.toArray(new String[commands.size()])));
             }
                 
         }

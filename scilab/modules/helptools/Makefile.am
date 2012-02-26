@@ -13,8 +13,7 @@ HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-	sci_gateway/cpp/sci_buildDocv2.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDocv2.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
@@ -90,7 +89,10 @@ libscihelptools_la_data_configuration_DATA = data/configuration/scilab_primitive
 data/configuration/scilab_macros.txt
 
 libscihelptools_la_data_templatedir = $(mydatadir)/data/template
-libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
+libscihelptools_la_data_template_DATA = data/template/template_chm.html \
+data/template/template_html.html \
+data/template/template_javahelp.html \
+data/template/template_web.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
 data/css/c_code.css \

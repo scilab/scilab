@@ -35,11 +35,9 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xname</literal>はカレントのグラフィックウインドウの
-	名前を変更します.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xname</literal>はカレントのグラフィックウインドウの
+      名前を変更します.
+    </para>
   </refsection>
 </refentry>

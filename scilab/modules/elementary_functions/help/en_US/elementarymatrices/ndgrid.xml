@@ -6,14 +6,16 @@
   <refnamediv>
     <refname>ndgrid</refname>
     <refpurpose>arrays for multidimensional function evaluation on
-    grid</refpurpose>
+      grid
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[X, Y] = ndgrid(x,y)
-[X, Y, Z] = ndgrid(x,y,z)
-[X, Y, Z, T] = ndgrid(x,y,z,t)
-[X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)</synopsis>
+      [X, Y, Z] = ndgrid(x,y,z)
+      [X, Y, Z, T] = ndgrid(x,y,z,t)
+      [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -28,7 +30,8 @@
         <term>X, Y, Z, ...</term>
         <listitem>
           <para>matrices in case of 2 input arguments, or else
-          hypermatrices</para>
+            hypermatrices
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,36 +39,49 @@
   <refsection>
     <title>Description</title>
     <para>This is an utility routine useful to create arrays for function
-    evaluation on 2, 3, ..., n dimensional grids. For instance in 2d, a grid
-    is defined by two vectors, <literal>x</literal> and <literal> y</literal>
-    of length nx and ny, and you want to evaluate a function (says
-    <emphasis>f</emphasis>) on all the grid points, that is on all the points
-    of coordinates <emphasis>(x(i),y(j))</emphasis> with
-    <emphasis>i=1,..,nx</emphasis> and <emphasis>j=1,..,ny</emphasis>. In this
-    case, this function can compute the two matrices <literal>X,Y</literal> of
-    size <emphasis>nx x ny</emphasis> such that :</para>
+      evaluation on 2, 3, ..., n dimensional grids. For instance in 2d, a grid
+      is defined by two vectors, <literal>x</literal> and <literal> y</literal>
+      of length nx and ny, and you want to evaluate a function (says
+      <emphasis>f</emphasis>) on all the grid points, that is on all the points
+      of coordinates <emphasis>(x(i),y(j))</emphasis> with
+      <emphasis>i=1,..,nx</emphasis> and <emphasis>j=1,..,ny</emphasis>. In this
+      case, this function can compute the two matrices <literal>X,Y</literal> of
+      size <emphasis>nx x ny</emphasis> such that :
+    </para>
     <programlisting><![CDATA[ 
 X(i,j) = x(i)   for all i in [1,nx]
 Y(i,j) = y(j)       and j in [1,ny]
  ]]></programlisting>
-    <para>and the evaluation may be done with <literal>Z=f(X,Y)</literal> (at
-    the condition that you have coded <literal>f</literal> for evaluation on
-    vector arguments, which is done (in general) by using the element-wise
-    operators <literal>.*</literal>, <literal>./</literal> and
-    <literal>.^</literal> in place of <literal>*</literal>,
-    <literal>/</literal> and <literal>^</literal>).</para>
-    <para>In the 3d case, considering 3 vectors <literal>x,y,z</literal> of
-    length nx, ny and nz, <literal>X,Y,Z</literal> are 3 hypermatrices of size
-    <emphasis>nx x ny x nz</emphasis> such that :</para>
+    <para>
+      and the evaluation may be done with <literal>Z=f(X,Y)</literal> (at
+      the condition that you have coded <literal>f</literal> for evaluation on
+      vector arguments, which is done (in general) by using the element-wise
+      operators <literal>.*</literal>, <literal>./</literal> and
+      <literal>.^</literal> in place of <literal>*</literal>,
+      <literal>/</literal> and <literal>^</literal>).
+    </para>
+    <para>
+      In the 3d case, considering 3 vectors <literal>x,y,z</literal> of
+      length nx, ny and nz, <literal>X,Y,Z</literal> are 3 hypermatrices of size
+      <emphasis>nx x ny x nz</emphasis> such that :
+    </para>
     <programlisting><![CDATA[ 
 X(i,j,k) = x(i)  
 Y(i,j,k) = y(j)   for all (i,j,k) in [1,nx]x[1,ny]x[1,nz]
 Z(i,j,k) = z(k)
  ]]></programlisting>
-    <para>In the general case of m input arguments <literal>x1, x2, ..,
-    xm</literal>, then the m output arguments <literal>X1, X2, ..,
-    Xm</literal> are hypermatrices of size <emphasis>nx1 x nx2 x ... x
-    nxm</emphasis> and :</para>
+    <para>
+      In the general case of m input arguments <literal>x1, x2, ..,
+        xm
+      </literal>
+      ,then the m output arguments <literal>X1, X2, ..,
+        Xm
+      </literal>
+      are hypermatrices of size <emphasis>nx1 x nx2 x ... x
+        nxm
+      </emphasis>
+      and :
+    </para>
     <programlisting><![CDATA[ 
 Xj(i1,i2,...,ij,...,im) = xj(ij)   
 for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
@@ -121,9 +137,5 @@ xtitle("A 3d grid !"); show_window()
         <link linkend="kron">kron</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>B. Pincon</para>
   </refsection>
 </refentry>

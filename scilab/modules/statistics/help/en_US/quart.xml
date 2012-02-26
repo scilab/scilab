@@ -17,13 +17,14 @@
   <refnamediv>
     <refname>quart</refname>
     <refpurpose> computation of quartiles
-  </refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>s=quart(x)
-s=quart(x,'r') or m=quart(x,1)
-s=quart(x,'c') or m=quart(x,2)</synopsis>
+      s=quart(x,'r') or m=quart(x,1)
+      s=quart(x,'c') or m=quart(x,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -39,19 +40,21 @@ s=quart(x,'c') or m=quart(x,2)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-For a vector  or a matrix x,  [q]=quart(x,y)
-returns in the vector q the quartiles of x.
-
-[q]=quart(x,'r')        (or,         equivalently,
-[q]=quart(x,1)) are the   rowwise percentiles.  It
-returns in  each  column of    the matrix  q   the
-quartiles  of   data   in the   corresponding column  of
-x.</para>
+      For a vector  or a matrix x,  [q]=quart(x,y)
+      returns in the vector q the quartiles of x.
+      
+      [q]=quart(x,'r')        (or,         equivalently,
+      [q]=quart(x,1)) are the   rowwise percentiles.  It
+      returns in  each  column of    the matrix  q   the
+      quartiles  of   data   in the   corresponding column  of
+      x.
+    </para>
     <para>
-[q]=quart(x,'c')        (or,         equivalently,
-[q]=quart(x,2)) are the  columnwise quartiles.  It
-returns in each row of  the matrix q the quartiles
-of data in the corresponding row of x.</para>
+      [q]=quart(x,'c')        (or,         equivalently,
+      [q]=quart(x,2)) are the  columnwise quartiles.  It
+      returns in each row of  the matrix q the quartiles
+      of data in the corresponding row of x.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -72,12 +75,9 @@ q=quart(x,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

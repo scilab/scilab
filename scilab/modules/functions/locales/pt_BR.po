@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14487)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -111,12 +115,25 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: O arquivo %s não existe.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Criação de [%s] (Macros) --\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Nenhum arquivo com extensão %s encontrado em %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s file compilation forced\n"

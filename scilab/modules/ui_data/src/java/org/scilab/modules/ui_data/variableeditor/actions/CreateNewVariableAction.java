@@ -118,7 +118,7 @@ public final class CreateNewVariableAction extends CallBack {
         final Object[] ret = new Object[]{ "", new Integer(0), new Integer(0), "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "32x32")).getImage());
+        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

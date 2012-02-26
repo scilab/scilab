@@ -36,7 +36,6 @@ public class ScilabBoolean implements ScilabType {
 
     /* the boolean data */
     private boolean[][] data;
-    
     private String varName;
     private boolean swaped;
 
@@ -62,9 +61,9 @@ public class ScilabBoolean implements ScilabType {
      * @param data the array of boolean
      */
     public ScilabBoolean(String varName, boolean[][] data, boolean swaped) {
-	this.varName = varName;
+        this.varName = varName;
         this.data = data;
-	this.swaped = swaped;
+        this.swaped = swaped;
     }
 
     /**
@@ -162,10 +161,17 @@ public class ScilabBoolean implements ScilabType {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ScilabBoolean) {
-            return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
+            return Arrays.deepEquals(this.getData(), ((ScilabBoolean) obj).getData());
         } else {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        return data;
     }
 
     /**

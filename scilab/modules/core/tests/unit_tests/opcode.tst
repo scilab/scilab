@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);
 //a primitive as an argument of a primitive
 //-----------------------------------------
 function y=foo(),y=sin(cos),endfunction
@@ -85,4 +85,4 @@ if type(foo())<>130 then pause,end
 sin=1
 sin //devrait repondre 1 or il essaye d'executer sin
 a=sin //est ok 
-prot=funcprot();funcprot(0)
+prot=funcprot();funcprot(0);

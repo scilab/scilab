@@ -1,6 +1,6 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+# Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -52,8 +52,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_extraction.cpp \
 		      sci_gateway/cpp/sci_insertion.cpp \
 		      sci_gateway/cpp/sci_print.cpp \
-		      sci_gateway/cpp/sci_xmlGetOpenStreams.cpp \
-		      sci_gateway/cpp/sci_xmlClose.cpp \
+		      sci_gateway/cpp/sci_xmlGetOpenDocs.cpp \
+		      sci_gateway/cpp/sci_xmlDelete.cpp \
 		      sci_gateway/cpp/sci_xmlDump.cpp \
 		      sci_gateway/cpp/sci_xmlReadStr.cpp \
 		      sci_gateway/cpp/sci_xmlFormat.cpp \

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,12 +10,10 @@
  *
  */
 
-
 extern "C"
 {
 #include "xml.h"
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -27,13 +25,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
+int sci_xmlSetAttributes(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    int * addr = 0;
-    XMLObject * obj = 0;
-    char ** keyValue = 0;
+    int *addr = 0;
+    XMLObject *obj = 0;
+    char **keyValue = 0;
     int rows;
     int cols;
 
@@ -44,6 +42,7 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
@@ -54,10 +53,10 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    obj = XMLObject::getFromId<XMLObject>(id);
+    obj = XMLObject::getFromId < XMLObject > (id);
     if (!obj)
     {
-        Scierror(999, gettext("%s: XML attributes does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML attribute does not exist.\n"), fname);
         return 0;
     }
 
@@ -65,6 +64,7 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
@@ -88,11 +88,12 @@ int sci_xmlSetAttributes(char * fname, unsigned long fname_len)
 
     if (cols == 2)
     {
-        obj->setAttributeValue(const_cast<const char **>(keyValue), const_cast<const char **>(keyValue + rows), rows);
+        obj->setAttributeValue(const_cast < const char **>(keyValue), const_cast < const char **>(keyValue + rows), rows);
     }
     else
     {
-        obj->setAttributeValue(const_cast<const char **>(keyValue), const_cast<const char **>(keyValue + rows), const_cast<const char **>(keyValue + 2 * rows), rows);
+        obj->setAttributeValue(const_cast < const char **>(keyValue), const_cast < const char **>(keyValue + rows),
+                               const_cast < const char **>(keyValue + 2 * rows), rows);
     }
     freeAllocatedMatrixOfString(rows, cols, keyValue);
 

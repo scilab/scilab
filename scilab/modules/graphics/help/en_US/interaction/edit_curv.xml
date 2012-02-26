@@ -21,10 +21,11 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[x,y,ok,gc] = edit_curv(y)
-[x,y,ok,gc] = edit_curv(x,y)
-[x,y,ok,gc] = edit_curv(x,y,job)
-[x,y,ok,gc] = edit_curv(x,y,job,tit)
-[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)</synopsis>
+      [x,y,ok,gc] = edit_curv(x,y)
+      [x,y,ok,gc] = edit_curv(x,y,job)
+      [x,y,ok,gc] = edit_curv(x,y,job,tit)
+      [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -76,7 +77,9 @@
       <varlistentry>
         <term>gc</term>
         <listitem>
-          <para>a list of graphic window parameters: <literal>gc=list(rect,nax)</literal></para>
+          <para>
+            a list of graphic window parameters: <literal>gc=list(rect,nax)</literal>
+          </para>
           <variablelist>
             <varlistentry>
               <term>rect</term>
@@ -96,20 +99,20 @@
       <varlistentry>
         <term>ok</term>
         <listitem>
-          <para>indicator if ok==%t user as returned with 'ok' menu else user as returned with 'abort' menu  : list (graphical objects created under <literal>edit_curv</literal></para>
+          <para>
+            indicator if ok==%t user as returned with 'ok' menu else user as returned with 'abort' menu  : list (graphical objects created under <literal>edit_curv</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>edit_curv</literal> is an interactive graphic curve editor. To add a new point
-    simply click at the desired location, the added point will be
-    connected to the nearest end-point. to move a point click on it, drag
-    the mouse to the new position and click to set the new position</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer ; ; ; ; ;   </para>
+    <para>
+      <literal>edit_curv</literal> is an interactive graphic curve editor. To add a new point
+      simply click at the desired location, the added point will be
+      connected to the nearest end-point. to move a point click on it, drag
+      the mouse to the new position and click to set the new position
+    </para>
   </refsection>
 </refentry>

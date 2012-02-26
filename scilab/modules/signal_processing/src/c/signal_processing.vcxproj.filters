@@ -59,12 +59,21 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_syredi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="conv2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_conv2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_signal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="conv2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,5 +95,8 @@
     <ResourceCompile Include="signal_processing.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
   </ItemGroup>
 </Project>

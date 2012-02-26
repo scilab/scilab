@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>c=getcolor(title,[cini])
-c=getcolor()</synopsis>
+      c=getcolor()
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,12 +49,14 @@ c=getcolor()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
-    The user can click on a color to show its id and RGB values.
-    <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.</para>
+    <para>
+      <literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
+      The user can click on a color to show its id and RGB values.
+      <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="color">color</link>

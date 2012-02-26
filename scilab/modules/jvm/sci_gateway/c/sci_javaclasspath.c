@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_jvm.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "addToClasspath.h"
 #include "getClasspath.h"
@@ -51,6 +50,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -58,6 +58,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
 
@@ -74,6 +75,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -90,6 +92,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
             {
                 if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
@@ -112,6 +115,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
                 freeArrayOfString(pStVarOne, m1 * n1);
                 if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
                 printError(&sciErr, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 

@@ -25,14 +25,14 @@
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_function_choice choisit et exécute un item choisi dans la 
-		variable 'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de texte dont la 
-		premiere colonne contient des noms d'items affichés dans une fenêtre d'options 
-		et la deuxième, le nom d'une fonction correspondante qui sera exécuté. Le titre 
-		de la fenêtre d'options est 'Choose a demo'.
-		Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
-		initiale.
-		</para>
+      La fonction demo_function_choice choisit et exécute un item choisi dans la 
+      variable 'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de texte dont la 
+      premiere colonne contient des noms d'items affichés dans une fenêtre d'options 
+      et la deuxième, le nom d'une fonction correspondante qui sera exécuté. Le titre 
+      de la fenêtre d'options est 'Choose a demo'.
+      Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
+      initiale.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -51,17 +51,11 @@ demo_function_choice();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_file_choice">demo_file_choice</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>G.H</member>
     </simplelist>
   </refsection>
 </refentry>

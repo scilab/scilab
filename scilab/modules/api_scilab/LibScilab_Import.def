@@ -17,3 +17,5 @@ oGetDoubleComplexFromPointer
 getExecMode
 getstackinfo_
 freeArrayOfString
+putlhsvar_
+overload_

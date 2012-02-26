@@ -16,11 +16,11 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -38,7 +38,7 @@ public class AboutXcosAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      */
@@ -48,7 +48,7 @@ public class AboutXcosAction extends DefaultAction {
 
     /**
      * Menu created for "Help menu"
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      * @return the menu
@@ -64,11 +64,14 @@ public class AboutXcosAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        String[] contents = { Xcos.TRADENAME, "", XcosMessages.CONSORTIUM,
-                XcosMessages.COPYRIGHT_INRIA, "", XcosMessages.SCICOS_BASED };
+        final ScilabGraph graph = getGraph(e);
 
-        ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null,
-                null);
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
 
+        ScilabAboutBox.displayAndWait();
     }
 }

@@ -55,10 +55,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    function which gives the Kalman update and error variance</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      function which gives the Kalman update and error variance
+    </para>
   </refsection>
 </refentry>

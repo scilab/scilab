@@ -11,6 +11,24 @@
 // <-- Short Description -->
 // Check all the possible errors which should be reported on the diagram.
 
+
+//-----------------------------------------------------------------------------
+// at edition (sb port numbering)
+//-----------------------------------------------------------------------------
+
+// Check the report against wrong port numbering on super block
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.xcos")
+// open the super block
+// check that the second input port report an error
+// change the second input port value (to 2)
+// check that the second input port error is cleared
+// change the second input port value (to 5)
+// check that the second input port report an error
+// change the first output port value (to 3)
+// check that the first output port report an error
+// change the first output port value (to 1)
+// check that the first output port error is cleared
+
 //-----------------------------------------------------------------------------
 // on do_eval (context evaluation)
 //-----------------------------------------------------------------------------
@@ -20,6 +38,11 @@ xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context.xco
 // simulate
 // a comprehensive error should be reported but the simulation should run
 xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context_on_sb.xcos")
+
+// Check the report against a not connected link
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_not_connected_link.xcos")
+// simulate
+// a comprehensive error should be reported but the simulation should run
 
 //-----------------------------------------------------------------------------
 // on c_pass1 (flow checking)

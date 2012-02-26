@@ -21,7 +21,6 @@
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "getos.h"
 #include "api_scilab.h"
 #include "charEncoding.h"
@@ -253,6 +252,38 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
         sprintf(str_info,"%s: %s", TEMP_var,fromGetenv);
         outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+    }
+
+    sciErr = getNamedVarType(pvApiCtx, "TMPDIR", &iType);
+    if ((sciErr.iErr == 0) && (iType == sci_strings))
+    {
+        wchar_t * TMPDIR_value = NULL;
+        int TMPDIR_length = 0;
+        int m = 0, n = 0;
+
+        sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+        if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+        {
+            TMPDIR_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(TMPDIR_length + 1));
+            if (TMPDIR_value)
+            {
+                sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
+                if(sciErr.iErr == 0)
+                {
+                    char *utfstr = wide_string_to_UTF8(TMPDIR_value);
+                    if (utfstr)
+                    {
+                        str_info = (char*)MALLOC( sizeof(char)*(strlen("TMPDIR") + strlen("%s : %s") + strlen(utfstr) + 1) );
+                        sprintf(str_info,"%s: %s", "TMPDIR", utfstr);
+                        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                        FREE(utfstr);
+                        utfstr = NULL;
+                    }
+                }
+                FREE(TMPDIR_value);
+                TMPDIR_value = NULL;
+            }
+        }
     }
 
     sciErr = getNamedVarType(pvApiCtx, "WSCI", &iType);
