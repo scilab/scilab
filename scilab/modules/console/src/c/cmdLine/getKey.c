@@ -197,6 +197,15 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     int key;
 
     key = getwchar();
+
+#ifdef __APPLE__
+    // Need to clear the stdin
+    if (key == WEOF && feof(stdin))
+      {
+	clearerr(stdin);
+      }
+#endif
+
     if (getTokenInteruptExecution() == DO_NOT_SEND_COMMAND)
     {
         resetCommandLine(commandLine, cursorLocation);
@@ -254,6 +263,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
     case WEOF:
         setCBreak(1);
         endCopyPast(*commandLine);
+	break;
     default:
 /* Different keys are not in different case when it add characters to the command line */
         if (key == L'\n')
