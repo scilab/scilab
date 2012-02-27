@@ -270,6 +270,8 @@ Bug fixes
 
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
 
+* Bug #10281 fixed - In some cases, the function lyap was crashing.
+
 * Bug #10303 fixed - test_run ignored "enable_lt" option.
 
 * Bug #10304 fixed - test_run did not return an error when using an invalid option.
