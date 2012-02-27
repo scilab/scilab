@@ -1114,7 +1114,7 @@ namespace ast
                         if(result_get() != NULL && (pVar == NULL || bImplicitCall))
                         {
                             //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-                            InternalType* pITAns = result_get()->clone();
+                            InternalType* pITAns = result_get();
                             symbol::Context::getInstance()->put(*m_pAns, *pITAns);
                             if((*itExp)->is_verbose() && ConfigVariable::isPromptShow())
                             {

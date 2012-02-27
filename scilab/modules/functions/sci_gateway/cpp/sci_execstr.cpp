@@ -245,7 +245,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             //update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
-                InternalType* pITAns = execMe.result_get()->clone();
+                InternalType* pITAns = execMe.result_get();
 				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
 				if( (*j)->is_verbose() && bErrCatch == false)
 				{
