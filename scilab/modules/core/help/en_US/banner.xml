@@ -5,8 +5,7 @@
   </info>
   <refnamediv>
     <refname>banner</refname>
-    <refpurpose>show scilab banner
-      (Windows)
+    <refpurpose>shows Scilab banner
     </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -15,7 +14,7 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>show scilab banner.</para>
+    <para><literal>banner</literal> shows Scilab banner.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
