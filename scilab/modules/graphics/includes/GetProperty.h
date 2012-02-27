@@ -162,10 +162,6 @@ GRAPHICS_IMPEXP void sciGetGridStyle( sciPointObj * pObj, int * xStyle, int * yS
 
 GRAPHICS_IMPEXP void sciGetViewport( sciPointObj * pObj, int viewport[4] );
 
-GRAPHICS_IMPEXP void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage ) ;
-
-GRAPHICS_IMPEXP int sciGetInfoMessageLength( sciPointObj * pObj ) ;
-
 GRAPHICS_IMPEXP void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY ) ;
 
 GRAPHICS_IMPEXP BOOL sciGetIsEventHandlerEnable( sciPointObj * pObj ) ;

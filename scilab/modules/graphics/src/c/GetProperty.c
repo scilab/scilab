@@ -2563,47 +2563,6 @@ void sciGetViewport( sciPointObj * pObj, int viewport[4] )
     }
 }
 /*----------------------------------------------------------------------------------*/
-void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-    case SCI_FIGURE:
-        if (isFigureModel(pObj->UID))
-        {
-            strcpy(infoMessage, pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
-        }
-        else
-        {
-            sciGetJavaInfoMessage(pObj, infoMessage);
-        }
-        break;
-    default:
-        printSetGetErrorMessage("info_message");
-        break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-int sciGetInfoMessageLength( sciPointObj * pObj )
-{
-    switch ( sciGetEntityType(pObj) )
-    {
-    case SCI_FIGURE:
-        if (isFigureModel(pObj->UID))
-        {
-            return (int) strlen( pFIGURE_FEATURE(pObj)->pModelData->infoMessage ) ;
-        }
-        else
-        {
-            return sciGetJavaInfoMessageLength(pObj);
-        }
-    default:
-        printSetGetErrorMessage("info_message");
-        return -1 ;
-    }
-    return -1 ;
-
-}
-/*----------------------------------------------------------------------------------*/
 void sciGetScreenPosition( sciPointObj * pObj, int * posX, int * posY )
 {
     switch ( sciGetEntityType(pObj) )
