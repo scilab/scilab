@@ -3545,37 +3545,6 @@ int sciSetAntialiasingQuality(char * pobjUID, int quality)
 	return sciInitAntialiasingQuality(pobjUID, quality);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitLegendLocation(char * pobjUID, sciLegendPlace location)
-{
-    // FIXME
-    abort();
-#if 0
-    	switch (sciGetEntityType(pobjUID))
-    {
-	case SCI_LEGEND:
-		pLEGEND_FEATURE(pobjUID)->place = location;
-		return 0;
-	default:
-        printSetGetErrorMessage("legend_location");
-		return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify the legend position relatively to the subwindow
- */
-int sciSetLegendLocation(char * pobjUID, sciLegendPlace location)
-{
-	if (sciGetLegendLocation(pobjUID) == location)
-	{
-		/* nothing to do */
-		return 1;
-	}
-	return sciInitLegendLocation(pobjUID, location);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

@@ -245,9 +245,6 @@ GRAPHICS_IMPEXP int sciSetZBounds(char* pObj, double bounds[2]); /* SET */
 GRAPHICS_IMPEXP int sciInitGridFront(char* pObj, BOOL gridFront);
 GRAPHICS_IMPEXP int sciSetGridFront(char* pObj, BOOL gridFront); /* SET */
 
-GRAPHICS_IMPEXP int sciInitLegendLocation(char* pObj, sciLegendPlace location);
-GRAPHICS_IMPEXP int sciSetLegendLocation(char* pObj, sciLegendPlace location); /* SET */
-
 GRAPHICS_IMPEXP int sciInitAntialiasingQuality(char* pObj, int quality);
 GRAPHICS_IMPEXP int sciSetAntialiasingQuality(char* pObj, int quality); /* SET */
 
