@@ -32,24 +32,30 @@
         <term>a</term>
         <listitem>
           <para>
-            вещественная матрица значений двойной точности размером 1 на 1 или n на m, реальная часть.
-            Если <literal>a</literal> имеет мнимую часть, то сформируется ошибка.
-          </para>
+	    вещественная матрица значений двойной точности размером 1 на 1 или 
+	    <literal>n</literal> на <literal>m</literal>, реальная часть.
+	    Если <literal>a</literal> имеет мнимую часть, то сформируется ошибка.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>b</term>
         <listitem>
           <para>
-            вещественная матрица значений двойной точности размером 1 на 1 или n на m, реальная часть (по умолчанию b=0).
-            Если <literal>b</literal> имеет мнимую часть, то сформируется ошибка.  
-          </para>
+	    вещественная матрица значений двойной точности размером 1 на 1 или 
+	    <literal>n</literal> на <literal>m</literal>, реальная часть (по умолчанию 
+	    <literal>b=0</literal>).
+	    Если <literal>b</literal> имеет мнимую часть, то сформируется ошибка.  
+	 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>c</term>
         <listitem>
-          <para>комплексная матрица значений двойной точности размером n на m, комплексное число.</para>
+          <para>
+	    комплексная матрица значений двойной точности размером <literal>n</literal> на 
+	    <literal>m</literal>, комплексное число.
+	  </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,12 +63,12 @@
   <refsection>
     <title>Описание</title>
     <para>
-      c=complex(a) создаёт комплексное число из его реальной части <literal>a</literal> 
-      и нуля в качестве мнимой части.
+      <literal>c=complex(a)</literal> создаёт комплексное число из его реальной части 
+      <literal>a</literal> и нуля в качестве мнимой части.
     </para>
     <para>
-      c=complex(a,b) создаёт комплексное число из его реальной части <literal>a</literal> 
-      и мнимой части <literal>b</literal>.
+      <literal>c=complex(a,b)</literal> создаёт комплексное число из его реальной части 
+      <literal>a</literal> и мнимой части <literal>b</literal>.
     </para>
     <para>
       Эта функция является заменой для таких выражений как <literal>a+%i*b</literal>,
@@ -85,17 +91,19 @@ complex([1 2],[3 4])
 complex([1 2 3])
  ]]></programlisting>
     <para>
-      Если <literal>a</literal> является скаляром, а <literal>b</literal> 
-      является матрицей, то результат <literal>c</literal> имеет тот же размер, что и  <literal>b</literal>.
-      Аналогично, если <literal>b</literal> является скаляром, а <literal>a</literal> 
-      является матрицей, то результат <literal>c</literal> имеет тот же размер, что и  <literal>a</literal>.
+	Если <literal>a</literal> является скаляром, а <literal>b</literal> 
+	является матрицей, то результат <literal>c</literal> имеет тот же размер, что и  
+	<literal>b</literal>.
+	Аналогично, если <literal>a</literal> является матрицей, а <literal>b</literal> является 
+	скаляром, то результат <literal>c</literal> имеет тот же размер, что и 
+	<literal>a</literal>.
     </para>
     <programlisting role="example"><![CDATA[ 
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
     <para>
-      Если <literal>a</literal> и <literal>b</literal> являются матрицами разных размеров, то сформируется ошибка как в следующем примере.
+	Если <literal>a</literal> и <literal>b</literal> являются матрицами разных размеров, то сформируется ошибка, как в следующем примере.
     </para>
     <screen><![CDATA[ 
 -->complex(ones(2,3),ones(4,5))
@@ -105,10 +113,12 @@ at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
     <para>
-      Целью функции <literal>complex</literal> является управление числами с плавающей запятой, такими как нечисловые значения (Nan) или бесконечность (Inf). 
-      На следующем примере мы покажем, что создание комплексного числа, у которого 
-      реальная  и мнимая части являются комплексными, не простое дело, если мы используем комплексную арифметику. Это из-за того, что произведение <literal>%i</literal> на <literal>%inf</literal> вычисляется как <literal>(0+%i) * (%inf+%i*0)</literal>. 
-      Это даёт промежуточное выражение <literal>0*%inf</literal>, которое равно <literal>%nan</literal>.
+	Целью функции <literal>complex</literal> является управление числами с плавающей запятой, 
+	такими как нечисловые значения (<literal>Nan</literal>) или бесконечность 
+	(<literal>Inf</literal>). 
+	На следующем примере мы покажем, что создание комплексного числа, у которого 
+	реальная  и мнимая части являются комплексными, не простое дело, если мы используем комплексную арифметику. Это из-за того, что произведение <literal>%i</literal> на <literal>%inf</literal> вычисляется как <literal>(0+%i) * (%inf+%i*0)</literal>. 
+	Это даёт промежуточное выражение <literal>0*%inf</literal>, которое равно <literal>%nan</literal>.
     </para>
     <screen><![CDATA[ 
 -->%inf+%i*%inf
@@ -116,7 +126,7 @@ complex(ones(2,3),ones(4,5))
     Nan + Inf 
  ]]></screen>
     <para>
-      Решение этой проблемы является использование функции <literal>complex</literal>.
+      Решением этой проблемы является использование функции <literal>complex</literal>.
     </para>
     <screen><![CDATA[ 
 -->complex(%inf,%inf)
