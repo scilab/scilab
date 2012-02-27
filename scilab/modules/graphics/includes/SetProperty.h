@@ -239,9 +239,6 @@ GRAPHICS_IMPEXP int sciSetColorRange(char* pObj, int subset[2]); /* SET */
 GRAPHICS_IMPEXP int sciInitOutsideColors(char* pObj, int colors[2]);
 GRAPHICS_IMPEXP int sciSetOutsideColors(char* pObj, int colors[2]); /* SET */
 
-GRAPHICS_IMPEXP int sciInitZBounds(char* pObj, double bounds[2]);
-GRAPHICS_IMPEXP int sciSetZBounds(char* pObj, double bounds[2]); /* SET */
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

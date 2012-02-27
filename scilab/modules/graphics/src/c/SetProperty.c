@@ -3437,41 +3437,6 @@ int sciSetOutsideColors(char * pobjUID, int colors[2])
     return sciInitOutsideColors(pobjUID, colors);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitZBounds(char * pobjUID, double bounds[2])
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType(pobjUID))
-    {
-    case SCI_FEC:
-		pFEC_FEATURE(pobjUID)->zminmax[0] = bounds[0];
-		pFEC_FEATURE(pobjUID)->zminmax[1] = bounds[1];
-		return 0;
-    default:
-        printSetGetErrorMessage("z_bounds");
-		return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify the Z range used by a fec object (zminmax).
- */
-int sciSetZBounds(char * pobjUID, double bounds[2])
-{
-    double curBounds[2];
-	sciGetZBounds(pobjUID, curBounds);
-	if (curBounds[0] == bounds[0] && curBounds[1] == bounds[1])
-	{
-		/* nothing to do */
-		return 1;
-	}
-
-	return sciInitZBounds(pobjUID, bounds);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

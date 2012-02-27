@@ -3444,25 +3444,6 @@ void sciGetOutsideColor(sciPointObj * pObj, int colors[2])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the Z range used by a fec object (zminmax).
-*/
-void sciGetZBounds(sciPointObj * pObj, double bounds[2])
-{
-    switch (sciGetEntityType(pObj))
-    {
-    case SCI_FEC:
-        bounds[0] = pFEC_FEATURE(pObj)->zminmax[0];
-        bounds[1] = pFEC_FEATURE(pObj)->zminmax[1];
-        break;
-    default:
-        printSetGetErrorMessage("z_bounds");
-        bounds[0] = 0;
-        bounds[1] = 0;
-        break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Print the message "This object has no xxx property." in Scilab.
 */
 void printSetGetErrorMessage(const char * propertyName)
