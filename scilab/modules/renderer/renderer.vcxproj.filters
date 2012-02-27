@@ -11,9 +11,6 @@
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\CompoundDrawing">
-      <UniqueIdentifier>{47c9bb68-bec3-4f90-abbc-2b15247ed150}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\AxesDrawing">
       <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
     </Filter>
@@ -29,9 +26,6 @@
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CompoundDrawing">
-      <UniqueIdentifier>{9e5915d4-e4ec-4b8c-8284-d2feca793e68}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\AxesDrawing">
       <UniqueIdentifier>{3d9abe35-a706-4a1b-9c17-2d76e32aab45}</UniqueIdentifier>
@@ -320,12 +314,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\compoundDrawing\DrawableCompound.cpp">
-      <Filter>Source Files\CompoundDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\compoundDrawing\DrawableCompoundFactory.cpp">
-      <Filter>Source Files\CompoundDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp">
       <Filter>Source Files\AxesDrawing</Filter>
@@ -691,12 +679,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\RenderingChecker.hxx">
       <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\compoundDrawing\DrawableCompound.h">
-      <Filter>Header Files\CompoundDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\compoundDrawing\DrawableCompoundFactory.h">
-      <Filter>Header Files\CompoundDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx">
       <Filter>Header Files\AxesDrawing</Filter>

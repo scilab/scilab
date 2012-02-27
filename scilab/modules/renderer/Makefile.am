@@ -28,8 +28,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-src/cpp/compoundDrawing/DrawableCompound.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/getHandleDrawer.cpp \

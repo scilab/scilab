@@ -124,8 +124,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwin.lo \
-	libscirenderer_la-DrawableCompoundFactory.lo \
-	libscirenderer_la-DrawableCompound.lo \
 	libscirenderer_la-DrawableAxes.lo \
 	libscirenderer_la-DrawableAxesFactory.lo \
 	libscirenderer_la-getHandleDrawer.lo \
@@ -517,8 +515,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-src/cpp/compoundDrawing/DrawableCompound.cpp \
 src/cpp/axesDrawing/DrawableAxes.cpp \
 src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/getHandleDrawer.cpp \
@@ -839,8 +835,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompound.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
@@ -945,20 +939,6 @@ libscirenderer_la-DrawableSubwin.lo: src/cpp/subwinDrawing/DrawableSubwin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwin.cpp' object='libscirenderer_la-DrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
-
-libscirenderer_la-DrawableCompoundFactory.lo: src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableCompoundFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Tpo -c -o libscirenderer_la-DrawableCompoundFactory.lo `test -f 'src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableCompoundFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' object='libscirenderer_la-DrawableCompoundFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableCompoundFactory.lo `test -f 'src/cpp/compoundDrawing/DrawableCompoundFactory.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompoundFactory.cpp
-
-libscirenderer_la-DrawableCompound.lo: src/cpp/compoundDrawing/DrawableCompound.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableCompound.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableCompound.Tpo -c -o libscirenderer_la-DrawableCompound.lo `test -f 'src/cpp/compoundDrawing/DrawableCompound.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompound.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableCompound.Tpo $(DEPDIR)/libscirenderer_la-DrawableCompound.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/compoundDrawing/DrawableCompound.cpp' object='libscirenderer_la-DrawableCompound.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableCompound.lo `test -f 'src/cpp/compoundDrawing/DrawableCompound.cpp' || echo '$(srcdir)/'`src/cpp/compoundDrawing/DrawableCompound.cpp
 
 libscirenderer_la-DrawableAxes.lo: src/cpp/axesDrawing/DrawableAxes.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxes.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxes.Tpo -c -o libscirenderer_la-DrawableAxes.lo `test -f 'src/cpp/axesDrawing/DrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxes.cpp
