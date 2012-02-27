@@ -33,8 +33,6 @@
 
 GRAPHICS_IMPEXP void sciRedrawFigure(void); /* DRAWINGS */
 GRAPHICS_IMPEXP void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
-GRAPHICS_IMPEXP void sciXclear(void); /* DRAWINGS */
-
 
 GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * xmin   ,

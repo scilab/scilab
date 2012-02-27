@@ -88,33 +88,6 @@ void sciClearFigure(sciPointObj * pFigure)
   forceHierarchyRedraw(pFigure);
 }
 
-void sciXclear()
-{
-// ???
-#if 0
-  static sciPointObj *masousfen, *tmpsousfen;
-  sciSons *psonstmp;
-
-  tmpsousfen= sciGetCurrentSubWin();
-  psonstmp = sciGetSons (sciGetCurrentFigure());
-
-  while (psonstmp != (sciSons *) NULL)
-  {
-    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-    {
-      masousfen= (sciPointObj *)psonstmp->pointobj;
-      sciSetSelectedSubWin (masousfen);
-      sciSetdrawmode (FALSE);
-    }
-    psonstmp = psonstmp->pnext;
-  }
-
-  sciSetSelectedSubWin (tmpsousfen);
-  notifyObservers(sciGetCurrentFigure ());
-#endif
-}
-
-
 /* get the displayed bounds of an axis */
 void sciGetDisplayedBounds( char * pSubWinUID,
                             double      * xmin   ,
