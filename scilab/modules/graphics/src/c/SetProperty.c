@@ -2222,23 +2222,6 @@ int sciInitdrawmode( BOOL mode )
     return 0;
 }
 
-int
-sciSetdrawmode (BOOL mode)
-{
-// ???
-#if 0
-    static sciPointObj * pobj ;
-    pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
-    if ( sciGetdrawmode( pobj ) == mode )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitdrawmode( mode ) ;
-#endif
-    return 0;
-}
-
 /*----------------------------------------------------------------------------------*/
 /**
  * In new graphic style, select a window and create one if not already done.

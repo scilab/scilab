@@ -112,7 +112,6 @@ GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* W
 
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
 
 

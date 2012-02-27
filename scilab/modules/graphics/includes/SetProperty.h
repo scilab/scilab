@@ -160,8 +160,6 @@ GRAPHICS_IMPEXP int sciSetOriginalSubWin (char* pfigure, char* psubwin); /* SET 
 
 GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP int sciSetdrawmode(BOOL mode); /* SET */
-
 GRAPHICS_IMPEXP int sciSetUsedWindow( int winNum ) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetInterpVector(char* pobj, int size, int * value);

@@ -2044,18 +2044,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     return (double*)NULL;
 }
 
-
-BOOL
-sciGetdrawmode (sciPointObj *pobj)
-{
-    static sciPointObj *subwin;
-
-    subwin= (sciPointObj *) sciGetParentSubwin (pobj);
-    if  (subwin != (sciPointObj *) NULL)
-        return pSUBWIN_FEATURE(subwin)->visible ;
-    return FALSE;
-}
-
 /**sciGetAxes
 * Gets SUBWIN of this Scilab graphic figure
 * @author Djalel ABDEMOUCHE
