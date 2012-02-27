@@ -62,11 +62,6 @@ DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin )
   return dynamic_cast<DrawableSubwin *>(getHandleDrawer(pSubwin));
 }
 /*---------------------------------------------------------------------------------*/
-DrawableSegs * getSegsDrawer( sciPointObj * pSegs )
-{
-  return dynamic_cast<DrawableSegs *>(getHandleDrawer(pSegs));
-}
-/*---------------------------------------------------------------------------------*/
 DrawableAxes * getAxesDrawer( sciPointObj * pAxes )
 {
   return dynamic_cast<DrawableAxes *>(getHandleDrawer(pAxes));

@@ -21,7 +21,6 @@ extern "C"
 #include "subwinDrawing/DrawableSubwinFactory.h"
 #include "compoundDrawing/DrawableCompoundFactory.h"
 #include "axesDrawing/DrawableAxesFactory.h"
-#include "segsDrawing/DrawableSegsFactory.h"
 
 namespace sciGraphics
 {
@@ -73,9 +72,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
     break ;
   case SCI_AXES:
     return new DrawableAxesFactory() ;
-    break ;
-  case SCI_SEGS:
-    return new DrawableSegsFactory() ;
     break ;
   case SCI_UIMENU:
   default:

@@ -14,9 +14,6 @@
     <Filter Include="Source Files\CompoundDrawing">
       <UniqueIdentifier>{47c9bb68-bec3-4f90-abbc-2b15247ed150}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SegsDrawing">
-      <UniqueIdentifier>{06634c08-c05e-4bcf-9cc1-8be0678d1777}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\AxesDrawing">
       <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
     </Filter>
@@ -32,9 +29,6 @@
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SegsDrawing">
-      <UniqueIdentifier>{f9c9dfe3-7207-4e18-b1be-6f4ac59216d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\CompoundDrawing">
       <UniqueIdentifier>{9e5915d4-e4ec-4b8c-8284-d2feca793e68}</UniqueIdentifier>
@@ -332,63 +326,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\compoundDrawing\DrawableCompoundFactory.cpp">
       <Filter>Source Files\CompoundDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\ChampDecomposer.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\ConcreteDrawableSegs.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DecomposeSegsStrategy.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegs.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsBridgeFactory.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsFactory.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableSegsGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsJavaMapper.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\DrawableSegsJoGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SegsArrowDrawerGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsArrowDrawerJoGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsDecomposer.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SegsLineDrawerGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsLineDrawerJavaMapper.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsLineDrawerJoGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\SegsMarkDrawerGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.cpp">
-      <Filter>Source Files\SegsDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp">
       <Filter>Source Files\AxesDrawing</Filter>
@@ -754,69 +691,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\RenderingChecker.hxx">
       <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\ChampDecomposer.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\ConcreteDrawableSegs.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DecomposeSegsStrategy.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegs.h">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsBridge.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsBridgeFactory.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsFactory.h">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableSegsGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsJavaMapper.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawableSegsJoGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\DrawSegsStrategy.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SegsArrowDrawerGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsArrowDrawerJavaMapper.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsArrowDrawerJoGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsDecomposer.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SegsLineDrawerGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsLineDrawerJavaMapper.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsLineDrawerJoGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\SegsMarkDrawerGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsMarkDrawerJavaMapper.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\segsDrawing\SegsMarkDrawerJoGL.hxx">
-      <Filter>Header Files\SegsDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\compoundDrawing\DrawableCompound.h">
       <Filter>Header Files\CompoundDrawing</Filter>

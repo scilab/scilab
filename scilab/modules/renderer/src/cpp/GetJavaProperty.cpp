@@ -151,7 +151,7 @@ void sciGetJavaViewingArea(char * pSubwinUID, int *xPos, int *yPos, int *width, 
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
 {
-    getSegsDrawer(pSegs)->getBoundingBox(bounds);
+
 }
 
 /*---------------------------------------------------------------------------------*/
