@@ -176,7 +176,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
 #ifdef OverLoad
 #undef OverLoad
 #endif
-#define OverLoad(x) callOverloadFunction(pvApiCtx, x, fname, strlen(fname))
+#define OverLoad(x) callOverloadFunction(pvApiCtx, x, fname, (unsigned int)strlen(fname))
 /**
  * Get the memory address of a variable from the variable position
  * @param[in] _iVar variable number
