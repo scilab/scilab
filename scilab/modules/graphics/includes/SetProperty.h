@@ -233,9 +233,6 @@ GRAPHICS_IMPEXP int sciSetUseNurbs(char* pObj, BOOL useNurbs); /* SET */
 GRAPHICS_IMPEXP int sciInitIsUsingFractionalMetrics(char* pObj, BOOL useFractionalMetrics);
 GRAPHICS_IMPEXP int sciSetIsUsingFractionalMetrics(char* pObj, BOOL useFractionalMetrics); /* SET */
 
-GRAPHICS_IMPEXP int sciInitColorRange(char* pObj, int subset[2]);
-GRAPHICS_IMPEXP int sciSetColorRange(char* pObj, int subset[2]); /* SET */
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

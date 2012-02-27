@@ -3364,43 +3364,6 @@ int sciSetIsUsingFractionalMetrics(char * pobjUID, BOOL useFractionalMetrics)
     return sciInitIsUsingFractionalMetrics(pobjUID, useFractionalMetrics);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitColorRange(char * pobjUID, int subset[2])
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType(pobjUID))
-    {
-    case SCI_FEC:
-		pFEC_FEATURE(pobjUID)->colminmax[0] = subset[0];
-		pFEC_FEATURE(pobjUID)->colminmax[1] = subset[1];
-		return 0;
-    default:
-        printSetGetErrorMessage("color_range");
-		return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify the subset of colormap bounds used by a particular object (colminmax).
- */
-int sciSetColorRange(char * pobjUID, int subset[2])
-{
-
-	int curColorRange[2];
-	sciGetColorRange(pobjUID, curColorRange);
-	if (curColorRange[0] == subset[0] && curColorRange[1] == subset[1])
-	{
-		/* nothing to do */
-		return 1;
-	}
-
-	return sciInitColorRange(pobjUID, subset);
-
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

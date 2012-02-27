@@ -244,8 +244,6 @@ GRAPHICS_IMPEXP int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
 
-GRAPHICS_IMPEXP void sciGetColorRange(sciPointObj * pObj, int subset[2]); /* GET */
-
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
 GRAPHICS_IMPEXP void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3]);
