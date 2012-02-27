@@ -25,6 +25,8 @@
 #include "sci_rankqr.h"
 #include "sci_contr.h"
 #include "gw_slicot.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 #ifndef __DEF_MXARRAY__
 #define __DEF_MXARRAY__
@@ -57,7 +59,15 @@ static GenericTable Tab[]={
 int gw_slicot(void)
 {
 	Rhs = Max(0, Rhs);
-	#ifdef _MSC_VER
+
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+
+#ifdef _MSC_VER
 		#ifndef _DEBUG
 		_try
 		{

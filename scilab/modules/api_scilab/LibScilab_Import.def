@@ -19,3 +19,5 @@ getstackinfo_
 freeArrayOfString
 putlhsvar_
 overload_
+cvname_ 
+recu_ 

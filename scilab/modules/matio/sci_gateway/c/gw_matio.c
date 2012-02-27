@@ -16,6 +16,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_matio.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/ 
 int gw_matio(void);
@@ -32,6 +33,13 @@ static gw_generic_table Tab[] =
 int gw_matio(void)
 {
 	Rhs = Max(0, Rhs);
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

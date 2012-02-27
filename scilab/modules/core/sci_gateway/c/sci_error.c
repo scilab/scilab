@@ -19,6 +19,10 @@
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 #include "MALLOC.h"
+
+//#undef CheckRhs
+//#undef CheckLhs
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #define defaultErrorCode 10000
 #define defaultErrorPosition 0
@@ -47,9 +51,13 @@ static void setErrorMessage(const char *fname,
     int iErrorPosition,
     const char **pMessages,
     int nbElements);
+
 /*--------------------------------------------------------------------------*/
 int C2F(sci_error)(char *fname, unsigned long fname_len)
 {
+    int in1 = 1, in2 = 2;
+
+    //C2F(checkrhs)(fname, &in1, &in2, 5);
     CheckRhs(1, 2);
     CheckLhs(1, 1);
 
