@@ -112,8 +112,6 @@ GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* W
 
 GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
-GRAPHICS_IMPEXP int sciType (char *marker, sciPointObj *pobj); /* GET */
-
 GRAPHICS_IMPEXP sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 
 GRAPHICS_IMPEXP char sciGetxLocation(sciPointObj * pObj);
