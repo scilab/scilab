@@ -124,8 +124,6 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwin.lo \
-	libscirenderer_la-DrawableAxes.lo \
-	libscirenderer_la-DrawableAxesFactory.lo \
 	libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-HandleObserverManagement.lo \
 	libscirenderer_la-DrawableObjectFactory.lo \
@@ -185,14 +183,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GridDrawer.lo \
 	libscirenderer_la-XGridDrawerJoGL.lo \
 	libscirenderer_la-ZGridDrawerJoGL.lo \
-	libscirenderer_la-DrawableAxesGL.lo \
-	libscirenderer_la-AxesTicksComputer.lo \
-	libscirenderer_la-ConcreteDrawableAxes.lo \
-	libscirenderer_la-DrawableAxesBridgeFactory.lo \
-	libscirenderer_la-DrawableAxesJavaMapper.lo \
-	libscirenderer_la-DrawableAxesJoGL.lo \
-	libscirenderer_la-AxesPositioner.lo \
-	libscirenderer_la-AxesTicksDrawerJoGL.lo \
 	libscirenderer_la-BottomXAxisPositioner.lo \
 	libscirenderer_la-LeftYAxisPositioner.lo \
 	libscirenderer_la-XAxisPositioner.lo \
@@ -216,7 +206,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-AutomaticSubticksComputer.lo \
 	libscirenderer_la-UserDefLogSubticksComputer.lo \
 	libscirenderer_la-UserDefinedSubticksComputer.lo \
-	libscirenderer_la-AxesSubticksComputer.lo \
 	libscirenderer_la-rendererBasicAlgos.lo \
 	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
 	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
@@ -515,8 +504,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/axesDrawing/DrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
@@ -576,14 +563,6 @@ src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/jni/DrawableAxesGL.cpp \
-src/cpp/axesDrawing/AxesTicksComputer.cpp \
-src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
-src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
-src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-src/cpp/axesDrawing/AxesPositioner.cpp \
-src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
 src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
 src/cpp/subwinDrawing/XAxisPositioner.cpp \
@@ -607,7 +586,6 @@ src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
-src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
@@ -648,7 +626,6 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = \
 src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/FullBoxDrawerGL.giws.xml \
@@ -808,10 +785,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxesTicksDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
@@ -825,14 +798,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxes.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
@@ -939,20 +905,6 @@ libscirenderer_la-DrawableSubwin.lo: src/cpp/subwinDrawing/DrawableSubwin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwin.cpp' object='libscirenderer_la-DrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
-
-libscirenderer_la-DrawableAxes.lo: src/cpp/axesDrawing/DrawableAxes.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxes.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxes.Tpo -c -o libscirenderer_la-DrawableAxes.lo `test -f 'src/cpp/axesDrawing/DrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxes.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxes.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxes.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxes.cpp' object='libscirenderer_la-DrawableAxes.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxes.lo `test -f 'src/cpp/axesDrawing/DrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxes.cpp
-
-libscirenderer_la-DrawableAxesFactory.lo: src/cpp/axesDrawing/DrawableAxesFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Tpo -c -o libscirenderer_la-DrawableAxesFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesFactory.cpp' object='libscirenderer_la-DrawableAxesFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesFactory.cpp
 
 libscirenderer_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-getHandleDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-getHandleDrawer.Tpo -c -o libscirenderer_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
@@ -1367,62 +1319,6 @@ libscirenderer_la-ZGridDrawerJoGL.lo: src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
 
-libscirenderer_la-DrawableAxesGL.lo: src/jni/DrawableAxesGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Tpo -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableAxesGL.cpp' object='libscirenderer_la-DrawableAxesGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesGL.lo `test -f 'src/jni/DrawableAxesGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableAxesGL.cpp
-
-libscirenderer_la-AxesTicksComputer.lo: src/cpp/axesDrawing/AxesTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Tpo -c -o libscirenderer_la-AxesTicksComputer.lo `test -f 'src/cpp/axesDrawing/AxesTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AxesTicksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesTicksComputer.cpp' object='libscirenderer_la-AxesTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesTicksComputer.lo `test -f 'src/cpp/axesDrawing/AxesTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksComputer.cpp
-
-libscirenderer_la-ConcreteDrawableAxes.lo: src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableAxes.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Tpo -c -o libscirenderer_la-ConcreteDrawableAxes.lo `test -f 'src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableAxes.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' object='libscirenderer_la-ConcreteDrawableAxes.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableAxes.lo `test -f 'src/cpp/axesDrawing/ConcreteDrawableAxes.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/ConcreteDrawableAxes.cpp
-
-libscirenderer_la-DrawableAxesBridgeFactory.lo: src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Tpo -c -o libscirenderer_la-DrawableAxesBridgeFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' object='libscirenderer_la-DrawableAxesBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesBridgeFactory.lo `test -f 'src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp
-
-libscirenderer_la-DrawableAxesJavaMapper.lo: src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Tpo -c -o libscirenderer_la-DrawableAxesJavaMapper.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' object='libscirenderer_la-DrawableAxesJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesJavaMapper.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp
-
-libscirenderer_la-DrawableAxesJoGL.lo: src/cpp/axesDrawing/DrawableAxesJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableAxesJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Tpo -c -o libscirenderer_la-DrawableAxesJoGL.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableAxesJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/DrawableAxesJoGL.cpp' object='libscirenderer_la-DrawableAxesJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableAxesJoGL.lo `test -f 'src/cpp/axesDrawing/DrawableAxesJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/DrawableAxesJoGL.cpp
-
-libscirenderer_la-AxesPositioner.lo: src/cpp/axesDrawing/AxesPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesPositioner.Tpo -c -o libscirenderer_la-AxesPositioner.lo `test -f 'src/cpp/axesDrawing/AxesPositioner.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxesPositioner.Tpo $(DEPDIR)/libscirenderer_la-AxesPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesPositioner.cpp' object='libscirenderer_la-AxesPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesPositioner.lo `test -f 'src/cpp/axesDrawing/AxesPositioner.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesPositioner.cpp
-
-libscirenderer_la-AxesTicksDrawerJoGL.lo: src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesTicksDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesTicksDrawerJoGL.Tpo -c -o libscirenderer_la-AxesTicksDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxesTicksDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-AxesTicksDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp' object='libscirenderer_la-AxesTicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesTicksDrawerJoGL.lo `test -f 'src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp
-
 libscirenderer_la-BottomXAxisPositioner.lo: src/cpp/subwinDrawing/BottomXAxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BottomXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Tpo -c -o libscirenderer_la-BottomXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/BottomXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BottomXAxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Plo
@@ -1583,13 +1479,6 @@ libscirenderer_la-UserDefinedSubticksComputer.lo: src/cpp/subwinDrawing/UserDefi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' object='libscirenderer_la-UserDefinedSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefinedSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
-
-libscirenderer_la-AxesSubticksComputer.lo: src/cpp/axesDrawing/AxesSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxesSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Tpo -c -o libscirenderer_la-AxesSubticksComputer.lo `test -f 'src/cpp/axesDrawing/AxesSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AxesSubticksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/axesDrawing/AxesSubticksComputer.cpp' object='libscirenderer_la-AxesSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesSubticksComputer.lo `test -f 'src/cpp/axesDrawing/AxesSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesSubticksComputer.cpp
 
 libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-rendererBasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp

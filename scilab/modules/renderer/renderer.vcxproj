@@ -296,17 +296,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\jni\GraphicSynchronizerJava.cpp" />
     <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.cpp" />
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesSubticksComputer.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksComputer.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksDrawerJoGL.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\ConcreteDrawableAxes.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxes.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesFactory.cpp" />
-    <ClCompile Include="src\jni\DrawableAxesGL.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJoGL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx" />
@@ -420,16 +409,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="src\cpp\figureDrawing\DrawableFigureJoGL.h" />
     <ClInclude Include="src\cpp\figureDrawing\FigureScilabCall.h" />
     <ClInclude Include="src\jni\RenderingChecker.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesSubticksComputer.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\AxesTicksComputer.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\ConcreteDrawableAxes.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxes.h" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridge.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesFactory.h" />
-    <ClInclude Include="src\jni\DrawableAxesGL.hxx" />
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesJoGL.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="renderer.rc" />

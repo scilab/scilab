@@ -11,9 +11,6 @@
     <Filter Include="Source Files\GraphicSynchronization">
       <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\AxesDrawing">
-      <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -26,9 +23,6 @@
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
       <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AxesDrawing">
-      <UniqueIdentifier>{3d9abe35-a706-4a1b-9c17-2d76e32aab45}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -314,39 +308,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
       <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\AxesPositioner.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\AxesSubticksComputer.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksComputer.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\AxesTicksDrawerJoGL.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\ConcreteDrawableAxes.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxes.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesFactory.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\DrawableAxesGL.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJavaMapper.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\axesDrawing\DrawableAxesJoGL.cpp">
-      <Filter>Source Files\AxesDrawing</Filter>
     </ClCompile>
     <ClCompile Include="src\jni\CallRenderer.cpp">
       <Filter>Source Files</Filter>
@@ -679,36 +640,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\RenderingChecker.hxx">
       <Filter>Header Files\FigureDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\AxesPositioner.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\AxesSubticksComputer.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\AxesTicksComputer.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\ConcreteDrawableAxes.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxes.h">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridge.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesBridgeFactory.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesFactory.h">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\DrawableAxesGL.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\axesDrawing\DrawableAxesJoGL.hxx">
-      <Filter>Header Files\AxesDrawing</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\CallRenderer.hxx">
       <Filter>Header Files</Filter>

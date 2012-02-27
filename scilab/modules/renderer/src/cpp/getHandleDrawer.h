@@ -20,7 +20,6 @@ extern "C"
 }
 #include "DrawableObject.h"
 #include "subwinDrawing/DrawableSubwin.h"
-#include "axesDrawing/DrawableAxes.h"
 
 namespace sciGraphics
 {
@@ -63,12 +62,6 @@ void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
  * @return the corresponding subwin to pSubwin if pSubwin if of type subwin, NULL otherwise
  */
 DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin );
-
-/**
- * Return a DrawableAxes object corresponding to a sciPointObj object.
- * @return the corresponding axes to pAxes if pAxes if of type axes, NULL otherwise
- */
-DrawableAxes * getAxesDrawer( sciPointObj * pAxes );
 
 }
 

@@ -28,8 +28,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
 src/cpp/subwinDrawing/DrawableSubwin.cpp \
-src/cpp/axesDrawing/DrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesFactory.cpp \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
@@ -89,14 +87,6 @@ src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/GridDrawer.cpp \
 src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
 src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/jni/DrawableAxesGL.cpp \
-src/cpp/axesDrawing/AxesTicksComputer.cpp \
-src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
-src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
-src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
-src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-src/cpp/axesDrawing/AxesPositioner.cpp \
-src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
 src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
 src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
 src/cpp/subwinDrawing/XAxisPositioner.cpp \
@@ -120,7 +110,6 @@ src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
-src/cpp/axesDrawing/AxesSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
@@ -162,7 +151,6 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 GIWS_WRAPPERS= \
 src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/DrawableAxesGL.giws.xml \
 src/jni/DrawableFigureGL.giws.xml \
 src/jni/DrawableSubwinGL.giws.xml \
 src/jni/FullBoxDrawerGL.giws.xml \
