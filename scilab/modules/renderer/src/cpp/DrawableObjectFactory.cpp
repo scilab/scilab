@@ -18,7 +18,6 @@ extern "C"
 }
 
 #include "DrawableObjectFactory.h"
-#include "subwinDrawing/DrawableSubwinFactory.h"
 
 namespace sciGraphics
 {
@@ -62,9 +61,6 @@ DrawableObjectFactory * DrawableObjectFactory::createRightFactory( void )
   case SCI_FIGURE:
     return NULL;
     break ;
-  case SCI_SUBWIN:
-    return new DrawableSubwinFactory() ;
-    break;
   case SCI_UIMENU:
   default:
     return NULL;

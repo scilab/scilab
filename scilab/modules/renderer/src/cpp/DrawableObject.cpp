@@ -140,38 +140,28 @@ void DrawableObject::displayChildren( void )
 void DrawableObject::pointScale(double xCoord, double yCoord, double zCoord,
                                 double * xScaled, double * yScaled, double * zScaled)
 {
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->pointScale(xCoord, yCoord, zCoord,
-                                                             xScaled, yScaled, zScaled);
+
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::inversePointScale(double xScaled, double yScaled, double zScaled,
                                        double * xCoord, double * yCoord, double * zCoord)
 {
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->inversePointScale(xScaled, yScaled, zScaled,
-                                                                    xCoord, yCoord, zCoord);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::pointScale(double vectorX[], double vectorY[], double vectorZ[], int vectorLength)
 {
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->pointScale(vectorX, vectorY, vectorZ, vectorLength);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::directionScale(double xCoord, double yCoord, double zCoord,
                                     double startingPointX, double startingPointY, double startingPointZ,
                                     double * xScaled, double * yScaled, double * zScaled)
 {
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->directionScale(xCoord, yCoord, zCoord, startingPointX,
-                                                                 startingPointY, startingPointZ,
-                                                                 xScaled, yScaled, zScaled);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::directionScale(double vectorX[], double vectorY[], double vectorZ[],
                                     double startingPointsX[], double startingPointsY[],
                                     double startingPointsZ[], double vectorLength)
 {
-  getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->directionScale(vectorX, vectorY, vectorZ,
-                                                                 startingPointsX, startingPointsY,
-                                                                 startingPointsZ, vectorLength);
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )

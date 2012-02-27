@@ -3,18 +3,17 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Interface functions between between SetProperty functions and the C++/Java part of module
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetJavaProperty.h"
 #include "getHandleDrawer.h"
-#include "subwinDrawing/DrawableSubwin.h"
 #include "GiwsException.hxx"
 
 
@@ -70,26 +69,19 @@ void sciSetJavaAntialiasingQuality(sciPointObj * pFigure, int quality)
 /*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
-    if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
+    abort();
+    return FALSE;
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-    getSubwinDrawer(parentSubwin)->addTextToDraw(pText);
+
 }
 
 /*---------------------------------------------------------------------------------*/
 void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-    getSubwinDrawer(parentSubwin)->removeTextToDraw(pText);
 }
 
 /*---------------------------------------------------------------------------------*/

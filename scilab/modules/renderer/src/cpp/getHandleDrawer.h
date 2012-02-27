@@ -19,7 +19,6 @@ extern "C"
 #include "ObjectStructure.h"
 }
 #include "DrawableObject.h"
-#include "subwinDrawing/DrawableSubwin.h"
 
 namespace sciGraphics
 {
@@ -56,12 +55,6 @@ DrawableObject * getHandleDrawerPointer( sciPointObj * pObj ) ;
 void setHandleDrawerPointer( sciPointObj * pObj, DrawableObject * drawer) ;
 
 /*------------------------------------------------------------------------------*/
-
-/**
- * Return a DrawableSubwin object corresponding to a sciPointObj object.
- * @return the corresponding subwin to pSubwin if pSubwin if of type subwin, NULL otherwise
- */
-DrawableSubwin * getSubwinDrawer( sciPointObj * pSubwin );
 
 }
 

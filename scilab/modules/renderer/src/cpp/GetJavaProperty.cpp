@@ -75,7 +75,7 @@ int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
-    getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);
+
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -176,13 +176,13 @@ void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
 {
-    getSubwinDrawer(pSubwin)->getNbSubticksPerGrad(nbsubtics);
+
 }
 
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbXTicks(sciPointObj * pSubwin)
 {
-    return getSubwinDrawer(pSubwin)->getNbXTicks();
+    return 0;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -193,7 +193,6 @@ void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
     int nbTicks = sciGetJavaNbXTicks(pSubwin);
     char **javaLabels = BasicAlgos::createStringArray(nbTicks);
 
-    getSubwinDrawer(pSubwin)->getXTicksPos(ticksPos, javaLabels);
 
     // copy it into ticksLabels
     stringArrayCopy(ticksLabels, javaLabels, nbTicks);
@@ -204,7 +203,8 @@ void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbYTicks(sciPointObj * pSubwin)
 {
-    return getSubwinDrawer(pSubwin)->getNbYTicks();
+    abort();
+    return 0;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -215,7 +215,6 @@ void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
     int nbTicks = sciGetJavaNbYTicks(pSubwin);
     char **javaLabels = BasicAlgos::createStringArray(nbTicks);
 
-    getSubwinDrawer(pSubwin)->getYTicksPos(ticksPos, javaLabels);
 
     // copy it into ticksLabels
     stringArrayCopy(ticksLabels, javaLabels, nbTicks);
@@ -226,7 +225,8 @@ void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbZTicks(sciPointObj * pSubwin)
 {
-    return getSubwinDrawer(pSubwin)->getNbZTicks();
+    abort();
+    return 0;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -236,8 +236,6 @@ void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksL
     // however getTicksPos will use new to allocate
     int nbTicks = sciGetJavaNbZTicks(pSubwin);
     char **javaLabels = BasicAlgos::createStringArray(nbTicks);
-
-    getSubwinDrawer(pSubwin)->getZTicksPos(ticksPos, javaLabels);
 
     // copy it into ticksLabels
     stringArrayCopy(ticksLabels, javaLabels, nbTicks);

@@ -122,9 +122,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
-am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
-	libscirenderer_la-DrawableSubwin.lo \
-	libscirenderer_la-getHandleDrawer.lo \
+am__objects_1 = libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-HandleObserverManagement.lo \
 	libscirenderer_la-DrawableObjectFactory.lo \
 	libscirenderer_la-DrawableClippedObject.lo \
@@ -136,13 +134,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-JavaInteraction.lo \
 	libscirenderer_la-DrawableObject.lo \
 	libscirenderer_la-DrawingBridge.lo \
-	libscirenderer_la-CameraJoGL.lo \
-	libscirenderer_la-CameraBridge.lo \
-	libscirenderer_la-DrawableSubwinBridgeFactory.lo \
-	libscirenderer_la-CameraFactory.lo \
-	libscirenderer_la-DrawableSubwinJoGL.lo \
-	libscirenderer_la-Camera.lo \
-	libscirenderer_la-CameraBridgeFactory.lo \
 	libscirenderer_la-DrawableClippedObjectJoGL.lo \
 	libscirenderer_la-GlobalSynchronizer.lo \
 	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
@@ -151,65 +142,11 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-GraphicSynchronizer.lo \
 	libscirenderer_la-GraphicSynchronizerInterface.lo \
 	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
-	libscirenderer_la-DrawableSubwinJavaMapper.lo \
-	libscirenderer_la-DrawableSubwinGL.lo \
-	libscirenderer_la-IsoViewCameraGL.lo \
-	libscirenderer_la-IsometricCameraGL.lo \
-	libscirenderer_la-IsoViewCameraJavaMapper.lo \
-	libscirenderer_la-IsometricCameraJavaMapper.lo \
-	libscirenderer_la-LinearBoundsComputer.lo \
-	libscirenderer_la-ConcreteDrawableSubwin.lo \
-	libscirenderer_la-LogarithmicBoundsComputer.lo \
-	libscirenderer_la-BackTrihedronDrawerGL.lo \
-	libscirenderer_la-BackTrihedronDrawerJoGL.lo \
-	libscirenderer_la-BackTrihedronDrawerJavaMapper.lo \
-	libscirenderer_la-FullBoxDrawerGL.lo \
-	libscirenderer_la-HalfBoxDrawerGL.lo \
-	libscirenderer_la-HalfBoxDrawerJavaMapper.lo \
-	libscirenderer_la-HalfBoxDrawerJoGL.lo \
-	libscirenderer_la-FullBoxDrawerJavaMapper.lo \
-	libscirenderer_la-FullBoxDrawerJoGL.lo \
-	libscirenderer_la-UserDefinedTicksComputer.lo \
-	libscirenderer_la-TicksDrawer.lo \
-	libscirenderer_la-TicksDrawerFactory.lo \
-	libscirenderer_la-TicksDrawerJoGL.lo \
 	libscirenderer_la-BasicAlgos.lo \
-	libscirenderer_la-AutomaticTicksComputer.lo \
 	libscirenderer_la-GraphicSynchronizerJava.lo \
-	libscirenderer_la-UserDefLogTicksComputer.lo \
-	libscirenderer_la-AutoLogTicksComputer.lo \
-	libscirenderer_la-GridDrawerJoGL.lo \
-	libscirenderer_la-YGridDrawerJoGL.lo \
-	libscirenderer_la-GridDrawer.lo \
-	libscirenderer_la-XGridDrawerJoGL.lo \
-	libscirenderer_la-ZGridDrawerJoGL.lo \
-	libscirenderer_la-BottomXAxisPositioner.lo \
-	libscirenderer_la-LeftYAxisPositioner.lo \
-	libscirenderer_la-XAxisPositioner.lo \
-	libscirenderer_la-YAxisPositioner.lo \
-	libscirenderer_la-MiddleXAxisPositioner.lo \
-	libscirenderer_la-MiddleYAxisPositioner.lo \
-	libscirenderer_la-OriginXAxisPositioner.lo \
-	libscirenderer_la-OriginYAxisPositioner.lo \
-	libscirenderer_la-AxisPositioner.lo \
-	libscirenderer_la-TopXAxisPositioner.lo \
-	libscirenderer_la-ZAxisPositioner.lo \
-	libscirenderer_la-RightYAxisPositioner.lo \
-	libscirenderer_la-SubwinAxisPositioner.lo \
-	libscirenderer_la-TicksDrawerJavaMapper.lo \
-	libscirenderer_la-GridDrawerJavaMapper.lo \
-	libscirenderer_la-TicksDrawerGL.lo \
-	libscirenderer_la-GridDrawerGL.lo \
 	libscirenderer_la-RendererFontManager.lo \
 	libscirenderer_la-XlFontManager.lo \
-	libscirenderer_la-AutoLogSubticksComputer.lo \
-	libscirenderer_la-AutomaticSubticksComputer.lo \
-	libscirenderer_la-UserDefLogSubticksComputer.lo \
-	libscirenderer_la-UserDefinedSubticksComputer.lo \
 	libscirenderer_la-rendererBasicAlgos.lo \
-	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
-	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
-	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo \
 	libscirenderer_la-CallRenderer.lo
 am_libscirenderer_la_OBJECTS = $(am__objects_1)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
@@ -502,8 +439,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 # List of the c files
 RENDERER_CPP_SOURCES = \
-src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
@@ -516,13 +451,6 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/subwinDrawing/CameraJoGL.cpp \
-src/cpp/subwinDrawing/CameraBridge.cpp \
-src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
-src/cpp/subwinDrawing/CameraFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-src/cpp/subwinDrawing/Camera.cpp \
-src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 src/cpp/DrawableClippedObjectJoGL.cpp \
 src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
@@ -531,65 +459,11 @@ src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
-src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-src/jni/DrawableSubwinGL.cpp \
-src/jni/IsoViewCameraGL.cpp \
-src/jni/IsometricCameraGL.cpp \
-src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
-src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
-src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
-src/jni/BackTrihedronDrawerGL.cpp \
-src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
-src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
-src/jni/FullBoxDrawerGL.cpp \
-src/jni/HalfBoxDrawerGL.cpp \
-src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
-src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
-src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
-src/cpp/subwinDrawing/TicksDrawer.cpp \
-src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
-src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 src/cpp/BasicAlgos.cpp \
-src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 src/jni/GraphicSynchronizerJava.cpp \
-src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
-src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
-src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/GridDrawer.cpp \
-src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
-src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
-src/cpp/subwinDrawing/XAxisPositioner.cpp \
-src/cpp/subwinDrawing/YAxisPositioner.cpp \
-src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
-src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
-src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
-src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
-src/cpp/subwinDrawing/AxisPositioner.cpp \
-src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
-src/cpp/subwinDrawing/ZAxisPositioner.cpp \
-src/cpp/subwinDrawing/RightYAxisPositioner.cpp \
-src/cpp/subwinDrawing/SubwinAxisPositioner.cpp \
-src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
-src/jni/TicksDrawerGL.cpp \
-src/jni/GridDrawerGL.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
-src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
-src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
-src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
-src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
-src/jni/SubwinBackgroundDrawerGL.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
 src/jni/CallRenderer.cpp
 
 
@@ -626,15 +500,7 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = \
 src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/DrawableFigureGL.giws.xml \
-src/jni/DrawableSubwinGL.giws.xml \
-src/jni/FullBoxDrawerGL.giws.xml \
 src/jni/GraphicSynchronizerJava.giws.xml \
-src/jni/HalfBoxDrawerGL.giws.xml \
-src/jni/IsometricCameraGL.giws.xml \
-src/jni/IsoViewCameraGL.giws.xml \
-src/jni/TicksDrawerGL.giws.xml \
-src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
 src/jni/SubwinBackgroundDrawerGL.giws.xml \
@@ -781,39 +647,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-AxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BuildDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CallRenderer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-Camera.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridge.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CameraJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FullBoxDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FullBoxDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FullBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Plo@am__quote@
@@ -822,52 +664,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LeftYAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJavaMapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
@@ -891,20 +694,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-libscirenderer_la-DrawableSubwinFactory.lo: src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Tpo -c -o libscirenderer_la-DrawableSubwinFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' object='libscirenderer_la-DrawableSubwinFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinFactory.cpp
-
-libscirenderer_la-DrawableSubwin.lo: src/cpp/subwinDrawing/DrawableSubwin.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwin.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwin.Tpo -c -o libscirenderer_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwin.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwin.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwin.cpp' object='libscirenderer_la-DrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwin.cpp
 
 libscirenderer_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-getHandleDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-getHandleDrawer.Tpo -c -o libscirenderer_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
@@ -990,55 +779,6 @@ libscirenderer_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
 
-libscirenderer_la-CameraJoGL.lo: src/cpp/subwinDrawing/CameraJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraJoGL.Tpo -c -o libscirenderer_la-CameraJoGL.lo `test -f 'src/cpp/subwinDrawing/CameraJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-CameraJoGL.Tpo $(DEPDIR)/libscirenderer_la-CameraJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraJoGL.cpp' object='libscirenderer_la-CameraJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraJoGL.lo `test -f 'src/cpp/subwinDrawing/CameraJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraJoGL.cpp
-
-libscirenderer_la-CameraBridge.lo: src/cpp/subwinDrawing/CameraBridge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraBridge.Tpo -c -o libscirenderer_la-CameraBridge.lo `test -f 'src/cpp/subwinDrawing/CameraBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridge.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-CameraBridge.Tpo $(DEPDIR)/libscirenderer_la-CameraBridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraBridge.cpp' object='libscirenderer_la-CameraBridge.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraBridge.lo `test -f 'src/cpp/subwinDrawing/CameraBridge.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridge.cpp
-
-libscirenderer_la-DrawableSubwinBridgeFactory.lo: src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Tpo -c -o libscirenderer_la-DrawableSubwinBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' object='libscirenderer_la-DrawableSubwinBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp
-
-libscirenderer_la-CameraFactory.lo: src/cpp/subwinDrawing/CameraFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraFactory.Tpo -c -o libscirenderer_la-CameraFactory.lo `test -f 'src/cpp/subwinDrawing/CameraFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-CameraFactory.Tpo $(DEPDIR)/libscirenderer_la-CameraFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraFactory.cpp' object='libscirenderer_la-CameraFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraFactory.lo `test -f 'src/cpp/subwinDrawing/CameraFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraFactory.cpp
-
-libscirenderer_la-DrawableSubwinJoGL.lo: src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Tpo -c -o libscirenderer_la-DrawableSubwinJoGL.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' object='libscirenderer_la-DrawableSubwinJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJoGL.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp
-
-libscirenderer_la-Camera.lo: src/cpp/subwinDrawing/Camera.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-Camera.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-Camera.Tpo -c -o libscirenderer_la-Camera.lo `test -f 'src/cpp/subwinDrawing/Camera.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/Camera.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-Camera.Tpo $(DEPDIR)/libscirenderer_la-Camera.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/Camera.cpp' object='libscirenderer_la-Camera.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-Camera.lo `test -f 'src/cpp/subwinDrawing/Camera.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/Camera.cpp
-
-libscirenderer_la-CameraBridgeFactory.lo: src/cpp/subwinDrawing/CameraBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CameraBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Tpo -c -o libscirenderer_la-CameraBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/CameraBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-CameraBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/CameraBridgeFactory.cpp' object='libscirenderer_la-CameraBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-CameraBridgeFactory.lo `test -f 'src/cpp/subwinDrawing/CameraBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/CameraBridgeFactory.cpp
-
 libscirenderer_la-DrawableClippedObjectJoGL.lo: src/cpp/DrawableClippedObjectJoGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableClippedObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo
@@ -1095,160 +835,6 @@ libscirenderer_la-GraphicSynchronizerJavaMapper.lo: src/cpp/GraphicSynchronizati
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJavaMapper.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp
 
-libscirenderer_la-DrawableSubwinJavaMapper.lo: src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Tpo -c -o libscirenderer_la-DrawableSubwinJavaMapper.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' object='libscirenderer_la-DrawableSubwinJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinJavaMapper.lo `test -f 'src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp
-
-libscirenderer_la-DrawableSubwinGL.lo: src/jni/DrawableSubwinGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableSubwinGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableSubwinGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/DrawableSubwinGL.cpp' object='libscirenderer_la-DrawableSubwinGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableSubwinGL.lo `test -f 'src/jni/DrawableSubwinGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableSubwinGL.cpp
-
-libscirenderer_la-IsoViewCameraGL.lo: src/jni/IsoViewCameraGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Tpo $(DEPDIR)/libscirenderer_la-IsoViewCameraGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/IsoViewCameraGL.cpp' object='libscirenderer_la-IsoViewCameraGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsoViewCameraGL.lo `test -f 'src/jni/IsoViewCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsoViewCameraGL.cpp
-
-libscirenderer_la-IsometricCameraGL.lo: src/jni/IsometricCameraGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsometricCameraGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Tpo -c -o libscirenderer_la-IsometricCameraGL.lo `test -f 'src/jni/IsometricCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsometricCameraGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Tpo $(DEPDIR)/libscirenderer_la-IsometricCameraGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/IsometricCameraGL.cpp' object='libscirenderer_la-IsometricCameraGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsometricCameraGL.lo `test -f 'src/jni/IsometricCameraGL.cpp' || echo '$(srcdir)/'`src/jni/IsometricCameraGL.cpp
-
-libscirenderer_la-IsoViewCameraJavaMapper.lo: src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsoViewCameraJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Tpo -c -o libscirenderer_la-IsoViewCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-IsoViewCameraJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' object='libscirenderer_la-IsoViewCameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsoViewCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp
-
-libscirenderer_la-IsometricCameraJavaMapper.lo: src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-IsometricCameraJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Tpo -c -o libscirenderer_la-IsometricCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-IsometricCameraJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' object='libscirenderer_la-IsometricCameraJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-IsometricCameraJavaMapper.lo `test -f 'src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp
-
-libscirenderer_la-LinearBoundsComputer.lo: src/cpp/subwinDrawing/LinearBoundsComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LinearBoundsComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Tpo -c -o libscirenderer_la-LinearBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LinearBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LinearBoundsComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Tpo $(DEPDIR)/libscirenderer_la-LinearBoundsComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LinearBoundsComputer.cpp' object='libscirenderer_la-LinearBoundsComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LinearBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LinearBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LinearBoundsComputer.cpp
-
-libscirenderer_la-ConcreteDrawableSubwin.lo: src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ConcreteDrawableSubwin.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Tpo -c -o libscirenderer_la-ConcreteDrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Tpo $(DEPDIR)/libscirenderer_la-ConcreteDrawableSubwin.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp' object='libscirenderer_la-ConcreteDrawableSubwin.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ConcreteDrawableSubwin.lo `test -f 'src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp
-
-libscirenderer_la-LogarithmicBoundsComputer.lo: src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LogarithmicBoundsComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Tpo -c -o libscirenderer_la-LogarithmicBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Tpo $(DEPDIR)/libscirenderer_la-LogarithmicBoundsComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' object='libscirenderer_la-LogarithmicBoundsComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LogarithmicBoundsComputer.lo `test -f 'src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp
-
-libscirenderer_la-BackTrihedronDrawerGL.lo: src/jni/BackTrihedronDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BackTrihedronDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Tpo -c -o libscirenderer_la-BackTrihedronDrawerGL.lo `test -f 'src/jni/BackTrihedronDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/BackTrihedronDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/BackTrihedronDrawerGL.cpp' object='libscirenderer_la-BackTrihedronDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BackTrihedronDrawerGL.lo `test -f 'src/jni/BackTrihedronDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/BackTrihedronDrawerGL.cpp
-
-libscirenderer_la-BackTrihedronDrawerJoGL.lo: src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BackTrihedronDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Tpo -c -o libscirenderer_la-BackTrihedronDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp' object='libscirenderer_la-BackTrihedronDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BackTrihedronDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp
-
-libscirenderer_la-BackTrihedronDrawerJavaMapper.lo: src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BackTrihedronDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Tpo -c -o libscirenderer_la-BackTrihedronDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-BackTrihedronDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp' object='libscirenderer_la-BackTrihedronDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BackTrihedronDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp
-
-libscirenderer_la-FullBoxDrawerGL.lo: src/jni/FullBoxDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FullBoxDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FullBoxDrawerGL.Tpo -c -o libscirenderer_la-FullBoxDrawerGL.lo `test -f 'src/jni/FullBoxDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FullBoxDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FullBoxDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-FullBoxDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/FullBoxDrawerGL.cpp' object='libscirenderer_la-FullBoxDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FullBoxDrawerGL.lo `test -f 'src/jni/FullBoxDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/FullBoxDrawerGL.cpp
-
-libscirenderer_la-HalfBoxDrawerGL.lo: src/jni/HalfBoxDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HalfBoxDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HalfBoxDrawerGL.Tpo -c -o libscirenderer_la-HalfBoxDrawerGL.lo `test -f 'src/jni/HalfBoxDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/HalfBoxDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HalfBoxDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-HalfBoxDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/HalfBoxDrawerGL.cpp' object='libscirenderer_la-HalfBoxDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HalfBoxDrawerGL.lo `test -f 'src/jni/HalfBoxDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/HalfBoxDrawerGL.cpp
-
-libscirenderer_la-HalfBoxDrawerJavaMapper.lo: src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HalfBoxDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJavaMapper.Tpo -c -o libscirenderer_la-HalfBoxDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp' object='libscirenderer_la-HalfBoxDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HalfBoxDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp
-
-libscirenderer_la-HalfBoxDrawerJoGL.lo: src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HalfBoxDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Tpo -c -o libscirenderer_la-HalfBoxDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-HalfBoxDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp' object='libscirenderer_la-HalfBoxDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HalfBoxDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp
-
-libscirenderer_la-FullBoxDrawerJavaMapper.lo: src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FullBoxDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FullBoxDrawerJavaMapper.Tpo -c -o libscirenderer_la-FullBoxDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FullBoxDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-FullBoxDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp' object='libscirenderer_la-FullBoxDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FullBoxDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp
-
-libscirenderer_la-FullBoxDrawerJoGL.lo: src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-FullBoxDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FullBoxDrawerJoGL.Tpo -c -o libscirenderer_la-FullBoxDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-FullBoxDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-FullBoxDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp' object='libscirenderer_la-FullBoxDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-FullBoxDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp
-
-libscirenderer_la-UserDefinedTicksComputer.lo: src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefinedTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Tpo -c -o libscirenderer_la-UserDefinedTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefinedTicksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' object='libscirenderer_la-UserDefinedTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefinedTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp
-
-libscirenderer_la-TicksDrawer.lo: src/cpp/subwinDrawing/TicksDrawer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawer.Tpo -c -o libscirenderer_la-TicksDrawer.lo `test -f 'src/cpp/subwinDrawing/TicksDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TicksDrawer.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawer.cpp' object='libscirenderer_la-TicksDrawer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawer.lo `test -f 'src/cpp/subwinDrawing/TicksDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawer.cpp
-
-libscirenderer_la-TicksDrawerFactory.lo: src/cpp/subwinDrawing/TicksDrawerFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawerFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Tpo -c -o libscirenderer_la-TicksDrawerFactory.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawerFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawerFactory.cpp' object='libscirenderer_la-TicksDrawerFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawerFactory.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerFactory.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerFactory.cpp
-
-libscirenderer_la-TicksDrawerJoGL.lo: src/cpp/subwinDrawing/TicksDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Tpo -c -o libscirenderer_la-TicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawerJoGL.cpp' object='libscirenderer_la-TicksDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerJoGL.cpp
-
 libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-BasicAlgos.Plo
@@ -1256,187 +842,12 @@ libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
 
-libscirenderer_la-AutomaticTicksComputer.lo: src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutomaticTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Tpo -c -o libscirenderer_la-AutomaticTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutomaticTicksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' object='libscirenderer_la-AutomaticTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutomaticTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticTicksComputer.cpp
-
 libscirenderer_la-GraphicSynchronizerJava.lo: src/jni/GraphicSynchronizerJava.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerJava.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Tpo -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/jni/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/jni/GraphicSynchronizerJava.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GraphicSynchronizerJava.cpp' object='libscirenderer_la-GraphicSynchronizerJava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/jni/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/jni/GraphicSynchronizerJava.cpp
-
-libscirenderer_la-UserDefLogTicksComputer.lo: src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefLogTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Tpo -c -o libscirenderer_la-UserDefLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefLogTicksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' object='libscirenderer_la-UserDefLogTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp
-
-libscirenderer_la-AutoLogTicksComputer.lo: src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutoLogTicksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Tpo -c -o libscirenderer_la-AutoLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutoLogTicksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' object='libscirenderer_la-AutoLogTicksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutoLogTicksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogTicksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogTicksComputer.cpp
-
-libscirenderer_la-GridDrawerJoGL.lo: src/cpp/subwinDrawing/GridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Tpo -c -o libscirenderer_la-GridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-GridDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/GridDrawerJoGL.cpp' object='libscirenderer_la-GridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJoGL.cpp
-
-libscirenderer_la-YGridDrawerJoGL.lo: src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Tpo -c -o libscirenderer_la-YGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-YGridDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' object='libscirenderer_la-YGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/YGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YGridDrawerJoGL.cpp
-
-libscirenderer_la-GridDrawer.lo: src/cpp/subwinDrawing/GridDrawer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawer.Tpo -c -o libscirenderer_la-GridDrawer.lo `test -f 'src/cpp/subwinDrawing/GridDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GridDrawer.Tpo $(DEPDIR)/libscirenderer_la-GridDrawer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/GridDrawer.cpp' object='libscirenderer_la-GridDrawer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawer.lo `test -f 'src/cpp/subwinDrawing/GridDrawer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawer.cpp
-
-libscirenderer_la-XGridDrawerJoGL.lo: src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Tpo -c -o libscirenderer_la-XGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-XGridDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' object='libscirenderer_la-XGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/XGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XGridDrawerJoGL.cpp
-
-libscirenderer_la-ZGridDrawerJoGL.lo: src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZGridDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Tpo -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-ZGridDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' object='libscirenderer_la-ZGridDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZGridDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp
-
-libscirenderer_la-BottomXAxisPositioner.lo: src/cpp/subwinDrawing/BottomXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BottomXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Tpo -c -o libscirenderer_la-BottomXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/BottomXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BottomXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-BottomXAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/BottomXAxisPositioner.cpp' object='libscirenderer_la-BottomXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BottomXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/BottomXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/BottomXAxisPositioner.cpp
-
-libscirenderer_la-LeftYAxisPositioner.lo: src/cpp/subwinDrawing/LeftYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LeftYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LeftYAxisPositioner.Tpo -c -o libscirenderer_la-LeftYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/LeftYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LeftYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-LeftYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-LeftYAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/LeftYAxisPositioner.cpp' object='libscirenderer_la-LeftYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LeftYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/LeftYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/LeftYAxisPositioner.cpp
-
-libscirenderer_la-XAxisPositioner.lo: src/cpp/subwinDrawing/XAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-XAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-XAxisPositioner.Tpo -c -o libscirenderer_la-XAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/XAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-XAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-XAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/XAxisPositioner.cpp' object='libscirenderer_la-XAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/XAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/XAxisPositioner.cpp
-
-libscirenderer_la-YAxisPositioner.lo: src/cpp/subwinDrawing/YAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-YAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-YAxisPositioner.Tpo -c -o libscirenderer_la-YAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/YAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-YAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-YAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/YAxisPositioner.cpp' object='libscirenderer_la-YAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-YAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/YAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/YAxisPositioner.cpp
-
-libscirenderer_la-MiddleXAxisPositioner.lo: src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-MiddleXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Tpo -c -o libscirenderer_la-MiddleXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp' object='libscirenderer_la-MiddleXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp
-
-libscirenderer_la-MiddleYAxisPositioner.lo: src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-MiddleYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Tpo -c -o libscirenderer_la-MiddleYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp' object='libscirenderer_la-MiddleYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp
-
-libscirenderer_la-OriginXAxisPositioner.lo: src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' object='libscirenderer_la-OriginXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
-
-libscirenderer_la-OriginYAxisPositioner.lo: src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' object='libscirenderer_la-OriginYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
-
-libscirenderer_la-AxisPositioner.lo: src/cpp/subwinDrawing/AxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo -c -o libscirenderer_la-AxisPositioner.lo `test -f 'src/cpp/subwinDrawing/AxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-AxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AxisPositioner.cpp' object='libscirenderer_la-AxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxisPositioner.lo `test -f 'src/cpp/subwinDrawing/AxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AxisPositioner.cpp
-
-libscirenderer_la-TopXAxisPositioner.lo: src/cpp/subwinDrawing/TopXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TopXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Tpo -c -o libscirenderer_la-TopXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/TopXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TopXAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-TopXAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TopXAxisPositioner.cpp' object='libscirenderer_la-TopXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TopXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/TopXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TopXAxisPositioner.cpp
-
-libscirenderer_la-ZAxisPositioner.lo: src/cpp/subwinDrawing/ZAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ZAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ZAxisPositioner.Tpo -c -o libscirenderer_la-ZAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/ZAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-ZAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-ZAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/ZAxisPositioner.cpp' object='libscirenderer_la-ZAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ZAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/ZAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/ZAxisPositioner.cpp
-
-libscirenderer_la-RightYAxisPositioner.lo: src/cpp/subwinDrawing/RightYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RightYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Tpo -c -o libscirenderer_la-RightYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/RightYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/RightYAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/RightYAxisPositioner.cpp' object='libscirenderer_la-RightYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RightYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/RightYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/RightYAxisPositioner.cpp
-
-libscirenderer_la-SubwinAxisPositioner.lo: src/cpp/subwinDrawing/SubwinAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Tpo -c -o libscirenderer_la-SubwinAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/SubwinAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinAxisPositioner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-SubwinAxisPositioner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinAxisPositioner.cpp' object='libscirenderer_la-SubwinAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/SubwinAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinAxisPositioner.cpp
-
-libscirenderer_la-TicksDrawerJavaMapper.lo: src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawerJavaMapper.Tpo -c -o libscirenderer_la-TicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TicksDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp' object='libscirenderer_la-TicksDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp
-
-libscirenderer_la-GridDrawerJavaMapper.lo: src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawerJavaMapper.Tpo -c -o libscirenderer_la-GridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GridDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-GridDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp' object='libscirenderer_la-GridDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp
-
-libscirenderer_la-TicksDrawerGL.lo: src/jni/TicksDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-TicksDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-TicksDrawerGL.Tpo -c -o libscirenderer_la-TicksDrawerGL.lo `test -f 'src/jni/TicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/TicksDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-TicksDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-TicksDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/TicksDrawerGL.cpp' object='libscirenderer_la-TicksDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-TicksDrawerGL.lo `test -f 'src/jni/TicksDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/TicksDrawerGL.cpp
-
-libscirenderer_la-GridDrawerGL.lo: src/jni/GridDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GridDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GridDrawerGL.Tpo -c -o libscirenderer_la-GridDrawerGL.lo `test -f 'src/jni/GridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/GridDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GridDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-GridDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GridDrawerGL.cpp' object='libscirenderer_la-GridDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GridDrawerGL.lo `test -f 'src/jni/GridDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/GridDrawerGL.cpp
 
 libscirenderer_la-RendererFontManager.lo: src/cpp/RendererFontManager.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RendererFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp
@@ -1452,61 +863,12 @@ libscirenderer_la-XlFontManager.lo: src/jni/XlFontManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-XlFontManager.lo `test -f 'src/jni/XlFontManager.cpp' || echo '$(srcdir)/'`src/jni/XlFontManager.cpp
 
-libscirenderer_la-AutoLogSubticksComputer.lo: src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutoLogSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Tpo -c -o libscirenderer_la-AutoLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutoLogSubticksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' object='libscirenderer_la-AutoLogSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutoLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp
-
-libscirenderer_la-AutomaticSubticksComputer.lo: src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AutomaticSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Tpo -c -o libscirenderer_la-AutomaticSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-AutomaticSubticksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' object='libscirenderer_la-AutomaticSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AutomaticSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp
-
-libscirenderer_la-UserDefLogSubticksComputer.lo: src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefLogSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Tpo -c -o libscirenderer_la-UserDefLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefLogSubticksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' object='libscirenderer_la-UserDefLogSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefLogSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp
-
-libscirenderer_la-UserDefinedSubticksComputer.lo: src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-UserDefinedSubticksComputer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Tpo -c -o libscirenderer_la-UserDefinedSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Tpo $(DEPDIR)/libscirenderer_la-UserDefinedSubticksComputer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' object='libscirenderer_la-UserDefinedSubticksComputer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-UserDefinedSubticksComputer.lo `test -f 'src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp
-
 libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-rendererBasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rendererBasicAlgos.cpp' object='libscirenderer_la-rendererBasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
-
-libscirenderer_la-SubwinBackgroundDrawerGL.lo: src/jni/SubwinBackgroundDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerGL.lo `test -f 'src/jni/SubwinBackgroundDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SubwinBackgroundDrawerGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SubwinBackgroundDrawerGL.cpp' object='libscirenderer_la-SubwinBackgroundDrawerGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerGL.lo `test -f 'src/jni/SubwinBackgroundDrawerGL.cpp' || echo '$(srcdir)/'`src/jni/SubwinBackgroundDrawerGL.cpp
-
-libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo: src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' object='libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp
-
-libscirenderer_la-SubwinBackgroundDrawerJoGL.lo: src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-SubwinBackgroundDrawerJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Tpo -c -o libscirenderer_la-SubwinBackgroundDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Tpo $(DEPDIR)/libscirenderer_la-SubwinBackgroundDrawerJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' object='libscirenderer_la-SubwinBackgroundDrawerJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-SubwinBackgroundDrawerJoGL.lo `test -f 'src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 libscirenderer_la-CallRenderer.lo: src/jni/CallRenderer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-CallRenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-CallRenderer.Tpo -c -o libscirenderer_la-CallRenderer.lo `test -f 'src/jni/CallRenderer.cpp' || echo '$(srcdir)/'`src/jni/CallRenderer.cpp

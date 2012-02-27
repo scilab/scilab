@@ -26,8 +26,6 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 # List of the c files
 RENDERER_CPP_SOURCES = \
-src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwin.cpp \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
@@ -40,13 +38,6 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/subwinDrawing/CameraJoGL.cpp \
-src/cpp/subwinDrawing/CameraBridge.cpp \
-src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
-src/cpp/subwinDrawing/CameraFactory.cpp \
-src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-src/cpp/subwinDrawing/Camera.cpp \
-src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
 src/cpp/DrawableClippedObjectJoGL.cpp \
 src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
@@ -55,65 +46,11 @@ src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
-src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-src/jni/DrawableSubwinGL.cpp \
-src/jni/IsoViewCameraGL.cpp \
-src/jni/IsometricCameraGL.cpp \
-src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
-src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
-src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
-src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
-src/jni/BackTrihedronDrawerGL.cpp \
-src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
-src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
-src/jni/FullBoxDrawerGL.cpp \
-src/jni/HalfBoxDrawerGL.cpp \
-src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
-src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
-src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
-src/cpp/subwinDrawing/TicksDrawer.cpp \
-src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
-src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
 src/cpp/BasicAlgos.cpp \
-src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
 src/jni/GraphicSynchronizerJava.cpp \
-src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
-src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
-src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/GridDrawer.cpp \
-src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
-src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
-src/cpp/subwinDrawing/XAxisPositioner.cpp \
-src/cpp/subwinDrawing/YAxisPositioner.cpp \
-src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
-src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
-src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
-src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
-src/cpp/subwinDrawing/AxisPositioner.cpp \
-src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
-src/cpp/subwinDrawing/ZAxisPositioner.cpp \
-src/cpp/subwinDrawing/RightYAxisPositioner.cpp \
-src/cpp/subwinDrawing/SubwinAxisPositioner.cpp \
-src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
-src/jni/TicksDrawerGL.cpp \
-src/jni/GridDrawerGL.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
-src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
-src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
-src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
-src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/rendererBasicAlgos.cpp \
-src/jni/SubwinBackgroundDrawerGL.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
 src/jni/CallRenderer.cpp
 
 # Includes need for the compilation
@@ -151,15 +88,7 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 GIWS_WRAPPERS= \
 src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/DrawableFigureGL.giws.xml \
-src/jni/DrawableSubwinGL.giws.xml \
-src/jni/FullBoxDrawerGL.giws.xml \
 src/jni/GraphicSynchronizerJava.giws.xml \
-src/jni/HalfBoxDrawerGL.giws.xml \
-src/jni/IsometricCameraGL.giws.xml \
-src/jni/IsoViewCameraGL.giws.xml \
-src/jni/TicksDrawerGL.giws.xml \
-src/jni/GridDrawerGL.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
 src/jni/SubwinBackgroundDrawerGL.giws.xml \
