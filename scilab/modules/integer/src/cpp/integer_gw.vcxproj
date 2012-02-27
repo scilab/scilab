@@ -172,8 +172,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\integer_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_double.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_int.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_inttype.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_int.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_integer_gw.h" />

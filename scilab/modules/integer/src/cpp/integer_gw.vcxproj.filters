@@ -24,7 +24,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_inttype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_int.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

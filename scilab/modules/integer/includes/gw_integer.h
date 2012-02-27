@@ -36,16 +36,6 @@ INTEGER_IMPEXP int C2F(sciip)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciimatrix)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciiprod)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciicumprod)(char *fname,unsigned long fname_len);
-
-//YaSp
-INTEGER_GW_IMPEXP int sci_int8(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_uint8(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_int16(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_uint16(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_int32(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_uint32(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_int64(char *fname,void* pvApiCtx);
-INTEGER_GW_IMPEXP int sci_uint64(char *fname,void* pvApiCtx);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_INTEGER__ */
 /*--------------------------------------------------------------------------*/

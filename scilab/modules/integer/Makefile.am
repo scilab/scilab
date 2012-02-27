@@ -87,13 +87,13 @@ src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
 GATEWAY_C_SOURCES = \
-				sci_gateway/c/gw_integer.c \
-				sci_gateway/c/sci_int.c
+				sci_gateway/c/gw_integer.c
 
 GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/integer_gw.cpp \
 				sci_gateway/cpp/sci_inttype.cpp \
-				sci_gateway/cpp/sci_double.cpp
+				sci_gateway/cpp/sci_double.cpp \
+				sci_gateway/cpp/sci_int.cpp
 
 # List of the cpp files
 INTEGER_CPP_SOURCES =
