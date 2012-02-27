@@ -2044,37 +2044,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
     return (double*)NULL;
 }
 
-/**sciGetAxes
-* Gets SUBWIN of this Scilab graphic figure
-* @author Djalel ABDEMOUCHE
-*/
-sciPointObj *
-sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
-{
-    sciSons *psonstmp;
-
-    psonstmp = sciGetSons (pparentfigure);
-
-
-    if (psonstmp != (sciSons *) NULL)
-    {
-        /* tant que le fils ne corespond pas a l'entite */
-        while ((psonstmp->pnext  != (sciSons *) NULL)
-            && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
-            psonstmp = psonstmp->pnext;
-
-        if  (psonstmp->pnext  == (sciSons *) NULL)
-            return (sciPointObj *) NULL;
-        else
-            if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-                return (sciPointObj *)psonstmp->pointobj;
-            else
-                return (sciPointObj *) NULL; /* added SS ????*/
-    }
-    else
-        return (sciPointObj *) NULL;
-}
-
 /**sciGetPointerToToUserData
 * Returns the pointer to the user_data and size_of_user_data fields associated with
 the pobj object
