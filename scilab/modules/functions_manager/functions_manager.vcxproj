@@ -226,10 +226,6 @@
       <Project>{9881f0ce-a1ac-4744-b709-7c1453a77b95}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\elementary_functions\src\cpp\elem_func\elem_func.vcxproj">
-      <Project>{e1284d3e-4b3f-446b-b541-f661a8a166a7}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

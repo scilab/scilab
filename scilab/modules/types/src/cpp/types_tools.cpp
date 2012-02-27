@@ -25,7 +25,7 @@ namespace types
         {
             InternalType* pIT = (*_pArgsIn)[i];
             Double *pCurrentArg = NULL;
-            
+
             if(pIT->isDouble())
             {
                 pCurrentArg = pIT->getAs<Double>();
@@ -135,5 +135,54 @@ namespace types
         //returns a negative value if at least one parameter is undefined
         //case with : or $ for creation by insertion
         return (!bUndefine ? iSeqCount : - iSeqCount);
+    }
+
+    void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
+    {
+        int iMul = 1;
+        for(int i = 0 ; i < _iDims ; i++)
+        {
+            _piIndexes[i] = (int)(_iIndex / iMul) % _piDims[i];
+            iMul *= _piDims[i];
+        }
+        //matrix [2,4,3]
+        //index = 12 ( 0,2,1) = 1 * 4 * 2 + 2 * 2 + 0 = 12
+        //loop 1
+        // (12 / 1) % 2 -> 0
+        //loop 2
+        // (12 / 2) % 4 -> 2
+        //loop 3
+        // (12 / 8) % 3 -> 1
+
+        //matrix [3,4,3]
+        //index = 22
+        //loop 1
+        // (22 / 1) % 3 -> 1
+        //loop 2
+        // (22 / 3) % 4 -> 3
+        //loop 3
+        // (22 / 12) % 3 -> 1
+
+        //matrix [3,4,3]
+        //index = 35
+        //loop 1
+        // (35 / 1) % 3 -> 2
+        //loop 2
+        // (35 / 3) % 4 -> 3
+        //loop 3
+        // (35 / 12) % 3 -> 2
+    }
+
+
+    int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
+    {
+        int idx = 0;
+        int iMult = 1;
+        for(int i = 0 ; i < _iDims ; i++)
+        {
+            idx += _piIndexes[i] * iMult;
+            iMult *= _piDims[i];
+        }
+        return idx;
     }
 }

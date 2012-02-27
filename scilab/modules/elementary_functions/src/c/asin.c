@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "elementary_functions.h"
 #include "elem_common.h"
 
 /*asin*/

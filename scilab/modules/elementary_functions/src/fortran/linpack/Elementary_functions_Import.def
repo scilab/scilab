@@ -1,4 +1,4 @@
-	LIBRARY    elem_func_gw.dll
+	LIBRARY    elementary_functions.dll
 
 
 EXPORTS

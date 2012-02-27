@@ -155,13 +155,12 @@
         </para>
         <para>
             When <literal>v</literal> is complex, the elements are sorted by
-            magnitude, i.e., abs(<literal>v</literal>) . Only <literal>'g'</literal>
-            as second argument is managed with complex.
+            magnitude, i.e., abs(<literal>v</literal>) .
         </para>
         <para>
             With complex numbers, <literal>gsort</literal> can be overloaded
         </para>
-        <para>see macro:
+        <para>Create macro:
             SCI/modules/elementary_functions/macros/%_gsort.sci
         </para>
         <para>Overloading for not managed type (others than a real, an integer or a character

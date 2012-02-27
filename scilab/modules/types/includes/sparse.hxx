@@ -111,10 +111,21 @@ namespace types
            If dimensions where already >=, this is a no-op.
 
            @param _iNewRows new minimum nb of rows
-           @param _iNewRows new minimum nb of rows
+           @param _iNewCols new minimum nb of cols
            @return true upon succes, false otherwise.
          */
         bool resize(int _iNewRows, int _iNewCols);
+        /* post condition: new total size must be equal to the old size.
+                           Two dimensions maximum.
+
+           @param _iNewRows new nb of rows
+           @param _iNewCols new nb of cols
+           @param _piNewDims new nb of dimension
+           @param _iNewDims new size for each dimension
+           @return true upon succes, false otherwise.
+        */
+        bool reshape(int* _piNewDims, int _iNewDims);
+        bool reshape(int _iNewRows, int _iNewCols);
         /*
           insert _iSeqCount elements from _poSource at coords given by _piSeqCoord (max in _piMaxDim).
           coords are considered 1D if _bAsVector, 2D otherwise.

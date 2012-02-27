@@ -13,12 +13,12 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dlogs(double _dblVal);
-EXTERN_EF void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_EF double dlog1ps(double _dblVal);
-EXTERN_EF double lnp1m1(double _dblVar);
+ELEMENTARY_FUNCTIONS_IMPEXP double dlogs(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pdblImgOut);
+ELEMENTARY_FUNCTIONS_IMPEXP double dlog1ps(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double lnp1m1(double _dblVar);
 
 
 #endif /* __LOG_H__ */

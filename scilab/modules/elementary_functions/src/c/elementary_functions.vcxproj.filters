@@ -56,9 +56,6 @@
     <ClCompile Include="floor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gsort.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_elementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -134,7 +131,76 @@
     <ClCompile Include="xerhlt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dec2base.c">
+    <ClCompile Include="abs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="acos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="atan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convertbase.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cosh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="expm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="f2c_workaround.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pythag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sign.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\cumprod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\cumsum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\diag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getmode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\gsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\max.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\min.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -187,9 +253,6 @@
     <ClInclude Include="cmp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gsort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IsEqualVar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -223,6 +286,60 @@
     <ClInclude Include="convertbase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\abs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\cos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\elem_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\exp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\pythag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\sign.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\sin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\sqrt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\tan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmode.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\cumprod.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\cumsum.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\diag.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\gsort.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\max.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\min.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="expm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def">
@@ -236,6 +353,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\elementary_functions.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="eispack_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

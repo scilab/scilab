@@ -12,8 +12,8 @@
 #ifndef __PYTHAG_H__
 #define __PYTHAG_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dpythags(double _dblVal1, double _dblVal2);
+ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2);
 
 #endif /* __PYTHAG_H__ */

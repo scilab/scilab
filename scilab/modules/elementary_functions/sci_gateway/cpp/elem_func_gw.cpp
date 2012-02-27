@@ -48,9 +48,9 @@ int ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"kron", &sci_kron, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"log", &sci_log, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"log1p", &sci_log1p, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"matrix", &sci_scimatrix, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"max", &sci_maxi, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"min", &sci_mini, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"matrix", &sci_matrix, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"max", &sci_max, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"min", &sci_min, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"nearfloat", &sci_nearfloat, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"number_properties", &sci_number_properties, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"ones", &sci_ones, MODULE_NAME));
@@ -68,5 +68,6 @@ int ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tril", &sci_tril, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"triu", &sci_triu, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"zeros", &sci_zeros, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"rat", &sci_rat, MODULE_NAME));
 	return 1;
 }

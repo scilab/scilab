@@ -213,7 +213,7 @@ void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 		{
 			if(_pdblInfo != NULL)
 			{
-				*_pdblInfo++;
+				(*_pdblInfo)++;
 			}
 			_pdblInd[iLoop] = 0;
 		}

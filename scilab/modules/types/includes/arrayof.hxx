@@ -1107,6 +1107,12 @@ namespace types
                 m_piDims[i] = _piDims[i];
             }
 
+            if(_iDims == 1)
+            {
+                m_piDims[1] = 1;
+                _iDims++;
+            }
+
             m_iRows = m_piDims[0];
             m_iCols = m_piDims[1];
             m_iSize = iNewSize;
@@ -1327,57 +1333,9 @@ namespace types
             return idx;
         }
 
-        int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
-        {
-            int idx = 0;
-            int iMult = 1;
-            for(int i = 0 ; i < _iDims ; i++)
-            {
-                idx += _piIndexes[i] * iMult;
-                iMult *= _piDims[i];
-            }
-            return idx;
-        }
-
         void getIndexes(int _iIndex, int* _piIndexes)
         {
             getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
-        }
-
-        void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
-        {
-            int iMul = 1;
-            for(int i = 0 ; i < _iDims ; i++)
-            {
-                _piIndexes[i] = (int)(_iIndex / iMul) % _piDims[i];
-                iMul *= _piDims[i];
-            }
-            //matrix [2,4,3]
-            //index = 12 ( 0,2,1) = 1 * 4 * 2 + 2 * 2 + 0 = 12
-            //loop 1
-            // (12 / 1) % 2 -> 0
-            //loop 2
-            // (12 / 2) % 4 -> 2
-            //loop 3
-            // (12 / 8) % 3 -> 1
-
-            //matrix [3,4,3]
-            //index = 22
-            //loop 1
-            // (22 / 1) % 3 -> 1
-            //loop 2
-            // (22 / 3) % 4 -> 3
-            //loop 3
-            // (22 / 12) % 3 -> 1
-
-            //matrix [3,4,3]
-            //index = 35
-            //loop 1
-            // (35 / 1) % 3 -> 2
-            //loop 2
-            // (35 / 3) % 4 -> 3
-            //loop 3
-            // (35 / 12) % 3 -> 2
         }
 
         ArrayOf<T>* getColumnValues(int _iPos)

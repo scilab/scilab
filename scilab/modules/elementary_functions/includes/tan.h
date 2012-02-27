@@ -13,13 +13,13 @@
 #ifndef __TAN_H__
 #define __TAN_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dtans(double _dblVal);
-EXTERN_EF void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+ELEMENTARY_FUNCTIONS_IMPEXP double dtans(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void ztans(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-EXTERN_EF double datans(double _dblVal);
-EXTERN_EF double datan2s(double _dblValX, double _dblValY);
-EXTERN_EF void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+ELEMENTARY_FUNCTIONS_IMPEXP double datans(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double datan2s(double _dblValX, double _dblValY);
+ELEMENTARY_FUNCTIONS_IMPEXP void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
 #endif /* __TAN_H__ */

@@ -19,6 +19,8 @@
 namespace types
 {
     TYPES_IMPEXP int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
+    TYPES_IMPEXP void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims);
+    TYPES_IMPEXP int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims);
 }
 
 #endif /* !__TYPES_TOOLS_HXX__ */

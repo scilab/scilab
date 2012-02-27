@@ -28,53 +28,47 @@ namespace types
 #endif
     }
 
-    Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols, int *_piRank)
+    Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols)
     {
         int piDims[2]   = {_iRows, _iCols};
-        m_szVarName	    = _szVarName;
-        m_bComplex	    = false;
-        SinglePoly** pPoly    = NULL;
-        create(piDims, 2, &pPoly, NULL);
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            double* pReal = NULL;
-            if(m_pRealData[i])
-            {
-                delete m_pRealData[i];
-            }
-            m_pRealData[i] = new SinglePoly(&pReal, _piRank[i]);
-        }
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
+        createPoly(_szVarName, 2, piDims, NULL);
     }
 
     Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols, const int *_piRank)
     {
         int piDims[2]   = {_iRows, _iCols};
-        m_szVarName	    = _szVarName;
-        m_bComplex	    = false;
-        SinglePoly** pPoly     = NULL;
+        createPoly(_szVarName, 2, piDims, _piRank);
+    }
 
-        create(piDims, 2, &pPoly, NULL);
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            double* pReal = NULL;
-            m_pRealData[i] = new SinglePoly(&pReal, _piRank[i]);
-        }
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
+    Polynom::Polynom(std::wstring _szVarName, int _iDims, int* _piDims)
+    {
+        createPoly(_szVarName, _iDims, _piDims, NULL);
     }
 
     Polynom::Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank)
+    {
+        createPoly(_szVarName, _iDims, _piDims, _piRank);
+    }
+
+    Polynom::~Polynom()
+    {
+        if(isDeletable() == true)
+        {
+            deleteAll();
+        }
+#ifndef NDEBUG
+        Inspector::removeItem(this);
+#endif
+    }
+
+    void Polynom::createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank)
     {
         m_szVarName	= _szVarName;
         m_bComplex	= false;
         SinglePoly** pPoly = NULL;
         create(_piDims, _iDims, &pPoly, NULL);
 
-        if(_piRank != 0)
+        if(_piRank)
         {
             for(int i = 0 ; i < getSize() ; i++)
             {
@@ -87,22 +81,11 @@ namespace types
             for(int i = 0 ; i < getSize() ; i++)
             {
                 double* pReal = NULL;
-                m_pRealData[i] = new SinglePoly(&pReal, 0);
+                m_pRealData[i] = new SinglePoly(&pReal, 1);
             }
         }
 #ifndef NDEBUG
         Inspector::addItem(this);
-#endif
-   }
-
-    Polynom::~Polynom()
-    {
-        if(isDeletable() == true)
-        {
-            deleteAll();
-        }
-#ifndef NDEBUG
-        Inspector::removeItem(this);
 #endif
     }
 

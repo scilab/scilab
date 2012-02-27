@@ -14,14 +14,14 @@
 #define __COS_H__
 
 #include <math.h>
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dcoss(double _dblVal);
-EXTERN_EF void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+ELEMENTARY_FUNCTIONS_IMPEXP double dcoss(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-EXTERN_EF double dacoss(double _dblVal);
-EXTERN_EF void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+ELEMENTARY_FUNCTIONS_IMPEXP double dacoss(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 
-EXTERN_EF double dcoshs(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dcoshs(double _dblVal);
 
 #endif /* __COS_H__ */

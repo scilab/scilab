@@ -13,9 +13,9 @@
 #ifndef __ABS_H__
 #define __ABS_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dabss(double _dblVal);
-EXTERN_EF double dabsz(double _dblRealVal, double _dblImgVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dabss(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dabsz(double _dblRealVal, double _dblImgVal);
 
 #endif /* __ABS_H__ */

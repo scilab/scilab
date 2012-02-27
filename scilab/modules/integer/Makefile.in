@@ -136,16 +136,13 @@ libsciinteger_algo_la_LIBADD =
 am__objects_1 = libsciinteger_algo_la-genconcatcol.lo \
 	libsciinteger_algo_la-genprod.lo \
 	libsciinteger_algo_la-genrdiv.lo \
-	libsciinteger_algo_la-genmin2.lo \
 	libsciinteger_algo_la-i_nextj.lo \
-	libsciinteger_algo_la-genmax2.lo \
 	libsciinteger_algo_la-genextrac1.lo \
 	libsciinteger_algo_la-genextrac2.lo \
 	libsciinteger_algo_la-gencopy.lo \
 	libsciinteger_algo_la-gentril.lo \
 	libsciinteger_algo_la-gencheck.lo \
 	libsciinteger_algo_la-tpconv.lo \
-	libsciinteger_algo_la-genmdiag.lo \
 	libsciinteger_algo_la-genscal.lo \
 	libsciinteger_algo_la-gentriu.lo \
 	libsciinteger_algo_la-genvmul.lo \
@@ -157,16 +154,9 @@ am__objects_1 = libsciinteger_algo_la-genconcatcol.lo \
 	libsciinteger_algo_la-genadd.lo \
 	libsciinteger_algo_la-genset.lo \
 	libsciinteger_algo_la-gencusum.lo \
-	libsciinteger_algo_la-genmmin.lo \
 	libsciinteger_algo_la-gensubst.lo \
-	libsciinteger_algo_la-genmmax.lo \
 	libsciinteger_algo_la-genmdsp.lo \
-	libsciinteger_algo_la-gendiag.lo \
 	libsciinteger_algo_la-gensum.lo \
-	libsciinteger_algo_la-genabs.lo \
-	libsciinteger_algo_la-genmcusum.lo \
-	libsciinteger_algo_la-genmcuprod.lo \
-	libsciinteger_algo_la-genkron.lo \
 	libsciinteger_algo_la-genmmul.lo \
 	libsciinteger_algo_la-genmsum.lo \
 	libsciinteger_algo_la-genmprod.lo \
@@ -177,24 +167,20 @@ am__objects_1 = libsciinteger_algo_la-genconcatcol.lo \
 	libsciinteger_algo_la-genbitops.lo \
 	libsciinteger_algo_la-genimpl.lo
 am__objects_2 = unarybit.lo i_mput.lo i_logic.lo i_a_i.lo i_b_i.lo \
-	i_c_i.lo i_d_i.lo i_mini.lo intinttype.lo i_f_i.lo i_maxi.lo \
-	i_matrix.lo i_i_i.lo i_l_i.lo i_m_i.lo intops.lo i_prod.lo \
-	i_q_i.lo i_r_i.lo i_tril.lo i_s_i.lo i_x_i.lo uppertype.lo \
-	i_triu.lo i_e.lo memused.lo bitops.lo i_mget.lo i_p.lo i_t.lo \
-	i_sum.lo i_diag.lo i_abs.lo stack_convert.lo i_cumprod.lo \
-	i_cumsum.lo i_kron.lo
+	i_c_i.lo i_d_i.lo intinttype.lo i_f_i.lo i_i_i.lo i_l_i.lo \
+	i_m_i.lo i_prod.lo i_q_i.lo i_r_i.lo i_tril.lo i_s_i.lo \
+	i_x_i.lo uppertype.lo i_triu.lo i_e.lo memused.lo bitops.lo \
+	i_mget.lo i_p.lo i_t.lo i_sum.lo stack_convert.lo
 am_libsciinteger_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciinteger_algo_la_OBJECTS = $(am_libsciinteger_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libsciinteger_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciinteger_algo_la_rpath =
 libsciinteger_la_DEPENDENCIES = libsciinteger-algo.la
 am__objects_3 = libsciinteger_la-gw_integer.lo
-am__objects_4 = sci_i_matrix.lo sci_i_mput.lo sci_i_max.lo \
-	sci_int32.lo sci_int16.lo sci_i_mini.lo sci_mgeti.lo \
-	sci_i_maxi.lo sci_i_p.lo sci_uint8.lo sci_i_sum.lo \
-	sci_i_prod.lo sci_i_cumsum.lo sci_i_diag.lo sci_i_abs.lo \
-	sci_i_cumprod.lo sci_i_tril.lo sci_int8.lo sci_uint32.lo \
-	sci_uint16.lo sci_i_triu.lo sci_i_min.lo sci_inttype.lo
+am__objects_4 = sci_i_mput.lo sci_int32.lo sci_int16.lo sci_mgeti.lo \
+	sci_i_p.lo sci_uint8.lo sci_i_sum.lo sci_i_prod.lo \
+	sci_i_tril.lo sci_int8.lo sci_uint32.lo sci_uint16.lo \
+	sci_i_triu.lo sci_inttype.lo
 am__objects_5 = libsciinteger_la-integer_gw.lo \
 	libsciinteger_la-sci_inttype.lo libsciinteger_la-sci_double.lo \
 	libsciinteger_la-sci_int.lo
@@ -504,19 +490,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-INTEGER_C_SOURCES = src/c/genconcatcol.c \
+INTEGER_C_SOURCES = \
+src/c/genconcatcol.c \
 src/c/genprod.c \
 src/c/genrdiv.c \
-src/c/genmin2.c \
 src/c/i_nextj.c \
-src/c/genmax2.c \
 src/c/genextrac1.c \
 src/c/genextrac2.c \
 src/c/gencopy.c \
 src/c/gentril.c \
 src/c/gencheck.c \
 src/c/tpconv.c \
-src/c/genmdiag.c \
 src/c/genscal.c \
 src/c/gentriu.c \
 src/c/genvmul.c \
@@ -528,16 +512,9 @@ src/c/db2int.c \
 src/c/genadd.c \
 src/c/genset.c \
 src/c/gencusum.c \
-src/c/genmmin.c \
 src/c/gensubst.c \
-src/c/genmmax.c \
 src/c/genmdsp.c \
-src/c/gendiag.c \
 src/c/gensum.c \
-src/c/genabs.c \
-src/c/genmcusum.c \
-src/c/genmcuprod.c \
-src/c/genkron.c \
 src/c/genmmul.c \
 src/c/genmsum.c \
 src/c/genmprod.c \
@@ -548,22 +525,19 @@ src/c/gencuprod.c \
 src/c/genbitops.c \
 src/c/genimpl.c
 
-INTEGER_FORTRAN_SOURCES = src/fortran/unarybit.f \
+INTEGER_FORTRAN_SOURCES = \
+src/fortran/unarybit.f \
 src/fortran/i_mput.f \
 src/fortran/i_logic.f \
 src/fortran/i_a_i.f \
 src/fortran/i_b_i.f \
 src/fortran/i_c_i.f \
 src/fortran/i_d_i.f \
-src/fortran/i_mini.f \
 src/fortran/intinttype.f \
 src/fortran/i_f_i.f \
-src/fortran/i_maxi.f \
-src/fortran/i_matrix.f \
 src/fortran/i_i_i.f \
 src/fortran/i_l_i.f \
 src/fortran/i_m_i.f \
-src/fortran/intops.f \
 src/fortran/i_prod.f \
 src/fortran/i_q_i.f \
 src/fortran/i_r_i.f \
@@ -579,12 +553,7 @@ src/fortran/i_mget.f \
 src/fortran/i_p.f \
 src/fortran/i_t.f \
 src/fortran/i_sum.f \
-src/fortran/i_diag.f \
-src/fortran/i_abs.f \
-src/fortran/stack_convert.f \
-src/fortran/i_cumprod.f \
-src/fortran/i_cumsum.f \
-src/fortran/i_kron.f
+src/fortran/stack_convert.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
 GATEWAY_CPP_SOURCES = \
@@ -593,28 +562,20 @@ GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/sci_double.cpp \
 				sci_gateway/cpp/sci_int.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_i_matrix.f \
+GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_i_mput.f \
-sci_gateway/fortran/sci_i_max.f \
 sci_gateway/fortran/sci_int32.f \
 sci_gateway/fortran/sci_int16.f \
-sci_gateway/fortran/sci_i_mini.f \
 sci_gateway/fortran/sci_mgeti.f \
-sci_gateway/fortran/sci_i_maxi.f \
 sci_gateway/fortran/sci_i_p.f \
 sci_gateway/fortran/sci_uint8.f \
 sci_gateway/fortran/sci_i_sum.f \
 sci_gateway/fortran/sci_i_prod.f \
-sci_gateway/fortran/sci_i_cumsum.f \
-sci_gateway/fortran/sci_i_diag.f \
-sci_gateway/fortran/sci_i_abs.f \
-sci_gateway/fortran/sci_i_cumprod.f \
 sci_gateway/fortran/sci_i_tril.f \
 sci_gateway/fortran/sci_int8.f \
 sci_gateway/fortran/sci_uint32.f \
 sci_gateway/fortran/sci_uint16.f \
 sci_gateway/fortran/sci_i_triu.f \
-sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
 libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -632,12 +593,12 @@ libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciinteger.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libsciinteger-algo.la
-libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES)	$(INTEGER_CPP_SOURCES)
+libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES)
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)
+CHECK_SRC = $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
@@ -818,7 +779,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-db2int.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genabs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genadd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genbitops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gencheck.Plo@am__quote@
@@ -827,7 +787,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gencopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gencuprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gencusum.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gendiag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-gendot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genextrac1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genextrac2.Plo@am__quote@
@@ -835,16 +794,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-geninsert1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-geninsert2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genisany.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genkron.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmax2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmcopy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmcuprod.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmcusum.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmdiag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmdsp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmin2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmmax.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmmin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_algo_la-genmsum.Plo@am__quote@
@@ -908,26 +859,12 @@ libsciinteger_algo_la-genrdiv.lo: src/c/genrdiv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genrdiv.lo `test -f 'src/c/genrdiv.c' || echo '$(srcdir)/'`src/c/genrdiv.c
 
-libsciinteger_algo_la-genmin2.lo: src/c/genmin2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmin2.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmin2.Tpo -c -o libsciinteger_algo_la-genmin2.lo `test -f 'src/c/genmin2.c' || echo '$(srcdir)/'`src/c/genmin2.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmin2.Tpo $(DEPDIR)/libsciinteger_algo_la-genmin2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmin2.c' object='libsciinteger_algo_la-genmin2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmin2.lo `test -f 'src/c/genmin2.c' || echo '$(srcdir)/'`src/c/genmin2.c
-
 libsciinteger_algo_la-i_nextj.lo: src/c/i_nextj.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-i_nextj.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-i_nextj.Tpo -c -o libsciinteger_algo_la-i_nextj.lo `test -f 'src/c/i_nextj.c' || echo '$(srcdir)/'`src/c/i_nextj.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-i_nextj.Tpo $(DEPDIR)/libsciinteger_algo_la-i_nextj.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/i_nextj.c' object='libsciinteger_algo_la-i_nextj.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-i_nextj.lo `test -f 'src/c/i_nextj.c' || echo '$(srcdir)/'`src/c/i_nextj.c
-
-libsciinteger_algo_la-genmax2.lo: src/c/genmax2.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmax2.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmax2.Tpo -c -o libsciinteger_algo_la-genmax2.lo `test -f 'src/c/genmax2.c' || echo '$(srcdir)/'`src/c/genmax2.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmax2.Tpo $(DEPDIR)/libsciinteger_algo_la-genmax2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmax2.c' object='libsciinteger_algo_la-genmax2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmax2.lo `test -f 'src/c/genmax2.c' || echo '$(srcdir)/'`src/c/genmax2.c
 
 libsciinteger_algo_la-genextrac1.lo: src/c/genextrac1.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genextrac1.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genextrac1.Tpo -c -o libsciinteger_algo_la-genextrac1.lo `test -f 'src/c/genextrac1.c' || echo '$(srcdir)/'`src/c/genextrac1.c
@@ -970,13 +907,6 @@ libsciinteger_algo_la-tpconv.lo: src/c/tpconv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tpconv.c' object='libsciinteger_algo_la-tpconv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-tpconv.lo `test -f 'src/c/tpconv.c' || echo '$(srcdir)/'`src/c/tpconv.c
-
-libsciinteger_algo_la-genmdiag.lo: src/c/genmdiag.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmdiag.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmdiag.Tpo -c -o libsciinteger_algo_la-genmdiag.lo `test -f 'src/c/genmdiag.c' || echo '$(srcdir)/'`src/c/genmdiag.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmdiag.Tpo $(DEPDIR)/libsciinteger_algo_la-genmdiag.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmdiag.c' object='libsciinteger_algo_la-genmdiag.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmdiag.lo `test -f 'src/c/genmdiag.c' || echo '$(srcdir)/'`src/c/genmdiag.c
 
 libsciinteger_algo_la-genscal.lo: src/c/genscal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genscal.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genscal.Tpo -c -o libsciinteger_algo_la-genscal.lo `test -f 'src/c/genscal.c' || echo '$(srcdir)/'`src/c/genscal.c
@@ -1055,26 +985,12 @@ libsciinteger_algo_la-gencusum.lo: src/c/gencusum.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-gencusum.lo `test -f 'src/c/gencusum.c' || echo '$(srcdir)/'`src/c/gencusum.c
 
-libsciinteger_algo_la-genmmin.lo: src/c/genmmin.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmmin.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmmin.Tpo -c -o libsciinteger_algo_la-genmmin.lo `test -f 'src/c/genmmin.c' || echo '$(srcdir)/'`src/c/genmmin.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmmin.Tpo $(DEPDIR)/libsciinteger_algo_la-genmmin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmmin.c' object='libsciinteger_algo_la-genmmin.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmmin.lo `test -f 'src/c/genmmin.c' || echo '$(srcdir)/'`src/c/genmmin.c
-
 libsciinteger_algo_la-gensubst.lo: src/c/gensubst.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-gensubst.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-gensubst.Tpo -c -o libsciinteger_algo_la-gensubst.lo `test -f 'src/c/gensubst.c' || echo '$(srcdir)/'`src/c/gensubst.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-gensubst.Tpo $(DEPDIR)/libsciinteger_algo_la-gensubst.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gensubst.c' object='libsciinteger_algo_la-gensubst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-gensubst.lo `test -f 'src/c/gensubst.c' || echo '$(srcdir)/'`src/c/gensubst.c
-
-libsciinteger_algo_la-genmmax.lo: src/c/genmmax.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmmax.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmmax.Tpo -c -o libsciinteger_algo_la-genmmax.lo `test -f 'src/c/genmmax.c' || echo '$(srcdir)/'`src/c/genmmax.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmmax.Tpo $(DEPDIR)/libsciinteger_algo_la-genmmax.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmmax.c' object='libsciinteger_algo_la-genmmax.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmmax.lo `test -f 'src/c/genmmax.c' || echo '$(srcdir)/'`src/c/genmmax.c
 
 libsciinteger_algo_la-genmdsp.lo: src/c/genmdsp.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmdsp.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmdsp.Tpo -c -o libsciinteger_algo_la-genmdsp.lo `test -f 'src/c/genmdsp.c' || echo '$(srcdir)/'`src/c/genmdsp.c
@@ -1083,47 +999,12 @@ libsciinteger_algo_la-genmdsp.lo: src/c/genmdsp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmdsp.lo `test -f 'src/c/genmdsp.c' || echo '$(srcdir)/'`src/c/genmdsp.c
 
-libsciinteger_algo_la-gendiag.lo: src/c/gendiag.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-gendiag.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-gendiag.Tpo -c -o libsciinteger_algo_la-gendiag.lo `test -f 'src/c/gendiag.c' || echo '$(srcdir)/'`src/c/gendiag.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-gendiag.Tpo $(DEPDIR)/libsciinteger_algo_la-gendiag.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gendiag.c' object='libsciinteger_algo_la-gendiag.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-gendiag.lo `test -f 'src/c/gendiag.c' || echo '$(srcdir)/'`src/c/gendiag.c
-
 libsciinteger_algo_la-gensum.lo: src/c/gensum.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-gensum.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-gensum.Tpo -c -o libsciinteger_algo_la-gensum.lo `test -f 'src/c/gensum.c' || echo '$(srcdir)/'`src/c/gensum.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-gensum.Tpo $(DEPDIR)/libsciinteger_algo_la-gensum.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/gensum.c' object='libsciinteger_algo_la-gensum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-gensum.lo `test -f 'src/c/gensum.c' || echo '$(srcdir)/'`src/c/gensum.c
-
-libsciinteger_algo_la-genabs.lo: src/c/genabs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genabs.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genabs.Tpo -c -o libsciinteger_algo_la-genabs.lo `test -f 'src/c/genabs.c' || echo '$(srcdir)/'`src/c/genabs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genabs.Tpo $(DEPDIR)/libsciinteger_algo_la-genabs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genabs.c' object='libsciinteger_algo_la-genabs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genabs.lo `test -f 'src/c/genabs.c' || echo '$(srcdir)/'`src/c/genabs.c
-
-libsciinteger_algo_la-genmcusum.lo: src/c/genmcusum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmcusum.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmcusum.Tpo -c -o libsciinteger_algo_la-genmcusum.lo `test -f 'src/c/genmcusum.c' || echo '$(srcdir)/'`src/c/genmcusum.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmcusum.Tpo $(DEPDIR)/libsciinteger_algo_la-genmcusum.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmcusum.c' object='libsciinteger_algo_la-genmcusum.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmcusum.lo `test -f 'src/c/genmcusum.c' || echo '$(srcdir)/'`src/c/genmcusum.c
-
-libsciinteger_algo_la-genmcuprod.lo: src/c/genmcuprod.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmcuprod.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmcuprod.Tpo -c -o libsciinteger_algo_la-genmcuprod.lo `test -f 'src/c/genmcuprod.c' || echo '$(srcdir)/'`src/c/genmcuprod.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genmcuprod.Tpo $(DEPDIR)/libsciinteger_algo_la-genmcuprod.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genmcuprod.c' object='libsciinteger_algo_la-genmcuprod.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genmcuprod.lo `test -f 'src/c/genmcuprod.c' || echo '$(srcdir)/'`src/c/genmcuprod.c
-
-libsciinteger_algo_la-genkron.lo: src/c/genkron.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genkron.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genkron.Tpo -c -o libsciinteger_algo_la-genkron.lo `test -f 'src/c/genkron.c' || echo '$(srcdir)/'`src/c/genkron.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_algo_la-genkron.Tpo $(DEPDIR)/libsciinteger_algo_la-genkron.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/genkron.c' object='libsciinteger_algo_la-genkron.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciinteger_algo_la-genkron.lo `test -f 'src/c/genkron.c' || echo '$(srcdir)/'`src/c/genkron.c
 
 libsciinteger_algo_la-genmmul.lo: src/c/genmmul.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciinteger_algo_la-genmmul.lo -MD -MP -MF $(DEPDIR)/libsciinteger_algo_la-genmmul.Tpo -c -o libsciinteger_algo_la-genmmul.lo `test -f 'src/c/genmmul.c' || echo '$(srcdir)/'`src/c/genmmul.c
@@ -1274,20 +1155,11 @@ i_c_i.lo: src/fortran/i_c_i.f
 i_d_i.lo: src/fortran/i_d_i.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_d_i.lo `test -f 'src/fortran/i_d_i.f' || echo '$(srcdir)/'`src/fortran/i_d_i.f
 
-i_mini.lo: src/fortran/i_mini.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_mini.lo `test -f 'src/fortran/i_mini.f' || echo '$(srcdir)/'`src/fortran/i_mini.f
-
 intinttype.lo: src/fortran/intinttype.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intinttype.lo `test -f 'src/fortran/intinttype.f' || echo '$(srcdir)/'`src/fortran/intinttype.f
 
 i_f_i.lo: src/fortran/i_f_i.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_f_i.lo `test -f 'src/fortran/i_f_i.f' || echo '$(srcdir)/'`src/fortran/i_f_i.f
-
-i_maxi.lo: src/fortran/i_maxi.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_maxi.lo `test -f 'src/fortran/i_maxi.f' || echo '$(srcdir)/'`src/fortran/i_maxi.f
-
-i_matrix.lo: src/fortran/i_matrix.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_matrix.lo `test -f 'src/fortran/i_matrix.f' || echo '$(srcdir)/'`src/fortran/i_matrix.f
 
 i_i_i.lo: src/fortran/i_i_i.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_i_i.lo `test -f 'src/fortran/i_i_i.f' || echo '$(srcdir)/'`src/fortran/i_i_i.f
@@ -1297,9 +1169,6 @@ i_l_i.lo: src/fortran/i_l_i.f
 
 i_m_i.lo: src/fortran/i_m_i.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_m_i.lo `test -f 'src/fortran/i_m_i.f' || echo '$(srcdir)/'`src/fortran/i_m_i.f
-
-intops.lo: src/fortran/intops.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intops.lo `test -f 'src/fortran/intops.f' || echo '$(srcdir)/'`src/fortran/intops.f
 
 i_prod.lo: src/fortran/i_prod.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_prod.lo `test -f 'src/fortran/i_prod.f' || echo '$(srcdir)/'`src/fortran/i_prod.f
@@ -1346,32 +1215,11 @@ i_t.lo: src/fortran/i_t.f
 i_sum.lo: src/fortran/i_sum.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_sum.lo `test -f 'src/fortran/i_sum.f' || echo '$(srcdir)/'`src/fortran/i_sum.f
 
-i_diag.lo: src/fortran/i_diag.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_diag.lo `test -f 'src/fortran/i_diag.f' || echo '$(srcdir)/'`src/fortran/i_diag.f
-
-i_abs.lo: src/fortran/i_abs.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_abs.lo `test -f 'src/fortran/i_abs.f' || echo '$(srcdir)/'`src/fortran/i_abs.f
-
 stack_convert.lo: src/fortran/stack_convert.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stack_convert.lo `test -f 'src/fortran/stack_convert.f' || echo '$(srcdir)/'`src/fortran/stack_convert.f
 
-i_cumprod.lo: src/fortran/i_cumprod.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_cumprod.lo `test -f 'src/fortran/i_cumprod.f' || echo '$(srcdir)/'`src/fortran/i_cumprod.f
-
-i_cumsum.lo: src/fortran/i_cumsum.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_cumsum.lo `test -f 'src/fortran/i_cumsum.f' || echo '$(srcdir)/'`src/fortran/i_cumsum.f
-
-i_kron.lo: src/fortran/i_kron.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o i_kron.lo `test -f 'src/fortran/i_kron.f' || echo '$(srcdir)/'`src/fortran/i_kron.f
-
-sci_i_matrix.lo: sci_gateway/fortran/sci_i_matrix.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_matrix.lo `test -f 'sci_gateway/fortran/sci_i_matrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_matrix.f
-
 sci_i_mput.lo: sci_gateway/fortran/sci_i_mput.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_mput.lo `test -f 'sci_gateway/fortran/sci_i_mput.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_mput.f
-
-sci_i_max.lo: sci_gateway/fortran/sci_i_max.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_max.lo `test -f 'sci_gateway/fortran/sci_i_max.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_max.f
 
 sci_int32.lo: sci_gateway/fortran/sci_int32.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_int32.lo `test -f 'sci_gateway/fortran/sci_int32.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_int32.f
@@ -1379,14 +1227,8 @@ sci_int32.lo: sci_gateway/fortran/sci_int32.f
 sci_int16.lo: sci_gateway/fortran/sci_int16.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_int16.lo `test -f 'sci_gateway/fortran/sci_int16.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_int16.f
 
-sci_i_mini.lo: sci_gateway/fortran/sci_i_mini.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_mini.lo `test -f 'sci_gateway/fortran/sci_i_mini.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_mini.f
-
 sci_mgeti.lo: sci_gateway/fortran/sci_mgeti.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_mgeti.lo `test -f 'sci_gateway/fortran/sci_mgeti.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_mgeti.f
-
-sci_i_maxi.lo: sci_gateway/fortran/sci_i_maxi.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_maxi.lo `test -f 'sci_gateway/fortran/sci_i_maxi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_maxi.f
 
 sci_i_p.lo: sci_gateway/fortran/sci_i_p.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_p.lo `test -f 'sci_gateway/fortran/sci_i_p.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_p.f
@@ -1399,18 +1241,6 @@ sci_i_sum.lo: sci_gateway/fortran/sci_i_sum.f
 
 sci_i_prod.lo: sci_gateway/fortran/sci_i_prod.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_prod.lo `test -f 'sci_gateway/fortran/sci_i_prod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_prod.f
-
-sci_i_cumsum.lo: sci_gateway/fortran/sci_i_cumsum.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_cumsum.lo `test -f 'sci_gateway/fortran/sci_i_cumsum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_cumsum.f
-
-sci_i_diag.lo: sci_gateway/fortran/sci_i_diag.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_diag.lo `test -f 'sci_gateway/fortran/sci_i_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_diag.f
-
-sci_i_abs.lo: sci_gateway/fortran/sci_i_abs.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_abs.lo `test -f 'sci_gateway/fortran/sci_i_abs.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_abs.f
-
-sci_i_cumprod.lo: sci_gateway/fortran/sci_i_cumprod.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_cumprod.lo `test -f 'sci_gateway/fortran/sci_i_cumprod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_cumprod.f
 
 sci_i_tril.lo: sci_gateway/fortran/sci_i_tril.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_tril.lo `test -f 'sci_gateway/fortran/sci_i_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_tril.f
@@ -1426,9 +1256,6 @@ sci_uint16.lo: sci_gateway/fortran/sci_uint16.f
 
 sci_i_triu.lo: sci_gateway/fortran/sci_i_triu.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_triu.lo `test -f 'sci_gateway/fortran/sci_i_triu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_triu.f
-
-sci_i_min.lo: sci_gateway/fortran/sci_i_min.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_i_min.lo `test -f 'sci_gateway/fortran/sci_i_min.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_i_min.f
 
 sci_inttype.lo: sci_gateway/fortran/sci_inttype.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_inttype.lo `test -f 'sci_gateway/fortran/sci_inttype.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_inttype.f

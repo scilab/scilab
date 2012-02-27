@@ -10,7 +10,7 @@
  *
  */
 #include "elem_common.h"
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
 /*
 *     PURPOSE
@@ -36,7 +36,7 @@
 *        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>,
 *        Thanks to Lydia van Dijk <lvandijk@hammersmith-consulting.com>
 */
-EXTERN_EF double dpythags(double _dblVal1, double _dblVal2)
+ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2)
 {
 	double dblSqrt2		= 1.41421356237309504;
 	double dblSqrt2p1	= 2.41421356237309504;

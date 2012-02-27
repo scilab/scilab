@@ -15,13 +15,13 @@
 
 #include <math.h>
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dsins(double _dblVal);
-EXTERN_EF void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
+ELEMENTARY_FUNCTIONS_IMPEXP double dsins(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-EXTERN_EF double dasins(double _dblVal);
-EXTERN_EF void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-EXTERN_EF double dsinhs(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dasins(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
+ELEMENTARY_FUNCTIONS_IMPEXP double dsinhs(double _dblVal);
 
 #endif /* __SIN_H__ */

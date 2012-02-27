@@ -34,9 +34,11 @@ namespace types
     {
     public :
                                 Polynom();
-                                Polynom(std::wstring _szVarName, int _iRows, int _iCols, int *_piRank);
+                                Polynom(std::wstring _szVarName, int _iRows, int _iCols);
                                 Polynom(std::wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
+                                Polynom(std::wstring _szVarName, int _iDims, int* _piDims);
                                 Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
+
         virtual                 ~Polynom();
 
         // FIXME : Should not return NULL
@@ -78,6 +80,7 @@ namespace types
 
     protected :
         std::wstring            m_szVarName;
+        void                    createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
     private :
         virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

@@ -13,9 +13,9 @@
 #ifndef __SIGN_H__
 #define __SIGN_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dsigns(double _dblRef, double _dblVal);
-EXTERN_EF double dsignsEx(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dsigns(double _dblRef, double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double dsignsEx(double _dblVal);
 
 #endif /* __SIGN_H__ */

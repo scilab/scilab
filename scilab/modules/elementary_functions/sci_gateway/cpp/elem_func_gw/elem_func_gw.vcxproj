@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\src\c;..\..\..\src\cpp;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -88,14 +88,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -110,7 +107,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\src\c;..\..\..\src\cpp;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -122,14 +119,11 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -142,7 +136,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\src\c;..\..\..\src\cpp;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -154,14 +148,11 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -179,7 +170,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;..\..\..\src\c;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\includes;..\..\..\src\c;..\..\..\src\cpp;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../ast/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../localization/includes;../../../../../libs/intl/;../../../../threads/includes;../../../../system_env/includes;../../../../string/includes;../../../../../libs/dynamiclibrary/includes;../../../../double/includes;../../../../../libs/MALLOC/includes;../../../../../libs/Eigen/includes;../../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -191,14 +182,11 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)cacsd_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;cacsd_f.lib;eispack_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -211,67 +199,64 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\cpp\getmode.cpp" />
-    <ClCompile Include="..\..\c\sci_abs.c" />
-    <ClCompile Include="..\..\c\sci_acos.c" />
-    <ClCompile Include="..\..\c\sci_asin.c" />
-    <ClCompile Include="..\..\c\sci_atan.c" />
-    <ClCompile Include="..\..\c\sci_ceil.c" />
-    <ClCompile Include="..\..\c\sci_clean.c" />
-    <ClCompile Include="..\..\c\sci_conj.c" />
-    <ClCompile Include="..\..\c\sci_cos.c" />
-    <ClCompile Include="..\..\c\sci_cumprod.c" />
-    <ClCompile Include="..\..\c\sci_cumsum.c" />
-    <ClCompile Include="..\..\c\sci_diag.c" />
-    <ClCompile Include="..\..\c\sci_dsearch.c" />
-    <ClCompile Include="..\..\c\sci_exp.c" />
-    <ClCompile Include="..\..\c\sci_expm.c" />
-    <ClCompile Include="..\..\c\sci_floor.c" />
-    <ClCompile Include="..\..\c\sci_frexp.c" />
-    <ClCompile Include="..\..\c\sci_gsort.c" />
-    <ClCompile Include="..\..\c\sci_imag.c" />
-    <ClCompile Include="..\..\c\sci_imult.c" />
-    <ClCompile Include="..\..\c\sci_int.c" />
     <ClCompile Include="..\..\c\sci_isequalbitwise.c" />
-    <ClCompile Include="..\..\c\sci_isreal.c" />
-    <ClCompile Include="..\..\c\sci_kron.c" />
-    <ClCompile Include="..\..\c\sci_log.c" />
-    <ClCompile Include="..\..\c\sci_log1p.c" />
-    <ClCompile Include="..\..\c\sci_matrix.c" />
-    <ClCompile Include="..\..\c\sci_maxi.c" />
     <ClCompile Include="..\..\c\sci_nearfloat.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
     <ClCompile Include="..\..\c\sci_prod.c" />
-    <ClCompile Include="..\..\c\sci_rat.c" />
     <ClCompile Include="..\..\c\sci_real.c" />
     <ClCompile Include="..\..\c\sci_round.c" />
     <ClCompile Include="..\..\c\sci_sign.c" />
-    <ClCompile Include="..\..\c\sci_sin.c" />
     <ClCompile Include="..\..\c\sci_sqrt.c" />
-    <ClCompile Include="..\..\c\sci_tan.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
     <ClCompile Include="..\..\c\sci_tril.c" />
     <ClCompile Include="..\..\c\sci_triu.c" />
     <ClCompile Include="..\elem_func_gw.cpp" />
+    <ClCompile Include="..\sci_abs.cpp" />
+    <ClCompile Include="..\sci_acos.cpp" />
+    <ClCompile Include="..\sci_asin.cpp" />
+    <ClCompile Include="..\sci_atan.cpp" />
+    <ClCompile Include="..\sci_ceil.cpp" />
+    <ClCompile Include="..\sci_clean.cpp" />
+    <ClCompile Include="..\sci_conj.cpp" />
+    <ClCompile Include="..\sci_cos.cpp" />
+    <ClCompile Include="..\sci_cumprod.cpp" />
+    <ClCompile Include="..\sci_cumsum.cpp" />
+    <ClCompile Include="..\sci_diag.cpp" />
+    <ClCompile Include="..\sci_dsearch.cpp" />
+    <ClCompile Include="..\sci_exp.cpp" />
+    <ClCompile Include="..\sci_expm.cpp" />
     <ClCompile Include="..\sci_eye.cpp" />
+    <ClCompile Include="..\sci_floor.cpp" />
+    <ClCompile Include="..\sci_frexp.cpp" />
+    <ClCompile Include="..\sci_gsort.cpp" />
+    <ClCompile Include="..\sci_imag.cpp" />
+    <ClCompile Include="..\sci_imult.cpp" />
+    <ClCompile Include="..\sci_int.cpp" />
     <ClCompile Include="..\sci_isequal.cpp" />
+    <ClCompile Include="..\sci_isreal.cpp" />
+    <ClCompile Include="..\sci_kron.cpp" />
+    <ClCompile Include="..\sci_log.cpp" />
+    <ClCompile Include="..\sci_log1p.cpp" />
+    <ClCompile Include="..\sci_matrix.cpp" />
+    <ClCompile Include="..\sci_max.cpp" />
+    <ClCompile Include="..\sci_min.cpp" />
     <ClCompile Include="..\sci_ones.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
     <ClCompile Include="..\sci_rand.cpp" />
+    <ClCompile Include="..\sci_rat.cpp" />
+    <ClCompile Include="..\sci_sin.cpp" />
     <ClCompile Include="..\sci_size.cpp" />
     <ClCompile Include="..\sci_sum.cpp" />
+    <ClCompile Include="..\sci_tan.cpp" />
     <ClCompile Include="..\sci_zeros.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_elementary_functions_gw.h" />
     <ClInclude Include="..\..\..\includes\elem_func_gw.hxx" />
-    <ClInclude Include="..\..\..\includes\getmode.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cacsd_f_Import.def" />
-    <None Include="eispack_f_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
-    <None Include="linpack_f_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\..\bin\blasplus.lib" />
@@ -340,10 +325,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\types\typesmacro\typesmacro.vcxproj">
       <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\cpp\elem_func\elem_func.vcxproj">
-      <Project>{e1284d3e-4b3f-446b-b541-f661a8a166a7}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>

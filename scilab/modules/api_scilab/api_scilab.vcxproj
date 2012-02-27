@@ -325,10 +325,6 @@ cd .. &gt;nul
     <ProjectReference Include="..\ast\ast-tools\ast-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\elementary_functions\src\cpp\elem_func\elem_func.vcxproj">
-      <Project>{e1284d3e-4b3f-446b-b541-f661a8a166a7}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\operations\operations.vcxproj">
       <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

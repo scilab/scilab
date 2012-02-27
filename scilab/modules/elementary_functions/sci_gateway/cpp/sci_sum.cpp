@@ -135,6 +135,9 @@ Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, types::type
     else if(in[0]->isPoly())
     {
     }
+    //else if(in[0]->isBoolean())
+    //{
+    //}
     //else if(in[0]->isSparse())
     //{
     //}

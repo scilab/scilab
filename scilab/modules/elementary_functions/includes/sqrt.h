@@ -12,9 +12,9 @@
 #ifndef __SQRT_H__
 #define __SQRT_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dsqrts(double _dblVal);
-EXTERN_EF void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
+ELEMENTARY_FUNCTIONS_IMPEXP double dsqrts(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_pdblImgOut);
 
 #endif

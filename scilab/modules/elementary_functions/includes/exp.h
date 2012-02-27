@@ -13,9 +13,10 @@
 #ifndef __EXP_H__
 #define __EXP_H__
 
-#include "export_ef.h"
+#include "dynlib_elementary_functions.h"
 
-EXTERN_EF double dexps(double _dblVal);
-EXTERN_EF void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
+
+ELEMENTARY_FUNCTIONS_IMPEXP double dexps(double _dblVal);
+ELEMENTARY_FUNCTIONS_IMPEXP void zexps(double _dblRealIn, double _dblImgIn, double *_pdblRealOut, double *_pdblImgOut);
 
 #endif /* __EXP_H__ */
