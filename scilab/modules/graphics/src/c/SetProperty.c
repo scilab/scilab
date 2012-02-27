@@ -3401,42 +3401,6 @@ int sciSetColorRange(char * pobjUID, int subset[2])
 
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitOutsideColors(char * pobjUID, int colors[2])
-{
-     // FIXME
-    abort();
-#if 0
-       switch (sciGetEntityType(pobjUID))
-    {
-    case SCI_FEC:
-		pFEC_FEATURE(pobjUID)->colout[0] = colors[0];
-		pFEC_FEATURE(pobjUID)->colout[1] = colors[1];
-		return 0;
-    default:
-        printSetGetErrorMessage("outside_color");
-		return -1;
-    }
-#endif
-       return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify the color to use for an objects when it uses index outside of the colormap (colout).
- */
-int sciSetOutsideColors(char * pobjUID, int colors[2])
-{
-
-	int curColors[2];
-	sciGetOutsideColor(pobjUID, curColors);
-	if (curColors[0] == colors[0] && curColors[1] == colors[1])
-	{
-		/* nothing to do */
-		return 1;
-	}
-
-    return sciInitOutsideColors(pobjUID, colors);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

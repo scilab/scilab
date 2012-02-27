@@ -3425,25 +3425,6 @@ void sciGetColorRange(sciPointObj * pObj, int subset[2])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get the color to use for an objects when it uses index outside of the colormap (colout).
-*/
-void sciGetOutsideColor(sciPointObj * pObj, int colors[2])
-{
-    switch (sciGetEntityType(pObj))
-    {
-    case SCI_FEC:
-        colors[0] = pFEC_FEATURE(pObj)->colout[0];
-        colors[1] = pFEC_FEATURE(pObj)->colout[1];
-        break;
-    default:
-        printSetGetErrorMessage("outside_color");
-        colors[0] = 0;
-        colors[1] = 0;
-        break;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Print the message "This object has no xxx property." in Scilab.
 */
 void printSetGetErrorMessage(const char * propertyName)
