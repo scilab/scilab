@@ -108,7 +108,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
     /**
      * Create and return a sprite representing the given value.
-     * The returned sprites will look like "5x10²"
+     * The returned sprites will look like "5x10^2"
      * @param value, the given value.
      * @param spriteManager used sprite manager.
      * @return a simple sprite representing the given value with the adapted format.
@@ -146,9 +146,9 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         final Dimension exponentSize = spriteManager.getSize(exponentTextEntity);
 
         Sprite sprite = spriteManager.createSprite(
-                exponentSize.width + mantissaSize.width,
-                exponentSize.height + mantissaSize.height
-        );
+                            exponentSize.width + mantissaSize.width,
+                            exponentSize.height + mantissaSize.height
+                        );
 
         sprite.setDrawer(new SpriteDrawer() {
 
