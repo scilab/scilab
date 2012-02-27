@@ -248,8 +248,6 @@ GRAPHICS_IMPEXP void sciGetColorRange(sciPointObj * pObj, int subset[2]); /* GET
 GRAPHICS_IMPEXP void sciGetOutsideColor(sciPointObj * pObj, int colors[2]); /* GET */
 GRAPHICS_IMPEXP void sciGetZBounds(sciPointObj * pObj, double bounds[2]); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetGridFront(sciPointObj * pObj); /* GET */
-
 GRAPHICS_IMPEXP void printSetGetErrorMessage(const char * propertyName);
 
 GRAPHICS_IMPEXP void sciGetNbSubticks(sciPointObj * pSubwin, double nbsubtics[3]);

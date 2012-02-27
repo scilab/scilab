@@ -242,9 +242,6 @@ GRAPHICS_IMPEXP int sciSetOutsideColors(char* pObj, int colors[2]); /* SET */
 GRAPHICS_IMPEXP int sciInitZBounds(char* pObj, double bounds[2]);
 GRAPHICS_IMPEXP int sciSetZBounds(char* pObj, double bounds[2]); /* SET */
 
-GRAPHICS_IMPEXP int sciInitGridFront(char* pObj, BOOL gridFront);
-GRAPHICS_IMPEXP int sciSetGridFront(char* pObj, BOOL gridFront); /* SET */
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

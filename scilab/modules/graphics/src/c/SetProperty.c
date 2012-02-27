@@ -3472,37 +3472,6 @@ int sciSetZBounds(char * pobjUID, double bounds[2])
 	return sciInitZBounds(pobjUID, bounds);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitGridFront(char * pobjUID, BOOL gridFront)
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType(pobjUID))
-    {
-	case SCI_SUBWIN:
-		pSUBWIN_FEATURE(pobjUID)->gridFront = gridFront;
-		return 0;
-	default:
-        printSetGetErrorMessage("grid_position");
-		return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify whether the grid is drawn in background or foreground.
- */
-int sciSetGridFront(char * pobjUID, BOOL gridFront)
-{
-	if (sciGetGridFront(pobjUID) == gridFront)
-	{
-		/* nothing to do */
-		return 1;
-	}
-	return sciInitGridFront(pobjUID, gridFront);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

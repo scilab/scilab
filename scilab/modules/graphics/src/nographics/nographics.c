@@ -693,12 +693,6 @@ BOOL sciGetAutoSubticks(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetGridFront(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciGetIs3d(sciPointObj * pObj)
 {
     return FALSE;

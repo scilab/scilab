@@ -3463,21 +3463,6 @@ void sciGetZBounds(sciPointObj * pObj, double bounds[2])
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Get whether the grid is drawn in background or foreground.
-*/
-BOOL sciGetGridFront(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-    case SCI_SUBWIN:
-        return pSUBWIN_FEATURE(pObj)->gridFront;
-    default:
-        printSetGetErrorMessage("grid_position");
-        return FALSE;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Print the message "This object has no xxx property." in Scilab.
 */
 void printSetGetErrorMessage(const char * propertyName)
