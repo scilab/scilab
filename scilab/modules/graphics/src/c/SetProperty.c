@@ -3503,48 +3503,6 @@ int sciSetGridFront(char * pobjUID, BOOL gridFront)
 	return sciInitGridFront(pobjUID, gridFront);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitAntialiasingQuality(char * pobjUID, int quality)
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType(pobjUID))
-    {
-	case SCI_FIGURE:
-		if (isFigureModel(pobjUID))
-		{
-			pFIGURE_FEATURE(pobjUID)->pModelData->antialiasingQuality = quality;
-		}
-		else
-		{
-			sciSetJavaAntialiasingQuality(pobjUID, quality);
-		}
-		return 0;
-    default:
-        printSetGetErrorMessage("anti_aliasing");
-		return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Modify the quality of antialiasing or disable it.
- * If quality if 0, the antialiasing is disabled,
- * otherwise it might be either 1, 2, 4, 8 or 16 and then
- * specifies the number of pass for antialiasing.
- * @param quality positive integer.
- */
-int sciSetAntialiasingQuality(char * pobjUID, int quality)
-{
-    if (sciGetAntialiasingQuality(pobjUID) == quality)
-	{
-		/* nothing to do */
-		return 1;
-	}
-	return sciInitAntialiasingQuality(pobjUID, quality);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

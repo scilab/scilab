@@ -3478,28 +3478,6 @@ BOOL sciGetGridFront(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* @return the number of pass used for antialiasing or 0 if antialiasing is disable.
-*/
-int sciGetAntialiasingQuality(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-    case SCI_FIGURE:
-        if (isFigureModel(pObj->UID))
-        {
-            return pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality;
-        }
-        else
-        {
-            return sciGetJavaAntialiasingQuality(pObj);
-        }
-    default:
-        printSetGetErrorMessage("anti_aliasing");
-        return FALSE;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Print the message "This object has no xxx property." in Scilab.
 */
 void printSetGetErrorMessage(const char * propertyName)
