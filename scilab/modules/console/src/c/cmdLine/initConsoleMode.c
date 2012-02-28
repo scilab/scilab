@@ -48,7 +48,7 @@ static void saveAndResetShellAttr(struct termios *shellAttr)
     {
         if (tcsetattr(0, 0, savedAttr) == -1)
         {
-            fprintf(stderr, "Cannot reset the Shell attributes: %s\n", strerror(errno));
+            fprintf(stderr, "Cannot reset the shell attributes: %s\n", strerror(errno));
         }
         FREE(savedAttr);
         savedAttr = NULL;
