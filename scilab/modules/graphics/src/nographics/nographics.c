@@ -199,12 +199,6 @@ sciEntityType sciGetEntityType(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciStandardDestroyOperations(sciPointObj * pThis)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 sciPointObj *sciGetParentFigure(sciPointObj * pobj)
 {
     return NULL;
@@ -454,12 +448,6 @@ void sciGetDataBounds(sciPointObj * pObj, double bounds[6])
 
 /*--------------------------------------------------------------------------*/
 void sciGetViewingArea(char * pObjUID, int *xPos, int *yPos, int *width, int *height)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void destroyGraphicPointer(void *pointer)
 {
 
 }
@@ -1016,12 +1004,6 @@ void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2)
 sciPointObj *getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int deallocatePolyline(sciPointObj * pthis)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/

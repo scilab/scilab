@@ -57,10 +57,6 @@ GUI_CPP_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/DestroyUimenu.cpp \
-src/cpp/DestroyUicontrol.cpp \
-src/cpp/DestroyJavaUiobject.cpp \
-src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \

@@ -38,41 +38,9 @@ GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 #define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created\n",fname) ; return 0 ; } }
 GRAPHICS_IMPEXP int C2F(scigerase)( void ) ;
 
-GRAPHICS_IMPEXP int DestroyFigure (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int deallocateText( sciPointObj * pthis ) ;
-GRAPHICS_IMPEXP int DestroyText (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyLegend (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int deallocatePolyline (sciPointObj * pthis);
-GRAPHICS_IMPEXP int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyArc (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyRectangle (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroySurface (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyAxes (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyFec (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroySegs (sciPointObj * pthis); /* DESTROY */
-
-GRAPHICS_IMPEXP int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
-
-GRAPHICS_IMPEXP int DestroyLabel (sciPointObj * pthis); /* DESTROY */
-
-
 /* free the user_data */
 GRAPHICS_IMPEXP void clearUserData( sciPointObj * pObj ) ;
 
 GRAPHICS_IMPEXP void sciDeleteWindow( int winNum ) ;
-
-GRAPHICS_IMPEXP int updateMerge( sciPointObj * pSubwin ) ;
-
-GRAPHICS_IMPEXP int sciStandardDestroyOperations( sciPointObj * pThis ) ;
-
-GRAPHICS_IMPEXP void destroyGraphicPointer(void * pointer);
-
-GRAPHICS_IMPEXP void destroyGraphicStringArray(char ** strArray, int nbStrings);
-
-/**
- * Destroy the relationShip used by an object
- */
-GRAPHICS_IMPEXP void destroyRelationShip(sciPointObj * pObj);
 
 #endif /* __SCI_DESTROY__ */

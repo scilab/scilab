@@ -142,12 +142,7 @@ am__objects_1 = libscigui_algo_la-buildMainWindowTitle.lo \
 	libscigui_algo_la-ScilabTermination_wrap.lo
 am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-CallScilabBridge.lo \
-	libscigui_algo_la-Jxclick.lo \
-	libscigui_algo_la-DestroyUimenu.lo \
-	libscigui_algo_la-DestroyUicontrol.lo \
-	libscigui_algo_la-DestroyJavaUiobject.lo \
-	libscigui_algo_la-DestroyWaitBar.lo \
-	libscigui_algo_la-CallJxclick.lo \
+	libscigui_algo_la-Jxclick.lo libscigui_algo_la-CallJxclick.lo \
 	libscigui_algo_la-Jxgetmouse.lo \
 	libscigui_algo_la-CallJxgetmouse.lo \
 	libscigui_algo_la-CallColorChooser.lo \
@@ -667,10 +662,6 @@ GUI_CPP_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
 src/jni/Jxclick.cpp \
-src/cpp/DestroyUimenu.cpp \
-src/cpp/DestroyUicontrol.cpp \
-src/cpp/DestroyJavaUiobject.cpp \
-src/cpp/DestroyWaitBar.cpp \
 src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
@@ -1114,10 +1105,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-ContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CreateUimenu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DestroyJavaUiobject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DestroyUicontrol.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DestroyUimenu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DestroyWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-EditBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Frame.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetConsoleShowHiddenHandles.Plo@am__quote@
@@ -1573,34 +1560,6 @@ libscigui_algo_la-Jxclick.lo: src/jni/Jxclick.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Jxclick.cpp' object='libscigui_algo_la-Jxclick.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-Jxclick.lo `test -f 'src/jni/Jxclick.cpp' || echo '$(srcdir)/'`src/jni/Jxclick.cpp
-
-libscigui_algo_la-DestroyUimenu.lo: src/cpp/DestroyUimenu.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DestroyUimenu.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DestroyUimenu.Tpo -c -o libscigui_algo_la-DestroyUimenu.lo `test -f 'src/cpp/DestroyUimenu.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUimenu.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-DestroyUimenu.Tpo $(DEPDIR)/libscigui_algo_la-DestroyUimenu.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyUimenu.cpp' object='libscigui_algo_la-DestroyUimenu.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DestroyUimenu.lo `test -f 'src/cpp/DestroyUimenu.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUimenu.cpp
-
-libscigui_algo_la-DestroyUicontrol.lo: src/cpp/DestroyUicontrol.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DestroyUicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DestroyUicontrol.Tpo -c -o libscigui_algo_la-DestroyUicontrol.lo `test -f 'src/cpp/DestroyUicontrol.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUicontrol.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-DestroyUicontrol.Tpo $(DEPDIR)/libscigui_algo_la-DestroyUicontrol.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyUicontrol.cpp' object='libscigui_algo_la-DestroyUicontrol.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DestroyUicontrol.lo `test -f 'src/cpp/DestroyUicontrol.cpp' || echo '$(srcdir)/'`src/cpp/DestroyUicontrol.cpp
-
-libscigui_algo_la-DestroyJavaUiobject.lo: src/cpp/DestroyJavaUiobject.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DestroyJavaUiobject.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DestroyJavaUiobject.Tpo -c -o libscigui_algo_la-DestroyJavaUiobject.lo `test -f 'src/cpp/DestroyJavaUiobject.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUiobject.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-DestroyJavaUiobject.Tpo $(DEPDIR)/libscigui_algo_la-DestroyJavaUiobject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyJavaUiobject.cpp' object='libscigui_algo_la-DestroyJavaUiobject.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DestroyJavaUiobject.lo `test -f 'src/cpp/DestroyJavaUiobject.cpp' || echo '$(srcdir)/'`src/cpp/DestroyJavaUiobject.cpp
-
-libscigui_algo_la-DestroyWaitBar.lo: src/cpp/DestroyWaitBar.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DestroyWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DestroyWaitBar.Tpo -c -o libscigui_algo_la-DestroyWaitBar.lo `test -f 'src/cpp/DestroyWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/DestroyWaitBar.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-DestroyWaitBar.Tpo $(DEPDIR)/libscigui_algo_la-DestroyWaitBar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DestroyWaitBar.cpp' object='libscigui_algo_la-DestroyWaitBar.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DestroyWaitBar.lo `test -f 'src/cpp/DestroyWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/DestroyWaitBar.cpp
 
 libscigui_algo_la-CallJxclick.lo: src/cpp/CallJxclick.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-CallJxclick.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-CallJxclick.Tpo -c -o libscigui_algo_la-CallJxclick.lo `test -f 'src/cpp/CallJxclick.cpp' || echo '$(srcdir)/'`src/cpp/CallJxclick.cpp
