@@ -658,6 +658,9 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <Project>{8a654cc5-22c1-4972-a8cf-1b89f78b5383}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

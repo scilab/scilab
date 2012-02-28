@@ -184,6 +184,17 @@ Bug fixes
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
+* Bug #9643 fixed - genetic algorithms demo was not vectorized.
+
+* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
+
+* Bug #9700 fixed - optim help page had a mistake about bounds management.
+
+* Bug #9734 fixed - intsplin help pages moved from interpolation to
+                    elementary functions chapter.
+
+* Bug #9735 fixed - Remove some old stack api examples.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
@@ -192,6 +203,28 @@ Bug fixes
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
+
+* Bug #10250 fixed - Bug in the detection of the Java path under GNU/Linux fixed.
+
+* Bug #10267 fixed - The help browser did not use the default language on restoration.
+
+* Bug #10281 fixed - In some cases, the function lyap was crashing.
+
+* Bug #10303 fixed - test_run ignored "enable_lt" option.
+
+* Bug #10304 fixed - test_run did not return an error when using an invalid option.
+
+* Bug #10306 fixed - 'isempty' could fail with empty elements in a list.
+
+* Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
+                     but 'lasterror' returned vector of strings.
+
+* Bug #10341 fixed - font in help was bold when the font of a text uicontrol
+                     was set to bold.
+
+* Bug #10342 fixed - assert_checkerror help file had a wrong format.
+
+* Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
@@ -219,6 +252,154 @@ Bug fixes
 * Bug #10457 fixed - Reference in the fftw help page pointed to wrong version.
 
 * Bug #10465 fixed - Fix typo in isreal help page ('has' rather than 'as').
+
+* Bug #10466 fixed - mgetl detected an error but it did not return an error
+                     message in Scilab.
+
+* Bug #10471 fixed - %helps_modules was not ignored by default by browsevar.
+
+* Bug #10473 fixed - Error in factorial function help page bibliograhy fixed.
+
+* Bug #10474 fixed - Sometimes an exception was thrown at history browser
+                     restoration.
+
+* Bug #10475 fixed - Error in perms function help page fixed.
+
+* Bug #10477 fixed - In ilib_for_link, the display of the error message generated
+                     at configure time made mprintf fail.
+
+* Bug #10482 fixed - Wrong error message in format function fixed.
+
+* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
+                     in the documentation.
+
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
+* Bug #10503 fixed - error(999.666) did trunc error code without an error.
+
+* Bug #10506 fixed - ssprint did not check input arguments.
+
+* Bug #10518 fixed - odeoptions help page was inaccurate.
+
+* Bug #10519 fixed - spec returned a wrong error message when a input argument
+                     was not square.
+
+* Bug #10520 fixed - The fact that ceil, floor, round or fix could manage complex
+                     matrices was not clearly stated in the documentation.
+
+* Bug #10521 fixed - frexp returned an wrong error message.
+
+* Bug #10523 fixed - The fact that flipdim could manage complex matrices was
+                     not clearly stated in the documentation.
+
+* Bug #10526 fixed - A string was in French in the English help page of cumprod.
+
+* Bug #10532 fixed - In some rare cases, browsevar crashed with some rare
+                     Scilab types.
+
+* Bug #10536 fixed - A string was in French in the English help page of cumsum.
+
+* Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+
+* Bug #10558 fixed - Tcl/Tk demonstrations did not start.
+
+* Bug #10560 fixed - genetic algorithms demos failed.
+
+* Bug #10564 fixed - atan graphic demo was failing due to a too strong test
+                     in the linspace function.
+
+* Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
+                     trajectory failed.
+
+* Bug #10574 fixed - Runge-Kutta-Method failed for vector [x, 1] with x > 9.
+
+* Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
+
+* Bug #10577 fixed - getdate did not check input argument.
+
+* Bug #10579 fixed - Wrong reference to and function in the help page of prod
+                     and cumprod fixed.
+
+* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
+                     than gettext.
+
+* Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
+
+* Bug #10631 fixed - The # sign was missing in some error cases.
+
+* Bug #10632 fixed - Navigation buttons in the file browser did not change the
+                     current Scilab working directory.
+
+* Bug #10634 fixed - dsearch help page referenced an invalid input argument
+                     name.
+
+* Bug #10641 fixed - string(:) gave wrong results.
+
+* Bug #10643 fixed - Bad result when using isreal function with a polynomial
+                     input.
+
+* Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
+
+* Bug #10656 fixed - Exception when an empty help browser was closed.
+
+* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+
+* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
+* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
+
+* Bug #10710 fixed - Wrong error message fixed in xml module.
+
+* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
+
+* Bug #10717 fixed - Typos fixed in the help page of acosd.
+
+* Bug #10720 fixed - Typos fixed in the help page of acosh.
+
+* Bug #10724 fixed - Missing links in the help page of acot added.
+
+* Bug #10725 fixed - Typos fixed in the help page of acot.
+
+* Bug #10726 fixed - Missing links in the help page of acsc added.
+
+* Bug #10727 fixed - Missing links in the help page of asech added.
+
+* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+
+* Bug #10729 fixed - Missing links in the help page of asinh added.
+
+* Bug #10730 fixed - Missing links in the help page of asinhm added.
+
+* Bug #10731 fixed - Typos fixed in the help page of atan.
+
+* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+
+* Bug #10733 fixed - Missing link in the help page of atanm added.
+
+* Bug #10734 fixed - Missing link in the help page of cos added.
+
+* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
+
+* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+
+* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
+
+* Bug #10738 fixed - Typos fixed in the help page of cscd.
+
+* Bug #10739 fixed - Typos fixed in the help page of csgn.
+
+* Bug #10740 fixed - Typos fixed in the help page of sec.
+
+* Bug #10741 fixed - Typos fixed in the help page of secd.
+
+* Bug #10742 fixed - Missing link in the help page of sin added.
+
+* Bug #10743 fixed - Wrong link in the help page of sind fixed.
+
+* Bug #10744 fixed - Typos fixed in the help page of sinh.
+
+* Bug #10745 fixed - Typos fixed in the help page of tand.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab

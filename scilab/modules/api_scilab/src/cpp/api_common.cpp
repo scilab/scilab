@@ -35,6 +35,7 @@ extern "C"
 extern "C"
 {
     extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
+    extern  int C2F(cvname)(int *,char *,int *, unsigned long int);
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
@@ -72,6 +73,14 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     sciErr.iMsgCount = 0;
 
     int iRhs = InputArgument;
+
+    /*
+     * store the name in recu array, fname can be a non null terminated char array
+     * Get_Iname() can be used in other function to get the interface name
+     */
+    int cx0 = 0;
+    C2F(cvname) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz],  ((StrCtx *) _pvCtx)->pstName, &cx0, (unsigned long int)strlen(((StrCtx *)_pvCtx)->pstName));
+
     if(_iMin <= InputArgument && _iMax >= InputArgument)
     {
         return 1;

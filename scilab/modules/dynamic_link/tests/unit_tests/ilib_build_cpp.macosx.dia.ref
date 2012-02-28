@@ -11,8 +11,9 @@
 //create the procedure filese
 //creating the interface file
 i=['#include <string>'
-'extern ""C"" {'
 '#include ""stack-c.h""'
+'extern ""C"" {'
+'#define __USE_DEPRECATED_STACK_FUNCTIONS__'
 'int sci_cppfind(char *fname) {'
 '  int m1 = 0, n1 = 0, l1;'
 '  char *inputString1, *inputString2;'

@@ -61,6 +61,7 @@
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
@@ -69,6 +70,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -79,6 +81,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -noatomsautoload -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -94,6 +97,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
@@ -102,6 +106,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -112,6 +117,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -noatomsautoload -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -127,6 +133,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
@@ -135,6 +142,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -145,6 +153,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -noatomsautoload -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -160,6 +169,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
@@ -168,6 +178,7 @@ exit /B 0
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltochm([],[],'fr_FR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltochm([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltochm([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -178,6 +189,7 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
 "$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -noatomsautoload -nw -e clean_help();exit(0);
 "$(SolutionDir)bin\scilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\scilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

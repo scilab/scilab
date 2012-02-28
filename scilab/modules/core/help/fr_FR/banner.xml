@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>banner</refname>
-    <refpurpose>affiche la baniere scilab</refpurpose>
+    <refpurpose>affiche la banière scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -13,7 +13,7 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>affiche la baniere scilab.</para>
+    <para>affiche la banière scilab.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

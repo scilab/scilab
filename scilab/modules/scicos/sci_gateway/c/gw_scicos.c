@@ -24,7 +24,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_scicos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 
 
@@ -68,6 +69,13 @@ static gw_generic_table Tab[] =
 int gw_scicos(void)
 {
 	Rhs = Max(0, Rhs);
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
