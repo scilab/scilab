@@ -17,8 +17,6 @@ stack_
 getrhsvar_
 gettype_
 vstk_
-checklhs_
-checkrhs_
 createvar_
 createvarfromptr_
 vartype_
