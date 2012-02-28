@@ -21,7 +21,8 @@ ilib_verbose(0);
 cur=pwd();
 cd(TMPDIR);
 //first create a function changetype 
-code=['#include ""stack-c.h""'
+code=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+'#include ""stack-c.h""'
 'int intchangetype(fname)'
 '   char *fname;'
 '{'
