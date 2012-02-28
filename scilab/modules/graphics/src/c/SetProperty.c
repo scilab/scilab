@@ -3335,35 +3335,6 @@ int sciSetUseNurbs(char * pobjUID, BOOL useNurbs)
     return sciInitUseNurbs(pobjUID, useNurbs);
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitIsUsingFractionalMetrics(char * pobjUID, BOOL useFractionalMetrics)
-{
-    // FIXME
-    abort();
-#if 0
-        sciFont * fontContext = sciGetFontContext(pobjUID);
-    if (fontContext != NULL)
-    {
-        fontContext->useFractionalMetrics = useFractionalMetrics;
-        return 0;
-    }
-    printSetGetErrorMessage("fractional_font");
-#endif
-    return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Return whether an arc object uses fractional metrics for text display
- */
-int sciSetIsUsingFractionalMetrics(char * pobjUID, BOOL useFractionalMetrics)
-{
-    if (sciGetIsUsingFractionalMetrics(pobjUID) == useFractionalMetrics)
-    {
-        // nothing to do
-        return 1;
-    }
-    return sciInitIsUsingFractionalMetrics(pobjUID, useFractionalMetrics);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color

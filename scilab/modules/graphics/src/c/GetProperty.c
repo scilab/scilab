@@ -3289,19 +3289,6 @@ BOOL sciGetUseNurbs(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Check wether an object is using fractional metrics for text display
-*/
-BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
-{
-    sciFont * fontContext = sciGetFontContext(pObj);
-    if (fontContext != NULL) {
-        return fontContext->useFractionalMetrics;
-    }
-    printSetGetErrorMessage("fractional_font");
-    return FALSE;
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get number of subticks on the x,y, and z axes.
 * This property is determined by the renderer module.
 */

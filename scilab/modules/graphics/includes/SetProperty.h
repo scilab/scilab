@@ -230,9 +230,6 @@ GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(char* pObj, BOOL autoRedraw);
 GRAPHICS_IMPEXP int sciInitUseNurbs(char* pObj, BOOL useNurbs);
 GRAPHICS_IMPEXP int sciSetUseNurbs(char* pObj, BOOL useNurbs); /* SET */
 
-GRAPHICS_IMPEXP int sciInitIsUsingFractionalMetrics(char* pObj, BOOL useFractionalMetrics);
-GRAPHICS_IMPEXP int sciSetIsUsingFractionalMetrics(char* pObj, BOOL useFractionalMetrics); /* SET */
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

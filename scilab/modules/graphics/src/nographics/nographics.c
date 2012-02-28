@@ -651,12 +651,6 @@ BOOL isFigureModel(sciPointObj * pObj)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 sciFont *sciGetFontContext(sciPointObj * pobj)
 {
     return NULL;

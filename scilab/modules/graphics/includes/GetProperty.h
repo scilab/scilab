@@ -229,8 +229,6 @@ GRAPHICS_IMPEXP void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); 
 
 GRAPHICS_IMPEXP BOOL sciGetUseNurbs(sciPointObj * pObj); /* GET */
 
-GRAPHICS_IMPEXP BOOL sciGetIsUsingFractionalMetrics(sciPointObj * pObj); /* GET */
-
 GRAPHICS_IMPEXP int sciGetNbXTicks(sciPointObj * pSubwin);
 GRAPHICS_IMPEXP void sciGetXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
 GRAPHICS_IMPEXP int sciGetNbYTicks(sciPointObj * pSubwin);
