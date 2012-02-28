@@ -160,20 +160,35 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     qsort(pstrResult, iValues, sizeof(In), ComparaisonCallback);
 
-    Double* pIndex = new Double(1, iValues);
-    for(int i = 0 ; i < iValues ; i++)
+    Double* pIndex = NULL;
+    if(iValues == 0)
     {
-        pIndex->set(0, i, pstrResult[i].data);
+        pIndex = Double::Empty();
     }
-
+    else
+    {
+        pIndex = new Double(1, iValues);
+        for(int i = 0 ; i < iValues ; i++)
+        {
+            pIndex->set(0, i, pstrResult[i].data);
+        }
+    }
     out.push_back(pIndex);
 
     if(_iRetCount == 2)
     {
-        Double* pPos = new Double(1, iValues);
-        for(int i = 0 ; i < iValues ; i++)
+        Double* pPos = NULL;
+        if(iValues == 0)
         {
-            pPos->set(0, i, pstrResult[i].position);
+            pPos = Double::Empty();
+        }
+        else
+        {
+            pPos = new Double(1, iValues);
+            for(int i = 0 ; i < iValues ; i++)
+            {
+                pPos->set(0, i, pstrResult[i].position);
+            }
         }
         out.push_back(pPos);
     }
