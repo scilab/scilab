@@ -51,7 +51,7 @@ static int sizeOfOneLineInTerm(wchar_t * CommandLine, unsigned int cursorLocatio
     /* If the line is the first of the command, prompt size must be added */
     if (!beginningOfLine)
     {
-        sizeOfLineInTerm += getPrompt(NOWRITE_PROMPT);
+        sizeOfLineInTerm += printPrompt(NOWRITE_PROMPT);
     }
     /* If L'\n' is found, the line start to the next character */
     if (CommandLine[beginningOfLine] == L'\n')
@@ -164,7 +164,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
             }
             else
             {
-                nbrCol = getPrompt(NOWRITE_PROMPT);
+                nbrCol = printPrompt(NOWRITE_PROMPT);
             }
         }
         else

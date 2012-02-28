@@ -9,7 +9,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#include <wchar.h>
+#include <string.h>
 #include <wctype.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -22,41 +22,24 @@
 #include "cliDisplayManagement.h"
 
 /*
- * If there's a string, the function save it.
- * The function return the current saved prompt.
- */
-wchar_t *setPrompt(wchar_t * wcs)
-{
-    static wchar_t *prompt = NULL;
-
-    if (wcs != NULL)
-    {
-        return wcs;
-    }
-    return prompt;
-}
-
-/*
- * The function get the current prompt
+ * The function shows the current prompt
  * If none are set, function set it to the basic prompt SCIPROMPT ("-->") using wchar.
  * If Argument pass is WRITE_PROMPT (1), it write prompt (NOWRITE_PROMPT (-1) not to write prompt)
  * Function return size of the prompt.
  */
-int getPrompt(int token)
+int printPrompt(int token)
 {
-    wchar_t *prompt;
+    char * prompt = (char*)malloc(sizeof(char) * (PROMPT_SIZE_MAX + 1));
 
-    prompt = setPrompt(NULL);
-    if (prompt == NULL)
-    {
-        prompt = setPrompt(WSCIPROMPT);
-    }
+    /* Retrieve the prompt. It can be different if the pause mode is enabled */
+    GetCurrentPrompt(prompt);
+
     if (token == WRITE_PROMPT)
     {
         setCharDisplay(DISP_DEFAULT);
-        printf("%ls", prompt);
+        printf("%s", prompt);
         setCharDisplay(DISP_LAST_SET);
         fflush(stdout);
     }
-    return wcslen(prompt);
+    return strlen(prompt);
 }

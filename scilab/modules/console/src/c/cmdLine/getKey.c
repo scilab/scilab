@@ -288,7 +288,7 @@ char *getCmdLine(void)
 
     static int nextLineLocationInWideString = 0;
 
-    getPrompt(WRITE_PROMPT);
+    printPrompt(WRITE_PROMPT);
     setCharDisplay(DISP_BRIGHT);
     setTokenInteruptExecution(RESET_TOKEN);
     if (wideString == NULL || wideString[nextLineLocationInWideString] == L'\0')

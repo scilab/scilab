@@ -25,7 +25,7 @@ int getNbrLine(wchar_t * string)
 
     int nbrLine = 0;
 
-    promptSize = getPrompt(NOWRITE_PROMPT);
+    promptSize = printPrompt(NOWRITE_PROMPT);
     sizeString = wcslen(string);
     /*
      * Number of line is equal to :

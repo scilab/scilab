@@ -231,7 +231,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             wk_buf[0] = '\0';
             *cursor = *cursor_max = 0;
 
-            getPrompt(WRITE_PROMPT);
+            printPrompt(WRITE_PROMPT);
 
             if (defaultPattern[0] == 0)
             {
@@ -513,7 +513,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 wk_buf[0] = '\0';
                 *cursor = *cursor_max = 0;
 
-                getPrompt(WRITE_PROMPT);
+                printPrompt(WRITE_PROMPT);
 
                 if (commonAll)
                 {

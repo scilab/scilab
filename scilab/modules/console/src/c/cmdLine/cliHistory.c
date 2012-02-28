@@ -42,7 +42,7 @@ int previousCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
     setStringCapacities("do");
     setStringCapacities("cd");
     /* Get the new command line then display it */
-    promptSize = getPrompt(WRITE_PROMPT);
+    promptSize = printPrompt(WRITE_PROMPT);
     multiByteHistory = getPreviousLineInScilabHistory();
     if (multiByteHistory != NULL)
     {
@@ -96,7 +96,7 @@ int nextCmd(wchar_t ** commandLine, unsigned int *cursorLocation)
     setStringCapacities("do");
     setStringCapacities("cd");
     /* Get the new command line then display it */
-    promptSize = getPrompt(WRITE_PROMPT);
+    promptSize = printPrompt(WRITE_PROMPT);
     multiByteHistory = getNextLineInScilabHistory();
     if (multiByteHistory != NULL)
     {

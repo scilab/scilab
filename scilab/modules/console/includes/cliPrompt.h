@@ -14,7 +14,7 @@
 
 #include    <wchar.h>
 
-/* Token to indicate getPrompt what to do */
+/* Token to indicate printPrompt what to do */
 
 /* Display the prompt */
 #define WRITE_PROMPT	1
@@ -34,6 +34,6 @@ wchar_t *setPrompt(wchar_t *);
  * @param token to indicate if prompt must be displayed or not
  * @return size of the prompt.
  */
-int getPrompt(int);
+int printPrompt(int);
 
 #endif /* !AFF_PROMPT_H_ */
