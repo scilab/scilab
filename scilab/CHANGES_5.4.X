@@ -404,10 +404,12 @@ Bug fixes
 * Bug #10634 fixed - dsearch help page referenced an invalid input argument
                      name.
 
+* Bug #10641 fixed - string(:) gave wrong results.
+
 * Bug #10643 fixed - Bad result when using isreal function with a polynomial
                      input.
 
-* Bug #10643 fixed - getdebuginfo() did not display TMPDIR value.
+* Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
 
 * Bug #10656 fixed - Exception when an empty help browser was closed.
 
