@@ -24,20 +24,8 @@
 /* If CTRL-C was pressed. */
 void controlC_handler(int sig)
 {
-    if (getScilabMode() == SCILAB_NW || getScilabMode() == SCILAB_NWNI)
-    {
-        /* Write a new prompt */
-        setCharDisplay(DISP_RESET);
-        printf("\nCancel command.\n");
-        setCharDisplay(DISP_LAST_SET);
-        printPrompt(WRITE_PROMPT);
-        /* Set a token to indicate CTRL-C was pressed */
-        setTokenInteruptExecution(DO_NOT_SEND_COMMAND);
-    }
-    else
-    {
-        C2F(sigbas) (&sig);
-    }
+    int j = SIGINT;
+    C2F(sigbas)(&j);
 }
 
 int csignal(void)
@@ -52,19 +40,12 @@ int csignal(void)
 #else
     struct sigaction act_controlC;
 
-    if (getScilabMode() == SCILAB_NW || getScilabMode() == SCILAB_NWNI)
+    memset(&act_controlC, 0, sizeof(act_controlC));
+    act_controlC.sa_sigaction = controlC_handler;
+    if (sigaction(SIGINT, &act_controlC, NULL) != 0)
     {
-        signal(SIGINT, SIG_IGN);
-    }
-    else
-    {
-        memset(&act_controlC, 0, sizeof(act_controlC));
-        act_controlC.sa_sigaction = controlC_handler;
-        if (sigaction(SIGINT, &act_controlC, NULL) != 0)
-        {
-            fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
-            return -1;
-        }
+        fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
+        return -1;
     }
 #endif
 
