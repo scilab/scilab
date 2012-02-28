@@ -56,8 +56,9 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         super(peer);
         fixedHeight = false;
         previewEditorPane = new ScilabEditorPane(null);
-        previewEditorPane.setEditorKit(new ScilabEditorKit());
-        previewEditorPane.resetFont(new Font("Monospaced", Font.PLAIN, 12));
+        ScilabEditorKit kit = new ScilabEditorKit();
+        previewEditorPane.setEditorKit(kit);
+        previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
             + "// Email: <scilab.support@scilab.org>\n"
             + "// Scilab editor: http://www.scilab.org/\n"

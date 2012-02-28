@@ -62,6 +62,7 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.console.ScilabConsole;
 
 /* This class is the common ancestor to both X_manager.
@@ -257,7 +258,7 @@ public abstract class XCommonManager {
      */
     protected static String createXSLFile() {
         if (XSLCODE == null) {
-            List<File> etcs = getEtcDir();
+            List<File> etcs = XConfiguration.getEtcDir();
 
             StringBuilder buffer = new StringBuilder("<?xml version='1.0' encoding='utf-8'?>\n");
             buffer.append("<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n");
@@ -283,58 +284,6 @@ public abstract class XCommonManager {
         }
 
         return XSLCODE;
-    }
-
-    /**
-     * Create a document in using the XConfiguration-*.xml found in SCI/modules/MODULE_NAME/etc/
-     * @return the built document
-     */
-    protected static Document createDocument() {
-        DocumentBuilder docBuilder;
-        DocumentBuilderFactory factory;
-        Document mainDoc;
-
-        try {
-            factory = ScilabDocumentBuilderFactory.newInstance();
-            docBuilder = factory.newDocumentBuilder();
-            mainDoc = docBuilder.parse(SCILAB_CONFIG_FILE);
-        } catch (ParserConfigurationException pce) {
-            System.err.println("Cannot create a XML DocumentBuilder:\n" + pce);
-            return null;
-        } catch (SAXException se) {
-            System.err.println("Weird... Cannot parse basic file:\n" + se);
-            return null;
-        } catch (IOException ioe) {
-            System.err.println("Weird... Cannot parse basic file:\n" + ioe);
-            return null;
-        }
-
-        Element root = mainDoc.getDocumentElement();
-
-        List<File> etcs = getEtcDir();
-        for (File etc : etcs) {
-            File[] xmls = etc.listFiles(new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        return name.endsWith(".xml") && name.startsWith("XConfiguration-");
-                    }
-                });
-            for (File xml : xmls) {
-                try {
-                    Document doc = docBuilder.parse(xml);
-                    Node node = mainDoc.importNode(doc.getDocumentElement(), true);
-                    NodeList list = root.getElementsByTagName(node.getNodeName());
-                    if (list.getLength() != 0) {
-                        root.replaceChild(node, list.item(0));
-                    }
-                } catch (SAXException se) {
-                    System.err.println(ERROR_READ + xml.getName());
-                } catch (IOException ioe) {
-                    System.err.println(ERROR_READ + xml.getName());
-                }
-            }
-        }
-
-        return mainDoc;
     }
 
     /**
@@ -735,10 +684,6 @@ public abstract class XCommonManager {
      */
     protected static Document readDocument(final String fileName) {
         File xml = new File(fileName);
-        if (!xml.exists()) {
-            return createDocument();
-        }
-
         DocumentBuilder docBuilder = null;
 
         try {

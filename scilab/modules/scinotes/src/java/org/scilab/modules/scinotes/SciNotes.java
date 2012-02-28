@@ -88,7 +88,6 @@ import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTab;
 import org.scilab.modules.scinotes.tabfactory.SciNotesTab;
 import org.scilab.modules.scinotes.tabfactory.SciNotesTabFactory;
@@ -722,7 +721,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         FindAction.close();
         IncrementalSearchAction.close(this);
-        SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
         ConfigTabulationsAction.closeConfTabWindow();
         SearchWordInFilesAction.closeWindow();
@@ -1268,14 +1266,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void initPane(ScilabEditorPane pane, boolean plain) {
         setHighlight(pane);
-        pane.setEditorKit(new ScilabEditorKit(plain));
+	ScilabEditorKit kit = new ScilabEditorKit(plain);
+        pane.setEditorKit(kit);
 
         // Panel of line number for the text pane
         pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
         activateHelpOnTyping(pane);
 
         pane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        pane.setFont(ConfigSciNotesManager.getFont());
+        pane.setFont(kit.getStylePreferences().tokenFonts[0]);
 
         pane.setBackground(ConfigSciNotesManager.getSciNotesBackgroundColor());
         pane.setCaretColor(ConfigSciNotesManager.getSciNotesForegroundColor());

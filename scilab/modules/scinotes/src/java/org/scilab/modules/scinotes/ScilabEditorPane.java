@@ -796,24 +796,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
     /**
      * Set a new font
-     * @param font to set
-     */
-    public void resetFont(Font font) {
-        setFont(font);
-        ((ScilabEditorKit) getEditorKit()).getStylePreferences().genFonts(font);
-        View view = ((ScilabDocument) getDocument()).getView();
-        if (view != null) {
-            if (view instanceof ScilabView) {
-                ((ScilabView) view).reinitialize();
-            } else {
-                ((ScilabPlainView) view).reinitialize();
-            }
-        }
-        xln.updateFont(font);
-    }
-
-    /**
-     * Set a new font
      * @param keyword the type of keyword
      * @param type an int : -2 to reset italic, -1 to reset bold, 1 to set bold and 2 to set italic
      */
