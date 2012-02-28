@@ -59,7 +59,7 @@
     std::wstring*               path;
     std::wstring*               comment;
 
-    bool                        mute;
+    LineBreakStr*               mute;
 
     ast::vars_t*                t_list_var;
     ast::exps_t*                t_list_exp;
@@ -375,28 +375,32 @@ recursiveExpression                             {
 /* List of instructions. _MUST_BE_ left recursive Rule */
 recursiveExpression :
 recursiveExpression expression expressionLineBreak	{
-							  $2->set_verbose($3);
+							  $2->set_verbose($3->bMute);
 							  $1->push_back($2);
 							  $$ = $1;
+                              $2->location_get().columns($3->iNbBreaker);
 							}
 | recursiveExpression expression COMMENT expressionLineBreak {
-							  $2->set_verbose($4);
+							  $2->set_verbose($4->bMute);
 							  $1->push_back($2);
+                              @3.columns($4->iNbBreaker);
 							  $1->push_back(new ast::CommentExp(@3, $3));
 							  $$ = $1;
 							}
 | expression COMMENT expressionLineBreak		{
 							  ast::exps_t *tmp = new ast::exps_t;
+                              @2.columns($3->iNbBreaker);
 							  tmp->push_front(new ast::CommentExp(@2, $2));
-							  $1->set_verbose($3);
+							  $1->set_verbose($3->bMute);
 							  tmp->push_front($1);
 							  $$ = tmp;
 							}
 | expression expressionLineBreak			{
 							  ast::exps_t *tmp = new ast::exps_t;
-							  $1->set_verbose($2);
+							  $1->set_verbose($2->bMute);
 							  tmp->push_front($1);
 							  $$ = tmp;
+                              $1->location_get().columns($2->iNbBreaker);
 							}
 ;
 
@@ -405,11 +409,11 @@ recursiveExpression expression expressionLineBreak	{
 */
 /* Fake Rule : How can we be sure this is the end of an instruction. */
 expressionLineBreak :
-SEMI                            { $$ = false; }
-| COMMA                         { $$ = true; }
-| EOL                           { $$ = true; }
-| expressionLineBreak SEMI      { $$ = false; }
-| expressionLineBreak COMMA     { $$ = $1; }
+SEMI                            { $$ = new LineBreakStr(); $$->bMute = false; $$->iNbBreaker = 1; }
+| COMMA                         { $$ = new LineBreakStr(); $$->bMute = true; $$->iNbBreaker = 1; }
+| EOL                           { $$ = new LineBreakStr(); $$->bMute = true; $$->iNbBreaker = 0; }
+| expressionLineBreak SEMI      { $$ = $1; $$->bMute = false || $1->bMute; $$->iNbBreaker += 1; }
+| expressionLineBreak COMMA     { $$ = $1; $$->iNbBreaker += 1; }
 | expressionLineBreak EOL       { $$ = $1; }
 ;
 

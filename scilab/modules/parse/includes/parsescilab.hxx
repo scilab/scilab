@@ -221,7 +221,7 @@ typedef union YYSTYPE
     std::wstring*               path;
     std::wstring*               comment;
 
-    bool                        mute;
+    LineBreakStr*               mute;
 
     ast::vars_t*                t_list_var;
     ast::exps_t*                t_list_exp;

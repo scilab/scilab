@@ -25,6 +25,14 @@
 #include "exit_status.hxx"
 #include "all.hxx"
 
+
+typedef struct __EXPRESSIONLINEBREAK__
+{
+    bool bMute;
+    int iNbBreaker;
+}LineBreakStr;
+
+
 /**
 define YYLTYPE to override Bison Default Location
 */

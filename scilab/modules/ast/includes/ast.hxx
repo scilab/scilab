@@ -73,6 +73,12 @@ namespace ast
         {
             return _location;
         }
+
+        /** \brief Get scanner position informations stored. */
+        Location& location_get ()
+        {
+            return _location;
+        }
         /** \} */
 
         /** \name Visitors entry point.
