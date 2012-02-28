@@ -22,7 +22,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 /**
  * Class VectFieldDecomposer
  * A set of static methods decomposing a vector field into a set of line segments.
- * To do: -output arrow tips as triangles.
  * @author Manuel JULIACHS
  */
 public class VectFieldDecomposer {
@@ -31,7 +30,8 @@ public class VectFieldDecomposer {
     protected static final double DEFAULT_LOG_COORD_Z = 1.0;
 
     /**
-     * @param id the object id.
+     * Returns the number of data elements for the given object.
+     * @param id the id of the given object.
      * @return the number of data elements.
      */
     public static int getDataSize(String id) {
@@ -41,16 +41,15 @@ public class VectFieldDecomposer {
         return 2*numberArrows;
     }
 
-
     /**
      * Fills the input buffer with vertex data from the given object.
-     * @param the buffer to fill.
-     * @param the given object id.
-     * @param the number of coordinates taken by one element in the buffer.
-     * @param the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
-     * @param the conversion scale factor to apply to data.
-     * @param the conversion translation value to apply to data.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @param buffer the buffer to fill.
+     * @param id the id of the given object.
+     * @param elementsSize the number of coordinates taken by one element in the buffer.
+     * @param coordinateMask the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param scale the conversion scale factor to apply to data.
+     * @param translation the conversion translation value to apply to data.
+     * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      */
     public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
         int coordinateMask, double[] scale, double[] translation, int logMask) {
@@ -145,6 +144,58 @@ public class VectFieldDecomposer {
     }
 
     /**
+     * Writes the colors of a segment's vertices into a buffer.
+     * The colors of the 2 vertices are written consecutively starting from the specified offset.
+     * @param buffer the buffer written to.
+     * @param elementsSize the number of components taken by a color (3 or 4).
+     * @param bufferOffset the offset of the first segment vertex's color.
+     * @color the arrow color (3 elements: r, g, b components).
+     */
+    protected static void writeSegmentColors(FloatBuffer buffer, int elementsSize, int bufferOffset, float[] color) {
+        buffer.put(bufferOffset, color[0]);
+        buffer.put(bufferOffset+1, color[1]);
+        buffer.put(bufferOffset+2, color[2]);
+
+        buffer.put(bufferOffset+elementsSize, color[0]);
+        buffer.put(bufferOffset+elementsSize+1, color[1]);
+        buffer.put(bufferOffset+elementsSize+2, color[2]);
+
+        if (elementsSize == 4) {
+            buffer.put(bufferOffset+3, 1.0f);
+            buffer.put(bufferOffset+elementsSize+3, 1.0f);
+        }
+    }
+
+    /**
+     * Writes the colors of an arrow's vertices into a buffer.
+     * The colors of the 3 vertices are written consecutively starting from the specified offset.
+     * @param buffer the buffer written to.
+     * @param elementsSize the number of components taken by a color (3 or 4).
+     * @param bufferOffset the offset of the first arrow vertex's color.
+     * @color the arrow color (3 elements: r, g, b components).
+     */
+    protected static void writeArrowColors(FloatBuffer buffer, int elementsSize, int bufferOffset, float[] color) {
+        buffer.put(bufferOffset, color[0]);
+        buffer.put(bufferOffset+1, color[1]);
+        buffer.put(bufferOffset+2, color[2]);
+
+        buffer.put(bufferOffset+elementsSize, color[0]);
+        buffer.put(bufferOffset+elementsSize+1, color[1]);
+        buffer.put(bufferOffset+elementsSize+2, color[2]);
+
+        buffer.put(bufferOffset+2*elementsSize, color[0]);
+        buffer.put(bufferOffset+2*elementsSize+1, color[1]);
+        buffer.put(bufferOffset+2*elementsSize+2, color[2]);
+
+        if (elementsSize == 4) {
+            buffer.put(bufferOffset+3, 1.0f);
+            buffer.put(bufferOffset+elementsSize+3, 1.0f);
+            buffer.put(bufferOffset+2*elementsSize+3, 1.0f);
+        }
+    }
+
+    /**
+     * Returns the number of triangle indices.
      * @return the number of triangle indices.
      */
     public static int getIndicesSize() {
@@ -153,9 +204,9 @@ public class VectFieldDecomposer {
 
     /**
      * Fills the input buffer with triangle index data from the given object.
-     * @param the buffer to fill.
-     * @param the given object id.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @param buffer the buffer to fill.
+     * @param id the id of the given object.
+     * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
     public static int fillIndices(IntBuffer buffer, String id, int logMask) {
@@ -163,6 +214,8 @@ public class VectFieldDecomposer {
     }
 
     /**
+     * Returns the number of wireframe indices for the given object.
+     * @param id the id of the given object.
      * @return the number of line segment indices.
      */
     public static int getWireIndicesSize(String id) {
@@ -174,9 +227,9 @@ public class VectFieldDecomposer {
 
     /**
      * Fills the input buffer with segment index data from the given object.
-     * @param the buffer to fill.
-     * @param the given object id.
-     * @param the bit mask specifying whether logarithmic coordinates are used.
+     * @param buffer the buffer to fill.
+     * @param id the id of the given object.
+     * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
     public static int fillWireIndices(IntBuffer buffer, String id, int logMask) {

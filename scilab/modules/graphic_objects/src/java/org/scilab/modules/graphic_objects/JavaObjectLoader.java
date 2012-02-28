@@ -102,8 +102,12 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         return ArcDecomposer.getIndicesSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        return ChampDecomposer.getIndicesSize(id);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.getIndicesSize();
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        return SegsDecomposer.getIndicesSize(id);
                 }
 
                 return 0;
@@ -121,8 +125,12 @@ public class JavaObjectLoader {
 
                 if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
                         return ArcDecomposer.fillIndices(buffer, id, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        return ChampDecomposer.fillIndices(buffer, id, logMask);
                 } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
                         return RectangleDecomposer.fillIndices(buffer, id, logMask);
+                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        return SegsDecomposer.fillIndices(buffer, id, logMask);
                 }
 
                 return 0;
