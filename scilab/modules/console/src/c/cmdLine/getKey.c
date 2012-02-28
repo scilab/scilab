@@ -198,13 +198,11 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 
     key = getwchar();
 
-#ifdef __APPLE__
     // Need to clear the stdin
     if (key == WEOF && feof(stdin))
     {
         clearerr(stdin);
     }
-#endif
 
     if (getTokenInteruptExecution() == DO_NOT_SEND_COMMAND)
     {
