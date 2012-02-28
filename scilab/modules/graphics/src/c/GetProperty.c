@@ -3272,23 +3272,6 @@ char sciGetyLocation(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
-* Check wether an object is using nurbs for display or not
-*/
-BOOL sciGetUseNurbs(sciPointObj * pObj)
-{
-    switch (sciGetEntityType(pObj))
-    {
-    case SCI_SUBWIN:
-        return pSUBWIN_FEATURE(pObj)->useNurbsForArcs;
-    case SCI_ARC:
-        return pARC_FEATURE(pObj)->useNurbs;
-    default:
-        printSetGetErrorMessage("drawing_method");
-        return FALSE;
-    }
-}
-/*----------------------------------------------------------------------------------*/
-/**
 * Get number of subticks on the x,y, and z axes.
 * This property is determined by the renderer module.
 */

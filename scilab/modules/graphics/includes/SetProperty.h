@@ -227,9 +227,6 @@ GRAPHICS_IMPEXP int sciSetZoomBox(char* pObj, const double zoomBox[6]); /* SET *
 GRAPHICS_IMPEXP int sciInitImmediateDrawingMode(char* pObj, BOOL autoRedraw);
 GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(char* pObj, BOOL autoRedraw);
 
-GRAPHICS_IMPEXP int sciInitUseNurbs(char* pObj, BOOL useNurbs);
-GRAPHICS_IMPEXP int sciSetUseNurbs(char* pObj, BOOL useNurbs); /* SET */
-
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

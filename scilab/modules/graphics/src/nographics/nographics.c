@@ -639,12 +639,6 @@ char **getStrMatData(const StringMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciGetUseNurbs(sciPointObj * pObj)
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL isFigureModel(sciPointObj * pObj)
 {
     return FALSE;

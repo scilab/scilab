@@ -3301,40 +3301,6 @@ int sciSetImmediateDrawingMode(char * pobjUID, BOOL autoRedraw)
     return -1;
 }
 /*----------------------------------------------------------------------------------*/
-int sciInitUseNurbs(char * pobjUID, BOOL useNurbs)
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType(pobjUID))
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->useNurbsForArcs = useNurbs;
-        return 0;
-    case SCI_ARC:
-        pARC_FEATURE(pobjUID)->useNurbs = useNurbs;
-        return 0;
-    default:
-        printSetGetErrorMessage("drawing_method");
-        return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Return whether the drawing of an arc object uses nurbs or lines
- */
-int sciSetUseNurbs(char * pobjUID, BOOL useNurbs)
-{
-    if (sciGetUseNurbs(pobjUID) == useNurbs)
-    {
-        // nothing to do
-        return 1;
-    }
-    return sciInitUseNurbs(pobjUID, useNurbs);
-}
-/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pobjUID object conatining the color
