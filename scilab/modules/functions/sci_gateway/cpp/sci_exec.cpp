@@ -47,6 +47,7 @@ using namespace std;
 bool checkPrompt(int _iMode, int _iCheck);
 void printLine(char* _stPrompt, char* _stLine, bool _bLF);
 void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer);
+std::string getExpression(char* _pstFile, Exp* _pExp);
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -54,8 +55,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     int promptMode      = 0;//default value at startup, overthise 3
     bool bPromptMode    = false;
     int iErr            = 0;
-	bool bErrCatch	    = false;
-	Exp* pExp		    = NULL;
+    bool bErrCatch	    = false;
+    Exp* pExp		    = NULL;
     int iID             = 0;
     Parser parser;
 
@@ -64,55 +65,55 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         promptMode = 3;
     }
 
-	if(in.size() < 1 || in.size() > 3)
-	{
+    if(in.size() < 1 || in.size() > 3)
+    {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"exec" , 1, 3);
         return Function::Error;
-	}
+    }
 
-	if(in.size() > 1)
-	{//errcatch or mode
+    if(in.size() > 1)
+    {//errcatch or mode
         if(in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
-		{//errcatch
-			String* pS = in[1]->getAs<types::String>();
-			if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
-			{
-				bErrCatch = true;
-			}
-			else
-			{
+        {//errcatch
+            String* pS = in[1]->getAs<types::String>();
+            if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
+            {
+                bErrCatch = true;
+            }
+            else
+            {
                 ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'errcatch' expected.\n"), L"execstr", 2);
-				return Function::Error;
-			}
+                return Function::Error;
+            }
 
-			if(in.size() > 2)
-			{
+            if(in.size() > 2)
+            {
                 if(in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
-				{//mode
+                {//mode
                     ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"exec", 3);
                     return Function::Error;
-				}
+                }
 
                 promptMode = (int)in[2]->getAs<Double>()->getReal()[0];
                 bPromptMode = true;
-			}
-		}
-		else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
+            }
+        }
+        else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
         {//mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
             bPromptMode = true;
-		}
-		else
-		{//not managed
+        }
+        else
+        {//not managed
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer or string expected.\n"), L"exec", 2);
             return Function::Error;
-		}
-	}
+        }
+    }
 
     if(in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
-	{//1st argument is a path, parse file and execute it
-		int iParsePathLen		= 0;
-		String* pS = in[0]->getAs<types::String>();
+    {//1st argument is a path, parse file and execute it
+        int iParsePathLen		= 0;
+        String* pS = in[0]->getAs<types::String>();
 
         wchar_t* pstFile = pS->get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
@@ -130,53 +131,51 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         parser.parseFile(pwstTemp, L"exec");
         FREE(expandedPath);
         FREE(pwstTemp);
-		if(parser.getExitStatus() !=  Parser::Succeded)
-		{
-			scilabWriteW(parser.getErrorMessage());
-			delete parser.getTree();
+        if(parser.getExitStatus() !=  Parser::Succeded)
+        {
+            scilabWriteW(parser.getErrorMessage());
+            delete parser.getTree();
             mclose(iID);
-			return Function::Error;
-		}
+            return Function::Error;
+        }
 
-		pExp = parser.getTree();
-	}
-	else if(in[0]->isMacro())
-	{//1st argument is a macro name, execute it in the current environnement
-		pExp = in[0]->getAs<Macro>()->getBody();
-	}
-	else if(in[0]->isMacroFile())
-	{//1st argument is a macro name, parse and execute it in the current environnement
-		if(in[0]->getAs<MacroFile>()->parse() == false)
-		{
+        pExp = parser.getTree();
+    }
+    else if(in[0]->isMacro())
+    {//1st argument is a macro name, execute it in the current environnement
+        pExp = in[0]->getAs<Macro>()->getBody();
+    }
+    else if(in[0]->isMacroFile())
+    {//1st argument is a macro name, parse and execute it in the current environnement
+        if(in[0]->getAs<MacroFile>()->parse() == false)
+        {
             ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAs<MacroFile>()->getName().c_str());
             mclose(iID);
-			return Function::Error;
-		}
-		pExp = in[0]->getAs<MacroFile>()->getMacro()->getBody();
-	}
-	else
-	{
+            return Function::Error;
+        }
+        pExp = in[0]->getAs<MacroFile>()->getMacro()->getBody();
+    }
+    else
+    {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"exec", 1);
         mclose(iID);
-		return Function::Error;
-	}
+        return Function::Error;
+    }
 
-	std::list<Exp *>::iterator j;
-	std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
+    std::list<Exp *>::iterator j;
+    std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
-	char stPrompt[64];
-	//get prompt
-	GetCurrentPrompt(stPrompt);
-//    MessageBoxA(NULL, stPrompt, "", 0);
+    char stPrompt[64];
+    //get prompt
+    GetCurrentPrompt(stPrompt);
+    //    MessageBoxA(NULL, stPrompt, "", 0);
 
     wchar_t* pwstFile =  expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     char* pstFile = wide_string_to_UTF8(pwstFile);
-	std::ifstream file(pstFile);
-    FREE(pstFile);
-    FREE(pwstFile);
+    std::ifstream file(pstFile);
 
-	char str[1024];
-	int iCurrentLine = -1; //no data in str
+    char str[1024];
+    int iCurrentLine = -1; //no data in str
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
@@ -184,57 +183,96 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     ConfigVariable::setPromptMode(promptMode);
 
     for(j = LExp.begin() ; j != LExp.end() ; j++)
-	{
-		try
-		{
+    {
+        try
+        {
+            std::list<Exp *>::iterator k = j;
             //mode == 0, print new variable but not command
             if(ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
-			{
-				printExp(&file, *j, stPrompt, &iCurrentLine, str);
-			}
-
-            //excecute script
-            //force -1 to prevent recursive call to exec to write in console
-            //ConfigVariable::setPromptMode(-1);
-            ExecVisitor execMe;
-            (*j)->accept(execMe);
-            //ConfigVariable::setPromptMode(promptMode);
-
-
-            //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
             {
-                Callable *pCall = execMe.result_get()->getAs<Callable>();
-                types::typed_list out;
-                types::typed_list in;
-
-                try
+                int iLastLine = (*j)->location_get().last_line;
+                do
                 {
-                    ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+                    printExp(&file, *k, stPrompt, &iCurrentLine, str);
+                    iLastLine = (*k)->location_get().last_line;
+                    k++;
+                }while(k != LExp.end() && (*k)->location_get().first_line == iLastLine);
+            }
+            else
+            {
+                k++;
+            }
 
-                    if(Ret == Callable::OK)
+
+            std::list<Exp *>::iterator p = j;
+            for(; p != k; p++)
+            {
+                j = p;
+                //excecute script
+                //force -1 to prevent recursive call to exec to write in console
+                //ConfigVariable::setPromptMode(-1);
+                ExecVisitor execMe;
+                (*j)->accept(execMe);
+                //ConfigVariable::setPromptMode(promptMode);
+
+
+                //to manage call without ()
+                if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
+                {
+                    Callable *pCall = execMe.result_get()->getAs<Callable>();
+                    types::typed_list out;
+                    types::typed_list in;
+
+                    try
                     {
-                        if(out.size() == 0)
+                        ExecVisitor execCall;
+                        Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+
+                        if(Ret == Callable::OK)
                         {
-                            execMe.result_set(NULL);
-                        }
-                        else if(out.size() == 1)
-                        {
-                            out[0]->DecreaseRef();
-                            execMe.result_set(out[0]);
-                        }
-                        else
-                        {
-                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            if(out.size() == 0)
                             {
-                                out[i]->DecreaseRef();
-                                execMe.result_set(i, out[i]);
+                                execMe.result_set(NULL);
+                            }
+                            else if(out.size() == 1)
+                            {
+                                out[0]->DecreaseRef();
+                                execMe.result_set(out[0]);
+                            }
+                            else
+                            {
+                                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                {
+                                    out[i]->DecreaseRef();
+                                    execMe.result_set(i, out[i]);
+                                }
+                            }
+                        }
+                        else if(Ret == Callable::Error)
+                        {
+                            if(ConfigVariable::getLastErrorFunction() == L"")
+                            {
+                                ConfigVariable::setLastErrorFunction(pCall->getName());
+                            }
+
+                            if(pCall->isMacro() || pCall->isMacroFile())
+                            {
+                                wchar_t szError[bsiz];
+                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+                                throw ScilabMessage(szError);
+                            }
+                            else
+                            {
+                                throw ScilabMessage();
                             }
                         }
                     }
-                    else if(Ret == Callable::Error)
+                    catch(ScilabMessage sm)
                     {
+                        wostringstream os;
+                        PrintVisitor printMe(os);
+                        (*j)->accept(printMe);
+                        os << std::endl << std::endl;
                         if(ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
@@ -242,60 +280,37 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
                         if(pCall->isMacro() || pCall->isMacroFile())
                         {
+                            wstring szAllError;
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-                            throw ScilabMessage(szError);
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                            szAllError = szError + os.str();
+                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                            szAllError += szError;
+                            throw ScilabMessage(szAllError);
                         }
                         else
                         {
-                            throw ScilabMessage();
+                            sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
+                            throw sm;
                         }
                     }
                 }
-                catch(ScilabMessage sm)
+                //update ans variable.
+                if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
                 {
-                    wostringstream os;
-                    PrintVisitor printMe(os);
-                    (*j)->accept(printMe);
-                    os << std::endl << std::endl;
-                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    InternalType* pITAns = execMe.result_get();
+                    symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
+                    if( (*j)->is_verbose() && bErrCatch == false)
                     {
-                        ConfigVariable::setLastErrorFunction(pCall->getName());
-                    }
-
-                    if(pCall->isMacro() || pCall->isMacroFile())
-                    {
-                        wstring szAllError;
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                        szAllError = szError + os.str();
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
-                        szAllError += szError;
-                        throw ScilabMessage(szAllError);
-                    }
-                    else
-                    {
-                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                        throw sm;
+                        std::wostringstream ostr;
+                        ostr << L"ans = " << std::endl;
+                        ostr << std::endl;
+                        ostr << pITAns->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                        scilabWriteW(ostr.str().c_str());
                     }
                 }
             }
-
-            //update ans variable.
-			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
-			{
-                InternalType* pITAns = execMe.result_get();
-				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
-				if( (*j)->is_verbose() && bErrCatch == false)
-				{
-					std::wostringstream ostr;
-					ostr << L"ans = " << std::endl;
-					ostr << std::endl;
-					ostr << pITAns->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-					scilabWriteW(ostr.str().c_str());
-				}
-			}
-		}
+        }
         catch(ScilabMessage sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
@@ -337,8 +352,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             mclose(iID);
             throw ScilabMessage((*j)->location_get());
         }
-		catch(ScilabError se)
-		{
+        catch(ScilabError se)
+        {
             if(ConfigVariable::getLastErrorMessage() == L"")
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
@@ -351,11 +366,16 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
-                //write error
-                scilabErrorW(se.GetErrorMessage().c_str());
+                file.close();
+                //print failed command
+                scilabError(getExpression(pstFile, *j).c_str());
                 scilabErrorW(L"\n");
 
-                //write positino
+                //write error
+                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
+                scilabErrorW(L"\n");
+
+                //write position
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                 mclose(iID);
@@ -364,8 +384,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 throw ScilabMessage(szError, 1, (*j)->location_get());
             }
             break;
-		}
-	}
+        }
+    }
 
     //restore previous prompt mode
     ConfigVariable::setPromptMode(oldVal);
@@ -377,80 +397,136 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         ConfigVariable::setLastErrorCall();
     }
 
-	delete parser.getTree();
+    delete parser.getTree();
     mclose(iID);
-	file.close();
-	return Function::OK;
+    file.close();
+    FREE(pstFile);
+    FREE(pwstFile);
+    return Function::OK;
+}
+
+std::string getExpression(char* _pstFile, Exp* _pExp)
+{
+    std::string out;
+    char strLastLine[1024];
+    char pstBuffer[1024];
+    int iLine = 0;
+    Location loc = _pExp->location_get();
+    std::ifstream file(_pstFile);
+
+    //bypass previous lines
+    for(int i = 0 ; i < loc.first_line; i++)
+    {
+        file.getline(pstBuffer, 1024);
+    }
+
+    if(loc.first_line == loc.last_line)
+    {
+        int iStart = loc.first_column - 1;
+        int iEnd = loc.last_column - 1;
+        int iLen = iEnd - iStart;
+        strncpy(strLastLine, pstBuffer + iStart, iLen);
+        strLastLine[iLen] = 0;
+        out += strLastLine;
+    }
+    else
+    {//
+
+        //first line, entire or not
+        strcpy(strLastLine, pstBuffer + loc.first_column - 1);
+        out += strLastLine;
+        out += "\n";
+
+        //print other full lines
+        for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
+        {
+            file.getline(pstBuffer, 1024);
+            out += pstBuffer;
+            out += "\n";
+        }
+
+
+        //last line, entire or not
+        file.getline(pstBuffer, 1024);
+        strncpy(strLastLine, pstBuffer, loc.last_column - 1);
+        strLastLine[loc.last_column - 1] = 0;
+        out += strLastLine;
+        out += "\n";
+    }
+    return out;
 }
 
 bool checkPrompt(int _iMode, int _iCheck)
 {
-	return ((_iMode & _iCheck) == _iCheck);
+    return ((_iMode & _iCheck) == _iCheck);
 }
 
 void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer)
 {
-	char strLastLine[1024];
-	//case 1, exp is on 1 line and take the entire line
+    char strLastLine[1024];
+    //case 1, exp is on 1 line and take the entire line
 
-	//case 2, exp is multiline
+    //case 2, exp is multiline
 
-	//case 3, exp is part of a line.
-	//ex : 3 exp on the same line a = 1; b = 2; c = 3;
+    //case 3, exp is part of a line.
+    //ex : 3 exp on the same line a = 1; b = 2; c = 3;
 
-	//case 4, exp is multiline but start and/or finish in the middle of a line
-	//ex :
-	//a = 10;for i = 1 : a
-	//	a
-	//end, b = 1;
+    //case 4, exp is multiline but start and/or finish in the middle of a line
+    //ex :
+    //a = 10;for i = 1 : a
+    //	a
+    //end, b = 1;
 
-	Location loc = _pExp->location_get();
+    Location loc = _pExp->location_get();
 
-	//positionning file curser at loc.first_line
-	{
-		//strange case, current position is after the wanted position
-		if(*_piLine > loc.first_line)
-		{
-			//reset line counter and restart reading at the start of the file.
-			*_piLine = -1;
-			_pFile->seekg( 0, ios_base::beg );
-		}
+    //positionning file curser at loc.first_line
+    {
+        //strange case, current position is after the wanted position
+        if(*_piLine > loc.first_line)
+        {
+            //reset line counter and restart reading at the start of the file.
+            *_piLine = -1;
+            _pFile->seekg( 0, ios_base::beg );
+        }
 
-		//bypass previous lines
-		for(int i = *_piLine ; i < loc.first_line - 1; i++)
-		{
+        //bypass previous lines
+        for(int i = *_piLine ; i < loc.first_line - 1; i++)
+        {
 
-			(*_piLine)++;
+            (*_piLine)++;
             if((*_piLine) != (loc.first_line - 1))
             {//empty line but not sequential lines
                 printLine("", "", true);
             }
-			_pFile->getline(_pstPreviousBuffer, 1024);
-		}
-	}
+            _pFile->getline(_pstPreviousBuffer, 1024);
+        }
+    }
 
-	if(loc.first_line == loc.last_line)
-	{//1 line
-		strncpy(strLastLine, _pstPreviousBuffer + (loc.first_column - 1), loc.last_column - (loc.first_column - 1));
-		strLastLine[loc.last_column - (loc.first_column - 1)] = 0;
+    if(loc.first_line == loc.last_line)
+    {//1 line
+        int iStart = loc.first_column - 1;
+        int iEnd = loc.last_column - 1;
+        int iLen = iEnd - iStart;
+        strncpy(strLastLine, _pstPreviousBuffer + iStart, iLen);
+        strLastLine[iLen] = 0;
         int iExpLen = (int)strlen(strLastLine);
         int iLineLen = (int)strlen(_pstPreviousBuffer);
-//printLine(_pstPrompt, strLastLine, true, false);
+        //printLine(_pstPrompt, strLastLine, true, false);
 
 
-        if(loc.first_column == 1 && iExpLen == iLineLen)
+        if(iStart == 0 && iExpLen == iLineLen)
         {//entire line
             printLine(_pstPrompt, strLastLine, true);
         }
         else
         {
-            if(loc.first_column == 1)
+            if(iStart == 0)
             {//begin of line
                 printLine(_pstPrompt, strLastLine, false);
             }
             else
             {
-                if(loc.last_column == iLineLen)
+                if(iEnd == iLineLen)
                 {
                     printLine("", strLastLine, true);
                 }
@@ -486,8 +562,8 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         _pFile->getline(_pstPreviousBuffer, 1024);
         (*_piLine)++;
 
-        strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
-        strLastLine[loc.last_column] = 0;
+        strncpy(strLastLine, _pstPreviousBuffer, loc.last_column - 1);
+        strLastLine[loc.last_column - 1] = 0;
         int iLineLen = (int)strlen(_pstPreviousBuffer);
         if(iLineLen == (loc.last_column-1))
         {

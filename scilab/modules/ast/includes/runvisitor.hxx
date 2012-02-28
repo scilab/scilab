@@ -1193,7 +1193,7 @@ namespace ast
                                 pCall->accept(printMe);
                                 os << std::endl << std::endl;
                                 ConfigVariable::setLastErrorFunction(((InternalType*)result_get())->getAs<Callable>()->getName());
-                                scilabErrorW(se.GetErrorMessage().c_str());
+                                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
                                 throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                             }
                         }
@@ -1202,7 +1202,8 @@ namespace ast
                         }
                     }
 
-                    scilabErrorW(se.GetErrorMessage().c_str());
+                    scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
+                    scilabErrorW(L"\n");
                     throw ScilabMessage((*itExp)->location_get());
                 }
                 result_set(NULL);

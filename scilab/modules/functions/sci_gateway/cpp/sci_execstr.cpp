@@ -325,7 +325,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
                 //write error
-                scilabErrorW(se.GetErrorMessage().c_str());
+                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
                 scilabErrorW(L"\n");
 
                 //write positino

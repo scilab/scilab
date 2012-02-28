@@ -1676,7 +1676,7 @@ int mexEvalString(const char *name)
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
                 //write error
-                scilabErrorW(se.GetErrorMessage().c_str());
+                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
                 scilabErrorW(L"\n");
 
                 //write positino
