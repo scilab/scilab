@@ -166,11 +166,13 @@ static void backspace(int n)
     while (n--)
 #ifdef TERMCAP
         if (BC)
-        {                       /* if control-H won-t work */
+        {
+            /* if control-H won-t work */
             fputs(BC, stdout);
         }
         else
-        {                       /* otherwise just use a normal control-H */
+        {
+            /* otherwise just use a normal control-H */
             putchar('\010');
         }
 #else
@@ -229,7 +231,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             wk_buf[0] = '\0';
             *cursor = *cursor_max = 0;
 
-            getPrompt(WRT_PRT);
+            getPrompt(WRITE_PROMPT);
 
             if (defaultPattern[0] == 0)
             {
@@ -410,8 +412,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
         }
 
         numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
-            sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
-            sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
+                          sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
+                          sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
 
         if (numberWordFound > 0)
         {
@@ -476,7 +478,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     int sizecommonsDictionary = 0;
 
                     char **commonsDictionary = concatenateStrings(&sizecommonsDictionary, commonFunctions,
-                                                                  commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
+                                               commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
 
                     if (sizecommonsDictionary > 0)
                     {
@@ -511,7 +513,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 wk_buf[0] = '\0';
                 *cursor = *cursor_max = 0;
 
-                getPrompt(WRT_PRT);
+                getPrompt(WRITE_PROMPT);
 
                 if (commonAll)
                 {

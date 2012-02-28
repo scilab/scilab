@@ -36,7 +36,7 @@ void getNewTerm(int signum)
     {
         fprintf(stderr, "\nCannot get terminfo databases. Termcaps are no longer available\n");
     }
-    getPrompt(WRT_PRT);
+    getPrompt(WRITE_PROMPT);
     currentLine = getSearchedTokenInScilabHistory();
     if (currentLine != NULL)
     {

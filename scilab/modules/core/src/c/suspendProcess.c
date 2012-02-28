@@ -80,7 +80,7 @@ void continueProcess(int signum)
         setCharDisplay(DISP_LAST_SET);
         setAttr(RAW);
         /* Display Prompt. */
-        getPrompt(WRT_PRT);
+        getPrompt(WRITE_PROMPT);
         /* Get the current edited line and display it if there is any. */
         currentLine = getSearchedTokenInScilabHistory();
         if (currentLine != NULL)

@@ -30,7 +30,7 @@ void controlC_handler(int sig)
         setCharDisplay(DISP_RESET);
         printf("\nCancel command.\n");
         setCharDisplay(DISP_LAST_SET);
-        getPrompt(WRT_PRT);
+        getPrompt(WRITE_PROMPT);
         /* Set a token to indicate CTRL-C was pressed */
         setTokenInteruptExecution(DO_NOT_SEND_COMMAND);
     }

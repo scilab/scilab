@@ -17,9 +17,9 @@
 /* Token to indicate getPrompt what to do */
 
 /* Display the prompt */
-#define WRT_PRT	1
+#define WRITE_PROMPT	1
 /* Don't display the prompt */
-#define NOWRT_PRT -1
+#define NOWRITE_PROMPT -1
 
 /**
  * Save a prompt.

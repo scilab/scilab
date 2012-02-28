@@ -51,7 +51,7 @@ static int sizeOfOneLineInTerm(wchar_t * CommandLine, unsigned int cursorLocatio
     /* If the line is the first of the command, prompt size must be added */
     if (!beginningOfLine)
     {
-        sizeOfLineInTerm += getPrompt(NOWRT_PRT);
+        sizeOfLineInTerm += getPrompt(NOWRITE_PROMPT);
     }
     /* If L'\n' is found, the line start to the next character */
     if (CommandLine[beginningOfLine] == L'\n')
@@ -94,7 +94,7 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
         while (sizeOfWChar)
         {
             if ((widthOfStringInTerm && !(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1)    // if last column of the terminal is reached...
-                || CommandLine[*cursorLocation] == L'\n')   // ... or if the cursor will go to the next line.
+                    || CommandLine[*cursorLocation] == L'\n')   // ... or if the cursor will go to the next line.
             {
                 /* move the cursor down. */
                 setStringCapacities("do");
@@ -164,7 +164,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
             }
             else
             {
-                nbrCol = getPrompt(NOWRT_PRT);
+                nbrCol = getPrompt(NOWRITE_PROMPT);
             }
         }
         else
@@ -176,7 +176,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
         while (sizeOfWChar)     /* While we are not at the beginning of the character... */
         {
             if ((nbrCol && !(widthOfStringInTerm % nbrCol) && sizeOfWChar <= 1) // if last column of the terminal is reached...
-                || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
+                    || CommandLine[*cursorLocation - 1] == L'\n')   // ... or if the cursor will go to the previous line.
             {
                 setStringCapacities("up");
                 while (nbrCol)
@@ -230,21 +230,21 @@ static BOOL isAWideCharToJump(wchar_t wideCharToTest)
     /* List of characters for cursor moving word by word. */
     switch (wideCharToTest)
     {
-    case L' ':
-    case L'\t':
-    case L'\n':
-    case L'[':
-    case L']':
-    case L'{':
-    case L'}':
-    case L'(':
-    case L')':
-    case L'.':
-    case L',':
-    case L';':
-        return TRUE;
-    default:
-        return FALSE;
+        case L' ':
+        case L'\t':
+        case L'\n':
+        case L'[':
+        case L']':
+        case L'{':
+        case L'}':
+        case L'(':
+        case L')':
+        case L'.':
+        case L',':
+        case L';':
+            return TRUE;
+        default:
+            return FALSE;
     }
 }
 

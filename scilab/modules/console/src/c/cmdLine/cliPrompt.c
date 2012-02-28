@@ -39,7 +39,7 @@ wchar_t *setPrompt(wchar_t * wcs)
 /*
  * The function get the current prompt
  * If none are set, function set it to the basic prompt SCIPROMPT ("-->") using wchar.
- * If Argument pass is WRT_PRT (1), it write prompt (NOWRT_PRT (-1) not to write prompt)
+ * If Argument pass is WRITE_PROMPT (1), it write prompt (NOWRITE_PROMPT (-1) not to write prompt)
  * Function return size of the prompt.
  */
 int getPrompt(int token)
@@ -51,7 +51,7 @@ int getPrompt(int token)
     {
         prompt = setPrompt(WSCIPROMPT);
     }
-    if (token == WRT_PRT)
+    if (token == WRITE_PROMPT)
     {
         setCharDisplay(DISP_DEFAULT);
         printf("%ls", prompt);
