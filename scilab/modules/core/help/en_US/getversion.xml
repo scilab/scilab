@@ -63,9 +63,9 @@
     </para>
     <para> [tk, modelicac,] are optional. </para>
     <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
-    <para> archicteture: 'x86' or 'x64'.</para>
+    <para> architecture: 'x86' or 'x64'.</para>
     <para> tk: 'tk' if tcl/tk is enabled.</para>
-    <para> modelicac: 'modelicac' if modelica compiler is ditributed with scilab/xcos.</para>
+    <para> modelicac: 'modelicac' if modelica compiler is distributed with scilab/xcos.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

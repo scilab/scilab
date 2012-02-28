@@ -75,7 +75,7 @@
     <para>In the old Scilab versions, in "variable format" mode, vectors
       entries which are less than %eps times the maximum absolute value of the
       entries were displayed as "0". It is no more the case, the clean function
-      can be used to set neglitible entries to zeros.
+      can be used to set negligible entries to zeros.
     </para>
   </refsection>
   <refsection>

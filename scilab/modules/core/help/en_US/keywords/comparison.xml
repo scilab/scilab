@@ -100,7 +100,7 @@
               </para>
             </listitem>
             <listitem>
-              <para>If the operand data types are differents but "compatible" like
+              <para>If the operand data types are different but "compatible" like
                 floating points and integers a type conversion is performed before
                 the comparison.
               </para>

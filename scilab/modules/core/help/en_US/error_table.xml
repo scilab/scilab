@@ -53,7 +53,7 @@
     <para>31 "Incorrect string."</para>
     <para>32 "singularity of log or tan function"</para>
     <para>33 "too many "":"""</para>
-    <para>34 "Incorrect control intruction syntax."</para>
+    <para>34 "Incorrect control instruction syntax."</para>
     <para>34 "Syntax error in a '%s' instruction."
       (if,while,select/case)
     </para>
@@ -143,7 +143,7 @@
     <para>102 "Variable or function %s are not in file."</para>
     <para>103 "Variable %s is not a valid rational function."</para>
     <para>104 "Variable %s is not a valid state space representation."</para>
-    <para>105 "Undefined fonction."</para>
+    <para>105 "Undefined function."</para>
     <para>106 "Function name already used."</para>
     <para>* 107 "Too many functions are defined (maximum #:%d)."</para>
     <para>108 "Too complex for scilab, may be a too long control
@@ -231,7 +231,7 @@
       expected."
     </para>
     <para>220 "Null variable cannot be used here."</para>
-    <para>221 "A sparse matrix entry is defined with two differents
+    <para>221 "A sparse matrix entry is defined with two different
       values."
     </para>
     <para>222 "%s not yet implemented for full input parameter."</para>

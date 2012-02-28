@@ -35,7 +35,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      Scilab stores gobal variables in a stack
+      Scilab stores global variables in a stack
     </para>
     <para>
       <literal>gstacksize(n)</literal> allows the user to increase or decrease the size of

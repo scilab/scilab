@@ -46,7 +46,7 @@
     <title>Description</title>
     <para>
       For a vector or a matrix with <literal>n</literal> x <literal>m</literal> entries, the command
-      <literal>y=matrix(v,n,m)</literal> or similarily <literal>y=matrix(v,[n,m])</literal>
+      <literal>y=matrix(v,n,m)</literal> or similarly <literal>y=matrix(v,[n,m])</literal>
       transforms the <literal>v</literal> vector (or matrix) into an <literal>nxm</literal> matrix by
       stacking columnwise the entries of <literal>v</literal>.
     </para>

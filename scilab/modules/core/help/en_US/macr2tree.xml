@@ -32,7 +32,7 @@
     <title>Description</title>
     <para>
       This primitive converts a compiled Scilab function <literal>function-name</literal>
-      into a tree (imbricated tlists)  which codes the internal representation of
+      into a tree (nested tlists)  which codes the internal representation of
       the function. For use with <literal>tree2code</literal>.
     </para>
   </refsection>
