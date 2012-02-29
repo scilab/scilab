@@ -2,6 +2,14 @@
             =================================================================
 
 
+Scilab Desktop
+==============
+
+* Add a button in dockbar to get the help about the component.
+
+* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
+
+
 XML
 ===
 
