@@ -2,13 +2,13 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - Paul Griffiths
- * desc : Interface functions between between GetProperty functions and 
- * the C++/Java part of module 
- * 
+ * desc : Interface functions between between GetProperty functions and
+ * the C++/Java part of module
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,15 +23,6 @@ extern "C" {
 #include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
-
-/**
- * Get the colormap of a figure. The colormap is stored in java
- * so we need to access it.
- * @param pFigure figure from which we want the colormap
- * @param rgbMat matrix of size nbColor x 3 conating the 3 channels
- *               RGB of each color.
- */
-RENDERER_IMPEXP void sciGetJavaColormap( sciPointObj * pFigure, double rgbMat[] ) ;
 
 /**
  * Get the size of a figure object
