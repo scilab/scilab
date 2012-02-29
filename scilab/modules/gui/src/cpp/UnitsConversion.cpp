@@ -188,23 +188,6 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
     }
 }
 
-double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef)
-{
-  if( (sciObj != NULL) && (sciGetEntityType(sciObj) == SCI_FIGURE) ) /* Uicontrol figure */
-    {
-      newUnit = PIXELS_UNITS;
-    }
-
-  if (newUnit == PIXELS_UNITS)
-    {
-      return (double) value;
-    }
-  else
-    {
-      return ConvertFromPoint(ConvertToPoint(value, PIXELS_UNITS, sciObj, widthAsRef), newUnit, sciObj, widthAsRef);
-    }
-}
-
 int ConvertToPixel(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsRef)
 {
   if( (sciObj != NULL) && (sciGetEntityType(sciObj) == SCI_FIGURE) ) /* Uicontrol figure */
