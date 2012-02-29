@@ -171,6 +171,26 @@ Compatibility Functions
 
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
 
+ATOMS
+=======
+
+* 'atomsQuit' function added to allow to call .quit of modules loaded by ATOMS
+  when user closes Scilab session. see SEP #77.
+
+* tbx_build_loader generates also a unloader.sce to allow to call .quit file of
+   an ATOMS module.
+
+* Bug #9798 fixed - .quit script of atoms modules were not evaluated when 
+                    leaving Scilab.
+
+* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
+                     in the documentation.
+
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
+* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
+
 
 Bug fixes
 =========
@@ -278,12 +298,6 @@ Bug fixes
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
-* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
-                     in the documentation.
-
-* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
-                     error message.
-
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
 * Bug #10506 fixed - ssprint did not check input arguments.
@@ -354,8 +368,6 @@ Bug fixes
 * Bug #10673 fixed - Typos fixed in the help page of ssrand.
 
 * Bug #10685 fixed - inttrap help page moved to differential calculus module.
-
-* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
 * Bug #10710 fixed - Wrong error message fixed in xml module.
 

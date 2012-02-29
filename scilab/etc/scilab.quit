@@ -15,6 +15,13 @@
 // ====================================================================
 function scilabQuit()
 
+  // ATOMS ===============================================================
+  if with_module("atoms") then
+    if sciargs() <> "-noatomsautoload" then
+      atomsQuit();
+    end
+  end
+
   // starts modules .quit
   modules = getmodules();
 

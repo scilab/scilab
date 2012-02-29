@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>tbx_build_loader</refname>
-    <refpurpose>Generate a loader.sce script (toolbox compilation process)</refpurpose>
+    <refpurpose>Generate loader.sce and unloader scripts (toolbox compilation process)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -49,4 +49,14 @@
 tbx_build_loader("mytoolbox", get_absolute_file_path('builder.sce'))
  ]]></programlisting>
   </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>This function generates also an unloader.sce script</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+  
 </refentry>
