@@ -44,6 +44,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Axes extends GraphicObject {
 
+    private static final double BOUNDS_PARAMETER = 5;
+
     /** Axes properties names */
     private enum AxesProperty {
         XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
@@ -1815,8 +1817,8 @@ public class Axes extends GraphicObject {
             }
 
             if (!getTightLimits()) {
-                for (int i = 0 ; i < 6 ; i++) {
-                    bounds[i] = round(bounds[i]);
+                for (int i = 0 ; i < 6 ; i += 2) {
+                    round(bounds, i);
                 }
             }
 
@@ -1839,25 +1841,30 @@ public class Axes extends GraphicObject {
         }
 
         /**
-         * If value is in scientific notation s*a*10^n with :
-         *   s = +1 or -1
-         *   a is in [1, 10[
-         *   n an integer
-         * Round return s*ceil(a)*10^n
-         * @param value the given value.
-         * @return the 'rounded' value.
+         * Round the bounds in the bounds array at the given index.
+         * bounds[i] and bounds[i + 1 ] are rounded to be in the value written
+         * k * b * 10^n
+         * where b is in {1, 2, 5}
+         * and b * 10 ^n the maximal value less than (bounds[i + 1] - bounds[i]) / BOUNDS_PARAMETER.
+         * @param bounds the bounds array.
+         * @param i the start index.
          */
-        private double round(Double value) {
-            if ((value == 0) || value.isNaN() || value.isInfinite()) {
-                return value;
+        private void round(Double[] bounds, int i) {
+            double delta = (bounds[i + 1] - bounds[i]) / BOUNDS_PARAMETER;
+            double powerOfTen = Math.pow(10, Math.floor(Math.log10(delta)));
+            double base = delta / powerOfTen;
+
+            if (base < 2) {
+                base = 1;
+            } else if (base < 5) {
+                base = 2;
             } else {
-                double s = Math.signum(value);
-                double log10 = Math.log10(s*value);
-                double n = Math.floor(log10);
-                double tenPowN = Math.pow(10, n);
-                double a = s * value / tenPowN;
-                return s * Math.ceil(a) * tenPowN;
+                base = 5;
             }
+
+            double step = base * powerOfTen;
+            bounds[i] = step * Math.floor(bounds[i] / step);
+            bounds[i + 1] = step * Math.ceil(bounds[i + 1] / step);
         }
 
         /**
