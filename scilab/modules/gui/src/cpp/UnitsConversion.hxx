@@ -29,17 +29,6 @@ extern "C"
 #define POINT_PER_INCH 72
 #define CM_PER_INCH 2.54
 
-/*
- * Convert a value from Point units to another unit
- *
- * @param value the value to convert
- * @param newUnit the new unit
- * @param sciObj the font parent
- * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
- * @return the new value
- */
-double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef);
-
 /**
 * Convert a pixel value to mm units
 * function used by GetScreenProperty
