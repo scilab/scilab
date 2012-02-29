@@ -178,6 +178,8 @@ Bug fixes
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
+* Bug #9328 fixed - Fix of random crashes under Mac OS X.
+
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
