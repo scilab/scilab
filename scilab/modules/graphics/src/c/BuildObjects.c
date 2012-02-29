@@ -1897,6 +1897,8 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
         return (char *)NULL;
     }
 
+    setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, &arsize, jni_double, 1);
+
     /* Type 0 corresponds to a SEGS object */
     if (type == 0)
     {
@@ -1965,8 +1967,6 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
         foreground = *tmp;
         setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 #endif
-
-        setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, &arsize, jni_double, 1);
 
         for (i = 0; i < numberArrows; i++)
         {
