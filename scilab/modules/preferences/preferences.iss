@@ -1,7 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 
-; Copyright (C) DIGITEO - 2011 - Allan CORNET
+; Copyright (C) DIGITEO - 2011-2012 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -30,22 +30,22 @@ Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.quit; DestDir: {app}\modules\{
 Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.start; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#PREFERENCES}\etc\*.xml; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#PREFERENCES}\src\xslt\*.xsl; DestDir: {app}\modules\{#PREFERENCES}\xslt; Components: {#COMPN_PREFERENCES}
+Source: modules\{#PREFERENCES}\src\xslt\*.xsl; DestDir: {app}\modules\{#PREFERENCES}\xslt; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#PREFERENCES}\includes\*.h; DestDir: {app}\modules\{#PREFERENCES}\includes; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#PREFERENCES}\macros\buildmacros.sce; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: modules\{#PREFERENCES}\macros\buildmacros.bat; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
-;Source: modules\{#PREFERENCES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
-;Source: modules\{#PREFERENCES}\macros\lib; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
-;Source: modules\{#PREFERENCES}\macros\names; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
-;Source: modules\{#PREFERENCES}\macros\*.bin; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
-;Source: modules\{#PREFERENCES}\macros\*.sci; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_PREFERENCES}
+;Source: modules\{#PREFERENCES}\macros\buildmacros.bat; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#PREFERENCES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#PREFERENCES}\macros\lib; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#PREFERENCES}\macros\names; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#PREFERENCES}\macros\*.bin; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;Source: modules\{#PREFERENCES}\macros\*.sci; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#PREFERENCES}\examples\*.*; DestDir: {app}\modules\{#PREFERENCES}\examples; Flags: recursesubdirs; Components: {#COMPN_PREFERENCES}
+;Source: modules\{#PREFERENCES}\examples\*.*; DestDir: {app}\modules\{#PREFERENCES}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#PREFERENCES}\demos\*.*; DestDir: {app}\modules\{#PREFERENCES}\demos; Flags: recursesubdirs; Components: {#COMPN_PREFERENCES}
+;Source: modules\{#PREFERENCES}\demos\*.*; DestDir: {app}\modules\{#PREFERENCES}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-;Source: modules\{#PREFERENCES}\tests\*.*; DestDir: {app}\modules\{#PREFERENCES}\tests; Flags: recursesubdirs; Components: {#COMPN_PREFERENCES} and {#COMPN_TESTS}
+;Source: modules\{#PREFERENCES}\tests\*.*; DestDir: {app}\modules\{#PREFERENCES}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
