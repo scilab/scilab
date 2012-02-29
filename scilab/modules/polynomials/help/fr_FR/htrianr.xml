@@ -18,28 +18,29 @@
         <term>A  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ar  </term>
         <listitem>
           <para>matrice de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
           <para>matrice unimodulaire de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rk  </term>
         <listitem>
-          <para>entier, le rang normal de <literal>A</literal>
-</para>
+          <para>
+            entier, le rang normal de <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,10 +48,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    triangularisation de la matrice de polynômes <literal>A</literal>.
-  </para>
-    <para><literal>A</literal> de taille <literal>[m,n]</literal>, <literal>m &lt;= n</literal>.
-  </para>
+      triangularisation de la matrice de polynômes <literal>A</literal>.
+    </para>
+    <para>
+      <literal>A</literal> de taille <literal>[m,n]</literal>, <literal>m &lt;= n</literal>.
+    </para>
     <para>
       <literal>Ar=A*U</literal>
     </para>
@@ -66,7 +68,7 @@ M*U(:,1:2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

@@ -24,7 +24,9 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>t = now() returns date and time as a serial date number. (See <link linkend="datenum">datenum</link>)</para>
+    <para>
+      t = now() returns date and time as a serial date number. (See <link linkend="datenum">datenum</link>)
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -39,7 +41,7 @@ datevec(t1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clock">clock</link>
@@ -50,12 +52,6 @@ datevec(t1)
       <member>
         <link linkend="datevec">datevec</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>P.M</member>
     </simplelist>
   </refsection>
 </refentry>

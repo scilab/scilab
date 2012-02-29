@@ -25,8 +25,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>alfa*x-beta*y</literal>を評価します. <literal> alfa, beta, x, y</literal> 
-	は文字列です. (低レベルルーチン)</para>
+      <literal>alfa*x-beta*y</literal>を評価します. <literal> alfa, beta, x, y</literal> 
+      は文字列です. (低レベルルーチン)
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

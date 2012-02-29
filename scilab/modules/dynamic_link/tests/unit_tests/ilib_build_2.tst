@@ -39,7 +39,8 @@ f2=['void c_sub(double *a,double *b, double *sub)'
 mputl(f2,TMP_DIR+filesep()+'c_sub.c');
 
 //creating the interface file
-i=['#include ""stack-c.h""'
+i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
    'extern void c_sum(double *a,double *b, double *sum);'
    'int sci_csum(char *fname)' 
    '{'
@@ -59,7 +60,8 @@ i=['#include ""stack-c.h""'
 mputl(i,TMP_DIR+filesep()+'sci_csum.c');
 
 //creating the interface file
-j=['#include ""stack-c.h""'
+j=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
    'extern void c_sub(double *a,double *b, double *sum);'
    'int sci_csub(char *fname)' 
    '{'

@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>barhomogenize()
-barhomogenize([h[,'style'[,'width']]])</synopsis>
+      barhomogenize([h[,'style'[,'width']]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -31,8 +32,9 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
         <term>width</term>
         <listitem>
           <para>(optionnel), un scalaire, qui defini l'epaisseur des barres
-					(un pourcentage de l'epaisseur maximun autorisé pour une barre) (par
-					defaut: width=0.8, i.e 80%).</para>
+            (un pourcentage de l'epaisseur maximun autorisé pour une barre) (par
+            defaut: width=0.8, i.e 80%).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,20 +42,29 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
   <refsection>
     <title>Description</title>
     <para>S'il y a plusieurs appels à  la fonction bar, la fonction
-		<literal>barhomogenize</literal> permet d'homogeneiser l'epaisseur et le style
-		de toutes les barres (i.e de type <literal>polyline_style</literal> 6) contenues
-		dans les axes de travail. Ces barres doivent avoir les meme abscisses (x
-		data).</para>
-    <para><literal>barhomogenize( ) :</literal> prends les valeurs suivantes par
-		defaut: h=gca(), width=0.8, style='grouped'.</para>
-    <para><literal>barhomogenize(h,...) :</literal> definit les axes courants dans
-		lesquels le dessin sera réalisé.</para>
-    <para><literal>barhomogenize(...,width,...) :</literal> definit l'epaisseur des
-		barres, en pourcentage (generallement : 0&lt;width&lt;=1).</para>
-    <para><literal>barhomogenize(...,style,...) :</literal> definit la façon dont les
-		barres sont positionnées les unes par rapport aux autres. L'option style
-		fixée à  'grouped' permet de centrer les polylines par rapport à  leurs
-		abscisses, et l'option style fixée à  'stacked' permet de les empiler.</para>
+      <literal>barhomogenize</literal> permet d'homogeneiser l'epaisseur et le style
+      de toutes les barres (i.e de type <literal>polyline_style</literal> 6) contenues
+      dans les axes de travail. Ces barres doivent avoir les meme abscisses (x
+      data).
+    </para>
+    <para>
+      <literal>barhomogenize( ) :</literal> prends les valeurs suivantes par
+      defaut: h=gca(), width=0.8, style='grouped'.
+    </para>
+    <para>
+      <literal>barhomogenize(h,...) :</literal> definit les axes courants dans
+      lesquels le dessin sera réalisé.
+    </para>
+    <para>
+      <literal>barhomogenize(...,width,...) :</literal> definit l'epaisseur des
+      barres, en pourcentage (generallement : 0&lt;width&lt;=1).
+    </para>
+    <para>
+      <literal>barhomogenize(...,style,...) :</literal> definit la façon dont les
+      barres sont positionnées les unes par rapport aux autres. L'option style
+      fixée à  'grouped' permet de centrer les polylines par rapport à  leurs
+      abscisses, et l'option style fixée à  'stacked' permet de les empiler.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -107,7 +118,7 @@ barhomogenize();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="bar">bar</link>
@@ -116,9 +127,5 @@ barhomogenize();
         <link linkend="polyline_properties">polyline_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Farid Belahcene</para>
   </refsection>
 </refentry>

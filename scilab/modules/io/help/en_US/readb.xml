@@ -40,7 +40,9 @@
       <varlistentry>
         <term>rec</term>
         <listitem>
-          <para>vector of positive integers. the selected records for direct access. This vector size must be equal to the number of rows of desired <literal>x</literal>.</para>
+          <para>
+            vector of positive integers. the selected records for direct access. This vector size must be equal to the number of rows of desired <literal>x</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,15 +50,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    binary read of the matrix <literal>x</literal> in the file <literal>file-name</literal>.
-    Matrix entries are supposed to have been stored on 8 byte words.</para>
+      binary read of the matrix <literal>x</literal> in the file <literal>file-name</literal>.
+      Matrix entries are supposed to have been stored on 8 byte words.
+    </para>
     <para>
-    For direct record access, file must have been previously opened using
-    <literal>file</literal> function to set the record_length. <literal>file-name</literal> must be
-    the result of the <literal>file</literal> function.</para>
+      For direct record access, file must have been previously opened using
+      <literal>file</literal> function to set the record_length. <literal>file-name</literal> must be
+      the result of the <literal>file</literal> function.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="file">file</link>

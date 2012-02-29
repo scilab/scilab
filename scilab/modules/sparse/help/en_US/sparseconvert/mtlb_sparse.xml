@@ -41,19 +41,22 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>Y=mtlb_sparse(X)</literal> is used to convert <literal>X</literal>, a Scilab sparse matrix, to 
-    Matlab format. <literal>Y</literal> is the a variable with type 7,
-    i.e. <literal>type(Y)</literal> is equal to 7.
-    This function should be used in mexfiles (a Matlab mexfile containing sparse
-    matrices can be used only if the Scilab sparse matrices are converted
-    to that format). The functions <literal>full</literal> and <literal>spget</literal>  work
-    with this format.</para>
     <para>
-     Other operations and functions using this format
-    can be overloaded with Scilab functions using the prefix "%msp". 
-    For instance the function 
-    <literal>%msp_p(x)</literal> (see SCI/modules/overloading/macros directory) is used to
-    display such "type 7" objects.</para>
+      <literal>Y=mtlb_sparse(X)</literal> is used to convert <literal>X</literal>, a Scilab sparse matrix, to 
+      Matlab format. <literal>Y</literal> is the a variable with type 7,
+      i.e. <literal>type(Y)</literal> is equal to 7.
+      This function should be used in mexfiles (a Matlab mexfile containing sparse
+      matrices can be used only if the Scilab sparse matrices are converted
+      to that format). The functions <literal>full</literal> and <literal>spget</literal>  work
+      with this format.
+    </para>
+    <para>
+      Other operations and functions using this format
+      can be overloaded with Scilab functions using the prefix "%msp". 
+      For instance the function 
+      <literal>%msp_p(x)</literal> (see SCI/modules/overloading/macros directory) is used to
+      display such "type 7" objects.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +66,7 @@ Y, full(Y), [ij,v,mn]=spget(Y)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="full">full</link>

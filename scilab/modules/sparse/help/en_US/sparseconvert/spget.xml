@@ -53,11 +53,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>spget</literal> is used to convert the internal representation of sparse
-    matrices into the standard <literal>ij, v</literal> representation.</para>
     <para>
-    Non zero entries (or entries set to true for a boolean sparse matrix) of <literal>sp</literal> are located in rows and columns
-    with indices in <literal>ij</literal>.</para>
+      <literal>spget</literal> is used to convert the internal representation of sparse
+      matrices into the standard <literal>ij, v</literal> representation.
+    </para>
+    <para>
+      Non zero entries (or entries set to true for a boolean sparse matrix) of <literal>sp</literal> are located in rows and columns
+      with indices in <literal>ij</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +70,7 @@ sp=sparse([1,2;4,5;3,10],[1,2,3])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

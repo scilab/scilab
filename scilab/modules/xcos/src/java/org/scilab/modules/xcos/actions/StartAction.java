@@ -3,11 +3,11 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,9 +20,8 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -31,7 +30,7 @@ import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -76,7 +75,7 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            the source event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -90,7 +89,7 @@ public class StartAction extends OneBlockDependantAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         String cmd;
 
         updateUI(true);
@@ -98,7 +97,7 @@ public class StartAction extends OneBlockDependantAction {
         try {
             cmd = createSimulationCommand(graph);
         } catch (IOException ex) {
-            LogFactory.getLog(StartAction.class).error(ex);
+            Logger.getLogger(StartAction.class.getName()).severe(ex.toString());
             updateUI(false);
             return;
         }
@@ -121,33 +120,28 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Create the command String
-     * 
+     *
      * @param diagram
      *            the working diagram
      * @return the command string
      * @throws IOException
      *             when temporary files must not be created.
      */
-    private String createSimulationCommand(final XcosDiagram diagram)
-            throws IOException {
+    private String createSimulationCommand(final XcosDiagram diagram) throws IOException {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
         /*
          * Log compilation info
          */
-        final Log log = LogFactory.getLog(StartAction.class);
-        log.trace("start simulation");
+        final Logger log = Logger.getLogger(StartAction.class.getName());
+        log.finest("start simulation");
 
         /*
          * Import a valid scs_m structure into Scilab
          */
-        final String temp = FileUtils.createTempFile();
-        diagram.dumpToHdf5File(temp);
-
-        command.append(buildCall("import_from_hdf5", temp));
-        command.append(buildCall("scicos_debug", diagram.getScicosParameters()
-                .getDebugLevel()));
+        new ScilabDirectHandler().writeDiagram(diagram);
+        command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 
         /*
          * Simulate
@@ -160,7 +154,7 @@ public class StartAction extends OneBlockDependantAction {
 
     /**
      * Update the UI depending on the action selected or not
-     * 
+     *
      * @param started
      *            the started status
      */
@@ -170,8 +164,7 @@ public class StartAction extends OneBlockDependantAction {
         ((XcosDiagram) getGraph(null)).setReadOnly(started);
 
         if (started) {
-            ((XcosDiagram) getGraph(null))
-                    .info(XcosMessages.SIMULATION_IN_PROGRESS);
+            ((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
         } else {
             ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
         }

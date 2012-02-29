@@ -17,7 +17,7 @@
 #include "prompt.h"
 #include "TermConsole.h"
 /*--------------------------------------------------------------------------*/
-char * TermReadAndProcess(void)
+char * getCmdLine(void)
 {
 	char *line = NULL;
 	static char save_prompt[PROMPT_SIZE_MAX];

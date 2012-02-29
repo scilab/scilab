@@ -252,7 +252,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
       if ip==99|ip==2 then
         ip=''
       else
-        ip=code2str(ip)
+        ip=_code2str(ip)
       end
       op=matrix(op(3:$),2,-1)
       lhs=size(op,2)

@@ -15,7 +15,8 @@
 #include "gw_linear_algebra.h"
 #include "gw_linear_algebra2.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[] = 
 {
@@ -38,6 +39,13 @@ static gw_generic_table Tab[] =
 int gw_linear_algebra2(void)
 {  
 	Rhs = Max(0, Rhs);
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	if (Err <= 0 && C2F(errgst).err1 <= 0) PutLhsVar();
 	return 0;

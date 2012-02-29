@@ -14,6 +14,8 @@
 #include <string.h>
 #include "gw_sparse.h"
 #include "callFunctionFromGateway.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -47,6 +49,12 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void)
 {  
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

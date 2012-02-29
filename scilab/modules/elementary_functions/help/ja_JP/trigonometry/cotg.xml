@@ -36,9 +36,10 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>t</literal>の要素は<literal>x</literal>の対応する
-	エントリのコタンジェント(余接)です.
-    <literal>t=cos(x)./sin(x)</literal></para>
+      <literal>t</literal>の要素は<literal>x</literal>の対応する
+      エントリのコタンジェント(余接)です.
+      <literal>t=cos(x)./sin(x)</literal>
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

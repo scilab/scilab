@@ -22,8 +22,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    xinit(FileName)
-    xinit()
+      xinit(FileName)
+      xinit()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -40,10 +40,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    For the Postscript, Xfig, Gif or PPM driver, <literal>FileName</literal> must be specified. It is the name of 
-    the file where all the graphics operations are recorded.</para>
-    <para>For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and
-	  opens an empty graphic window.</para>
+      For the Postscript, Xfig, Gif or PPM driver, <literal>FileName</literal> must be specified. It is the name of 
+      the file where all the graphics operations are recorded.
+    </para>
+    <para>
+      For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and
+      opens an empty graphic window.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -56,7 +59,7 @@ driver("X11")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="driver">driver</link>
@@ -69,10 +72,4 @@ driver("X11")
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
-    <para>Jean-Baptiste Silvy</para>
-  </refsection>
 </refentry>
-

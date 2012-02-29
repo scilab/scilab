@@ -12,7 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_xcos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "scilabmode.h"
@@ -24,11 +25,12 @@
 static BOOL loadedDep = FALSE;
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {sci_Xcos, "xcos"},
     {sci_warnBlockByUID, "warnBlockByUID"},
     {sci_closeXcosFromScilab, "closeXcos"},
-    {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
+    {sci_xcosDiagramToScilab, "xcosDiagramToScilab"},
     {sci_xcosPalLoad, "xcosPalLoad"},
     {sci_xcosPalCategoryAdd, "xcosPalCategoryAdd"},
     {sci_xcosPalDelete, "xcosPalDelete"},
@@ -36,7 +38,9 @@ static gw_generic_table Tab[] = {
     {sci_xcosPalEnable, "xcosPalEnable"},
     {sci_xcosPalDisable, "xcosPalDisable"},
     {sci_xcosPalGenerateIcon, "xcosPalGenerateIcon"},
-    {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"}
+    {sci_xcosConfigureXmlFile, "xcosConfigureXmlFile"},
+    {sci_xcosAddToolsMenu, "xcosAddToolsMenu"},
+    {sci_xcosUpdateBlock, "xcosUpdateBlock"}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -51,11 +55,19 @@ int gw_xcos(void)
     }
 
     if (!loadedDep              // never reload
-        && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
+            && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
     {
         loadOnUseClassPath("Xcos");
         loadedDep = TRUE;
     }
+
+
+    if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

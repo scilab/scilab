@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -40,76 +40,76 @@ int createXMLObjectAtPos(int type, int pos, int id, void *pvApiCtx);
  * @param id the object id
  * @return 1 if all is ok else 0
  */
-int createXMLObjectAtPosInList(int * list, int stackPos, int type, int pos, int id, void *pvApiCtx);
+int createXMLObjectAtPosInList(int *list, int stackPos, int type, int pos, int id, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLDoc(int * mlist, void *pvApiCtx);
+int isXMLDoc(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLElem(int * mlist, void *pvApiCtx);
+int isXMLElem(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLAttr(int * mlist, void *pvApiCtx);
+int isXMLAttr(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLNs(int * mlist, void *pvApiCtx);
+int isXMLNs(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLList(int * mlist, void *pvApiCtx);
+int isXMLList(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLObject(int * mlist, void *pvApiCtx);
+int isXMLObject(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLNotHandled(int * mlist, void *pvApiCtx);
+int isXMLNotHandled(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLSet(int * mlist, void *pvApiCtx);
+int isXMLSet(int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-int isXMLValid(int * mlist, void *pvApiCtx);
+int isXMLValid(int *mlist, void *pvApiCtx);
 
 /**
  * Get the XMLObject field _id
  * @param mlist the mlist address
  * @return the object id.
  */
-int getXMLObjectId(int * mlist, void *pvApiCtx);
+int getXMLObjectId(int *mlist, void *pvApiCtx);
 
 #endif /* __XML_MLIST_H__ */

@@ -17,11 +17,11 @@
   <refnamediv>
     <refname>javasci.SciIntegerArray (deprecated)</refname>
     <refpurpose>Class to use int matrix in
-  Scilab. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
+      Scilab. Deprecated: Please use <link linkend="javasci">Javasci v2</link>
+    </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    
     <para>Method Summary :</para>
     <para>
       <literal>public SciIntegerArray(String name,SciIntegerArray Obj)</literal>
@@ -29,22 +29,44 @@
     <para>
       <literal>public SciIntegerArray(String name,int r,int c)</literal>
     </para>
-    <para><literal>public SciIntegerArray(String name,int r,int c,int [] x
-    )</literal>Constructor</para>
-    <para><literal>public int getNumbersOfRows()</literal>Get number of rows</para>
-    <para><literal>public int getNumbersOfCols() </literal>Get number of colons</para>
-    <para><literal>public String getName()</literal>Get Name of scilab object</para>
-    <para><literal>public int[] getData() </literal>Get Value of scilab
-    object</para>
-    <para><literal>public void disp() </literal>disp object</para>
-    <para><literal>public boolean Job(String job)</literal>(deprecated see Scilab.Exec) Execute a job in
-    scilab</para>
-    <para><literal>public void Get()</literal>Get in java object , value of scilab
-    object</para>
-    <para><literal>public void Send()</literal>Send to scilab object , value of java
-    object</para>
-    <para><literal>public int GetElement(int indr, int indc)</literal>Get a
-    specific element of scilab object</para>
+    <para>
+      <literal>public SciIntegerArray(String name,int r,int c,int [] x
+        )
+      </literal>
+      Constructor
+    </para>
+    <para>
+      <literal>public int getNumbersOfRows()</literal>Get number of rows
+    </para>
+    <para>
+      <literal>public int getNumbersOfCols() </literal>Get number of colons
+    </para>
+    <para>
+      <literal>public String getName()</literal>Get Name of scilab object
+    </para>
+    <para>
+      <literal>public int[] getData() </literal>Get Value of scilab
+      object
+    </para>
+    <para>
+      <literal>public void disp() </literal>disp object
+    </para>
+    <para>
+      <literal>public boolean Job(String job)</literal>(deprecated see Scilab.Exec) Execute a job in
+      scilab
+    </para>
+    <para>
+      <literal>public void Get()</literal>Get in java object , value of scilab
+      object
+    </para>
+    <para>
+      <literal>public void Send()</literal>Send to scilab object , value of java
+      object
+    </para>
+    <para>
+      <literal>public int GetElement(int indr, int indc)</literal>Get a
+      specific element of scilab object
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,15 +75,17 @@
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-    <member>
+      <member>
         Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link>
-       </member>
+      </member>
       <member>
         <link linkend="javasci.Scilab">javasci.Scilab</link>
       </member>
-      <member><link linkend="compile_and_run_javasci_v1">Compile and run with Javasci v1</link></member>
+      <member>
+        <link linkend="compile_and_run_javasci_v1">Compile and run with Javasci v1</link>
+      </member>
       <member>
         <link linkend="SciInteger">SciInteger</link>
       </member>
@@ -72,9 +96,5 @@
         <link linkend="SciStringArray">SciStringArray</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

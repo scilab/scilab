@@ -10,78 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="beta" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="beta" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>beta</refname>
-
     <refpurpose>beta function</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>z = beta(x,y)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>x, y</term>
-
         <listitem>
           <para>2 positive reals or 2 matrices (or vectors) of positive reals
-          of same size.</para>
+            of same size.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>z</term>
-
         <listitem>
-          <para>a real or a matrix of the same size than <literal>x</literal>
-          with <literal>z(i,j) = beta(x(i,j),y(i,j))</literal>.</para>
+          <para>
+            a real or a matrix of the same size than <literal>x</literal>
+            with <literal>z(i,j) = beta(x(i,j),y(i,j))</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Computes the complete beta function :</para>
-
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../mml/beta_equation1.mml" />
+          <imagedata align="center" fileref="../mml/beta_equation1.mml"/>
         </imageobject>
       </mediaobject>
     </informalequation>
-
-    <para>For small <literal>x</literal> and <literal>y</literal> the
-    algorithm uses the expression in function of the gamma function, else it
-    applies the exponential function onto the result of the
-    <literal>betaln</literal> function provided with the DCDFLIB: Library of
-    Fortran Routines for Cumulative Distribution Functions, Inverses, and
-    Other Parameter (see <link linkend="cdfbet">cdfbet</link> for more
-    information about DCDFLIB).</para>
+    <para>
+      For small <literal>x</literal> and <literal>y</literal> the
+      algorithm uses the expression in function of the gamma function, else it
+      applies the exponential function onto the result of the
+      <literal>betaln</literal> function provided with the DCDFLIB: Library of
+      Fortran Routines for Cumulative Distribution Functions, Inverses, and
+      Other Parameter (see <link linkend="cdfbet">cdfbet</link> for more
+      information about DCDFLIB).
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // example 1 :
 beta(5,2) - beta(2,5)   // symetry (must be exactly 0)
@@ -110,14 +94,15 @@ xtitle("The beta function on [0.2,10]x[0.2,10]")
 show_window()
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="gamma">gamma</link></member>
-
-      <member><link linkend="cdfbet">cdfbet</link></member>
+      <member>
+        <link linkend="gamma">gamma</link>
+      </member>
+      <member>
+        <link linkend="cdfbet">cdfbet</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

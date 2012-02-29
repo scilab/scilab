@@ -35,21 +35,27 @@
         <term>win_num</term>
         <listitem>
           <para>整数, グラフィックウインドウ番号. 指定されない場合, カレントのグラフィックウインドウ番号が
-		使用されます.</para>
+            使用されます.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xsave</literal>は,グラフィックウインドウ<literal>win_num</literal>に含まれる
-	グラフィックをバイナリファイル<literal>file_name</literal>に保存します.
-	このグラフィックは<literal>xload</literal>で再ロードすることが可能です.</para>
-    <para>Scilab 5.0以降, 全ての<link linkend="uimenu">uimenu</link> または
-	 <link linkend="uicontrol">uicontrol</link> ハンドルも保存されます.
+    <para>
+      <literal>xsave</literal>は,グラフィックウインドウ<literal>win_num</literal>に含まれる
+      グラフィックをバイナリファイル<literal>file_name</literal>に保存します.
+      このグラフィックは<literal>xload</literal>で再ロードすることが可能です.
     </para>
-    <para>グラフィックの場合, <literal>xsave(file_name,win_num)</literal> よりむしろ
-    <literal>save(file_name,scf(win_num))</literal>を使用してください.</para>
+    <para>
+      Scilab 5.0以降, 全ての<link linkend="uimenu">uimenu</link> または
+      <link linkend="uicontrol">uicontrol</link> ハンドルも保存されます.
+    </para>
+    <para>
+      グラフィックの場合, <literal>xsave(file_name,win_num)</literal> よりむしろ
+      <literal>save(file_name,scf(win_num))</literal>を使用してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -81,9 +87,5 @@ load(TMPDIR+'/foo.scg')
         <link linkend="load">load</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

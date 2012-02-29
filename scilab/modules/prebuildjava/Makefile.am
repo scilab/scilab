@@ -12,8 +12,7 @@
 if NEED_JAVA
 USEANT=1
 
-all:
-	$(ANT) 
+all: java
 
 endif
 

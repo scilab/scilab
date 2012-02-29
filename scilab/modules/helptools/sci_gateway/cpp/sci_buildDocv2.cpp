@@ -20,7 +20,6 @@ extern "C"
     /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "gw_helptools.h"
 #include "Scierror.h"
 #include "setgetSCIpath.h"

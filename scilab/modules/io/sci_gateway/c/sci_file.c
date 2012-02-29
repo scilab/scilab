@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_io.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "FileExist.h"
 #include "MALLOC.h"

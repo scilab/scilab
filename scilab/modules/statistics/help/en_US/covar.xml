@@ -47,15 +47,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>covar(x,y,fre)</literal>  computes the covariance of two variables x and y.
-    fre is a matrix of dimensions  length(x) x length(y). In fre the element
-    of indices (i,j) corresponds to the value or number or frequences of
-    x_i&amp;y_j.</para>
+    <para>
+      <literal>covar(x,y,fre)</literal>  computes the covariance of two variables x and y.
+      fre is a matrix of dimensions  length(x) x length(y). In fre the element
+      of indices (i,j) corresponds to the value or number or frequences of
+      x_i&amp;y_j.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,9 +71,5 @@ fre=[.20 .04 .01  0;
        0   0   0 .05]
 s=covar(x,y,fre)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

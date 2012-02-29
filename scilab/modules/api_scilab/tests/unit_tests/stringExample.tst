@@ -11,10 +11,10 @@ mkdir(pathconvert(TMPDIR+"/stringExample"));
 cd(pathconvert(TMPDIR+"/stringExample"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/stringExample.c",pathconvert(TMPDIR+"/stringExample/stringExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("stringExample",["stringExample","stringExample"],"stringExample.c",[],"","",cflags);
+ilib_build("gw_stringExample",["stringExample","stringExample"],"stringExample.c",[],"","",cflags);
 exec("loader.sce");
 
 a = "Scilab";
 b = ["New","Scilab";"API","functions"];
-if stringExample(a) <> a then pause, end
-if stringExample(b) <> b then pause, end
+assert_checkequal(stringExample(a), a);
+assert_checkequal(stringExample(b), b);

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,31 +29,29 @@ namespace org_modules_xml
      *
      * Class to handle DTD validation.
      */
-    class XMLValidationDTD : public XMLValidation
+    class XMLValidationDTD:public XMLValidation
     {
 
-    public :
-
+public:
         /**
          * @param path the path of the validation file
          * @param error a string which will contain error messages
          */
-        XMLValidationDTD(const char * path, std::string * error);
+        XMLValidationDTD(const char *path, std::string * error);
 
         /**
          * Use internal validation
          */
-        XMLValidationDTD();
+          XMLValidationDTD();
 
-        ~XMLValidationDTD();
+         ~XMLValidationDTD();
 
         bool validate(const XMLDocument & doc, std::string * error) const;
         bool validate(xmlTextReader * reader, std::string * error) const;
 
         const std::string toString() const;
 
-    private :
-        bool internalValidate;
+private:  bool internalValidate;
     };
 }
 

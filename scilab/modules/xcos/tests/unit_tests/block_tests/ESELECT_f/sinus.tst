@@ -26,6 +26,4 @@ if ierr <> %t then pause; end
 
 // launch the simulation
 scicos_simulate(scs_m);
-
-if norm(A_ref('values') - A('values')) / length(A_ref('values')) > 1e-6 then pause; end
-
+assert_checkalmostequal(A_ref('values'), A('values'));

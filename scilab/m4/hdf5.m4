@@ -87,6 +87,7 @@ AC_DEFUN([AC_JNI_HDF5], [
       LDFLAGS_save=$LDFLAGS
       # Provide known paths where distribs/OS can store JNI libs
       LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+      LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
       LDFLAGS="$LDFLAGS -L/usr/lib/jhdf5 -L/usr/lib64/jhdf5"               # RedHat
       LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab
    # -lpthread because of packaging bug in jhdf5
@@ -96,6 +97,7 @@ AC_DEFUN([AC_JNI_HDF5], [
 
       LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
       LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni:"
+      LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/java:/usr/lib64/java:"
       LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/jhdf5:/usr/lib64/jhdf5:"
       LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
       export LD_LIBRARY_PATH

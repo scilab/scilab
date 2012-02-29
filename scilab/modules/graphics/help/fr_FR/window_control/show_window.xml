@@ -24,12 +24,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Avec un paramètre,<literal>show_window</literal>met la fenêtre spécifiée au premier plan,
-    qu'elle soit iconifiée ou non. Sinon, met la fenêtre courante au premier plan.
-    Une fenêtre est crée si aucune n'existait auparavant.</para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      Avec un paramètre,<literal>show_window</literal>met la fenêtre spécifiée au premier plan,
+      qu'elle soit iconifiée ou non. Sinon, met la fenêtre courante au premier plan.
+      Une fenêtre est crée si aucune n'existait auparavant.
+    </para>
   </refsection>
 </refentry>

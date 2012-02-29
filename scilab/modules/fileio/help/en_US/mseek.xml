@@ -35,7 +35,9 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal>. -1 stands for last opened file. Default value is -1.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,17 +51,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    The function <literal>mseek()</literal> sets the position of the next input or output operation
-    on  the stream <literal>fd</literal>. The new position is at
-    the signed distance given by <literal>n</literal> bytes from  the  beginning,  from
-    the current position, or from the end of the file, according  to the 
-    <literal>flag</literal> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>.</para>
-    <para><literal>mseek()</literal> allows the file position indicator to be set  beyond
-    the  end of the existing data in the file.  If data is later
-    written at this point, subsequent reads of data in  the  gap
-    will  return  zero  until  data is actually written into the
-    gap.  <literal>mseek()</literal>, by itself, does not extend the  size  of  the
-    file.</para>
+      The function <literal>mseek()</literal> sets the position of the next input or output operation
+      on  the stream <literal>fd</literal>. The new position is at
+      the signed distance given by <literal>n</literal> bytes from  the  beginning,  from
+      the current position, or from the end of the file, according  to the 
+      <literal>flag</literal> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>.
+    </para>
+    <para>
+      <literal>mseek()</literal> allows the file position indicator to be set  beyond
+      the  end of the existing data in the file.  If data is later
+      written at this point, subsequent reads of data in  the  gap
+      will  return  zero  until  data is actually written into the
+      gap.  <literal>mseek()</literal>, by itself, does not extend the  size  of  the
+      file.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -87,7 +92,7 @@ mclose(fd1);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

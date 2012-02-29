@@ -13,7 +13,7 @@
 
 #include "gw_functions.h"
 #include "api_scilab.h"
-#include "stack-c.h"
+#include "machine.h"
 #include "recursionFunction.h"
 #include "localization.h"
 #include "Scierror.h"

@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  nbAdd = atomsRepositoryAdd(url[,section])
-	</synopsis>
+      nbAdd = atomsRepositoryAdd(url[,section])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -34,45 +34,45 @@
         <term>url</term>
         <listitem>
           <para>
-						Matrix of strings : list of the URLs to add
-					</para>
+            Matrix of strings : list of the URLs to add
+          </para>
         </listitem>
       </varlistentry>
-			<varlistentry>
+      <varlistentry>
         <term>section</term>
-				
         <listitem>
           <para>
-						This argument controls where the repository is added.
-					</para>
+            This argument controls where the repository is added.
+          </para>
           <para>
-						<literal>section</literal> is a single-string and its value should be :
-					</para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: the repository is added to the
-								"allusers" list and all user of scilab are affected.
-							</para>
+                <literal>"allusers"</literal>: the repository is added to the
+                "allusers" list and all user of scilab are affected.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>"user"</literal>: the repository is added to the
-								"user" list and only the current user is affected.
-							</para>
+              <para>
+                <literal>"user"</literal>: the repository is added to the
+                "user" list and only the current user is affected.
+              </para>
             </listitem>
           </itemizedlist>
-					<para>
-						If SCI/contrib is write accessible, "allusers" is the default value.
-						Otherwise, the default value is "user".
-					</para>
+          <para>
+            If SCI/contrib is write accessible, "allusers" is the default value.
+            Otherwise, the default value is "user".
+          </para>
         </listitem>
-			</varlistentry>
+      </varlistentry>
       <varlistentry>
         <term>nbAdd</term>
         <listitem>
           <para>
-						An integer : the number of repositories successfully added.
-					</para>
+            An integer : the number of repositories successfully added.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -83,8 +83,8 @@
   <refsection>
     <title>Description</title>
     <para>
-	  
-	</para>
+      
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -101,7 +101,7 @@ atomsRepositoryList()
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsRepositoryDel">atomsRepositoryDel</link>
@@ -114,10 +114,4 @@ atomsRepositoryList()
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

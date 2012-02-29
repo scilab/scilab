@@ -35,9 +35,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xgrid</literal> adds a grid on a 2D plot. <literal>style</literal> is the dash id
-    or the color id to use for the grid plotting. Use <literal>xset()</literal> for the
-    meaning of id.</para>
+    <para>
+      <literal>xgrid</literal> adds a grid on a 2D plot. <literal>style</literal> is the dash id
+      or the color id to use for the grid plotting. Use <literal>xset()</literal> for the
+      meaning of id.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -48,7 +50,7 @@ xgrid(2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xset">xset</link>
@@ -57,9 +59,5 @@ xgrid(2)
         <link linkend="plot2d">plot2d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

@@ -35,20 +35,26 @@
         <term>win_num</term>
         <listitem>
           <para>integer, the graphics window number. If not given, the current
-          graphics window is used.</para>
+            graphics window is used.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xload</literal> reloads the graphics contained in the file
-    <literal>file_name</literal> in the graphics window <literal>win_num</literal>.</para>
-    <para>Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also loaded.
+    <para>
+      <literal>xload</literal> reloads the graphics contained in the file
+      <literal>file_name</literal> in the graphics window <literal>win_num</literal>.
     </para>
-    <para>For files containing graphics, the <literal>load</literal> function can
-    be used instead of <literal>xload</literal>. <literal>xload</literal> does not restore
-    the window number, the window size nor the window dimensions.</para>
+    <para>
+      Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also loaded.
+    </para>
+    <para>
+      For files containing graphics, the <literal>load</literal> function can
+      be used instead of <literal>xload</literal>. <literal>xload</literal> does not restore
+      the window number, the window size nor the window dimensions.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,7 +74,7 @@ load(TMPDIR+'/foo.scg')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xsave">xsave</link>
@@ -80,9 +86,5 @@ load(TMPDIR+'/foo.scg')
         <link linkend="save">save</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

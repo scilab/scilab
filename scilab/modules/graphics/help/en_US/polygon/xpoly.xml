@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>xpoly</refname>
     <refpurpose>draw a polyline or a
-  polygon</refpurpose>
+      polygon
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -42,19 +43,22 @@
         <term>close</term>
         <listitem>
           <para>integer. If close=1, the polyline is closed; default value is
-          0.</para>
+            0.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpoly</literal> draws a single polyline described by the vectors of
-    coordinates <literal>xv</literal> and <literal>yv</literal>. If <literal>xv</literal> and
-    <literal>yv</literal> are matrices they are considered as vectors by
-    concatenating their columns. <literal>dtype</literal> can be
-    <literal>"lines"</literal> for using the current line style or
-    <literal>"marks"</literal> for using the current mark to draw the polyline.</para>
+    <para>
+      <literal>xpoly</literal> draws a single polyline described by the vectors of
+      coordinates <literal>xv</literal> and <literal>yv</literal>. If <literal>xv</literal> and
+      <literal>yv</literal> are matrices they are considered as vectors by
+      concatenating their columns. <literal>dtype</literal> can be
+      <literal>"lines"</literal> for using the current line style or
+      <literal>"marks"</literal> for using the current mark to draw the polyline.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -83,9 +87,5 @@ e.closed = 'off' // the polyline is now open
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

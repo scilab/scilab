@@ -11,6 +11,12 @@
 
 function [x] = input(msg, flag)
 
+  [lhs,rhs] = argn(0);
+
+  if rhs <> 1 & rhs <> 2 then
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "input", 1, 2));
+  end
+
   if type(msg) <> 10 then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",1));
   end

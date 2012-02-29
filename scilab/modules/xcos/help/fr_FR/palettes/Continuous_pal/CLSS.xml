@@ -70,11 +70,6 @@
               <xref linkend="Example_CLSS">Exemple</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_CLSS">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -85,7 +80,8 @@
       <listitem>
         <para>
           <link linkend="Continuous_pal">Palette Systèmes à temps continu
-        palette</link>
+            palette
+          </link>
         </para>
       </listitem>
     </itemizedlist>
@@ -100,11 +96,15 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>où <emphasis role="bold">x</emphasis> est le vecteur  des
-    variables d'état, <emphasis role="bold">u</emphasis> le vecteur des fonctions d'entrée et
-    <emphasis role="bold">y</emphasis> le vecteur des variables de sortie.</para>
-    <para>Le système est défini par les matrices <emphasis role="bold">(A, B, C, D)</emphasis> et l'état initial  <emphasis role="bold">X0</emphasis>.
-	Les dimensions doivent être compatibles.</para>
+    <para>
+      où <emphasis role="bold">x</emphasis> est le vecteur  des
+      variables d'état, <emphasis role="bold">u</emphasis> le vecteur des fonctions d'entrée et
+      <emphasis role="bold">y</emphasis> le vecteur des variables de sortie.
+    </para>
+    <para>
+      Le système est défini par les matrices <emphasis role="bold">(A, B, C, D)</emphasis> et l'état initial  <emphasis role="bold">X0</emphasis>.
+      Les dimensions doivent être compatibles.
+    </para>
   </refsection>
   <refsection id="Dialogbox_CLSS">
     <title>Boîte de dialogue</title>
@@ -120,28 +120,36 @@
         <para>
           <emphasis role="bold">A matrix</emphasis>
         </para>
-        <para>La matrice carrée <emphasis role="bold">A</emphasis>.</para>
+        <para>
+          La matrice carrée <emphasis role="bold">A</emphasis>.
+        </para>
         <para>Propriétés Type 'mat' de taille [-1,-1].</para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para>La matrice <emphasis role="bold">B</emphasis> , [] Ssi le système n'a pas d'entrées.</para>
+        <para>
+          La matrice <emphasis role="bold">B</emphasis> , [] Ssi le système n'a pas d'entrées.
+        </para>
         <para>Propriétés Type 'mat' de taille ["size(%1,2)","-1"].</para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para>La matrice <emphasis role="bold">C</emphasis>, [] si le système n'a pas de sorties.</para>
+        <para>
+          La matrice <emphasis role="bold">C</emphasis>, [] si le système n'a pas de sorties.
+        </para>
         <para>Propriétés Type 'mat' de taille ["-1","size(%1,2)"].</para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para>La matrice <emphasis role="bold">D</emphasis>, [] si le système n'a pas de terme D.</para>
+        <para>
+          La matrice <emphasis role="bold">D</emphasis>, [] si le système n'a pas de terme D.
+        </para>
         <para>Propriétés Type 'mat' de taille [-1,-1].</para>
       </listitem>
       <listitem>
@@ -157,16 +165,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -174,7 +190,8 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
@@ -183,23 +200,34 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>oui</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -212,7 +240,8 @@
   <refsection id="Example_CLSS">
     <title>Exemple</title>
     <para>Cet exemple illustre l'utilisation du bloc CLSS pour simuler et afficher
-    la forme d'onde en sortie <emphasis role="bold">y(t)=Vc(t)</emphasis> du circuit RLC ci-dessous.</para>
+      la forme d'onde en sortie <emphasis role="bold">y(t)=Vc(t)</emphasis> du circuit RLC ci-dessous.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -221,7 +250,8 @@
       </inlinemediaobject>
     </para>
     <para>Les équations pour un circuit RLC sont les suivantes. Elles résultent des lois en tension
-    de Kirchhoff's et de la loi de Newton.</para>
+      de Kirchhoff's et de la loi de Newton.
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -230,9 +260,11 @@
       </inlinemediaobject>
     </para>
     <para>R, L et C sont les résistance, inductance et capacité du système.</para>
-    <para>Nous définissons la tension aux bornes de la capacité <literal>Vc</literal> et le courant
-    dans l'inductance <literal>iL</literal> comme variables d'état
-    <literal>X1</literal> et <literal>X2.</literal></para>
+    <para>
+      Nous définissons la tension aux bornes de la capacité <literal>Vc</literal> et le courant
+      dans l'inductance <literal>iL</literal> comme variables d'état
+      <literal>X1</literal> et <literal>X2.</literal>
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -273,7 +305,8 @@
       </inlinemediaobject>
     </para>
     <para>Le schéma suivant montre ces équations modéllisées dans Xcos où
-    R=10Ω, L=5 mΗ et C=0,1µF; Les états initiaux  sont x1=0 et x2=0,5.</para>
+      R=10Ω, L=5 mΗ et C=0,1µF; Les états initiaux  sont x1=0 et x2=0,5.
+    </para>
     <para>Pour obtenir la sortie Vc(t) on utilise le bloc CLSS de la palette Systèmes à temps continu.</para>
     <para>
       <inlinemediaobject>
@@ -305,15 +338,6 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_CLSS">
-    <title>Auteurs</title>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Zhour Madini-Zouine</emphasis>
-        DIGITEO</para>
       </listitem>
     </itemizedlist>
   </refsection>

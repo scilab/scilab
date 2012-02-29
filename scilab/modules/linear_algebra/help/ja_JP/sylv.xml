@@ -34,7 +34,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 (<literal>'c'</literal> または <literal>'d'</literal>)</para>
+          <para>
+            文字列 (<literal>'c'</literal> または <literal>'d'</literal>)
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,17 +44,17 @@
   <refsection>
     <title>説明</title>
     <para>
-      <literal>X = sylv(A,B,C,'c')</literal> は 
+      <literal>X= sylv(A,B,C,'c')</literal> は 
       "連続時間" シルベスタ方程式の解<literal>X</literal>を計算する, 
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 A*X+X*B=C 
  ]]></programlisting>
     <para>
       <literal>X=sylv(A,B,C,'d')</literal> は 
       "離散時間" シルベスタ方程式の解<literal>X</literal>を計算する, 
     </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 A*X*B-X=C
  ]]></programlisting>
   </refsection>

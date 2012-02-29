@@ -19,13 +19,10 @@
 
 #include "charEncoding.h"
 #include "MALLOC.h"
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_string.h"
-#include "api_double.h"
 #include "api_internal_string.h"
 #include "call_scilab.h"
-#include "stack-c.h"
 #include "localization.h"
 
 extern "C"

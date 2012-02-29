@@ -17,7 +17,8 @@
   <refnamediv xml:id="besseli">
     <refname>besseli</refname>
     <refpurpose>Modified Bessel functions of the first kind (I sub
-    alpha).</refpurpose>
+      alpha).
+    </refpurpose>
   </refnamediv>
   <refnamediv xml:id="besselj">
     <refname>besselj</refname>
@@ -26,26 +27,30 @@
   <refnamediv xml:id="besselk">
     <refname>besselk</refname>
     <refpurpose>Modified Bessel functions of the second kind (K sub
-    alpha).</refpurpose>
+      alpha).
+    </refpurpose>
   </refnamediv>
   <refnamediv xml:id="bessely">
     <refname>bessely</refname>
     <refpurpose>Bessel functions of the second kind (Y sub
-    alpha).</refpurpose>
+      alpha).
+    </refpurpose>
   </refnamediv>
   <refnamediv xml:id="besselh">
     <refname>besselh</refname>
     <refpurpose>Bessel functions of the third kind (aka Hankel
-    functions)</refpurpose>
+      functions)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>y = besseli(alpha,x [,ice])
-y = besselj(alpha,x [,ice])
-y = besselk(alpha,x [,ice])
-y = bessely(alpha,x [,ice])
-y = besselh(alpha,x)
-y = besselh(alpha,K,x [,ice])</synopsis>
+      y = besselj(alpha,x [,ice])
+      y = besselk(alpha,x [,ice])
+      y = bessely(alpha,x [,ice])
+      y = besselh(alpha,x)
+      y = besselh(alpha,K,x [,ice])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -72,7 +77,8 @@ y = besselh(alpha,K,x [,ice])</synopsis>
         <term>K</term>
         <listitem>
           <para>integer, with possible values 1 or 2, the Hankel function
-          type.</para>
+            type.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -81,55 +87,68 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <title>Description</title>
     <itemizedlist>
       <listitem>
-        <para><literal>besseli(alpha,x)</literal> computes modified Bessel
-        functions of the first kind (I sub alpha), for real order
-        <literal>alpha</literal> and argument <literal>x</literal>.
-        <literal>besseli(alpha,x,1)</literal> computes
-        <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>.</para>
+        <para>
+          <literal>besseli(alpha,x)</literal> computes modified Bessel
+          functions of the first kind (I sub alpha), for real order
+          <literal>alpha</literal> and argument <literal>x</literal>.
+          <literal>besseli(alpha,x,1)</literal> computes
+          <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>besselj(alpha,x)</literal> computes Bessel functions of
-        the first kind (J sub alpha), for real order <literal>alpha</literal>
-        and argument <literal>x</literal>.
-        <literal>besselj(alpha,x,1)</literal> computes
-        <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+        <para>
+          <literal>besselj(alpha,x)</literal> computes Bessel functions of
+          the first kind (J sub alpha), for real order <literal>alpha</literal>
+          and argument <literal>x</literal>.
+          <literal>besselj(alpha,x,1)</literal> computes
+          <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>besselk(alpha,x)</literal> computes modified Bessel
-        functions of the second kind (K sub alpha), for real order
-        <literal>alpha</literal> and argument <literal>x</literal>.
-        <literal>besselk(alpha,x,1)</literal> computes
-        <literal>besselk(alpha,x).*exp(x)</literal>.</para>
+        <para>
+          <literal>besselk(alpha,x)</literal> computes modified Bessel
+          functions of the second kind (K sub alpha), for real order
+          <literal>alpha</literal> and argument <literal>x</literal>.
+          <literal>besselk(alpha,x,1)</literal> computes
+          <literal>besselk(alpha,x).*exp(x)</literal>.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>bessely(alpha,x)</literal> computes Bessel functions of
-        the second kind (Y sub alpha), for real order <literal>alpha</literal>
-        and argument <literal>x</literal>.
-        <literal>bessely(alpha,x,1)</literal> computes
-        <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+        <para>
+          <literal>bessely(alpha,x)</literal> computes Bessel functions of
+          the second kind (Y sub alpha), for real order <literal>alpha</literal>
+          and argument <literal>x</literal>.
+          <literal>bessely(alpha,x,1)</literal> computes
+          <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>besselh(alpha [,K] ,x)</literal> computes Bessel
-        functions of the third kind (Hankel function H1 or H2 depending on
-        <literal>K</literal>), for real order <literal>alpha</literal> and
-        argument <literal>x</literal>. If omitted <literal>K</literal> is
-        supposed to be equal to 1. <literal>besselh(alpha,1,x,1)</literal>
-        computes <literal>besselh(alpha,1,x).*exp(-%i*x)</literal> and
-        <literal>besselh(alpha,2,x,1)</literal> computes
-        <literal>besselh(alpha,2,x).*exp(%i*x)</literal></para>
+        <para>
+          <literal>besselh(alpha [,K] ,x)</literal> computes Bessel
+          functions of the third kind (Hankel function H1 or H2 depending on
+          <literal>K</literal>), for real order <literal>alpha</literal> and
+          argument <literal>x</literal>. If omitted <literal>K</literal> is
+          supposed to be equal to 1. <literal>besselh(alpha,1,x,1)</literal>
+          computes <literal>besselh(alpha,1,x).*exp(-%i*x)</literal> and
+          <literal>besselh(alpha,2,x,1)</literal> computes
+          <literal>besselh(alpha,2,x).*exp(%i*x)</literal>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection>
     <title>Remarks</title>
-    <para>If <literal>alpha</literal> and <literal>x</literal> are arrays of
-    the same size, the result <literal>y</literal> is also that size. If
-    either input is a scalar, it is expanded to the other input's size. If one
-    input is a row vector and the other is a column vector, the
-    result<literal>y</literal> is a two-dimensional table of function
-    values.</para>
+    <para>
+      If <literal>alpha</literal> and <literal>x</literal> are arrays of
+      the same size, the result <literal>y</literal> is also that size. If
+      either input is a scalar, it is expanded to the other input's size. If one
+      input is a row vector and the other is a column vector, the
+      result<literal>y</literal> is a two-dimensional table of function
+      values.
+    </para>
     <para>Y_alpha and J_alpha Bessel functions are 2 independent solutions of
-    the Bessel 's differential equation :</para>
+      the Bessel 's differential equation :
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
@@ -138,7 +157,8 @@ y = besselh(alpha,K,x [,ice])</synopsis>
       </mediaobject>
     </informalequation>
     <para>K_alpha and I_alpha modified Bessel functions are 2 independant
-    solutions of the modified Bessel 's differential equation :</para>
+      solutions of the modified Bessel 's differential equation :
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
@@ -147,8 +167,9 @@ y = besselh(alpha,K,x [,ice])</synopsis>
       </mediaobject>
     </informalequation>
     <para>H^1_alpha and H^2_alpha, the Hankel functions of first and second
-    kind, are linear linear combinations of Bessel functions of the first and
-    second kinds:</para>
+      kind, are linear linear combinations of Bessel functions of the first and
+      second kinds:
+    </para>
     <informalequation>
       <mediaobject>
         <imageobject>
@@ -231,21 +252,16 @@ y = besselh(alpha,K,x [,ice])</synopsis>
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Amos, D. E., (SNLA)</member>
-      <member>Daniel, S. L., (SNLA)</member>
-      <member>Weston, M. K., (SNLA)</member>
-    </simplelist>
-  </refsection>
-  <refsection>
     <title>Used Functions</title>
     <para>The source codes can be found in SCI/modules/special_functions/src/fortran/slatec and
-	    SCI/modules/special_functions/src/fortran</para>
+      SCI/modules/special_functions/src/fortran
+    </para>
     <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
-    dbesy.f, zbesy.f, zbesh.f</para>
+      dbesy.f, zbesy.f, zbesh.f
+    </para>
     <para>Drivers to extend definition area (Serge Steer INRIA): dbesig.f,
-    zbesig.f, dbesjg.f, zbesjg.f, dbeskg.f, zbeskg.f, dbesyg.f, zbesyg.f,
-    zbeshg.f</para>
+      zbesig.f, dbesjg.f, zbesjg.f, dbeskg.f, zbeskg.f, dbesyg.f, zbesyg.f,
+      zbeshg.f
+    </para>
   </refsection>
 </refentry>

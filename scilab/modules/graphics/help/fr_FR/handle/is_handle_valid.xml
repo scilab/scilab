@@ -34,14 +34,17 @@
       <varlistentry>
         <term>isValid</term>
         <listitem>
-	  <para>Matrice de booléens de même taille que <literal>h</literal></para>
+          <para>
+            Matrice de booléens de même taille que <literal>h</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
+    <para>
+       La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
       Un handle considéré comme valide s'il n'a pas été détruit.
       Le résultat est la matrice de booléens <literal>isValid</literal>.
       <literal>isValid(i,j)</literal> est vrai si <literal>h(i,j)</literal> est valide
@@ -69,7 +72,7 @@ is_handle_valid(polylines)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="delete">delete</link>
@@ -79,11 +82,4 @@ is_handle_valid(polylines)
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-
-
-

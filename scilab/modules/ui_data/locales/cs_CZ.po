@@ -8,21 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-28 21:45+0000\n"
+"PO-Revision-Date: 2012-01-23 20:35+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): 1, 2 or 4 expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno 1, 2 nebo 4.\n"
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -37,8 +41,8 @@ msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans nemůže být upraven.\n"
 
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Neurčená proměnná %s.\n"
+msgid "%s: Undefined variable: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"

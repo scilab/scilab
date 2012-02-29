@@ -33,22 +33,22 @@
       </varlistentry>
       <varlistentry>
         <term>flag</term>
-		<listitem>
-			<para>A character option with possible values</para>
-			<variablelist>
-				<varlistentry>
-					<term>'u'</term>
-					<listitem>
-						<para>for upper</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term>'l'</term>
-					<listitem>
-						<para>for lower</para>
-					</listitem>
-				</varlistentry>
-			</variablelist>
+        <listitem>
+          <para>A character option with possible values</para>
+          <variablelist>
+            <varlistentry>
+              <term>'u'</term>
+              <listitem>
+                <para>for upper</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'l'</term>
+              <listitem>
+                <para>for lower</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,9 +56,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    converts the matrix of strings <literal>str-matrix</literal>
-    into lower case (for <literal>"l"</literal> ;default value) or
-    upper case (for <literal>"u"</literal>).</para>
+      converts the matrix of strings <literal>str-matrix</literal>
+      into lower case (for <literal>"l"</literal> ;default value) or
+      upper case (for <literal>"u"</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

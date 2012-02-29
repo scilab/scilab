@@ -13,6 +13,10 @@
 #ifndef __COMMON_API__
 #define __COMMON_API__
 
+#if !defined(__INTERNAL_API_SCILAB__)
+#error Do not include api_common.h. Include api_scilab.h instead.
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,14 +43,140 @@ typedef struct api_Ctx
 #ifdef _MSC_VER
 	#ifndef API_SCILAB_EXPORTS
 		__declspec( dllimport ) StrCtx* pvApiCtx;
+    #else
+		extern StrCtx* pvApiCtx;
 	#endif
 #else
 	extern StrCtx* pvApiCtx;
 #endif
 
-#include "api_error.h"
+#include "api_scilab.h"
 /* generics functions */
 
+int* getInputArgument(void* _pvCtx);
+#define InputArgument (*getInputArgument(pvApiCtx))
+    
+#ifdef Rhs
+#undef Rhs
+#endif
+#define Rhs (*getInputArgument(pvApiCtx))
+
+int* getOutputArgument(void* _pvCtx);
+#define OutputArgument (*getOutputArgument(pvApiCtx))
+#ifdef Lhs
+#undef Lhs
+#endif
+#define Lhs (*getOutputArgument(pvApiCtx))
+
+int* assignOutputVariable(void* _pvCtx, int _iVal);
+#define AssignOutputVariable(x) (*assignOutputVariable(pvApiCtx, x))
+#ifdef LhsVar
+#undef LhsVar
+#endif
+#define LhsVar(x) (*assignOutputVariable(pvApiCtx, x))
+
+int updateStack(void* _pvCtx);
+#define UpdateStack() if (! updateStack(pvApiCtx)) { return 0; }
+#ifdef PutLhsVar
+#undef PutLhsVar
+#endif
+#define PutLhsVar() if (! updateStack(pvApiCtx)) { return 0; }
+
+/**
+ * Check input argument count
+ * @param[in] _iMin min value
+ * @param[in] _iMax : max value
+ * @return if _iMin >= rhs >= _iMax
+ */
+int checkInputArgument(void* _pvCtx, int _iMin, int _iMax);
+#define CheckInputArgument(ctx, min, max) \
+    if(checkInputArgument(ctx, min, max) == 0) \
+    { \
+        return 0; \
+    }
+#ifdef CheckRhs
+#undef CheckRhs
+#endif
+#define CheckRhs(min, max) \
+    if(checkInputArgument(pvApiCtx, min, max) == 0) \
+    { \
+        return 0; \
+    }
+/**
+ * Check input argument count
+ * @param[in] _iMin min value
+ * @return if rhs >= _iMin
+ */
+int checkInputArgumentAtLeast(void* _pvCtx, int _iMin);
+#define CheckInputArgumentAtLeast(ctx, min) \
+    if(checkInputArgumentAtLeast(ctx, min) == 0) \
+    { \
+        return 0; \
+    }
+
+/**
+ * Check input argument count
+ * @param[in] _iMax : max value
+ * @return if rhs <= max
+ */
+int checkInputArgumentAtMost(void* _pvCtx, int _iMax);
+#define CheckInputArgumentAtMost(ctx, max) \
+    if(checkInputArgumentAtMost(ctx, max) == 0) \
+    { \
+        return 0; \
+    }
+
+/**
+ * Check output argument count
+ * @param[in] _iMin min value
+ * @param[in] _iMax : max value
+ * @return if _iMin >= lhs >= _iMax
+ */
+int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax);
+#define CheckOutputArgument(ctx, min, max) \
+    if(checkOutputArgument(ctx, min, max) == 0) \
+    { \
+        return 0; \
+    }
+#ifdef CheckLhs
+#undef CheckLhs
+#endif
+#define CheckLhs(min, max) \
+    if(checkOutputArgument(pvApiCtx, min, max) == 0) \
+    { \
+        return 0; \
+    }
+
+/**
+ * Check output argument count
+ * @param[in] _iMin min value
+ * @return if lhs >= _iMin
+ */
+int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin);
+#define CheckOutputArgumentAtLeast(ctx, min) \
+    if(checkOutputArgumentAtLeast(ctx, min) == 0) \
+    { \
+        return 0; \
+    }
+
+/**
+ * Check output argument count
+ * @param[in] _iMax : max value
+ * @return if lhs <= max
+ */
+int checkOutputArgumentAtMost(void* _pvCtx, int _iMax);
+#define CheckOutputArgumentAtMost(ctx, max) \
+    if(checkOutputArgumentAtMost(ctx, max) == 0) \
+    { \
+        return 0; \
+    }
+
+int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen);
+#define CallOverloadFunction(x) callOverloadFunction(pvApiCtx, x, fname, strlen(fname))
+#ifdef OverLoad
+#undef OverLoad
+#endif
+#define OverLoad(x) callOverloadFunction(pvApiCtx, x, fname, (unsigned int)strlen(fname))
 /**
  * Get the memory address of a variable from the variable position
  * @param[in] _iVar variable number

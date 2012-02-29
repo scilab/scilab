@@ -70,11 +70,6 @@
               <xref linkend="Seealso_LOGBLK_f">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_LOGBLK_f">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -122,16 +117,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -150,19 +153,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -207,9 +220,5 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_LOGBLK_f">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

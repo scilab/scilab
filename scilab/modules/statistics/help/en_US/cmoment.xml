@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>mom=cmoment(x,ord)
-mom=cmoment(x,ord,'r') or mom=cmoment(x,ord,1)
-mom=cmoment(x,ord,'c') or mom=cmoment(x,ord,2)</synopsis>
+      mom=cmoment(x,ord,'r') or mom=cmoment(x,ord,1)
+      mom=cmoment(x,ord,'c') or mom=cmoment(x,ord,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -44,20 +45,22 @@ mom=cmoment(x,ord,'c') or mom=cmoment(x,ord,2)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    cmoment<literal>(x,ord)</literal> is the central moment or order ord of
-    the elements of <literal>x</literal>.
-    If a  third argument  of type string  <literal>'r'</literal> (or  
-    <literal>1</literal>) or  <literal>'c'</literal> (or <literal> 2</literal>)  is used, we  get  in the
-    first   case,   a  row   vector   <literal> mom</literal>  such   that
-    <literal>mom(j)</literal>   contains  the   central  moment   of  order
-    <literal>ord</literal>     of     the     <literal>j</literal>     column     of
-    <literal>x</literal>. <literal>cmoment(x,ord,'c')</literal>  is used in  the same way
-    for the central moments in the rows.</para>
+      cmoment<literal>(x,ord)</literal> is the central moment or order ord of
+      the elements of <literal>x</literal>.
+      If a  third argument  of type string  <literal>'r'</literal> (or  
+      <literal>1</literal>) or  <literal>'c'</literal> (or <literal> 2</literal>)  is used, we  get  in the
+      first   case,   a  row   vector   <literal> mom</literal>  such   that
+      <literal>mom(j)</literal>   contains  the   central  moment   of  order
+      <literal>ord</literal>     of     the     <literal>j</literal>     column     of
+      <literal>x</literal>. <literal>cmoment(x,ord,'c')</literal>  is used in  the same way
+      for the central moments in the rows.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -70,7 +73,7 @@ mom=cmoment(x,3,'c')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sum">sum</link>
@@ -112,9 +115,5 @@ mom=cmoment(x,3,'c')
         <link linkend="nanstdev">nanstdev</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

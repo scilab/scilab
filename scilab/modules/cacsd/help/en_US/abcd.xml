@@ -28,7 +28,9 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) in state-space or transfer form</para>
+          <para>
+            linear system (<literal>syslin</literal> list) in state-space or transfer form
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,13 +44,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the <literal>A,B,C,D</literal> matrices from a linear system <literal>Sl</literal>.</para>
+      returns the <literal>A,B,C,D</literal> matrices from a linear system <literal>Sl</literal>.
+    </para>
     <para>
-    Utility function. For transfer matrices <literal>Sl</literal> is converted
-    into state-space form by <literal>tf2ss</literal>.</para>
+      Utility function. For transfer matrices <literal>Sl</literal> is converted
+      into state-space form by <literal>tf2ss</literal>.
+    </para>
     <para>
-    The matrices <literal>A,B,C,D</literal> are the elements <literal>2</literal> to <literal>5</literal> of
-    the <literal>syslin</literal> list <literal>Sl</literal>, i.e. <literal>[A,B,C,D] = Sl(2:5)</literal> .</para>
+      The matrices <literal>A,B,C,D</literal> are the elements <literal>2</literal> to <literal>5</literal> of
+      the <literal>syslin</literal> list <literal>Sl</literal>, i.e. <literal>[A,B,C,D] = Sl(2:5)</literal> .
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -67,7 +72,7 @@ c*a*b-C*A*B
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>y=matrix(v,n,m)
-y=matrix(v,[sizes])</synopsis>
+      y=matrix(v,[sizes])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -44,25 +45,28 @@ y=matrix(v,[sizes])</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	<literal>n</literal> x <literal>m</literal>個のエントリを有する
-	ベクトルまたは行列の場合,
-	コマンド <literal>y=matrix(v,n,m)</literal> または同様な
-	<literal>y=matrix(v,[n,m])</literal> は
-	<literal>v</literal> ベクトル(または行列)を,
-	<literal>v</literal>のエントリを列方向でスタックすることにより
-	<literal>nxm</literal> の行列に変換します.</para>
+      <literal>n</literal> x <literal>m</literal>個のエントリを有する
+      ベクトルまたは行列の場合,
+      コマンド <literal>y=matrix(v,n,m)</literal> または同様な
+      <literal>y=matrix(v,[n,m])</literal> は
+      <literal>v</literal> ベクトル(または行列)を,
+      <literal>v</literal>のエントリを列方向でスタックすることにより
+      <literal>nxm</literal> の行列に変換します.
+    </para>
     <para>
-	m または nの次元の一つが -1 に等しい場合,もう一つの次元で
-	size(v,'*')を割った数が自動的に代入されます.</para>
+      m または nの次元の一つが -1 に等しい場合,もう一つの次元で
+      size(v,'*')を割った数が自動的に代入されます.
+    </para>
     <para>
-    <literal>prod(size(v))==prod(sizes)</literal>のようなハイパー行列の場合, 
-	コマンド <literal>y=matrix(v,sizes)</literal> (または
-    等価な <literal>y=matrix(v,n1,n2,...nm)</literal>) は,
-	<literal>v</literal>のエントリを
-    "列方向"(つまり,最初の次元が最初に変わる)にスタックする
-	ことにより<literal>v</literal> を行列またはハイパー行列に変換します.
-	<literal>y=matrix(v,sizes)</literal>
-    は,sizes がスカラーまたは2要素のベクトルの場合,通常の行列となります.</para>
+      <literal>prod(size(v))==prod(sizes)</literal>のようなハイパー行列の場合, 
+      コマンド <literal>y=matrix(v,sizes)</literal> (または
+      等価な <literal>y=matrix(v,n1,n2,...nm)</literal>) は,
+      <literal>v</literal>のエントリを
+      "列方向"(つまり,最初の次元が最初に変わる)にスタックする
+      ことにより<literal>v</literal> を行列またはハイパー行列に変換します.
+      <literal>y=matrix(v,sizes)</literal>
+      は,sizes がスカラーまたは2要素のベクトルの場合,通常の行列となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

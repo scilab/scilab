@@ -29,8 +29,10 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-        <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
-	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+          <para>
+            スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+            パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,9 +40,10 @@
   <refsection>
     <title>説明</title>
     <para>
-    関数 <literal>mtell()</literal> は,
-	名前付きのストリーム<literal>fd</literal>が指すファイルの先頭に対して
-	相対的なカレントのバイトのオフセットを返します.</para>
+      関数 <literal>mtell()</literal> は,
+      名前付きのストリーム<literal>fd</literal>が指すファイルの先頭に対して
+      相対的なカレントのバイトのオフセットを返します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

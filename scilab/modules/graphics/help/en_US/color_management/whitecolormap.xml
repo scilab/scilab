@@ -34,7 +34,9 @@
       <varlistentry>
         <term>cmap</term>
         <listitem>
-          <para>matrix with 3 columns <literal>[R,G,B]</literal>.</para>
+          <para>
+            matrix with 3 columns <literal>[R,G,B]</literal>.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -52,7 +54,7 @@ f.color_map = whitecolormap(32);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>
@@ -102,4 +104,3 @@ f.color_map = whitecolormap(32);
     </simplelist>
   </refsection>
 </refentry>
-

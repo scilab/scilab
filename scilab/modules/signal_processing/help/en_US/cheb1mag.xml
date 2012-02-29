@@ -35,7 +35,9 @@
       <varlistentry>
         <term>sample</term>
         <listitem>
-          <para>vector of frequencies where <literal>cheb1mag</literal> is evaluated</para>
+          <para>
+            vector of frequencies where <literal>cheb1mag</literal> is evaluated
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,11 +51,18 @@
   <refsection>
     <title>Description</title>
     <para>
-    Square magnitude response of a type 1 Chebyshev filter.</para>
-    <para><literal>omegac</literal>=passband edge.</para>
-    <para><literal>epsilon</literal>such that <literal>1/(1+epsilon^2)</literal>=passband ripple.</para>
-    <para><literal>sample</literal>vector of frequencies where the square magnitude
-    is desired.</para>
+      Square magnitude response of a type 1 Chebyshev filter.
+    </para>
+    <para>
+      <literal>omegac</literal>=passband edge.
+    </para>
+    <para>
+      <literal>epsilon</literal>such that <literal>1/(1+epsilon^2)</literal>=passband ripple.
+    </para>
+    <para>
+      <literal>sample</literal>vector of frequencies where the square magnitude
+      is desired.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,7 +75,7 @@ xtitle('','frequencies','magnitude')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="buttmag">buttmag</link>

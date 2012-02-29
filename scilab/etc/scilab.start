@@ -90,8 +90,11 @@ setenv("VERSION", getversion());
 // ATOMS ===============================================================
 if with_module("atoms") then
   atomsSystemInit();
-  atomsAutoload();
-  clear atomsSystemInit atomsAutoload
+  if sciargs() <> "-noatomsautoload" then
+    atomsAutoload();
+    clear atomsAutoload;
+  end
+  clear atomsSystemInit;
 end
 
 // Protect variable previously defined  ================================

@@ -33,8 +33,9 @@ f2=['#include <math.h>'
 mputl(f2,TMP_DIR+filesep()+'fun2.c');
 
 //creating the interface file
-i=['#include ""stack-c.h""'
-	'#include ""stackTypeVariable.h""'
+i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
+   '#include ""stack-c.h""'
+   '#include ""stackTypeVariable.h""'
    'extern int fun1 ( double *x, double *y);'
    'int intfun1(fname)' 
    'char * fname;'

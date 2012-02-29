@@ -34,20 +34,24 @@
       <varlistentry>
         <term>rect</term>
         <listitem>
-          <para> <literal>[xmin,ymin,xmax,ymax]</literal></para>
+          <para>
+            <literal>[xmin,ymin,xmax,ymax]</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para>行列 <literal>int(a)</literal> のエントリはカレントのカラーマップの
-	カラーマップエントリとして使用されます.
-	<literal>rect</literal> はカレントのスケールで矩形を指定します.
-	行列はこの矩形の中に描画されます.
-	各行列のエントリはその色で塗られた小さな矩形として描画されます.
-	ある行列のエントリがカラーマップの外側の場合,
-	対応する矩形は表示されません.</para>
+    <para>
+      行列 <literal>int(a)</literal> のエントリはカレントのカラーマップの
+      カラーマップエントリとして使用されます.
+      <literal>rect</literal> はカレントのスケールで矩形を指定します.
+      行列はこの矩形の中に描画されます.
+      各行列のエントリはその色で塗られた小さな矩形として描画されます.
+      ある行列のエントリがカラーマップの外側の場合,
+      対応する矩形は表示されません.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -105,9 +109,5 @@ f.pixmap='off';
         <link linkend="Matplot_properties">Matplot_properties</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

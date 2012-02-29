@@ -13,14 +13,12 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getmemory()</literal> は利用可能なシステムメモリを取得します (キロ-オクテット).</para>
-    <para><literal>[free, total]=getmemory()</literal> は利用可能なシステムメモリおよびシステムメモリの総量を返します
-	  (キロ-オクテット).</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
+    <para>
+      <literal>getmemory()</literal> は利用可能なシステムメモリを取得します (キロ-オクテット).
+    </para>
+    <para>
+      <literal>[free, total]=getmemory()</literal> は利用可能なシステムメモリおよびシステムメモリの総量を返します
+      (キロ-オクテット).
+    </para>
   </refsection>
 </refentry>

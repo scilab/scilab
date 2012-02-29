@@ -54,7 +54,6 @@
             <para/>
           </para>
         </listitem>
-        
         <listitem><para>
             Open with the system default application            
             <para/>
@@ -100,11 +99,5 @@
         </listitem>
       </itemizedlist>
     </para>
-  </refsection>
-  <refsection>
-    <title>Author</title>
-    <simplelist type="vert">
-      <member>Calixte DENIZET</member>
-    </simplelist>
   </refsection>
 </refentry>

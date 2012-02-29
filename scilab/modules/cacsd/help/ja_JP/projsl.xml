@@ -28,7 +28,9 @@
       <varlistentry>
         <term>sl,slp</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,16 +43,20 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>slp</literal>= <literal>sl</literal>の射影モデル,
-	ただし,<literal>Q*M</literal>は射影のフルランク分解です.</para>
     <para>
-    <literal>(A,B,C,D)</literal> が<literal>sl</literal>の実現の場合, 
-	射影モデルは<literal>(M*A*Q,M*B,C*Q,D)</literal>により与えられます.</para>
+      <literal>slp</literal>= <literal>sl</literal>の射影モデル,
+      ただし,<literal>Q*M</literal>は射影のフルランク分解です.
+    </para>
     <para>
-    通常,射影 <literal>Q*M</literal> は適当な相補行列<literal>W</literal>
-	のスペクトル射影により得られます.
-	例えば, 
-	<literal>W</literal> = (重みつき)グラミアンの積またはリカッチ方程式の積.</para>
+      <literal>(A,B,C,D)</literal> が<literal>sl</literal>の実現の場合, 
+      射影モデルは<literal>(M*A*Q,M*B,C*Q,D)</literal>により与えられます.
+    </para>
+    <para>
+      通常,射影 <literal>Q*M</literal> は適当な相補行列<literal>W</literal>
+      のスペクトル射影により得られます.
+      例えば, 
+      <literal>W</literal> = (重みつき)グラミアンの積またはリカッチ方程式の積.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -79,9 +85,5 @@ hankelsv(slr)
         <link linkend="pbig">pbig</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.;   </para>
   </refsection>
 </refentry>

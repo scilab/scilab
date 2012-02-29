@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-12-28 21:43+0000\n"
+"PO-Revision-Date: 2012-01-23 20:27+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
@@ -49,6 +53,48 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupních argumentů: Očekáváno platné vyjádření základní "
 "%d.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -88,11 +134,6 @@ msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"
 
 #, c-format
 msgid ""
@@ -290,19 +331,6 @@ msgstr ""
 "kladných celých čísel.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno kladné celé číslo"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer matrix "
-"expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána nezáporná celočíselná "
-"matice.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
@@ -341,11 +369,6 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer >= %d expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo >= %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"

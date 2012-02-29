@@ -21,7 +21,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -39,7 +38,7 @@ public class AboutXcosAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      */
@@ -49,7 +48,7 @@ public class AboutXcosAction extends DefaultAction {
 
     /**
      * Menu created for "Help menu"
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab graph
      * @return the menu
@@ -72,11 +71,7 @@ public class AboutXcosAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
-        String[] contents = { Xcos.TRADENAME, "", XcosMessages.CONSORTIUM,
-                XcosMessages.COPYRIGHT_INRIA, "", XcosMessages.SCICOS_BASED };
 
-        ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null,
-                null);
+        ScilabAboutBox.displayAndWait();
     }
 }

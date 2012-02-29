@@ -42,16 +42,17 @@
         <term>x1,p1</term>
         <listitem>
           <para>t=0までのデータに基づくt=1における
-	更新後の推定状態量および誤差共分散</para>
+            更新後の推定状態量および誤差共分散
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
           <para>
-	t=0までのデータに基づくt=0における
-	更新後の推定状態量および誤差共分散
-	</para>
+            t=0までのデータに基づくt=0における
+            更新後の推定状態量および誤差共分散
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,10 +60,7 @@
   <refsection>
     <title>説明</title>
     <para>
-    カルマン更新および共分散を出力する関数</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
+      カルマン更新および共分散を出力する関数
+    </para>
   </refsection>
 </refentry>

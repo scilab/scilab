@@ -98,23 +98,25 @@
       <literal>wn</literal> and <literal>z</literal> arrays are
       ordered according to the increasing pulsation order.
     </para>
-    <para><literal>[wn,z] = damp(P)</literal>  returns in
+    <para>
+      <literal>[wn,z] = damp(P)</literal>  returns in
       <literal>wn</literal> the natural pulsation
       <latex>\omega_n</latex>(in rd/s) and in <literal>z</literal> the
       damping factors <latex>\xi</latex> of the set of roots of the polynomials
       stored in the <literal>P</literal> array.  If
       <literal>dt</literal> is given and non 0, the roots are first
       converted to their continuous time equivalents.
-
+      
       The <literal>wn</literal> and <literal>z</literal> arrays are ordered
       according to the increasing pulsation order.
     </para>
-    <para><literal>[wn,z] = damp(R)</literal>  returns in
+    <para>
+      <literal>[wn,z] = damp(R)</literal>  returns in
       <literal>wn</literal> the natural pulsation
       <latex>\omega_n</latex>(in rd/s) and in <literal>z</literal> the
       damping factors <latex>\xi</latex> of  the set of roots stored in the
       <literal>R</literal> array. 
-
+      
       If <literal>dt</literal> is given and non 0, the roots are first
       converted to their continuous time equivalents.
       <literal>wn(i)</literal> and <literal>z(i)</literal> are the the
@@ -131,9 +133,9 @@
     [wn,z] = damp(h)
     ]]></programlisting>
     <para>
-The following example illustrates the effect of the damping factor on
-the frequency response of a second order system.
- </para>
+      The following example illustrates the effect of the damping factor on
+      the frequency response of a second order system.
+    </para>
     <programlisting role="example"><![CDATA[
    s=%s;
    wn=1;
@@ -151,8 +153,8 @@ the frequency response of a second order system.
    plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
    ]]></programlisting>
     <para>
-   It produces this plot:
- </para>
+      It produces this plot:
+    </para>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -161,8 +163,8 @@ the frequency response of a second order system.
       </inlinemediaobject>
     </para>
     <para>
-Computing the natural pulsations and daping ratio for a set of roots:
- </para>
+      Computing the natural pulsations and daping ratio for a set of roots:
+    </para>
     <programlisting role="example"><![CDATA[
     [wn,z] = damp((1:5)+%i)
     ]]></programlisting>
@@ -176,12 +178,6 @@ Computing the natural pulsations and daping ratio for a set of roots:
       <member>
         <link linkend="roots">roots</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

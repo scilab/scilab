@@ -17,9 +17,9 @@ if or(isascii(255:300)) <> %F then pause,end
 // =============================================================================
 if or(isascii('This is a sentence')) <> %T then pause,end
 // =============================================================================
-if isascii(code2str(120)) <> %T then pause,end
+if isascii(ascii(20)) <> %T then pause,end
 // =============================================================================
-if or(isascii(code2str(120:150))) <> %T then pause,end
+if or(isascii(ascii(20:50))) <> %T then pause,end
 // =============================================================================
 tab_ref = [
 "世界A您好",

@@ -23,7 +23,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>if <literal>flag = 1</literal> the function is centred around the origin; if <literal>flag = 2</literal> the function is delayed by <literal>%pi/(2*n)</literal></para>
+          <para>
+            if <literal>flag = 1</literal> the function is centred around the origin; if <literal>flag = 2</literal> the function is delayed by <literal>%pi/(2*n)</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -37,16 +39,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    function which calculates the function <literal>Sin(N*x)/N*Sin(x)</literal></para>
+      function which calculates the function <literal>Sin(N*x)/N*Sin(x)</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 plot(sincd(10,1)) 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

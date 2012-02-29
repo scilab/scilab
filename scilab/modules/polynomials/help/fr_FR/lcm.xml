@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>lcm</refname>
     <refpurpose> Plus petit commun multiple (PPCM) de polynômes
-  ou d'entiers</refpurpose>
+      ou d'entiers
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -19,32 +20,34 @@
         <term>p  </term>
         <listitem>
           <para>vecteur de polynômes ou d'entiers (type égal à 8)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fact  </term>
         <listitem>
           <para>vecteur de polynômes ou d'entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pp  </term>
         <listitem>
           <para>polynôme ou un entier
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>pp=lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
+    <para>
+      <literal>pp=lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
       <literal>p</literal> au sens des polynômes ou des entiers.
-  </para>
-    <para><literal>[pp,fact]=lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
-  </para>
+    </para>
+    <para>
+      <literal>[pp,fact]=lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
+    </para>
     <para>
       <literal>p.*fact=pp*ones(p)</literal>
     </para>
@@ -64,7 +67,7 @@ lcm(V)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcd">gcd</link>

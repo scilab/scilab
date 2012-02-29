@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-10 21:04+0000\n"
+"PO-Revision-Date: 2012-02-14 17:24+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -65,8 +65,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -174,7 +173,7 @@ msgid ""
 "of floats expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém "
-"nebo řádkový vektor čísel s plovoucí čárkou.\n"
+"nebo řádkový vektor desetinných čísel.\n"
 
 #, c-format
 msgid ""
@@ -320,8 +319,7 @@ msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
@@ -343,8 +341,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Musí být kladný skalár.\n
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor čísel s plovoucí "
-"čárkou.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor desetinných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
@@ -395,8 +392,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Array of floats or Polynomial "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
-"čárkou nebo polynom.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel "
+"nebo polynom.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -849,8 +846,7 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
-"%s: Špatná typ vstupního argumentu #%d: Očekáváno reálné pole s plovoucí "
-"čárkou\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
 
 msgid "rad/sec"
 msgstr "rad/sek"

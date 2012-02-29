@@ -43,12 +43,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes the poles of a Butterworth analog
-    filter of order <literal>n</literal> and cutoff frequency omegac
-    transfer function H(s) is calculated by <literal>H(s)=gain/real(poly(pols,'s'))</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F. Delebecque INRIA</para>
+      computes the poles of a Butterworth analog
+      filter of order <literal>n</literal> and cutoff frequency omegac
+      transfer function H(s) is calculated by <literal>H(s)=gain/real(poly(pols,'s'))</literal>
+    </para>
   </refsection>
 </refentry>

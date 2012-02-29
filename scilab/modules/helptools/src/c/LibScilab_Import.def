@@ -7,12 +7,4 @@ EXPORTS
 callFunctionFromGateway
 getScilabMode
 com_
-putlhsvar_
-intersci_
-stack_
-getrhsvar_
-gettype_
-vstk_
-checklhs_
-checkrhs_
 getSCIpath

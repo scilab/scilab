@@ -13,6 +13,10 @@ function corelib = startModule()
 // =============================================================================
 // Load functions libraries
 // =============================================================================
+  if ~isfile('SCI/modules/core/macros/lib') then
+    error(msprintf(gettext("%s: Could not find ''%s'': Please check that macros have been built.\n"), ..
+          "startModule", "SCI/modules/core/macros/lib"));
+  end
   load('SCI/modules/core/macros/lib');
 endfunction
 

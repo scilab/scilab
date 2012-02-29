@@ -14,9 +14,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Affiche l'arborescence des appels jusqu'à l'emplacement courant, où se trouve
-    l'appel à whereami(). Peut être utilisé suite à un appel à <literal>pause</literal>.
-  </para>
+      Affiche l'arborescence des appels jusqu'à l'emplacement courant, où se trouve
+      l'appel à whereami(). Peut être utilisé suite à un appel à <literal>pause</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -29,7 +29,7 @@ test(1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="where">where</link>

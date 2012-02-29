@@ -70,11 +70,6 @@
               <xref linkend="Computationalfunction_DEADBAND">Fonction de calcul</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_DEADBAND">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -85,7 +80,8 @@
       <listitem>
         <para>
           <link linkend="discontinuities_pal">Discontinuities
-        palette</link>
+            palette
+          </link>
         </para>
       </listitem>
     </itemizedlist>
@@ -163,16 +159,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -180,7 +184,8 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
@@ -189,27 +194,42 @@
         </para>
         <para>
           <emphasis role="bold">- port 1 : size [1,1] / type
-        1</emphasis>
+            1
+          </emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            inputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            outputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>
+          non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>
+          non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -223,7 +243,7 @@
     <title>Exemple</title>
     <para>Ce qui suit est un exemple de système avec zone morte.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
-          Ouvrir cet exemple dans Xcos
+        Ouvrir cet exemple dans Xcos
       </link>
     </para>
     <para>
@@ -234,7 +254,8 @@
       </inlinemediaobject>
     </para>
     <para>L'entrée est un signal sinusoïdal. L'amplitude est initialisée à 2, la fréquence
-    à 1,25 et la phase à 0. Le bloc Zone morte a les paramètres suivants :</para>
+      à 1,25 et la phase à 0. Le bloc Zone morte a les paramètres suivants :
+    </para>
     <para>
       <latex><![CDATA[\begin{cases}c{}_{S} & =-1.5\\c_{E} & =-1\end{cases}]]></latex>
     </para>
@@ -264,12 +285,5 @@
         <para>SCI/modules/scicos_blocks/src/c/deadband.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_DEADBAND">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Zhour Madini-Zouine</emphasis> -
-    DIGITEO</para>
-    <para/>
   </refsection>
 </refentry>

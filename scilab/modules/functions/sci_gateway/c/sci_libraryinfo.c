@@ -11,7 +11,6 @@
 *
 */
 #include "gw_core.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "libraryinfo.h"
 #include "MALLOC.h"

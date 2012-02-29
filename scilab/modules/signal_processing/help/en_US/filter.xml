@@ -18,8 +18,12 @@
     <refname>filter</refname>
     <refpurpose>filters a data sequence using a digital filter</refpurpose>
   </refnamediv>
- <refsynopsisdiv><title>Calling Sequence</title><synopsis>[y,zf] = filter(num,den,x [,zi])</synopsis></refsynopsisdiv>
-  <refsection><title>Arguments</title>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[y,zf] = filter(num,den,x [,zi])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>num</term>
@@ -43,10 +47,11 @@
         <term>zi</term>
         <listitem>
           <para>real row vector of length
-          <literal>max(length(a),length(b))-1</literal>: the initial
-          condition relative to a "direct form II transposed" state
-          space representation. The default value is a vector filled
-          with zeros. </para>
+            <literal>max(length(a),length(b))-1</literal>: the initial
+            condition relative to a "direct form II transposed" state
+            space representation. The default value is a vector filled
+            with zeros. 
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,13 +64,12 @@
         <term>zf</term>
         <listitem>
           <para>real row vector : the final state. It can be used to
-          filter a next batch of the input signal. </para>
+            filter a next batch of the input signal. 
+          </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -81,23 +85,17 @@
     </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-	<link linkend="flts">flts</link>
+        <link linkend="flts">flts</link>
       </member>
       <member>
-	<link linkend="rtitr">rtitr</link>
+        <link linkend="rtitr">rtitr</link>
       </member>
       <member>
-	<link linkend="ltitr">ltitr</link>
+        <link linkend="ltitr">ltitr</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

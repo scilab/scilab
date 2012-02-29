@@ -16,13 +16,11 @@
     <para>古い関数 : scilab 変数 "SCIHOME" および "home" を使用する必要があります.</para>
     <para>Scilab ホームのパスを設定 : "SCIHOME" 変数.</para>
     <para>OWindows 2k および XPの場合 , C:\Documents and
-    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+      Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;
+    </para>
     <para>Windows Vistaの場合 ,
-    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+      C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;
+    </para>
     <para>Unixの場合, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

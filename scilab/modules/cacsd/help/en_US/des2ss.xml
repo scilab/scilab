@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
-[Sl]=des2ss(Des)</synopsis>
+      [Sl]=des2ss(Des)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -41,13 +42,17 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>real parameter (threshold) (default value <literal>100*%eps</literal>).</para>
+          <para>
+            real parameter (threshold) (default value <literal>100*%eps</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,18 +60,25 @@
   <refsection>
     <title>Description</title>
     <para>
-    Descriptor to state-space transform.</para>
-    <para><literal>Sl=des2ss(A,B,C,D,E)</literal> returns 
-    a linear system <literal>Sl</literal> equivalent to the descriptor system 
-    <literal>(E,A,B,C,D)</literal>.</para>
+      Descriptor to state-space transform.
+    </para>
     <para>
-    For index one <literal>(E,A)</literal> pencil, explicit formula is used and
-    for higher index pencils <literal>rowshuff</literal> is used.</para>
-    <para><literal>Sl=des2ss(Des)</literal> with <literal>Des=list('des',A,B,C,D,E)</literal> returns
-    a linear system <literal>Sl</literal> in state-space form with possibly 
-    a polynomial <literal>D</literal> matrix.</para>
+      <literal>Sl=des2ss(A,B,C,D,E)</literal> returns 
+      a linear system <literal>Sl</literal> equivalent to the descriptor system 
+      <literal>(E,A,B,C,D)</literal>.
+    </para>
     <para>
-    A generalized Leverrier algorithm is used.</para>
+      For index one <literal>(E,A)</literal> pencil, explicit formula is used and
+      for higher index pencils <literal>rowshuff</literal> is used.
+    </para>
+    <para>
+      <literal>Sl=des2ss(Des)</literal> with <literal>Des=list('des',A,B,C,D,E)</literal> returns
+      a linear system <literal>Sl</literal> in state-space form with possibly 
+      a polynomial <literal>D</literal> matrix.
+    </para>
+    <para>
+      A generalized Leverrier algorithm is used.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -79,7 +91,7 @@ clean(ss2tf(W2))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="des2tf">des2tf</link>

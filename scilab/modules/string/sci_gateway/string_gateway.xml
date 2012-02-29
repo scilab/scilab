@@ -65,4 +65,7 @@
 <PRIMITIVE gatewayId="21" primitiveId="28" primitiveName="strspn" />
 <PRIMITIVE gatewayId="21" primitiveId="29" primitiveName="strtod" />
 <PRIMITIVE gatewayId="21" primitiveId="30" primitiveName="regexp" />
+<PRIMITIVE gatewayId="21" primitiveId="31" primitiveName="_str2code" />
+<PRIMITIVE gatewayId="21" primitiveId="32" primitiveName="_code2str" />
+
 </GATEWAY>

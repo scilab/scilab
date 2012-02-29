@@ -18,17 +18,18 @@
         <term>"a","b"  </term>
         <listitem>
           <para>chaînes de caractères
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>addf("a","b")</literal> renvoie la chaîne de caractères <literal>"a+b"</literal>.
-    Des simplifications triviales du type <literal>addf("0","a")</literal> ou
-    <literal>addf("1","2")</literal> sont effectuées.
-  </para>
+    <para>
+      <literal>addf("a","b")</literal> renvoie la chaîne de caractères <literal>"a+b"</literal>.
+      Des simplifications triviales du type <literal>addf("0","a")</literal> ou
+      <literal>addf("1","2")</literal> sont effectuées.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -40,7 +41,7 @@ addf('1','2')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

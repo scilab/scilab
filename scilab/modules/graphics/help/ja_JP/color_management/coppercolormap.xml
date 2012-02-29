@@ -34,15 +34,19 @@
       <varlistentry>
         <term>cmap</term>
         <listitem>
-          <para>3列 <literal>[R,G,B]</literal>を有する行列.</para>
+          <para>
+            3列 <literal>[R,G,B]</literal>を有する行列.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>coppercolormap</literal>は,
-	黒から明るい銅色へ変化する<literal>n</literal>色のカラーマップを計算します.</para>
+    <para>
+      <literal>coppercolormap</literal>は,
+      黒から明るい銅色へ変化する<literal>n</literal>色のカラーマップを計算します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -103,4 +107,3 @@ f.color_map = coppercolormap(32);
     </simplelist>
   </refsection>
 </refentry>
-

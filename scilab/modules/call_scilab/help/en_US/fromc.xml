@@ -24,22 +24,22 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal>Checks if current Scilab is called from an external C program or <literal>%f</literal> if not.</para>
+    <para>
+      Returns <literal>%t</literal>Checks if current Scilab is called from an external C program or <literal>%f</literal> if not.
+    </para>
   </refsection>
-  
-   <refsection role="see also">
-<title>See Also</title>
-     <simplelist type="inline">
-       <member>
-	 <link linkend="call_scilab">Call_Scilab</link>
-       </member>
-       <member>
-	 <link linkend="api_scilab">api Scilab</link>
-       </member>
-       <member>
-	 <link linkend="fromjava">fromjava</link>
-       </member>
-     </simplelist>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="call_scilab">Call_Scilab</link>
+      </member>
+      <member>
+        <link linkend="api_scilab">api Scilab</link>
+      </member>
+      <member>
+        <link linkend="fromjava">fromjava</link>
+      </member>
+    </simplelist>
   </refsection>
-  
 </refentry>

@@ -21,4 +21,4 @@ ierr = importXcosDiagram(currentPath + "sinus.xcos");
 if ierr <> %t then bugmes();quit;end
 // launch the simulation
 scicos_simulate(scs_m);
-if norm(A_ref('values') - A('values')) / length(A_ref('values')) > 1e-6 then bugmes();quit;end
+assert_checkalmostequal(A_ref('values'), A('values'));

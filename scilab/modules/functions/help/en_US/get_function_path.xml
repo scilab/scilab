@@ -42,10 +42,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Given the name of a function get_function_path returns the absolute
-    pathname of the function source file if the function is defined in a
-    Scilab library (see lib) or [] if name does not match any library
-    function.</para>
+      Given the name of a function get_function_path returns the absolute
+      pathname of the function source file if the function is defined in a
+      Scilab library (see lib) or [] if name does not match any library
+      function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,7 +55,7 @@ get_function_path('median')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lib">lib</link>

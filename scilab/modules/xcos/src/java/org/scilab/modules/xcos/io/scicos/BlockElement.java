@@ -18,8 +18,8 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
@@ -44,8 +44,7 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 public class BlockElement extends AbstractElement<BasicBlock> {
-    private static final List<String> DATA_FIELD_NAMES = asList("Block",
-            "graphics", "model", "gui", "doc");
+    private static final List<String> DATA_FIELD_NAMES = asList("Block", "graphics", "model", "gui", "doc");
     private static final int INTERFUNCTION_INDEX = 3;
 
     /** Mutable field to easily get the data through methods */
@@ -79,7 +78,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Default constructor.
-     * 
+     *
      * The state change on each {@link BlockElement} instance so be careful when
      * allocated a new {@link BlockElement}.
      */
@@ -102,7 +101,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Decode the element into the block.
-     * 
+     *
      * @param element
      *            The current Scilab data
      * @param into
@@ -114,8 +113,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
      *      java.lang.Object)
      */
     @Override
-    public BasicBlock decode(ScilabType element, BasicBlock into)
-            throws ScicosFormatException {
+    public BasicBlock decode(ScilabType element, BasicBlock into) throws ScicosFormatException {
         data = (ScilabMList) element;
         BasicBlock block = into;
 
@@ -124,8 +122,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         /*
          * Instantiate the block if it doesn't exist
          */
-        final String interfunction = ((ScilabString) data
-                .get(INTERFUNCTION_INDEX)).getData()[0][0];
+        final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (block == null) {
             block = BlockFactory.createBlock(interfunction);
         }
@@ -186,7 +183,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Use the Scicos documentation structure to get the previous Xcos IDs.
-     * 
+     *
      * @param scilabType
      *            the scicos documentation field.
      * @param into
@@ -241,11 +238,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Validate the current data.
-     * 
+     *
      * This method doesn't pass the metrics because it perform many test.
      * Therefore all these tests are trivial and the conditioned action only
      * throw an exception.
-     * 
+     *
      * @throws ScicosFormatException
      *             when there is a validation error.
      */
@@ -311,8 +308,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
         // the last field must contain a list of nothing aka scicos doc
         field++;
-        if (!(data.get(field) instanceof ScilabList)
-                && !isEmptyField(data.get(field))) {
+        if (!(data.get(field) instanceof ScilabList) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
@@ -322,7 +318,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Test if the current instance can be used to decode the element
-     * 
+     *
      * @param element
      *            the current element
      * @return true, if the element can be decoded, false otherwise
@@ -338,7 +334,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * Clear cell warnings before encoding
      */
     @Override
@@ -347,7 +343,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         if (graph == null) {
             from.setParentDiagram(Xcos.findParent(from));
             graph = from.getParentDiagram();
-            LogFactory.getLog(getClass()).error("Parent diagram was null");
+            Logger.getLogger(BlockElement.class.toString()).finest("Parent diagram was null");
         }
         if (graph.getAsComponent() != null) {
             graph.getAsComponent().removeCellOverlays(from);
@@ -357,7 +353,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Encode the instance into the element
-     * 
+     *
      * @param from
      *            the source instance
      * @param element
@@ -428,7 +424,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Set the the port size per type.
-     * 
+     *
      * @param from
      *            the source block
      */
@@ -439,14 +435,10 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         int ein;
         int eout;
 
-        in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class)
-                .size();
-        out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class)
-                .size();
-        ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class)
-                .size();
-        eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class)
-                .size();
+        in = BasicBlockInfo.getAllTypedPorts(from, false, InputPort.class).size();
+        out = BasicBlockInfo.getAllTypedPorts(from, false, OutputPort.class).size();
+        ein = BasicBlockInfo.getAllTypedPorts(from, false, ControlPort.class).size();
+        eout = BasicBlockInfo.getAllTypedPorts(from, false, CommandPort.class).size();
 
         // Setup the graphics and model ports size
         graphicElement.setPortsSize(in, out, ein, eout);
@@ -455,12 +447,11 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 
     /**
      * Allocate a new element
-     * 
+     *
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList element = new ScilabMList(
-                DATA_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
         element.add(new ScilabMList()); // graphics
         element.add(new ScilabMList()); // model
         element.add(new ScilabString()); // gui

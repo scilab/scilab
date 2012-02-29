@@ -41,9 +41,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>twinkle</literal> let the graphics entity given by its handle <literal>h</literal> twinkle. It can be used to
-    find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
-    entity twinkles 5 times, but you can change this by using optional argument <literal>n</literal>.
+    <para>
+      <literal>twinkle</literal> let the graphics entity given by its handle <literal>h</literal> twinkle. It can be used to
+      find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
+      entity twinkles 5 times, but you can change this by using optional argument <literal>n</literal>.
     </para>
   </refsection>
   <refsection>
@@ -61,7 +62,7 @@ twinkle(gca())
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>

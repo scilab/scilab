@@ -10,21 +10,22 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 SciErr printf_info(int _iVar);
+
 int common_function(char *fname,unsigned long fname_len)
 {
     SciErr sciErr;
     int i;
     int *piAddr1    = NULL;
     int iBool       = 0;
-    for(i = 0 ; i < Rhs ; i++)
+
+    for(i = 0 ; i < InputArgument ; i++)
     {
         sciErr = printf_info(i + 1);
         if(sciErr.iErr)
@@ -34,16 +35,19 @@ int common_function(char *fname,unsigned long fname_len)
         }
         sciprint("\n\n");
     }
+
     //1 for true, 0 for false
     iBool = sciErr.iErr == 0 ? 1 : 0;
-    sciErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
+
+    sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, 1, 1, &iBool);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+
     //assign allocated variables to Lhs position
-    LhsVar(1) = 1;
+    AssignOutputVariable(1) = InputArgument + 1;
     return 0;
 }
 SciErr printf_info(int _iVar)
@@ -55,17 +59,21 @@ SciErr printf_info(int _iVar)
     int iCols       = 0;
     int iItem       = 0;
     int iComplex    = 0;
+
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
     if(sciErr.iErr)
     {
         return sciErr;
     }
+
     sciprint("Variable %d information:\n", _iVar);
+
     sciErr = getVarType(pvApiCtx, piAddr, &iType);
     if(sciErr.iErr)
     {
         return sciErr;
     }
+
     sciprint("\tType: ");
     switch(iType)
     {
@@ -90,15 +98,18 @@ SciErr printf_info(int _iVar)
             char pstUnsigned[]  = "unsigned";
             char* pstSign       = pstSigned;
             int iPrec           = 0;
+
             sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
             if(sciErr.iErr)
             {
                 return sciErr;
             }
+
             if(iPrec > 10)
             {
                 pstSign = pstUnsigned;
             }
+
             sciprint("%s integer %d bits\n", pstSign, (iPrec % 10) * 8);
         }
         break;
@@ -118,10 +129,12 @@ SciErr printf_info(int _iVar)
             sciprint("Not manage by this function\n");
             return sciErr;
     }
+
     if(isVarComplex(pvApiCtx, piAddr))
     {
         sciprint("\tComplex: Yes\n");
     }
+
     sciprint("\tDimensions: ");
     if(isVarMatrixType(pvApiCtx, piAddr))
     {
@@ -130,6 +143,7 @@ SciErr printf_info(int _iVar)
         {
             return sciErr;
         }
+
         sciprint("%d x %d", iRows, iCols);
     }
     else
@@ -139,6 +153,7 @@ SciErr printf_info(int _iVar)
         {
             return sciErr;
         }
+
         sciprint("%d", iItem);
     }
     return sciErr;

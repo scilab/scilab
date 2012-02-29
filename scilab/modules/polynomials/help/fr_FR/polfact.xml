@@ -18,27 +18,28 @@
         <term>p  </term>
         <listitem>
           <para>polynôme
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f  </term>
         <listitem>
-          <para>vecteur <literal>[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal> 
-	  </para>
+          <para>
+            vecteur <literal>[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal> 
+          </para>
           <variablelist>
             <varlistentry>
               <term>f0  </term>
               <listitem>
                 <para>constante
-		</para>
+                </para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>fi  </term>
               <listitem>
                 <para>polynôme
-		</para>
+                </para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -48,12 +49,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>f=polfact(p)</literal> renvoie les facteurs minimaux de p
+    <para>
+      <literal>f=polfact(p)</literal> renvoie les facteurs minimaux de p
       i.e. <literal>f=[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal>
     </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="lcm">lcm</link>
@@ -65,9 +67,5 @@
         <link linkend="factors">factors</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para> S. Steer INRIA </para>
   </refsection>
 </refentry>

@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- <refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="VVsourceAC"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="VVsourceAC" xml:lang="fr">
   <refnamediv>
     <refname>VVsourceAC</refname>
     <refpurpose>Source de tension variable sinusoïdale</refpurpose>
@@ -106,8 +98,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -127,12 +119,20 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'p'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'VA'</para>
-            <para>Explicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'VA'
+            </para>
+            <para>
+              Explicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -142,8 +142,12 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
-            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+            <para>
+              <emphasis role="bold">Modelica variable name :</emphasis> 'n'
+            </para>
+            <para>
+              Implicit <emphasis role="bold">variable.</emphasis>
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -153,14 +157,22 @@
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'f'</para>
-            <para><emphasis role="bold">Default value :</emphasis> 50</para>
-            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+            <para>
+              <emphasis role="bold">Modelica parameter name :</emphasis> 'f'
+            </para>
+            <para>
+              <emphasis role="bold">Default value :</emphasis> 50
+            </para>
+            <para>
+              <emphasis role="bold">Is a state variable :</emphasis> no.
+            </para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">File name of the model :</emphasis> VVsourceAC</para>
+        <para>
+          <emphasis role="bold">File name of the model :</emphasis> VVsourceAC
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

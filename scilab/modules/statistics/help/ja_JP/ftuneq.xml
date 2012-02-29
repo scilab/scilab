@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>f=ftuneq(sample1[,sample2[,sample3]...]])
-[f,p]=ftuneq(sample1[,sample2[,sample3]...]])</synopsis>
+      [f,p]=ftuneq(sample1[,sample2[,sample3]...]])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -37,31 +38,39 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は大きさが等しくない標本についてF比を計算します.</para>
+      この関数は大きさが等しくない標本についてF比を計算します.
+    </para>
     <para>
-	"最も効率的な設計は,
-	全ての標本を同じ大きさ n にすることです.
-	しかし,これができない時,
-	ANOVA計算を修正することが可能です."
-	xbarbarの定義はもはやmean(xbar)ではなく,
-	重みをniとした重み付き平均であることに注意してください.
-	さらに,この関数はフィッシャー比のp個の計算値を(pに)出力します.</para>
+      "最も効率的な設計は,
+      全ての標本を同じ大きさ n にすることです.
+      しかし,これができない時,
+      ANOVA計算を修正することが可能です."
+      xbarbarの定義はもはやmean(xbar)ではなく,
+      重みをniとした重み付き平均であることに注意してください.
+      さらに,この関数はフィッシャー比のp個の計算値を(pに)出力します.
+    </para>
     <para>
-	n_i (iは1からa) 個の観測値から構成される一連の標本を指定すると,
-	この関数はフィッシャー比 (nrと標本の平均の分散の積と各標本の分散の
-	平均の比) を f に出力します.</para>
-    <para><literal> f=ftest(samples) </literal> は,
-	行列<literal>samples</literal>の列をその値とする
-	nc個の標本のフィッシャー比を計算します.
-	これらの標本の各々は,nr個の値から構成されます.
-	(フィッシャー比はnrと標本の平均の分散の積と各標本の分散の平均の比です)</para>
-    <para><literal> [f,p]=ftest(samples) </literal> は,p個のフィッシャー比fの計算値を
-	pに出力します.</para>
+      n_i (iは1からa) 個の観測値から構成される一連の標本を指定すると,
+      この関数はフィッシャー比 (nrと標本の平均の分散の積と各標本の分散の
+      平均の比) を f に出力します.
+    </para>
+    <para>
+      <literal> f=ftest(samples) </literal> は,
+      行列<literal>samples</literal>の列をその値とする
+      nc個の標本のフィッシャー比を計算します.
+      これらの標本の各々は,nr個の値から構成されます.
+      (フィッシャー比はnrと標本の平均の分散の積と各標本の分散の平均の比です)
+    </para>
+    <para>
+      <literal> [f,p]=ftest(samples) </literal> は,p個のフィッシャー比fの計算値を
+      pに出力します.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -77,9 +86,5 @@ samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
         <link linkend="ftuneq">ftuneq</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

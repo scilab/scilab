@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>mod=simp_mode()
-simp_mode(mod)</synopsis>
+      simp_mode(mod)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,7 +20,7 @@ simp_mode(mod)</synopsis>
         <term>mod  </term>
         <listitem>
           <para>un booléen
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -27,14 +28,17 @@ simp_mode(mod)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Une simplification rationnelle est effectuée après chaque opération sur les fractions rationnelles. Il est possible de changer cela avec la fonction <literal>simp_mode</literal>.
-  </para>
-    <para><literal>simp_mod(%t)</literal> passe en mode de simplification systématique.
-  </para>
-    <para><literal>simp_mod(%f)</literal> empêche les simplifications.
-  </para>
-    <para><literal>mod=simp_mod()</literal> renvoie dans mod le mode de simplification courant.
-  </para>
+      Une simplification rationnelle est effectuée après chaque opération sur les fractions rationnelles. Il est possible de changer cela avec la fonction <literal>simp_mode</literal>.
+    </para>
+    <para>
+      <literal>simp_mod(%t)</literal> passe en mode de simplification systématique.
+    </para>
+    <para>
+      <literal>simp_mod(%f)</literal> empêche les simplifications.
+    </para>
+    <para>
+      <literal>mod=simp_mod()</literal> renvoie dans mod le mode de simplification courant.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -47,7 +51,7 @@ simp_mode(mod);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="simp">simp</link>

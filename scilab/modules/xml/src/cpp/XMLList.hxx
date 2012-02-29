@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,44 +28,45 @@ namespace org_modules_xml
      *
      * Virtual class to handle a list of XMLObjects
      */
-    class XMLList : public XMLObject, public XMLRemovable
+    class XMLList:public XMLObject, public XMLRemovable
     {
 
-    public :
-
+public:
         /**
          * Gets the element with the given index.
          * @param index the element index
          * @return the corresponding object
          */
-        virtual const XMLObject * getListElement(int index) = 0;
+        virtual const XMLObject *getListElement(int index) = 0;
 
         /**
          * Default constructor
          */
-        XMLList();
+          XMLList();
 
         /**
          * @return the list size
          */
-        int getSize() const { return size; }
+        int getSize() const
+        {
+            return size;
+        }
 
         /**
          * Get the content of each node of the list
          * @return an array of strings
          */
-        virtual const char ** getContentFromList() const = 0;
+        virtual const char **getContentFromList() const = 0;
 
         /**
          * Get the name of each node of the list
          * @return an array of strings
          */
-        virtual const char ** getNameFromList() const = 0;
+        virtual const char **getNameFromList() const = 0;
 
         const std::string toString() const;
 
-    protected :
-        int size;
+protected:int size;
 
         /**
          * Gets an element in a linked list with a given index.
@@ -78,31 +79,29 @@ namespace org_modules_xml
          * @param prevElem a pointer on the previous element (*prevElem is modified by this function)
          * @return the found element
          */
-        template <typename T>
-        static T * getListElement(int index, int max, int * prev, T ** prevElem)
+          template < typename T > static T *getListElement(int index, int max, int *prev, T ** prevElem)
+        {
+            if (index >= 1 && index <= max)
             {
-                if (index >= 1 && index <= max)
+                if (index != *prev)
                 {
-                    if (index != *prev)
+                    if (index < *prev)
                     {
-                        if (index < *prev)
-                        {
-                            for (int i = *prev; i > index; i--, *prevElem = (*prevElem)->prev);
-                        }
-                        else
-                        {
-                            for (int i = *prev; i < index; i++, *prevElem = (*prevElem)->next);
-                        }
-                        *prev = index;
+                        for (int i = *prev; i > index; i--, *prevElem = (*prevElem)->prev) ;
                     }
-
-                    return *prevElem;
+                    else
+                    {
+                        for (int i = *prev; i < index; i++, *prevElem = (*prevElem)->next) ;
+                    }
+                     *prev = index;
                 }
 
-                return 0;
+                return *prevElem;
             }
+
+            return 0;
+        }
     };
 }
 
 #endif
-

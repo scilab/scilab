@@ -182,6 +182,7 @@
     <ClCompile Include="src\c\javasci_Scilab.c" />
     <ClCompile Include="src\c\javasci_Scilab2.c" />
     <ClCompile Include="src\c\javasci_SciStringArray.c" />
+    <ClCompile Include="src\jni\putLists.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\javasci2_helper.h" />

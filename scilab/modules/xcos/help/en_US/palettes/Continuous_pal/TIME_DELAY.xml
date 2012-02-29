@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_TIME_DELAY">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_TIME_DELAY">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,16 +93,16 @@
   <refsection id="Description_TIME_DELAY">
     <title>Description</title>
     <para>
-The Transport Delay block delays the input by a specified amount of
-time. It can be used to simulate a time delay. At the start of the
-simulation, the block outputs the Initial input parameter until the
-simulation time exceeds the Time delay parameter, when the block
-begins generating the delayed input. 
-</para>
+      The Transport Delay block delays the input by a specified amount of
+      time. It can be used to simulate a time delay. At the start of the
+      simulation, the block outputs the Initial input parameter until the
+      simulation time exceeds the Time delay parameter, when the block
+      begins generating the delayed input. 
+    </para>
     <para>
-The Time delay parameter must be non-negative. 
-
-</para>
+      The Time delay parameter must be non-negative. 
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_TIME_DELAY">
     <title>Dialog box</title>
@@ -119,8 +114,8 @@ The Time delay parameter must be non-negative.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -149,16 +144,24 @@ The Time delay parameter must be non-negative.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -177,19 +180,29 @@ The Time delay parameter must be non-negative.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -214,9 +227,5 @@ The Time delay parameter must be non-negative.
         <para> SCI/modules/scicos_blocks/src/c/time_delay.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_TIME_DELAY">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

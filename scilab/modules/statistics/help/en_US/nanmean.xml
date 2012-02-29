@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>m=nanmean(val)
-m=nanmean(val,'r') (or m=nanmean(val,1))
-m=nanmean(val,'c') (or m=nanmean(val,2))</synopsis>
+      m=nanmean(val,'r') (or m=nanmean(val,1))
+      m=nanmean(val,'c') (or m=nanmean(val,2))
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,22 +39,29 @@ m=nanmean(val,'c') (or m=nanmean(val,2))</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    This function returns in scalar <literal> m</literal> the mean of the
-    values (ignoring  the NANs) of a  vector or matrix <literal>val</literal>.</para>
+      This function returns in scalar <literal> m</literal> the mean of the
+      values (ignoring  the NANs) of a  vector or matrix <literal>val</literal>.
+    </para>
     <para>
-    For a vector or matrix <literal> val</literal> , <literal> m=nanmean(val) </literal>
-    or <literal> m=nanmean(val,'*') </literal> returns  in scalar <literal> m</literal>
-    the mean of all the entries (ignoring the NANs) of <literal> val</literal>.</para>
-    <para><literal>m=nanmean(val,'r')</literal>    (or,    equivalently,    
-    <literal> m=nanmean(val,1)  </literal>)  returns in each   entry of the row
-    vector <literal> m</literal> of type  1xsize(val,'c') the mean of each
-    column of <literal> val</literal> (ignoring the NANs).</para>
-    <para><literal>m=nanmeanf(val,'c')  </literal>     (or,  equivalently,  
-    <literal> m=nanmean(val,2) </literal>) returns  in each entry of the column
-    vector <literal> m</literal> of type  size(val,'c')x1 the mean of each
-    row of <literal> val</literal> (ignoring the NANs).</para>
+      For a vector or matrix <literal> val</literal> , <literal> m=nanmean(val) </literal>
+      or <literal> m=nanmean(val,'*') </literal> returns  in scalar <literal> m</literal>
+      the mean of all the entries (ignoring the NANs) of <literal> val</literal>.
+    </para>
     <para>
-    In Labostat, NAN values stand for missing values in tables.</para>
+      <literal>m=nanmean(val,'r')</literal>    (or,    equivalently,    
+      <literal> m=nanmean(val,1)  </literal>)  returns in each   entry of the row
+      vector <literal> m</literal> of type  1xsize(val,'c') the mean of each
+      column of <literal> val</literal> (ignoring the NANs).
+    </para>
+    <para>
+      <literal>m=nanmeanf(val,'c')  </literal>     (or,  equivalently,  
+      <literal> m=nanmean(val,2) </literal>) returns  in each entry of the column
+      vector <literal> m</literal> of type  size(val,'c')x1 the mean of each
+      row of <literal> val</literal> (ignoring the NANs).
+    </para>
+    <para>
+      In Labostat, NAN values stand for missing values in tables.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -65,12 +73,9 @@ m=nanmean(x,2)
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

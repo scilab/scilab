@@ -29,22 +29,25 @@ BOOL createMainScilabObject(void)
 
     if (currentENV)
     {
-        jclass cls=NULL;
+        jclass cls = NULL;
         cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/core/Scilab");
-        bOK=catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
+        bOK = catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
         if (cls)
         {
-            jmethodID mid=NULL;
-            mid = (*currentENV)->GetMethodID(currentENV,cls,"<init>","(I)V");
-            bOK=catchIfJavaException(_("Could not access to the constructor of the Main Scilab Class:\n"));
+            jmethodID mid = NULL;
+            mid = (*currentENV)->GetMethodID(currentENV, cls, "<init>", "(I)V");
+            bOK = catchIfJavaException(_("Could not access to the constructor of the Main Scilab Class:\n"));
             if (mid)
             {
                 jint ScilabMode = getScilabMode();
-                jobject localScilabObject = (*currentENV)->NewObject(currentENV,cls,mid,ScilabMode);
-                ScilabObject = (*currentENV)->NewGlobalRef(currentENV, localScilabObject);
-                /* Catch the exception and display an human-reading error message
-                 */
-                bOK=catchIfJavaException(_("Could not create a Scilab main class. Error:\n"));
+                jobject localScilabObject = (*currentENV)->NewObject(currentENV, cls, mid, ScilabMode);
+                bOK = catchIfJavaException(_("Could not create a Scilab main class. Error:\n"));
+                if (bOK == TRUE)
+                {
+                    ScilabObject = (*currentENV)->NewGlobalRef(currentENV, localScilabObject);
+                    /* Catch the exception and display an human-reading error message */
+                    bOK = catchIfJavaException(_("Could not create a Scilab main class. Error:\n"));
+                }
             }
         }
     }

@@ -17,10 +17,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 1 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Construit le document maître:
+Génération du document maître :
 	SCI/modules/helptools/examples/example_1/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_1/help/fr_FR.
+Génération du fichier d'aide [html] in SCI/modules/helptools/examples/example_1/help/fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
@@ -51,10 +51,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 2 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,'fr_FR');
 
-Construit le document maître:
+Génération du document maître :
 	SCI/modules/helptools/examples/example_2/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_2/help/fr_FR.
+Génération du fichier d'aide [html] in SCI/modules/helptools/examples/example_2/help/fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);
@@ -85,10 +85,10 @@ my_french_help_dir    =  my_module_path+"/help/fr_FR";
 my_french_help_title  =  "TEST 3 [fr_FR]";
 xmltohtml(my_french_help_dir,my_french_help_title,"fr_FR");
 
-Construit le document maître:
+Génération du document maître :
 	SCI/modules/helptools/examples/example_3/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_3/help/fr_FR.
+Génération du fichier d'aide [html] in SCI/modules/helptools/examples/example_3/help/fr_FR.
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
 if html_info == [] then bugmes();quit;end       // file existence
 clean_help(my_french_help_dir);

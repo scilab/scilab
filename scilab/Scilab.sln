@@ -558,6 +558,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences-Ant", "modules\
 		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-level", "Visual-Studio-settings\test-level\test-level.vcxproj", "{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1634,6 +1636,7 @@ Global
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|Win32.Build.0 = Release|Win32
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.ActiveCfg = Release|x64
 		{626B9142-13A1-4765-A072-FB08952E7BB8}.Release|x64.Build.0 = Release|x64
+<<<<<<< HEAD
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.Build.0 = Debug|Win32
 		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|x64.ActiveCfg = Debug|x64
@@ -1650,6 +1653,12 @@ Global
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|Win32.Build.0 = Release|Win32
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.ActiveCfg = Release|x64
 		{32352BC0-9D50-4479-8B77-698287CCB8DE}.Release|x64.Build.0 = Release|x64
+=======
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Debug|x64.ActiveCfg = Debug|x64
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|Win32.ActiveCfg = Release|Win32
+		{07F766A8-A2C1-4D9D-86DE-FD9C19952C7A}.Release|x64.ActiveCfg = Release|x64
+>>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

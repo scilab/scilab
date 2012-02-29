@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>unix_x</refname>
     <refpurpose>exécution d'une commande Unix ou DOS,
-	sortie redirigée vers une fenêtre</refpurpose>
+      sortie redirigée vers une fenêtre
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -37,13 +38,13 @@
   <refsection>
     <title>Description</title>
     <para>
-			Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
-			de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
-			les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
-			l'interpréteur de commande sont interceptées; notez que la *dernière erreur
-			uniquement* est signalée quand <literal>command-name</literal> est une suite de
-			commandes séparées par des ";"
-		</para>
+      Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
+      de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
+      les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
+      l'interpréteur de commande sont interceptées; notez que la *dernière erreur
+      uniquement* est signalée quand <literal>command-name</literal> est une suite de
+      commandes séparées par des ";"
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +57,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

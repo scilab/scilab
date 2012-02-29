@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-12-30 06:23+0000\n"
+"PO-Revision-Date: 2012-02-15 14:47+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -99,6 +99,63 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 'all' または 'main' を指定してください.\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s Installing ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Loading ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Testing ...\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s Removing ...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Module %s is already installed. Please remove it before checking it.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Module %s does not exist in current repositories.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: some unique module names "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Number of modules to check: %d\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -296,8 +353,25 @@ msgstr ""
 "を指定してください.\n"
 
 #, c-format
+msgid "File %s does not exist: could not restore previous configuration."
+msgstr "ファイル %s は存在しません: 前の設定を回復できません."
+
+#, c-format
+msgid "config file saved to %s"
+msgstr "設定ファイルを %s に保存しました"
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input configuration argument: True or False expected.\n"
+msgstr "%s: 入力設定引数の値が間違っています: true または false を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong key for input configuration argument.\n"
+msgstr "%s: 入力設定引数のキーが間違っています.\n"
 
 #, c-format
 msgid "%s: The package %s is not available.\n"
@@ -556,6 +630,14 @@ msgid ""
 "'DESCRIPTION' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 'TOOLBOXES' または 'DESCRIPTION'を含む文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: The file %s is empty.\n"
+msgstr "%s: ファイル %s は空です。\n"
 
 #, c-format
 msgid ""

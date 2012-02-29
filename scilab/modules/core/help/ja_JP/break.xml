@@ -10,8 +10,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>for</literal> または <literal>while</literal> ループの中で, コマンド <literal>break</literal> は
-	ループを強制的に終了します.</para>
+      <literal>for</literal> または <literal>while</literal> ループの中で, コマンド <literal>break</literal> は
+      ループを強制的に終了します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

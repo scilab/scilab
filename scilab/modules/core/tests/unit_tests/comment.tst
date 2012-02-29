@@ -150,7 +150,7 @@ t=['if %f //test'
 if a<>4 then pause,end
 
 // in deff (without compilation)
-funcprot(0)
+funcprot(0);
 deff('a=foo','a=1//test','n');a=foo();
 if a<>1 then pause,end
 deff('a=foo','a=''1//test'';','n');a=foo();

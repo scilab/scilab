@@ -34,5 +34,3 @@ end
 common_read(l)
 endfunction
 read_all;
- 
-       

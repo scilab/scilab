@@ -211,7 +211,7 @@
     <para>Create a directory and write down a set of XML files build as
       described above. Then start Scilab and execute <literal>xmltojar
       </literal>
-       (see <link linkend="xmltojar">xmltojar</link> for more details)
+      (see <link linkend="xmltojar">xmltojar</link> for more details)
       .
     </para>
   </refsection>

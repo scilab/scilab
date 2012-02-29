@@ -41,14 +41,20 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xarcs</literal> は<literal>arcs</literal>で記述された楕円の集合の
-	一部を塗りつぶします: 
-    <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> ただし,
-	各楕円は6個のパラメータ <literal>(x,y,w,h,a1,a2)</literal>
-	 (<literal>xfarc</literal>参照)により定義されます.</para>
-    <para><literal>x, y, w, h</literal> パラメータはユーザ座標で指定されます.</para>
-    <para><literal>style(i)</literal>は<literal>i</literal>番の楕円を
-	塗りつぶす色番号を指定します.</para>
+    <para>
+      <literal>xarcs</literal> は<literal>arcs</literal>で記述された楕円の集合の
+      一部を塗りつぶします: 
+      <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> ただし,
+      各楕円は6個のパラメータ <literal>(x,y,w,h,a1,a2)</literal>
+      (<literal>xfarc</literal>参照)により定義されます.
+    </para>
+    <para>
+      <literal>x, y, w, h</literal> パラメータはユーザ座標で指定されます.
+    </para>
+    <para>
+      <literal>style(i)</literal>は<literal>i</literal>番の楕円を
+      塗りつぶす色番号を指定します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -76,9 +82,5 @@ xfarcs(arcs,[1,2,3])
         <link linkend="xfarc">xfarc</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

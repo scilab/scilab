@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,9 +16,8 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
@@ -26,7 +25,7 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -44,7 +43,7 @@ public class InitModelicaAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -54,7 +53,7 @@ public class InitModelicaAction extends DefaultAction {
 
     /**
      * Create a button for a graph toolbar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the button
@@ -65,7 +64,7 @@ public class InitModelicaAction extends DefaultAction {
 
     /**
      * Create a menu for a graph menubar
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the menu
@@ -76,7 +75,7 @@ public class InitModelicaAction extends DefaultAction {
 
     /**
      * Action associated
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -90,31 +89,24 @@ public class InitModelicaAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
-        String temp;
-        try {
-            graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
-            temp = FileUtils.createTempFile();
-            graph.getRootDiagram().dumpToHdf5File(temp);
 
-            String cmd = buildCall("import_from_hdf5", temp);
-            cmd += buildCall("xcosConfigureModelica");
-            cmd += buildCall("deletefile", temp);
+        graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
 
-            final ActionListener action = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    graph.info(XcosMessages.EMPTY_INFO);
-                }
-            };
+        new ScilabDirectHandler().writeDiagram(graph.getRootDiagram());
 
-            try {
-                asynchronousScilabExec(action, cmd);
-            } catch (InterpreterException e1) {
-                LogFactory.getLog(InitModelicaAction.class).error(e1);
+        final String cmd = buildCall("xcosConfigureModelica");
+
+        final ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                graph.info(XcosMessages.EMPTY_INFO);
             }
-        } catch (IOException e1) {
-            LogFactory.getLog(InitModelicaAction.class).error(e1);
+        };
+
+        try {
+            asynchronousScilabExec(action, cmd);
+        } catch (InterpreterException e1) {
+            Logger.getLogger(InitModelicaAction.class.getName()).severe(e.toString());
         }
     }
 }

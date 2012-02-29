@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="SATURATION"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SATURATION" xml:lang="fr">
   <refnamediv>
     <refname>SATURATION</refname>
     <refpurpose>Saturation</refpurpose>
@@ -73,11 +65,6 @@
               <xref linkend="Computationalfunction_SATURATION">Fonction de calcul</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_SATURATION">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -113,15 +100,16 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Upper limit</emphasis>
         </para>
         <para> Spécifie la limite haute sur le signal d'entrée. Quand le signal d'entrée du bloc Saturation est supérieur à cette
-	valeur, la sortie du bloc est coupée à cette valeur.</para>
+          valeur, la sortie du bloc est coupée à cette valeur.
+        </para>
         <para> Propriétés : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
@@ -129,7 +117,8 @@
           <emphasis role="bold">Lower limit</emphasis>
         </para>
         <para> Spécifie la limite basse sur le signal d'entrée. Quand le signal d'entrée du bloc Saturation est inférieur à cette
-	valeur, la sortie du bloc est coupée à cette valeur.</para>
+          valeur, la sortie du bloc est coupée à cette valeur.
+        </para>
         <para> Propriétés : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
@@ -145,16 +134,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -173,19 +170,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -210,9 +217,5 @@
         <para> SCI/modules/scicos_blocks/src/c/satur.c (Type 4)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_SATURATION">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

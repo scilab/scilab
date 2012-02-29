@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_RELATIONALOP">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_RELATIONALOP">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,9 +93,9 @@
   <refsection id="Description_RELATIONALOP">
     <title>Description</title>
     <para>
-It performs logical comparison of its two inputs. 
-
-</para>
+      It performs logical comparison of its two inputs. 
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_RELATIONALOP">
     <title>Dialog box</title>
@@ -112,8 +107,8 @@ It performs logical comparison of its two inputs.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -135,16 +130,24 @@ It performs logical comparison of its two inputs.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -166,19 +169,29 @@ It performs logical comparison of its two inputs.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -219,20 +232,6 @@ It performs logical comparison of its two inputs.
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/relational_op_ui8.c</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Authors_RELATIONALOP">
-    <title>Authors</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
       </listitem>
     </itemizedlist>
   </refsection>

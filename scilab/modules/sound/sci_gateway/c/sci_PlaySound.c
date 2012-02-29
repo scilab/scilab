@@ -18,7 +18,6 @@
 	#pragma comment(lib, "winmm.lib")
 #endif
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "expandPathVariable.h"
 #include "Scierror.h"
 #include "api_scilab.h"

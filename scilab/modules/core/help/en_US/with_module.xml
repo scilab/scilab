@@ -6,7 +6,8 @@
   <refnamediv>
     <refname>with_module</refname>
     <refpurpose>Checks if a Scilab module is
-  installed</refpurpose>
+      installed
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -33,18 +34,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Returns <literal>%t</literal> Checks if a Scilab module is installed.</para>
+    <para>
+      Returns <literal>%t</literal> Checks if a Scilab module is installed.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getmodules">getmodules</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

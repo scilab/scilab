@@ -47,18 +47,18 @@ typeof(SUM_f)
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="xcos"><programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.</link>
+          <link linkend="xcos">
+            <programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.
+          </link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="loadScicos"><programlisting>loadScicos</programlisting> - Load the simulation native libraries.</link>
+          <link linkend="loadScicos">
+            <programlisting>loadScicos</programlisting> - Load the simulation native libraries.
+          </link>
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_loadXcosLibs">
-    <title>Authors</title>
-    <para><emphasis role="bold">Clément David</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

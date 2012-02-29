@@ -11,13 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="mopen" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mopen" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -42,18 +36,21 @@
         <term>mode</term>
         <listitem>
           <para>a character string that controls whether the file is opened
-          for reading (r), writing (w), or appending (a) and whether the file
-          is opened for updating (+). The mode can also include a b parameter
-          to indicate a binary file.</para>
+            for reading (r), writing (w), or appending (a) and whether the file
+            is opened for updating (+). The mode can also include a b parameter
+            to indicate a binary file.
+          </para>
           <para>'rb' default value</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>swap</term>
         <listitem>
-          <para>a scalar. If <literal>swap</literal> is present and
-          <literal>swap = 0</literal> then automatic bytes swap is
-          disabled.</para>
+          <para>
+            a scalar. If <literal>swap</literal> is present and
+            <literal>swap = 0</literal> then automatic bytes swap is
+            disabled.
+          </para>
           <para>1 default value</para>
         </listitem>
       </varlistentry>
@@ -96,23 +93,28 @@
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the
-          function <literal>mopen</literal> is used as a file descriptor (it's
-          a positive integer).</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the
+            function <literal>mopen</literal> is used as a file descriptor (it's
+            a positive integer).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>mopen</literal> may be used to open a file in a way
-    compatible with the C <literal>fopen</literal> procedure. Without swap
-    argument the file is supposed to be coded in "little endian IEEE format"
-    and data are swaped if necessary to match the IEEE format of the
-    processor.</para>
+    <para>
+      <literal>mopen</literal> may be used to open a file in a way
+      compatible with the C <literal>fopen</literal> procedure. Without swap
+      argument the file is supposed to be coded in "little endian IEEE format"
+      and data are swaped if necessary to match the IEEE format of the
+      processor.
+    </para>
     <para>The mode parameter controls the access allowed to the stream. The
-    parameter can have one of the following values. In this list of values,
-    the b character indicates a binary file</para>
+      parameter can have one of the following values. In this list of values,
+      the b character indicates a binary file
+    </para>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -136,28 +138,32 @@
         <term>w</term>
         <listitem>
           <para>Creates a new file for writing, or opens and truncates a file
-          to zero length.</para>
+            to zero length.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>wb</term>
         <listitem>
           <para>Creates a new binary file for writing, or opens and truncates
-          a file to zero length.</para>
+            a file to zero length.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>wt</term>
         <listitem>
           <para>Creates a text binary file for writing, or opens and truncates
-          a file to zero length.</para>
+            a file to zero length.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a or ab</term>
         <listitem>
           <para>Appends (opens a file for writing at the end of the file, or
-          creates a file for writing).</para>
+            creates a file for writing).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -176,109 +182,150 @@
         <term>a+ or a+b</term>
         <listitem>
           <para>Appends (opens a file for update, writing at the end of the
-          file, or creates a file for writing).</para>
+            file, or creates a file for writing).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>When you open a file for update, you can perform both input and
-    output operations on the resulting stream. However, an output operation
-    cannot be directly followed by an input operation without a
-    file-positioning operation (mseek() function). Also, an input operation
-    cannot be directly followed by an output operation without an intervening
-    file positioning operation, unless the input operation encounters the end
-    of the file.</para>
-
+      output operations on the resulting stream. However, an output operation
+      cannot be directly followed by an input operation without a
+      file-positioning operation (mseek() function). Also, an input operation
+      cannot be directly followed by an output operation without an intervening
+      file positioning operation, unless the input operation encounters the end
+      of the file.
+    </para>
     <para>When you open a file for append (that is, when the mode parameter is
-    a or a+), it is impossible to overwrite information already in the file.
-    You can use the fseek() function to reposition the file pointer to any
-    position in the file, but when output is written to the file, the current
-    file pointer is ignored. All output is written at the end of the file and
-    the file pointer is repositioned to the end of the output.</para>
-
+      a or a+), it is impossible to overwrite information already in the file.
+      You can use the fseek() function to reposition the file pointer to any
+      position in the file, but when output is written to the file, the current
+      file pointer is ignored. All output is written at the end of the file and
+      the file pointer is repositioned to the end of the output.
+    </para>
     <para>To open files in a way compatible with Fortran like functions use
-    function <literal>file</literal>.</para>
+      function <literal>file</literal>.
+    </para>
   </refsection>
-<refsection>
-</refsection>
+  <refsection>
+  </refsection>
   <refsection>
     <programlisting role="example">// open a SCI+'/ACKNOWLEDGEMENTS' as text and read only
-fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')
-
-// read five lines of fd_r
-mgetl(fd_r, 5)
-
-// another way to read file
-// here read five words
-mfscanf(5, fd_r, '%s')
-
-// close file descriptor associated to SCI+'/ACKNOWLEDGEMENTS' as text and read only
-mclose(fd_r);</programlisting>
+      fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')
+      
+      // read five lines of fd_r
+      mgetl(fd_r, 5)
+      
+      // another way to read file
+      // here read five words
+      mfscanf(5, fd_r, '%s')
+      
+      // close file descriptor associated to SCI+'/ACKNOWLEDGEMENTS' as text and read only
+      mclose(fd_r);
+    </programlisting>
   </refsection>
-<refsection>
-</refsection>
+  <refsection>
+  </refsection>
   <refsection>
     <programlisting role="example">// open a file as text with write property
-fd_w = mopen(TMPDIR+'/write.txt', 'wt');
-
-// write a line in fd_w
-mputl('This is a line of text', fd_w);
-mclose(fd_w);
-
-// read text
-fd_r2 = mopen(TMPDIR+'/write.txt', 'rt');
-mgetl(fd_r2)
-mclose(fd_r2);</programlisting>
+      fd_w = mopen(TMPDIR+'/write.txt', 'wt');
+      
+      // write a line in fd_w
+      mputl('This is a line of text', fd_w);
+      mclose(fd_w);
+      
+      // read text
+      fd_r2 = mopen(TMPDIR+'/write.txt', 'rt');
+      mgetl(fd_r2)
+      mclose(fd_r2);
+    </programlisting>
   </refsection>
-<refsection>
-</refsection>
+  <refsection>
+  </refsection>
   <refsection>
     <programlisting role="example">// read write a file as binary
-
-// first we write file
-fd_wb = mopen(TMPDIR+'/writeread.bin', 'wb')
-
-// put values as binary
-mput(2003, 'l', fd_wb);
-mput(2008, 'i', fd_wb);
-mput(2012, 's', fd_wb);
-mput(98, 'c', fd_wb);
-
-// close file descriptor associated to TMPDIR+'/writeread.bin'
-mclose(fd_wb);
-
-// we read file
-fd_rb = mopen(TMPDIR+'/writeread.bin', 'rb')
-
-mget(fd_rb, 'l')
-mget(fd_rb, 'i')
-mget(fd_rb, 's')
-mget(fd_rb, 'c')
-
-mclose(fd_rb) </programlisting>
+      
+      // first we write file
+      fd_wb = mopen(TMPDIR+'/writeread.bin', 'wb')
+      
+      // put values as binary
+      mput(2003, 'l', fd_wb);
+      mput(2008, 'i', fd_wb);
+      mput(2012, 's', fd_wb);
+      mput(98, 'c', fd_wb);
+      
+      // close file descriptor associated to TMPDIR+'/writeread.bin'
+      mclose(fd_wb);
+      
+      // we read file
+      fd_rb = mopen(TMPDIR+'/writeread.bin', 'rb')
+      
+      mget(fd_rb, 'l')
+      mget(fd_rb, 'i')
+      mget(fd_rb, 's')
+      mget(fd_rb, 'c')
+      
+      mclose(fd_rb) 
+    </programlisting>
   </refsection>
-<refsection>
-</refsection>
+  <refsection>
+  </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="mclose">mclose</link></member>
-      <member><link linkend="merror">merror</link></member>
-      <member><link linkend="meof">meof</link></member>
-      <member><link linkend="mfprintf">mfprintf</link></member>
-      <member><link linkend="fprintfMat">fprintfMat</link></member>
-      <member><link linkend="mfscanf">mfscanf</link></member>
-      <member><link linkend="fscanfMat">fscanfMat</link></member>
-      <member><link linkend="mget">mget</link></member>
-      <member><link linkend="mgetl">mgetl</link></member>
-      <member><link linkend="mgetstr">mgetstr</link></member>
-      <member><link linkend="mprintf">mprintf</link></member>
-      <member><link linkend="mput">mput</link></member>
-      <member><link linkend="mputl">mputl</link></member>
-      <member><link linkend="mputstr">mputstr</link></member>
-      <member><link linkend="mscanf">mscanf</link></member>
-      <member><link linkend="mseek">mseek</link></member>
-      <member><link linkend="mtell">mtell</link></member>
-      <member><link linkend="mdelete">mdelete</link></member>
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="merror">merror</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetl">mgetl</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputl">mputl</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[O]=obsv_mat(A,C)
-[O]=obsv_mat(sl)</synopsis>
+      [O]=obsv_mat(sl)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -35,20 +36,24 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para> <literal>syslin</literal> list</para>
+          <para>
+            <literal>syslin</literal> list
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>obsv_mat</literal> returns the observability matrix:</para>
-    <programlisting role = ""><![CDATA[ 
+    <para>
+      <literal>obsv_mat</literal> returns the observability matrix:
+    </para>
+    <programlisting role=""><![CDATA[ 
 O=[C; CA; CA^2;...; CA^(n-1) ]
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contrss">contrss</link>

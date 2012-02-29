@@ -15,7 +15,6 @@
 extern "C"
 {
 #include "gw_output_stream.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "charEncoding.h"

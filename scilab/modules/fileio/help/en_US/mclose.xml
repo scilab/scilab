@@ -22,7 +22,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>err=mclose([fd])
-mclose('all')</synopsis>
+      mclose('all')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -30,7 +31,9 @@ mclose('all')</synopsis>
       <varlistentry>
         <term>fd</term>
         <listitem>
-          <para>scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal> is used as a file descriptor (it's a positive integer).</para>
+          <para>
+            scalar. The <literal>fd</literal> parameter returned by the function <literal>mopen</literal> is used as a file descriptor (it's a positive integer).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,12 +46,16 @@ mclose('all')</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>mclose</literal> must be used to close a file opened by <literal>mopen</literal>. If fd
-    is omitted <literal>mclose</literal> closes the last opend file.</para>
-    <para><literal>mclose('all')</literal> closes all files opened by <literal>file('open',..)</literal> or <literal>mopen</literal>. Be careful with this use of <literal>mclose</literal> because when it is used inside a Scilab script file, it also closes the script and Scilab will not execute commands written after <literal>mclose('all')</literal>.</para>
+    <para>
+      <literal>mclose</literal> must be used to close a file opened by <literal>mopen</literal>. If fd
+      is omitted <literal>mclose</literal> closes the last opend file.
+    </para>
+    <para>
+      <literal>mclose('all')</literal> closes all files opened by <literal>file('open',..)</literal> or <literal>mopen</literal>. Be careful with this use of <literal>mclose</literal> because when it is used inside a Scilab script file, it also closes the script and Scilab will not execute commands written after <literal>mclose('all')</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="meof">meof</link>

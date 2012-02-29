@@ -18,7 +18,6 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Display about box for the text editor
@@ -54,11 +53,6 @@ public final class AboutAction extends DefaultAction {
      * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
      */
     public void doAction() {
-        String[] contents = {SciNotesMessages.VERSION,
-                             "",
-                             SciNotesMessages.DIGITEO,
-                             SciNotesMessages.COPYRIGHT};
-
-        ScilabAboutBox.createAboutBox(SciNotesMessages.ABOUT, contents, null, null);
+        ScilabAboutBox.displayAndWait();
     }
 }

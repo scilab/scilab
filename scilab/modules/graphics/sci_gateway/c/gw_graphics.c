@@ -13,7 +13,8 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "scilabmode.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -104,6 +105,12 @@ int gw_graphics(void)
 {  
 	Rhs = Max(0, Rhs);
 
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
 		if (!loadedDep) 

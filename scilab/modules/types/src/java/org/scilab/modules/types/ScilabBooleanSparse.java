@@ -50,8 +50,8 @@ public class ScilabBooleanSparse implements ScilabType {
         if (data) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
         }
     }
 
@@ -165,7 +165,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param nbItem the real part.
      */
     public void setNbNonNullItems(int nbItem) {
         this.nbItem = nbItem;
@@ -183,10 +183,23 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param nbItemRow the real part.
      */
     public void setNbItemRow(int[] nbItemRow) {
         this.nbItemRow = nbItemRow;
+    }
+
+    /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
     }
 
     /**
@@ -201,7 +214,7 @@ public class ScilabBooleanSparse implements ScilabType {
     /**
      * Set the real part of the data.
      *
-     * @param realPart the real part.
+     * @param colPos the real part.
      */
     public void setColPos(int[] colPos) {
         this.colPos = colPos;
@@ -277,11 +290,18 @@ public class ScilabBooleanSparse implements ScilabType {
         if (obj instanceof ScilabBooleanSparse) {
             ScilabBooleanSparse sciSparse = (ScilabBooleanSparse) obj;
             return this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
-                Arrays.equals(this.getColPos(), sciSparse.getColPos());
+                   ScilabSparse.compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                   Arrays.equals(this.getColPos(), sciSparse.getColPos());
         } else {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        return new Object[]{new int[]{rows, cols}, nbItemRow, getScilabColPos()};
     }
 
     /**

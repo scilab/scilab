@@ -37,11 +37,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction permet de sélectionner le paramètre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
-    qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
+      Cette fonction permet de sélectionner le paramètre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
+      qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
     </para>
     <para>
-    Les entrées possibles sont :
+      Les entrées possibles sont :
     </para>
     <itemizedlist>
       <listitem>
@@ -112,9 +112,9 @@
       </listitem>
     </itemizedlist>
     <para>
-     Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
-     (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
-   </para>
+      Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
+      (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -130,7 +130,7 @@ fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

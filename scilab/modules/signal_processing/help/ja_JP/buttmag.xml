@@ -29,7 +29,9 @@
       <varlistentry>
         <term>sample</term>
         <listitem>
-          <para><literal>buttmag</literal>が評価する周波数ベクトル</para>
+          <para>
+            <literal>buttmag</literal>が評価する周波数ベクトル
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,9 +45,10 @@
   <refsection>
     <title>説明</title>
     <para>
-	バターワースフィルタの二乗振幅応答
-    <literal>omegac</literal> = カットオフ周波数 ; <literal>sample</literal> = 
-	周波数のサンプル</para>
+      バターワースフィルタの二乗振幅応答
+      <literal>omegac</literal> = カットオフ周波数 ; <literal>sample</literal> = 
+      周波数のサンプル
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -55,9 +58,5 @@ h=buttmag(13,300,1:1000);
 mag=20*log(h)'/log(10);
 plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

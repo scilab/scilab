@@ -10,19 +10,22 @@
   <refsection>
     <title>Description</title>
     <para>
-    Matrices are basic objects defined in Scilab.
-    They can be defined as follows:</para>
-    <programlisting role = ""><![CDATA[ 
+      Matrices are basic objects defined in Scilab.
+      They can be defined as follows:
+    </para>
+    <programlisting role=""><![CDATA[ 
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
    em1,em2,...,emn];
  ]]></programlisting>
     <para>
-    Entries <literal>eij</literal> can be real or complex numbers, polynomials,
-    rationals, strings, booleans.</para>
+      Entries <literal>eij</literal> can be real or complex numbers, polynomials,
+      rationals, strings, booleans.
+    </para>
     <para>
-    Vectors are seen as matrices with one row or one column.</para>
+      Vectors are seen as matrices with one row or one column.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -36,7 +39,7 @@ E=['A11','A12';'A21','A22']
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

@@ -41,11 +41,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sol=chsolve(spcho,rhs)</literal> computes the solution of 
+    <para>
+      <literal>sol=chsolve(spcho,rhs)</literal> computes the solution of 
       <literal>rhs=A*sol</literal>, with <literal>A</literal> a symmetric sparse positive definite
       matrix. This function is based on the Ng-Peyton programs (ORNL). See the
       Fortran programs for a complete description of the variables in
-      <literal>spcho</literal>.</para>
+      <literal>spcho</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -59,7 +61,7 @@ chsolve(spcho,rhs)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="chfact">chfact</link>

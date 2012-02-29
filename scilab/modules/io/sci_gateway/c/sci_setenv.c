@@ -17,7 +17,6 @@
 #include "api_scilab.h"
 #include "setenvc.h"
 #include "MALLOC.h" /* MALLOC */
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/

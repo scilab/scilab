@@ -42,8 +42,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>H</literal> が多項式または有理関数行列の場合, <literal>invr</literal>
-    はLeverrierのアルゴリズムにより <literal>H^(-1)</literal>を計算します  (関数コード参照)</para>
+      <literal>H</literal> が多項式または有理関数行列の場合, <literal>invr</literal>
+      はLeverrierのアルゴリズムにより <literal>H^(-1)</literal>を計算します  (関数コード参照)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

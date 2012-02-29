@@ -3,23 +3,20 @@
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 package org.scilab.modules.xcos.block.actions;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-
 import java.awt.event.ActionEvent;
-import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
@@ -29,8 +26,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -48,7 +44,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            graph
      */
@@ -79,7 +75,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         Object[] selectedCells = graph.getSelectionCells();
 
         // if no cells are selected : Do nothing
@@ -88,8 +84,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         }
 
         for (int i = 0; i < selectedCells.length; ++i) {
-            if ((selectedCells[i] instanceof BasicBlock)
-                    && !(selectedCells[i] instanceof SplitBlock)) {
+            if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
                 BasicBlock instance = (BasicBlock) selectedCells[i];
                 viewDetails(instance);
             }
@@ -98,7 +93,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 
     /**
      * View the data details
-     * 
+     *
      * @param data
      *            the selected block
      */
@@ -106,25 +101,16 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         /*
          * Export data
          */
-        String temp;
-        try {
-            temp = FileUtils.createTempFile();
-            new H5RWHandler(temp).writeBlock(data);
-        } catch (IOException e1) {
-            LogFactory.getLog(ViewDetailsAction.class).error(e1);
-            return;
-        }
+        new ScilabDirectHandler().writeBlock(data);
 
         /*
          * Build and execute the command
          */
-        String cmd = buildCall("import_from_hdf5", temp);
-        cmd += "tree_show(scs_m); ";
-        cmd += buildCall("deletefile", temp);
+        final String cmd = "tree_show(scs_m); ";
         try {
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
         } catch (InterpreterException e1) {
-            LogFactory.getLog(ViewDetailsAction.class).error(e1);
+            Logger.getLogger(ViewDetailsAction.class.toString()).severe(e1.toString());
         }
     }
 }

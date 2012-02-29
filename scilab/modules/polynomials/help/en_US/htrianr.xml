@@ -46,7 +46,9 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para>integer, normal rank of <literal>A</literal></para>
+          <para>
+            integer, normal rank of <literal>A</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,13 +56,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    triangularization of polynomial matrix <literal>A</literal>.</para>
-    <para><literal>A</literal> is <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>.</para>
+      triangularization of polynomial matrix <literal>A</literal>.
+    </para>
+    <para>
+      <literal>A</literal> is <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>.
+    </para>
     <para>
       <literal>Ar=A*U</literal>
     </para>
     <para>
-    Warning: there is an elimination of "small" terms (see function code).</para>
+      Warning: there is an elimination of "small" terms (see function code).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,7 +79,7 @@ M*U(:,1:2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

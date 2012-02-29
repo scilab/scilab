@@ -18,22 +18,23 @@
         <term>x  </term>
         <listitem>
           <para>une variable 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t  </term>
         <listitem>
           <para>un booléen
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>isglobal(x)</literal> renvoie %T (vrai) si x a été déclarée en tant que variable globale et %F (faux) sinon.
-  </para>
+    <para>
+      <literal>isglobal(x)</literal> renvoie %T (vrai) si x a été déclarée en tant que variable globale et %F (faux) sinon.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -44,7 +45,7 @@ isglobal(a)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="global">global</link>

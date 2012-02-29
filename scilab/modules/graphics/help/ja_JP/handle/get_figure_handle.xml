@@ -41,10 +41,11 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>get_figure_handle</literal> 関数により
-	IDが既知の図のハンドルを取得することが可能です.
-	指定したIDを有する図が存在する場合,この関数はそのハンドルを返します.
-	それ以外の場合,空の行列を返します.
+    <para>
+      <literal>get_figure_handle</literal> 関数により
+      IDが既知の図のハンドルを取得することが可能です.
+      指定したIDを有する図が存在する場合,この関数はそのハンドルを返します.
+      それ以外の場合,空の行列を返します.
     </para>
   </refsection>
   <refsection>
@@ -83,9 +84,4 @@ f42 = get_figure_handle(42);
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-

@@ -38,15 +38,11 @@
     <para>returns Java Runtime Environment used by Scilab.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="system_getproperty">system_getproperty</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

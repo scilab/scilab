@@ -14,10 +14,12 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 // =============================================================================
 if ~isempty( atomsGetInstalled() ) then pause, end 
 
+// If previous test did not end properly, restore, else backup config file
+atomsRestoreConfig(%T);
+atomsSaveConfig();
+
 // Set some parameters for the test
 // =============================================================================
-config_autoload = atomsGetConfig("autoloadAddAfterInstall");
-config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
@@ -60,6 +62,6 @@ atomsRemove("toolbox_5");
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoloadAddAfterInstall",config_autoload);
-atomsSetConfig("Verbose" ,config_Verbose);
+atomsRestoreConfig(%T);
+
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

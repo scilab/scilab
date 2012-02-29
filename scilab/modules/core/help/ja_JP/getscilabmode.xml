@@ -14,23 +14,23 @@
   <refsection>
     <title>説明</title>
     <para>Scilabモードを返します. 以下の4 種類のモードがあります : STD , API , NW , NWNI .</para>
-    <para><literal>API</literal>Scilab はAPIとして起動されますi.</para>
-    <para><literal>STD</literal>標準的なT Scilab (gui, plot ...) </para>
-    <para><literal>NW</literal>コマンドライン版 Scilab (プロット機能付き).</para>
-    <para><literal>NWNI</literal>コマンドライン版Scilab (グラフィックなし).</para>
+    <para>
+      <literal>API</literal>Scilab はAPIとして起動されますi.
+    </para>
+    <para>
+      <literal>STD</literal>標準的なT Scilab (gui, plot ...) 
+    </para>
+    <para>
+      <literal>NW</literal>コマンドライン版 Scilab (プロット機能付き).
+    </para>
+    <para>
+      <literal>NWNI</literal>コマンドライン版Scilab (グラフィックなし).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
 getscilabmode()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scilab">scilab</link>
-      </member>
-    </simplelist>
   </refsection>
 </refentry>

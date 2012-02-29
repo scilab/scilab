@@ -7,23 +7,13 @@ Scilab Desktop
 
 * Add a button in dockbar to get the help about the component.
 
+* Bug #10775 fixed - Scilab icons in filebrowser had the wrong size.
+
 
 XML
 ===
 
 * Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
-
-* Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
-
-
-Help
-====
-
-* Management of Docbook tags <note>, <caution>, <warning>, <important> and
- <tip>. See bug #10505.
-
-* Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
-  <caution>, <warning>, <important> and <tip> tags in examples.
 
 
 Xcos
@@ -36,12 +26,6 @@ Xcos
   - CLSS - Continuous state-space system
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
-
-* Bug #6201 fixed - Block help menu had no shortcut.
-
-* Bug #6733 fixed - Each call to xcos created an empty diagram.
-
-* Bug #7863 fixed - Default path for code generation was SCI.
 
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
@@ -64,19 +48,6 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
-* Bug #10423 fixed - The function browsehistory() to open history browser was missing.
-
-* Bug #10461 fixed - Canceling a Quit operation did not work.
-
-* Bug #10486 fixed - importXcosDiagram opened a tab.
-
-* Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
-
-* Bug #10499 fixed - lincos example in help file returned warning and error.
-
-* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
-                     block.
-
 
 Unitary testing
 ===============
@@ -92,6 +63,44 @@ Graphical User Interface
 * Bug #4978 fixed - Icons did not follow the Tango norm.
 
 
+CLI console:
+============
+
+* bug 3400 fixed - Long lines in the history breaks the display.
+
+* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow key
+s.
+
+* bug 3108 fixed - Some specific chars in the terminal are not correctly
+                   removed by the backspace.
+
+* Support wide characters.
+
+* Support multiline command.
+
+* Improve command line display.
+
+* List of shortcuts in NW/NWNI mode:
+  - CTRL+W: Remove the previous word.
+  - CTRL+U: Remove everything from the current position to the beginning of
+            the line.
+  - UP or Ctrl+P: recall previous line.
+  - DOWN or Ctrl+N: recall next line.
+  - TAB: completion : scilab displays a list of all names that start with somes 
+characters.
+  - Ctrl + A or HOME: move to beginning of current line.
+  - Ctrl + B or LEFT: moves the cursor one character to the left.
+  - Ctrl + D or DELETE: deletes the current character.
+  - Ctrl + E or END: moves the cursor to the end of command line.
+  - Ctrl + F or RIGHT: moves the cursor one character to the right.
+  - Ctrl + H or BACKSPACE: deletes the previous character.
+  - Ctrl + K: kills command line from cursor to the end.
+  - Ctrl + U: kills command line from cursor to beginning.
+  - Ctrl + W: delete the previous word from the cursor.
+  - Alt+B or Ctrl+LEFT: move left one word.
+  - Alt+F or Ctrl+RIGHT: move right one word.
+
+
 Scinotes
 ========
 
@@ -99,6 +108,40 @@ Scinotes
 
 * Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
                      restoring.
+
+
+CLI console:
+============
+
+* Support wide characters.
+
+* Support multiline command.
+
+* General improvement command line display.
+
+* List of new/old shortcuts in NW/NWNI mode:
+  - UP or Ctrl+P: recall previous line.
+  - DOWN or Ctrl+N: recall next line.
+  - TAB: completion : Scilab displays a list of all names that start with somes
+    characters.
+  - Ctrl + A or HOME: move to beginning of current line.
+  - Ctrl + B or LEFT: moves the cursor one character to the left.
+  - Ctrl + D or DELETE: deletes the current character.
+  - Ctrl + E or END: moves the cursor to the end of command line.
+  - Ctrl + F or RIGHT: moves the cursor one character to the right.
+  - Ctrl + H or BACKSPACE: deletes the previous character.
+  - Ctrl + K: kills command line from cursor to the end.
+  - Ctrl + U: kills command line from cursor to beginning.
+  - Ctrl + W: delete the previous word from the cursor.
+  - Alt+B or Ctrl+LEFT: move left one word.
+  - Alt+F or Ctrl+RIGHT: move right one word.
+
+* bug 3108 fixed - Some specific chars in the terminal were not correctly
+                   removed by the backspace.
+
+* bug 3400 fixed - Long lines in the history broke the display.
+
+* bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
 
 
 Javasci
@@ -128,13 +171,25 @@ Compatibility Functions
 
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
 
+ATOMS
+=======
 
-Compilation
-===========
+* 'atomsQuit' function added to allow to call .quit of modules loaded by ATOMS
+  when user closes Scilab session. see SEP #77.
 
-* Enforce a minimal version of JLaTeXMath (0.9.7).
+* tbx_build_loader generates also a unloader.sce to allow to call .quit file of
+   an ATOMS module.
 
-* Enforce a minimal version of Flexdock (1.1.1).
+* Bug #9798 fixed - .quit script of atoms modules were not evaluated when 
+                    leaving Scilab.
+
+* Bug #10494 fixed - atomsInstall and atomsLoad were not clearly distinguished
+                     in the documentation.
+
+* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
+                     error message.
+
+* Bug #10707 fixed - atomsInstall failed to use the path shortcut.
 
 
 Bug fixes
@@ -147,9 +202,6 @@ Bug fixes
 
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
-* Bug #8682 fixed - funcprot did not return the previous value when called with
-                    an argument.
-
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
 
@@ -160,6 +212,17 @@ Bug fixes
 
 * Bug #9572 fixed - assert_checkerror did not check multi lines errors.
 
+* Bug #9643 fixed - genetic algorithms demo was not vectorized.
+
+* Bug #9654 fixed - an example of 'optim' help was poorly implemented.
+
+* Bug #9700 fixed - optim help page had a mistake about bounds management.
+
+* Bug #9734 fixed - intsplin help pages moved from interpolation to
+                    elementary functions chapter.
+
+* Bug #9735 fixed - Remove some old stack api examples.
+
 * Bug #9811 fixed - Output message of fminsearch was wrongly set.
 
 * Bug #10017 fixed - The unitary test for bdiag used a "strange" comparison
@@ -167,34 +230,38 @@ Bug fixes
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
 
-* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
-                     parent axes.
-
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
+* Bug #10250 fixed - Bug in the detection of the Java path under GNU/Linux fixed.
+
 * Bug #10267 fixed - The help browser did not use the default language on restoration.
+
+* Bug #10281 fixed - In some cases, the function lyap was crashing.
 
 * Bug #10303 fixed - test_run ignored "enable_lt" option.
 
 * Bug #10304 fixed - test_run did not return an error when using an invalid option.
 
+* Bug #10306 fixed - 'isempty' could fail with empty elements in a list.
+
 * Bug #10330 fixed - 'error' did not manage vector of strings as input argument, but
                      but 'lasterror' returned vector of strings.
+
+* Bug #10341 fixed - font in help was bold when the font of a text uicontrol
+                     was set to bold.
+
+* Bug #10342 fixed - assert_checkerror help file had a wrong format.
 
 * Bug #10379 fixed - lines did not manage a 1x2 vector [nc, nl] as input argument.
 
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
-* Bug #10396 fixed - Display of a structure with large matrix took a long time.
-
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
 
 * Bug #10408 fixed - In the history browser, the contents was scrolled even if the
                      knob was not at the bottom.
-
-* Bug #10416 fixed - xmltoformat did not return at the root directory in case of error.
 
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
@@ -231,9 +298,6 @@ Bug fixes
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
 
-* Bug #10500 fixed - ATOMS module without DESCRIPTION file returned a wrong
-                     error message.
-
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
 * Bug #10506 fixed - ssprint did not check input arguments.
@@ -259,6 +323,103 @@ Bug fixes
 * Bug #10536 fixed - A string was in French in the English help page of cumsum.
 
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
+
+* Bug #10558 fixed - Tcl/Tk demonstrations did not start.
+
+* Bug #10560 fixed - genetic algorithms demos failed.
+
+* Bug #10564 fixed - atan graphic demo was failing due to a too strong test
+                     in the linspace function.
+
+* Bug #10565 fixed - demo simulation --> bicycle simulation --> unstable
+                     trajectory failed.
+
+* Bug #10574 fixed - Runge-Kutta-Method failed for vector [x, 1] with x > 9.
+
+* Bug #10576 fixed - getdate (on Windows) did not manage dates after January 19, 2038
+
+* Bug #10577 fixed - getdate did not check input argument.
+
+* Bug #10579 fixed - Wrong reference to and function in the help page of prod
+                     and cumprod fixed.
+
+* Bug #10654 fixed - dgettext with "scilab" domain did not return same result
+                     than gettext.
+
+* Bug #10626 fixed - taucs_chdel(), umf_ludel() returned an error.
+
+* Bug #10631 fixed - The # sign was missing in some error cases.
+
+* Bug #10632 fixed - Navigation buttons in the file browser did not change the
+                     current Scilab working directory.
+
+* Bug #10634 fixed - dsearch help page referenced an invalid input argument
+                     name.
+
+* Bug #10641 fixed - string(:) gave wrong results.
+
+* Bug #10643 fixed - Bad result when using isreal function with a polynomial
+                     input.
+
+* Bug #10652 fixed - getdebuginfo() did not display TMPDIR value.
+
+* Bug #10656 fixed - Exception when an empty help browser was closed.
+
+* Bug #10673 fixed - Typos fixed in the help page of ssrand.
+
+* Bug #10685 fixed - inttrap help page moved to differential calculus module.
+
+* Bug #10710 fixed - Wrong error message fixed in xml module.
+
+* Bug #10716 fixed - The help page of acos badly talked about vectors instead of matrices.
+
+* Bug #10717 fixed - Typos fixed in the help page of acosd.
+
+* Bug #10720 fixed - Typos fixed in the help page of acosh.
+
+* Bug #10724 fixed - Missing links in the help page of acot added.
+
+* Bug #10725 fixed - Typos fixed in the help page of acot.
+
+* Bug #10726 fixed - Missing links in the help page of acsc added.
+
+* Bug #10727 fixed - Missing links in the help page of asech added.
+
+* Bug #10728 fixed - Wrong link in the help page of asind fixed.
+
+* Bug #10729 fixed - Missing links in the help page of asinh added.
+
+* Bug #10730 fixed - Missing links in the help page of asinhm added.
+
+* Bug #10731 fixed - Typos fixed in the help page of atan.
+
+* Bug #10732 fixed - Wrong link in the help page of atand fixed.
+
+* Bug #10733 fixed - Missing link in the help page of atanm added.
+
+* Bug #10734 fixed - Missing link in the help page of cos added.
+
+* Bug #10735 fixed - Missing information about input argument in the help page of cotd added.
+
+* Bug #10736 fixed - Missing "Arguments" section in the help page of coth added.
+
+* Bug #10737 fixed - Missing "Arguments" section in the help page of cothm added.
+
+* Bug #10738 fixed - Typos fixed in the help page of cscd.
+
+* Bug #10739 fixed - Typos fixed in the help page of csgn.
+
+* Bug #10740 fixed - Typos fixed in the help page of sec.
+
+* Bug #10741 fixed - Typos fixed in the help page of secd.
+
+* Bug #10742 fixed - Missing link in the help page of sin added.
+
+* Bug #10743 fixed - Wrong link in the help page of sind fixed.
+
+* Bug #10744 fixed - Typos fixed in the help page of sinh.
+
+* Bug #10745 fixed - Typos fixed in the help page of tand.
 
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
@@ -385,7 +546,6 @@ Call_Scilab
 
 * Bug #10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
                     removed.
-
 
 Xcos
 =====

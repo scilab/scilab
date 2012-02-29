@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>s=stdevf(x,fre)
-s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
-s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis>
+      s=stdevf(x,fre,'r') or s=stdevf(x,fre,1)
+      s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,29 +39,35 @@ s=stdevf(x,fre,'c') or s=stdevf(x,fre,2)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    This function   computes the standard  deviation  of the
-    values  of a vector  or matrix <literal>   x</literal>, each of them
-    counted with  a  frequency  given  by the  corresponding
-    values of the  integer vector or matrix  <literal> fre</literal> who
-    has the same type of <literal> x</literal>.</para>
+      This function   computes the standard  deviation  of the
+      values  of a vector  or matrix <literal>   x</literal>, each of them
+      counted with  a  frequency  given  by the  corresponding
+      values of the  integer vector or matrix  <literal> fre</literal> who
+      has the same type of <literal> x</literal>.
+    </para>
     <para>
-    For  a vector or matrix  <literal>  x</literal>, s=stdevf(x,fre) (or
-    <literal> s=stdevf(x,fre,'*') </literal>  returns in scalar <literal> s</literal>
-    the standard deviation of all the entries  of <literal> x</literal>,
-    each value  counted  with the multiplicity  indicated by
-    the corresponding value of <literal> fre</literal>.</para>
-    <para><literal>s=stdevf(x,fre,'r')</literal>   (or,     equivalently,   
-    <literal>s=stdevf(x,fre,1)</literal>) returns in each  entry of  the row
-    vector  <literal> s</literal>  of type  1xsize(x,'c')  the standard
-    deviation of each column of <literal> x</literal>, each value counted
-    with  the multiplicity  indicated  by the  corresponding
-    value of <literal> fre</literal>.</para>
-    <para><literal>s=stdevf(x,fre,'c')</literal>    (or,   equivalently,    
-    <literal> s=stdevf(x,fre,2)</literal>)  returns   in each  entry  of  the
-    column vector  <literal>  s</literal>   of type  size(x,'c')x1   the
-    standard  deviation of each row  of <literal> x</literal>, each value
-    counted    with the  multiplicity    indicated   by  the
-    corresponding value of <literal> fre</literal>.</para>
+      For  a vector or matrix  <literal>  x</literal>, s=stdevf(x,fre) (or
+      <literal> s=stdevf(x,fre,'*') </literal>  returns in scalar <literal> s</literal>
+      the standard deviation of all the entries  of <literal> x</literal>,
+      each value  counted  with the multiplicity  indicated by
+      the corresponding value of <literal> fre</literal>.
+    </para>
+    <para>
+      <literal>s=stdevf(x,fre,'r')</literal>   (or,     equivalently,   
+      <literal>s=stdevf(x,fre,1)</literal>) returns in each  entry of  the row
+      vector  <literal> s</literal>  of type  1xsize(x,'c')  the standard
+      deviation of each column of <literal> x</literal>, each value counted
+      with  the multiplicity  indicated  by the  corresponding
+      value of <literal> fre</literal>.
+    </para>
+    <para>
+      <literal>s=stdevf(x,fre,'c')</literal>    (or,   equivalently,    
+      <literal> s=stdevf(x,fre,2)</literal>)  returns   in each  entry  of  the
+      column vector  <literal>  s</literal>   of type  size(x,'c')x1   the
+      standard  deviation of each row  of <literal> x</literal>, each value
+      counted    with the  multiplicity    indicated   by  the
+      corresponding value of <literal> fre</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,12 +80,9 @@ m=stdevf(x,fre,'c')
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

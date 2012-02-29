@@ -89,8 +89,6 @@ Start Toolbox skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
-   TMPDIR = TMPDIR
-
    001/001 - [TMPDIR/toolbox_skeleton/] : 
 
    001/003 - [TMPDIR/toolbox_skeleton/] c_sum...................passed

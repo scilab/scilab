@@ -10,49 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="call_scilab" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="call_scilab" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>call_scilab</refname>
-
     <refpurpose>call_scilab is an interface which provides the ability to call
-    Scilab engine from C/C++ code</refpurpose>
+      Scilab engine from C/C++ code
+    </refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Description</title>
-
     <para>Scilab offers the possibility to be called from a native (C/C++)
-    application.</para>
-
+      application.
+    </para>
     <para>Thanks to this module, it is possible to call Scilab from C/C++ in
-    order to interface Scilab's features from an other code/application or to
-    be able to interface Scilab's features from an other language.</para>
-
+      order to interface Scilab's features from an other code/application or to
+      be able to interface Scilab's features from an other language.
+    </para>
     <para>Since Scilab 5.2.0, all Scilab datatype can be handle by call_scilab.
-    This is done thanks to <link linkend="api_scilab">API_Scilab</link></para>
-
+      This is done thanks to <link linkend="api_scilab">API_Scilab</link>
+    </para>
     <para>This help describes the features of the call_scilab API.</para>
-
-    <para>Note: The <link linkend="javasci">javasci</link> module is based
-    on call_scilab.</para>
-
-   <para>Note: old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
-
+    <para>
+      Note: The <link linkend="javasci">javasci</link> module is based
+      on call_scilab.
+    </para>
+    <para>Note: old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 // A simple call_scilab example 
 
@@ -91,35 +79,27 @@ int main(void)
 }
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-	<link linkend="api_scilab">api Scilab</link>
+        <link linkend="api_scilab">api Scilab</link>
       </member>
       <member>
-	<link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
+        <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
       </member>
       <member>
-	<link linkend="DoubleManagement_callscilab">Matrix Management</link>
+        <link linkend="DoubleManagement_callscilab">Matrix Management</link>
       </member>
       <member>
-	<link linkend="BooleanManagement_callscilab">Boolean Management</link>
+        <link linkend="BooleanManagement_callscilab">Boolean Management</link>
       </member>
       <member>
-	<link linkend="ComplexManagement_callscilab">Complex Management</link>
+        <link linkend="ComplexManagement_callscilab">Complex Management</link>
       </member>
       <member>
-	<link linkend="StringManagement_callscilab">String Management</link>
+        <link linkend="StringManagement_callscilab">String Management</link>
       </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

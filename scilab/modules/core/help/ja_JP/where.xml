@@ -31,15 +31,16 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>linenum</literal> および <literal>mac</literal> を返します.
-	この際,関数 mac(1) の linenum(1) 行目でカレントの命令がコールされ,
-	関数 mac(2) の linenum(2) 行目で mac(1) がコールされ,...,
-	を意味します.</para>
+      <literal>linenum</literal> および <literal>mac</literal> を返します.
+      この際,関数 mac(1) の linenum(1) 行目でカレントの命令がコールされ,
+      関数 mac(2) の linenum(2) 行目で mac(1) がコールされ,...,
+      を意味します.
+    </para>
     <para>
-    mac(i) は一般には関数名ですが,
-	命令が exec ファイルまたは execstr 命令の中にある場合には,
-	"exec" または "execstr" となる可能性もあります.
-	</para>
+      mac(i) は一般には関数名ですが,
+      命令が exec ファイルまたは execstr 命令の中にある場合には,
+      "exec" または "execstr" となる可能性もあります.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

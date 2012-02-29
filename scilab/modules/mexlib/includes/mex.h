@@ -23,7 +23,9 @@ extern "C" {
 	#include <stddef.h> /*for LCC */
 #endif
 
+#define __MEX_INCLUDE__
 #include "stack-c.h"
+#undef __MEX_INCLUDE__
 
 typedef int Matrix;
 typedef unsigned long int vraiptrst;

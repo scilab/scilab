@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"

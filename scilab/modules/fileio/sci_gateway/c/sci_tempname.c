@@ -12,7 +12,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "createtempfilename.h"
 #include "gw_fileio.h"
 #include "Scierror.h"

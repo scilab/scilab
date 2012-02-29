@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "lasterror.h"
 #include "BOOL.h"
 #include "localization.h"

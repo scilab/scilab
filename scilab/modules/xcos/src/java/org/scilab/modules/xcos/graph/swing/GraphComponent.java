@@ -34,9 +34,11 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.handler.ConnectionHandler;
 import org.scilab.modules.xcos.graph.swing.handler.GraphHandler;
+import org.scilab.modules.xcos.graph.swing.handler.SelectionCellsHandler;
 
 import com.mxgraph.swing.handler.mxConnectionHandler;
 import com.mxgraph.swing.handler.mxGraphHandler;
+import com.mxgraph.swing.handler.mxSelectionCellsHandler;
 
 /**
  * Implement a specific {@link com.mxgraph.swing.mxGraphComponent} for an Xcos
@@ -70,6 +72,11 @@ public class GraphComponent extends ScilabComponent {
     @Override
     protected mxGraphHandler createGraphHandler() {
         return new GraphHandler(this);
+    }
+
+    @Override
+    protected mxSelectionCellsHandler createSelectionCellsHandler() {
+        return new SelectionCellsHandler(this);
     }
 
     /**

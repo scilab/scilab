@@ -167,6 +167,13 @@ scilab -l ja_JP</programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>-noatomsautoload</term>
+        <listitem>
+          <para>Si cette option est fournie, les modules ATOMS précédemment installés ne sont pas chargés durant cette session.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
         <term>-nw</term>
         <listitem>
           <para>si cette option est présente Scilab est lancé en tant que
@@ -355,4 +362,14 @@ echo $? </programlisting>
       </member>
     </simplelist>
   </refsection>
+ <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>-noatomsautoload ajouté.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+  
 </refentry>

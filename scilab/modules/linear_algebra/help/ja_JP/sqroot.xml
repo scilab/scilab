@@ -36,7 +36,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>X=W*W'</literal> となるようなWを返します(SVDを使用).</para>
+      <literal>X=W*W'</literal> となるようなWを返します(SVDを使用).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

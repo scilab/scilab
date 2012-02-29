@@ -393,81 +393,78 @@ detect_java_vm() {
 # uname -m Darwin
 
 # If the user has the variable JAVA_HOME in the ENV
-    if test -n "$JAVA_HOME" ; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Using specified vm: $JAVA_HOME"
-            fi
-            if test ! -x "$JAVA_HOME/bin/java" ; then
-                echo "Cannot find $JAVA_HOME/bin/java"
-                exit 1
-            fi
+        if test -n "$JAVA_HOME" ; then
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using specified vm: $JAVA_HOME"
+                fi
+                if test ! -x "$JAVA_HOME/bin/java" ; then
+                    echo "Cannot find $JAVA_HOME/bin/java"
+                    exit 1
+                fi
         else
 
-        case $OS in
-            *darwin* | *Darwin*)
-                set_macosx_java_vm
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Using default Mac OS X vm: $JAVA_HOME"
-                    echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-                    echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
-                fi
-                ;;
-            *)
-                ;;
-        esac
+            case $OS in
+                *darwin* | *Darwin*)
+                    set_macosx_java_vm
+                    if test $SCIVERBOSE -ne 0; then
+                        echo "Using default Mac OS X vm: $JAVA_HOME"
+                        echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+                        echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+                    fi
+                    ;;
+                *)
+                    ;;
+            esac
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
-        if test -z "$JAVA_HOME"; then
-            JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
-            for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-                if test $SCIVERBOSE -ne 0; then
-                    echo "Trying to find Java in $JAVA_HOME "
-                fi
-                if test -x "${JAVA_HOME}/bin/java" ; then
-                    export JAVA_HOME
+            if test -z "$JAVA_HOME"; then
+                JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+                for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
-                        echo "found"
+                        echo "Trying to find Java in $DIR "
                     fi
-                    break
-                fi
-            done
-        fi
-
-# JAVA_HOME still haven't been found. Well, we can now try to find it in the path
-        if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
-            if test $SCIVERBOSE -ne 0; then
-                echo "Have not been able to find any Java VM on this computer. Some features may be broken."
-            fi
-        else
-
-            PATH_SEPARATOR=:
-            as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-            if test $SCIVERBOSE -ne 0; then
-                echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
-            fi
-            for DIR in $PATH; do
-                if test -f $DIR/java; then
-
-                    _cur=$DIR/java
-            # resolve symlink
-            # Will probably bug if a file contains -> in the name
-                    while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-                        _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
-                    done
-            # symlink resolved to the real file
-
-            # Now, create JAVA_HOME
-                    TMP=$(dirname $_cur)
-                    JAVA_HOME=$(dirname $TMP)
-                    if test ! -z "$JAVA_HOME"; then
-                        break;
+                    if test -x "${DIR}/bin/java" ; then
+                        JAVA_HOME=$DIR
+                        export JAVA_HOME
+                        if test $SCIVERBOSE -ne 0; then
+                            echo "found"
+                        fi
+                        break
                     fi
+                done
+            fi
+
+# if JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+            if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
+
+                PATH_SEPARATOR=:
+                as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Look for the java binary in the PATH. If it is a symlink, try to resolve it"
                 fi
-            done
-            IFS=$as_save_IFS
+                for DIR in $PATH; do
+                    if test -f $DIR/java; then
+
+                        _cur=$DIR/java
+                # resolve symlink
+                # Will probably bug if a file contains -> in the name
+                        while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+                            _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
+                        done
+                # symlink resolved to the real file
+
+                # Now, create JAVA_HOME
+                        TMP=$(dirname $_cur)
+                        JAVA_HOME=$(dirname $TMP)
+                        if test ! -z "$JAVA_HOME"; then
+                            break;
+                        fi
+                    fi
+                done
+                IFS=$as_save_IFS
+            fi
         fi
-    fi
         if test ! -z "$JAVA_HOME"; then
             if test $SCIVERBOSE -ne 0; then
                 echo "JAVA_HOME : $JAVA_HOME"
@@ -567,7 +564,7 @@ detect_java_vm() {
                     proc=$MODEL
                     ;;
             esac
-        fi # JAVA_HOME provided but wrong
+        fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
 # Check if the lib exists or not (we should manage system where .so is not the
@@ -725,7 +722,7 @@ check_macosx_version()
                      VERSION=$(/usr/libexec/java_home -v 1.5|grep 1.5.0)
                      if test "$VERSION"; then
                          open /Applications/Utilities/Java\ Preferences.app/ &
-                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu." || exit 128
+                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu. An other workaround is to rename /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib to libjava.jnilib_" || exit 128
                      fi
 
                      ;;
@@ -740,7 +737,8 @@ check_macosx_version()
     esac
 }
 
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+# . is used by the dynamic link. The build lib are copied into the PWD
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in
@@ -820,6 +818,7 @@ do_help()
     echo     "      -nb             : do not display the Scilab banner at starting time."
     echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "      -noatomsautoload: do not load ATOMS installed module."
     echo     "      -nw             : start Scilab without dedicated Scilab Window."
     echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
     echo     "      -nogui          : See -nwni"
@@ -947,7 +946,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|--texmacs)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then

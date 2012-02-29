@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.model;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
@@ -27,19 +28,17 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 /**
  * <p>
  * Java class for PaletteNode complex type.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="PaletteNode">
  *   &lt;complexContent>
@@ -49,14 +48,14 @@ import org.scilab.modules.xcos.palette.view.PaletteManagerView;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PaletteNode")
-@XmlSeeAlso({ Category.class, Palette.class })
+@XmlSeeAlso( { Category.class, Palette.class })
 public abstract class PaletteNode implements TreeNode {
-    private static final Log LOG = LogFactory.getLog(PaletteNode.class);
+    private static final Logger LOG = Logger.getLogger(PaletteNode.class.getName());
 
     @XmlAttribute(required = true)
     private String name;
@@ -71,9 +70,9 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -81,10 +80,10 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
         name = value;
@@ -92,7 +91,7 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Gets the value of the enable property.
-     * 
+     *
      * @return the status
      */
     public boolean isEnable() {
@@ -101,7 +100,7 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Sets the value of the enable property.
-     * 
+     *
      * @param value
      *            the status
      */
@@ -143,22 +142,17 @@ public abstract class PaletteNode implements TreeNode {
      */
     /**
      * Check that the node can be removed (throw exceptions).
-     * 
+     *
      * @param node
      *            the node to check
      */
     public static void checkRemoving(final PaletteNode node) {
         if (node == null) {
-            throw new RuntimeException(
-                    String.format(
-                            org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
-                            org.scilab.modules.xcos.palette.Palette.NAME));
-        } else if (node instanceof PreLoaded
-                && !(node instanceof PreLoaded.Dynamic)) {
-            throw new RuntimeException(
-                    String.format(
-                            org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE,
-                            org.scilab.modules.xcos.palette.Palette.NAME));
+            throw new RuntimeException(String.format(org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH,
+                                       org.scilab.modules.xcos.palette.Palette.NAME));
+        } else if (node instanceof PreLoaded && !(node instanceof PreLoaded.Dynamic)) {
+            throw new RuntimeException(String.format(org.scilab.modules.xcos.palette.Palette.WRONG_INPUT_ARGUMENT_S_INVALID_NODE,
+                                       org.scilab.modules.xcos.palette.Palette.NAME));
         } else if (node instanceof Category) {
             // Iterate over all nodes
             for (final PaletteNode n : ((Category) node).getNode()) {
@@ -173,7 +167,7 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Remove the dynamic {@link PaletteNode} palette
-     * 
+     *
      * @param node
      *            the palette
      */
@@ -182,7 +176,7 @@ public abstract class PaletteNode implements TreeNode {
 
         final Category toBeReloaded = node.getParent();
         if (toBeReloaded == null) {
-            LOG.error("parent node is null");
+            LOG.severe("parent node is null");
             throw new RuntimeException("Parent node is 'null'");
         }
 
@@ -194,7 +188,7 @@ public abstract class PaletteNode implements TreeNode {
 
     /**
      * Refresh the palette view if visible.
-     * 
+     *
      * @param toBeReloaded
      *            the category to refresh
      */
@@ -227,8 +221,7 @@ public abstract class PaletteNode implements TreeNode {
             // appending the all first children to the path
             // this will force a leaf to be selected
             current = toBeReloaded;
-            while (!current.isLeaf() && current.getAllowsChildren()
-                    && current.children().hasMoreElements()) {
+            while (!current.isLeaf() && current.getAllowsChildren() && current.children().hasMoreElements()) {
                 current = current.getChildAt(0);
                 objectPath.addLast(current);
             }
@@ -248,7 +241,7 @@ public abstract class PaletteNode implements TreeNode {
      * This method is called after all the properties (except IDREF) are
      * unmarshalled for this object, but before this object is set to the parent
      * object.
-     * 
+     *
      * @param unmarshaller
      *            the current unmarshaller object
      * @param parent

@@ -10,30 +10,32 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>return
-[x1,..,xn]=return(a1,..,an)</synopsis>
+      [x1,..,xn]=return(a1,..,an)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Dans une fonction <literal>return</literal> termine son exécution et
-    <literal>[..]=return(..)</literal> renvoie les variables locales
-    <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
-  </para>
+      Dans une fonction <literal>return</literal> termine son exécution et
+      <literal>[..]=return(..)</literal> renvoie les variables locales
+      <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+    </para>
     <para>
-  </para>
+    </para>
     <para>
-    En mode de <literal>pause</literal>, cela permet de reprendre l'exécution et
-    <literal>[..]=return(..)</literal> renvoie les variables locales
-    <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
-  </para>
+      En mode de <literal>pause</literal>, cela permet de reprendre l'exécution et
+      <literal>[..]=return(..)</literal> renvoie les variables locales
+      <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+    </para>
     <para>
-    Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction, <literal>[..]=return(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
-  </para>
-    <para><literal>return</literal> est équivalent à <literal>resume</literal>.
-  </para>
+      Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction, <literal>[..]=return(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+    </para>
+    <para>
+      <literal>return</literal> est équivalent à <literal>resume</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="abort">abort</link>

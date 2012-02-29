@@ -17,8 +17,9 @@
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>vecteur ligne de polynômes <literal>p=[p1,..,pn] ou d'entiers (type égal à 8)</literal>
-</para>
+          <para>
+            vecteur ligne de polynômes <literal>p=[p1,..,pn] ou d'entiers (type égal à 8)</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -26,8 +27,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calcule le PGCD des termes de <literal>p</literal> et une matrice unimodulaire (avec le polynôme inverse) <literal>U</literal>, de degré minimal tels que
-  </para>
+      Calcule le PGCD des termes de <literal>p</literal> et une matrice unimodulaire (avec le polynôme inverse) <literal>U</literal>, de degré minimal tels que
+    </para>
     <para>
       <literal>p*U=[0 ... 0 pgcd]</literal>
     </para>
@@ -48,7 +49,7 @@ V*U
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="bezout">bezout</link>

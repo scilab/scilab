@@ -10,15 +10,15 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int read_double(char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
 	int i;
 	//first variable info : real matrix of double
 	int iType			= 0;
@@ -28,13 +28,15 @@ int read_double(char *fname,unsigned long fname_len)
 	int *piAddr			= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
-	SciErr sciErr;
+
 	//check input and output arguments
-	CheckRhs(1,1);
-	CheckLhs(1,1);
-	/************************
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    /************************
 	*    First variable    *
 	************************/
+
 	//get variable address of the first input argument
 	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 	if(sciErr.iErr)
@@ -42,6 +44,7 @@ int read_double(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	//check type
 	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr || iType != sci_matrix)
@@ -49,8 +52,10 @@ int read_double(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	//get complexity
 	iComplex	= isVarComplex(pvApiCtx, piAddr);
+
 	//check complexity
 	if(iComplex)
 	{
@@ -62,16 +67,18 @@ int read_double(char *fname,unsigned long fname_len)
 		//get size and data from Scilab memory
 		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
 	}
+
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
+
 	//Do something with data
 	//if variable is complex, switch real part and imaginary part otherwise multiply by -1
 	if(iComplex)
 	{
-		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblImg, pdblReal);
 	}
 	else
 	{
@@ -79,13 +86,15 @@ int read_double(char *fname,unsigned long fname_len)
 		{
 			pdblReal[i] = pdblReal[i] * -1;
 		}
-		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
+		sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, iRows, iCols, pdblReal);
 	}
+
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
-	LhsVar(1) = Rhs + 1;
+
+    AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }

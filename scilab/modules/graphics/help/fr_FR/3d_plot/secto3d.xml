@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>[m[,x]]=secto3d(seclist,npas)
-[m]=secto3d(seclist ,x)</synopsis>
+      [m]=secto3d(seclist ,x)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,28 +20,28 @@
         <term>seclist  </term>
         <listitem>
           <para>une liste dont les éléments sont des matrices (2,.) 
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>npas  </term>
         <listitem>
           <para>un entier
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m  </term>
         <listitem>
           <para>une matrice
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
           <para>un vecteur
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -64,20 +65,17 @@
       Chaque section <literal>seclist(i)</literal> est décrite par une matrice (2,.) donnant respectivement les coordonnées 
       x et z des points.
     </para>
-    <para><literal>[m]=secto3d(seclist ,x)</literal> : dans ce cas le vecteur x donne la discrétisation 
+    <para>
+      <literal>[m]=secto3d(seclist ,x)</literal> : dans ce cas le vecteur x donne la discrétisation 
       de l'axe des x pour toutes les sections 
     </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Steer S.; ;   </para>
   </refsection>
 </refentry>

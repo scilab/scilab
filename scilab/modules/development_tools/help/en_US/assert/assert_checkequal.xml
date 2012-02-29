@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,33 +11,20 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry version="5.0-subset Scilab" xml:id="assert_checkequal" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_checkequal" xml:lang="en">
   <refnamediv>
     <refname>assert_checkequal</refname>
     <refpurpose>Check that computed and expected are equal.</refpurpose>
   </refnamediv>
-
-
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
       assert_checkequal ( computed , expected )
       flag = assert_checkequal ( computed , expected )
       [flag,errmsg] = assert_checkequal ( computed , expected )
-
+      
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -68,7 +54,6 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
@@ -93,11 +78,9 @@
       </itemizedlist>
     </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // Tests with success
 assert_checkequal ( %T , %T );
 flag = assert_checkequal ( list() , list() );
@@ -113,17 +96,18 @@ assert_checkequal ( [1 2], [3 4] )
 assert_checkequal ( 1 , [2 3] )
 assert_checkequal ( 1 , "b" )
 
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
-
   <refsection>
     <title>Bibliography</title>
     <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>

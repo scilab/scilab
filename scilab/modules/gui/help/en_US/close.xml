@@ -21,9 +21,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    This routine close a tksci figure (toplevel window). If a handle is 
-    given, the figure corresponding to this handle is closed. 
-    Otherwise, the current (active) figure is closed.</para>
+      This routine close a tksci figure (toplevel window). If a handle is 
+      given, the figure corresponding to this handle is closed. 
+      Otherwise, the current (active) figure is closed.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -47,7 +48,7 @@ close(h);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure">figure</link>
@@ -56,9 +57,5 @@ close(h);
         <link linkend="gcf">gcf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Bertrand Guiheneuf</para>
   </refsection>
 </refentry>

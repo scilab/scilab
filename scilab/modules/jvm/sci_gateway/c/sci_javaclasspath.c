@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_jvm.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "addToClasspath.h"
 #include "getClasspath.h"

@@ -23,7 +23,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-    block_parameter_error(inform, expected)
+      block_parameter_error(inform, expected)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -50,14 +50,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">inform</emphasis>: it is reserved to the information for the
+        <para>
+          <emphasis role="bold">inform</emphasis>: it is reserved to the information for the
           user on his mistake. The better way to do this is to do a recall of the parameter name and of
           the wrong value provided by the user.
         </para>
         <para/>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">expected</emphasis>: a positive information to guide the user
+        <para>
+          <emphasis role="bold">expected</emphasis>: a positive information to guide the user
           to be in the way of the error correction. By example, if the parameter is an integer, the
           message may be "Must be an integer", for a range of values we can use a message like that:
         </para>
@@ -71,10 +73,10 @@
   <refsection>
     <title>Examples</title>
     <para>
-          The example below is a simple use case for the function. The user inputs a value
-          in the parameter dialog box. If the value is not valid, the example displays
-          this error box:
-      </para>
+      The example below is a simple use case for the function. The user inputs a value
+      in the parameter dialog box. If the value is not valid, the example displays
+      this error box:
+    </para>
     <para/>
     <mediaobject>
       <imageobject>
@@ -124,11 +126,5 @@
         <link linkend="x_mdialog">x_mdialog</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Bernard DUJARDIN</member>
-    </simplelist>
   </refsection>
 </refentry>

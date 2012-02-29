@@ -43,8 +43,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    this function builds the hankel matrix of size <literal>(m*d,n*d)</literal>
-    from the covariance sequence of a vector process</para>
+      this function builds the hankel matrix of size <literal>(m*d,n*d)</literal>
+      from the covariance sequence of a vector process
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -73,15 +74,11 @@ H=hank(4,5,c);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toeplitz">toeplitz</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>G. Le Vey</para>
   </refsection>
 </refentry>

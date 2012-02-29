@@ -894,6 +894,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
@@ -924,6 +925,7 @@ the the JNI libraries."])],
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
@@ -1053,6 +1055,11 @@ the the JNI libraries."])],
         # JCommander - dependency of TestNG >= 6
         AC_JAVA_CHECK_PACKAGE([beust-jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
         JCOMMANDER=$PACKAGE_JAR_FILE
+
+        if test -z "$JCOMMANDER"; then
+                AC_JAVA_CHECK_PACKAGE([jcommander],[com.beust.jcommander.JCommander],[JCommander - Parse java options],"yes")
+                JCOMMANDER=$PACKAGE_JAR_FILE
+        fi
         AC_SUBST(JCOMMANDER)
 
         # Qdox (parses declarations and Javadoc) - dependency of TestNG
@@ -1060,15 +1067,15 @@ the the JNI libraries."])],
         QDOX=$PACKAGE_JAR_FILE
         AC_SUBST(QDOX)
 
-                # bsh (Java scripting environment) - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
-                BSH=$PACKAGE_JAR_FILE
-                AC_SUBST(BSH)
+        # bsh (Java scripting environment) - dependency of TestNG
+        AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+        BSH=$PACKAGE_JAR_FILE
+        AC_SUBST(BSH)
 
-                # Junit - dependency of TestNG
-                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
-                JUNIT=$PACKAGE_JAR_FILE
-                AC_SUBST(JUNIT)
+        # Junit - dependency of TestNG
+        AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+        JUNIT=$PACKAGE_JAR_FILE
+        AC_SUBST(JUNIT)
 
 
     else
@@ -1385,7 +1392,7 @@ AC_LIBXML2()
 #######################
 
 ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
-ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP ru_RU"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])

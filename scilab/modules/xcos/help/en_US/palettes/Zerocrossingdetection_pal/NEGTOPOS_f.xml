@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_NEGTOPOS_f">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_NEGTOPOS_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,25 +93,33 @@
   <refsection id="Description_NEGTOPOS_f">
     <title>Description</title>
     <para>
-An output event is generated when the unique input crosses zero with a
-positive slope.
-
-</para>
+      An output event is generated when the unique input crosses zero with a
+      positive slope.
+      
+    </para>
   </refsection>
   <refsection id="Defaultproperties_NEGTOPOS_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -127,19 +130,29 @@ positive slope.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -174,9 +187,5 @@ positive slope.
         <para> SCI/modules/scicos_blocks/src/fortran/zcross.f (Type 1)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_NEGTOPOS_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

@@ -24,14 +24,16 @@
         <term>vname</term>
         <listitem>
           <para>String, the symbolic variable name. If the string have more
-than 4 characters only the first 4 are taken into account.</para>
+            than 4 characters only the first 4 are taken into account.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"flag"  </term>
         <listitem>
           <para>string ("roots", "coeff"), default value is
-	    "roots".</para>
+            "roots".
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,9 +44,11 @@ than 4 characters only the first 4 are taken into account.</para>
       <varlistentry>
         <term>If a is a matrix,</term>
         <listitem>
-          <para><literal>p</literal> is the characteristic
-	  polynomial i.e. <literal>determinant(x*eye()-a)</literal>, <literal>x</literal> being
-	  the symbolic variable.</para>
+          <para>
+            <literal>p</literal> is the characteristic
+            polynomial i.e. <literal>determinant(x*eye()-a)</literal>, <literal>x</literal> being
+            the symbolic variable.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,25 +56,31 @@ than 4 characters only the first 4 are taken into account.</para>
         <listitem>
           <itemizedlist>
             <listitem>
-              <para><literal>poly(v,"x",["roots"])</literal>  is the polynomial
-	      with <literal>roots</literal> the entries of <literal>v</literal> and
-	      <literal>"x"</literal> as formal variable. (In this case,
-	      <literal>roots</literal> and   <literal>poly</literal> are inverse functions). Note
-	      that Infinite roots gives zero  highest degree coefficients. </para>
+              <para>
+                <literal>poly(v,"x",["roots"])</literal>  is the polynomial
+                with <literal>roots</literal> the entries of <literal>v</literal> and
+                <literal>"x"</literal> as formal variable. (In this case,
+                <literal>roots</literal> and   <literal>poly</literal> are inverse functions). Note
+                that Infinite roots gives zero  highest degree coefficients. 
+              </para>
             </listitem>
             <listitem>
-              <para><literal>poly(v,"x","coeff")</literal> creates the
-	      polynomial with symbol <literal>"x"</literal> and with coefficients
-	      the entries of <literal>v</literal> (v(1) is the constant term of the
-	      polynomial). (Here <literal>poly</literal> and <literal>coeff</literal> are inverse
-	      functions).</para>
+              <para>
+                <literal>poly(v,"x","coeff")</literal> creates the
+                polynomial with symbol <literal>"x"</literal> and with coefficients
+                the entries of <literal>v</literal> (v(1) is the constant term of the
+                polynomial). (Here <literal>poly</literal> and <literal>coeff</literal> are inverse
+                functions).
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>s=poly(0,"s")</literal> is the seed for defining
-      polynomials with symbol <literal>"s"</literal>.</para>
+    <para>
+      <literal>s=poly(0,"s")</literal> is the seed for defining
+      polynomials with symbol <literal>"s"</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -84,7 +94,7 @@ h=(1+2*%s)/poly(1:4,'s','c')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="coeff">coeff</link>

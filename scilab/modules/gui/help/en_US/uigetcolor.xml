@@ -7,13 +7,13 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-uigetcolor()
-RGB = uigetcolor([title])
-RGB = uigetcolor([title,] defaultRGB)
-RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
-[R, G, B] = uigetcolor([title])
-[R, G, B] = uigetcolor([title,] defaultRGB)
-[R, G, B] = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+      uigetcolor()
+      RGB = uigetcolor([title])
+      RGB = uigetcolor([title,] defaultRGB)
+      RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+      [R, G, B] = uigetcolor([title])
+      [R, G, B] = uigetcolor([title,] defaultRGB)
+      [R, G, B] = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -89,15 +89,11 @@ RBG = uigetcolor("My color chooser", 0, 128, 255)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getcolor">getcolor</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Vincent COUVERT</para>
   </refsection>
 </refentry>

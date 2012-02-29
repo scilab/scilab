@@ -23,7 +23,9 @@
       <varlistentry>
         <term>A</term>
         <listitem>
-          <para>実数 : 阻止域の減衰 (<literal>A&gt;1</literal>)</para>
+          <para>
+            実数 : 阻止域の減衰 (<literal>A&gt;1</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,14 +57,11 @@
   <refsection>
     <title>説明</title>
     <para>
-	2形チェビシェフアナログフィルタの極およびゼロ.
-	gainはフィルタのゲインです.</para>
-    <programlisting role = ""><![CDATA[ 
+      2形チェビシェフアナログフィルタの極およびゼロ.
+      gainはフィルタのゲインです.
+    </para>
+    <programlisting role=""><![CDATA[ 
 H(s)=gain*poly(zeros,'s')/poly(poles,'s')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.  </para>
   </refsection>
 </refentry>

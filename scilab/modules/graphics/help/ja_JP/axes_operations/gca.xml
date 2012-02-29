@@ -36,8 +36,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	このルーチンはカレントの図のカレント軸のハンドルを返す.
-  </para>
+      このルーチンはカレントの図のカレント軸のハンドルを返す.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -75,11 +75,5 @@ xdel(0) //delete a graphics window
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>
-    Djalel ABDEMOUCHE
-  </para>
   </refsection>
 </refentry>

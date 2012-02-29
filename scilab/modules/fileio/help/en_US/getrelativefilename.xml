@@ -49,7 +49,8 @@
     <title>Description</title>
     <para>Given an absolute directory and an absolute filename, returns a relative file name.</para>
     <para>For example, if the current directory is C:\scilab\bin and the filename C:\scilab\modules\helptools\readme.txt is given,
-		getrelativefilename will return ..\modules\helptools\readme.txt.</para>
+      getrelativefilename will return ..\modules\helptools\readme.txt.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +64,7 @@ getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getshortpathname">getshortpathname</link>
@@ -75,9 +76,5 @@ getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
         <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Pierre MARECHAL</para>
   </refsection>
 </refentry>

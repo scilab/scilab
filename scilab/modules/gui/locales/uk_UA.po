@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-10 17:55+0000\n"
+"PO-Revision-Date: 2012-02-07 16:40+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: uk\n"
 
 #, c-format
@@ -359,6 +359,10 @@ msgstr "%s: Сталася помилка: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
 msgid ""
@@ -1046,30 +1050,25 @@ msgid "No print service found."
 msgstr "Не виявлено служби друку."
 
 msgid ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
 msgstr ""
-"disp(\"Іноді проблему можна виправити за допомогою "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\".\")"
+"УВАГА: через обмеження вашої системи Scilab перемкнено у режим, у якому "
+"показ графічних елементів керування неможливий. Віддайте команду %s, щоб "
+"дізнатися більше."
+
+msgid "In some cases, %s fixes the issue"
+msgstr "Іноді, проблему можна усунути за допомогою команди %s"
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"ПОПЕРЕДЖЕННЯ: через обмеження конфігурації вашого комп’ютера Scilab "
-"було перемкнуто у режим, у якому використання графічних елементів керування "
-"та графіки неможливе. Введіть команду «help usecanvas», щоб дізнатися "
-"більше.\")"
-
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr ""
-"disp(\"ПОПЕРЕДЖЕННЯ: через обмеження вашої графічної картки та драйвера до "
-"неї, які не здатні обробляти команди OpenGL, Scilab не зможе відтворювати "
-"графічні елементи. Будь ласка, оновіть ваш драйвер.\")"
+"Через обмеження, пов’язані з драйверами до вашої відеокартки, які не здатні "
+"працювати у режимі OpenGL, Scilab не зможе працювати у графічному режимі. "
+"Будь ласка, оновіть драйвери."
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1245,7 +1244,6 @@ msgstr "Зберегти і виконати"
 msgid "Empty tab"
 msgstr "Порожня вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1254,11 +1252,9 @@ msgstr ""
 "Будь ласка, повідомте про ваду з зазначенням попереднього повідомлення та "
 "долученим файлом %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Ви справді бажаєте закрити %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Ви справді бажаєте закрити %s і %s ?"
 
@@ -1313,30 +1309,17 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Всі файли %s"
-
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Консорціум Scilab (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr "© INRIA, 1989–2012"
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Авторські права належать © 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Ліцензія CeCILL"
 
 msgid "About Scilab..."
 msgstr "Про Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Подяки"
-
 msgid "Close"
 msgstr "Закрити"
+
+msgid "Acknowledgements"
+msgstr "Подяки"
 
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "

@@ -79,19 +79,21 @@
         <term>lmax</term>
         <listitem>
           <para>整数で, 行の最大長(デフォルト値:90)
-	を有します.
-	<literal>lmax=0</literal> は行の長さを制御を行わず,単一の文字列が
-	返されることを示します</para>
+            を有します.
+            <literal>lmax=0</literal> は行の長さを制御を行わず,単一の文字列が
+            返されることを示します
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>sci2exp</literal>は,
-	<literal>nam</literal>が指定されるた場合には
-	式を命令文字列に,さもなくば式文字列に変換します.
-	</para>
+    <para>
+      <literal>sci2exp</literal>は,
+      <literal>nam</literal>が指定されるた場合には
+      式を命令文字列に,さもなくば式文字列に変換します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -106,8 +108,9 @@ sci2exp(poly([1 0 3 4],'s'),'fi')
   <refsection role="see also">
     <title>参照</title>
     <simplelist type="inline">
-      <member><link linkend="prettyprint">prettyprint</link></member>
+      <member>
+        <link linkend="prettyprint">prettyprint</link>
+      </member>
     </simplelist>
   </refsection>
-
 </refentry>

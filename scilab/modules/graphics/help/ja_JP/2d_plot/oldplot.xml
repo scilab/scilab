@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>oldplot(x,y,[xcap,ycap,caption])
-oldplot(y)</synopsis>
+      oldplot(y)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -42,22 +43,27 @@ oldplot(y)</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>x</literal>の
-	関数として<literal>y</literal>をプロットします.
-	<literal>xcap</literal>および <literal>ycap</literal> は
-	それぞれx軸,y軸のキャプションで,
-	<literal>caption</literal>はプロットのキャプションです.</para>
+    <para>
+      <literal>x</literal>の
+      関数として<literal>y</literal>をプロットします.
+      <literal>xcap</literal>および <literal>ycap</literal> は
+      それぞれx軸,y軸のキャプションで,
+      <literal>caption</literal>はプロットのキャプションです.
+    </para>
     <para>引数が1つのみ指定されてコールされた場合,
-	<literal>oldplot(y)</literal> は,
-		<literal>y</literal>ベクトルをプロットします.
-	<literal>y</literal>が行列の場合,
-	その全ての行ベクトル同じ図にプロットします.
-	このプロットはベクトル
-	1:&lt;<literal>y</literal>の列の数&gt;に対して
-	行われます.</para>
-    <para><literal>oldplot</literal> は古い関数です. 代わりに
-	<literal>plot2d</literal> または
-    <literal>plot</literal> を使用してください.</para>
+      <literal>oldplot(y)</literal> は,
+      <literal>y</literal>ベクトルをプロットします.
+      <literal>y</literal>が行列の場合,
+      その全ての行ベクトル同じ図にプロットします.
+      このプロットはベクトル
+      1:&lt;<literal>y</literal>の列の数&gt;に対して
+      行われます.
+    </para>
+    <para>
+      <literal>oldplot</literal> は古い関数です. 代わりに
+      <literal>plot2d</literal> または
+      <literal>plot</literal> を使用してください.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -83,9 +89,5 @@ oldplot([sin(x);cos(x)])
         <link linkend="plot">plot</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

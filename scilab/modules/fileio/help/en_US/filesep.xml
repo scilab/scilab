@@ -44,10 +44,4 @@
 filesep()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
-  </refsection>
 </refentry>

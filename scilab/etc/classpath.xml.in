@@ -175,6 +175,7 @@ The option is "disableUnderMode" and can be:
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
+<path value="$SCILAB/modules/javasci/jar/org.scilab.modules.javasci.jar"/>
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar"/>

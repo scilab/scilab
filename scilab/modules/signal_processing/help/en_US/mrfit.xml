@@ -10,9 +10,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>sys=mrfit(w,mag,order)
-[num,den]=mrfit(w,mag,order)
-sys=mrfit(w,mag,order,weight)
-[num,den]=mrfit(w,mag,order,weight)</synopsis>
+      [num,den]=mrfit(w,mag,order)
+      sys=mrfit(w,mag,order,weight)
+      [num,den]=mrfit(w,mag,order,weight)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -26,19 +27,25 @@ sys=mrfit(w,mag,order,weight)
       <varlistentry>
         <term>mag</term>
         <listitem>
-          <para>real vector of frequency responses magnitude (same size as <literal>w</literal>)</para>
+          <para>
+            real vector of frequency responses magnitude (same size as <literal>w</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>order</term>
         <listitem>
-          <para>integer (required order, degree of <literal>den</literal>)</para>
+          <para>
+            integer (required order, degree of <literal>den</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>weight</term>
         <listitem>
-          <para>positive real vector (default value <literal>ones(w)</literal>).</para>
+          <para>
+            positive real vector (default value <literal>ones(w)</literal>).
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -51,12 +58,14 @@ sys=mrfit(w,mag,order,weight)
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>sys=mrfit(w,mag,order,weight)</literal> returns a bi-stable transfer function
-    <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that 
-    its frequency response magnitude <literal>abs(G(w(i)))</literal> 
-    matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be 
-    close to <literal>mag</literal>.
-    <literal>weight(i)</literal> is the weigth given to <literal>w(i)</literal>.</para>
+    <para>
+      <literal>sys=mrfit(w,mag,order,weight)</literal> returns a bi-stable transfer function
+      <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that 
+      its frequency response magnitude <literal>abs(G(w(i)))</literal> 
+      matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be 
+      close to <literal>mag</literal>.
+      <literal>weight(i)</literal> is the weigth given to <literal>w(i)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +80,7 @@ plot2d([w',w'],[mag(:),abs(frespfit(:))])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cepstrum">cepstrum</link>

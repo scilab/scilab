@@ -23,6 +23,8 @@
 #include "code2str.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_code2str(char *fname,unsigned long fname_len)
 {
@@ -36,6 +38,16 @@ int sci_code2str(char *fname,unsigned long fname_len)
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
+
+    if (strcmp(fname, "code2str") == 0)
+    {
+        if (getWarningMode())
+        {
+            sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname);
+            sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "ascii");
+            sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+        }
+    }
 
 	if (VarType(1) == sci_matrix)
 	{

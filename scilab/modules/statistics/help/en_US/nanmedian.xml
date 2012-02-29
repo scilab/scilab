@@ -21,8 +21,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>m=nanmedian(x)
-m=nanmedian(x,'r') (or m=nanmedian(x,1))
-m=nanmedian(x,'c') (or m=nanmedian(x,2))</synopsis>
+      m=nanmedian(x,'r') (or m=nanmedian(x,1))
+      m=nanmedian(x,'c') (or m=nanmedian(x,2))
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -38,21 +39,27 @@ m=nanmedian(x,'c') (or m=nanmedian(x,2))</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    For   a   vector    or   a  matrix   <literal>    x</literal>,   
-    <literal>[m]=nanmedian(x)</literal>  returns in the vector  <literal>  m</literal> the
-    median of the  values (ignoring the NANs)  of vector <literal>x</literal>.</para>
-    <para><literal>[m]=nanmedian(x,'r')</literal>       (or,        equivalently,
-    <literal>[m]=nanmedian(x,1)</literal>) are  the  rowwise  medians.   It
-    returns in each position of  the row vector  <literal> m</literal> the
-    medians of data  (ignoring the NANs) in  the corresponding
-    column of <literal> x</literal>.</para>
-    <para><literal>[m]=nanmedian(x,'c')</literal>      (or,   equivalently,   
-    <literal>[m]=nanmedian(x,2)</literal>)  are the  columnwise  madians.   It
-    returns in each position of the column vector <literal> m</literal> the
-    medians of data (ignoring  the NANs) in the  corresponding
-    row of <literal> x</literal>.</para>
+      For   a   vector    or   a  matrix   <literal>    x</literal>,   
+      <literal>[m]=nanmedian(x)</literal>  returns in the vector  <literal>  m</literal> the
+      median of the  values (ignoring the NANs)  of vector <literal>x</literal>.
+    </para>
     <para>
-    In Labostat, NAN values stand for missing values in tables.</para>
+      <literal>[m]=nanmedian(x,'r')</literal>       (or,        equivalently,
+      <literal>[m]=nanmedian(x,1)</literal>) are  the  rowwise  medians.   It
+      returns in each position of  the row vector  <literal> m</literal> the
+      medians of data  (ignoring the NANs) in  the corresponding
+      column of <literal> x</literal>.
+    </para>
+    <para>
+      <literal>[m]=nanmedian(x,'c')</literal>      (or,   equivalently,   
+      <literal>[m]=nanmedian(x,2)</literal>)  are the  columnwise  madians.   It
+      returns in each position of the column vector <literal> m</literal> the
+      medians of data (ignoring  the NANs) in the  corresponding
+      row of <literal> x</literal>.
+    </para>
+    <para>
+      In Labostat, NAN values stand for missing values in tables.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,12 +71,9 @@ m=nanmedian(x,2)
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para> Carlos Klimann</para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
 </refentry>

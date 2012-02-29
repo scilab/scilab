@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: \n"
 
 msgid "WARNING : \n"
@@ -29,6 +29,23 @@ msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
 "expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或者整数矩阵。\n"
+
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: This feature will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -74,6 +91,10 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为非空字符串。\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
@@ -86,6 +107,10 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵或字符串�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Can not read input argument.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"

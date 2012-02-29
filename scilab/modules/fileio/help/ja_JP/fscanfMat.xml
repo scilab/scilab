@@ -22,7 +22,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>M=fscanfMat(filename);
-[M,text]=fscanfMat(filename);</synopsis>
+      [M,text]=fscanfMat(filename);
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -50,17 +51,17 @@
   <refsection>
     <title>説明</title>
     <para>
-    <literal>fscanfMat</literal> 関数はテキストファイルからスカラー行列を読み込むために
-	使用されます.
-	<literal>text</literal>が指定された場合,ファイルの先頭の非数値の行が
-	返されます.残りの行の列の数は同じである必要があります
-	(コロンセパレータは空白文字またはタブ文字であるとみなされます).
-	行列の列の数はファイルでみつかった列の数となり,
-	行の数は入力ファイルの終端を検出するまでに取得した行数と
-	なります.	
-	この関数は<literal>fprintfMat</literal>で保存した数値データを
-	読み戻すために使用することができます.
-	</para>
+      <literal>fscanfMat</literal> 関数はテキストファイルからスカラー行列を読み込むために
+      使用されます.
+      <literal>text</literal>が指定された場合,ファイルの先頭の非数値の行が
+      返されます.残りの行の列の数は同じである必要があります
+      (コロンセパレータは空白文字またはタブ文字であるとみなされます).
+      行列の列の数はファイルでみつかった列の数となり,
+      行の数は入力ファイルの終端を検出するまでに取得した行数と
+      なります.	
+      この関数は<literal>fprintfMat</literal>で保存した数値データを
+      読み戻すために使用することができます.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

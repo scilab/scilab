@@ -25,8 +25,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	SISO伝達関数<literal>h</literal>の極/ゼロ構造を可視化します.
-  </para>
+      SISO伝達関数<literal>h</literal>の極/ゼロ構造を可視化します.
+    </para>
     <variablelist>
       <varlistentry>
         <term>job='p'</term>
@@ -42,8 +42,9 @@
       </varlistentry>
     </variablelist>
     <para>
-    <literal>h</literal>の対話的な簡単化. <literal>trfmod</literal> は
-	ダイアログウインドウを開きます.</para>
+      <literal>h</literal>の対話的な簡単化. <literal>trfmod</literal> は
+      ダイアログウインドウを開きます.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

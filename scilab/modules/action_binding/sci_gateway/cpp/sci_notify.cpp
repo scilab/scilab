@@ -16,9 +16,7 @@
 extern "C"
 {
 #include "gw_action_binding.h"
-#include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"

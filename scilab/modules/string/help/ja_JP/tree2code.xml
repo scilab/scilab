@@ -62,8 +62,9 @@
   <refsection>
     <title>説明</title>
     <para>
-    読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
-	によりコードを再生することができます.</para>
+      読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
+      によりコードを再生することができます.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -79,12 +80,6 @@ write(%io(2),txt,'(a)');
       <member>
         <link linkend="macr2tree">macr2tree</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

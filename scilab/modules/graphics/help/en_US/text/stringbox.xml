@@ -17,12 +17,14 @@
   <refnamediv>
     <refname>stringbox</refname>
     <refpurpose>Compute the bounding rectangle of a text
-  or a label.</refpurpose>
+      or a label.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
-rect = stringbox( Handle )</synopsis>
+      rect = stringbox( Handle )
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -31,7 +33,8 @@ rect = stringbox( Handle )</synopsis>
         <term>rect</term>
         <listitem>
           <para>a 2x4 matrix containing the 4 vertex coordinates of the
-          bounding rectangle.</para>
+            bounding rectangle.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,14 +47,16 @@ rect = stringbox( Handle )</synopsis>
         <term>x,y</term>
         <listitem>
           <para>real scalars, coordinates of the lower left point of
-          strings.</para>
+            strings.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>angle</term>
         <listitem>
           <para>Rotation angle of the string clockwise and in degrees around
-          the <literal>(x,y)</literal> point.</para>
+            the <literal>(x,y)</literal> point.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -76,12 +81,14 @@ rect = stringbox( Handle )</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>stringbox</literal> returns the bounding rectangle vertices of a
-    text or label object or a string which will be displayed with a certain
-    way. the coordinates are given with the current graphic scale. the first
-    vertex correspond to the text coordinates <literal>(x,y)</literal>, the lower
-    left point without rotation, the following vertex are given clockwise in
-    the resulting matrix.</para>
+    <para>
+      <literal>stringbox</literal> returns the bounding rectangle vertices of a
+      text or label object or a string which will be displayed with a certain
+      way. the coordinates are given with the current graphic scale. the first
+      vertex correspond to the text coordinates <literal>(x,y)</literal>, the lower
+      left point without rotation, the following vertex are given clockwise in
+      the resulting matrix.
+    </para>
     <para>The result migth not be very accurate with PostScript driver.</para>
   </refsection>
   <refsection>
@@ -126,7 +133,7 @@ end;
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xstring">xstring</link>
@@ -138,9 +145,5 @@ end;
         <link linkend="xstringb">xstringb</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jean-Baptiste Silvy</para>
   </refsection>
 </refentry>

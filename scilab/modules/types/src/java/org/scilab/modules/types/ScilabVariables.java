@@ -40,7 +40,7 @@ public final class ScilabVariables {
      */
     public static final int addScilabVariablesHandler(ScilabVariablesHandler handler) {
         int i = 0;
-        for (;i < handlers.size(); i++) {
+        for (; i < handlers.size(); i++) {
             ScilabVariablesHandler h = handlers.get(i);
             if (h == handler) {
                 return i;
@@ -99,7 +99,7 @@ public final class ScilabVariables {
      * @param varName the variable name
      * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param real the real data
-     * @param imag the imaginary data
+     * @param img the imaginary data
      * @param swaped true if the matrix is stored row by row
      * @param handlerId the handler id
      */
@@ -338,7 +338,7 @@ public final class ScilabVariables {
      * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param polyVarName the polynomial variable name
      * @param real the real data
-     * @param imag the imaginary data
+     * @param img the imaginary data
      * @param swaped true if the matrix is stored row by row
      * @param handlerId the handler id
      */
@@ -365,15 +365,15 @@ public final class ScilabVariables {
 
         ScilabType var = null;
         switch (type) {
-        case 'l' :
-            var = new ScilabList(name);
-            break;
-        case 'm' :
-            var = new ScilabMList(name);
-            break;
-        case 't' :
-            var = new ScilabTList(name);
-            break;
+            case 'l' :
+                var = new ScilabList(name);
+                break;
+            case 'm' :
+                var = new ScilabMList(name);
+                break;
+            case 't' :
+                var = new ScilabTList(name);
+                break;
         }
 
         if (indexes.length == 0) {
@@ -385,8 +385,7 @@ public final class ScilabVariables {
 
     /**
      * Call when the list filling is finished
-     * @param varName the variable name
-     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
+    a     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
      * @param handlerId the handler id
      */
     public static final void closeList(int[] indexes, int handlerId) {

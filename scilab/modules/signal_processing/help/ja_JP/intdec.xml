@@ -24,10 +24,11 @@
         <term>lom</term>
         <listitem>
           <para>1次元信号の場合, 変更するレートを指定するスカラー値です.
-	2次元信号の場合,
-	変更する
-	サンプリングレートのベクトル(要素数:2)
-	<literal>lom</literal>=(列方向の変更レート,行方向の変更レート) です.</para>
+            2次元信号の場合,
+            変更する
+            サンプリングレートのベクトル(要素数:2)
+            <literal>lom</literal>=(列方向の変更レート,行方向の変更レート) です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -41,12 +42,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	1次元または2次元信号のサンプリングレートをlomで指定された	
-	レートに変更します.
+      1次元または2次元信号のサンプリングレートをlomで指定された	
+      レートに変更します.
     </para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>C. B.  </para>
   </refsection>
 </refentry>

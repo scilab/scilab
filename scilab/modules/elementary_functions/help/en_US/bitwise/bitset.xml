@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -12,24 +11,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-
-<refentry 
-          version="5.0-subset Scilab" 
-          xml:id="bitset" 
-          xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitset" xml:lang="en">
   <refnamediv>
     <refname>bitset</refname>
     <refpurpose>set bit at specified position</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
@@ -37,7 +23,6 @@
       y = bitset(x,pos,v)
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -88,19 +73,15 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
     <para>
       Set the bit at specified position.
     </para>
-
   </refsection>
-
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-      <![CDATA[
+    <programlisting role="example"><![CDATA[
 // 9 is (01001)_2
 // We set the 5th bit to 1, which gives
 //      (11001)_2 producing 25
@@ -114,17 +95,6 @@ expected = 9
 // The input can be a positive double
 bitset(25, 5, 0)
 expected = 9
-   ]]>
-    </programlisting>
+   ]]></programlisting>
   </refsection>
-
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
-      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
-      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
-    </simplelist>
-  </refsection>
-
 </refentry>

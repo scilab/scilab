@@ -23,17 +23,20 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para><literal>flag = 1</literal>の場合,この関数は
-	原点を中心とします;
-	<literal>flag = 2</literal>の場合,この関数は
-	<literal>%pi/(2*n)</literal>だけ遅れます</para>
+          <para>
+            <literal>flag = 1</literal>の場合,この関数は
+            原点を中心とします;
+            <literal>flag = 2</literal>の場合,この関数は
+            <literal>%pi/(2*n)</literal>だけ遅れます
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>s</term>
         <listitem>
           <para>
-	周波数の密なグリッド上の関数の値のベクトル</para>
+            周波数の密なグリッド上の関数の値のベクトル
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -41,7 +44,7 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>Sin(N*x)/N*Sin(x)</literal>を計算する関数
+      <literal>Sin(N*x)/N*Sin(x)</literal>を計算する関数
     </para>
   </refsection>
   <refsection>
@@ -49,9 +52,5 @@
     <programlisting role="example"><![CDATA[ 
 plot(sincd(10,1)) 
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>G. Le V.  </para>
   </refsection>
 </refentry>

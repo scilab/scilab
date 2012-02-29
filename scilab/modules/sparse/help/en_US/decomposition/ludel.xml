@@ -36,14 +36,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is used in conjunction with <literal>lufact</literal>. It clears 
-    the internal memory space used to store the result of <literal>lufact</literal>.</para>
+      This function is used in conjunction with <literal>lufact</literal>. It clears 
+      the internal memory space used to store the result of <literal>lufact</literal>.
+    </para>
     <para>
-    The sequence of commands <literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
-    solves the sparse linear system  <literal>A*x = b</literal> and clears <literal>p</literal>.</para>
+      The sequence of commands <literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
+      solves the sparse linear system  <literal>A*x = b</literal> and clears <literal>p</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

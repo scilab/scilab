@@ -29,7 +29,7 @@
         <term>X  </term>
         <listitem>
           <para>matrice réelle ou complexe
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,7 +39,8 @@
     <para>
       Si <literal>X</literal> est hermitienne (symétrique dans le cas réel) définie positive, alors <literal>R = chol(X)</literal> renvoie une matrice triangulaire supérieure <literal>R</literal> telle que <literal>R'*R = X</literal>.
     </para>
-    <para><literal>chol(X)</literal> utilise uniquement la partie triangulaire supérieure de <literal>X</literal> dont la
+    <para>
+      <literal>chol(X)</literal> utilise uniquement la partie triangulaire supérieure de <literal>X</literal> dont la
       partie triangulaire inférieure est supposée être la transposée (transposée conjuguée dans le cas complexe).
     </para>
   </refsection>
@@ -53,7 +54,7 @@ norm(R'*R-X)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="spchol">spchol</link>

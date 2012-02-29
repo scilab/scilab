@@ -11,7 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "scilines.h"
 #include "Scierror.h"

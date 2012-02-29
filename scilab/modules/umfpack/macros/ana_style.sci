@@ -38,7 +38,7 @@ function [col, mark] = ana_style(style)
   tab_mark = ["." "+" "x" "*" "D" "d" "^" "v" "o"]
   num_mark = [ 0   1   2   3   4   5   6   7   9 ]
 
-  deff("[b] = is_digit(c)",[ "code = str2code(c)";...
+  deff("[b] = is_digit(c)",[ "code = _str2code(c)";...
 		             "b = 0 <= code & code <= 9" ])
   n = length(style)
   if n >= 1 then

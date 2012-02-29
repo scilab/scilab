@@ -41,15 +41,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>Q=orth(A)</literal> は,
-	<literal>A</literal>の範囲での直交基底である
-	 <literal>Q</literal>を返します.
-	Range(<literal>Q</literal>) =
-    Range(<literal>A</literal>) および <literal>Q'*Q=eye</literal>.</para>
     <para>
-    <literal>Q</literal>の列の数は,
-	QRアルゴリズムで定義された
-	<literal>A</literal>のランクです.</para>
+      <literal>Q=orth(A)</literal> は,
+      <literal>A</literal>の範囲での直交基底である
+      <literal>Q</literal>を返します.
+      Range(<literal>Q</literal>) =
+      Range(<literal>A</literal>) および <literal>Q'*Q=eye</literal>.
+    </para>
+    <para>
+      <literal>Q</literal>の列の数は,
+      QRアルゴリズムで定義された
+      <literal>A</literal>のランクです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

@@ -17,19 +17,21 @@
   <refnamediv>
     <refname>powershell</refname>
     <refpurpose>shell (powershell) command execution (Windows
-  only)</refpurpose>
+      only)
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>output=powershell(command-name)
-[output,bOK]=powershell(command-name)    
-</synopsis>
+      [output,bOK]=powershell(command-name)    
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>Sends a string command-name to Windows for execution by the powershell.
-    Standard output and standard errors of the shell command are written in
-    the calling shell. bOK returns if command has been executed.</para>
+      Standard output and standard errors of the shell command are written in
+      the calling shell. bOK returns if command has been executed.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -38,20 +40,14 @@
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>
       </member>
-           <member>
+      <member>
         <link linkend="dos">dos</link>
-      </member> 
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C.</member>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

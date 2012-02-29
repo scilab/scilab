@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "registry.h"
 #include "Scierror.h"

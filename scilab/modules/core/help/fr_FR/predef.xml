@@ -10,11 +10,11 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>n = predef()
-oldnew = predef(n)
-oldnew = predef('all')
-oldnew = predef('clear')
-variables_name = predef('names')
-</synopsis>
+      oldnew = predef(n)
+      oldnew = predef('all')
+      oldnew = predef('clear')
+      variables_name = predef('names')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -26,35 +26,43 @@ variables_name = predef('names')
       anciennes" sont celles qui apparaissent avec la commande
       <literal>who('get')</literal>.
     </para>
-    <para><literal>predef()</literal> renvoie le nombre de variables protégées.
+    <para>
+      <literal>predef()</literal> renvoie le nombre de variables protégées.
     </para>
-    <para><literal>predef('a[ll]')</literal> protège toutes les variables et
+    <para>
+      <literal>predef('a[ll]')</literal> protège toutes les variables et
       renvoie l'ancien et le nouveau nombre de variables protégées.
     </para>
-    <para><literal>predef('c[lear]')</literal> enlève la protection de toutes
+    <para>
+      <literal>predef('c[lear]')</literal> enlève la protection de toutes
       les variables sauf les 7 définies dernièrement. Renvoie l'ancien et
       le nouveau nombre de variables protégées.
     </para>
-    <para><literal>predef(n)</literal> protège les <literal>max(n,7)</literal> variables
+    <para>
+      <literal>predef(n)</literal> protège les <literal>max(n,7)</literal> variables
       définies dernièrement. Renvoie l'ancien et le nouveau nombre de
       variables protégées.
     </para>
-    <para><literal>predef('names')</literal> retourne un vecteur de chaines de caracteres contenant les noms des variables protegées par predef.</para>
+    <para>
+      <literal>predef('names')</literal> retourne un vecteur de chaines de caracteres contenant les noms des variables protegées par predef.
+    </para>
     <para>
     </para>
   </refsection>
   <refsection>
     <title>Remarques</title>
-    <para>La variable <literal>ans</literal> créée automatiquement quand des expressions ne sont pas affectées à une variable n'est pas protegée par <literal>predef('all')</literal>.</para>
     <para>
-			Le nombre de variables protégées est défini dans le fichier de démarrage
-			<literal>SCI/etc/scilab.start</literal>. L'utilisateur a la possibilité de
-			définir ses propres variables protégées dans les fichiers de démarrage
-			<literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
-		</para>
+      La variable <literal>ans</literal> créée automatiquement quand des expressions ne sont pas affectées à une variable n'est pas protegée par <literal>predef('all')</literal>.
+    </para>
+    <para>
+      Le nombre de variables protégées est défini dans le fichier de démarrage
+      <literal>SCI/etc/scilab.start</literal>. L'utilisateur a la possibilité de
+      définir ses propres variables protégées dans les fichiers de démarrage
+      <literal>SCIHOME/.scilab</literal> et <literal>SCIHOME/scilab.ini</literal>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="clear">clear</link>

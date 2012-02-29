@@ -17,7 +17,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "gw_tclsci.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "inisci-c.h"
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
@@ -57,6 +58,13 @@ int gw_tclsci(void)
 		if (isTkStarted())
 		{
 			Rhs = Max(0, Rhs);
+
+            if(pvApiCtx == NULL)
+            {
+                pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+            }
+
+            pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 			callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 		}
 		else

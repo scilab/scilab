@@ -72,13 +72,13 @@ case 'set' then
       frmt1=part(frmt1,1:3);
       if ok then
 	ipar=[length(fname1);
-	    str2code(frmt1);
+	    _str2code(frmt1);
 	    0;
 	    N;
 	    M;
 	    swap;
 	    offset
-	    str2code(fname1);
+	    _str2code(fname1);
 	    tmask1
 	    outmask(:)]
 	if prod(size(dstate))<>(N*M)+3 then
@@ -109,7 +109,7 @@ case 'define' then
   model.out=nout
   model.evtin=1
   model.dstate=[1;1;lunit;zeros(N*M,1)]
-  model.ipar=[length(fname);str2code(frmt);ievt;N;M;swap;offset;str2code(fname);
+  model.ipar=[length(fname);_str2code(frmt);ievt;N;M;swap;offset;_str2code(fname);
 	      tmask;outmask]
   model.blocktype='d'
   model.dep_ut=[%f %f]

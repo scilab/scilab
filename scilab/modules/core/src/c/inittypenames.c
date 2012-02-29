@@ -14,7 +14,8 @@
 #include "typename.h"
 #include "Scierror.h"
 #include "do_error_number.h"
-#include "stack-c.h"
+#include "machine.h"
+#include "sci_types.h"
 /*--------------------------------------------------------------------------*/
 extern TYPE_struct C2F(typnams);
 /*--------------------------------------------------------------------------*/

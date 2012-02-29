@@ -141,14 +141,12 @@ function libn = ilib_compile(lib_name, ..
     end
 
     if ierr <> 0 then
-      mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
-      lines(0);
-      disp(stderr);
-      mprintf("\n");
-      mprintf(gettext("%s: The command was:\n"),"ilib_compile");
-      mprintf(cmd);
-      mprintf("\n");
+      errMsg = sprintf(gettext("%s: An error occurred during the compilation:\n"), "ilib_compile");
+      errMsg = [errMsg ; stderr];
+      errMsg = [errMsg ; sprintf(gettext("%s: The command was:\n"), "ilib_compile")];
+      errMsg = [errMsg ; cmd];
       chdir(oldPath); // Go back to the working dir
+      error(errMsg);
       return ;
     end
 
