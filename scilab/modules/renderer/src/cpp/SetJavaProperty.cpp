@@ -42,12 +42,6 @@ void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaInfoMessage(sciPointObj * pFigure, const char *infoMessage)
-{
-    //getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciSetJavaAntialiasingQuality(sciPointObj * pFigure, int quality)
 {
     //getFigureDrawer(pFigure)->setAntialiasingQuality(quality);

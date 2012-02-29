@@ -35,11 +35,6 @@ RENDERER_IMPEXP void sciSetJavaWindowSize( sciPointObj * pFigure, const int size
 RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
 
 /**
- * Set the message displayed by a figure.
- */
-RENDERER_IMPEXP void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
-
-/**
  * Modify the quality of antialiasing or disable it.
  * If quality if 0, the antialiasing is disables,
  * otherwise it might be either 1, 2, 4, 8 or 16 and then

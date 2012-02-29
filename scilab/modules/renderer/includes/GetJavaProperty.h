@@ -35,19 +35,6 @@ RENDERER_IMPEXP void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) 
 RENDERER_IMPEXP void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] ) ;
 
 /**
- * Get the info message of the figure.
- * @param pFigure figure from which we want the infoMessage
- * @param[out] infoMessage string filled with the message. Should have a minimum size
- *                         given by getInfoMessageLength.
- */
-RENDERER_IMPEXP void sciGetJavaInfoMessage(sciPointObj * pFigure, char * infoMessage);
-
-/**
- * @return size of the info message to be used in combination with getInfoMessage.
- */
-RENDERER_IMPEXP int sciGetJavaInfoMessageLength(sciPointObj * pFigure);
-
-/**
  * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
  */
 RENDERER_IMPEXP int sciGetJavaAntialiasingQuality(sciPointObj * pFigure);

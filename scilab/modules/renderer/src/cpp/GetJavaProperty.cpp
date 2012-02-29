@@ -41,19 +41,6 @@ void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaInfoMessage(sciPointObj * pFigure, char *infoMessage)
-{
-    //getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
-}
-
-/*---------------------------------------------------------------------------------*/
-int sciGetJavaInfoMessageLength(sciPointObj * pFigure)
-{
-    //return getFigureDrawer(pFigure)->getInfoMessageLength();
-    return 0;
-}
-
-/*---------------------------------------------------------------------------------*/
 int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
 {
     //return getFigureDrawer(pFigure)->getAntialiasingQuality();
