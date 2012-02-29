@@ -1283,7 +1283,6 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
 
     sciInitName(pobj, sciGetName(pfiguremdl));
     sciSetResize(pobj, sciGetResize(pfiguremdl));
-    sciSetDimension(pobj, sciGetWidth(pfiguremdl), sciGetHeight(pfiguremdl));
     if (!sciGetResize(pobj))
     {
         /* window size and axes size may change independently */

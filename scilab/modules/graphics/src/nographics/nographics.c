@@ -211,12 +211,6 @@ int sciGetWidth(sciPointObj * pobj)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetDimension(char *pobj, int newWidth, int newHeight)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciInitScreenPosition(char *pobj, int pposx, int pposy)
 {
     return -1;

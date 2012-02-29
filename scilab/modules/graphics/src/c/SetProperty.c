@@ -1554,56 +1554,6 @@ sciSetNum (char * pobjUID, int value )
 
 }
 
-int sciInitDimension( char * pobjUID, int newWidth, int newHeight )
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        if ( isFigureModel(pobjUID) )
-        {
-            pFIGURE_FEATURE(pobjUID)->pModelData->figureWidth  = newWidth ;
-            pFIGURE_FEATURE(pobjUID)->pModelData->figureHeight = newHeight;
-        }
-        else
-        {
-            int size[2] = {newWidth, newHeight} ;
-            return sciSetJavaFigureSize(pobjUID, size) ;
-        }
-        break;
-    default:
-        printSetGetErrorMessage("size");
-        return -1 ;
-        break;
-    }
-#endif
-    return 0 ;
-}
-
-
-/**sciSetDim
- * Sets the dimension of the Figure or Subwin
- * @param char * pobjUID: the pointer to the entity
- * @param int *pwidth: the width of the window dimension
- * @param int *pheight: the height of the window dimension
- * @return one of the EResizeStatus values.
- */
-int sciSetDimension( char * pobjUID, int newWidth, int newHeight )
-{
-
-    int width ;
-    int height ;
-    sciGetDim( pobjUID, &width, &height ) ;
-    if ( width == newWidth && height == newHeight )
-    {
-        return 1 ;
-    }
-    return sciInitDimension( pobjUID, newWidth, newHeight ) ;
-
-}
-
 int sciInitWindowDim( char * pobjUID, int newWidth, int newHeight )
 {
     // FIXME

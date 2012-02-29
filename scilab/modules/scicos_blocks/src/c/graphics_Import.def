@@ -19,7 +19,6 @@ sciGetEntityType
 sciDeleteWindow
 sciGetRelationship
 sciGetHandle
-sciSetDimension
 sciInitScreenPosition
 sciSetBoxType
 sciInitFontSize

@@ -102,9 +102,6 @@ GRAPHICS_IMPEXP BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 /* Window Functions */
 GRAPHICS_IMPEXP char *sciGetName (sciPointObj * pobj);  /* GET */
 GRAPHICS_IMPEXP int sciGetNum (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP int sciGetWidth (sciPointObj * pobj);   /* GET */
-GRAPHICS_IMPEXP int sciGetHeight (sciPointObj * pobj);  /* GET */
-GRAPHICS_IMPEXP void sciGetDim( sciPointObj * pobj, int * pWidth, int * pHeight ) ; /* GET */
 GRAPHICS_IMPEXP int sciGetWindowWidth(sciPointObj * pObj) ; /* GET */
 GRAPHICS_IMPEXP int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
