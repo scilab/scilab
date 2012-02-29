@@ -565,7 +565,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     Appearance segmentAppearance = new Appearance();
 
                     /* If not colored, all segments have the same color. */
-                    if (!champ.getColored()) {
+                    if (champ.getColored()) {
+                        segmentAppearance.setLineColor(null);
+                    } else {
                         segmentAppearance.setLineColor(ColorFactory.createColor(colorMap, champ.getLineColor()));
                     }
 
