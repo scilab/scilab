@@ -68,8 +68,7 @@ CLI console:
 
 * bug 3400 fixed - Long lines in the history breaks the display.
 
-* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow key
-s.
+* bug 6804 fixed - Prompt is removed in cli mode when playing with the arrow keys.
 
 * bug 3108 fixed - Some specific chars in the terminal are not correctly
                    removed by the backspace.
