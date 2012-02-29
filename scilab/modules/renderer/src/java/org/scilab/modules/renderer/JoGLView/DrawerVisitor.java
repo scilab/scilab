@@ -449,7 +449,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         if (fac3d.getColorFlag() == 0) {
                             appearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode())));
                         } else if (fac3d.getColorFlag() > 0) {
-                            geometry.setColors(dataManager.getColorBuffer(fac3d.getIdentifier()));
+                            geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fac3d.getIdentifier()));
+                            appearance.setTexture(getColorMapTexture());
                         } else {
                             geometry.setColors(null);
                         }
@@ -757,16 +758,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     private class ColorMapTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
+        float[] whiteColor = {1.0f, 1.0f, 1.0f, 1.0f};
+        float[] blackColor = {0.0f, 0.0f, 0.0f, 1.0f};
 
         @Override
         public Dimension getTextureSize() {
-            return new Dimension(colorMap.getSize(), 1);
+            return new Dimension(colorMap.getSize() + 2, 1);
         }
 
         @Override
         public Buffer getData() {
             Double[] data = colorMap.getData();
-            FloatBuffer buffer = BufferUtil.newFloatBuffer(4 * data.length / 3);
+            FloatBuffer buffer = BufferUtil.newFloatBuffer(4 * ((data.length / 3) + 2));
+
+            /* White and black are written in the first and second positions */
+            buffer.put(whiteColor);
+            buffer.put(blackColor);
+
             for (int i = 0 ; i < data.length / 3 ; i++) {
                 buffer.put(data[i].floatValue());
                 buffer.put(data[i + colorMap.getSize()].floatValue());
@@ -779,16 +787,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
         @Override
         public Buffer getSubData(int x, int y, int width, int height) {
-            Double[] data = colorMap.getData();
-            FloatBuffer buffer = BufferUtil.newFloatBuffer(4 * width);
-            for (int i = x ; i < x + width ; i++) {
-                buffer.put(data[i].floatValue());
-                buffer.put(data[i + colorMap.getSize()].floatValue());
-                buffer.put(data[i + 2 * colorMap.getSize()].floatValue());
-                buffer.put(1);
-            }
-            buffer.rewind();
-            return buffer;
+            /*
+             * For the moment, we presuppose that x and y are 0 and that
+             * width is equal to the colormap's total size (with height == 1).
+             * To be correctly implemented.
+             */
+            return getData();
         }
 
         @Override

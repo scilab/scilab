@@ -83,10 +83,18 @@ public :
     static void getClampedDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
 
     /**
+     * Returns the given index rounded down and clamped to the colormap size.
+     * @param[in] the scalar value used as an index.
+     * @param[in] the colormap's size.
+     * @return the index clamped to the colormap size.
+     */
+    static double getClampedDirectIndex(double s, int colormapSize);
+
+    /**
      * Returns a colormap index mapped to a scalar value s belonging to an [smin, smax] interval.
      * The index belongs to an [imin, imax] interval which is linearly mapped to s, smin and smax respectively
-     * corresponding to the imin and imax indices. The index is computed and returned as a floating-point
-     * number to prevent quantization problems.
+     * corresponding to the imin and imax indices. The computed index is rounded down and then clamped to
+     * the [imin, imax] interval.
      * It neither checks whether srange is greater than 0 nor verifies than minIndex and maxIndex are valid colormap
      * indices.
      * @param[in] the scalar value.
@@ -128,5 +136,21 @@ enum SpecialColorIndexValues {
  * The maximum value of a single R, G or B component.
  */
 #define MAX_COMPONENT_VALUE    1.0
+
+/**
+ * The index value corresponding to white.
+ */
+#define WHITE_INDEX    -2.0
+
+/**
+ * The index value corresponding to black.
+ */
+#define BLACK_INDEX    -1.0
+
+/**
+ * An offset used to center the color index when computing
+ * colormap texture coordinates.
+ */
+#define COLOR_TEXTURE_OFFSET    0.5
 
 #endif

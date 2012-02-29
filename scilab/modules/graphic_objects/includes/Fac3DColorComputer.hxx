@@ -106,6 +106,14 @@ public :
     ~Fac3DColorComputer();
 
     /**
+     * Indicates whether facets are shaded with a single color or using interpolated shading.
+     * Interpolated shading is used only if colors are defined per vertex and color flag is equal to 3.
+     * Single color (flat) shading is used in any other case.
+     * @return 1 if interpolated shading is used, 0 if flat shading is used.
+     */
+    int isInterpolatedShadingUsed(void);
+
+    /**
      * Returns the color of facet i at vertex j which is actually output for rendering,
      * where 0 <= j < numVerticesPerGon.
      * The colors actually output for rendering may differ from the facet's color values for scaled

@@ -87,7 +87,7 @@ void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, in
 
 }
 
-void Fac3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
+void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
 {
     char* parentFigure;
     char* parent;
@@ -165,7 +165,7 @@ void Fac3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int 
 
     if (colorFlag == 1)
     {
-        fillNormalizedZColors(buffer, bufferLength, elementsSize, colormap, colormapSize, z, numGons, numVerticesPerGon);
+        fillNormalizedZColorsTextureCoordinates(buffer, bufferLength, colormap, colormapSize, z, numGons, numVerticesPerGon);
     }
     else if (colorFlag > 1 && numColors == 0)
     {
@@ -181,24 +181,26 @@ void Fac3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int 
         color = (double) colorMode;
         color = DecompositionUtils::getAbsoluteValue(color);
 
-        fillConstantColors(buffer, bufferLength, elementsSize, colormap, colormapSize,
+        fillConstantColorsTextureCoordinates(buffer, bufferLength, colormap, colormapSize,
             color, numGons, numVerticesPerGon);
     }
     else
     {
-        fillDataColors(buffer, bufferLength, elementsSize, colormap, colormapSize,
+        fillDataColorsTextureCoordinates(buffer, bufferLength, colormap, colormapSize,
             colors, colorFlag, perVertex, dataMapping, numGons, numVerticesPerGon);
     }
 
 }
 
-void Fac3DDecomposer::fillNormalizedZColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
     double* z, int numGons, int numVerticesPerGon)
 {
+    double zavg;
     double zMin;
     double zMax;
     double zRange;
     double minDoubleValue;
+    float index;
 
     int i;
     int j;
@@ -221,63 +223,46 @@ void Fac3DDecomposer::fillNormalizedZColors(float* buffer, int bufferLength, int
     for (i = 0; i < numGons; i++)
     {
         /* Per-face average */
-        double zavg = 0.0;
-
-        float colorret[3];
-
         zavg = computeAverageValue(&z[i*numVerticesPerGon], numVerticesPerGon);
-
-        ColorComputer::getColor(zavg, zMin, zRange, Z_COLOR_OFFSET, colormap, colormapSize, colorret);
+        index = (ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2);
 
         for (j = 0; j < numVerticesPerGon; j++)
         {
-            buffer[bufferOffset] = colorret[0];
-            buffer[bufferOffset+1] = colorret[1];
-            buffer[bufferOffset+2] = colorret[2];
-
-            if (elementsSize == 4)
-            {
-                buffer[bufferOffset +3] = 1.0;
-            }
-
-            bufferOffset += elementsSize;
+            buffer[bufferOffset++] = index;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 1.0;
         }
     }
 
 }
 
-void Fac3DDecomposer::fillConstantColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+void Fac3DDecomposer::fillConstantColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
     double colorValue, int numGons, int numVerticesPerGon)
 {
     int i;
     int bufferOffset = 0;
 
-    float color[3];
-
-    ColorComputer::getClampedDirectColor(colorValue - 1.0, colormap, colormapSize, color);
+    double index = (ColorComputer::getClampedDirectIndex(colorValue - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2);
 
     for (i = 0; i < numGons*numVerticesPerGon; i++)
     {
-        buffer[bufferOffset] = color[0];
-        buffer[bufferOffset+1] = color[1];
-        buffer[bufferOffset+2] = color[2];
-
-        if (elementsSize == 4)
-        {
-            buffer[bufferOffset+3] = 1.0;
-        }
-
-        bufferOffset += elementsSize;
+        buffer[bufferOffset++] = index;
+        buffer[bufferOffset++] = 0;
+        buffer[bufferOffset++] = 0;
+        buffer[bufferOffset++] = 1.0;
     }
 
 }
 
-void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
     double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon)
 {
     double colMin;
     double colRange;
     double color;
+    double colorTextureOffset;
+    double index;
 
     int i;
     int j;
@@ -304,6 +289,13 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
         colorComputer.getColorRangeValue(&colMin, &colRange);
     }
 
+    /*
+     * The color texture offset value is used to center color sub-intervals
+     * on integer index values when interpolated shading is used or to be sure
+     * to fetch the correct color value when flat shading is used.
+     */
+    colorTextureOffset = COLOR_TEXTURE_OFFSET;
+
     for (i = 0; i < numGons; i++)
     {
         for (j = 0; j < numVerticesPerGon; j++)
@@ -312,20 +304,19 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
 
             if (dataMapping == 1)
             {
-                double tmpColor = DecompositionUtils::getAbsoluteValue(color);
-                ColorComputer::getDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
+                color = DecompositionUtils::getAbsoluteValue(color);
+                index = ColorComputer::getClampedDirectIndex(color - 1.0 , colormapSize);
             }
             else if (dataMapping == 0)
             {
-                ColorComputer::getColor(color, colMin, colRange, COLOR_OFFSET, colormap, colormapSize, &buffer[bufferOffset]);
+                index = ColorComputer::getIndex(color, colMin, colRange, COLOR_OFFSET, 0, colormapSize-1);
             }
 
-            if (elementsSize == 4)
-            {
-                buffer[bufferOffset +3] = 1.0;
-            }
-
-            bufferOffset += elementsSize;
+            /* The offset corresponding to the black and white colors must added to the index and the colormap size. */
+            buffer[bufferOffset++] = (float) ((index + colorTextureOffset + 2.0) / (double) (colormapSize + 2));
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 1.0;
         }
     }
 }

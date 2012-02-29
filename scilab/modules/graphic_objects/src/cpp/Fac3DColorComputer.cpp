@@ -59,19 +59,7 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
     /* Scaled */
     if (dataMapping == 0)
     {
-        colorRangeValid = 1;
-
-        computeMinMaxValues();
-
-        colorRange = maxColorValue - minColorValue;
-        usedMinColorValue = minColorValue;
-
-        /*
-         * The color range is invalid when its minimum and maximum values are equal.
-         * This does not matter when all the color values are either infinite or Nans,
-         * as facets will be considered as invalid anyway.
-         */
-        if (colorRange < DecompositionUtils::getMinDoubleValue())
+        if (numColors == 0)
         {
             colorRangeValid = 0;
 
@@ -79,7 +67,28 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
             usedMinColorValue = 0.0;
             colorRange = 1.0;
         }
+        else
+        {
+            colorRangeValid = 1;
+            computeMinMaxValues();
 
+            colorRange = maxColorValue - minColorValue;
+            usedMinColorValue = minColorValue;
+
+            /*
+             * The color range is invalid when its minimum and maximum values are equal.
+             * This does not matter when all the color values are either infinite or Nans,
+             * as facets will be considered as invalid anyway.
+             */
+            if (colorRange < DecompositionUtils::getMinDoubleValue())
+            {
+                colorRangeValid = 0;
+
+                /* Set the actually used color range to [0.0, 1.0] */
+                usedMinColorValue = 0.0;
+                colorRange = 1.0;
+            }
+        }
     }
 
 }
@@ -87,6 +96,22 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
 Fac3DColorComputer::~Fac3DColorComputer(void)
 {
 
+}
+
+int Fac3DColorComputer::isInterpolatedShadingUsed(void)
+{
+    int interpolatedShading = 0;
+
+    /*
+     * Interpolated shading is used only when colors are defined per vertex
+     * and color flag is equal to 3. In any other case, flat shading is used.
+     */
+    if (perVertex == 1 && colorFlag == 3)
+    {
+        interpolatedShading = 1;
+    }
+
+    return interpolatedShading;
 }
 
 double Fac3DColorComputer::getOutputFacetColor(int facetIndex, int vertexIndex)
@@ -107,7 +132,7 @@ double Fac3DColorComputer::getOutputFacetColor(int facetIndex, int vertexIndex)
 }
 
 /* To do:
- * -rename getFacetColor to getFacetValue.
+ * -rename getFacetColor to getFacetValue. or getVertexColorIndex
  * -streamline.
  */
 double Fac3DColorComputer::getFacetColor(int facetIndex, int vertexIndex)

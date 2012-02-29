@@ -45,18 +45,17 @@ private :
     };
 
     /**
-     * Fills a buffer with colors computed from z values.
+     * Fills a buffer with texture coordinate computed from z values.
      * Colors are looked up in a color map, which is linearly mapped to the N-gon set's normalized z values.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
-     * @param[in] the number of components taken by a color element (3 or 4).
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[in] the z coordinate array.
      * @param[in] the number of N-gons.
      * @param[in] the number of vertices per N-gon.
      */
-    static void fillNormalizedZColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+    static void fillNormalizedZColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
         double* z, int numGons, int numVerticesPerGon);
 
     /**
@@ -64,14 +63,13 @@ private :
      * The color buffer is filled with a single color value, looked up in a color map.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
-     * @param[in] the number of components taken by a color element (3 or 4).
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[in] the single color value used to fill the buffer.
      * @param[in] the number of N-gons.
      * @param[in] the number of vertices per N-gon.
      */
-    static void fillConstantColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+    static void fillConstantColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
         double colorValue, int numGons, int numVerticesPerGon);
 
     /**
@@ -79,7 +77,6 @@ private :
      * Colors are looked up in a color map, using the N-gon set's color data array as an input.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
-     * @param[in] the number of components taken by a color element (3 or 4).
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[in] the N-gon set's color values array.
@@ -89,7 +86,7 @@ private :
      * @param[in] the number of N-gons.
      * @param[in] the number of vertices per N-gon.
      */
-    static void fillDataColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+    static void fillDataColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
         double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon);
 
     /**
@@ -140,9 +137,8 @@ public :
      * @param[in] the id of the given object.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
-     * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
-    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+    static void fillTextureCoordinates(char* id, float* buffer, int bufferLength);
 
     /**
      * Returns the number of indices for the given object.

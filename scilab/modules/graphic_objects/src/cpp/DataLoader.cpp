@@ -163,7 +163,11 @@ void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_FEC__) == 0)
+    if (strcmp(type, __GO_FAC3D__) == 0)
+    {
+        Fac3DDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
     {
         TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
     }
@@ -175,11 +179,7 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
-    {
-        Fac3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
+    if (strcmp(type, __GO_FEC__) == 0)
     {
         TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
     }
