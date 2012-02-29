@@ -13,3 +13,5 @@ my_test_path = pathconvert(SCI+"/modules/javasci/tests/nonreg_tests",%f,%f);
 my_file_path = pathconvert(my_test_path+"/"+java_file_to_test,%f,%f);
 exec (my_test_path+"/test_java.sci",-1);
 assert_checktrue(test_java(my_file_path));
+ 
+     []
