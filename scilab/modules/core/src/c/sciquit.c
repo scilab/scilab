@@ -53,12 +53,13 @@ int ExitScilab(void)
     TerminateWindows_tools();
 #endif
 
+#ifndef _MSC_VER
     /* Reset Shell Settings before leaving Scilab. */
     if (CurrentScilabMode == SCILAB_NWNI || CurrentScilabMode == SCILAB_NW)
     {
         initConsoleMode(ATTR_RESET);
     }
-
+#endif
     return 0;
 }
 

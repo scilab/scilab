@@ -145,7 +145,9 @@ char *getConsoleInputLine(void)
 static void initAll(void)
 {
     /* Set console mode to raw */
+#ifndef _MSC_VER
     initConsoleMode(RAW);
+#endif
     initialized = TRUE;
     pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     atexit(release);
