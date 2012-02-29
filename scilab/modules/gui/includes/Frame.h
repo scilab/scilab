@@ -23,12 +23,4 @@
  */
 GUI_IMPEXP void createFrame(sciPointObj * sciObj);
 
-/**
- * Set the current figure as parent for a Frame in Scilab GUIs
- *
- * @param sciObj the corresponding Scilab object
- * @return true parent setting has be done without error
- */
-GUI_IMPEXP int setCurentFigureAsFrameParent(sciPointObj * sciObj);
-
 #endif /* !__FRAME_H__ */

@@ -362,49 +362,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
             setGraphicObjectRelationship(pstCurrentFigure, graphicObjectUID);
             // TODO Remove following code and called functions in src/cpp/*.cpp
-#if 0
-            switch (pUICONTROL_FEATURE(graphicObject)->style)
-            {
-            case SCI_PUSHBUTTON:
-                setCurentFigureAsPushButtonParent(graphicObject);
-                break;
-            case SCI_EDIT:
-                setCurentFigureAsEditBoxParent(graphicObject);
-                break;
-            case SCI_UITEXT:
-                setCurentFigureAsLabelParent(graphicObject);
-                break;
-            case SCI_CHECKBOX:
-                setCurentFigureAsCheckBoxParent(graphicObject);
-                break;
-            case SCI_RADIOBUTTON:
-                setCurentFigureAsRadioButtonParent(graphicObject);
-                break;
-            case SCI_SLIDER:
-                setCurentFigureAsSliderParent(graphicObject);
-                break;
-            case SCI_POPUPMENU:
-                setCurentFigureAsPopupMenuParent(graphicObject);
-                break;
-            case SCI_LISTBOX:
-                setCurentFigureAsListBoxParent(graphicObject);
-                break;
-            case SCI_UIFRAME:
-                setCurentFigureAsFrameParent(graphicObject);
-                break;
-            case SCI_IMAGERENDERER:
-                setCurentFigureAsImageRendererParent(graphicObject);
-                break;
-            case SCI_UITABLE:
-                setCurentFigureAsUiTableParent(graphicObject);
-                break;
-            case SCI_UIDISPLAYTREE:
-                setCurentFigureAsUiDisplayTreeParent(graphicObject);
-                break;
-            default:
-                break;
-            }
-#endif
         }
 
         /* Read and set all properties */
