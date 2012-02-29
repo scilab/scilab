@@ -208,8 +208,6 @@ GRAPHICS_IMPEXP void sciGetAutoTicks(sciPointObj * pObj, BOOL autoTicks[3]); /* 
 
 GRAPHICS_IMPEXP BOOL sciGetAutoSubticks(sciPointObj * pObj); /* GET */
 
-GRAPHICS_IMPEXP void sciGetNbSubTics(sciPointObj * pObj, int nbsubtics[3]); /* GET */
-
 GRAPHICS_IMPEXP void sciGetAxesVisible(sciPointObj * pObj, BOOL axesVisible[3]); /* GET */
 
 GRAPHICS_IMPEXP void sciGetZoomBox(sciPointObj * pObj, double zoomBox[6]); /* GET */
@@ -226,13 +224,6 @@ GRAPHICS_IMPEXP void sciGetPixelBoundingBox(sciPointObj * pObj, int corner1[2], 
 GRAPHICS_IMPEXP void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height); /* GET */
 
 GRAPHICS_IMPEXP void sciGetAABoundingBox(sciPointObj * pObj, double bounds[6]); /* GET */
-
-GRAPHICS_IMPEXP int sciGetNbXTicks(sciPointObj * pSubwin);
-GRAPHICS_IMPEXP void sciGetXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
-GRAPHICS_IMPEXP int sciGetNbYTicks(sciPointObj * pSubwin);
-GRAPHICS_IMPEXP void sciGetYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
-GRAPHICS_IMPEXP int sciGetNbZTicks(sciPointObj * pSubwin);
-GRAPHICS_IMPEXP void sciGetZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels);
 
 GRAPHICS_IMPEXP BOOL sciGetIsAbleToCreateWindow(void);
 
