@@ -150,41 +150,41 @@ SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block, scicos_flag flag)
     switch (flag)
     {
 
-    case Initialization:
-        sco = getScoData(block);
-        if (sco == NULL)
-        {
-            set_block_error(-5);
-        }
-        pFigureUID = getFigure(block);
-        if (pFigureUID == NULL)
-        {
-            // allocation error
-            set_block_error(-5);
-        }
-        break;
-
-    case StateUpdate:
-        pFigureUID = getFigure(block);
-
-        appendData(block, (double *)block->inptr[0], (double *)block->inptr[1]);
-        for (j = 0; j < block->insz[0]; j++)
-        {
-            result = pushData(block, j);
-            if (result == FALSE)
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
             {
-                Coserror("%s: unable to push some data.", "bouncexy");
-                break;
+                set_block_error(-5);
             }
-        }
-        break;
+            pFigureUID = getFigure(block);
+            if (pFigureUID == NULL)
+            {
+                // allocation error
+                set_block_error(-5);
+            }
+            break;
 
-    case Ending:
-        freeScoData(block);
-        break;
+        case StateUpdate:
+            pFigureUID = getFigure(block);
 
-    default:
-        break;
+            appendData(block, (double *)block->inptr[0], (double *)block->inptr[1]);
+            for (j = 0; j < block->insz[0]; j++)
+            {
+                result = pushData(block, j);
+                if (result == FALSE)
+                {
+                    Coserror("%s: unable to push some data.", "bouncexy");
+                    break;
+                }
+            }
+            break;
+
+        case Ending:
+            freeScoData(block);
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -275,18 +275,18 @@ static void freeScoData(scicos_block * block)
         FREE(sco->internal.data);
         FREE(sco->internal.ballsSize);
 
-//      Commented due to the C++ allocation
-//      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
-//      FREE(sco->scope.cachedFigureUID);
-//      sco->scope.cachedFigureUID = NULL;
-//      for (i=0; i<block->nin; i++) {
-//          for (j=0; j<block->insz[i]; j++) {
-//              FREE(sco->scope.cachedArcsUIDs[i][j]);
-//              sco->scope.cachedArcsUIDs[i][j] = NULL;
-//          }
-//          FREE(sco->scope.cachedAxeUID[i]);
-//          sco->scope.cachedAxeUID[i] = NULL;
-//      }
+        //      Commented due to the C++ allocation
+        //      see http://bugzilla.scilab.org/show_bug.cgi?id=9747
+        //      FREE(sco->scope.cachedFigureUID);
+        //      sco->scope.cachedFigureUID = NULL;
+        //      for (i=0; i<block->nin; i++) {
+        //          for (j=0; j<block->insz[i]; j++) {
+        //              FREE(sco->scope.cachedArcsUIDs[i][j]);
+        //              sco->scope.cachedArcsUIDs[i][j] = NULL;
+        //          }
+        //          FREE(sco->scope.cachedAxeUID[i]);
+        //          sco->scope.cachedAxeUID[i] = NULL;
+        //      }
 
         FREE(sco);
     }
@@ -354,6 +354,9 @@ static char *getFigure(scicos_block * block)
     signed int figNum;
     char *pFigureUID = NULL;
     char *pAxe = NULL;
+    int i__1 = 1;
+    BOOL b_true = TRUE;
+
     sco_data *sco = (sco_data *) * (block->work);
 
     // fast path for an existing object
@@ -385,8 +388,8 @@ static char *getFigure(scicos_block * block)
         /*
          * Setup according to block settings
          */
-        setLabel(pAxe, __GO_X_AXIS_LABEL__, "x");
-        setLabel(pAxe, __GO_Y_AXIS_LABEL__, "y");
+        setGraphicObjectProperty(pAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
+        setGraphicObjectProperty(pAxe, __GO_ISOVIEW__, &b_true, jni_bool, 1);
 
         setBounds(block);
     }
@@ -445,6 +448,7 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
 {
     static double d__0 = 0.0;
     static double d__2PI = 2 * M_PI;
+    static BOOL b__true = TRUE;
 
     char *pArc;
     int color;
@@ -470,7 +474,6 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
         {
             createDataObject(pArc, __GO_ARC__);
             setGraphicObjectRelationship(pAxeUID, pArc);
-
         }
     }
 
@@ -487,6 +490,8 @@ static char *getArc(char *pAxeUID, scicos_block * block, int row)
 
         setGraphicObjectProperty(pArc, __GO_WIDTH__, &sco->internal.ballsSize[row], jni_double, 1);
         setGraphicObjectProperty(pArc, __GO_HEIGHT__, &sco->internal.ballsSize[row], jni_double, 1);
+
+        setGraphicObjectProperty(pArc, __GO_FILL_MODE__, &b__true, jni_bool, 1);
     }
 
     /*
