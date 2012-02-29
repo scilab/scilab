@@ -146,7 +146,10 @@ static void initAll(void)
 {
     /* Set console mode to raw */
 #ifndef _MSC_VER
-    initConsoleMode(RAW);
+    if (getScilabMode() != SCILAB_STD)
+    {
+        initConsoleMode(RAW);
+    }
 #endif
     initialized = TRUE;
     pReadyForLaunch = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
@@ -195,10 +198,10 @@ static void *watchGetCommandLine(void *in)
 
 /***********************************************************************/
 /*
-* Old zzledt... Called by Fortran...
-* @TODO rename that function !!!
-* @TODO remove unused arg buf_size, menusflag, modex & dummy1
-*/
+ * Old zzledt... Called by Fortran...
+ * @TODO rename that function !!!
+ * @TODO remove unused arg buf_size, menusflag, modex & dummy1
+ */
 void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *menusflag, int *modex, long int dummy1)
 {
     if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
@@ -288,10 +291,10 @@ void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *men
     __UnLockSignal(pReadyForLaunch);
 
     /*
-     ** WARNING : Old crappy f.... code
-     ** do not change reference to buffer
-     ** or fortran will be lost !!!!
-     */
+    ** WARNING : Old crappy f.... code
+    ** do not change reference to buffer
+    ** or fortran will be lost !!!!
+    */
     if (__CommandLine)
     {
         strcpy(buffer, __CommandLine);
