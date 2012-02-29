@@ -29,12 +29,6 @@ using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaFigureSize(sciPointObj * pFigure, int size[2])
-{
-    //getFigureDrawer(pFigure)->getSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciGetJavaWindowSize(sciPointObj * pFigure, int size[2])
 {
     //getFigureDrawer(pFigure)->getWindowSize(size);

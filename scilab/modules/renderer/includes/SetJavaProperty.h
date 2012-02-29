@@ -1,14 +1,14 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Interface functions between between SetProperty functions and
  * the C++/Java part of module
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,12 +33,6 @@ extern "C" {
  * @param nbColor number of color in the new colormap
  */
 RENDERER_IMPEXP void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
-
-/**
- * Set the size of a figure object
- * @return indicates if the size could be successfully modified
- */
-RENDERER_IMPEXP int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
 
 /**
  * Set the size of a window enclosing a figure.

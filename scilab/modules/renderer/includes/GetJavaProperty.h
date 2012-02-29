@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Get the size of a figure object
- */
-RENDERER_IMPEXP void sciGetJavaFigureSize( sciPointObj * pFigure, int size[2] ) ;
-
-/**
  * Get the size of a window enclosing a figure
  */
 RENDERER_IMPEXP void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] ) ;
