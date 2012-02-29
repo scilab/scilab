@@ -1554,54 +1554,6 @@ sciSetNum (char * pobjUID, int value )
 
 }
 
-int sciInitScreenPosition( char * pobjUID, int pposx, int pposy )
-{
-    // FIXME
-    abort();
-#if 0
-
-    switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        if ( pobjUID == getFigureModel() )
-        {
-            pFIGURE_FEATURE(pobjUID)->pModelData->windowPosition[0] = pposx ;
-            pFIGURE_FEATURE(pobjUID)->pModelData->windowPosition[1] = pposy ;
-        }
-        else
-        {
-            int pos[2] = {pposx, pposy} ;
-            sciSetJavaWindowPosition(pobjUID, pos) ;
-        }
-        return 0;
-    default:
-        printSetGetErrorMessage("figure_position");
-        return -1;
-        break;
-    }
-#endif
-    return 0;
-}
-
-/**sciSetScreenPosition
- * Sets the position of the FIGURE (the window) in root.
- */
-int
-sciSetScreenPosition(char * pobjUID, int pposx, int pposy)
-{
-    int posX ;
-    int posY ;
-    sciGetScreenPosition( pobjUID, &posX, &posY ) ;
-    if ( posX == pposx && posY == pposy )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitScreenPosition( pobjUID, pposx, pposy ) ;
-
-}
-
-
 /*--------------------------------------------------------------------------*/
 /* sciSelectFirstSubwin                                                              */
 /* select under the first window found under the current figure                      */

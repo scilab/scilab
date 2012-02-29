@@ -52,14 +52,6 @@ int set_screen_position_property(char* pobjUID, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"screen_position");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   intValues[0] = (int)values[0];
   intValues[1] = (int)values[1];
 
@@ -74,16 +66,5 @@ int set_screen_position_property(char* pobjUID, size_t stackPointer, int valueTy
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"screen_position");
     return SET_PROPERTY_ERROR;
   }
-
-/* deactivated for now since it involves drawing operations, to be implemented */
-#if 0
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
-  enableFigureSynchronization(pobj);
-
-  /* return set property unchanged since repaint is not really needed */
-  return sciSetNoRedrawStatus((SetPropertyStatus)status);
-#endif
 }
 /*------------------------------------------------------------------------*/

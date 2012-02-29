@@ -36,12 +36,6 @@ void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaAntialiasingQuality(sciPointObj * pFigure, int quality)
-{
-    //getFigureDrawer(pFigure)->setAntialiasingQuality(quality);
-}
-
-/*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
     abort();

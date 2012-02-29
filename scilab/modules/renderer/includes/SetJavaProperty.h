@@ -30,15 +30,6 @@ extern "C" {
 RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
 
 /**
- * Modify the quality of antialiasing or disable it.
- * If quality if 0, the antialiasing is disables,
- * otherwise it might be either 1, 2, 4, 8 or 16 and then
- * specify the number of pass for antialiasing.
- * @param quality positive integer.
- */
-RENDERER_IMPEXP void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality ) ;
-
-/**
  * Zoom a subwin object with the specified rectangle in pixels
  * @return TRUE if the axes box has been zoomed, FALSE otherwise
  */

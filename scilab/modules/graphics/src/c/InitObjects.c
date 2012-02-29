@@ -1289,8 +1289,8 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
         //sciSetWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl));
     }
 
-    sciGetScreenPosition(pfiguremdl, &x[0], &x[1]);
-    sciSetScreenPosition(pobj, x[0], x[1]);
+    //sciGetScreenPosition(pfiguremdl, &x[0], &x[1]);
+    //sciSetScreenPosition(pobj, x[0], x[1]);
     pFIGURE_FEATURE(pobj)->isselected = pFIGURE_FEATURE(pfiguremdl)->isselected;
     pFIGURE_FEATURE(pobj)->rotstyle = pFIGURE_FEATURE(pfiguremdl)->rotstyle;
     pFIGURE_FEATURE(pobj)->visible = pFIGURE_FEATURE(pfiguremdl)->visible;
