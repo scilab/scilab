@@ -52,6 +52,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
@@ -86,6 +87,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final LegendDrawer legendDrawer;
     private final AxesDrawer axesDrawer;
     private final AxisDrawer axisDrawer;
+    private final ArrowDrawer arrowDrawer;
 
     private DrawingTools drawingTools = null;
     private Texture colorMapTexture;
@@ -113,6 +115,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.labelManager = new LabelManager(canvas.getSpriteManager());
         this.axesDrawer = new AxesDrawer(this);
         this.axisDrawer = new AxisDrawer(this);
+        this.arrowDrawer = new ArrowDrawer(this);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
@@ -136,6 +139,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     /**
+     * @return the DataManager
+     */
+    public DataManager getDataManager() {
+        return dataManager;
+    }
+
+    /**
      * @return the TextManager
      */
     public TextManager getTextManager() {
@@ -143,7 +153,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     /**
-     * @return the AxeDrawer
+     * @return the AxesDrawer
      */
     public AxesDrawer getAxesDrawer() {
         return axesDrawer;
@@ -535,9 +545,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         System.out.println("How can I draw an arrow ?");
     }
 
-    /*
-     * To do: -arrow tip rendering.
-     */
     @Override
     public void visit(final Champ champ) {
         if (champ.getVisible()) {
@@ -566,15 +573,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     segmentAppearance.setLinePattern(champ.getLineStyleAsEnum().asPattern());
                     drawingTools.draw(segments, segmentAppearance);
                 }
+
+                /* Draw the arrows */
+                if (champ.getArrowSize() != 0.0) {
+                    arrowDrawer.drawArrows(champ.getParentAxes(), champ.getIdentifier(), champ.getArrowSize(), champ.getLineThickness(), false,
+                        champ.getColored(), champ.getLineColor());
+                }
+
             } catch (SciRendererException e) {
                 System.err.println("A '" + champ.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
         }
     }
 
-    /*
-     * To do: -arrow tip rendering.
-     */
     @Override
     public void visit(final Segs segs) {
         if (segs.getVisible()) {
@@ -604,6 +615,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
                 }
+
+                /* Draw the arrows */
+                if (segs.getArrowSize() != 0.0) {
+                    arrowDrawer.drawArrows(segs.getParentAxes(), segs.getIdentifier(), segs.getArrowSize(), segs.getLineThickness(), true,
+                        true, segs.getLineColor());
+                }
+
             } catch (SciRendererException e) {
                 System.err.println("A '" + segs.getType() + "' is not drawable because: '" + e.getMessage() + "'");
             }
