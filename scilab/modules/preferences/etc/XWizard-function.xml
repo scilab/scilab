@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<function step="function">
+	<function always-active="true" discrete-state="" continuous-state=""/> 
+	<interface>
+		<regular-inputs>
+			<item name="In" type="double" rows="" columns="1"/>
+		</regular-inputs>
+		<regular-outputs>
+			<item name="Out" type="double" rows="-1" columns="-1"/>
+		</regular-outputs>
+		<activation-inputs>
+			<item name="Clock"/>
+		</activation-inputs>
+		<activation-outputs/>
+	</interface>
+
+	<!-- selectable pattern -->
+	<parameters item="1">
+		<!-- test -->
+		<item name="A"    type="double"  min="0.0" max="99.9" 
+          test="5.15" tooltip="Gain" description="Gain"/>
+	</parameters>
+	<graphics item="1">
+		<item title="Title"     family="arial" size="11" face="plain" color="#facade"/>
+		<item title="Text"      family="arial" size="11" face="plain" color="#facade"/>
+		<item title="I/O label" family="arial" size="11" face="plain" color="#facade"/>
+		<item title="Border"                                          color="#facade"/>
+		<item title="Background"                                      color="#facade"/>
+	</graphics>
+	<documentation>
+		<short-description> A scilab function
+		</short-description>
+		<long-description> A scilab function
+		</long-description>
+		<exemple-description> How this exemple is described?
+		</exemple-description>
+		<exemple-xcos-image src="none"/>
+		<exemple-png-image src="none"/>
+	</documentation>
+</function>
+

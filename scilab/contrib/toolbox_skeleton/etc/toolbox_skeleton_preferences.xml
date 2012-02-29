@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<body>
+  <Form text="Rectangle">
+    <Entry text="intitulé" value="exemple"/>
+    <Select text="Hauteur" value="18">
+      <Option value="12"/>
+      <Option value="18"/>
+      <Option value="24"/>
+    </Select>
+    <Select text="Largeur" value="18">
+      <Option value="12"/>
+      <Option value="18"/>
+      <Option value="24"/>
+    </Select>
+    <Color text="Couleur" value="#0000ff"/>
+    <Checkbox text="Contour" value="yes"/>
+  </Form>
+</body>

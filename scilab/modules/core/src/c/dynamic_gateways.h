@@ -169,6 +169,13 @@ int gw_dynamic_graphic_export(void);
 int gw_dynamic_action_binding(void);
 
 /**
+* preferences gateway
+* preferences is loaded dynamically at runtime
+* load gw_preferences in SCI/modules/preferences/sci_gateway/gw_preferences.c
+*/
+int gw_dynamic_preferences(void);
+
+/**
 * xml gateway
 * xml is loaded dynamically at runtime
 * load gw_xml in SCI/modules/xml/sci_gateway/gw_xml.c
@@ -181,6 +188,7 @@ int gw_dynamic_xml(void);
 * load gw_history_browser in SCI/modules/history_browser/sci_gateway/gw_history_browser.c
 */
 int gw_dynamic_history_browser(void);
+
 
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */

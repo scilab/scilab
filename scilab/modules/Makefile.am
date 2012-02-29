@@ -85,6 +85,7 @@ parallel \
 modules_manager \
 ui_data \
 history_browser \
+preferences \
 xml \
 types
 
@@ -204,8 +205,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+        $(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
 
 # Core modules

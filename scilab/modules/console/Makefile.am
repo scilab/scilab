@@ -23,8 +23,14 @@ libsciconsole_la_root_DATA =  license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
-libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
-
+libsciconsole_la_etc_DATA = \
+	etc/console.quit \
+	etc/console.start \
+	etc/configuration.xml \
+	etc/XConfiguration-console.xml \
+	etc/XConfiguration-console.xsl \
+	etc/XConfiguration-general.xml \
+	etc/XConfiguration-general.xsl
 
 #### console : List of the cpp files ####
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp

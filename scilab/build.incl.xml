@@ -65,6 +65,7 @@
     <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
     <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
     <pathelement location="${library.core.dir}/${library.core.name}"/>
+    <pathelement location="${library.preferences.dir}/${library.preferences.name}"/>
     <!-- Not use at build time but used for unitary tests -->
     <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
     <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
