@@ -592,13 +592,7 @@ BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag)
 
     setGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
 
-    /* To be modified */
-    if (flag != 3)
-        haschanged = sci_update_frame_bounds_2d(psubwinUID);
-    else
-        haschanged = sci_update_frame_bounds_3d(psubwinUID);
-
-    return haschanged;
+    return TRUE;
 }
 
 /* F.Leray */

@@ -178,6 +178,7 @@ void sciGetDisplayedBounds( char * pSubWinUID,
  */
 BOOL sci_update_frame_bounds_2d(char *pobjUID)
 {
+
   double xmax, xmin, ymin, ymax, zmin, zmax ;
   double hx,hy,hx1,hy1;
   int i;
@@ -218,6 +219,9 @@ BOOL sci_update_frame_bounds_2d(char *pobjUID)
 
   /* Used to print labels */
   char** stringVector;
+
+    // /!\ ABORT
+    abort();
 
   /* End of Temp variables */
 
@@ -559,6 +563,9 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   char** stringVector;
 
   /* End of Temp variables */
+
+  // /!\ ABORT
+  abort();
 
   /* Formerly FRect */
   getGraphicObjectProperty(pobj->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &previousDataBounds);
