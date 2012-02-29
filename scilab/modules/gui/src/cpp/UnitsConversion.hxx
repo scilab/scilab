@@ -40,17 +40,6 @@ extern "C"
  */
 double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthAsRef);
 
-/*
- * Convert a value to Point units
- *
- * @param value the value to convert
- * @param newUnit the new unit
- * @param sciObj the font parent
- * @param widthAsRef TRUE to use width to compute normalized size, FALSE to use height to compute normalized size
- * @return the new value
- */
-int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsRef);
-
 /**
 * Convert a pixel value to mm units
 * function used by GetScreenProperty
