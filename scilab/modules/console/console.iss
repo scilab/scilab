@@ -37,7 +37,8 @@ Source: modules\{#CONSOLE}\includes\*.h; DestDir: {app}\modules\{#CONSOLE}\inclu
 Source: modules\{#CONSOLE}\etc\{#CONSOLE}.quit; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\etc\{#CONSOLE}.start; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#CONSOLE}\etc\*.xml; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#CONSOLE}\etc\*.xsl; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#CONSOLE}\macros\buildmacros.sce; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\macros\buildmacros.bat; DestDir: {app}\modules\{#CONSOLE}\macros; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

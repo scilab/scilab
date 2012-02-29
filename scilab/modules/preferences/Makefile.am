@@ -20,10 +20,25 @@ libscipreferences_la_root_DATA =  license.txt
 
 #### preferences : init scripts & configuration files ####
 libscipreferences_la_etcdir = $(mydatadir)/etc
-libscipreferences_la_etc_DATA = 
+libscipreferences_la_etc_DATA = \
+	etc/preferences.quit \
+	etc/preferences.start \
+	etc/XConfiguration.xml \
+	etc/XWizard-expression.xml \
+	etc/XWizard-function.xml \
+	etc/XWizard-xcos.xml \
+	etc/XWizard.xml
+
+#### preferences : xslt files ####
+libscipreferences_la_src_xsltdir = $(mydatadir)/src/xslt/
+libscipreferences_la_src_xslt_DATA = \
+	src/xslt/XCommon-toolbars.xsl \
+	src/xslt/XCommon.xsl \
+	src/xslt/XConfiguration.xsl \
+	src/xslt/XGeneric.xsl \
+	src/xslt/XWizard.xsl
 
 include $(top_srcdir)/Makefile.incl.am
-
 
 PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 

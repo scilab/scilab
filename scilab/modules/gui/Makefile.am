@@ -24,15 +24,22 @@ libscigui_la_root_DATA =  license.txt
 
 #### gui : init scripts ####
 libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml \
-etc/windowsConfiguration.xml
+libscigui_la_etc_DATA = \
+	etc/gui.quit \
+	etc/gui.start \
+	etc/graphics_menubar.xml \
+	etc/graphics_toolbar.xml \
+	etc/helpbrowser_menubar.xml \
+	etc/main_menubar.xml \
+	etc/main_toolbar.xml \
+	etc/flexdock-themes.xml \
+	etc/windowsConfiguration.xml \
+	etc/XConfiguration-colors.xml \
+	etc/XConfiguration-colors.xsl \
+	etc/XConfiguration-font.xml \
+	etc/XConfiguration-font.xsl \
+	etc/XConfiguration-toolbars.xml \
+	etc/XConfiguration-toolbars.xsl
 
 #### gui : tree functions ####
 MACROSDIRSEXT = macros/tree

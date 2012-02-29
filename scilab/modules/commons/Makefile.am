@@ -20,8 +20,10 @@ libscicommons_la_root_DATA =  license.txt
 
 #### commons : init scripts ####
 libscicommons_la_etcdir = $(mydatadir)/etc
-libscicommons_la_etc_DATA = etc/commons.quit \
-				etc/commons.start
+libscicommons_la_etc_DATA = \
+	etc/commons.quit \
+	etc/commons.start \
+	etc/XConfiguration-general.xsl
 
 include $(top_srcdir)/Makefile.incl.am
 
