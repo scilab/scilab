@@ -103,7 +103,6 @@ public static final String __GO_DATA_MODEL_MATPLOT_TYPE__ =            "DataMode
 public static final String __GO_REFERENCED__ =             "Referenced";
 public static final String __GO_VALID__ =                  "Valid";
 
-public static final String __GO_DIMENSIONS__ =             "Dimensions";
 public static final String __GO_POSITION__ =               "Position";
 public static final String __GO_SIZE__ =                   "Size";
 public static final String __GO_CANVAS__ =                 "Canvas";

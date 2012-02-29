@@ -102,7 +102,6 @@
 #define __GO_REFERENCED__                  "Referenced"
 #define __GO_VALID__                       "Valid"
 
-#define __GO_DIMENSIONS__                  "Dimensions"
 #define __GO_POSITION__                    "Position"
 #define __GO_SIZE__                        "Size"
 #define __GO_CANVAS__                      "Canvas"

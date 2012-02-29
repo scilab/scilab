@@ -172,7 +172,6 @@ int set_children_property(char *pobj, size_t stackPointer, int valueType, int nb
 int set_viewport_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_info_message_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_screen_position_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
-int set_dimension_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_event_handler_enable_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_event_handler_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_arc_drawing_method_property(char *pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);

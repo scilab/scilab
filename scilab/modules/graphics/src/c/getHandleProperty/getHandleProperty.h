@@ -172,7 +172,6 @@ int get_z_ticks_property(char *pobjUID);
 int get_viewport_property(char *pobjUID);
 int get_info_message_property(char *pobjUID);
 int get_screen_position_property(char *pobjUID);
-int get_dimension_property(char *pobjUID);
 int get_event_handler_enable_property(char *pobjUID);
 int get_event_handler_property(char *pobjUID);
 int get_arc_drawing_method_property(char *pobjUID);

@@ -188,9 +188,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -825,9 +822,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c">

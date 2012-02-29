@@ -249,7 +249,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_id_property.c" />
@@ -466,7 +465,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_data_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_dimension_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_id_property.c" />
