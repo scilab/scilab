@@ -30,12 +30,6 @@ using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowSize(sciPointObj * pFigure, const int size[2])
-{
-    //getFigureDrawer(pFigure)->setWindowSize(size);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
 {
     //getFigureDrawer(pFigure)->setWindowPosition(pos);

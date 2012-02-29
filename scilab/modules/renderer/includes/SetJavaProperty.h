@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Set the size of a window enclosing a figure.
- */
-RENDERER_IMPEXP void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;
-
-/**
  * Set the position in pixels of a window enclosing a figure.
  */
 RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
