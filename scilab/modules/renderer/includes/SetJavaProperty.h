@@ -25,16 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Change the colormap of a figure. The colormap is stored in java
- * so we need to access it.
- * @param pFigure the figure we wants to modify
- * @param rgbMat matrix of size nbColor x 3 conating the 3 channels
- *               RGB of each color.
- * @param nbColor number of color in the new colormap
- */
-RENDERER_IMPEXP void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
-
-/**
  * Set the size of a window enclosing a figure.
  */
 RENDERER_IMPEXP void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;

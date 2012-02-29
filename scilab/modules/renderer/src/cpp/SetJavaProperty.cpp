@@ -30,12 +30,6 @@ using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaColormap(sciPointObj * pFigure, const double rgbMat[], int nbColor)
-{
-    //getFigureDrawer(pFigure)->setColorMap(rgbMat, nbColor);
-}
-
-/*---------------------------------------------------------------------------------*/
 void sciSetJavaWindowSize(sciPointObj * pFigure, const int size[2])
 {
     //getFigureDrawer(pFigure)->setWindowSize(size);
