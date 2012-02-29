@@ -34,7 +34,7 @@ BOOL sciIsExistingFigure(int id)
 
 BOOL sciHasFigures()
 {
-    return (ScilabView::isEmptyFigureList() == true ? TRUE : FALSE);
+    return (ScilabView::isEmptyFigureList() == true ? FALSE : TRUE);
 }
 
 char *getFigureFromIndex(int figNum)
