@@ -38,14 +38,6 @@ int set_figure_size_property(char* pobjUID, size_t stackPointer, int valueType, 
   BOOL status;
   int intValues[2];
 
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
   if ( !isParameterDoubleMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "figure_size");
@@ -72,17 +64,5 @@ int set_figure_size_property(char* pobjUID, size_t stackPointer, int valueType, 
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
     return SET_PROPERTY_ERROR;
   }
-
-/* deactivated for now since it involves drawing operations, to be implemented */
-#if 0
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
-  enableFigureSynchronization(pobj);
-
-  /* return set property unchanged since repaint is not really needed */
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
-#endif
-
 }
 /*------------------------------------------------------------------------*/

@@ -1286,7 +1286,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
     if (!sciGetResize(pobj))
     {
         /* window size and axes size may change independently */
-        sciSetWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl));
+        //sciSetWindowDim(pobj, sciGetWindowWidth(pfiguremdl), sciGetWindowHeight(pfiguremdl));
     }
 
     sciGetScreenPosition(pfiguremdl, &x[0], &x[1]);

@@ -1554,50 +1554,6 @@ sciSetNum (char * pobjUID, int value )
 
 }
 
-int sciInitWindowDim( char * pobjUID, int newWidth, int newHeight )
-{
-    // FIXME
-    abort();
-#if 0
-        switch (sciGetEntityType (pobjUID))
-    {
-    case SCI_FIGURE:
-        if ( pobjUID == getFigureModel() )
-        {
-            pFIGURE_FEATURE(pobjUID)->pModelData->windowWidth  = newWidth ;
-            pFIGURE_FEATURE(pobjUID)->pModelData->windowHeight = newHeight;
-        }
-        else
-        {
-            int size[2] = {newWidth, newHeight} ;
-            sciSetJavaWindowSize(pobjUID, size) ;
-            //Check the new size
-            sciGetJavaWindowSize(pobjUID, size);
-            if(size[0]!=newWidth || size[1]!=newHeight)
-            {
-                sciprint(_("WARNING : The size of the figure may not be as wide as you want.\n"));
-            }
-        }
-        break;
-    default:
-        printSetGetErrorMessage("figure_size");
-        return -1 ;
-        break;
-    }
-#endif
-    return 0 ;
-}
-
-int sciSetWindowDim( char * pobjUID, int newWidth, int newHeight )
-{
-    if ( sciGetWindowWidth(pobjUID) == newWidth && sciGetWindowHeight(pobjUID) == newHeight )
-    {
-        /* nothing to do */
-        return 1 ;
-    }
-    return sciInitWindowDim(pobjUID, newWidth, newHeight ) ;
-}
-
 int sciInitScreenPosition( char * pobjUID, int pposx, int pposy )
 {
     // FIXME

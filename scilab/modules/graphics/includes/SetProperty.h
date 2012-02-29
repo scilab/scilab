@@ -141,9 +141,6 @@ GRAPHICS_IMPEXP int sciSetName (char* pobj, char * newName); /* SET */
 GRAPHICS_IMPEXP int sciInitNum( char* pobj, int value ) ;
 GRAPHICS_IMPEXP int sciSetNum ( char* pobj, int value ) ; /* SET */
 
-GRAPHICS_IMPEXP int sciInitWindowDim( char* pobj, int newWidth, int newHeight ) ;
-GRAPHICS_IMPEXP int sciSetWindowDim(  char* pobj, int newWidth, int newHeight ) ; /* SET */
-
 GRAPHICS_IMPEXP int sciInitScreenPosition(char* pobj, int pposx, int pposy);
 GRAPHICS_IMPEXP int sciSetScreenPosition( char* pobj, int pposx, int pposy); /* SET */
 
