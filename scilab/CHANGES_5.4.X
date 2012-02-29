@@ -86,7 +86,7 @@ s.
             the line.
   - UP or Ctrl+P: recall previous line.
   - DOWN or Ctrl+N: recall next line.
-  - TAB: completion : scilab displays a list of all names that start with somes 
+  - TAB: completion : Scilab displays a list of all names that start with some
 characters.
   - Ctrl + A or HOME: move to beginning of current line.
   - Ctrl + B or LEFT: moves the cursor one character to the left.
@@ -95,44 +95,6 @@ characters.
   - Ctrl + F or RIGHT: moves the cursor one character to the right.
   - Ctrl + H or BACKSPACE: deletes the previous character.
   - Ctrl + K: kills command line from cursor to the end.
-  - Ctrl + U: kills command line from cursor to beginning.
-  - Ctrl + W: delete the previous word from the cursor.
-  - Alt+B or Ctrl+LEFT: move left one word.
-  - Alt+F or Ctrl+RIGHT: move right one word.
-
-
-Scinotes
-========
-
-* Add shortcuts META+(UP|DOWN) to navigate between paragraphs
-
-* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
-                     restoring.
-
-
-CLI console:
-============
-
-* Support wide characters.
-
-* Support multiline command.
-
-* General improvement command line display.
-
-* List of new/old shortcuts in NW/NWNI mode:
-  - UP or Ctrl+P: recall previous line.
-  - DOWN or Ctrl+N: recall next line.
-  - TAB: completion : Scilab displays a list of all names that start with somes
-    characters.
-  - Ctrl + A or HOME: move to beginning of current line.
-  - Ctrl + B or LEFT: moves the cursor one character to the left.
-  - Ctrl + D or DELETE: deletes the current character.
-  - Ctrl + E or END: moves the cursor to the end of command line.
-  - Ctrl + F or RIGHT: moves the cursor one character to the right.
-  - Ctrl + H or BACKSPACE: deletes the previous character.
-  - Ctrl + K: kills command line from cursor to the end.
-  - Ctrl + U: kills command line from cursor to beginning.
-  - Ctrl + W: delete the previous word from the cursor.
   - Alt+B or Ctrl+LEFT: move left one word.
   - Alt+F or Ctrl+RIGHT: move right one word.
 
@@ -142,6 +104,15 @@ CLI console:
 * bug 3400 fixed - Long lines in the history broke the display.
 
 * bug 6804 fixed - Prompt was removed in cli mode when playing with arrow keys.
+
+
+Scinotes
+========
+
+* Add shortcuts META+(UP|DOWN) to navigate between paragraphs
+
+* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+                     restoring.
 
 
 Javasci
