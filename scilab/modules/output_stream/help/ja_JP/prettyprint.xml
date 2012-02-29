@@ -16,23 +16,23 @@
     <title>呼び出し手順</title>
     <synopsis>
       str = prettyprint(a) // デフォルト形式 (LaTeX)で変数を表示
-      str = prettyprint(a,exportFormat) // 指定された形式で変数を表示
-      str = prettyprint(a,exportFormat, delim) // 上と同様ですが,デリミタを変更
-      str = prettyprint(a,exportFormat, delim, processByElement) // 上と同様ですが,各要素を独立に処理
-      str = prettyprint(a,exportFormat, delim, processByElement, isWrapped) // 上と同様ですが,TeXまたはLaTeXエクスポートのspecialキーワードを追加
+      str = prettyprint(a, exportFormat) // 指定された形式で変数を表示
+      str = prettyprint(a, exportFormat, delim) // 上と同様ですが,デリミタを変更
+      str = prettyprint(a, exportFormat, delim, processByElement) // 上と同様ですが,各要素を独立に処理
+      str = prettyprint(a, exportFormat, delim, processByElement, isWrapped) // 上と同様ですが,TeXまたはLaTeXエクスポートのspecialキーワードを追加
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Pパラメータ</title>
     <variablelist>
       <varlistentry>
-        <term>a:</term>
+        <term>a</term>
         <listitem>
           <para>Scilab変数</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>exportFormat:</term>
+        <term>exportFormat</term>
         <listitem>
           <para>出力形式で,省略された場合はデフォルトで'latex'が使用されます.
             'latex', 'tex' または 'mathml'とすることができます.
@@ -40,7 +40,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>delimiter:</term>
+        <term>delimiter</term>
         <listitem>
           <para> 結果の行列で使用されるデリミタを示す文字列で,
             isWrappedがtrueの場合にみ使用されます.
@@ -49,13 +49,13 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>processByElement:</term>
+        <term>processByElement</term>
         <listitem>
           <para> 結果の行列が一つの文字列に変換されるかどうかを設定する論理値.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>isWrapped:</term>
+        <term>isWrapped</term>
         <listitem>
           <para>xstring または xtitleで使用される際,
             結果がデリミタ(latexおよびtexの場合は'$',mathmlの場合はなし)で
@@ -64,7 +64,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>str:</term>
+        <term>str</term>
         <listitem>
           <para>変数aの表現</para>
         </listitem>
