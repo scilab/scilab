@@ -1,13 +1,13 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Karim Mamode
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Karim Mamode
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ */
 
 #include <wchar.h>
 #include <wctype.h>
@@ -29,6 +29,7 @@
 #include "charEncoding.h"
 #include "cliDisplayManagement.h"
 #include "autoCompletionCli.h"
+#include "tohome.h"
 
 /* Set new token in order to get string changement in history */
 static void updateTokenInScilabHistory(wchar_t ** commandLine)
@@ -232,6 +233,11 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         case CTRL_K:
             deleteFromCursToEndLine(*commandLine, cursorLocation);
             updateTokenInScilabHistory(commandLine);
+            break;
+        case CTRL_L:
+            tohome();
+            printPrompt(WRITE_PROMPT);
+            printf("%ls", *commandLine);
             break;
         case CTRL_N:
             nextCmd(commandLine, cursorLocation);
