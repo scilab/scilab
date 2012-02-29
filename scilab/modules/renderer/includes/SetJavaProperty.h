@@ -25,11 +25,6 @@ extern "C" {
 #include "BOOL.h"
 
 /**
- * Set the position in pixels of a window enclosing a figure.
- */
-RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
-
-/**
  * Zoom a subwin object with the specified rectangle in pixels
  * @return TRUE if the axes box has been zoomed, FALSE otherwise
  */

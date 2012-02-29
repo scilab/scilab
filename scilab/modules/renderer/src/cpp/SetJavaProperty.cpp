@@ -30,12 +30,6 @@ using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
-{
-    //getFigureDrawer(pFigure)->setWindowPosition(pos);
-}
-
-/*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
     abort();
