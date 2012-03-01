@@ -115,7 +115,6 @@ lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath="i_abs.f"/>
 		<File RelativePath="i_b_i.f"/>
 		<File RelativePath="i_c_i.f"/>
-		<File RelativePath="i_convert.f"/>
 		<File RelativePath="i_cumprod.f"/>
 		<File RelativePath="i_cumsum.f"/>
 		<File RelativePath="i_d_i.f"/>
@@ -161,7 +160,6 @@ lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath="..\..\sci_gateway\fortran\sci_i_sum.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_i_tril.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_i_triu.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_iconvert.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_int16.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_int32.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_int8.f"/>

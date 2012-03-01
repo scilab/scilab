@@ -410,6 +410,8 @@ Bug fixes
 
 * Bug #10745 fixed - Typos fixed in the help page of tand.
 
+* Bug #10782 fixed - 'iconvert' did not check input arguments.
+
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
 

@@ -7,7 +7,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-      subroutine stack_convert(it)
+      subroutine stackconvert(it)
 C     ---------------------------------------------
 C     converts the first argument
 C     (on top of stack)

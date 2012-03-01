@@ -30,7 +30,7 @@ INTEGER_IMPEXP int C2F(sciuint16)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciuint8)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(scimgeti)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciimput)(char *fname,unsigned long fname_len);
-INTEGER_IMPEXP int C2F(sciiconvert)(char *fname,unsigned long fname_len);
+INTEGER_IMPEXP int sci_iconvert(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciiabs)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciidiag)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciitriu)(char *fname,unsigned long fname_len);

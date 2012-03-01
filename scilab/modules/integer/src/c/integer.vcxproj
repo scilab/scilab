@@ -196,6 +196,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_iconvert.c" />
     <ClCompile Include="db2int.c" />
     <ClCompile Include="DllmainInteger.c" />
     <ClCompile Include="genabs.c" />

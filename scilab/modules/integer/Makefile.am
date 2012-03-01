@@ -64,7 +64,6 @@ src/fortran/i_l_i.f \
 src/fortran/i_m_i.f \
 src/fortran/intops.f \
 src/fortran/i_prod.f \
-src/fortran/i_convert.f \
 src/fortran/i_q_i.f \
 src/fortran/i_r_i.f \
 src/fortran/i_tril.f \
@@ -86,7 +85,8 @@ src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c \
+sci_gateway/c/sci_iconvert.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
@@ -109,7 +109,6 @@ sci_gateway/fortran/sci_i_tril.f \
 sci_gateway/fortran/sci_int8.f \
 sci_gateway/fortran/sci_uint32.f \
 sci_gateway/fortran/sci_uint16.f \
-sci_gateway/fortran/sci_iconvert.f \
 sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
