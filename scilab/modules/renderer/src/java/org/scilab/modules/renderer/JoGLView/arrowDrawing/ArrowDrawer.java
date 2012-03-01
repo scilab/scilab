@@ -149,6 +149,11 @@ public class ArrowDrawer {
 
         int numSegments = segmentIndices.getData().capacity() / 2;
 
+        /* Do not draw if there are no segments */
+        if (numSegments == 0) {
+            return;
+        }
+
         /* Get the projection */
         Transformation projection = visitor.getDrawingTools().getTransformationManager().getCanvasProjection();
 

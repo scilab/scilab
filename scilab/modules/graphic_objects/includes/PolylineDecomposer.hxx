@@ -171,6 +171,15 @@ private :
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
+     * Returns the number of triangle indices of a polyline decomposed into consecutive segments with arrow heads.
+     * The triangles correspond to the arrow heads.
+     * @param[in] the polyline's number of points.
+     * @param[in] a flag indicating whether the polyline is closed or not.
+     * @return the number of triangle indices.
+     */
+    static int getArrowTriangleIndicesSize(int nPoints, int closed);
+
+    /**
      * Returns the number of triangle indices of a polyline decomposed into a series of bars and consecutive segments.
      * @param[in] the polyline's number of points.
      * @return the number of triangle indices.
@@ -194,6 +203,23 @@ private :
      */
     static int fillTriangleIndices(char* id, int* buffer, int bufferLength,
         int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode);
+
+    /**
+     * Fills a buffer with the triangle indices of the arrow heads of a polyline's segments.
+     * One triangle is output for each valid segment.
+     * @param[in] the id of the polyline.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @param[in] the polyline coordinate array.
+     * @param[in] the polyline's number of points.
+     * @param[in] the polyline x-shift array.
+     * @param[in] the polyline y-shift array.
+     * @param[in] the polyline z-shift array.
+     * @return the number of indices actually written.
+     */
+    static int fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
+        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Fills a buffer with the triangle indices of a polyline decomposed into a series of bars and consecutive segments.

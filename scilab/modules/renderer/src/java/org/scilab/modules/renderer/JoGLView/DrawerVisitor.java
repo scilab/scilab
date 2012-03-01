@@ -375,6 +375,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 drawingTools.draw(geometry, appearance);
 
+                if (polyline.getPolylineStyle() == 4) {
+                    arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
+                        polyline.getLineThickness(), false, false, polyline.getLineColor());
+                }
+
                 if (polyline.getMarkMode()) {
                     Sprite sprite = markManager.getMarkSprite(polyline, colorMap);
                     ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());

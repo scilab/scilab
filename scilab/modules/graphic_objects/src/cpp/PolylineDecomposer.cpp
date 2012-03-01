@@ -68,10 +68,14 @@ int PolylineDecomposer::getDataSize(char* id)
     {
         return 2*nPoints;
     }
-    /* Arrowed segments */
+    /* Segments with arrow heads */
     else if (polylineStyle == 4)
     {
-        return nPoints;
+        int nArrowVertices;
+        /* The numbers of arrow head vertices and indices are exactly the same */
+        nArrowVertices = PolylineDecomposer::getArrowTriangleIndicesSize(nPoints, closed);
+
+        return nPoints + nArrowVertices;
     }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
@@ -765,11 +769,14 @@ int PolylineDecomposer::getIndicesSize(char* id)
     int *piNPoints = &nPoints;
     int polylineStyle = 0;
     int* piPolylineStyle = &polylineStyle;
+    int closed = 0;
+    int* piClosed = &closed;
 
     int nIndices = 0;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
     getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
+    getGraphicObjectProperty(id, __GO_CLOSED__, jni_bool, (void**) &piClosed);
 
     /* No facets if 0 points */
     if (nPoints == 0)
@@ -788,6 +795,11 @@ int PolylineDecomposer::getIndicesSize(char* id)
         /* Maximum number of triangles output by the triangulator */
         nIndices = 3*(nPoints-2);
     }
+    /* Arrowed segments */
+    else if (polylineStyle == 4)
+    {
+        nIndices = PolylineDecomposer::getArrowTriangleIndicesSize(nPoints, closed);
+    }
     /* Vertical bars plus segments */
     else if (polylineStyle == 6)
     {
@@ -797,6 +809,27 @@ int PolylineDecomposer::getIndicesSize(char* id)
     else if (polylineStyle == 7)
     {
         nIndices = PolylineDecomposer::getBarsDecompositionTriangleIndicesSize(nPoints);
+    }
+
+    return nIndices;
+}
+
+int PolylineDecomposer::getArrowTriangleIndicesSize(int nPoints, int closed)
+{
+    int nIndices;
+
+    if (nPoints < 2)
+    {
+        nIndices = 0;
+    }
+    else
+    {
+        nIndices = 3*(nPoints-1);
+
+        if (closed)
+        {
+            nIndices += 3;
+        }
     }
 
     return nIndices;
@@ -845,6 +878,10 @@ int PolylineDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int
     if (polylineStyle == 1)
     {
         return fillTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift, fillMode);
+    }
+    else if (polylineStyle == 4)
+    {
+        return fillArrowTriangleIndices(id, buffer, bufferLength, logMask, coordinates, nPoints, xshift, yshift, zshift);
     }
     else if (polylineStyle == 6)
     {
@@ -968,6 +1005,84 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
     return nIndices;
 }
 
+int PolylineDecomposer::fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
+    int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
+{
+    double coordsi[3];
+
+    int closed = 0;
+    int* piClosed = &closed;
+
+    int currentValid;
+    int nextValid;
+
+    int firstArrowVertex;
+    int nArrows = 0;
+
+    int offset = 0;
+    int numberValidIndices = 0;
+
+    /* At least 2 points needed to form segments */
+    if (nPoints < 2)
+    {
+        return 0;
+    }
+
+    getGraphicObjectProperty(id, __GO_CLOSED__, jni_bool, (void**) &piClosed);
+
+    /* If closed, an additional segment is present */
+    if (closed)
+    {
+        nArrows = nPoints;
+    }
+    else
+    {
+        nArrows = nPoints-1;
+    }
+
+    /*
+     * Arrow head vertices are stored consecutively after all the line vertices.
+     * Hence the offset to the first arrow vertex.
+     */
+    firstArrowVertex = nPoints;
+
+    getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, 0, &coordsi[0], &coordsi[1], &coordsi[2]);
+
+    currentValid = DecompositionUtils::isValid(coordsi[0], coordsi[1], coordsi[2]);
+
+    if (logMask)
+    {
+        currentValid &= DecompositionUtils::isLogValid(coordsi[0], coordsi[1], coordsi[2], logMask);
+    }
+
+    for (int i = 0; i < nArrows; i++)
+    {
+        getShiftedPolylinePoint(coordinates, xshift, yshift, zshift, nPoints, i+1, &coordsi[0], &coordsi[1], &coordsi[2]);
+
+        nextValid = DecompositionUtils::isValid(coordsi[0], coordsi[1], coordsi[2]);
+
+        if (logMask)
+        {
+            nextValid &= DecompositionUtils::isLogValid(coordsi[0], coordsi[1], coordsi[2], logMask);
+        }
+
+        if (currentValid && nextValid)
+        {
+            /* Indices of the tip, left and right vertices */
+            buffer[3*offset] = firstArrowVertex + 3*i;
+            buffer[3*offset+1] = firstArrowVertex + 3*i+1;
+            buffer[3*offset+2] = firstArrowVertex + 3*i+2;
+
+            numberValidIndices += 3;
+            offset++;
+        }
+
+        currentValid = nextValid;
+    }
+
+    return numberValidIndices;
+}
+
 /*
  * Only bars are filled at the present moment, the curve is not.
  * See fillTriangleIndices for more information.
@@ -1070,7 +1185,7 @@ int PolylineDecomposer::getWireIndicesSize(char* id)
     {
         return getVerticalLinesDecompositionSegmentIndicesSize(nPoints, lineMode);
     }
-    /* Arrowed segments */
+    /* Segments with arrow heads */
     else if (polylineStyle == 4)
     {
         return getSegmentsDecompositionSegmentIndicesSize(nPoints, lineMode, closed);
