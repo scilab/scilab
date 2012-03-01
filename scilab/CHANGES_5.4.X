@@ -112,8 +112,16 @@ Scinotes
 
 * Add shortcuts META+(UP|DOWN) to navigate between paragraphs
 
-* Bug #10442 fixed : Sometimes a crash occured at startup when Scinotes was
+* Bug #10442 fixed - Sometimes a crash occured at startup when Scinotes was
                      restoring.
+
+* Bug #10647 fixed - An error message did not repect Scilab localization standard.
+
+
+api_scilab
+==========
+
+* Construction of any type of lists is now way faster (300x in some cases).
 
 
 Javasci
@@ -124,6 +132,9 @@ a sparse but not to send it to Scilab).
 
 * Javasci supports struct datatypes under the form of an MList  (Javasci is
 able to retrieve a struct but not to send it to Scilab).
+
+* Bug #10784 fixed - Scilab built on an Ubuntu 11.10, javasci was failing to
+                     load with an undefined symbol
 
 
 CACSD & Signal Processing
