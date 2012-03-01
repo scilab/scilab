@@ -30,13 +30,19 @@ libscipreferences_la_etc_DATA = \
 	etc/XWizard.xml
 
 #### preferences : xslt files ####
-libscipreferences_la_src_xsltdir = $(mydatadir)/src/xslt/
+libscipreferences_la_src_xsltdir = $(mydatadir)/src/xslt
 libscipreferences_la_src_xslt_DATA = \
 	src/xslt/XCommon-toolbars.xsl \
 	src/xslt/XCommon.xsl \
 	src/xslt/XConfiguration.xsl \
 	src/xslt/XGeneric.xsl \
 	src/xslt/XWizard.xsl
+libscipreferences_la_src_xslt_xwizarddir = $(mydatadir)/src/xslt/XWizard
+libscipreferences_la_src_xslt_xwizard_DATA = \
+	src/xslt/XWizard/XWizard-any.xsl \
+	src/xslt/XWizard/XWizard-expression.xsl \
+	src/xslt/XWizard/XWizard-function.xsl \
+	src/xslt/XWizard/XWizard-xcos.xsl
 
 include $(top_srcdir)/Makefile.incl.am
 
