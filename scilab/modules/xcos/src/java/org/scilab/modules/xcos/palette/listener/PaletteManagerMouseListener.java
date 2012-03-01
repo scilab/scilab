@@ -161,7 +161,7 @@ public class PaletteManagerMouseListener implements MouseListener {
                     final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
                     PaletteNode.remove(currentNode);
                 } catch (final Exception e) {
-                    Logger.getLogger(PaletteManagerMouseListener.class.toString()).severe(e.toString());
+                    Logger.getLogger(PaletteManagerMouseListener.class.getName()).severe(e.toString());
                 }
             }
         });

@@ -591,7 +591,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Use a predictable block and links order when debug is enable
          */
-        if (Logger.getLogger(BlockElement.class.toString()).isLoggable(Level.FINE)) {
+        if (Logger.getLogger(BlockElement.class.getName()).isLoggable(Level.FINE)) {
             Collections.sort(blockList);
             Collections.sort(linkList, new Comparator<BasicLink>() {
                 @Override

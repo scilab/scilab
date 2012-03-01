@@ -343,7 +343,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
         if (graph == null) {
             from.setParentDiagram(Xcos.findParent(from));
             graph = from.getParentDiagram();
-            Logger.getLogger(BlockElement.class.toString()).finest("Parent diagram was null");
+            Logger.getLogger(BlockElement.class.getName()).finest("Parent diagram was null");
         }
         if (graph.getAsComponent() != null) {
             graph.getAsComponent().removeCellOverlays(from);

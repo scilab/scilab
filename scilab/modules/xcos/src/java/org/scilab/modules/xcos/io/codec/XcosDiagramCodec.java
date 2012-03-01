@@ -320,7 +320,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         // 5.3.1 diagrams may contains invalid default parents, remove them.
         final Object root = model.getParent(parent);
         if (root != model.getRoot() && root != null) {
-            Logger.getLogger(XcosDiagramCodec.class.toString()).warning("Removing misplaced cells");
+            Logger.getLogger(XcosDiagramCodec.class.getName()).warning("Removing misplaced cells");
             model.setRoot(root);
         }
 

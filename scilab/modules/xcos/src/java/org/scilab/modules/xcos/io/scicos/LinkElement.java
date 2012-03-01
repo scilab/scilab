@@ -50,7 +50,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
     private static final int FROM_INDEX = 6;
     private static final int TO_INDEX = 7;
 
-    private static final Logger LOG = Logger.getLogger(LinkElement.class.toString());
+    private static final Logger LOG = Logger.getLogger(LinkElement.class.getName());
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;

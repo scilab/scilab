@@ -46,7 +46,7 @@ import com.mxgraph.util.mxConstants;
 // CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final Logger LOG = Logger.getLogger(BasicPortCodec.class.toString());
+    private static final Logger LOG = Logger.getLogger(BasicPortCodec.class.getName());
     private static final String DATA_TYPE = "dataType";
     private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE, "connectedLinkId" };
 

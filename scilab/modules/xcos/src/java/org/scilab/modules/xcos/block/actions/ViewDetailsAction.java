@@ -110,7 +110,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         try {
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
         } catch (InterpreterException e1) {
-            Logger.getLogger(ViewDetailsAction.class.toString()).severe(e1.toString());
+            Logger.getLogger(ViewDetailsAction.class.getName()).severe(e1.toString());
         }
     }
 }

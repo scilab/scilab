@@ -97,7 +97,7 @@ public class OrientationCodec extends mxObjectCodec {
          * Return the first value when unable to get it.
          */
         if (value == null) {
-            Logger.getLogger(OrientationCodec.class.toString()).severe("Corrupted diagram, port may be wrongly oriented");
+            Logger.getLogger(OrientationCodec.class.getName()).severe("Corrupted diagram, port may be wrongly oriented");
             return Orientation.values()[0];
         }
 

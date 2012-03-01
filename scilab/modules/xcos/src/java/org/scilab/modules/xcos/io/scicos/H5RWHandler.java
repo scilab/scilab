@@ -39,7 +39,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 public class H5RWHandler implements Handler {
     private static final String CONTEXT = "context";
     private static final String SCS_M = "scs_m";
-    private static final Logger LOG = Logger.getLogger(H5RWHandler.class.toString());
+    private static final Logger LOG = Logger.getLogger(H5RWHandler.class.getName());
 
     private final String h5File;
 

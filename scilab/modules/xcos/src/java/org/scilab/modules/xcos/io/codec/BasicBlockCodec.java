@@ -40,7 +40,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
     private static final String BASIC_BLOCK = BasicBlock.class.getSimpleName();
     private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
     private static final String[] IGNORED_FIELDS = new String[] { SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS" };
-    private static final Logger LOG = Logger.getLogger(BasicBlockCodec.class.toString());
+    private static final Logger LOG = Logger.getLogger(BasicBlockCodec.class.getName());
 
     /**
      * The constructor used on for configuration

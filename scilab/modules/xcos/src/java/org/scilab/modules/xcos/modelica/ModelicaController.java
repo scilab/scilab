@@ -149,7 +149,7 @@ public final class ModelicaController {
             dialog.pack();
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         } catch (JAXBException e) {
-            Logger.getLogger(ModelicaController.class.toString()).severe(e.toString());
+            Logger.getLogger(ModelicaController.class.getName()).severe(e.toString());
         }
     }
 

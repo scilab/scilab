@@ -85,7 +85,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             local.setFinalIntegrationTime(((ScilabDouble) data.get(TF_INDEX)).getRealPart()[0][0]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         fillContext(local);
@@ -223,7 +223,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setIntegratorAbsoluteTolerance(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -231,7 +231,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setIntegratorRelativeTolerance(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -239,7 +239,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setToleranceOnTime(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -247,7 +247,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setMaxIntegrationTimeInterval(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -255,7 +255,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setRealTimeScaling(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -263,7 +263,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setSolver(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
 
         incrementIndexes(indexes, isColumnDominant);
@@ -272,7 +272,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setMaximumStepSize(realPart[indexes[0]][indexes[1]]);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         } catch (ArrayIndexOutOfBoundsException e) {
             // do nothing as the maximum step size will keep its default value.
             return;
@@ -295,7 +295,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
             try {
                 into.setContext(new String[] { "" });
             } catch (PropertyVetoException e) {
-                Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+                Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
             }
             return;
         }
@@ -318,7 +318,7 @@ public class ScicosParametersElement extends AbstractElement<ScicosParameters> {
         try {
             into.setContext(context);
         } catch (PropertyVetoException e) {
-            Logger.getLogger(ScicosParametersElement.class.toString()).severe(e.toString());
+            Logger.getLogger(ScicosParametersElement.class.getName()).severe(e.toString());
         }
     }
 
