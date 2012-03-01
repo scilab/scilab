@@ -102,7 +102,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
             /*
              * Prepare command and callback
              */
-            String cmd = buildCall("xcosCodeGeneration");
+            String cmd = buildCall("blk = xcosCodeGeneration", ScilabDirectHandler.BLK.toCharArray());
 
             final ActionListener callback = new ActionListener() {
                 @Override

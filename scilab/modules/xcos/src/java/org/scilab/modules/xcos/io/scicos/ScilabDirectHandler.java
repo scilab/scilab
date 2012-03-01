@@ -31,8 +31,17 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Scilab data direct access.
  */
 public class ScilabDirectHandler implements Handler {
+    /**
+     * Context Scilab variable name
+     */
     public static final String CONTEXT = "context";
+    /**
+     * Diagram Scilab variable name
+     */
     public static final String SCS_M = "scs_m";
+    /**
+     * Block Scilab variable name
+     */
     public static final String BLK = "blk";
 
     private static final Logger LOG = Logger.getLogger(ScilabDirectHandler.class.getPackage().getName());

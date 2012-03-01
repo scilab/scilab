@@ -106,7 +106,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         /*
          * Build and execute the command
          */
-        final String cmd = "tree_show(scs_m); ";
+        final String cmd = "tree_show(" + ScilabDirectHandler.BLK + ");";
         try {
             ScilabInterpreterManagement.synchronousScilabExec(cmd);
         } catch (InterpreterException e1) {
