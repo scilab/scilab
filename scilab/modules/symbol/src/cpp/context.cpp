@@ -165,6 +165,7 @@ namespace symbol
         }
         else
         {//variable not in current global scope
+            EnvFunTable.remove(key);
             EnvVarTable.put(key, type);
         }
 
@@ -207,18 +208,21 @@ namespace symbol
 
     bool Context::AddFunction(types::Function *_info)
     {
+        EnvVarTable.remove(symbol::Symbol(_info->getName()));
         EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
 
     bool Context::AddMacro(types::Macro *_info)
     {
+        EnvVarTable.remove(symbol::Symbol(_info->getName()));
         EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
 
     bool Context::AddMacroFile(types::MacroFile *_info)
     {
+        EnvVarTable.remove(symbol::Symbol(_info->getName()));
         EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);
         return true;
     }
