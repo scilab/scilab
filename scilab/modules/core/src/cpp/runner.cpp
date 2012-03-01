@@ -24,6 +24,7 @@ void Runner::init()
 
 void *Runner::launch(void *args)
 {
+    bool bdoUnlock = false;
     //try to lock locker ( waiting parent thread register me )
     __Lock(&m_lock);
     //just release locker
@@ -48,13 +49,18 @@ void *Runner::launch(void *args)
     if(pThread->getStatus() != ThreadId::Aborted)
     {
         pThread->setStatus(ThreadId::Done);
+        bdoUnlock = true;
     }
 
     //unregister thread
     ConfigVariable::deleteThread(currentThreadKey);
 
     delete me;
-    UnlockPrompt();
+
+    if(bdoUnlock)
+    {
+        UnlockPrompt();
+    }
     return NULL;
 }
 

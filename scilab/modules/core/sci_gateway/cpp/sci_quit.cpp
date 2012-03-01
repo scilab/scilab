@@ -13,10 +13,24 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
+#include "threadId.hxx"
 
 types::Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    ConfigVariable::setForceQuit(true);
+    //Terminates Scilab or decreases the pause level
+
+    types::ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
+    if(pThreadId)
+    {
+        __threadId id = pThreadId->getId();
+        pThreadId->abort();
+        __WaitThreadDie(id);
+
+    }
+    else
+    {
+        ConfigVariable::setForceQuit(true);
+    }
 
     return types::Function::OK;
 }
