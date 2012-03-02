@@ -41,13 +41,6 @@ GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * ymax   ,
                                    double      * zmin   ,
                                    double      * zmax    ) ;
-GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
-GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_2d(char *pobjUID);  /* DRAWINGS */
-
-GRAPHICS_IMPEXP int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
-
-/* Other functions coming from Entities.c (old file) */
-
 /**
  * Show the pixmap buffer of a figure
  */

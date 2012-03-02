@@ -869,12 +869,6 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-int ComputeNbSubTics(char *pobjUID, int nbtics, char logflag, const double *grads, int nbsubtics_input)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 int sciGetMarkStyle(sciPointObj * pobj)
 {
     return -1;

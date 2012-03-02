@@ -40,7 +40,6 @@ sciGetArrowSize
 sciGetLineWidth
 sciGetLineStyle
 sciGetMarkSizeUnit
-ComputeNbSubTics
 GradLog
 ChoixFormatE
 TheTicks
