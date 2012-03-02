@@ -13,9 +13,6 @@
 
 package org.scilab.modules.xcos;
 
-import static org.scilab.modules.xcos.utils.FileUtils.delete;
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
-
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +58,6 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -130,6 +126,7 @@ public final class Xcos {
      */
     private final Map<File, Collection<XcosDiagram>> diagrams;
     private boolean onDiagramIteration = false;
+    private String lastError = null;
 
     /*
      * Instance handlers
@@ -399,8 +396,14 @@ public final class Xcos {
         if (filename == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
         }
-
-        if (diag == null) {
+        if (diag != null) {
+            // loading disabled, unlock
+            setLastError("");
+            synchronized (this) {
+                notify();
+            }
+        } else {
+            // loading enable, unlock will be performed later, on another thread
 
             /*
              * Allocate and setup a new diagram
@@ -430,6 +433,16 @@ public final class Xcos {
         if (diag != null) {
             diag.updateTabTitle();
         }
+    }
+
+    /**
+     * Log a loading error
+     *
+     * @param lastError
+     *            the error description
+     */
+    public void setLastError(String error) {
+        this.lastError = error;
     }
 
     /**
@@ -728,9 +741,13 @@ public final class Xcos {
         /* load scicos libraries (macros) */
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
+        /*
+         * Open an empty file
+         */
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                // open on EDT
                 instance.open(null);
             }
         });
@@ -747,17 +764,39 @@ public final class Xcos {
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcos(final String fileName) {
         final Xcos instance = getInstance();
+        instance.lastError = null;
+
         final File filename = new File(fileName);
 
         /* load scicos libraries (macros) */
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                instance.open(filename);
+        synchronized (instance) {
+            /*
+             * Open the file
+             */
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    // open on EDT
+                    instance.open(filename);
+                }
+            });
+
+            /*
+             * Wait loading and fail on error
+             */
+            try {
+                while (instance.lastError == null) {
+                    instance.wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
+        }
+        if (instance.lastError != null && !instance.lastError.isEmpty()) {
+            throw new RuntimeException(instance.lastError);
+        }
     }
 
     /**
