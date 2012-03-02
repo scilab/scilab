@@ -12,3 +12,4 @@ addToLibrarypath
 getScilabObject
 ; --------------------------------------- 
 canCloseMainScilabObject
+forceCloseMainScilabObject

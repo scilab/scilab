@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -97,7 +97,7 @@ JNIEnv *getScilabJNIEnv(void)
         {
 #ifdef _MSC_VER
             MessageBox(NULL, gettext("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"), gettext("Error"),
-                MB_ICONEXCLAMATION | MB_OK);
+                       MB_ICONEXCLAMATION | MB_OK);
 #else
             fprintf(stderr, _("\nError: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"));
 #endif
@@ -113,13 +113,13 @@ JNIEnv *getScilabJNIEnv(void)
     {
 #ifdef _MSC_VER
         MessageBox(NULL,
-            gettext
-            ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),
-            gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
+                   gettext
+                   ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"),
+                   gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
 #else
         fprintf(stderr,
-            _
-            ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
+                _
+                ("\nError: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM has been loaded by Scilab before calling this function.\n"));
 #endif
     }
     return JNIEnv_SCILAB;
@@ -259,7 +259,7 @@ BOOL startJVM(char *SCI_PATH)
     {
 #ifdef _MSC_VER
         MessageBox(NULL, gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"), gettext("Error"),
-            MB_ICONEXCLAMATION | MB_OK);
+                   MB_ICONEXCLAMATION | MB_OK);
 #else
         fprintf(stderr, gettext("\nJVM error in AttachCurrentThread: Could not attach to the current thread.\n"));
 #endif
@@ -275,6 +275,14 @@ BOOL finishJVM(void)
 {
     BOOL bOK = FALSE;
 
+    if (jvm_SCILAB)
+    {
+        // Detach the shared thread, to let the JVM finish itself
+        (*jvm_SCILAB)->DetachCurrentThread(jvm_SCILAB);
+
+        // force destroy the JVM (commented due to the javasci case)
+        // (*jvm_SCILAB)->DestroyJavaVM(jvm_SCILAB);
+    }
     if (FreeDynLibJVM())
     {
         jvm_SCILAB = NULL;

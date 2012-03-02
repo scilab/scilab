@@ -36,7 +36,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -107,7 +106,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private int elementId;
 
     private Icon messageIcon; // = new
-                              // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
@@ -168,8 +167,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
      * Default constructor
      */
     public SwingScilabMessageBox() {
-        super(new JFrame());
-        ((JFrame) getOwner()).setIconImage(imageForIcon); // Java 1.5 compatible
+        super();
+        setIconImage(imageForIcon);
     }
 
     /**
@@ -245,7 +244,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         HTMLEditorKit editorKit = (HTMLEditorKit) messageLabel.getEditorKit();
         StyleSheet styles = editorKit.getStyleSheet();
         String css = "body {font-family:\"" + labelFont.getName()
-            + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
+                     + "\"; font-size:\"" + labelFont.getSize() + "pt\"}";
         styles.addRule(css);
         editorKit.setStyleSheet(styles);
         messageLabel.setEditorKit(editorKit);
@@ -254,13 +253,13 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
         /* Add a link to make HTML links active */
         messageLabel.addHyperlinkListener(new HyperlinkListener() {
-                @Override
-                public void hyperlinkUpdate(HyperlinkEvent e) {
-                    if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        WebBrowser.openUrl(e.getURL(), e.getDescription());
-                    }
+            @Override
+            public void hyperlinkUpdate(HyperlinkEvent e) {
+                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    WebBrowser.openUrl(e.getURL(), e.getDescription());
                 }
-            });
+            }
+        });
 
         JScrollPane messageScrollPane = new JScrollPane(messageLabel);
         int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
@@ -343,7 +342,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     // Select this button if default selection is a non existing button
                     // And this button is the last of the line
                     if (buttonNumber == (buttonsPerLines.get(lineNumber) - 1)
-                        && defaultSelectedButtons[lineNumber] > (buttonsPerLines.get(lineNumber) - 1)) {
+                            && defaultSelectedButtons[lineNumber] > (buttonsPerLines.get(lineNumber) - 1)) {
                         button.setSelected(true);
                     }
                     // Add the button to the group (for toggle)
@@ -763,35 +762,35 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         listBox.setModel(new DefaultListModel());
         listBox.addMouseListener(new MouseListener() {
 
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                    if (arg0.getClickCount() == 2) {
-                        selectedItem = listBox.getSelectedIndex() + 1;
-                        // Notify btnOK for not modal Dialogs
-                        synchronized (btnOK) {
-                            btnOK.notify();
-                        }
-                        dispose();
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                if (arg0.getClickCount() == 2) {
+                    selectedItem = listBox.getSelectedIndex() + 1;
+                    // Notify btnOK for not modal Dialogs
+                    synchronized (btnOK) {
+                        btnOK.notify();
                     }
+                    dispose();
                 }
+            }
 
-                @Override
-                public void mouseEntered(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseEntered(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mouseExited(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseExited(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mousePressed(MouseEvent arg0) {
-                }
+            @Override
+            public void mousePressed(MouseEvent arg0) {
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent arg0) {
-                }
+            @Override
+            public void mouseReleased(MouseEvent arg0) {
+            }
 
-            });
+        });
         ((DefaultListModel) listBox.getModel()).clear();
         for (int i = 0; i < listboxItems.length; i++) {
             ((DefaultListModel) listBox.getModel()).addElement(listboxItems[i]);
