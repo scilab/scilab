@@ -299,7 +299,11 @@ public class Champ extends VectField {
 		direction[2] = arrows.get(0).getDirection()[2];
 
 		if (colored == true) {
-			maxLength = direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2];
+			maxLength = Math.sqrt(direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2]);
+
+                        if (maxLength <= Double.MIN_VALUE) {
+                                maxLength = 1.0;
+                        }
 		}
 
 		direction[0] = base[0] + direction[0] * maxUsableLength / maxLength;
@@ -319,7 +323,11 @@ public class Champ extends VectField {
 			direction[2] = arrows.get(i).getDirection()[2];
 
 			if (colored == true) {
-				maxLength = direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2];
+				maxLength = Math.sqrt(direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2]);
+
+                                if (maxLength <= Double.MIN_VALUE) {
+                                        maxLength = 1.0;
+                                }
 			}
 
 			direction[0] = base[0] + direction[0] * maxUsableLength / maxLength;
