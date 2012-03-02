@@ -625,6 +625,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
             if (link != null) {
                 data.add(link);
             } else {
+                data.add(new ScilabMList(new String[] { "Deleted" }));
                 from.warnCellByUID(linkList.get(i).getId(), XcosMessages.LINK_NOT_CONNECTED);
             }
         }
