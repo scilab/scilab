@@ -125,7 +125,6 @@ libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-HandleObserverManagement.lo \
 	libscirenderer_la-DrawableObjectFactory.lo \
-	libscirenderer_la-DrawableClippedObject.lo \
 	libscirenderer_la-HandleDrawingObserver.lo \
 	libscirenderer_la-BuildDrawingObserver.lo \
 	libscirenderer_la-DrawableObjectJoGL.lo \
@@ -134,7 +133,6 @@ am__objects_1 = libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-JavaInteraction.lo \
 	libscirenderer_la-DrawableObject.lo \
 	libscirenderer_la-DrawingBridge.lo \
-	libscirenderer_la-DrawableClippedObjectJoGL.lo \
 	libscirenderer_la-GlobalSynchronizer.lo \
 	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
 	libscirenderer_la-GraphicSynchronizerFactory.lo \
@@ -442,7 +440,6 @@ RENDERER_CPP_SOURCES = \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
-src/cpp/DrawableClippedObject.cpp \
 src/cpp/HandleDrawingObserver.cpp \
 src/cpp/BuildDrawingObserver.cpp \
 src/cpp/DrawableObjectJoGL.cpp \
@@ -451,7 +448,6 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/DrawableClippedObjectJoGL.cpp \
 src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
@@ -650,8 +646,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BuildDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CallRenderer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
@@ -716,13 +710,6 @@ libscirenderer_la-DrawableObjectFactory.lo: src/cpp/DrawableObjectFactory.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableObjectFactory.lo `test -f 'src/cpp/DrawableObjectFactory.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectFactory.cpp
 
-libscirenderer_la-DrawableClippedObject.lo: src/cpp/DrawableClippedObject.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableClippedObject.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableClippedObject.Tpo -c -o libscirenderer_la-DrawableClippedObject.lo `test -f 'src/cpp/DrawableClippedObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObject.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableClippedObject.Tpo $(DEPDIR)/libscirenderer_la-DrawableClippedObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableClippedObject.cpp' object='libscirenderer_la-DrawableClippedObject.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableClippedObject.lo `test -f 'src/cpp/DrawableClippedObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObject.cpp
-
 libscirenderer_la-HandleDrawingObserver.lo: src/cpp/HandleDrawingObserver.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HandleDrawingObserver.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Tpo -c -o libscirenderer_la-HandleDrawingObserver.lo `test -f 'src/cpp/HandleDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/HandleDrawingObserver.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Tpo $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo
@@ -778,13 +765,6 @@ libscirenderer_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawingBridge.cpp' object='libscirenderer_la-DrawingBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
-
-libscirenderer_la-DrawableClippedObjectJoGL.lo: src/cpp/DrawableClippedObjectJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableClippedObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableClippedObjectJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableClippedObjectJoGL.cpp' object='libscirenderer_la-DrawableClippedObjectJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableClippedObjectJoGL.lo `test -f 'src/cpp/DrawableClippedObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableClippedObjectJoGL.cpp
 
 libscirenderer_la-GlobalSynchronizer.lo: src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GlobalSynchronizer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Tpo -c -o libscirenderer_la-GlobalSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp

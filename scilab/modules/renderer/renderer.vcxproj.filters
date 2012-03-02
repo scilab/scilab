@@ -42,12 +42,6 @@
     <ClCompile Include="src\c\DllmainRenderer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\DrawableClippedObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\DrawableClippedObjectJoGL.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\DrawableObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -122,16 +116,10 @@
     <ClInclude Include="includes\BuildDrawingObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\DrawableClippedObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\DrawableClippedObjectBridge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\DrawableClippedObjectJavaMapper.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\DrawableClippedObjectJoGL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\DrawableObject.h">

@@ -29,7 +29,6 @@ RENDERER_CPP_SOURCES = \
 src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
-src/cpp/DrawableClippedObject.cpp \
 src/cpp/HandleDrawingObserver.cpp \
 src/cpp/BuildDrawingObserver.cpp \
 src/cpp/DrawableObjectJoGL.cpp \
@@ -38,7 +37,6 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/DrawableClippedObjectJoGL.cpp \
 src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
 src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
