@@ -30,7 +30,6 @@ src/cpp/getHandleDrawer.cpp \
 src/cpp/HandleObserverManagement.cpp \
 src/cpp/DrawableObjectFactory.cpp \
 src/cpp/HandleDrawingObserver.cpp \
-src/cpp/BuildDrawingObserver.cpp \
 src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \

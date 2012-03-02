@@ -38,7 +38,6 @@
 #include "Scierror.h"
 #include "CurrentFigure.h"
 #include "ObjectSelection.h"
-#include "BuildDrawingObserver.h"
 #include "FigureList.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"

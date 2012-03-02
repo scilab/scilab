@@ -35,7 +35,6 @@
 #include "sciprint.h"
 #include "InitObjects.h"
 #include "ObjectSelection.h"
-#include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "get_ticks_utils.h"

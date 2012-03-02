@@ -207,7 +207,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\BasicAlgos.cpp" />
-    <ClCompile Include="src\cpp\BuildDrawingObserver.cpp" />
     <ClCompile Include="src\c\DllmainRenderer.c" />
     <ClCompile Include="src\cpp\DrawableObject.cpp" />
     <ClCompile Include="src\cpp\DrawableObjectFactory.cpp" />
@@ -234,9 +233,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx" />
-    <ClInclude Include="includes\BuildDrawingObserver.h" />
-    <ClInclude Include="src\cpp\DrawableClippedObjectBridge.h" />
-    <ClInclude Include="src\cpp\DrawableClippedObjectJavaMapper.hxx" />
     <ClInclude Include="src\cpp\DrawableObject.h" />
     <ClInclude Include="src\cpp\DrawableObjectBridge.h" />
     <ClInclude Include="src\cpp\DrawableObjectFactory.h" />

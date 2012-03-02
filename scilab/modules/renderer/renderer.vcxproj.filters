@@ -36,9 +36,6 @@
     <ClCompile Include="src\cpp\BasicAlgos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\BuildDrawingObserver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\DllmainRenderer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,15 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\BuildDrawingObserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\DrawableClippedObjectBridge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\DrawableClippedObjectJavaMapper.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\DrawableObject.h">

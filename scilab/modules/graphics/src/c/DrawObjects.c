@@ -42,8 +42,6 @@
 #include "Format.h"
 #include "HandleManagement.h"
 
-
-#include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
