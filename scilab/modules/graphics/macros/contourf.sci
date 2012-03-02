@@ -46,7 +46,7 @@ function contourf(x,y,z,nv,style,strf,leg,rect,nax)
     if x==[] then
         x=1:size(z,'r');
     end 
-    if y==[]then
+    if y==[] then
         y=1:size(z,'c');
     end 
 
