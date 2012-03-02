@@ -27,22 +27,14 @@ import java.util.UUID;
 import javax.swing.SwingUtilities;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import org.flexdock.docking.Dockable;
-import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.state.LayoutNode;
 import org.flexdock.perspective.persist.xml.LayoutNodeSerializer;
 import org.flexdock.perspective.persist.xml.PersistenceConstants;
-
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
@@ -53,6 +45,9 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -184,11 +179,12 @@ public class WindowsConfigurationManager {
         readDocument();
 
         Element root = doc.getDocumentElement();
-        Element win = createNode(root, "Window", new Object[]{"uuid", window.getUUID(),
-                                                              "x", (int) window.getLocation().getX(),
-                                                              "y", (int) window.getLocation().getY(),
-                                                              "width", (int) window.getSize().getWidth(),
-                                                              "height", (int) window.getSize().getHeight()});
+        Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
+                                 "x", (int) window.getLocation().getX(),
+                                 "y", (int) window.getLocation().getY(),
+                                 "width", (int) window.getSize().getWidth(),
+                                 "height", (int) window.getSize().getHeight()
+                                                              });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -334,45 +330,42 @@ public class WindowsConfigurationManager {
 
             // Return only when the window is displayable
             while (!window.isDisplayable()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    System.err.println(e);
-                }
+                Thread.yield();
             }
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            final Thread t = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        while (currentlyRestored.size() != 0) {
-                                            try {
-                                                Thread.sleep(10);
-                                            } catch (InterruptedException e) {
-                                            }
+                    @Override
+                    public void run() {
+                        final Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                synchronized (currentlyRestored) {
+                                    while (currentlyRestored.size() > 0) {
+                                        try {
+                                            currentlyRestored.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
                                         }
-
-                                        // Be sure that te main tab or one of its subcomponent
-                                        // will have the focus on start-up
-                                        Component owner = null;
-                                        while (owner == null && !mainTab.isAncestorOf(owner)) {
-                                            mainTab.requestFocus();
-                                            try {
-                                                Thread.sleep(100);
-                                            } catch (InterruptedException e) {
-                                            }
-                                            owner = window.getFocusOwner();
-                                        }
-                                        ActiveDockableTracker.requestDockableActivation(mainTab);
-                                        window.toFront();
                                     }
-                                });
-                            t.start();
-                        }
-                    });
+                                }
+
+                                // Be sure that te main tab or one of its subcomponent
+                                // will have the focus on start-up
+                                Component owner = null;
+                                while (owner == null && !mainTab.isAncestorOf(owner)) {
+                                    mainTab.requestFocus();
+                                    Thread.yield();
+
+                                    owner = window.getFocusOwner();
+                                }
+                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                                window.toFront();
+                            }
+                        });
+                        t.start();
+                    }
+                });
             }
         }
 
@@ -398,7 +391,12 @@ public class WindowsConfigurationManager {
      * @param tab the tab
      */
     public static final void restorationFinished(SwingScilabTab tab) {
-        currentlyRestored.remove(tab.getPersistentId());
+        synchronized (currentlyRestored) {
+            currentlyRestored.remove(tab.getPersistentId());
+
+            // notify after remove
+            currentlyRestored.notify();
+        }
     }
 
     /**
@@ -805,12 +803,13 @@ public class WindowsConfigurationManager {
 
         Dimension dim = tab.getSize();
 
-        createNode(root, app, new Object[]{"winuuid", winuuid,
-                                           "uuid", uuid,
-                                           "load", factory.getPackage(uuid),
-                                           "factory", factory.getClassName(uuid),
-                                           "width", (int) dim.getWidth(),
-                                           "height", (int) dim.getHeight()});
+        createNode(root, app, new Object[] {"winuuid", winuuid,
+                                            "uuid", uuid,
+                                            "load", factory.getPackage(uuid),
+                                            "factory", factory.getClassName(uuid),
+                                            "width", (int) dim.getWidth(),
+                                            "height", (int) dim.getHeight()
+                                           });
         writeDocument();
     }
 
