@@ -87,22 +87,6 @@ int destroyGraphicHierarchy(char * pthis)
     return 0;
 }
 
-
-/*-----------------------------------------------------------------------------*/
-/**
- * erase a graphic window if necessary.
- */
-int C2F(scigerase)( void )
-{
-  if ( sciGetIsAutoDrawable(sciGetCurrentFigure()) )
-  {
-    sciClearFigure(sciGetCurrentFigure());
-  }
-  return 0;
-}
-
-
-
 /*---------------------------------------------------------------------------*/
 /* free the user_data */
 void clearUserData( sciPointObj * pObj )

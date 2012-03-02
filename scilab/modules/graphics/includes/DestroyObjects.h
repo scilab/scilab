@@ -35,9 +35,6 @@ GRAPHICS_IMPEXP int destroyGraphicsSons(sciPointObj * pthis);
 GRAPHICS_IMPEXP int destroyGraphicHierarchy(char * pthis); /* DESTROY */
 GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 
-#define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created\n",fname) ; return 0 ; } }
-GRAPHICS_IMPEXP int C2F(scigerase)( void ) ;
-
 /* free the user_data */
 GRAPHICS_IMPEXP void clearUserData( sciPointObj * pObj ) ;
 
