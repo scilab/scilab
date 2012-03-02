@@ -1675,6 +1675,7 @@ AC_SUBST(GRAPHICS_ENABLE)
 #########################
 
 AM_DISABLE_STATIC
+LT_PREREQ([2.2.7])
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
 
