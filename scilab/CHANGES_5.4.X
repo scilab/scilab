@@ -50,6 +50,8 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
+* Bug #10800 fixed - xcosPalAddBlock help example did not work.
+
 
 Unitary testing
 ===============
