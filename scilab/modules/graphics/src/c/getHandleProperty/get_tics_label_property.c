@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,53 +38,22 @@ int get_tics_labels_property(char *pobjUID)
     int iNumberTicksLabels = 0;
     int* piNumberTicksLabels = &iNumberTicksLabels;
 
-#if 0
-    if ( sciGetEntityType (pobj) != SCI_AXES )
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
+    if (piNumberTicksLabels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
         return -1;
     }
-#endif
 
-    /*
-     * Used if no user ticks have been specified. Computes the default ticks labels, according
-     * to the axis interval. Deactivated for now and to be implemented using the MVC framework.
-     */
-#if 0
-    if ( pAXES_FEATURE(pobj)->str == NULL )
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
+
+    if (labels == NULL)
     {
-        int status = -1;
-
-        /* tics_labels is allocated here */
-        StringMatrix * tics_labels = computeDefaultTicsLabels( pobj ) ; /* actually it is vector */
-
-        if ( tics_labels == NULL )
-        {
-            Scierror(999, _("%s: No more memory.\n"), "get_tics_labels_property");
-            return -1;
-        }
-
-        status = sciReturnRowStringVector( getStrMatData( tics_labels ), pAXES_FEATURE (pobj)->nb_tics_labels );
-
-        deleteMatrix( tics_labels );
-
-        return status;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        return -1;
     }
-    else
-#endif
-    {
-        getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
 
-        getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
-
-        if (piNumberTicksLabels == NULL || labels == NULL)
-        {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
-            return -1;
-        }
-
-        /* User-specified ticks labels */
-        return sciReturnRowStringVector( labels, iNumberTicksLabels);
-    }
+    /* User-specified ticks labels */
+    return sciReturnRowStringVector( labels, iNumberTicksLabels);
 }
 /*------------------------------------------------------------------------*/
