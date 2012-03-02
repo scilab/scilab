@@ -9,7 +9,7 @@
   </refnamediv>
   <refnamediv xml:id="great">
     <refname>great</refname>
-    <refpurpose> (&lt;) greater than comparison</refpurpose>
+    <refpurpose> (&gt;) greater than comparison</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
