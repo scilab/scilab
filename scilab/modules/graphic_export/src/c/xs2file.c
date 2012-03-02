@@ -28,7 +28,6 @@
 #include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
-#include "GraphicSynchronizerInterface.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 static BOOL isVectorialExport(ExportFileType fileType);

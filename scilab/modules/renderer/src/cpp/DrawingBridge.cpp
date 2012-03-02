@@ -16,7 +16,6 @@
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
 #include "DrawableObjectFactory.h"
-#include "GraphicSynchronizerInterface.h"
 #include "BasicAlgos.hxx"
 
 extern "C"
@@ -110,18 +109,18 @@ void redrawHierarchy( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 void forceHierarchyRedraw( sciPointObj * pObj )
 {
-  sciPointObj * parentFigure = sciGetParentFigure(pObj);
-  startFigureDataWriting(parentFigure);
-  getHandleDrawer(pObj)->familyHasChanged();
-  endFigureDataWriting(parentFigure);
+  //sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  //startFigureDataWriting(parentFigure);
+  //getHandleDrawer(pObj)->familyHasChanged();
+  //endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
 void forceRedraw(sciPointObj * pObj)
 {
-  sciPointObj * parentFigure = sciGetParentFigure(pObj);
-  startFigureDataWriting(parentFigure);
-  getHandleDrawer(pObj)->hasChanged();
-  endFigureDataWriting(parentFigure);
+  //sciPointObj * parentFigure = sciGetParentFigure(pObj);
+  //startFigureDataWriting(parentFigure);
+  //getHandleDrawer(pObj)->hasChanged();
+  //endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
 void forceMove(sciPointObj * pObj, double tx, double ty, double tz)
@@ -131,9 +130,9 @@ void forceMove(sciPointObj * pObj, double tx, double ty, double tz)
   displacement[1] = ty;
   displacement[2] = tz;
   sciPointObj * parentFigure = sciGetParentFigure(pObj);
-  startFigureDataWriting(parentFigure);
-  getHandleDrawer(pObj)->move(displacement);
-  endFigureDataWriting(parentFigure);
+  //startFigureDataWriting(parentFigure);
+  //getHandleDrawer(pObj)->move(displacement);
+  //endFigureDataWriting(parentFigure);
 }
 /*---------------------------------------------------------------------------------*/
 static list<sciPointObj *> getParentFigureList(sciPointObj * pObjs[], int nbObjs)

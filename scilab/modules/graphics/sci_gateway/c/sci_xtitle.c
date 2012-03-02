@@ -24,7 +24,6 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
-#include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
 #include "HandleManagement.h"
 

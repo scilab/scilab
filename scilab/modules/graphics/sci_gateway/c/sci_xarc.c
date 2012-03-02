@@ -21,7 +21,6 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "stack-c.h"
-#include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
 
 #include "graphicObjectProperties.h"

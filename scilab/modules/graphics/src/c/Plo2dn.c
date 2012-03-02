@@ -31,7 +31,6 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h"             /* MALLOC */
 #include "DrawingBridge.h"

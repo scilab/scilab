@@ -36,7 +36,6 @@
 #include "InitObjects.h"
 #include "ObjectSelection.h"
 #include "DrawingBridge.h"
-#include "GraphicSynchronizerInterface.h"
 #include "get_ticks_utils.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"

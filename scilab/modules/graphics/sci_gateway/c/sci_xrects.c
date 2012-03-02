@@ -24,7 +24,6 @@
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
-#include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"

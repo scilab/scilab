@@ -22,9 +22,6 @@
 #include "InitObjects.h"
 #include "FigureList.h"
 
-#include "GraphicSynchronizerInterface.h"
-
-
 static BOOL isGraphicModuleLoaded = FALSE ;
 
 /*------------------------------------------------------------------------*/

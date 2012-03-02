@@ -24,7 +24,6 @@
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
 

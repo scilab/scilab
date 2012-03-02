@@ -27,7 +27,6 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
-#include "GraphicSynchronizerInterface.h"
 #include "DrawObjects.h"
 #include "Axes.h" /* propertyNameToLegendPlace */
 #include "HandleManagement.h"

@@ -52,7 +52,6 @@
 #include "FigureList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
-#include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 #include "loadTextRenderingAPI.h"
 #include "sciprint.h"
@@ -190,9 +189,9 @@ int sciInitBackground( char * pobjUID, int colorindex )
         if (sciGetEntityType(pobjUID) == SCI_FIGURE && !isFigureModel(pobjUID))
         {
 			/* disable protection since this function will call Java */
-            disableFigureSynchronization(pobjUID);
+            //disableFigureSynchronization(pobjUID);
             sciSetJavaBackground(pobjUID, newIndex);
-			enableFigureSynchronization(pobjUID);
+			//enableFigureSynchronization(pobjUID);
         }
 
         return 0;

@@ -31,7 +31,6 @@
 #include "Axes.h"
 #include "Fec.h"
 #include "GrayPlot.h"
-#include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"

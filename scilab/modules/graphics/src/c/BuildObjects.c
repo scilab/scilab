@@ -40,7 +40,6 @@
 #include "ObjectSelection.h"
 #include "FigureList.h"
 #include "localization.h"
-#include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"

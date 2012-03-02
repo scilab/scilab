@@ -28,7 +28,6 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "Interaction.h"
-#include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

@@ -5,15 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\GraphicSynchronization">
-      <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\GraphicSynchronization">
-      <UniqueIdentifier>{7775e038-d4c9-4769-9918-d5b01de96e74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -78,30 +72,6 @@
     <ClCompile Include="src\jni\XlFontManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerInterface.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\GraphicSynchronizerJava.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp">
-      <Filter>Source Files\GraphicSynchronization</Filter>
-    </ClCompile>
     <ClCompile Include="src\jni\CallRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -163,33 +133,6 @@
     </ClInclude>
     <ClInclude Include="src\jni\XlFontManager.hxx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridge.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\GraphicSynchronizerInterface.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\GraphicSynchronizerJava.hxx">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\GraphicSynchronization\LocalSynchronizer.h">
-      <Filter>Header Files\GraphicSynchronization</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\CallRenderer.hxx">
       <Filter>Header Files</Filter>

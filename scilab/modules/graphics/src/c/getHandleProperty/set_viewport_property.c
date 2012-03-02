@@ -23,7 +23,6 @@
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GraphicSynchronizerInterface.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

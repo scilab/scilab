@@ -27,7 +27,6 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "SetJavaProperty.h"
-#include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
 #include "Interaction.h"
 #include "JavaInteraction.h"
@@ -147,9 +146,9 @@ int sciZoomRect(sciPointObj * pObj, const double zoomRect[4])
 int sciDefaultZoom2D(const double zoomRect[4])
 {
   sciPointObj * curFigure = NULL;
-  startGraphicDataWriting();
+  //startGraphicDataWriting();
   curFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
+  //endGraphicDataWriting();
 
   return sciZoomRect(curFigure, zoomRect);
 }
@@ -256,9 +255,9 @@ void sciDefaultInteractiveZoom(void)
 {
   sciPointObj * curFigure;
 
-  startGraphicDataWriting();
+ // startGraphicDataWriting();
   curFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
+  //endGraphicDataWriting();
 
 
   /* zoom current figure */
@@ -378,9 +377,9 @@ void sciUnzoomAll(void)
 {
   sciPointObj * pFigure = NULL;
 
-  startGraphicDataWriting();
+  //startGraphicDataWriting();
   pFigure = sciGetCurrentFigure();
-  endGraphicDataWriting();
+  //endGraphicDataWriting();
 
   /* unzoom current figure */
   sciUnzoomFigure(pFigure);

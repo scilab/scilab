@@ -29,7 +29,6 @@
 #include "ObjectSelection.h"
 #include "DrawingBridge.h"
 #include "localization.h"
-#include "GraphicSynchronizerInterface.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "FigureList.h"

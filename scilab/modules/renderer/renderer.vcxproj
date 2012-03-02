@@ -222,14 +222,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="src\cpp\SetJavaProperty.cpp" />
     <ClCompile Include="src\jni\CallRenderer.cpp" />
     <ClCompile Include="src\jni\XlFontManager.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerInterface.cpp" />
-    <ClCompile Include="src\jni\GraphicSynchronizerJava.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.cpp" />
-    <ClCompile Include="src\cpp\GraphicSynchronization\LocalSynchronizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx" />
@@ -252,15 +244,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="includes\SetJavaProperty.h" />
     <ClInclude Include="src\jni\CallRenderer.hxx" />
     <ClInclude Include="src\jni\XlFontManager.hxx" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GlobalSynchronizer.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizer.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridge.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerBridgeFactory.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerFactory.h" />
-    <ClInclude Include="includes\GraphicSynchronizerInterface.h" />
-    <ClInclude Include="src\jni\GraphicSynchronizerJava.hxx" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\GraphicSynchronizerJavaMapper.h" />
-    <ClInclude Include="src\cpp\GraphicSynchronization\LocalSynchronizer.h" />
     <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h" />
   </ItemGroup>
   <ItemGroup>

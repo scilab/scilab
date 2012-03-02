@@ -132,15 +132,7 @@ am__objects_1 = libscirenderer_la-getHandleDrawer.lo \
 	libscirenderer_la-JavaInteraction.lo \
 	libscirenderer_la-DrawableObject.lo \
 	libscirenderer_la-DrawingBridge.lo \
-	libscirenderer_la-GlobalSynchronizer.lo \
-	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
-	libscirenderer_la-GraphicSynchronizerFactory.lo \
-	libscirenderer_la-LocalSynchronizer.lo \
-	libscirenderer_la-GraphicSynchronizer.lo \
-	libscirenderer_la-GraphicSynchronizerInterface.lo \
-	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
 	libscirenderer_la-BasicAlgos.lo \
-	libscirenderer_la-GraphicSynchronizerJava.lo \
 	libscirenderer_la-RendererFontManager.lo \
 	libscirenderer_la-XlFontManager.lo \
 	libscirenderer_la-rendererBasicAlgos.lo \
@@ -446,15 +438,7 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
-src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/BasicAlgos.cpp \
-src/jni/GraphicSynchronizerJava.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
 src/cpp/rendererBasicAlgos.cpp \
@@ -493,11 +477,8 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = \
-src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
-src/jni/SubwinBackgroundDrawerGL.giws.xml \
 src/jni/renderer.giws.xml
 
 @GUI_TRUE@USEANT = 1
@@ -648,17 +629,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerBridgeFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
@@ -756,68 +729,12 @@ libscirenderer_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
 
-libscirenderer_la-GlobalSynchronizer.lo: src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GlobalSynchronizer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Tpo -c -o libscirenderer_la-GlobalSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Tpo $(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp' object='libscirenderer_la-GlobalSynchronizer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GlobalSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp
-
-libscirenderer_la-GraphicSynchronizerBridgeFactory.lo: src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerBridgeFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerBridgeFactory.Tpo -c -o libscirenderer_la-GraphicSynchronizerBridgeFactory.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerBridgeFactory.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerBridgeFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp' object='libscirenderer_la-GraphicSynchronizerBridgeFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerBridgeFactory.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp
-
-libscirenderer_la-GraphicSynchronizerFactory.lo: src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerFactory.Tpo -c -o libscirenderer_la-GraphicSynchronizerFactory.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerFactory.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp' object='libscirenderer_la-GraphicSynchronizerFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerFactory.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp
-
-libscirenderer_la-LocalSynchronizer.lo: src/cpp/GraphicSynchronization/LocalSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-LocalSynchronizer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-LocalSynchronizer.Tpo -c -o libscirenderer_la-LocalSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/LocalSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/LocalSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-LocalSynchronizer.Tpo $(DEPDIR)/libscirenderer_la-LocalSynchronizer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/LocalSynchronizer.cpp' object='libscirenderer_la-LocalSynchronizer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-LocalSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/LocalSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/LocalSynchronizer.cpp
-
-libscirenderer_la-GraphicSynchronizer.lo: src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Tpo -c -o libscirenderer_la-GraphicSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp' object='libscirenderer_la-GraphicSynchronizer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizer.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp
-
-libscirenderer_la-GraphicSynchronizerInterface.lo: src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerInterface.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Tpo -c -o libscirenderer_la-GraphicSynchronizerInterface.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerInterface.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp' object='libscirenderer_la-GraphicSynchronizerInterface.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerInterface.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp
-
-libscirenderer_la-GraphicSynchronizerJavaMapper.lo: src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerJavaMapper.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Tpo -c -o libscirenderer_la-GraphicSynchronizerJavaMapper.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJavaMapper.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp' object='libscirenderer_la-GraphicSynchronizerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJavaMapper.lo `test -f 'src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp
-
 libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-BasicAlgos.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/BasicAlgos.cpp' object='libscirenderer_la-BasicAlgos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp
-
-libscirenderer_la-GraphicSynchronizerJava.lo: src/jni/GraphicSynchronizerJava.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GraphicSynchronizerJava.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Tpo -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/jni/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/jni/GraphicSynchronizerJava.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Tpo $(DEPDIR)/libscirenderer_la-GraphicSynchronizerJava.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GraphicSynchronizerJava.cpp' object='libscirenderer_la-GraphicSynchronizerJava.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GraphicSynchronizerJava.lo `test -f 'src/jni/GraphicSynchronizerJava.cpp' || echo '$(srcdir)/'`src/jni/GraphicSynchronizerJava.cpp
 
 libscirenderer_la-RendererFontManager.lo: src/cpp/RendererFontManager.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-RendererFontManager.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-RendererFontManager.Tpo -c -o libscirenderer_la-RendererFontManager.lo `test -f 'src/cpp/RendererFontManager.cpp' || echo '$(srcdir)/'`src/cpp/RendererFontManager.cpp

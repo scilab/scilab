@@ -36,15 +36,7 @@ src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
 src/cpp/DrawableObject.cpp \
 src/cpp/DrawingBridge.cpp \
-src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
-src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
 src/cpp/BasicAlgos.cpp \
-src/jni/GraphicSynchronizerJava.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
 src/cpp/rendererBasicAlgos.cpp \
@@ -84,11 +76,8 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 
 GIWS_WRAPPERS= \
-src/jni/BackTrihedronDrawerGL.giws.xml \
-src/jni/GraphicSynchronizerJava.giws.xml \
 src/jni/RenderingChecker.giws.xml \
 src/jni/XlFontManager.giws.xml \
-src/jni/SubwinBackgroundDrawerGL.giws.xml \
 src/jni/renderer.giws.xml
 
 # Provides macros compilation, Java compilation, cleaning

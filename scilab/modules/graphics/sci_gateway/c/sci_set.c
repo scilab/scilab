@@ -26,7 +26,6 @@
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
-#include "GraphicSynchronizerInterface.h"
 #include "freeArrayOfString.h"
 
 #include "SetHashTable.h"

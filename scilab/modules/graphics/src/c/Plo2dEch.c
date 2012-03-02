@@ -28,7 +28,6 @@
 #include "axesScale.h"
 #include "Format.h"
 #include "DrawingBridge.h"
-#include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 #include "Axes.h"
 

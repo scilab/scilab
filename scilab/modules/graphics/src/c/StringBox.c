@@ -24,7 +24,6 @@
 #include "MALLOC.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
-#include "GraphicSynchronizerInterface.h"
 #include "SetProperty.h"
 #include "HandleManagement.h"
 #include "CurrentFigure.h"

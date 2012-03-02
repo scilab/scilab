@@ -28,7 +28,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
-#include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 
 #include "BuildObjects.h"
