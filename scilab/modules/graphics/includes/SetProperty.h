@@ -206,9 +206,6 @@ GRAPHICS_IMPEXP int sciSetPixmapMode(char* pObj, BOOL onOrOff); /* SET */
 GRAPHICS_IMPEXP int sciInitTextPos( char* pObj, double posX, double posY, double posZ);
 GRAPHICS_IMPEXP int sciSetTextPos( char* pObj, double posX, double posY, double posZ);
 
-GRAPHICS_IMPEXP int sciInitLogFlags(char* pObj, char logFlags[3]);
-GRAPHICS_IMPEXP int sciSetLogFlags(char* pObj, char logFlags[3]) ; /* SET */
-
 GRAPHICS_IMPEXP int sciInitAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
 GRAPHICS_IMPEXP int sciSetAutoTicks(char* pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
 

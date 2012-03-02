@@ -13,7 +13,6 @@
 #ifndef __EDITBOX_HXX__
 #define __EDITBOX_HXX__
 
-#include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
 #include "EditBox.h"

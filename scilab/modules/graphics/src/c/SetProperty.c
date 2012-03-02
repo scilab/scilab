@@ -57,7 +57,6 @@
 #include "sciprint.h"
 
 #include "MALLOC.h"
-#include "DrawingBridge.h"
 
 #include "CallFigure.h"
 
@@ -3013,54 +3012,6 @@ int sciSetTextPos( char * pobjUID, double posX, double posY, double posZ)
         return 1;
     }
     return sciInitTextPos(pobjUID, posX, posY, posZ);
-}
-/*----------------------------------------------------------------------------------*/
-int sciInitLogFlags(char * pobjUID, char logFlags[3])
-{
-    // FIXME
-    abort();
-#if 0
-        switch(sciGetEntityType(pobjUID))
-    {
-    case SCI_SUBWIN:
-        pSUBWIN_FEATURE(pobjUID)->logflags[0] = logFlags[0];
-        pSUBWIN_FEATURE(pobjUID)->logflags[1] = logFlags[1];
-        pSUBWIN_FEATURE(pobjUID)->logflags[2] = logFlags[2];
-
-
-
-        return 0;
-    default:
-        printSetGetErrorMessage("log_flags");
-        return -1;
-    }
-#endif
-        return -1;
-}
-/*----------------------------------------------------------------------------------*/
-/**
- * Set the log flags of a subwindow
- */
-int sciSetLogFlags(char * pobjUID, char logFlags[3])
-{
-    char curLogFlags[3];
-    int status;
-    sciGetLogFlags(pobjUID, curLogFlags);
-    if (   logFlags[0] == curLogFlags[0] && logFlags[1] == curLogFlags[1]
-           && logFlags[2] == curLogFlags[2])
-    {
-        // nothing to do
-        return 1;
-    }
-    status = sciInitLogFlags(pobjUID, logFlags);
-
-    // force redraw of all children of the object.
-    if (status == 0 && pobjUID != getAxesModel())
-    {
-        forceHierarchyRedraw(pobjUID);
-    }
-
-    return status;
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitAutoTicks(char * pobjUID, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ)

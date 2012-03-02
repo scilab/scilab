@@ -27,7 +27,6 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "SetJavaProperty.h"
-#include "DrawingBridge.h"
 #include "Interaction.h"
 #include "JavaInteraction.h"
 #include "HandleManagement.h"
@@ -137,7 +136,7 @@ int sciZoomRect(sciPointObj * pObj, const double zoomRect[4])
   /* redraw everything */
   if (status == SET_PROPERTY_SUCCEED)
   {
-    sciDrawObj(pObj);
+    //sciDrawObj(pObj);
   }
 
   return status;
@@ -165,7 +164,7 @@ int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4])
       int status = sciZoom2D(curObj, zoomRect);
       if (status == SET_PROPERTY_SUCCEED)
       {
-        forceRedraw(curObj);
+        //forceRedraw(curObj);
       }
       else
       {
@@ -191,7 +190,7 @@ static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int
     sciSetZooming(pSubwin, TRUE);
 
     // window has changed
-    forceRedraw(pSubwin);
+    //forceRedraw(pSubwin);
   }
 }
 /*------------------------------------------------------------------------------*/
@@ -348,7 +347,7 @@ void unzoomSubwin(sciPointObj * pSubwin)
   if (currentStatus == 0)
   {
     /* redraw only if needed */
-    forceRedraw(pSubwin);
+    //forceRedraw(pSubwin);
   }
 }
 /*------------------------------------------------------------------------------*/
@@ -384,7 +383,7 @@ void sciUnzoomAll(void)
   /* unzoom current figure */
   sciUnzoomFigure(pFigure);
 
-  sciDrawObj(pFigure);
+  //sciDrawObj(pFigure);
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -423,7 +422,7 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
   {
     sciPointObj * curFigure = NULL;
     redrawnFigures = List_pop(redrawnFigures, (void**)&curFigure);
-    sciDrawObj(curFigure);
+    //sciDrawObj(curFigure);
   }
 
   List_free(redrawnFigures);

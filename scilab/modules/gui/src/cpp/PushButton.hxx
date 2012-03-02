@@ -13,7 +13,6 @@
 #ifndef __PUSHBUTTON_HXX__
 #define __PUSHBUTTON_HXX__
 
-#include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
 #include "PushButton.h"

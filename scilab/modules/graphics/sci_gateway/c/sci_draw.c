@@ -18,7 +18,6 @@
 #include "stack-c.h"
 #include "gw_graphics.h"
 #include "HandleManagement.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"

@@ -32,7 +32,6 @@
 #include "SetPropertyStatus.h"
 
 #include "MALLOC.h"             /* MALLOC */
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "stricmp.h"
 

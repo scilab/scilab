@@ -27,7 +27,6 @@
 #include "SetProperty.h"
 #include "axesScale.h"
 #include "CurrentSubwin.h"
-#include "DrawingBridge.h"
 
 #include "GetProperty.h"
 #include "HandleManagement.h"

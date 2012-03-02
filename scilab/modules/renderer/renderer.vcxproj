@@ -208,14 +208,7 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   <ItemGroup>
     <ClCompile Include="src\cpp\BasicAlgos.cpp" />
     <ClCompile Include="src\c\DllmainRenderer.c" />
-    <ClCompile Include="src\cpp\DrawableObject.cpp" />
-    <ClCompile Include="src\cpp\DrawableObjectFactory.cpp" />
-    <ClCompile Include="src\cpp\DrawableObjectJoGL.cpp" />
-    <ClCompile Include="src\cpp\DrawingBridge.cpp" />
-    <ClCompile Include="src\cpp\getHandleDrawer.cpp" />
     <ClCompile Include="src\cpp\GetJavaProperty.cpp" />
-    <ClCompile Include="src\cpp\HandleDrawingObserver.cpp" />
-    <ClCompile Include="src\cpp\HandleObserverManagement.cpp" />
     <ClCompile Include="src\cpp\JavaInteraction.cpp" />
     <ClCompile Include="src\cpp\rendererBasicAlgos.cpp" />
     <ClCompile Include="src\cpp\RendererFontManager.cpp" />
@@ -225,18 +218,8 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\BasicAlgos.hxx" />
-    <ClInclude Include="src\cpp\DrawableObject.h" />
-    <ClInclude Include="src\cpp\DrawableObjectBridge.h" />
-    <ClInclude Include="src\cpp\DrawableObjectFactory.h" />
-    <ClInclude Include="src\cpp\DrawableObjectJavaMapper.hxx" />
-    <ClInclude Include="src\cpp\DrawableObjectJoGL.h" />
-    <ClInclude Include="includes\DrawingBridge.h" />
     <ClInclude Include="includes\dynlib_renderer.h" />
-    <ClInclude Include="src\cpp\getHandleDrawer.h" />
     <ClInclude Include="includes\GetJavaProperty.h" />
-    <ClInclude Include="src\cpp\HandleDrawingObserver.h" />
-    <ClInclude Include="src\cpp\HandleObserver.h" />
-    <ClInclude Include="src\cpp\HandleObserverManagement.h" />
     <ClInclude Include="includes\JavaInteraction.h" />
     <ClInclude Include="src\cpp\Observer.h" />
     <ClInclude Include="includes\rendererBasicAlgos.h" />
@@ -244,7 +227,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="includes\SetJavaProperty.h" />
     <ClInclude Include="src\jni\CallRenderer.hxx" />
     <ClInclude Include="src\jni\XlFontManager.hxx" />
-    <ClInclude Include="src\cpp\arcDrawing\DrawArcStrategy.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="renderer.rc" />

@@ -27,7 +27,6 @@
 #include "BuildObjects.h"
 #include "axesScale.h"
 #include "Format.h"
-#include "DrawingBridge.h"
 #include "HandleManagement.h"
 #include "Axes.h"
 
@@ -97,7 +96,7 @@ extern void unzoom()
     psonstmp = psonstmp->pnext;
   }
 
-  sciDrawObj(sciGetCurrentFigure());
+  //sciDrawObj(sciGetCurrentFigure());
 }
 
 /*--------------------------------------------------------------------------*/

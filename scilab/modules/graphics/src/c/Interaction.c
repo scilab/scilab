@@ -27,7 +27,6 @@
 #include "Scierror.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
-#include "DrawingBridge.h"
 #include "JavaInteraction.h"
 #include "axesScale.h"
 #include "math_graphics.h"

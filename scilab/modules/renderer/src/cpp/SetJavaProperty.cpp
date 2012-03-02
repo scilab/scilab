@@ -13,7 +13,6 @@
  */
 
 #include "SetJavaProperty.h"
-#include "getHandleDrawer.h"
 #include "GiwsException.hxx"
 
 
@@ -26,7 +25,6 @@ extern "C"
 
 #include "CallRenderer.hxx"
 
-using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/

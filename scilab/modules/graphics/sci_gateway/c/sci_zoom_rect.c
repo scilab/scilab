@@ -21,7 +21,6 @@
 #include "stack-c.h"
 #include "getPropertyAssignedValue.h"
 #include "axesScale.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "GetProperty.h"

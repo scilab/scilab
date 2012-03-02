@@ -122,16 +122,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_la_LIBADD =
-am__objects_1 = libscirenderer_la-getHandleDrawer.lo \
-	libscirenderer_la-HandleObserverManagement.lo \
-	libscirenderer_la-DrawableObjectFactory.lo \
-	libscirenderer_la-HandleDrawingObserver.lo \
-	libscirenderer_la-DrawableObjectJoGL.lo \
-	libscirenderer_la-GetJavaProperty.lo \
+am__objects_1 = libscirenderer_la-GetJavaProperty.lo \
 	libscirenderer_la-SetJavaProperty.lo \
 	libscirenderer_la-JavaInteraction.lo \
-	libscirenderer_la-DrawableObject.lo \
-	libscirenderer_la-DrawingBridge.lo \
 	libscirenderer_la-BasicAlgos.lo \
 	libscirenderer_la-RendererFontManager.lo \
 	libscirenderer_la-XlFontManager.lo \
@@ -428,16 +421,9 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 # List of the c files
 RENDERER_CPP_SOURCES = \
-src/cpp/getHandleDrawer.cpp \
-src/cpp/HandleObserverManagement.cpp \
-src/cpp/DrawableObjectFactory.cpp \
-src/cpp/HandleDrawingObserver.cpp \
-src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
-src/cpp/DrawableObject.cpp \
-src/cpp/DrawingBridge.cpp \
 src/cpp/BasicAlgos.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \
@@ -624,18 +610,11 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-BasicAlgos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-CallRenderer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-DrawingBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-JavaInteraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SetJavaProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-XlFontManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
 .cpp.o:
@@ -659,41 +638,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscirenderer_la-getHandleDrawer.lo: src/cpp/getHandleDrawer.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-getHandleDrawer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-getHandleDrawer.Tpo -c -o libscirenderer_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-getHandleDrawer.Tpo $(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getHandleDrawer.cpp' object='libscirenderer_la-getHandleDrawer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-getHandleDrawer.lo `test -f 'src/cpp/getHandleDrawer.cpp' || echo '$(srcdir)/'`src/cpp/getHandleDrawer.cpp
-
-libscirenderer_la-HandleObserverManagement.lo: src/cpp/HandleObserverManagement.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HandleObserverManagement.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HandleObserverManagement.Tpo -c -o libscirenderer_la-HandleObserverManagement.lo `test -f 'src/cpp/HandleObserverManagement.cpp' || echo '$(srcdir)/'`src/cpp/HandleObserverManagement.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HandleObserverManagement.Tpo $(DEPDIR)/libscirenderer_la-HandleObserverManagement.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HandleObserverManagement.cpp' object='libscirenderer_la-HandleObserverManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HandleObserverManagement.lo `test -f 'src/cpp/HandleObserverManagement.cpp' || echo '$(srcdir)/'`src/cpp/HandleObserverManagement.cpp
-
-libscirenderer_la-DrawableObjectFactory.lo: src/cpp/DrawableObjectFactory.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableObjectFactory.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Tpo -c -o libscirenderer_la-DrawableObjectFactory.lo `test -f 'src/cpp/DrawableObjectFactory.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectFactory.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Tpo $(DEPDIR)/libscirenderer_la-DrawableObjectFactory.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObjectFactory.cpp' object='libscirenderer_la-DrawableObjectFactory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableObjectFactory.lo `test -f 'src/cpp/DrawableObjectFactory.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectFactory.cpp
-
-libscirenderer_la-HandleDrawingObserver.lo: src/cpp/HandleDrawingObserver.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-HandleDrawingObserver.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Tpo -c -o libscirenderer_la-HandleDrawingObserver.lo `test -f 'src/cpp/HandleDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/HandleDrawingObserver.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Tpo $(DEPDIR)/libscirenderer_la-HandleDrawingObserver.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HandleDrawingObserver.cpp' object='libscirenderer_la-HandleDrawingObserver.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-HandleDrawingObserver.lo `test -f 'src/cpp/HandleDrawingObserver.cpp' || echo '$(srcdir)/'`src/cpp/HandleDrawingObserver.cpp
-
-libscirenderer_la-DrawableObjectJoGL.lo: src/cpp/DrawableObjectJoGL.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableObjectJoGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Tpo -c -o libscirenderer_la-DrawableObjectJoGL.lo `test -f 'src/cpp/DrawableObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectJoGL.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Tpo $(DEPDIR)/libscirenderer_la-DrawableObjectJoGL.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObjectJoGL.cpp' object='libscirenderer_la-DrawableObjectJoGL.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableObjectJoGL.lo `test -f 'src/cpp/DrawableObjectJoGL.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObjectJoGL.cpp
-
 libscirenderer_la-GetJavaProperty.lo: src/cpp/GetJavaProperty.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GetJavaProperty.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GetJavaProperty.Tpo -c -o libscirenderer_la-GetJavaProperty.lo `test -f 'src/cpp/GetJavaProperty.cpp' || echo '$(srcdir)/'`src/cpp/GetJavaProperty.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GetJavaProperty.Tpo $(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo
@@ -714,20 +658,6 @@ libscirenderer_la-JavaInteraction.lo: src/cpp/JavaInteraction.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/JavaInteraction.cpp' object='libscirenderer_la-JavaInteraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-JavaInteraction.lo `test -f 'src/cpp/JavaInteraction.cpp' || echo '$(srcdir)/'`src/cpp/JavaInteraction.cpp
-
-libscirenderer_la-DrawableObject.lo: src/cpp/DrawableObject.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableObject.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableObject.Tpo -c -o libscirenderer_la-DrawableObject.lo `test -f 'src/cpp/DrawableObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObject.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawableObject.Tpo $(DEPDIR)/libscirenderer_la-DrawableObject.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawableObject.cpp' object='libscirenderer_la-DrawableObject.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawableObject.lo `test -f 'src/cpp/DrawableObject.cpp' || echo '$(srcdir)/'`src/cpp/DrawableObject.cpp
-
-libscirenderer_la-DrawingBridge.lo: src/cpp/DrawingBridge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawingBridge.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawingBridge.Tpo -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-DrawingBridge.Tpo $(DEPDIR)/libscirenderer_la-DrawingBridge.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DrawingBridge.cpp' object='libscirenderer_la-DrawingBridge.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-DrawingBridge.lo `test -f 'src/cpp/DrawingBridge.cpp' || echo '$(srcdir)/'`src/cpp/DrawingBridge.cpp
 
 libscirenderer_la-BasicAlgos.lo: src/cpp/BasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-BasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-BasicAlgos.Tpo -c -o libscirenderer_la-BasicAlgos.lo `test -f 'src/cpp/BasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/BasicAlgos.cpp

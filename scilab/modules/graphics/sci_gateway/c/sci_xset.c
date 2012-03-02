@@ -29,7 +29,6 @@
 #include "msgs.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "DrawingBridge.h"
 #include "HandleManagement.h"
 
 #include "BuildObjects.h"
@@ -171,14 +170,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else if( strcmp(cstk(l1),"default") == 0 )
     {
-        sciPointObj * pfigure = sciGetCurrentFigure();
-
-
-        /*special treatement for xset default and old_style off F.Leray 23.09.04 */
-        /* mimic clf(gcf(),'reset') behaviour here */
-        sciClearFigure(sciGetCurrentFigure());
-
-        ResetFigureToDefaultValues(pfigure);
+        // FIXME
     }
     else if( strcmp(cstk(l1),"clipgrf") == 0 )
     {

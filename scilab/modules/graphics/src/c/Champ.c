@@ -26,7 +26,6 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "Champ.h"
-#include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"

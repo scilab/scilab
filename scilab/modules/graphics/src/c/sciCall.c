@@ -35,7 +35,6 @@
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
 #include "sciCall.h"
-#include "DrawingBridge.h"
 #include "Plot2d.h"
 #include "HandleManagement.h"
 #include "stack-def.h" /* bsiz */

@@ -26,16 +26,9 @@ libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 # List of the c files
 RENDERER_CPP_SOURCES = \
-src/cpp/getHandleDrawer.cpp \
-src/cpp/HandleObserverManagement.cpp \
-src/cpp/DrawableObjectFactory.cpp \
-src/cpp/HandleDrawingObserver.cpp \
-src/cpp/DrawableObjectJoGL.cpp \
 src/cpp/GetJavaProperty.cpp \
 src/cpp/SetJavaProperty.cpp \
 src/cpp/JavaInteraction.cpp \
-src/cpp/DrawableObject.cpp \
-src/cpp/DrawingBridge.cpp \
 src/cpp/BasicAlgos.cpp \
 src/cpp/RendererFontManager.cpp \
 src/jni/XlFontManager.cpp \

@@ -24,7 +24,6 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "CloneObjects.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"

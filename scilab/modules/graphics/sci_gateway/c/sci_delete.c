@@ -27,7 +27,6 @@
 #include "DrawObjects.h"
 #include "Interaction.h"
 #include "ObjectSelection.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"

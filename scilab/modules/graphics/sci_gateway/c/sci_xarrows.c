@@ -21,7 +21,6 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "DrawingBridge.h"
 #include "HandleManagement.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/

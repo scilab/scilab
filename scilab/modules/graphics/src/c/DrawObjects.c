@@ -42,8 +42,6 @@
 #include "Format.h"
 #include "HandleManagement.h"
 
-#include "DrawingBridge.h"
-
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
@@ -71,7 +69,7 @@ void sciClearFigure(sciPointObj * pFigure)
   /* recreate the subwindow */
   //createFirstSubwin(pFigure);
 
-  forceHierarchyRedraw(pFigure);
+  //forceHierarchyRedraw(pFigure);
 }
 
 /* get the displayed bounds of an axis */

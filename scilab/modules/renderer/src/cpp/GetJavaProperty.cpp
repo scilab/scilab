@@ -14,7 +14,6 @@
  */
 
 #include "GetJavaProperty.h"
-#include "getHandleDrawer.h"
 #include "BasicAlgos.hxx"
 
 extern "C"
@@ -25,7 +24,6 @@ extern "C"
 
 #include "CallRenderer.hxx"
 
-using namespace sciGraphics;
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/

@@ -13,7 +13,6 @@
  */
 
 #include "InitUIMenu.hxx"
-#include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"
 {

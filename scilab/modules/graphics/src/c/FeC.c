@@ -27,7 +27,6 @@
 #include "BuildObjects.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "DrawingBridge.h"
 #include "localization.h"
 #include "PloEch.h"
 #include "Plot2d.h"

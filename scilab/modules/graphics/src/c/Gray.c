@@ -28,7 +28,6 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "GrayPlot.h"
-#include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"

@@ -33,7 +33,6 @@
 #include "Scierror.h"
 
 #include "MALLOC.h"             /* MALLOC */
-#include "DrawingBridge.h"
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
