@@ -4,18 +4,43 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>if then else</refname>
-    <refpurpose> exécution conditionnelle  </refpurpose>
+    <refname>if</refname>
+    <refpurpose>Mot-clé utilisé pour une exécution conditionnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>if expr1 then instructions
-      elseif expri then instructions
+    <synopsis>
+      if expr1 then
+      instructions
+      elseif expri then
+      instructions
       ....
-      else instructions
+      else
+      instructions
       end
     </synopsis>
   </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>expr1, expri</term>
+        <listitem>
+          <para>
+            Expressions logiques
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>statements</term>
+        <listitem>
+          <para>
+            Blocs d'instructions valides.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection>
     <title>Description</title>
     <para>
@@ -23,7 +48,7 @@
       d'instructions si l'expression est vraie.
     </para>
     <para>
-      Les <literal>expri</literal> sont des expressions à valeurs numériques ou booléennes. Si <literal>expri</literal> est à valeur matricielle la condition est vraie si tous les termes de la matrice sont vrais ou différents de zéro.
+      Les <literal>expri</literal> sont des expressions à valeurs numériques ou booléennes. Si <literal>expri</literal> n'estpas scalaire, la condition est vraie si tous les termes de la matrice sont vrais ou différents de zéro.
     </para>
     <para>
       Les mot-clés optionnels <literal>elseif</literal> et <literal>else</literal> permettent d'exécuter en alternative des groupes d'instructions. Le mot clé <literal>end</literal>,

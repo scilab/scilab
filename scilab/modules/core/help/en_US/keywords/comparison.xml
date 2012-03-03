@@ -9,7 +9,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>a==b
+    <synopsis>
+      a==b
       a~=b or a&lt;&gt;b
       a&lt;b
       a&lt;=b
@@ -27,7 +28,7 @@
             any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
             <literal>a&lt;&gt;b</literal> equality comparisons and restricted to real floating point and integer
             array for order related comparisons <literal>a&lt;b</literal>,
-            <literal>a&lt;=b</literal>, <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>. 
+            <literal>a&lt;=b</literal>, <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>. 
           </para>
         </listitem>
       </varlistentry>
@@ -36,10 +37,10 @@
         <listitem>
           <para>
             any type of variable for <literal>a==b</literal>, <literal>a~=b</literal> 
-            <literal>a&lt; &gt; b</literal> equality  comparisons and restricted to
+            <literal>a&lt;&gt;b</literal> equality  comparisons and restricted to
             real floating point and integer arrays for order related comparisons
             <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
-            <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>.
+            <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -63,7 +64,7 @@
         <listitem>
           <para>
             <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
-            <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>. These operators apply
+            <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>. These operators apply
             only to real floating point and integer arrays.
           </para>
         </listitem>
@@ -75,33 +76,33 @@
         <term>With array variables </term>
         <listitem>
           <para> like floating point and integer arrays, logical arrays,
-            string arrays, polynomial and rationnal arrays, handle arrays, lists... the following rules apply:
+            string arrays, polynomial and rational arrays, handle arrays, lists... the following rules apply:
           </para>
           <itemizedlist>
             <listitem>
               <para>
-                If <literal> a</literal> and <literal> b</literal> evaluates as arrays with same types
+                If <literal>a</literal> and <literal>b</literal> evaluates as arrays with same types
                 and identical dimensions, the comparison is performed element by
-                element and the result is an array  of booleans of the same.
+                element and the result is an array  of booleans of the same size.
               </para>
             </listitem>
             <listitem>
               <para>
-                If <literal> a</literal> and <literal> b</literal>  evaluates as arrays 
-                with same types, but <literal> a</literal> or <literal> b</literal> is a 1 by
-                1 array the scalar is compared with each element of the
+                If <literal>a</literal> and <literal>b</literal>  evaluates as arrays 
+                with same types, but <literal>a</literal> or <literal>b</literal> is a scalar,
+		then the scalar is compared with each element of the
                 other array. The result is an array of booleans of the size of
                 the non scalar operand.
               </para>
             </listitem>
             <listitem>
               <para>
-                In the others cases the result is the boolean <literal> %f</literal>
+                In the others cases the result is the boolean <literal>%f</literal>
               </para>
             </listitem>
             <listitem>
-              <para>If the operand data types are different but "compatible" like
-                floating points and integers a type conversion is performed before
+              <para>If the operand data types are differents but "compatible" like
+                floating points and integers, then a type conversion is performed before
                 the comparison.
               </para>
             </listitem>
@@ -113,13 +114,12 @@
         <listitem>
           <para>
             like <literal>function</literal>,
-            <literal>libraries</literal>, the result is <literal>
-              %t
-            </literal>
-            if the objects are identical and <literal> %f</literal> in the
+            <literal>libraries</literal>, the result is <literal>%t</literal>
+            if the objects are identical and <literal>%f</literal> in the
             other cases.
           </para>
-          <para>Equality comparison between operands of incompatible data types
+          <para>
+	    Equality comparison between operands of incompatible data types
             returns <literal>%f</literal>.
           </para>
         </listitem>
@@ -159,6 +159,9 @@ p/poly(1,'s','c')==0
     <simplelist type="inline">
       <member>
         <link linkend="less">less</link>
+      </member>
+      <member>
+        <link linkend="great">greater</link>
       </member>
       <member>
         <link linkend="boolean">boolean</link>

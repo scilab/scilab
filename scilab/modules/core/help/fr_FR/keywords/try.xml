@@ -17,7 +17,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>try
+    <synopsis>
+      try
       statements
       catch
       statements
@@ -92,7 +93,9 @@ catch
   x=1:10
 end 
 [error_message,error_number]=lasterror(%t) 
-
+ ]]></programlisting>
+    
+    <programlisting role=""><![CDATA[ 
 // 2ème exemple (structures try/catch imbriquées)
 function nestedtry(a,b)
 disp("DEBUT")

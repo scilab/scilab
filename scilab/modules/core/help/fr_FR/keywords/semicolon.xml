@@ -4,8 +4,8 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>semicolon (;)</refname>
-    <refpurpose>séparateur de lignes ou d'instructions Scilab</refpurpose>
+    <refname>semicolon</refname>
+    <refpurpose> (;) séparateur de lignes ou d'instructions Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

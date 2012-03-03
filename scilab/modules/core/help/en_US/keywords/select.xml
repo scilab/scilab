@@ -5,37 +5,116 @@
   </info>
   <refnamediv>
     <refname>select</refname>
-    <refpurpose> select keyword</refpurpose>
+    <refpurpose>select keyword</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      select variable
+      case value1 then 
+      instructions 1
+      case value2 then 
+      instructions 2
+      ...  
+      case valuen then 
+      instructions n
+      [else instructions]
+      end
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>variable</term>
+        <listitem>
+          <para>
+            variable which value to be analized. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value1, ..., valuen</term>
+        <listitem>
+          <para>
+            values of <literal>variable</literal> for which there are appropriate instruction blocks  <literal>instructions 1, ..., instructions n</literal>. 
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>instructions</term>
+        <listitem>
+          <para>
+            block of valid instructions. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting role=""><![CDATA[ 
-select expr,
-  case expr1 then instructions1,
-  case expr2 then instructions2,
-  ...
-  case exprn then instructionsn,
-  [else instructions],
-end
- ]]></programlisting>
-    <para>
-    </para>
     <para>
       Notes:
     </para>
     <itemizedlist>
       <listitem>
-        <para>The only constraint is that each "then"  keyword  must be on  the same line line as corresponding "case" keyword.</para>
+        <para>
+          The only constraint is that each <literal>then</literal>  keyword  must be on 
+          the same line line as corresponding <literal>case</literal> keyword (or use a 
+          continuation mark, see <link linkend="dot">dot</link>).
+        </para>
       </listitem>
       <listitem>
         <para>
-          The keyword "then"  can be replaced by a carriage return or a comma.   <literal>instructions1</literal> are executed if <literal>expr1=expr</literal>, etc.
+          The keyword <literal>"then"</literal>  can be replaced by a carriage return or a comma. 
+          <literal>instructions1</literal> are executed if <literal>expr1=expr</literal>, etc.
         </para>
       </listitem>
     </itemizedlist>
     <para>
+      According to the Code Conventions for the Scilab Programming Language it is recommended:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Start each statement on a new line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Write no more than one simple statement per line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Break compound statements over multiple lines.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      For example, use:
+    </para>
+    <programlisting role=""><![CDATA[
+A = 2
+select A
+case 1 then
+    disp(1)
+case 2 then
+    disp(2)
+else
+    disp(3)
+end
+]]></programlisting>
+    <para>
+      rather than
+    </para>
+     
+    <programlisting role=""><![CDATA[
+A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
+]]></programlisting>
+    <para>
       Warning: the number of characters used to define the body of any
-      conditionnal instruction (if while for or select/case) must be limited to
+      conditional instruction (if while for or select/case) must be limited to
       16k.
     </para>
   </refsection>

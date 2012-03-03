@@ -17,9 +17,15 @@
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>x</term>
+        <term>x1,..,xn</term>
         <listitem>
-          <para>...</para>
+          <para>variables in calling environnement</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a1,..,an</term>
+        <listitem>
+          <para>local variables</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -29,21 +35,21 @@
     <para>
       In a function <literal>return</literal> stops the execution of the function,
       <literal>[..]=return(..)</literal> stops the execution of the function and put the
-      local variables <literal>ai</literal> in calling environment under names
+      local variables <literal>ai</literal> in calling environnement under names
       <literal>xi</literal>.
     </para>
     <para>
-      In <literal>pause</literal> mode, it allows to return to upper level
+      In <literal>pause</literal> mode, it allows to return to upper level.
       <literal>[..]=return(..)</literal> returns to upper level and put the local variables
-      <literal>ai</literal> in calling environment under names <literal>xi</literal>.
+      <literal>ai</literal> in calling environnement under names <literal>xi</literal>.
     </para>
     <para>
       In an <literal>execstr</literal> called by a function <literal>[..]=return(..)</literal> stops
       the execution of the function and put the local variables 
-      <literal>ai</literal> in calling environment under names <literal>xi</literal>.
+      <literal>ai</literal> in calling environnement under names <literal>xi</literal>.
     </para>
     <para>
-      <literal>resume</literal> is equivalent to <literal>return</literal>.
+      The statment <literal>resume</literal> is equivalent to <literal>return</literal>.
     </para>
   </refsection>
   <refsection role="see also">
@@ -54,6 +60,12 @@
       </member>
       <member>
         <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="resume">resume</link>
       </member>
     </simplelist>
   </refsection>

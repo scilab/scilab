@@ -14,6 +14,23 @@
     </synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x1,..,xn</term>
+        <listitem>
+          <para>variables de l'environnement appelant</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a1,..,an</term>
+        <listitem>
+          <para>variables locales</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
     <para>
       Dans une fonction <literal>return</literal> termine son exécution et
@@ -31,7 +48,7 @@
       Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction, <literal>[..]=return(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
     </para>
     <para>
-      <literal>return</literal> est équivalent à <literal>resume</literal>.
+      L'instruction <literal>return</literal> est équivalent à <literal>resume</literal>.
     </para>
   </refsection>
   <refsection role="see also">
@@ -42,6 +59,9 @@
       </member>
       <member>
         <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
       </member>
       <member>
         <link linkend="resume">resume</link>

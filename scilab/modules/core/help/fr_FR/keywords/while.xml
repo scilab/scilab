@@ -5,13 +5,12 @@
   </info>
   <refnamediv>
     <refname>while</refname>
-    <refpurpose> mot-clé utilisé dans une structure while
-      ... end  
-    </refpurpose>
+    <refpurpose> mot-clé utilisé dans une structure while ... end </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>while expr ,instructions,...[,else instructions], end
+    <synopsis>
+      while expr ,instructions,...[,else instructions], end
       while expr do instructions,...[,else instructions], end
       while expr then instructions,...[,else instructions], end
     </synopsis>
@@ -38,12 +37,49 @@
       </listitem>
       <listitem>
         <para>
-          La construction <literal>,else instructions</literal> permet de spécifier
-          des instructions à exécuter si l'expression <literal>expr</literal>
+          La construction optionnelle <literal>,else instructions</literal> permet de spécifier
+          des <literal>instructions</literal> à exécuter si l'expression <literal>expr</literal>
           est fausse. 
         </para>
       </listitem>
     </itemizedlist>
+    <para>
+      En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Commencer chaque instruction sur une nouvelle ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Ne pas écrire plus d'une instruction simple par ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Séparer les instructions composées sur plusieurs lignes.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Par exemple, utiliser :
+    </para>
+    <programlisting role=""><![CDATA[
+      i = 0
+      while i<5 
+          disp("i");
+          i = i + 1; 
+      end
+]]></programlisting>
+    <para>
+      rather than
+    </para>
+     
+    <programlisting role=""><![CDATA[
+      i = 0; while i<5 disp("i"); i = i + 1; end
+]]></programlisting>
     <para>
       Attention : le nombre de caractères constituant le corps d'une
       instruction conditionnelle (if while for ou select/case) est limité à

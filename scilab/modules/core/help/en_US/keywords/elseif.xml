@@ -10,19 +10,35 @@
   <refsection>
     <title>Description</title>
     <para>
-    See <literal>if,then,else</literal> .</para>
+      If there is more than one condition then keyword <literal>elseif</literal> is usefull.
+      If there is more than one <literal>elseif</literal> then the first true condition 
+      is selected (even other also are true).
+    </para>
   </refsection>
   <refsection>
-    <title>Example</title>
+    <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 a=1;
 if a==1 then
     disp("a equals 1")
 elseif a==2 then
     disp("a equals 2")
+elseif a==1 & a>0 then
+    disp("this condition is true, but never will be selected, because it is the second true condition.")
 else
-    disp("Case not handle")
+    disp("Case not handled.")
 end
      ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="select">select</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

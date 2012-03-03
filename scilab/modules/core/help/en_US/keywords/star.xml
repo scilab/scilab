@@ -11,7 +11,7 @@
     <title>Description</title>
     <para>
       Multiplication. Usual meaning. Valid for constant,
-      boolean, polynomial, rational matrices and for <literal>syslin</literal> lists (the meaning is series connection)
+      boolean, polynomial, rational matrices and for <literal>syslin</literal> lists (the meaning is series connection).
     </para>
     <para>
       Element-wise multiplication is denoted <literal>x.*y</literal>. If
@@ -19,16 +19,20 @@
       is the same as <literal>*</literal>.
     </para>
     <para>
-      Kronecker product is <literal>x.*.y</literal>
+      Kronecker product is <literal>x.*.y</literal>.
     </para>
     <para>
       <literal>A*.B</literal>  is an operator with no predefined meaning. It may be used
-      to define a new operator (see <link linkend="overloading">overloading</link>) with  the same precedence as * or /.
+      to define a new operator (see <link linkend="overloading">overloading</link>) with  the same 
+      precedence as <literal>*</literal> or <literal>/</literal>.
     </para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="dot">dot</link>
+      </member>
       <member>
         <link linkend="slash">slash</link>
       </member>
@@ -37,6 +41,9 @@
       </member>
       <member>
         <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
       </member>
     </simplelist>
   </refsection>

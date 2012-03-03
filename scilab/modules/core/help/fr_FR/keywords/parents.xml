@@ -68,20 +68,20 @@
     </para>
     <para>
       *
-      Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules. 
+      Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules, 
     </para>
     <para>
       *
       Sélectionner des éléments dans les vecteurs, matrices et listes.
     </para>
     <para>
-      Voir <literal>extraction</literal> et <literal>insertion</literal> pour de plus amples précisions.
+      Voir l'aide pour l'<link linkend="extraction">extraction</link> et l'<link linkend="insertion">insertion</link> pour de plus amples précisions.
     </para>
     <para>
       *
-      [x1,x2,...]=(e1,e2,...) est équivalent aux commandes préalables %t_1 = e1,
-      %t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ..., où les
-      variables %t_i, i = 1, 2, ... sont "invisibles" pour l'utilisateur.
+      <literal>[x1,x2,...]=(e1,e2,...)</literal> est équivalent aux commandes préalables %t_1 = e1,
+      <literal>%t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ...</literal>, où les
+      variables <literal>%t_i, i = 1, 2, ...</literal> sont "invisibles" pour l'utilisateur.
     </para>
     <para>
     </para>

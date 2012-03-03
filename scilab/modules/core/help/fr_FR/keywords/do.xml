@@ -5,13 +5,13 @@
   </info>
   <refnamediv>
     <refname>do</refname>
-    <refpurpose> language keyword for loops</refpurpose>
+    <refpurpose>Mot-clé utilisé pour les boucles</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      Le mot clé M<literal>do</literal> peut être utilisé dans une instruction
-      <literal>for</literal> ou  <literal>while</literal> pour séparer la définition de la
+      Le mot clé <literal>do</literal> peut être utilisé dans une instruction
+      <literal>for</literal> ou <literal>while</literal> pour séparer la définition de la
       variable de boucle de l'ensemble des instructions.
     </para>
   </refsection>

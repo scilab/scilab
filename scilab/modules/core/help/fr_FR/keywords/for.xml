@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>for</refname>
-    <refpurpose> mot clé pour les structures de boucles  </refpurpose>
+    <refpurpose> Mot-clé pour les structures de boucles  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -28,6 +28,41 @@
     <para>
       Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
     </para>
+    <para>
+      En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Commencer chaque instruction sur une nouvelle ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Ne pas écrire plus d'une instruction simple par ligne.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Séparer les instructions composées sur plusieurs lignes.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Par exemple, utiliser :
+    </para>
+    <programlisting role=""><![CDATA[
+      for i = 1:5 
+          disp(i);
+      end
+]]></programlisting>
+    <para>
+      plutôt que :
+    </para>
+     
+    <programlisting role=""><![CDATA[
+      for i = 1:5 disp(i); end
+]]></programlisting>
     <para>
       Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
     </para>

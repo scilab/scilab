@@ -17,7 +17,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>try
+    <synopsis>
+      try
       statements
       catch
       statements
@@ -42,7 +43,7 @@
       executed using the default error handling mode (see <link linkend="errcatch">errcatch</link>).
     </para>
     <para>
-      The recorded error can be retreived using the <link linkend="lasterror">lasterror</link> function.
+      The recorded error can be retrieved using the <link linkend="lasterror">lasterror</link> function.
     </para>
     <para>
       The <literal>catch</literal> statements as well as the
@@ -85,12 +86,13 @@ try
   u=mopen(file_path,'r')
   x=mget(10,'c',u)
 catch
-  disp(['file '+file_path+ 'cannot be read',
-        'using default values for x'])
+  disp(['file '+file_path+ ' cannot be read','using default values for x'])
   x=1:10
 end 
  [error_message,error_number]=lasterror(%t)
-
+ ]]></programlisting>
+    
+    <programlisting role="example"><![CDATA[ 
 // example 2 (nested try/catch structures)
 function nestedtry(a,b)
 disp("START")

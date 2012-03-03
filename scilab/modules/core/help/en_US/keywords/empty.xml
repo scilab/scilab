@@ -21,7 +21,7 @@
       <literal> [] + A = A + [] = A</literal>
     </para>
     <para>
-      [ [], A] = [A, []] = A
+      <literal>[ [], A] = [A, []] = A </literal>
       <literal> inv([]) =[] </literal>
     </para>
     <para>

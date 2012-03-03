@@ -20,7 +20,7 @@
         <term>a11,a12,...  </term>
         <listitem>
           <para>
-            any matrix (real, polynomial, rational,<literal>syslin</literal> list ...) with appropriate dimensions
+            any matrix (real, polynomial, rational, <literal>syslin</literal> list ...) with appropriate dimensions
           </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
     <para>
       Left and right brackets are used to note vector and matrix concatenation.
       These symbols are also used to denote a multiple left-hand-side for a function 
-      call
+      call.
     </para>
     <para>
       Inside concatenation brackets, blank or comma characters mean 
@@ -68,7 +68,10 @@ s=poly(0,'s');[1/s,2/s]
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
+       <member>
+        <link linkend="parents">parents</link>
+      </member>
+     <member>
         <link linkend="comma">comma</link>
       </member>
       <member>

@@ -10,7 +10,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      May be used inside <literal>for</literal>  pr  <literal>while</literal>
+      May be used inside <literal>for</literal>  or  <literal>while</literal>
       instructions to separate the loop 
       variable definition and the set of instructions.
     </para>

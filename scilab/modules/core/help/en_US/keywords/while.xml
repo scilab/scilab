@@ -10,8 +10,8 @@
   <refsection>
     <title>Description</title>
     <para>
-      <literal>while</literal> clause. Must be terminated by
-      <literal>"end"</literal>
+      The <literal>while</literal> clause must be terminated by
+      <literal>"end"</literal>.
     </para>
     <para>
       <literal>while expr ,instructions,...[,else instructions], end</literal>
@@ -43,11 +43,48 @@
       <listitem>
         <para>
           The optional <literal>,else instructions</literal> construction
-          allows to gives instructions which are executed when expr
-          expression becomes false.
+          allows to gives <literal>instructions</literal> which are executed when 
+          <literal>expr</literal> expression becomes false.
         </para>
       </listitem>
     </itemizedlist>
+    <para>
+      According to the Code Conventions for the Scilab Programming Language it is recommended:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Start each statement on a new line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Write no more than one simple statement per line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Break compound statements over multiple lines.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      For example, use:
+    </para>
+    <programlisting role=""><![CDATA[
+      i = 0
+      while i<5 
+          disp("i");
+          i = i + 1; 
+      end
+]]></programlisting>
+    <para>
+      rather than
+    </para>
+     
+    <programlisting role=""><![CDATA[
+      i = 0; while i<5 disp("i"); i = i + 1; end
+]]></programlisting>
     <para>
       Warning: the number of characters used to define the body of any
       conditionnal instruction (if while for or select/case) must be

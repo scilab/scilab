@@ -10,12 +10,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    quote (<literal>'</literal>)is used for (Conjugate) Transpose of matrix.</para>
+    Quote (<literal>'</literal>) is used for conjugate transpose (Hermitean conjugation) of matrix.</para>
     <para>
-    quote (<literal>.'</literal>)is used for (non Conjugate) Transpose of matrix.</para>
+    Quote (<literal>.'</literal>) is used for non-conjugate transpose of matrix.</para>
     <para>
     Simple (') or double (") quotes are also used to define character strings.
-    (Character strings are defined between two quotes). A Quote within a
+    (Character strings are defined between two quotes). A quote within a
     character string is denoted by two quotes.</para>
   </refsection>
   <refsection>
@@ -26,5 +26,13 @@
 x='This is a character string'
 'He said:''Good'''
  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="conj">conj</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

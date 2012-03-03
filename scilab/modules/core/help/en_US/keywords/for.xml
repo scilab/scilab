@@ -30,6 +30,41 @@
       successive entries of the list.
     </para>
     <para>
+      According to the Code Conventions for the Scilab Programming Language it is recommended:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Start each statement on a new line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Write no more than one simple statement per line.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Break compound statements over multiple lines.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      For example, use:
+    </para>
+    <programlisting role=""><![CDATA[
+      for i = 1:5 
+          disp(i);
+      end
+]]></programlisting>
+    <para>
+      rather than
+    </para>
+     
+    <programlisting role=""><![CDATA[
+      for i = 1:5 disp(i); end
+]]></programlisting>
+    <para>
       Warning: the number of characters used to define the body of any
       conditional instruction (if while for or select/case) must be limited to
       16k.
