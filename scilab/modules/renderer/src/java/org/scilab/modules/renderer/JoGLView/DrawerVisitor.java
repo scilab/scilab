@@ -65,13 +65,46 @@ import org.scilab.modules.renderer.utils.textRendering.FontManager;
 import java.awt.Dimension;
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Pierre Lando
  */
 public class DrawerVisitor implements Visitor, Drawer, GraphicView {
+
+    /**
+     * Set of properties changed during a draw if auto-ticks is on for X axis.
+     */
+    private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+            GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
+            GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+    ));
+
+    /**
+     * Set of properties changed during a draw if auto-ticks is on for Y axis.
+     */
+    private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+            GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
+            GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+    ));
+
+    /**
+     * Set of properties changed during a draw if auto-ticks is on for Z axis.
+     */
+    private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+            GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
+            GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+    ));
+
+
+
     private final Canvas canvas;
     private final Figure figure;
 
@@ -637,22 +670,53 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void updateObject(String id, String property) {
-        if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
-            dataManager.disposeAllColorBuffers();
-            markManager.disposeAll();
-            textManager.disposeAll();
-            labelManager.disposeAll();
-            axesDrawer.disposeAll();
-            canvas.redraw();
-            colorMapTextureDataProvider.update();
-        } else if (isFigureChild(id)) {
-            dataManager.update(id, property);
-            markManager.update(id, property);
-            textManager.update(id, property);
-            labelManager.update(id, property);
-            axesDrawer.update(id, property);
-            legendDrawer.update(id, property);
-            canvas.redraw();
+        if (needUpdate(id, property)) {
+            if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+                dataManager.disposeAllColorBuffers();
+                markManager.disposeAll();
+                textManager.disposeAll();
+                labelManager.disposeAll();
+                axesDrawer.disposeAll();
+                canvas.redraw();
+                colorMapTextureDataProvider.update();
+            } else {
+                dataManager.update(id, property);
+                markManager.update(id, property);
+                textManager.update(id, property);
+                labelManager.update(id, property);
+                axesDrawer.update(id, property);
+                legendDrawer.update(id, property);
+                canvas.redraw();
+            }
+        }
+    }
+
+    /**
+     * Check if the given changed property make the figure out of date.
+     * @param id the object updated
+     * @param property the changed property.
+     * @return true id the given changed property make the figure out of date.
+     */
+    private boolean needUpdate(String id, String property) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if ((property != null) && (object != null) && isFigureChild(id)) {
+            if (object instanceof Axes) {
+                Axes axes = (Axes) object;
+                if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
+                    return false;
+                }
+
+                if (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) {
+                    return false;
+                }
+
+                if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
         }
     }
 

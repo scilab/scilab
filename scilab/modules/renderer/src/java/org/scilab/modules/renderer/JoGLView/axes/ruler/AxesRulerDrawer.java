@@ -31,6 +31,8 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -141,10 +143,9 @@ public class AxesRulerDrawer {
             rulerDrawingResult = rulerDrawers[0].draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getXAxisAutoTicks()) {
-                // TODO
-                axes.setXAxisTicksLocations(toDoubleArray(values));
-                axes.setXAxisTicksLabels(toStringArray(values));
-                axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
             }
 
             distanceRatio  = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -209,10 +210,9 @@ public class AxesRulerDrawer {
             rulerDrawingResult = rulerDrawers[1].draw(drawingTools, rulerModel);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getYAxisAutoTicks()) {
-                // TODO
-                axes.setYAxisTicksLocations(toDoubleArray(values));
-                axes.setYAxisTicksLabels(toStringArray(values));
-                axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values));
+                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -292,10 +292,9 @@ public class AxesRulerDrawer {
                 rulerDrawingResult = rulerDrawers[2].draw(drawingTools, rulerModel);
                 values = rulerDrawingResult.getTicksValues();
                 if (axes.getZAxisAutoTicks()) {
-                    // TODO
-                    axes.setZAxisTicksLocations(toDoubleArray(values));
-                    axes.setZAxisTicksLabels(toStringArray(values));
-                    axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values));
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
                 }
 
                 distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
