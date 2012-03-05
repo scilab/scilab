@@ -411,6 +411,8 @@ Bug fixes
 * Bug #10807 fixed - It was not possible to overload fft and fftw for list,
                      tlist, mlist type.
 
+* Bug #10809, #10810 fixed - error_table help page was not up-to-date.
+
 
             Changes between version 5.3.3 and 5.4.0-alpha-1 of Scilab
             =========================================================
