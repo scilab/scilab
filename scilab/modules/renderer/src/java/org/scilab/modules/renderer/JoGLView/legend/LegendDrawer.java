@@ -474,19 +474,21 @@ public class LegendDrawer {
             }
 
             /* Draw a line otherwise */
-            if (!barDrawn && polyline.getLineMode()) {
+            if (!barDrawn) {
                 lineVertices.setData(lineVertexData, 4);
 
-                DefaultGeometry line = new DefaultGeometry();
-                line.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
-                line.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
-                line.setVertices(lineVertices);
-                Appearance lineAppearance = new Appearance();
-                lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
-                lineAppearance.setLineWidth((float) lineThickness);
-                lineAppearance.setLinePattern(linePattern);
+                if (polyline.getLineMode()) {
+                    DefaultGeometry line = new DefaultGeometry();
+                    line.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+                    line.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
+                    line.setVertices(lineVertices);
+                    Appearance lineAppearance = new Appearance();
+                    lineAppearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
+                    lineAppearance.setLineWidth((float) lineThickness);
+                    lineAppearance.setLinePattern(linePattern);
 
-                drawingTools.draw(line, lineAppearance);
+                    drawingTools.draw(line, lineAppearance);
+                }
             }
 
             if (polyline.getMarkMode()) {
