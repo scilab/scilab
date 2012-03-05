@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,44 +28,32 @@
 #include "SetPropertyStatus.h"
 #include "PloEch.h"
 #include "BOOL.h"
+
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+
 /*------------------------------------------------------------------------*/
 int set_zoom_state_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    int b = (int)FALSE;
+    BOOL status;
 
-    // FIXME
-	int b = (int)FALSE;
-#if 0
-	if (sciGetEntityType(pobj) != SCI_SUBWIN)
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
-		return SET_PROPERTY_ERROR ;
-	}
-#endif
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
-	if (b == NOT_A_BOOLEAN_VALUE)
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "zoom_state");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
 
-	if (b)
-	{
-		if(sciGetZooming(pobjUID))
-		{
-			Scierror(999, "Object is already zoomed.\n");
-			return SET_PROPERTY_ERROR;
-		}
-		else
-		{
-			Scierror(999, "set zoom box ( set('zoom_box',[xmin ymin xmax ymax])).\n");
-			return SET_PROPERTY_ERROR;
-		}
-	}
-	else
-	{
-		unzoom();
-		return sciSetZooming(pobjUID, FALSE);
-	}
+    status = setGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, &b, jni_bool, 1);
 
-	return SET_PROPERTY_SUCCEED;
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/
