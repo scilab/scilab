@@ -84,6 +84,7 @@ int sci_fftw(char *fname,unsigned long fname_len)
   int *n = NULL,*nspn = NULL;
   int n_and_nspn_allocated = FALSE;
   double zero=0.0;
+  int iType1 = -1;
 
   /****************************************
    * Basic constraints on rhs arguments  *
@@ -92,6 +93,16 @@ int sci_fftw(char *fname,unsigned long fname_len)
   /* check min/max lhs/rhs arguments of scilab funcion */
   CheckRhs(1,4);
   CheckLhs(1,1);
+
+  iType1 = VarType(1);
+
+  if ((iType1 == sci_list) ||
+      (iType1 == sci_tlist) ||
+      (iType1 == sci_mlist))
+  {
+      OverLoad(1);
+      return 0;
+  }
 
   /* 3 rhs not allowed */
   if (Rhs == 3) 

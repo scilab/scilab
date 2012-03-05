@@ -20,3 +20,4 @@ freeArrayOfString
 getrhsvar_
 gettype_
 vstk_
+overload_
