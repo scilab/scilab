@@ -311,6 +311,8 @@ Bug fixes
 
 * Bug #10538 fixed - Fix typos in the help page of prod and cumprod.
 
+* Bug #10543 fixed - %eps, %pi, %i, %nan, %inf were not documented.
+
 * Bug #10558 fixed - Tcl/Tk demonstrations did not start.
 
 * Bug #10560 fixed - genetic algorithms demos failed.
