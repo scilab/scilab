@@ -15,9 +15,31 @@ XML
 
 * Rename xmlClose in xmlDelete and xmlGetOpenStreams in xmlGetOpenDocs.
 
+* Bug #10185 fixed - Add xmlDelete("all") in xml.quit.
+
+* Bug #10594 fixed - size could not be used with two arguments on XMLList.
+
+* Bug #10630 fixed - Fix a typo in one of the error message.
+
+* Bug #10670 fixed - Avoid a crash when xmlRead had an arg with a bad size.
+
+
+Help
+====
+
+* Management of Docbook tags <note>, <caution>, <warning>, <important> and
+ <tip>. See bug #10505.
+
+* Function help_skeleton extended to propose the <revhistory>, <latex>, <note>,
+  <caution>, <warning>, <important> and <tip> tags in examples.
+
 
 Xcos
 ====
+
+
+* Major performance improvements on the simulation startup. On big schemas,
+  the gain is very important (minutes to milliseconds).
 
 * Performance improvements on the diagram saving/loading.
 
@@ -29,6 +51,16 @@ Xcos
   - SELECT_m - Selector block
   - NEGTOPOS_f - Threshold negative to positive
 
+* Bug #6201 fixed - Block help menu had no shortcut.
+
+* Bug #6733 fixed - Each call to xcos created an empty diagram.
+
+* Bug #7539 fixed - Some blocks were slow to interact with.
+
+* Bug #7863 fixed - Default path for code generation was SCI.
+
+* Bug #8188 fixed - Xcos to Scilab export took too much time.
+
 * Bug #8744 fixed - Solving the initialization problem more than once crash
                     Scilab.
 
@@ -38,11 +70,15 @@ Xcos
 * Bug #10107 fixed - Default value of the Integrator Absolute Tolerance was
                      too large. It has been reduced to 1e-6.
 
+* Bug #10246 fixed - PROD_f block was broken.
+
 * Bug #10333 fixed - Labeling I/O blocks on a Super block produced wrong port
                      labeling when ports had not the same types.
 
 * Bug #10340 fixed - Exception occured while moving the palette split pane to
                      hide the block list and while using a palette diagram.
+
+* Bug #10393 fixed - Block style was not updated on palette loading.
 
 * Bug #10419 fixed - Exception occured while refusing to create a new empty
                      file.
@@ -50,7 +86,24 @@ Xcos
 * Bug #10422 fixed - Exception occured when exporting with an unspecified
                      format.
 
+* Bug #10461 fixed - Canceling a Quit operation did not work.
+
+* Bug #10486 fixed - importXcosDiagram opened a tab.
+
+* Bug #10496 fixed - Fix a wrong error message in xcosValidateBlockSet.
+
+* Bug #10533 fixed - Some action shortcuts were not disabled when editing a text
+                     block.
+
+* Bug #10658 fixed - Typos fixed in the bloc2exp help page.
+
+* Bug #10679 fixed - blocks_link.tst failed.
+
+* Bug #10697 fixed - post_xcos_simulate function did not work if a TOWS_c block
+                     were present.
+
 * Bug #10800 fixed - xcosPalAddBlock help example did not work.
+
 
 
 Unitary testing
@@ -66,6 +119,17 @@ Graphical User Interface
 
 * Bug #4978 fixed - Icons did not follow the Tango norm.
 
+
+Elementary functions
+====================
+
+* dec2base function added (See SEP #75).
+
+* linspace deprecates the usage of non integer values as third input argument.
+
+* logspace deprecates the usage of non integer values as third input argument.
+
+* The toeplitz macro was not vectorized.
 
 CLI console:
 ============
@@ -129,11 +193,14 @@ api_scilab
 Javasci
 =======
 
-* Javasci supports sparse datatypes retrieval (Javasci is able to retrieve
-a sparse but not to send it to Scilab).
+* Javasci supports sparse and boolean sparse datatypes.
 
-* Javasci supports struct datatypes under the form of an MList  (Javasci is
-able to retrieve a struct but not to send it to Scilab).
+* Javasci supports tlists, mlists and lists datatypes.
+
+* Javasci supports polynomial datatypes.
+
+* If Scilab fails to start because of a memory issues (stacksize), triggers an
+  InitializationException Java exception.
 
 * Bug #10784 fixed - Scilab built on an Ubuntu 11.10, javasci was failing to
                      load with an undefined symbol
@@ -187,7 +254,20 @@ Bug fixes
 
 * Bug #7490 fixed - %inf had not always same display.
 
+* Bug #7779 fixed - genlib did not check input arguments and did not use current
+                    path as default.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
+
+* Bug #8592 fixed - Add a explicit error message if macros are not available.
+ 
+* Bug #8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, base2dec code have been
+                    simplified and optimized.
+
+* Bug #8682 fixed - funcprot did not return the previous value when called with
+                    an argument.
+ 
+* Bug #8724 fixed - Sometimes, there was a critical error with uiget(file|dir).
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
@@ -199,7 +279,12 @@ Bug fixes
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 
-* Bug #9328 fixed - Fix of random crashes under Mac OS X.
+* Bug #9295 fixed - 'base2dec' ignored the fractional part of 'base' input argument.
+
+* Bug #9328 fixed - Scilab randomly crached at startup under Mac OS X when calling
+                    functions returning no value (lines, modes, banner, ...).
+
+* Bug #9424 fixed - gettext("") did not return "".
 
 * Bug #9502 fixed - 'toolbox' was badly used in assert help pages (replaced by 'module').
 
@@ -222,6 +307,11 @@ Bug fixes
                      operator.
 
 * Bug #10044 fixed - wfir_gui function rewritten based on uicontrol and documented.
+
+* Bug #10061 fixed - datatipCreate drew the tip in the current axes instead of curve
+                     parent axes.
+
+* Bug #10139 fixed - 'atomsTest' function did not manage specific test name.
 
 * Bug #10236 fixed - exit(-1) prompted for exiting Scilab.
 
@@ -250,19 +340,30 @@ Bug fixes
 * Bug #10384 fixed - On exit, "Close Console" was proposed rather than "Close
                      Scilab".
 
+* Bug #10396 fixed - Display of a structure with large matrix took a long time.
+
 * Bug #10402 fixed - FileBrowser threw an exception when a filter was set
                      and the tree was expanded.
 
 * Bug #10408 fixed - In the history browser, the contents was scrolled even if the
                      knob was not at the bottom.
 
+* Bug #10416 fixed - xmltoformat did not return at the root directory in case of error.
+
 * Bug #10418 fixed - Playsound was failing under Mac OS X. Thanks to
                      Pierre-Henri Jondot for the patch.
 
+* Bug #10423 fixed - The function browsehistory() to open history browser was missing.
+
 * Bug #10431 fixed - The user could not navigate in history using CTRL+P or CTRL+N.
+
+* Bug #10439 fixed - stacksize('max') crashed on Windows 64 bit.
 
 * Bug #10440 fixed - 'wfir_gui' generated errors if the view checkbox was selected
                      and an erronous value was entered.
+
+* Bug #10444 fixed - fullfile did not manage string matrix as last input argumen
+t.
 
 * Bug #10449 fixed - On restoration, empty tabs could appear if the previous
                      session was not cleanly exited.
@@ -290,6 +391,8 @@ Bug fixes
                      at configure time made mprintf fail.
 
 * Bug #10482 fixed - Wrong error message in format function fixed.
+
+* Bug #10499 fixed - lincos example in help file returned warning and error.
 
 * Bug #10503 fixed - error(999.666) did trunc error code without an error.
 
