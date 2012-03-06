@@ -16,7 +16,7 @@ extern "C"
 #include "UpdateBrowseVar.h"
 #include "gw_ui_data.h"
 #include "BOOL.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_browsevar(char *fname, void* pvApiCtx)

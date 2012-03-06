@@ -101,13 +101,16 @@ case 'set' then
     labs=['down','right','up']
   end
 
-  message(['This sum block is obsolete'
+  str = ['This sum block is obsolete'
       'parameters cannot be modified. Please replace it with new sum block';
       'and gain blocks in the linear palette'
       ' '
       'Input ports are located at up, side and  down positions.'
-      'Current gains are:' 
-      part(labs(:),1:7)+'  '+exprs(:)])
+      'Current gains are:'];
+   
+   str = [str ; (part(labs(:),1:7)+exprs(:))];
+   message(str);
+   
 case 'define' then
   sgn=[1;1;1]
 

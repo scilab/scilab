@@ -17,7 +17,6 @@ API_SCILAB_CPP_SOURCES = \
     src/cpp/api_sparse.cpp \
     src/cpp/api_string.cpp \
     src/cpp/api_pointer.cpp \
-    src/cpp/api_oldstack.cpp \
     src/cpp/api_error.cpp \
     src/cpp/overload.cpp
 

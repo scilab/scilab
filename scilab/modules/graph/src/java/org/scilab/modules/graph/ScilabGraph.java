@@ -16,7 +16,10 @@ package org.scilab.modules.graph;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -45,13 +48,11 @@ import com.mxgraph.view.mxGraphView;
 
 /**
  * Represent the base diagram of Xcos.
- * 
+ *
  * It performs generic operations like undo/redo management, action clean-up,
  * modification state management, Tab association, etc...
  */
 public class ScilabGraph extends mxGraph {
-    private static int untitledCounter = 0;
-
     /**
      * The default component of a scilab graph
      */
@@ -59,14 +60,16 @@ public class ScilabGraph extends mxGraph {
 
     private final mxUndoManager undoManager = new mxUndoManager();
 
-    private String title = String.format(ScilabGraphMessages.UNTITLED,
-            untitledCounter++);
+    private String title = null;
     private File savedFile;
     private boolean modified;
     private boolean opened;
     private boolean readOnly;
 
     private transient mxRubberband rubberBand;
+
+    private transient String graphTab;
+    private transient String viewPortTab;
 
     /**
      * Manage the modification state on change
@@ -84,8 +87,7 @@ public class ScilabGraph extends mxGraph {
     private final mxIEventListener undoHandler = new mxIEventListener() {
         @Override
         public void invoke(Object source, mxEventObject evt) {
-            undoManager.undoableEditHappened((mxUndoableEdit) evt
-                    .getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
+            undoManager.undoableEditHappened((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
         }
     };
 
@@ -110,9 +112,7 @@ public class ScilabGraph extends mxGraph {
     private final mxIEventListener selectionHandler = new mxIEventListener() {
         @Override
         public void invoke(Object source, mxEventObject evt) {
-            List<mxUndoableChange> changes = ((mxUndoableEdit) evt
-                    .getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT))
-                    .getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
             getSelectionModel().setCells(getSelectionCellsForChanges(changes));
         }
     };
@@ -173,8 +173,7 @@ public class ScilabGraph extends mxGraph {
 
         // register the saved dir as the image base path (for relative images
         // location).
-        getAsComponent().getCanvas().setImageBasePath(
-                savedFile.getParentFile().toURI().toASCIIString());
+        getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
     }
 
     /**
@@ -186,7 +185,7 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Modify the state of the diagram.
-     * 
+     *
      * @param modified
      *            The new modified state.
      * @category UseEvent
@@ -212,7 +211,50 @@ public class ScilabGraph extends mxGraph {
      * @return The current Tab title
      */
     public String getTitle() {
+        if (title == null) {
+            final Date d = Calendar.getInstance().getTime();
+            final String time = DateFormat.getTimeInstance().format(d);
+            title = String.format(ScilabGraphMessages.UNTITLED, time);
+        }
         return title;
+    }
+
+    /**
+     * Get the graph tab uuid
+     *
+     * @return
+     */
+    public String getGraphTab() {
+        return graphTab;
+    }
+
+    /**
+     * Set the graph tab uuid
+     *
+     * @param uuid
+     *            the diagram tab
+     */
+    public void setGraphTab(String uuid) {
+        this.graphTab = uuid;
+    }
+
+    /**
+     * Get the view port tab uuid
+     *
+     * @return the view port tab
+     */
+    public String getViewPortTab() {
+        return viewPortTab;
+    }
+
+    /**
+     * Set the view port tab uuid
+     *
+     * @param uuid
+     *            the view port tab
+     */
+    public void setViewPortTab(String uuid) {
+        this.viewPortTab = uuid;
     }
 
     /**
@@ -241,7 +283,7 @@ public class ScilabGraph extends mxGraph {
      * The instance can be not visible but used (when using SuperBlock). The
      * openned flag is true in this case and also when the Window/Tab is
      * visible.
-     * 
+     *
      * @param opened
      *            Openned state
      */
@@ -258,7 +300,7 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * A read-only state will disable all actions in the graph.
-     * 
+     *
      * @param readOnly
      *            Read-only state
      */
@@ -304,15 +346,14 @@ public class ScilabGraph extends mxGraph {
      */
     /**
      * Returns the cells to be selected for the given list of changes.
-     * 
+     *
      * @param changes
      *            the changes
      * @param model
      *            the model to work on
      * @return the cells
      */
-    public static Object[] getSelectionCellsForChanges(
-            final List<mxUndoableChange> changes, final mxGraphModel model) {
+    public static Object[] getSelectionCellsForChanges(final List<mxUndoableChange> changes, final mxGraphModel model) {
         List<Object> cells = new ArrayList<Object>();
         Iterator<mxUndoableChange> it = changes.iterator();
 

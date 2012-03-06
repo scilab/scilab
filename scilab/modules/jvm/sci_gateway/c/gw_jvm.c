@@ -13,8 +13,9 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_jvm.h"
-#include "stack-c.h"
 #include "sci_mode.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
@@ -30,17 +31,6 @@ static gw_generic_table  Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_jvm(void)
 {  
-	Rhs = Max(0, Rhs);
-
-	if ( (getScilabMode() != SCILAB_NWNI) )
-	{
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));	
-	}
-	else
-	{
-		Scierror(999,_("JVM interface disabled in -nogui or -nwni modes.\n"));
-	}
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

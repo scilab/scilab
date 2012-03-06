@@ -24,8 +24,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsIsLoaded(modules)
-	</synopsis>
+      result = atomsIsLoaded(modules)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -38,8 +38,8 @@
         <term>modules</term>
         <listitem>
           <para>
-						mx1, mx2 Matrix of strings:
-					</para>
+            mx1, mx2 Matrix of strings:
+          </para>
           <informaltable border="1">
             <!-- Technical name -->
             <tr>
@@ -50,10 +50,10 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-								Mandatory
-							</td>
+                Mandatory
+              </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -64,12 +64,12 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								module's version is ignored.
-							</td>
+                If this field is empty or is not present,
+                module's version is ignored.
+              </td>
             </tr>
             <!-- Section -->
             <tr>
@@ -80,12 +80,12 @@
                 <emphasis role="strong">Section</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								module's section is ignored.
-							</td>
+                If this field is empty or is not present,
+                module's section is ignored.
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -95,8 +95,8 @@
         <term>result</term>
         <listitem>
           <para>
-						mx1 boolean matrix
-					</para>
+            mx1 boolean matrix
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -106,8 +106,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
-	</para>
+    <para>
+      <literal>atomsIsLoaded</literal> determines whether a module is loaded or not.
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -158,10 +159,4 @@ atomsRemove("toolbox_2");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

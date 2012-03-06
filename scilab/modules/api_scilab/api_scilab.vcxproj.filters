@@ -48,9 +48,6 @@
     <ClCompile Include="src\cpp\api_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\api_oldstack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\api_pointer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\api_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_oldstack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\api_pointer.h">

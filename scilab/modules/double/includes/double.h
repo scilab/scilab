@@ -12,7 +12,6 @@
 #ifndef __DOUBLE_H__
 #define __DOUBLE_H__
 
-
 #include <stdio.h>
 #include "basic_functions.h"
 #include "stack-c.h"
@@ -26,21 +25,20 @@ int matmult();
 int matldiv();
 int matrdiv();
 
-extern C2F(dlacpy)();
-extern C2F(dgetrf)();
-extern C2F(dgecon)();
-extern C2F(dgetrs)();
-extern C2F(dgelsy1)();
+extern C2F(dlacpy) ();
+extern C2F(dgetrf) ();
+extern C2F(dgecon) ();
+extern C2F(dgetrs) ();
+extern C2F(dgelsy1) ();
 
-extern double C2F(zlange)();
-extern C2F(zlacpy)();
-extern C2F(zgetrf)();
-extern C2F(zgecon)();
-extern C2F(zgetrs)();
-extern C2F(zgelsy)();
-extern C2F(zgelsy1)();
+extern double C2F(zlange) ();
+extern C2F(zlacpy) ();
+extern C2F(zgetrf) ();
+extern C2F(zgetrs) ();
+extern C2F(zgelsy) ();
+extern C2F(zgelsy1) ();
 
-extern int C2F(zscal)();
-extern int C2F(dscal)();
+extern int C2F(zscal) ();
+extern int C2F(dscal) ();
 
 #endif //__DOUBLE_H__

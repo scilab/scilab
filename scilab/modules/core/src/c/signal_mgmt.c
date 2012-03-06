@@ -38,6 +38,9 @@
 #include "signal_mgmt.h"
 #include "machine.h"
 #include "Scierror.h"
+#include "suspendProcess.h"
+#include "sci_mode.h"
+#include "windowsChangeManagement.h"
 extern jmp_buf jmp_env;
 
 /*----------------------------------------------------------------------------
@@ -47,11 +50,15 @@ extern jmp_buf jmp_env;
 static char *backtrace_print(int niv_debut)
 {
     size_t ind;
+
     sci_backtrace_t *tr = NULL;
+
     char print_buffer[4096];    /* TODO: make it dynamic */
 
     int size = sizeof(print_buffer);
+
     char *tmp = print_buffer;
+
     int ret;
 
     tr = sci_backtrace_create();
@@ -62,10 +69,13 @@ static char *backtrace_print(int niv_debut)
         char s_func_buf[67];
 
         const char *s_file;
+
         const char *s_func;
+
         const char *s_addr;
 
         const char s_unknown[] = "?";
+
         const char s_empty[] = "";
         const char *s_prefix = s_empty;
 
@@ -127,11 +137,15 @@ static char *backtrace_print(int niv_debut)
 static void sig_fatal(int signum, siginfo_t * info, void *p)
 {
     char *si_code_str = "";
+
     int ret, i;
+
     char print_buffer[1024];
+
     int size = sizeof(print_buffer);
 
     char *tmp = print_buffer;
+
     char stacktrace_hostname[64];
 
     gethostname(stacktrace_hostname, sizeof(stacktrace_hostname));
@@ -469,11 +483,25 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 void base_error_init(void)
 {
     struct sigaction act;
+
     int sig, j;
 
+    struct sigaction ToSuspend;
+
+    struct sigaction ToContinue;
+
+    /* Initialise Suspend Signal (CTRL-Z) */
+    ToSuspend.sa_handler = suspendProcess;
+    ToSuspend.sa_flags = 0;
+    sigemptyset(&ToSuspend.sa_mask);
+    sigaction(SIGTSTP, &ToSuspend, NULL);
+    /* Initialise Continue Signal (fg) */
+    ToContinue.sa_handler = continueProcess;
+    ToContinue.sa_flags = 0;
+    sigemptyset(&ToContinue.sa_mask);
+    sigaction(SIGCONT, &ToContinue, NULL);
     /* Signal handlers */
     csignal();
-
     memset(&act, 0, sizeof(act));
     act.sa_sigaction = sig_fatal;
     act.sa_flags = SA_SIGINFO;
@@ -482,6 +510,7 @@ void base_error_init(void)
 #else
     act.sa_flags |= SA_RESETHAND;
 #endif
+    sigemptyset(&act.sa_mask);
 
     int signals[] = {
 #ifdef SIGABRT

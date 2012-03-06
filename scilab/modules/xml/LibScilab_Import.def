@@ -3,11 +3,7 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
  callFunctionFromGateway
- checkrhs_
- checklhs_
  com_
- intersci_
- putlhsvar_
  scistring_
  overload_
- vstk_
+ intersci_

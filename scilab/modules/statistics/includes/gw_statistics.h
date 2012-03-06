@@ -16,9 +16,8 @@
 #include "machine.h"
 #include "dynlib_statistics_gw.h"
 #include "dynlib_statistics.h"
-#include "api_scilab.h"
 #include "c_gateway_prototype.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 STATISTICS_IMPEXP int gw_statistics(void);
 /*--------------------------------------------------------------------------*/ 
 

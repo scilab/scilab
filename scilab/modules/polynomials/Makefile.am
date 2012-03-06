@@ -102,9 +102,12 @@ sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
 
-libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes
+libscipolynomials_la_CFLAGS= \
+    -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes
+
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscipolynomials.la

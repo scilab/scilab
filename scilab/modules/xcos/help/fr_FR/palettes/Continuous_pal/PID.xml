@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="PID"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="PID" xml:lang="fr">
   <refnamediv>
     <refname>PID</refname>
     <refpurpose>Régulateur PID</refpurpose>
@@ -73,11 +65,6 @@
               <link linkend="PID">Contenu du Superbloc compilé</link>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_PID">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -96,9 +83,9 @@
     <title>Description</title>
     <para>
       Ce bloc implante un régulateur PID. Le calcul (algorithme) du régulateur PID invoque trois paramètres séparés; Les coefficients d'action Proportionnelle, Intégrale et Dérivée. Le coefficient d'action Proportionnelle détermine la réaction à l'erreur courante, l'Intégrale détermine la réaction à la somme des erreurs récentes et la Dérivée détermine la réaction à la vitesse à laquelle l'erreur est modifiée. La somme pondérée de ces trois actions est utilisée pour ajuster le processus à travers un élément de contrôle tel que la position d'une vanne de régulation ou l'alimentation de puissance d'un élément chauffant.
-</para>
+    </para>
     <para>
-</para>
+    </para>
   </refsection>
   <refsection id="Dialogbox_PID">
     <title>Boîte de dialogue</title>
@@ -110,8 +97,8 @@
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -140,16 +127,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -168,19 +163,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -207,9 +212,5 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-  </refsection>
-  <refsection id="Authors_PID">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>
 </refentry>

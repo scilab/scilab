@@ -31,7 +31,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    For reading or editing a matrix .</para>
+      For reading or editing a matrix .
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -40,7 +41,7 @@ m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>

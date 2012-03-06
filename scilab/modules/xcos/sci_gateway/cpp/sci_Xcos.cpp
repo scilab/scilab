@@ -13,10 +13,8 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "stack-c.h"
 #include "callxcos.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -142,7 +140,7 @@ int sci_Xcos(char *fname, void* pvApiCtx)
 		}
 		else if (iType == sci_mlist)
 		{
-			C2F(overload)(&lw, fname, strlen(fname));
+			OverLoad(lw);
 			return 0;
 		}
 		else

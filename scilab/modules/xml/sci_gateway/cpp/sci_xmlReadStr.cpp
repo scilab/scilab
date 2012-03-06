@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -27,11 +26,12 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlReadStr(char * fname, void* pvApiCtx)
+int sci_xmlReadStr(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
+
     std::string * code;
     std::string error;
     bool validate = false;
@@ -65,14 +65,16 @@ int sci_xmlReadStr(char * fname, void* pvApiCtx)
         if (err.iErr)
         {
             delete code;
+
             printError(&err, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             delete code;
+
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return 0;
         }
@@ -87,6 +89,7 @@ int sci_xmlReadStr(char * fname, void* pvApiCtx)
     if (!error.empty())
     {
         delete doc;
+
         Scierror(999, gettext("%s: Cannot parse the string:\n%s"), fname, error.c_str());
         return 0;
     }
@@ -100,4 +103,5 @@ int sci_xmlReadStr(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

@@ -180,6 +180,13 @@ public class ScilabString implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        return data;
+    }
+
+    /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
      *

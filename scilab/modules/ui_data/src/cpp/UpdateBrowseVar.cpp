@@ -27,7 +27,6 @@ extern "C"
 #include "localization.h"
 #include "MALLOC.h"
 #include "BOOL.h"
-#include "stack-c.h"
 #include "stackinfo.h"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
@@ -121,9 +120,10 @@ void UpdateBrowseVar(BOOL update)
         // Calling "API Scilab": not yet implemented for global variable
         //getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Using old stack operations...
-        int pos = C2F(vstk).isiz + 2 + j;
+        //int pos = C2F(vstk).isiz + 2 + j;
 
-        piAllVariableTypes[i] = C2F(gettype) (&pos);
+        //piAllVariableTypes[i] = C2F(gettype) (&pos);
+        getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
 
         // Sizes of the variable
         getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);

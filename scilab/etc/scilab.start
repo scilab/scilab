@@ -55,9 +55,12 @@ setenv("VERSION", getversion());
 
 // ATOMS ===============================================================
 if with_module("atoms") then
-    atomsSystemInit();
+  atomsSystemInit();
+  if sciargs() <> "-noatomsautoload" then
     atomsAutoload();
-    clear atomsSystemInit atomsAutoload
+    clear atomsAutoload;
+  end
+  clear atomsSystemInit;
 end
 
 // load contrib menu if present ========================================
@@ -123,6 +126,5 @@ if getscilabmode() == "STD" then
     setmenu(gettext("&Toolboxes"));
     toolbar(-1, "on");
 end
-
 // ====================================================================
 clear ans

@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  tbx_builder_src_lang(lang)
-	  tbx_builder_src_lang(lang, src_path)
+      tbx_builder_src_lang(lang)
+      tbx_builder_src_lang(lang, src_path)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -48,11 +48,5 @@
 // Recommended usage
 tbx_builder_src_lang("fortran", get_absolute_file_path('builder_src.sce'))
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>SL</member>
-    </simplelist>
   </refsection>
 </refentry>

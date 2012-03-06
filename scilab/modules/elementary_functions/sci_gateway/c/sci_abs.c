@@ -15,7 +15,6 @@
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "basic_functions.h"
-#include "api_oldstack.h"
 
 SciErr abs_double(void* pvApiCtx, int* _piAddress);
 SciErr abs_poly(void* pvApiCtx, int* _piAddress);

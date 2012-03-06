@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scinotes>
+  <body>
+    <scinotes-preferences restart-reopen="true" reload-unedited="true" add-line-termination="true" number-of-entries="5" encoding="utf-8" eol="Unix(LF)"/>
+  </body>
+  <display>
+    <body>
+      <scinotes-display highlight-current-line="true" current-line-color="#facade" show-line-numbers="true" wrap-lines="true"/>
+    </body>
+  </display>
+  <syntax>
+    <body>
+      <scinotes-syntax highlight="true" hightlight-brackets="true" tab-size="4" use-spaces="true" indent-size="4" automatic-indent="true"/>
+    </body>
+  </syntax>
+  <autosave>
+    <body>
+      <scinotes-autosave enable="true" save-every="5" save-untitled="true" automatic-delete="true" append-flag="true" append-with="~" replace-with="tmp" source-flag="true" single-directory=""/>
+    </body>
+  </autosave>
+</scinotes>

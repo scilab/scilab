@@ -12,7 +12,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_elementary_functions.h"
-#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int C2F(intisequalvar)(char * fname, int *job, long int fl); /* the gateway */

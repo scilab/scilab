@@ -14,14 +14,12 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_jvm.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "addToClasspath.h"
 #include "getClasspath.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 int sci_javaclasspath(char *fname, void* pvApiCtx)
 {

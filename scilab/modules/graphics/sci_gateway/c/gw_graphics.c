@@ -13,8 +13,9 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
-#include "stack-c.h"
 #include "sci_mode.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
@@ -102,33 +103,6 @@ static gw_generic_table Tab[]={
 /* interface for the previous function Table */ 
 int gw_graphics(void)
 {  
-	Rhs = Max(0, Rhs);
-
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if (!loadedDep) 
-		{
-			loadOnUseClassPath("graphics");
-			loadedDep = TRUE;
-		}
-		callFunctionFromGatewayWithExceptions(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
-	else
-	{
-          if ( (strcmp(Tab[Fin-1].name, "set")==0 || 
-		strcmp(Tab[Fin-1].name, "delete")==0 || 
-		strcmp(Tab[Fin-1].name, "get")==0) && 
-	       (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
-            {
-              callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-              return 0;
-            }
-	  else
-	    {
-	      Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
-	    }
-	}
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

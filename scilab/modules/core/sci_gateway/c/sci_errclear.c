@@ -13,8 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "stack-c.h"
-#include "api_oldstack.h"
 #include "lasterror.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -63,7 +61,7 @@ int sci_errclear(char *fname, void* pvApiCtx)
              if ((iValue == iLastErrorValue) || (iValue <= 0))
              {
                 /* clear fortran common error */
-                C2F(errgst).err2 = 0;
+                //C2F(errgst).err2 = 0;
 
                 /* clear last error buffer (C) */
                 //clearLastError();
@@ -78,7 +76,7 @@ int sci_errclear(char *fname, void* pvApiCtx)
     else
     {
         /* clear fortran common error */
-        C2F(errgst).err2 = 0;
+        //C2F(errgst).err2 = 0;
 
         /* clear last error buffer (C) */
         //clearLastError();

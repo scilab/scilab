@@ -11,56 +11,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="rand" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="rand" xml:lang="fr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>rand</refname>
-
     <refpurpose>Générateur de nombres pseudo-aléatoires</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-
     <synopsis>
       r = rand()
       r = rand(m1,m2,...)
       r = rand(m1,m2,...,key)
       r = rand(x)
       r = rand(x,key)
-
+      
       s = rand("seed")
       rand("seed",s)
-
+      
       rand(key)
       key = rand("info")
     </synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Paramètres</title>
-
     <variablelist>
       <varlistentry>
         <term>mi</term>
-
         <listitem>
           <para>entiers</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>key</term>
-
         <listitem>
           <para>
             chaîne de caractères, <literal>"uniform"</literal> ou
@@ -68,10 +53,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>x</term>
-
         <listitem>
           <para>
             une matrice, dont uniquement le contenu réel ou complexe et
@@ -79,8 +62,6 @@
           </para>
         </listitem>
       </varlistentry>
-
-
       <varlistentry>
         <term>r</term>
         <listitem>
@@ -89,7 +70,6 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>s</term>
         <listitem>
@@ -98,13 +78,10 @@
           </para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>
       Le but de cette fonction est de retourner un tableau  
       de doubles dont les valeurs sont des nombres aléatoires
@@ -114,32 +91,24 @@
       aléatoires ou peut configurer ou récupérer la graine du générateur
       aléatoire.
     </para>
-
   </refsection>
-
   <refsection>
     <title>Générer des nombres aléatoires</title>
-
     <para>
       Sans l'argument <literal>key</literal> la syntaxe ci-dessous produit
       une matrice aléatoire dont chaque élément est la réalisation d'une
       variable aléatoire suivant une loi donnée (par défaut uniforme sur
       [0,1]).
     </para>
-
     <variablelist>
-
       <varlistentry>
         <term>r=rand()</term>
-
         <listitem>
           <para>renvoit un scalaire aléatoire.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(m1,m2)</term>
-
         <listitem>
           <para>
             est une matrice aléatoire de dimensions <literal>m1</literal>
@@ -147,10 +116,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(m1,m2,..,mn)</term>
-
         <listitem>
           <para>
             est une matrice aléatoire de dimensions <literal>m1</literal>
@@ -158,10 +125,8 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>r=rand(a)</term>
-
         <listitem>
           <para>
             est une matrice aléatoire de mêmes dimensions que a.
@@ -171,29 +136,22 @@
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
-
   <refsection>
     <title>Changer la distribution des nombres aléatoires</title>
-
     <para>
       S'il est présent, l'argument <literal>key</literal> permet de
       spécifier la loi suivie par défaut par la variable aléatoire.
     </para>
-
     <variablelist>
       <varlistentry>
         <term>rand("uniform")</term>
-
         <listitem>
           <para>La loi par défaut est uniforme sur l'intervalle [0,1].</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>rand("normal")</term>
-
         <listitem>
           <para>
             La loi par défaut est une loi normale centrée réduite (moyenne
@@ -201,38 +159,29 @@
           </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>key=rand("info")</term>
-
         <listitem>
           <para>renvoie la distribution courante, c'est à dire "uniform" ou "normal".</para>
         </listitem>
       </varlistentry>
     </variablelist>
-
   </refsection>
-
   <refsection>
     <title>Récupérer ou changer la graine</title>
-
     <para>
       Il est possible de réinitialiser l'état interne du générateur
       aléatoire (spécifié par un entier de l'intervalle [0,2^31-1]) ):
     </para>
-
     <variablelist>
       <varlistentry>
         <term>s=rand("seed")</term>
-
         <listitem>
           <para>Renvoie la valeur courante de la graine.</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>rand("seed",s)</term>
-
         <listitem>
           <para>
             Configure la valeur <literal>s</literal> de la graine (par
@@ -243,16 +192,13 @@
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Exemples</title>
-
     <para>
       Dans l'exemple suivant, nous générons des doubles associés à 
       différentes distributions.
     </para>
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
 // Récupère un double aléatoire (sur la distribution courante)
 r=rand()
 // Récupère une matrice de doubles de taille 4-par-6 (sur la distribution courante)
@@ -264,16 +210,12 @@ x=rand(4,4);
 r=rand(x,"normal")
 // Génère un tableau de taille 2-par-2-par-2 de doubles aléatoires
 r=rand(2,2,2)
- ]]>
-    </programlisting>
-
+ ]]></programlisting>
     <para>
       Dans l'exemple suivant, nous changeons la distribution des nombres générés par <literal>rand</literal>.
       Nous produisons d'abord des nombres normaux centrés réduits, puis des nombres uniformes dans [0,1).
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     // Configure le générateur sur la loi normale
     rand("normal")
     r=rand(4,6)
@@ -283,56 +225,41 @@ r=rand(2,2,2)
     rand("uniform")
     r=rand(4,6)
     key=rand("info")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       Dans l'exemple suivant, nous générons une matrice complexe de doubles de taille 2-par-3, 
       avec une distribution normale centrée réduite.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     // Génère une matrice complex de doubles aléatoires de taille 2-par-3
     x=rand(2,3)+%i*rand(2,3)
     // Génère une matrice complexe de doubles normaux centrés réduits 
     // de la même taille que x
     r=rand(x,"normal")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       Dans l'exemple suivant, nous dessinons la distribution de 1000 nombres 
       uniformes produits par <literal>rand</literal>.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
     xtitle("Nombres uniformes par rand","X","Fréquence")
-    ]]>
-    </programlisting>
-
+    ]]></programlisting>
     <para>
       Dans l'exemple suivant, nous dessinons la distribution de nombres normaux 
       centrés réduits produits par <literal>rand</literal>.
     </para>
-
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
     xtitle("Nombres normaux centrés réduits par rand","X","Fréquence")
-    ]]>
-    </programlisting>
+    ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Obtenir des nombres aléatoires prévisibles ou moins prévisibles</title>
-
     <para>
       Le générateur pseudo-aléatoire "uniform" est une séquence déterministe
       dont le but est de reproduire une séquence de nombres aléatoire, indépendents
@@ -351,17 +278,13 @@ r=rand(2,2,2)
       Dans cette situation, nous pouvons initialiser la graine avec la sortie de la
       fonction <literal>getdate</literal>, comme dans l'exemple suivant:
     </para>
-    <programlisting role="example">
-      <![CDATA[  
+    <programlisting role="example"><![CDATA[  
 n=getdate("s");
 rand("seed",s);
- ]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Le générateur</title>
-
     <para>
       Le générateur de nombres aléatoires <literal>"uniform"</literal> est
       décrit dans
@@ -369,11 +292,9 @@ rand("seed",s);
       Michael A. Malcolm, Cleve B. Moler, Stan-Cs-73-334, January 1973, Computer
       Science Department, School Of Humanities And Sciences, Stanford University.
     </para>
-
     <para>
       C'est un générateur linéaire à congruence de la forme :
     </para>
-
     <para>
       <latex>
         $$
@@ -381,39 +302,30 @@ rand("seed",s);
         $$
       </latex>
     </para>
-
     <para>
       pour lequel les constantes sont :
     </para>
-
     <para>
-      <latex>
-        <![CDATA[  
+      <latex><![CDATA[  
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\
       M &=& 2^{31}
 	  \end{eqnarray}
- ]]>
-      </latex>
+ ]]></latex>
     </para>
-
     <para>
       D'après les auteurs, ce générateur est de longueur complète, c'est à dire 
       que sa période est <latex>M=2^{31}=2147483648</latex>.
     </para>
-
     <para>
       Le générateur de nombres aléatoires <literal>"normal"</literal>
       est fondés sur la méthode de Box-Muller, pour lequel la 
       source de nombres uniformes est Urand.
     </para>
-
   </refsection>
-
   <refsection>
     <title>Qualité statistique du générateur</title>
-
     <para>
       La fonction <link linkend="grand">grand</link> dispose de générateurs aléatoires produisant
       des séquences de nombres qui possèdent de meilleures qualités statistiques.
@@ -422,20 +334,15 @@ rand("seed",s);
       De plus, la fonction <literal>grand</literal> fournit davantage de fonctionnalités.
     </para>
   </refsection>
-
-
   <refsection role="see also">
     <title>Voir aussi</title>
-
     <simplelist type="inline">
       <member>
         <link linkend="grand">grand</link>
       </member>
-
       <member>
         <link linkend="ssrand">ssrand</link>
       </member>
-
       <member>
         <link linkend="sprand">sprand</link>
       </member>

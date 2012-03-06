@@ -15,7 +15,6 @@
 #include "MALLOC.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 SciErr ceil_double(void* pvApiCtx, int* _piAddress);
 SciErr ceil_poly(void* pvApiCtx, int* _piAddress);

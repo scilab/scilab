@@ -12,12 +12,10 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "createtempfilename.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/

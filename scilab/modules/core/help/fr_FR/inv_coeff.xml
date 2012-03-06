@@ -18,30 +18,33 @@
         <term>C  </term>
         <listitem>
           <para>"grosse" matrice des coefficients
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d  </term>
         <listitem>
-          <para>degré de la matrice polynomiale (paramètre optionnel valant par défaut  <literal>d=-1+size(C,'c')/size(C,'r')</literal>)
-</para>
+          <para>
+            degré de la matrice polynomiale (paramètre optionnel valant par défaut  <literal>d=-1+size(C,'c')/size(C,'r')</literal>)
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>name  </term>
         <listitem>
-          <para>chaîne de caractères (indéterminée du polynôme, <literal>'x'</literal> par défaut).
-</para>
+          <para>
+            chaîne de caractères (indéterminée du polynôme, <literal>'x'</literal> par défaut).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>P=inv_coeff(Mp,k)</literal>, quand <literal>k</literal> est compatible avec la taille de <literal>Mp</literal> renvoie une matrice polynomiale de degré k. <literal>C=[C0,C1,...,Ck]</literal> et 
-    <literal>P= C0 + C1*x +... +Ck*x^k</literal>.
-  </para>
+    <para>
+      <literal>P=inv_coeff(Mp,k)</literal>, quand <literal>k</literal> est compatible avec la taille de <literal>Mp</literal> renvoie une matrice polynomiale de degré k. <literal>C=[C0,C1,...,Ck]</literal> et 
+      <literal>P= C0 + C1*x +... +Ck*x^k</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +59,7 @@ norm(coeff(P1)-A)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

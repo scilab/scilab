@@ -90,8 +90,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    job must not be specified if jobx0 = 2 and comuse = 2, or if comuse = 3.
-  </para>
+            job must not be specified if jobx0 = 2 and comuse = 2, or if comuse = 3.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -134,11 +134,12 @@
         <term>tol</term>
         <listitem>
           <para>optional, tolerance used for estimating the rank of
-  matrices. If  tol &gt; 0,  then the given value of  tol  is used as
-  a lower bound for the reciprocal condition number; an m-by-n matrix
-  whose estimated condition number is less than  1/tol  is considered
-  to be of full rank. Default:    m*n*epsilon_machine where
-  epsilon_machine is the relative machine precision.</para>
+            matrices. If  tol &gt; 0,  then the given value of  tol  is used as
+            a lower bound for the reciprocal condition number; an m-by-n matrix
+            whose estimated condition number is less than  1/tol  is considered
+            to be of full rank. Default:    m*n*epsilon_machine where
+            epsilon_machine is the relative machine precision.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -160,8 +161,8 @@
             </varlistentry>
           </variablelist>
           <para>
-    Default:    printw = 0.
-  </para>
+            Default:    printw = 0.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -205,10 +206,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    findBD  function for estimating the initial state and the system
-    matrices B and D of a discrete-time system, using SLICOT routine 
-    IB01CD.
-  </para>
+      findBD  function for estimating the initial state and the system
+      matrices B and D of a discrete-time system, using SLICOT routine 
+      IB01CD.
+    </para>
     <programlisting role=""><![CDATA[ 
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
@@ -220,35 +221,35 @@
       [x0,V,rcnd] = findBD(1,3,A,C,Y)
  ]]></programlisting>
     <para>
-    Note: the example lines above may contain at the end the parameters
-    tol, printw, ldwork.
-  </para>
+      Note: the example lines above may contain at the end the parameters
+      tol, printw, ldwork.
+    </para>
     <para>
-    FINDBD estimates the initial state and/or the system matrices Br and Dr
-    of a discrete-time system, given the system matrices A, C, and possibly
-    B, D, and the input and output trajectories of the system.
-  </para>
+      FINDBD estimates the initial state and/or the system matrices Br and Dr
+      of a discrete-time system, given the system matrices A, C, and possibly
+      B, D, and the input and output trajectories of the system.
+    </para>
     <para>
-    The model structure is :
-  </para>
+      The model structure is :
+    </para>
     <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
     <para>
-       where 
-     
-    x(k)  is the  n-dimensional state vector (at time k),
-  </para>
+      where 
+      
+      x(k)  is the  n-dimensional state vector (at time k),
+    </para>
     <para>
-    u(k)  is the  m-dimensional input vector,
-  </para>
+      u(k)  is the  m-dimensional input vector,
+    </para>
     <para>
-    y(k)  is the  l-dimensional output vector,
-  </para>
+      y(k)  is the  l-dimensional output vector,
+    </para>
     <para>
-    and  A, B, C, and D  are real matrices of appropriate dimensions.
-  </para>
+      and  A, B, C, and D  are real matrices of appropriate dimensions.
+    </para>
   </refsection>
   <refsection>
     <title>Comments</title>
@@ -327,10 +328,5 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
         <link linkend="findBD">findBD</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>V. Sima, Katholieke Univ. Leuven, Belgium, May 2000.  
-  (Revisions: V. Sima, July 2000)</para>
   </refsection>
 </refentry>

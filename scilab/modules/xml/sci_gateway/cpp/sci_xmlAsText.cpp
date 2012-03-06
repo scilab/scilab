@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -26,13 +25,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAsText(char * fname, void* pvApiCtx)
+int sci_xmlAsText(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
-    int * addr = 0;
-    XMLList * list = 0;
-    const char ** pstStrings = 0;
+    int *addr = 0;
+    XMLList *list = 0;
+    const char **pstStrings = 0;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -52,7 +51,7 @@ int sci_xmlAsText(char * fname, void* pvApiCtx)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    list = XMLObject::getFromId<XMLList>(id);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XMLSet or XMLList does not exist.\n"), fname);
@@ -61,12 +60,16 @@ int sci_xmlAsText(char * fname, void* pvApiCtx)
 
     pstStrings = list->getContentFromList();
 
-    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast<const char * const *>(pstStrings));
-    delete[] pstStrings;
+    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+    for (int i = 0; i < list->getSize(); i++)
+    {
+        xmlFree(const_cast < char *>(pstStrings[i]));
+    }
+    delete[]pstStrings;
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -74,4 +77,5 @@ int sci_xmlAsText(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

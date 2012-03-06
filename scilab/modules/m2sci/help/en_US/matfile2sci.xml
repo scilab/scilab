@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>matfile2sci</refname>
     <refpurpose> converts  a Matlab 5 MAT-file
-  into a Scilab binary file</refpurpose>
+      into a Scilab binary file
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,9 +44,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Converts a Matlab 5 MAT-file into a Scilab binary file compatible
-    with  the function <literal>load</literal> The Matlab data types are
-    converted into the Scilab equivalents.</para>
+      Converts a Matlab 5 MAT-file into a Scilab binary file compatible
+      with  the function <literal>load</literal> The Matlab data types are
+      converted into the Scilab equivalents.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -62,12 +64,9 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <para>Serge Steer (INRIA)  </para>
-  </refsection>
-  <refsection>
     <title>Bibliography</title>
     <para>This function has been developed according to the document  "MAT-File Format":
-&gt;<ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink></para>
+      &gt;<ulink url="http://www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf">Mat-File Format</ulink>
+    </para>
   </refsection>
 </refentry>

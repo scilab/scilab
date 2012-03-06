@@ -47,14 +47,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Linearly spaced vector. <literal>linspace(x1, x2)</literal>
-    generates a row vector of n (default value=100) linearly equally spaced
-    points between <literal>x1</literal> and <literal>x2</literal>. If
-    <literal>x1</literal> or <literal>x2</literal> are complex then
-    <literal>linspace(x1,x2)</literal> returns a row vector of n complexes,
-    the real (resp. imaginary) parts of the n complexes are linearly equally
-    spaced between the real (resp. imaginary) parts of <literal>x1</literal>
-    and <literal>x2.</literal></para>
+    <para>
+      Linearly spaced vector. <literal>linspace(x1, x2)</literal>
+      generates a row vector of n (default value=100) linearly equally spaced
+      points between <literal>x1</literal> and <literal>x2</literal>. If
+      <literal>x1</literal> or <literal>x2</literal> are complex then
+      <literal>linspace(x1,x2)</literal> returns a row vector of n complexes,
+      the real (resp. imaginary) parts of the n complexes are linearly equally
+      spaced between the real (resp. imaginary) parts of <literal>x1</literal>
+      and <literal>x2.</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -76,7 +78,14 @@ linspace(1+%i,2+2*%i,10)
     <revhistory>
       <revision>
         <revnumber>5.4.0</revnumber>
-        <revremark>The linspace function accepts column vectors as input argument for the two first input arguments. Thanks to Guillaume AZEMA for the implementation.</revremark>
+        <revremark>
+          <itemizedlist>
+            <listitem>The linspace function accepts column vectors as input argument for the two first input arguments. Thanks to Guillaume AZEMA for the implementation.
+            </listitem>
+            <listitem>The third input argument (n) must be an integer value.
+            </listitem>
+          </itemizedlist>
+        </revremark>
       </revision>
     </revhistory>
   </refsection>

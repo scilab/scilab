@@ -30,23 +30,31 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xfpoly</literal> remplit un polygone avec la couleur courante ou une couleur spécifiée
-    par l'argument optionnel <literal>fill</literal>.
-    Si <literal>fill</literal> est omis, le polygone est rempli avec la couleur courante et son contour dessiné
-    avec la couleur et le style de ligne courants. Si <literal>fill</literal> est présent, il donne la manière
-    de remplir le polygone :</para>
+    <para>
+      <literal>xfpoly</literal> remplit un polygone avec la couleur courante ou une couleur spécifiée
+      par l'argument optionnel <literal>fill</literal>.
+      Si <literal>fill</literal> est omis, le polygone est rempli avec la couleur courante et son contour dessiné
+      avec la couleur et le style de ligne courants. Si <literal>fill</literal> est présent, il donne la manière
+      de remplir le polygone :
+    </para>
     <itemizedlist>
       <listitem>
-        <para><literal>si fill&lt;0</literal>, le polygone est rempli avec la couleur <literal>-fill</literal>, et
-        son contour n'est pas dessiné.</para>
+        <para>
+          <literal>si fill&lt;0</literal>, le polygone est rempli avec la couleur <literal>-fill</literal>, et
+          son contour n'est pas dessiné.
+        </para>
       </listitem>
       <listitem>
-        <para><literal>si fill=0</literal>, le polygone est rempli avec la couleur courante et son contour est dessiné
-        avec la couleur et le style de ligne courants (équivaut à <literal>fill</literal> omis).</para>
+        <para>
+          <literal>si fill=0</literal>, le polygone est rempli avec la couleur courante et son contour est dessiné
+          avec la couleur et le style de ligne courants (équivaut à <literal>fill</literal> omis).
+        </para>
       </listitem>
       <listitem>
-        <para><literal>si fill&gt;0</literal>, le polygone est rempli avec la couleur <literal>fill</literal>
-        et son contour est dessiné avec la couleur et le style de ligne courants.</para>
+        <para>
+          <literal>si fill&gt;0</literal>, le polygone est rempli avec la couleur <literal>fill</literal>
+          et son contour est dessiné avec la couleur et le style de ligne courants.
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -84,9 +92,5 @@ xset("default");
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

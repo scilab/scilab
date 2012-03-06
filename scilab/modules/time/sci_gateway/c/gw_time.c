@@ -12,7 +12,8 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 #define TIME_TAB_SIZE 7
@@ -28,8 +29,6 @@ static gw_generic_table Tab[TIME_TAB_SIZE]={
 /*--------------------------------------------------------------------------*/ 
 int gw_time(void)
 {  
-	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

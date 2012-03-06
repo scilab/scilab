@@ -24,11 +24,7 @@ function status = is_absolute_path(pathname)
 		
 		// Windows Case
 		
-		if (ascii(part(pathname,1)) >= ascii('A')    ..
-		    & ascii(part(pathname,1)) <= ascii('Z')    ..
-		    | ascii(part(pathname,1)) >= ascii('a')    ..
-		    & ascii(part(pathname,1)) <= ascii('z'))    ..
-			& part(pathname,2) == ":" then
+		if isletter(part(pathname,1)) & (part(pathname,2) == ":") then
 			status = %T;
 		end
 		

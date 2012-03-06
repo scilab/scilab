@@ -38,5 +38,8 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
     else
         deletefile(hdf5FileToSave);
     end
+    
+    // push the interface function on the upper scope
+    execstr(XX.gui + "=resume("+ XX.gui +")");
 endfunction
 

@@ -10,98 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="creadbmat" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="creadbmat" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>creadbmat (obsolete)</refname>
-
     <refpurpose>Read a single boolean or a matrix of boolean from Scilab
-    memory using call_scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="boolean_reading_API">API_Scilab: Boolean reading</link> for remplacement.</refpurpose>
+      memory using call_scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="boolean_reading_API">API_Scilab: Boolean reading</link> for remplacement.
+    </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <synopsis>int C2F(creadbmat)(char *name, int *m, int *n, int *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Arguments</title>
-
     <variablelist>
       <varlistentry>
         <term>name</term>
-
         <listitem>
           <para>The name of the future Scilab variable</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>m</term>
-
         <listitem>
           <para>Number of rows</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>n</term>
-
         <listitem>
           <para>Number of columns</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>scimat</term>
-
         <listitem>
           <para>The actual matrix of boolean (array of int). Note that it is
-          going to be stored in Scilab columnwise.</para>
+            going to be stored in Scilab columnwise.
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>name_len</term>
-
         <listitem>
-          <para>The length of the variable <emphasis>name </emphasis>(fortran
-          compatibility)</para>
+          <para>
+            The length of the variable <emphasis>name </emphasis>(fortran
+            compatibility)
+          </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>C2F</term>
-
         <listitem>
           <para>C2F is just a macro which provides to this function the
-          ability to be called from fortran</para>
+            ability to be called from fortran
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>This help describes how to use the function creadbmat.</para>
-
     <para>Using this function will retrieve a variable called
-    <emphasis>name</emphasis> from Scilab memory into a standard C
-    <emphasis>int *</emphasis>.</para>
+      <emphasis>name</emphasis> from Scilab memory into a standard C
+      <emphasis>int *</emphasis>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example"><![CDATA[ 
 /* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwriteboolean.c
@@ -134,41 +113,33 @@ for(j = 0 ; j < rowB_ ; j++)
 }
  ]]></programlisting>
   </refsection>
-
   <refsection role="see also">
-<title>See Also</title>
-
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
-	<link linkend="call_scilab">Call_Scilab</link>
+        <link linkend="call_scilab">Call_Scilab</link>
       </member>
       <member>
-	<link linkend="api_scilab">api Scilab</link>
+        <link linkend="api_scilab">api Scilab</link>
       </member>
       <member>
-	<link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>
+        <link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>
       </member>
       <member>
-	<link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>
+        <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>
       </member>
       <member>
-	<link linkend="SendScilabJob">SendScilabJob</link>
+        <link linkend="SendScilabJob">SendScilabJob</link>
       </member>
       <member>
-	<link linkend="StartScilab">StartScilab</link>
+        <link linkend="StartScilab">StartScilab</link>
       </member>
       <member>
-	<link linkend="cwritebmat">cwritebmat</link>
+        <link linkend="cwritebmat">cwritebmat</link>
       </member>
       <member>
-	<link linkend="BooleanManagement_callscilab">Boolean Management</link>
+        <link linkend="BooleanManagement_callscilab">Boolean Management</link>
       </member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>Authors</title>
-
-    <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

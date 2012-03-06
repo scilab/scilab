@@ -47,16 +47,19 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>covar(x,y,fre)</literal>  は2つの変数xおよびyの
-	共分散を計算します.
-	freは次元length(x) x length(y)の行列です.
-	freの中で,インデックス(i,j)の要素はx_i&amp;y_jの
-	値または数値または周波数に対応します.</para>
+    <para>
+      <literal>covar(x,y,fre)</literal>  は2つの変数xおよびyの
+      共分散を計算します.
+      freは次元length(x) x length(y)の行列です.
+      freの中で,インデックス(i,j)の要素はx_i&amp;y_jの
+      値または数値または周波数に対応します.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -69,9 +72,5 @@ fre=[.20 .04 .01  0;
        0   0   0 .05]
 s=covar(x,y,fre)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

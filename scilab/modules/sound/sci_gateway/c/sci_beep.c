@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"

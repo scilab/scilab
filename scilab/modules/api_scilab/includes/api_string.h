@@ -13,6 +13,10 @@
 #ifndef __STRING_API__
 #define __STRING_API__
 
+#if !defined(__INTERNAL_API_SCILAB__)
+#error Do not include api_string.h. Include api_scilab.h instead.
+#endif
+
 #include <wchar.h>
 
 #ifdef __cplusplus

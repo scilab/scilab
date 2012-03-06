@@ -62,13 +62,13 @@ wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
         uRetVal = GetTempFileNameW(wcTmpDir, wcprefix, 0, wcTempFileName);
         if (uRetVal != 0)
         {
-            int len = wcslen(wcTempFileName) + 1;
+            size_t len = wcslen(wcTempFileName) + 1;
             wchar_t* shortTempFilename = (wchar_t *)MALLOC(len * sizeof(wchar_t));
             if (shortTempFilename)
             {
                 if (bShortFormat)
                 {
-                    GetShortPathNameW(wcTempFileName, shortTempFilename, len);
+                    GetShortPathNameW(wcTempFileName, shortTempFilename, (DWORD)len);
                 }
                 wcReturnedTempFilename = shortTempFilename;
             }

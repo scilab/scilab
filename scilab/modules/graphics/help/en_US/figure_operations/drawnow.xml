@@ -18,7 +18,8 @@
   <refnamediv>
     <refname>drawnow</refname>
     <refpurpose>draw hidden graphics
-  entities.</refpurpose>
+      entities.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -27,11 +28,14 @@
   <refsection>
     <title>Description</title>
     <para>Considering the current figure, this function can be used to draw the
-    hidden graphics entities and all its chidren, that may have been postponed
-    by a previous call to <literal>drawlater</literal>. The
-    <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
-    is set to <literal>"on" </literal>.</para>
-    <para>It can specially be used with the <literal>drawlater</literal> function.</para>
+      hidden graphics entities and all its chidren, that may have been postponed
+      by a previous call to <literal>drawlater</literal>. The
+      <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
+      is set to <literal>"on" </literal>.
+    </para>
+    <para>
+      It can specially be used with the <literal>drawlater</literal> function.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -56,7 +60,7 @@ drawnow(); // draw the current figure
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>
@@ -71,9 +75,5 @@ drawnow(); // draw the current figure
         <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Djalel ABDEMOUCHE, F.Leray</para>
   </refsection>
 </refentry>

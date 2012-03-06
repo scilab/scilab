@@ -14,7 +14,8 @@
 #include <string.h>
 #include "gw_data_structures2.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
@@ -25,15 +26,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_data_structures2(void)
 {
-	Rhs=Max(Rhs,0);
-	if (Top - Rhs + Lhs + 1 >= Bot)
-	{
-		static int codeerror = 18;
-		SciError(codeerror);
-		return 0;
-	}
-
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

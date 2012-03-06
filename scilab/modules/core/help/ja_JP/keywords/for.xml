@@ -10,27 +10,31 @@
   <refsection>
     <title>説明</title>
     <para>
-	ループ定義に使用されます.その構文は以下のようになります:
-   <literal> for variable=expression ,instruction, .. ,instruction,end</literal></para>
+      ループ定義に使用されます.その構文は以下のようになります:
+      <literal> for variable=expression ,instruction, .. ,instruction,end</literal>
+    </para>
     <para>
       <literal> for variable=expression do instruction,   ,instruction,end</literal>
     </para>
     <para>
-    <literal>expression</literal> が行列または行ベクトルの場合,
-	<literal>variable</literal> の値は行列の各列の値となります.</para>
+      <literal>expression</literal> が行列または行ベクトルの場合,
+      <literal>variable</literal> の値は行列の各列の値となります.
+    </para>
     <para>
-	具体例として,一定間隔の行ベクトルを作成するために
-	<link linkend="colon">コロン</link>演算子を使用し,
-	典型的な for ループを作成します :
-    <literal>for variable=n1:step:n2, ...,end</literal></para>
+      具体例として,一定間隔の行ベクトルを作成するために
+      <link linkend="colon">コロン</link>演算子を使用し,
+      典型的な for ループを作成します :
+      <literal>for variable=n1:step:n2, ...,end</literal>
+    </para>
     <para>
-    <literal>expression</literal> が リストの場合,
-	<literal>variable</literal>はこのリストの連続するエントリを
-	値とします.</para>
+      <literal>expression</literal> が リストの場合,
+      <literal>variable</literal>はこのリストの連続するエントリを
+      値とします.
+    </para>
     <para>
-    警告: 条件文(if while for または select/case)の本体を定義するために
-	使用できる文字の数は,16k に制限されています.
-</para>
+      警告: 条件文(if while for または select/case)の本体を定義するために
+      使用できる文字の数は,16k に制限されています.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

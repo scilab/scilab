@@ -16,10 +16,10 @@
 #include "dynlib_ui_data.h"
 /*--------------------------------------------------------------------------*/
 UI_DATA_IMPEXP int gw_ui_data(void);
-UI_DATA_IMPEXP int sci_editvar(char* fname, unsigned long l);
-UI_DATA_IMPEXP int sci_browsevar(char* fname, unsigned long l);
-UI_DATA_IMPEXP int sci_filebrowser(char* fname, unsigned long l);
-UI_DATA_IMPEXP int sci_updatebrowsevar(char* fname, unsigned long l);
+UI_DATA_IMPEXP int sci_editvar(char* fname, void* pvApiCtx);
+UI_DATA_IMPEXP int sci_browsevar(char* fname, void* pvApiCtx);
+UI_DATA_IMPEXP int sci_filebrowser(char* fname, void* pvApiCtx);
+UI_DATA_IMPEXP int sci_updatebrowsevar(char* fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_UI_DATA__ */
 /*--------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -263,7 +263,6 @@ lib /DEF:"$(ProjectDir)slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\dynamic_link\src\c\dynamic_link.vcxproj">
       <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>

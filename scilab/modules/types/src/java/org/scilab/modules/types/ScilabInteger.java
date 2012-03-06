@@ -96,8 +96,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, byte[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -108,8 +108,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, short[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -120,8 +120,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, int[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -132,8 +132,8 @@ public class ScilabInteger implements ScilabType {
      */
     public ScilabInteger(String varName, long[][] data, boolean bUnsigned, boolean swaped) {
         this.setData(data, bUnsigned);
-	this.varName = varName;
-	this.swaped = swaped;
+        this.varName = varName;
+        this.swaped = swaped;
     }
 
     /**
@@ -144,7 +144,7 @@ public class ScilabInteger implements ScilabType {
     public ScilabInteger(byte value) {
         this.byteData = new byte[1][1];
         this.byteData[0][0] = value;
-        this.precision = ScilabIntegerTypeEnum.sci_integer8;
+        this.precision = ScilabIntegerTypeEnum.sci_int8;
     }
 
     /**
@@ -155,7 +155,7 @@ public class ScilabInteger implements ScilabType {
     public ScilabInteger(short value) {
         this.shortData = new short[1][1];
         this.shortData[0][0] = value;
-        this.precision = ScilabIntegerTypeEnum.sci_integer16;
+        this.precision = ScilabIntegerTypeEnum.sci_int16;
     }
 
     /**
@@ -166,7 +166,7 @@ public class ScilabInteger implements ScilabType {
     public ScilabInteger(int value) {
         this.intData = new int[1][1];
         this.intData[0][0] = value;
-        this.precision = ScilabIntegerTypeEnum.sci_integer32;
+        this.precision = ScilabIntegerTypeEnum.sci_int32;
     }
 
     /**
@@ -177,7 +177,7 @@ public class ScilabInteger implements ScilabType {
     public ScilabInteger(long value) {
         this.longData = new long[1][1];
         this.longData[0][0] = value;
-        this.precision = ScilabIntegerTypeEnum.sci_integer64;
+        this.precision = ScilabIntegerTypeEnum.sci_int64;
     }
 
     /**
@@ -189,9 +189,9 @@ public class ScilabInteger implements ScilabType {
     public void setData(byte[][] data, boolean bUnsigned) {
         this.byteData = data;
         if (bUnsigned) {
-            this.precision = ScilabIntegerTypeEnum.sci_uinteger8;
+            this.precision = ScilabIntegerTypeEnum.sci_uint8;
         } else {
-            this.precision = ScilabIntegerTypeEnum.sci_integer8;
+            this.precision = ScilabIntegerTypeEnum.sci_int8;
         }
     }
 
@@ -204,9 +204,9 @@ public class ScilabInteger implements ScilabType {
     public void setData(short[][] data, boolean bUnsigned) {
         this.shortData = data;
         if (bUnsigned) {
-            this.precision = ScilabIntegerTypeEnum.sci_uinteger16;
+            this.precision = ScilabIntegerTypeEnum.sci_uint16;
         } else {
-            this.precision = ScilabIntegerTypeEnum.sci_integer16;
+            this.precision = ScilabIntegerTypeEnum.sci_int16;
         }
     }
 
@@ -219,9 +219,9 @@ public class ScilabInteger implements ScilabType {
     public void setData(int[][] data, boolean bUnsigned) {
         this.intData = data;
         if (bUnsigned) {
-            this.precision = ScilabIntegerTypeEnum.sci_uinteger32;
+            this.precision = ScilabIntegerTypeEnum.sci_uint32;
         } else {
-            this.precision = ScilabIntegerTypeEnum.sci_integer32;
+            this.precision = ScilabIntegerTypeEnum.sci_int32;
         }
     }
 
@@ -234,9 +234,9 @@ public class ScilabInteger implements ScilabType {
     public void setData(long[][] data, boolean bUnsigned) {
         this.longData = data;
         if (bUnsigned) {
-            this.precision = ScilabIntegerTypeEnum.sci_uinteger64;
+            this.precision = ScilabIntegerTypeEnum.sci_uint64;
         } else {
-            this.precision = ScilabIntegerTypeEnum.sci_integer64;
+            this.precision = ScilabIntegerTypeEnum.sci_int64;
         }
     }
 
@@ -260,32 +260,32 @@ public class ScilabInteger implements ScilabType {
         long[][] convertedMatrix = new long[this.getHeight()][this.getWidth()];
         switch (this.getPrec()) {
 
-        case sci_integer8:
-        case sci_uinteger8:
+        case sci_int8:
+        case sci_uint8:
             for (int i = 0; i < this.getHeight(); i++) {
                 for (int j = 0; j < this.getWidth(); j++) {
                     convertedMatrix[i][j] = Long.valueOf(byteData[i][j]);
                 }
             }
             return convertedMatrix;
-        case sci_integer16:
-        case sci_uinteger16:
+        case sci_int16:
+        case sci_uint16:
             for (int i = 0; i < this.getHeight(); i++) {
                 for (int j = 0; j < this.getWidth(); j++) {
                     convertedMatrix[i][j] = Long.valueOf(shortData[i][j]);
                 }
             }
             return convertedMatrix;
-        case sci_integer32:
-        case sci_uinteger32:
+        case sci_int32:
+        case sci_uint32:
             for (int i = 0; i < this.getHeight(); i++) {
                 for (int j = 0; j < this.getWidth(); j++) {
                     convertedMatrix[i][j] = Long.valueOf(intData[i][j]);
                 }
             }
             return convertedMatrix;
-        case sci_integer64:
-        case sci_uinteger64:
+        case sci_int64:
+        case sci_uint64:
             return longData;
         }
         return null;
@@ -337,15 +337,15 @@ public class ScilabInteger implements ScilabType {
      */
     public boolean isUnsigned() {
         switch (precision) {
-        case sci_integer8:
-        case sci_integer16:
-        case sci_integer32:
-        case sci_integer64:
+        case sci_int8:
+        case sci_int16:
+        case sci_int32:
+        case sci_int64:
             return false;
-        case sci_uinteger8:
-        case sci_uinteger16:
-        case sci_uinteger32:
-        case sci_uinteger64:
+        case sci_uint8:
+        case sci_uint16:
+        case sci_uint32:
+        case sci_uint64:
             return true;
         }
         return false;
@@ -361,30 +361,30 @@ public class ScilabInteger implements ScilabType {
 
         if (typeName.equals("TYPE8")) {
             if (unsigned) {
-                return ScilabIntegerTypeEnum.sci_uinteger8;
+                return ScilabIntegerTypeEnum.sci_uint8;
             } else {
-                return ScilabIntegerTypeEnum.sci_integer8;
+                return ScilabIntegerTypeEnum.sci_int8;
             }
         }
         if (typeName.equals("TYPE16")) {
             if (unsigned) {
-                return ScilabIntegerTypeEnum.sci_uinteger16;
+                return ScilabIntegerTypeEnum.sci_uint16;
             } else {
-                return ScilabIntegerTypeEnum.sci_integer16;
+                return ScilabIntegerTypeEnum.sci_int16;
             }
         }
         if (typeName.equals("TYPE32")) {
             if (unsigned) {
-                return ScilabIntegerTypeEnum.sci_uinteger32;
+                return ScilabIntegerTypeEnum.sci_uint32;
             } else {
-                return ScilabIntegerTypeEnum.sci_integer32;
+                return ScilabIntegerTypeEnum.sci_int32;
             }
         }
         if (typeName.equals("TYPE64")) {
             if (unsigned) {
-                return ScilabIntegerTypeEnum.sci_uinteger64;
+                return ScilabIntegerTypeEnum.sci_uint64;
             } else {
-                return ScilabIntegerTypeEnum.sci_integer64;
+                return ScilabIntegerTypeEnum.sci_int64;
             }
         }
         return null;
@@ -402,26 +402,26 @@ public class ScilabInteger implements ScilabType {
             return 0;
         }
         switch (this.getPrec()) {
-        case sci_integer8:
-        case sci_uinteger8:
+        case sci_int8:
+        case sci_uint8:
             if (byteData == null) {
                 return 0;
             }
             return byteData.length;
-        case sci_integer16:
-        case sci_uinteger16:
+        case sci_int16:
+        case sci_uint16:
             if (shortData == null) {
                 return 0;
             }
             return shortData.length;
-        case sci_integer32:
-        case sci_uinteger32:
+        case sci_int32:
+        case sci_uint32:
             if (intData == null) {
                 return 0;
             }
             return intData.length;
-        case sci_integer64:
-        case sci_uinteger64:
+        case sci_int64:
+        case sci_uint64:
             if (longData == null) {
                 return 0;
             }
@@ -441,26 +441,26 @@ public class ScilabInteger implements ScilabType {
             return 0;
         }
         switch (this.getPrec()) {
-        case sci_integer8:
-        case sci_uinteger8:
+        case sci_int8:
+        case sci_uint8:
             if (byteData == null) {
                 return 0;
             }
             return byteData[0].length;
-        case sci_integer16:
-        case sci_uinteger16:
+        case sci_int16:
+        case sci_uint16:
             if (shortData == null) {
                 return 0;
             }
             return shortData[0].length;
-        case sci_integer32:
-        case sci_uinteger32:
+        case sci_int32:
+        case sci_uint32:
             if (intData == null) {
                 return 0;
             }
             return intData[0].length;
-        case sci_integer64:
-        case sci_uinteger64:
+        case sci_int64:
+        case sci_uint64:
             if (longData == null) {
                 return 0;
             }
@@ -482,17 +482,17 @@ public class ScilabInteger implements ScilabType {
             return true;
         }
         switch (this.getPrec()) {
-        case sci_integer8:
-        case sci_uinteger8:
+        case sci_int8:
+        case sci_uint8:
             return byteData == null;
-        case sci_integer16:
-        case sci_uinteger16:
+        case sci_int16:
+        case sci_uint16:
             return shortData == null;
-        case sci_integer32:
-        case sci_uinteger32:
+        case sci_int32:
+        case sci_uint32:
             return intData == null;
-        case sci_integer64:
-        case sci_uinteger64:
+        case sci_int64:
+        case sci_uint64:
             return longData == null;
         default:
             return true;
@@ -526,6 +526,31 @@ public class ScilabInteger implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        switch (this.getPrec()) {
+        case sci_int8:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, byteData};
+        case sci_uint8:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, byteData};
+        case sci_int16:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, shortData};
+        case sci_uint16:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, shortData};
+        case sci_int32:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, intData};
+        case sci_uint32:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, intData};
+        case sci_int64:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, longData};
+        case sci_uint64:
+            return new Object[]{new int[]{this.getPrec().swigValue()}, longData};
+        }
+        return null;
+    }
+
+    /**
      * Display the representation in the Scilab language of the type<br />
      * Note that the representation can be copied/pasted straight into Scilab
      *
@@ -548,23 +573,23 @@ public class ScilabInteger implements ScilabType {
         result.append("int");
 
         switch (this.getPrec()) {
-        case sci_integer8:
-        case sci_uinteger8:
+        case sci_int8:
+        case sci_uint8:
             result.append("8");
             break;
 
-        case sci_integer16:
-        case sci_uinteger16:
+        case sci_int16:
+        case sci_uint16:
             result.append("16");
             break;
 
-        case sci_integer32:
-        case sci_uinteger32:
+        case sci_int32:
+        case sci_uint32:
             result.append("32");
             break;
 
-        case sci_integer64:
-        case sci_uinteger64:
+        case sci_int64:
+        case sci_uint64:
             result.append("64");
             break;
 

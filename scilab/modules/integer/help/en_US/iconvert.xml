@@ -42,8 +42,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    converts and stores data to one, two, four or eight bytes integers. 
-  </para>
+        converts and stores data to one, two, four or eight bytes integers.
+    </para>
     <variablelist>
       <varlistentry>
         <term>itype=0</term>
@@ -109,7 +109,7 @@ y=iconvert(b,1)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="double">double</link>

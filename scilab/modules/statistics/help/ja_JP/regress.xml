@@ -36,18 +36,20 @@
   <refsection>
     <title>説明</title>
     <para>
-	この関数は,共に同じ要素数<literal>n</literal>の数値ベクトルである
-	2つの変数<literal>x</literal> および <literal>y</literal>の
-	回帰係数を計算します.
-	<literal>coefs=[a b]</literal>  は,
-	<literal>Y=a+bX</literal>が
-	データの最小二乗推定近似の方程式となるような
-	1x2行列です.</para>
+      この関数は,共に同じ要素数<literal>n</literal>の数値ベクトルである
+      2つの変数<literal>x</literal> および <literal>y</literal>の
+      回帰係数を計算します.
+      <literal>coefs=[a b]</literal>  は,
+      <literal>Y=a+bX</literal>が
+      データの最小二乗推定近似の方程式となるような
+      1x2行列です.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -64,9 +66,5 @@ coefs=regress(x,y)
         <link linkend="covar">covar</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

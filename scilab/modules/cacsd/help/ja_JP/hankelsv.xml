@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>[nk2,W]=hankelsv(sl [,tol])
-[nk2]=hankelsv(sl [,tol])</synopsis>
+      [nk2]=hankelsv(sl [,tol])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -30,16 +31,18 @@
         <term>sl</term>
         <listitem>
           <para> 
-	線形システム(状態空間)を表す
-	<literal>syslin</literal> リスト.</para>
+            線形システム(状態空間)を表す
+            <literal>syslin</literal> リスト.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
           <para>
-	虚軸モードを検出するための許容誤差パラメータ	
-	(デフォルト値: <literal>1000*%eps</literal>).</para>
+            虚軸モードを検出するための許容誤差パラメータ	
+            (デフォルト値: <literal>1000*%eps</literal>).
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,13 +50,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>sl</literal>の
-	ハンケル特異値の二乗  <literal>nk2</literal>と,
-	<literal>W = P*Q</literal> = 可制御性グラミアンと
-	可観測性グラミアンの積を返します.
-</para>
-    <para><literal>nk2</literal> は<literal>W</literal>の
-	固有値のベクトルです.</para>
+      <literal>sl</literal>の
+      ハンケル特異値の二乗  <literal>nk2</literal>と,
+      <literal>W = P*Q</literal> = 可制御性グラミアンと
+      可観測性グラミアンの積を返します.
+    </para>
+    <para>
+      <literal>nk2</literal> は<literal>W</literal>の
+      固有値のベクトルです.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

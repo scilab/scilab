@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[symb]=varn(p)
-[pm]=varn(x,var)</synopsis>
+      [pm]=varn(x,var)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -49,10 +50,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>symb=varn(p)</literal> returns in <literal>symb</literal> the symbolic variable of the polynomial <literal>p</literal>
-    (i.e. <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).</para>
-    <para><literal>varn(x,'s')</literal> returns a polynomial matrix with same coefficients
-    as <literal>x</literal> but with <literal>'s'</literal> as symbolic variable (change of variable name).</para>
+    <para>
+      <literal>symb=varn(p)</literal> returns in <literal>symb</literal> the symbolic variable of the polynomial <literal>p</literal>
+      (i.e. <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).
+    </para>
+    <para>
+      <literal>varn(x,'s')</literal> returns a polynomial matrix with same coefficients
+      as <literal>x</literal> but with <literal>'s'</literal> as symbolic variable (change of variable name).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -63,7 +68,7 @@ varn(p,'x')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="horner">horner</link>

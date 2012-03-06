@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>loadhistory()
-loadhistory(f)</synopsis>
+      loadhistory(f)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -46,7 +47,7 @@ loadhistory(SCI+'/session.scilab')
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>
@@ -57,12 +58,6 @@ loadhistory(SCI+'/session.scilab')
       <member>
         <link linkend="gethistory">gethistory</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -17,7 +17,8 @@
 #include "gw_fftw.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[] = 
 {
@@ -33,31 +34,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/ 
 int gw_fftw(void)
 {  
-	Rhs = Max(0, Rhs);
-
-	if (Fin > 3) /* loadfftwlibrary, disposefftwlibrary, fftwlibraryisloaded not test if dll is loaded*/
-	{
-		if (!IsLoadedFFTW())
-		{
-			char *fftwlibNAME = getfftwlibname();
-
-			if (fftwlibNAME)
-			{
-				Scierror(999,_("FFTW Library %s not found.\n"),fftwlibNAME);
-			}
-			else
-			{
-				Scierror(999,_("FFTW Library not found.\n"));
-			}
-			
-			if (fftwlibNAME) {FREE(fftwlibNAME); fftwlibNAME=NULL;}
-			
-			return 0;
-		}
-	}
-
-	callFunctionFromGateway(Tab,SIZE_CURRENT_GENERIC_TABLE(Tab));
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -21,7 +21,6 @@
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "getos.h"
 #include "api_scilab.h"
 #include "charEncoding.h"

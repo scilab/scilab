@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-			installed = atomsGetInstalled(section)
-		</synopsis>
+      installed = atomsGetInstalled(section)
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -30,76 +30,76 @@
   <refsection>
     <title>Arguments</title>
     <variablelist>
-			
       <varlistentry>
         <term>installed</term>
         <listitem>
           <para>5xn String matrix :</para>
           <itemizedlist>
             <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-							</para>
-						</listitem>
-						<listitem>
-							<para><literal>2nd column</literal> : External module's version
-							</para>
+              <para>
+                <literal>1st column</literal> : External module's technical name
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>3rd column</literal> : allusers/user, this parameter tell if
-								the external module has been installed for all users or only for the
-								current user.
-							</para>
+                <literal>2nd column</literal> : External module's version
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>4th column</literal> : External module's installation path
-							</para>
+                <literal>3rd column</literal> : allusers/user, this parameter tell if
+                the external module has been installed for all users or only for the
+                current user.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>5th column</literal> : I/A, this parameter tell if
-								the external module has been automatically or intentionnaly installed.
-							</para>
+              <para>
+                <literal>4th column</literal> : External module's installation path
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>5th column</literal> : I/A, this parameter tell if
+                the external module has been automatically or intentionnaly installed.
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
-			
-			<varlistentry>
+      <varlistentry>
         <term>section</term>
         <listitem>
           <para>
-						This argument filter the output list.
-					</para>
+            This argument filter the output list.
+          </para>
           <para>
-						<literal>section</literal> is a single-string and its value should be :
-					</para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
               <para>
-								<literal>"all"</literal>: atomsGetInstalled() lists external
-								modules installed in both "user" and "allusers" sections.
-							</para>
+                <literal>"all"</literal>: atomsGetInstalled() lists external
+                modules installed in both "user" and "allusers" sections.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"allusers"</literal>: atomsGetInstalled() only lists
-								external modules	installed in the "allusers" section.
-							</para>
+                <literal>"allusers"</literal>: atomsGetInstalled() only lists
+                external modules	installed in the "allusers" section.
+              </para>
             </listitem>
             <listitem>
               <para>
-								<literal>"user"</literal>: atomsGetInstalled() only lists
-								external modules	installed in the "user" section.
-							</para>
+                <literal>"user"</literal>: atomsGetInstalled() only lists
+                external modules	installed in the "user" section.
+              </para>
             </listitem>
           </itemizedlist>
-					<para>
-						The default value is "all".
-					</para>
+          <para>
+            The default value is "all".
+          </para>
         </listitem>
-			</varlistentry>
-			
+      </varlistentry>
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -107,8 +107,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsGetInstalled</literal> returns the list of installed external modules
-	</para>
+    <para>
+      <literal>atomsGetInstalled</literal> returns the list of installed external modules
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -127,7 +128,7 @@ atomsRemove("toolbox_5");
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsInstall">atomsInstall</link>
@@ -140,10 +141,4 @@ atomsRemove("toolbox_5");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

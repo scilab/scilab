@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	modules = atomsAutoload()
+      modules = atomsAutoload()
     </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -32,50 +32,50 @@
     <variablelist>
       <varlistentry>
         <term>modules</term>
-          <listitem>
-            <para>
-	      4xn character string matrix:
-	    </para>
-  	    <informaltable border="1">
-		<!-- Module's technical name -->					
-		<tr>
-		  <td>
-		    <emphasis>1st Col.</emphasis>
-		  </td>
-		  <td>
-		    <emphasis role="strong">Module's technical name</emphasis>
-		  </td>
-		</tr>
-		<!-- Module's version -->				
-		<tr>
-		  <td>
-		    <emphasis>2nd Col.</emphasis>
-		  </td>
-		  <td>
-		    <emphasis role="strong">Module's version</emphasis>
-		  </td>
-		</tr>
-		<!-- Module's Installed Section -->	
-		<tr>
-		  <td>
-		    <emphasis>3rd Col.</emphasis>
-		  </td>
-		  <td>
-		    <emphasis role="strong">Module's installed section</emphasis>
-		  </td>
-		</tr>
-		<!-- Autoload Installation Path -->				
-		<tr>
-		  <td>
-		    <emphasis>4th Col.</emphasis>
-		  </td>
-		  <td>
-		    <emphasis role="strong">Module's installation path</emphasis>
-		  </td>
-		</tr>
-	    </informaltable>
-	  </listitem>
-      </varlistentry>			
+        <listitem>
+          <para>
+            4xn character string matrix:
+          </para>
+          <informaltable border="1">
+            <!-- Module's technical name -->
+            <tr>
+              <td>
+                <emphasis>1st Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Module's technical name</emphasis>
+              </td>
+            </tr>
+            <!-- Module's version -->
+            <tr>
+              <td>
+                <emphasis>2nd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Module's version</emphasis>
+              </td>
+            </tr>
+            <!-- Module's Installed Section -->
+            <tr>
+              <td>
+                <emphasis>3rd Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Module's installed section</emphasis>
+              </td>
+            </tr>
+            <!-- Autoload Installation Path -->
+            <tr>
+              <td>
+                <emphasis>4th Col.</emphasis>
+              </td>
+              <td>
+                <emphasis role="strong">Module's installation path</emphasis>
+              </td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -83,8 +83,9 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsAutoload</literal> returns the list of modules registered to autoload
-	</para>
+    <para>
+      <literal>atomsAutoload</literal> returns the list of modules registered to autoload
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -102,7 +103,7 @@ atomsAutoload()
   <!-- See also -->
   <!-- ===================================================================== -->
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
@@ -115,10 +116,4 @@ atomsAutoload()
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Simon GARESTE - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

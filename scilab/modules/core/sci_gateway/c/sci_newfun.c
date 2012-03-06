@@ -15,7 +15,6 @@
 #include <ctype.h>
 #include "gw_core.h"
 #include "BOOL.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Funtab.h"
 #include "IsAScalar.h"
@@ -145,22 +144,22 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
     {
         if (Is_a_correct_function_name(pStVarOne))
         {
-            int id[nsiz];
-            int i = 0;
-            int zero = 0;
-            int fptr = ifptr;
-            int job = 0 ;
+            //int id[nsiz];
+            //int i = 0;
+            //int zero = 0;
+            //int fptr = ifptr;
+            //int job = 0 ;
 
-            /* initialize id */
-            for(i = 0; i < nsiz; i++) id[i] = 0;
+            ///* initialize id */
+            //for(i = 0; i < nsiz; i++) id[i] = 0;
 
-            C2F(cvname)(id, pStVarOne,&zero,(unsigned long)strlen(pStVarOne));
-            job = SCI_HFUNCTIONS_ENTER;
-            C2F(funtab)(id,&fptr,&job,pStVarOne,(unsigned long)strlen(pStVarOne));
-            if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;};
+            //C2F(cvname)(id, pStVarOne,&zero,(unsigned long)strlen(pStVarOne));
+            //job = SCI_HFUNCTIONS_ENTER;
+            //C2F(funtab)(id,&fptr,&job,pStVarOne,(unsigned long)strlen(pStVarOne));
+            //if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;};
 
-            LhsVar(1) = 0;
-            PutLhsVar();
+            //LhsVar(1) = 0;
+            //PutLhsVar();
         }
         else
         {
@@ -180,27 +179,27 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname)
 {
-    if (functionname)
-    {
-        if ( (strlen(functionname) > 0) && (strlen(functionname) <  nlgh) )
-        {
-            int i = 0;
-            if (isdigit(functionname[0])) return FALSE;
-            for(i=1;i<(int)strlen(functionname);i++)
-            {
-                /*
-                ???? = 3
-                a___ = 3
-                c!!! = 3
-                */
-                if ( (functionname[i] != '_') && (functionname[i] != '?') && (functionname[i] != '!') )
-                {
-                    if (!isalnum(functionname[i])) return FALSE;
-                }
-            }
-            return TRUE;
-        }
-    }
+    //if (functionname)
+    //{
+    //    if ( (strlen(functionname) > 0) && (strlen(functionname) <  nlgh) )
+    //    {
+    //        int i = 0;
+    //        if (isdigit(functionname[0])) return FALSE;
+    //        for(i=1;i<(int)strlen(functionname);i++)
+    //        {
+    //            /*
+    //            ???? = 3
+    //            a___ = 3
+    //            c!!! = 3
+    //            */
+    //            if ( (functionname[i] != '_') && (functionname[i] != '?') && (functionname[i] != '!') )
+    //            {
+    //                if (!isalnum(functionname[i])) return FALSE;
+    //            }
+    //        }
+    //        return TRUE;
+    //    }
+    //}
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/

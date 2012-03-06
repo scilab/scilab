@@ -66,9 +66,9 @@
         <term>type</term>
         <listitem>
           <para>
-          a string, the solver to use. The available solvers are "adams",
-          "stiff", "rk", "rkf", "fix", "discrete" and "roots".
-        </para>
+            a string, the solver to use. The available solvers are "adams",
+            "stiff", "rk", "rkf", "fix", "discrete" and "roots".
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -127,7 +127,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>ode</literal> solves explicit Ordinary Different Equations defined by:
+    <para>
+      <literal>ode</literal> solves explicit Ordinary Different Equations defined by:
     </para>
     <para>
       <latex>
@@ -322,7 +323,8 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
       <varlistentry>
         <term>&lt;not given&gt;:</term>
         <listitem>
-          <para><literal>lsoda</literal> solver of package ODEPACK is called
+          <para>
+            <literal>lsoda</literal> solver of package ODEPACK is called
             by default. It automatically selects between nonstiff
             predictor-corrector Adams method and stiff Backward Differentiation
             Formula (BDF) method. It uses nonstiff method initially and
@@ -554,16 +556,6 @@ y=ode(y0,t0,t,'myode');
         <link linkend="rtitr">rtitr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          Alan C. Hindmarsh, Mathematics and Statistics Division, l-316 Livermore, CA, 94550.19
-        </para>
-      </listitem>
-    </itemizedlist>
   </refsection>
   <refsection>
     <title>Bibliography</title>

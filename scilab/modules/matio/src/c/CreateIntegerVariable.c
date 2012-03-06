@@ -13,7 +13,6 @@
  */
 
 #include "CreateMatlabVariable.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
@@ -213,9 +212,9 @@ int CreateIntegerVariable(void* pvApiCtx, int iVar, int integerType, matvar_t *m
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, 
+/*      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, 
 				matVariable->dims, matVariable->data, NULL, parent, item_position);
-    }
+*/    }
   
   return TRUE;
 }

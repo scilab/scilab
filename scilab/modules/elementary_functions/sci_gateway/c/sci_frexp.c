@@ -11,90 +11,85 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
-#include "basic_functions.h"
-#include "sciprint.h"
-#include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
-
+#include "localization.h"
+#include "basic_functions.h"
 /*--------------------------------------------------------------------------*/
-int sci_frexp(char *fname, void* pvApiCtx)
+int sci_frexp(char *fname, void *pvApiCtx)
 {
-	SciErr sciErr;
-	int i;
-	int iRows					= 0;
-	int iCols					= 0;
-	int iType					= 0;
+    SciErr sciErr;
+    int i;
+    int iRows = 0;
+    int iCols = 0;
+    int iType = 0;
 
+    int *piAddr = NULL;
 
-	int* piAddr				= NULL;
+    double *pdblReal = NULL;
+    double *pdblCoef = NULL;
+    double *pdblExp = NULL;
 
+    CheckRhs(1, 1);
+    CheckLhs(2, 2);
 
-	double *pdblReal	= NULL;
-	double *pdblCoef	= NULL;
-	double *pdblExp		= NULL;
-
-	CheckRhs(1,1);
-	CheckLhs(2,2);
-
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
-
-	sciErr = getVarType(pvApiCtx, piAddr, &iType);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
-
-	if(iType != sci_matrix)
-	{
-		OverLoad(1);
-		return 0;
-	}
-
-	if(isVarComplex(pvApiCtx, piAddr))
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         return 0;
-	}
+    }
 
-	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblCoef);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if (iType != sci_matrix)
+    {
+        OverLoad(1);
+        return 0;
+    }
 
-	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblExp);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if (isVarComplex(pvApiCtx, piAddr))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
+        return 0;
+    }
 
-	for(i = 0 ; i < iRows * iCols; i++)
-	{
-		pdblCoef[i] = dfrexps(pdblReal[i], &pdblExp[i]);
-	}
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	LhsVar(1) = Rhs + 1;
-	LhsVar(2) = Rhs + 2;
-	PutLhsVar();
-	return 0;
+    sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblCoef);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblExp);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    for (i = 0; i < iRows * iCols; i++)
+    {
+        pdblCoef[i] = dfrexps(pdblReal[i], &pdblExp[i]);
+    }
+
+    LhsVar(1) = Rhs + 1;
+    LhsVar(2) = Rhs + 2;
+    PutLhsVar();
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/

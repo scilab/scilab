@@ -15,8 +15,8 @@ package org.scilab.modules.xcos.block;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -52,15 +52,15 @@ import com.mxgraph.util.mxEventObject;
 /**
  * A SuperBlock contains an entire diagram on it. Thus it can be easily
  * customized by the user.
- * 
+ *
  * A SuperBlock can be created from any part of the diagram y selecting blocks
  * and applying the
  * {@link org.scilab.modules.xcos.block.actions.RegionToSuperblockAction}.
- * 
+ *
  * It can also appear to users as a normal block by applying a mask on it. In
  * this case the creator can use any SuperBlock context defined variable on a
  * prompt to the user.
- * 
+ *
  * @see SuperBlockDiagram
  * @see SuperblockMaskCreateAction
  * @see SuperblockMaskCustomizeAction
@@ -149,7 +149,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * openBlockSettings this method is called when a double click occurred on a
      * super block
-     * 
+     *
      * @param context
      *            parent diagram context
      * @see BasicBlock#openBlockSettings(String[])
@@ -172,9 +172,7 @@ public final class SuperBlock extends BasicBlock {
         /*
          * Specific case when we want to generate code.
          */
-        if (getChild() == null
-                && getSimulationFunctionType().compareTo(
-                        SimulationFunctionType.DEFAULT) != 0) {
+        if (getChild() == null && getSimulationFunctionType().compareTo(SimulationFunctionType.DEFAULT) != 0) {
             return;
         }
 
@@ -192,16 +190,14 @@ public final class SuperBlock extends BasicBlock {
 
             /*
              * Compatibility with older diagrams.
-             * 
+             *
              * Before Scilab 5.2.2, saved diagrams don't contains XML children
              * but use a pseudo scs_m structure instead.
-             * 
+             *
              * In this case child was null and we need to reconstruct child
              * diagram from scs_m.
              */
-            if (getChild() == null
-                    || getChild().getChildVertices(
-                            getChild().getDefaultParent()).length == 0) {
+            if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
                 child = null;
                 createChildDiagram();
             } else {
@@ -243,17 +239,22 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Action to be performed when the diagram is closed or whenever we have to
      * commit a child modification.
-     * 
+     *
      * This method does not handle tab closing operation.
      */
     public void syncParameters() {
         /*
          * Do not ask the user, the diagram is saved and closed.
-         * 
+         *
          * By this way we are sure that the main scs_m structure is always
          * valid.
+         *
+         * The child can be null in case of a block conversion (to native code
+         * or other)
          */
-        if (getChild().isModified()) {
+        if (getChild() != null && getChild().isModified()) {
+            // normal hierarchy case
+
             setRealParameters(new DiagramElement().encode(getChild()));
             getChild().setModified(true);
             getChild().setModifiedNonRecursively(false);
@@ -316,7 +317,7 @@ public final class SuperBlock extends BasicBlock {
             try {
                 element.decode(getRealParameters(), child, false);
             } catch (ScicosFormatException e) {
-                LogFactory.getLog(SuperBlock.class).error(e);
+                Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 return false;
             }
 
@@ -363,10 +364,8 @@ public final class SuperBlock extends BasicBlock {
             setParentDiagram(Xcos.findParent(this));
         }
 
-        final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks
-                .getAllBlocks(this);
-        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks
-                .getAllPorts(this);
+        final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+        final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
         for (IOBlocks block : IOBlocks.values()) {
             final int blockCount = blocksMap.get(block).size();
             int portCount = portsMap.get(block).size();
@@ -378,9 +377,9 @@ public final class SuperBlock extends BasicBlock {
                     port = block.getReferencedPortClass().newInstance();
                     addPort(port);
                 } catch (InstantiationException e) {
-                    LogFactory.getLog(SuperBlock.class).error(e);
+                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 } catch (IllegalAccessException e) {
-                    LogFactory.getLog(SuperBlock.class).error(e);
+                    Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
                 }
                 portCount++;
             }
@@ -391,9 +390,7 @@ public final class SuperBlock extends BasicBlock {
                 portCount--;
             }
         }
-        getParentDiagram().fireEvent(
-                new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-                        XcosConstants.EVENT_BLOCK_UPDATED, this));
+        getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
     }
 
     /**
@@ -423,7 +420,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Customize the parent diagram on name change
-     * 
+     *
      * @param value
      *            the new name
      * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
@@ -444,7 +441,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Clone the child safely.
-     * 
+     *
      * @return a new clone instance
      * @throws CloneNotSupportedException
      *             never
@@ -470,7 +467,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Encode the block as xml
-     * 
+     *
      * @param out
      *            the output stream
      * @throws IOException
@@ -482,7 +479,7 @@ public final class SuperBlock extends BasicBlock {
 
     /**
      * Decode the block as xml
-     * 
+     *
      * @param in
      *            the input stream
      * @throws IOException
@@ -490,8 +487,7 @@ public final class SuperBlock extends BasicBlock {
      * @throws ClassNotFoundException
      *             on error
      */
-    private void readObject(java.io.ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
         new XcosCodec().decode((Node) in.readObject(), this);
 
         /*

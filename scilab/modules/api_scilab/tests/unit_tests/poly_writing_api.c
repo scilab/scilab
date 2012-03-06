@@ -10,11 +10,10 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int write_poly(char *fname,unsigned long fname_len)
@@ -43,13 +42,15 @@ int write_poly(char *fname,unsigned long fname_len)
     pdblReal[3]             = pdblPoly3;
     pdblReal[4]             = pdblPoly4;
     pdblReal[5]             = pdblPoly5;
-    sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+
+    sciErr = createMatrixOfPoly(pvApiCtx, InputArgument + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+
     //assign allocated variables to Lhs position
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(1) = InputArgument + 1;
     return 0;
 }

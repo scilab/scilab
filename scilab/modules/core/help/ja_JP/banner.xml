@@ -6,7 +6,7 @@
   <refnamediv>
     <refname>banner</refname>
     <refpurpose>Scilabバナーを表示
-  (Windows)</refpurpose>
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
@@ -21,9 +21,5 @@
     <programlisting role="example"><![CDATA[ 
 clc();banner()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

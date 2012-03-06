@@ -13,14 +13,11 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_string.h"
-#include "stack-c.h"
-#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "strsplitfunction.h"
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname, void* pvApiCtx)

@@ -12,7 +12,6 @@
  */
 
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "CreateMatlabVariable.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
@@ -86,7 +85,7 @@ int CreateBooleanVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int *
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
+      //CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   
   return TRUE;

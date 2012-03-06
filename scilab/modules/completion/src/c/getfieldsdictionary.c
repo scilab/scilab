@@ -13,7 +13,6 @@
 #include <stdlib.h> /* qsort */
 #include "Scierror.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "getfieldsdictionary.h"
 #include "getPartLine.h"

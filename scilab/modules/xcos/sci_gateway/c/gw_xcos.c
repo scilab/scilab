@@ -12,7 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_xcos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "sci_mode.h"
@@ -28,7 +29,7 @@ static gw_generic_table Tab[] = {
     {NULL, ""}, //xcos
     {NULL, ""}, //warnBlockByUID
     {NULL, ""}, //closeXcos
-    {NULL, ""}, //xcosDiagramToHDF5
+    {NULL, ""}, //xcosDiagramToScilab
     {NULL, ""},  //"xcosPalLoad"
     {NULL, ""},  //"xcosPalCategoryAdd"
     {NULL, ""},  //"xcosPalDelete"
@@ -36,29 +37,14 @@ static gw_generic_table Tab[] = {
     {NULL, ""},  //"xcosPalEnable"
     {NULL, ""},  //"xcosPalDisable"
     {NULL, ""},  //"xcosPalGenerateIcon"
-    {NULL, ""} //"xcosConfigureXmlFile"
+    {NULL, ""}, //"xcosConfigureXmlFile"
+    {NULL, ""}, //xcosAddToolsMenu
+    {NULL, ""} //xcosUpdateBlock
 };
 
 /*--------------------------------------------------------------------------*/
 int gw_xcos(void)
 {
-    Rhs = Max(0, Rhs);
-
-    if (getScilabMode() == SCILAB_NWNI)
-    {
-        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
-        return 0;
-    }
-
-#if 0
-    if (!loadedDep              // never reload
-        && Tab[Fin - 1].f != sci_closeXcosFromScilab)   // do not load on close
-    {
-        loadOnUseClassPath("Xcos");
-        loadedDep = TRUE;
-    }
-#endif
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
 

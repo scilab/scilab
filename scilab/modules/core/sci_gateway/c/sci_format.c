@@ -12,8 +12,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -36,8 +34,6 @@ static void setVariableMode(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_format) (char *fname, void* pvApiCtx)
 {
-    Rhs = Max(0, Rhs);
-
     CheckRhs(0, 2);
     CheckLhs(0, 1);
 
@@ -439,38 +435,38 @@ static int sci_format_tworhs(char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 static void setVariableFormat(int numberDigits)
 {
-    int numberDigitsAdjusted = numberDigits;
+    //int numberDigitsAdjusted = numberDigits;
 
-    C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
+    //C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
 
-    numberDigitsAdjusted = Min(Max(format_MIN, numberDigits), format_MAX);
-    C2F(iop).lct[6] = numberDigitsAdjusted;
+    //numberDigitsAdjusted = Min(Max(format_MIN, numberDigits), format_MAX);
+    //C2F(iop).lct[6] = numberDigitsAdjusted;
 }
 
 /*--------------------------------------------------------------------------*/
 static void setVariableMode(void)
 {
-    C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
+    //C2F(iop).lct[5] = mode_variable;    /* set 'v' mode */
 }
 
 /*--------------------------------------------------------------------------*/
 static void set_e_Format(int numberDigits)
 {
-    int numberDigitsAdjusted = numberDigits;
+    //int numberDigitsAdjusted = numberDigits;
 
-    C2F(iop).lct[5] = mode_e;   /* set 'e' mode */
+    //C2F(iop).lct[5] = mode_e;   /* set 'e' mode */
 
-    numberDigitsAdjusted = Min(Max(format_MIN, numberDigits), format_MAX);
-    numberDigitsAdjusted = Max(numberDigitsAdjusted, format_e_MIN);
+    //numberDigitsAdjusted = Min(Max(format_MIN, numberDigits), format_MAX);
+    //numberDigitsAdjusted = Max(numberDigitsAdjusted, format_e_MIN);
 
-    C2F(iop).lct[6] = numberDigitsAdjusted;
+    //C2F(iop).lct[6] = numberDigitsAdjusted;
 }
 
 /*--------------------------------------------------------------------------*/
 static void getFormat(double *e_mode, double *numberDigits)
 {
-    *e_mode = (double)C2F(iop).lct[5];
-    *numberDigits = (double)C2F(iop).lct[6];
+    //*e_mode = (double)C2F(iop).lct[5];
+    //*numberDigits = (double)C2F(iop).lct[6];
 }
 
 /*--------------------------------------------------------------------------*/

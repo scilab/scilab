@@ -83,8 +83,8 @@ BOOL setlanguage(wchar_t *lang)
                 if (ret == NULL)
                 {
                     fprintf(stderr,
-                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?",
-                            lang, pstRet, setlocale(LC_CTYPE, NULL));
+                    "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?\n",
+                    lang, ret, setlocale(LC_CTYPE, NULL));
                 }
 
                 //for gettext

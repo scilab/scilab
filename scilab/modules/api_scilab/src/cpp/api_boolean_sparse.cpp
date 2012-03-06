@@ -17,15 +17,13 @@ extern "C"
 {
 #include <string.h>
 #include "MALLOC.h"
+#include "api_scilab.h"
 #include "call_scilab.h"
 #include "core_math.h"
-#include "api_common.h"
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
-#include "api_double.h"
 #include "api_internal_boolean_sparse.h"
 #include "localization.h"
-#include "api_oldstack.h"
 }
 
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)

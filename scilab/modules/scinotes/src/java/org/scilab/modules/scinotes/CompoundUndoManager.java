@@ -77,7 +77,9 @@ public class CompoundUndoManager extends UndoManager {
             compoundEdit = new CompoundEdit();
             addEdit(compoundEdit);
             ++nbEdits;
-            sdoc.getEditorPane().getEditor().enableUndoButton(true);
+            if (sdoc.getEditorPane().getEditor() != null) {
+                sdoc.getEditorPane().getEditor().enableUndoButton(true);
+            }
         }
     }
 
@@ -107,12 +109,14 @@ public class CompoundUndoManager extends UndoManager {
         endCompoundEdit();
         try {
             super.undo();
-            sdoc.getEditorPane().getEditor().enableRedoButton(true);
+            if (sdoc.getEditorPane().getEditor() != null) {
+                sdoc.getEditorPane().getEditor().enableRedoButton(true);
+            }
             --nbEdits;
             if (nbEdits == 0) {
                 sdoc.setContentModified(false);
             }
-            if (!canUndo()) {
+            if (!canUndo() && sdoc.getEditorPane().getEditor() != null) {
                 sdoc.getEditorPane().getEditor().enableUndoButton(false);
             }
         } catch (CannotUndoException e) {
@@ -127,12 +131,14 @@ public class CompoundUndoManager extends UndoManager {
         endCompoundEdit();
         try {
             super.redo();
-            sdoc.getEditorPane().getEditor().enableUndoButton(true);
+            if (sdoc.getEditorPane().getEditor() != null) {
+                sdoc.getEditorPane().getEditor().enableUndoButton(true);
+            }
             ++nbEdits;
             if (nbEdits == 0) {
                 sdoc.setContentModified(false);
             }
-            if (!canRedo()) {
+            if (!canRedo() && sdoc.getEditorPane().getEditor() != null) {
                 sdoc.getEditorPane().getEditor().enableRedoButton(false);
             }
         } catch (CannotRedoException e) {
@@ -145,8 +151,10 @@ public class CompoundUndoManager extends UndoManager {
      */
     public void enableUndoRedoButtons() {
         endCompoundEdit();
-        sdoc.getEditorPane().getEditor().enableRedoButton(canRedo());
-        sdoc.getEditorPane().getEditor().enableUndoButton(canUndo());
+        if (sdoc.getEditorPane().getEditor() != null) {
+            sdoc.getEditorPane().getEditor().enableRedoButton(canRedo());
+            sdoc.getEditorPane().getEditor().enableUndoButton(canUndo());
+        }
     }
 
     /**
@@ -226,3 +234,4 @@ public class CompoundUndoManager extends UndoManager {
         }
     }
 }
+

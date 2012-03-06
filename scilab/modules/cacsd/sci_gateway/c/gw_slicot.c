@@ -25,8 +25,9 @@
 #include "sci_rankqr.h"
 #include "sci_contr.h"
 #include "gw_slicot.h"
-#include "stack-c.h"
-/*--------------------------------------------------------------------------*/
+#include "api_scilab.h"
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/ 
 #ifndef __DEF_MXARRAY__
 #define __DEF_MXARRAY__
 typedef int mxArray;
@@ -79,23 +80,6 @@ static GenericTable Tab[]={
 /*--------------------------------------------------------------------------*/
 int gw_slicot(void)
 {
-	Rhs = Max(0, Rhs);
-	#ifdef _MSC_VER
-		#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f))((char*)Tab[Fin-1].name,Tab[Fin-1].F);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
-		}
-		#else
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-		#endif
-	#else
-		(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-	#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -14,12 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "O módulo \"%s\" do Scilab é desabilitado em modo -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -29,6 +33,10 @@ msgstr "%s: Memória esgotada.\n"
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -68,6 +76,9 @@ msgid ""
 msgstr ""
 "Não é possível de carregar a biblioteca Batik.\n"
 "Esperava-se a versão %s; mas obteve-se a %s."
+
+msgid "parent diagram not found."
+msgstr ""
 
 msgid "Preview"
 msgstr "Pré-visualização"
@@ -259,6 +270,9 @@ msgstr "Nova paleta"
 
 msgid "Open"
 msgstr "Abrir"
+
+msgid "Open file in Scilab current directory"
+msgstr ""
 
 msgid "Save"
 msgstr "Salvar"
@@ -839,7 +853,11 @@ msgstr "Iniciar Modelica"
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
-msgid "Wrong port number"
+msgid "Evaluation problem: wrong port number."
+msgstr ""
+
+#, c-format
+msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
@@ -1078,10 +1096,6 @@ msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
@@ -1229,8 +1243,7 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

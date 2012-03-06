@@ -17,7 +17,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_pwd(char *fname,void* pvApiCtx)

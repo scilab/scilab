@@ -94,12 +94,4 @@ bitcmp(uint8(99),8)
 expected = 156
    ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
-      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
-      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
-    </simplelist>
-  </refsection>
 </refentry>

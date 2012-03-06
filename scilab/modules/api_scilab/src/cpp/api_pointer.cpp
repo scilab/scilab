@@ -15,14 +15,11 @@
 
 extern "C"
 {
-#include "api_common.h"
-#include "api_internal_common.h"
-#include "api_pointer.h"
-#include "localization.h"
-
-#include "MALLOC.h"
+#include "api_scilab.h"
 #include "call_scilab.h"
-#include "api_oldstack.h"
+#include "api_internal_common.h"
+#include "localization.h"
+#include "MALLOC.h"
 }
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)

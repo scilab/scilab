@@ -49,7 +49,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Minimax approximation of multi-band, linear phase, FIR filter</para>
+      Minimax approximation of multi-band, linear phase, FIR filter
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -58,9 +59,5 @@ hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
 [hm,fr]=frmag(hn,256);
 plot(fr,hm),
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
   </refsection>
 </refentry>

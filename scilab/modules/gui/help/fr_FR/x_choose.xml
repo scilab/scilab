@@ -18,28 +18,28 @@
         <term>items  </term>
         <listitem>
           <para>vecteur colonne de chaînes de caractères. Les articles à choisir
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>title  </term>
         <listitem>
           <para>vecteur colonne de chaînes de caractères. Titre de la boîte
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>button  </term>
         <listitem>
           <para>chaîne de caractères, texte du bouton d'annulation ('Cancel' par défaut)
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>num  </term>
         <listitem>
           <para>entier, le numéro de l'article choisi ou 0 si "Cancel" a été pressé.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,8 +47,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie dans <literal>num</literal> le numéro de l'article choisi.
-  </para>
+      Renvoie dans <literal>num</literal> le numéro de l'article choisi.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -58,7 +58,7 @@ n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_choices">x_choices</link>

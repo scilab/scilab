@@ -10,28 +10,29 @@
  *
  */
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 int read_pointer(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
-	CheckRhs(0,1);
-	CheckLhs(1,1);
-	if(Rhs == 0)
+
+	CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+	if(InputArgument == 0)
 	{//create mode
-		double* pdblData	= (double*)malloc(sizeof(double) * 2 * 2);
+		double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
 		pdblData[0]			= 1;
 		pdblData[1]			= 3;
 		pdblData[2]			= 2;
 		pdblData[3]			= 4;
-		sciErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
+		sciErr = createPointer(pvApiCtx, InputArgument + 1, (void*)pdblData);
 	}
-	else if(Rhs == 1)
+	else if(InputArgument == 1)
 	{//read mode
 		int iType			= 0;
 		int* piAddr			= NULL;
@@ -50,7 +51,7 @@ int read_pointer(char *fname,unsigned long fname_len)
 			return 0;
 		}
 		pdblData = (double*)pvPtr;
-		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
+		sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, 2, 2, pdblData);
 	}
 	else
 	{
@@ -61,6 +62,6 @@ int read_pointer(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
-	LhsVar(1) = Rhs + 1;
+	AssignOutputVariable(1) = InputArgument + 1;
 	return 0;
 }

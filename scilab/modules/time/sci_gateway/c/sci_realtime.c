@@ -13,14 +13,13 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "realtime.h"
-#include "api_common.h"
-#include "api_double.h"
-#include "api_oldstack.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_realtimeinit(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
+  SciErr sciErr;
   int m1 = 0,n1 = 0;
   int * p1_in_address = NULL;
   double * pDblReal = NULL;
@@ -31,7 +30,11 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
 
   /*  checking variable scale */
 
-  CheckScalar(1,m1,n1);
+  if(isScalar(pvApiCtx, p1_in_address) == 0)
+  {
+      Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+      return 0;
+  }
 
   sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
   sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
@@ -46,7 +49,7 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
 /*--------------------------------------------------------------------------*/
 int sci_realtime(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
+  SciErr sciErr;
   int m1 = 0,n1 = 0;
   int * p1_in_address = NULL;
   double * pDblReal = NULL;
@@ -55,7 +58,11 @@ int sci_realtime(char *fname, void* pvApiCtx)
   CheckLhs(1,1);
 
   /*  checking variable t */
-  CheckScalar(1,m1,n1);
+  if(isScalar(pvApiCtx, p1_in_address) == 0)
+  {
+    Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+    return 0;
+  }
 
   sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
   sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);

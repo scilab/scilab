@@ -21,7 +21,7 @@
     <synopsis>
       assert_generror ( errormsg )
       assert_generror ( errormsg , errornb )
-
+      
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -98,9 +98,13 @@ funcprot(back);
    ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

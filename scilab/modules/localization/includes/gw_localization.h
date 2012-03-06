@@ -23,8 +23,8 @@ LOCALIZATION_IMPEXP int gw_localization(void);
 //LOCALIZATION_IMPEXP int sci_setlanguage(char *fname,unsigned long fname_len); -> C++
 //LOCALIZATION_IMPEXP int sci_getlanguage(char *fname,unsigned long fname_len); -> C++
 //LOCALIZATION_IMPEXP int sci_getdefaultlanguage(char *fname,unsigned long fname_len); -> C++
-LOCALIZATION_GW_IMPEXP int sci_dgettext(char *fname,unsigned long fname_len);
-LOCALIZATION_GW_IMPEXP int sci_dgettextchar(char *fname,unsigned long fname_len);
+LOCALIZATION_GW_IMPEXP int sci_dgettext(char *fname, void* pvApiCtx);
+LOCALIZATION_GW_IMPEXP int sci_dgettextchar(char *fname, void* pvApiCtx);
 //LOCALIZATION_IMPEXP int sci_setdefaultlanguage(char *fname,unsigned long fname_len); -> C++
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LOCALIZATION__ */

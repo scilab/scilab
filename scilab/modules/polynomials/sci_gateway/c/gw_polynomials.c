@@ -12,9 +12,10 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "stack-c.h"
 #include "gw_polynomials.h"
 #include "callFunctionFromGateway.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static int sci_notused(char *fname,unsigned long fname_len)
 {
@@ -23,7 +24,7 @@ static int sci_notused(char *fname,unsigned long fname_len)
 }
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-{sci_poly,"poly"},
+{sci_poly_primitive,"poly"},
 {sci_roots, "roots"},
 {sci_degree, "degree"},
 {sci_coeff, "coeff"},
@@ -44,7 +45,6 @@ static gw_generic_table Tab[] = {
 /*--------------------------------------------------------------------------*/
 int gw_polynomials(void)
 {
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

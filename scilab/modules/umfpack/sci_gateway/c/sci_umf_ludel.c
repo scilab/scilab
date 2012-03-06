@@ -4,6 +4,8 @@
  *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do 
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
  *
+ *  Copyright (C) 2012 - DIGITEO - Allan CORNET
+ *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
  * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
  *
@@ -52,54 +54,65 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-
+/*--------------------------------------------------------------------------*/
 extern CellAdr *ListNumeric;
-
+/*--------------------------------------------------------------------------*/
 int sci_umf_ludel(char* fname, unsigned long l)
 {
+    int mLU_ptr = 0, nLU_ptr = 0, lLU_ptr = 0, it_flag = 0;
+    void * Numeric = NULL;
+    CellAdr *Cell = NULL;
 
-  int mLU_ptr, nLU_ptr, lLU_ptr, it_flag;
-  void * Numeric;
-  CellAdr *Cell;
-  
-  /* Check numbers of input/output arguments */
-  CheckRhs(0,1); CheckLhs(1,1);
+    Rhs = Max(Rhs, 0);
 
-  if (Rhs == 0)      /* destroy all */ 
-    while ( ListNumeric )
-      {
-	Cell = ListNumeric;
-	ListNumeric = ListNumeric->next;
-	if (Cell->it == 0) 
-	  umfpack_di_free_numeric(&(Cell->adr));
-	else
-	  umfpack_zi_free_numeric(&(Cell->adr));
-	FREE(Cell);
-      }
-  else
+    /* Check numbers of input/output arguments */
+    CheckRhs(0, 1);
+    CheckLhs(1, 1);
+
+    if (Rhs == 0)      /* destroy all */ 
     {
-      /* get the pointer to the LU factors */
-      GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mLU_ptr, &nLU_ptr, &lLU_ptr);
-      Numeric = (void *) ((unsigned long int) *stk(lLU_ptr));
-      
-      /* Check if the pointer is a valid ref to ... */
-      if (RetrieveAdrFromList(Numeric, &ListNumeric, &it_flag)) 
-	  {
-		  /* free the memory of the numeric object */
-		  if ( it_flag == 0 )
-		  {
-			umfpack_di_free_numeric(&Numeric);
-		  }
-		  else
-		  {
-			umfpack_zi_free_numeric(&Numeric);
-		  }
-	  }
-	  else
-	  {
-		  Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"),fname,1);
-	  }
+        while ( ListNumeric )
+        {
+            Cell = ListNumeric;
+            ListNumeric = ListNumeric->next;
+            if (Cell->it == 0) 
+            {
+                umfpack_di_free_numeric(&(Cell->adr));
+            }
+            else
+            {
+                umfpack_zi_free_numeric(&(Cell->adr));
+            }
+            FREE(Cell);
+        }
     }
-  
-  return 0;
+    else
+    {
+        /* get the pointer to the LU factors */
+        GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mLU_ptr, &nLU_ptr, &lLU_ptr);
+        Numeric = (void *) ((unsigned long int) *stk(lLU_ptr));
+
+        /* Check if the pointer is a valid ref to ... */
+        if (RetrieveAdrFromList(Numeric, &ListNumeric, &it_flag)) 
+        {
+            /* free the memory of the numeric object */
+            if ( it_flag == 0 )
+            {
+                umfpack_di_free_numeric(&Numeric);
+            }
+            else
+            {
+                umfpack_zi_free_numeric(&Numeric);
+            }
+        }
+        else
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to (umf) LU factors.\n"),fname,1);
+            return 0;
+        }
+    }
+
+    PutLhsVar();
+    return 0;
 }
+/*--------------------------------------------------------------------------*/

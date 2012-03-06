@@ -24,14 +24,14 @@ using namespace types;
 
 int IntegerModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int8", &sci_int8, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint8", &sci_uint8, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int16", &sci_int16, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint16", &sci_uint16, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int32", &sci_int32, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint32", &sci_uint32, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int64", &sci_int64, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint64", &sci_uint64, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int8", &sci_integer8, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint8", &sci_uinteger8, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int16", &sci_integer16, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint16", &sci_uinteger16, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int32", &sci_integer32, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint32", &sci_uinteger32, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int64", &sci_integer64, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint64", &sci_uinteger64, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"double", &sci_double, MODULE_NAME));
 	return 1;

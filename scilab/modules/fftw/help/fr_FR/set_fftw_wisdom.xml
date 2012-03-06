@@ -25,7 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>
-     Cette fonction charge un wisdom fftw contenue dans une chaîne de caractères.
+      Cette fonction charge un wisdom fftw contenue dans une chaîne de caractères.
     </para>
   </refsection>
   <refsection>
@@ -40,7 +40,7 @@ fftw_forget_wisdom();
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

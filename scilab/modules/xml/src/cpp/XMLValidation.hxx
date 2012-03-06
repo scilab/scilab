@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,16 +30,15 @@ namespace org_modules_xml
      *
      * Base class for the XML validation.
      */
-    class XMLValidation : public XMLObject
+    class XMLValidation:public XMLObject
     {
 
-    public :
-
+public:
         /**
          * Retrieve all the open validation files
          * @return a list containing the validation objects
          */
-        static const std::list<XMLValidation *> & getOpenValidationFiles();
+        static const std::list < XMLValidation * >&getOpenValidationFiles();
 
         /**
          * Close all the validation files
@@ -49,7 +48,7 @@ namespace org_modules_xml
         /**
          * Default constructor
          */
-        XMLValidation();
+          XMLValidation();
 
         /**
          * Validate an already parsed document
@@ -70,7 +69,7 @@ namespace org_modules_xml
          * @param path the document path
          * @param error a string which will contain error messages
          */
-        bool validate(const char * path, std::string * error) const;
+        bool validate(const char *path, std::string * error) const;
 
         /**
          * Validate a document with a given content as string
@@ -82,21 +81,21 @@ namespace org_modules_xml
         /**
          * @return the validation file
          */
-        template <typename T>
-        T * getValidationFile() const { return (T *)validationFile; }
+          template < typename T > T * getValidationFile() const
+        {
+            return (T *) validationFile;
+        }
 
-    protected :
-
-        static std::string * errorBuffer;
-        static std::list<XMLValidation *> & openValidationFiles;
+protected:static std::string * errorBuffer;
+        static std::list < XMLValidation * >&openValidationFiles;
 
         /**
          * Error function for the XML parser
          * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlGenericErrorFunc
          */
-        static void errorFunction(void * ctx, const char * msg, ...);
+        static void errorFunction(void *ctx, const char *msg, ...);
 
-        void * validationFile;
+        void *validationFile;
     };
 }
 

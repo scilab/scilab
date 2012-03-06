@@ -15,8 +15,6 @@
 #include "gw_special_functions.h"
 #include "machine.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/

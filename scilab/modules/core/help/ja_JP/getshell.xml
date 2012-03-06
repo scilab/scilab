@@ -13,16 +13,14 @@
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
-    <para><literal>getshell</literal>は,カレントのコマンドインタプリタを返します.</para>
+    <para>
+      <literal>getshell</literal>は,カレントのコマンドインタプリタを返します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
 getshell()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

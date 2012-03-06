@@ -56,9 +56,12 @@
  ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Author</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>Function tempname introduced.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

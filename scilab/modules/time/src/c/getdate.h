@@ -3,6 +3,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,28 +17,39 @@
 #ifndef __GETDATE_H__
 #define __GETDATE_H__
 
-#ifdef _MSC_VER
-#include <sys/types.h> 
-#include <sys/timeb.h>
-#else
-#include <sys/time.h> 
-#endif
-
 #include "dynlib_time.h"
 
-/**
- * get current date
- * @param[out] dt time_t struct  
- * @param[out] ierr != 0 (fails)
- */
-TIME_IMPEXP void scigetdate(time_t *dt, int *ierr);
-
+#define NB_ELEMNT_ARRAY_GETDATE 10
 
 /**
- * Convert date time_t to int matrix
- * @param[in] dt time_t struct 
- * @param[out] datematrix date double matrix
- */
-TIME_IMPEXP void convertdate(time_t *dt, double datematrix[]);
+* Get Current Date as vector of double
+* @param[out] ierr 0 eqs. OK
+* return an array of double
+*/
+TIME_IMPEXP double *getCurrentDateAsDoubleVector(int *iErr);
+
+/**
+* Get Current Date as Unix Time convention
+* return a double
+*/
+TIME_IMPEXP double getCurrentDateAsUnixTimeConvention(void);
+
+/**
+* Convert a double (Unix Time Convention) to an human date
+* (a vector of double)
+* @param[in] date as a double
+* @param[out] ierr 0 eqs. OK
+* return an array of double
+*/
+TIME_IMPEXP double *getConvertedDateAsDoubleVector(double dDate, int *iErr);
+
+/**
+* Convert doubles (Unix Time Convention) to an human dates
+* (a matrix of double)
+* @param[in] date as a double
+* @param[out] ierr 0 eqs. OK
+* return an array of double
+*/
+TIME_IMPEXP double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iErr);
 
 #endif /* __GETDATE_H__ */

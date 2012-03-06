@@ -72,7 +72,9 @@
       <varlistentry>
         <term>err</term>
         <listitem>
-          <para> <literal>||y - impuls(H,npt)||^2</literal>, where <literal>impuls(H,npt)</literal> are the <literal>npt</literal> first coefficients of impulse response of <literal>H</literal></para>
+          <para>
+            <literal>||y - impuls(H,npt)||^2</literal>, where <literal>impuls(H,npt)</literal> are the <literal>npt</literal> first coefficients of impulse response of <literal>H</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,11 +82,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    Identification of discrete time response. If <literal>y</literal> is strictly
-    proper (<literal>y(1)=0</literal>) then <literal>time_id</literal> computes the least square
-    solution of the linear equation:  <literal>Den*y-Num*u=0</literal> with the
-    constraint  <literal>coeff(Den,n):=1</literal>. if <literal>y(1)~=0</literal> then the algorithm
-    first computes the proper part solution and then add  y(1) to the solution</para>
+      Identification of discrete time response. If <literal>y</literal> is strictly
+      proper (<literal>y(1)=0</literal>) then <literal>time_id</literal> computes the least square
+      solution of the linear equation:  <literal>Den*y-Num*u=0</literal> with the
+      constraint  <literal>coeff(Den,n):=1</literal>. if <literal>y(1)~=0</literal> then the algorithm
+      first computes the proper part solution and then add  y(1) to the solution
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -105,7 +108,7 @@ H=time_id(3,u,rep)    //with u as input and too high order required
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>
@@ -120,9 +123,5 @@ H=time_id(3,u,rep)    //with u as input and too high order required
         <link linkend="frep2tf">frep2tf</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Serge Steer INRIA</para>
   </refsection>
 </refentry>

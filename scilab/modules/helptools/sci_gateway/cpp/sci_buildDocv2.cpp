@@ -20,8 +20,6 @@ extern "C"
     /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "stack-c.h"
-#include "api_oldstack.h"
 #include "charEncoding.h"
 #include "gw_helptools.h"
 #include "Scierror.h"

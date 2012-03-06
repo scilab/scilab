@@ -12,7 +12,8 @@
  */
 
 #include <string.h>
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "gw_linear_algebra.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
@@ -33,9 +34,6 @@ static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
 /*--------------------------------------------------------------------------*/ 
 int gw_linear_algebra(void)
 {  
-	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

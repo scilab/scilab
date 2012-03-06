@@ -11,7 +11,6 @@
  *
  */
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "localization.h"
@@ -22,7 +21,6 @@
 #include "isdir.h"
 #include "charEncoding.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname ,void* pvApiCtx)

@@ -41,11 +41,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>If <literal>l</literal> is a  <literal>list</literal>  <literal>tlist</literal>
-    <literal>mlist</literal>  <literal>k=definedfields(l)</literal> returns in
-    <literal>k</literal> the indices of the defined list fields. This
-    function is useful because indexing undefined fields produces an
-    error.</para>
+    <para>
+      If <literal>l</literal> is a  <literal>list</literal>  <literal>tlist</literal>
+      <literal>mlist</literal>  <literal>k=definedfields(l)</literal> returns in
+      <literal>k</literal> the indices of the defined list fields. This
+      function is useful because indexing undefined fields produces an
+      error.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -61,7 +63,7 @@ definedfields(m)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="list">list</link>

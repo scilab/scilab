@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* Copyright (C) DIGITEO - 2010 - Allan CORNET
+* Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -70,7 +70,8 @@ int Console_Main(int argc, char **argv)
 
     if (ScilabDirectory == NULL)
     {
-        MessageBox (NULL, "ERROR" ,"getScilabDirectory()", MB_ICONSTOP | MB_OK);
+        // This message must never occur, but ...
+        MessageBox (NULL, "ERROR" , "Cannot determine the Scilab directory (SCI).", MB_ICONSTOP | MB_OK);
         exit(1);
     }
     else

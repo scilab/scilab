@@ -23,7 +23,8 @@ c
 
       if(rhs.le.0) then
 c     clear all variable but those created by the startup
-         nprotect=6
+c     %modalWarning %toolboxes %toolboxes_dir
+         nprotect=3
          nv=gtop-(isiz+1)-nprotect
          if(nv.gt.0) then 
             call iset(nv*nsiz,0,idstk(1,isiz+2+nprotect),1)

@@ -18,10 +18,8 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "stack-c.h"
 #include "callxcos.h"
-#include "api_common.h"
-#include "api_string.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -33,7 +31,7 @@ extern "C"
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_closeXcosFromScilab(char *fname, unsigned long fname_len)
+int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

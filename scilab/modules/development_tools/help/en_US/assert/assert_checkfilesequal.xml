@@ -22,7 +22,7 @@
       flag = assert_checkfilesequal ( filecomp , fileref )
       flag = assert_checkfilesequal ( filecomp , fileref , compfun )
       [flag,errmsg] = assert_checkfilesequal ( ... )
-
+      
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -69,7 +69,14 @@
     </para>
     <para>
       If the files are not equal,
-      <itemizedlist><listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem><listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem></itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>if the errmsg output variable is not used, an error is generated,</para>
+        </listitem>
+        <listitem>
+          <para>if the errmsg output variable is used, no error is generated.</para>
+        </listitem>
+      </itemizedlist>
     </para>
     <para>
       If the comparison function compfun is a function, it should have header areequal = compfun ( txtcomp , txtref )
@@ -191,9 +198,13 @@ endfunction
    ]]></programlisting>
   </refsection>
   <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-    </simplelist>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revdescription>Function introduced
+        </revdescription>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

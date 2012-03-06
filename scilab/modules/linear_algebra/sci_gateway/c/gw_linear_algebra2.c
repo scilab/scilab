@@ -15,7 +15,8 @@
 #include "gw_linear_algebra.h"
 #include "gw_linear_algebra2.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 #define LINEAR_ALGEBRA2_TAB_SIZE 15
 static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={

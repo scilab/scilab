@@ -96,6 +96,7 @@ parallel \
 modules_manager \
 ui_data \
 history_browser \
+preferences \
 xml \
 types
 
@@ -123,7 +124,7 @@ pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 #libscilab_cli_la_SOURCES =
 
-libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS)
 #libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
@@ -232,8 +233,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+        $(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
 
 # Core modules
@@ -254,7 +256,7 @@ libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) $(top_builddir)/modules/ty
 
 libscilab_cli_la_SOURCES =
 
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+libscilab_cli_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

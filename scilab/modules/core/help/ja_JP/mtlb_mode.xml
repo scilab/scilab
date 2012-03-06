@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>mmode=mtlb_mode()
-mtlb_mode(mmode)</synopsis>
+      mtlb_mode(mmode)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -26,16 +27,16 @@ mtlb_mode(mmode)</synopsis>
   <refsection>
     <title>説明</title>
     <para>
-	以下のように空の行列を使用した場合の
-    Scilab および Matlab の加算および除算の動作は
-	異なります:
-  </para>
+      以下のように空の行列を使用した場合の
+      Scilab および Matlab の加算および除算の動作は
+      異なります:
+    </para>
     <variablelist>
       <varlistentry>
         <term>Scilab</term>
         <listitem>
-          <para></para>
-          <programlisting role = ""><![CDATA[ 
+          <para/>
+          <programlisting role=""><![CDATA[ 
 a+[] -->a
 a-[] -->a
 []+a -->a
@@ -46,7 +47,7 @@ a-[] -->a
       <varlistentry>
         <term>Matlab</term>
         <listitem>
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
@@ -55,11 +56,14 @@ a-[] -->[]
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal> mtlb_mode(%t)</literal>  は加算および除算をMatlab互換モードに
-	切り替えます.
-	<literal> mtlb_mode(%f)</literal>  はScilabモードに戻します.
-</para>
-    <para><literal> mtlb_mode()</literal>はカレントの mmodeの値を返します.</para>
+    <para>
+      <literal> mtlb_mode(%t)</literal>  は加算および除算をMatlab互換モードに
+      切り替えます.
+      <literal> mtlb_mode(%f)</literal>  はScilabモードに戻します.
+    </para>
+    <para>
+      <literal> mtlb_mode()</literal>はカレントの mmodeの値を返します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

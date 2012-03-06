@@ -34,7 +34,9 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>文字列 <literal>'svd'</literal> (デフォルト) または <literal>'qr'</literal></para>
+          <para>
+            文字列 <literal>'svd'</literal> (デフォルト) または <literal>'qr'</literal>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,12 +55,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>W=kernel(A)</literal> は<literal>A</literal>のカーネル (ヌル空間)を返します. 
-	A が列フルランクの場合, 空の行列 [] が返されます.</para>
-    <para><literal>flag</literal> および <literal>tol</literal> は
-	オプションのパラメータです: <literal>flag = 'qr'</literal> 
-    または <literal>'svd'</literal> (デフォルトは <literal>'svd'</literal>).</para>
-    <para><literal>tol</literal> = 許容誤差パラメータ (デフォルト値は <literal>%eps</literal> のオーダ).</para>
+    <para>
+      <literal>W=kernel(A)</literal> は<literal>A</literal>のカーネル (ヌル空間)を返します. 
+      A が列フルランクの場合, 空の行列 [] が返されます.
+    </para>
+    <para>
+      <literal>flag</literal> および <literal>tol</literal> は
+      オプションのパラメータです: <literal>flag = 'qr'</literal> 
+      または <literal>'svd'</literal> (デフォルトは <literal>'svd'</literal>).
+    </para>
+    <para>
+      <literal>tol</literal> = 許容誤差パラメータ (デフォルト値は <literal>%eps</literal> のオーダ).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -85,9 +93,5 @@ clean(A*kernel(A))
         <link linkend="linsolve">linsolve</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F.D.;   </para>
   </refsection>
 </refentry>

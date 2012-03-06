@@ -14,10 +14,6 @@
 #include <string.h>
 #include "gw_windows_tools.h"
 #include "api_scilab.h"
-#include "stack-c.h"
-#include "api_scilab.h"
-#include "api_oldstack.h"
-
 /*--------------------------------------------------------------------------*/
 int sci_win64(char *fname, void* pvApiCtx)
 {

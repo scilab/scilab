@@ -10,8 +10,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>clearglobal()
-clearglobal nam1 .. namn
-clearglobal('nam1', ..,'namn')</synopsis>
+      clearglobal nam1 .. namn
+      clearglobal('nam1', ..,'namn')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -26,12 +27,17 @@ clearglobal('nam1', ..,'namn')</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>clearglobal() </literal> kills all the global variables.</para>
-    <para><literal>clearglobal nam1 .. namn</literal>  kills  the global variables given by
-    their names</para>
     <para>
-    Note that <literal>clearglobal() </literal> only clears the global variables, the
-    local copies of these global variables are not destroyed.</para>
+      <literal>clearglobal() </literal> kills all the global variables.
+    </para>
+    <para>
+      <literal>clearglobal nam1 .. namn</literal>  kills  the global variables given by
+      their names
+    </para>
+    <para>
+      Note that <literal>clearglobal() </literal> only clears the global variables, the
+      local copies of these global variables are not destroyed.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -44,7 +50,7 @@ who('global')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="global">global</link>

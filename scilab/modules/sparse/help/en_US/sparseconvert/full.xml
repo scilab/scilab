@@ -41,9 +41,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X=full(sp)</literal> converts the sparse matrix <literal>sp</literal> into its
-    full representation. (If <literal>sp</literal> is already full then <literal>X</literal> equals
-    <literal>sp</literal>).</para>
+    <para>
+      <literal>X=full(sp)</literal> converts the sparse matrix <literal>sp</literal> into its
+      full representation. (If <literal>sp</literal> is already full then <literal>X</literal> equals
+      <literal>sp</literal>).
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +55,7 @@ A=full(sp)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

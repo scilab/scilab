@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Generator: Launchpad (build 14838)\n"
 "Language: ca\n"
 
 #, c-format
@@ -353,6 +353,10 @@ msgstr "%s: Hi ha hagut un error: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1025,27 +1029,19 @@ msgid "No print service found."
 msgstr "No s'ha trobat el servei d'impressió."
 
 msgid ""
-"disp(\"In some cases, "
-"\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\" fixes the issue\")"
+"WARNING: Due to your configuration limitations, Scilab switched in a mode "
+"where mixing uicontrols and graphics is not available. Type %s for more "
+"information."
+msgstr ""
+
+msgid "In some cases, %s fixes the issue"
 msgstr ""
 
 msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+"Due to your video card drivers limitations, that are not able to manage "
+"OpenGL, Scilab will not be able to draw any graphics. Please update your "
+"driver."
 msgstr ""
-"disp(\"Avís: Degut a limitacions en la vostra configuració, el Scilab no pot "
-"canviar a un mode amb uicontrols i gràfics. Escriviu \"\"help usecanvas\"\" "
-"per més informació.\")"
-
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
-msgstr ""
-"disp(\"Avís: Degut a limitacions en els controladors de la vostra targeta de "
-"vídeo, que no poden utilitzar OpenGL, el Scilab no podrà dibuixar cap "
-"gràfic. Actualitzeu els vostres controladors.\")"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1218,17 +1214,14 @@ msgstr "Desa i executa"
 msgid "Empty tab"
 msgstr ""
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -1283,30 +1276,17 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, c-format
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
-
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "El Scilab Consortium (DIGITEO)"
-
-msgid "Copyright (c) 1989-2012 (INRIA)"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr "Copyright (c) 1989-2007 (ENPC)"
-
-msgid "CeCILL License"
-msgstr "Llicència CeCILL"
 
 msgid "About Scilab..."
 msgstr "Quant al Scilab..."
 
-msgid "Acknowledgements"
-msgstr "Reconeixements"
-
 msgid "Close"
 msgstr "Tanca"
+
+msgid "Acknowledgements"
+msgstr "Reconeixements"
 
 msgid "Could not open: "
 msgstr ""

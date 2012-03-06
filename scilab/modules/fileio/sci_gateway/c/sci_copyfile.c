@@ -14,7 +14,6 @@
 #include <errno.h>
 #endif
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -25,7 +24,6 @@
 #include "splitpath.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
-#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename);
 static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx);

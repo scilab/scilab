@@ -19,7 +19,6 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "Scierror.h"

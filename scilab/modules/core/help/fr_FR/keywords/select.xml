@@ -10,9 +10,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
+    </para>
+    <programlisting role=""><![CDATA[ 
 select expr,
   case expr1 then instructions1,
   case expr2 then instructions2,
@@ -22,21 +22,21 @@ select expr,
 end
  ]]></programlisting>
     <para>
-    Notes :
-  </para>
+      Notes :
+    </para>
     <itemizedlist>
       <listitem>
         <para>La seule contrainte est que chaque mot-clé "then" soit sur la même ligne que le "case" correspondant.</para>
       </listitem>
       <listitem>
         <para>Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.
-     Les <literal>instructions1</literal> sont exécutées si <literal>expr1=expr</literal>, etc. 
-</para>
+          Les <literal>instructions1</literal> sont exécutées si <literal>expr1=expr</literal>, etc. 
+        </para>
       </listitem>
     </itemizedlist>
     <para>
-    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k..
-  </para>
+      Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k..
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +55,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="if">if</link>

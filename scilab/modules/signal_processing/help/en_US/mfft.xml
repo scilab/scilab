@@ -17,7 +17,9 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para> <literal>x(i,j,k,...)</literal> input signal in the form of a row vector whose values are arranged so that the i index runs the quickest, followed by the j index, etc.</para>
+          <para>
+            <literal>x(i,j,k,...)</literal> input signal in the form of a row vector whose values are arranged so that the i index runs the quickest, followed by the j index, etc.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -29,13 +31,17 @@
       <varlistentry>
         <term>dim</term>
         <listitem>
-          <para>dimension vector which gives the number of values of <literal>x</literal> for each of its indices</para>
+          <para>
+            dimension vector which gives the number of values of <literal>x</literal> for each of its indices
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xk</term>
         <listitem>
-          <para>output of multidimensional fft in same format as for <literal>x</literal></para>
+          <para>
+            output of multidimensional fft in same format as for <literal>x</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,13 +49,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    FFT for a multi-dimensional signal</para>
+      FFT for a multi-dimensional signal
+    </para>
     <para>
-    For example for a three dimensional vector which has three points
-    along its first dimension, two points along its second
-    dimension and three points along its third dimension the row
-    vector is arranged as follows</para>
-    <programlisting role = ""><![CDATA[ 
+      For example for a three dimensional vector which has three points
+      along its first dimension, two points along its second
+      dimension and three points along its third dimension the row
+      vector is arranged as follows
+    </para>
+    <programlisting role=""><![CDATA[ 
 x=[x(1,1,1),x(2,1,1),x(3,1,1),
    x(1,2,1),x(2,2,1),x(3,2,1),
    x(1,1,2),x(2,1,2),x(3,1,2),
@@ -58,10 +66,7 @@ x=[x(1,1,1),x(2,1,1),x(3,1,1),
    x(1,2,3),x(2,2,3),x(3,2,3)]
  ]]></programlisting>
     <para>
-    and the <literal>dim</literal> vector is: <literal>dim=[3,2,3]</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      and the <literal>dim</literal> vector is: <literal>dim=[3,2,3]</literal>
+    </para>
   </refsection>
 </refentry>

@@ -12,9 +12,8 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "version.h"
-#include "api_oldstack.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER

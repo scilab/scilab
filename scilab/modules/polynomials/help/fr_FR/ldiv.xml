@@ -18,28 +18,29 @@
         <term>n,d  </term>
         <listitem>
           <para>deux matrices réelles de polynômes
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k  </term>
         <listitem>
           <para>entier
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>x=ldiv(n,d,k)</literal> donne les <literal>k</literal> premiers coefficients de la division longue
-    de <literal>n</literal> par <literal>d</literal> i.e. le développement de Taylor de la matrice rationnelle
-    <literal>[nij(z)/dij(z)]</literal> à l'infini.
-  </para>
     <para>
-    Les coefficients du développement de <literal>nij/dij</literal> sont stockés dans  
-    <literal>x((i-1)*n+k,j)  k=1:n</literal>
-  </para>
+      <literal>x=ldiv(n,d,k)</literal> donne les <literal>k</literal> premiers coefficients de la division longue
+      de <literal>n</literal> par <literal>d</literal> i.e. le développement de Taylor de la matrice rationnelle
+      <literal>[nij(z)/dij(z)]</literal> à l'infini.
+    </para>
+    <para>
+      Les coefficients du développement de <literal>nij/dij</literal> sont stockés dans  
+      <literal>x((i-1)*n+k,j)  k=1:n</literal>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -54,7 +55,7 @@ x3=ldiv(numer(wtfbis),denom(wtfbis),5)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="arl2">arl2</link>

@@ -12,7 +12,8 @@
 
 package org.scilab.modules.xcos.io.codec;
 
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
+
 import org.scilab.modules.xcos.port.Orientation;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -23,7 +24,7 @@ import com.mxgraph.io.mxObjectCodec;
 
 /**
  * Encode and decode an Orientation.
- * 
+ *
  * This class is need as jgraphx doesn't provide serialization for enums.
  */
 public class OrientationCodec extends mxObjectCodec {
@@ -35,7 +36,7 @@ public class OrientationCodec extends mxObjectCodec {
 
     /**
      * Constructor with template
-     * 
+     *
      * @param template
      *            the default instance
      */
@@ -52,7 +53,7 @@ public class OrientationCodec extends mxObjectCodec {
 
     /**
      * Encode the orientation
-     * 
+     *
      * @param enc
      *            the encoder instance
      * @param obj
@@ -75,7 +76,7 @@ public class OrientationCodec extends mxObjectCodec {
 
     /**
      * Decode the orientation
-     * 
+     *
      * @param dec
      *            the decoder
      * @param node
@@ -96,8 +97,7 @@ public class OrientationCodec extends mxObjectCodec {
          * Return the first value when unable to get it.
          */
         if (value == null) {
-            LogFactory.getLog(OrientationCodec.class).error(
-                    "Corrupted diagram, port may be wrongly oriented");
+            Logger.getLogger(OrientationCodec.class.toString()).severe("Corrupted diagram, port may be wrongly oriented");
             return Orientation.values()[0];
         }
 

@@ -43,7 +43,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "gw_umfpack.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "taucs_scilab.h"
 /*--------------------------------------------------------------------------*/
@@ -66,7 +67,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_umfpack(void)
 {
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

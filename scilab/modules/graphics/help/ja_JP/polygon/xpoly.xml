@@ -41,20 +41,23 @@
         <term>close</term>
         <listitem>
           <para>整数. close=1の場合, ポリラインは閉じられます; デフォルト値は
-          0です.</para>
+            0です.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xpoly</literal> は座標<literal>xv</literal> および<literal>yv</literal>の
-	ベクトルにより記述されるポリラインを1つ描画します.
-	 <literal>xv</literal> および
-    <literal>yv</literal> が行列の場合,  これらは列を結合したベクトルとみなされます.
-	<literal>dtype</literal> はカレントの線種を用いる場合には
-    <literal>"lines"</literal>,ポリラインを描画する際に
-	カレントのマーカを使用する場合には<literal>"marks"</literal>となります.</para>
+    <para>
+      <literal>xpoly</literal> は座標<literal>xv</literal> および<literal>yv</literal>の
+      ベクトルにより記述されるポリラインを1つ描画します.
+      <literal>xv</literal> および
+      <literal>yv</literal> が行列の場合,  これらは列を結合したベクトルとみなされます.
+      <literal>dtype</literal> はカレントの線種を用いる場合には
+      <literal>"lines"</literal>,ポリラインを描画する際に
+      カレントのマーカを使用する場合には<literal>"marks"</literal>となります.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -83,9 +86,5 @@ e.closed = 'off' // ポリラインはオープンになります
         <link linkend="xpolys">xpolys</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.</para>
   </refsection>
 </refentry>

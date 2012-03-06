@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,7 +23,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -35,13 +34,15 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlDump(char *fname, void* pvApiCtx)
 {
-    XMLObject * obj = 0;
+    XMLObject *obj = 0;
     int id;
     int type;
+    int b;
     SciErr err;
-    int * addr = 0;
-    std::vector<std::string> lines;
-    std::vector<const char *> clines;
+    int *addr = 0;
+
+    std::vector < std::string > lines;
+    std::vector < const char *>clines;
     bool indent = true;
 
     CheckLhs(1, 1);
@@ -63,7 +64,7 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    obj = XMLObject::getFromId<XMLObject>(id);
+    obj = XMLObject::getFromId < XMLObject > (id);
     if (!obj)
     {
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
@@ -80,13 +81,12 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 2, "boolean");
             return 0;
         }
 
-        int b;
         if (getScalarBoolean(pvApiCtx, addr, &b))
         {
             return 0;
@@ -94,9 +94,9 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
         indent = b != 0;
     }
 
-    lines = std::vector<std::string>();
+    lines = std::vector < std::string > ();
     SplitString::split(obj->dump(indent), lines);
-    clines = std::vector<const char *>(lines.size());
+    clines = std::vector < const char *>(lines.size());
 
     for (unsigned int i = 0; i < lines.size(); i++)
     {
@@ -105,7 +105,7 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
 
     if (clines.size())
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
     }
     else
     {
@@ -115,7 +115,7 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -123,4 +123,5 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

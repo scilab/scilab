@@ -36,7 +36,8 @@
         <term>fmt</term>
         <listitem>
           <para>(optional) a string to set up the display format for
-        colorbar graduations</para>
+            colorbar graduations
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,24 +45,24 @@
   <refsection>
     <title>Description</title>
     <para>
-     Draw a colorbar for a plot3d, fec, Sgrayplot, etc... The function may be called
-     <emphasis role="bold">BEFORE</emphasis> the plot3d, fec, Sgrayplot,... because its sets and changes the
-     frame for the plot. This way the colorbar is not part of the associated plot and 
-     so is not modified by a zoom or a rotation.
+      Draw a colorbar for a plot3d, fec, Sgrayplot, etc... The function may be called
+      <emphasis role="bold">BEFORE</emphasis> the plot3d, fec, Sgrayplot,... because its sets and changes the
+      frame for the plot. This way the colorbar is not part of the associated plot and 
+      so is not modified by a zoom or a rotation.
     </para>
     <para>
-     The optional argument <literal>colminmax</literal> may be used to precise the first color
-     (associated with umin) and the the last color (associated with umax) of the current 
-     colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the 
-     number of colors of the current colormap.
+      The optional argument <literal>colminmax</literal> may be used to precise the first color
+      (associated with umin) and the the last color (associated with umax) of the current 
+      colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the 
+      number of colors of the current colormap.
     </para>
     <para>
-     The optional argument <literal>fmt</literal> is a string containing a
-     C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc... 
+      The optional argument <literal>fmt</literal> is a string containing a
+      C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc... 
     </para>
     <para>
-     For the 2 optional arguments you can use the syntax
-     <literal>keyword=value</literal> (see the last example).
+      For the 2 optional arguments you can use the syntax
+      <literal>keyword=value</literal> (see the last example).
     </para>
   </refsection>
   <refsection>
@@ -124,17 +125,11 @@ show_window()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-     B. Pincon, S. Steer
-  </para>
   </refsection>
 </refentry>

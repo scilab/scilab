@@ -35,7 +35,9 @@
         <term>str</term>
         <listitem>
           <para>文字列の行列.</para>
-          <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeXまたはMathML式</link>を記述することが可能です.</para>
+          <para>
+            Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeXまたはMathML式</link>を記述することが可能です.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,27 +56,43 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>x</literal> が実数スカラーの場合, 
-	<literal>y</literal>の大きさのベクトルの要素を
-	<literal>x</literal>に設定するとみなされます.</para>
-    <para><literal>y</literal> が実数スカラーの場合,<literal>x</literal>の大きさのベクトルの要素を
-	<literal>y</literal>に設定するとみなされます.</para>
-    <para><literal>xstring</literal> は文字列をカレントのグラフィックスケールの
-	位置<literal>(x[i], y[i])</literal>に描画します.
-	</para>
-    <para><literal>str</literal> がn個の要素を有する場合,これらのn個の要素は
-	n個の文字列として描画されます.</para>
+    <para>
+      <literal>x</literal> が実数スカラーの場合, 
+      <literal>y</literal>の大きさのベクトルの要素を
+      <literal>x</literal>に設定するとみなされます.
+    </para>
+    <para>
+      <literal>y</literal> が実数スカラーの場合,<literal>x</literal>の大きさのベクトルの要素を
+      <literal>y</literal>に設定するとみなされます.
+    </para>
+    <para>
+      <literal>xstring</literal> は文字列をカレントのグラフィックスケールの
+      位置<literal>(x[i], y[i])</literal>に描画します.
+    </para>
+    <para>
+      <literal>str</literal> がn個の要素を有する場合,これらのn個の要素は
+      n個の文字列として描画されます.
+    </para>
     <para>そうでない場合,行列の各行がテキストの行を意味し,
-	行の要素は空白で区切られた単語を意味します.</para>
-    <para><literal>angle</literal> が実数スカラーの場合, 
-	要素<literal>angle</literal>に設定される
-	大きさnのベクトルとみなされます.</para>
-    <para><literal>angle(i)</literal> は位置<literal>(x[i], y[i])</literal>
-	に文字列を描画する際に使用される傾き(単位:度)を指定します.</para>
-    <para><literal>box</literal> が整数スカラーの場合, 
-	要素が<literal>box</literal>に設定される大きさnのベクトルとみなされます.</para>
-    <para><literal>box(i)</literal> が 1で, <literal>angle(i)</literal>が 0の場合, 
-	位置<literal>(x[i], y[i])</literal>の文字列の周囲にボックスが描画されます.</para>
+      行の要素は空白で区切られた単語を意味します.
+    </para>
+    <para>
+      <literal>angle</literal> が実数スカラーの場合, 
+      要素<literal>angle</literal>に設定される
+      大きさnのベクトルとみなされます.
+    </para>
+    <para>
+      <literal>angle(i)</literal> は位置<literal>(x[i], y[i])</literal>
+      に文字列を描画する際に使用される傾き(単位:度)を指定します.
+    </para>
+    <para>
+      <literal>box</literal> が整数スカラーの場合, 
+      要素が<literal>box</literal>に設定される大きさnのベクトルとみなされます.
+    </para>
+    <para>
+      <literal>box(i)</literal> が 1で, <literal>angle(i)</literal>が 0の場合, 
+      位置<literal>(x[i], y[i])</literal>の文字列の周囲にボックスが描画されます.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -120,9 +138,5 @@ xset("default")
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

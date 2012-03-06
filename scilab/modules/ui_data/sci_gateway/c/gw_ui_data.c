@@ -11,7 +11,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_ui_data.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 #include "sci_mode.h"
@@ -25,27 +26,12 @@ static gw_generic_table Tab[]=
 {
     {NULL, ""}, //"editvar"
     {NULL, ""}, //"browsevar"
-    {sci_filebrowser, "filebrowser"},
-    {sci_updatebrowsevar, "updatebrowsevar"}
+    {NULL, ""}, //filebrowser
+    {NULL, ""} //updatebrowsevar
 };
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
 {
-	Rhs = Max(0, Rhs);
-
-	if ( getScilabMode() == SCILAB_NWNI)
-	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "ui_data");
-		return 0;
-	}
-
-/*	if (!loadedDep)
-	{
-		loadOnUseClassPath("ui_data");
-		loadedDep = TRUE;
-	}
-*/
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

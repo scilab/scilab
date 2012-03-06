@@ -25,7 +25,6 @@ extern "C"
 #include "api_scilab.h"
 #include "api_internal_poly.h"
 #include "api_internal_common.h"
-#include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
@@ -164,7 +163,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     InternalType** out = pStr->m_pOut;
 	int *piAddr     = NULL;
-    int rhs = _iVar - api_Rhs((int*)_pvCtx);
+    int rhs = _iVar - *getInputArgument(_pvCtx);
 	int iSize       = _iRows * _iCols;
 	int iTotalLen   = 0;
 

@@ -25,8 +25,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    returns the string <literal>'c*d'</literal>
-    Trivial simplifications such as <literal>'1*c' = 'c'</literal> are performed.</para>
+      returns the string <literal>'c*d'</literal>
+      Trivial simplifications such as <literal>'1*c' = 'c'</literal> are performed.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -37,7 +38,7 @@ mulf('0','a')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rdivf">rdivf</link>

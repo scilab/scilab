@@ -41,9 +41,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>lc=lstcat(l1,..ln)</literal> catenates components of <literal>li</literal> lists in a
-    single list. If the <literal>li</literal> are other type of variables they are simply
-    added to the resulting list.</para>
+    <para>
+      <literal>lc=lstcat(l1,..ln)</literal> catenates components of <literal>li</literal> lists in a
+      single list. If the <literal>li</literal> are other type of variables they are simply
+      added to the resulting list.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +55,7 @@ lstcat(1,2,3)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="list">list</link>

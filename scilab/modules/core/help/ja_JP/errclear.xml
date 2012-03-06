@@ -14,11 +14,13 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>n</literal>型のエラーに結合されたアクション(エラーハンドラ)
-	をクリアします.</para>
+      <literal>n</literal>型のエラーに結合されたアクション(エラーハンドラ)
+      をクリアします.
+    </para>
     <para>
-    <literal>n</literal> が正の場合,クリアされるエラーの番号となります ;
-	それ以外の場合,全ての誤差がクリアされます (デフォルトの場合)</para>
+      <literal>n</literal> が正の場合,クリアされるエラーの番号となります ;
+      それ以外の場合,全ての誤差がクリアされます (デフォルトの場合)
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>

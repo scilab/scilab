@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>halt()
-halt('a message')</synopsis>
+      halt('a message')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -36,7 +37,7 @@ halt()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pause">pause</link>

@@ -32,7 +32,7 @@ function [rep,stat] = java(java_filename)
 			commandline = jre_path() +  "/bin/java -cp " ..
 				+ SCI + "/modules/javasci/jar/javasci.jar" ..
 				+ ":. -Djava.library.path=" ..
-				+ SCI + "/../../lib/scilab/ " + fname ;
+				+ SCI + "/../../lib/scilab/ " + fname;
 		
 		else
 			mprintf("libjavasci not found\n");

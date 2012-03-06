@@ -107,31 +107,31 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
     }
 
 /**
-     * Get a map between the fields name and the associated ScilabType objects
-     *
-     * @return the map
-     */
+ * Get a map between the fields name and the associated ScilabType objects
+ *
+ * @return the map
+ */
     public Map<String, ScilabType> getTListFields() {
-	Map<String, ScilabType> map = new HashMap<String, ScilabType>();
-	if (isEmpty()) {
-	    return map;
-	}
+        Map<String, ScilabType> map = new HashMap<String, ScilabType>();
+        if (isEmpty()) {
+            return map;
+        }
 
-	ScilabString mat = (ScilabString) get(0);
-	if (mat.isEmpty()) {
-	    return map;
-	}
+        ScilabString mat = (ScilabString) get(0);
+        if (mat.isEmpty()) {
+            return map;
+        }
 
-	String[] fields = mat.getData()[0];
-	for (int i = 1; i < fields.length; i++) {
-	    if (i < size()) {
-		map.put(fields[i], get(i));
-	    } else {
-		map.put(fields[i], null);
-	    }
-	}
+        String[] fields = mat.getData()[0];
+        for (int i = 1; i < fields.length; i++) {
+            if (i < size()) {
+                map.put(fields[i], get(i));
+            } else {
+                map.put(fields[i], null);
+            }
+        }
 
-	return map;
+        return map;
     }
 
     /**
@@ -140,16 +140,16 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
      * @return the mlist type
      */
     public String getTListType() {
-	if (isEmpty()) {
-	    return null;
-	}
+        if (isEmpty()) {
+            return null;
+        }
 
-	ScilabString mat = (ScilabString) get(0);
-	if (mat.isEmpty()) {
-	    return null;
-	}
+        ScilabString mat = (ScilabString) get(0);
+        if (mat.isEmpty()) {
+            return null;
+        }
 
-	return mat.getData()[0][0];
+        return mat.getData()[0][0];
     }
 
     /**
@@ -184,6 +184,27 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
             return 0;
         }
         return size();
+    }
+
+    /**
+     * Get a serialized list;
+     * The format is the following:
+     *   i) returned[0] is an array of integers containing the Scilab type (ScilabTypeEunm) of the different elements of the list.
+     *   ii) returned[i] for i&gt;=1 contains the serialized form of each items.
+     * @return a serialized SiclabList/
+     */
+    public Object[] getSerializedObject() {
+        int[] types = new int[size()];
+        Object[] items = new Object[types.length + 1];
+
+        for (int i = 0; i < types.length; i++) {
+            ScilabType var = get(i);
+            types[i] = var.getType().swigValue();
+            items[i + 1] = var.getSerializedObject();
+        }
+        items[0] = types;
+
+        return items;
     }
 
     /**

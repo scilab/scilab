@@ -260,6 +260,11 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
         filterIndex = getJuigetfileFilterIndex();
         menuCallback = getJuigetfileMenuCallback();
     }
+    catch(const GiwsException::JniCallMethodException & exception)
+    {
+        Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+        return 0;
+    }
     catch(const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());

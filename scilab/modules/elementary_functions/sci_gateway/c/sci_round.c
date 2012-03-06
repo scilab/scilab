@@ -16,7 +16,6 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 SciErr round_double(void* pvApiCtx, int* _piAddress);
 SciErr round_poly(void* pvApiCtx, int* _piAddress);

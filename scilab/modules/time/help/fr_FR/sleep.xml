@@ -24,8 +24,10 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>sleep</literal>Sleep suspend Scilab durant la durée specifiée en
-    millisecondes.</para>
+    <para>
+      <literal>sleep</literal>Sleep suspend Scilab durant la durée specifiée en
+      millisecondes.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -34,7 +36,7 @@ tic;sleep(6000);toc
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xpause">xpause</link>
@@ -43,9 +45,5 @@ tic;sleep(6000);toc
         <link linkend="pause">pause</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Allan CORNET</para>
   </refsection>
 </refentry>

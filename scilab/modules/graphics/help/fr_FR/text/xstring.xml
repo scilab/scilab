@@ -24,7 +24,9 @@
         <term>str</term>
         <listitem>
           <para>matrice de chaînes de caractères.</para>
-          <para>A partir de la version Scilab 5.2, il est possible d'utiliser les expressions <link linkend="math_rendering_features_in_graphic">LaTeX ou MathML</link></para>
+          <para>
+            A partir de la version Scilab 5.2, il est possible d'utiliser les expressions <link linkend="math_rendering_features_in_graphic">LaTeX ou MathML</link>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,15 +45,31 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Si <literal>x</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>y</literal> dont les éléments ont pour valeur <literal>x</literal>.</para>
-    <para>Si <literal>y</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>x</literal> dont les éléments ont pour valeur <literal>y</literal>.</para>
-    <para><literal>xstring</literal> dessine n chaînes de caractères à la position <literal>(x[i], y[i])</literal> dans l'échelle graphique courante.</para>
-    <para>Si <literal>str</literal> contient n élément, ces n éléments sont les n chaînes de caractères dessinées.</para>
+    <para>
+      Si <literal>x</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>y</literal> dont les éléments ont pour valeur <literal>x</literal>.
+    </para>
+    <para>
+      Si <literal>y</literal> est un scalaire, il est considéré comme un vecteur de la taille de <literal>x</literal> dont les éléments ont pour valeur <literal>y</literal>.
+    </para>
+    <para>
+      <literal>xstring</literal> dessine n chaînes de caractères à la position <literal>(x[i], y[i])</literal> dans l'échelle graphique courante.
+    </para>
+    <para>
+      Si <literal>str</literal> contient n élément, ces n éléments sont les n chaînes de caractères dessinées.
+    </para>
     <para>Sinon, chaque ligne de la matrice correspond à une ligne de texte et les éléments d'une ligne sont considérés comme des mots à séparer par un espace.</para>
-    <para>Si <literal>angle</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>angle</literal>.</para>
-    <para><literal>angle(i)</literal> définit l'angle en degrés utilisé pour dessiner la chaînes de caractères en position <literal>(x[i], y[i])</literal>.</para>
-    <para>Si <literal>box</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>box</literal>.</para>
-    <para>Si <literal>box(i)</literal> vaut 1 et que <literal>angle(i)</literal> vaut 0, une boîte est dessinée autour de la chaîne de caractères en position <literal>(x[i], y[i])</literal>.</para>
+    <para>
+      Si <literal>angle</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>angle</literal>.
+    </para>
+    <para>
+      <literal>angle(i)</literal> définit l'angle en degrés utilisé pour dessiner la chaînes de caractères en position <literal>(x[i], y[i])</literal>.
+    </para>
+    <para>
+      Si <literal>box</literal> est un scalaire, il est considéré comme un vecteur de taille n dont les éléments ont pour valeur <literal>box</literal>.
+    </para>
+    <para>
+      Si <literal>box(i)</literal> vaut 1 et que <literal>angle(i)</literal> vaut 0, une boîte est dessinée autour de la chaîne de caractères en position <literal>(x[i], y[i])</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -97,9 +115,5 @@ xset("default")
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

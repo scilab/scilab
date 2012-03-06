@@ -41,13 +41,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
-    a vector <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
-    corresponding to colors components red, green and blue. As usual 0 means no intensity and 
-    255 means all the intensity of the color.
+    <para>
+      <literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
+      a vector <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
+      corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+      255 means all the intensity of the color.
     </para>
-    <para> If no color is found <literal>[]</literal> is returned.</para>
-    <para> The list of all known colors is given by <link linkend="color_list">color_list</link>.</para>
+    <para>
+      If no color is found <literal>[]</literal> is returned.
+    </para>
+    <para>
+      The list of all known colors is given by <link linkend="color_list">color_list</link>.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -57,7 +62,7 @@ rgb2name(rgb)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="color">color</link>

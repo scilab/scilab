@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>res=javaclasspath()
-javaclasspath(path)</synopsis>
+      javaclasspath(path)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -37,7 +38,8 @@ javaclasspath(path)</synopsis>
   <refsection>
     <title>Description</title>
     <para>set and get the dynamic Java path to one or more directory or file
-    specifications given in path.</para>
+      specifications given in path.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -46,9 +48,5 @@ res=javaclasspath();
 javaclasspath(SCI);
 javaclasspath([SCI,SCI+'/java']);
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

@@ -17,20 +17,19 @@
   <refnamediv>
     <refname>fcontour</refname>
     <refpurpose>level curves on a 3D surface defined by a
-  function</refpurpose>
+      function
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
-fcontour(xr,yr,f,nz,&lt;opt_args&gt;)</synopsis>
+      fcontour(xr,yr,f,nz,&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>This function is obsolete. It is now included in the
-      <link linkend="contour">contour</link> function.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>J.Ph.C.</para>
+      <link linkend="contour">contour</link> function.
+    </para>
   </refsection>
 </refentry>

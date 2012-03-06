@@ -117,6 +117,7 @@ int gw_dynamic_graphic_export(void);
 int gw_dynamic_xml(void);
 
 
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 

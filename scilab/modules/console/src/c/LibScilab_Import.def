@@ -16,6 +16,8 @@ vstk_
 getrhsvar_
 checklhs_
 checkrhs_
+createvar_
+createvarfromptr_
 recu_
 iop_
 createvar_

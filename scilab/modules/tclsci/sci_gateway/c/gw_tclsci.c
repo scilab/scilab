@@ -17,7 +17,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "gw_tclsci.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "inisci-c.h"
 #include "sci_mode.h"
 #include "callFunctionFromGateway.h"
@@ -46,30 +47,6 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_tclsci(void)
 {
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if (bFirstTclInit)
-		{
-			InitializeTclTk();
-			bFirstTclInit = FALSE;
-		}
-		
-		if (isTkStarted())
-		{
-			Rhs = Max(0, Rhs);
-			callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-		}
-		else
-		{
-			sciprint(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
-		}
-	}
-	else
-	{
-		Scierror(999,_("Tcl/TK interface disabled in -nogui mode.\n"));
-		return 0;
-	}
-
   return 0;
 }
 /*--------------------------------------------------------------------------*/

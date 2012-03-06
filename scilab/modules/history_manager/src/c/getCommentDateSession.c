@@ -50,7 +50,7 @@ char *getCommentDateSession(BOOL longFormat)
 
     if (time_str)
     {
-        int historyLineSize = strlen(SESSION_PRAGMA_BEGIN) + strlen(time_str) + strlen(FORMAT_SESSION) + strlen(SESSION_PRAGMA_END) + 1;
+        size_t historyLineSize = strlen(SESSION_PRAGMA_BEGIN) + strlen(time_str) + strlen(FORMAT_SESSION) + strlen(SESSION_PRAGMA_END) + 1;
 
         if (longFormat)
         {

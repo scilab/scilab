@@ -13,20 +13,18 @@
 #include "api_scilab.h"
 #include "gw_parallel.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "callFunctionFromGateway.h"
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-    {NULL, "" }, // "parallel_run"
-    {NULL, ""} // "parallel_concurrency"
+static gw_generic_table Tab[] = {
+    {NULL, ""},                 // "parallel_run"
+    {NULL, ""}                  // "parallel_concurrency"
 };
+
 /*--------------------------------------------------------------------------*/
 int gw_parallel(void)
 {
-    Rhs = Max(0, Rhs);
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

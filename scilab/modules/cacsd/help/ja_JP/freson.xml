@@ -28,7 +28,9 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,8 +44,8 @@
   <refsection>
     <title>説明</title>
     <para>
-	SISOプラント <literal>h</literal> に関して,
-	ピーク周波数のベクトル(単位: Hz)を返します.
+      SISOプラント <literal>h</literal> に関して,
+      ピーク周波数のベクトル(単位: Hz)を返します.
     </para>
   </refsection>
   <refsection>

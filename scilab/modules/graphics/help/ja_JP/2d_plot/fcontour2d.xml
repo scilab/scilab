@@ -21,15 +21,13 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>fcontour2d(xr,yr,f,nz,[style,strf,leg,rect,nax])
-fcontour2d(xr,yr,f,nz,&lt;opt_args&gt;)</synopsis>
+      fcontour2d(xr,yr,f,nz,&lt;opt_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>D説明</title>
     <para>この関数は廃止されており,
-      <link linkend="contour2d">contour2d</link> 関数に統合されています.</para>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
+      <link linkend="contour2d">contour2d</link> 関数に統合されています.
+    </para>
   </refsection>
 </refentry>

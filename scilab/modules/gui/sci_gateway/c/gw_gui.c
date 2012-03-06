@@ -13,8 +13,9 @@
 
 #include <string.h>
 #include "gw_gui.h"
-#include "stack-c.h"
 #include "sci_mode.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -64,34 +65,6 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
 {
-	Rhs = Max(0, Rhs);
-
-	if ( getScilabMode() == SCILAB_NWNI)
-	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "GUI");
-		return 0;
-	}
-
-        /**
-         * We have to load the 'graphic' jars for
-         * - uicontrol
-         * - uimenu
-         * because these functions need to create a figure to put the created object inside.
-         *
-         * **** TODO create Scilab figures without a canvas inside and remove this crappy test. ****
-         *
-         */
-        if (!loadedDep && (strcmp(Tab[Fin-1].name, "uicontrol")==0
-			   || strcmp(Tab[Fin-1].name, "uimenu")==0
-			   || strcmp(Tab[Fin-1].name, "usecanvas")==0))
-          {
-            loadOnUseClassPath("graphics");
-            loadedDep = TRUE;
-          }
-
-
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

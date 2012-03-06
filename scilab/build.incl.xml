@@ -65,6 +65,7 @@
     <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
     <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
     <pathelement location="${library.core.dir}/${library.core.name}"/>
+    <pathelement location="${library.preferences.dir}/${library.preferences.name}"/>
     <!-- Not use at build time but used for unitary tests -->
     <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
     <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
@@ -121,7 +122,7 @@
       <!-- Where ${basedir} is the module base directory -->
       <env key="SCI" value="${basedir}/../.."/>
       <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
     </testng>
   </target>
   <target name="validate">
@@ -159,7 +160,9 @@
   </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources" depends="init">
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6">
+      <compilerarg value="-Xlint"/>
+    </javac>
   </target>
   <target name="existing-tests">
     <available property="test-present" file="${src.test.dir}"/>

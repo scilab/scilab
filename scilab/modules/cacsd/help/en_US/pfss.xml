@@ -21,9 +21,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>elts=pfss(Sl)
-elts=pfss(Sl,rmax)
-elts=pfss(Sl,cord)
-elts=pfss(Sl,rmax,cord)</synopsis>
+      elts=pfss(Sl,rmax)
+      elts=pfss(Sl,cord)
+      elts=pfss(Sl,rmax,cord)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -33,8 +34,7 @@ elts=pfss(Sl,rmax,cord)</synopsis>
         <listitem>
           <para>
             A linear dynamical system in state-space or transfer
-            function representation (see <link
-            linkend="syslin">syslin</link>).
+            function representation (see <link linkend="syslin">syslin</link>).
           </para>
         </listitem>
       </varlistentry>
@@ -61,7 +61,7 @@ elts=pfss(Sl,rmax,cord)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Partial fraction decomposition of the linear system <literal>Sl</literal>.
+      Partial fraction decomposition of the linear system <literal>Sl</literal>.
     </para>
     <para>
       <literal>elts</literal> is the list of linear systems which add up to <literal>Sl</literal>
@@ -71,7 +71,8 @@ elts=pfss(Sl,rmax,cord)</synopsis>
       <literal>Sl = S1 + S2 +... +Sn</literal>.
     </para>
     <para>
-      Each <literal>Si</literal> contains some poles of <literal/>S according to the 
+      Each <literal>Si</literal> contains some poles of <literal/>
+      Saccording to the 
       block-diagonalization of the <literal>A</literal> matrix of <literal>S</literal>.
     </para>
     <para>
@@ -105,13 +106,11 @@ elts=pfss(Sl,rmax,cord)</synopsis>
     W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
     clean(ss2tf(W)-W1)
     ]]></programlisting>
-
     <programlisting role="example"><![CDATA[ 
     num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
     den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
     h2=syslin('c',num/den);
     ]]></programlisting>
-
   </refsection>
   <refsection role="see also">
     <title>See Also</title>
@@ -129,9 +128,5 @@ elts=pfss(Sl,rmax,cord)</synopsis>
         <link linkend="dtsi">dtsi</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D., INRIA   </para>
   </refsection>
 </refentry>

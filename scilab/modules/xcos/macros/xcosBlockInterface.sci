@@ -11,15 +11,13 @@
 //
 //
 
-function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
-			    interfaceAlias, job, hdf5ContextFile)
+function blk = xcosBlockInterface(interfaceAlias, job, blk, context)
 	
 	// push some old scicos variable in environment. 
 	needcompile = 0;
 	alreadyran = %f;
 	
 	// define context
-	import_from_hdf5(hdf5ContextFile);
 	%scicos_context = struct();
 	[%scicos_context, ierr] = script2var(context, %scicos_context)
 	
@@ -35,28 +33,21 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 	end
 	//end of for backward compatibility for scifunc
 
-	status = import_from_hdf5(hdf5FileToLoad);
-	if ~status then
-		error(msprintf(gettext("%s: Unable to import data from %s"), "xcosBlockInterface", hdf5FileToLoad));
-	end
-	
-	ierr = execstr("[new_scs_m, y, typ] = interfaceAlias(job, scs_m, [])", 'errcatch');
+	ierr = execstr("[new_blk, y, typ] = interfaceAlias(job, blk, [])", 'errcatch');
 	if ierr <> 0 then
 		[msg, err] = lasterror();
 		disp(msg);
-		export_to_hdf5(hdf5FileToSave, "scs_m");
-		return;
+		return blk;
 	end
 	
 	// Check if the block has been updated or not.
 	// If the data has changed then we don't need to recompile (indicated by 
 	// no file creation).
-	updated = and([needcompile == 0, and(new_scs_m == scs_m)]) <> %t;
+	updated = and([needcompile == 0, and(new_blk == blk)]) <> %t;
 	if updated then
-		export_to_hdf5(hdf5FileToSave, "new_scs_m");
+		blk = new_blk;
 	else
-		deletefile(hdf5FileToSave);
+		blk = [];
 	end
-
 endfunction
 

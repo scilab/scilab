@@ -626,6 +626,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-se
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations_gw", "modules\differential_equations\sci_gateway\differential_equations_gw.vcxproj", "{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preferences", "modules\preferences\src\c\preferences.vcxproj", "{7B893E9F-D032-44DE-9B71-197A29C4989B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "swig-all", "Visual-Studio-settings\swig-all\swig-all.vcxproj", "{85303A11-CF6B-432F-B3FD-24DEFFB51025}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1914,6 +1918,22 @@ Global
 		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|Win32.Build.0 = Release|Win32
 		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|x64.ActiveCfg = Release|x64
 		{99D6BDD6-2226-43A1-B0FA-9D412BBCA6DD}.Release|x64.Build.0 = Release|x64
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|Win32.Build.0 = Debug|Win32
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|x64.ActiveCfg = Debug|x64
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Debug|x64.Build.0 = Debug|x64
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|Win32.ActiveCfg = Release|Win32
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|Win32.Build.0 = Release|Win32
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|x64.ActiveCfg = Release|x64
+		{7B893E9F-D032-44DE-9B71-197A29C4989B}.Release|x64.Build.0 = Release|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|Win32.Build.0 = Debug|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|x64.ActiveCfg = Debug|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|x64.Build.0 = Debug|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|Win32.ActiveCfg = Release|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|Win32.Build.0 = Release|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|x64.ActiveCfg = Release|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,4 @@
 #include <math.h>
-#include "stack-c.h" 
 #include "api_scilab.h"
 #include "api_oldstack.h"
 

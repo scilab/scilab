@@ -13,8 +13,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>
-    C = conv2(A,B [,shape])
-    C = conv2(hrow,hcol,B [,shape])
+      C = conv2(A,B [,shape])
+      C = conv2(hrow,hcol,B [,shape])
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -24,7 +24,7 @@
         <term>hrow</term>
         <listitem>
           <para>
-	    実数または複素数ベクトル.
+            実数または複素数ベクトル.
           </para>
         </listitem>
       </varlistentry>
@@ -32,7 +32,7 @@
         <term>hcol</term>
         <listitem>
           <para>
-	    実数または複素数ベクトル.
+            実数または複素数ベクトル.
           </para>
         </listitem>
       </varlistentry>
@@ -40,7 +40,7 @@
         <term>A</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -48,7 +48,7 @@
         <term>B</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -56,18 +56,21 @@
         <term>shape</term>
         <listitem>
           <para>
-	    オプション文字列で値は以下のどれか:
+            オプション文字列で値は以下のどれか:
           </para>
           <itemizedlist>
-            <listitem><literal>"full"</literal>, <literal>conv2</literal>
-	    は完全な2次元畳み込みを計算します. これがデフォルト値です.
+            <listitem>
+              <literal>"full"</literal>, <literal>conv2</literal>
+              は完全な2次元畳み込みを計算します. これがデフォルト値です.
             </listitem>
-            <listitem><literal>"same"</literal>, <literal>conv2</literal>
-	    は<literal>A</literal>と同じ大きさの畳み込みの
-	    中央部を計算します.
+            <listitem>
+              <literal>"same"</literal>, <literal>conv2</literal>
+              は<literal>A</literal>と同じ大きさの畳み込みの
+              中央部を計算します.
             </listitem>
-            <listitem><literal>"valid"</literal>, <literal>conv2</literal>
-	    は<literal>A</literal>のゼロパディングなしの畳み込み部分を計算します.
+            <listitem>
+              <literal>"valid"</literal>, <literal>conv2</literal>
+              は<literal>A</literal>のゼロパディングなしの畳み込み部分を計算します.
             </listitem>
           </itemizedlist>
         </listitem>
@@ -76,7 +79,7 @@
         <term>C</term>
         <listitem>
           <para>
-	    実数または複素数二次元配列.
+            実数または複素数二次元配列.
           </para>
         </listitem>
       </varlistentry>
@@ -84,38 +87,45 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>conv2</literal>は空間的な2次元畳み込み方程式の
-    一般的な実装を使用します.
+    <para>
+      <literal>conv2</literal>は空間的な2次元畳み込み方程式の
+      一般的な実装を使用します.
     </para>
-    <para><literal>C=conv2(A,B [,shape])</literal> 
-    はベクトル
-    <literal>A</literal>および <literal>B</literal>の2次元畳み込みを
-    計算します:</para>
+    <para>
+      <literal>C=conv2(A,B [,shape])</literal> 
+      はベクトル
+      <literal>A</literal>および <literal>B</literal>の2次元畳み込みを
+      計算します:
+    </para>
     <itemizedlist>
-      <listitem><literal>shape=="full"</literal> 
-    を指定した場合、結果<literal>C</literal>の次元は
-    <literal>size(A)+size(B)+1</literal>となります.
-    <literal>B</literal>の中心要素の添字は
-    <literal>floor((size(B)+1)/2)</literal>となります.    
-    </listitem>
-      <listitem><literal>shape=="same"</literal> を指定した場合、
-    結果<literal>C</literal>の次元は <literal>size(A)</literal>となります. 
-    <literal>B</literal>の中心要素の添字は
-    <literal>floor((size(B)+1)/2)</literal>となります.
-    </listitem>
-      <listitem><literal>shape=="valid"</literal>を指定した場合、
-    結果<literal>C</literal>の次元は, 
-    <literal>and(size(A)-size(B))&gt;=0</literal>の場合に
-    <literal>size(A)-size(B)+1)</literal>,それ以外の場合に
-    <literal>C</literal>は空となります. 
-    <literal>B</literal> の中心要素の添字は
-    <literal>[1 1]</literal>となります.
-    </listitem>
+      <listitem>
+        <literal>shape=="full"</literal> 
+        を指定した場合、結果<literal>C</literal>の次元は
+        <literal>size(A)+size(B)+1</literal>となります.
+        <literal>B</literal>の中心要素の添字は
+        <literal>floor((size(B)+1)/2)</literal>となります.    
+      </listitem>
+      <listitem>
+        <literal>shape=="same"</literal> を指定した場合、
+        結果<literal>C</literal>の次元は <literal>size(A)</literal>となります. 
+        <literal>B</literal>の中心要素の添字は
+        <literal>floor((size(B)+1)/2)</literal>となります.
+      </listitem>
+      <listitem>
+        <literal>shape=="valid"</literal>を指定した場合、
+        結果<literal>C</literal>の次元は, 
+        <literal>and(size(A)-size(B))&gt;=0</literal>の場合に
+        <literal>size(A)-size(B)+1)</literal>,それ以外の場合に
+        <literal>C</literal>は空となります. 
+        <literal>B</literal> の中心要素の添字は
+        <literal>[1 1]</literal>となります.
+      </listitem>
     </itemizedlist>
     <para>
-    The separable form 
-    可分割形式 <literal>C=conv2(hrow,hcol,B [,shape])</literal>は
-    <literal>C=conv2(hrow(:)*hcol(:).',B [,shape])</literal>と等価です.</para>
+      The separable form 
+      可分割形式 <literal>C=conv2(hrow,hcol,B [,shape])</literal>は
+      <literal>C=conv2(hrow(:)*hcol(:).',B [,shape])</literal>と等価です.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -138,12 +148,6 @@
       <member>
         <link linkend="conv">conv</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
   <refsection>

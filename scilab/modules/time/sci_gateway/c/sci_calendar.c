@@ -13,10 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
-#include "stack-c.h"
-#include "api_common.h"
-#include "api_double.h"
-#include "api_oldstack.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "IsAScalar.h"
@@ -111,7 +108,7 @@ int sci_calendar(char *fname, void* pvApiCtx)
 
 
   LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
     if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 

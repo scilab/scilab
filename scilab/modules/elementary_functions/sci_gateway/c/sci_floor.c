@@ -15,7 +15,6 @@
 #include "MALLOC.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 SciErr floor_poly(void* pvApiCtx, int* _piAddress);
 SciErr floor_double(void* pvApiCtx, int* _piAddress);

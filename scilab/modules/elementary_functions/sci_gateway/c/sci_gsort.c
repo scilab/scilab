@@ -25,7 +25,6 @@
 #include "localization.h"
 #include "isanan.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 const char g_pcstProcessGlobal[] = "g";
 const char g_pcstProcessRow[] = "r";
@@ -179,6 +178,7 @@ int	gsort_double(void* pvApiCtx, int * _piAddress, const char* _pcstProcess, con
 	
 	if(isVarComplex(pvApiCtx, _piAddress))
 	{
+        char fname[] = "gsort";
 		OverLoad(1); //call %_gsort.sci
 		return 0;
 	}

@@ -16,7 +16,6 @@
 #include "../../core/src/c/parse.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 #include "msgs.h"
 
 /*--------------------------------------------------------------------------*/

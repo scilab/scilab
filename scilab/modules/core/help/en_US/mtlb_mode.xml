@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>mmode=mtlb_mode()
-mtlb_mode(mmode)</synopsis>
+      mtlb_mode(mmode)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -26,15 +27,15 @@ mtlb_mode(mmode)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Scilab and Matlab additions and substractions work differently
-    when used with empty matrices:
-  </para>
+      Scilab and Matlab additions and subtractions work differently
+      when used with empty matrices:
+    </para>
     <variablelist>
       <varlistentry>
         <term>Scilab</term>
         <listitem>
-          <para></para>
-          <programlisting role = ""><![CDATA[ 
+          <para/>
+          <programlisting role=""><![CDATA[ 
 a+[] -->a
 a-[] -->a
 []+a -->a
@@ -45,7 +46,7 @@ a-[] -->a
       <varlistentry>
         <term>Matlab</term>
         <listitem>
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
@@ -54,12 +55,16 @@ a-[] -->[]
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal> mtlb_mode(%t)</literal>  switches to Matlab evaluation mode for additions and
-    substractions. <literal> mtlb_mode(%f)</literal>  switches back to Scilab mode.</para>
-    <para><literal> mtlb_mode()</literal> return the current mmode' value</para>
+    <para>
+      <literal> mtlb_mode(%t)</literal>  switches to Matlab evaluation mode for additions and
+      subtractions. <literal> mtlb_mode(%f)</literal>  switches back to Scilab mode.
+    </para>
+    <para>
+      <literal> mtlb_mode()</literal> return the current mmode' value
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="empty">empty</link>

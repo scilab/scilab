@@ -14,7 +14,6 @@
 /*------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
 #include "HistoryManager.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"

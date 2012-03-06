@@ -14,17 +14,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    This primitive converts a compiled Scilab function <literal>function-name</literal>
-    into a list which codes the internal representation of
-    the function (reverse polish notation).</para>
+      This primitive converts a compiled Scilab function <literal>function-name</literal>
+      into a list which codes the internal representation of
+      the function (reverse polish notation).
+    </para>
     <para>The first entry of the list is the function name, the second
-    and third are respectively the vectors of left hand side variables
-    and right hand side variables names. The following entries are either basic operation records 
-    
-    either lists with contains the hierachical control structures like
-    if , for, ... </para>
+      and third are respectively the vectors of left hand side variables
+      and right hand side variables names. The following entries are either basic operation records 
+      
+      either lists with contains the hierarchical control structures like
+      if , for, ... 
+    </para>
     <para>Basic operation records are described by a character string
-    vector whose first element represents the opcode. </para>
+      vector whose first element represents the opcode. 
+    </para>
     <informaltable border="1">
       <tr>
         <td>op codes</td>
@@ -162,7 +165,9 @@
         <td>100*fun, #rhs, #lhs, fin</td>
       </tr>
     </informaltable>
-    <para>The <link linkend="fun2string">fun2string</link> function can be used to generate the initial code.</para>
+    <para>
+      The <link linkend="fun2string">fun2string</link> function can be used to generate the initial code.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

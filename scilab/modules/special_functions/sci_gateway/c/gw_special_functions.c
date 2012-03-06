@@ -14,7 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_special_functions.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -26,21 +27,14 @@ static gw_generic_table Tab[] = {
     {sci_besselk, "besselk"},
     {sci_bessely, "bessely"},
     {sci_besselh, "besselh"},
-    {sci_gamma,"gamma"},
-    {sci_lgamma,"gammaln"},
-    {sci_dlgamma,"dlgamma"},
+    {NULL, ""}, //gamma
+    {NULL, ""}, //gammaln
+    {NULL, ""}, //dlgamma
     {sci_calerf,"calerf"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_special_functions(void)
 {
-    Rhs = Max(0, Rhs);
-    if (setjmp_slatec_jmp_env())
-    {
-        Scierror(999,"%s: Wrong value for input argument: Positive expected.\n", Tab[Fin-1].name);
-        return 0;
-    }
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -29,7 +29,9 @@
       <varlistentry>
         <term>Tn</term>
         <listitem>
-          <para>変数 <literal>var</literal>の多項式</para>
+          <para>
+            変数 <literal>var</literal>の多項式
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,18 +39,15 @@
   <refsection>
     <title>説明</title>
     <para>
-	チェビシェフ多項式の再帰的実装.
-	<literal>T0=1</literal> および <literal>T1=poly(0,var)</literal>とした
-    <literal>Tn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var)</literal>.</para>
+      チェビシェフ多項式の再帰的実装.
+      <literal>T0=1</literal> および <literal>T1=poly(0,var)</literal>とした
+      <literal>Tn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
     <programlisting role="example"><![CDATA[ 
 chepol(4,'x')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.  </para>
   </refsection>
 </refentry>

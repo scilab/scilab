@@ -16,7 +16,6 @@
 #include "gw_io.h"
 #include "stack-c.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "setenvc.h"
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"

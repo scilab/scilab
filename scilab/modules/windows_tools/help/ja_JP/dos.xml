@@ -21,28 +21,31 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>bOK=dos(command-name)
-bOK=dos(command-name,'-echo')
-[output,bOK]=dos(command-name)
-[output,bOK,exitcode]=dos(command-name)
-[output,bOK]=dos(command-name,'-echo')
-[output,bOK,exitcode]=dos(command-name,'-echo')</synopsis>
+      bOK=dos(command-name,'-echo')
+      [output,bOK]=dos(command-name)
+      [output,bOK,exitcode]=dos(command-name)
+      [output,bOK]=dos(command-name,'-echo')
+      [output,bOK,exitcode]=dos(command-name,'-echo')
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>
     <para>コマンドシェルで実行するために
-	コマンド名の文字列をWindowsに送信します.
-	シェルコマンドの標準出力および標準エラーが呼び出し側のシェルに
-	書き込まれます.
-	コマンドが実行された場合は, bOK が返されます.</para>
+      コマンド名の文字列をWindowsに送信します.
+      シェルコマンドの標準出力および標準エラーが呼び出し側のシェルに
+      書き込まれます.
+      コマンドが実行された場合は, bOK が返されます.
+    </para>
     <para>[output,bOK] = dos(command-name,'-echo') は,
-	出力先が特定の変数へ割り付けられている場合でも
-	コマンドウインドウへの出力を強制的に行ないます.</para>
+      出力先が特定の変数へ割り付けられている場合でも
+      コマンドウインドウへの出力を強制的に行ないます.
+    </para>
     <para>外部プロセスによる終了コードの値が返されます.</para>
-    
     <para>
-	ノートパッドエディタをオープンした後,すぐに
-	Scilabに制御を戻すには以下のようにします:
-    dos('start notepad')</para>
+      ノートパッドエディタをオープンした後,すぐに
+      Scilabに制御を戻すには以下のようにします:
+      dos('start notepad')
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -62,12 +65,6 @@ dos('taskkill /IM notepad.exe') // 注意:このコマンドは全てのノー�
       <member>
         <link linkend="unix">unix</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <simplelist type="vert">
-      <member>A.C.</member>
     </simplelist>
   </refsection>
 </refentry>

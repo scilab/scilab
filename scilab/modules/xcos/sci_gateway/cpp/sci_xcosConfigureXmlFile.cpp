@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "stack-c.h"
 #include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -44,6 +43,7 @@ int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
     /* second file setup */
     if (readSingleString(pvApiCtx, 2, &relations, fname))
     {
+        FREE(init);
         return 0;
     }
 
@@ -51,20 +51,26 @@ int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
     try
     {
         Modelica::load(getScilabJavaVM(), init, relations);
+
+        FREE(init);
+        FREE(relations);
     }
-    catch(GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
+
+        FREE(init);
+        FREE(relations);
         return 0;
     }
-    catch(GiwsException::JniException exception)
+    catch (GiwsException::JniException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
+
+        FREE(init);
+        FREE(relations);
         return 0;
     }
-
-    FREE(init);
-    FREE(relations);
 
     PutLhsVar();
     return 0;

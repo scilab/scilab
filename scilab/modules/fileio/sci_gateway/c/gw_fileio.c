@@ -14,8 +14,8 @@
 #include "gw_fileio.h"
 #include "callFunctionFromGateway.h"
 #include "MALLOC.h"
-#include "stack-c.h"
-/*--------------------------------------------------------------------------*/
+#include "api_scilab.h"
+/*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={
@@ -69,9 +69,6 @@ static gw_generic_table Tab[]={
 /*--------------------------------------------------------------------------*/
 int gw_fileio(void)
 {
-    Rhs = Max(0,Rhs);
-
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
 /*--------------------------------------------------------------------------*/

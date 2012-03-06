@@ -9,7 +9,6 @@
 extern "C" 
 {
 /* ==================================================================== */	
-  #include "stack-c.h"
   #include "api_scilab.h"
   #include "Scierror.h"
   #include "MALLOC.h"

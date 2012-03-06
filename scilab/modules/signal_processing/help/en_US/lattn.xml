@@ -23,13 +23,17 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>fixed dimension of the MA part. If <literal>p= -1</literal>, the algorithm reduces to the classical Levinson recursions.</para>
+          <para>
+            fixed dimension of the MA part. If <literal>p= -1</literal>, the algorithm reduces to the classical Levinson recursions.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cov</term>
         <listitem>
-          <para>matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way</para>
+          <para>
+            matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,14 +47,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    solves recursively on <literal>n</literal> (<literal>p</literal> being fixed)
-    the following system (normal equations), i.e. identifies
-    the AR part (poles) of a vector ARMA(n,p) process</para>
+      solves recursively on <literal>n</literal> (<literal>p</literal> being fixed)
+      the following system (normal equations), i.e. identifies
+      the AR part (poles) of a vector ARMA(n,p) process
+    </para>
     <para>
-    where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>G. Le V.  </para>
+      where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances
+    </para>
   </refsection>
 </refentry>

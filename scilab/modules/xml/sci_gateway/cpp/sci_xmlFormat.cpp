@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +12,13 @@
 
 extern "C"
 {
+#include <string.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlFormat(char *fname, unsigned long fname_len)
+int sci_xmlFormat(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 1);
     CheckLhs(1, 1);

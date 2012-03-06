@@ -132,18 +132,14 @@ static int sci_stacksizeOneRhs(char *fname)
                         {
                             /* restore previous size */
                             setStacksize(backupSize);
-                            Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
-                            Scierror(999, getStackCreationErrorMessage(errCode), fname);
-
+                            Scierror(10001, _("%s: Cannot allocate memory.\n%s\n"), fname, getStackCreationErrorMessage(errCode));
                         }
                     }
                     else
                     {
                         /* restore previous size */
                         setStacksize(backupSize);
-                        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
-                        Scierror(999, getStackCreationErrorMessage(errCode), fname);
-
+                        Scierror(10001, _("%s: Cannot allocate memory.\n%s\n"), fname, getStackCreationErrorMessage(errCode));
                     }
 
                 }
@@ -198,7 +194,7 @@ static int sci_stacksizeMax(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }
@@ -213,7 +209,7 @@ static int sci_stacksizeMin(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }
@@ -277,7 +273,7 @@ static int setStacksizeMax(char *fname)
         /* stacksize('min') fails */
         /* restore previous size */
         setStacksize(backupSize);
-        Scierror(999, _("%s: Cannot allocate memory.\n"), fname);
+        Scierror(10001, _("%s: Cannot allocate memory.\n"), fname);
     }
     return 0;
 }
@@ -356,7 +352,7 @@ static char *getStackCreationErrorMessage(int errCode)
         return _("%s: The requested size is smaller than the minimal one.\n");
         break;
     case -3:
-        return _("%s: Unable to create (or resize) the stack (probably a malloc error)\n");
+        return _("%s: Unable to create (or resize) the stack (probably a malloc error).\n");
         break;
     }
     return _("%s: Unknown error.\n");

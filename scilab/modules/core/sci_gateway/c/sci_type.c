@@ -13,7 +13,6 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 int sci_type(char *fname, void* pvApiCtx)
 {

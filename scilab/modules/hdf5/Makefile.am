@@ -159,4 +159,34 @@ libscihdf5_la_root_DATA =  license.txt
 libscihdf5_la_etcdir = $(mydatadir)/etc
 libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
+#### hdf5 : test file ####
+libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data
+libscihdf5_la_testsampledata_DATA = tests/sample_scilab_data/booleanmatrix.h5 \
+tests/sample_scilab_data/booleanscalar.h5 \
+tests/sample_scilab_data/booleansparse.h5 \
+tests/sample_scilab_data/emptysparse.h5 \
+tests/sample_scilab_data/hypermatrixcomplex.h5 \
+tests/sample_scilab_data/hypermatrix.h5 \
+tests/sample_scilab_data/int16.h5 \
+tests/sample_scilab_data/int32.h5 \
+tests/sample_scilab_data/int8.h5 \
+tests/sample_scilab_data/list.h5 \
+tests/sample_scilab_data/listnested.h5 \
+tests/sample_scilab_data/matricedoublecomplex.h5 \
+tests/sample_scilab_data/matricedoublecomplexscalar.h5 \
+tests/sample_scilab_data/matricedouble.h5 \
+tests/sample_scilab_data/matricedoublescalar.h5 \
+tests/sample_scilab_data/matricestring.h5 \
+tests/sample_scilab_data/matricestringscalar.h5 \
+tests/sample_scilab_data/mlist.h5 \
+tests/sample_scilab_data/polynomialscoef.h5 \
+tests/sample_scilab_data/polynomials.h5 \
+tests/sample_scilab_data/sparsematrix.h5 \
+tests/sample_scilab_data/tlist.h5 \
+tests/sample_scilab_data/uint16.h5 \
+tests/sample_scilab_data/uint32.h5 \
+tests/sample_scilab_data/uint8.h5 \
+tests/sample_scilab_data/undefinedelement.h5 \
+tests/sample_scilab_data/voidelement.h5
+
 include $(top_srcdir)/Makefile.incl.am

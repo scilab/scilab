@@ -39,6 +39,11 @@ xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context.xco
 // a comprehensive error should be reported but the simulation should run
 xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context_on_sb.xcos")
 
+// Check the report against a not connected link
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_not_connected_link.xcos")
+// simulate
+// a comprehensive error should be reported but the simulation should run
+
 //-----------------------------------------------------------------------------
 // on c_pass1 (flow checking)
 //-----------------------------------------------------------------------------

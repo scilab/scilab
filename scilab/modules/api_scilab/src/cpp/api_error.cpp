@@ -17,14 +17,13 @@ extern "C"
 {
 #include "MALLOC.h"
 #include <stdio.h> 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "os_strdup.h"
 #include "localization.h"
 #include "stackinfo.h"
 #include "mode_exec.h"
-#include "api_oldstack.h"
 }
 
 int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)

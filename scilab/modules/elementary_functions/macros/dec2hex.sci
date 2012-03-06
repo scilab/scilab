@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -21,19 +21,9 @@ function h = dec2hex(v)
 
   // check the number of input arguments
   if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"dec2hex",1));
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "dec2hex", 1));
   end
 
-  [nr, nc] = size(v);
-
-  if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"),"dec2hex",1));
-  end
-
-  h = [];
-  for ii = 1:size(v,'*')
-    h(ii) = msprintf("%X", v(ii));
-  end
-  h = matrix(h, nr, nc);
+  h = dec2base(double(v), 16);
 
 endfunction

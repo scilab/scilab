@@ -15,7 +15,6 @@
 #include "os_strdup.h"
 
 #include "freeArrayOfString.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
@@ -100,11 +99,11 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
     }
   else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
-      type = I_INT32;
+/*      type = I_INT32;
       CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, 
 				&type, &matVariable->rank, matVariable->dims, matVariable->data,
 				NULL, cell_addr, 2);
-    }
+*/    }
 
   /* ALL OTHER ENTRIES: Fields data */
   prodDims = 1;

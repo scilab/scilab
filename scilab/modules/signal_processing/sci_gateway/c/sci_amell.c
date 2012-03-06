@@ -12,12 +12,9 @@
 
 #include "gw_signal.h"
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-
-#include "api_scilab.h"
-#include "api_oldstack.h"
 
 extern int C2F(amell)(double *du, double *dk, double *dsn2, int *n);
 

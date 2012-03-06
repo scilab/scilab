@@ -30,8 +30,9 @@
         <term>num</term>
         <listitem>
           <para>a polynomial with degree equal to the degree of
-          <literal>den</literal>, the numerator of the
-          transform.</para>
+            <literal>den</literal>, the numerator of the
+            transform.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,11 +64,10 @@
   <refsection>
     <title>Description</title>
     <para>function for calculating the gain poles and zeros which
-    result from a bilinear transform or from a biquadratic transform.
-    Used by the functions <link linkend="iir">iir</link> and <link linkend="trans">trans</link>.</para>
-   
+      result from a bilinear transform or from a biquadratic transform.
+      Used by the functions <link linkend="iir">iir</link> and <link linkend="trans">trans</link>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -87,16 +87,18 @@ Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
 horner(Hlp,num/den)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Carey Bunks ;   </para>
-  </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="iir">iir</link></member>
-      <member><link linkend="trans">trans</link></member>
-      <member><link linkend="horner">horner</link></member>
+      <member>
+        <link linkend="iir">iir</link>
+      </member>
+      <member>
+        <link linkend="trans">trans</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -26,13 +25,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_length(char * fname, void* pvApiCtx)
+int sci_percent_XMLList_length(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
     double d;
-    int * addr = 0;
-    XMLList * list;
+    int *addr = 0;
+    XMLList *list;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -53,7 +52,7 @@ int sci_percent_XMLList_length(char * fname, void* pvApiCtx)
     }
 
     id = getXMLObjectId(addr, pvApiCtx);
-    list = XMLObject::getFromId<XMLList>(id);
+    list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
         Scierror(999, gettext("%s: XMLList does not exist.\n"), fname);
@@ -67,4 +66,5 @@ int sci_percent_XMLList_length(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

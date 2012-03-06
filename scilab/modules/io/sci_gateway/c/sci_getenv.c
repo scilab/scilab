@@ -18,9 +18,7 @@
 #include "Scierror.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
-#include "stack-c.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 int sci_getenv(char *fname, void* pvApiCtx)
 {

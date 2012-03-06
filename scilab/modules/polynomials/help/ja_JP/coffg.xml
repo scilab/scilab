@@ -35,12 +35,19 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>coffg</literal> は <literal>Fs^-1</literal> を計算します.
-	ただし, <literal>Fs</literal> は余因子法による多項式行列です.</para>
-    <para><literal>Fs</literal> inverse = <literal>Ns/d</literal></para>
-    <para><literal>d</literal> = 共通分母; <literal>Ns</literal> =  分子 (多項式行列)</para>
     <para>
-    (大きな行列の場合,時間がかかりますが,結果は一般に信頼できます)</para>
+      <literal>coffg</literal> は <literal>Fs^-1</literal> を計算します.
+      ただし, <literal>Fs</literal> は余因子法による多項式行列です.
+    </para>
+    <para>
+      <literal>Fs</literal> inverse = <literal>Ns/d</literal>
+    </para>
+    <para>
+      <literal>d</literal> = 共通分母; <literal>Ns</literal> =  分子 (多項式行列)
+    </para>
+    <para>
+      (大きな行列の場合,時間がかかりますが,結果は一般に信頼できます)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -70,9 +77,5 @@ a=[ s, s^2+1; s  s^2-1];
         <link linkend="glever">glever</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D.; ;   </para>
   </refsection>
 </refentry>

@@ -18,7 +18,6 @@
 /*--------------------------------------------------------------------------*/
 XCOS_IMPEXP int gw_xcos(void);
 
-//YaSp
 XCOS_IMPEXP int sci_Xcos(char* fname, void* pvApiCtx);
 XCOS_IMPEXP int sci_xcosNotify(char* fname, void* pvApiCtx);
 XCOS_IMPEXP int sci_warnBlockByUID(char* fname, void* pvApiCtx);
@@ -34,7 +33,9 @@ XCOS_IMPEXP int sci_xcosPalMove(char *fname, void* pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalEnable(char *fname, void* pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalDisable(char *fname, void* pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx);
-XCOS_IMPEXP int sci_xcosConfigureXmlFile(char* fname, unsigned long l);
+XCOS_IMPEXP int sci_xcosConfigureXmlFile(char* fname, void* pvApiCtx);
+XCOS_IMPEXP int sci_xcosAddToolsMenu(char* fname, void* pvApiCtx);
+XCOS_IMPEXP int sci_xcosUpdateBlock(char* fname, void* pvApiCtx);
 
 /**
 * xcos already started

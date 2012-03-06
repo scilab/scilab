@@ -18,23 +18,24 @@
         <term>x,y  </term>
         <listitem>
           <para>deux vecteurs lignes de taille n1 et n2.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>z  </term>
         <listitem>
           <para>matrice de taille (n1,n2).
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>milk_drop</literal> est une fonction représentant la surface d'une goutte de lait
-    tombant dans du lait. Elle peut être utilisée pour tester les fonctions <literal>eval3d</literal> et <literal>plot3d</literal>.
-  </para>
+    <para>
+      <literal>milk_drop</literal> est une fonction représentant la surface d'une goutte de lait
+      tombant dans du lait. Elle peut être utilisée pour tester les fonctions <literal>eval3d</literal> et <literal>plot3d</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -45,7 +46,7 @@ plot3d(x,y,z)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="eval3d">eval3d</link>
@@ -54,9 +55,5 @@ plot3d(x,y,z)
         <link linkend="plot3d">plot3d</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Steer S.  </para>
   </refsection>
 </refentry>

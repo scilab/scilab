@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -22,8 +22,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -34,11 +34,10 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 
 /**
  * Implement the recent file actions.
- * 
+ *
  * This class doesn't follow standard action implementation.
  */
-public final class RecentFileAction extends DefaultAction implements
-        PropertyChangeListener {
+public final class RecentFileAction extends DefaultAction implements PropertyChangeListener {
     /** Name of the action */
     public static final String NAME = "";
     /** Icon name of the action */
@@ -92,7 +91,7 @@ public final class RecentFileAction extends DefaultAction implements
             fileURI = file.toURI();
             f = new File(fileURI);
         } catch (URISyntaxException e) {
-            LogFactory.getLog(RecentFileAction.class).error(e);
+            Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
             return null;
         }
 
@@ -102,8 +101,7 @@ public final class RecentFileAction extends DefaultAction implements
         }
 
         ConfigurationManager manager = ConfigurationManager.getInstance();
-        manager.addPropertyChangeListener(
-                ConfigurationConstants.RECENT_FILES_CHANGED, action);
+        manager.addPropertyChangeListener(ConfigurationConstants.RECENT_FILES_CHANGED, action);
 
         MenuItem m = ScilabMenuItem.createMenuItem();
         m.setCallback(action);
@@ -115,15 +113,14 @@ public final class RecentFileAction extends DefaultAction implements
 
     /**
      * Update the file association when it has been moved on the configuration
-     * 
+     *
      * @param evt
      *            the event data
      * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        assert evt.getPropertyName().equals(
-                ConfigurationConstants.RECENT_FILES_CHANGED);
+        assert evt.getPropertyName().equals(ConfigurationConstants.RECENT_FILES_CHANGED);
 
         /*
          * This is the case where a new menu will be created. That's not our job
@@ -145,7 +142,7 @@ public final class RecentFileAction extends DefaultAction implements
             old = new URL(oldURL);
             current = recentFile.toURI().toURL();
         } catch (MalformedURLException e) {
-            LogFactory.getLog(RecentFileAction.class).error(e);
+            Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
             return;
         }
 
@@ -170,9 +167,9 @@ public final class RecentFileAction extends DefaultAction implements
             INSTANCE_REGISTRY.put(newURI, this);
 
         } catch (URISyntaxException e) {
-            LogFactory.getLog(RecentFileAction.class).error(e);
+            Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
         } catch (MalformedURLException e) {
-            LogFactory.getLog(RecentFileAction.class).error(e);
+            Logger.getLogger(RecentFileAction.class.getName()).severe(e.toString());
         }
     }
 }

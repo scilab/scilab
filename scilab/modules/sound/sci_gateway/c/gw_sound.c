@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_sound.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
@@ -26,9 +25,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/ 
 int gw_sound(void)
 {  
-	Rhs = Max(0, Rhs);
-
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -17,9 +17,7 @@
 extern "C"
 {
 #include "gw_scinotes.h"
-#include "stack-c.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 }

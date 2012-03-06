@@ -23,9 +23,11 @@ import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
 import javax.swing.text.Element;
 
-import org.scilab.modules.gui.utils.ScilabFontUtils;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.w3c.dom.Document;
 
+
+import org.scilab.modules.commons.xml.XConfiguration;
+import org.scilab.modules.gui.utils.ScilabFontUtils;
 
 /**
  * The class ScilabContext provides a context to render a Scilab's document.
@@ -57,18 +59,84 @@ public class ScilabContext implements ViewFactory {
      */
     public ScilabContext() {
         super();
-        genColors();
-        genFonts();
-        genAttributes();
+        genAll();
     }
 
     /**
      * Constructor
      * @param plain boolean for a plain view
      */
-     public ScilabContext(boolean plain) {
+    public ScilabContext(boolean plain) {
         this();
         this.plain = plain;
+    }
+
+    public void genAll() {
+        tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
+        tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
+        tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
+
+        Document doc = XConfiguration.getXConfigurationDocument();
+        FontInfo[] desktop = XConfiguration.get(FontInfo.class, doc, "//fonts/body/fonts");
+        FontInfo[] scinotes = XConfiguration.get(FontInfo.class, doc, "//fonts/body/fonts/item[@name='Scinotes']");
+        Font font;
+        if (scinotes[0].isDesktop()) {
+            font = desktop[0].getFont();
+        } else {
+            font = scinotes[0].getFont();
+        }
+        boolean compatible = ScilabFontUtils.isAllStylesSameWidths(font);
+
+        FontDecoration[] decorations = XConfiguration.get(FontDecoration.class, doc, "//colors/body/syntax-highlighting-colors/item");
+        doc = null;
+
+        for (FontDecoration deco : decorations) {
+            tokenAttrib[deco.getType()] = deco.getValue();
+            tokenColors[deco.getType()] = deco.getColor();
+            tokenFonts[deco.getType()] = compatible ? font.deriveFont(deco.getFontFace()) : font;
+        }
+
+        // Default color and special case
+        typeToDefault.clear();
+        for (int i = 0; i < tokenColors.length; i++) {
+            if (tokenColors[i] == null) {
+                tokenColors[i] = tokenColors[0];
+                typeToDefault.add(i);
+            }
+        }
+
+        /* Special case : Scilab's developers in comments */
+        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
+        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
+
+        // Default attributes
+        for (Integer i : typeToDefault) {
+            tokenAttrib[i] = tokenAttrib[0];
+        }
+        tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+
+        // Default fonts
+        for (int i = 0; i < tokenFonts.length; i++) {
+            if (tokenFonts[i] == null) {
+                tokenFonts[i] = tokenFonts[0];
+            }
+        }
+
+        /* Special case : Scilab's developers in comments */
+        Font c = tokenFonts[ScilabLexerConstants.COMMENT];
+        int style = c.getStyle();
+        if (compatible) {
+            if (c.isBold()) {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
+            } else {
+                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
+            }
+        }
+
+        tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -88,62 +156,11 @@ public class ScilabContext implements ViewFactory {
     }
 
     /**
-     * Generate attributes to use to render the document
-     */
-    public void genAttributes() {
-        tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map<String, Integer>  map = ConfigSciNotesManager.getAllAttributes();
-        Iterator<String> it = map.keySet().iterator();
-        while (it.hasNext()) {
-            String tokenType = it.next();
-            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType).intValue();
-        }
-
-        for (Integer i : typeToDefault) {
-            tokenAttrib[i] = tokenAttrib[0];
-        }
-        tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
-        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
-    }
-
-    /**
-     * Generate the colors to use to render the document
-     */
-    public void genColors() {
-        tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map<String, Color> map = ConfigSciNotesManager.getAllForegroundColors();
-        Iterator<String> it = map.keySet().iterator();
-        while (it.hasNext()) {
-            String tokenType = it.next();
-            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType);
-        }
-
-        tokenColors[ScilabLexerConstants.OSKEYWORD] = Color.BLACK;
-
-        typeToDefault.clear();
-        for (int i = 0; i < tokenColors.length; i++) {
-            if (tokenColors[i] == null) {
-                tokenColors[i] = tokenColors[0];
-                typeToDefault.add(i);
-            }
-        }
-
-        /* Special case : Scilab's developers in comments */
-        tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
-        tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
-        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
-    }
-
-    /**
      * Generate a color for a type of keyword
      * @param name the name can be found in scinotesConfiguration.xml
      * @param color the color to use
      */
     public void genColors(String name, Color color) {
-        if (tokenColors == null) {
-            genColors();
-        }
-
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
@@ -191,60 +208,6 @@ public class ScilabContext implements ViewFactory {
     }
 
     /**
-     * Generate the fonts to use to render the document
-     */
-    public void genFonts() {
-        genFonts(null);
-    }
-
-    /**
-     * Generate the fonts to use to render the document
-     * @param font the base font to use
-     */
-    public void genFonts(Font font) {
-        Map<String,Font> map;
-        Font f = font;
-        if (f == null) {
-            f = ConfigSciNotesManager.getFont();
-        }
-
-        map = ConfigSciNotesManager.getAllFontStyle(f);
-        boolean compatible = ScilabFontUtils.isAllStylesSameWidths(f);
-
-        tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
-
-        Iterator<String> it = map.keySet().iterator();
-        while (it.hasNext()) {
-            String tokenType = it.next();
-            f = map.get(tokenType);
-            if (!compatible && (f.isBold() || f.isItalic())) {
-                f = f.deriveFont(Font.PLAIN);
-            }
-            tokenFonts[ScilabLexerConstants.TOKENS.get(tokenType)] = f;
-        }
-
-        for (int i = 0; i < tokenFonts.length; i++) {
-            if (tokenFonts[i] == null) {
-                tokenFonts[i] = tokenFonts[0];
-            }
-        }
-
-        /* Special case : Scilab's developers in comments */
-        Font c = tokenFonts[ScilabLexerConstants.COMMENT];
-        int style = c.getStyle();
-        if (compatible) {
-            if (c.isBold()) {
-                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style ^ Font.BOLD);
-            } else {
-                tokenFonts[ScilabLexerConstants.AUTHORS] = c.deriveFont(style | Font.BOLD);
-            }
-        }
-
-        tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
-        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
-    }
-
-    /**
      * @return the view to use to render the document
      */
     public View getCurrentView() {
@@ -265,5 +228,109 @@ public class ScilabContext implements ViewFactory {
             ((ScilabView) view).setDefaultTabRepresentation();
         }
         return view;
+    }
+
+    /**
+     * Inner class to retrieve configuration elements from configuration file
+     */
+    private static class FontInfo {
+
+        private String fontname;
+        private int fontsize;
+        private boolean desktop;
+
+        public FontInfo() { }
+
+        public void setFontName(String fontname) {
+            this.fontname = fontname;
+        }
+
+        public void setFontSize(int fontsize) {
+            this.fontsize = fontsize;
+        }
+
+        public void setDesktop(boolean desktop) {
+            this.desktop = desktop;
+        }
+
+        public boolean isDesktop() {
+            return desktop;
+        }
+
+        public Font getFont() {
+            return new Font(fontname, Font.PLAIN, fontsize);
+        }
+    }
+
+    /**
+     * Inner class to retrieve configuration elements from configuration file
+     */
+    private static class FontDecoration {
+
+        private boolean underline;
+        private boolean strikeThrough;
+        private boolean bold;
+        private boolean italic;
+        private Color color;
+        private int type;
+
+        public FontDecoration() { }
+
+        public void setUnderline(boolean underline) {
+            this.underline = underline;
+        }
+
+        public void setStrikeThrough(boolean strikeThrough) {
+            this.strikeThrough = strikeThrough;
+        }
+
+        public void setName(String name) {
+            type = ScilabLexerConstants.TOKENS.get(name);
+        }
+
+        public void setColor(Color color) {
+            this.color = color;
+        }
+
+        public void setBold(boolean bold) {
+            this.bold = bold;
+        }
+
+        public void setItalic(boolean italic) {
+            this.italic = italic;
+        }
+
+        public int getFontFace() {
+            int fontface = Font.PLAIN;
+            if (bold) {
+                fontface = fontface | Font.BOLD;
+            }
+
+            if (italic) {
+                fontface = fontface | Font.ITALIC;
+            }
+
+            return fontface;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+
+        public int getValue() {
+            int value = 0;
+            if (underline) {
+                value += 1;
+            }
+            if (strikeThrough) {
+                value += 2;
+            }
+
+            return value;
+        }
+
+        public int getType() {
+            return type;
+        }
     }
 }

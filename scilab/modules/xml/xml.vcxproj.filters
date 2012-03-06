@@ -103,6 +103,9 @@
     <ClInclude Include="src\cpp\XMLValidationSchema.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\gw_xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\VariableScope.cpp">

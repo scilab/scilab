@@ -14,7 +14,6 @@
 #include "CdfBase.h"
 
 #include "api_scilab.h"
-#include "stack-c.h" /* TODO: remove as soon as Rhs is linked in api_scilab.h */
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
@@ -22,7 +21,6 @@
 #include <string.h>
 
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 int mod(int a, int b);
 int rotate(int i, int step, int length);

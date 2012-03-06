@@ -45,10 +45,4 @@ removelinehistory(historysize()-2)
 displayhistory()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
-  </refsection>
 </refentry>

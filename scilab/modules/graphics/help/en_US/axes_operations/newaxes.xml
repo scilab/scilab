@@ -35,10 +35,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
+    <para>
+      <literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
       <link linkend="graphics_entities">graphics_entities</link>) in the current figure. The properties of
       this entity are inherited from the <literal>default_axes</literal> entity (see
-      <link linkend="gda">gda</link>) </para>
+      <link linkend="gda">gda</link>) 
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -60,7 +62,7 @@ legend(['acosh','asinh'])
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="subplot">subplot</link>
@@ -72,9 +74,5 @@ legend(['acosh','asinh'])
         <link linkend="sca">sca</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. Steer, INRIA</para>
   </refsection>
 </refentry>

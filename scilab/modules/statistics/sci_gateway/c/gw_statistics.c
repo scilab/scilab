@@ -11,7 +11,8 @@
  */
 
 #include "gw_statistics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =

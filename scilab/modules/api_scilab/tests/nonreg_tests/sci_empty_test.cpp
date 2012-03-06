@@ -13,40 +13,37 @@
 /* ==================================================================== */
 extern "C"
 {
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 
     /**
-     * The gateway function for soap_servers()
-     * @param[in] fname the name of the file for the error messages
-     * @return 0 if successful, a negative value otherwise
-     */
+    * The gateway function for soap_servers()
+    * @param[in] fname the name of the file for the error messages
+    * @return 0 if successful, a negative value otherwise
+    */
     int sci_empty_test(char *fname)
     {
         SciErr sciErr;
-
-        // this function does not take input arguments
-          CheckRhs(0, 0);
-
-        // the number of output arguments must be 2
-          CheckLhs(2, 2);
 
         // allocate memory for values
         double dOut = 0;
         char *cOut = "zero";
 
-          Rhs = Max(0, Rhs);
+        // this function does not take input arguments
+        CheckInputArgument(pvApiCtx, 0, 0);
+
+        // the number of output arguments must be 2
+        CheckOutputArgument(pvApiCtx, 2, 2);
 
         // create results on stack
-          sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, &dOut);
+        sciErr = createMatrixOfDouble(pvApiCtx, InputArgument + 1, 0, 0, &dOut);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
-        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 0, 0, &cOut);
+        sciErr = createMatrixOfString(pvApiCtx, InputArgument + 2, 0, 0, &cOut);
 
         if (sciErr.iErr)
         {
@@ -54,15 +51,12 @@ extern "C"
             return 0;
         }
 
-        LhsVar(1) = Rhs + 1;
-        LhsVar(2) = Rhs + 2;
-
-        // put the value on the stack
-//        PutLhsVar();
+        AssignOutputVariable(1) = InputArgument + 1;
+        AssignOutputVariable(2) = InputArgument + 2;
 
         return 0;
     }
-/* ==================================================================== */
+    /* ==================================================================== */
 }                               /* extern "C" */
 
 /* ==================================================================== */

@@ -16,14 +16,14 @@ extern "C"
 {
 #include "gw_ui_data.h"
 #include "getScilabJavaVM.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "scicurdir.h"
 }
 
 using namespace org_scilab_modules_ui_data;
 
 /*--------------------------------------------------------------------------*/
-int sci_filebrowser(char *fname, unsigned long fname_len)
+int sci_filebrowser(char *fname, void* pvApiCtx)
 {
     char * cwd = NULL;
     int err = 0;

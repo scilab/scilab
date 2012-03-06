@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>x = umfpack(A,"\",b)
-x = umfpack(b,"/",A)</synopsis>
+      x = umfpack(b,"/",A)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -25,14 +26,16 @@ x = umfpack(b,"/",A)</synopsis>
         <term>b  </term>
         <listitem>
           <para>in the first case, a column vector (n x 1) or a n x m matrix ;    
-		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+            in the second case, a row vector (1 x n) or a m x n matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
           <para>in the first case , a column vector (n x 1) or a n x m matrix ;    
-		  in the second case, a row vector (1 x n) or a m x n matrix</para>
+            in the second case, a row vector (1 x n) or a m x n matrix
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,21 +49,21 @@ x = umfpack(b,"/",A)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    This function is intended to work like the classic operators \ and / 
-    x = A\b  and x = b/A) i.e. it solves a linear system Ax = b or xA = b 
-    with a sparse square (says n x n) real or complex matrix and with a compatible
-    rhs b : n x m in the first case and m x n in the second. 
-  </para>
+      This function is intended to work like the classic operators \ and / 
+      x = A\b  and x = b/A) i.e. it solves a linear system Ax = b or xA = b 
+      with a sparse square (says n x n) real or complex matrix and with a compatible
+      rhs b : n x m in the first case and m x n in the second. 
+    </para>
   </refsection>
   <refsection>
     <title>Details</title>
     <para>
-    First an LU factorisation of the matrix is computed (<literal> P R^(-1) A Q = LU </literal>
-    where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
-    a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
-    then a first solution is computed with forward/backward subtitutions ; 
-    finaly the solution is improved  by iterative refinement.
-  </para>
+      First an LU factorisation of the matrix is computed (<literal> P R^(-1) A Q = LU </literal>
+      where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
+      a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix) 
+      then a first solution is computed with forward/backward subtitutions ; 
+      finaly the solution is improved  by iterative refinement.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -118,7 +121,7 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umf_lufact">umf_lufact</link>
@@ -141,13 +144,6 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
       <member>
         <link linkend="backslash">backslash</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>umfpack by Timothy A. Davis (see umf_license)</member>
-      <member>scilab interface by Bruno Pincon with contributions from Antonio Frasson</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -10,8 +10,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
-  </para>
+      Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
+    </para>
     <programlisting><![CDATA[ 
 select expr0,
   case expr1 then instructions1,
@@ -23,7 +23,7 @@ end
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="select">select</link>

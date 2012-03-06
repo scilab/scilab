@@ -14,7 +14,9 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -75,7 +77,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
 {
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

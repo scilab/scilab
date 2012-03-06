@@ -87,6 +87,10 @@ Scilab a better software.
 * Kirill Kirillov
     - Russian localization
 
+* Stanislav Kroter
+    - Many fixes in the help pages
+    - Russian translation of the help pages
+
 * Christoph Korn
     - Misc patches for Debian & Ubuntu
 

@@ -8,7 +8,6 @@
 #include <stdio.h> 
 #include <string.h>
  
-#include "stack-c.h" /* Provide functions to access to the memory of Scilab */
 #include "call_scilab.h" /* Provide functions to call Scilab engine */
 
 /*------------------------------------------------------------*/

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -27,14 +26,15 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDelete(char * fname, void* pvApiCtx)
+int sci_xmlDelete(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
-    int * addr = 0;
+    int *addr = 0;
+
     org_modules_xml::XMLDocument * doc = 0;
-    XMLValidation * vf = 0;
-    char * com = 0;
+    XMLValidation *vf = 0;
+    char *com = 0;
 
     CheckLhs(1, 1);
 
@@ -54,7 +54,17 @@ int sci_xmlDelete(char * fname, void* pvApiCtx)
 
     if (isStringType(pvApiCtx, addr))
     {
-        getAllocatedSingleString(pvApiCtx, addr, &com);
+        if (!checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &com) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         if (!strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
@@ -77,7 +87,7 @@ int sci_xmlDelete(char * fname, void* pvApiCtx)
             if (isXMLDoc(addr, pvApiCtx))
             {
                 id = getXMLObjectId(addr, pvApiCtx);
-                doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
+                doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
                 if (!doc)
                 {
                     Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
@@ -88,7 +98,7 @@ int sci_xmlDelete(char * fname, void* pvApiCtx)
             else if (isXMLValid(addr, pvApiCtx))
             {
                 id = getXMLObjectId(addr, pvApiCtx);
-                vf = XMLObject::getFromId<XMLValidation>(id);
+                vf = XMLObject::getFromId < XMLValidation > (id);
                 if (!vf)
                 {
                     Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
@@ -108,4 +118,5 @@ int sci_xmlDelete(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

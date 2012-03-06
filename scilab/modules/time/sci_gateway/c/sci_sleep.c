@@ -19,10 +19,7 @@
 #include <unistd.h>
 #endif
 #include "gw_time.h"
-#include "stack-c.h"
-#include "api_common.h"
-#include "api_double.h"
-#include "api_oldstack.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -41,7 +38,11 @@ int sci_sleep(char *fname, void* pvApiCtx)
       sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
       sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
-      CheckScalar(1,m1,n1);
+      if(isScalar(pvApiCtx, p1_in_address) == 0)
+      {
+          Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+          return 0;
+      }
 
       sec = (int)  *pDblReal;
       if (sec <= 0)

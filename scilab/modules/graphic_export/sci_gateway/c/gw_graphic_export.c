@@ -14,8 +14,9 @@
 
 #include <string.h>
 #include "gw_graphic_export.h"
-#include "stack-c.h"
 #include "sci_mode.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -40,29 +41,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
 {  
-	Rhs = Max(0, Rhs);
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if (!loadedDep) 
-		{
-			loadOnUseClassPath("graphics");
-			loadedDep=TRUE;
-		}
-		if (!loadedDepVectorialExport && (strcmp(Tab[Fin-1].name, "xs2eps")==0
-                           || strcmp(Tab[Fin-1].name, "xs2pdf")==0
-                           || strcmp(Tab[Fin-1].name, "xs2svg")==0
-                           || strcmp(Tab[Fin-1].name, "xs2ps")==0))
-          {
-            loadOnUseClassPath("pdf_ps_eps_graphic_export");
-            loadedDepVectorialExport = TRUE;
-          }
-
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
-	else
-	{
-		Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
-	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

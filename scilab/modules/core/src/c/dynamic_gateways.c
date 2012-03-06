@@ -173,6 +173,22 @@ int gw_dynamic_ui_data(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+/* preferences module */
+#define PREFERENCES_MODULE_NAME "preferences"
+static DynLibHandle hPreferencesLib = NULL;
+static PROC_GATEWAY ptr_gw_preferences = NULL;
+static char* dynlibname_preferences = NULL;
+static char* gatewayname_preferences = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_preferences(void)
+{
+    return gw_dynamic_generic(PREFERENCES_MODULE_NAME,
+        &dynlibname_preferences,
+        &gatewayname_preferences,
+        &hPreferencesLib,
+        &ptr_gw_preferences);
+}
+/*--------------------------------------------------------------------------*/       
 /* xml module */
 #define XML_MODULE_NAME "xml"
 static DynLibHandle hXmlLib = NULL;

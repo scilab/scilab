@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>subplot(m,n,p)
-subplot(mnp)</synopsis>
+      subplot(mnp)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,14 +20,15 @@ subplot(mnp)</synopsis>
         <term>m,n,p  </term>
         <listitem>
           <para>entiers positifs
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mnp  </term>
         <listitem>
-          <para>un entier avec <literal>mnp</literal> comme notation décimale
-</para>
+          <para>
+            un entier avec <literal>mnp</literal> comme notation décimale
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -34,12 +36,12 @@ subplot(mnp)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    subplot(m,n,p) ou subplot(mnp) divise la fenêtre graphique courante
-    en une matrice m x n matrice de sous fenêtres et sélectionne la p-ième sous-fenêtre
-    comme emplacement de dessin par défaut.  Le numéro de la sous-fenêtre
-    est compté ligne par ligne, c'est à dire que l'emplacement
-    (i,j) de la matrice porte le numéro (i-1)*n + j.
-  </para>
+      subplot(m,n,p) ou subplot(mnp) divise la fenêtre graphique courante
+      en une matrice m x n matrice de sous fenêtres et sélectionne la p-ième sous-fenêtre
+      comme emplacement de dessin par défaut.  Le numéro de la sous-fenêtre
+      est compté ligne par ligne, c'est à dire que l'emplacement
+      (i,j) de la matrice porte le numéro (i-1)*n + j.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -55,7 +57,7 @@ hist3d()
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

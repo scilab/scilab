@@ -70,11 +70,6 @@
               <xref linkend="Computationalfunction_DOLLAR_f">Fonction de calcul</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_DOLLAR_f">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -92,9 +87,10 @@
   <refsection id="Description_DOLLAR_f">
     <title>Description</title>
     <para>Le bloc Retard unitaire retarde son entrée de la période d'échantillonage spécifiée.
-    Ce bloc est équivalent à l'opérateur discret 1/z. Le bloc accepte une entrée et génére une sortie,
-    qui peut être un scalaire ou un vecteur. Si l'entrée est une vecteur, tous les éléments du vecteur sont
-    retardés de la même période d'échantillonage.</para>
+      Ce bloc est équivalent à l'opérateur discret 1/z. Le bloc accepte une entrée et génére une sortie,
+      qui peut être un scalaire ou un vecteur. Si l'entrée est une vecteur, tous les éléments du vecteur sont
+      retardés de la même période d'échantillonage.
+    </para>
   </refsection>
   <refsection id="Dialogbox_DOLLAR_f">
     <title>Boîte de dialogue</title>
@@ -112,7 +108,8 @@
           <emphasis role="bold">initial condition</emphasis>
         </para>
         <para>La sortie de la simulation pour la première période d'échantillonage,
-        pendant laquelle la sortie du bloc Retard unitaire est indéfinie.</para>
+          pendant laquelle la sortie du bloc Retard unitaire est indéfinie.
+        </para>
         <para>Propriétés : Type 'vec' de taille -1.</para>
       </listitem>
       <listitem>
@@ -128,16 +125,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -156,23 +161,37 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            inputs:
+          </emphasis>
+          1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation
+            outputs:
+          </emphasis>
+          0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis>
+          non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis>
+          non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -217,9 +236,5 @@
         <para>SCI/modules/scicos_blocks/src/fortran/dollar.f (Type 0)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_DOLLAR_f">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

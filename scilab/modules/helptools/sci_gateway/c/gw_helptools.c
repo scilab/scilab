@@ -12,13 +12,9 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_helptools.h"
-#include "stack-c.h"
-#include "sci_mode.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "BOOL.h"
-#include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 
@@ -31,22 +27,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
-    Rhs = Max(0, Rhs);
-
-    if (getScilabMode() == SCILAB_NWNI)
-    {
-        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "helptools");
-        return 0;
-    }
-
-    if (!loadedDep)
-    {
-        loadOnUseClassPath("documentationGeneration");
-        loadedDep = TRUE;
-    }
-
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-
     return 0;
 }
 

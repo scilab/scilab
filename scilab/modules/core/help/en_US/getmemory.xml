@@ -13,13 +13,11 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>getmemory()</literal> returns free system memory  (kilo-octets).</para>
-    <para><literal>[free, total]=getmemory()</literal> returns free and total system memory  (kilo-octets).</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
-    </simplelist>
+    <para>
+      <literal>getmemory()</literal> returns free system memory  (kilo-octets).
+    </para>
+    <para>
+      <literal>[free, total]=getmemory()</literal> returns free and total system memory  (kilo-octets).
+    </para>
   </refsection>
 </refentry>

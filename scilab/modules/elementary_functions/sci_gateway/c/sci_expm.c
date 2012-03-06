@@ -18,7 +18,6 @@
 //#include "double.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 #include "msgs.h"
 #include "elem_common.h"
 #include "matrix_right_division.h"

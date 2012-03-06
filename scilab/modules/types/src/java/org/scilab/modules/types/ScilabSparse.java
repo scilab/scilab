@@ -52,9 +52,9 @@ public class ScilabSparse implements ScilabType {
         if (data != 0) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
-            realPart = new double[]{ data };
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
+            realPart = new double[] { data };
         }
     }
 
@@ -68,10 +68,10 @@ public class ScilabSparse implements ScilabType {
         if (realData != 0 || imagData != 0) {
             nbItem = 1;
             rows = cols = 1;
-            nbItemRow = new int[]{1};
-            colPos = new int[]{0};
-            realPart = new double[]{ realData };
-            imaginaryPart = new double[]{ imagData };
+            nbItemRow = new int[] {1};
+            colPos = new int[] {0};
+            realPart = new double[] { realData };
+            imaginaryPart = new double[] { imagData };
         }
     }
 
@@ -375,7 +375,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the number of non null items in the matrix.
      *
-     * @param the number of non null items.
+     * @param nbItem the number of non null items.
      */
     public void setNbNonNullItems(int nbItem) {
         this.nbItem = nbItem;
@@ -393,10 +393,23 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the number of non null items by row.
      *
-     * @param an integer array.
+     * @param nbItemRow an integer array.
      */
     public void setNbItemRow(int[] nbItemRow) {
         this.nbItemRow = nbItemRow;
+    }
+
+    /**
+     * Get the column positions of the non null items.
+     *
+     * @return an integer array.
+     */
+    public int[] getScilabColPos() {
+        int[] cp = new int[colPos.length];
+        for (int i = 0; i < colPos.length; i++) {
+            cp[i] = colPos[i] + 1;
+        }
+        return cp;
     }
 
     /**
@@ -411,7 +424,7 @@ public class ScilabSparse implements ScilabType {
     /**
      * Set the column positions of the non null items.
      *
-     * @param an integer array.
+     * @param colPos an integer array.
      */
     public void setColPos(int[] colPos) {
         this.colPos = colPos;
@@ -527,8 +540,8 @@ public class ScilabSparse implements ScilabType {
         if (obj instanceof ScilabSparse) {
             ScilabSparse sciSparse = (ScilabSparse) obj;
             if (this.getNbNonNullItems() == sciSparse.getNbNonNullItems() &&
-                compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
-                Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
+                    compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow()) &&
+                    Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
                 if (this.isReal() && sciSparse.isReal()) {
                     return Arrays.equals(this.getRealPart(), sciSparse.getRealPart());
                 } else {
@@ -582,6 +595,17 @@ public class ScilabSparse implements ScilabType {
         }
 
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Object getSerializedObject() {
+        if (isReal()) {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart};
+        } else {
+            return new Object[]{new int[]{getHeight(), getWidth()}, nbItemRow, getScilabColPos(), realPart, imaginaryPart};
+        }
     }
 
     /**

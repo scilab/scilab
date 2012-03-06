@@ -16,6 +16,7 @@
 #include "javasci2_helper.h"
 #include "api_scilab.h"
 #include "lasterror.h"
+#include "charEncoding.h"
 
 BOOL isComplexVar(char *variableName)
 {
@@ -128,12 +129,11 @@ double *getDoubleComplexImg(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putDoubleComplex(char *variableName, double *variable, int nbRow, int nbCol)
+int putDoubleComplex(char* variableName, double *variable, int nbRow, int nbCol, double * imag, int nbRowI, int nbColI)
 {
     SciErr sciErr;
-    double *variableImg = variable + ((nbRow) * (nbCol));
 
-    sciErr = createNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, variable, variableImg);
+    sciErr = createNamedComplexMatrixOfDouble(NULL, variableName, nbRow, nbCol, variable, imag);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -418,10 +418,10 @@ int putUnsignedInt(char *variableName, unsigned int *variable, int nbRow, int nb
 ////////////////////// long / int64
 #ifdef __SCILAB_INT64__
 
-long *getLong(char *variableName, int *nbRow, int *nbCol)
+long long* getLong(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;
-    long *matrixOfLong = NULL;
+    long long *matrixOfLong = NULL;
 
     sciErr = readNamedMatrixOfInteger64(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
@@ -430,7 +430,7 @@ long *getLong(char *variableName, int *nbRow, int *nbCol)
     }
 
     /* Alloc the memory */
-    matrixOfLong = (long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long));
+    matrixOfLong = (long long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long long));
 
     /* Load the matrix */
     sciErr = readNamedMatrixOfInteger64(NULL, variableName, nbRow, nbCol, matrixOfLong);
@@ -443,7 +443,7 @@ long *getLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putLong(char *variableName, long *variable, int nbRow, int nbCol)
+int putLong(char *variableName, long long* variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
@@ -456,10 +456,10 @@ int putLong(char *variableName, long *variable, int nbRow, int nbCol)
     return 0;
 }
 
-unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
+unsigned long long* getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
 {
     SciErr sciErr;
-    long *matrixOfLong = NULL;
+    unsigned long long* matrixOfLong = NULL;
 
     sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, NULL);
     if (sciErr.iErr)
@@ -468,7 +468,7 @@ unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
     }
 
     /* Alloc the memory */
-    matrixOfLong = (long *)malloc(((*nbRow) * (*nbCol)) * sizeof(long));
+    matrixOfLong = (unsigned long long*)malloc(((*nbRow) * (*nbCol)) * sizeof(unsigned long long));
 
     /* Load the matrix */
     sciErr = readNamedMatrixOfUnsignedInteger64(NULL, variableName, nbRow, nbCol, matrixOfLong);
@@ -481,7 +481,7 @@ unsigned long *getUnsignedLong(char *variableName, int *nbRow, int *nbCol)
 
 }
 
-int putUnsignedLong(char *variableName, unsigned long *variable, int nbRow, int nbCol)
+int putUnsignedLong(char *variableName, unsigned long long *variable, int nbRow, int nbCol)
 {
     SciErr sciErr;
 
@@ -573,6 +573,72 @@ int putString(char *variableName, char **variable, int nbRow, int nbCol)
     }
     return 0;
 }
+
+int putSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putComplexSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL, double * data, int dataL, double * imag, int imagL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedComplexSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos, data, imag);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putBooleanSparse(char * variableName, int nbRow, int nbCol, int * nbRowItem, int nbRowItemL, int * colPos, int colPosL)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedBooleanSparseMatrix(NULL, variableName, nbRow, nbCol, colPosL, nbRowItem, colPos);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedMatrixOfPoly(NULL, variableName, polyVarName, nbRow, nbCol, nbCoef, data);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
+int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI)
+{
+    SciErr sciErr;
+
+    sciErr = createNamedComplexMatrixOfPoly(NULL, variableName, polyVarName, nbRow, nbCol, nbCoef, data, imag);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+    return 0;
+}
+
 
 BOOL isExistingVariable(char *variableName)
 {

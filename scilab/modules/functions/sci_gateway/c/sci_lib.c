@@ -12,7 +12,6 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "stack-c.h"
 #include "gw_functions.h"
 #include "api_scilab.h"
 #include "localization.h"

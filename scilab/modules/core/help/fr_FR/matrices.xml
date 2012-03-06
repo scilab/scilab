@@ -10,21 +10,21 @@
   <refsection>
     <title>Description</title>
     <para>
-    Les matrices sont les objets de base dans Scilab. Elles peuvent être définies de la façon suivante :
-  </para>
-    <programlisting role = ""><![CDATA[ 
+      Les matrices sont les objets de base dans Scilab. Elles peuvent être définies de la façon suivante :
+    </para>
+    <programlisting role=""><![CDATA[ 
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
    em1,em2,...,emn];
  ]]></programlisting>
     <para>
-    Les termes <literal>eij</literal> peuvent être des nombres complexes ou réels, des polynômes,
-    des fraction rationnelles, des chaînes de caractères ou des booléens.
-  </para>
+      Les termes <literal>eij</literal> peuvent être des nombres complexes ou réels, des polynômes,
+      des fraction rationnelles, des chaînes de caractères ou des booléens.
+    </para>
     <para>
-    Les vecteurs sont vus comme des matrices à une ligne ou une colonne.
-  </para>
+      Les vecteurs sont vus comme des matrices à une ligne ou une colonne.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -38,7 +38,7 @@ E=['A11','A12';'A21','A22']
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

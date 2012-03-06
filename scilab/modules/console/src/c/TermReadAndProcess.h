@@ -18,6 +18,6 @@
 * read line from commandline 
 */
 
-CONSOLE_IMPEXP char * TermReadAndProcess(void);
+CONSOLE_IMPEXP char *getCmdLine(void);
 
 #endif /* __TERMREADANDPROCESS_H__ */

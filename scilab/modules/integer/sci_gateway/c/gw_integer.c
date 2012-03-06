@@ -14,7 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_integer.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -56,21 +57,6 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_integer(void)
 {  
-	#ifdef _MSC_VER
-	#ifndef _DEBUG
-	if  ( BuildWithVS8ExpressF2C() )
-	{
-		/* Bug 4123 F2C code (i_prod.f) returns a wrong exception after callFunctionFromGateway */
-		/* and it crashs with release mode */
-		/* workaround disabled callFunctionFromGateway and call function without check */
-		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
-	}
-	else
-	#endif
-	#endif
-	{
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

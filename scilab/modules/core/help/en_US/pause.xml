@@ -10,25 +10,29 @@
   <refsection>
     <title>Description</title>
     <para>
-    Switch to the <literal>pause</literal> mode;
-    inserted in the code of a function, <literal>pause</literal> interrupts the execution
-    of the function: one receives a prompt symbol which indicates
-    the level of the <literal>pause</literal> (e.g. <literal>-1-&gt;</literal>). The user is
-    then in a new workspace in which all the lower-level variables
-    (and in particular all the variable of the function) are available.
-    To return to the calling workspace enter <literal>"return"</literal></para>
+      Switch to the <literal>pause</literal> mode;
+      inserted in the code of a function, <literal>pause</literal> interrupts the execution
+      of the function: one receives a prompt symbol which indicates
+      the level of the <literal>pause</literal> (e.g. <literal>-1-&gt;</literal>). The user is
+      then in a new workspace in which all the lower-level variables
+      (and in particular all the variable of the function) are available.
+      To return to the calling workspace enter <literal>"return"</literal>
+    </para>
     <para>
-    In this mode, <literal>[...]=return(...) </literal>
-    returns the variables of the argument <literal>(...)</literal> to the calling workspace with 
-    names in the output <literal> [...]</literal>. Otherwise, the lower-level variables
-    are protected and cannot be modified.</para>
+      In this mode, <literal>[...]=return(...) </literal>
+      returns the variables of the argument <literal>(...)</literal> to the calling workspace with 
+      names in the output <literal> [...]</literal>. Otherwise, the lower-level variables
+      are protected and cannot be modified.
+    </para>
     <para>
-    The <literal>pause</literal> is extremely useful for debugging purposes.</para>
+      The <literal>pause</literal> is extremely useful for debugging purposes.
+    </para>
     <para>
-    This mode is killed by the command <literal>"abort"</literal>.</para>
+      This mode is killed by the command <literal>"abort"</literal>.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="halt">halt</link>

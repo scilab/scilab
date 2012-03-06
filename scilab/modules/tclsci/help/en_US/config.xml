@@ -25,10 +25,8 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>config()</literal> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jaime Urzua</para>
+    <para>
+      <literal>config()</literal> allows configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.
+    </para>
   </refsection>
 </refentry>

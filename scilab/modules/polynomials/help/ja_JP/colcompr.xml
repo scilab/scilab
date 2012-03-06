@@ -40,13 +40,17 @@
       <varlistentry>
         <term>rk</term>
         <listitem>
-          <para><literal>A</literal>の通常ランク</para>
+          <para>
+            <literal>A</literal>の通常ランク
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para> <literal>Ac=A*Y</literal>, 多項式行列</para>
+          <para>
+            <literal>Ac=A*Y</literal>, 多項式行列
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +58,8 @@
   <refsection>
     <title>説明</title>
     <para>
-    多項式行列 <literal>A</literal>の列圧縮 (左への圧縮)</para>
+      多項式行列 <literal>A</literal>の列圧縮 (左への圧縮)
+    </para>
   </refsection>
   <refsection>
     <title>例</title>

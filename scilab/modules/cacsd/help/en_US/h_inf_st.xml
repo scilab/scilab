@@ -48,15 +48,15 @@
   <refsection>
     <title>Description</title>
     <para>
-    computes a matrix <literal>Kopt</literal> such that largest singular value of:</para>
-    <para><literal>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</literal>
-    is minimal (Static <literal>H_infinity</literal> four blocks problem).</para>
+      computes a matrix <literal>Kopt</literal> such that largest singular value of:
+    </para>
     <para>
-    D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
-    where <literal>size(D22)=r=[r1 r2]</literal></para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>F.D. ;   </para>
+      <literal>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</literal>
+      is minimal (Static <literal>H_infinity</literal> four blocks problem).
+    </para>
+    <para>
+      D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
+      where <literal>size(D22)=r=[r1 r2]</literal>
+    </para>
   </refsection>
 </refentry>

@@ -269,7 +269,6 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\api_error.cpp" />
     <ClCompile Include="src\cpp\api_int.cpp" />
     <ClCompile Include="src\cpp\api_list.cpp" />
-    <ClCompile Include="src\cpp\api_oldstack.cpp" />
     <ClCompile Include="src\cpp\api_pointer.cpp" />
     <ClCompile Include="src\cpp\api_poly.cpp" />
     <ClCompile Include="src\cpp\api_sparse.cpp" />
@@ -294,7 +293,6 @@ cd .. &gt;nul
     <ClInclude Include="src\cpp\api_internal_sparse.h" />
     <ClInclude Include="src\cpp\api_internal_string.h" />
     <ClInclude Include="includes\api_list.h" />
-    <ClInclude Include="includes\api_oldstack.h" />
     <ClInclude Include="includes\api_pointer.h" />
     <ClInclude Include="includes\api_poly.h" />
     <ClInclude Include="includes\api_scilab.h" />

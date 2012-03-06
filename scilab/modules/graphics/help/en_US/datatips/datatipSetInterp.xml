@@ -50,7 +50,7 @@
   <refsection>
     <title>Description</title>
     <para>
-        Set the interpolation mode for tip location.
+      Set the interpolation mode for tip location.
     </para>
   </refsection>
   <refsection>
@@ -76,12 +76,6 @@
       <member>
         <link linkend="datatipMove">datatipMove</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

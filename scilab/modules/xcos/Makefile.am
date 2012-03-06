@@ -21,15 +21,18 @@ libscixcos_la_root_DATA =  license.txt
 
 #### xcos : init scripts ####
 libscixcos_la_etcdir = $(mydatadir)/etc
-libscixcos_la_etc_DATA =	etc/xcos.quit \
-				etc/xcos.start \
-				etc/Xcos-style.xml \
-				etc/XcosFile.xsd \
-				etc/xcos.xml \
-				etc/XcosConfiguration.xsd \
-				etc/palettes.xml \
-				etc/PaletteConfiguration.xsd \
-				etc/Modelica.xsd
+libscixcos_la_etc_DATA = \
+	etc/xcos.quit \
+	etc/xcos.start \
+	etc/Xcos-style.xml \
+	etc/XcosFile.xsd \
+	etc/xcos.xml \
+	etc/XcosConfiguration.xsd \
+	etc/palettes.xml \
+	etc/PaletteConfiguration.xsd \
+	etc/Modelica.xsd \
+	etc/XConfiguration-xcos.xsl \
+	etc/XConfiguration-xcos.xml
 
 XCOS_C_SOURCES =
 
@@ -57,7 +60,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
-	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -65,7 +68,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosPalEnable.cpp \
 	sci_gateway/cpp/sci_xcosPalDisable.cpp \
 	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
-	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
+	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp
 
 libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

@@ -72,10 +72,6 @@
     </menu>
 
     <menu label="Format" mnemonic="P">
-      <menuitem action="SetColorsAction" label="Set Colors ..."/>
-      <menuitem action="SetFontAction" label="Set Font"/>
-      <menuitem action="ResetFontAction" label="Reset default font"/>
-      <separator/>
       <menuitem action="TabifyAction" label="Shift Right"/>
       <menuitem action="UnTabifyAction" label="Shift Left"/>
       <menuitem action="ConfigTabulationsAction" label="Configure Tabulation"/>

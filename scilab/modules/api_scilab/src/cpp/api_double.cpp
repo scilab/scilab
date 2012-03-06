@@ -21,15 +21,12 @@
 
 extern "C"
 {
-#include "machine.h"
-#include "elem_common.h"
-#include "localization.h"
-#include "MALLOC.h"
-#include "call_scilab.h"
 #include "api_scilab.h"
-#include "api_internal_double.h"
 #include "api_internal_common.h"
-#include "api_oldstack.h"
+#include "api_internal_double.h"
+#include "localization.h"
+#include "call_scilab.h"
+#include "elem_common.h"
 }
 
 using namespace types;
@@ -175,7 +172,7 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
         return sciErr;
     }
 
-    int rhs = _iVar - api_Rhs((int*)_pvCtx);
+    int rhs = _iVar - *getInputArgument(_pvCtx);
     out[rhs - 1] = pDbl;
     *_pdblReal = pDbl->getReal();
     if(*_pdblReal == NULL)

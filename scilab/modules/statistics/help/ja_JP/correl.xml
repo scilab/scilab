@@ -47,15 +47,18 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>correl(x,y,fre)</literal>  は,2個の変数xおよびyの
-	相関を計算します.
-	freは次元length(x) x length(y)の行列です.
-	freの添字(i,j)の要素はx_i&amp;y_jの値または数値または周波数となります.</para>
+    <para>
+      <literal>correl(x,y,fre)</literal>  は,2個の変数xおよびyの
+      相関を計算します.
+      freは次元length(x) x length(y)の行列です.
+      freの添字(i,j)の要素はx_i&amp;y_jの値または数値または周波数となります.
+    </para>
   </refsection>
   <refsection>
     <title>参考文献</title>
     <para>
-    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -73,9 +76,5 @@ rho=correl(x,h,fre)
         <link linkend="covar">covar</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para> Carlos Klimann</para>
   </refsection>
 </refentry>

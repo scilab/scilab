@@ -11,7 +11,8 @@
  */
 #include <string.h>
 #include "gw_symbolic.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -27,12 +28,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_symbolic(void)
 {
-	if (Rhs != 2)
-	{
-		Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),Tab[Fin-1].name, 2);
-		return 0;
-	}
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

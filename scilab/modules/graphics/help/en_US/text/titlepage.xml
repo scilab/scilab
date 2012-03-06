@@ -35,20 +35,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>titlepage</literal> displays the matrix of strings <literal>str</literal> in the middle of 
-    the current graphics window
-    with a font as big as possible.</para>
+    <para>
+      <literal>titlepage</literal> displays the matrix of strings <literal>str</literal> in the middle of 
+      the current graphics window
+      with a font as big as possible.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xtitle">xtitle</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>S. S.  </para>
   </refsection>
 </refentry>

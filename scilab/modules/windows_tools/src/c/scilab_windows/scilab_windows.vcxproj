@@ -260,8 +260,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="scilab_main.c" />
     <ClCompile Include="SetScilabEnvironmentVariables.c" />
     <ClCompile Include="spawncommand.c" />
-    <ClCompile Include="splashScreen.c" />
-    <ClCompile Include="StartupMessageBox.c" />
+    <ClCompile Include="splashScreen.cpp" />
     <ClCompile Include="stristr.c" />
     <ClCompile Include="TextToPrint.c" />
     <ClCompile Include="windows_main.c" />
@@ -286,14 +285,11 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="killScilabProcess.h" />
     <ClInclude Include="mmapWindows.h" />
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource_scilab_windows.h" />
     <ClInclude Include="scilab_main.h" />
     <ClInclude Include="SetHeapOptions.h" />
     <ClInclude Include="SetScilabEnvironmentVariables.h" />
     <ClInclude Include="spawncommand.h" />
     <ClInclude Include="splashScreen.h" />
-    <ClInclude Include="StartupMessageBox.h" />
     <ClInclude Include="stristr.h" />
     <ClInclude Include="TextToPrint.h" />
     <ClInclude Include="windows_main.h" />
@@ -302,7 +298,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="WndThread.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\resources\scilab_splashscreen.bmp" />
     <None Include="Gui_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Localization_Import.def" />

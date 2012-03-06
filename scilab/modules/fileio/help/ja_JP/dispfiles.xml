@@ -30,7 +30,8 @@
         <term>units</term>
         <listitem>
           <para>数値ベクトル, ファイルの論理ユニット. デフォルトでは
-	全てのオープンされているファイル.</para>
+            全てのオープンされているファイル.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,9 +39,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	dispfiles は,
-	現在オープンされているファイルのプロパティを表示します.
-</para>
+      dispfiles は,
+      現在オープンされているファイルのプロパティを表示します.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -58,9 +59,5 @@ dispfiles()
         <link linkend="mopen">mopen</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>S. Steer</para>
   </refsection>
 </refentry>

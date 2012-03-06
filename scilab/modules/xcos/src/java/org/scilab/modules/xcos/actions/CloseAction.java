@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -42,7 +42,7 @@ public class CloseAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      */
@@ -52,7 +52,7 @@ public class CloseAction extends DefaultAction {
 
     /**
      * Menu for diagram menubar
-     * 
+     *
      * @param scilabGraph
      *            associated diagram
      * @return the menu
@@ -70,7 +70,7 @@ public class CloseAction extends DefaultAction {
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
         final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(
-                graph.getDiagramTab());
+                                       graph.getGraphTab());
         ClosingOperationsManager.startClosingOperation(tab);
     }
 

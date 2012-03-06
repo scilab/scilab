@@ -13,12 +13,12 @@
 /* desc : interface for tohome primitive                                  */
 /*------------------------------------------------------------------------*/
 #include "gw_console.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "tohome.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_tohome(char *fname,unsigned long fname_len)
+int sci_tohome(char *fname, void* pvApiCtx)
 {
 
 	CheckRhs(0,0);

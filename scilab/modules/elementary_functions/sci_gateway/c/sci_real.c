@@ -16,7 +16,6 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 SciErr real_poly(void* pvApiCtx, int* _piAddress);
 SciErr real_sparse(void* pvApiCtx, int* _piAddress);

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para></para>
+          <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,10 +47,14 @@
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>pp=lcm(p)</literal> は,多項式ベクトル<literal>p</literal>
-	の最小公倍数<literal>pp</literal>を計算します.</para>
-    <para><literal>[pp,fact]=lcm(p)</literal> はこれに加えて以下のような
-	ベクトル<literal>fact</literal>を計算します:</para>
+    <para>
+      <literal>pp=lcm(p)</literal> は,多項式ベクトル<literal>p</literal>
+      の最小公倍数<literal>pp</literal>を計算します.
+    </para>
+    <para>
+      <literal>[pp,fact]=lcm(p)</literal> はこれに加えて以下のような
+      ベクトル<literal>fact</literal>を計算します:
+    </para>
     <para>
       <literal>p.*fact=pp*ones(p)</literal>
     </para>

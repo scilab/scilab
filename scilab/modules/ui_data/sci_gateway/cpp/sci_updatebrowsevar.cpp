@@ -16,13 +16,12 @@ extern "C"
 #include "UpdateBrowseVar.h"
 #include "gw_ui_data.h"
 #include "BOOL.h"
-#include "stack-c.h"
 #include "stackinfo.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 }
 /*--------------------------------------------------------------------------*/
-int sci_updatebrowsevar(char *fname,unsigned long fname_len)
+int sci_updatebrowsevar(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

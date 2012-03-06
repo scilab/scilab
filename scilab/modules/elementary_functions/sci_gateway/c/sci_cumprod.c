@@ -15,8 +15,6 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
-#include "api_oldstack.h"
 
 
 int sci_cumprod(char *fname, void* pvApiCtx)

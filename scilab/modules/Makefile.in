@@ -169,8 +169,8 @@ DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
 	system_env ast symbol parse scinotes parallel modules_manager \
-	ui_data history_browser xml types scicos_blocks scicos . \
-	javasci
+	ui_data history_browser preferences xml types scicos_blocks \
+	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -469,8 +469,8 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	helptools umfpack demo_tools genetic_algorithms \
 	simulated_annealing parameters matio atoms hdf5 graph xcos \
 	system_env ast symbol parse scinotes parallel modules_manager \
-	ui_data history_browser xml types $(am__append_1) scicos . \
-	$(am__append_2)
+	ui_data history_browser preferences xml types $(am__append_1) \
+	scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -480,7 +480,7 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
 #libscilab_cli_la_SOURCES =
-libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
+libscilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS)
 #libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
@@ -579,8 +579,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+        $(top_builddir)/modules/xml/libscixml.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/preferences/libscipreferences.la
 
 
 # Core modules
@@ -594,7 +595,7 @@ libscilab_la_LIBADD = $(am__append_5) $(am__append_6) $(OTHER_LIBS) \
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
+libscilab_cli_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

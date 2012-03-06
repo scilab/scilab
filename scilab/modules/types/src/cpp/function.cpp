@@ -144,6 +144,8 @@ namespace types
         int iRet ;
         GatewayStruct gStr;
         _iRetCount = Max(1, _iRetCount);
+        gStr.m_iIn = in.size();
+        gStr.m_iOut = _iRetCount;
         gStr.m_pIn = &in;
         typed_list::value_type tmpOut[MAX_OUTPUT_VARIABLE];
         std::fill_n(tmpOut, MAX_OUTPUT_VARIABLE, static_cast<typed_list::value_type>(0));

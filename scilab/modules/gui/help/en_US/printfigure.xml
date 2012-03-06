@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-printfigure(figid)
-status = printfigure(figid)
+      printfigure(figid)
+      status = printfigure(figid)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -37,7 +37,9 @@ status = printfigure(figid)
       <varlistentry>
         <term>status</term>
         <listitem>
-          <para>Boolean: <emphasis>%T</emphasis> if the printing succeeds, <emphasis>%F</emphasis> otherwise.</para>
+          <para>
+            Boolean: <emphasis>%T</emphasis> if the printing succeeds, <emphasis>%F</emphasis> otherwise.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,7 +56,7 @@ printfigure(get(gcf(), "figure_id"));
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toprint">toprint</link>
@@ -62,12 +64,6 @@ printfigure(get(gcf(), "figure_id"));
       <member>
         <link linkend="printsetupbox">printsetupbox</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -127,6 +127,8 @@ namespace types
     public :
         typed_list*             m_pIn;
         InternalType**          m_pOut;
+        int                     m_iIn;
+        int                     m_iOut;
         int*                    m_piRetCount;
         wchar_t*                m_pstName;
         int*                    m_pOutOrder;

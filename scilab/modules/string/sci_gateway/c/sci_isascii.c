@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "gw_string.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"

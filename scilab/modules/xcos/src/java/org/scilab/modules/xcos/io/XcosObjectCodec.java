@@ -20,6 +20,7 @@ import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.model.mxICell;
 
 /**
  * Codec for any xcos object
@@ -59,6 +60,33 @@ public class XcosObjectCodec extends mxCellCodec {
             Map<String, String> mapping) {
         super(template, exclude, idrefs, mapping);
 
+    }
+
+    /**
+     * Apply compatibility pattern to the decoded object
+     * 
+     * @param dec
+     *            Codec that controls the decoding process.
+     * @param node
+     *            XML node to decode the object from.
+     * @param obj
+     *            Object decoded.
+     * @return The Object transformed
+     * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec,
+     *      org.w3c.dom.Node, java.lang.Object)
+     */
+    @Override
+    public Object afterDecode(mxCodec dec, Node node, Object obj) {
+        if (obj instanceof mxICell) {
+            final mxICell cell = (mxICell) obj;
+
+            final Node id = node.getAttributes().getNamedItem("id");
+            if (id != null) {
+                cell.setId(id.getNodeValue());
+            }
+
+        }
+        return super.afterDecode(dec, node, obj);
     }
 
     /**

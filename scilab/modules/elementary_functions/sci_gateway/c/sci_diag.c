@@ -15,7 +15,6 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 SciErr getStartPosition(void* pvApiCtx, int _iPos, int* _piStartPos);
 

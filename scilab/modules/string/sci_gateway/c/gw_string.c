@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "gw_string.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
@@ -48,7 +48,9 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //2 strtok
 	{NULL, ""}, //4 strspn
 	{NULL, ""}, //1 strtod
-	{NULL, ""}  //regexp
+	{NULL, ""}, //regexp
+    {NULL, ""}, //_str2code
+    {NULL, ""}  //_code2str
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)

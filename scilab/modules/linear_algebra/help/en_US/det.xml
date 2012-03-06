@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>det(X)
-[e,m]=det(X)</synopsis>
+      [e,m]=det(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,17 +49,22 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.</para>
     <para>
-    For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.</para>
+      <literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.
+    </para>
     <para>
-    For rational matrices <literal>det(X)</literal> is equivalent to <literal>detr(X)</literal>.</para>
+      For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.
+    </para>
+    <para>
+      For rational matrices <literal>det(X)</literal> is equivalent to <literal>detr(X)</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>References</title>
     <para>
-     det computations are based on the Lapack routines
-      DGETRF for  real matrices and  ZGETRF for the complex case.</para>
+      det computations are based on the Lapack routines
+      DGETRF for  real matrices and  ZGETRF for the complex case.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -71,7 +77,7 @@ det(A), prod(spec(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="detr">detr</link>

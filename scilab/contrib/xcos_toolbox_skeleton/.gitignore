@@ -3,6 +3,7 @@
 #
 cleaner.sce
 loader.sce
+unloader.sce
 jar/
 sci_gateway/c/xcos_toolbox_skeleton_c.c
 libxcos_toolbox_skeleton*.*

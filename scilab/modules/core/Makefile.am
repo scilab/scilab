@@ -73,7 +73,9 @@ CORE_C_SOURCES = \
     src/c/dynamic_tclsci.c \
     src/c/dynamic_parallel.c \
     src/c/backtrace.c \
-    src/c/signal_mgmt.c
+    src/c/scirun.c \
+    src/c/signal_mgmt.c \
+    src/c/suspendProcess.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += \
@@ -274,6 +276,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/operations/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/threads/includes \
+	-I$(top_srcdir)/modules/history_manager/includes \
 	$(XML_FLAGS)
 
 libscicore_la_CPPFLAGS = \

@@ -41,16 +41,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
-        US-ASCII character code between 0 and octal 0177 inclusive.
-        otherwise returns FALSE (%F)
+    <para>
+      <literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
+      US-ASCII character code between 0 and octal 0177 inclusive.
+      otherwise returns FALSE (%F)
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-isascii(code2str(300))
-isascii(code2str(-11))
 letters = [115.    99.    105.    108.    97.    98.]
 isascii(letters)
 ascii(letters)
@@ -58,7 +57,7 @@ isascii('scilab')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="isalphanum">isalphanum</link>

@@ -14,7 +14,7 @@ function subdemolist = demo_gateway()
                  _("Scroll") ,"scroll.dem.sce"     ; ..
                  _("Scale")  ,"scale.dem.sce"      ]
 
-  subdemolist(:,2) = demopath + subdemolist(:,2);
+  subdemolist(:,2) = demopath + '/tk/' + subdemolist(:,2);
 endfunction
 
 subdemolist = demo_gateway();

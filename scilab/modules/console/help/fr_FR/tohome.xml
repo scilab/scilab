@@ -24,22 +24,20 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>tohome()</literal> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</para>
+    <para>
+      <literal>tohome()</literal> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.
+    </para>
     <para>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</para>
-    <para>Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</para>
+    <para>
+      Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="clc">clc</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <simplelist type="vert">
-      <member>V.C.</member>
     </simplelist>
   </refsection>
 </refentry>

@@ -18,19 +18,16 @@
         <term>win-nums  </term>
         <listitem>
           <para>entier ou vecteur d'entiers
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xdel</literal> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <literal>win-nums</literal> ou supprime la 
-    fenêtre graphique courante si aucun argument n'est donné.
-  </para>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
+    <para>
+      <literal>xdel</literal> supprime les fenêtres graphiques dont les numéros sont donnés dans le vecteur <literal>win-nums</literal> ou supprime la 
+      fenêtre graphique courante si aucun argument n'est donné.
+    </para>
   </refsection>
 </refentry>

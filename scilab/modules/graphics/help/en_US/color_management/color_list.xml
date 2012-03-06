@@ -21,7 +21,8 @@
   <refsection>
     <title>Description</title>
     <para>You will find below the names of the colors known by Scilab. The RGB values are given after the name. Note
-    that sometimes colors have more than 1 name.</para>
+      that sometimes colors have more than 1 name.
+    </para>
     <informaltable border="1">
       <tr>
         <td>scilab blue4</td>
@@ -4868,7 +4869,7 @@
     </informaltable>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="color">color</link>

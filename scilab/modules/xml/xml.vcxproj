@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;../operations/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../string/includes;../fileio/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -228,6 +228,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\gw_xml.h" />
     <ClInclude Include="src\cpp\extraction.hpp" />
     <ClInclude Include="src\cpp\insertion.hpp" />
     <ClInclude Include="src\cpp\SplitString.hxx" />

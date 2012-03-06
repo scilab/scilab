@@ -10,13 +10,13 @@
  *
  */
 #include "gw_core.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(where)(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_where)(char *fname,unsigned long fname_len)
+int C2F(sci_where)(char *fname, void* pvApiCtx)
 {
 	if (Rhs > 0)
 	{

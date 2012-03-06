@@ -21,8 +21,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  res = atomsIsInstalled(modules[,section])
-	</synopsis>
+      res = atomsIsInstalled(modules[,section])
+    </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -35,8 +35,8 @@
         <term>modules</term>
         <listitem>
           <para>
-						mx1, mx2 Matrix of strings:
-					</para>
+            mx1, mx2 Matrix of strings:
+          </para>
           <informaltable border="1">
             <!-- Technical name -->
             <tr>
@@ -47,10 +47,10 @@
                 <emphasis role="strong">Technical name</emphasis>
               </td>
               <td>
-								Mandatory
-							</td>
+                Mandatory
+              </td>
               <td>
-							</td>
+              </td>
             </tr>
             <!-- Version -->
             <tr>
@@ -61,12 +61,12 @@
                 <emphasis role="strong">Version</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								module's version is ignored.
-							</td>
+                If this field is empty or is not present,
+                module's version is ignored.
+              </td>
             </tr>
             <!-- Section -->
             <tr>
@@ -77,12 +77,12 @@
                 <emphasis role="strong">Section</emphasis>
               </td>
               <td>
-								Optional
-							</td>
+                Optional
+              </td>
               <td>
-								If this field is empty or is not present,
-								module's section is ignored.
-							</td>
+                If this field is empty or is not present,
+                module's section is ignored.
+              </td>
             </tr>
           </informaltable>
         </listitem>
@@ -92,37 +92,41 @@
         <term>section</term>
         <listitem>
           <para>
-						This argument controls the list of searched modules.
-					</para>
-          <para><literal>section</literal> is a single-string and its value should be :
-					</para>
+            This argument controls the list of searched modules.
+          </para>
+          <para>
+            <literal>section</literal> is a single-string and its value should be :
+          </para>
           <itemizedlist>
             <listitem>
-              <para><literal>"all"</literal>: atomsIsInstalled() searches external
-								modules installed in both "user" and "allusers" sections.
-							</para>
+              <para>
+                <literal>"all"</literal>: atomsIsInstalled() searches external
+                modules installed in both "user" and "allusers" sections.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>"allusers"</literal>: atomsIsInstalled() searches external
-								modules installed in the "allusers" section.
-							</para>
+              <para>
+                <literal>"allusers"</literal>: atomsIsInstalled() searches external
+                modules installed in the "allusers" section.
+              </para>
             </listitem>
             <listitem>
-              <para><literal>"user"</literal>: atomsIsInstalled() searches external
-								modules installed in the "user" section.
-							</para>
+              <para>
+                <literal>"user"</literal>: atomsIsInstalled() searches external
+                modules installed in the "user" section.
+              </para>
             </listitem>
           </itemizedlist>
           <para>
-						The default value is "all".
-					</para>
+            The default value is "all".
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>res</term>
         <listitem>
           <para>
-					</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -133,8 +137,8 @@
   <refsection>
     <title>Description</title>
     <para>
-	  
-	</para>
+      
+    </para>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Examples -->
@@ -183,10 +187,4 @@ atomsRemove("toolbox_2");
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Pierre MARECHAL - DIGITEO</member>
-    </simplelist>
-  </refsection>
 </refentry>

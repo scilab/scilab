@@ -10,21 +10,23 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>rlist()
-rlist(a1,....an)</synopsis>
+      rlist(a1,....an)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>rlist(a1,....an)</literal> est équivalent à
-    <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
-  </para>
     <para>
-    Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
-  </para>
+      <literal>rlist(a1,....an)</literal> est équivalent à
+      <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
+    </para>
     <para>
-  </para>
+      Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
+    </para>
+    <para>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="tlist">tlist</link>

@@ -18,21 +18,21 @@
         <term>sd  </term>
         <listitem>
           <para>structure de données renvoyée par gr_menu.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sz  </term>
         <listitem>
           <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant les facteurs de zoom en x et y.
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>orig  </term>
         <listitem>
           <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant un vecteur de translation de l'origine 
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,29 +40,25 @@
   <refsection>
     <title>Description</title>
     <para>
-    Etant donné une liste <literal>sd</literal> générée par <literal>gr_menu</literal>
-    <literal>sd2sci</literal> fabrique un vecteur d'instructions Scilab correspondant au graphique
-    contenu dans sd.
-  </para>
+      Etant donné une liste <literal>sd</literal> générée par <literal>gr_menu</literal>
+      <literal>sd2sci</literal> fabrique un vecteur d'instructions Scilab correspondant au graphique
+      contenu dans sd.
+    </para>
     <para>
-    Les paramètres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'échelle ou de décaler
-    le graphique initial.
-  </para>
+      Les paramètres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'échelle ou de décaler
+      le graphique initial.
+    </para>
     <para>
-    Si <literal>sz</literal> ou <literal>orig</literal> sont donnés sous forme de chaînes de caractères, les instructions
-    générées les utilisent de façon formelle.
-  </para>
+      Si <literal>sz</literal> ou <literal>orig</literal> sont donnés sous forme de chaînes de caractères, les instructions
+      générées les utilisent de façon formelle.
+    </para>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="execstr">execstr</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>Serge Steer INRIA 1988   </para>
   </refsection>
 </refentry>

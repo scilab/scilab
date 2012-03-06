@@ -18,34 +18,35 @@
         <term>initial_rect  </term>
         <listitem>
           <para>matrice 4xn contenant les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Si un seul rectangle est présent initial_rect peut être un rectangle. 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>final_rect  </term>
         <listitem>
           <para>un rectangle défini par [x_gauche, y_haut, largeur, hauteur] 
-</para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>btn  </term>
         <listitem>
           <para>
-    :un entier, le numero du bouton de la souris actionné.
-</para>
+            :un entier, le numero du bouton de la souris actionné.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>dragrect</literal> permet de déplacer un ou plusieurs rectangles à l'écran. La matrice 4xn
-    initial_rect définit les rectangles. Chaque colonne de <literal>initial_rect</literal>
-    contient  les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Quand un bouton de la souris est actionné <literal>dragrect</literal> renvoie les rectangles finaux dans <literal>final_Rect</literal>.
-  </para>
     <para>
-  </para>
+      <literal>dragrect</literal> permet de déplacer un ou plusieurs rectangles à l'écran. La matrice 4xn
+      initial_rect définit les rectangles. Chaque colonne de <literal>initial_rect</literal>
+      contient  les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Quand un bouton de la souris est actionné <literal>dragrect</literal> renvoie les rectangles finaux dans <literal>final_Rect</literal>.
+    </para>
+    <para>
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -56,7 +57,7 @@ xrect(r)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

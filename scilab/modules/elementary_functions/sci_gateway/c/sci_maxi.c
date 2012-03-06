@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
 #include "MALLOC.h"
 #include "basic_functions.h"
 #include "idmin.h"
@@ -20,7 +19,6 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "api_oldstack.h"
 
 int func_comp(char* fname, int _iMini, void* pvApiCtx);
 
@@ -161,11 +159,10 @@ int func_comp(char* fname, int _iMini, void* pvApiCtx)
 		}
 		break;
 	case sci_sparse:
-		Fin -= 6; //Ugly !!!
 		if(iModeActive)
-			sci_spmin(fname,pvApiCtx);
+			sci_spmin(fname, pvApiCtx);
 		else
-			sci_spmax(fname,pvApiCtx);
+			sci_spmax(fname, pvApiCtx);
 		break;
 	default:
 		OverLoad(1);
@@ -228,9 +225,9 @@ SciErr compare_double_inside(void* pvApiCtx, int* _piAddress, int _iIsMini, int 
 
 	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		Err = 1;
-		SciError(202);
-		return sciErr;
+        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"), L"max", 1);
+        sciErr.iErr = 1;
+        return sciErr;
 	}
 
 	sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
@@ -473,8 +470,8 @@ static SciErr compare_double(void* pvApiCtx, int _iIsMini, int** _piAddr, int _i
 
 		if(isVarComplex(pvApiCtx, _piAddr[i]))
 		{
-			Err = i;
-			SciError(202);
+            ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"), L"max", i+1);
+            sciErr.iErr = 1;
 			return sciErr;
 		}
 
@@ -486,8 +483,8 @@ static SciErr compare_double(void* pvApiCtx, int _iIsMini, int** _piAddr, int _i
 
 		if(iRhsRows * iRhsCols == 0)
 		{
-			Err = i + 1;
-			SciError(45);
+            ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"), L"max", i+1);
+            sciErr.iErr = 1;
 			return sciErr;
 		}
 
@@ -504,8 +501,8 @@ static SciErr compare_double(void* pvApiCtx, int _iIsMini, int** _piAddr, int _i
 				{
 					if(iRows * iCols != 1)
 					{
-						Err = i + 1;
-						SciError(42);
+                        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: A real scalar expected.\n"), L"max", i+1);
+                        sciErr.iErr = 1;
 						return sciErr;
 					}
 					else

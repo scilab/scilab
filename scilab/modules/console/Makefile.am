@@ -24,8 +24,14 @@ libsciconsole_la_root_DATA =  license.txt
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
-libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
-
+libsciconsole_la_etc_DATA = \
+	etc/console.quit \
+	etc/console.start \
+	etc/configuration.xml \
+	etc/XConfiguration-console.xml \
+	etc/XConfiguration-console.xsl \
+	etc/XConfiguration-general.xml \
+	etc/XConfiguration-general.xsl
 
 #### console : List of the cpp files ####
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
@@ -55,11 +61,21 @@ CONSOLE_C_SOURCES = \
     src/c/more.c \
     src/c/scilines.c \
     src/c/GetCommandLine.c \
-    src/c/others/zzledt.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
-    src/c/promptecho.c
+    src/c/promptecho.c \
+    src/c/cmdLine/autoCompletionCli.c \
+    src/c/cmdLine/catstr.c \
+    src/c/cmdLine/charactersManagement.c \
+    src/c/cmdLine/cliDisplayManagement.c \
+    src/c/cmdLine/cliHistory.c \
+    src/c/cmdLine/cliPrompt.c \
+    src/c/cmdLine/getKey.c \
+    src/c/cmdLine/getNbrLine.c \
+    src/c/cmdLine/gotoFunctions.c \
+    src/c/cmdLine/initConsoleMode.c \
+    src/c/cmdLine/termcapManagement.c
 
 if IS_MACOSX
 CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
@@ -108,11 +124,21 @@ libsciconsole_disable_la_SOURCES = \
     src/c/more.c \
     src/c/scilines.c \
     src/c/GetCommandLine.c \
-    src/c/others/zzledt.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
-    src/c/promptecho.c
+    src/c/promptecho.c \
+    src/c/cmdLine/autoCompletionCli.c \
+    src/c/cmdLine/catstr.c \
+    src/c/cmdLine/charactersManagement.c \
+    src/c/cmdLine/cliDisplayManagement.c \
+    src/c/cmdLine/cliHistory.c \
+    src/c/cmdLine/cliPrompt.c \
+    src/c/cmdLine/getKey.c \
+    src/c/cmdLine/getNbrLine.c \
+    src/c/cmdLine/gotoFunctions.c \
+    src/c/cmdLine/initConsoleMode.c \
+    src/c/cmdLine/termcapManagement.c
 
 if IS_MACOSX
 libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
@@ -193,6 +219,7 @@ libsciconsole_disable_la_CPPFLAGS = \
 libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/c/cmdLine \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \

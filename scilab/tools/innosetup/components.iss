@@ -51,7 +51,6 @@
 #define COMPN_MEXLIB 'mexlib'
 #define COMPN_M2SCI 'm2sci'
 
-#define COMPN_JAVASCI 'javasci'
 #define COMPN_INTERSCI 'intersci'
 
 #define COMPN_FFTW 'FFTW'

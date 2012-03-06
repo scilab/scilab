@@ -18,12 +18,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
@@ -51,7 +51,7 @@ public final class FileUtils {
 
     /**
      * Copy in to out
-     * 
+     *
      * @param in
      *            the input file
      * @param out
@@ -65,7 +65,7 @@ public final class FileUtils {
         try {
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
-            LogFactory.getLog(FileUtils.class).warn(e);
+            Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
             throw e;
         } finally {
             if (inChannel != null) {
@@ -79,7 +79,7 @@ public final class FileUtils {
 
     /**
      * Force the copy from in to out
-     * 
+     *
      * @param in
      *            the input file
      * @param out
@@ -93,7 +93,7 @@ public final class FileUtils {
             try {
                 out.createNewFile();
             } catch (IOException e) {
-                LogFactory.getLog(FileUtils.class).warn(e);
+                Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
             }
         }
 
@@ -102,20 +102,20 @@ public final class FileUtils {
             outChannel = new FileOutputStream(out).getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
-            LogFactory.getLog(FileUtils.class).warn(e);
+            Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
         } finally {
             if (inChannel != null) {
                 try {
                     inChannel.close();
                 } catch (IOException e) {
-                    LogFactory.getLog(FileUtils.class).warn(e);
+                    Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
                 }
             }
             if (outChannel != null) {
                 try {
                     outChannel.close();
                 } catch (IOException e) {
-                    LogFactory.getLog(FileUtils.class).warn(e);
+                    Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
                 }
             }
         }
@@ -123,45 +123,42 @@ public final class FileUtils {
 
     /**
      * Create a temporary file with an h5 extension and return it
-     * 
+     *
      * @return a new unique temporary file.
      * @throws IOException
      *             when an error occurs
      */
     public static String createTempFile() throws IOException {
-        return ScilabCommons.createtempfilename("xcos", 1)
-                + XcosFileType.HDF5.getDottedExtension();
+        return ScilabCommons.createtempfilename("xcos", 1) + XcosFileType.HDF5.getDottedExtension();
     }
 
     /**
      * Delete the file and log an error message if unable to do so.
-     * 
+     *
      * @param f
      *            the file to delete.
      */
     public static void delete(File f) {
         if (!f.delete()) {
-            LogFactory.getLog(FileUtils.class).error(
-                    XcosMessages.UNABLE_TO_DELETE + f);
+            Logger.getLogger(FileUtils.class.getName()).severe(XcosMessages.UNABLE_TO_DELETE + f);
         }
     }
 
     /**
      * Delete the file and log an error message if unable to do so.
-     * 
+     *
      * @param f
      *            the file to delete.
      */
     public static void delete(String f) {
         if (!new File(f).delete()) {
-            LogFactory.getLog(FileUtils.class).error(
-                    XcosMessages.UNABLE_TO_DELETE + f);
+            Logger.getLogger(FileUtils.class.getName()).severe(XcosMessages.UNABLE_TO_DELETE + f);
         }
     }
 
     /**
      * Test if the file exists.
-     * 
+     *
      * @param f
      *            the file check.
      * @return true if the file exists, false otherwise.
@@ -172,27 +169,24 @@ public final class FileUtils {
 
     /**
      * Decode the style into the passed stylesheet.
-     * 
+     *
      * @param styleSheet
      *            the current stylesheet
      * @throws IOException
      *             on I/O errors
      */
-    public static void decodeStyle(final mxStylesheet styleSheet)
-            throws IOException {
+    public static void decodeStyle(final mxStylesheet styleSheet) throws IOException {
         /*
          * Initialize constants
          */
         final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-        File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/"
-                + STYLE_FILENAME);
+        File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + STYLE_FILENAME);
 
         final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
         final File userStyleSheet = new File(homePath + '/' + STYLE_FILENAME);
 
         final String sciURL = ScilabConstants.SCI.toURI().toURL().toString();
-        final String homeURL = ScilabConstants.SCIHOME.toURI().toURL()
-                .toString();
+        final String homeURL = ScilabConstants.SCIHOME.toURI().toURL().toString();
 
         String xml;
         Document document;
@@ -220,14 +214,13 @@ public final class FileUtils {
 
     /**
      * Load an Xcos file.
-     * 
+     *
      * @param xcosFile
      *            xcos file
      * @return opened document
      */
     public static Document loadXcosDocument(String xcosFile) {
-        DocumentBuilderFactory docBuilderFactory = ScilabDocumentBuilderFactory
-                .newInstance();
+        DocumentBuilderFactory docBuilderFactory = ScilabDocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder;
 
         try {
@@ -244,7 +237,7 @@ public final class FileUtils {
 
     /**
      * Export an HTML label String to a valid C identifier String.
-     * 
+     *
      * @param label
      *            the HTML label
      * @return a valid C identifier String
@@ -261,23 +254,23 @@ public final class FileUtils {
                 cFunctionName.append(ch);
             } else
 
-            // Adding lower case chars
-            if (ch >= 'a' && ch <= 'z') {
-                cFunctionName.append(ch);
-            } else
-
-            // Adding number chars
-            if (ch >= '0' && ch <= '9') {
-                // do not append any first number
-                if (cFunctionName.length() > 0) {
+                // Adding lower case chars
+                if (ch >= 'a' && ch <= 'z') {
                     cFunctionName.append(ch);
-                }
-            } else
+                } else
 
-            // Specific chars
-            if (ch == '_' || ch == ' ') {
-                cFunctionName.append('_');
-            }
+                    // Adding number chars
+                    if (ch >= '0' && ch <= '9') {
+                        // do not append any first number
+                        if (cFunctionName.length() > 0) {
+                            cFunctionName.append(ch);
+                        }
+                    } else
+
+                        // Specific chars
+                        if (ch == '_' || ch == ' ') {
+                            cFunctionName.append('_');
+                        }
         }
         return cFunctionName.toString();
     }

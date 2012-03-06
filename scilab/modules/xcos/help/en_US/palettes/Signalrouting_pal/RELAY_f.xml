@@ -76,11 +76,6 @@
               <xref linkend="Computationalfunction_RELAY_f">Computational function</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_RELAY_f">Authors</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,13 +93,13 @@
   <refsection id="Description_RELAY_f">
     <title>Description</title>
     <para>
-This block routes one of the regular inputs to the unique regular
-output. the choice of which input is to be routed is done, initially
-by the "initial connected input" parameter. Then, every time an input
-event arrives on the i-th input event port, the i-th regular input
-port is routed to the regular output.   
-
-</para>
+      This block routes one of the regular inputs to the unique regular
+      output. the choice of which input is to be routed is done, initially
+      by the "initial connected input" parameter. Then, every time an input
+      event arrives on the i-th input event port, the i-th regular input
+      port is routed to the regular output.   
+      
+    </para>
   </refsection>
   <refsection id="Dialogbox_RELAY_f">
     <title>Dialog box</title>
@@ -116,8 +111,8 @@ port is routed to the regular output.
       </inlinemediaobject>
     </para>
     <para>
-
-</para>
+      
+    </para>
     <itemizedlist>
       <listitem>
         <para>
@@ -139,16 +134,24 @@ port is routed to the regular output.
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -170,19 +173,29 @@ port is routed to the regular output.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 2</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 2
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> yes</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> yes
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> no
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -207,9 +220,5 @@ port is routed to the regular output.
         <para> SCI/modules/scicos_blocks/src/c/relay.c (Type 2)</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_RELAY_f">
-    <title>Authors</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

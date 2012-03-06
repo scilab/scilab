@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +24,6 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -269,7 +268,11 @@ int sci_extraction(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    getAllocatedSingleString(pvApiCtx, fieldaddr, &field);
+    if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
     id = getXMLObjectId(mlistaddr, pvApiCtx);
 
     t = XMLObject::getFromId<T>(id);

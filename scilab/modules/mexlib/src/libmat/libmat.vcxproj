@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,8 +145,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -185,7 +183,6 @@ cd ..
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../parse/includes;../../../system_env/includes;../../../api_scilab/includes;../../../threads/includes;../../../operations/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

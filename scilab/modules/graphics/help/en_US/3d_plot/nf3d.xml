@@ -36,8 +36,9 @@
   <refsection>
     <title>Description</title>
     <para>
-    Utility function. Used for transforming rectangular facets coded 
-    in three matrices x,y,z to scilab code for facets accepted by plot3d.</para>
+      Utility function. Used for transforming rectangular facets coded 
+      in three matrices x,y,z to scilab code for facets accepted by plot3d.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -53,7 +54,7 @@ z= sin(u)'*ones(v);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

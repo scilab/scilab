@@ -17,7 +17,6 @@
 #include "prompt.h"
 #include "readline.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "sci_warning.h"

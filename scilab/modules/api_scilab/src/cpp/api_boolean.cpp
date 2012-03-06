@@ -27,7 +27,6 @@ extern "C"
 #include "api_scilab.h"
 #include "api_internal_boolean.h"
 #include "api_internal_common.h"
-#include "api_oldstack.h"
 #include "localization.h"
 #include "MALLOC.h"
 }
@@ -93,7 +92,7 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
 		return sciErr;
 	}
 
-	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	int rhs = _iVar - *getInputArgument(_pvCtx);
 	out[rhs - 1] = pBool;
 	*_piBool = pBool->get();
 	if(*_piBool == NULL)

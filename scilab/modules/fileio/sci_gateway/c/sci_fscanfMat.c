@@ -14,7 +14,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -38,7 +37,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
     fscanfMatResult *results = NULL;
 
-    Nbvars = 0;
+    //Nbvars = 0;
     CheckRhs(1, 3);
     CheckLhs(1, 2);
 

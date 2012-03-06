@@ -10,7 +10,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Used with <literal>if</literal>.</para>
+      Used with <literal>if</literal>.
+    </para>
   </refsection>
   <refsection>
     <title>Example</title>
@@ -32,5 +33,4 @@ end
       </member>
     </simplelist>
   </refsection>
-
 </refentry>

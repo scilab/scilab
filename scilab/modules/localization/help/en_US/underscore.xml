@@ -36,7 +36,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>_</literal> get the translation of a string to the current locale in the current domain.</para>
+    <para>
+      <literal>_</literal> get the translation of a string to the current locale in the current domain.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -45,7 +47,7 @@ _('Startup execution:')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gettext">gettext</link>
@@ -55,12 +57,6 @@ _('Startup execution:')
       <member>
         <link linkend="dgettext">dgettext</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Sylvestre Ledru</member>
     </simplelist>
   </refsection>
 </refentry>

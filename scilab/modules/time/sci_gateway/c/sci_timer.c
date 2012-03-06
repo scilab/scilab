@@ -13,12 +13,10 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
-#include "api_double.h"
-#include "api_oldstack.h"
+#include "api_scilab.h"
 #include "timer.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int sci_timer(char *fname,void* pvApiCtx)
 {

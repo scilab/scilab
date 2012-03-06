@@ -12,7 +12,7 @@
 #include <string.h>
 #include "gw_core.h"
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
@@ -29,14 +29,14 @@ static gw_generic_table Tab[]=
 {NULL ,""}, //type
 {NULL, ""}, //error
 {NULL, ""}, //resune
-{C2F(sci_return),"return"},
-{C2F(sci_format),"format"},
+{NULL,""}, //return
+{NULL,""}, //format
 {NULL, ""}, // isdef
 {NULL, ""}, //exists
 {C2F(sci_errcatch),"errcatch"},
 {NULL, ""}, // "errclear"
 {C2F(sci_iserror),"iserror"},
-{C2F(sci_predef),"predef"},
+{NULL,""}, //predef
 {NULL,""}, //newfun
 {C2F(sci_clearfun),"clearfun"},
 {C2F(sci_funptr),"funptr"},
@@ -45,7 +45,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_delbpt),"delbpt"},
 {C2F(sci_dispbpt),"dispbpt"},
 {NULL,""},//funcprot
-{C2F(sci_where),"where"},
+{NULL,""}, //where
 {C2F(sci_havewindow),"havewindow"},
 {NULL, ""},//stacksize
 {C2F(sci_mtlb_mode),"mtlb_mode"},
@@ -75,21 +75,6 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_core(void)
 {
-	Rhs = Max(0, Rhs);
-
-	/* recursion */
-	/* getf, deff, exec, execstr (functions module) call comp by "recursion" */
-    /* comp can not be in same gateway that others of functions module */
-	if ( isRecursionCallToFunction() )
-	{
-		if ( (getRecursionGatewayToCall() == GW_CORE_ID ) &&
-			 (getRecursionFunctionToCall() == RECURSION_CALL_COMP) )
-		{
-			Fin = 6;
-		}
-	}
-
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -27,7 +27,7 @@
     <para>Deletes all entries in the current scilab history.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>
@@ -35,12 +35,6 @@
       <member>
         <link linkend="loadhistory">loadhistory</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>A.C</member>
     </simplelist>
   </refsection>
 </refentry>

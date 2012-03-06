@@ -13,11 +13,9 @@
 
 #include "gw_matio.h"
 #include "CreateMatlabVariable.h"
-#include "stack-c.h"
 #include "os_strdup.h"
 
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 #define MATIO_ERROR if(_SciErr.iErr)	     \
     {					     \

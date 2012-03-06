@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>y=matrix(v,n,m)
-y=matrix(v,[sizes])</synopsis>
+      y=matrix(v,[sizes])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -44,20 +45,23 @@ y=matrix(v,[sizes])</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    For a vector or a matrix with <literal>n</literal> x <literal>m</literal> entries, the command
-    <literal>y=matrix(v,n,m)</literal> or similarily <literal>y=matrix(v,[n,m])</literal>
-    transforms the <literal>v</literal> vector (or matrix) into an <literal>nxm</literal> matrix by
-    stacking columnwise the entries of <literal>v</literal>.</para>
+      For a vector or a matrix with <literal>n</literal> x <literal>m</literal> entries, the command
+      <literal>y=matrix(v,n,m)</literal> or similarly <literal>y=matrix(v,[n,m])</literal>
+      transforms the <literal>v</literal> vector (or matrix) into an <literal>nxm</literal> matrix by
+      stacking columnwise the entries of <literal>v</literal>.
+    </para>
     <para>
-    if one of the dimension m or n is equal to -1 it is automatically
-    assigned to the quotient of size(v,'*') by the other dimension,</para>
+      if one of the dimension m or n is equal to -1 it is automatically
+      assigned to the quotient of size(v,'*') by the other dimension,
+    </para>
     <para>
-    For a hypermatrix such as
-    <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
-    equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
-    <literal>v</literal>  into an  matrix or hypermatrix by 
-    stacking "columnwise" (first dimension is varying first) the entries of <literal>v</literal>. <literal>y=matrix(v,sizes)</literal>
-    results in a regular matrix if sizes is a scalar or a 2-vector.</para>
+      For a hypermatrix such as
+      <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
+      equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
+      <literal>v</literal>  into an  matrix or hypermatrix by 
+      stacking "columnwise" (first dimension is varying first) the entries of <literal>v</literal>. <literal>y=matrix(v,sizes)</literal>
+      results in a regular matrix if sizes is a scalar or a 2-vector.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -69,7 +73,7 @@ matrix(a,3,2)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="matrices">matrices</link>

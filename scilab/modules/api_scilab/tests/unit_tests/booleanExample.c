@@ -10,10 +10,6 @@
  *
  */
 
-#include "stack-c.h"
-#include "Scierror.h"
-#include "localization.h"
-#include "sciprint.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
 
@@ -23,8 +19,12 @@ int booleanExample(char *fname,unsigned long fname_len)
     int* piAddr = NULL;
     int iType   = 0;
     int iRet    = 0;
-    CheckRhs(1,1);
-    CheckLhs(0,1);
+
+    //CheckInputArgument(pvApiCtx, 1, 1);
+    //CheckOutputArgument(pvApiCtx, 0, 1);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
+
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)
     {
@@ -42,6 +42,7 @@ int booleanExample(char *fname,unsigned long fname_len)
                 return 0;
             }
             iRet = createScalarBoolean(pvApiCtx, Rhs + 1, iBool);
+            //iRet = createScalarBoolean(pvApiCtx, InputArgument + 1, iBool);
             if(iRet)
             {
                 return 0;
@@ -49,27 +50,32 @@ int booleanExample(char *fname,unsigned long fname_len)
         }
         else
         {
-        int iRows	= 0;
-        int iCols	= 0;
-        int *piBool	= NULL;
-        sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
-        if(sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
+            int iRows	= 0;
+            int iCols	= 0;
+            int *piBool	= NULL;
+
+            sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &piBool);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, iRows, iCols, piBool);
+            //sciErr = createMatrixOfBoolean(pvApiCtx, InputArgument + 1, iRows, iCols, piBool);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
         }
-        sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, iRows, iCols, piBool);
-        if(sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-    }
         LhsVar(1) = Rhs + 1;
+        //AssignOutputVariable(1) = InputArgument + 1;
     }
     else
     {
         LhsVar(1) = 0;
+        //AssignOutputVariable(1) = 0;
     }
     return 0;
 }

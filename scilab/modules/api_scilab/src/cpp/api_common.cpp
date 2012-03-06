@@ -20,33 +20,36 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "function.hxx"
+#include "overload.hxx"
 
 extern "C"
 {
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
-#include "core_math.h"
-#include "call_scilab.h"
 #include "api_scilab.h"
-#include "api_common.h"
 #include "api_internal_common.h"
+#include "call_scilab.h"
+#include "stackinfo.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
-#include "api_oldstack.h"
 }
 
+static int api_fake_int; //only for compatibility with Scilab 5 stack functions
 /*Global structure for scilab 5.x*/
 extern "C"
 {
-    StrCtx* pvApiCtx = NULL;
+    //StrCtx* pvApiCtx = NULL;
 }
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
-extern "C" {
-    extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
+extern "C"
+{
+    extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
+    extern  int C2F(cvname)(int *,char *,int *, unsigned long int);
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
@@ -56,8 +59,210 @@ extern "C" {
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 /*--------------------------------------------------------------------------*/
+int* getInputArgument(void* _pvCtx)
+{
+    GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
 
-SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)
+	if(pStr == NULL)
+	{
+		std::cout << "pStr == NULL" << std::endl;
+		return 0;
+	}
+
+	if(pStr->m_pIn == NULL)
+	{
+		std::cout << "pStr->m_pin == NULL" << std::endl;
+		return 0;
+	}
+
+    return &pStr->m_iIn;;
+}
+
+int* getOutputArgument(void* _pvCtx)
+{
+	GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
+
+	if(pStr == NULL)
+	{
+		return 0;
+	}
+
+	if(pStr->m_piRetCount == NULL)
+	{
+		return 0;
+	}
+
+    return &pStr->m_iOut;
+}
+
+int* assignOutputVariable(void* _pvCtx, int _iVal)
+{
+	//do nothing but don't crash
+	if(_pvCtx == NULL)
+	{
+		return &api_fake_int;
+	}
+
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+
+	//do nothing but don't crash
+	if(_iVal > *pStr->m_piRetCount)
+	{
+		return &api_fake_int;
+	}
+
+	int* pVal = &(pStr->m_pOutOrder[_iVal - 1]);
+	return pVal;
+}
+
+int updateStack(void* _pvCtx)
+{
+    return 0;
+}
+
+int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    GatewayStruct *pStr = (GatewayStruct*)_pvCtx;
+    int iRhs            = *getInputArgument(_pvCtx);
+
+    if(iRhs > _iMax || iRhs < _iMin)
+    {
+        if (_iMin == _iMax)
+        {/* No optional argument */
+            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
+        }
+        else
+        {
+            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
+        }
+        return 0;
+    }
+    return 1;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMin <= *getInputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMax >= *getInputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    int iLhs = *getOutputArgument(_pvCtx);
+    if(_iMin <= iLhs && _iMax >= iLhs)
+    {
+        return 1;
+    }
+
+    if(_iMax == _iMin)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    }
+    else
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin, _iMax);
+    }
+
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMin <= *getOutputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMin);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+
+    if(_iMax >= *getOutputArgument(_pvCtx))
+    {
+        return 1;
+    }
+
+    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((StrCtx *) _pvCtx)->pstName, _iMax);
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
+{
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    Function::ReturnValue callResult;
+    typed_list tlReturnedValues;
+
+    std::wstring wsFunName;
+
+    if(_iVar == 0)
+    {
+        wsFunName = std::wstring(L"%_") + std::wstring(pStr->m_pstName);
+    }
+    else
+    {
+        wsFunName = std::wstring(L"%") + (*pStr->m_pIn)[_iVar - 1]->getShortTypeStr() + L"_" + std::wstring(pStr->m_pstName);
+    }
+
+    callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues, pStr->m_pVisitor);
+    if (callResult == Function::OK)
+    {
+        int i = 0;
+        typed_list::iterator it;
+        for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
+        {
+            (pStr->m_pOut)[i] = *it;
+            pStr->m_pOutOrder[i] = pStr->m_pIn->size() + i + 1;
+        }
+    }
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
+SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols)
 {
     SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
     if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))

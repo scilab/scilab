@@ -10,7 +10,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>xfrect(x,y,w,h)
-xfrect(rect) // rect =[x,y,w,h]</synopsis>
+      xfrect(rect) // rect =[x,y,w,h]
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -19,16 +20,17 @@ xfrect(rect) // rect =[x,y,w,h]</synopsis>
         <term>x,y,w,h  </term>
         <listitem>
           <para>4 valeurs réelles définissant le rectangle.
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xrect</literal> remplit un rectangle défini par <literal>[x,y,w,h]</literal> 
-    (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant la couleur courante.
-  </para>
+    <para>
+      <literal>xrect</literal> remplit un rectangle défini par <literal>[x,y,w,h]</literal> 
+      (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant la couleur courante.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -40,7 +42,7 @@ xset("default")
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>
@@ -49,9 +51,5 @@ xset("default")
         <link linkend="xrects">xrects</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Auteurs</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

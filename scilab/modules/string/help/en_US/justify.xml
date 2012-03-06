@@ -67,8 +67,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>justify</literal> justify the column of a matrix of string accdording to
-    the given option.</para>
+    <para>
+      <literal>justify</literal> justify the column of a matrix of string accdording to
+      the given option.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -83,7 +85,7 @@ justify(t,'r')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="length">length</link>

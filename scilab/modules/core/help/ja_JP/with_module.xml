@@ -33,8 +33,9 @@
   <refsection>
     <title>説明</title>
     <para>
-	Scilabモジュールがインストールされている場合に
-	<literal>%t</literal>を返します.</para>
+      Scilabモジュールがインストールされている場合に
+      <literal>%t</literal>を返します.
+    </para>
   </refsection>
   <refsection role="see also">
     <title>参照</title>
@@ -43,9 +44,5 @@
         <link linkend="getmodules">getmodules</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

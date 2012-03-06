@@ -13,13 +13,11 @@
 
 #include "matfile_manager.h"
 #include "MALLOC.h"
-#include "stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
 
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \

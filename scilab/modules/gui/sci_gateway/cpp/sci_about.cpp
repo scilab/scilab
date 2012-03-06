@@ -15,9 +15,7 @@
 
 extern "C"
 {
-#include "stack-c.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "getScilabJavaVM.h"
 #include "gw_gui.h"
 #include "localization.h"

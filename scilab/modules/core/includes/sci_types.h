@@ -44,14 +44,14 @@ typedef enum {
 /* These values are also used in:
  * modules/api_scilab/includes/api_int.h */
 typedef enum {
-    sci_integer8 = 1,
-    sci_integer16 = 2,
-    sci_integer32 = 4,
-    sci_integer64 = 8,
-    sci_uinteger8 = 11,
-    sci_uinteger16 = 12,
-    sci_uinteger32 = 14,
-    sci_uinteger64 = 18
+    sci_int8 = 1,
+    sci_int16 = 2,
+    sci_int32 = 4,
+    sci_int64 = 8,
+    sci_uint8 = 11,
+    sci_uint16 = 12,
+    sci_uint32 = 14,
+    sci_uint64 = 18
 } sci_int_types;
 
 

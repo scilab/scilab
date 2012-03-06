@@ -57,30 +57,39 @@
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
 #define isEqual(x,y)										fabs((double)x - (double)y) <= getRelativeMachinePrecision()
 
-extern double C2F(dlamch)  (char *_pszCommand, unsigned long int);
+extern double C2F(dlamch) (char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
-extern int C2F(dgemm)();
-extern int C2F(dswap)();
-extern double C2F(dasum)(int* _iSize, double* _pdbl, int* _iInc);
-extern int C2F(dcopy)(int *_iSize, double *_pdblSrc, int* _piIncSrc, double *_pdblDest, int *_piDest);
-extern int C2F(dscal)(int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
-extern int C2F(zscal)(int *_iSize, doublecomplex *_pdblVal, doublecomplex *_pdblDest, int *_iInc);
-extern int C2F(dset)(int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
-extern double C2F(dlange)();
-extern int C2F(dlacpy)();
-extern int C2F(dgetrf)();
-extern int C2F(dgecon)();
-extern int C2F(dgetrs)();
-extern int C2F(dgelsy1)();
-extern double C2F(zlange)();
-extern int C2F(zlacpy)();
-extern int C2F(zgetrf)();
-extern int C2F(zgecon)();
-extern int C2F(zgetrs)();
-extern int C2F(zgelsy1)();
-extern double C2F(ddot)(int *_ipSize, double *_pdblVal1, int *_piInc1, double *_pdblVal2, int *_piInc2);
-extern void C2F(wmul)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
-extern void C2F(wdiv)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
-extern void C2F(dad)(double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r, int *isw);
+extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
+                       double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
+extern int C2F(dswap) (int *_piSize, double *_pdblX, int *_piIncX, double *_pdblY, int *_piIncY);
+extern double C2F(dasum) (int *_iSize, double *_pdbl, int *_iInc);
+extern int C2F(dcopy) (int *_iSize, double *_pdblSrc, int *_piIncSrc, double *_pdblDest, int *_piDest);
+extern int C2F(dscal) (int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
+extern int C2F(zscal) (int *_iSize, doublecomplex * _pdblVal, doublecomplex * _pdblDest, int *_iInc);
+extern int C2F(dset) (int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
+extern double C2F(dlange) (char *_pstNorm, int *_piM, int *_piN, double *_pdblA, int *_piLdA, double *_pdblWork);
+extern int C2F(dlacpy) (char *_pstUplo, int *piM, int *_piN, double *_pdblA, int *_piLdA, double *_pdblB, int *_piLdB);
+extern int C2F(dgetrf) (int *_piM, int *_piN, double *_pdblA, int *_piLdA, int *_piIPIV, int *_piINFO);
+extern int C2F(dgecon) (char *_pstNORM, int *_piN, double *_pdblA, int *_piLDA, double *_pdblANORM, double *_pdblRCOND, double *_pdblWORK,
+                        int *_piIWORK, int *_piINFO);
+extern int C2F(dgetrs) (char *_pstTRANS, int *_piN, int *_piNRHS, double *_pdblA, int *_piLDA, int *_piIPIV, double *_pdblB, int *_piLDB,
+                        int *_piINFO);
+extern int C2F(dgelsy1) (int *_piM, int *_piN, int *_piNRHS, double *_pdblA, int *_piLDA, double *_pdblB, int *_piLDB, int *_piJPVT,
+                         double *_pdblRCOND, int *_piRANK, double *_pdblWORK, int *_piLWORK, int *_piINFO);
+extern double C2F(zlange) (char *_pstNORM, int *_piM, int *_piN, double *_pdblA, int *_piLDA, double *_pdblWORK);
+extern int C2F(zlacpy) (char *_pstUPLO, int *_piM, int *_piN, double *_pdblA, int *_piLDA, double *_pdblB, int *_piLDB);
+extern int C2F(zgetrf) (int *_piM, int *_piN, double *_pdblA, int *_piLDA, int *_piIPIV, int *_piINFO);
+extern void C2F(zgecon) (char *_pstNORM, int *_piN, doublecomplex * _pdblA, int *_piLDA, double *_pdblANORM, double *_pdblRNORM,
+                         doublecomplex * _pdblWORK, double *_pdblRWORD, int *_piINFO);
+extern int C2F(zgetrs) (char *_pstTRANS, int *_piN, int *_piNRHS, double *_pdblA, int *_piLDA, int *_piIPIV, double *_pdblB, int *_piLDB,
+                        int *_piINFO);
+extern int C2F(zgelsy1) (int *_piM, int *_piN, int *_piNRHS, doublecomplex * pdblA, int *_piLDA, doublecomplex * _pdblB, int *_piLDB, int *_piJPVT,
+                         double *_pdblRCOND, int *_piRANK, doublecomplex * _pdblWORK, int *_piLWORK, double *_pdblRWORK, int *_piINFO);
+extern double C2F(ddot) (int *_ipSize, double *_pdblVal1, int *_piInc1, double *_pdblVal2, int *_piInc2);
+extern void C2F(wmul) (double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
+extern void C2F(wdiv) (double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
+extern void C2F(dad) (double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r, int *isw);
+extern int C2F(entier) (int *_iSize, double *_pdbl, int *_pi);
+extern int C2F(simple) (int *_iSize, double *_pdbl, float *_pf);
 
 #endif /* __COMMON_H__ */

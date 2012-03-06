@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>xfrect(x,y,w,h)
-xfrect(rect) // rect =[x,y,w,h]</synopsis>
+      xfrect(rect) // rect =[x,y,w,h]
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -36,8 +37,10 @@ xfrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsection>
   <refsection>
     <title>説明</title>
-    <para><literal>xrect</literal>は, <literal>[x,y,w,h]</literal> 
-    (左上の点,幅, 高さ)でピクセル単位で定義される矩形を塗りつぶします.</para>
+    <para>
+      <literal>xrect</literal>は, <literal>[x,y,w,h]</literal> 
+      (左上の点,幅, 高さ)でピクセル単位で定義される矩形を塗りつぶします.
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -58,9 +61,5 @@ xset("default")
         <link linkend="xrects">xrects</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>J.Ph.C.  </para>
   </refsection>
 </refentry>

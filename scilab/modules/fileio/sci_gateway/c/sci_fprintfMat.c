@@ -13,8 +13,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "MALLOC.h"
-#include "stack-c.h"
-#include "api_oldstack.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -45,7 +43,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
     int m4n4 = 0;
     int i = 0;
 
-    Nbvars = 0;
+    //Nbvars = 0;
     CheckRhs(1,5);
     CheckLhs(1,1);
 

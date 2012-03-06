@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@ extern "C"
 {
 #include "xml.h"
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -30,12 +29,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char * fname, void* pvApiCtx)
+int sci_xmlRead(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;
-    int * addr = 0;
-    char * path = 0;
+    int *addr = 0;
+    char *path = 0;
+
     std::string error;
     bool validate = false;
     int validateParam;
@@ -51,12 +51,17 @@ int sci_xmlRead(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
-    getAllocatedSingleString(pvApiCtx, addr, &path);
+
+    if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     if (Rhs == 2)
     {
@@ -69,7 +74,7 @@ int sci_xmlRead(char * fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             freeAllocatedSingleString(path);
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
@@ -86,6 +91,7 @@ int sci_xmlRead(char * fname, void* pvApiCtx)
     if (!error.empty())
     {
         delete doc;
+
         Scierror(999, gettext("%s: Cannot read the file:\n%s"), fname, error.c_str());
         return 0;
     }
@@ -99,4 +105,5 @@ int sci_xmlRead(char * fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

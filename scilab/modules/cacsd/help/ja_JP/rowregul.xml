@@ -17,7 +17,9 @@
       <varlistentry>
         <term>Sl,Stmp</term>
         <listitem>
-          <para> <literal>syslin</literal> リスト</para>
+          <para>
+            <literal>syslin</literal> リスト
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -31,21 +33,27 @@
   <refsection>
     <title>説明</title>
     <para>
-	<literal>Stmp=Ws*Sl</literal>がプロパーで
-	<literal>D</literal>行列がフルランクの時,
-	ポストフィルタ <literal>Ws</literal>を計算します.</para>
+      <literal>Stmp=Ws*Sl</literal>がプロパーで
+      <literal>D</literal>行列がフルランクの時,
+      ポストフィルタ <literal>Ws</literal>を計算します.
+    </para>
     <para>
-    <literal>Sl</literal> の無限大にある極は <literal>alfa</literal>に移動されます;</para>
+      <literal>Sl</literal> の無限大にある極は <literal>alfa</literal>に移動されます;
+    </para>
     <para>
-    <literal>Sl</literal>の無限大にあるゼロは are moved to <literal>beta</literal>
-	に移動されます;</para>
-    <para><literal>Sl</literal> は,
-	状態空間表現(多項式 <literal>D</literal>行列も加わる可能性有)の
-	右可逆線形システム(<literal>syslin</literal> リスト)
-	であると仮定されます.</para>
+      <literal>Sl</literal>の無限大にあるゼロは are moved to <literal>beta</literal>
+      に移動されます;
+    </para>
     <para>
-	この関数は coleregul の双対です
-	(以下の関数コード参照).</para>
+      <literal>Sl</literal> は,
+      状態空間表現(多項式 <literal>D</literal>行列も加わる可能性有)の
+      右可逆線形システム(<literal>syslin</literal> リスト)
+      であると仮定されます.
+    </para>
+    <para>
+      この関数は coleregul の双対です
+      (以下の関数コード参照).
+    </para>
   </refsection>
   <refsection>
     <title>例</title>
@@ -68,9 +76,5 @@ clean(ss2tf(Stmp))
         <link linkend="colregul">colregul</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>作者</title>
-    <para>F. D. , R. N. ;   </para>
   </refsection>
 </refentry>

@@ -80,11 +80,6 @@
               <xref linkend="Seealso_RFILE_f">Voir aussi</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Authors_RFILE_f">Auteurs</xref>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -121,7 +116,9 @@
     <para>
       Le paramètre  <emphasis role="bold">Output record selection</emphasis> est utilisé pour sélectionner les champs de l'enregistrement qui sont inclus dans la sortie régulière.
     </para>
-    <para>Le paramètre <emphasis role="bold">Output Format</emphasis> donne le format d'un enregistrement.</para>
+    <para>
+      Le paramètre <emphasis role="bold">Output Format</emphasis> donne le format d'un enregistrement.
+    </para>
     <itemizedlist>
       <listitem>
         <para>Pour un fichier binaire, ce paramètre est vide.</para>
@@ -161,7 +158,16 @@
         </para>
         <para> Une matrice vide ou un entier positif.</para>
         <para>
-          Si un entier <emphasis><literal>i</literal></emphasis> est donné, le <emphasis><literal>i<superscript>ième</superscript></literal></emphasis> élément de l'enregistrement lu
+          Si un entier 
+          <emphasis>
+            <literal>i</literal>
+          </emphasis>
+          est donné, le 
+          <emphasis><literal>
+              i<superscript>ième</superscript>
+            </literal>
+          </emphasis>
+          élément de l'enregistrement lu
           est supposée être la date de l'événement de sortie.
         </para>
         <para>Si c'est une matrice vide, il n'existe aucun évènement de sortie.</para>
@@ -172,9 +178,23 @@
           <emphasis role="bold">Outputs Record Selection</emphasis>
         </para>
         <para>
-          Un vecteur d'entiers positifs <emphasis><literal>[k<subscript>i</subscript>,...,k<subscript>n</subscript>]</literal></emphasis>
-          le <emphasis><literal>k<subscript>i</subscript><superscript>ième</superscript></literal></emphasis> élément 
-          de l'enregistrement lu donne la valeur de la <emphasis><literal>i<superscript>ième</superscript></literal></emphasis> sortie.
+          Un vecteur d'entiers positifs 
+          <emphasis><literal>
+              [k<subscript>i</subscript>,...,k<subscript>n</subscript>]
+            </literal>
+          </emphasis>
+          le 
+          <emphasis><literal>
+              k<subscript>i</subscript><superscript>ième</superscript>
+            </literal>
+          </emphasis>
+          élément 
+          de l'enregistrement lu donne la valeur de la 
+          <emphasis><literal>
+              i<superscript>ième</superscript>
+            </literal>
+          </emphasis>
+          sortie.
         </para>
         <para> Propriétés : Type 'vec' de taille -1.</para>
       </listitem>
@@ -183,9 +203,9 @@
           <emphasis role="bold">Input File Name</emphasis>
         </para>
         <para>
-           Une chaîne de caractères définissant le chemin du fichier. Le bloc supporte l'expansion de nom de fichier et vous pouvez utiliser les variables d'environment
-           comme <emphasis>PWD</emphasis> dans le chemin, par exemple <emphasis>"PWD/my_data/"</emphasis>. Sans spécificateur de chemin, le fichier est lu dans le
-           répertoire défini par la variable <emphasis>PWD</emphasis>.
+          Une chaîne de caractères définissant le chemin du fichier. Le bloc supporte l'expansion de nom de fichier et vous pouvez utiliser les variables d'environment
+          comme <emphasis>PWD</emphasis> dans le chemin, par exemple <emphasis>"PWD/my_data/"</emphasis>. Sans spécificateur de chemin, le fichier est lu dans le
+          répertoire défini par la variable <emphasis>PWD</emphasis>.
         </para>
         <para>Le fichier doit exister sinon vous obtiendrez un message d'erreur.</para>
         <para> Propriétés : Type 'str' de taille 1. </para>
@@ -196,7 +216,10 @@
         </para>
         <para>
           Une chaîne de caractères définissant le format Fortran à utiliser ou rien pour une lecture non formatée (binaire).
-          S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple : <emphasis><literal>(10e3)</literal></emphasis>
+          S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple : 
+          <emphasis>
+            <literal>(10e3)</literal>
+          </emphasis>
         </para>
         <para> Propriétés : Type 'str' de taille 1. </para>
       </listitem>
@@ -216,16 +239,24 @@
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">always active:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">always active:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">direct-feedthrough:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">zero-crossing:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">mode:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">mode:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -236,19 +267,29 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+        <para>
+          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">continuous-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">discrete-time state:</emphasis> oui</para>
+        <para>
+          <emphasis role="bold">discrete-time state:</emphasis> oui
+        </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+        <para>
+          <emphasis role="bold">object discrete-time state:</emphasis> non
+        </para>
       </listitem>
       <listitem>
         <para>
@@ -260,14 +301,17 @@
   </refsection>
   <refsection id="Example_RFILE_f">
     <title>Exemple</title>
-    <para>Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré par l'exemple de la page
-    d'aide de <link linkend="WFILE_f">WFILE_f</link>.</para>
+    <para>
+      Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré par l'exemple de la page
+      d'aide de <link linkend="WFILE_f">WFILE_f</link>.
+    </para>
     <para>
       Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
       Le bouclage de la sortie d'activation sur l'entrée d'activation assure la lecture séquentielle du fichier.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.xcos">
         Ouvrir cet exemple dans Xcos
-      </link>.
+      </link>
+      .
     </para>
     <para>
       <mediaobject>
@@ -308,10 +352,5 @@
         <link linkend="WFILE_f">WFILE_f</link>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Authors_RFILE_f">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
-    <para><emphasis role="bold">Bernard DUJARDIN</emphasis> - CONTRIBUTEUR</para>
   </refsection>
 </refentry>

@@ -12,7 +12,6 @@
 extern "C" {
 #include <stdio.h>
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "gw_parallel.h"
 #include "dynamic_link.h"
 #include "MALLOC.h"

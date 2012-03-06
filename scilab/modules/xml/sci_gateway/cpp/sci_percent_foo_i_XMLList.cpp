@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,7 +19,6 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
@@ -32,20 +31,20 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
+int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
 {
-    XMLNodeList * a;
+    XMLNodeList *a;
     int lhsid;
     double index;
     SciErr err;
-    char * prefix = 0;
-    char * underscore = 0;
-    char * format = 0;
-    int * indexaddr = 0;
-    int * rhsaddr = 0;
-    int * lhsaddr = 0;
-    int * retaddr = 0;
-    char * retstr = 0;
+    char *prefix = 0;
+    char *underscore = 0;
+    char *format = 0;
+    int *indexaddr = 0;
+    int *rhsaddr = 0;
+    int *lhsaddr = 0;
+    int *retaddr = 0;
+    char *retstr = 0;
     int iBegin = 2;
     int mrhs = 1;
     int mlhs = 1;
@@ -61,7 +60,7 @@ int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (!isDoubleType(pvApiCtx, indexaddr))
+    if (!isDoubleType(pvApiCtx, indexaddr) || !checkVarDimension(pvApiCtx, indexaddr, 1, 1))
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 1);
         return 0;
@@ -86,7 +85,7 @@ int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
     }
 
     lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
-    a = XMLObject::getFromId<XMLNodeList>(lhsid);
+    a = XMLObject::getFromId < XMLNodeList > (lhsid);
     if (!a)
     {
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
@@ -102,7 +101,8 @@ int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
 
     if (isNamedVarExist(pvApiCtx, format))
     {
-        SciString(&iBegin, format, &mlhs, &mrhs);
+        //Call function directly in scilab 6 C++ api
+//        SciString(&iBegin, format, &mlhs, &mrhs);
         FREE(format);
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)
@@ -112,13 +112,17 @@ int sci_percent_foo_i_XMLList(char * fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, retaddr))
+        if (!isStringType(pvApiCtx, retaddr) || !checkVarDimension(pvApiCtx, retaddr, 1, 1))
         {
             Scierror(999, gettext("%s: xmlFormat must return a string.\n"), fname);
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, retaddr, &retstr);
+        if (getAllocatedSingleString(pvApiCtx, retaddr, &retstr) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
         if (retstr)
         {
             a->setElementAtPosition(index, std::string(retstr));

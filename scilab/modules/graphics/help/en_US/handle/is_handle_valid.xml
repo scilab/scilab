@@ -34,18 +34,21 @@
       <varlistentry>
         <term>isValid</term>
         <listitem>
-          <para>Matrix of boolean with the same size as <literal>h</literal></para>
+          <para>
+            Matrix of boolean with the same size as <literal>h</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>is_handle_valid</literal> function tests wether a set of graphic handle
-    is still valid. A valid handle is a handle which has not been deleted.
-    The result, <literal>isValid</literal>, is a boolean matrix such as
-    <literal>isValid(i,j)</literal> is true if
-    <literal>h(i,j)</literal> is valid and false otherwise.
+    <para>
+      <literal>is_handle_valid</literal> function tests wether a set of graphic handle
+      is still valid. A valid handle is a handle which has not been deleted.
+      The result, <literal>isValid</literal>, is a boolean matrix such as
+      <literal>isValid(i,j)</literal> is true if
+      <literal>h(i,j)</literal> is valid and false otherwise.
     </para>
   </refsection>
   <refsection>
@@ -69,7 +72,7 @@ is_handle_valid(polylines)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="delete">delete</link>
@@ -79,10 +82,4 @@ is_handle_valid(polylines)
       </member>
     </simplelist>
   </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>Jean-Baptiste Silvy INRIA</para>
-  </refsection>
 </refentry>
-
-

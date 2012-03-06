@@ -14,17 +14,14 @@ package org.scilab.modules.xcos.block.io;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.types.ScilabDouble;
@@ -34,8 +31,8 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.H5RWHandler;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -45,7 +42,6 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.model.mxGraphModel;
@@ -58,15 +54,14 @@ import com.mxgraph.util.mxEventObject;
  */
 public abstract class ContextUpdate extends BasicBlock {
 
-    private static final Log LOG_LOCAL = LogFactory.getLog(ContextUpdate.class);
+    private static final Logger LOG_LOCAL = Logger.getLogger(ContextUpdate.class.getName());
     private static final long serialVersionUID = 6076826729067963560L;
 
     /**
      * Implement a listener which update the value and refresh the view when the
      * index of the port change.
      */
-    private static final class IndexChangeAdapter implements
-            PropertyChangeListener, Serializable {
+    private static final class IndexChangeAdapter implements PropertyChangeListener, Serializable {
         private static IndexChangeAdapter instance;
 
         /**
@@ -87,7 +82,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * Update the value and refresh the graph view.
-         * 
+         *
          * @param evt
          *            the event
          * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -101,10 +96,8 @@ public abstract class ContextUpdate extends BasicBlock {
                 int newIndex = (int) ((ScilabDouble) data).getRealPart()[0][0];
 
                 int oldIndex;
-                if (evt.getOldValue() instanceof ScilabDouble
-                        && !((ScilabDouble) evt.getOldValue()).isEmpty()) {
-                    oldIndex = (int) ((ScilabDouble) evt.getOldValue())
-                            .getRealPart()[0][0];
+                if (evt.getOldValue() instanceof ScilabDouble && !((ScilabDouble) evt.getOldValue()).isEmpty()) {
+                    oldIndex = (int) ((ScilabDouble) evt.getOldValue()).getRealPart()[0][0];
                 } else {
                     oldIndex = -1;
                 }
@@ -113,9 +106,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
                 if (ioBlock.getParentDiagram() != null) {
                     ioBlock.getParentDiagram().fireEvent(
-                            new mxEventObject(XcosEvent.IO_PORT_VALUE_UPDATED,
-                                    "block", ioBlock, "oldIndex", oldIndex,
-                                    "newIndex", newIndex));
+                        new mxEventObject(XcosEvent.IO_PORT_VALUE_UPDATED, "block", ioBlock, "oldIndex", oldIndex, "newIndex", newIndex));
                 }
             }
         }
@@ -126,8 +117,7 @@ public abstract class ContextUpdate extends BasicBlock {
      * Implement a listener to update the
      * {@link ContextUpdate#isContextDependent} flag.
      */
-    private static final class ExprsChangeAdapter implements
-            PropertyChangeListener, Serializable {
+    private static final class ExprsChangeAdapter implements PropertyChangeListener, Serializable {
         private static final Pattern INTEGER_PATTERN = Pattern.compile("\\d+");
 
         private static ExprsChangeAdapter instance;
@@ -150,7 +140,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * isContextDependant field
-         * 
+         *
          * @param evt
          *            the event
          * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
@@ -174,7 +164,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
     /**
      * This enum represent all the subclasses of ContextUpdate .
-     * 
+     *
      * It is used to easily loop over a BasicBlock I/O blocks
      */
     public static enum IOBlocks {
@@ -191,10 +181,10 @@ public abstract class ContextUpdate extends BasicBlock {
         /** Map an implicit output port to an implicit output block */
         ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class, ImplicitInputPort.class, OutputPort.class);
 
-        private final Class<? extends ContextUpdate> ioBlock;
-        private final Class<? extends BasicPort> port;
-        private final Class<? extends BasicPort> opposite;
-        private final Class<? extends BasicPort> assignement;
+        private final Class <? extends ContextUpdate > ioBlock;
+        private final Class <? extends BasicPort > port;
+        private final Class <? extends BasicPort > opposite;
+        private final Class <? extends BasicPort > assignement;
 
         /**
          * @param ioBlock
@@ -204,8 +194,8 @@ public abstract class ContextUpdate extends BasicBlock {
          * @param opposite
          *            the opposite port class
          */
-        private IOBlocks(Class<? extends ContextUpdate> ioBlock, Class<? extends BasicPort> port, Class<? extends BasicPort> opposite,
-                Class<? extends BasicPort> assignement) {
+        private IOBlocks(Class <? extends ContextUpdate > ioBlock, Class <? extends BasicPort > port, Class <? extends BasicPort > opposite,
+        Class <? extends BasicPort > assignement) {
             this.ioBlock = ioBlock;
             this.port = port;
             this.opposite = opposite;
@@ -214,14 +204,13 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * Get all the port of the SuperBlock parent.
-         * 
+         *
          * @param parent
          *            the parent
          * @return the port list mapped by port type
          */
         public static Map<IOBlocks, List<mxICell>> getAllPorts(SuperBlock parent) {
-            final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(
-                    IOBlocks.class);
+            final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(IOBlocks.class);
 
             /* Allocation */
             for (IOBlocks b : IOBlocks.values()) {
@@ -247,19 +236,18 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * Get the ports of the super blocks with kind klass
-         * 
+         *
          * @param parent
          *            the parent {@link SuperBlock}
          * @param klass
          *            the filter klass
          * @return the list of ports
          */
-        public static List<mxICell> getPorts(SuperBlock parent,
-                Class<? extends ContextUpdate> klass) {
+        public static List<mxICell> getPorts(SuperBlock parent, Class <? extends ContextUpdate > klass) {
             List<mxICell> ret = new ArrayList<mxICell>();
 
             /* Get the corresponding klass */
-            Class<? extends BasicPort> portKlass = null;
+            Class <? extends BasicPort > portKlass = null;
             for (IOBlocks b : IOBlocks.values()) {
                 if (b.getReferencedClass().equals(klass)) {
                     portKlass = b.getAssignementCompatiblePortClass();
@@ -283,13 +271,12 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * Return the opposite of the port
-         * 
+         *
          * @param klass
          *            the klass
          * @return the opposite of klass
          */
-        public static Class<? extends BasicPort> getOpposite(
-                Class<? extends BasicPort> klass) {
+        public static Class <? extends BasicPort > getOpposite(Class <? extends BasicPort > klass) {
             for (IOBlocks b : IOBlocks.values()) {
                 if (b.getReferencedPortClass() == klass) {
                     return b.getOppositeClass();
@@ -300,15 +287,13 @@ public abstract class ContextUpdate extends BasicBlock {
 
         /**
          * Get all the I/O blocks of the SuperBlock parent.
-         * 
+         *
          * @param parent
          *            the parent
          * @return the port list mapped by port type
          */
-        public static Map<IOBlocks, List<mxICell>> getAllBlocks(
-                SuperBlock parent) {
-            final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(
-                    IOBlocks.class);
+        public static Map<IOBlocks, List<mxICell>> getAllBlocks(SuperBlock parent) {
+            final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(IOBlocks.class);
 
             final SuperBlockDiagram graph = parent.getChild();
             if (graph == null) {
@@ -322,30 +307,28 @@ public abstract class ContextUpdate extends BasicBlock {
 
             /* Loop all over the children */
             final mxIGraphModel defaultModel = graph.getModel();
-            mxGraphModel.filterDescendants(defaultModel,
-                    new mxGraphModel.Filter() {
-                        @Override
-                        public boolean filter(Object cell) {
-                            if (cell instanceof BasicBlock) {
-                                final BasicBlock block = (BasicBlock) cell;
-                                /* if compatible add it to the list */
-                                for (IOBlocks b : IOBlocks.values()) {
-                                    if (block.getClass().equals(
-                                            b.getReferencedClass())) {
-                                        ret.get(b).add(block);
-                                    }
-                                }
+            mxGraphModel.filterDescendants(defaultModel, new mxGraphModel.Filter() {
+                @Override
+                public boolean filter(Object cell) {
+                    if (cell instanceof BasicBlock) {
+                        final BasicBlock block = (BasicBlock) cell;
+                        /* if compatible add it to the list */
+                        for (IOBlocks b : IOBlocks.values()) {
+                            if (block.getClass().equals(b.getReferencedClass())) {
+                                ret.get(b).add(block);
                             }
-                            return false;
                         }
-                    });
+                    }
+                    return false;
+                }
+            });
 
             return ret;
         }
 
         /**
          * Create a corresponding I/O block
-         * 
+         *
          * @param port
          *            the port used as an output
          * @return the corresponding block
@@ -354,15 +337,14 @@ public abstract class ContextUpdate extends BasicBlock {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
                     try {
-                        ContextUpdate block = io.getReferencedClass()
-                                .newInstance();
+                        ContextUpdate block = io.getReferencedClass().newInstance();
                         block.addPort(io.getOppositeClass().newInstance());
 
                         return block;
                     } catch (InstantiationException e) {
-                        LogFactory.getLog(IOBlocks.class).error(e);
+                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
                     } catch (IllegalAccessException e) {
-                        LogFactory.getLog(IOBlocks.class).error(e);
+                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
                     }
                 }
             }
@@ -373,25 +355,25 @@ public abstract class ContextUpdate extends BasicBlock {
         /**
          * @return referenced class
          */
-        public Class<? extends ContextUpdate> getReferencedClass() {
+        public Class <? extends ContextUpdate > getReferencedClass() {
             return ioBlock;
         }
 
         /**
          * @return the port referenced class
          */
-        public Class<? extends BasicPort> getReferencedPortClass() {
+        public Class <? extends BasicPort > getReferencedPortClass() {
             return port;
         }
 
-        public Class<? extends BasicPort> getAssignementCompatiblePortClass() {
+        public Class <? extends BasicPort > getAssignementCompatiblePortClass() {
             return assignement;
         }
 
         /**
          * @return the port opposite class
          */
-        public Class<? extends BasicPort> getOppositeClass() {
+        public Class <? extends BasicPort > getOppositeClass() {
             return opposite;
         }
     }
@@ -404,10 +386,8 @@ public abstract class ContextUpdate extends BasicBlock {
     public ContextUpdate() {
         super();
 
-        getParametersPCS().addPropertyChangeListener(INTEGER_PARAMETERS,
-                IndexChangeAdapter.getInstance());
-        getParametersPCS().addPropertyChangeListener(EXPRS,
-                ExprsChangeAdapter.getInstance());
+        getParametersPCS().addPropertyChangeListener(INTEGER_PARAMETERS, IndexChangeAdapter.getInstance());
+        getParametersPCS().addPropertyChangeListener(EXPRS, ExprsChangeAdapter.getInstance());
     }
 
     /**
@@ -444,36 +424,27 @@ public abstract class ContextUpdate extends BasicBlock {
             return;
         }
 
-        LOG_LOCAL.trace("Update the I/O value from the context");
+        LOG_LOCAL.finest("Update the I/O value from the context");
 
-        String tempOutput;
-        String tempInput;
-        String tempContext;
         try {
-            tempInput = FileUtils.createTempFile();
-            new File(tempInput).deleteOnExit();
-
             // Write scs_m
-            tempOutput = exportBlockStruct();
+            new ScilabDirectHandler().writeBlock(this);
             // Write context
-            tempContext = exportContext(context);
+            new ScilabDirectHandler().writeContext(context);
 
-            String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval",
-                    tempOutput, tempInput, getInterfaceFunctionName()
-                            .toCharArray(), tempContext);
+            String cmd = ScilabInterpreterManagement.buildCall("blk = xcosBlockEval", getInterfaceFunctionName().toCharArray(),
+                         ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
 
             try {
                 ScilabInterpreterManagement.synchronousScilabExec(cmd);
             } catch (InterpreterException e) {
                 e.printStackTrace();
             }
-            BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+            BasicBlock modifiedBlock = new ScilabDirectHandler().readBlock();
             updateBlockSettings(modifiedBlock);
 
-        } catch (IOException e) {
-            LOG_LOCAL.error(e);
         } catch (ScicosFormatException e) {
-            LOG_LOCAL.error(e);
+            LOG_LOCAL.severe(e.toString());
         }
     }
 }

@@ -15,7 +15,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_cacsd3.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -26,8 +27,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_cacsd3(void)
 {  
-    if ( Fin-1 > 2) return 0;
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
 /*--------------------------------------------------------------------------*/

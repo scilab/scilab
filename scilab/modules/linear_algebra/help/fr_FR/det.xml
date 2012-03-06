@@ -21,7 +21,8 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>det(X)
-[e,m]=det(X)</synopsis>
+      [e,m]=det(X)
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -30,28 +31,29 @@
         <term>X  </term>
         <listitem>
           <para>matrice réelle, complexe, polynomiale, rationnelle
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>m  </term>
         <listitem>
           <para>nombre réel ou complexe, mantisse du déterminant en base 10
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>e  </term>
         <listitem>
           <para>entier, exposant du déterminant en base 10 
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>det(X)</literal> ( <literal>m*10^e</literal> est le déterminant de la matrice carrée <literal>X</literal>.
+    <para>
+      <literal>det(X)</literal> ( <literal>m*10^e</literal> est le déterminant de la matrice carrée <literal>X</literal>.
     </para>
     <para>
       Pour les matrices polynomiales <literal>det(X)</literal> est équivalent à <literal>determ(X)</literal>.
@@ -71,7 +73,7 @@ det(A), prod(spec(A))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="detr">detr</link>

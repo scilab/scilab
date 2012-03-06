@@ -17,7 +17,8 @@
   <refnamediv>
     <refname>system_getproperty</refname>
     <refpurpose>gets the system property
-  indicated by a specified key.</refpurpose>
+      indicated by a specified key.
+    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -212,9 +213,5 @@ system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>A.C</para>
   </refsection>
 </refentry>

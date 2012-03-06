@@ -16,7 +16,6 @@
 #include "basic_functions.h"
 #include "Scierror.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 int triu_matrix(void* pvApiCtx, int* _piAddress, int _iOffset);
 /*--------------------------------------------------------------------------*/

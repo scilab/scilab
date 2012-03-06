@@ -41,9 +41,13 @@
           <para>
             A character string with possible values:
             <literal>"automatic"</literal> <literal>"upper
-            left"</literal> <literal>"upper right"</literal>,
+              left"
+            </literal>
+            <literal>"upper right"</literal>,
             <literal>"lower left"</literal>, <literal>"lower
-            right"</literal>.
+              right"
+            </literal>
+            .
           </para>
         </listitem>
       </varlistentry>
@@ -52,11 +56,11 @@
   <refsection>
     <title>Description</title>
     <para>
-        Set the position on the text box with respect to the polyline
-        point. With the <literal>"automatic"</literal> orientation the
-        program makes the choice of the position trying to prevent
-        text from overlapping polyline, it also tries to to keep the text
-        box within the plot boundaries.
+      Set the position on the text box with respect to the polyline
+      point. With the <literal>"automatic"</literal> orientation the
+      program makes the choice of the position trying to prevent
+      text from overlapping polyline, it also tries to to keep the text
+      box within the plot boundaries.
     </para>
   </refsection>
   <refsection>
@@ -83,12 +87,6 @@
       <member>
         <link linkend="datatipRemove">datatipRemove</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>Serge Steer, INRIA</member>
     </simplelist>
   </refsection>
 </refentry>

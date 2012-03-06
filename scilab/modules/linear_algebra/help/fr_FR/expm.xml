@@ -29,7 +29,7 @@
         <term>X  </term>
         <listitem>
           <para>matrice carrée réelle ou complexe
-</para>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,18 +37,18 @@
   <refsection>
     <title>Description</title>
     <para>
-  </para>
+    </para>
     <para>
-    Pour <literal>X</literal> une matrice carrée <literal>expm(X)</literal> est la matrice
-  </para>
+      Pour <literal>X</literal> une matrice carrée <literal>expm(X)</literal> est la matrice
+    </para>
     <para>
-    expm(X) = I + X + X^2 /2 + ...
-  </para>
+      expm(X) = I + X + X^2 /2 + ...
+    </para>
     <para>
-    Le calcul fait appel à une 
-    bloc-diagonalisation préliminaire de <literal>X</literal> suivie d'une approximation 
-    de Padé sur chaque bloc.
-  </para>
+      Le calcul fait appel à une 
+      bloc-diagonalisation préliminaire de <literal>X</literal> suivie d'une approximation 
+      de Padé sur chaque bloc.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -59,7 +59,7 @@ logm(expm(X))
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>Voir aussi</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="logm">logm</link>

@@ -16,9 +16,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.util.mxEventObject;
@@ -27,10 +26,8 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 /**
  * Contains the current Scicos engine status.
  */
-public class CompilationEngineStatus implements mxIEventListener,
-        PropertyChangeListener {
-    private static final Log LOG = LogFactory
-            .getLog(CompilationEngineStatus.class);
+public class CompilationEngineStatus implements mxIEventListener, PropertyChangeListener {
+    private static final Logger LOG = Logger.getLogger(CompilationEngineStatus.class.getName());
 
     private boolean compilationNeeded;
     private File compilationData;
@@ -73,7 +70,7 @@ public class CompilationEngineStatus implements mxIEventListener,
         if (compilationData != null) {
             boolean status = compilationData.delete();
             if (!status) {
-                LOG.warn("Unable to delete temp file");
+                LOG.warning("Unable to delete temp file");
             }
         }
     }
@@ -87,7 +84,7 @@ public class CompilationEngineStatus implements mxIEventListener,
 
     /**
      * Get the command used to store the simulated data out of the stack.
-     * 
+     *
      * @return the scilab command
      */
     public String getStoreSimulationDataCommand() {
@@ -100,7 +97,7 @@ public class CompilationEngineStatus implements mxIEventListener,
             try {
                 setCompilationData(new File(FileUtils.createTempFile()));
             } catch (IOException e) {
-                LOG.warn(e);
+                LOG.warning(e.toString());
 
                 /*
                  * Restart compilation next time
@@ -112,8 +109,7 @@ public class CompilationEngineStatus implements mxIEventListener,
         /*
          * Create the commands
          */
-        command.append("path='" + getCompilationData().getAbsolutePath()
-                + "'; ");
+        command.append("path='" + getCompilationData().getAbsolutePath() + "'; ");
         command.append("if and([exists('%cpr') exists('scs_m')]) <> %t then ");
         command.append("  deletefile(path);");
         command.append("else ");
@@ -125,7 +121,7 @@ public class CompilationEngineStatus implements mxIEventListener,
 
     /**
      * Get the command used to load the simulated data into the stack.
-     * 
+     *
      * @return a Scilab command throws IllegalStateException when the file
      *         cannot be loaded.
      */
@@ -142,8 +138,7 @@ public class CompilationEngineStatus implements mxIEventListener,
         /*
          * Create the commands
          */
-        command.append("path = '" + getCompilationData().getAbsolutePath()
-                + "' ; ");
+        command.append("path = '" + getCompilationData().getAbsolutePath() + "' ; ");
         command.append("import_from_hdf5(path); ");
 
         return command.toString();
@@ -155,7 +150,7 @@ public class CompilationEngineStatus implements mxIEventListener,
 
     /**
      * Listener used for any interesting diagram change.
-     * 
+     *
      * @param sender
      *            the associated diagram
      * @param evt
@@ -171,7 +166,7 @@ public class CompilationEngineStatus implements mxIEventListener,
     /**
      * Property change listener used to update compilation status when the
      * context has changed.
-     * 
+     *
      * @param evt
      *            the current event
      * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)

@@ -25,20 +25,20 @@
   <refsection>
     <title>Description</title>
     <para>
-    This function is used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> and
-    <link linkend="taucs_chsolve">taucs_chsolve</link>. It clears the internal memory space used to store 
-    the Cholesky factorization (got with taucs_chfact). Use without argument 
-    it frees the memory for all the current scilab (taucs) Cholesky factorizations. 
-  </para>
+      This function is used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> and
+      <link linkend="taucs_chsolve">taucs_chsolve</link>. It clears the internal memory space used to store 
+      the Cholesky factorization (got with taucs_chfact). Use without argument 
+      it frees the memory for all the current scilab (taucs) Cholesky factorizations. 
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <para>
-    see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
-  </para>
+      see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chfact">taucs_chfact</link>
@@ -52,13 +52,6 @@
       <member>
         <link linkend="taucs_chget">taucs_chget</link>
       </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <simplelist type="vert">
-      <member>taucs by Sivan Toledo (see taucs_license)</member>
-      <member>scilab interface by Bruno Pincon</member>
     </simplelist>
   </refsection>
 </refentry>

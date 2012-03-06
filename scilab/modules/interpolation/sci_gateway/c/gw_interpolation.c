@@ -13,7 +13,8 @@
 #include <string.h>
 #include "gw_interpolation.h"
 #include "callFunctionFromGateway.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = 
 { 
@@ -32,8 +33,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_interpolation(void)
 {
-	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

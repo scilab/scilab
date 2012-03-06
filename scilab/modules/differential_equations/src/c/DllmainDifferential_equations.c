@@ -142,10 +142,6 @@ DIFFERENTIAL_EQUATIONS_IMPEXP struct {
     int jupbnd;
 } C2F(dqa001);
 
-DIFFERENTIAL_EQUATIONS_IMPEXP struct {
-    int kmax, kount;
-    double dxsav, xp[200], yp[2000]	/* was [10][200] */;
-} C2F(path);
 
 DIFFERENTIAL_EQUATIONS_IMPEXP struct {
     int iero;

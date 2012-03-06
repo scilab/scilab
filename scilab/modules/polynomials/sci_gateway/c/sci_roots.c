@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "stack-c.h"
+#include "machine.h"
 #include "gw_polynomials.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(introots)(int *id);

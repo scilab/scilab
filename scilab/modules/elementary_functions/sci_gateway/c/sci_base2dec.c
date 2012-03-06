@@ -15,7 +15,6 @@
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "convertbase.h"
@@ -107,9 +106,9 @@ int sci_base2dec(char *fname, int* _piKey)
 
     for (i = 0; i < m * n; i++)
     {
-        int ierr = 0;
-        dResults[i] = convertBase2Dec(pStrs[i], iValue, &ierr);
-        if (ierr)
+        error_convertbase err = ERROR_CONVERTBASE_NOK;
+        dResults[i] = convertBase2Dec(pStrs[i], iValue, &err);
+        if (err != ERROR_CONVERTBASE_OK)
         {
             freeAllocatedMatrixOfString(m, n, pStrs);
             pStrs = NULL;

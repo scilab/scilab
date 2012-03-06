@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,7 +18,6 @@ extern "C"
 {
 #include <string.h>
 #include "gw_xml.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
@@ -32,14 +31,14 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlWrite(char * fname, void* pvApiCtx)
+int sci_xmlWrite(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc = 0;
-    xmlDoc * document = 0;
+    xmlDoc *document = 0;
     SciErr err;
-    int * addr = 0;
-    char * path = 0;
-    char * expandedPath = 0;
+    int *addr = 0;
+    char *path = 0;
+    char *expandedPath = 0;
     int indent = 1;
     int ret = 0;
 
@@ -56,11 +55,11 @@ int sci_xmlWrite(char * fname, void* pvApiCtx)
 
     if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument %i: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
         return 0;
     }
 
-    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
+    doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -92,7 +91,17 @@ int sci_xmlWrite(char * fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, addr))
         {
-            getAllocatedSingleString(pvApiCtx, addr, &path);
+            if (!checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 2);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
 
             if (!strlen(path))
             {
@@ -101,18 +110,25 @@ int sci_xmlWrite(char * fname, void* pvApiCtx)
                 return 0;
             }
 
-            expandedPath = (char*)const_cast<const char *>(expandPathVariable(path));
+            expandedPath = expandPathVariable(path);
+
             freeAllocatedSingleString(path);
         }
         else
         {
-
             if (!document->URL)
             {
                 Scierror(999, gettext("%s: The XML Document has not an URI and there is no second argument.\n"), fname);
                 return 0;
             }
             expandedPath = strdup((const char *)document->URL);
+
+            if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A boolean expected.\n"), fname, 2);
+                return 0;
+            }
+
             getScalarBoolean(pvApiCtx, addr, &indent);
         }
 
@@ -126,7 +142,7 @@ int sci_xmlWrite(char * fname, void* pvApiCtx)
                 return 0;
             }
 
-            if (!isBooleanType(pvApiCtx, addr))
+            if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
                 Scierror(999, gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                 return 0;
@@ -161,4 +177,5 @@ int sci_xmlWrite(char * fname, void* pvApiCtx)
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

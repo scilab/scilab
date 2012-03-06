@@ -12,11 +12,11 @@
  */
 /*--------------------------------------------------------------------------*/
 #if defined(__linux__)
-#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#define _GNU_SOURCE             /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
 #endif
 
 #include <stdio.h>
-#include <ctype.h>  /* isdigit */
+#include <ctype.h>              /* isdigit */
 #include <string.h>
 #include "BOOL.h"
 #include "MALLOC.h"
@@ -42,6 +42,7 @@ static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,wchar_t **target,wchar_t **str
 		*xxscanf = (XXSCANF) fwscanf;
 	}
 }
+
 /*--------------------------------------------------------------------------*/
 int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
 {
@@ -371,5 +372,5 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
 
 	return 0;
 }
-/*--------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------*/

@@ -43,12 +43,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    resolve the Yule-Walker equations</para>
+      resolve the Yule-Walker equations
+    </para>
     <para>
-    using Levinson's algorithm.</para>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>C. B.  </para>
+      using Levinson's algorithm.
+    </para>
   </refsection>
 </refentry>

@@ -25,12 +25,16 @@
 extern "C"
 {
 #include "sci_types.h"
+#include <hdf5.h>
+#include <string.h>
+#include "gw_hdf5.h"
+#include "MALLOC.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
-#include "api_scilab.h"
 }
 
 #include "forceJHDF5load.hxx"
@@ -354,7 +358,7 @@ static types::InternalType* import_integer( int _iDatasetId)
 
     switch(iPrec)
     {
-    case SCI_INT8 :
+    case sci_int8 :
         {
             char* pcData	= NULL;
             pcData = (char*)MALLOC(sizeof(char) * iRows * iCols);
@@ -367,7 +371,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(pcData);
             return pInt;
         }
-    case SCI_UINT8 :
+    case sci_uint8 :
         {
             unsigned char* pucData	= NULL;
             pucData = (unsigned char*)MALLOC(sizeof(unsigned char) * iRows * iCols);
@@ -380,7 +384,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(pucData);
             return pInt;
         }
-    case SCI_INT16 :
+    case sci_int16 :
         {
             short* psData	= NULL;
             psData = (short*)MALLOC(sizeof(short) * iRows * iCols);
@@ -394,7 +398,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(psData);
             return pInt;
         }
-    case SCI_UINT16 :
+    case sci_uint16 :
         {
             unsigned short* pusData	= NULL;
             pusData = (unsigned short*)MALLOC(sizeof(unsigned short) * iRows * iCols);
@@ -408,7 +412,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(pusData);
             return pInt;
         }
-    case SCI_INT32 :
+    case sci_int32 :
         {
             int* piData	= NULL;
             piData = (int*)MALLOC(sizeof(int) * iRows * iCols);
@@ -422,7 +426,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(piData);
             return pInt;
         }
-    case SCI_UINT32 :
+    case sci_uint32 :
         {
             unsigned int* puiData	= NULL;
             puiData = (unsigned int*)MALLOC(sizeof(unsigned int) * iRows * iCols);
@@ -436,7 +440,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             pInt->set(puiData);
             return pInt;
         }
-    case SCI_INT64 :
+    case sci_int64 :
         {
             long long* pllData	= NULL;
             pllData = (long long*)MALLOC(sizeof(long long) * iRows * iCols);
@@ -451,7 +455,7 @@ static types::InternalType* import_integer( int _iDatasetId)
             return pInt;
         }
         break;
-    case SCI_UINT64 :
+    case sci_uint64 :
         {
             unsigned long long* pullData	= NULL;
             pullData = (unsigned long long*)MALLOC(sizeof(unsigned long long) * iRows * iCols);

@@ -200,7 +200,7 @@ cumprod(P,2)
 
 B=[%t %t %f %f];
 cumprod(B) //evaluation in float
-cumprod(B,"native") //similar to or(B)
+cumprod(B,"native") //similar to and(B)
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
