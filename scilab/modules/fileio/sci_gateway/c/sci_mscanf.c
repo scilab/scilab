@@ -21,7 +21,6 @@
 #include "scanf_functions.h"
 #include "StringConvert.h"
 #include "xscion.h"
-#include "../../../console/includes/zzledt.h"
 #include "../../../console/includes/GetCommandLine.h"   /* getConsoleInputLine */
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -59,7 +58,7 @@ int sci_scanf(char *fname, unsigned long fname_len)
     }
 
     GetRhsVar(iarg, STRING_DATATYPE, &m1, &n1, &l1);
-                                                 /** format **/
+    /** format **/
     n_count = StringConvert(cstk(l1)) + 1;  /* conversion */
 
     if (n_count > 1)
@@ -78,8 +77,7 @@ int sci_scanf(char *fname, unsigned long fname_len)
 
         /* get a line */
         C2F(xscion) (&iflag);
-        //C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
-        //getLine(String,&len,&lline,&status);
+
         String = getConsoleInputLine();
         if (String == NULL)
         {
@@ -116,19 +114,19 @@ int sci_scanf(char *fname, unsigned long fname_len)
         {
             switch (err)
             {
-            case MISMATCH:
-                if (maxrow >= 0)
-                {
-                    Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: Data mismatch.\n"), fname);
-                    return 0;
-                }
-                break;
+                case MISMATCH:
+                    if (maxrow >= 0)
+                    {
+                        Free_Scan(rowcount, ncol, type_s, &data);
+                        Scierror(999, _("%s: Data mismatch.\n"), fname);
+                        return 0;
+                    }
+                    break;
 
-            case MEM_LACK:
-                Free_Scan(rowcount, ncol, type_s, &data);
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
+                case MEM_LACK:
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
             }
         }
     }                           /*  while (1) */

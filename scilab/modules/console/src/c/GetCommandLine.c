@@ -30,7 +30,6 @@
 #include "storeCommand.h"       /* for ismenu() */
 #include "getKey.h"
 #include "initConsoleMode.h"
-#include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "UpdateBrowseVar.h"
@@ -146,7 +145,7 @@ static void initAll(void)
 {
     /* Set console mode to raw */
 #ifndef _MSC_VER
-    if (getScilabMode() != SCILAB_STD)
+    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
     {
         initConsoleMode(RAW);
     }
@@ -198,12 +197,18 @@ static void *watchGetCommandLine(void *in)
 
 /***********************************************************************/
 /*
- * Old zzledt... Called by Fortran...
- * @TODO rename that function !!!
+ * Previously called zzledt... Called by Fortran...
+ * Now renamed to EventLoopPrompt
  * @TODO remove unused arg buf_size, menusflag, modex & dummy1
  */
-void C2F(zzledt) (char *buffer, int *buf_size, int *len_line, int *eof, int *menusflag, int *modex, long int dummy1)
+void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 {
+
+    if (getScilabMode() == SCILAB_API)
+    {
+        return;
+    }
+
     if (!initialJavaHooks && getScilabMode() != SCILAB_NWNI)
     {
         initialJavaHooks = TRUE;

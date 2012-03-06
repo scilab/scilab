@@ -252,12 +252,6 @@ sparse: Operations on sparse matrices (interfaced by S. Steer INRIA, Bruno Pinco
      routines to read .mps file (sparse linear programming) are from
          J. Gondzio (Hopdm).
 
-os_specific: system specific Scilab routines (INRIA/ENPC). 
-         link.c ,link*.c: dynamic linking of programs for differents 
-         architectures (Erlich,Chancelier) link_linux.c was initiated 
-         by B.Lapeyre.
-         zzledt.c is from Mitchell and Gauthier ass.
-
 tclsci: interface with TCL/TK developed by Allan CORNET.
 
 scicos: developped by then INRIA's Metalau project
