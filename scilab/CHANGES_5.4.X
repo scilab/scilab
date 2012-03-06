@@ -185,6 +185,8 @@ Bug fixes
 
 * Bug #4813 fixed - Description of type 0 added in type help page.
 
+* Bug #7490 fixed - %inf had not always same display.
+
 * Bug #8050 fixed - A weird error message was displayed in some cases.
 
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
