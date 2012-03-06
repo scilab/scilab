@@ -35,4 +35,18 @@ public final class ColorFactory {
             return new Color(0, 0, 0);
         }
     }
+
+    /**
+     * Create a float array filled with the RGBA data of the given scilab color.
+     * @param colorMap the scilab colormap to use.
+     * @param colorIndex the given scilab color.
+     * @return a float array filled with the RGBA data of the given scilab color.
+     */
+    public static float[] createRGBAColor(ColorMap colorMap, int colorIndex) {
+        float[] rgbData = colorMap.getScilabColor(colorIndex);
+        float[] rgbaData = new float[4];
+        System.arraycopy(rgbData, 0, rgbaData, 0, 3);
+        rgbaData[3] = 1f;
+        return rgbaData;
+    }
 }

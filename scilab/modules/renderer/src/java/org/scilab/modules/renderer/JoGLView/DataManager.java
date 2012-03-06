@@ -150,6 +150,10 @@ public class DataManager {
     private final Canvas canvas;
 
 
+    /**
+     * Default constructor.
+     * @param canvas the canvas where managed data live.
+     */
     public DataManager(Canvas canvas) {
         this.canvas = canvas;
     }
@@ -231,6 +235,17 @@ public class DataManager {
             fillWireIndexBuffer(indexBuffer, id);
             wireIndexBufferMap.put(id, indexBuffer);
             return indexBuffer;
+        }
+    }
+
+    /**
+     * Update texture coordinate buffer for the given object.
+     * @param id given object id.
+     */
+    public void updateTextureCoordinatesBuffer(String id) {
+        ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
+        if (textureCoordinatesBuffer != null) {
+            fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
         }
     }
 

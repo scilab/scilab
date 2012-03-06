@@ -121,6 +121,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final AxesDrawer axesDrawer;
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
+    private final FecDrawer fecDrawer;
 
     private DrawingTools drawingTools = null;
     private Texture colorMapTexture;
@@ -151,6 +152,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.arrowDrawer = new ArrowDrawer(this);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
         this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
+        this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
 
         /*
@@ -269,31 +271,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void visit(final Fec fec) {
-        if (fec.getVisible()) {
-            try {
-                DefaultGeometry geometry = new DefaultGeometry();
-                Appearance appearance = new Appearance();
-
-                geometry.setVertices(dataManager.getVertexBuffer(fec.getIdentifier()));
-                geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(fec.getIdentifier()));
-                geometry.setIndices(dataManager.getIndexBuffer(fec.getIdentifier()));
-
-                geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                if (fec.getLineMode()) {
-                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                    geometry.setWireIndices(dataManager.getWireIndexBuffer(fec.getIdentifier()));
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
-                }
-                appearance.setTexture(getColorMapTexture());
-
-                drawingTools.draw(geometry, appearance);
-            } catch (SciRendererException e) {
-                System.err.println("A '" + fec.getType() + "' is not drawable because: '" + e.getMessage() + "'");
-            }
-        }
+    public void visit(Fec fec) {
+        fecDrawer.draw(fec);
     }
 
     @Override
@@ -672,22 +651,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void updateObject(String id, String property) {
         if (needUpdate(id, property)) {
             if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+                labelManager.disposeAll();
                 dataManager.disposeAllColorBuffers();
                 markManager.disposeAll();
                 textManager.disposeAll();
-                labelManager.disposeAll();
                 axesDrawer.disposeAll();
-                canvas.redraw();
+                fecDrawer.updateAll();
                 colorMapTextureDataProvider.update();
             } else {
+                labelManager.update(id, property);
                 dataManager.update(id, property);
                 markManager.update(id, property);
                 textManager.update(id, property);
-                labelManager.update(id, property);
                 axesDrawer.update(id, property);
                 legendDrawer.update(id, property);
-                canvas.redraw();
+                fecDrawer.update(id, property);
             }
+            canvas.redraw();
         }
     }
 
@@ -732,6 +712,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         labelManager.dispose(id);
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
+        fecDrawer.dispose(id);
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         if (object instanceof Figure && visitorMap.containsKey(id)) {
@@ -765,6 +746,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             colorMapTexture.setDataProvider(colorMapTextureDataProvider);
         }
         return colorMapTexture;
+    }
+
+    /**
+     * Figure getter.
+     * @return the figure this visitor draw.
+     */
+    Figure getFigure() {
+        return figure;
     }
 
     private class ColorMapTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {

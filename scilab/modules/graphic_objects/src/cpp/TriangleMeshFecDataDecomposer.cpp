@@ -60,140 +60,86 @@ void TriangleMeshFecDataDecomposer::fillVertices(char* id, float* buffer, int bu
 
 void TriangleMeshFecDataDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
 {
-    char* parent;
     char* parentFigure;
+    int colormapSize = 0;
+    int* piColormapSize = &colormapSize;
+    int* colorRange;
+
+    double colorsNumber;
+    double scale;
+    double t;
 
     double* values;
     double* zBounds;
-    double* colormap;
 
     double minValue;
     double maxValue;
-    double valueRange;
-
-    int colormapSize = 0;
-    int* piColormapSize = &colormapSize;
 
     int numVertices = 0;
     int* piNumVertices = &numVertices;
 
-    int minColorIndex;
-    int maxColorIndex;
-
-    int* colorRange;
-    int useOutsideColors = 0;
     int i;
     int bufferOffset = 0;
 
-    getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
-
+    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
-    if (strcmp(parent, "") == 0)
+    if (strcmp(parentFigure, "") == 0)
     {
         return;
     }
-
-    getGraphicObjectProperty(id, __GO_PARENT_FIGURE__, jni_string, (void**) &parentFigure);
-
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
-    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**) &piNumVertices);
-
-    getGraphicObjectProperty(id, __GO_DATA_MODEL_VALUES__, jni_double_vector, (void**) &values);
-
-    getGraphicObjectProperty(id, __GO_Z_BOUNDS__, jni_double_vector, (void**) &zBounds);
     getGraphicObjectProperty(id, __GO_COLOR_RANGE__, jni_int_vector, (void**) &colorRange);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
     if (colorRange[0] != 0 || colorRange[1] != 0)
     {
-        /* To do: use a scilab index to colormap index conversion function */
-        minColorIndex = colorRange[0] - 1;
-        maxColorIndex = colorRange[1] - 1;
-
-        if (minColorIndex < 0)
-        {
-            minColorIndex = 0;
-        }
-        if (maxColorIndex < 0)
-        {
-            maxColorIndex = 0;
-        }
-
-        if (maxColorIndex > colormapSize - 1)
-        {
-            maxColorIndex = colormapSize - 1;
-        }
-        if (minColorIndex > colormapSize - 1)
-        {
-            minColorIndex = colormapSize - 1;
-        }
-
+      colorsNumber = (double) (1 + colorRange[1] - colorRange[0]);
     }
     else
     {
-        minColorIndex = 0;
-        maxColorIndex = colormapSize - 1;
+      colorsNumber = (double) colormapSize;
     }
 
-    computeMinMaxValues(values, numVertices, &minValue, &maxValue);
+    /** To take into account the presence of exterior colors:
+     *  - We add 2 to the number of colors.
+     *  - We skip the first color.
+     */
+    t = 3. / (2. * (colorsNumber + 2.));
+    scale = (colorsNumber - 1.) / (colorsNumber + 2);
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**) &piNumVertices);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_VALUES__, jni_double_vector, (void**) &values);
+    getGraphicObjectProperty(id, __GO_Z_BOUNDS__, jni_double_vector, (void**) &zBounds);
 
     /* Z-bounds are not taken into account if either of them is invalid */
     if ((zBounds[0] != 0.0 || zBounds[1] != 0.0) && (DecompositionUtils::isValid(zBounds[0]) && DecompositionUtils::isValid(zBounds[1])) && (zBounds[0] != zBounds[1]))
     {
-        int* outsideColors;
-
         minValue = zBounds[0];
         maxValue = zBounds[1];
-
-        getGraphicObjectProperty(id, __GO_OUTSIDE_COLOR__, jni_int_vector, (void**) &outsideColors);
-
-        if (outsideColors[0] != 0 || outsideColors[1] != 0)
-        {
-            useOutsideColors = 1;
-        }
-    }
-
-    /* To be verified (when reverse z bounds are specified) */
-    if (DecompositionUtils::getAbsoluteValue(maxValue - minValue) < DecompositionUtils::getMinDoubleValue())
-    {
-        valueRange = 1.0;
     }
     else
     {
-        valueRange = maxValue - minValue;
+        computeMinMaxValues(values, numVertices, &minValue, &maxValue);
     }
 
-    for (i = 0; i < numVertices; i++)
+    if (maxValue == minValue)
     {
-        if (useOutsideColors == 1)
+        for (i = 0; i < numVertices; i++)
         {
-            if (values[i] < minValue)
-            {
-                buffer[bufferOffset++] = (float) minColorIndex / (float) colormapSize;
-            }
-            else if (values[i] > maxValue)
-            {
-                buffer[bufferOffset++] = (float) (maxColorIndex+1) / (float) colormapSize;
-            }
-            else
-            {
-                /* We must pass maxColorIndex + 1 in order to be able to map the largest value to the colormap's last color. */
-                buffer[bufferOffset++] = ColorComputer::getIndex(values[i], minValue, valueRange, 0.0, minColorIndex, maxColorIndex+1) / (float) colormapSize;
-            }
+            buffer[bufferOffset++] = minValue;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 1;
         }
-        else
+    }
+    else
+    {
+        for (i = 0; i < numVertices; i++)
         {
-            /*
-             * We must pass maxColorIndex + 1 in order to be able to map the largest value to the colormap's last color.
-             * To do: replace 0.0 by a macro-definition.
-             */
-            buffer[bufferOffset++] = ColorComputer::getIndex(values[i], minValue, valueRange, 0.0, minColorIndex, maxColorIndex+1) / (float) (colormapSize);
+            buffer[bufferOffset++] = t + scale * (values[i] - minValue) / (maxValue - minValue);
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 0;
+            buffer[bufferOffset++] = 1;
         }
-
-        buffer[bufferOffset++] = 0;
-        buffer[bufferOffset++] = 0;
-        buffer[bufferOffset++] = 1;
     }
 }
 
