@@ -62,17 +62,10 @@ jobject getScilabObject(void)
 /*--------------------------------------------------------------------------*/
 BOOL finishMainScilabObject(void)
 {
-    BOOL retValue = FALSE;
-    jint result = 1;
     JNIEnv * currentENV = getScilabJNIEnv();
     JavaVM * currentJVM = getScilabJavaVM();
 
-    JavaVMAttachArgs args;
-    args.version = (*currentENV)->GetVersion(currentENV);
-    args.name = (char *) "Scilab - Finish";
-    args.group = NULL;
-
-    result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, (void*) &args) ;
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
     if (result == 0)
     {
         jclass cls = NULL;
@@ -90,27 +83,18 @@ BOOL finishMainScilabObject(void)
 
             (*currentENV)->DeleteGlobalRef(currentENV, ScilabObject);
             ScilabObject = NULL;
-            retValue = TRUE;
+            return TRUE;
         }
-
-        (*currentJVM)->DetachCurrentThread(currentJVM);
     }
-    return retValue;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL canCloseMainScilabObject(void)
 {
-    BOOL retValue = FALSE;
     JNIEnv * currentENV = getScilabJNIEnv();
     JavaVM * currentJVM = getScilabJavaVM();
-    jint result = 1;
 
-    JavaVMAttachArgs args;
-    args.version = (*currentENV)->GetVersion(currentENV);
-    args.name = (char *) "Scilab - Try finish";
-    args.group = NULL;
-
-    result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, (void*) &args) ;
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
     if (result == 0)
     {
         jclass cls = NULL;
@@ -122,47 +106,13 @@ BOOL canCloseMainScilabObject(void)
             mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "canClose", "()Z");
             if (mid)
             {
-                retValue = (*currentENV)->CallStaticBooleanMethod(currentENV, cls, mid);
+                return (*currentENV)->CallStaticBooleanMethod(currentENV, cls, mid);
             }
             catchIfJavaException(_("Error with Scilab.canClose():\n"));
         }
-
-        (*currentJVM)->DetachCurrentThread(currentJVM);
     }
 
-    return retValue;
-}
-/*--------------------------------------------------------------------------*/
-void forceCloseMainScilabObject(void)
-{
-    JNIEnv * currentENV = getScilabJNIEnv();
-    JavaVM * currentJVM = getScilabJavaVM();
-    jint result = 1;
-
-    JavaVMAttachArgs args;
-    args.version = (*currentENV)->GetVersion(currentENV);
-    args.name = (char *) "Scilab - Force finish";
-    args.group = NULL;
-
-    result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, (void*) &args) ;
-    if (result == 0)
-    {
-        jclass cls = NULL;
-        cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/core/Scilab");
-        catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
-        if (cls)
-        {
-            jmethodID mid = NULL;
-            mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "forceClose", "()V");
-            if (mid)
-            {
-                (*currentENV)->CallStaticVoidMethod(currentENV, cls, mid);
-            }
-            catchIfJavaException(_("Error with Scilab.forceClose():\n"));
-        }
-
-        (*currentJVM)->DetachCurrentThread(currentJVM);
-    }
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 

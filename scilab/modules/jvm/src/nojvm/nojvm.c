@@ -59,12 +59,6 @@ JVM_IMPEXP BOOL canCloseMainScilabObject(void)
 }
 
 /*--------------------------------------------------------------------------*/
-/* BUG 10325: FORCE EXPORT forceCloseMainScilabObject on Windows */
-JVM_IMPEXP void forceCloseMainScilabObject(void)
-{
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
