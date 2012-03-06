@@ -132,9 +132,10 @@
             syntax <literal>[nr, nc] = size(x)</literal> is also valid (with
             <literal>(nr, nc) = (y(1), y(2))</literal>). If <literal>x</literal>
             is a linear system in state-space form, then <literal>[nr, nc, nx] = 
-            size(x)</literal>
+              size(x)
+            </literal>
             returns in addition the dimension <literal>nx</literal> of matrix 
-	    <literal>x</literal>.
+            <literal>x</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -148,7 +149,7 @@
       
       x = ssrand(3, 2, 4);
       [ny, nu] = size(x)
-      [ny, nu] =s ize(ss2tf(x))
+      [ny, nu] = size(ss2tf(x))
       [ny, nu, nx] = size(x)
       
       // Returns the number of rows

@@ -151,7 +151,7 @@
       
       x = ssrand(3, 2, 4);
       [ny, nu] = size(x)
-      [ny, nu] =s ize(ss2tf(x))
+      [ny, nu] = size(ss2tf(x))
       [ny, nu, nx] = size(x)
       
       // Возвращает количество строк
