@@ -192,6 +192,10 @@ Bug fixes
 * Bug #8859 fixed - Some comparison operators between hypermatrices and 2-D arrays
                     were missing.
 
+* Bug #9002 fixed - bsplin3val, cshep2d, eval_cshep2d,interp, interp2d, interp3d,
+                    linear_interp, splin, splin2d, splin3d functions ignored imaginary
+                    part of input arguments implicitly.
+
 * Bug #9197 fixed - Unitary test examples in toolbox_skeleton
                     and xcos_toolbox_skeleton did not use assert functions.
 

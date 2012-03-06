@@ -126,4 +126,14 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
       </member>
     </simplelist>
   </refsection>
+    <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+      </revision>
+    </revhistory>
+  </refsection>
+
 </refentry>
