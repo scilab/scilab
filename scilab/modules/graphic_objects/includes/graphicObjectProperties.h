@@ -359,6 +359,7 @@
 #define __GO_UI_MNEMONIC__                 "UIMnemonic"
 #define __GO_UI_ACCELERATOR__              "UIAccelerator"
 #define __GO_UI_SEPARATOR__                "UISeparator"
+#define __GO_UI_ICON__                     "UIIcon"
 
 #define __GO_CONSOLE__                     "Console"
 #define __GO_SHOWHIDDENHANDLES__           "ShowHiddenHandles"

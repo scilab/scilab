@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ACCELERATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
@@ -90,7 +91,7 @@ public final class MenuBarBuilder {
     public static void buildConsoleMenuBar(String consoleId) {
         buildMenuBar(MAINMENUBARXMLFILE, consoleId);
     }
-    
+
     /**
      * Create graphic figure menubar from data in a XML file
      * @param figureId the figure
@@ -109,7 +110,7 @@ public final class MenuBarBuilder {
 
         try {
             MenuBarConfiguration menuBarConfig =
-                    (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
+                (MenuBarConfiguration) buildMenuBar(new Class[] {MenuBarConfiguration.class}, fileToLoad);
             menuBarConfig.addMenus(parentId);
         } catch (IllegalArgumentException e) {
             System.err.println(CANNOT_CREATE_MENUBAR);
@@ -141,6 +142,7 @@ public final class MenuBarBuilder {
         protected static final String TYPE = "type";
         protected static final String INSTRUCTION = "instruction";
         protected static final String TRUE = "true";
+        protected static final String ICON = "icon";
 
         private Document dom;
         private Collection<String> internalMethodNames;
@@ -182,7 +184,7 @@ public final class MenuBarBuilder {
          * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
          */
         public Object invoke(Object proxy, Method method, Object[] args)
-                throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
             if (internalMethodNames.contains(method.getName())) {
                 return getClass().getMethod(method.getName(), method.getParameterTypes()).invoke(this, args);
             } else {
@@ -220,6 +222,12 @@ public final class MenuBarBuilder {
                     GraphicController.getController().setProperty(menuId, __GO_UI_MNEMONIC__, mnemonicString);
                 }
 
+                // Set the icon if given
+                if (menus.item(i).getAttributes().getNamedItem(ICON) != null) {
+                    String iconName = menus.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(menuId, __GO_UI_ICON__, iconName);
+                }
+
                 // Set the enable status if given
                 if (menus.item(i).getAttributes().getNamedItem(ENABLED) != null) {
                     boolean enabled = menus.item(i).getAttributes().getNamedItem(ENABLED).getNodeValue().equals(TRUE);
@@ -228,7 +236,7 @@ public final class MenuBarBuilder {
                 // Set the menu parent
                 GraphicController.getController().setGraphicObjectRelationship(parentId, menuId);
                 addSubMenus(menuId, i);
-             }
+            }
         }
 
         /**
@@ -276,6 +284,10 @@ public final class MenuBarBuilder {
                             // Set the enable status
                             boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);
                             GraphicController.getController().setProperty(menuId, __GO_UI_ENABLE__, enabled);
+                        } else if (attributes.item(i).getNodeName() == ICON) {
+                            // Set the icon
+                            String iconName = attributes.item(i).getNodeValue();
+                            GraphicController.getController().setProperty(menuId, __GO_UI_ICON__, iconName);
                         } else if (attributes.item(i).getNodeName() == ACCELERATOR) {
                             // Set the accelerator
                             String acceleratorString = attributes.item(i).getNodeValue();
@@ -352,6 +364,9 @@ public final class MenuBarBuilder {
                     // Set the mnemonic
                     String mnemonicString = attributes.item(i).getNodeValue();
                     GraphicController.getController().setProperty(subMenuItemId, __GO_UI_MNEMONIC__, mnemonicString);
+                } else if (attributes.item(i).getNodeName() == ICON) {
+                    String iconName = attributes.item(i).getNodeValue();
+                    GraphicController.getController().setProperty(subMenuItemId, __GO_UI_ICON__, iconName);
                 } else if (attributes.item(i).getNodeName() == ENABLED) {
                     // Set the enable status
                     boolean enabled = attributes.item(i).getNodeValue().equals(TRUE);

@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
@@ -32,6 +33,7 @@ public class Uimenu extends GraphicObject {
     private boolean checked;
     private boolean enable = true;
     private Double[] foregroundColor = {0.0, 0.0, 0.0};
+    private String icon = "";
     private String label = "";
     private String mnemonic = "";
     private String accelerator = "";
@@ -45,6 +47,7 @@ public class Uimenu extends GraphicObject {
         CHECKED,
         ENABLE,
         FOREGROUNDCOLOR,
+        ICON,
         LABEL,
         MNEMONIC,
         SEPARATOR
@@ -83,6 +86,8 @@ public class Uimenu extends GraphicObject {
             property = UimenuProperty.ENABLE;
         } else if (propertyName.equals(__GO_UI_FOREGROUNDCOLOR__)) {
             property = UimenuProperty.FOREGROUNDCOLOR;
+        } else if (propertyName.equals(__GO_UI_ICON__)) {
+            property = UimenuProperty.ICON;
         } else if (propertyName.equals(__GO_UI_LABEL__)) {
             property = UimenuProperty.LABEL;
         } else if (propertyName.equals(__GO_UI_MNEMONIC__)) {
@@ -110,6 +115,8 @@ public class Uimenu extends GraphicObject {
             propertyValue = getEnable();
         } else if (property == UimenuProperty.FOREGROUNDCOLOR) {
             propertyValue = getForegroundColor();
+        } else if (property == UimenuProperty.ICON) {
+            propertyValue = getIcon();
         } else if (property == UimenuProperty.LABEL) {
             propertyValue = getLabel();
         } else if (property == UimenuProperty.MNEMONIC) {
@@ -117,7 +124,7 @@ public class Uimenu extends GraphicObject {
         } else if (property == UimenuProperty.SEPARATOR) {
             propertyValue = getSeparator();
         } else {
-            propertyValue = super.getProperty(property); 
+            propertyValue = super.getProperty(property);
         }
         return propertyValue;
     }
@@ -137,6 +144,8 @@ public class Uimenu extends GraphicObject {
             setEnable((Boolean) value);
         } else if (property == UimenuProperty.FOREGROUNDCOLOR) {
             setForegroundColor((Double[]) value);
+        } else if (property == UimenuProperty.ICON) {
+            setIcon((String) value);
         } else if (property == UimenuProperty.LABEL) {
             setLabel((String) value);
         } else if (property == UimenuProperty.MNEMONIC) {
@@ -152,7 +161,7 @@ public class Uimenu extends GraphicObject {
 
     /**
      * Get the menu checked status
-     * @return the status 
+     * @return the status
      */
     public Boolean getChecked() {
         return this.checked;
@@ -168,7 +177,7 @@ public class Uimenu extends GraphicObject {
 
     /**
      * Get the menu enable status
-     * @return the status 
+     * @return the status
      */
     public Boolean getEnable() {
         return this.enable;
@@ -184,7 +193,7 @@ public class Uimenu extends GraphicObject {
 
     /**
      * Get the menu Foreground Color
-     * @return the RGB color 
+     * @return the RGB color
      */
     public Double[] getForegroundColor() {
         return this.foregroundColor;
@@ -192,15 +201,31 @@ public class Uimenu extends GraphicObject {
 
     /**
      * Set the menu Foreground Color
-     * @param colors the RGB color 
+     * @param colors the RGB color
      */
     public void setForegroundColor(Double[] colors) {
         this.foregroundColor = colors;
     }
 
     /**
+     * Get the menu icon
+     * @return the icon
+     */
+    public String getIcon() {
+        return this.icon;
+    }
+
+    /**
+     * Set the menu icon
+     * @param icon the icon
+     */
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    /**
      * Get the menu label
-     * @return the label 
+     * @return the label
      */
     public String getLabel() {
         return this.label;
@@ -268,7 +293,7 @@ public class Uimenu extends GraphicObject {
         copy.setValid(true);
         return copy;
     }
-    
+
     /**
      * Accept method
      * @param visitor the visitor

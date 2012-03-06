@@ -18,10 +18,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -29,6 +32,7 @@ import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuIte
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -60,7 +64,7 @@ public final class SwingViewMenu {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
             uimenu.setCallback(ScilabCallBack.createCallback(cbString, (Integer) value));
         } else if (property.equals(__GO_UI_CHECKED__)) {
-            if (uimenu instanceof SwingScilabCheckBoxMenuItem) { 
+            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
                 ((SwingScilabCheckBoxMenuItem) uimenu).setChecked((Boolean) value);
             }
         } else if (property.equals(__GO_UI_ENABLE__)) {
@@ -68,8 +72,12 @@ public final class SwingViewMenu {
         } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
             Double[] allColors = ((Double[]) value);
             uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
-                    (int) (allColors[1] * COLORS_COEFF),
-                    (int) (allColors[2] * COLORS_COEFF)));
+                                           (int) (allColors[1] * COLORS_COEFF),
+                                           (int) (allColors[2] * COLORS_COEFF)));
+        } else if (property.equals(__GO_UI_ICON__)) {
+            if (!((String) value).equals("")) {
+                ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
+            }
         } else if (property.equals(__GO_UI_LABEL__)) {
             String newText = (String) value;
             String label = newText;
