@@ -93,6 +93,9 @@ Unitary tests
 
 * A fourth argument added to test_run to export test results to XUnit format.
 
+* A new function called example_run has been introduced, this function tests the
+  examples given in Scilab help pages. See SEP #83.
+
 
 Statistics
 ==========
