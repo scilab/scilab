@@ -101,8 +101,10 @@
 
     // We search for element named a
     xmlXPath(doc, "//a") // => nothing
-    xmlXPath(doc, "//scilab:a") // => error
     xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
+
+    // This code will fail:
+    // xmlXPath(doc, "//scilab:a") // => error
 
     xmlDelete(doc);
 

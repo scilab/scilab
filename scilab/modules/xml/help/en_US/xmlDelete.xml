@@ -49,7 +49,7 @@
     xmlDelete(doc);
 
     // root is no more valid... so try to access it, will lead to an error
-    root
+    // disp(root) => This will fail
     ]]></programlisting>
   </refsection>
   <refsection role="see also">

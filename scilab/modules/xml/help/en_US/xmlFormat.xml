@@ -50,8 +50,8 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
-    // An error
-    doc.root.children(1.5) = 1.23456;
+    // This code will fail:
+    // doc.root.children(1.5) = 1.23456;
 
     // Now we define %s_xmlFormat to handle double type
     // Take care, in this example, the double matrix is not handled
