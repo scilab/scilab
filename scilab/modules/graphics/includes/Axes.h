@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,17 +25,8 @@
 
 /*-----------------------------------------------------------------------------*/
 
-/* clear a subwindow from all of its children */
-GRAPHICS_IMPEXP void clearSubWin(char * pSubWinUID);
-
-/* reinit a subwindow (but don't change position) */
-GRAPHICS_IMPEXP void reinitSubWin(char * pSubWinUID);
-
 /* reinit the viewing angles of a subwindow */
 GRAPHICS_IMPEXP void initSubWinAngles(char * pSubWinUID);
-
-/* set the size and position of the subwindow to the default */
-GRAPHICS_IMPEXP void initSubWinSize( sciPointObj * pSubWin );
 
 /* set the data_bounds of the axes to the default value */
 GRAPHICS_IMPEXP void initSubWinBounds(char * pSubWinUID);

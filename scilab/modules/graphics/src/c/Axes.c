@@ -37,46 +37,53 @@
 #include "AxesModel.h"
 #include "CurrentSubwin.h"
 
+#include "deleteGraphicObject.h"
+
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
 
 /*--------------------------------------------------------------------------------*/
-/* clear a subwindow from all of its children */
-void clearSubWin(char * pSubWinUID)
-{
-    int iChildrenCount = 0;
-    int *piChildrenCount = &iChildrenCount;
-    int i;
-    char **pstChildrenUID;
-
-    // Iterate on children.
-    getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
-
-    if (iChildrenCount != 0)
-    {
-        getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
-
-        for (i = 0 ; i < iChildrenCount ; ++i)
-        {
-            destroyGraphicHierarchy(pstChildrenUID[i]);
-        }
-    }
-}
-/*--------------------------------------------------------------------------------*/
 /* reinit a subwindow (but don't change position ) */
-void reinitSubWin(char * pSubWinUID)
+static void reinitSubWin(char * pSubWinUID)
 {
   int visible;
   int firstPlot;
   int axisLocation;
+  char *labelUID;
+  int iChildrenCount = 0;
+  int *piChildrenCount = &iChildrenCount;
+  int i;
+  char **pstChildrenUID;
 
-  /* Deletes the Axes' hierarchy */
-  clearSubWin(pSubWinUID);
+  /* Deletes the Axes' children */
+  getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
+
+  if (iChildrenCount != 0)
+  {
+      getGraphicObjectProperty(pSubWinUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
+
+      for (i = 0 ; i < iChildrenCount ; ++i)
+      {
+          deleteGraphicObject(pstChildrenUID[i]);
+      }
+  }
 
   initSubWinBounds(pSubWinUID);
 
-  /* bottom */
+  labelUID = initLabel(pSubWinUID);
+  setGraphicObjectProperty(pSubWinUID, __GO_TITLE__, labelUID, jni_string, 1);
+
+  labelUID = initLabel(pSubWinUID);
+  setGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LABEL__, labelUID, jni_string, 1);
+
+  labelUID = initLabel(pSubWinUID);
+  setGraphicObjectProperty(pSubWinUID, __GO_Y_AXIS_LABEL__, labelUID, jni_string, 1);
+
+  labelUID = initLabel(pSubWinUID);
+  setGraphicObjectProperty(pSubWinUID, __GO_Z_AXIS_LABEL__, labelUID, jni_string, 1);
+
+/* bottom */
   axisLocation = 0;
   setGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
   /* left */
@@ -128,7 +135,7 @@ void initSubWinSize( sciPointObj * pSubWin )
 void initSubWinBounds(char * pSubWinUID)
 {
     double* dataBounds;
-    double* realDataBounds;   
+    double* realDataBounds;
     char* axesModelUID = getAxesModel();
 
     getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
