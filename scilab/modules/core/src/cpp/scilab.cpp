@@ -20,6 +20,7 @@ extern "C"
 {
 #ifndef _MSC_VER
 #include <unistd.h>
+#include "initConsoleMode.h"
 #endif
 
 //#include "SetScilabEnvironment.h"
@@ -61,8 +62,6 @@ extern "C"
 #include "deleteafile.h"
 #include "setgetlanguage.h"
 #include "scilabRead.h"
-#include "initConsoleMode.h"
-
 #include "elem_common.h"
 
 #ifdef __APPLE__
@@ -695,7 +694,9 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     }
     else
     {
+#ifndef _MSC_VER
         initConsoleMode(RAW);
+#endif
     }
 
     /* set current language of scilab */
@@ -765,7 +766,9 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     /* Reset terminal configuration */
     if (consoleMode)
     {
+#ifndef _MSC_VER
         initConsoleMode(ATTR_RESET);
+#endif
     }
 
     return iMainRet;
