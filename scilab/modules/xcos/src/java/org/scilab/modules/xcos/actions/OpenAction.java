@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
@@ -90,7 +91,11 @@ public final class OpenAction extends DefaultAction {
         configureFileFilters(fc);
         ConfigurationManager.configureCurrentDirectory(fc);
 
-        displayAndOpen(fc, getGraph(e).getAsComponent());
+        try {
+            displayAndOpen(fc, getGraph(e).getAsComponent());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     /*
@@ -116,7 +121,7 @@ public final class OpenAction extends DefaultAction {
         fc.setFileFilter(filters[0]);
     }
 
-    protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) {
+    protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) throws IOException {
         final int status = fc.showOpenDialog(component);
         if (status != JFileChooser.APPROVE_OPTION) {
             return;
@@ -124,13 +129,13 @@ public final class OpenAction extends DefaultAction {
 
         final File onlySelected = fc.getSelectedFile();
         if (onlySelected != null) {
-            Xcos.getInstance().open(onlySelected);
+            Xcos.getInstance().open(onlySelected.getCanonicalPath(), null);
         }
 
         final File[] multiSelected = fc.getSelectedFiles();
         for (File file : multiSelected) {
             if (file != onlySelected) {
-                Xcos.getInstance().open(file);
+                Xcos.getInstance().open(file.getCanonicalPath(), null);
             }
         }
     }

@@ -104,6 +104,8 @@ Xcos
 
 * Bug #10800 fixed - xcosPalAddBlock help example did not work.
 
+* Bug #10812 fixed - cos and cosf files loading did not used a direct handler.
+
 
 Unitary testing
 ===============

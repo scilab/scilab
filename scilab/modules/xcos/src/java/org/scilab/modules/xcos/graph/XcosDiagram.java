@@ -13,8 +13,6 @@
 
 package org.scilab.modules.xcos.graph;
 
-import static org.scilab.modules.xcos.utils.FileUtils.exists;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1894,59 +1892,48 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Read a diagram from an HDF5 file (ask for creation if the file does not
-     * exist)
+     * Popup a dialog to ask for a file creation
      *
-     * @param diagram
-     *            file to open
-     * @return the diagram instance or null on error
+     * @param f
+     *            the file to create
      */
-    public XcosDiagram openDiagramFromFile(final File diagram) {
-        info(XcosMessages.LOADING_DIAGRAM);
-
-        if (diagram.exists()) {
-            try {
-                transformAndLoadFile(diagram.getCanonicalPath());
-            } catch (IOException e) {
-                LOG.severe(e.toString());
-            }
-        } else {
-            AnswerOption answer;
-            try {
-                answer = ScilabModalDialog.show(getAsComponent(), new String[] { String.format(XcosMessages.FILE_DOESNT_EXIST, diagram.getCanonicalFile()) },
-                                                XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO);
-            } catch (final IOException e) {
-                LOG.severe(e.toString());
-                answer = AnswerOption.YES_OPTION;
-            }
-
-            if (answer == AnswerOption.YES_OPTION) {
-                saveDiagramAs(diagram);
-            }
-
-            info(XcosMessages.EMPTY_INFO);
+    public void askForFileCreation(final File f) {
+        AnswerOption answer;
+        try {
+            answer = ScilabModalDialog.show(getAsComponent(), new String[] { String.format(XcosMessages.FILE_DOESNT_EXIST, f.getCanonicalFile()) },
+                                            XcosMessages.XCOS, IconType.QUESTION_ICON, ButtonType.YES_NO);
+        } catch (final IOException e) {
+            LOG.severe(e.toString());
+            answer = AnswerOption.YES_OPTION;
         }
 
-        return this;
+        if (answer == AnswerOption.YES_OPTION) {
+            saveDiagramAs(f);
+        }
     }
 
     /**
      * Load a file with different method depending on it extension
      *
      * @param file
-     *            File to load
-     * @param wait
-     *            wait end transform
-     * @return the status of the operation
+     *            File to load (can be null)
+     * @param variable
+     *            the variable to decode (can be null)
      */
-    protected boolean transformAndLoadFile(final String file) {
-        final XcosFileType filetype = XcosFileType.findFileType(file);
-
-        if (!exists(file) || filetype == null) {
-            XcosDialogs.couldNotLoadFile(this);
-            return false;
+    public void transformAndLoadFile(final String file, final String variable) {
+        final XcosFileType filetype;
+        if (file != null) {
+            filetype = XcosFileType.findFileType(file);
+        } else {
+            filetype = null;
         }
 
+        final File f;
+        if (file != null) {
+            f = new File(file);
+        } else {
+            f = null;
+        }
         new SwingWorker<XcosDiagram, ActionEvent>() {
             int counter = 0;
             final Timer t = new Timer(1000, new ActionListener() {
@@ -1962,6 +1949,8 @@ public class XcosDiagram extends ScilabGraph {
             @Override
             protected XcosDiagram doInBackground() {
                 t.start();
+
+                final Xcos instance = Xcos.getInstance();
                 XcosDiagram diag = XcosDiagram.this;
 
                 diag.setReadOnly(true);
@@ -1969,18 +1958,24 @@ public class XcosDiagram extends ScilabGraph {
                 /*
                  * Load, log errors and notify
                  */
-                final Xcos instance = Xcos.getInstance();
-                try {
-                    filetype.load(file, diag);
-                    instance.setLastError("");
-                } catch (Exception e) {
-                    Throwable ex = e;
-                    while (ex instanceof RuntimeException) {
-                        ex = ex.getCause();
-                    }
-                    instance.setLastError(ex.getMessage());
-                }
                 synchronized (instance) {
+                    try {
+
+                        if (f != null && filetype != null) {
+                            filetype.load(file, XcosDiagram.this);
+                        }
+                        if (variable != null) {
+                            new ScilabDirectHandler().readDiagram(XcosDiagram.this, variable);
+                        }
+                        instance.setLastError("");
+                    } catch (Exception e) {
+                        Throwable ex = e;
+                        while (ex instanceof RuntimeException) {
+                            ex = ex.getCause();
+                        }
+                        instance.setLastError(ex.getMessage());
+                        ScilabModalDialog.show(null, ex.getMessage());
+                    }
                     instance.notify();
                 }
 
@@ -1996,12 +1991,13 @@ public class XcosDiagram extends ScilabGraph {
                 /*
                  * Load has finished
                  */
-                postLoad(new File(file));
+                if (f != null) {
+                    postLoad(f);
+                }
                 XcosDiagram.this.info(XcosMessages.EMPTY_INFO);
             }
 
         } .execute();
-        return true;
     }
 
     /**

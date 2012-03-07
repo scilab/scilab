@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -76,7 +77,11 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        Xcos.getInstance().open(recentFile);
+        try {
+            Xcos.getInstance().open(recentFile.getCanonicalPath(), null);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     };
 
     /**

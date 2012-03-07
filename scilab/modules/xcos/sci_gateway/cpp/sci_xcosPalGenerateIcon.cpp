@@ -17,7 +17,6 @@
 extern "C"
 {
 #include "gw_xcos.h"
-#include "callxcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -53,12 +52,12 @@ int sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
     {
         Palette::generatePaletteIcon(getScilabJavaVM(), blockPath, iconPath);
     }
-    catch(GiwsException::JniCallMethodException exception)
+    catch (GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch(GiwsException::JniException exception)
+    catch (GiwsException::JniException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;

@@ -362,12 +362,14 @@ public final class Xcos {
      * Open a file from it's filename.
      *
      * This method must be called on the EDT thread. For other use, please use
-     * the {@link #xcos(String)} method.
+     * the {@link #xcos(String, String)} method.
      *
-     * @param filename
+     * @param file
      *            the file to open. If null an empty diagram is created.
+     * @param variable
+     *            the variable to decode. If null no decode is performed.
      */
-    public void open(final File filename) {
+    public void open(final String file, final String variable) {
         if (!SwingUtilities.isEventDispatchThread()) {
             LOG.severe(CALLED_OUTSIDE_THE_EDT_THREAD);
         }
@@ -375,25 +377,31 @@ public final class Xcos {
         /*
          * If it is the first window opened, then open the palette first.
          */
-        if (filename == null && openedDiagrams().isEmpty()) {
+        if (file == null && variable == null && openedDiagrams().isEmpty()) {
             PaletteManager.setVisible(true);
         }
 
         XcosDiagram diag = null;
+        final File f;
+        if (file != null) {
+            f = new File(file);
+        } else {
+            f = null;
+        }
 
-        if (filename != null && filename.exists()) {
-            configuration.addToRecentFiles(filename);
+        if (f != null && f.exists()) {
+            configuration.addToRecentFiles(f);
         }
 
         /*
          * looking for an already opened diagram
          */
-        final Collection<XcosDiagram> diags = diagrams.get(filename);
+        final Collection<XcosDiagram> diags = diagrams.get(f);
         if (diags != null && !diags.isEmpty()) {
             diag = diags.iterator().next();
         }
         // if unsaved and empty, reuse it. Allocate otherwise.
-        if (filename == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
+        if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
         }
         if (diag != null) {
@@ -419,11 +427,16 @@ public final class Xcos {
             }
 
             /*
-             * Load the file if applicable
+             * Ask for file creation
              */
-            if (filename != null) {
-                diag = diag.openDiagramFromFile(filename);
+            if (f != null && !f.exists()) {
+                diag.askForFileCreation(f);
             }
+
+            /*
+             * Load the file
+             */
+            diag.transformAndLoadFile(file, variable);
 
             if (diag != null) {
                 addDiagram(diag.getSavedFile(), diag);
@@ -730,43 +743,19 @@ public final class Xcos {
      */
 
     /**
-     * Entry popint without filename.
-     *
-     * This method invoke Xcos operation on the EDT thread.
-     */
-    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-    public static void xcos() {
-        final Xcos instance = getInstance();
-
-        /* load scicos libraries (macros) */
-        InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
-
-        /*
-         * Open an empty file
-         */
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                // open on EDT
-                instance.open(null);
-            }
-        });
-    }
-
-    /**
-     * Entry point with filename
+     * Main entry point
      *
      * This method invoke Xcos operation on the EDT thread.
      *
-     * @param fileName
-     *            The filename
+     * @param file
+     *            The filename (can be null)
+     * @param variable
+     *            The Scilab variable to load (can be null)
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-    public static void xcos(final String fileName) {
+    public static void xcos(final String file, final String variable) {
         final Xcos instance = getInstance();
         instance.lastError = null;
-
-        final File filename = new File(fileName);
 
         /* load scicos libraries (macros) */
         InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
@@ -779,15 +768,15 @@ public final class Xcos {
                 @Override
                 public void run() {
                     // open on EDT
-                    instance.open(filename);
+                    instance.open(file, variable);
                 }
             });
 
             /*
-             * Wait loading and fail on error
+             * Wait loading and fail on error only if the variable is readeable
              */
             try {
-                while (instance.lastError == null) {
+                while (variable != null && instance.lastError == null) {
                     instance.wait();
                 }
             } catch (InterruptedException e) {

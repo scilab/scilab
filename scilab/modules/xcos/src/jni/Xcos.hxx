@@ -79,8 +79,7 @@ private:
     JavaVM * jvm;
 
 protected:
-    jmethodID voidxcosID; // cache method id
-    jmethodID voidxcosjstringjava_lang_StringID; // cache method id
+    jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
     jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjstringjava_lang_StringID; // cache method id
     jclass stringArrayClass;
     jmethodID voidcloseXcosFromScilabID; // cache method id
@@ -145,9 +144,7 @@ public:
     void endSynchronize();
 
     // Methods
-    static void xcos(JavaVM * jvm_);
-
-    static void xcos(JavaVM * jvm_, char * fileName);
+    static void xcos(JavaVM * jvm_, char * file, char * variable);
 
     static void warnCellByUID(JavaVM * jvm_, char ** uids, int uidsSize, char * message);
 

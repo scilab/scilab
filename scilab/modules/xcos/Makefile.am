@@ -36,8 +36,7 @@ libscixcos_la_etc_DATA = \
 
 XCOS_C_SOURCES =
 
-XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
-			src/jni/Xcos.cpp \
+XCOS_CPP_SOURCES = 	src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \

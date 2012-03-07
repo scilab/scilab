@@ -127,7 +127,11 @@ public class ScilabDirectHandler implements Handler {
     }
 
     @Override
-    public synchronized XcosDiagram readDiagram(final XcosDiagram instance) {
+    public XcosDiagram readDiagram(final XcosDiagram instance) {
+        return readDiagram(instance, SCS_M);
+    }
+
+    public synchronized XcosDiagram readDiagram(final XcosDiagram instance, final String variable) {
         LOG.entering("ScilabDirectHandler", "readDiagram");
         final DiagramElement element = new DiagramElement();
 
@@ -142,9 +146,9 @@ public class ScilabDirectHandler implements Handler {
 
         ScilabType data;
         try {
-            data = Scilab.getInCurrentScilabSession(SCS_M);
+            data = Scilab.getInCurrentScilabSession(variable);
         } catch (JavasciException e) {
-            return null;
+            throw new RuntimeException(e);
         }
 
         // fail safely

@@ -190,7 +190,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\callxcos.cpp" />
     <ClCompile Include="DllmainXCOS.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c" />
     <ClCompile Include="..\jni\Modelica.cpp" />
@@ -213,7 +212,6 @@
     <ClCompile Include="..\cpp\xcosUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callxcos.h" />
     <ClInclude Include="..\..\includes\dynlib_xcos.h" />
     <ClInclude Include="..\..\includes\gw_xcos.h" />
     <ClInclude Include="..\jni\Modelica.hxx" />

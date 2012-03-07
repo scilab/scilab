@@ -126,8 +126,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixcos_algo_la_LIBADD =
 am__objects_1 =
-am__objects_2 = libscixcos_algo_la-callxcos.lo \
-	libscixcos_algo_la-Xcos.lo libscixcos_algo_la-Palette.lo \
+am__objects_2 = libscixcos_algo_la-Xcos.lo libscixcos_algo_la-Palette.lo \
 	libscixcos_algo_la-Modelica.lo \
 	libscixcos_algo_la-xcosUtilities.lo
 am_libscixcos_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
@@ -470,8 +469,7 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xml
 
 XCOS_C_SOURCES = 
-XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
-			src/jni/Xcos.cpp \
+XCOS_CPP_SOURCES = src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
@@ -984,7 +982,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Modelica.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Palette.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-Xcos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-callxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
@@ -1058,13 +1055,6 @@ libscixcos_la-gw_xcos.lo: sci_gateway/c/gw_xcos.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-libscixcos_algo_la-callxcos.lo: src/cpp/callxcos.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-callxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-callxcos.Tpo -c -o libscixcos_algo_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_algo_la-callxcos.Tpo $(DEPDIR)/libscixcos_algo_la-callxcos.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callxcos.cpp' object='libscixcos_algo_la-callxcos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_algo_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
 
 libscixcos_algo_la-Xcos.lo: src/jni/Xcos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_algo_la-Xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_algo_la-Xcos.Tpo -c -o libscixcos_algo_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp

@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graph.ScilabGraph;
@@ -81,6 +82,10 @@ public final class OpenInSciAction extends DefaultAction {
         OpenAction.configureFileFilters(fc);
         fc.setCurrentDirectory(new File(CommonFileUtils.getCWD()));
 
-        OpenAction.displayAndOpen(fc, getGraph(e).getAsComponent());
+        try {
+            OpenAction.displayAndOpen(fc, getGraph(e).getAsComponent());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 }
