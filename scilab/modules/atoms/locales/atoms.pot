@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-02-21 14:18+0100\n"
+"Revision-Date: 2012-03-07 18:20+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -574,13 +574,13 @@ msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 168
+# File: macros/atomsInstall.sci, line: 171
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 280
+# File: macros/atomsInstall.sci, line: 283
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 42
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 48
 #, c-format
@@ -590,15 +590,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 311
-# File: macros/atomsInstall.sci, line: 428
+# File: macros/atomsInstall.sci, line: 314
+# File: macros/atomsInstall.sci, line: 431
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr ""
 
 #
-# File: macros/atomsInstall.sci, line: 351
-# File: macros/atomsInstall.sci, line: 380
+# File: macros/atomsInstall.sci, line: 354
+# File: macros/atomsInstall.sci, line: 383
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr ""
@@ -693,6 +693,12 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 344
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
+msgstr ""
+
+#
+# File: macros/atomsQuit.sci, line: 41
+#, c-format
+msgid "%s: An error occurred while unloading '%s-%s':\n"
 msgstr ""
 
 #
