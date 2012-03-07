@@ -67,6 +67,8 @@ fd = mopen(TMPDIR+'/text_mputl.txt','wt');
 mputl('Hello World',fd);
 mclose(fd);
 
+mputl('Simple Hello World',TMPDIR+"/text_mputl_simple.txt");
+
 fd = mopen(TMPDIR+'/text_mputl.txt','rt');
 disp(mgetl(fd));
 mclose(fd);
