@@ -105,7 +105,6 @@ Xcos
 * Bug #10800 fixed - xcosPalAddBlock help example did not work.
 
 
-
 Unitary testing
 ===============
 

@@ -2156,7 +2156,7 @@ public class XcosDiagram extends ScilabGraph {
             new ScilabDirectHandler().writeContext(getContext());
 
             // evaluate using script2var
-            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + " struct());");
+            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
 
             // read the structure
             result = new ScilabDirectHandler().readContext();
