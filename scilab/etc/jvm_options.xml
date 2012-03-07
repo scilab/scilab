@@ -28,6 +28,14 @@ $SCILAB : scilab path (SCI in Scilab)
   <!--
 <option value="-Djava.compiler=NONE"/>
 -->
+
+  <!-- ALLOW remote java debug -->
+<!--
+    <option value="-Xdebug"/>
+    <option value="-Xnoagent"/>
+    <option value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+-->
+
   <!-- enable-debug-java enables also some more checks -->
 <!--
 <option value='-verbose:jni'/>
