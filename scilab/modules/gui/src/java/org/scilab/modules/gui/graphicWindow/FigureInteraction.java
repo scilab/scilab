@@ -256,7 +256,7 @@ public class FigureInteraction {
             if (currentAxes != null) {
                 Double[] angles = currentAxes.getRotationAngles();
                 angles[0] -= dy / 4.0;
-                angles[1] -= dx / 4.0;
+                angles[1] -= Math.signum(Math.sin(Math.toRadians(angles[0]))) * (dx / 4.0);
                 GraphicController.getController().setProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
             }
         }
