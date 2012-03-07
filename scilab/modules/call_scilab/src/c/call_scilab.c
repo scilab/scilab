@@ -105,16 +105,10 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     static int iflag = -1, ierr = 0;
 
-    if (getScilabMode() != SCILAB_NWNI)
+    setScilabMode(SCILAB_API);
+    if (advancedMode == FALSE)
     {
-        if (advancedMode == FALSE)
-        {
-            DisableInteractiveMode();
-        }
-        else
-        {
-            setScilabMode(SCILAB_API);
-        }
+        DisableInteractiveMode();
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
@@ -165,7 +159,7 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         ScilabStartupUsed = strdup(ScilabStartup);
     }
 
-    if (Stacksize == NULL || Stacksize == -1)
+    if (Stacksize == 0 || Stacksize == -1)
     {
         StacksizeUsed = DEFAULTSTACKSIZE;
     }
