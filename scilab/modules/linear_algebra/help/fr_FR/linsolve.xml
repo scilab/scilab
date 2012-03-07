@@ -83,7 +83,7 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
 
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
 
-b = 0*ones(size(A,1),1);
+b = zeros(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
