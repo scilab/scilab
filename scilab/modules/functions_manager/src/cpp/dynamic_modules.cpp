@@ -212,7 +212,7 @@ int HelptoolsModule::Load()
 
     for(int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
     }
 
     return 1;
