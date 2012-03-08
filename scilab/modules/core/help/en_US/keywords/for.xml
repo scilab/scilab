@@ -17,12 +17,12 @@
       <literal> for variable=expression do instruction,   ,instruction,end</literal>
     </para>
     <para>
-      If  <literal>expression</literal> is a matrix or a row vector, <literal>variable</literal>
+      If <literal>expression</literal> is a matrix or a row vector, <literal>variable</literal>
       takes as values the values of each column of the matrix.
     </para>
     <para>
-      A particular case uses the  <link linkend="colon">colon</link> operator to create regularly
-      spaced row vectors, and ressemble to traditional for loop forms :
+      A particular case uses the <link linkend="colon">colon</link> operator to create regularly
+      spaced row vectors, and is similar to traditional for loop forms:
       <literal>for variable=n1:step:n2, ...,end</literal>
     </para>
     <para>
@@ -60,7 +60,7 @@
     <para>
       rather than
     </para>
-     
+    
     <programlisting role=""><![CDATA[
       for i = 1:5 disp(i); end
 ]]></programlisting>

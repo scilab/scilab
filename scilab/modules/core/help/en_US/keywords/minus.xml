@@ -48,13 +48,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Substraction</para>
-    <para>For numeric operands substraction as its usual meaning. If one of
+    <para>Subtraction</para>
+    <para>For numeric operands subtraction as its usual meaning. If one of
       the operands is a matrix and the other one a scalar then the operation is
       performed element-wise. For <literal>X - Y</literal>, if <literal>Y==[]</literal> then <literal>X</literal> is returned; if
       <literal>X==[]</literal> then <literal>-Y</literal> is returned.
     </para>
-    <para>Substraction may also be defined for other data types through
+    <para>Subtraction may also be defined for other data types through
       "soft-coded" operations (see <link linkend="overloading">overloading</link>).
     </para>
   </refsection>

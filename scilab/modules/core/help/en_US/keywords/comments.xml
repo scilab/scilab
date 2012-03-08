@@ -10,7 +10,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      A sequence of two consecutives slashes <literal>//</literal> out of
+      A sequence of two consecutive slashes <literal>//</literal> out of
       a string definition marks the beginning of a comment. The slashes
       as well as all the following characters up to the end of the lines
       are not interpreted.

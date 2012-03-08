@@ -32,16 +32,11 @@
         <term>.&lt;op&gt;</term>
         <listitem>
           <para>
-            used in conjunction with other operator symbols (<literal>*/
-              \ ^ '
-            </literal>
-            )to form other operators. Element-by-element
-            multiplicative operations are obtained using <literal> .* , .^ , ./
-              , .\
-            </literal>
+            used in conjunction with other operator symbols (<literal>*/ \ ^ '</literal>) to form other operators. Element-by-element
+            multiplicative operations are obtained using <literal> .* , .^ , ./ , .\</literal>
             or <literal>.'</literal>. For example,  <literal>C = A ./ B</literal> is
             the matrix with elements <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Kronecker product
-            is noted <literal>.*.</literal> . Note that when dot follows a number it is alway a part
+            is noted <literal>.*.</literal> . Note that when dot follows a number it is always a part
             of the number so <literal>2.*x</literal> is evaluated as <literal>2.0*x</literal> and <literal>2 .*x</literal> is evaluated
             as <literal>(2).*x</literal>.
           </para>
@@ -58,7 +53,9 @@
             a long logical line from a sequence of continuation lines. So the
             continuation marks can be used to cut a line at any point.
           </para>
-          <para>The following function <literal>foo</literal>:</para>
+          <para>
+            The following function <literal>foo</literal>:
+          </para>
           <programlisting role=""><![CDATA[ 
 function foo
   a=1

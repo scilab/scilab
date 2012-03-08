@@ -69,7 +69,7 @@ end
       <emphasis>execstr(...,"errcatch")</emphasis> cannot be included in
       <literal>try</literal>-<literal>catch</literal> control structures. This
       context is detected and produces a specific error message (this error is
-      catched and stored like any other error if it is triggered in the
+      caught and stored like any other error if it is triggered in the
       <literal>try</literal> block).
     </para>
     <para>

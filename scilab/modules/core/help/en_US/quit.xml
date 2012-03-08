@@ -33,9 +33,9 @@
           If there is a <literal>pause</literal> active,
         </term>
         <listitem>
-          <para>then the
-            <literal>quit</literal> command makes aborts the instructions
-            started at this pause level ando terminates the current pause level.
+          <para>
+            then the <literal>quit</literal> command makes the instructions
+            started at this pause level abort and terminates the current pause level.
           </para>
         </listitem>
       </varlistentry>

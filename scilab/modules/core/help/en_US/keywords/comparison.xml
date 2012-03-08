@@ -83,14 +83,14 @@
               <para>
                 If <literal>a</literal> and <literal>b</literal> evaluates as arrays with same types
                 and identical dimensions, the comparison is performed element by
-                element and the result is an array  of booleans of the same size.
+                element and the result is an array of booleans of the same size.
               </para>
             </listitem>
             <listitem>
               <para>
-                If <literal>a</literal> and <literal>b</literal>  evaluates as arrays 
+                If <literal>a</literal> and <literal>b</literal> evaluates as arrays 
                 with same types, but <literal>a</literal> or <literal>b</literal> is a scalar,
-		then the scalar is compared with each element of the
+                then the scalar is compared with each element of the
                 other array. The result is an array of booleans of the size of
                 the non scalar operand.
               </para>
@@ -101,7 +101,7 @@
               </para>
             </listitem>
             <listitem>
-              <para>If the operand data types are differents but "compatible" like
+              <para>If the operand data types are different but "compatible" like
                 floating points and integers, then a type conversion is performed before
                 the comparison.
               </para>
@@ -119,7 +119,7 @@
             other cases.
           </para>
           <para>
-	    Equality comparison between operands of incompatible data types
+            Equality comparison between operands of incompatible data types
             returns <literal>%f</literal>.
           </para>
         </listitem>

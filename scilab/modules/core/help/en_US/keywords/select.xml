@@ -11,12 +11,12 @@
     <title>Calling Sequence</title>
     <synopsis>
       select variable
-      case value1 then 
+      case value1 then
       instructions 1
-      case value2 then 
+      case value2 then
       instructions 2
-      ...  
-      case valuen then 
+      ...
+      case valuen then
       instructions n
       [else instructions]
       end
@@ -29,7 +29,7 @@
         <term>variable</term>
         <listitem>
           <para>
-            variable which value to be analized. 
+            variable which value to be analyzed.
           </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
         <term>value1, ..., valuen</term>
         <listitem>
           <para>
-            values of <literal>variable</literal> for which there are appropriate instruction blocks  <literal>instructions 1, ..., instructions n</literal>. 
+            values of <literal>variable</literal> for which there are appropriate instruction blocks  <literal>instructions 1, ..., instructions n</literal>.
           </para>
         </listitem>
       </varlistentry>
@@ -45,7 +45,7 @@
         <term>instructions</term>
         <listitem>
           <para>
-            block of valid instructions. 
+            block of valid instructions.
           </para>
         </listitem>
       </varlistentry>
@@ -108,7 +108,6 @@ end
     <para>
       rather than
     </para>
-     
     <programlisting role=""><![CDATA[
 A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
 ]]></programlisting>
@@ -122,15 +121,15 @@ A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 while %t do
-  n=round(10*rand(1,1))
-  select n
-  case 0 then 
-    disp(0)
-  case 1 then
-    disp(1)
-  else
-    break
-  end
+    n=round(10*rand(1,1))
+    select n
+        case 0 then 
+        disp(0)
+    case 1 then
+        disp(1)
+    else
+        break
+    end
 end
  ]]></programlisting>
   </refsection>
