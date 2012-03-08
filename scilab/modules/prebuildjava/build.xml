@@ -19,7 +19,7 @@ The main idea is to build at once all the var files
   <property file="../../scilab-lib.properties"/>
   
   <!-- Order matter : fixed order to avoid dependency handling-->
-  <target name="all" depends="localization, history_manager, commons, jvm, action_binding, renderer, completion, console, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, hdf5, graph, xcos" />
+  <target name="all" depends="localization, history_manager, commons, jvm, action_binding, renderer, completion, console, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, hdf5, graph, xcos, preferences" />
   <target name="clean">
     <antcall target="all">
       <param name="target-jar" value="clean"/>
@@ -88,6 +88,9 @@ The main idea is to build at once all the var files
   </target>
   <target name="xcos" if="build_xcos" depends="hdf5, javasci">
     <ant antfile="../xcos/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="preferences">
+    <ant antfile="../preferences/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
   </target>
 </project>
 
