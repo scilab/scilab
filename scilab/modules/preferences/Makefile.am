@@ -79,6 +79,7 @@ libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/commons/src/jni \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/fileio/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
